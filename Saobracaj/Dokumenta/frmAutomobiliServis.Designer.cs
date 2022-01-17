@@ -1,0 +1,373 @@
+﻿
+namespace Saobracaj.Dokumenta
+{
+    partial class frmAutomobiliServis
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAutomobiliServis));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsNew = new System.Windows.Forms.ToolStripButton();
+            this.tsSave = new System.Windows.Forms.ToolStripButton();
+            this.tsDelete = new System.Windows.Forms.ToolStripButton();
+            this.tsPrvi = new System.Windows.Forms.ToolStripButton();
+            this.tsNazad = new System.Windows.Forms.ToolStripButton();
+            this.tsNapred = new System.Windows.Forms.ToolStripButton();
+            this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cboZaposleni = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtNapomena = new System.Windows.Forms.TextBox();
+            this.dtpDatumServisa = new System.Windows.Forms.DateTimePicker();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtSifra = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtAutomobilID = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cboPartneri = new System.Windows.Forms.ComboBox();
+            this.chkVelikiServis = new System.Windows.Forms.CheckBox();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.txtKM = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsNew,
+            this.tsSave,
+            this.tsDelete,
+            this.toolStripSeparator1,
+            this.tsPrvi,
+            this.tsNazad,
+            this.tsNapred,
+            this.tsPoslednja});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(800, 25);
+            this.toolStrip1.TabIndex = 144;
+            this.toolStrip1.Text = "Unesi cenu za radnika";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsNew
+            // 
+            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
+            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNew.Name = "tsNew";
+            this.tsNew.Size = new System.Drawing.Size(23, 22);
+            this.tsNew.Text = "Novi";
+            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
+            // 
+            // tsSave
+            // 
+            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
+            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsSave.Name = "tsSave";
+            this.tsSave.Size = new System.Drawing.Size(23, 22);
+            this.tsSave.Text = "tsSave";
+            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
+            // 
+            // tsDelete
+            // 
+            this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
+            this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsDelete.Name = "tsDelete";
+            this.tsDelete.Size = new System.Drawing.Size(23, 22);
+            this.tsDelete.Text = "toolStripButton1";
+            // 
+            // tsPrvi
+            // 
+            this.tsPrvi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
+            this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsPrvi.Name = "tsPrvi";
+            this.tsPrvi.Size = new System.Drawing.Size(23, 22);
+            this.tsPrvi.Text = "toolStripButton1";
+            // 
+            // tsNazad
+            // 
+            this.tsNazad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
+            this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNazad.Name = "tsNazad";
+            this.tsNazad.Size = new System.Drawing.Size(23, 22);
+            this.tsNazad.Text = "toolStripButton1";
+            // 
+            // tsNapred
+            // 
+            this.tsNapred.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
+            this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNapred.Name = "tsNapred";
+            this.tsNapred.Size = new System.Drawing.Size(23, 22);
+            this.tsNapred.Text = "toolStripButton1";
+            // 
+            // tsPoslednja
+            // 
+            this.tsPoslednja.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
+            this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsPoslednja.Name = "tsPoslednja";
+            this.tsPoslednja.Size = new System.Drawing.Size(23, 22);
+            this.tsPoslednja.Text = "toolStripButton1";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 74);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(71, 13);
+            this.label4.TabIndex = 210;
+            this.label4.Text = "Servis izvršio:";
+            // 
+            // cboZaposleni
+            // 
+            this.cboZaposleni.FormattingEnabled = true;
+            this.cboZaposleni.Location = new System.Drawing.Point(95, 73);
+            this.cboZaposleni.Name = "cboZaposleni";
+            this.cboZaposleni.Size = new System.Drawing.Size(171, 21);
+            this.cboZaposleni.TabIndex = 212;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(13, 103);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(62, 13);
+            this.label8.TabIndex = 217;
+            this.label8.Text = "Napomena:";
+            // 
+            // txtNapomena
+            // 
+            this.txtNapomena.Location = new System.Drawing.Point(16, 121);
+            this.txtNapomena.Multiline = true;
+            this.txtNapomena.Name = "txtNapomena";
+            this.txtNapomena.Size = new System.Drawing.Size(567, 84);
+            this.txtNapomena.TabIndex = 216;
+            // 
+            // dtpDatumServisa
+            // 
+            this.dtpDatumServisa.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dtpDatumServisa.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDatumServisa.Location = new System.Drawing.Point(368, 44);
+            this.dtpDatumServisa.Name = "dtpDatumServisa";
+            this.dtpDatumServisa.ShowUpDown = true;
+            this.dtpDatumServisa.Size = new System.Drawing.Size(108, 20);
+            this.dtpDatumServisa.TabIndex = 214;
+            this.dtpDatumServisa.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(285, 42);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(77, 13);
+            this.label21.TabIndex = 215;
+            this.label21.Text = "Datum servisa:";
+            // 
+            // txtSifra
+            // 
+            this.txtSifra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txtSifra.Location = new System.Drawing.Point(83, 42);
+            this.txtSifra.Name = "txtSifra";
+            this.txtSifra.Size = new System.Drawing.Size(52, 20);
+            this.txtSifra.TabIndex = 211;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(13, 43);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(64, 13);
+            this.label7.TabIndex = 213;
+            this.label7.Text = "Šifra zapisa:";
+            // 
+            // txtAutomobilID
+            // 
+            this.txtAutomobilID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txtAutomobilID.Location = new System.Drawing.Point(214, 43);
+            this.txtAutomobilID.Name = "txtAutomobilID";
+            this.txtAutomobilID.Size = new System.Drawing.Size(52, 20);
+            this.txtAutomobilID.TabIndex = 218;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(144, 44);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 13);
+            this.label1.TabIndex = 219;
+            this.label1.Text = "Automobil ID:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(286, 75);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(96, 13);
+            this.label2.TabIndex = 220;
+            this.label2.Text = "Servis izvršen kod:";
+            // 
+            // cboPartneri
+            // 
+            this.cboPartneri.FormattingEnabled = true;
+            this.cboPartneri.Location = new System.Drawing.Point(388, 75);
+            this.cboPartneri.Name = "cboPartneri";
+            this.cboPartneri.Size = new System.Drawing.Size(171, 21);
+            this.cboPartneri.TabIndex = 221;
+            // 
+            // chkVelikiServis
+            // 
+            this.chkVelikiServis.AutoSize = true;
+            this.chkVelikiServis.Location = new System.Drawing.Point(502, 42);
+            this.chkVelikiServis.Name = "chkVelikiServis";
+            this.chkVelikiServis.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkVelikiServis.Size = new System.Drawing.Size(81, 17);
+            this.chkVelikiServis.TabIndex = 222;
+            this.chkVelikiServis.Text = "Veliki servis";
+            this.chkVelikiServis.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.AllowUserToAddRows = false;
+            this.dataGridView4.AllowUserToResizeRows = false;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView4.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView4.Location = new System.Drawing.Point(16, 211);
+            this.dataGridView4.Name = "dataGridView4";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView4.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView4.RowHeadersWidth = 21;
+            this.dataGridView4.Size = new System.Drawing.Size(772, 227);
+            this.dataGridView4.TabIndex = 223;
+            this.dataGridView4.SelectionChanged += new System.EventHandler(this.dataGridView4_SelectionChanged);
+            // 
+            // txtKM
+            // 
+            this.txtKM.BackColor = System.Drawing.Color.White;
+            this.txtKM.Location = new System.Drawing.Point(668, 42);
+            this.txtKM.Name = "txtKM";
+            this.txtKM.Size = new System.Drawing.Size(67, 20);
+            this.txtKM.TabIndex = 224;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(598, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(64, 13);
+            this.label3.TabIndex = 225;
+            this.label3.Text = "Kilometraža:";
+            // 
+            // frmAutomobiliServis
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtKM);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.dataGridView4);
+            this.Controls.Add(this.chkVelikiServis);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cboPartneri);
+            this.Controls.Add(this.txtAutomobilID);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.cboZaposleni);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtNapomena);
+            this.Controls.Add(this.dtpDatumServisa);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.txtSifra);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.toolStrip1);
+            this.Name = "frmAutomobiliServis";
+            this.Text = "frmAutomobiliServis";
+            this.Load += new System.EventHandler(this.frmAutomobiliServis_Load);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton tsNew;
+        private System.Windows.Forms.ToolStripButton tsSave;
+        private System.Windows.Forms.ToolStripButton tsDelete;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton tsPrvi;
+        private System.Windows.Forms.ToolStripButton tsNazad;
+        private System.Windows.Forms.ToolStripButton tsNapred;
+        private System.Windows.Forms.ToolStripButton tsPoslednja;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox cboZaposleni;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtNapomena;
+        private System.Windows.Forms.DateTimePicker dtpDatumServisa;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox txtSifra;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtAutomobilID;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cboPartneri;
+        private System.Windows.Forms.CheckBox chkVelikiServis;
+        private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.TextBox txtKM;
+        private System.Windows.Forms.Label label3;
+    }
+}
