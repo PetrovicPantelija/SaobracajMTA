@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,8 +16,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Data.SqlClient;
-
-
 //using iTextSharp.text;
 //using iTextSharp.text.pdf;
 //using iTextSharp;
@@ -35,12 +31,14 @@ namespace Saobracaj.Dokumenta
         public frmAutomobiliDokumenta()
         {
             InitializeComponent();
+            RefreshDataGrid();
         }
 
         public frmAutomobiliDokumenta(string sifra)
         {
             InitializeComponent();
             txtSifraNajave.Text = sifra;
+            RefreshDataGrid();
         }
 
         private void button1_Click(object sender, EventArgs e)
