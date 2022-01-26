@@ -882,6 +882,12 @@
     <Compile Include="Dokumenta\InsertTraseDokumenta.cs" />
     <Compile Include="Dokumenta\InsertUzrociKasnjenjaLok.cs" />
     <Compile Include="Dokumenta\PivotTable.cs" />
+    <Compile Include="Dokumenta\frmTeretnicaTerenIzmena.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmTeretnicaTerenIzmena.Designer.cs">
+      <DependentUpon>frmTeretnicaTerenIzmena.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\WebMapa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1740,6 +1746,9 @@
     <EmbeddedResource Include="Dokumenta\rptPlacenoNeplaceno.rdlc" />
     <EmbeddedResource Include="Dokumenta\rptPlacenoTrue.rdlc" />
     <EmbeddedResource Include="Dokumenta\rptRegistrator.rdlc" />
+    <EmbeddedResource Include="Dokumenta\frmTeretnicaTerenIzmena.resx">
+      <DependentUpon>frmTeretnicaTerenIzmena.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\Troskovi.rdlc" />
     <EmbeddedResource Include="Dokumenta\WebMapa.resx">
       <DependentUpon>WebMapa.cs</DependentUpon>
