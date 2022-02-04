@@ -690,6 +690,12 @@
     <Compile Include="Dokumenta\frmPronadjiVagon.Designer.cs">
       <DependentUpon>frmPronadjiVagon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dokumenta\frmPropratnice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmPropratnice.Designer.cs">
+      <DependentUpon>frmPropratnice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\frmPutniNaloziPregled.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -868,6 +874,7 @@
     <Compile Include="Dokumenta\InsertPravoAktivnosti.cs" />
     <Compile Include="Dokumenta\InsertPrekovremeniRad.cs" />
     <Compile Include="Dokumenta\InsertPrijemnica.cs" />
+    <Compile Include="Dokumenta\InsertPropratnica.cs" />
     <Compile Include="Dokumenta\InsertProracunKM.cs" />
     <Compile Include="Dokumenta\InsertRadniNalog.cs" />
     <Compile Include="Dokumenta\InsertRadniNalogDokumenta.cs" />
@@ -882,6 +889,12 @@
     <Compile Include="Dokumenta\InsertTraseDokumenta.cs" />
     <Compile Include="Dokumenta\InsertUzrociKasnjenjaLok.cs" />
     <Compile Include="Dokumenta\PivotTable.cs" />
+    <Compile Include="Dokumenta\frmTeretnicaTerenIzmena.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmTeretnicaTerenIzmena.Designer.cs">
+      <DependentUpon>frmTeretnicaTerenIzmena.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\WebMapa.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1656,6 +1669,9 @@
     <EmbeddedResource Include="Dokumenta\frmPronadjiVagon.resx">
       <DependentUpon>frmPronadjiVagon.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmPropratnice.resx">
+      <DependentUpon>frmPropratnice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmPutniNaloziPregled.resx">
       <DependentUpon>frmPutniNaloziPregled.cs</DependentUpon>
     </EmbeddedResource>
@@ -1740,6 +1756,9 @@
     <EmbeddedResource Include="Dokumenta\rptPlacenoNeplaceno.rdlc" />
     <EmbeddedResource Include="Dokumenta\rptPlacenoTrue.rdlc" />
     <EmbeddedResource Include="Dokumenta\rptRegistrator.rdlc" />
+    <EmbeddedResource Include="Dokumenta\frmTeretnicaTerenIzmena.resx">
+      <DependentUpon>frmTeretnicaTerenIzmena.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\Troskovi.rdlc" />
     <EmbeddedResource Include="Dokumenta\WebMapa.resx">
       <DependentUpon>WebMapa.cs</DependentUpon>
