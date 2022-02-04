@@ -690,6 +690,12 @@
     <Compile Include="Dokumenta\frmPronadjiVagon.Designer.cs">
       <DependentUpon>frmPronadjiVagon.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dokumenta\frmPropratnice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmPropratnice.Designer.cs">
+      <DependentUpon>frmPropratnice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\frmPutniNaloziPregled.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -868,6 +874,7 @@
     <Compile Include="Dokumenta\InsertPravoAktivnosti.cs" />
     <Compile Include="Dokumenta\InsertPrekovremeniRad.cs" />
     <Compile Include="Dokumenta\InsertPrijemnica.cs" />
+    <Compile Include="Dokumenta\InsertPropratnica.cs" />
     <Compile Include="Dokumenta\InsertProracunKM.cs" />
     <Compile Include="Dokumenta\InsertRadniNalog.cs" />
     <Compile Include="Dokumenta\InsertRadniNalogDokumenta.cs" />
@@ -1661,6 +1668,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmPronadjiVagon.resx">
       <DependentUpon>frmPronadjiVagon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmPropratnice.resx">
+      <DependentUpon>frmPropratnice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmPutniNaloziPregled.resx">
       <DependentUpon>frmPutniNaloziPregled.cs</DependentUpon>

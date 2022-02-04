@@ -800,5 +800,11 @@ namespace Saobracaj
         {
 
         }
+
+        private void toolStripButton116_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmPropratnice propratnice = new Dokumenta.frmPropratnice();
+            propratnice.Show();
+        }
     }
 }
