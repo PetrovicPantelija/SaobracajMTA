@@ -51,8 +51,6 @@ namespace Saobracaj.Dokumenta
             this.btn_prikaziR = new System.Windows.Forms.Button();
             this.txt_putanjaZ = new System.Windows.Forms.TextBox();
             this.txt_putanjaR = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -258,27 +256,11 @@ namespace Saobracaj.Dokumenta
             this.txt_putanjaR.Size = new System.Drawing.Size(517, 22);
             this.txt_putanjaR.TabIndex = 43;
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(433, 12);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(172, 22);
-            this.textBox1.TabIndex = 44;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(433, 40);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(172, 22);
-            this.textBox2.TabIndex = 44;
-            // 
             // frmPropratnice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1691, 685);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.txt_putanjaR);
             this.Controls.Add(this.txt_putanjaZ);
             this.Controls.Add(this.btn_prikaziR);
@@ -331,7 +313,5 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.Button btn_prikaziR;
         private System.Windows.Forms.TextBox txt_putanjaZ;
         private System.Windows.Forms.TextBox txt_putanjaR;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
     }
 }
