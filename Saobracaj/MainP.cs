@@ -183,9 +183,12 @@ namespace Saobracaj
         }
         private void toolStripButton27_Click(object sender, EventArgs e)
         {
+            Dokumenta.frmMapa mapa = new Dokumenta.frmMapa();
+            mapa.Show();
+            /*
             Dokumenta.frmTest test = new Dokumenta.frmTest();
             PravoP = test.Pravo;
-            if (PravoP == true) { test.Show(); } else { return; }
+            if (PravoP == true) { test.Show(); } else { return; }*/
         }
         private void toolStripButton28_Click(object sender, EventArgs e)
         {
