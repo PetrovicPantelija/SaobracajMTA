@@ -31,6 +31,7 @@ namespace Saobracaj.Administracija
             IdGrupe();
             IdForme();
             PravoPristupa();
+            //Panta2 promena
         }
 
         public int IdGrupe()
@@ -112,6 +113,7 @@ namespace Saobracaj.Administracija
         private void frmForme_Load(object sender, EventArgs e)
         {
             RefreshDG();
+            //Panta2
         }
         private void RefreshDG()
         {
