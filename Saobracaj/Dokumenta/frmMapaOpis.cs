@@ -17,6 +17,7 @@ namespace Saobracaj.Dokumenta
         public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         int marker = Dokumenta.frmMapa.stanicaMarker;
         int partner = Dokumenta.frmMapa.partner;
+        //PANTA COMMIT
         public frmMapaOpis()
         {
             InitializeComponent();
