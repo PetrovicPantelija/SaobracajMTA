@@ -18,6 +18,7 @@ namespace Saobracaj.Dokumenta
         int marker = Dokumenta.frmMapa.stanicaMarker;
         int partner = Dokumenta.frmMapa.partner;
         //PANTA COMMIT
+        //Stefan COmmit
         public frmMapaOpis()
         {
             InitializeComponent();
