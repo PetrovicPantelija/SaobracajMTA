@@ -29,7 +29,8 @@ namespace Saobracaj.Dokumenta
         double lng;
         double lngS;
         double latS;
-
+        public static int stanicaMarker;
+        public static int partner;
         public frmMapa()
         {
             InitializeComponent();
@@ -72,7 +73,7 @@ namespace Saobracaj.Dokumenta
                 "group by Najava.Granicna,Stanice.Opis,Stanice.Longitude,Stanice.Latitude";
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dr = cmd.ExecuteReader();
-
+            
             while (dr.Read())
             {
                 id = Convert.ToInt32(dr["Granicna"].ToString());
@@ -93,6 +94,7 @@ namespace Saobracaj.Dokumenta
                 map.Overlays.Add(overlay);
             }
             map.OnMarkerClick += new MarkerClick(map_OnMarkerClick);
+
             conn.Close();
         }
         private void map_OnMarkerClick(GMapMarker marker, MouseEventArgs e)
@@ -120,6 +122,7 @@ namespace Saobracaj.Dokumenta
             int brKola;
             double tezina;
             double neto;
+            stanicaMarker = Convert.ToInt32(pocetna.ToString());
             while (dr.Read())
             {
                 stanica = dr["Opis"].ToString().TrimEnd();
@@ -136,14 +139,14 @@ namespace Saobracaj.Dokumenta
                 marker2.ToolTipMode = MarkerTooltipMode.Always;
                 marker2.ToolTipText = text;
                 overlay.Markers.Add(marker2);
+
                 for (int i = 0; i < dr.FieldCount; i++)
                 {
                     List<PointLatLng> points = new List<PointLatLng>();
                     points.Add(new PointLatLng(lt, ln));
                     points.Add(new PointLatLng(lngS, latS));
                     polygon = new GMapPolygon(points, "mypoligon");
-                    polygon.Stroke.Color = Color.Red;
-                    polygon.Stroke.Width = 3;
+                    polygon.Stroke.Width = 2;
                     polyOvelray.Polygons.Add(polygon);
                 }
             }
@@ -151,14 +154,12 @@ namespace Saobracaj.Dokumenta
             map.Overlays.Add(overlay);
 
             conn.Close();
-        }
-
+        } 
         private void btn_SveStanice_Click(object sender, EventArgs e)
         {
-            map.Refresh();
-            overlay.Markers.Clear();
-            polyOvelray.Clear();
-            LoadNajave();
+            this.Close();
+            frmMapa m = new frmMapa();
+            m.Show();
         }
         private void FillCombo()
         {
@@ -178,6 +179,22 @@ namespace Saobracaj.Dokumenta
             combo_Partner.DataSource = setPartner.Tables[0];
             combo_Partner.DisplayMember = "Partner";
             combo_Partner.ValueMember = "PaSifra";
+
+            var queryStatus = "Select distinct Status From Najava order by status asc";
+            var adapterStatus = new SqlDataAdapter(queryStatus, conn);
+            var setStatus = new DataSet();
+            adapterStatus.Fill(setStatus);
+            combo_Status.DataSource = setStatus.Tables[0];
+            combo_Status.DisplayMember = "Status";
+            combo_Status.ValueMember = "Status";
+
+            var queryStanica = "select ID,Opis from stanice where Longitude<>0 and Latitude<>0";
+            var adapterStanica = new SqlDataAdapter(queryStanica, conn);
+            var setStanica = new DataSet();
+            adapterStanica.Fill(setStanica);
+            combo_Stanica.DataSource = setStanica.Tables[0];
+            combo_Stanica.DisplayMember = "Opis";
+            combo_Stanica.ValueMember = "ID";
         }
         private void btn_ZoomIn_Click(object sender, EventArgs e)
         {
@@ -294,6 +311,151 @@ namespace Saobracaj.Dokumenta
                 "Where Najava.Platilac=" + combo_Partner.SelectedValue + " and Najava.Status<>7 and Status<>9 and stanice.Longitude<>0 and stanice.Latitude<>0 and stanice_1.Longitude<>0 and stanice_1.Latitude<>0";
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dr = cmd.ExecuteReader();
+            partner = Convert.ToInt32(combo_Partner.SelectedValue);
+            double upLng;
+            double upLat;
+            string upOpis;
+            string otOpis;
+            double otLng;
+            double otLat;
+
+            while (dr.Read())
+            {
+                upLng = Convert.ToDouble(dr["UputnaLongitude"].ToString());
+                upLat = Convert.ToDouble(dr["UputnaLatitude"].ToString());
+                upOpis = dr["UputnaOpis"].ToString();
+                otOpis = dr["OtpravnaOpis"].ToString();
+                otLng = Convert.ToDouble(dr["OtpravnaLongitude"].ToString());
+                otLat = Convert.ToDouble(dr["OtpravnaLatitude"].ToString());
+
+                GMarkerGoogle markerUp = new GMarkerGoogle(new PointLatLng(upLng, upLat), GMarkerGoogleType.red_dot);
+                markerUp.ToolTipMode = MarkerTooltipMode.Always;
+                markerUp.ToolTipText = upOpis;
+                overlay.Markers.Add(markerUp);
+
+                GMarkerGoogle markerOt = new GMarkerGoogle(new PointLatLng(otLng, otLat), GMarkerGoogleType.blue_dot);
+                markerOt.ToolTipMode = MarkerTooltipMode.Always;
+                markerOt.ToolTipText = otOpis;
+                overlay.Markers.Add(markerOt);
+
+                for (int i = 0; i < dr.FieldCount; i++)
+                {
+                    List<PointLatLng> points = new List<PointLatLng>();
+                    points.Add(new PointLatLng(upLng, upLat));
+                    points.Add(new PointLatLng(otLng, otLat));
+                    polygon = new GMapPolygon(points, "mypoligon");
+                    polygon.Stroke.Color = Color.DarkOrange;
+                    polygon.Stroke.Width = 3;
+                    polyOvelray.Polygons.Add(polygon);
+                }
+            }
+            map.Overlays.Add(polyOvelray);
+            map.Overlays.Add(overlay);
+            map.Zoom = 7;
+            map.Zoom = 8;
+            frmMapaOpis mapa = new frmMapaOpis();
+            mapa.Show();
+        }
+
+        private void btn_Status_Click(object sender, EventArgs e)
+        {
+            overlay.Clear();
+            overlay.Markers.Clear();
+            polyOvelray.Clear();
+            polyOvelray.Polygons.Clear();
+
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            var query = "select Najava.ID as ID, Najava.Uputna as Uputna,stanice.Opis as UputnaOpis, stanice.Longitude as UputnaLongitude, stanice.latitude as UputnaLatitude," +
+                "najava.Otpravna, stanice_1.Opis as OtpravnaOpis, stanice_1.longitude as OtpravnaLongitude,stanice_1.Latitude as OtpravnaLatitude, Najava.Status as status," +
+                "BrojKola, Tezina,NetoTezinaM " +
+                "From Najava " +
+                "inner Join Partnerji on partnerji.PaSifra=Najava.Platilac " +
+                "inner join stanice on stanice.id=najava.Uputna " +
+                "inner join stanice as stanice_1 on stanice_1.id=najava.Otpravna " +
+                "Where Najava.Status=" + combo_Status.SelectedValue + " and stanice.Longitude<>0 and stanice.Latitude<>0 and stanice_1.Longitude<>0 and stanice_1.Latitude<>0";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            double upLng;
+            double upLat;
+            string upOpis;
+            string otOpis;
+            double otLng;
+            double otLat;
+            int status;
+            int brojKola;
+            double tezina;
+            double neto;
+
+            while (dr.Read())
+            {
+                upLng = Convert.ToDouble(dr["UputnaLongitude"].ToString());
+                upLat = Convert.ToDouble(dr["UputnaLatitude"].ToString());
+                upOpis = dr["UputnaOpis"].ToString();
+                otOpis = dr["OtpravnaOpis"].ToString();
+                otLng = Convert.ToDouble(dr["OtpravnaLongitude"].ToString());
+                otLat = Convert.ToDouble(dr["OtpravnaLatitude"].ToString());
+                
+                brojKola = Convert.ToInt32(dr["BrojKola"].ToString());
+                tezina = Convert.ToDouble(dr["Tezina"].ToString());
+                neto = Convert.ToDouble(dr["NetoTezinaM"].ToString());
+
+                GMarkerGoogle markerUp = new GMarkerGoogle(new PointLatLng(upLng, upLat), GMarkerGoogleType.red_dot);
+                markerUp.ToolTipMode = MarkerTooltipMode.Always;
+                markerUp.ToolTipText = "Uputna: "+ upOpis;
+                overlay.Markers.Add(markerUp);
+
+                GMarkerGoogle markerOt = new GMarkerGoogle(new PointLatLng(otLng, otLat), GMarkerGoogleType.blue_dot);
+                markerOt.ToolTipMode = MarkerTooltipMode.Always;
+                markerOt.ToolTipText = "Otpravna: "+otOpis;
+                overlay.Markers.Add(markerOt);
+                int selectStatus = Convert.ToInt32(combo_Status.SelectedValue);
+                for (int i = 0; i < dr.FieldCount; i++)
+                {
+                    List<PointLatLng> points = new List<PointLatLng>();
+                    points.Add(new PointLatLng(upLng, upLat));
+                    points.Add(new PointLatLng(otLng, otLat));
+                    polygon = new GMapPolygon(points, "mypoligon");
+                    
+                    if (selectStatus == 1) { polygon.Stroke.Color = Color.Red; }
+                    else if (selectStatus==2) { polygon.Stroke.Color = Color.Blue; }
+                    else if (selectStatus==3) { polygon.Stroke.Color = Color.Green; }
+                    else if (selectStatus==4) { polygon.Stroke.Color = Color.Yellow; }
+                    else if (selectStatus==5) { polygon.Stroke.Color = Color.Black; }
+                    else if (selectStatus==6) { polygon.Stroke.Color = Color.White; }
+                    else if (selectStatus==8) { polygon.Stroke.Color = Color.Gray; }
+                    else { polygon.Stroke.Color = Color.RosyBrown; }
+                    polygon.Stroke.Width = 2;
+                    polyOvelray.Polygons.Add(polygon);
+                }
+            }
+            map.Overlays.Add(polyOvelray);
+            map.Overlays.Add(overlay);
+            map.Zoom = 7;
+            map.Zoom = 8;
+        }
+
+
+        //Pravi rute za zadati status i otpravnu stanicu
+        private void btn_StanicaStatus_Click(object sender, EventArgs e)
+        {
+            overlay.Clear();
+            overlay.Markers.Clear();
+            polyOvelray.Clear();
+            polyOvelray.Polygons.Clear();
+
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            var query = "select Najava.ID as ID,Najava.Uputna as Uputna,stanice.Opis as UputnaOpis,stanice.Longitude as UputnaLongitude,stanice.latitude as UputnaLatitude," +
+                "najava.Otpravna, stanice_1.Opis as OtpravnaOpis, stanice_1.longitude as OtpravnaLongitude,stanice_1.Latitude as OtpravnaLatitude, Najava.Status as status," +
+                "BrojKola, Tezina,NetoTezinaM " +
+                "From Najava " +
+                "inner join stanice on stanice.id=najava.Uputna " +
+                "inner join stanice as stanice_1 on stanice_1.id=najava.Otpravna " +
+                "Where Najava.Otpravna=" + combo_Stanica.SelectedValue + " and Najava.Status="+combo_Status.SelectedValue+" and stanice.Longitude<>0 and stanice.Latitude<>0 and stanice_1.Longitude<>0 and stanice_1.Latitude<>0";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
 
             double upLng;
             double upLat;
@@ -319,15 +481,15 @@ namespace Saobracaj.Dokumenta
                 tezina = Convert.ToDouble(dr["Tezina"].ToString());
                 neto = Convert.ToDouble(dr["NetoTezinaM"].ToString());
 
-                GMarkerGoogle markerUp = new GMarkerGoogle(new PointLatLng(upLng, upLat), GMarkerGoogleType.green_dot);
+                GMarkerGoogle markerUp = new GMarkerGoogle(new PointLatLng(upLng, upLat), GMarkerGoogleType.red_dot);
                 markerUp.ToolTipMode = MarkerTooltipMode.Always;
                 markerUp.ToolTipText = upOpis;
                 overlay.Markers.Add(markerUp);
 
-                GMarkerGoogle markerOt = new GMarkerGoogle(new PointLatLng(otLng, otLat), GMarkerGoogleType.green_dot);
-                markerOt.ToolTipMode = MarkerTooltipMode.Always;
+                GMarkerGoogle markerOt = new GMarkerGoogle(new PointLatLng(otLng, otLat), GMarkerGoogleType.blue_dot);
                 markerOt.ToolTipText = otOpis;
                 overlay.Markers.Add(markerOt);
+                int selectStatus = Convert.ToInt32(combo_Status.SelectedValue);
 
                 for (int i = 0; i < dr.FieldCount; i++)
                 {
@@ -335,7 +497,14 @@ namespace Saobracaj.Dokumenta
                     points.Add(new PointLatLng(upLng, upLat));
                     points.Add(new PointLatLng(otLng, otLat));
                     polygon = new GMapPolygon(points, "mypoligon");
-                    polygon.Stroke.Color = Color.DarkOrange;
+                    if (selectStatus == 1) { polygon.Stroke.Color = Color.Red; }
+                    else if (selectStatus == 2) { polygon.Stroke.Color = Color.Blue; }
+                    else if (selectStatus == 3) { polygon.Stroke.Color = Color.Green; }
+                    else if (selectStatus == 4) { polygon.Stroke.Color = Color.Yellow; }
+                    else if (selectStatus == 5) { polygon.Stroke.Color = Color.Black; }
+                    else if (selectStatus == 6) { polygon.Stroke.Color = Color.White; }
+                    else if (selectStatus == 8) { polygon.Stroke.Color = Color.Gray; }
+                    else { polygon.Stroke.Color = Color.RosyBrown; }
                     polygon.Stroke.Width = 3;
                     polyOvelray.Polygons.Add(polygon);
                 }
@@ -345,6 +514,11 @@ namespace Saobracaj.Dokumenta
             map.Zoom = 7;
             map.Zoom = 8;
         }
-
+        private void btn_Detaljno_Click(object sender, EventArgs e)
+        {
+            frmMapaOpis opis = new frmMapaOpis();
+            opis.Show();
+            opis.Focus();
+        }
     }
 }
