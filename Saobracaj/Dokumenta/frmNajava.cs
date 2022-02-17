@@ -2508,6 +2508,11 @@ namespace Saobracaj.Dokumenta
             RefreshDataGrid5();
         }
 
+        private void cboPlatilac_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         /*
         frmNajavaStavkePorudzbine nsp = new frmNajavaStavkePorudzbine(Convert.ToInt32(cboPlatilac.SelectedValue));
         nsp.Show();
