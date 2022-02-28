@@ -561,6 +561,12 @@
     <Compile Include="Dokumenta\frmMupMesto.Designer.cs">
       <DependentUpon>frmMupMesto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dokumenta\frmNajavaLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmNajavaLog.Designer.cs">
+      <DependentUpon>frmNajavaLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\frmNajavaStavkePorudzbine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -911,6 +917,7 @@
     <Compile Include="Dokumenta\InsertMUPMesto.cs" />
     <Compile Include="Dokumenta\InsertNajava.cs" />
     <Compile Include="Dokumenta\InsertNajavaDokumenta.cs" />
+    <Compile Include="Dokumenta\InsertNajavaLog.cs" />
     <Compile Include="Dokumenta\InsertNajavaPrevoznik.cs" />
     <Compile Include="Dokumenta\InsertObracunSati.cs" />
     <Compile Include="Dokumenta\InsertOsnovnaZarada.cs" />
@@ -1632,6 +1639,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmMupMesto.resx">
       <DependentUpon>frmMupMesto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmNajavaLog.resx">
+      <DependentUpon>frmNajavaLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmNajavaStavkePorudzbine.resx">
       <DependentUpon>frmNajavaStavkePorudzbine.cs</DependentUpon>

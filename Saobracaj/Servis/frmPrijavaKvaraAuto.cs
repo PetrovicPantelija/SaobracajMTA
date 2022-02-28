@@ -186,7 +186,7 @@ namespace Saobracaj.Servis
             var query = "  select EvidencijaKvarovaAuto.ID, Automobil, Prijavio, DatumPrijave, (Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek)) as Prijavio " +
             " , KvaroviAuto.Naziv, StatusKvara, Promenio, DatumPromene, Napomena from EvidencijaKvarovaAuto " +
             "  inner join Delavci on Delavci.DeSifra = EvidencijaKvarovaAuto.Prijavio " +
-            " inner join KvaroviAuto on KvaroviAuto.ID = EvidencijaKvarovaAuto.Kvar order by EvidencijaKvarovaAuto.ID";
+            " inner join KvaroviAuto on KvaroviAuto.ID = EvidencijaKvarovaAuto.Kvar order by EvidencijaKvarovaAuto.ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();

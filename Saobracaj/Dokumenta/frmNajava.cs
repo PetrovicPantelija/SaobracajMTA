@@ -701,7 +701,70 @@ namespace Saobracaj.Dokumenta
 
         
         }
+        private void LogInsert()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string query = "SELECT TOP 1 * FROM Najava ORDER BY ID DESC";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
 
+                int id = Convert.ToInt32(dr["ID"].ToString());
+                string brNajave = dr["BrojNajave"].ToString().TrimEnd();
+                int voz = Convert.ToInt32(dr["Voz"].ToString());
+                int posiljalac = Convert.ToInt32(dr["Posiljalac"].ToString());
+                int prevoznik = Convert.ToInt32(dr["Prevoznik"].ToString());
+                int otpravna = Convert.ToInt32(dr["Otpravna"].ToString());
+                int uputna = Convert.ToInt32(dr["Uputna"].ToString());
+                int primalac = Convert.ToInt32(dr["Primalac"].ToString());
+                int roba = Convert.ToInt32(dr["RobaNHM"].ToString());
+                string put = dr["PrevozniPut"].ToString().TrimEnd();
+                decimal tezina = Convert.ToDecimal(dr["Tezina"].ToString());
+                decimal duzina = Convert.ToDecimal(dr["Duzina"].ToString());
+                int kola = Convert.ToInt32(dr["BrojKola"].ToString());
+                int rid = Convert.ToInt32(dr["RID"].ToString());
+                DateTime pPrimanje = Convert.ToDateTime(dr["PredvidjenoPrimanje"].ToString());
+                DateTime sPrimanje = Convert.ToDateTime(dr["StvarnoPrimanje"].ToString());
+                DateTime pPredaja = Convert.ToDateTime(dr["PredvidjenaPredaja"].ToString());
+                DateTime sPredaja = Convert.ToDateTime(dr["StvarnaPredaja"].ToString());
+                int status = Convert.ToInt32(dr["Status"].ToString());
+                string onB = dr["OnBroj"].ToString().TrimEnd();
+                int verzija = Convert.ToInt32(dr["Verzija"].ToString());
+                int razlog = Convert.ToInt32(dr["Razlog"].ToString());
+                //DateTime datumU = Convert.ToDateTime(dr["DatumUnosa"].ToString());
+                string ridB = dr["RIDBroj"].ToString().TrimEnd();
+                string komentar = dr["Komentar"].ToString().TrimEnd();
+                int vozP = Convert.ToInt32(dr["VozP"].ToString());
+                int granicna = Convert.ToInt32(dr["Granicna"].ToString());
+                int platilac = Convert.ToInt32(dr["Platilac"].ToString());
+                int ad = Convert.ToInt32(dr["AdHoc"].ToString());
+                int prevoznikZa = Convert.ToInt32(dr["PrevoznikZa"].ToString());
+                string faktura = dr["Faktura"].ToString().TrimEnd();
+                string zadatak = dr["Zadatak"].ToString().TrimEnd();
+                int cim = Convert.ToInt32(dr["CIM"].ToString());
+                string korisnik = dr["Korisnik"].ToString();
+                string disp = dr["DispecerRID"].ToString();
+                int tip = Convert.ToInt32(dr["TipPrevoza"].ToString());
+                decimal neto = Convert.ToDecimal(dr["NetoTezinaM"].ToString());
+                int por = Convert.ToInt32(dr["PorudzbinaID"].ToString());
+                int povrat = Convert.ToInt32(dr["ImaPovrat"].ToString());
+                int teh = Convert.ToInt32(dr["TehnologijaID"].ToString());
+                int roba2 = Convert.ToInt32(dr["RobaNhm2"].ToString());
+                string dodatno = dr["DodatnoPorudznina"].ToString();
+                //DateTime pomDat = Convert.ToDateTime(dr["PomocniDatum"].ToString());
+
+                InsertNajavaLog log = new InsertNajavaLog();
+                DateTime date = new DateTime(1900, 1, 1);
+                log.insNajavaLog(Kor.ToString().TrimEnd(), "Unos novog zapisa", DateTime.Now, id, brNajave, voz, posiljalac, prevoznik, otpravna, uputna, primalac, roba, put, tezina
+                    , duzina, kola, rid, pPrimanje, sPrimanje, pPredaja, sPredaja, status, onB, verzija, razlog, date, ridB, komentar, vozP, granicna, platilac, ad, prevoznikZa, faktura,
+                    zadatak, cim, korisnik, disp, tip, neto, por, povrat, teh, roba2, dodatno, date) ;
+
+            }
+            conn.Close();
+        }
         private void tsSave_Click(object sender, EventArgs e)
         {
             if (chkImaPovrat.Checked)
@@ -730,7 +793,7 @@ namespace Saobracaj.Dokumenta
                     PomRID = 0;
                 }
 
-                
+
 
                 ins.InsNaj(txtOpis.Text, Convert.ToInt32(cmbVoz.SelectedValue), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrevoznik.SelectedValue), Convert.ToInt32(cboOtpravna.SelectedValue), Convert.ToInt32(cboUputna.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboNHM.SelectedValue), txtRelacija.Text, Convert.ToDouble(txtNetoTezina.Text), Convert.ToDouble(txtDuzinaM.Text), Convert.ToInt32(txtBrojKola.Text), chkRID.Checked, Convert.ToDateTime(dtpPredvidjenoPrimanje.Value), Convert.ToDateTime(dtpStvarnoPrimanje.Value), Convert.ToDateTime(dtpPredvidjenaPredaja.Value), Convert.ToDateTime(dtpStvarnaPredaja.Value), Convert.ToInt32(cboStatusPredaje.SelectedValue), txtRID.Text.TrimEnd(), txtRIDBroj.Text.Trim(), txtKomentar.Text, Convert.ToInt32(cboVozP.SelectedValue), Convert.ToInt32(cboGranicna.SelectedValue), Convert.ToInt32(cboPlatilac.SelectedValue), chkAdHoc.Checked, Convert.ToInt32(cboPrevoznikZa.SelectedValue), txtUgovor.Text, txtZadatak.Text, chkCIM.Checked, KorisnikNajava, txtDispecerRID.Text, Convert.ToInt32(cboTipPrevoza.SelectedValue), Convert.ToDouble(txtNetoTezinaM.Value), Convert.ToInt32(multiColumnComboBox1.SelectedValue), PomImaPovrat, Convert.ToInt32(cboTehnologijaID.SelectedValue), Convert.ToInt32(cboNHM2.SelectedValue), txtPorDodatno.Text);
 
@@ -738,34 +801,64 @@ namespace Saobracaj.Dokumenta
                 if (chkRID.Checked == true && txtRIDBroj.Text.TrimEnd() == "")
                 {
                     PosaljiMailOdjavaDisp("milica.p.s@kprevoz.co.rs");
-                   // PosaljiMailOdjavaDisp("ivana.randjelovic@kprevoz.co.rs");
+                    // PosaljiMailOdjavaDisp("ivana.randjelovic@kprevoz.co.rs");
                     PosaljiMailOdjavaDisp("priprema@kprevoz.co.rs");
                     PosaljiMailOdjavaDisp("disp@kprevoz.co.rs");
                     PosaljiMailOdjavaDisp("milos.cpajak@kprevoz.co.rs");
                     PosaljiMailOdjavaDisp("uros.gligorijevic@kprevoz.co.rs");
-                   //PosaljiMail("ivana.randjelovic@kprevoz.co.rs");
-                   //PosaljiMail("vladeta.milosavljevic@kprevoz.co.rs");
+                    //PosaljiMail("ivana.randjelovic@kprevoz.co.rs");
+                    //PosaljiMail("vladeta.milosavljevic@kprevoz.co.rs");
                 }
-                
+                LogInsert();
                 RefreshDataGrid();
                 status = false;
             }
             else
             {
-                      //PPPPP 
-                    int sp = Convert.ToInt32(cboStatusPredaje.SelectedValue);
-                    InsertNajava upd = new InsertNajava();
-                    upd.UpdNaj(Convert.ToInt32(txtSifra.Text), txtOpis.Text, Convert.ToInt32(cmbVoz.SelectedValue), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrevoznik.SelectedValue), Convert.ToInt32(cboOtpravna.SelectedValue), Convert.ToInt32(cboUputna.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboNHM.SelectedValue), txtRelacija.Text, Convert.ToDouble(txtNetoTezina.Text), Convert.ToDouble(txtDuzinaM.Text), Convert.ToInt32(txtBrojKola.Text), chkRID.Checked, Convert.ToDateTime(dtpPredvidjenoPrimanje.Value), Convert.ToDateTime(dtpStvarnoPrimanje.Value), Convert.ToDateTime(dtpPredvidjenaPredaja.Value), Convert.ToDateTime(dtpStvarnaPredaja.Value), Convert.ToInt32(cboStatusPredaje.SelectedValue), txtRID.Text.TrimEnd(), txtRIDBroj.Text.TrimEnd(), txtKomentar.Text, Convert.ToInt32(cboVozP.SelectedValue), Convert.ToInt32(cboGranicna.SelectedValue), Convert.ToInt32(cboPlatilac.SelectedValue), chkAdHoc.Checked, Convert.ToInt32(cboPrevoznikZa.SelectedValue), txtUgovor.Text, txtZadatak.Text, chkCIM.Checked, KorisnikNajava, txtDispecerRID.Text, Convert.ToInt32(cboTipPrevoza.SelectedValue), Convert.ToDouble(txtNetoTezinaM.Value),  Convert.ToInt32(multiColumnComboBox1.Text), PomImaPovrat, Convert.ToInt32(cboTehnologijaID.SelectedValue), Convert.ToInt32(cboNHM2.SelectedValue), txtPorDodatno.Text);
-                    status = false;
-                    txtSifra.Enabled = false;
-                    RefreshDataGrid();
-                    if (chkRID.Checked == true && txtUgovor.Text == "" && Convert.ToInt32(cboStatusPredaje.SelectedValue) == 7)
-                    {
-                        PosaljiMailOdjava("milica.p.s@kprevoz.co.rs");
-                        PosaljiMailOdjava("ivana.randjelovic@kprevoz.co.rs");
-                        PosaljiMailOdjava("teodora.novakovic@kprevoz.co.rs");
-                        
-                    }
+                //PPPPP 
+                int sp = Convert.ToInt32(cboStatusPredaje.SelectedValue);
+                InsertNajava upd = new InsertNajava();
+                upd.UpdNaj(Convert.ToInt32(txtSifra.Text), txtOpis.Text, Convert.ToInt32(cmbVoz.SelectedValue), Convert.ToInt32(cboPosiljalac.SelectedValue),
+                    Convert.ToInt32(cboPrevoznik.SelectedValue), Convert.ToInt32(cboOtpravna.SelectedValue),
+                    Convert.ToInt32(cboUputna.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboNHM.SelectedValue),
+                    txtRelacija.Text, Convert.ToDouble(txtNetoTezina.Text), Convert.ToDouble(txtDuzinaM.Text), Convert.ToInt32(txtBrojKola.Text),
+                    chkRID.Checked, Convert.ToDateTime(dtpPredvidjenoPrimanje.Value),
+                    Convert.ToDateTime(dtpStvarnoPrimanje.Value), Convert.ToDateTime(dtpPredvidjenaPredaja.Value),
+                    Convert.ToDateTime(dtpStvarnaPredaja.Value), Convert.ToInt32(cboStatusPredaje.SelectedValue),
+                    txtRID.Text.TrimEnd(), txtRIDBroj.Text.TrimEnd(), txtKomentar.Text, Convert.ToInt32(cboVozP.SelectedValue),
+                    Convert.ToInt32(cboGranicna.SelectedValue), Convert.ToInt32(cboPlatilac.SelectedValue), chkAdHoc.Checked,
+                    Convert.ToInt32(cboPrevoznikZa.SelectedValue), txtUgovor.Text, txtZadatak.Text, chkCIM.Checked, KorisnikNajava, txtDispecerRID.Text,
+                    Convert.ToInt32(cboTipPrevoza.SelectedValue), Convert.ToDouble(txtNetoTezinaM.Value), Convert.ToInt32(multiColumnComboBox1.Text),
+                    PomImaPovrat, Convert.ToInt32(cboTehnologijaID.SelectedValue), Convert.ToInt32(cboNHM2.SelectedValue), txtPorDodatno.Text);
+                status = false;
+                txtSifra.Enabled = false;
+                RefreshDataGrid();
+                if (chkRID.Checked == true && txtUgovor.Text == "" && Convert.ToInt32(cboStatusPredaje.SelectedValue) == 7)
+                {
+                    PosaljiMailOdjava("milica.p.s@kprevoz.co.rs");
+                    PosaljiMailOdjava("ivana.randjelovic@kprevoz.co.rs");
+                    PosaljiMailOdjava("teodora.novakovic@kprevoz.co.rs");
+
+                }
+                int rid = 0;
+                int ad = 0;
+                int cim = 0;
+                if (chkRID.Checked) { rid = 1; }
+                if (chkAdHoc.Checked) { ad = 1; }
+                if (chkCIM.Checked) { cim = 1; }
+                InsertNajavaLog log = new InsertNajavaLog();
+                DateTime date = new DateTime(1900, 1, 1);
+                log.insNajavaLog(Kor.ToString().TrimEnd(), "Promena zapisa", DateTime.Now, Convert.ToInt32(txtSifra.Text), txtOpis.Text,
+                        Convert.ToInt32(cmbVoz.SelectedValue), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrevoznik.SelectedValue),
+                        Convert.ToInt32(cboOtpravna.SelectedValue), Convert.ToInt32(cboUputna.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue),
+                        Convert.ToInt32(cboNHM.SelectedValue), txtRelacija.Text.TrimEnd(), Convert.ToDecimal(txtNetoTezina.Text), Convert.ToDecimal(txtDuzinaM.Text),
+                        Convert.ToInt32(txtBrojKola.Text), rid, Convert.ToDateTime(dtpPredvidjenoPrimanje.Value), Convert.ToDateTime(dtpStvarnoPrimanje.Value),
+                        Convert.ToDateTime(dtpPredvidjenaPredaja.Value), Convert.ToDateTime(dtpStvarnaPredaja.Value), Convert.ToInt32(cboStatusPredaje.SelectedValue),
+                        txtRIDBroj.Text, 0, Convert.ToInt32(txtRazlog.SelectedValue), date, txtRID.Text.TrimEnd(), txtKomentar.Text,
+                        Convert.ToInt32(cboVozP.SelectedValue), Convert.ToInt32(cboGranicna.SelectedValue), Convert.ToInt32(cboPlatilac.SelectedValue), ad,
+                        Convert.ToInt32(cboPrevoznikZa.SelectedValue), txtUgovor.Text, txtZadatak.Text, cim, KorisnikNajava, txtDispecerRID.Text,
+                        Convert.ToInt32(cboTipPrevoza.SelectedValue), Convert.ToDecimal(txtNetoTezinaM.Value), Convert.ToInt32(multiColumnComboBox1.Text),
+                        PomImaPovrat, Convert.ToInt32(cboTehnologijaID.SelectedValue), Convert.ToInt32(cboNHM2.SelectedValue), txtPorDodatno.Text, date);
             }
         }
 
@@ -975,7 +1068,7 @@ namespace Saobracaj.Dokumenta
         private void tsDelete_Click(object sender, EventArgs e)
         {
             const string message =
-"Da li ste baš baš sigurni da će te da obrišete Najavu?";
+            "Da li ste baš baš sigurni da će te da obrišete Najavu?";
             const string caption = "Form Closing";
             var result = MessageBox.Show(message, caption,
             MessageBoxButtons.YesNo,
@@ -989,6 +1082,26 @@ namespace Saobracaj.Dokumenta
             }
             else
             {
+                int rid = 0;
+                int ad = 0;
+                int cim = 0;
+                if (chkRID.Checked) { rid = 1; }
+                if (chkAdHoc.Checked) { ad = 1; }
+                if (chkCIM.Checked) { cim = 1; }
+                InsertNajavaLog log = new InsertNajavaLog();
+                DateTime date = new DateTime(1900, 1, 1);
+                log.insNajavaLog(Kor.ToString().TrimEnd(), "Brisanje zapisa", DateTime.Now, Convert.ToInt32(txtSifra.Text), txtOpis.Text,
+                        Convert.ToInt32(cmbVoz.SelectedValue), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrevoznik.SelectedValue),
+                        Convert.ToInt32(cboOtpravna.SelectedValue), Convert.ToInt32(cboUputna.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue),
+                        Convert.ToInt32(cboNHM.SelectedValue), txtRelacija.Text.TrimEnd(), Convert.ToDecimal(txtNetoTezina.Text), Convert.ToDecimal(txtDuzinaM.Text),
+                        Convert.ToInt32(txtBrojKola.Text), rid, Convert.ToDateTime(dtpPredvidjenoPrimanje.Value), Convert.ToDateTime(dtpStvarnoPrimanje.Value),
+                        Convert.ToDateTime(dtpPredvidjenaPredaja.Value), Convert.ToDateTime(dtpStvarnaPredaja.Value), Convert.ToInt32(cboStatusPredaje.SelectedValue),
+                        txtRIDBroj.Text, 0, Convert.ToInt32(txtRazlog.SelectedValue), date, txtRID.Text.TrimEnd(), txtKomentar.Text,
+                        Convert.ToInt32(cboVozP.SelectedValue), Convert.ToInt32(cboGranicna.SelectedValue), Convert.ToInt32(cboPlatilac.SelectedValue), ad,
+                        Convert.ToInt32(cboPrevoznikZa.SelectedValue), txtUgovor.Text, txtZadatak.Text, cim, KorisnikNajava, txtDispecerRID.Text,
+                        Convert.ToInt32(cboTipPrevoza.SelectedValue), Convert.ToDecimal(txtNetoTezinaM.Value), Convert.ToInt32(multiColumnComboBox1.Text),
+                        PomImaPovrat, Convert.ToInt32(cboTehnologijaID.SelectedValue), Convert.ToInt32(cboNHM2.SelectedValue), txtPorDodatno.Text, date);
+
                 InsertNajava del = new InsertNajava();
                 del.DeleteNaj(Convert.ToInt32(txtSifra.Text));
                 status = false;
@@ -2511,6 +2624,12 @@ namespace Saobracaj.Dokumenta
         private void cboPlatilac_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            frmNajavaLog log = new frmNajavaLog();
+            log.Show();
         }
 
         /*
