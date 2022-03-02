@@ -363,6 +363,18 @@
     <Compile Include="Administracija\frmKreirajGrupu.designer.cs">
       <DependentUpon>frmKreirajGrupu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administracija\frmPolozeneLokomotive.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracija\frmPolozeneLokomotive.Designer.cs">
+      <DependentUpon>frmPolozeneLokomotive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administracija\frmPolozenePruge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracija\frmPolozenePruge.Designer.cs">
+      <DependentUpon>frmPolozenePruge.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administracija\frmSistematizacija.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -380,6 +392,8 @@
     <Compile Include="Administracija\InsertGrupe.cs" />
     <Compile Include="Administracija\InsertKorisnici.cs" />
     <Compile Include="Administracija\InsertKorisnikGrupa.cs" />
+    <Compile Include="Administracija\InsertPolozeneLokomotive.cs" />
+    <Compile Include="Administracija\InsertPolozenePruge.cs" />
     <Compile Include="Administracija\InsertSistematizacija.cs" />
     <Compile Include="Dokumenta\frmAutomobili.cs">
       <SubType>Form</SubType>
@@ -1543,6 +1557,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administracija\frmKreirajGrupu.resx">
       <DependentUpon>frmKreirajGrupu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracija\frmPolozeneLokomotive.resx">
+      <DependentUpon>frmPolozeneLokomotive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracija\frmPolozenePruge.resx">
+      <DependentUpon>frmPolozenePruge.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administracija\frmSistematizacija.resx">
       <DependentUpon>frmSistematizacija.cs</DependentUpon>

@@ -55,14 +55,13 @@ namespace Saobracaj.Sifarnici
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzcwMDg5QDMxMzgyZTM0MmUzMFhQSmlDM0M2bGpxcXVtT1VScTg1a0dtVTFLcUZiK0tLRnpvRTYyRFpMc3M9");
             InitializeComponent();
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
         }
 
         private void InitializeComponent()
         {
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
-
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSerijeLokomotiva));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
@@ -418,6 +417,7 @@ namespace Saobracaj.Sifarnici
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Oznaka";
             dataGridView1.Columns[1].Width = 50;
+
 
             DataGridViewColumn column3 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "Opis";
