@@ -35,7 +35,15 @@
             this.txt_BrTelegrama = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsNew = new System.Windows.Forms.ToolStripButton();
+            this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsPrvi = new System.Windows.Forms.ToolStripButton();
+            this.tsNazad = new System.Windows.Forms.ToolStripButton();
+            this.tsNapred = new System.Windows.Forms.ToolStripButton();
+            this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.cboPruga = new System.Windows.Forms.ComboBox();
@@ -57,23 +65,13 @@
             this.cb_Aktivni = new System.Windows.Forms.CheckBox();
             this.dt_VaziDo = new System.Windows.Forms.DateTimePicker();
             this.dt_VaziOd = new System.Windows.Forms.DateTimePicker();
-            this.dt_DoStanice = new System.Windows.Forms.DateTimePicker();
-            this.dt_OdStanice = new System.Windows.Forms.DateTimePicker();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.dt_OdStaniceT = new System.Windows.Forms.DateTimePicker();
-            this.dt_DoStaniceT = new System.Windows.Forms.DateTimePicker();
             this.dt_VaziOdT = new System.Windows.Forms.DateTimePicker();
             this.dt_VaziDoT = new System.Windows.Forms.DateTimePicker();
-            this.tsNew = new System.Windows.Forms.ToolStripButton();
-            this.tsSave = new System.Windows.Forms.ToolStripButton();
-            this.tsPrvi = new System.Windows.Forms.ToolStripButton();
-            this.tsNazad = new System.Windows.Forms.ToolStripButton();
-            this.tsNapred = new System.Windows.Forms.ToolStripButton();
-            this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.combo_OdStanice = new System.Windows.Forms.ComboBox();
+            this.combo_DoStanice = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -134,10 +132,81 @@
             this.toolStrip1.TabIndex = 82;
             this.toolStrip1.Text = "Štampaj izveštaj";
             // 
+            // tsNew
+            // 
+            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
+            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNew.Name = "tsNew";
+            this.tsNew.Size = new System.Drawing.Size(29, 24);
+            this.tsNew.Text = "Novi";
+            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
+            // 
+            // tsSave
+            // 
+            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
+            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsSave.Name = "tsSave";
+            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Text = "tsSave";
+            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tsPrvi
+            // 
+            this.tsPrvi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
+            this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsPrvi.Name = "tsPrvi";
+            this.tsPrvi.Size = new System.Drawing.Size(29, 24);
+            this.tsPrvi.Text = "toolStripButton1";
+            // 
+            // tsNazad
+            // 
+            this.tsNazad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
+            this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNazad.Name = "tsNazad";
+            this.tsNazad.Size = new System.Drawing.Size(29, 24);
+            this.tsNazad.Text = "toolStripButton1";
+            // 
+            // tsNapred
+            // 
+            this.tsNapred.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
+            this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNapred.Name = "tsNapred";
+            this.tsNapred.Size = new System.Drawing.Size(29, 24);
+            this.tsNapred.Text = "toolStripButton1";
+            // 
+            // tsPoslednja
+            // 
+            this.tsPoslednja.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
+            this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsPoslednja.Name = "tsPoslednja";
+            this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
+            this.tsPoslednja.Text = "toolStripButton1";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(128, 24);
+            this.toolStripButton1.Text = "Prikaži telegrame";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // dataGridView1
             // 
@@ -362,32 +431,6 @@
             this.dt_VaziOd.TabIndex = 77;
             this.dt_VaziOd.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // dt_DoStanice
-            // 
-            this.dt_DoStanice.CustomFormat = "dd.MM.yyyy HH:mm";
-            this.dt_DoStanice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dt_DoStanice.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dt_DoStanice.Location = new System.Drawing.Point(817, 98);
-            this.dt_DoStanice.Margin = new System.Windows.Forms.Padding(4);
-            this.dt_DoStanice.Name = "dt_DoStanice";
-            this.dt_DoStanice.ShowUpDown = true;
-            this.dt_DoStanice.Size = new System.Drawing.Size(110, 24);
-            this.dt_DoStanice.TabIndex = 77;
-            this.dt_DoStanice.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // dt_OdStanice
-            // 
-            this.dt_OdStanice.CustomFormat = "dd.MM.yyyy  HH:mm";
-            this.dt_OdStanice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dt_OdStanice.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dt_OdStanice.Location = new System.Drawing.Point(817, 56);
-            this.dt_OdStanice.Margin = new System.Windows.Forms.Padding(4);
-            this.dt_OdStanice.Name = "dt_OdStanice";
-            this.dt_OdStanice.ShowUpDown = true;
-            this.dt_OdStanice.Size = new System.Drawing.Size(110, 24);
-            this.dt_OdStanice.TabIndex = 77;
-            this.dt_OdStanice.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
             // timer1
             // 
             this.timer1.Interval = 120000;
@@ -402,32 +445,6 @@
             // 
             this.timer3.Interval = 120000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
-            // 
-            // dt_OdStaniceT
-            // 
-            this.dt_OdStaniceT.CustomFormat = "dd.MM.yyyy  HH:mm";
-            this.dt_OdStaniceT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dt_OdStaniceT.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dt_OdStaniceT.Location = new System.Drawing.Point(956, 56);
-            this.dt_OdStaniceT.Margin = new System.Windows.Forms.Padding(4);
-            this.dt_OdStaniceT.Name = "dt_OdStaniceT";
-            this.dt_OdStaniceT.ShowUpDown = true;
-            this.dt_OdStaniceT.Size = new System.Drawing.Size(110, 24);
-            this.dt_OdStaniceT.TabIndex = 77;
-            this.dt_OdStaniceT.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // dt_DoStaniceT
-            // 
-            this.dt_DoStaniceT.CustomFormat = "dd.MM.yyyy  HH:mm";
-            this.dt_DoStaniceT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dt_DoStaniceT.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dt_DoStaniceT.Location = new System.Drawing.Point(956, 98);
-            this.dt_DoStaniceT.Margin = new System.Windows.Forms.Padding(4);
-            this.dt_DoStaniceT.Name = "dt_DoStaniceT";
-            this.dt_DoStaniceT.ShowUpDown = true;
-            this.dt_DoStaniceT.Size = new System.Drawing.Size(110, 24);
-            this.dt_DoStaniceT.TabIndex = 77;
-            this.dt_DoStaniceT.Value = new System.DateTime(1900, 1, 1, 23, 59, 59, 0);
             // 
             // dt_VaziOdT
             // 
@@ -455,82 +472,30 @@
             this.dt_VaziDoT.TabIndex = 77;
             this.dt_VaziDoT.Value = new System.DateTime(1900, 1, 1, 23, 59, 59, 0);
             // 
-            // tsNew
+            // combo_OdStanice
             // 
-            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
-            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
-            this.tsNew.Text = "Novi";
-            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
+            this.combo_OdStanice.FormattingEnabled = true;
+            this.combo_OdStanice.Location = new System.Drawing.Point(811, 55);
+            this.combo_OdStanice.Name = "combo_OdStanice";
+            this.combo_OdStanice.Size = new System.Drawing.Size(238, 24);
+            this.combo_OdStanice.TabIndex = 118;
             // 
-            // tsSave
+            // combo_DoStanice
             // 
-            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
-            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
-            this.tsSave.Text = "tsSave";
-            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
-            // 
-            // tsPrvi
-            // 
-            this.tsPrvi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
-            this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(29, 24);
-            this.tsPrvi.Text = "toolStripButton1";
-            // 
-            // tsNazad
-            // 
-            this.tsNazad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
-            this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(29, 24);
-            this.tsNazad.Text = "toolStripButton1";
-            // 
-            // tsNapred
-            // 
-            this.tsNapred.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
-            this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(29, 24);
-            this.tsNapred.Text = "toolStripButton1";
-            // 
-            // tsPoslednja
-            // 
-            this.tsPoslednja.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
-            this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
-            this.tsPoslednja.Text = "toolStripButton1";
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(128, 24);
-            this.toolStripButton1.Text = "Prikaži telegrame";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            this.combo_DoStanice.FormattingEnabled = true;
+            this.combo_DoStanice.Location = new System.Drawing.Point(811, 95);
+            this.combo_DoStanice.Name = "combo_DoStanice";
+            this.combo_DoStanice.Size = new System.Drawing.Size(238, 24);
+            this.combo_DoStanice.TabIndex = 118;
+            this.combo_DoStanice.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // frmTelegrami
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1709, 793);
+            this.Controls.Add(this.combo_DoStanice);
+            this.Controls.Add(this.combo_OdStanice);
             this.Controls.Add(this.cb_Aktivni);
             this.Controls.Add(this.btn_svi);
             this.Controls.Add(this.btn_Aktivni);
@@ -539,16 +504,12 @@
             this.Controls.Add(this.cboPruga);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.dt_DoStanice);
             this.Controls.Add(this.dt_VaziDo);
             this.Controls.Add(this.dt_TrajeOd);
             this.Controls.Add(this.dt_TrajeDo);
             this.Controls.Add(this.dt_VaziOd);
-            this.Controls.Add(this.dt_DoStaniceT);
             this.Controls.Add(this.dt_VaziDoT);
             this.Controls.Add(this.dt_VaziOdT);
-            this.Controls.Add(this.dt_OdStaniceT);
-            this.Controls.Add(this.dt_OdStanice);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txt_Napomena);
             this.Controls.Add(this.txt_kolosek);
@@ -609,16 +570,14 @@
         private System.Windows.Forms.DateTimePicker dt_TrajeOd;
         private System.Windows.Forms.DateTimePicker dt_VaziDo;
         private System.Windows.Forms.DateTimePicker dt_VaziOd;
-        private System.Windows.Forms.DateTimePicker dt_DoStanice;
-        private System.Windows.Forms.DateTimePicker dt_OdStanice;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Timer timer3;
-        private System.Windows.Forms.DateTimePicker dt_OdStaniceT;
-        private System.Windows.Forms.DateTimePicker dt_DoStaniceT;
         private System.Windows.Forms.DateTimePicker dt_VaziOdT;
         private System.Windows.Forms.DateTimePicker dt_VaziDoT;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ComboBox combo_OdStanice;
+        private System.Windows.Forms.ComboBox combo_DoStanice;
     }
 }

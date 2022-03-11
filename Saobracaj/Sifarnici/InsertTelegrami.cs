@@ -14,7 +14,7 @@ namespace Saobracaj.Sifarnici
     {
         string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
 
-       public void InsTelegrami(int BrojTelegrama,int PrugaID,DateTime OdStanice,DateTime DoStanice, string Kolosek, DateTime VaziOd, DateTime VaziDo, 
+       public void InsTelegrami(int BrojTelegrama,int PrugaID,int OdStanice,int DoStanice, string Kolosek, DateTime VaziOd, DateTime VaziDo, 
            DateTime TrajeOd,DateTime TrajeDo,string Napomena,bool Aktivan)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -39,14 +39,14 @@ namespace Saobracaj.Sifarnici
 
             SqlParameter paramOdStanice = new SqlParameter();
             paramOdStanice.ParameterName = "@OdStanice";
-            paramOdStanice.SqlDbType = SqlDbType.DateTime2;
+            paramOdStanice.SqlDbType = SqlDbType.Int;
             paramOdStanice.Direction = ParameterDirection.Input;
             paramOdStanice.Value = OdStanice;
             cmd.Parameters.Add(paramOdStanice);
 
             SqlParameter paramDoStanice = new SqlParameter();
             paramDoStanice.ParameterName = "@DoStanice";
-            paramDoStanice.SqlDbType = SqlDbType.DateTime2;
+            paramDoStanice.SqlDbType = SqlDbType.Int;
             paramDoStanice.Direction = ParameterDirection.Input;
             paramDoStanice.Value = DoStanice;
             cmd.Parameters.Add(paramDoStanice);
@@ -142,7 +142,7 @@ namespace Saobracaj.Sifarnici
 
         }
 
-        public void UpdTelegrami(int ID, int BrojTelegrama, int PrugaID, DateTime OdStanice, DateTime DoStanice, string Kolosek, DateTime VaziOd, DateTime VaziDo,
+        public void UpdTelegrami(int ID, int BrojTelegrama, int PrugaID, int OdStanice, int DoStanice, string Kolosek, DateTime VaziOd, DateTime VaziDo,
            DateTime TrajeOd, DateTime TrajeDo, string Napomena,bool Aktivan)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -173,14 +173,14 @@ namespace Saobracaj.Sifarnici
 
             SqlParameter paramOdStanice = new SqlParameter();
             paramOdStanice.ParameterName = "@OdStanice";
-            paramOdStanice.SqlDbType = SqlDbType.DateTime;
+            paramOdStanice.SqlDbType = SqlDbType.Int;
             paramOdStanice.Direction = ParameterDirection.Input;
             paramOdStanice.Value = OdStanice;
             cmd.Parameters.Add(paramOdStanice);
 
             SqlParameter paramDoStanice = new SqlParameter();
             paramDoStanice.ParameterName = "@DoStanice";
-            paramDoStanice.SqlDbType = SqlDbType.DateTime;
+            paramDoStanice.SqlDbType = SqlDbType.Int;
             paramDoStanice.Direction = ParameterDirection.Input;
             paramDoStanice.Value = DoStanice;
             cmd.Parameters.Add(paramDoStanice);
@@ -278,7 +278,7 @@ namespace Saobracaj.Sifarnici
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "sp_DeleteZaposleniPrijavaAuto";
+            cmd.CommandText = "DeleteTelegrami";
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter paramID = new SqlParameter();
