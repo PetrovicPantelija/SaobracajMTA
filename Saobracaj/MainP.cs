@@ -809,11 +809,15 @@ namespace Saobracaj
             Dokumenta.frmPropratnice propratnice = new Dokumenta.frmPropratnice();
             propratnice.Show();
         }
-
-        private void toolStripEx21_Click(object sender, EventArgs e)
+        private void toolStripButton117_Click(object sender, EventArgs e)
         {
-            Mobile.frmTokoviDokumentacije tokdok = new Mobile.frmTokoviDokumentacije();
-            tokdok.Show();
+            Administracija.frmPolozenePruge pruge = new Administracija.frmPolozenePruge();
+            pruge.Show();
+        }
+        private void toolStripButton118_Click(object sender, EventArgs e)
+        {
+            Administracija.frmPolozeneLokomotive lokomotive = new Administracija.frmPolozeneLokomotive();
+            lokomotive.Show();
         }
     }
 }
