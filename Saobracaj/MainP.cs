@@ -809,5 +809,11 @@ namespace Saobracaj
             Dokumenta.frmPropratnice propratnice = new Dokumenta.frmPropratnice();
             propratnice.Show();
         }
+
+        private void toolStripEx21_Click(object sender, EventArgs e)
+        {
+            Mobile.frmTokoviDokumentacije tokdok = new Mobile.frmTokoviDokumentacije();
+            tokdok.Show();
+        }
     }
 }
