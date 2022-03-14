@@ -37,6 +37,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
+            this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsPrvi = new System.Windows.Forms.ToolStripButton();
             this.tsNazad = new System.Windows.Forms.ToolStripButton();
@@ -72,6 +73,9 @@
             this.dt_VaziDoT = new System.Windows.Forms.DateTimePicker();
             this.combo_OdStanice = new System.Windows.Forms.ComboBox();
             this.combo_DoStanice = new System.Windows.Forms.ComboBox();
+            this.txt_PDF = new System.Windows.Forms.TextBox();
+            this.btn_pdf = new System.Windows.Forms.Button();
+            this.btn_prikazi = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -119,6 +123,7 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
             this.tsSave,
+            this.tsDelete,
             this.toolStripSeparator1,
             this.tsPrvi,
             this.tsNazad,
@@ -128,7 +133,7 @@
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1709, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1924, 27);
             this.toolStrip1.TabIndex = 82;
             this.toolStrip1.Text = "Štampaj izveštaj";
             // 
@@ -151,6 +156,16 @@
             this.tsSave.Size = new System.Drawing.Size(29, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
+            // 
+            // tsDelete
+            // 
+            this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
+            this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsDelete.Name = "tsDelete";
+            this.tsDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsDelete.Text = "toolStripButton1";
+            this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // toolStripSeparator1
             // 
@@ -218,7 +233,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1663, 546);
+            this.dataGridView1.Size = new System.Drawing.Size(1878, 546);
             this.dataGridView1.TabIndex = 109;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -283,7 +298,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(1105, 61);
+            this.label10.Location = new System.Drawing.Point(1074, 61);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(59, 17);
@@ -293,7 +308,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(1105, 98);
+            this.label11.Location = new System.Drawing.Point(1074, 98);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(59, 17);
@@ -303,7 +318,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(1437, 98);
+            this.label12.Location = new System.Drawing.Point(1406, 98);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(65, 17);
@@ -313,7 +328,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(1437, 63);
+            this.label13.Location = new System.Drawing.Point(1406, 63);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(65, 17);
@@ -325,7 +340,7 @@
             this.dt_TrajeDo.CustomFormat = "HH:mm:ss";
             this.dt_TrajeDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_TrajeDo.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dt_TrajeDo.Location = new System.Drawing.Point(1510, 98);
+            this.dt_TrajeDo.Location = new System.Drawing.Point(1479, 98);
             this.dt_TrajeDo.Margin = new System.Windows.Forms.Padding(4);
             this.dt_TrajeDo.Name = "dt_TrajeDo";
             this.dt_TrajeDo.ShowUpDown = true;
@@ -338,7 +353,7 @@
             this.dt_TrajeOd.CustomFormat = "HH:mm:ss";
             this.dt_TrajeOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_TrajeOd.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dt_TrajeOd.Location = new System.Drawing.Point(1510, 59);
+            this.dt_TrajeOd.Location = new System.Drawing.Point(1479, 59);
             this.dt_TrajeOd.Margin = new System.Windows.Forms.Padding(4);
             this.dt_TrajeOd.Name = "dt_TrajeOd";
             this.dt_TrajeOd.ShowUpDown = true;
@@ -348,7 +363,7 @@
             // 
             // btn_dani
             // 
-            this.btn_dani.Location = new System.Drawing.Point(904, 158);
+            this.btn_dani.Location = new System.Drawing.Point(1316, 155);
             this.btn_dani.Name = "btn_dani";
             this.btn_dani.Size = new System.Drawing.Size(162, 37);
             this.btn_dani.TabIndex = 115;
@@ -376,7 +391,8 @@
             // 
             // btn_Aktivni
             // 
-            this.btn_Aktivni.Location = new System.Drawing.Point(1108, 158);
+            this.btn_Aktivni.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btn_Aktivni.Location = new System.Drawing.Point(1520, 155);
             this.btn_Aktivni.Name = "btn_Aktivni";
             this.btn_Aktivni.Size = new System.Drawing.Size(162, 37);
             this.btn_Aktivni.TabIndex = 116;
@@ -386,7 +402,7 @@
             // 
             // btn_svi
             // 
-            this.btn_svi.Location = new System.Drawing.Point(1326, 158);
+            this.btn_svi.Location = new System.Drawing.Point(1738, 155);
             this.btn_svi.Name = "btn_svi";
             this.btn_svi.Size = new System.Drawing.Size(162, 37);
             this.btn_svi.TabIndex = 116;
@@ -410,7 +426,7 @@
             this.dt_VaziDo.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dt_VaziDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_VaziDo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dt_VaziDo.Location = new System.Drawing.Point(1172, 98);
+            this.dt_VaziDo.Location = new System.Drawing.Point(1141, 98);
             this.dt_VaziDo.Margin = new System.Windows.Forms.Padding(4);
             this.dt_VaziDo.Name = "dt_VaziDo";
             this.dt_VaziDo.ShowUpDown = true;
@@ -423,7 +439,7 @@
             this.dt_VaziOd.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dt_VaziOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_VaziOd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dt_VaziOd.Location = new System.Drawing.Point(1172, 58);
+            this.dt_VaziOd.Location = new System.Drawing.Point(1141, 58);
             this.dt_VaziOd.Margin = new System.Windows.Forms.Padding(4);
             this.dt_VaziOd.Name = "dt_VaziOd";
             this.dt_VaziOd.ShowUpDown = true;
@@ -451,7 +467,7 @@
             this.dt_VaziOdT.CustomFormat = "dd.MM.yyyy  HH:mm";
             this.dt_VaziOdT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_VaziOdT.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dt_VaziOdT.Location = new System.Drawing.Point(1308, 59);
+            this.dt_VaziOdT.Location = new System.Drawing.Point(1277, 59);
             this.dt_VaziOdT.Margin = new System.Windows.Forms.Padding(4);
             this.dt_VaziOdT.Name = "dt_VaziOdT";
             this.dt_VaziOdT.ShowUpDown = true;
@@ -464,7 +480,7 @@
             this.dt_VaziDoT.CustomFormat = "dd.MM.yyyy  HH:mm";
             this.dt_VaziDoT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_VaziDoT.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dt_VaziDoT.Location = new System.Drawing.Point(1308, 98);
+            this.dt_VaziDoT.Location = new System.Drawing.Point(1277, 98);
             this.dt_VaziDoT.Margin = new System.Windows.Forms.Padding(4);
             this.dt_VaziDoT.Name = "dt_VaziDoT";
             this.dt_VaziDoT.ShowUpDown = true;
@@ -489,11 +505,40 @@
             this.combo_DoStanice.TabIndex = 118;
             this.combo_DoStanice.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
+            // txt_PDF
+            // 
+            this.txt_PDF.Location = new System.Drawing.Point(1015, 169);
+            this.txt_PDF.Margin = new System.Windows.Forms.Padding(4);
+            this.txt_PDF.Name = "txt_PDF";
+            this.txt_PDF.Size = new System.Drawing.Size(244, 22);
+            this.txt_PDF.TabIndex = 72;
+            // 
+            // btn_pdf
+            // 
+            this.btn_pdf.Location = new System.Drawing.Point(881, 163);
+            this.btn_pdf.Name = "btn_pdf";
+            this.btn_pdf.Size = new System.Drawing.Size(111, 26);
+            this.btn_pdf.TabIndex = 119;
+            this.btn_pdf.Text = "Učitaj PDF";
+            this.btn_pdf.UseVisualStyleBackColor = true;
+            this.btn_pdf.Click += new System.EventHandler(this.btn_pdf_Click);
+            // 
+            // btn_prikazi
+            // 
+            this.btn_prikazi.Location = new System.Drawing.Point(1148, 198);
+            this.btn_prikazi.Name = "btn_prikazi";
+            this.btn_prikazi.Size = new System.Drawing.Size(111, 26);
+            this.btn_prikazi.TabIndex = 119;
+            this.btn_prikazi.Text = "Prikaži PDF";
+            this.btn_prikazi.UseVisualStyleBackColor = true;
+            // 
             // frmTelegrami
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1709, 793);
+            this.ClientSize = new System.Drawing.Size(1924, 793);
+            this.Controls.Add(this.btn_prikazi);
+            this.Controls.Add(this.btn_pdf);
             this.Controls.Add(this.combo_DoStanice);
             this.Controls.Add(this.combo_OdStanice);
             this.Controls.Add(this.cb_Aktivni);
@@ -513,6 +558,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txt_Napomena);
             this.Controls.Add(this.txt_kolosek);
+            this.Controls.Add(this.txt_PDF);
             this.Controls.Add(this.txt_ID);
             this.Controls.Add(this.txt_BrTelegrama);
             this.Controls.Add(this.label9);
@@ -526,7 +572,9 @@
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmTelegrami";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Telegrami";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmTelegrami_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -579,5 +627,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ComboBox combo_OdStanice;
         private System.Windows.Forms.ComboBox combo_DoStanice;
+        private System.Windows.Forms.ToolStripButton tsDelete;
+        private System.Windows.Forms.TextBox txt_PDF;
+        private System.Windows.Forms.Button btn_pdf;
+        private System.Windows.Forms.Button btn_prikazi;
     }
 }

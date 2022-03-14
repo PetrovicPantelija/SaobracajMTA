@@ -11,6 +11,7 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Globalization;
+using System.IO;
 
 namespace Saobracaj.Sifarnici
 {
@@ -145,7 +146,7 @@ namespace Saobracaj.Sifarnici
         private void RefreshDG()
         {
             var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Pruga.Oznaka [Oznaka],Pruga.Opis [Naziv]," +
-                "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena " +
+                "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena,PDF  " +
                 "From telegrami " +
                 "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
                 "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
@@ -209,10 +210,11 @@ namespace Saobracaj.Sifarnici
             {
                 aktivan = true;
             }
+            KopirajFajlPoTipu(txt_PDF.Text, txt_BrTelegrama.Text);
             if (status == true)
             {
                 insert.InsTelegrami(Convert.ToInt32(txt_BrTelegrama.Text), Convert.ToInt32(cboPruga.SelectedValue.ToString()), Convert.ToInt32(combo_OdStanice.SelectedValue),
-                    Convert.ToInt32(combo_DoStanice.SelectedValue), txt_kolosek.Text, VaziOd, VaziDo, dt_TrajeOd.Value, dt_TrajeDo.Value, txt_Napomena.Text, aktivan);
+                    Convert.ToInt32(combo_DoStanice.SelectedValue), txt_kolosek.Text, VaziOd, VaziDo, dt_TrajeOd.Value, dt_TrajeDo.Value, txt_Napomena.Text, aktivan,txt_PDF.Text.ToString());
                 RefreshDG();
                 txt_ID.Enabled = true;
                 status = false;
@@ -220,7 +222,7 @@ namespace Saobracaj.Sifarnici
             else
             {
                 insert.UpdTelegrami(Convert.ToInt32(txt_ID.Text), Convert.ToInt32(txt_BrTelegrama.Text), Convert.ToInt32(cboPruga.SelectedValue.ToString()), Convert.ToInt32(combo_OdStanice.SelectedValue),
-                    Convert.ToInt32(combo_DoStanice.SelectedValue), txt_kolosek.Text, VaziOd, VaziDo, dt_TrajeOd.Value, dt_TrajeDo.Value, txt_Napomena.Text, aktivan);
+                    Convert.ToInt32(combo_DoStanice.SelectedValue), txt_kolosek.Text, VaziOd, VaziDo, dt_TrajeOd.Value, dt_TrajeDo.Value, txt_Napomena.Text, aktivan,txt_PDF.Text.ToString());
                 RefreshDG();
 
             }
@@ -229,7 +231,7 @@ namespace Saobracaj.Sifarnici
         private void timer1_Tick(object sender, EventArgs e)
         {
             var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Pruga.Oznaka [Oznaka],Pruga.Opis [Naziv], " +
-                "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena " +
+                "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena,PDF " +
                 "From telegrami " +
                 "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
                 "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
@@ -247,7 +249,7 @@ namespace Saobracaj.Sifarnici
         private void btn_svi_Click(object sender, EventArgs e)
         {
             var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Pruga.Oznaka [Oznaka],Pruga.Opis [Naziv]," +
-     "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena " +
+     "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena,PDF " +
      "From telegrami " +
      "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
      "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
@@ -301,7 +303,7 @@ namespace Saobracaj.Sifarnici
         private void btn_Aktivni_Click(object sender, EventArgs e)
         {
             var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Pruga.Oznaka [Oznaka],Pruga.Opis [Naziv], " +
-                "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena " +
+                "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena,PDF  " +
                 "From telegrami " +
                 "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
                 "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
@@ -357,7 +359,7 @@ namespace Saobracaj.Sifarnici
         private void timer2_Tick(object sender, EventArgs e)
         {
             var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Pruga.Oznaka [Oznaka],Pruga.Opis [Naziv]," +
-     "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena " +
+     "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena,PDF  " +
      "From telegrami " +
      "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
      "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
@@ -405,7 +407,7 @@ namespace Saobracaj.Sifarnici
         private void btn_dani_Click(object sender, EventArgs e)
         {
             var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Pruga.Oznaka [Oznaka],Pruga.Opis [Naziv], " +
-                "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena " +
+                "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena,PDF  " +
                 "From telegrami " +
                 "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
                 "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
@@ -456,7 +458,7 @@ namespace Saobracaj.Sifarnici
         private void timer3_Tick(object sender, EventArgs e)
         {
             var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Pruga.Oznaka [Oznaka],Pruga.Opis [Naziv], " +
-                "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena " +
+                "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena,PDF  " +
                 "From telegrami " +
                 "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
                 "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
@@ -480,6 +482,65 @@ namespace Saobracaj.Sifarnici
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void tsDelete_Click(object sender, EventArgs e)
+        {
+            InsertTelegrami telegrami = new InsertTelegrami();
+            telegrami.DeleteTelegrami(Convert.ToInt32(txt_ID.Text));
+            RefreshDG();
+        }
+
+        private void btn_pdf_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fd = new OpenFileDialog();
+            fd.Filter = "Pdf Files|*.pdf";
+            fd.ShowDialog();
+            string fileName = System.IO.Path.GetFileName(fd.FileName);
+            txt_PDF.Text = @"\\192.168.1.6\Telegrami\" +  txt_BrTelegrama.Text + "_" + fileName;
+            string targetPath = txt_PDF.Text;
+            if (!System.IO.Directory.Exists(targetPath))
+            {
+                System.IO.Directory.CreateDirectory(targetPath);
+            }
+           
+        }
+        private void KopirajFajlPoTipu(string putanja, string FolderDestinacije)
+        {
+            OpenFileDialog ofd1 = new OpenFileDialog();
+            FolderBrowserDialog fbd1 = new FolderBrowserDialog();
+            string fileName = ofd1.FileName; //Ovde ce trebati promena
+            fileName = fileName.Replace(" ", "_");
+            string sourcePath = fbd1.SelectedPath.ToString();
+            string result = Path.GetFileName(fileName);
+            string targetPath = "";
+
+            targetPath = @"\\192.168.1.6\Telegrami\" + FolderDestinacije+@"\";
+
+            string sourceFile = putanja;
+            string destFile = System.IO.Path.Combine(targetPath, result);
+
+            if (!System.IO.Directory.Exists(targetPath))
+            {
+                System.IO.Directory.CreateDirectory(targetPath);
+            }
+
+            var remote = Path.Combine(targetPath, result);
+            File.Copy(remote, sourceFile);
+            txt_PDF.Text = remote;
+
+            if (System.IO.Directory.Exists(sourcePath))
+            {
+                string[] files = System.IO.Directory.GetFiles(sourcePath);
+                // Copy the files and overwrite destination files if they already exist.
+                foreach (string s in files)
+                {
+                    // Use static Path methods to extract only the file name from the path.
+                    fileName = System.IO.Path.GetFileName(s);
+                    destFile = System.IO.Path.Combine(targetPath, fileName);
+                    System.IO.File.Copy(s, destFile, true);
+                }
+            }
         }
     }
 }

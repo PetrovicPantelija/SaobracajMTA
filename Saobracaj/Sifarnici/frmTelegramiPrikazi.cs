@@ -21,7 +21,7 @@ namespace Saobracaj.Sifarnici
         private void RefreshDG()
         {
             var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Pruga.Oznaka [Oznaka],Pruga.Opis [Naziv]," +
-                "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena " +
+                "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena,PDF  " +
                 "From telegrami " +
                 "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
                 "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
@@ -71,7 +71,7 @@ namespace Saobracaj.Sifarnici
         private void timer1_Tick(object sender, EventArgs e)
         {
             var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Pruga.Oznaka [Oznaka],Pruga.Opis [Naziv], " +
-                           "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena " +
+                           "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena,PDF  " +
                            "From telegrami " +
                            "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
                            "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
@@ -202,7 +202,7 @@ namespace Saobracaj.Sifarnici
         private void btn_svi_Click(object sender, EventArgs e)
         {
             var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Pruga.Oznaka [Oznaka],Pruga.Opis [Naziv]," +
-     "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena " +
+     "OdStanice,Stanice.Opis,DoStanice,s.Opis,Kolosek,VaziOD,VaziDo,TrajeOd,TrajeDO,Aktivan,Napomena,PDF  " +
      "From telegrami " +
      "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
      "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +

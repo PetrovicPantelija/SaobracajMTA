@@ -98,7 +98,7 @@ namespace Saobracaj.Sifarnici
             this.timer3.Interval = 120000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // frmTelgramiPrikazi
+            // frmTelegramiPrikazi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -107,8 +107,10 @@ namespace Saobracaj.Sifarnici
             this.Controls.Add(this.btn_svi);
             this.Controls.Add(this.btn_Aktivni);
             this.Controls.Add(this.btn_dani);
-            this.Name = "frmTelgramiPrikazi";
+            this.Name = "frmTelegramiPrikazi";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmTelgramiPrikazi";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmTelgramiPrikazi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
