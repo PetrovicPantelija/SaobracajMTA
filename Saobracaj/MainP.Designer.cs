@@ -1283,7 +1283,8 @@ namespace Saobracaj
             this.toolStripEx21.Size = new System.Drawing.Size(298, 380);
             this.toolStripEx21.TabIndex = 3;
             this.toolStripEx21.Text = "Prijave i odjave";
-            this.toolStripEx21.Click += new System.EventHandler(this.toolStripEx21_Click);
+            //Panta
+          //  this.toolStripEx21.Click += new System.EventHandler(this.toolStripEx21_Click);
             // 
             // toolStripButton60
             // 
