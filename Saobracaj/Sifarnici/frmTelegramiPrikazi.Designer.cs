@@ -37,12 +37,14 @@ namespace Saobracaj.Sifarnici
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
+            this.btn_Narocite = new System.Windows.Forms.Button();
+            this.timer4 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_dani
             // 
-            this.btn_dani.Location = new System.Drawing.Point(505, 25);
+            this.btn_dani.Location = new System.Drawing.Point(441, 25);
             this.btn_dani.Name = "btn_dani";
             this.btn_dani.Size = new System.Drawing.Size(185, 52);
             this.btn_dani.TabIndex = 116;
@@ -52,7 +54,7 @@ namespace Saobracaj.Sifarnici
             // 
             // btn_Aktivni
             // 
-            this.btn_Aktivni.Location = new System.Drawing.Point(762, 25);
+            this.btn_Aktivni.Location = new System.Drawing.Point(676, 25);
             this.btn_Aktivni.Name = "btn_Aktivni";
             this.btn_Aktivni.Size = new System.Drawing.Size(185, 52);
             this.btn_Aktivni.TabIndex = 117;
@@ -62,7 +64,7 @@ namespace Saobracaj.Sifarnici
             // 
             // btn_svi
             // 
-            this.btn_svi.Location = new System.Drawing.Point(1023, 25);
+            this.btn_svi.Location = new System.Drawing.Point(1127, 25);
             this.btn_svi.Name = "btn_svi";
             this.btn_svi.Size = new System.Drawing.Size(185, 52);
             this.btn_svi.TabIndex = 118;
@@ -98,17 +100,34 @@ namespace Saobracaj.Sifarnici
             this.timer3.Interval = 120000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // frmTelgramiPrikazi
+            // btn_Narocite
+            // 
+            this.btn_Narocite.Location = new System.Drawing.Point(900, 25);
+            this.btn_Narocite.Name = "btn_Narocite";
+            this.btn_Narocite.Size = new System.Drawing.Size(185, 52);
+            this.btn_Narocite.TabIndex = 117;
+            this.btn_Narocite.Text = "Narocite posiljke";
+            this.btn_Narocite.UseVisualStyleBackColor = true;
+            this.btn_Narocite.Click += new System.EventHandler(this.btn_Narocite_Click);
+            // 
+            // timer4
+            // 
+            this.timer4.Interval = 120000;
+            // 
+            // frmTelegramiPrikazi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1806, 828);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btn_svi);
+            this.Controls.Add(this.btn_Narocite);
             this.Controls.Add(this.btn_Aktivni);
             this.Controls.Add(this.btn_dani);
-            this.Name = "frmTelgramiPrikazi";
+            this.Name = "frmTelegramiPrikazi";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmTelgramiPrikazi";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmTelgramiPrikazi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -124,5 +143,7 @@ namespace Saobracaj.Sifarnici
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Timer timer3;
+        private System.Windows.Forms.Button btn_Narocite;
+        private System.Windows.Forms.Timer timer4;
     }
 }

@@ -819,5 +819,10 @@ namespace Saobracaj
             Administracija.frmPolozeneLokomotive lokomotive = new Administracija.frmPolozeneLokomotive();
             lokomotive.Show();
         }
+
+        private void RibbonPanel_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
