@@ -15,7 +15,7 @@ namespace Saobracaj.Sifarnici
         string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
 
        public void InsTelegrami(int BrojTelegrama,int PrugaID,int OdStanice,int DoStanice, string Kolosek, DateTime VaziOd, DateTime VaziDo, 
-           DateTime TrajeOd,DateTime TrajeDo,string Napomena,bool Aktivan,string PDF)
+           DateTime TrajeOd,DateTime TrajeDo,string Napomena,bool Aktivan,string PDF,bool NarocitaPosiljka)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -112,6 +112,13 @@ namespace Saobracaj.Sifarnici
             pdf.Value = PDF;
             cmd.Parameters.Add(pdf);
 
+            SqlParameter paramNarocita = new SqlParameter();
+            paramNarocita.ParameterName = "@NarocitaPosiljka";
+            paramNarocita.SqlDbType = SqlDbType.Bit;
+            paramNarocita.Direction = ParameterDirection.Input;
+            paramNarocita.Value = NarocitaPosiljka;
+            cmd.Parameters.Add(paramNarocita);
+
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();
             cmd.Transaction = tran;
@@ -150,7 +157,7 @@ namespace Saobracaj.Sifarnici
         }
 
         public void UpdTelegrami(int ID, int BrojTelegrama, int PrugaID, int OdStanice, int DoStanice, string Kolosek, DateTime VaziOd, DateTime VaziDo,
-           DateTime TrajeOd, DateTime TrajeDo, string Napomena,bool Aktivan,string PDF)
+           DateTime TrajeOd, DateTime TrajeDo, string Napomena,bool Aktivan,string PDF,bool NarocitaPosiljka)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -250,6 +257,13 @@ namespace Saobracaj.Sifarnici
             pdf.Direction = ParameterDirection.Input;
             pdf.Value = PDF;
             cmd.Parameters.Add(pdf);
+
+            SqlParameter paramNarocita = new SqlParameter();
+            paramNarocita.ParameterName = "@NarocitaPosiljka";
+            paramNarocita.SqlDbType = SqlDbType.Bit;
+            paramNarocita.Direction = ParameterDirection.Input;
+            paramNarocita.Value = NarocitaPosiljka;
+            cmd.Parameters.Add(paramNarocita);
 
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();

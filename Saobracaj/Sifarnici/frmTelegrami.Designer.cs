@@ -76,6 +76,10 @@
             this.txt_PDF = new System.Windows.Forms.TextBox();
             this.btn_pdf = new System.Windows.Forms.Button();
             this.btn_prikazi = new System.Windows.Forms.Button();
+            this.btn_Sacuvaj = new System.Windows.Forms.Button();
+            this.cb_Narocita = new System.Windows.Forms.CheckBox();
+            this.btn_narocite = new System.Windows.Forms.Button();
+            this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -133,7 +137,7 @@
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1924, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(2094, 27);
             this.toolStrip1.TabIndex = 82;
             this.toolStrip1.Text = "Štampaj izveštaj";
             // 
@@ -233,7 +237,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1878, 546);
+            this.dataGridView1.Size = new System.Drawing.Size(2048, 546);
             this.dataGridView1.TabIndex = 109;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -363,7 +367,7 @@
             // 
             // btn_dani
             // 
-            this.btn_dani.Location = new System.Drawing.Point(1316, 155);
+            this.btn_dani.Location = new System.Drawing.Point(1172, 148);
             this.btn_dani.Name = "btn_dani";
             this.btn_dani.Size = new System.Drawing.Size(162, 37);
             this.btn_dani.TabIndex = 115;
@@ -392,7 +396,7 @@
             // btn_Aktivni
             // 
             this.btn_Aktivni.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btn_Aktivni.Location = new System.Drawing.Point(1520, 155);
+            this.btn_Aktivni.Location = new System.Drawing.Point(1382, 148);
             this.btn_Aktivni.Name = "btn_Aktivni";
             this.btn_Aktivni.Size = new System.Drawing.Size(162, 37);
             this.btn_Aktivni.TabIndex = 116;
@@ -402,7 +406,7 @@
             // 
             // btn_svi
             // 
-            this.btn_svi.Location = new System.Drawing.Point(1738, 155);
+            this.btn_svi.Location = new System.Drawing.Point(1793, 148);
             this.btn_svi.Name = "btn_svi";
             this.btn_svi.Size = new System.Drawing.Size(162, 37);
             this.btn_svi.TabIndex = 116;
@@ -414,7 +418,7 @@
             // 
             this.cb_Aktivni.AutoSize = true;
             this.cb_Aktivni.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_Aktivni.Location = new System.Drawing.Point(775, 168);
+            this.cb_Aktivni.Location = new System.Drawing.Point(731, 148);
             this.cb_Aktivni.Name = "cb_Aktivni";
             this.cb_Aktivni.Size = new System.Drawing.Size(85, 24);
             this.cb_Aktivni.TabIndex = 117;
@@ -507,42 +511,83 @@
             // 
             // txt_PDF
             // 
-            this.txt_PDF.Location = new System.Drawing.Point(1015, 169);
+            this.txt_PDF.Location = new System.Drawing.Point(1680, 76);
             this.txt_PDF.Margin = new System.Windows.Forms.Padding(4);
             this.txt_PDF.Name = "txt_PDF";
-            this.txt_PDF.Size = new System.Drawing.Size(244, 22);
+            this.txt_PDF.Size = new System.Drawing.Size(255, 22);
             this.txt_PDF.TabIndex = 72;
             // 
             // btn_pdf
             // 
-            this.btn_pdf.Location = new System.Drawing.Point(881, 163);
+            this.btn_pdf.Location = new System.Drawing.Point(1680, 43);
             this.btn_pdf.Name = "btn_pdf";
             this.btn_pdf.Size = new System.Drawing.Size(111, 26);
             this.btn_pdf.TabIndex = 119;
-            this.btn_pdf.Text = "Učitaj PDF";
+            this.btn_pdf.Text = "Pronadji PDF";
             this.btn_pdf.UseVisualStyleBackColor = true;
             this.btn_pdf.Click += new System.EventHandler(this.btn_pdf_Click);
             // 
             // btn_prikazi
             // 
-            this.btn_prikazi.Location = new System.Drawing.Point(1148, 198);
+            this.btn_prikazi.Location = new System.Drawing.Point(1824, 43);
             this.btn_prikazi.Name = "btn_prikazi";
             this.btn_prikazi.Size = new System.Drawing.Size(111, 26);
             this.btn_prikazi.TabIndex = 119;
             this.btn_prikazi.Text = "Prikaži PDF";
             this.btn_prikazi.UseVisualStyleBackColor = true;
+            this.btn_prikazi.Click += new System.EventHandler(this.btn_prikazi_Click);
+            // 
+            // btn_Sacuvaj
+            // 
+            this.btn_Sacuvaj.Location = new System.Drawing.Point(1824, 103);
+            this.btn_Sacuvaj.Name = "btn_Sacuvaj";
+            this.btn_Sacuvaj.Size = new System.Drawing.Size(111, 26);
+            this.btn_Sacuvaj.TabIndex = 119;
+            this.btn_Sacuvaj.Text = "Sačuvaj PDF";
+            this.btn_Sacuvaj.UseVisualStyleBackColor = true;
+            this.btn_Sacuvaj.Click += new System.EventHandler(this.btn_Sacuvaj_Click);
+            // 
+            // cb_Narocita
+            // 
+            this.cb_Narocita.AutoSize = true;
+            this.cb_Narocita.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_Narocita.Location = new System.Drawing.Point(894, 148);
+            this.cb_Narocita.Name = "cb_Narocita";
+            this.cb_Narocita.Size = new System.Drawing.Size(155, 24);
+            this.cb_Narocita.TabIndex = 117;
+            this.cb_Narocita.Text = "Naročita pošiljka";
+            this.cb_Narocita.UseVisualStyleBackColor = true;
+            // 
+            // btn_narocite
+            // 
+            this.btn_narocite.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btn_narocite.Location = new System.Drawing.Point(1593, 148);
+            this.btn_narocite.Name = "btn_narocite";
+            this.btn_narocite.Size = new System.Drawing.Size(162, 37);
+            this.btn_narocite.TabIndex = 116;
+            this.btn_narocite.Text = "Narocite posiljke";
+            this.btn_narocite.UseVisualStyleBackColor = true;
+            this.btn_narocite.Click += new System.EventHandler(this.btn_narocite_Click);
+            // 
+            // timer4
+            // 
+            this.timer4.Interval = 120000;
+            this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
             // 
             // frmTelegrami
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1924, 793);
+            this.ClientSize = new System.Drawing.Size(2094, 793);
+            this.Controls.Add(this.btn_Sacuvaj);
             this.Controls.Add(this.btn_prikazi);
             this.Controls.Add(this.btn_pdf);
             this.Controls.Add(this.combo_DoStanice);
             this.Controls.Add(this.combo_OdStanice);
+            this.Controls.Add(this.cb_Narocita);
             this.Controls.Add(this.cb_Aktivni);
             this.Controls.Add(this.btn_svi);
+            this.Controls.Add(this.btn_narocite);
             this.Controls.Add(this.btn_Aktivni);
             this.Controls.Add(this.btn_dani);
             this.Controls.Add(this.label5);
@@ -631,5 +676,9 @@
         private System.Windows.Forms.TextBox txt_PDF;
         private System.Windows.Forms.Button btn_pdf;
         private System.Windows.Forms.Button btn_prikazi;
+        private System.Windows.Forms.Button btn_Sacuvaj;
+        private System.Windows.Forms.CheckBox cb_Narocita;
+        private System.Windows.Forms.Button btn_narocite;
+        private System.Windows.Forms.Timer timer4;
     }
 }
