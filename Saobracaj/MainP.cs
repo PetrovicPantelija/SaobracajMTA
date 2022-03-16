@@ -5,7 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
-using Syncfusion.Windows.Forms.Grid.Grouping;
+//using Syncfusion.Windows.Forms.Grid.Grouping;
 using Syncfusion.Windows.Forms;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -413,7 +413,7 @@ namespace Saobracaj
 
         private void toolStripButton62_Click(object sender, EventArgs e)
         {
-           Servis.frmPrijavaMasinovodje mas = new Servis.frmPrijavaMasinovodje();
+            Servis.frmPrijavaMasinovodje mas = new Servis.frmPrijavaMasinovodje();
             PravoP = mas.Pravo;
             if (PravoP == true) { mas.Show(); } else { return; }
         }
@@ -510,7 +510,7 @@ namespace Saobracaj
             {
                 zar.Show();
             }
-            else { MessageBox.Show("Nemate prava za pristup ovoj formi");return; }
+            else { MessageBox.Show("Nemate prava za pristup ovoj formi"); return; }
         }
         private void toolStripButton70_Click(object sender, EventArgs e)
         {
@@ -538,7 +538,7 @@ namespace Saobracaj
             {
                 zar.Show();
             }
-            else { MessageBox.Show("Nemate prava za pristup ovoj formi");return; }
+            else { MessageBox.Show("Nemate prava za pristup ovoj formi"); return; }
         }
         private void toolStripButton81_Click(object sender, EventArgs e)
         {
@@ -566,8 +566,8 @@ namespace Saobracaj
         }
         private void RibbonPanel_Click(object sender, EventArgs e)
         {
-          //  Sifarnici.frmSifarnikKontrolnihGresaka skg = new Sifarnici.frmSifarnikKontrolnihGresaka();
-           // skg.Show();
+            //  Sifarnici.frmSifarnikKontrolnihGresaka skg = new Sifarnici.frmSifarnikKontrolnihGresaka();
+            // skg.Show();
         }
         private void toolStripButton85_Click(object sender, EventArgs e)
         {
@@ -731,19 +731,19 @@ namespace Saobracaj
             myCommand.ExecuteNonQuery();
             myConnection.Close();
             MessageBox.Show("Obrada zavrsena");
-/*
-            myConnection.Open();
-            SqlTransaction myTransaction = myConnection.BeginTransaction();
-            myCommand.Transaction = myTransaction;
-            bool error = true;
-            try
-            {
-                myCommand.ExecuteNonQuery();
-                myTransaction.Commit();
-                myTransaction = myConnection.BeginTransaction();
-                myCommand.Transaction = myTransaction;
-            }
-*/
+            /*
+                        myConnection.Open();
+                        SqlTransaction myTransaction = myConnection.BeginTransaction();
+                        myCommand.Transaction = myTransaction;
+                        bool error = true;
+                        try
+                        {
+                            myCommand.ExecuteNonQuery();
+                            myTransaction.Commit();
+                            myTransaction = myConnection.BeginTransaction();
+                            myCommand.Transaction = myTransaction;
+                        }
+            */
 
         }
 
@@ -818,11 +818,6 @@ namespace Saobracaj
         {
             Administracija.frmPolozeneLokomotive lokomotive = new Administracija.frmPolozeneLokomotive();
             lokomotive.Show();
-        }
-
-        private void RibbonPanel_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 }
