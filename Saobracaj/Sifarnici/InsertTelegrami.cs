@@ -15,7 +15,7 @@ namespace Saobracaj.Sifarnici
         string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
 
        public void InsTelegrami(int BrojTelegrama,int PrugaID,int OdStanice,int DoStanice, string Kolosek, DateTime VaziOd, DateTime VaziDo, 
-           DateTime TrajeOd,DateTime TrajeDo,string Napomena,bool Aktivan)
+           DateTime TrajeOd,DateTime TrajeDo,string Napomena,bool Aktivan,string PDF,bool NarocitaPosiljka)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -104,6 +104,13 @@ namespace Saobracaj.Sifarnici
             paramAktivan.Value = Aktivan;
             cmd.Parameters.Add(paramAktivan);
 
+            SqlParameter pdf = new SqlParameter();
+            pdf.ParameterName = "@PDF";
+            pdf.SqlDbType = SqlDbType.NVarChar;
+            pdf.Size = 500;
+            pdf.Direction = ParameterDirection.Input;
+            pdf.Value = PDF;
+            cmd.Parameters.Add(pdf);
 
             SqlParameter paramNarocita = new SqlParameter();
             paramNarocita.ParameterName = "@NarocitaPosiljka";
@@ -150,7 +157,7 @@ namespace Saobracaj.Sifarnici
         }
 
         public void UpdTelegrami(int ID, int BrojTelegrama, int PrugaID, int OdStanice, int DoStanice, string Kolosek, DateTime VaziOd, DateTime VaziDo,
-           DateTime TrajeOd, DateTime TrajeDo, string Napomena,bool Aktivan)
+           DateTime TrajeOd, DateTime TrajeDo, string Napomena,bool Aktivan,string PDF,bool NarocitaPosiljka)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -243,6 +250,13 @@ namespace Saobracaj.Sifarnici
             paramAktivan.Value = Aktivan;
             cmd.Parameters.Add(paramAktivan);
 
+            SqlParameter pdf = new SqlParameter();
+            pdf.ParameterName = "@PDF";
+            pdf.SqlDbType = SqlDbType.NVarChar;
+            pdf.Size = 500;
+            pdf.Direction = ParameterDirection.Input;
+            pdf.Value = PDF;
+            cmd.Parameters.Add(pdf);
 
             SqlParameter paramNarocita = new SqlParameter();
             paramNarocita.ParameterName = "@NarocitaPosiljka";
