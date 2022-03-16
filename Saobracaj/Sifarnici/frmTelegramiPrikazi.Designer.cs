@@ -100,21 +100,7 @@ namespace Saobracaj.Sifarnici
             this.timer3.Interval = 120000;
             this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
             // 
-            // btn_Narocite
-            // 
-            this.btn_Narocite.Location = new System.Drawing.Point(900, 25);
-            this.btn_Narocite.Name = "btn_Narocite";
-            this.btn_Narocite.Size = new System.Drawing.Size(185, 52);
-            this.btn_Narocite.TabIndex = 117;
-            this.btn_Narocite.Text = "Narocite posiljke";
-            this.btn_Narocite.UseVisualStyleBackColor = true;
-            this.btn_Narocite.Click += new System.EventHandler(this.btn_Narocite_Click);
-            // 
-            // timer4
-            // 
-            this.timer4.Interval = 120000;
-            // 
-            // frmTelegramiPrikazi
+            // frmTelgramiPrikazi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -124,10 +110,8 @@ namespace Saobracaj.Sifarnici
             this.Controls.Add(this.btn_Narocite);
             this.Controls.Add(this.btn_Aktivni);
             this.Controls.Add(this.btn_dani);
-            this.Name = "frmTelegramiPrikazi";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Name = "frmTelgramiPrikazi";
             this.Text = "frmTelgramiPrikazi";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmTelgramiPrikazi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
