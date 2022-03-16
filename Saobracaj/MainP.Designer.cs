@@ -1384,6 +1384,8 @@ namespace Saobracaj
             this.toolStripEx21.Size = new System.Drawing.Size(466, 594);
             this.toolStripEx21.TabIndex = 3;
             this.toolStripEx21.Text = "Prijave i odjave";
+
+
             // 
             // toolStripButton60
             // 
