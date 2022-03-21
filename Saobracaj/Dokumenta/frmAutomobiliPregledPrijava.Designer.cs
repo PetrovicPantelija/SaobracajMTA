@@ -70,8 +70,14 @@ namespace Saobracaj.Dokumenta
             this.cb_Plomba2Raz = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
             this.txt_Sifra = new System.Windows.Forms.TextBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btn_OtvoriSliku = new System.Windows.Forms.Button();
+            this.btn_nazad = new System.Windows.Forms.Button();
+            this.btn_Napred = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -82,11 +88,11 @@ namespace Saobracaj.Dokumenta
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 322);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 336);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1447, 350);
+            this.dataGridView1.Size = new System.Drawing.Size(1907, 482);
             this.dataGridView1.TabIndex = 205;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -100,7 +106,7 @@ namespace Saobracaj.Dokumenta
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1479, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1939, 27);
             this.toolStrip1.TabIndex = 206;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -461,11 +467,65 @@ namespace Saobracaj.Dokumenta
             this.txt_Sifra.Size = new System.Drawing.Size(186, 22);
             this.txt_Sifra.TabIndex = 216;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pictureBox1.Location = new System.Drawing.Point(1350, 30);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(458, 288);
+            this.pictureBox1.TabIndex = 217;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btn_OtvoriSliku
+            // 
+            this.btn_OtvoriSliku.Location = new System.Drawing.Point(1814, 30);
+            this.btn_OtvoriSliku.Name = "btn_OtvoriSliku";
+            this.btn_OtvoriSliku.Size = new System.Drawing.Size(109, 34);
+            this.btn_OtvoriSliku.TabIndex = 218;
+            this.btn_OtvoriSliku.Text = "Otvori";
+            this.btn_OtvoriSliku.UseVisualStyleBackColor = true;
+            this.btn_OtvoriSliku.Click += new System.EventHandler(this.btn_OtvoriSliku_Click);
+            // 
+            // btn_nazad
+            // 
+            this.btn_nazad.Location = new System.Drawing.Point(1814, 125);
+            this.btn_nazad.Name = "btn_nazad";
+            this.btn_nazad.Size = new System.Drawing.Size(109, 34);
+            this.btn_nazad.TabIndex = 218;
+            this.btn_nazad.Text = "<<";
+            this.btn_nazad.UseVisualStyleBackColor = true;
+            this.btn_nazad.Click += new System.EventHandler(this.btn_nazad_Click);
+            // 
+            // btn_Napred
+            // 
+            this.btn_Napred.Location = new System.Drawing.Point(1814, 74);
+            this.btn_Napred.Name = "btn_Napred";
+            this.btn_Napred.Size = new System.Drawing.Size(109, 34);
+            this.btn_Napred.TabIndex = 218;
+            this.btn_Napred.Text = ">>";
+            this.btn_Napred.UseVisualStyleBackColor = true;
+            this.btn_Napred.Click += new System.EventHandler(this.btn_Napred_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1814, 221);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(109, 34);
+            this.button1.TabIndex = 218;
+            this.button1.Text = "Otvori folder";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmAutomobiliPregledPrijava
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1479, 686);
+            this.ClientSize = new System.Drawing.Size(1939, 832);
+            this.Controls.Add(this.btn_Napred);
+            this.Controls.Add(this.btn_nazad);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_OtvoriSliku);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txt_Sifra);
             this.Controls.Add(this.cb_Plomba2Raz);
             this.Controls.Add(this.cb_Plomba2Zad);
@@ -509,6 +569,7 @@ namespace Saobracaj.Dokumenta
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -556,5 +617,10 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.CheckBox cb_Plomba2Raz;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txt_Sifra;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btn_OtvoriSliku;
+        private System.Windows.Forms.Button btn_nazad;
+        private System.Windows.Forms.Button btn_Napred;
+        private System.Windows.Forms.Button button1;
     }
 }

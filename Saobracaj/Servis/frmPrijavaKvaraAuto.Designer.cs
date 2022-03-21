@@ -30,7 +30,7 @@ namespace Saobracaj.Servis
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrijavaKvaraAuto));
-            Syncfusion.Windows.Forms.MetroColorTable metroColorTable1 = new Syncfusion.Windows.Forms.MetroColorTable();
+            Syncfusion.Windows.Forms.MetroColorTable metroColorTable2 = new Syncfusion.Windows.Forms.MetroColorTable();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_New = new System.Windows.Forms.ToolStripButton();
             this.tsb_Save = new System.Windows.Forms.ToolStripButton();
@@ -54,9 +54,15 @@ namespace Saobracaj.Servis
             this.label9 = new System.Windows.Forms.Label();
             this.txt_Napomena = new MetroFramework.Controls.MetroTextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btn_OtvoriSliku = new System.Windows.Forms.Button();
+            this.btn_Napred = new System.Windows.Forms.Button();
+            this.btn_nazad = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.combo_Kvar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -68,7 +74,7 @@ namespace Saobracaj.Servis
             this.tsb_Delete});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1186, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1441, 27);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
@@ -200,7 +206,7 @@ namespace Saobracaj.Servis
             this.combo_Kvar.Margin = new System.Windows.Forms.Padding(4);
             this.combo_Kvar.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.combo_Kvar.Name = "combo_Kvar";
-            this.combo_Kvar.ScrollMetroColorTable = metroColorTable1;
+            this.combo_Kvar.ScrollMetroColorTable = metroColorTable2;
             this.combo_Kvar.Size = new System.Drawing.Size(339, 24);
             this.combo_Kvar.TabIndex = 169;
             // 
@@ -266,7 +272,7 @@ namespace Saobracaj.Servis
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(559, 66);
+            this.label9.Location = new System.Drawing.Point(547, 63);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(77, 17);
@@ -276,7 +282,7 @@ namespace Saobracaj.Servis
             // txt_Napomena
             // 
             this.txt_Napomena.Lines = new string[0];
-            this.txt_Napomena.Location = new System.Drawing.Point(657, 66);
+            this.txt_Napomena.Location = new System.Drawing.Point(550, 103);
             this.txt_Napomena.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Napomena.MaxLength = 32767;
             this.txt_Napomena.Multiline = true;
@@ -284,7 +290,7 @@ namespace Saobracaj.Servis
             this.txt_Napomena.PasswordChar = '\0';
             this.txt_Napomena.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txt_Napomena.SelectedText = "";
-            this.txt_Napomena.Size = new System.Drawing.Size(509, 199);
+            this.txt_Napomena.Size = new System.Drawing.Size(402, 199);
             this.txt_Napomena.TabIndex = 177;
             this.txt_Napomena.UseSelectable = true;
             // 
@@ -299,15 +305,70 @@ namespace Saobracaj.Servis
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1160, 551);
+            this.dataGridView1.Size = new System.Drawing.Size(1415, 551);
             this.dataGridView1.TabIndex = 178;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.pictureBox1.Location = new System.Drawing.Point(968, 30);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(458, 288);
+            this.pictureBox1.TabIndex = 218;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // btn_OtvoriSliku
+            // 
+            this.btn_OtvoriSliku.Location = new System.Drawing.Point(968, 324);
+            this.btn_OtvoriSliku.Name = "btn_OtvoriSliku";
+            this.btn_OtvoriSliku.Size = new System.Drawing.Size(109, 34);
+            this.btn_OtvoriSliku.TabIndex = 219;
+            this.btn_OtvoriSliku.Text = "Otvori";
+            this.btn_OtvoriSliku.UseVisualStyleBackColor = true;
+            this.btn_OtvoriSliku.Click += new System.EventHandler(this.btn_OtvoriSliku_Click);
+            // 
+            // btn_Napred
+            // 
+            this.btn_Napred.Location = new System.Drawing.Point(1210, 324);
+            this.btn_Napred.Name = "btn_Napred";
+            this.btn_Napred.Size = new System.Drawing.Size(83, 34);
+            this.btn_Napred.TabIndex = 220;
+            this.btn_Napred.Text = ">>";
+            this.btn_Napred.UseVisualStyleBackColor = true;
+            this.btn_Napred.Click += new System.EventHandler(this.btn_Napred_Click);
+            // 
+            // btn_nazad
+            // 
+            this.btn_nazad.Location = new System.Drawing.Point(1114, 324);
+            this.btn_nazad.Name = "btn_nazad";
+            this.btn_nazad.Size = new System.Drawing.Size(90, 34);
+            this.btn_nazad.TabIndex = 221;
+            this.btn_nazad.Text = "<<";
+            this.btn_nazad.UseVisualStyleBackColor = true;
+            this.btn_nazad.Click += new System.EventHandler(this.btn_nazad_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1317, 324);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(109, 34);
+            this.button1.TabIndex = 222;
+            this.button1.Text = "Otvori folder";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmPrijavaKvaraAuto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1186, 940);
+            this.ClientSize = new System.Drawing.Size(1441, 940);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_nazad);
+            this.Controls.Add(this.btn_Napred);
+            this.Controls.Add(this.btn_OtvoriSliku);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txt_Napomena);
             this.Controls.Add(this.label9);
@@ -336,6 +397,7 @@ namespace Saobracaj.Servis
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.combo_Kvar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -366,5 +428,10 @@ namespace Saobracaj.Servis
         private System.Windows.Forms.ToolStripButton tsb_New;
         private System.Windows.Forms.ToolStripButton tsb_Save;
         private System.Windows.Forms.ToolStripButton tsb_Delete;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btn_OtvoriSliku;
+        private System.Windows.Forms.Button btn_Napred;
+        private System.Windows.Forms.Button btn_nazad;
+        private System.Windows.Forms.Button button1;
     }
 }

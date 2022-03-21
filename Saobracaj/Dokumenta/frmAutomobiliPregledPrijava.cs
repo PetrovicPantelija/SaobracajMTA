@@ -12,11 +12,19 @@ using System.Data.SqlClient;
 using System.Configuration;
 
 using Microsoft.Reporting.WinForms;
+using System.IO;
 
 namespace Saobracaj.Dokumenta
 {
     public partial class frmAutomobiliPregledPrijava : Form
     {
+        private List<PictureBox> PictureBoxes = new List<PictureBox>();
+        List<string> filenames = new List<string>();
+        List<string> videos = new List<string>();
+        private const int ThumbWidth = 458;
+        private const int ThumbHeight = 288;
+        int slika = 0;
+
         public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         bool status = false;
         public frmAutomobiliPregledPrijava()
@@ -337,7 +345,10 @@ namespace Saobracaj.Dokumenta
                         {
                             cb_Plomba2Zad.Checked = true;
                         }
-                        FillGV();
+                        PictureBoxes.Clear();
+                        filenames.Clear();
+                        pictureBox1.Image = null;
+                       // FillGV();
                     }
                 }
             }
@@ -345,6 +356,101 @@ namespace Saobracaj.Dokumenta
             {
 
             }
+        }
+        private void Slike()
+        {
+
+            if (txt_Sifra.Text.Equals(""))
+            {
+                MessageBox.Show("Mora se izabrati zapis");
+            }
+            else
+            {
+                string folder = txt_Sifra.Text.ToString().TrimEnd();
+                string path = @"\\192.168.1.6\CistocaSluzbeniAutomobili\" + folder;
+                string[] files = Directory.GetFiles(path);
+                if (files.Length == 0)
+                {
+                    MessageBox.Show("Nema dodatih slika");
+                }
+                else
+                {
+                    string[] filterVideo = { "*.heic", ".*mp4" };
+                    foreach(string video in filterVideo)
+                    {
+                        videos.AddRange(Directory.GetFiles(path, video, SearchOption.TopDirectoryOnly));
+                        if (videos.Count > 0)
+                        {
+                            MessageBox.Show("Video se mora otvoriti iz foldera");
+                            videos.Clear();
+                            System.Diagnostics.Process.Start(path);
+                            return;
+                        }
+
+                    }
+                    string[] paterns = { "*.png", "*.gif", "*.jpg", "*.bmp", "*.tif" };
+                    
+                    foreach (string pattern in paterns)
+                    {
+                        filenames.AddRange(Directory.GetFiles(path, pattern, SearchOption.TopDirectoryOnly));
+                    }
+                    filenames.Sort();
+                    for (int i = 0; i < files.Length; i++)
+                    {
+                        if (slika < 0 || slika > files.Length-1)
+                        {
+                            if (slika < 0)
+                            {
+                                slika = 0;
+                            }
+                            if (slika > files.Length-1)
+                            {
+                                slika = files.Length - 1;
+                            }
+                            return;
+                        }
+                        else
+                        {
+                            //pictureBox1.ClientSize = new Size(ThumbWidth, ThumbHeight);
+                            pictureBox1.Image = new Bitmap(files[slika]);
+
+                            // If the image is too big, zoom.
+                            if ((pictureBox1.Image.Width > ThumbWidth) ||
+                                (pictureBox1.Image.Height > ThumbHeight))
+                            {
+                                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                            }
+                            else
+                            {
+                                pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        private void btn_OtvoriSliku_Click(object sender, EventArgs e)
+        {
+            Slike();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string folder = txt_Sifra.Text.ToString().TrimEnd();
+            string path = @"\\192.168.1.6\CistocaSluzbeniAutomobili\" + folder;
+            System.Diagnostics.Process.Start(path);
+        }
+
+        private void btn_Napred_Click(object sender, EventArgs e)
+        {
+            slika++;
+            Slike();
+        }
+
+        private void btn_nazad_Click(object sender, EventArgs e)
+        {
+            slika--;
+            Slike();
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,13 @@ namespace Saobracaj.Servis
 {
     public partial class frmPrijavaKvaraAuto : Form
     {
+        private List<PictureBox> PictureBoxes = new List<PictureBox>();
+        List<string> filenames = new List<string>();
+        List<string> videos = new List<string>();
+        private const int ThumbWidth = 458;
+        private const int ThumbHeight = 288;
+        int slika = 0;
+
         public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         bool status = false;
         public frmPrijavaKvaraAuto()
@@ -87,12 +95,12 @@ namespace Saobracaj.Servis
                     insert = Convert.ToBoolean(reader["Upis"]);
                     if (insert == false)
                     {
-                      //  tsNew.Enabled = false;
+                        //  tsNew.Enabled = false;
                     }
                     update = Convert.ToBoolean(reader["Izmena"]);
                     if (update == false)
                     {
-                       // tsSave.Enabled = false;
+                        // tsSave.Enabled = false;
                     }
                     delete = Convert.ToBoolean(reader["Brisanje"]);
                     if (delete == false)
@@ -159,7 +167,7 @@ namespace Saobracaj.Servis
             combo_Promenio.ValueMember = "DeSifra";
 
 
-    
+
 
             RefreshDG();
         }
@@ -196,7 +204,7 @@ namespace Saobracaj.Servis
 
             DataGridViewColumn col0 = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
-            dataGridView1.Columns[0].Width = 25;
+            dataGridView1.Columns[0].Width = 45;
 
             DataGridViewColumn col1 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Automobil";
@@ -216,7 +224,7 @@ namespace Saobracaj.Servis
 
             DataGridViewColumn column6 = dataGridView1.Columns[5];
             dataGridView1.Columns[5].HeaderText = "Kvar naziv";
-            dataGridView1.Columns[5].Width = 130;
+            dataGridView1.Columns[5].Width = 170;
 
             DataGridViewColumn column7 = dataGridView1.Columns[6];
             dataGridView1.Columns[6].HeaderText = "Status kvara";
@@ -224,7 +232,7 @@ namespace Saobracaj.Servis
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
             dataGridView1.Columns[7].HeaderText = "Promenio";
-            dataGridView1.Columns[7].Width = 50;
+            dataGridView1.Columns[7].Width = 60;
 
 
             DataGridViewColumn column9 = dataGridView1.Columns[8];
@@ -233,7 +241,7 @@ namespace Saobracaj.Servis
 
             DataGridViewColumn column10 = dataGridView1.Columns[9];
             dataGridView1.Columns[9].HeaderText = "Napomena";
-            dataGridView1.Columns[9].Width = 95;
+            dataGridView1.Columns[9].Width = 205;
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -250,14 +258,15 @@ namespace Saobracaj.Servis
                         dt_Prijava.Value = Convert.ToDateTime(row.Cells[3].Value.ToString());
                         combo_Kvar.Text = row.Cells[5].Value.ToString();
 
-
-                        FillDv();
+                        PictureBoxes.Clear();
+                        filenames.Clear();
+                        pictureBox1.Image = null;
                     }
                 }
             }
             catch
             {
-                
+
             }
         }
 
@@ -274,7 +283,7 @@ namespace Saobracaj.Servis
             if (status == true)
             {
                 prijavaKvaraAuto.InsertPrijava(combo_Automobil.Text.ToString(), Convert.ToInt32(combo_Prijavio.SelectedValue), Convert.ToDateTime(dt_Prijava.Value),
-                Convert.ToInt32(combo_Kvar.SelectedValue), Convert.ToInt32(combo_Status.SelectedValue), Convert.ToInt32(combo_Promenio.SelectedValue), txt_Napomena.Text,Convert.ToInt32(combo_Automobil.SelectedValue.ToString()));
+                Convert.ToInt32(combo_Kvar.SelectedValue), Convert.ToInt32(combo_Status.SelectedValue), Convert.ToInt32(combo_Promenio.SelectedValue), txt_Napomena.Text, Convert.ToInt32(combo_Automobil.SelectedValue.ToString()));
                 RefreshDG();
                 status = false;
                 txt_Sifra.Enabled = true;
@@ -297,6 +306,107 @@ namespace Saobracaj.Servis
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void Slike()
+        {
+
+            if (txt_Sifra.Text.Equals(""))
+            {
+                MessageBox.Show("Mora se izabrati zapis");
+            }
+            else
+            {
+                string folder = txt_Sifra.Text.ToString().TrimEnd();
+                string path = @"\\192.168.1.6\KvaroviAutoSlike\" + folder;
+                string[] files = Directory.GetFiles(path);
+                if (files.Length == 0)
+                {
+                    MessageBox.Show("Nema dodatih slika");
+                }
+                else
+                {
+                    string[] filterVideo = { "*.heic", ".*mp4" };
+                    foreach (string video in filterVideo)
+                    {
+                        videos.AddRange(Directory.GetFiles(path, video, SearchOption.TopDirectoryOnly));
+                        if (videos.Count > 0)
+                        {
+                            MessageBox.Show("Video se mora otvoriti iz foldera");
+                            videos.Clear();
+                            System.Diagnostics.Process.Start(path);
+                            return;
+                        }
+
+                    }
+                    string[] paterns = { "*.png", "*.gif", "*.jpg", "*.bmp", "*.tif" };
+
+                    foreach (string pattern in paterns)
+                    {
+                        filenames.AddRange(Directory.GetFiles(path, pattern, SearchOption.TopDirectoryOnly));
+                    }
+                    filenames.Sort();
+                    for (int i = 0; i < files.Length; i++)
+                    {
+                        if (slika < 0 || slika > files.Length - 1)
+                        {
+                            if (slika < 0)
+                            {
+                                slika = 0;
+                            }
+                            if (slika > files.Length - 1)
+                            {
+                                slika = files.Length - 1;
+                            }
+                            return;
+                        }
+                        else
+                        {
+                            //pictureBox1.ClientSize = new Size(ThumbWidth, ThumbHeight);
+                            pictureBox1.Image = new Bitmap(files[slika]);
+
+                            // If the image is too big, zoom.
+                            if ((pictureBox1.Image.Width > ThumbWidth) ||
+                                (pictureBox1.Image.Height > ThumbHeight))
+                            {
+                                pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+                            }
+                            else
+                            {
+                                pictureBox1.SizeMode = PictureBoxSizeMode.Normal;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btn_OtvoriSliku_Click(object sender, EventArgs e)
+        {
+            Slike();
+        }
+
+        private void btn_nazad_Click(object sender, EventArgs e)
+        {
+            slika--;
+            Slike();
+        }
+
+        private void btn_Napred_Click(object sender, EventArgs e)
+        {
+            slika++;
+            Slike();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string folder = txt_Sifra.Text.ToString().TrimEnd();
+            string path = @"\\192.168.1.6\KvaroviAutoSlike\" + folder;
+            System.Diagnostics.Process.Start(path);
         }
     }
 }

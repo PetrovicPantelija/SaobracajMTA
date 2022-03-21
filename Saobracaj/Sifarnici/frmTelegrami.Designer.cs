@@ -87,7 +87,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(19, 168);
+            this.label8.Location = new System.Drawing.Point(19, 148);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(85, 17);
@@ -96,7 +96,7 @@
             // 
             // txt_Napomena
             // 
-            this.txt_Napomena.Location = new System.Drawing.Point(127, 149);
+            this.txt_Napomena.Location = new System.Drawing.Point(22, 169);
             this.txt_Napomena.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Napomena.Multiline = true;
             this.txt_Napomena.Name = "txt_Napomena";
@@ -105,7 +105,7 @@
             // 
             // txt_BrTelegrama
             // 
-            this.txt_BrTelegrama.Location = new System.Drawing.Point(282, 58);
+            this.txt_BrTelegrama.Location = new System.Drawing.Point(271, 60);
             this.txt_BrTelegrama.Margin = new System.Windows.Forms.Padding(4);
             this.txt_BrTelegrama.Name = "txt_BrTelegrama";
             this.txt_BrTelegrama.Size = new System.Drawing.Size(140, 22);
@@ -114,7 +114,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(174, 63);
+            this.label1.Location = new System.Drawing.Point(163, 63);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 17);
@@ -137,7 +137,7 @@
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(2094, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1718, 27);
             this.toolStrip1.TabIndex = 82;
             this.toolStrip1.Text = "Štampaj izveštaj";
             // 
@@ -237,7 +237,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(2048, 546);
+            this.dataGridView1.Size = new System.Drawing.Size(1672, 546);
             this.dataGridView1.TabIndex = 109;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -255,7 +255,7 @@
             // 
             this.cboPruga.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.cboPruga.FormattingEnabled = true;
-            this.cboPruga.Location = new System.Drawing.Point(127, 105);
+            this.cboPruga.Location = new System.Drawing.Point(77, 105);
             this.cboPruga.Margin = new System.Windows.Forms.Padding(4);
             this.cboPruga.Name = "cboPruga";
             this.cboPruga.Size = new System.Drawing.Size(388, 24);
@@ -264,7 +264,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(443, 61);
+            this.label6.Location = new System.Drawing.Point(419, 63);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(58, 17);
@@ -273,7 +273,7 @@
             // 
             // txt_kolosek
             // 
-            this.txt_kolosek.Location = new System.Drawing.Point(509, 56);
+            this.txt_kolosek.Location = new System.Drawing.Point(485, 60);
             this.txt_kolosek.Margin = new System.Windows.Forms.Padding(4);
             this.txt_kolosek.Name = "txt_kolosek";
             this.txt_kolosek.Size = new System.Drawing.Size(140, 22);
@@ -282,7 +282,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(727, 59);
+            this.label7.Location = new System.Drawing.Point(641, 48);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(82, 17);
@@ -292,7 +292,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(728, 98);
+            this.label9.Location = new System.Drawing.Point(642, 87);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(81, 17);
@@ -302,7 +302,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(1074, 61);
+            this.label10.Location = new System.Drawing.Point(1037, 50);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(59, 17);
@@ -312,7 +312,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(1074, 98);
+            this.label11.Location = new System.Drawing.Point(1037, 87);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(59, 17);
@@ -322,7 +322,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(1406, 98);
+            this.label12.Location = new System.Drawing.Point(1408, 87);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(65, 17);
@@ -332,7 +332,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(1406, 63);
+            this.label13.Location = new System.Drawing.Point(1408, 53);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(65, 17);
@@ -344,7 +344,7 @@
             this.dt_TrajeDo.CustomFormat = "HH:mm:ss";
             this.dt_TrajeDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_TrajeDo.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dt_TrajeDo.Location = new System.Drawing.Point(1479, 98);
+            this.dt_TrajeDo.Location = new System.Drawing.Point(1481, 80);
             this.dt_TrajeDo.Margin = new System.Windows.Forms.Padding(4);
             this.dt_TrajeDo.Name = "dt_TrajeDo";
             this.dt_TrajeDo.ShowUpDown = true;
@@ -357,7 +357,7 @@
             this.dt_TrajeOd.CustomFormat = "HH:mm:ss";
             this.dt_TrajeOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_TrajeOd.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dt_TrajeOd.Location = new System.Drawing.Point(1479, 59);
+            this.dt_TrajeOd.Location = new System.Drawing.Point(1481, 46);
             this.dt_TrajeOd.Margin = new System.Windows.Forms.Padding(4);
             this.dt_TrajeOd.Name = "dt_TrajeOd";
             this.dt_TrajeOd.ShowUpDown = true;
@@ -367,7 +367,7 @@
             // 
             // btn_dani
             // 
-            this.btn_dani.Location = new System.Drawing.Point(1172, 148);
+            this.btn_dani.Location = new System.Drawing.Point(645, 169);
             this.btn_dani.Name = "btn_dani";
             this.btn_dani.Size = new System.Drawing.Size(162, 37);
             this.btn_dani.TabIndex = 115;
@@ -396,7 +396,7 @@
             // btn_Aktivni
             // 
             this.btn_Aktivni.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btn_Aktivni.Location = new System.Drawing.Point(1382, 148);
+            this.btn_Aktivni.Location = new System.Drawing.Point(838, 169);
             this.btn_Aktivni.Name = "btn_Aktivni";
             this.btn_Aktivni.Size = new System.Drawing.Size(162, 37);
             this.btn_Aktivni.TabIndex = 116;
@@ -406,7 +406,7 @@
             // 
             // btn_svi
             // 
-            this.btn_svi.Location = new System.Drawing.Point(1793, 148);
+            this.btn_svi.Location = new System.Drawing.Point(1212, 169);
             this.btn_svi.Name = "btn_svi";
             this.btn_svi.Size = new System.Drawing.Size(162, 37);
             this.btn_svi.TabIndex = 116;
@@ -418,7 +418,7 @@
             // 
             this.cb_Aktivni.AutoSize = true;
             this.cb_Aktivni.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_Aktivni.Location = new System.Drawing.Point(731, 148);
+            this.cb_Aktivni.Location = new System.Drawing.Point(645, 126);
             this.cb_Aktivni.Name = "cb_Aktivni";
             this.cb_Aktivni.Size = new System.Drawing.Size(85, 24);
             this.cb_Aktivni.TabIndex = 117;
@@ -430,7 +430,7 @@
             this.dt_VaziDo.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dt_VaziDo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_VaziDo.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dt_VaziDo.Location = new System.Drawing.Point(1141, 98);
+            this.dt_VaziDo.Location = new System.Drawing.Point(1104, 80);
             this.dt_VaziDo.Margin = new System.Windows.Forms.Padding(4);
             this.dt_VaziDo.Name = "dt_VaziDo";
             this.dt_VaziDo.ShowUpDown = true;
@@ -443,7 +443,7 @@
             this.dt_VaziOd.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dt_VaziOd.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_VaziOd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dt_VaziOd.Location = new System.Drawing.Point(1141, 58);
+            this.dt_VaziOd.Location = new System.Drawing.Point(1104, 43);
             this.dt_VaziOd.Margin = new System.Windows.Forms.Padding(4);
             this.dt_VaziOd.Name = "dt_VaziOd";
             this.dt_VaziOd.ShowUpDown = true;
@@ -471,7 +471,7 @@
             this.dt_VaziOdT.CustomFormat = "dd.MM.yyyy  HH:mm";
             this.dt_VaziOdT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_VaziOdT.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dt_VaziOdT.Location = new System.Drawing.Point(1277, 59);
+            this.dt_VaziOdT.Location = new System.Drawing.Point(1240, 43);
             this.dt_VaziOdT.Margin = new System.Windows.Forms.Padding(4);
             this.dt_VaziOdT.Name = "dt_VaziOdT";
             this.dt_VaziOdT.ShowUpDown = true;
@@ -484,7 +484,7 @@
             this.dt_VaziDoT.CustomFormat = "dd.MM.yyyy  HH:mm";
             this.dt_VaziDoT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dt_VaziDoT.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dt_VaziDoT.Location = new System.Drawing.Point(1277, 98);
+            this.dt_VaziDoT.Location = new System.Drawing.Point(1240, 80);
             this.dt_VaziDoT.Margin = new System.Windows.Forms.Padding(4);
             this.dt_VaziDoT.Name = "dt_VaziDoT";
             this.dt_VaziDoT.ShowUpDown = true;
@@ -495,7 +495,7 @@
             // combo_OdStanice
             // 
             this.combo_OdStanice.FormattingEnabled = true;
-            this.combo_OdStanice.Location = new System.Drawing.Point(811, 55);
+            this.combo_OdStanice.Location = new System.Drawing.Point(725, 44);
             this.combo_OdStanice.Name = "combo_OdStanice";
             this.combo_OdStanice.Size = new System.Drawing.Size(238, 24);
             this.combo_OdStanice.TabIndex = 118;
@@ -503,7 +503,7 @@
             // combo_DoStanice
             // 
             this.combo_DoStanice.FormattingEnabled = true;
-            this.combo_DoStanice.Location = new System.Drawing.Point(811, 95);
+            this.combo_DoStanice.Location = new System.Drawing.Point(725, 84);
             this.combo_DoStanice.Name = "combo_DoStanice";
             this.combo_DoStanice.Size = new System.Drawing.Size(238, 24);
             this.combo_DoStanice.TabIndex = 118;
@@ -511,7 +511,7 @@
             // 
             // txt_PDF
             // 
-            this.txt_PDF.Location = new System.Drawing.Point(1680, 76);
+            this.txt_PDF.Location = new System.Drawing.Point(1401, 170);
             this.txt_PDF.Margin = new System.Windows.Forms.Padding(4);
             this.txt_PDF.Name = "txt_PDF";
             this.txt_PDF.Size = new System.Drawing.Size(255, 22);
@@ -519,7 +519,7 @@
             // 
             // btn_pdf
             // 
-            this.btn_pdf.Location = new System.Drawing.Point(1680, 43);
+            this.btn_pdf.Location = new System.Drawing.Point(1401, 137);
             this.btn_pdf.Name = "btn_pdf";
             this.btn_pdf.Size = new System.Drawing.Size(111, 26);
             this.btn_pdf.TabIndex = 119;
@@ -529,7 +529,7 @@
             // 
             // btn_prikazi
             // 
-            this.btn_prikazi.Location = new System.Drawing.Point(1824, 43);
+            this.btn_prikazi.Location = new System.Drawing.Point(1545, 137);
             this.btn_prikazi.Name = "btn_prikazi";
             this.btn_prikazi.Size = new System.Drawing.Size(111, 26);
             this.btn_prikazi.TabIndex = 119;
@@ -539,7 +539,7 @@
             // 
             // btn_Sacuvaj
             // 
-            this.btn_Sacuvaj.Location = new System.Drawing.Point(1824, 103);
+            this.btn_Sacuvaj.Location = new System.Drawing.Point(1545, 197);
             this.btn_Sacuvaj.Name = "btn_Sacuvaj";
             this.btn_Sacuvaj.Size = new System.Drawing.Size(111, 26);
             this.btn_Sacuvaj.TabIndex = 119;
@@ -551,7 +551,7 @@
             // 
             this.cb_Narocita.AutoSize = true;
             this.cb_Narocita.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cb_Narocita.Location = new System.Drawing.Point(894, 148);
+            this.cb_Narocita.Location = new System.Drawing.Point(808, 126);
             this.cb_Narocita.Name = "cb_Narocita";
             this.cb_Narocita.Size = new System.Drawing.Size(155, 24);
             this.cb_Narocita.TabIndex = 117;
@@ -561,7 +561,7 @@
             // btn_narocite
             // 
             this.btn_narocite.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btn_narocite.Location = new System.Drawing.Point(1593, 148);
+            this.btn_narocite.Location = new System.Drawing.Point(1028, 169);
             this.btn_narocite.Name = "btn_narocite";
             this.btn_narocite.Size = new System.Drawing.Size(162, 37);
             this.btn_narocite.TabIndex = 116;
@@ -578,7 +578,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2094, 793);
+            this.ClientSize = new System.Drawing.Size(1718, 793);
             this.Controls.Add(this.btn_Sacuvaj);
             this.Controls.Add(this.btn_prikazi);
             this.Controls.Add(this.btn_pdf);
