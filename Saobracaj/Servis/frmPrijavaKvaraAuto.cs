@@ -40,9 +40,8 @@ namespace Saobracaj.Servis
         bool update;
         bool delete;
         string Kor = Sifarnici.frmLogovanje.user.ToString();
-
-
-        public int IdGrupe()
+        string niz = "";
+        public string IdGrupe()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
@@ -51,12 +50,24 @@ namespace Saobracaj.Servis
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dr = cmd.ExecuteReader();
+            int count = 0;
+
             while (dr.Read())
             {
-                idGrupe = Convert.ToInt32(dr["IdGrupe"].ToString());
+                if (count == 0)
+                {
+                    niz = dr["IdGrupe"].ToString();
+                    count++;
+                }
+                else
+                {
+                    niz = niz + "," + dr["IdGrupe"].ToString();
+                    count++;
+                }
+
             }
             conn.Close();
-            return idGrupe;
+            return niz;
         }
         private int IdForme()
         {
@@ -74,10 +85,11 @@ namespace Saobracaj.Servis
             conn.Close();
             return idForme;
         }
+
         private void PravoPristupa()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe=" + idGrupe + " and IdForme=" + idForme;
+            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
@@ -95,17 +107,17 @@ namespace Saobracaj.Servis
                     insert = Convert.ToBoolean(reader["Upis"]);
                     if (insert == false)
                     {
-                        //  tsNew.Enabled = false;
+                        //tsNew.Enabled = false;
                     }
                     update = Convert.ToBoolean(reader["Izmena"]);
                     if (update == false)
                     {
-                        // tsSave.Enabled = false;
+                        //tsSave.Enabled = false;
                     }
                     delete = Convert.ToBoolean(reader["Brisanje"]);
                     if (delete == false)
                     {
-                        //tsDelete.Enabled = false;
+                       // tsDelete.Enabled = false;
                     }
                 }
             }
@@ -191,10 +203,13 @@ namespace Saobracaj.Servis
         }
         private void RefreshDG()
         {
-            var query = "  select EvidencijaKvarovaAuto.ID, Automobil, Prijavio, DatumPrijave, (Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek)) as Prijavio " +
-            " , KvaroviAuto.Naziv, StatusKvara, Promenio, DatumPromene, Napomena from EvidencijaKvarovaAuto " +
-            "  inner join Delavci on Delavci.DeSifra = EvidencijaKvarovaAuto.Prijavio " +
-            " inner join KvaroviAuto on KvaroviAuto.ID = EvidencijaKvarovaAuto.Kvar order by EvidencijaKvarovaAuto.ID desc";
+            var query = "select EvidencijaKvarovaAuto.ID, Automobil, Prijavio, DatumPrijave, " +
+                "(Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek)) as Prijavio, EvidencijaKvarovaAuto.Kvar, " +
+                "KvaroviAuto.Naziv, StatusKvara, Promenio, DatumPromene, EvidencijaKvarovaAuto.Napomena,Automobili.ID from EvidencijaKvarovaAuto " +
+                "inner join Delavci on Delavci.DeSifra = EvidencijaKvarovaAuto.Prijavio " +
+                "inner join KvaroviAuto on KvaroviAuto.ID = EvidencijaKvarovaAuto.Kvar " +
+                "Inner join Automobili on Automobili.RegBr = EvidencijaKvarovaAuto.Automobil " +
+                "order by EvidencijaKvarovaAuto.ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
@@ -222,26 +237,30 @@ namespace Saobracaj.Servis
             dataGridView1.Columns[4].HeaderText = "Zaposleni prijavio";
             dataGridView1.Columns[4].Width = 170;
 
+            dataGridView1.Columns[5].HeaderText = "Kvar";
+            dataGridView1.Columns[5].Width = 50;
+
             DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Kvar naziv";
-            dataGridView1.Columns[5].Width = 170;
+            dataGridView1.Columns[6].HeaderText = "Kvar naziv";
+            dataGridView1.Columns[6].Width = 170;
 
             DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Status kvara";
-            dataGridView1.Columns[6].Width = 50;
+            dataGridView1.Columns[7].HeaderText = "Status kvara";
+            dataGridView1.Columns[7].Width = 50;
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Promenio";
-            dataGridView1.Columns[7].Width = 60;
+            dataGridView1.Columns[8].HeaderText = "Promenio";
+            dataGridView1.Columns[8].Width = 60;
 
 
             DataGridViewColumn column9 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "Datum promene";
-            dataGridView1.Columns[8].Width = 70;
+            dataGridView1.Columns[9].HeaderText = "Datum promene";
+            dataGridView1.Columns[9].Width = 70;
 
             DataGridViewColumn column10 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Napomena";
-            dataGridView1.Columns[9].Width = 205;
+            dataGridView1.Columns[10].HeaderText = "Napomena";
+            dataGridView1.Columns[10].Width = 205;
+            dataGridView1.Columns[11].HeaderText = "IDAuto";
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -256,7 +275,8 @@ namespace Saobracaj.Servis
                         combo_Automobil.Text = row.Cells[1].Value.ToString();
                         combo_Prijavio.Text = row.Cells[4].Value.ToString();
                         dt_Prijava.Value = Convert.ToDateTime(row.Cells[3].Value.ToString());
-                        combo_Kvar.Text = row.Cells[5].Value.ToString();
+                        combo_Kvar.Text = row.Cells[6].Value.ToString();
+                        txt_Napomena.Text = row.Cells[10].Value.ToString();
 
                         PictureBoxes.Clear();
                         filenames.Clear();
@@ -407,6 +427,24 @@ namespace Saobracaj.Servis
             string folder = txt_Sifra.Text.ToString().TrimEnd();
             string path = @"\\192.168.1.6\KvaroviAutoSlike\" + folder;
             System.Diagnostics.Process.Start(path);
+        }
+
+        private void txt_Vise_Click(object sender, EventArgs e)
+        {
+            InsertPrijavaKvaraAuto prijavaKvaraAuto = new InsertPrijavaKvaraAuto();
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+                {
+                        prijavaKvaraAuto.UpdatePrijava(Convert.ToInt32(row.Cells[0].Value.ToString()), row.Cells[1].Value.ToString(), Convert.ToInt32(row.Cells[2].Value.ToString()), 
+                            Convert.ToDateTime(row.Cells[3].Value),Convert.ToInt32(row.Cells[5].Value), Convert.ToInt32(combo_Status.SelectedValue.ToString()), 
+                            Convert.ToInt32(combo_Promenio.SelectedValue.ToString()), row.Cells[10].Value.ToString(), Convert.ToInt32(row.Cells[11].Value.ToString()));
+                    
+                }
+                RefreshDG();
+            }
+            catch { }
+            
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Saobracaj.Servis
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrijavaKvaraAuto));
-            Syncfusion.Windows.Forms.MetroColorTable metroColorTable2 = new Syncfusion.Windows.Forms.MetroColorTable();
+            Syncfusion.Windows.Forms.MetroColorTable metroColorTable1 = new Syncfusion.Windows.Forms.MetroColorTable();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsb_New = new System.Windows.Forms.ToolStripButton();
             this.tsb_Save = new System.Windows.Forms.ToolStripButton();
@@ -59,6 +59,7 @@ namespace Saobracaj.Servis
             this.btn_Napred = new System.Windows.Forms.Button();
             this.btn_nazad = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.txt_Vise = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.combo_Kvar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -206,7 +207,7 @@ namespace Saobracaj.Servis
             this.combo_Kvar.Margin = new System.Windows.Forms.Padding(4);
             this.combo_Kvar.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.combo_Kvar.Name = "combo_Kvar";
-            this.combo_Kvar.ScrollMetroColorTable = metroColorTable2;
+            this.combo_Kvar.ScrollMetroColorTable = metroColorTable1;
             this.combo_Kvar.Size = new System.Drawing.Size(339, 24);
             this.combo_Kvar.TabIndex = 169;
             // 
@@ -359,6 +360,16 @@ namespace Saobracaj.Servis
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // txt_Vise
+            // 
+            this.txt_Vise.Location = new System.Drawing.Point(550, 322);
+            this.txt_Vise.Name = "txt_Vise";
+            this.txt_Vise.Size = new System.Drawing.Size(109, 34);
+            this.txt_Vise.TabIndex = 219;
+            this.txt_Vise.Text = "Promeni više";
+            this.txt_Vise.UseVisualStyleBackColor = true;
+            this.txt_Vise.Click += new System.EventHandler(this.txt_Vise_Click);
+            // 
             // frmPrijavaKvaraAuto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -367,6 +378,7 @@ namespace Saobracaj.Servis
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_nazad);
             this.Controls.Add(this.btn_Napred);
+            this.Controls.Add(this.txt_Vise);
             this.Controls.Add(this.btn_OtvoriSliku);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dataGridView1);
@@ -433,5 +445,6 @@ namespace Saobracaj.Servis
         private System.Windows.Forms.Button btn_Napred;
         private System.Windows.Forms.Button btn_nazad;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button txt_Vise;
     }
 }
