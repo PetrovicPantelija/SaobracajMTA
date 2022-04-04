@@ -25,6 +25,8 @@ namespace Saobracaj.Sifarnici
         bool update;
         bool delete;
         string Kor = Sifarnici.frmLogovanje.user.ToString();
+        string niz = "";
+        Label stanica, Sod,Sdo;
 
         OpenFileDialog ofd1 = new OpenFileDialog();
         FolderBrowserDialog fbd1 = new FolderBrowserDialog();
@@ -39,7 +41,7 @@ namespace Saobracaj.Sifarnici
             PravoPristupa();
 
         }
-        public int IdGrupe()
+        public string IdGrupe()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
@@ -48,12 +50,24 @@ namespace Saobracaj.Sifarnici
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dr = cmd.ExecuteReader();
+            int count = 0;
+
             while (dr.Read())
             {
-                idGrupe = Convert.ToInt32(dr["IdGrupe"].ToString());
+                if (count == 0)
+                {
+                    niz = dr["IdGrupe"].ToString();
+                    count++;
+                }
+                else
+                {
+                    niz = niz + "," + dr["IdGrupe"].ToString();
+                    count++;
+                }
+
             }
             conn.Close();
-            return idGrupe;
+            return niz;
         }
         private int IdForme()
         {
@@ -71,10 +85,11 @@ namespace Saobracaj.Sifarnici
             conn.Close();
             return idForme;
         }
+
         private void PravoPristupa()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe=" + idGrupe + " and IdForme=" + idForme;
+            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
@@ -102,7 +117,7 @@ namespace Saobracaj.Sifarnici
                     delete = Convert.ToBoolean(reader["Brisanje"]);
                     if (delete == false)
                     {
-                        //tsDelete.Enabled = false;
+                        tsDelete.Enabled = false;
                     }
                 }
             }
@@ -148,9 +163,10 @@ namespace Saobracaj.Sifarnici
         }
         private void RefreshDG()
         {
-            var query = "Select Telegrami.ID,BrojTelegrama,Rtrim(Pruga.Opis) as [Naziv]," +
-                "Rtrim(Stanice.Opis) as [Stanica OD],RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek,VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
-                "From telegrami " +
+            var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Rtrim(Pruga.Opis) as [Naziv], " +
+                "OdStanice,Rtrim(Stanice.Opis) as [Stanica OD],DoStanice,RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek, " +
+                "VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
+                "From Telegrami " +
                 "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
                 "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
                 "Inner join Stanice as s on Telegrami.DoStanice = s.ID " +
@@ -165,21 +181,24 @@ namespace Saobracaj.Sifarnici
             dataGridView1.Columns[0].HeaderText = "ID";
             dataGridView1.Columns[0].Width = 50;
             dataGridView1.Columns[1].HeaderText = "Broj Telegrama";
-            dataGridView1.Columns[2].HeaderText = "Naziv";
-            dataGridView1.Columns[2].Width = 250;
-            dataGridView1.Columns[3].HeaderText = "Stanica OD";
-            dataGridView1.Columns[3].Width = 100;
-            dataGridView1.Columns[4].HeaderText = "Stanica DO";
-            dataGridView1.Columns[4].Width = 100;
-            dataGridView1.Columns[5].Width = 75;
-            dataGridView1.Columns[6].HeaderText = "Vazi OD";
-            dataGridView1.Columns[6].Width = 100;
-            dataGridView1.Columns[7].HeaderText = "Vazi DO";
+            dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[3].HeaderText = "Naziv";
+            dataGridView1.Columns[3].Width = 250;
+            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].HeaderText = "Stanica OD";
+            dataGridView1.Columns[5].Width = 100;
+            dataGridView1.Columns[6].Visible = false;
+            dataGridView1.Columns[7].HeaderText = "Stanica DO";
             dataGridView1.Columns[7].Width = 100;
-            dataGridView1.Columns[8].HeaderText = "Aktivan";
-            dataGridView1.Columns[9].Width = 250;
+            dataGridView1.Columns[8].Width = 75;
+            dataGridView1.Columns[9].HeaderText = "Vazi OD";
+            dataGridView1.Columns[9].Width = 100;
+            dataGridView1.Columns[10].HeaderText = "Vazi DO";
             dataGridView1.Columns[10].Width = 100;
-            dataGridView1.Columns[11].HeaderText = "Narocita posiljka";
+            dataGridView1.Columns[11].HeaderText = "Aktivan";
+            dataGridView1.Columns[12].Width = 250;
+            dataGridView1.Columns[13].Width = 100;
+            dataGridView1.Columns[14].HeaderText = "Narocita posiljka";
 
         }
         private void tsNew_Click(object sender, EventArgs e)
@@ -191,42 +210,42 @@ namespace Saobracaj.Sifarnici
         private void tsSave_Click(object sender, EventArgs e)
         {
             InsertTelegrami insert = new InsertTelegrami();
-            bool aktivan = false;
             bool narocita = false;
-            var VaziOd = Convert.ToDateTime(dt_VaziOd.Value.ToShortDateString() + dt_VaziOdT.Value.ToLongTimeString());
-            var VaziDo = Convert.ToDateTime(dt_VaziDo.Value.ToShortDateString() + dt_VaziDoT.Value.ToLongTimeString());
 
-            if (cb_Aktivni.Checked)
+            bool aktivan;
+            if (cb_Aktivni.Checked == true)
             {
                 aktivan = true;
             }
-
-            if (cb_Narocita.Checked)
+            else { aktivan = false; }
+            if (cb_Narocita.Checked==true)
             {
                 narocita = true;
             }
+            else { narocita = false; }
+
             if (status == true)
             {
-                insert.InsTelegrami(Convert.ToInt32(txt_BrTelegrama.Text), Convert.ToInt32(cboPruga.SelectedValue.ToString()), Convert.ToInt32(combo_OdStanice.SelectedValue),
-                    Convert.ToInt32(combo_DoStanice.SelectedValue), txt_kolosek.Text, VaziOd, VaziDo, dt_TrajeOd.Value, dt_TrajeDo.Value, txt_Napomena.Text, aktivan, txt_PDF.Text.ToString(),narocita);
+                insert.InsTelegrami(Convert.ToInt32(txt_BrTelegrama.Text), Convert.ToInt32(cboPruga.SelectedValue), Convert.ToInt32(combo_OdStanice.SelectedValue),
+                    Convert.ToInt32(combo_DoStanice.SelectedValue), txt_kolosek.Text,Convert.ToDateTime(dt_VaziOd.Value),Convert.ToDateTime(dt_VaziDo.Value), dt_TrajeOd.Value, dt_TrajeDo.Value, txt_Napomena.Text, aktivan, txt_PDF.Text.ToString(),narocita);
                 RefreshDG();
                 txt_ID.Enabled = true;
                 status = false;
             }
             else
             {
-                insert.UpdTelegrami(Convert.ToInt32(txt_ID.Text), Convert.ToInt32(txt_BrTelegrama.Text), Convert.ToInt32(cboPruga.SelectedValue.ToString()), Convert.ToInt32(combo_OdStanice.SelectedValue),
-                    Convert.ToInt32(combo_DoStanice.SelectedValue), txt_kolosek.Text, VaziOd, VaziDo, dt_TrajeOd.Value, dt_TrajeDo.Value, txt_Napomena.Text, aktivan, txt_PDF.Text.ToString(),narocita);
+                insert.UpdTelegrami(Convert.ToInt32(txt_ID.Text), Convert.ToInt32(txt_BrTelegrama.Text), Convert.ToInt32(cboPruga.SelectedValue), Convert.ToInt32(combo_OdStanice.SelectedValue),
+                    Convert.ToInt32(combo_DoStanice.SelectedValue), txt_kolosek.Text, Convert.ToDateTime(dt_VaziOd.Value), Convert.ToDateTime(dt_VaziDo.Value), dt_TrajeOd.Value, dt_TrajeDo.Value, txt_Napomena.Text, aktivan, txt_PDF.Text.ToString(),narocita);
                 RefreshDG();
             }
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            var query = "Select Telegrami.ID,BrojTelegrama,Rtrim(Pruga.Opis) as [Naziv]," +
-                "Rtrim(Stanice.Opis) as [Stanica OD],RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek,VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
-                "From telegrami " +
+            var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Rtrim(Pruga.Opis) as [Naziv], " +
+                "OdStanice,Rtrim(Stanice.Opis) as [Stanica OD],DoStanice,RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek, " +
+                "VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
+                "From Telegrami " +
                 "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
                 "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
                 "Inner join Stanice as s on Telegrami.DoStanice = s.ID " +
@@ -238,13 +257,36 @@ namespace Saobracaj.Sifarnici
             da.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
+
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 50;
+            dataGridView1.Columns[1].HeaderText = "Broj Telegrama";
+            dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[3].HeaderText = "Naziv";
+            dataGridView1.Columns[3].Width = 250;
+            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].HeaderText = "Stanica OD";
+            dataGridView1.Columns[5].Width = 100;
+            dataGridView1.Columns[6].Visible = false;
+            dataGridView1.Columns[7].HeaderText = "Stanica DO";
+            dataGridView1.Columns[7].Width = 100;
+            dataGridView1.Columns[8].Width = 75;
+            dataGridView1.Columns[9].HeaderText = "Vazi OD";
+            dataGridView1.Columns[9].Width = 100;
+            dataGridView1.Columns[10].HeaderText = "Vazi DO";
+            dataGridView1.Columns[10].Width = 100;
+            dataGridView1.Columns[11].HeaderText = "Aktivan";
+            dataGridView1.Columns[12].Width = 250;
+            dataGridView1.Columns[13].Width = 100;
+            dataGridView1.Columns[14].HeaderText = "Narocita posiljka";
         }
 
         private void btn_svi_Click(object sender, EventArgs e)
         {
-            var query = "Select Telegrami.ID,BrojTelegrama,Rtrim(Pruga.Opis) as [Naziv]," +
-                "Rtrim(Stanice.Opis) as [Stanica OD],RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek,VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
-                "From telegrami " +
+            var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Rtrim(Pruga.Opis) as [Naziv], " +
+                "OdStanice,Rtrim(Stanice.Opis) as [Stanica OD],DoStanice,RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek, " +
+                "VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
+                "From Telegrami " +
                 "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
                 "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
                 "Inner join Stanice as s on Telegrami.DoStanice = s.ID " +
@@ -255,25 +297,27 @@ namespace Saobracaj.Sifarnici
             da.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
-
             dataGridView1.Columns[0].HeaderText = "ID";
             dataGridView1.Columns[0].Width = 50;
             dataGridView1.Columns[1].HeaderText = "Broj Telegrama";
-            dataGridView1.Columns[2].HeaderText = "Naziv";
-            dataGridView1.Columns[2].Width = 250;
-            dataGridView1.Columns[3].HeaderText = "Stanica OD";
-            dataGridView1.Columns[3].Width = 100;
-            dataGridView1.Columns[4].HeaderText = "Stanica DO";
-            dataGridView1.Columns[4].Width = 100;
-            dataGridView1.Columns[5].Width = 75;
-            dataGridView1.Columns[6].HeaderText = "Vazi OD";
-            dataGridView1.Columns[6].Width = 100;
-            dataGridView1.Columns[7].HeaderText = "Vazi DO";
+            dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[3].HeaderText = "Naziv";
+            dataGridView1.Columns[3].Width = 250;
+            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].HeaderText = "Stanica OD";
+            dataGridView1.Columns[5].Width = 100;
+            dataGridView1.Columns[6].Visible = false;
+            dataGridView1.Columns[7].HeaderText = "Stanica DO";
             dataGridView1.Columns[7].Width = 100;
-            dataGridView1.Columns[8].HeaderText = "Aktivan";
-            dataGridView1.Columns[9].Width = 250;
+            dataGridView1.Columns[8].Width = 75;
+            dataGridView1.Columns[9].HeaderText = "Vazi OD";
+            dataGridView1.Columns[9].Width = 100;
+            dataGridView1.Columns[10].HeaderText = "Vazi DO";
             dataGridView1.Columns[10].Width = 100;
-            dataGridView1.Columns[11].HeaderText = "Narocita posiljka";
+            dataGridView1.Columns[11].HeaderText = "Aktivan";
+            dataGridView1.Columns[12].Width = 250;
+            dataGridView1.Columns[13].Width = 100;
+            dataGridView1.Columns[14].HeaderText = "Narocita posiljka";
 
             timer2.Enabled = true;
             timer1.Enabled = false;
@@ -284,9 +328,10 @@ namespace Saobracaj.Sifarnici
 
         private void btn_Aktivni_Click(object sender, EventArgs e)
         {
-            var query = "Select Telegrami.ID,BrojTelegrama,Rtrim(Pruga.Opis) as [Naziv]," +
-                "Rtrim(Stanice.Opis) as [Stanica OD],RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek,VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
-                "From telegrami " +
+            var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Rtrim(Pruga.Opis) as [Naziv], " +
+                "OdStanice,Rtrim(Stanice.Opis) as [Stanica OD],DoStanice,RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek, " +
+                "VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
+                "From Telegrami " +
                 "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
                 "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
                 "Inner join Stanice as s on Telegrami.DoStanice = s.ID " +
@@ -302,21 +347,24 @@ namespace Saobracaj.Sifarnici
             dataGridView1.Columns[0].HeaderText = "ID";
             dataGridView1.Columns[0].Width = 50;
             dataGridView1.Columns[1].HeaderText = "Broj Telegrama";
-            dataGridView1.Columns[2].HeaderText = "Naziv";
-            dataGridView1.Columns[2].Width = 250;
-            dataGridView1.Columns[3].HeaderText = "Stanica OD";
-            dataGridView1.Columns[3].Width = 100;
-            dataGridView1.Columns[4].HeaderText = "Stanica DO";
-            dataGridView1.Columns[4].Width = 100;
-            dataGridView1.Columns[5].Width = 75;
-            dataGridView1.Columns[6].HeaderText = "Vazi OD";
-            dataGridView1.Columns[6].Width = 100;
-            dataGridView1.Columns[7].HeaderText = "Vazi DO";
+            dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[3].HeaderText = "Naziv";
+            dataGridView1.Columns[3].Width = 250;
+            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].HeaderText = "Stanica OD";
+            dataGridView1.Columns[5].Width = 100;
+            dataGridView1.Columns[6].Visible = false;
+            dataGridView1.Columns[7].HeaderText = "Stanica DO";
             dataGridView1.Columns[7].Width = 100;
-            dataGridView1.Columns[8].HeaderText = "Aktivan";
-            dataGridView1.Columns[9].Width = 250;
+            dataGridView1.Columns[8].Width = 75;
+            dataGridView1.Columns[9].HeaderText = "Vazi OD";
+            dataGridView1.Columns[9].Width = 100;
+            dataGridView1.Columns[10].HeaderText = "Vazi DO";
             dataGridView1.Columns[10].Width = 100;
-            dataGridView1.Columns[11].HeaderText = "Narocita posiljka";
+            dataGridView1.Columns[11].HeaderText = "Aktivan";
+            dataGridView1.Columns[12].Width = 250;
+            dataGridView1.Columns[13].Width = 100;
+            dataGridView1.Columns[14].HeaderText = "Narocita posiljka";
 
             timer1.Enabled = true;
             timer2.Enabled = false;
@@ -327,9 +375,10 @@ namespace Saobracaj.Sifarnici
 
         private void timer2_Tick(object sender, EventArgs e)
         {
-            var query = "Select Telegrami.ID,BrojTelegrama,Rtrim(Pruga.Opis) as [Naziv]," +
-                "Rtrim(Stanice.Opis) as [Stanica OD],RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek,VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
-                "From telegrami " +
+            var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Rtrim(Pruga.Opis) as [Naziv], " +
+                "OdStanice,Rtrim(Stanice.Opis) as [Stanica OD],DoStanice,RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek, " +
+                "VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
+                "From Telegrami " +
                 "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
                 "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
                 "Inner join Stanice as s on Telegrami.DoStanice = s.ID " +
@@ -340,6 +389,29 @@ namespace Saobracaj.Sifarnici
             da.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
+
+
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 50;
+            dataGridView1.Columns[1].HeaderText = "Broj Telegrama";
+            dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[3].HeaderText = "Naziv";
+            dataGridView1.Columns[3].Width = 250;
+            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].HeaderText = "Stanica OD";
+            dataGridView1.Columns[5].Width = 100;
+            dataGridView1.Columns[6].Visible = false;
+            dataGridView1.Columns[7].HeaderText = "Stanica DO";
+            dataGridView1.Columns[7].Width = 100;
+            dataGridView1.Columns[8].Width = 75;
+            dataGridView1.Columns[9].HeaderText = "Vazi OD";
+            dataGridView1.Columns[9].Width = 100;
+            dataGridView1.Columns[10].HeaderText = "Vazi DO";
+            dataGridView1.Columns[10].Width = 100;
+            dataGridView1.Columns[11].HeaderText = "Aktivan";
+            dataGridView1.Columns[12].Width = 250;
+            dataGridView1.Columns[13].Width = 100;
+            dataGridView1.Columns[14].HeaderText = "Narocita posiljka";
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -352,16 +424,21 @@ namespace Saobracaj.Sifarnici
                     {
                         txt_ID.Text = row.Cells[0].Value.ToString();
                         txt_BrTelegrama.Text = row.Cells[1].Value.ToString();
-                        cboPruga.Text = row.Cells[2].Value.ToString();
-                        combo_OdStanice.Text = row.Cells[3].Value.ToString();
-                        combo_DoStanice.Text = row.Cells[4].Value.ToString();
-                        txt_kolosek.Text = row.Cells[5].Value.ToString();
+                        cboPruga.SelectedValue = row.Cells[2].Value.ToString();
+                        cboPruga.Text = row.Cells[3].Value.ToString();
+                        combo_OdStanice.SelectedValue = row.Cells[4].Value;
+                        combo_OdStanice.Text = row.Cells[5].Value.ToString();
+                        combo_DoStanice.SelectedValue = row.Cells[6].Value;
+                        combo_DoStanice.Text = row.Cells[7].Value.ToString();
+                        txt_kolosek.Text = row.Cells[8].Value.ToString();
+                        dt_VaziOd.Value = Convert.ToDateTime(row.Cells[9].Value.ToString());
+                        dt_VaziDo.Value = Convert.ToDateTime(row.Cells[10].Value.ToString());
                         bool aktivan, narocita;
-                        aktivan = Convert.ToBoolean(row.Cells[8].Value);
+                        aktivan = Convert.ToBoolean(row.Cells[11].Value);
                         if (aktivan == true) { cb_Aktivni.Checked = true; } else { cb_Aktivni.Checked = false; }
-                        txt_Napomena.Text = row.Cells[9].Value.ToString();
-                        txt_PDF.Text = row.Cells[10].Value.ToString();
-                        narocita = Convert.ToBoolean(row.Cells[11].Value.ToString());
+                        txt_Napomena.Text = row.Cells[12].Value.ToString();
+                        txt_PDF.Text = row.Cells[13].Value.ToString();
+                        narocita = Convert.ToBoolean(row.Cells[14].Value.ToString());
                         if (narocita == true) { cb_Narocita.Checked = true; } else { cb_Narocita.Checked = false; }
                     }
                 }
@@ -375,9 +452,10 @@ namespace Saobracaj.Sifarnici
 
         private void btn_dani_Click(object sender, EventArgs e)
         {
-            var query = "Select Telegrami.ID,BrojTelegrama,Rtrim(Pruga.Opis) as [Naziv]," +
-                "Rtrim(Stanice.Opis) as [Stanica OD],RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek,VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
-                "From telegrami " +
+            var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Rtrim(Pruga.Opis) as [Naziv], " +
+                "OdStanice,Rtrim(Stanice.Opis) as [Stanica OD],DoStanice,RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek, " +
+                "VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
+                "From Telegrami " +
                 "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
                 "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
                 "Inner join Stanice as s on Telegrami.DoStanice = s.ID " +
@@ -393,21 +471,24 @@ namespace Saobracaj.Sifarnici
             dataGridView1.Columns[0].HeaderText = "ID";
             dataGridView1.Columns[0].Width = 50;
             dataGridView1.Columns[1].HeaderText = "Broj Telegrama";
-            dataGridView1.Columns[2].HeaderText = "Naziv";
-            dataGridView1.Columns[2].Width = 250;
-            dataGridView1.Columns[3].HeaderText = "Stanica OD";
-            dataGridView1.Columns[3].Width = 100;
-            dataGridView1.Columns[4].HeaderText = "Stanica DO";
-            dataGridView1.Columns[4].Width = 100;
-            dataGridView1.Columns[5].Width = 75;
-            dataGridView1.Columns[6].HeaderText = "Vazi OD";
-            dataGridView1.Columns[6].Width = 100;
-            dataGridView1.Columns[7].HeaderText = "Vazi DO";
+            dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[3].HeaderText = "Naziv";
+            dataGridView1.Columns[3].Width = 250;
+            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].HeaderText = "Stanica OD";
+            dataGridView1.Columns[5].Width = 100;
+            dataGridView1.Columns[6].Visible = false;
+            dataGridView1.Columns[7].HeaderText = "Stanica DO";
             dataGridView1.Columns[7].Width = 100;
-            dataGridView1.Columns[8].HeaderText = "Aktivan";
-            dataGridView1.Columns[9].Width = 250;
+            dataGridView1.Columns[8].Width = 75;
+            dataGridView1.Columns[9].HeaderText = "Vazi OD";
+            dataGridView1.Columns[9].Width = 100;
+            dataGridView1.Columns[10].HeaderText = "Vazi DO";
             dataGridView1.Columns[10].Width = 100;
-            dataGridView1.Columns[11].HeaderText = "Narocita posiljka";
+            dataGridView1.Columns[11].HeaderText = "Aktivan";
+            dataGridView1.Columns[12].Width = 250;
+            dataGridView1.Columns[13].Width = 100;
+            dataGridView1.Columns[14].HeaderText = "Narocita posiljka";
 
             timer3.Enabled = true;
             timer1.Enabled = false;
@@ -418,9 +499,10 @@ namespace Saobracaj.Sifarnici
 
         private void timer3_Tick(object sender, EventArgs e)
         {
-            var query = "Select Telegrami.ID,BrojTelegrama,Rtrim(Pruga.Opis) as [Naziv]," +
-                "Rtrim(Stanice.Opis) as [Stanica OD],RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek,VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
-                "From telegrami " +
+            var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Rtrim(Pruga.Opis) as [Naziv], " +
+                "OdStanice,Rtrim(Stanice.Opis) as [Stanica OD],DoStanice,RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek, " +
+                "VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
+                "From Telegrami " +
                 "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
                 "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
                 "Inner join Stanice as s on Telegrami.DoStanice = s.ID " +
@@ -432,6 +514,29 @@ namespace Saobracaj.Sifarnici
             da.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
+
+
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 50;
+            dataGridView1.Columns[1].HeaderText = "Broj Telegrama";
+            dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[3].HeaderText = "Naziv";
+            dataGridView1.Columns[3].Width = 250;
+            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].HeaderText = "Stanica OD";
+            dataGridView1.Columns[5].Width = 100;
+            dataGridView1.Columns[6].Visible = false;
+            dataGridView1.Columns[7].HeaderText = "Stanica DO";
+            dataGridView1.Columns[7].Width = 100;
+            dataGridView1.Columns[8].Width = 75;
+            dataGridView1.Columns[9].HeaderText = "Vazi OD";
+            dataGridView1.Columns[9].Width = 100;
+            dataGridView1.Columns[10].HeaderText = "Vazi DO";
+            dataGridView1.Columns[10].Width = 100;
+            dataGridView1.Columns[11].HeaderText = "Aktivan";
+            dataGridView1.Columns[12].Width = 250;
+            dataGridView1.Columns[13].Width = 100;
+            dataGridView1.Columns[14].HeaderText = "Narocita posiljka";
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -530,9 +635,10 @@ namespace Saobracaj.Sifarnici
 
         private void btn_narocite_Click(object sender, EventArgs e)
         {
-            var query = "Select Telegrami.ID,BrojTelegrama,Rtrim(Pruga.Opis) as [Naziv]," +
-                "Rtrim(Stanice.Opis) as [Stanica OD],RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek,VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
-                "From telegrami " +
+            var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Rtrim(Pruga.Opis) as [Naziv], " +
+                "OdStanice,Rtrim(Stanice.Opis) as [Stanica OD],DoStanice,RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek, " +
+                "VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
+                "From Telegrami " +
                 "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
                 "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
                 "Inner join Stanice as s on Telegrami.DoStanice = s.ID " +
@@ -545,24 +651,28 @@ namespace Saobracaj.Sifarnici
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
 
+
             dataGridView1.Columns[0].HeaderText = "ID";
             dataGridView1.Columns[0].Width = 50;
             dataGridView1.Columns[1].HeaderText = "Broj Telegrama";
-            dataGridView1.Columns[2].HeaderText = "Naziv";
-            dataGridView1.Columns[2].Width = 250;
-            dataGridView1.Columns[3].HeaderText = "Stanica OD";
-            dataGridView1.Columns[3].Width = 100;
-            dataGridView1.Columns[4].HeaderText = "Stanica DO";
-            dataGridView1.Columns[4].Width = 100;
-            dataGridView1.Columns[5].Width = 75;
-            dataGridView1.Columns[6].HeaderText = "Vazi OD";
-            dataGridView1.Columns[6].Width = 100;
-            dataGridView1.Columns[7].HeaderText = "Vazi DO";
+            dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[3].HeaderText = "Naziv";
+            dataGridView1.Columns[3].Width = 250;
+            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].HeaderText = "Stanica OD";
+            dataGridView1.Columns[5].Width = 100;
+            dataGridView1.Columns[6].Visible = false;
+            dataGridView1.Columns[7].HeaderText = "Stanica DO";
             dataGridView1.Columns[7].Width = 100;
-            dataGridView1.Columns[8].HeaderText = "Aktivan";
-            dataGridView1.Columns[9].Width = 250;
+            dataGridView1.Columns[8].Width = 75;
+            dataGridView1.Columns[9].HeaderText = "Vazi OD";
+            dataGridView1.Columns[9].Width = 100;
+            dataGridView1.Columns[10].HeaderText = "Vazi DO";
             dataGridView1.Columns[10].Width = 100;
-            dataGridView1.Columns[11].HeaderText = "Narocita posiljka";
+            dataGridView1.Columns[11].HeaderText = "Aktivan";
+            dataGridView1.Columns[12].Width = 250;
+            dataGridView1.Columns[13].Width = 100;
+            dataGridView1.Columns[14].HeaderText = "Narocita posiljka";
 
             timer4.Enabled = true;
             timer2.Enabled = false;
@@ -573,9 +683,10 @@ namespace Saobracaj.Sifarnici
 
         private void timer4_Tick(object sender, EventArgs e)
         {
-            var query = "Select Telegrami.ID,BrojTelegrama,Rtrim(Pruga.Opis) as [Naziv]," +
-                "Rtrim(Stanice.Opis) as [Stanica OD],RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek,VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
-                "From telegrami " +
+            var query = "Select Telegrami.ID,BrojTelegrama,PrugaID,Rtrim(Pruga.Opis) as [Naziv], " +
+                "OdStanice,Rtrim(Stanice.Opis) as [Stanica OD],DoStanice,RTrim(s.Opis) as [Stanica DO],RTrim(Kolosek) as Kolosek, " +
+                "VaziOD,VaziDo,Aktivan,Napomena,PDF,NarocitaPosiljka " +
+                "From Telegrami " +
                 "Inner Join Pruga on Telegrami.PrugaID = Pruga.ID " +
                 "Inner join Stanice on Telegrami.OdStanice = Stanice.ID " +
                 "Inner join Stanice as s on Telegrami.DoStanice = s.ID " +
@@ -587,6 +698,29 @@ namespace Saobracaj.Sifarnici
             da.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
+
+
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 50;
+            dataGridView1.Columns[1].HeaderText = "Broj Telegrama";
+            dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[3].HeaderText = "Naziv";
+            dataGridView1.Columns[3].Width = 250;
+            dataGridView1.Columns[4].Visible = false;
+            dataGridView1.Columns[5].HeaderText = "Stanica OD";
+            dataGridView1.Columns[5].Width = 100;
+            dataGridView1.Columns[6].Visible = false;
+            dataGridView1.Columns[7].HeaderText = "Stanica DO";
+            dataGridView1.Columns[7].Width = 100;
+            dataGridView1.Columns[8].Width = 75;
+            dataGridView1.Columns[9].HeaderText = "Vazi OD";
+            dataGridView1.Columns[9].Width = 100;
+            dataGridView1.Columns[10].HeaderText = "Vazi DO";
+            dataGridView1.Columns[10].Width = 100;
+            dataGridView1.Columns[11].HeaderText = "Aktivan";
+            dataGridView1.Columns[12].Width = 250;
+            dataGridView1.Columns[13].Width = 100;
+            dataGridView1.Columns[14].HeaderText = "Narocita posiljka";
         }
     }
 }

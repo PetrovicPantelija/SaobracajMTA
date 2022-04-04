@@ -24,6 +24,7 @@ namespace Saobracaj.Servis
             IdForme();
             PravoPristupa();
         }
+        string niz = "";
 
         public static string code = "frmNamirenjaSumarno";
         public bool Pravo;
@@ -33,8 +34,7 @@ namespace Saobracaj.Servis
         bool update;
         bool delete;
         string Kor = Sifarnici.frmLogovanje.user.ToString();
-
-        public int IdGrupe()
+        public string IdGrupe()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
@@ -43,12 +43,24 @@ namespace Saobracaj.Servis
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dr = cmd.ExecuteReader();
+            int count = 0;
+
             while (dr.Read())
             {
-                idGrupe = Convert.ToInt32(dr["IdGrupe"].ToString());
+                if (count == 0)
+                {
+                    niz = dr["IdGrupe"].ToString();
+                    count++;
+                }
+                else
+                {
+                    niz = niz + "," + dr["IdGrupe"].ToString();
+                    count++;
+                }
+
             }
             conn.Close();
-            return idGrupe;
+            return niz;
         }
         private int IdForme()
         {
@@ -66,10 +78,11 @@ namespace Saobracaj.Servis
             conn.Close();
             return idForme;
         }
+
         private void PravoPristupa()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe=" + idGrupe + " and IdForme=" + idForme;
+            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
@@ -104,7 +117,6 @@ namespace Saobracaj.Servis
 
             conn.Close();
         }
-
         private void frmNamirenjaSumarno_Load(object sender, EventArgs e)
         {
             var select = "select  LokomotivaNamirenje.ID as IDNamirenja, LokomotivaVrstaNamirenja.Naziv as VrstaNamirenja,LokomotivaPrijava.Lokomotiva,  (Rtrim(DElavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme)) as Zaposleni , LokomotivaNamirenje.DatumNamirenja as DatumNamirenja, Cast(LokomotivaNamirenje.Kolicina as integer) as Kolicina, LokomotivaNamirenje.Napomena from LokomotivaNamirenje " +

@@ -184,11 +184,8 @@ namespace Saobracaj
         private void toolStripButton27_Click(object sender, EventArgs e)
         {
             Dokumenta.frmMapa mapa = new Dokumenta.frmMapa();
-            mapa.Show();
-            /*
-            Dokumenta.frmTest test = new Dokumenta.frmTest();
-            PravoP = test.Pravo;
-            if (PravoP == true) { test.Show(); } else { return; }*/
+            PravoP = mapa.Pravo;
+            if (PravoP == true) { mapa.Show(); } else { return; }
         }
         private void toolStripButton28_Click(object sender, EventArgs e)
         {
@@ -771,7 +768,12 @@ namespace Saobracaj
         private void toolStripButton115_Click(object sender, EventArgs e)
         {
             Administracija.frmFormePrava formePrava = new Administracija.frmFormePrava();
-            formePrava.Show();
+            PravoP = formePrava.Pravo;
+            if (PravoP == true)
+            {
+                formePrava.Show();
+            }
+            else { return; }
         }
 
         private void toolStripButton26_Click(object sender, EventArgs e)
@@ -807,17 +809,32 @@ namespace Saobracaj
         private void toolStripButton116_Click(object sender, EventArgs e)
         {
             Dokumenta.frmPropratnice propratnice = new Dokumenta.frmPropratnice();
-            propratnice.Show();
+            PravoP = propratnice.Pravo;
+            if (PravoP == true)
+            {
+                propratnice.Show();
+            }
+            else { return; }
         }
         private void toolStripButton117_Click(object sender, EventArgs e)
         {
             Administracija.frmPolozenePruge pruge = new Administracija.frmPolozenePruge();
-            pruge.Show();
+            PravoP = pruge.Pravo;
+            if (PravoP == true)
+            {
+                pruge.Show();
+            }
+            else { return; }
         }
         private void toolStripButton118_Click(object sender, EventArgs e)
         {
             Administracija.frmPolozeneLokomotive lokomotive = new Administracija.frmPolozeneLokomotive();
-            lokomotive.Show();
+            PravoP = lokomotive.Pravo;
+            if (PravoP == true)
+            {
+                lokomotive.Show();
+            }
+            else { return; }
         }
     }
 }

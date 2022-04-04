@@ -44,6 +44,7 @@ namespace Saobracaj.Dokumenta
             tsDelete.Visible = false;
             cboGodina.SelectedValue = "2021";
         }
+        string niz = "";
         public static string code = "frmEvidencijaGodišnjihOdmora";
         public bool Pravo;
         int idGrupe;
@@ -51,7 +52,7 @@ namespace Saobracaj.Dokumenta
         bool insert;
         bool update;
         bool delete;
-        public int IdGrupe()
+        public string IdGrupe()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
@@ -60,12 +61,24 @@ namespace Saobracaj.Dokumenta
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dr = cmd.ExecuteReader();
+            int count = 0;
+
             while (dr.Read())
             {
-                idGrupe = Convert.ToInt32(dr["IdGrupe"].ToString());
+                if (count == 0)
+                {
+                    niz = dr["IdGrupe"].ToString();
+                    count++;
+                }
+                else
+                {
+                    niz = niz + "," + dr["IdGrupe"].ToString();
+                    count++;
+                }
+
             }
             conn.Close();
-            return idGrupe;
+            return niz;
         }
         private int IdForme()
         {
@@ -83,10 +96,11 @@ namespace Saobracaj.Dokumenta
             conn.Close();
             return idForme;
         }
+
         private void PravoPristupa()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe=" + idGrupe + " and IdForme=" + idForme;
+            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
