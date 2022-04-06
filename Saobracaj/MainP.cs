@@ -836,5 +836,16 @@ namespace Saobracaj
             }
             else { return; }
         }
+
+        private void toolStripTabItem2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton119_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmMailNajava mail = new Dokumenta.frmMailNajava();
+            mail.Show();
+        }
     }
 }
