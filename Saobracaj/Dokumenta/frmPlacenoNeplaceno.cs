@@ -118,8 +118,8 @@ namespace Saobracaj.Dokumenta
         }
         private void btnStampa_Click(object sender, EventArgs e)
         {
-            Perftech_BeogradDataSet7TableAdapters.SelectAktivnostiFinasijeNeplacenoTableAdapter ta = new Perftech_BeogradDataSet7TableAdapters.SelectAktivnostiFinasijeNeplacenoTableAdapter();
-            Perftech_BeogradDataSet7.SelectAktivnostiFinasijeNeplacenoDataTable dt = new Perftech_BeogradDataSet7.SelectAktivnostiFinasijeNeplacenoDataTable();
+            TESTIRANJEDataSet7TableAdapters.SelectAktivnostiFinasijeNeplacenoTableAdapter ta = new TESTIRANJEDataSet7TableAdapters.SelectAktivnostiFinasijeNeplacenoTableAdapter();
+            TESTIRANJEDataSet7.SelectAktivnostiFinasijeNeplacenoDataTable dt = new TESTIRANJEDataSet7.SelectAktivnostiFinasijeNeplacenoDataTable();
 
             ta.Fill(dt, Convert.ToDateTime(dtpVremeOd.Value), Convert.ToDateTime(dtpVremeDo.Value));
             ReportDataSource rds = new ReportDataSource();
@@ -159,8 +159,8 @@ namespace Saobracaj.Dokumenta
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Perftech_BeogradDataSet8TableAdapters.SelectAktivnostiFinasijePlacenoTableAdapter ta = new Perftech_BeogradDataSet8TableAdapters.SelectAktivnostiFinasijePlacenoTableAdapter();
-            Perftech_BeogradDataSet8.SelectAktivnostiFinasijePlacenoDataTable dt = new Perftech_BeogradDataSet8.SelectAktivnostiFinasijePlacenoDataTable();
+            TESTIRANJEDataSet8TableAdapters.SelectAktivnostiFinasijePlacenoTableAdapter ta = new TESTIRANJEDataSet8TableAdapters.SelectAktivnostiFinasijePlacenoTableAdapter();
+            TESTIRANJEDataSet8.SelectAktivnostiFinasijePlacenoDataTable dt = new TESTIRANJEDataSet8.SelectAktivnostiFinasijePlacenoDataTable();
 
             ta.Fill(dt, Convert.ToDateTime(dtpVremeOd.Value), Convert.ToDateTime(dtpVremeDo.Value));
             ReportDataSource rds = new ReportDataSource();

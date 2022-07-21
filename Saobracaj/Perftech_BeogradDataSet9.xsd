@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="Perftech_BeogradDataSet9" targetNamespace="http://tempuri.org/Perftech_BeogradDataSet9.xsd" xmlns:mstns="http://tempuri.org/Perftech_BeogradDataSet9.xsd" xmlns="http://tempuri.org/Perftech_BeogradDataSet9.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="TESTIRANJEDataSet9" targetNamespace="http://tempuri.org/TESTIRANJEDataSet9.xsd" xmlns:mstns="http://tempuri.org/TESTIRANJEDataSet9.xsd" xmlns="http://tempuri.org/TESTIRANJEDataSet9.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="Perftech_BeogradConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Perftech_BeogradConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.Perftech_BeogradConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="TESTIRANJEConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TESTIRANJEConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.TESTIRANJEConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SelectAktivnostiNovakTableAdapter" GeneratorDataComponentClassName="SelectAktivnostiNovakTableAdapter" Name="SelectAktivnostiNovak" UserDataComponentName="SelectAktivnostiNovakTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="Perftech_BeogradConnectionString (Settings)" DbObjectName="Perftech_Beograd.dbo.SelectAktivnostiNovak" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="TESTIRANJEConnectionString (Settings)" DbObjectName="TESTIRANJE.dbo.SelectAktivnostiNovak" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.SelectAktivnostiNovak</CommandText>
@@ -45,7 +45,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="Perftech_BeogradDataSet9" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="Perftech_BeogradDataSet9" msprop:Generator_UserDSName="Perftech_BeogradDataSet9">
+  <xs:element name="TESTIRANJEDataSet9" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="TESTIRANJEDataSet9" msprop:Generator_UserDSName="TESTIRANJEDataSet9">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="SelectAktivnostiNovak" msprop:Generator_TableClassName="SelectAktivnostiNovakDataTable" msprop:Generator_TableVarName="tableSelectAktivnostiNovak" msprop:Generator_TablePropName="SelectAktivnostiNovak" msprop:Generator_RowDeletingName="SelectAktivnostiNovakRowDeleting" msprop:Generator_RowChangingName="SelectAktivnostiNovakRowChanging" msprop:Generator_RowEvHandlerName="SelectAktivnostiNovakRowChangeEventHandler" msprop:Generator_RowDeletedName="SelectAktivnostiNovakRowDeleted" msprop:Generator_UserTableName="SelectAktivnostiNovak" msprop:Generator_RowChangedName="SelectAktivnostiNovakRowChanged" msprop:Generator_RowEvArgName="SelectAktivnostiNovakRowChangeEvent" msprop:Generator_RowClassName="SelectAktivnostiNovakRow">

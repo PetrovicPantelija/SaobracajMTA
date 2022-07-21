@@ -326,7 +326,7 @@ namespace Saobracaj.Dokumenta
              " ,[ZGLokacija],[ZGDubinaSare],[LGDot],[LGLokacija] " +
              " ,[LGDubinaSare],[Napomena],[CistocaSpolja],[CistocaUnutra] " +
              "  ,[NivoUlja],[Nepravilnosti] ,[MestoTroska] " +
-             " FROM [Perftech_Beograd].[dbo].[Automobili] where ID=" + txtSifra.Text, con);
+             " FROM [TESTIRANJE].[dbo].[Automobili] where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())

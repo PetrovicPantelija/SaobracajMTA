@@ -177,7 +177,7 @@ namespace Saobracaj.Testiranje
         private void RefreshOdgovori()
         {
            
-            var select = "   SELECT ID, [IDNadredjenog] ,[Opis] ,[RBBroj] FROM [Perftech_Beograd].[dbo].[TestoviPitanjaOdgovor] where IDNadredjenog =  " + Convert.ToInt32(txtIDStavke.Text);
+            var select = "   SELECT ID, [IDNadredjenog] ,[Opis] ,[RBBroj] FROM [TESTIRANJE].[dbo].[TestoviPitanjaOdgovor] where IDNadredjenog =  " + Convert.ToInt32(txtIDStavke.Text);
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

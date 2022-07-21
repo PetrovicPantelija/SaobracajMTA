@@ -10,11 +10,11 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Configuration;
-using MetroFramework.Forms;
+//using MetroFramework.Forms;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmStanice : MetroForm
+    public partial class frmStanice : Form
     {
         public static string code = "frmStanice";
         public bool Pravo;

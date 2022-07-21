@@ -80,12 +80,13 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(412, 12);
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button4.Location = new System.Drawing.Point(412, 3);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(77, 23);
+            this.button4.Size = new System.Drawing.Size(101, 32);
             this.button4.TabIndex = 101;
             this.button4.Text = "Pronađi";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // dataGridView3

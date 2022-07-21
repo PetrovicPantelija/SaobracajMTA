@@ -150,7 +150,7 @@ namespace Saobracaj.Dokumenta
         {
             var select = " SELECT [IDRadnogNaloga]      ,[IDTrase]      ,[IDPodtrase]      ,[StanicaOD] " +
               " ,[StanicaDO]      ,[Rastojanje]      ,[Elektrificirana]      ,[PrugaOznaka] " +
-              " ,[TipPruge]      ,[RB]  FROM[Perftech_Beograd].[dbo].[PodTrase] " +
+              " ,[TipPruge]      ,[RB]  FROM[TESTIRANJE].[dbo].[PodTrase] " +
               " where IDRadnogNaloga = " + Convert.ToInt32(txtRN.Text) + " and IDTrase = " + Convert.ToInt32(txtTrase.Text) + " and RB =  " + Convert.ToInt32(txtRB.Text) + 
               " order by RB ";
 

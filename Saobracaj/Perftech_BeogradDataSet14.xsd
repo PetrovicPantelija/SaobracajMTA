@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="Perftech_BeogradDataSet14" targetNamespace="http://tempuri.org/Perftech_BeogradDataSet14.xsd" xmlns:mstns="http://tempuri.org/Perftech_BeogradDataSet14.xsd" xmlns="http://tempuri.org/Perftech_BeogradDataSet14.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="TESTIRANJEDataSet14" targetNamespace="http://tempuri.org/TESTIRANJEDataSet14.xsd" xmlns:mstns="http://tempuri.org/TESTIRANJEDataSet14.xsd" xmlns="http://tempuri.org/TESTIRANJEDataSet14.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -9,7 +9,7 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="1ReportGOTableAdapter" GeneratorDataComponentClassName="_1ReportGOTableAdapter" Name="1ReportGO" UserDataComponentName="1ReportGOTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NedraConnectionString (Settings)" DbObjectName="Perftech_Beograd.dbo.[1ReportGO]" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="NedraConnectionString (Settings)" DbObjectName="TESTIRANJE.dbo.[1ReportGO]" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO [dbo].[1ReportGO] ([Zaposleni], [Prebivaliste], [Ulica], [JMBG], [RadnoMesto], [Godina], [Dana], [DatumOd], [DatumDo], [DatumPovratka], [DanaGodisnjeg], [DanaIskoristio], [DatumZahteva]) VALUES (@Zaposleni, @Prebivaliste, @Ulica, @JMBG, @RadnoMesto, @Godina, @Dana, @DatumOd, @DatumDo, @DatumPovratka, @DanaGodisnjeg, @DanaIskoristio, @DatumZahteva)</CommandText>
@@ -60,7 +60,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="Perftech_BeogradDataSet14" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="Perftech_BeogradDataSet14" msprop:Generator_UserDSName="Perftech_BeogradDataSet14">
+  <xs:element name="TESTIRANJEDataSet14" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="TESTIRANJEDataSet14" msprop:Generator_UserDSName="TESTIRANJEDataSet14">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="_x0031_ReportGO" msprop:Generator_TableClassName="_1ReportGODataTable" msprop:Generator_TableVarName="table1ReportGO" msprop:Generator_TablePropName="_1ReportGO" msprop:Generator_RowDeletingName="_1ReportGORowDeleting" msprop:Generator_RowChangingName="_1ReportGORowChanging" msprop:Generator_RowEvHandlerName="_1ReportGORowChangeEventHandler" msprop:Generator_RowDeletedName="_1ReportGORowDeleted" msprop:Generator_UserTableName="1ReportGO" msprop:Generator_RowChangedName="_1ReportGORowChanged" msprop:Generator_RowEvArgName="_1ReportGORowChangeEvent" msprop:Generator_RowClassName="_1ReportGORow">

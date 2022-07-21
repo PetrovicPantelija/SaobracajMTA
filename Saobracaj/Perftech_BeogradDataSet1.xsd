@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="Perftech_BeogradDataSet1" targetNamespace="http://tempuri.org/Perftech_BeogradDataSet1.xsd" xmlns:mstns="http://tempuri.org/Perftech_BeogradDataSet1.xsd" xmlns="http://tempuri.org/Perftech_BeogradDataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="TESTIRANJEDataSet1" targetNamespace="http://tempuri.org/TESTIRANJEDataSet1.xsd" xmlns:mstns="http://tempuri.org/TESTIRANJEDataSet1.xsd" xmlns="http://tempuri.org/TESTIRANJEDataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="Perftech_BeogradConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Perftech_BeogradConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.Perftech_BeogradConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="TESTIRANJEConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TESTIRANJEConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.TESTIRANJEConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SelectRadniNalogTableAdapter" GeneratorDataComponentClassName="SelectRadniNalogTableAdapter" Name="SelectRadniNalog" UserDataComponentName="SelectRadniNalogTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="Perftech_BeogradConnectionString (Settings)" DbObjectName="Perftech_Beograd.dbo.SelectRadniNalog" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="TESTIRANJEConnectionString (Settings)" DbObjectName="TESTIRANJE.dbo.SelectRadniNalog" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.SelectRadniNalog</CommandText>
@@ -38,7 +38,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SelectRadniNalogLokTableAdapter" GeneratorDataComponentClassName="SelectRadniNalogLokTableAdapter" Name="SelectRadniNalogLok" UserDataComponentName="SelectRadniNalogLokTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="Perftech_BeogradConnectionString (Settings)" DbObjectName="Perftech_Beograd.dbo.SelectRadniNalogLok" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="TESTIRANJEConnectionString (Settings)" DbObjectName="TESTIRANJE.dbo.SelectRadniNalogLok" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.SelectRadniNalogLok</CommandText>
@@ -66,7 +66,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="Perftech_BeogradDataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="Perftech_BeogradDataSet1" msprop:Generator_UserDSName="Perftech_BeogradDataSet1">
+  <xs:element name="TESTIRANJEDataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="TESTIRANJEDataSet1" msprop:Generator_UserDSName="TESTIRANJEDataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="SelectRadniNalog" msprop:Generator_TableClassName="SelectRadniNalogDataTable" msprop:Generator_TableVarName="tableSelectRadniNalog" msprop:Generator_TablePropName="SelectRadniNalog" msprop:Generator_RowDeletingName="SelectRadniNalogRowDeleting" msprop:Generator_RowChangingName="SelectRadniNalogRowChanging" msprop:Generator_RowEvHandlerName="SelectRadniNalogRowChangeEventHandler" msprop:Generator_RowDeletedName="SelectRadniNalogRowDeleted" msprop:Generator_UserTableName="SelectRadniNalog" msprop:Generator_RowChangedName="SelectRadniNalogRowChanged" msprop:Generator_RowEvArgName="SelectRadniNalogRowChangeEvent" msprop:Generator_RowClassName="SelectRadniNalogRow">

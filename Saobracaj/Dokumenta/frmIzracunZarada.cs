@@ -253,7 +253,7 @@ namespace Saobracaj.Dokumenta
       ,[UkupnoDIN]
       ,[MinusPutni]
       ,[MinusPutniOsnovna]
-      FROM [Perftech_Beograd].[dbo].[ObracunZaposleni]
+      FROM [TESTIRANJE].[dbo].[ObracunZaposleni]
              */
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;

@@ -162,7 +162,7 @@ namespace Saobracaj.Dokumenta
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT Count(*) as Broj  FROM [Perftech_Beograd].[dbo].[Najava] where Status <> 7", con);
+            SqlCommand cmd = new SqlCommand("SELECT Count(*) as Broj  FROM [TESTIRANJE].[dbo].[Najava] where Status <> 7", con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())

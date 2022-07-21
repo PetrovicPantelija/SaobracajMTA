@@ -89,12 +89,14 @@
             // 
             // button4
             // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button4.Location = new System.Drawing.Point(715, 254);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(61, 20);
             this.button4.TabIndex = 60;
             this.button4.Text = "Sačuvaj";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label2
@@ -115,22 +117,26 @@
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
+            this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button3.Location = new System.Drawing.Point(573, 210);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(59, 20);
             this.button3.TabIndex = 58;
             this.button3.Text = "Pronađi";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button2.Location = new System.Drawing.Point(648, 254);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(61, 20);
             this.button2.TabIndex = 56;
             this.button2.Text = "Otvori";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label1
@@ -151,12 +157,14 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button1.Location = new System.Drawing.Point(573, 254);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(59, 20);
             this.button1.TabIndex = 52;
             this.button1.Text = "Pronađi";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtSifra
@@ -198,6 +206,7 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 280);
             this.dataGridView1.Name = "dataGridView1";
@@ -313,42 +322,50 @@
             // 
             // button5
             // 
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
+            this.button5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button5.Location = new System.Drawing.Point(573, 79);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(59, 20);
             this.button5.TabIndex = 66;
             this.button5.Text = "Pronađi";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button7
             // 
+            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button7.Location = new System.Drawing.Point(708, 78);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(61, 20);
             this.button7.TabIndex = 67;
             this.button7.Text = "Sačuvaj";
-            this.button7.UseVisualStyleBackColor = true;
+            this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button8
             // 
+            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button8.Location = new System.Drawing.Point(708, 104);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(61, 20);
             this.button8.TabIndex = 71;
             this.button8.Text = "Sačuvaj";
-            this.button8.UseVisualStyleBackColor = true;
+            this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button9
             // 
+            this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
+            this.button9.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button9.Location = new System.Drawing.Point(573, 105);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(59, 20);
             this.button9.TabIndex = 70;
             this.button9.Text = "Pronađi";
-            this.button9.UseVisualStyleBackColor = true;
+            this.button9.UseVisualStyleBackColor = false;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // label6
@@ -369,22 +386,26 @@
             // 
             // button10
             // 
+            this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button10.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button10.Location = new System.Drawing.Point(708, 130);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(61, 20);
             this.button10.TabIndex = 75;
             this.button10.Text = "Sačuvaj";
-            this.button10.UseVisualStyleBackColor = true;
+            this.button10.UseVisualStyleBackColor = false;
             this.button10.Click += new System.EventHandler(this.button10_Click);
             // 
             // button11
             // 
+            this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
+            this.button11.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button11.Location = new System.Drawing.Point(573, 131);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(59, 20);
             this.button11.TabIndex = 74;
             this.button11.Text = "Pronađi";
-            this.button11.UseVisualStyleBackColor = true;
+            this.button11.UseVisualStyleBackColor = false;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // label7
@@ -436,22 +457,26 @@
             // 
             // button12
             // 
+            this.button12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button12.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button12.Location = new System.Drawing.Point(708, 156);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(61, 20);
             this.button12.TabIndex = 154;
             this.button12.Text = "Sačuvaj";
-            this.button12.UseVisualStyleBackColor = true;
+            this.button12.UseVisualStyleBackColor = false;
             this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
             // button13
             // 
+            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
+            this.button13.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button13.Location = new System.Drawing.Point(573, 157);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(59, 20);
             this.button13.TabIndex = 153;
             this.button13.Text = "Pronađi";
-            this.button13.UseVisualStyleBackColor = true;
+            this.button13.UseVisualStyleBackColor = false;
             this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
             // label9
@@ -472,52 +497,62 @@
             // 
             // button14
             // 
+            this.button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.button14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button14.Location = new System.Drawing.Point(638, 78);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(61, 20);
             this.button14.TabIndex = 155;
             this.button14.Text = "Otvori";
-            this.button14.UseVisualStyleBackColor = true;
+            this.button14.UseVisualStyleBackColor = false;
             this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // button15
             // 
+            this.button15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.button15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button15.Location = new System.Drawing.Point(638, 105);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(61, 20);
             this.button15.TabIndex = 156;
             this.button15.Text = "Otvori";
-            this.button15.UseVisualStyleBackColor = true;
+            this.button15.UseVisualStyleBackColor = false;
             this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // button16
             // 
+            this.button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.button16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button16.Location = new System.Drawing.Point(638, 130);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(61, 20);
             this.button16.TabIndex = 157;
             this.button16.Text = "Otvori";
-            this.button16.UseVisualStyleBackColor = true;
+            this.button16.UseVisualStyleBackColor = false;
             this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
             // button17
             // 
+            this.button17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.button17.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button17.Location = new System.Drawing.Point(638, 157);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(61, 20);
             this.button17.TabIndex = 158;
             this.button17.Text = "Otvori";
-            this.button17.UseVisualStyleBackColor = true;
+            this.button17.UseVisualStyleBackColor = false;
             this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
             // button18
             // 
+            this.button18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button18.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button18.Location = new System.Drawing.Point(708, 183);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(61, 20);
             this.button18.TabIndex = 162;
             this.button18.Text = "Sačuvaj";
-            this.button18.UseVisualStyleBackColor = true;
+            this.button18.UseVisualStyleBackColor = false;
             this.button18.Click += new System.EventHandler(this.button18_Click);
             // 
             // label10
@@ -538,42 +573,50 @@
             // 
             // button19
             // 
+            this.button19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
+            this.button19.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button19.Location = new System.Drawing.Point(573, 183);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(59, 20);
             this.button19.TabIndex = 160;
             this.button19.Text = "Pronađi";
-            this.button19.UseVisualStyleBackColor = true;
+            this.button19.UseVisualStyleBackColor = false;
             this.button19.Click += new System.EventHandler(this.button19_Click);
             // 
             // button20
             // 
+            this.button20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.button20.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button20.Location = new System.Drawing.Point(638, 183);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(61, 20);
             this.button20.TabIndex = 163;
             this.button20.Text = "Otvori";
-            this.button20.UseVisualStyleBackColor = true;
+            this.button20.UseVisualStyleBackColor = false;
             this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
             // button21
             // 
+            this.button21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.button21.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button21.Location = new System.Drawing.Point(638, 209);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(61, 20);
             this.button21.TabIndex = 164;
             this.button21.Text = "Otvori";
-            this.button21.UseVisualStyleBackColor = true;
+            this.button21.UseVisualStyleBackColor = false;
             this.button21.Click += new System.EventHandler(this.button21_Click);
             // 
             // button22
             // 
+            this.button22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button22.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button22.Location = new System.Drawing.Point(708, 208);
             this.button22.Name = "button22";
             this.button22.Size = new System.Drawing.Size(61, 20);
             this.button22.TabIndex = 165;
             this.button22.Text = "Sačuvaj";
-            this.button22.UseVisualStyleBackColor = true;
+            this.button22.UseVisualStyleBackColor = false;
             this.button22.Click += new System.EventHandler(this.button22_Click);
             // 
             // frmDokumentaRadniNalog
@@ -625,6 +668,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtSifraNajave);
             this.Controls.Add(this.label3);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDokumentaRadniNalog";
             this.Text = "Dokumenta radni nalog";
             this.Load += new System.EventHandler(this.frmDokumentaRadniNalog_Load);

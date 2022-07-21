@@ -29,7 +29,7 @@ using MetroFramework.Forms;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmRegistratorDokumenta : MetroForm
+    public partial class frmRegistratorDokumenta : Form
     {
         bool status = false;
         public frmRegistratorDokumenta()

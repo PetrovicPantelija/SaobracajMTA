@@ -122,7 +122,7 @@ namespace Saobracaj.Sifarnici
             " inner join stanice on Trase.Pocetna = stanice.ID " +
             " inner join stanice st2 on Trase.Krajnja = st2.ID";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.Perftech_BeogradConnectionString"].ConnectionString;
+            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

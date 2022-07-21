@@ -20,9 +20,9 @@ namespace Saobracaj {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("Perftech_BeogradDataSet10")]
+    [global::System.Xml.Serialization.XmlRootAttribute("TESTIRANJEDataSet10")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class Perftech_BeogradDataSet10 : global::System.Data.DataSet {
+    public partial class TESTIRANJEDataSet10 : global::System.Data.DataSet {
         
         private SelectAktivnostiFinasijeNeplacenoRadnikDataTable tableSelectAktivnostiFinasijeNeplacenoRadnik;
         
@@ -30,7 +30,7 @@ namespace Saobracaj {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public Perftech_BeogradDataSet10() {
+        public TESTIRANJEDataSet10() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace Saobracaj {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        protected Perftech_BeogradDataSet10(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected TESTIRANJEDataSet10(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -127,7 +127,7 @@ namespace Saobracaj {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            Perftech_BeogradDataSet10 cln = ((Perftech_BeogradDataSet10)(base.Clone()));
+            TESTIRANJEDataSet10 cln = ((TESTIRANJEDataSet10)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -199,9 +199,9 @@ namespace Saobracaj {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "Perftech_BeogradDataSet10";
+            this.DataSetName = "TESTIRANJEDataSet10";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/Perftech_BeogradDataSet10.xsd";
+            this.Namespace = "http://tempuri.org/TESTIRANJEDataSet10.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableSelectAktivnostiFinasijeNeplacenoRadnik = new SelectAktivnostiFinasijeNeplacenoRadnikDataTable();
@@ -225,7 +225,7 @@ namespace Saobracaj {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            Perftech_BeogradDataSet10 ds = new Perftech_BeogradDataSet10();
+            TESTIRANJEDataSet10 ds = new TESTIRANJEDataSet10();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -568,7 +568,7 @@ namespace Saobracaj {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                Perftech_BeogradDataSet10 ds = new Perftech_BeogradDataSet10();
+                TESTIRANJEDataSet10 ds = new TESTIRANJEDataSet10();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -909,7 +909,7 @@ namespace Saobracaj {
         }
     }
 }
-namespace Saobracaj.Perftech_BeogradDataSet10TableAdapters {
+namespace Saobracaj.TESTIRANJEDataSet10TableAdapters {
     
     
     /// <summary>
@@ -1048,7 +1048,7 @@ namespace Saobracaj.Perftech_BeogradDataSet10TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Saobracaj.Properties.Settings.Default.Perftech_BeogradConnectionString;
+            this._connection.ConnectionString = global::Saobracaj.Properties.Settings.Default.TESTIRANJEConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1069,7 +1069,7 @@ namespace Saobracaj.Perftech_BeogradDataSet10TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Perftech_BeogradDataSet10.SelectAktivnostiFinasijeNeplacenoRadnikDataTable dataTable, global::System.Nullable<int> ID, global::System.Nullable<global::System.DateTime> DatumOd, global::System.Nullable<global::System.DateTime> DatumDo) {
+        public virtual int Fill(TESTIRANJEDataSet10.SelectAktivnostiFinasijeNeplacenoRadnikDataTable dataTable, global::System.Nullable<int> ID, global::System.Nullable<global::System.DateTime> DatumOd, global::System.Nullable<global::System.DateTime> DatumDo) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((ID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(ID.Value));
@@ -1100,7 +1100,7 @@ namespace Saobracaj.Perftech_BeogradDataSet10TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Perftech_BeogradDataSet10.SelectAktivnostiFinasijeNeplacenoRadnikDataTable GetData(global::System.Nullable<int> ID, global::System.Nullable<global::System.DateTime> DatumOd, global::System.Nullable<global::System.DateTime> DatumDo) {
+        public virtual TESTIRANJEDataSet10.SelectAktivnostiFinasijeNeplacenoRadnikDataTable GetData(global::System.Nullable<int> ID, global::System.Nullable<global::System.DateTime> DatumOd, global::System.Nullable<global::System.DateTime> DatumDo) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((ID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(ID.Value));
@@ -1120,7 +1120,7 @@ namespace Saobracaj.Perftech_BeogradDataSet10TableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            Perftech_BeogradDataSet10.SelectAktivnostiFinasijeNeplacenoRadnikDataTable dataTable = new Perftech_BeogradDataSet10.SelectAktivnostiFinasijeNeplacenoRadnikDataTable();
+            TESTIRANJEDataSet10.SelectAktivnostiFinasijeNeplacenoRadnikDataTable dataTable = new TESTIRANJEDataSet10.SelectAktivnostiFinasijeNeplacenoRadnikDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1194,7 +1194,7 @@ namespace Saobracaj.Perftech_BeogradDataSet10TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private int UpdateUpdatedRows(Perftech_BeogradDataSet10 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(TESTIRANJEDataSet10 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1204,7 +1204,7 @@ namespace Saobracaj.Perftech_BeogradDataSet10TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private int UpdateInsertedRows(Perftech_BeogradDataSet10 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(TESTIRANJEDataSet10 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1214,7 +1214,7 @@ namespace Saobracaj.Perftech_BeogradDataSet10TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private int UpdateDeletedRows(Perftech_BeogradDataSet10 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(TESTIRANJEDataSet10 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             return result;
         }
@@ -1248,7 +1248,7 @@ namespace Saobracaj.Perftech_BeogradDataSet10TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public virtual int UpdateAll(Perftech_BeogradDataSet10 dataSet) {
+        public virtual int UpdateAll(TESTIRANJEDataSet10 dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

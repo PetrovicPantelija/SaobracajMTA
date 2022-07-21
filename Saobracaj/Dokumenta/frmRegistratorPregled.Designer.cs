@@ -31,6 +31,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRegistratorPregled));
             this.dataGridView1 = new MetroFramework.Controls.MetroGrid();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.txtZapis = new MetroFramework.Controls.MetroTextBox();
@@ -69,7 +70,7 @@
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dataGridView1.Location = new System.Drawing.Point(24, 98);
+            this.dataGridView1.Location = new System.Drawing.Point(7, 98);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -82,49 +83,51 @@
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(851, 258);
+            this.dataGridView1.Size = new System.Drawing.Size(655, 123);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // metroButton1
             // 
-            this.metroButton1.Location = new System.Drawing.Point(24, 64);
+            this.metroButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
+            this.metroButton1.FontSize = MetroFramework.MetroButtonSize.Medium;
+            this.metroButton1.Location = new System.Drawing.Point(12, 44);
             this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(184, 26);
+            this.metroButton1.Size = new System.Drawing.Size(161, 26);
             this.metroButton1.TabIndex = 1;
-            this.metroButton1.Text = "Ažuriraj";
+            this.metroButton1.Text = "AŽURIRAJ";
             this.metroButton1.UseSelectable = true;
             this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
             // 
             // txtZapis
             // 
             this.txtZapis.Lines = new string[0];
-            this.txtZapis.Location = new System.Drawing.Point(337, 67);
+            this.txtZapis.Location = new System.Drawing.Point(222, 60);
             this.txtZapis.MaxLength = 32767;
             this.txtZapis.Name = "txtZapis";
             this.txtZapis.PasswordChar = '\0';
             this.txtZapis.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtZapis.SelectedText = "";
-            this.txtZapis.Size = new System.Drawing.Size(75, 23);
+            this.txtZapis.Size = new System.Drawing.Size(161, 23);
             this.txtZapis.TabIndex = 2;
             this.txtZapis.UseSelectable = true;
             // 
             // metroLink1
             // 
-            this.metroLink1.Location = new System.Drawing.Point(271, 67);
+            this.metroLink1.Location = new System.Drawing.Point(222, 31);
             this.metroLink1.Name = "metroLink1";
             this.metroLink1.Size = new System.Drawing.Size(60, 23);
             this.metroLink1.TabIndex = 3;
-            this.metroLink1.Text = "Zapis";
+            this.metroLink1.Text = "Zapis:";
             this.metroLink1.UseSelectable = true;
             // 
             // metroButton2
             // 
-            this.metroButton2.Location = new System.Drawing.Point(418, 64);
+            this.metroButton2.Location = new System.Drawing.Point(486, 44);
             this.metroButton2.Name = "metroButton2";
             this.metroButton2.Size = new System.Drawing.Size(161, 26);
             this.metroButton2.TabIndex = 4;
-            this.metroButton2.Text = "Otvori";
+            this.metroButton2.Text = "OTVORI";
             this.metroButton2.UseSelectable = true;
             this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
             // 
@@ -132,12 +135,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(889, 364);
+            this.ClientSize = new System.Drawing.Size(676, 229);
             this.Controls.Add(this.metroButton2);
             this.Controls.Add(this.metroLink1);
             this.Controls.Add(this.txtZapis);
             this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmRegistratorPregled";
             this.Text = "Pregled delovodna knjiga";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

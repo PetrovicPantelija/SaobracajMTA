@@ -743,8 +743,8 @@ order by RzStZapisa desc
                 Korisceno = "je iskoristio " + txtSumKorisceno.Text + " dana godišnjeg odmora za " + cboGodina.Text + " godinu ";
             }
             ingo.InsReportGO(cboZaposleni.Text,Prebivaliste, "", JMBG, RadnoMesto, cboGodina.Text, txtUkupno.Text,DatumOD,DatumDo,DatumPovratka, txtSUMUkupno.Text, Korisceno, DatumZahteva);
-            Perftech_BeogradDataSet14TableAdapters._1ReportGOTableAdapter ta = new Perftech_BeogradDataSet14TableAdapters._1ReportGOTableAdapter();
-            Perftech_BeogradDataSet14._1ReportGODataTable dt = new Perftech_BeogradDataSet14._1ReportGODataTable();
+            TESTIRANJEDataSet14TableAdapters._1ReportGOTableAdapter ta = new TESTIRANJEDataSet14TableAdapters._1ReportGOTableAdapter();
+            TESTIRANJEDataSet14._1ReportGODataTable dt = new TESTIRANJEDataSet14._1ReportGODataTable();
          
             ta.Fill(dt);
             ReportDataSource rds = new ReportDataSource();
@@ -774,7 +774,7 @@ order by RzStZapisa desc
                 var select = " SELECT [Zaposleni],[Prebivaliste],[Ulica] " +
       " ,[JMBG] ,[RadnoMesto] ,[Godina] ,[Dana] " +
       " ,[DatumOd] ,[DatumDo],[DatumPovratka] ,[DanaGodisnjeg] " +
-      " ,[DanaIskoristio] ,[DatumZahteva]   FROM [Perftech_Beograd].[dbo].[1ReportGO]";
+      " ,[DanaIskoristio] ,[DatumZahteva]   FROM [TESTIRANJE].[dbo].[1ReportGO]";
 
                 var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);

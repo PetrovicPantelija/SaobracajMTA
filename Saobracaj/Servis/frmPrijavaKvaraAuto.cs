@@ -187,7 +187,7 @@ namespace Saobracaj.Servis
         {
             SqlConnection conn = new SqlConnection(connect);
             conn.Open();
-            SqlCommand cmd = new SqlCommand("SELECT [ID],Rtrim([Automobil]) as Automobil,[Prijavio],[DatumPrijave],[Kvar],[StatusKvara],[Promenio],[DatumPromene],[Napomena]  FROM [Perftech_Beograd].[dbo].[EvidencijaKvarovaAuto] where ID = " + Convert.ToInt32(txt_Sifra.Text), conn);
+            SqlCommand cmd = new SqlCommand("SELECT [ID],Rtrim([Automobil]) as Automobil,[Prijavio],[DatumPrijave],[Kvar],[StatusKvara],[Promenio],[DatumPromene],[Napomena]  FROM [TESTIRANJE].[dbo].[EvidencijaKvarovaAuto] where ID = " + Convert.ToInt32(txt_Sifra.Text), conn);
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {

@@ -33,10 +33,10 @@ namespace Saobracaj.Dokumenta
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsPrvi = new System.Windows.Forms.ToolStripButton();
             this.tsNazad = new System.Windows.Forms.ToolStripButton();
             this.tsNapred = new System.Windows.Forms.ToolStripButton();
@@ -78,11 +78,6 @@ namespace Saobracaj.Dokumenta
             this.toolStrip1.TabIndex = 144;
             this.toolStrip1.Text = "Unesi cenu za radnika";
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // tsNew
             // 
             this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -111,6 +106,11 @@ namespace Saobracaj.Dokumenta
             this.tsDelete.Name = "tsDelete";
             this.tsDelete.Size = new System.Drawing.Size(23, 22);
             this.tsDelete.Text = "toolStripButton1";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // tsPrvi
             // 
@@ -268,6 +268,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.dataGridView4.AllowUserToAddRows = false;
             this.dataGridView4.AllowUserToResizeRows = false;
+            this.dataGridView4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;

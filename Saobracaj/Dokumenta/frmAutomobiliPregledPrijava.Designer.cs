@@ -87,6 +87,7 @@ namespace Saobracaj.Dokumenta
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(19, 263);
             this.dataGridView1.Name = "dataGridView1";
@@ -177,7 +178,7 @@ namespace Saobracaj.Dokumenta
             this.dtpDatumPrijave.Location = new System.Drawing.Point(108, 97);
             this.dtpDatumPrijave.MinimumSize = new System.Drawing.Size(0, 29);
             this.dtpDatumPrijave.Name = "dtpDatumPrijave";
-            this.dtpDatumPrijave.Size = new System.Drawing.Size(200, 30);
+            this.dtpDatumPrijave.Size = new System.Drawing.Size(200, 29);
             this.dtpDatumPrijave.TabIndex = 210;
             // 
             // label2
@@ -209,7 +210,7 @@ namespace Saobracaj.Dokumenta
             // txt_Relacija
             // 
             this.txt_Relacija.Location = new System.Drawing.Point(108, 205);
-            this.txt_Relacija.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_Relacija.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Relacija.Name = "txt_Relacija";
             this.txt_Relacija.Size = new System.Drawing.Size(140, 20);
             this.txt_Relacija.TabIndex = 213;
@@ -218,7 +219,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.cb_DirPredZad.AutoSize = true;
             this.cb_DirPredZad.Location = new System.Drawing.Point(371, 176);
-            this.cb_DirPredZad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cb_DirPredZad.Margin = new System.Windows.Forms.Padding(2);
             this.cb_DirPredZad.Name = "cb_DirPredZad";
             this.cb_DirPredZad.Size = new System.Drawing.Size(182, 17);
             this.cb_DirPredZad.TabIndex = 214;
@@ -228,7 +229,7 @@ namespace Saobracaj.Dokumenta
             // txt_KmZaduzenje
             // 
             this.txt_KmZaduzenje.Location = new System.Drawing.Point(507, 34);
-            this.txt_KmZaduzenje.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_KmZaduzenje.Margin = new System.Windows.Forms.Padding(2);
             this.txt_KmZaduzenje.Name = "txt_KmZaduzenje";
             this.txt_KmZaduzenje.Size = new System.Drawing.Size(144, 20);
             this.txt_KmZaduzenje.TabIndex = 213;
@@ -246,7 +247,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.cb_Plomba1Zad.AutoSize = true;
             this.cb_Plomba1Zad.Location = new System.Drawing.Point(371, 202);
-            this.cb_Plomba1Zad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cb_Plomba1Zad.Margin = new System.Windows.Forms.Padding(2);
             this.cb_Plomba1Zad.Name = "cb_Plomba1Zad";
             this.cb_Plomba1Zad.Size = new System.Drawing.Size(163, 17);
             this.cb_Plomba1Zad.TabIndex = 215;
@@ -257,7 +258,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.cb_Plomba2Zad.AutoSize = true;
             this.cb_Plomba2Zad.Location = new System.Drawing.Point(371, 227);
-            this.cb_Plomba2Zad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cb_Plomba2Zad.Margin = new System.Windows.Forms.Padding(2);
             this.cb_Plomba2Zad.Name = "cb_Plomba2Zad";
             this.cb_Plomba2Zad.Size = new System.Drawing.Size(163, 17);
             this.cb_Plomba2Zad.TabIndex = 215;
@@ -331,7 +332,7 @@ namespace Saobracaj.Dokumenta
             this.dt_Odjava.Location = new System.Drawing.Point(108, 133);
             this.dt_Odjava.MinimumSize = new System.Drawing.Size(0, 29);
             this.dt_Odjava.Name = "dt_Odjava";
-            this.dt_Odjava.Size = new System.Drawing.Size(200, 30);
+            this.dt_Odjava.Size = new System.Drawing.Size(200, 29);
             this.dt_Odjava.TabIndex = 210;
             // 
             // label10
@@ -346,7 +347,7 @@ namespace Saobracaj.Dokumenta
             // txt_KmRazduzenje
             // 
             this.txt_KmRazduzenje.Location = new System.Drawing.Point(806, 35);
-            this.txt_KmRazduzenje.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_KmRazduzenje.Margin = new System.Windows.Forms.Padding(2);
             this.txt_KmRazduzenje.Name = "txt_KmRazduzenje";
             this.txt_KmRazduzenje.Size = new System.Drawing.Size(144, 20);
             this.txt_KmRazduzenje.TabIndex = 213;
@@ -406,7 +407,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.cb_DirPredRaz.AutoSize = true;
             this.cb_DirPredRaz.Location = new System.Drawing.Point(661, 174);
-            this.cb_DirPredRaz.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cb_DirPredRaz.Margin = new System.Windows.Forms.Padding(2);
             this.cb_DirPredRaz.Name = "cb_DirPredRaz";
             this.cb_DirPredRaz.Size = new System.Drawing.Size(196, 17);
             this.cb_DirPredRaz.TabIndex = 214;
@@ -417,7 +418,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.cb_Plomba1Raz.AutoSize = true;
             this.cb_Plomba1Raz.Location = new System.Drawing.Point(661, 200);
-            this.cb_Plomba1Raz.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cb_Plomba1Raz.Margin = new System.Windows.Forms.Padding(2);
             this.cb_Plomba1Raz.Name = "cb_Plomba1Raz";
             this.cb_Plomba1Raz.Size = new System.Drawing.Size(177, 17);
             this.cb_Plomba1Raz.TabIndex = 215;
@@ -428,7 +429,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.cb_Plomba2Raz.AutoSize = true;
             this.cb_Plomba2Raz.Location = new System.Drawing.Point(661, 225);
-            this.cb_Plomba2Raz.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cb_Plomba2Raz.Margin = new System.Windows.Forms.Padding(2);
             this.cb_Plomba2Raz.Name = "cb_Plomba2Raz";
             this.cb_Plomba2Raz.Size = new System.Drawing.Size(177, 17);
             this.cb_Plomba2Raz.TabIndex = 215;
@@ -447,7 +448,7 @@ namespace Saobracaj.Dokumenta
             // txt_Sifra
             // 
             this.txt_Sifra.Location = new System.Drawing.Point(108, 38);
-            this.txt_Sifra.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_Sifra.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Sifra.Name = "txt_Sifra";
             this.txt_Sifra.Size = new System.Drawing.Size(140, 20);
             this.txt_Sifra.TabIndex = 216;
@@ -456,7 +457,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pictureBox1.Location = new System.Drawing.Point(955, 24);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(313, 234);
             this.pictureBox1.TabIndex = 217;
@@ -465,7 +466,7 @@ namespace Saobracaj.Dokumenta
             // btn_OtvoriSliku
             // 
             this.btn_OtvoriSliku.Location = new System.Drawing.Point(1277, 23);
-            this.btn_OtvoriSliku.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_OtvoriSliku.Margin = new System.Windows.Forms.Padding(2);
             this.btn_OtvoriSliku.Name = "btn_OtvoriSliku";
             this.btn_OtvoriSliku.Size = new System.Drawing.Size(82, 28);
             this.btn_OtvoriSliku.TabIndex = 218;
@@ -476,7 +477,7 @@ namespace Saobracaj.Dokumenta
             // btn_nazad
             // 
             this.btn_nazad.Location = new System.Drawing.Point(1277, 101);
-            this.btn_nazad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_nazad.Margin = new System.Windows.Forms.Padding(2);
             this.btn_nazad.Name = "btn_nazad";
             this.btn_nazad.Size = new System.Drawing.Size(82, 28);
             this.btn_nazad.TabIndex = 218;
@@ -487,7 +488,7 @@ namespace Saobracaj.Dokumenta
             // btn_Napred
             // 
             this.btn_Napred.Location = new System.Drawing.Point(1277, 59);
-            this.btn_Napred.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Napred.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Napred.Name = "btn_Napred";
             this.btn_Napred.Size = new System.Drawing.Size(82, 28);
             this.btn_Napred.TabIndex = 218;
@@ -498,7 +499,7 @@ namespace Saobracaj.Dokumenta
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(1277, 177);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(82, 28);
             this.button1.TabIndex = 218;
@@ -552,6 +553,7 @@ namespace Saobracaj.Dokumenta
             this.Controls.Add(this.label3);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAutomobiliPregledPrijava";
             this.Text = "Automobili pregled Zaduzenja/Razduzduzenja";
             this.Load += new System.EventHandler(this.frmAutomobiliPregledPrijava_Load);

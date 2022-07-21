@@ -302,6 +302,7 @@ namespace Saobracaj.Sifarnici
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSerijeLokomotiva";
             this.Text = "Serije lokomotiva";
             this.Load += new System.EventHandler(this.frmSerijeLokomotiva_Load);
@@ -312,7 +313,6 @@ namespace Saobracaj.Sifarnici
             ((System.ComponentModel.ISupportInitialize)(this.txtSnaga)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
 
         }
         public string IdGrupe()

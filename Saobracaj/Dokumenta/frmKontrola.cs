@@ -308,7 +308,7 @@ namespace Saobracaj.Dokumenta
 
                 con.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT Max(ID) as ID  FROM [Perftech_Beograd].[dbo].[KontrolaDokumentacije]", con);
+                SqlCommand cmd = new SqlCommand("SELECT Max(ID) as ID  FROM [TESTIRANJE].[dbo].[KontrolaDokumentacije]", con);
                 SqlDataReader dr = cmd.ExecuteReader();
 
                 while (dr.Read())

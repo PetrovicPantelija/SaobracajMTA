@@ -478,7 +478,7 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="Perftech_BeogradDataSet7">
+    <DataSource Name="TESTIRANJEDataSet7">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
@@ -489,7 +489,7 @@
   <DataSets>
     <DataSet Name="DataSet11">
       <Query>
-        <DataSourceName>Perftech_BeogradDataSet7</DataSourceName>
+        <DataSourceName>TESTIRANJEDataSet7</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -523,8 +523,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>Perftech_BeogradDataSet7</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\Perftech_BeogradDataSet7.xsd</rd:SchemaPath>
+        <rd:DataSetName>TESTIRANJEDataSet7</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\TESTIRANJEDataSet7.xsd</rd:SchemaPath>
         <rd:TableName>SelectAktivnostiFinasijeNeplaceno</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

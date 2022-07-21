@@ -29,6 +29,7 @@ namespace Saobracaj.Servis
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEvidencijaKvarovaAnaliza));
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.SuspendLayout();
@@ -61,6 +62,7 @@ namespace Saobracaj.Servis
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(847, 477);
             this.Controls.Add(this.gridGroupingControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmEvidencijaKvarovaAnaliza";
             this.Text = "Analiza evidencije kvarova";
             this.Load += new System.EventHandler(this.frmEvidencijaKvarovaAnaliza_Load);

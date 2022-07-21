@@ -1393,7 +1393,7 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="Perftech_BeogradDataSet3">
+    <DataSource Name="TESTIRANJEDataSet3">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
@@ -1404,7 +1404,7 @@
   <DataSets>
     <DataSet Name="DataSetZaradaStavke">
       <Query>
-        <DataSourceName>Perftech_BeogradDataSet3</DataSourceName>
+        <DataSourceName>TESTIRANJEDataSet3</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -1466,8 +1466,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>Perftech_BeogradDataSet3</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\Perftech_BeogradDataSet3.xsd</rd:SchemaPath>
+        <rd:DataSetName>TESTIRANJEDataSet3</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\TESTIRANJEDataSet3.xsd</rd:SchemaPath>
         <rd:TableName>SelectAktivnostiStavke</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

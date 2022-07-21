@@ -25,8 +25,8 @@ namespace Saobracaj.Dokumenta
 
         private void btnStampa_Click(object sender, EventArgs e)
         {/*
-            Perftech_BeogradDataSet9TableAdapters.SelectAktivnostiNovakTableAdapter ta = new Perftech_BeogradDataSet9TableAdapters.SelectAktivnostiNovakTableAdapter();
-            Perftech_BeogradDataSet9.SelectAktivnostiNovakDataTable dt = new Perftech_BeogradDataSet9.SelectAktivnostiNovakDataTable();
+            TESTIRANJEDataSet9TableAdapters.SelectAktivnostiNovakTableAdapter ta = new TESTIRANJEDataSet9TableAdapters.SelectAktivnostiNovakTableAdapter();
+            TESTIRANJEDataSet9.SelectAktivnostiNovakDataTable dt = new TESTIRANJEDataSet9.SelectAktivnostiNovakDataTable();
 
    
             ta.Fill(dt, Convert.ToDateTime(dtpVremeOd.Value), Convert.ToDateTime(dtpVremeDo.Value));

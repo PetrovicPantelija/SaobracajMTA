@@ -36,8 +36,8 @@ namespace Saobracaj.Dokumenta
             else
                 pomMasinovodja = 0;
 
-            Perftech_BeogradDataSet5TableAdapters.SelectAktSt2TableAdapter ta = new Perftech_BeogradDataSet5TableAdapters.SelectAktSt2TableAdapter();
-            Perftech_BeogradDataSet5.SelectAktSt2DataTable dt = new Perftech_BeogradDataSet5.SelectAktSt2DataTable();
+            TESTIRANJEDataSet5TableAdapters.SelectAktSt2TableAdapter ta = new TESTIRANJEDataSet5TableAdapters.SelectAktSt2TableAdapter();
+            TESTIRANJEDataSet5.SelectAktSt2DataTable dt = new TESTIRANJEDataSet5.SelectAktSt2DataTable();
 
             ta.Fill(dt, Convert.ToInt32(cboZaposleni.SelectedValue), Convert.ToDateTime(dtpVremeOd.Value), Convert.ToDateTime(dtpVremeDo.Value), Convert.ToInt32(pomMilsped), Convert.ToInt32(pomMasinovodja));
             ReportDataSource rds = new ReportDataSource();

@@ -19,7 +19,7 @@ namespace Saobracaj.Servis
 {
 
     
-    public partial class frmNamirenja : MetroForm
+    public partial class frmNamirenja : Form
     {
         private List<PictureBox> PictureBoxes = new List<PictureBox>();
 

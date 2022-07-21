@@ -519,32 +519,38 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(22, 170);
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(18, 160);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(138, 23);
+            this.button4.Size = new System.Drawing.Size(142, 33);
             this.button4.TabIndex = 104;
             this.button4.Text = "Unesi trasu";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(166, 170);
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
+            this.button5.ForeColor = System.Drawing.Color.White;
+            this.button5.Location = new System.Drawing.Point(166, 162);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(138, 23);
+            this.button5.Size = new System.Drawing.Size(138, 31);
             this.button5.TabIndex = 105;
             this.button5.Text = "Promeni trasu";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(310, 170);
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
+            this.button6.ForeColor = System.Drawing.Color.White;
+            this.button6.Location = new System.Drawing.Point(310, 162);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(138, 23);
+            this.button6.Size = new System.Drawing.Size(138, 31);
             this.button6.TabIndex = 106;
             this.button6.Text = "Izbriši trasu";
-            this.button6.UseVisualStyleBackColor = true;
+            this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // txtPlaniranaMasa

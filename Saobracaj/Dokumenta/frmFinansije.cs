@@ -120,8 +120,8 @@ namespace Saobracaj.Dokumenta
         {
             if (txtSifra.Text == "DejanIvan")
             {
-            Perftech_BeogradDataSet6TableAdapters.SelectAktivnostiFinasijeTableAdapter ta = new Perftech_BeogradDataSet6TableAdapters.SelectAktivnostiFinasijeTableAdapter();
-            Perftech_BeogradDataSet6.SelectAktivnostiFinasijeDataTable dt = new Perftech_BeogradDataSet6.SelectAktivnostiFinasijeDataTable();
+            TESTIRANJEDataSet6TableAdapters.SelectAktivnostiFinasijeTableAdapter ta = new TESTIRANJEDataSet6TableAdapters.SelectAktivnostiFinasijeTableAdapter();
+            TESTIRANJEDataSet6.SelectAktivnostiFinasijeDataTable dt = new TESTIRANJEDataSet6.SelectAktivnostiFinasijeDataTable();
 
             ta.Fill(dt, Convert.ToDateTime(dtpVremeOd.Value), Convert.ToDateTime(dtpVremeDo.Value));
             ReportDataSource rds = new ReportDataSource();

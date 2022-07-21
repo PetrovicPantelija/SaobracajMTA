@@ -39,32 +39,32 @@ namespace Saobracaj.Dokumenta
             if (chkVanLokomotive.Checked == true)
                 pomMilsped = 1;
           
-            Perftech_BeogradDataSet3TableAdapters.SelectAktivnostiTableAdapter ta = new Perftech_BeogradDataSet3TableAdapters.SelectAktivnostiTableAdapter();
-            Perftech_BeogradDataSet3.SelectAktivnostiDataTable dt = new Perftech_BeogradDataSet3.SelectAktivnostiDataTable();
+            TESTIRANJEDataSet3TableAdapters.SelectAktivnostiTableAdapter ta = new TESTIRANJEDataSet3TableAdapters.SelectAktivnostiTableAdapter();
+            TESTIRANJEDataSet3.SelectAktivnostiDataTable dt = new TESTIRANJEDataSet3.SelectAktivnostiDataTable();
 
-            Perftech_BeogradDataSet3TableAdapters.SelectAktPPKTableAdapter tap = new Perftech_BeogradDataSet3TableAdapters.SelectAktPPKTableAdapter();
-            Perftech_BeogradDataSet3.SelectAktPPKDataTable dtp = new Perftech_BeogradDataSet3.SelectAktPPKDataTable();
+            TESTIRANJEDataSet3TableAdapters.SelectAktPPKTableAdapter tap = new TESTIRANJEDataSet3TableAdapters.SelectAktPPKTableAdapter();
+            TESTIRANJEDataSet3.SelectAktPPKDataTable dtp = new TESTIRANJEDataSet3.SelectAktPPKDataTable();
 
-            Perftech_BeogradDataSet3TableAdapters.SelectAktDISPTableAdapter tad = new Perftech_BeogradDataSet3TableAdapters.SelectAktDISPTableAdapter();
-            Perftech_BeogradDataSet3.SelectAktDISPDataTable dtd = new Perftech_BeogradDataSet3.SelectAktDISPDataTable();
-            // Perftech_BeogradDataSet3TableAdapters. tap = new Perftech_BeogradDataSet3TableAdapters.SelectAktPPKTableAdapter();
-           // Perftech_BeogradDataSet3.SelectAktPPKDataTable dtp = new Perftech_BeogradDataSet3.SelectAktPPKDataTable();
-            Perftech_BeogradDataSet3TableAdapters.SelectObracunUkupnoTableAdapter tao = new Perftech_BeogradDataSet3TableAdapters.SelectObracunUkupnoTableAdapter();
-            Perftech_BeogradDataSet3.SelectObracunUkupnoDataTable dto = new Perftech_BeogradDataSet3.SelectObracunUkupnoDataTable();
-
-
-            Perftech_BeogradDataSet3TableAdapters.SelectAktivnostiStavkeTableAdapter tal = new Perftech_BeogradDataSet3TableAdapters.SelectAktivnostiStavkeTableAdapter();
-            Perftech_BeogradDataSet3.SelectAktivnostiStavkeDataTable dtl = new Perftech_BeogradDataSet3.SelectAktivnostiStavkeDataTable();
-
-            Perftech_BeogradDataSet3TableAdapters.SelectObracunUkupnoUmanjenTableAdapter tum = new Perftech_BeogradDataSet3TableAdapters.SelectObracunUkupnoUmanjenTableAdapter();
-            Perftech_BeogradDataSet3.SelectObracunUkupnoUmanjenDataTable dum = new Perftech_BeogradDataSet3.SelectObracunUkupnoUmanjenDataTable();
-
-            Perftech_BeogradDataSet3TableAdapters.SelectAktivnostiTrosakTableAdapter tao2 = new Perftech_BeogradDataSet3TableAdapters.SelectAktivnostiTrosakTableAdapter();
-            Perftech_BeogradDataSet3.SelectAktivnostiTrosakDataTable dto2 = new Perftech_BeogradDataSet3.SelectAktivnostiTrosakDataTable();
+            TESTIRANJEDataSet3TableAdapters.SelectAktDISPTableAdapter tad = new TESTIRANJEDataSet3TableAdapters.SelectAktDISPTableAdapter();
+            TESTIRANJEDataSet3.SelectAktDISPDataTable dtd = new TESTIRANJEDataSet3.SelectAktDISPDataTable();
+            // TESTIRANJEDataSet3TableAdapters. tap = new TESTIRANJEDataSet3TableAdapters.SelectAktPPKTableAdapter();
+           // TESTIRANJEDataSet3.SelectAktPPKDataTable dtp = new TESTIRANJEDataSet3.SelectAktPPKDataTable();
+            TESTIRANJEDataSet3TableAdapters.SelectObracunUkupnoTableAdapter tao = new TESTIRANJEDataSet3TableAdapters.SelectObracunUkupnoTableAdapter();
+            TESTIRANJEDataSet3.SelectObracunUkupnoDataTable dto = new TESTIRANJEDataSet3.SelectObracunUkupnoDataTable();
 
 
-            Perftech_BeogradDataSet3TableAdapters.SelectAktNocniTableAdapter Nap = new Perftech_BeogradDataSet3TableAdapters.SelectAktNocniTableAdapter();
-            Perftech_BeogradDataSet3.SelectAktNocniDataTable ntp = new Perftech_BeogradDataSet3.SelectAktNocniDataTable();
+            TESTIRANJEDataSet3TableAdapters.SelectAktivnostiStavkeTableAdapter tal = new TESTIRANJEDataSet3TableAdapters.SelectAktivnostiStavkeTableAdapter();
+            TESTIRANJEDataSet3.SelectAktivnostiStavkeDataTable dtl = new TESTIRANJEDataSet3.SelectAktivnostiStavkeDataTable();
+
+            TESTIRANJEDataSet3TableAdapters.SelectObracunUkupnoUmanjenTableAdapter tum = new TESTIRANJEDataSet3TableAdapters.SelectObracunUkupnoUmanjenTableAdapter();
+            TESTIRANJEDataSet3.SelectObracunUkupnoUmanjenDataTable dum = new TESTIRANJEDataSet3.SelectObracunUkupnoUmanjenDataTable();
+
+            TESTIRANJEDataSet3TableAdapters.SelectAktivnostiTrosakTableAdapter tao2 = new TESTIRANJEDataSet3TableAdapters.SelectAktivnostiTrosakTableAdapter();
+            TESTIRANJEDataSet3.SelectAktivnostiTrosakDataTable dto2 = new TESTIRANJEDataSet3.SelectAktivnostiTrosakDataTable();
+
+
+            TESTIRANJEDataSet3TableAdapters.SelectAktNocniTableAdapter Nap = new TESTIRANJEDataSet3TableAdapters.SelectAktNocniTableAdapter();
+            TESTIRANJEDataSet3.SelectAktNocniDataTable ntp = new TESTIRANJEDataSet3.SelectAktNocniDataTable();
 
 
             int dtMilsped = pomMilsped;

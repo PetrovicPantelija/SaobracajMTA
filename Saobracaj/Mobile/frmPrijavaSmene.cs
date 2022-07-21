@@ -14,7 +14,7 @@ using MetroFramework.Forms;
 
 namespace Saobracaj.Mobile
 {
-    public partial class frmPrijavaSmene : MetroForm
+    public partial class frmPrijavaSmene : Form
     {
         public frmPrijavaSmene()
         {

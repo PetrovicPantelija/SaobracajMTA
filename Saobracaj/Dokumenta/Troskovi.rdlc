@@ -2,7 +2,7 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="Perftech_BeogradDataSet6">
+    <DataSource Name="TESTIRANJEDataSet6">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
@@ -13,7 +13,7 @@
   <DataSets>
     <DataSet Name="DataSet10">
       <Query>
-        <DataSourceName>Perftech_BeogradDataSet6</DataSourceName>
+        <DataSourceName>TESTIRANJEDataSet6</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -47,8 +47,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>Perftech_BeogradDataSet6</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\Perftech_BeogradDataSet6.xsd</rd:SchemaPath>
+        <rd:DataSetName>TESTIRANJEDataSet6</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\TESTIRANJEDataSet6.xsd</rd:SchemaPath>
         <rd:TableName>SelectAktivnostiFinasije</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

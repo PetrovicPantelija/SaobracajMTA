@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="Perftech_BeogradDataSet12" targetNamespace="http://tempuri.org/Perftech_BeogradDataSet12.xsd" xmlns:mstns="http://tempuri.org/Perftech_BeogradDataSet12.xsd" xmlns="http://tempuri.org/Perftech_BeogradDataSet12.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="TESTIRANJEDataSet12" targetNamespace="http://tempuri.org/TESTIRANJEDataSet12.xsd" xmlns:mstns="http://tempuri.org/TESTIRANJEDataSet12.xsd" xmlns="http://tempuri.org/TESTIRANJEDataSet12.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="Perftech_BeogradConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Perftech_BeogradConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.Perftech_BeogradConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="TESTIRANJEConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TESTIRANJEConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.TESTIRANJEConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SelectRegistratorTableAdapter" GeneratorDataComponentClassName="SelectRegistratorTableAdapter" Name="SelectRegistrator" UserDataComponentName="SelectRegistratorTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="Perftech_BeogradConnectionString (Settings)" DbObjectName="Perftech_Beograd.dbo.SelectRegistrator" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="TESTIRANJEConnectionString (Settings)" DbObjectName="TESTIRANJE.dbo.SelectRegistrator" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.SelectRegistrator</CommandText>
@@ -40,7 +40,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="Perftech_BeogradDataSet12" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="Perftech_BeogradDataSet12" msprop:Generator_UserDSName="Perftech_BeogradDataSet12">
+  <xs:element name="TESTIRANJEDataSet12" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="TESTIRANJEDataSet12" msprop:Generator_UserDSName="TESTIRANJEDataSet12">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="SelectRegistrator" msprop:Generator_TableClassName="SelectRegistratorDataTable" msprop:Generator_TableVarName="tableSelectRegistrator" msprop:Generator_RowChangedName="SelectRegistratorRowChanged" msprop:Generator_TablePropName="SelectRegistrator" msprop:Generator_RowDeletingName="SelectRegistratorRowDeleting" msprop:Generator_RowChangingName="SelectRegistratorRowChanging" msprop:Generator_RowEvHandlerName="SelectRegistratorRowChangeEventHandler" msprop:Generator_RowDeletedName="SelectRegistratorRowDeleted" msprop:Generator_RowClassName="SelectRegistratorRow" msprop:Generator_UserTableName="SelectRegistrator" msprop:Generator_RowEvArgName="SelectRegistratorRowChangeEvent">

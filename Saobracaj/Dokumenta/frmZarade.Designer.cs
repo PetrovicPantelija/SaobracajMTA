@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.perftechBeogradDataSet3BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.perftech_BeogradDataSet3 = new Saobracaj.Perftech_BeogradDataSet3();
+            this.TESTIRANJEDataSet3 = new Saobracaj.TESTIRANJEDataSet3();
             this.btnStampa = new System.Windows.Forms.Button();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.label6 = new System.Windows.Forms.Label();
@@ -44,27 +44,28 @@
             this.chkLokomotiva = new System.Windows.Forms.CheckBox();
             this.chkVanLokomotive = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.perftechBeogradDataSet3BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.perftech_BeogradDataSet3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TESTIRANJEDataSet3)).BeginInit();
             this.SuspendLayout();
             // 
             // perftechBeogradDataSet3BindingSource
             // 
-            this.perftechBeogradDataSet3BindingSource.DataSource = this.perftech_BeogradDataSet3;
+            this.perftechBeogradDataSet3BindingSource.DataSource = this.TESTIRANJEDataSet3;
             this.perftechBeogradDataSet3BindingSource.Position = 0;
             // 
-            // perftech_BeogradDataSet3
+            // TESTIRANJEDataSet3
             // 
-            this.perftech_BeogradDataSet3.DataSetName = "Perftech_BeogradDataSet3";
-            this.perftech_BeogradDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.TESTIRANJEDataSet3.DataSetName = "TESTIRANJEDataSet3";
+            this.TESTIRANJEDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnStampa
             // 
-            this.btnStampa.Location = new System.Drawing.Point(743, 8);
+            this.btnStampa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnStampa.Location = new System.Drawing.Point(754, 8);
             this.btnStampa.Name = "btnStampa";
-            this.btnStampa.Size = new System.Drawing.Size(89, 23);
+            this.btnStampa.Size = new System.Drawing.Size(78, 33);
             this.btnStampa.TabIndex = 90;
             this.btnStampa.Text = "Štampaj";
-            this.btnStampa.UseVisualStyleBackColor = true;
+            this.btnStampa.UseVisualStyleBackColor = false;
             this.btnStampa.Click += new System.EventHandler(this.btnStampa_Click);
             // 
             // reportViewer1
@@ -72,9 +73,9 @@
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource2.Name = "DataSetZarada";
-            reportDataSource2.Value = this.perftechBeogradDataSet3BindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            reportDataSource1.Name = "DataSetZarada";
+            reportDataSource1.Value = this.perftechBeogradDataSet3BindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Dokumenta.Zarada.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(13, 72);
             this.reportViewer1.Name = "reportViewer1";
@@ -189,7 +190,7 @@
             this.Text = "Obračun po satu";
             this.Load += new System.EventHandler(this.frmZarade_Load);
             ((System.ComponentModel.ISupportInitialize)(this.perftechBeogradDataSet3BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.perftech_BeogradDataSet3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TESTIRANJEDataSet3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,7 +201,7 @@
         private System.Windows.Forms.Button btnStampa;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.BindingSource perftechBeogradDataSet3BindingSource;
-        private Perftech_BeogradDataSet3 perftech_BeogradDataSet3;
+        private TESTIRANJEDataSet3 TESTIRANJEDataSet3;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cboZaposleni;
         private System.Windows.Forms.Label label2;

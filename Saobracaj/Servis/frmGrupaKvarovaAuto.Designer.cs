@@ -191,6 +191,7 @@ namespace Saobracaj.Servis
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmGrupaKvarovaAuto";
             this.Text = "Grupa kvarova automobili";
             this.Load += new System.EventHandler(this.frmGrupaKvarovaAuto_Load);

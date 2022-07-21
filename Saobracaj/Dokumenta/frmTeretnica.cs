@@ -116,7 +116,7 @@ namespace Saobracaj.Dokumenta
             SqlCommand cmd = new SqlCommand("SELECT [ID] ,[RB] ,[BrojTeretnice] ,[IDNajave] ,[Uvrstena] "
             + " ,[Otkacena] ,[BrojKola] ,[Serija] ,[BrojOsovina] ,[Duzina] ,[Tara] ,[Neto] ,[G] "
             + " ,[P] ,[R] ,[RR] ,[VRNP] ,[Otpravna] ,[Uputna] ,[Reon] ,[Primedba],[RucKoc], [Uvozna], [Izvozna], RID, Dokument "
-            + " FROM [Perftech_Beograd].[dbo].[TeretnicaStavke]  where BrojTeretnice=" + IdTeretnice +  " and RB = "  + RB, con);
+            + " FROM [TESTIRANJE].[dbo].[TeretnicaStavke]  where BrojTeretnice=" + IdTeretnice +  " and RB = "  + RB, con);
            
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -492,8 +492,8 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter();
-            Perftech_BeogradDataSet.SelectTeretnicaDataTable dt = new Perftech_BeogradDataSet.SelectTeretnicaDataTable();
+            TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter();
+            TESTIRANJEDataSet.SelectTeretnicaDataTable dt = new TESTIRANJEDataSet.SelectTeretnicaDataTable();
            
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();
@@ -520,8 +520,8 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter();
-            Perftech_BeogradDataSet.SelectTeretnicaDataTable dt = new Perftech_BeogradDataSet.SelectTeretnicaDataTable();
+            TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter();
+            TESTIRANJEDataSet.SelectTeretnicaDataTable dt = new TESTIRANJEDataSet.SelectTeretnicaDataTable();
 
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();
@@ -539,8 +539,8 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter();
-            Perftech_BeogradDataSet.SelectTeretnicaDataTable dt = new Perftech_BeogradDataSet.SelectTeretnicaDataTable();
+            TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter();
+            TESTIRANJEDataSet.SelectTeretnicaDataTable dt = new TESTIRANJEDataSet.SelectTeretnicaDataTable();
 
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();
@@ -565,8 +565,8 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
-            Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter  ta = new Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter();
-            Perftech_BeogradDataSet.SelectTeretnicaDataTable dt = new Perftech_BeogradDataSet.SelectTeretnicaDataTable();
+            TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter  ta = new TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter();
+            TESTIRANJEDataSet.SelectTeretnicaDataTable dt = new TESTIRANJEDataSet.SelectTeretnicaDataTable();
 
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();
@@ -601,9 +601,9 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
-            Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter();
+            TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter();
             // NedraDataSetTableAdapters.SelectNajavaTableAdapter ta = new NedraDataSetTableAdapters.SelectNajavaTableAdapter();
-            Perftech_BeogradDataSet.SelectTeretnicaDataTable dt = new Perftech_BeogradDataSet.SelectTeretnicaDataTable();
+            TESTIRANJEDataSet.SelectTeretnicaDataTable dt = new TESTIRANJEDataSet.SelectTeretnicaDataTable();
 
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();

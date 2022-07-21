@@ -2,7 +2,7 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="Perftech_BeogradDataSet16">
+    <DataSource Name="TESTIRANJEDataSet16">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
@@ -13,7 +13,7 @@
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>Perftech_BeogradDataSet16</DataSourceName>
+        <DataSourceName>TESTIRANJEDataSet16</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -71,8 +71,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>Perftech_BeogradDataSet16</rd:DataSetName>
-        <rd:SchemaPath>E:\Saobracaj\Saobracaj\Perftech_BeogradDataSet16.xsd</rd:SchemaPath>
+        <rd:DataSetName>TESTIRANJEDataSet16</rd:DataSetName>
+        <rd:SchemaPath>E:\Saobracaj\Saobracaj\TESTIRANJEDataSet16.xsd</rd:SchemaPath>
         <rd:TableName>TestoviZ8</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

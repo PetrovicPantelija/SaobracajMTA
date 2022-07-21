@@ -93,7 +93,7 @@ namespace Saobracaj.Dokumenta
         {
             var select = " SELECT [ID] ,[IDAutomobila] ,[DatumServisa] ,[VelikiServis] " +
       " ,[KM] ,[Zaposleni],[Partner] ,[Napomena] " +
- "  FROM [Perftech_Beograd].[dbo].[AutomobiliServis] where[IDAutomobila] = " + Convert.ToInt32(txtAutomobilID.Text);
+ "  FROM [TESTIRANJE].[dbo].[AutomobiliServis] where[IDAutomobila] = " + Convert.ToInt32(txtAutomobilID.Text);
 
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;

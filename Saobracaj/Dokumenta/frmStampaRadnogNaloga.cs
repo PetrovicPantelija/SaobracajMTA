@@ -125,20 +125,20 @@ namespace Saobracaj.Dokumenta
         private void btnStampa_Click(object sender, EventArgs e)
         {
 
-            Perftech_BeogradDataSet2TableAdapters.SelectRadniNalogPosaoTableAdapter ta = new Perftech_BeogradDataSet2TableAdapters.SelectRadniNalogPosaoTableAdapter();
-            Perftech_BeogradDataSet2.SelectRadniNalogPosaoDataTable dt = new Perftech_BeogradDataSet2.SelectRadniNalogPosaoDataTable();
+            TESTIRANJEDataSet2TableAdapters.SelectRadniNalogPosaoTableAdapter ta = new TESTIRANJEDataSet2TableAdapters.SelectRadniNalogPosaoTableAdapter();
+            TESTIRANJEDataSet2.SelectRadniNalogPosaoDataTable dt = new TESTIRANJEDataSet2.SelectRadniNalogPosaoDataTable();
 
-            Perftech_BeogradDataSet2TableAdapters.SelectRadniNalogPosaoLokTableAdapter tal = new Perftech_BeogradDataSet2TableAdapters.SelectRadniNalogPosaoLokTableAdapter();
-            Perftech_BeogradDataSet2.SelectRadniNalogPosaoLokDataTable dtl = new Perftech_BeogradDataSet2.SelectRadniNalogPosaoLokDataTable();
+            TESTIRANJEDataSet2TableAdapters.SelectRadniNalogPosaoLokTableAdapter tal = new TESTIRANJEDataSet2TableAdapters.SelectRadniNalogPosaoLokTableAdapter();
+            TESTIRANJEDataSet2.SelectRadniNalogPosaoLokDataTable dtl = new TESTIRANJEDataSet2.SelectRadniNalogPosaoLokDataTable();
 
-            Perftech_BeogradDataSet2TableAdapters.SelectRadniNalogPosaoZapTableAdapter taz = new Perftech_BeogradDataSet2TableAdapters.SelectRadniNalogPosaoZapTableAdapter();
-            Perftech_BeogradDataSet2.SelectRadniNalogPosaoZapDataTable dtz = new Perftech_BeogradDataSet2.SelectRadniNalogPosaoZapDataTable();
+            TESTIRANJEDataSet2TableAdapters.SelectRadniNalogPosaoZapTableAdapter taz = new TESTIRANJEDataSet2TableAdapters.SelectRadniNalogPosaoZapTableAdapter();
+            TESTIRANJEDataSet2.SelectRadniNalogPosaoZapDataTable dtz = new TESTIRANJEDataSet2.SelectRadniNalogPosaoZapDataTable();
 
-            Perftech_BeogradDataSet2TableAdapters.SelectRadniNalogPosaoUzrTableAdapter tau = new Perftech_BeogradDataSet2TableAdapters.SelectRadniNalogPosaoUzrTableAdapter();
-            Perftech_BeogradDataSet2.SelectRadniNalogPosaoUzrDataTable dtu = new Perftech_BeogradDataSet2.SelectRadniNalogPosaoUzrDataTable();
+            TESTIRANJEDataSet2TableAdapters.SelectRadniNalogPosaoUzrTableAdapter tau = new TESTIRANJEDataSet2TableAdapters.SelectRadniNalogPosaoUzrTableAdapter();
+            TESTIRANJEDataSet2.SelectRadniNalogPosaoUzrDataTable dtu = new TESTIRANJEDataSet2.SelectRadniNalogPosaoUzrDataTable();
 
-            Perftech_BeogradDataSet2TableAdapters.SelectRadniNalogTraseLokZapEvidTableAdapter tae = new Perftech_BeogradDataSet2TableAdapters.SelectRadniNalogTraseLokZapEvidTableAdapter();
-            Perftech_BeogradDataSet2.SelectRadniNalogTraseLokZapEvidDataTable dte = new Perftech_BeogradDataSet2.SelectRadniNalogTraseLokZapEvidDataTable();
+            TESTIRANJEDataSet2TableAdapters.SelectRadniNalogTraseLokZapEvidTableAdapter tae = new TESTIRANJEDataSet2TableAdapters.SelectRadniNalogTraseLokZapEvidTableAdapter();
+            TESTIRANJEDataSet2.SelectRadniNalogTraseLokZapEvidDataTable dte = new TESTIRANJEDataSet2.SelectRadniNalogTraseLokZapEvidDataTable();
        
 
 

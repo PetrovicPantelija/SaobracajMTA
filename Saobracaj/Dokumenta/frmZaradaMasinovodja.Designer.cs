@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmZaradaMasinovodja));
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpVremeDo = new System.Windows.Forms.DateTimePicker();
@@ -82,9 +83,9 @@
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource2.Name = "DataSetZarada";
-            reportDataSource2.Value = null;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            reportDataSource1.Name = "DataSetZarada";
+            reportDataSource1.Value = null;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Dokumenta.Zarada.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(12, 46);
             this.reportViewer1.Name = "reportViewer1";
@@ -93,12 +94,13 @@
             // 
             // btnStampa
             // 
-            this.btnStampa.Location = new System.Drawing.Point(358, 12);
+            this.btnStampa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnStampa.Location = new System.Drawing.Point(358, 5);
             this.btnStampa.Name = "btnStampa";
-            this.btnStampa.Size = new System.Drawing.Size(111, 23);
+            this.btnStampa.Size = new System.Drawing.Size(123, 30);
             this.btnStampa.TabIndex = 113;
             this.btnStampa.Text = "Štampaj";
-            this.btnStampa.UseVisualStyleBackColor = true;
+            this.btnStampa.UseVisualStyleBackColor = false;
             this.btnStampa.Click += new System.EventHandler(this.btnStampa_Click);
             // 
             // frmZaradaMasinovodja
@@ -112,6 +114,7 @@
             this.Controls.Add(this.dtpVremeOd);
             this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.btnStampa);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmZaradaMasinovodja";
             this.Text = "frmZaradaMasinovodja";
             this.ResumeLayout(false);

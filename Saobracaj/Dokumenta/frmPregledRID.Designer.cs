@@ -101,12 +101,13 @@
             // 
             // button4
             // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button4.Location = new System.Drawing.Point(402, 9);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(16, 23);
+            this.button4.Size = new System.Drawing.Size(30, 23);
             this.button4.TabIndex = 100;
             this.button4.Text = "P";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // dataGridView1
@@ -121,12 +122,13 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.Location = new System.Drawing.Point(638, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(19, 23);
+            this.button1.Size = new System.Drawing.Size(28, 23);
             this.button1.TabIndex = 102;
             this.button1.Text = "P";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dataGridView2

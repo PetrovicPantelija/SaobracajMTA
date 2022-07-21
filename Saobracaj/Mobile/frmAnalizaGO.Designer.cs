@@ -29,6 +29,7 @@ namespace Saobracaj.Mobile
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAnalizaGO));
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.SuspendLayout();
@@ -61,6 +62,7 @@ namespace Saobracaj.Mobile
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(893, 441);
             this.Controls.Add(this.gridGroupingControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAnalizaGO";
             this.Text = "Analiza godisnjih odmora";
             this.Load += new System.EventHandler(this.frmAnalizaGO_Load);

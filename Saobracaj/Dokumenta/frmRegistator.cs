@@ -281,9 +281,9 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            Perftech_BeogradDataSet12TableAdapters.SelectRegistratorTableAdapter ta = new Perftech_BeogradDataSet12TableAdapters.SelectRegistratorTableAdapter();
+            TESTIRANJEDataSet12TableAdapters.SelectRegistratorTableAdapter ta = new TESTIRANJEDataSet12TableAdapters.SelectRegistratorTableAdapter();
 
-            Perftech_BeogradDataSet12.SelectRegistratorDataTable dt = new Perftech_BeogradDataSet12.SelectRegistratorDataTable();
+            TESTIRANJEDataSet12.SelectRegistratorDataTable dt = new TESTIRANJEDataSet12.SelectRegistratorDataTable();
 
 
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));

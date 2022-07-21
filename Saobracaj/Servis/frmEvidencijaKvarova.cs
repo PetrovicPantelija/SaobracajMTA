@@ -19,7 +19,7 @@ using Microsoft.Reporting.WinForms;
 
 namespace Saobracaj.Servis
 {
-    public partial class frmEvidencijaKvarova : MetroForm
+    public partial class frmEvidencijaKvarova : Form
     {
         private List<PictureBox> PictureBoxes = new List<PictureBox>();
 
@@ -493,8 +493,8 @@ namespace Saobracaj.Servis
 
         private void metroButton6_Click(object sender, EventArgs e)
         {
-            Perftech_BeogradDataSet13TableAdapters.StampaEvidencijeKvaraTableAdapter ta = new Perftech_BeogradDataSet13TableAdapters.StampaEvidencijeKvaraTableAdapter();
-            Perftech_BeogradDataSet13.StampaEvidencijeKvaraDataTable dt = new Perftech_BeogradDataSet13.StampaEvidencijeKvaraDataTable();
+            TESTIRANJEDataSet13TableAdapters.StampaEvidencijeKvaraTableAdapter ta = new TESTIRANJEDataSet13TableAdapters.StampaEvidencijeKvaraTableAdapter();
+            TESTIRANJEDataSet13.StampaEvidencijeKvaraDataTable dt = new TESTIRANJEDataSet13.StampaEvidencijeKvaraDataTable();
 
             ta.Fill(dt);
             ReportDataSource rds = new ReportDataSource();

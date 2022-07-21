@@ -650,9 +650,9 @@
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(1079, 143);
+            this.dataGridView3.Location = new System.Drawing.Point(1079, 155);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(123, 196);
+            this.dataGridView3.Size = new System.Drawing.Size(123, 184);
             this.dataGridView3.TabIndex = 9;
             // 
             // label17
@@ -670,7 +670,7 @@
             this.txtNapomena.Location = new System.Drawing.Point(862, 22);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
-            this.txtNapomena.Size = new System.Drawing.Size(229, 89);
+            this.txtNapomena.Size = new System.Drawing.Size(336, 89);
             this.txtNapomena.TabIndex = 179;
             // 
             // label18

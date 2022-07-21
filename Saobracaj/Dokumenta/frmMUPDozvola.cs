@@ -327,8 +327,8 @@ namespace Saobracaj.Dokumenta
         {
            
 
-            Perftech_BeogradDataSet11TableAdapters.SelectMUPDozvolaTableAdapter ta = new Perftech_BeogradDataSet11TableAdapters.SelectMUPDozvolaTableAdapter();
-            Perftech_BeogradDataSet11.SelectMUPDozvolaDataTable dt = new Perftech_BeogradDataSet11.SelectMUPDozvolaDataTable();
+            TESTIRANJEDataSet11TableAdapters.SelectMUPDozvolaTableAdapter ta = new TESTIRANJEDataSet11TableAdapters.SelectMUPDozvolaTableAdapter();
+            TESTIRANJEDataSet11.SelectMUPDozvolaDataTable dt = new TESTIRANJEDataSet11.SelectMUPDozvolaDataTable();
 
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();

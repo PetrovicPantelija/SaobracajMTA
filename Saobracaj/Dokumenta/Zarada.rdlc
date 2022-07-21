@@ -2,14 +2,14 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="Perftech_BeogradDataSet3">
+    <DataSource Name="TESTIRANJEDataSet3">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
       <rd:DataSourceID>5c0d4b0e-b8e4-49ff-b2bc-cb9ae911bcac</rd:DataSourceID>
     </DataSource>
-    <DataSource Name="Perftech_BeogradDataSet10">
+    <DataSource Name="TESTIRANJEDataSet10">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
@@ -20,7 +20,7 @@
   <DataSets>
     <DataSet Name="DataSetZarada">
       <Query>
-        <DataSourceName>Perftech_BeogradDataSet3</DataSourceName>
+        <DataSourceName>TESTIRANJEDataSet3</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -78,8 +78,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>Perftech_BeogradDataSet3</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\Perftech_BeogradDataSet3.xsd</rd:SchemaPath>
+        <rd:DataSetName>TESTIRANJEDataSet3</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\TESTIRANJEDataSet3.xsd</rd:SchemaPath>
         <rd:TableName>SelectAktivnosti</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -88,7 +88,7 @@
     </DataSet>
     <DataSet Name="DataSetPPK">
       <Query>
-        <DataSourceName>Perftech_BeogradDataSet3</DataSourceName>
+        <DataSourceName>TESTIRANJEDataSet3</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -98,8 +98,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>Perftech_BeogradDataSet3</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\Perftech_BeogradDataSet3.xsd</rd:SchemaPath>
+        <rd:DataSetName>TESTIRANJEDataSet3</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\TESTIRANJEDataSet3.xsd</rd:SchemaPath>
         <rd:TableName>SelectAktPPK</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -108,7 +108,7 @@
     </DataSet>
     <DataSet Name="DataSetDISP">
       <Query>
-        <DataSourceName>Perftech_BeogradDataSet3</DataSourceName>
+        <DataSourceName>TESTIRANJEDataSet3</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -122,8 +122,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>Perftech_BeogradDataSet3</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\Perftech_BeogradDataSet3.xsd</rd:SchemaPath>
+        <rd:DataSetName>TESTIRANJEDataSet3</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\TESTIRANJEDataSet3.xsd</rd:SchemaPath>
         <rd:TableName>SelectAktDISP</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -132,7 +132,7 @@
     </DataSet>
     <DataSet Name="DataSetStav">
       <Query>
-        <DataSourceName>Perftech_BeogradDataSet3</DataSourceName>
+        <DataSourceName>TESTIRANJEDataSet3</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -142,8 +142,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>Perftech_BeogradDataSet3</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\Perftech_BeogradDataSet3.xsd</rd:SchemaPath>
+        <rd:DataSetName>TESTIRANJEDataSet3</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\TESTIRANJEDataSet3.xsd</rd:SchemaPath>
         <rd:TableName>SelectObracunUkupno</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -152,7 +152,7 @@
     </DataSet>
     <DataSet Name="DataSetUm">
       <Query>
-        <DataSourceName>Perftech_BeogradDataSet3</DataSourceName>
+        <DataSourceName>TESTIRANJEDataSet3</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -174,8 +174,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>Perftech_BeogradDataSet3</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\Perftech_BeogradDataSet3.xsd</rd:SchemaPath>
+        <rd:DataSetName>TESTIRANJEDataSet3</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\TESTIRANJEDataSet3.xsd</rd:SchemaPath>
         <rd:TableName>SelectObracunUkupnoUmanjen</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -184,7 +184,7 @@
     </DataSet>
     <DataSet Name="DataSetTros">
       <Query>
-        <DataSourceName>Perftech_BeogradDataSet3</DataSourceName>
+        <DataSourceName>TESTIRANJEDataSet3</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -222,8 +222,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>Perftech_BeogradDataSet3</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\Perftech_BeogradDataSet3.xsd</rd:SchemaPath>
+        <rd:DataSetName>TESTIRANJEDataSet3</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\TESTIRANJEDataSet3.xsd</rd:SchemaPath>
         <rd:TableName>SelectAktivnostiTrosak</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -232,7 +232,7 @@
     </DataSet>
     <DataSet Name="DataSetNocni">
       <Query>
-        <DataSourceName>Perftech_BeogradDataSet3</DataSourceName>
+        <DataSourceName>TESTIRANJEDataSet3</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -242,8 +242,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>Perftech_BeogradDataSet3</rd:DataSetName>
-        <rd:SchemaPath>E:\Saobracaj\Saobracaj\Perftech_BeogradDataSet3.xsd</rd:SchemaPath>
+        <rd:DataSetName>TESTIRANJEDataSet3</rd:DataSetName>
+        <rd:SchemaPath>E:\Saobracaj\Saobracaj\TESTIRANJEDataSet3.xsd</rd:SchemaPath>
         <rd:TableName>SelectAktNocni</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

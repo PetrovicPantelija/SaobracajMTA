@@ -13,12 +13,14 @@ using System.Configuration;
 using System.Net;
 using System.Net.Mail; 
 using Microsoft.Reporting.WinForms;
-
+using Syncfusion.Windows.Forms.Grid.Grouping;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmNajava : Form
+    public partial class frmNajava : Syncfusion.Windows.Forms.Office2010Form
     {
+        
+
         string niz = "";
         public static string code = "frmNajava";
         public bool Pravo;
@@ -41,6 +43,8 @@ namespace Saobracaj.Dokumenta
 
         public frmNajava()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzcwMDg5QDMxMzgyZTM0MmUzMFhQSmlDM0M2bGpxcXVtT1VScTg1a0dtVTFLcUZiK0tLRnpvRTYyRFpMc3M9");
+
             InitializeComponent();
             IdGrupe();
             IdForme();
@@ -1362,7 +1366,7 @@ namespace Saobracaj.Dokumenta
 
             SqlCommand cmd = new SqlCommand("SELECT [ID] ,[BrojNajave] ,[Voz] ,[Posiljalac] ,[Prevoznik],[Otpravna] ,[Uputna] ,[Primalac] ,[RobaNHM] ,[PrevozniPut] " +
             " ,[Tezina] ,[Duzina] ,[BrojKola] ,[RID] ,[PredvidjenoPrimanje] ,[StvarnoPrimanje] ,[PredvidjenaPredaja] ,[StvarnaPredaja] " +
-            " ,[Status] ,[OnBroj] ,[Verzija] ,[Razlog] ,[DatumUnosa] ,[RIDBroj] ,[Komentar], [VozP], [Granicna], Platilac, AdHoc, PrevoznikZa, Faktura, Zadatak, CIM, DispecerRID, TipPrevoza, NetoTezinaM, PorudzbinaID, ImaPovrat, TehnologijaID, RobaNHM2, DodatnoPorudznina FROM [Perftech_Beograd].[dbo].[Najava] where ID=" + txtSifra.Text, con);
+            " ,[Status] ,[OnBroj] ,[Verzija] ,[Razlog] ,[DatumUnosa] ,[RIDBroj] ,[Komentar], [VozP], [Granicna], Platilac, AdHoc, PrevoznikZa, Faktura, Zadatak, CIM, DispecerRID, TipPrevoza, NetoTezinaM, PorudzbinaID, ImaPovrat, TehnologijaID, RobaNHM2, DodatnoPorudznina FROM [TESTIRANJE].[dbo].[Najava] where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -1467,7 +1471,7 @@ namespace Saobracaj.Dokumenta
 
             SqlCommand cmd = new SqlCommand("SELECT [ID] ,[BrojNajave] ,[Voz] ,[Posiljalac] ,[Prevoznik],[Otpravna] ,[Uputna] ,[Primalac] ,[RobaNHM] ,[PrevozniPut] " +
             " ,[Tezina] ,[Duzina] ,[BrojKola] ,[RID] ,[PredvidjenoPrimanje] ,[StvarnoPrimanje] ,[PredvidjenaPredaja] ,[StvarnaPredaja] " +
-            " ,[Status] ,[OnBroj] ,[Verzija] ,[Razlog] ,[DatumUnosa] ,[RIDBroj] ,[Komentar], [VozP], [Granicna], Platilac, AdHoc, PrevoznikZa, Faktura, Zadatak, CIM, DispecerRID, TipPrevoza, NetoTezinaM, PorudzbinaID, ImaPovrat, TehnologijaID, RobaNHM2, DodatnoPorudznina FROM [Perftech_Beograd].[dbo].[Najava] where ID=" + txtSifra.Text, con);
+            " ,[Status] ,[OnBroj] ,[Verzija] ,[Razlog] ,[DatumUnosa] ,[RIDBroj] ,[Komentar], [VozP], [Granicna], Platilac, AdHoc, PrevoznikZa, Faktura, Zadatak, CIM, DispecerRID, TipPrevoza, NetoTezinaM, PorudzbinaID, ImaPovrat, TehnologijaID, RobaNHM2, DodatnoPorudznina FROM [TESTIRANJE].[dbo].[Najava] where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -2331,7 +2335,7 @@ namespace Saobracaj.Dokumenta
      "   [RobaNHM]       ,[PrevozniPut] " +
      "       ,[Platilac]  ,[TipPrevoza] " +
     "  ,[RobaNhm2]      ,[DodatnoPorudznina] " +
- "  FROM [Perftech_Beograd].[dbo].Najava where [ID] = " + Convert.ToInt32(multiColumnComboBox1.SelectedValue), con);
+ "  FROM [TESTIRANJE].[dbo].Najava where [ID] = " + Convert.ToInt32(multiColumnComboBox1.SelectedValue), con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -2381,7 +2385,7 @@ namespace Saobracaj.Dokumenta
 
             SqlCommand cmd = new SqlCommand("SELECT [ID] ,[BrojNajave] ,[Voz] ,[Posiljalac] ,[Prevoznik],[Otpravna] ,[Uputna] ,[Primalac] ,[RobaNHM] ,[PrevozniPut] " +
             " ,[Tezina] ,[Duzina] ,[BrojKola] ,[RID] ,[PredvidjenoPrimanje] ,[StvarnoPrimanje] ,[PredvidjenaPredaja] ,[StvarnaPredaja] " +
-            " ,[Status] ,[OnBroj] ,[Verzija] ,[Razlog] ,[DatumUnosa] ,[RIDBroj] ,[Komentar], [VozP], [Granicna], Platilac, AdHoc, PrevoznikZa, Faktura, Zadatak, CIM, DispecerRID, TipPrevoza, NetoTezinaM, PorudzbinaID, ImaPovrat, TehnologijaID, RobaNHM2, DodatnoPorudznina FROM [Perftech_Beograd].[dbo].[Najava] where [ID] = " + Convert.ToInt32(multiColumnComboBox1.SelectedValue), con);
+            " ,[Status] ,[OnBroj] ,[Verzija] ,[Razlog] ,[DatumUnosa] ,[RIDBroj] ,[Komentar], [VozP], [Granicna], Platilac, AdHoc, PrevoznikZa, Faktura, Zadatak, CIM, DispecerRID, TipPrevoza, NetoTezinaM, PorudzbinaID, ImaPovrat, TehnologijaID, RobaNHM2, DodatnoPorudznina FROM [TESTIRANJE].[dbo].[Najava] where [ID] = " + Convert.ToInt32(multiColumnComboBox1.SelectedValue), con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -2468,7 +2472,7 @@ namespace Saobracaj.Dokumenta
      " ,[Uputna]  ,[Primalac]      ,[RobaNHM]       ,[PrevozniPut] "+   
      " ,[Granicna]       ,[Platilac]      ,[PrevoznikZa]      ,[TipPrevoza] " +
     "  ,[RobaNhm2]      ,[DodatnoPorudznina] " +
- "  FROM [Perftech_Beograd].[dbo].Najava where [ID] = " + Convert.ToInt32(multiColumnComboBox1.SelectedValue), con);
+ "  FROM [TESTIRANJE].[dbo].Najava where [ID] = " + Convert.ToInt32(multiColumnComboBox1.SelectedValue), con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -2645,6 +2649,57 @@ namespace Saobracaj.Dokumenta
         {
             frmNajavaLog log = new frmNajavaLog();
             log.Show();
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmPronadjiVagon pv = new Dokumenta.frmPronadjiVagon();
+           
+        }
+
+        private void chkAdHoc_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label29_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtDispecerRID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkIzNajave_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkImaPovrat_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox6_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView5_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void txtZadatak_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         /*

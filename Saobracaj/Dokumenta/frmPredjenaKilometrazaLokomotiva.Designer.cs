@@ -29,6 +29,7 @@ namespace Saobracaj.Dokumenta
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPredjenaKilometrazaLokomotiva));
             this.btnIzracunaj = new System.Windows.Forms.Button();
             this.dtpVremeDo = new System.Windows.Forms.DateTimePicker();
             this.label15 = new System.Windows.Forms.Label();
@@ -40,12 +41,14 @@ namespace Saobracaj.Dokumenta
             // 
             // btnIzracunaj
             // 
+            this.btnIzracunaj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnIzracunaj.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnIzracunaj.Location = new System.Drawing.Point(384, 28);
             this.btnIzracunaj.Name = "btnIzracunaj";
             this.btnIzracunaj.Size = new System.Drawing.Size(143, 24);
             this.btnIzracunaj.TabIndex = 281;
             this.btnIzracunaj.Text = "Izračunaj 1";
-            this.btnIzracunaj.UseVisualStyleBackColor = true;
+            this.btnIzracunaj.UseVisualStyleBackColor = false;
             this.btnIzracunaj.Click += new System.EventHandler(this.btnIzracunaj_Click);
             // 
             // dtpVremeDo
@@ -110,6 +113,7 @@ namespace Saobracaj.Dokumenta
             this.Controls.Add(this.label15);
             this.Controls.Add(this.dtpVremeOd);
             this.Controls.Add(this.label21);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPredjenaKilometrazaLokomotiva";
             this.Text = "Predjena kilometraza lokomotiva";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -29,6 +29,7 @@ namespace Saobracaj.Dokumenta
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTeretnicaTerenIzmena));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,30 +43,33 @@ namespace Saobracaj.Dokumenta
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 95);
+            this.dataGridView1.Location = new System.Drawing.Point(9, 77);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1339, 311);
+            this.dataGridView1.Size = new System.Drawing.Size(1004, 253);
             this.dataGridView1.TabIndex = 0;
             // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(12, 459);
+            this.dataGridView2.Location = new System.Drawing.Point(9, 373);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(1339, 306);
+            this.dataGridView2.Size = new System.Drawing.Size(1004, 249);
             this.dataGridView2.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(8, 60);
+            this.label1.Location = new System.Drawing.Point(6, 49);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 20);
+            this.label1.Size = new System.Drawing.Size(89, 17);
             this.label1.TabIndex = 1;
             this.label1.Text = "Najavljeno:";
             // 
@@ -73,17 +77,19 @@ namespace Saobracaj.Dokumenta
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, 425);
+            this.label2.Location = new System.Drawing.Point(6, 345);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 20);
+            this.label2.Size = new System.Drawing.Size(80, 17);
             this.label2.TabIndex = 1;
             this.label2.Text = "Popisano:";
             // 
             // btn_Provera
             // 
-            this.btn_Provera.Location = new System.Drawing.Point(162, 16);
+            this.btn_Provera.Location = new System.Drawing.Point(122, 13);
+            this.btn_Provera.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_Provera.Name = "btn_Provera";
-            this.btn_Provera.Size = new System.Drawing.Size(137, 44);
+            this.btn_Provera.Size = new System.Drawing.Size(103, 36);
             this.btn_Provera.TabIndex = 2;
             this.btn_Provera.Text = "Uporedi";
             this.btn_Provera.UseVisualStyleBackColor = true;
@@ -91,9 +97,10 @@ namespace Saobracaj.Dokumenta
             // 
             // btn_Izmena
             // 
-            this.btn_Izmena.Location = new System.Drawing.Point(339, 16);
+            this.btn_Izmena.Location = new System.Drawing.Point(254, 13);
+            this.btn_Izmena.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btn_Izmena.Name = "btn_Izmena";
-            this.btn_Izmena.Size = new System.Drawing.Size(137, 44);
+            this.btn_Izmena.Size = new System.Drawing.Size(103, 36);
             this.btn_Izmena.TabIndex = 3;
             this.btn_Izmena.Text = "Potvrdi Izmene";
             this.btn_Izmena.UseVisualStyleBackColor = true;
@@ -101,15 +108,17 @@ namespace Saobracaj.Dokumenta
             // 
             // frmTeretnicaTerenIzmena
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1363, 777);
+            this.ClientSize = new System.Drawing.Size(1022, 609);
             this.Controls.Add(this.btn_Izmena);
             this.Controls.Add(this.btn_Provera);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmTeretnicaTerenIzmena";
             this.Text = "TeretnicaTerenIzmena";
             this.Load += new System.EventHandler(this.frmTeretnicaTerenIzmena_Load);

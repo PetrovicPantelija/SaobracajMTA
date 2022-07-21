@@ -62,7 +62,7 @@ namespace Saobracaj.Testiranje
             // 
             this.cboGrupaTesta.BackColor = System.Drawing.Color.White;
             this.cboGrupaTesta.FormattingEnabled = true;
-            this.cboGrupaTesta.Location = new System.Drawing.Point(12, 44);
+            this.cboGrupaTesta.Location = new System.Drawing.Point(12, 55);
             this.cboGrupaTesta.Name = "cboGrupaTesta";
             this.cboGrupaTesta.Size = new System.Drawing.Size(191, 21);
             this.cboGrupaTesta.TabIndex = 164;
@@ -72,7 +72,7 @@ namespace Saobracaj.Testiranje
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.ForestGreen;
-            this.label3.Location = new System.Drawing.Point(12, 26);
+            this.label3.Location = new System.Drawing.Point(15, 39);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 13);
             this.label3.TabIndex = 165;
@@ -96,11 +96,10 @@ namespace Saobracaj.Testiranje
             // 
             // toolStripButton1
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(76, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(92, 22);
             this.toolStripButton1.Text = "Generiši Test";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -119,6 +118,7 @@ namespace Saobracaj.Testiranje
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(3, 19);
             this.dataGridView1.Name = "dataGridView1";
@@ -131,6 +131,7 @@ namespace Saobracaj.Testiranje
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(339, 19);
             this.dataGridView2.Name = "dataGridView2";
@@ -162,6 +163,7 @@ namespace Saobracaj.Testiranje
             // 
             this.dataGridView3.AllowUserToAddRows = false;
             this.dataGridView3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dataGridView3.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(803, 26);
             this.dataGridView3.Name = "dataGridView3";
@@ -171,12 +173,17 @@ namespace Saobracaj.Testiranje
             // btnIzbaciTrasa
             // 
             this.btnIzbaciTrasa.AccessibleName = "Button";
+            this.btnIzbaciTrasa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.btnIzbaciTrasa.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.btnIzbaciTrasa.ForeColor = System.Drawing.Color.White;
             this.btnIzbaciTrasa.Location = new System.Drawing.Point(354, 55);
             this.btnIzbaciTrasa.Name = "btnIzbaciTrasa";
             this.btnIzbaciTrasa.Size = new System.Drawing.Size(154, 28);
+            this.btnIzbaciTrasa.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnIzbaciTrasa.Style.ForeColor = System.Drawing.Color.White;
             this.btnIzbaciTrasa.TabIndex = 203;
             this.btnIzbaciTrasa.Text = "Izbaci selektovana pitanja";
+            this.btnIzbaciTrasa.UseVisualStyleBackColor = false;
             this.btnIzbaciTrasa.Click += new System.EventHandler(this.btnIzbaciTrasa_Click);
             // 
             // frmGenerisanjeTestaKorisnik
@@ -190,6 +197,7 @@ namespace Saobracaj.Testiranje
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.cboGrupaTesta);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmGenerisanjeTestaKorisnik";
             this.Text = "Generisanje testa ";
             this.Load += new System.EventHandler(this.frmGenerisanjeTestaKorisnik_Load);

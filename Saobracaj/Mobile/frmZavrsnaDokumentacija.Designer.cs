@@ -32,14 +32,15 @@ namespace Saobracaj.Mobile
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmZavrsnaDokumentacija));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.metroButton1 = new MetroFramework.Controls.MetroButton();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new MetroFramework.Controls.MetroGrid();
             this.flpThumbnails = new System.Windows.Forms.FlowLayoutPanel();
             this.txtDirectory = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSifra = new System.Windows.Forms.TextBox();
+            this.metroButton1 = new MetroFramework.Controls.MetroButton();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new MetroFramework.Controls.MetroGrid();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -58,9 +59,45 @@ namespace Saobracaj.Mobile
             this.panel1.Size = new System.Drawing.Size(800, 235);
             this.panel1.TabIndex = 0;
             // 
+            // flpThumbnails
+            // 
+            this.flpThumbnails.AutoScroll = true;
+            this.flpThumbnails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.flpThumbnails.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.flpThumbnails.Location = new System.Drawing.Point(377, 40);
+            this.flpThumbnails.Name = "flpThumbnails";
+            this.flpThumbnails.Size = new System.Drawing.Size(402, 179);
+            this.flpThumbnails.TabIndex = 66;
+            // 
+            // txtDirectory
+            // 
+            this.txtDirectory.Location = new System.Drawing.Point(497, 14);
+            this.txtDirectory.Name = "txtDirectory";
+            this.txtDirectory.Size = new System.Drawing.Size(282, 20);
+            this.txtDirectory.TabIndex = 65;
+            this.txtDirectory.TextChanged += new System.EventHandler(this.txtDirectory_TextChanged);
+            this.txtDirectory.DoubleClick += new System.EventHandler(this.PictureBox_DoubleClick);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(367, 14);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(52, 13);
+            this.label2.TabIndex = 64;
+            this.label2.Text = "Directory:";
+            // 
+            // txtSifra
+            // 
+            this.txtSifra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtSifra.Location = new System.Drawing.Point(435, 14);
+            this.txtSifra.Name = "txtSifra";
+            this.txtSifra.Size = new System.Drawing.Size(56, 20);
+            this.txtSifra.TabIndex = 63;
+            // 
             // metroButton1
             // 
-            this.metroButton1.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.metroButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.metroButton1.Location = new System.Drawing.Point(12, 12);
             this.metroButton1.Name = "metroButton1";
             this.metroButton1.Size = new System.Drawing.Size(157, 30);
@@ -126,42 +163,6 @@ namespace Saobracaj.Mobile
             this.dataGridView1.TabIndex = 20;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
-            // flpThumbnails
-            // 
-            this.flpThumbnails.AutoScroll = true;
-            this.flpThumbnails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.flpThumbnails.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.flpThumbnails.Location = new System.Drawing.Point(377, 40);
-            this.flpThumbnails.Name = "flpThumbnails";
-            this.flpThumbnails.Size = new System.Drawing.Size(402, 179);
-            this.flpThumbnails.TabIndex = 66;
-            // 
-            // txtDirectory
-            // 
-            this.txtDirectory.Location = new System.Drawing.Point(497, 14);
-            this.txtDirectory.Name = "txtDirectory";
-            this.txtDirectory.Size = new System.Drawing.Size(282, 20);
-            this.txtDirectory.TabIndex = 65;
-            this.txtDirectory.TextChanged += new System.EventHandler(this.txtDirectory_TextChanged);
-            this.txtDirectory.DoubleClick += new System.EventHandler(this.PictureBox_DoubleClick);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(367, 14);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 13);
-            this.label2.TabIndex = 64;
-            this.label2.Text = "Directory:";
-            // 
-            // txtSifra
-            // 
-            this.txtSifra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtSifra.Location = new System.Drawing.Point(435, 14);
-            this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(56, 20);
-            this.txtSifra.TabIndex = 63;
-            // 
             // frmZavrsnaDokumentacija
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -169,6 +170,7 @@ namespace Saobracaj.Mobile
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmZavrsnaDokumentacija";
             this.Text = "Završna dokumentacija";
             this.panel1.ResumeLayout(false);

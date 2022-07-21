@@ -117,14 +117,14 @@ namespace Saobracaj.SyncForm
         }
         private void frmPlanRada_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'perftech_BeogradDataSet4.Aktivnosti' table. You can move, or remove it, as needed.
-            // this.aktivnostiTableAdapter.Fill(this.perftech_BeogradDataSet4.Aktivnosti);
+            // TODO: This line of code loads data into the 'TESTIRANJEDataSet4.Aktivnosti' table. You can move, or remove it, as needed.
+            // this.aktivnostiTableAdapter.Fill(this.TESTIRANJEDataSet4.Aktivnosti);
             var select = "  select Markers.Display as Lokomotiva, Labels.Display as TIpRada, Reminders.Display as Zaposleni, Appointments.StartTime, Appointments.EndTime, Appointments.Subject, Appointments.LocationValue, Appointments.Content from Appointments " +
  " inner join Markers on Markers.Id = Appointments.MarkerValue " +
 " inner join Labels on Labels.Id = Appointments.LabelValue " +
 " inner join Reminders on Reminders.Id = Appointments.ReminderValue ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.Perftech_BeogradConnectionString"].ConnectionString;
+            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

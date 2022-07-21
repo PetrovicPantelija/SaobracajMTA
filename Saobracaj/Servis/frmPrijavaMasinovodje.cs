@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Servis
 {
-    public partial class frmPrijavaMasinovodje : MetroForm
+    public partial class frmPrijavaMasinovodje : Form
     {
         public frmPrijavaMasinovodje()
         {
@@ -263,7 +263,7 @@ select
              " ,[Smer] ,[Zaposleni] ,[Datum] " +
              " ,[Stanica] ,[MotoSati] " +
              " ,[KM] ,[Gorivo],[Napomena], AktivnostID " +
-             "  FROM [Perftech_Beograd].[dbo].[LokomotivaPrijava] where ID=" + txtSifra.Text, con);
+             "  FROM [TESTIRANJE].[dbo].[LokomotivaPrijava] where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())

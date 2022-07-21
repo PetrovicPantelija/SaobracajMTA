@@ -18,7 +18,7 @@ using MetroFramework.Forms;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmRegistratorPregled : MetroForm
+    public partial class frmRegistratorPregled : Form
     {
         public frmRegistratorPregled()
         {

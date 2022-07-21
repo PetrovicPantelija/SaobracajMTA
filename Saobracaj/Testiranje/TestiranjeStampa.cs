@@ -120,8 +120,8 @@ namespace Saobracaj.Testiranje
         }
         private void sfButton1_Click(object sender, EventArgs e)
         {
-            Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter ta = new Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter();
-            Perftech_BeogradDataSet15.TestoviViewDataTable dt = new Perftech_BeogradDataSet15.TestoviViewDataTable();
+            TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter ta = new TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter();
+            TESTIRANJEDataSet15.TestoviViewDataTable dt = new TESTIRANJEDataSet15.TestoviViewDataTable();
             //  NedraDataSet2TableAdapters.SelectNajavaTableAdapter ta = new NedraDataSet2TableAdapters.SelectNajavaTableAdapter();
             // NedraDataSet2.SelectNajavaDataTable dt = new NedraDataSet2.SelectNajavaDataTable();
             string pom = cboGrupaTesta.SelectedValue.ToString();
@@ -181,8 +181,8 @@ namespace Saobracaj.Testiranje
 
         private void sfButton2_Click(object sender, EventArgs e)
         {
-            Perftech_BeogradDataSet16TableAdapters.TestoviZ8TableAdapter ta = new Perftech_BeogradDataSet16TableAdapters.TestoviZ8TableAdapter();
-            Perftech_BeogradDataSet16.TestoviZ8DataTable dt = new Perftech_BeogradDataSet16.TestoviZ8DataTable();
+            TESTIRANJEDataSet16TableAdapters.TestoviZ8TableAdapter ta = new TESTIRANJEDataSet16TableAdapters.TestoviZ8TableAdapter();
+            TESTIRANJEDataSet16.TestoviZ8DataTable dt = new TESTIRANJEDataSet16.TestoviZ8DataTable();
             //  NedraDataSet2TableAdapters.SelectNajavaTableAdapter ta = new NedraDataSet2TableAdapters.SelectNajavaTableAdapter();
             // NedraDataSet2.SelectNajavaDataTable dt = new NedraDataSet2.SelectNajavaDataTable();
             string pom = cboGrupaTesta.SelectedValue.ToString();

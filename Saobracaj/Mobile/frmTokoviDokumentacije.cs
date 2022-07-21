@@ -18,7 +18,7 @@ using System.Diagnostics;
 
 namespace Saobracaj.Mobile
 {
-    public partial class frmTokoviDokumentacije : MetroForm
+    public partial class frmTokoviDokumentacije : Form
     {
         private List<PictureBox> PictureBoxes = new List<PictureBox>();
 

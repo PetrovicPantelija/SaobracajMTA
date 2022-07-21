@@ -52,13 +52,15 @@ namespace Saobracaj.Servis
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button1.Location = new System.Drawing.Point(211, 48);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(255, 23);
+            this.button1.Size = new System.Drawing.Size(255, 33);
             this.button1.TabIndex = 173;
             this.button1.Tag = "?";
             this.button1.Text = "Popisne stavke po lokomotivi 500";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // cboLokomotiva
@@ -80,23 +82,27 @@ namespace Saobracaj.Servis
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button2.Location = new System.Drawing.Point(12, 48);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(193, 23);
+            this.button2.Size = new System.Drawing.Size(193, 33);
             this.button2.TabIndex = 174;
             this.button2.Text = "Zadnji popisi po lokomotivama";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button3.Location = new System.Drawing.Point(492, 48);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(255, 23);
+            this.button3.Size = new System.Drawing.Size(255, 33);
             this.button3.TabIndex = 175;
             this.button3.Tag = "?";
             this.button3.Text = "Neslaganja sa Referetnom kolicinom 500";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // frmPregledPopisa1

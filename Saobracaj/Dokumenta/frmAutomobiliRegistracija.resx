@@ -124,7 +124,7 @@
   <data name="tsNew.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAHHSURBVDhPrZHLK0RhGMZPys7CpSxk7Y+QDSWRQVJusUEy
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHHSURBVDhPrZHLK0RhGMZPys7CpSxk7Y+QDSWRQVJusUEy
         yS0Li0mUXBeGKSW3BeMSNW5FFjKkGIwxF8yMcwyZmY7roezo4f1y5mJmysJXT+e87/c8v+/9zuH+bc1o
         Z7F/YMDhkRHHRhOT0WT2iWraIw95f2L+RU0ymq3nsF3Y4bjifbLx16xHewTS6ZZDAdQkgxziBRcE1w0T
         vQfC5uYXwgPIcOf2RBTByBNxAtkoivchun949O2HBayurQeFXyQJzy8Se1L4ULjBjl1gVyDvT8y/qBl4
@@ -138,7 +138,7 @@
   <data name="tsSave.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAH3SURBVDhPlZNPSJNxHMZfd6iuNn1vtrv3Dnnq4PAQoUIM
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAH3SURBVDhPlZNPSJNxHMZfd6iuNn1vtrv3Dnnq4PAQoUIM
         nDi15vAPL2kYCKshbYwxmYozWdGkFk2tWKQm20rtz0EYOyQIEqxLnSSDDvMiuMf3+b46HXl4/cGHbb/v
         831+z3e/91W4wss/UX//C1R3BiOJTRSLxQq2fvwWdv/+k3q9L49w5hekmavWsYC69nnUeBYxPJsX4WnU
         7g/CykZB6mr/Oqx9Hw2DNu8caHC54x1U13tok19RKBQq4L56J43Xn75LnUm51zaagtKsxVDbkhATnuIZ
@@ -153,7 +153,7 @@
   <data name="tsDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAHUSURBVDhPYxhcYB4Dg+kua6vHy5iZPaBCcAAS22dr82Qx
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHUSURBVDhPYxhcYB4Dg+kua6vHy5iZPaBCcAAS22dr82Qx
         C4spVAgVzARq3q4s/v5TR9P/A/r63xcwMHhCpRjmAtkH9HW+f+pq+b9dXek9yCKoFAIsZWF5/CQ35f+z
         7Oz/z8qK/6/X1/5eyMDgBcLr9bW+PysuAMs9b679v5SF+TFUGwJMYWDwWK/O//1aVOj/yyEh/68kxf+v
         11f/MUlP7ceVhFiw2PX4aKDBmt9BaqHaUEE/0KlrVPi/n3F3/H/S1vb/cV/P/yeA+JSDw/9L8ZH/12rw
@@ -162,6 +162,30 @@
         Cf3wB4qB2CCxRyIC/xcq83/vV1LCNKReUfzJSwPt/5+BCt+KifzPVlH4DgxqLxcgzlFR/A4SA8m9NNL7
         P83QEDMai4EpbLq4+PtXhnr/m1SVvnsDNUKlQG72bAWKvQJqBqmpwJaQQKCYl9O8SkniaSIzM4YTM4Bi
         G61NnzZycmLXPECAgQEA4G3F+LI00JYAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAMMOAADDDgAAAAAAAAAA
+        AAD///////////////////////////////////////////7+/v////7/////////////////////////
+        ///////////////////////////////////////////////////5+vP/6ezT/83N0P/Z2dj/0NDQ//X1
+        9f/Y2Nj//Pz8//7+/v////////////7+/v///////v7+//7+/f//////5OnC/8nUh//m5O7/vr+9/8vL
+        y//T09P/29vb/////////////v7+//7+/v/////////////////+/vz//////8TMb//E1HP/29nl/8XG
+        w//p6en/zc3N/+fn5///////pKSk/9nZ2f//////nZ2d//Ly8v+rq6v/1NTT//////+puU//tcde/93a
+        5P/h4d//39/f/9TU1P/n5+f//////35+fv+zs7P/3Nzc/3d3d//s7Oz/g4OD/8DBv///////zdSo/7LH
+        Yf/PztP/wsLC/7y8vP+2trb/q6ur//z8/P+Pj4//lJSU/4eHh/+Hh4f/7Ozs/4yLjP/ExMH/4N2J/+Hl
+        yf+txWH/9PTz//Pz8//29vb/0tLS/83Nzf/+/v7/kpKS/3V1df9ZWVn/fn5+/+7u7P+NjZX/s7CG/9TO
+        UP/r8d//pcBa//v89v///v///////93d3f/k5OT//////4+Pj/9cXFz/WVlZ/2ZmZv/z8/D/jY6Z/6ii
+        ZP/BviH/4OW+/6fDZv/z9+n//////////v/8/Pz//Pz8//////+CgoL/UVFR/46Ojv9AQED/+/v7/4iI
+        iv/Cwrz/xstG/629Qv+dwV3/7vXg///////+//7/////////////////c3Nz/1lZWf/Dw8P/JiYm//39
+        /f+EhIP/x8fO//P3zv+csx//jrg1/+ny3f///////v79/////////////////3BwcP96enr/7u7u/zAw
+        MP/8/Pz/iIiI/8XGxf//////wtKC/4OyJP/k79P///////7+/f////////////////9ycnL/nZ2d////
+        //9VVVX/nZ2d/0ZGRv9fX1//6Ofp//7/+P+Su0b/1+e9///////9/vz/////////////////d3d3/76+
+        vv//////e3t7/1ZWVv8SEhL/FBQT/8zNy///////0uGy/8/frv///////f78/////////////////+Hh
+        4f/z8/P//////+Tk5P/a2tr/y8vL/83Nzf/19fX///////v89v/x9Oj/////////////////////////
+        ///////////////////////////////////////////////////+/v3////+////////////////////
+        ////////AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAA==
 </value>
   </data>
 </root>

@@ -29,38 +29,38 @@ namespace Saobracaj.Testiranje
         /// </summary>
         private void InitializeComponent()
         {
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource10 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource11 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource12 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource13 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource14 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource15 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource16 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource17 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource3 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource4 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource5 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource6 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource7 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource8 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.label1 = new System.Windows.Forms.Label();
             this.cboKorisnik = new System.Windows.Forms.ComboBox();
             this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.tabPage7 = new System.Windows.Forms.TabPage();
-            this.tabPage8 = new System.Windows.Forms.TabPage();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.reportViewer2 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.reportViewer3 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.reportViewer4 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.reportViewer5 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.reportViewer6 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.reportViewer7 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.reportViewer8 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.txtMesto = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.dtpDatumTesta = new System.Windows.Forms.DateTimePicker();
-            this.reportViewer2 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.reportViewer3 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.reportViewer4 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.reportViewer5 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.reportViewer6 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.reportViewer7 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.reportViewer8 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -93,12 +93,15 @@ namespace Saobracaj.Testiranje
             // sfButton1
             // 
             this.sfButton1.AccessibleName = "Button";
+            this.sfButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.sfButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
             this.sfButton1.Location = new System.Drawing.Point(505, 42);
             this.sfButton1.Name = "sfButton1";
             this.sfButton1.Size = new System.Drawing.Size(157, 28);
+            this.sfButton1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.sfButton1.TabIndex = 203;
             this.sfButton1.Text = "Štampaj obrazac  br 6";
+            this.sfButton1.UseVisualStyleBackColor = false;
             this.sfButton1.Click += new System.EventHandler(this.sfButton1_Click);
             // 
             // tabControl1
@@ -131,6 +134,20 @@ namespace Saobracaj.Testiranje
             this.tabPage1.Text = "Manevrista";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // reportViewer1
+            // 
+            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = null;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(6, 6);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.Size = new System.Drawing.Size(877, 385);
+            this.reportViewer1.TabIndex = 2;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.reportViewer2);
@@ -142,6 +159,20 @@ namespace Saobracaj.Testiranje
             this.tabPage2.Text = "Pregledač kola";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // reportViewer2
+            // 
+            this.reportViewer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            reportDataSource2.Name = "DataSet1";
+            reportDataSource2.Value = null;
+            this.reportViewer2.LocalReport.DataSources.Add(reportDataSource2);
+            this.reportViewer2.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
+            this.reportViewer2.Location = new System.Drawing.Point(6, 6);
+            this.reportViewer2.Name = "reportViewer2";
+            this.reportViewer2.Size = new System.Drawing.Size(877, 385);
+            this.reportViewer2.TabIndex = 3;
+            // 
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.reportViewer3);
@@ -151,6 +182,20 @@ namespace Saobracaj.Testiranje
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Vozovođa";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // reportViewer3
+            // 
+            this.reportViewer3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            reportDataSource3.Name = "DataSet1";
+            reportDataSource3.Value = null;
+            this.reportViewer3.LocalReport.DataSources.Add(reportDataSource3);
+            this.reportViewer3.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
+            this.reportViewer3.Location = new System.Drawing.Point(6, 6);
+            this.reportViewer3.Name = "reportViewer3";
+            this.reportViewer3.Size = new System.Drawing.Size(877, 385);
+            this.reportViewer3.TabIndex = 3;
             // 
             // tabPage4
             // 
@@ -162,6 +207,20 @@ namespace Saobracaj.Testiranje
             this.tabPage4.Text = "Mašinovođa-elektro vuče";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // reportViewer4
+            // 
+            this.reportViewer4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            reportDataSource4.Name = "DataSet1";
+            reportDataSource4.Value = null;
+            this.reportViewer4.LocalReport.DataSources.Add(reportDataSource4);
+            this.reportViewer4.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
+            this.reportViewer4.Location = new System.Drawing.Point(6, 6);
+            this.reportViewer4.Name = "reportViewer4";
+            this.reportViewer4.Size = new System.Drawing.Size(877, 385);
+            this.reportViewer4.TabIndex = 3;
+            // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.reportViewer5);
@@ -171,6 +230,20 @@ namespace Saobracaj.Testiranje
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Mašinovođa na manevri";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // reportViewer5
+            // 
+            this.reportViewer5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            reportDataSource5.Name = "DataSet1";
+            reportDataSource5.Value = null;
+            this.reportViewer5.LocalReport.DataSources.Add(reportDataSource5);
+            this.reportViewer5.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
+            this.reportViewer5.Location = new System.Drawing.Point(6, 6);
+            this.reportViewer5.Name = "reportViewer5";
+            this.reportViewer5.Size = new System.Drawing.Size(877, 385);
+            this.reportViewer5.TabIndex = 3;
             // 
             // tabPage6
             // 
@@ -182,6 +255,20 @@ namespace Saobracaj.Testiranje
             this.tabPage6.Text = "Mašinovođa";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // reportViewer6
+            // 
+            this.reportViewer6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            reportDataSource6.Name = "DataSet1";
+            reportDataSource6.Value = null;
+            this.reportViewer6.LocalReport.DataSources.Add(reportDataSource6);
+            this.reportViewer6.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
+            this.reportViewer6.Location = new System.Drawing.Point(6, 6);
+            this.reportViewer6.Name = "reportViewer6";
+            this.reportViewer6.Size = new System.Drawing.Size(877, 385);
+            this.reportViewer6.TabIndex = 3;
+            // 
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.reportViewer7);
@@ -191,6 +278,20 @@ namespace Saobracaj.Testiranje
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Pomoćnik mašinovođe";
             this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // reportViewer7
+            // 
+            this.reportViewer7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            reportDataSource7.Name = "DataSet1";
+            reportDataSource7.Value = null;
+            this.reportViewer7.LocalReport.DataSources.Add(reportDataSource7);
+            this.reportViewer7.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
+            this.reportViewer7.Location = new System.Drawing.Point(6, 6);
+            this.reportViewer7.Name = "reportViewer7";
+            this.reportViewer7.Size = new System.Drawing.Size(877, 385);
+            this.reportViewer7.TabIndex = 3;
             // 
             // tabPage8
             // 
@@ -202,19 +303,19 @@ namespace Saobracaj.Testiranje
             this.tabPage8.Text = "Rukovaoc manevre";
             this.tabPage8.UseVisualStyleBackColor = true;
             // 
-            // reportViewer1
+            // reportViewer8
             // 
-            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.reportViewer8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource10.Name = "DataSet1";
-            reportDataSource10.Value = null;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource10);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(6, 6);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(877, 385);
-            this.reportViewer1.TabIndex = 2;
+            reportDataSource8.Name = "DataSet1";
+            reportDataSource8.Value = null;
+            this.reportViewer8.LocalReport.DataSources.Add(reportDataSource8);
+            this.reportViewer8.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
+            this.reportViewer8.Location = new System.Drawing.Point(6, 6);
+            this.reportViewer8.Name = "reportViewer8";
+            this.reportViewer8.Size = new System.Drawing.Size(877, 385);
+            this.reportViewer8.TabIndex = 3;
             // 
             // txtMesto
             // 
@@ -253,104 +354,6 @@ namespace Saobracaj.Testiranje
             this.dtpDatumTesta.Size = new System.Drawing.Size(123, 20);
             this.dtpDatumTesta.TabIndex = 222;
             this.dtpDatumTesta.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // reportViewer2
-            // 
-            this.reportViewer2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource11.Name = "DataSet1";
-            reportDataSource11.Value = null;
-            this.reportViewer2.LocalReport.DataSources.Add(reportDataSource11);
-            this.reportViewer2.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
-            this.reportViewer2.Location = new System.Drawing.Point(6, 6);
-            this.reportViewer2.Name = "reportViewer2";
-            this.reportViewer2.Size = new System.Drawing.Size(877, 385);
-            this.reportViewer2.TabIndex = 3;
-            // 
-            // reportViewer3
-            // 
-            this.reportViewer3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource12.Name = "DataSet1";
-            reportDataSource12.Value = null;
-            this.reportViewer3.LocalReport.DataSources.Add(reportDataSource12);
-            this.reportViewer3.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
-            this.reportViewer3.Location = new System.Drawing.Point(6, 6);
-            this.reportViewer3.Name = "reportViewer3";
-            this.reportViewer3.Size = new System.Drawing.Size(877, 385);
-            this.reportViewer3.TabIndex = 3;
-            // 
-            // reportViewer4
-            // 
-            this.reportViewer4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource13.Name = "DataSet1";
-            reportDataSource13.Value = null;
-            this.reportViewer4.LocalReport.DataSources.Add(reportDataSource13);
-            this.reportViewer4.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
-            this.reportViewer4.Location = new System.Drawing.Point(6, 6);
-            this.reportViewer4.Name = "reportViewer4";
-            this.reportViewer4.Size = new System.Drawing.Size(877, 385);
-            this.reportViewer4.TabIndex = 3;
-            // 
-            // reportViewer5
-            // 
-            this.reportViewer5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource14.Name = "DataSet1";
-            reportDataSource14.Value = null;
-            this.reportViewer5.LocalReport.DataSources.Add(reportDataSource14);
-            this.reportViewer5.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
-            this.reportViewer5.Location = new System.Drawing.Point(6, 6);
-            this.reportViewer5.Name = "reportViewer5";
-            this.reportViewer5.Size = new System.Drawing.Size(877, 385);
-            this.reportViewer5.TabIndex = 3;
-            // 
-            // reportViewer6
-            // 
-            this.reportViewer6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource15.Name = "DataSet1";
-            reportDataSource15.Value = null;
-            this.reportViewer6.LocalReport.DataSources.Add(reportDataSource15);
-            this.reportViewer6.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
-            this.reportViewer6.Location = new System.Drawing.Point(6, 6);
-            this.reportViewer6.Name = "reportViewer6";
-            this.reportViewer6.Size = new System.Drawing.Size(877, 385);
-            this.reportViewer6.TabIndex = 3;
-            // 
-            // reportViewer7
-            // 
-            this.reportViewer7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource16.Name = "DataSet1";
-            reportDataSource16.Value = null;
-            this.reportViewer7.LocalReport.DataSources.Add(reportDataSource16);
-            this.reportViewer7.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
-            this.reportViewer7.Location = new System.Drawing.Point(6, 6);
-            this.reportViewer7.Name = "reportViewer7";
-            this.reportViewer7.Size = new System.Drawing.Size(877, 385);
-            this.reportViewer7.TabIndex = 3;
-            // 
-            // reportViewer8
-            // 
-            this.reportViewer8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource17.Name = "DataSet1";
-            reportDataSource17.Value = null;
-            this.reportViewer8.LocalReport.DataSources.Add(reportDataSource17);
-            this.reportViewer8.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
-            this.reportViewer8.Location = new System.Drawing.Point(6, 6);
-            this.reportViewer8.Name = "reportViewer8";
-            this.reportViewer8.Size = new System.Drawing.Size(877, 385);
-            this.reportViewer8.TabIndex = 3;
             // 
             // Obrasci
             // 

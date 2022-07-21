@@ -588,7 +588,7 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="Perftech_BeogradDataSet2">
+    <DataSource Name="TESTIRANJEDataSet2">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
@@ -599,7 +599,7 @@
   <DataSets>
     <DataSet Name="DataSet7">
       <Query>
-        <DataSourceName>Perftech_BeogradDataSet2</DataSourceName>
+        <DataSourceName>TESTIRANJEDataSet2</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -637,8 +637,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>Perftech_BeogradDataSet2</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\Perftech_BeogradDataSet2.xsd</rd:SchemaPath>
+        <rd:DataSetName>TESTIRANJEDataSet2</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\pantelija\documents\visual studio 2012\Projects\Saobracaj\Saobracaj\TESTIRANJEDataSet2.xsd</rd:SchemaPath>
         <rd:TableName>SelectRadniNalogPosaoZap</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

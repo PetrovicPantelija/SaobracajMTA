@@ -40,7 +40,7 @@ namespace Saobracaj.Sifarnici
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 51);
+            this.label2.Location = new System.Drawing.Point(12, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 196;
@@ -49,7 +49,7 @@ namespace Saobracaj.Sifarnici
             // cboZaposleni
             // 
             this.cboZaposleni.FormattingEnabled = true;
-            this.cboZaposleni.Location = new System.Drawing.Point(101, 51);
+            this.cboZaposleni.Location = new System.Drawing.Point(74, 9);
             this.cboZaposleni.Name = "cboZaposleni";
             this.cboZaposleni.Size = new System.Drawing.Size(159, 21);
             this.cboZaposleni.TabIndex = 195;
@@ -57,7 +57,7 @@ namespace Saobracaj.Sifarnici
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(298, 51);
+            this.label1.Location = new System.Drawing.Point(270, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 198;
@@ -66,7 +66,7 @@ namespace Saobracaj.Sifarnici
             // cboNadredjeni
             // 
             this.cboNadredjeni.FormattingEnabled = true;
-            this.cboNadredjeni.Location = new System.Drawing.Point(381, 51);
+            this.cboNadredjeni.Location = new System.Drawing.Point(337, 12);
             this.cboNadredjeni.Name = "cboNadredjeni";
             this.cboNadredjeni.Size = new System.Drawing.Size(159, 21);
             this.cboNadredjeni.TabIndex = 197;
@@ -79,9 +79,9 @@ namespace Saobracaj.Sifarnici
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 89);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 70);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(776, 349);
+            this.dataGridView1.Size = new System.Drawing.Size(776, 368);
             this.dataGridView1.TabIndex = 199;
             // 
             // frmPravoZahtevZaNabavku

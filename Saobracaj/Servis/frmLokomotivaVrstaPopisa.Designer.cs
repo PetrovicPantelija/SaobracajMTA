@@ -59,13 +59,14 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.Location = new System.Drawing.Point(383, 66);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(42, 23);
             this.button1.TabIndex = 162;
             this.button1.Tag = "?";
             this.button1.Text = "?";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dataGridView1
@@ -203,13 +204,14 @@
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button2.Location = new System.Drawing.Point(383, 93);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(42, 23);
             this.button2.TabIndex = 166;
             this.button2.Tag = "?";
             this.button2.Text = "?";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // cboVrstaPopisa
             // 
@@ -291,6 +293,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmLokomotivaVrstaPopisa";
             this.Text = "Lokomotiva vrste popisa";
             this.Load += new System.EventHandler(this.frmLokomotivaVrstaPopisa_Load);

@@ -24,16 +24,16 @@ namespace Saobracaj
 
         private void frmZaposleniUkupno_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'Perftech_BeogradDataSet4.SelectSumVremeAktivnosti' table. You can move, or remove it, as needed.
-           // this.SelectSumVremeAktivnostiTableAdapter.Fill(this.Perftech_BeogradDataSet4.SelectSumVremeAktivnosti);
+            // TODO: This line of code loads data into the 'TESTIRANJEDataSet4.SelectSumVremeAktivnosti' table. You can move, or remove it, as needed.
+           // this.SelectSumVremeAktivnostiTableAdapter.Fill(this.TESTIRANJEDataSet4.SelectSumVremeAktivnosti);
 
            // this.reportViewer1.RefreshReport();
         }
 
         private void btnStampa_Click(object sender, EventArgs e)
         {
-            Perftech_BeogradDataSet4TableAdapters.SelectSumVremeAktivnostiTableAdapter ta = new Perftech_BeogradDataSet4TableAdapters.SelectSumVremeAktivnostiTableAdapter();
-            Perftech_BeogradDataSet4.SelectSumVremeAktivnostiDataTable dt = new Perftech_BeogradDataSet4.SelectSumVremeAktivnostiDataTable();
+            TESTIRANJEDataSet4TableAdapters.SelectSumVremeAktivnostiTableAdapter ta = new TESTIRANJEDataSet4TableAdapters.SelectSumVremeAktivnostiTableAdapter();
+            TESTIRANJEDataSet4.SelectSumVremeAktivnostiDataTable dt = new TESTIRANJEDataSet4.SelectSumVremeAktivnostiDataTable();
 
             ta.Fill(dt, Convert.ToDateTime(dtpVremeOd.Value), Convert.ToDateTime(dtpVremeDo.Value));
             ReportDataSource rds = new ReportDataSource();

@@ -31,27 +31,27 @@
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.SelectSumVremeAktivnostiBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.Perftech_BeogradDataSet4 = new Saobracaj.Perftech_BeogradDataSet4();
+            this.TESTIRANJEDataSet4 = new Saobracaj.TESTIRANJEDataSet4();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.dtpVremeDo = new System.Windows.Forms.DateTimePicker();
             this.dtpVremeOd = new System.Windows.Forms.DateTimePicker();
             this.btnStampa = new System.Windows.Forms.Button();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.SelectSumVremeAktivnostiTableAdapter = new Saobracaj.Perftech_BeogradDataSet4TableAdapters.SelectSumVremeAktivnostiTableAdapter();
+            this.SelectSumVremeAktivnostiTableAdapter = new Saobracaj.TESTIRANJEDataSet4TableAdapters.SelectSumVremeAktivnostiTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.SelectSumVremeAktivnostiBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Perftech_BeogradDataSet4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TESTIRANJEDataSet4)).BeginInit();
             this.SuspendLayout();
             // 
             // SelectSumVremeAktivnostiBindingSource
             // 
             this.SelectSumVremeAktivnostiBindingSource.DataMember = "SelectSumVremeAktivnosti";
-            this.SelectSumVremeAktivnostiBindingSource.DataSource = this.Perftech_BeogradDataSet4;
+            this.SelectSumVremeAktivnostiBindingSource.DataSource = this.TESTIRANJEDataSet4;
             // 
-            // Perftech_BeogradDataSet4
+            // TESTIRANJEDataSet4
             // 
-            this.Perftech_BeogradDataSet4.DataSetName = "Perftech_BeogradDataSet4";
-            this.Perftech_BeogradDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.TESTIRANJEDataSet4.DataSetName = "TESTIRANJEDataSet4";
+            this.TESTIRANJEDataSet4.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label17
             // 
@@ -99,7 +99,7 @@
             // 
             this.btnStampa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(168)))), ((int)(((byte)(109)))));
             this.btnStampa.ForeColor = System.Drawing.Color.White;
-            this.btnStampa.Location = new System.Drawing.Point(404, 12);
+            this.btnStampa.Location = new System.Drawing.Point(400, 12);
             this.btnStampa.Name = "btnStampa";
             this.btnStampa.Size = new System.Drawing.Size(150, 26);
             this.btnStampa.TabIndex = 90;
@@ -138,7 +138,7 @@
             this.Text = "frmZaposleniUkupno";
             this.Load += new System.EventHandler(this.frmZaposleniUkupno_Load);
             ((System.ComponentModel.ISupportInitialize)(this.SelectSumVremeAktivnostiBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Perftech_BeogradDataSet4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TESTIRANJEDataSet4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,7 +153,7 @@
         private System.Windows.Forms.Button btnStampa;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.BindingSource SelectSumVremeAktivnostiBindingSource;
-        private Perftech_BeogradDataSet4 Perftech_BeogradDataSet4;
-        private Perftech_BeogradDataSet4TableAdapters.SelectSumVremeAktivnostiTableAdapter SelectSumVremeAktivnostiTableAdapter;
+        private TESTIRANJEDataSet4 TESTIRANJEDataSet4;
+        private TESTIRANJEDataSet4TableAdapters.SelectSumVremeAktivnostiTableAdapter SelectSumVremeAktivnostiTableAdapter;
     }
 }

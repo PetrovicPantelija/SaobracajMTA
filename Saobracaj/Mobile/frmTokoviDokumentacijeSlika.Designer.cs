@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTokoviDokumentacijeSlika));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -55,21 +56,23 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(727, 44);
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button4.Location = new System.Drawing.Point(578, 35);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(61, 20);
+            this.button4.Size = new System.Drawing.Size(72, 29);
             this.button4.TabIndex = 61;
             this.button4.Text = "Sačuvaj";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(491, 45);
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button2.Location = new System.Drawing.Point(492, 34);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(70, 20);
+            this.button2.Size = new System.Drawing.Size(80, 30);
             this.button2.TabIndex = 60;
             this.button2.Text = "Otvori";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label1
@@ -90,12 +93,13 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(417, 45);
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button1.Location = new System.Drawing.Point(417, 35);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(68, 20);
+            this.button1.Size = new System.Drawing.Size(69, 30);
             this.button1.TabIndex = 58;
             this.button1.Text = "Pronađi";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtSifra
@@ -141,6 +145,7 @@
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtSifraNajave);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTokoviDokumentacijeSlika";
             this.Text = "Tokovi dokumentacije slike";
             this.Load += new System.EventHandler(this.frmTokoviDokumentacijeSlika_Load);

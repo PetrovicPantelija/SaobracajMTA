@@ -31,7 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRadniNalogPregled));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtSifra = new System.Windows.Forms.TextBox();
@@ -48,39 +50,63 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.White;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
+            this.toolStripSeparator1,
             this.toolStripButton2,
+            this.toolStripSeparator2,
             this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(879, 25);
+            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.toolStrip1.Size = new System.Drawing.Size(962, 25);
             this.toolStrip1.TabIndex = 9;
             this.toolStrip1.Text = "Pošalji mail infrastrukturi";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
             // toolStripButton1
             // 
+            this.toolStripButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(123, 22);
+            this.toolStripButton1.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.toolStripButton1.Size = new System.Drawing.Size(128, 22);
             this.toolStripButton1.Text = "Otvori radni nalog";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // toolStripButton2
             // 
+            this.toolStripButton2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(61, 22);
+            this.toolStripButton2.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.toolStripButton2.Size = new System.Drawing.Size(67, 22);
             this.toolStripButton2.Text = "Osveži";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
             // toolStripButton3
             // 
+            this.toolStripButton3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(115, 22);
             this.toolStripButton3.Text = "Novi radni nalog";
@@ -92,37 +118,40 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 54);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 98);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(855, 315);
+            this.dataGridView1.Size = new System.Drawing.Size(938, 351);
             this.dataGridView1.TabIndex = 10;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // txtSifra
             // 
-            this.txtSifra.Location = new System.Drawing.Point(46, 28);
+            this.txtSifra.Location = new System.Drawing.Point(12, 51);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(59, 20);
+            this.txtSifra.Size = new System.Drawing.Size(95, 20);
             this.txtSifra.TabIndex = 120;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 31);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 13);
+            this.label1.Size = new System.Drawing.Size(38, 16);
             this.label1.TabIndex = 121;
             this.label1.Text = "Šifra:";
             // 
             // chkPR
             // 
             this.chkPR.AutoSize = true;
-            this.chkPR.Location = new System.Drawing.Point(172, 30);
+            this.chkPR.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPR.Location = new System.Drawing.Point(536, 48);
             this.chkPR.Name = "chkPR";
             this.chkPR.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkPR.Size = new System.Drawing.Size(41, 17);
+            this.chkPR.Size = new System.Drawing.Size(46, 20);
             this.chkPR.TabIndex = 122;
             this.chkPR.Text = "PR";
             this.chkPR.UseVisualStyleBackColor = true;
@@ -131,10 +160,11 @@
             // chkLA
             // 
             this.chkLA.AutoSize = true;
-            this.chkLA.Location = new System.Drawing.Point(348, 30);
+            this.chkLA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkLA.Location = new System.Drawing.Point(756, 48);
             this.chkLA.Name = "chkLA";
             this.chkLA.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkLA.Size = new System.Drawing.Size(41, 17);
+            this.chkLA.Size = new System.Drawing.Size(46, 20);
             this.chkLA.TabIndex = 123;
             this.chkLA.Text = "RA";
             this.chkLA.UseVisualStyleBackColor = true;
@@ -143,10 +173,11 @@
             // chkOD
             // 
             this.chkOD.AutoSize = true;
-            this.chkOD.Location = new System.Drawing.Point(287, 30);
+            this.chkOD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkOD.Location = new System.Drawing.Point(680, 48);
             this.chkOD.Name = "chkOD";
             this.chkOD.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkOD.Size = new System.Drawing.Size(42, 17);
+            this.chkOD.Size = new System.Drawing.Size(47, 20);
             this.chkOD.TabIndex = 124;
             this.chkOD.Text = "OD";
             this.chkOD.UseVisualStyleBackColor = true;
@@ -155,10 +186,11 @@
             // chkPL
             // 
             this.chkPL.AutoSize = true;
-            this.chkPL.Location = new System.Drawing.Point(229, 29);
+            this.chkPL.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPL.Location = new System.Drawing.Point(609, 48);
             this.chkPL.Name = "chkPL";
             this.chkPL.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkPL.Size = new System.Drawing.Size(39, 17);
+            this.chkPL.Size = new System.Drawing.Size(43, 20);
             this.chkPL.TabIndex = 125;
             this.chkPL.Text = "PL";
             this.chkPL.UseVisualStyleBackColor = true;
@@ -167,10 +199,11 @@
             // chkST
             // 
             this.chkST.AutoSize = true;
-            this.chkST.Location = new System.Drawing.Point(406, 30);
+            this.chkST.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkST.Location = new System.Drawing.Point(830, 48);
             this.chkST.Name = "chkST";
             this.chkST.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkST.Size = new System.Drawing.Size(40, 17);
+            this.chkST.Size = new System.Drawing.Size(45, 20);
             this.chkST.TabIndex = 126;
             this.chkST.Text = "ST";
             this.chkST.UseVisualStyleBackColor = true;
@@ -179,10 +212,11 @@
             // chkZA
             // 
             this.chkZA.AutoSize = true;
-            this.chkZA.Location = new System.Drawing.Point(463, 30);
+            this.chkZA.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkZA.Location = new System.Drawing.Point(902, 48);
             this.chkZA.Name = "chkZA";
             this.chkZA.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkZA.Size = new System.Drawing.Size(40, 17);
+            this.chkZA.Size = new System.Drawing.Size(44, 20);
             this.chkZA.TabIndex = 127;
             this.chkZA.Text = "ZA";
             this.chkZA.UseVisualStyleBackColor = true;
@@ -192,7 +226,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(879, 372);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(962, 461);
             this.Controls.Add(this.chkZA);
             this.Controls.Add(this.chkST);
             this.Controls.Add(this.chkPL);
@@ -231,5 +266,7 @@
         private System.Windows.Forms.CheckBox chkST;
         private System.Windows.Forms.CheckBox chkZA;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

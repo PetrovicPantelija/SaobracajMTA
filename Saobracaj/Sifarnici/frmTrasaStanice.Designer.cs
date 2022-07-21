@@ -56,6 +56,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.White;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
             this.tsSave,
@@ -196,7 +197,7 @@
             // txtSifra
             // 
             this.txtSifra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.txtSifra.Location = new System.Drawing.Point(92, 39);
+            this.txtSifra.Location = new System.Drawing.Point(61, 39);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(85, 20);
             this.txtSifra.TabIndex = 59;
@@ -204,7 +205,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 39);
+            this.label1.Location = new System.Drawing.Point(17, 39);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 58;
@@ -232,12 +233,14 @@
             // 
             // btnUbaci
             // 
-            this.btnUbaci.Location = new System.Drawing.Point(674, 63);
+            this.btnUbaci.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnUbaci.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnUbaci.Location = new System.Drawing.Point(674, 50);
             this.btnUbaci.Name = "btnUbaci";
-            this.btnUbaci.Size = new System.Drawing.Size(158, 23);
+            this.btnUbaci.Size = new System.Drawing.Size(161, 36);
             this.btnUbaci.TabIndex = 69;
             this.btnUbaci.Text = "Ubaci stanice";
-            this.btnUbaci.UseVisualStyleBackColor = true;
+            this.btnUbaci.UseVisualStyleBackColor = false;
             this.btnUbaci.Click += new System.EventHandler(this.btnUbaci_Click);
             // 
             // dataGridView1
@@ -245,6 +248,7 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 92);
             this.dataGridView1.Name = "dataGridView1";

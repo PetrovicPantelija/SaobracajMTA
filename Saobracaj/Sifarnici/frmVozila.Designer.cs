@@ -190,6 +190,7 @@ namespace Saobracaj.Sifarnici
             this.Controls.Add(this.txtVozilo);
             this.Controls.Add(this.chkVozilo);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmVozila";
             this.Text = "frmVozila";
             this.toolStrip1.ResumeLayout(false);

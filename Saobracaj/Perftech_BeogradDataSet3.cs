@@ -2,7 +2,7 @@
 {
 
 
-    public partial class Perftech_BeogradDataSet3
+    public partial class TESTIRANJEDataSet3
     {
         partial class SelectAktDISPDataTable
         {

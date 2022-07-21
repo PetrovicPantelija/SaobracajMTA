@@ -140,8 +140,8 @@ namespace Saobracaj.Testiranje
 
         private void StampajManevristu()
         {
-            Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter ta = new Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter();
-            Perftech_BeogradDataSet15.TestoviViewDataTable dt = new Perftech_BeogradDataSet15.TestoviViewDataTable();
+            TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter ta = new TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter();
+            TESTIRANJEDataSet15.TestoviViewDataTable dt = new TESTIRANJEDataSet15.TestoviViewDataTable();
             //  NedraDataSet2TableAdapters.SelectNajavaTableAdapter ta = new NedraDataSet2TableAdapters.SelectNajavaTableAdapter();
             // NedraDataSet2.SelectNajavaDataTable dt = new NedraDataSet2.SelectNajavaDataTable();
             // string pom = cboGrupaTesta.SelectedValue.ToString();
@@ -166,8 +166,8 @@ namespace Saobracaj.Testiranje
 
         private void StampajPregledacKola()
         {
-            Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter ta = new Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter();
-            Perftech_BeogradDataSet15.TestoviViewDataTable dt = new Perftech_BeogradDataSet15.TestoviViewDataTable();
+            TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter ta = new TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter();
+            TESTIRANJEDataSet15.TestoviViewDataTable dt = new TESTIRANJEDataSet15.TestoviViewDataTable();
             //  NedraDataSet2TableAdapters.SelectNajavaTableAdapter ta = new NedraDataSet2TableAdapters.SelectNajavaTableAdapter();
             // NedraDataSet2.SelectNajavaDataTable dt = new NedraDataSet2.SelectNajavaDataTable();
             // string pom = cboGrupaTesta.SelectedValue.ToString();
@@ -192,8 +192,8 @@ namespace Saobracaj.Testiranje
 
         private void StampajVozovodja()
         {
-            Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter ta = new Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter();
-            Perftech_BeogradDataSet15.TestoviViewDataTable dt = new Perftech_BeogradDataSet15.TestoviViewDataTable();
+            TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter ta = new TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter();
+            TESTIRANJEDataSet15.TestoviViewDataTable dt = new TESTIRANJEDataSet15.TestoviViewDataTable();
             //  NedraDataSet2TableAdapters.SelectNajavaTableAdapter ta = new NedraDataSet2TableAdapters.SelectNajavaTableAdapter();
             // NedraDataSet2.SelectNajavaDataTable dt = new NedraDataSet2.SelectNajavaDataTable();
             // string pom = cboGrupaTesta.SelectedValue.ToString();
@@ -218,8 +218,8 @@ namespace Saobracaj.Testiranje
 
         private void StampajMasinovodjaElektroVuce()
         {
-            Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter ta = new Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter();
-            Perftech_BeogradDataSet15.TestoviViewDataTable dt = new Perftech_BeogradDataSet15.TestoviViewDataTable();
+            TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter ta = new TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter();
+            TESTIRANJEDataSet15.TestoviViewDataTable dt = new TESTIRANJEDataSet15.TestoviViewDataTable();
             //  NedraDataSet2TableAdapters.SelectNajavaTableAdapter ta = new NedraDataSet2TableAdapters.SelectNajavaTableAdapter();
             // NedraDataSet2.SelectNajavaDataTable dt = new NedraDataSet2.SelectNajavaDataTable();
             // string pom = cboGrupaTesta.SelectedValue.ToString();
@@ -244,8 +244,8 @@ namespace Saobracaj.Testiranje
 
         private void StampajMasinovodjaNaManevri()
         {
-            Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter ta = new Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter();
-            Perftech_BeogradDataSet15.TestoviViewDataTable dt = new Perftech_BeogradDataSet15.TestoviViewDataTable();
+            TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter ta = new TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter();
+            TESTIRANJEDataSet15.TestoviViewDataTable dt = new TESTIRANJEDataSet15.TestoviViewDataTable();
             //  NedraDataSet2TableAdapters.SelectNajavaTableAdapter ta = new NedraDataSet2TableAdapters.SelectNajavaTableAdapter();
             // NedraDataSet2.SelectNajavaDataTable dt = new NedraDataSet2.SelectNajavaDataTable();
             // string pom = cboGrupaTesta.SelectedValue.ToString();
@@ -270,8 +270,8 @@ namespace Saobracaj.Testiranje
 
         private void StampajMasinovodja()
         {
-            Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter ta = new Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter();
-            Perftech_BeogradDataSet15.TestoviViewDataTable dt = new Perftech_BeogradDataSet15.TestoviViewDataTable();
+            TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter ta = new TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter();
+            TESTIRANJEDataSet15.TestoviViewDataTable dt = new TESTIRANJEDataSet15.TestoviViewDataTable();
             //  NedraDataSet2TableAdapters.SelectNajavaTableAdapter ta = new NedraDataSet2TableAdapters.SelectNajavaTableAdapter();
             // NedraDataSet2.SelectNajavaDataTable dt = new NedraDataSet2.SelectNajavaDataTable();
             // string pom = cboGrupaTesta.SelectedValue.ToString();
@@ -296,8 +296,8 @@ namespace Saobracaj.Testiranje
 
         private void StampajPomocnikMasinovodje()
         {
-            Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter ta = new Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter();
-            Perftech_BeogradDataSet15.TestoviViewDataTable dt = new Perftech_BeogradDataSet15.TestoviViewDataTable();
+            TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter ta = new TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter();
+            TESTIRANJEDataSet15.TestoviViewDataTable dt = new TESTIRANJEDataSet15.TestoviViewDataTable();
             //  NedraDataSet2TableAdapters.SelectNajavaTableAdapter ta = new NedraDataSet2TableAdapters.SelectNajavaTableAdapter();
             // NedraDataSet2.SelectNajavaDataTable dt = new NedraDataSet2.SelectNajavaDataTable();
             // string pom = cboGrupaTesta.SelectedValue.ToString();
@@ -322,8 +322,8 @@ namespace Saobracaj.Testiranje
 
         private void StampajRukovaocManevre()
         {
-            Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter ta = new Perftech_BeogradDataSet15TableAdapters.TestoviViewTableAdapter();
-            Perftech_BeogradDataSet15.TestoviViewDataTable dt = new Perftech_BeogradDataSet15.TestoviViewDataTable();
+            TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter ta = new TESTIRANJEDataSet15TableAdapters.TestoviViewTableAdapter();
+            TESTIRANJEDataSet15.TestoviViewDataTable dt = new TESTIRANJEDataSet15.TestoviViewDataTable();
             //  NedraDataSet2TableAdapters.SelectNajavaTableAdapter ta = new NedraDataSet2TableAdapters.SelectNajavaTableAdapter();
             // NedraDataSet2.SelectNajavaDataTable dt = new NedraDataSet2.SelectNajavaDataTable();
             // string pom = cboGrupaTesta.SelectedValue.ToString();

@@ -31,10 +31,10 @@ namespace Saobracaj.Dokumenta
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAutomobiliDokumenta));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsPrvi = new System.Windows.Forms.ToolStripButton();
             this.tsNazad = new System.Windows.Forms.ToolStripButton();
             this.tsNapred = new System.Windows.Forms.ToolStripButton();
@@ -71,11 +71,6 @@ namespace Saobracaj.Dokumenta
             this.toolStrip1.TabIndex = 35;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // tsNew
             // 
             this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -103,6 +98,11 @@ namespace Saobracaj.Dokumenta
             this.tsDelete.Name = "tsDelete";
             this.tsDelete.Size = new System.Drawing.Size(23, 22);
             this.tsDelete.Text = "toolStripButton1";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // tsPrvi
             // 
@@ -145,6 +145,7 @@ namespace Saobracaj.Dokumenta
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(7, 90);
             this.dataGridView1.Name = "dataGridView1";
@@ -154,22 +155,26 @@ namespace Saobracaj.Dokumenta
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(573, 63);
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button4.Location = new System.Drawing.Point(573, 53);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(61, 20);
+            this.button4.Size = new System.Drawing.Size(72, 30);
             this.button4.TabIndex = 61;
             this.button4.Text = "Sačuvaj";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(491, 64);
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.Location = new System.Drawing.Point(491, 54);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(61, 20);
+            this.button2.Size = new System.Drawing.Size(72, 30);
             this.button2.TabIndex = 60;
             this.button2.Text = "Otvori";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label1
@@ -190,12 +195,14 @@ namespace Saobracaj.Dokumenta
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(417, 64);
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Location = new System.Drawing.Point(417, 54);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(59, 20);
+            this.button1.Size = new System.Drawing.Size(70, 30);
             this.button1.TabIndex = 58;
             this.button1.Text = "Pronađi";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtSifra
@@ -242,6 +249,7 @@ namespace Saobracaj.Dokumenta
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtSifraNajave);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAutomobiliDokumenta";
             this.Text = "Automobili dokumenta";
             this.Click += new System.EventHandler(this.frmEvidencijaRadaDokumenti_Load);

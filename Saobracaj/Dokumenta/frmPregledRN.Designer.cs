@@ -205,7 +205,7 @@
             this.datagridview3.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.datagridview3.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.datagridview3.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datagridview3.Size = new System.Drawing.Size(699, 415);
+            this.datagridview3.Size = new System.Drawing.Size(697, 415);
             this.datagridview3.TabIndex = 2;
             // 
             // datagridview4
@@ -251,14 +251,14 @@
             this.datagridview4.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.datagridview4.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.datagridview4.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datagridview4.Size = new System.Drawing.Size(655, 415);
+            this.datagridview4.Size = new System.Drawing.Size(653, 415);
             this.datagridview4.TabIndex = 2;
             // 
             // frmPregledRN
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1372, 731);
+            this.ClientSize = new System.Drawing.Size(1370, 731);
             this.Controls.Add(this.datagridview4);
             this.Controls.Add(this.datagridview3);
             this.Controls.Add(this.panel2);

@@ -967,7 +967,7 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="Perftech_BeogradDataSet13">
+    <DataSource Name="TESTIRANJEDataSet13">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
@@ -978,7 +978,7 @@
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>Perftech_BeogradDataSet13</DataSourceName>
+        <DataSourceName>TESTIRANJEDataSet13</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -1016,8 +1016,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>Perftech_BeogradDataSet13</rd:DataSetName>
-        <rd:SchemaPath>E:\Saobracaj\Saobracaj\Perftech_BeogradDataSet13.xsd</rd:SchemaPath>
+        <rd:DataSetName>TESTIRANJEDataSet13</rd:DataSetName>
+        <rd:SchemaPath>E:\Saobracaj\Saobracaj\TESTIRANJEDataSet13.xsd</rd:SchemaPath>
         <rd:TableName>StampaEvidencijeKvara</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

@@ -117,7 +117,7 @@ namespace Saobracaj.Dokumenta
             parameter13.Size = 250;
             parameter13.Direction = ParameterDirection.Input;
             parameter13.Value = AktivnostID;
-            myCommand.Parameters.Add(parameter12);
+            myCommand.Parameters.Add(parameter13);
 
 
             myConnection.Open();

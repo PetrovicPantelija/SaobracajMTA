@@ -1067,7 +1067,7 @@
   </Page>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="Perftech_BeogradDataSet14">
+    <DataSource Name="TESTIRANJEDataSet14">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
@@ -1078,7 +1078,7 @@
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>Perftech_BeogradDataSet14</DataSourceName>
+        <DataSourceName>TESTIRANJEDataSet14</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -1136,8 +1136,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>Perftech_BeogradDataSet14</rd:DataSetName>
-        <rd:SchemaPath>E:\Saobracaj\Saobracaj\Perftech_BeogradDataSet14.xsd</rd:SchemaPath>
+        <rd:DataSetName>TESTIRANJEDataSet14</rd:DataSetName>
+        <rd:SchemaPath>E:\Saobracaj\Saobracaj\TESTIRANJEDataSet14.xsd</rd:SchemaPath>
         <rd:TableName>1ReportGO</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

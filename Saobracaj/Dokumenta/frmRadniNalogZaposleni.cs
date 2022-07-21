@@ -331,7 +331,7 @@ namespace Saobracaj.Dokumenta
              " ,[DirektnaPrimopredaja] ,[VremePrimopredaja] " +
              " ,[VremeZavrsetka] ,[VoznoVreme] " +
              " ,[UkupnoVreme] ,[JalovoVreme] " +
-             " ,[JalovoVremeVanVoznje]   FROM [Perftech_Beograd].[dbo].[RadniNalogTraseLokZapEvid] " +
+             " ,[JalovoVremeVanVoznje]   FROM [TESTIRANJE].[dbo].[RadniNalogTraseLokZapEvid] " +
             " inner join Delavci on Delavci.DeSifra = RadniNalogTraseLokZapEvid.DeSifra where RadniNalogTraseLokZapEvid.IDRadnogNaloga =  " + Convert.ToInt32(txtSifraRN.Text) + " and RadniNalogTraseLokZapEvid.IDTrase = " + Convert.ToInt32(cboTrase.SelectedValue) + " order by Delavci.DeSifra";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -425,7 +425,7 @@ namespace Saobracaj.Dokumenta
       ,[UkupnoVreme]
       ,[JalovoVreme]
       ,[JalovoVremeVanVoznje]
-  FROM [Perftech_Beograd].[dbo].[RadniNalogTraseLokZapEvid]
+  FROM [TESTIRANJE].[dbo].[RadniNalogTraseLokZapEvid]
   inner join Delavci on Delavci.DeSifra = RadniNalogTraseLokZapEvid.DeSifra
 
             */
@@ -441,7 +441,7 @@ namespace Saobracaj.Dokumenta
              " ,[DirektnaPrimopredaja] ,[VremePrimopredaja] " +
              " ,[VremeZavrsetka] ,[VoznoVreme] " +
              " ,[UkupnoVreme] ,[JalovoVreme] " +
-             " ,[JalovoVremeVanVoznje]   FROM [Perftech_Beograd].[dbo].[RadniNalogTraseLokZapEvid] " +
+             " ,[JalovoVremeVanVoznje]   FROM [TESTIRANJE].[dbo].[RadniNalogTraseLokZapEvid] " +
             " inner join Delavci on Delavci.DeSifra = RadniNalogTraseLokZapEvid.DeSifra where RadniNalogTraseLokZapEvid.IDRadnogNaloga =  " + Convert.ToInt32(txtSifraRN.Text) + " and RadniNalogTraseLokZapEvid.IDTrase = " + pomTrasa + " order by Delavci.DeSifra";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -554,7 +554,7 @@ namespace Saobracaj.Dokumenta
 
             SqlCommand cmd = new SqlCommand("SELECT [IDRadnogNaloga] ,[RB] ,[IDTrase] ,[SMSifra] " +
             " ,[DeSifra] ,[DatumPolaska] ,[DatumDolaska] ,[PlaniranoVreme], Masinovodja, Pomocnik, Vozovodja, Pregledac " +
-            " FROM [Perftech_Beograd].[dbo].[RadniNalogTraseLokZap] where IDRadnogNaloga=" + RN + " and RB = " + RB, con);
+            " FROM [TESTIRANJE].[dbo].[RadniNalogTraseLokZap] where IDRadnogNaloga=" + RN + " and RB = " + RB, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())

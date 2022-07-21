@@ -68,12 +68,14 @@
             // 
             // btnStampa
             // 
-            this.btnStampa.Location = new System.Drawing.Point(159, 10);
+            this.btnStampa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnStampa.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnStampa.Location = new System.Drawing.Point(159, 4);
             this.btnStampa.Name = "btnStampa";
-            this.btnStampa.Size = new System.Drawing.Size(103, 23);
+            this.btnStampa.Size = new System.Drawing.Size(104, 29);
             this.btnStampa.TabIndex = 89;
             this.btnStampa.Text = "Štampaj";
-            this.btnStampa.UseVisualStyleBackColor = true;
+            this.btnStampa.UseVisualStyleBackColor = false;
             this.btnStampa.Click += new System.EventHandler(this.btnStampa_Click);
             // 
             // frmStampaRadnogNaloga

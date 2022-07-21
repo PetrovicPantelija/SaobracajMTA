@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="Perftech_BeogradDataSet13" targetNamespace="http://tempuri.org/Perftech_BeogradDataSet13.xsd" xmlns:mstns="http://tempuri.org/Perftech_BeogradDataSet13.xsd" xmlns="http://tempuri.org/Perftech_BeogradDataSet13.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="TESTIRANJEDataSet13" targetNamespace="http://tempuri.org/TESTIRANJEDataSet13.xsd" xmlns:mstns="http://tempuri.org/TESTIRANJEDataSet13.xsd" xmlns="http://tempuri.org/TESTIRANJEDataSet13.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="Perftech_BeogradConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Perftech_BeogradConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.Perftech_BeogradConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="TESTIRANJEConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TESTIRANJEConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.TESTIRANJEConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="StampaEvidencijeKvaraTableAdapter" GeneratorDataComponentClassName="StampaEvidencijeKvaraTableAdapter" Name="StampaEvidencijeKvara" UserDataComponentName="StampaEvidencijeKvaraTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="Perftech_BeogradConnectionString (Settings)" DbObjectName="Perftech_Beograd.dbo.StampaEvidencijeKvara" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="TESTIRANJEConnectionString (Settings)" DbObjectName="TESTIRANJE.dbo.StampaEvidencijeKvara" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO [dbo].[StampaEvidencijeKvara] ([ID], [Lokomotiva], [Kvar], [GrupaKvarova], [DatumPrijave], [Prijavio], [Status], [Napomena]) VALUES (@ID, @Lokomotiva, @Kvar, @GrupaKvarova, @DatumPrijave, @Prijavio, @Status, @Napomena)</CommandText>
@@ -50,7 +50,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="Perftech_BeogradDataSet13" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="Perftech_BeogradDataSet13" msprop:Generator_UserDSName="Perftech_BeogradDataSet13">
+  <xs:element name="TESTIRANJEDataSet13" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="TESTIRANJEDataSet13" msprop:Generator_UserDSName="TESTIRANJEDataSet13">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="StampaEvidencijeKvara" msprop:Generator_TableClassName="StampaEvidencijeKvaraDataTable" msprop:Generator_TableVarName="tableStampaEvidencijeKvara" msprop:Generator_TablePropName="StampaEvidencijeKvara" msprop:Generator_RowDeletingName="StampaEvidencijeKvaraRowDeleting" msprop:Generator_RowChangingName="StampaEvidencijeKvaraRowChanging" msprop:Generator_RowEvHandlerName="StampaEvidencijeKvaraRowChangeEventHandler" msprop:Generator_RowDeletedName="StampaEvidencijeKvaraRowDeleted" msprop:Generator_UserTableName="StampaEvidencijeKvara" msprop:Generator_RowChangedName="StampaEvidencijeKvaraRowChanged" msprop:Generator_RowEvArgName="StampaEvidencijeKvaraRowChangeEvent" msprop:Generator_RowClassName="StampaEvidencijeKvaraRow">
