@@ -66,13 +66,14 @@
             // txtSifra
             // 
             this.txtSifra.Lines = new string[0];
-            this.txtSifra.Location = new System.Drawing.Point(25, 124);
+            this.txtSifra.Location = new System.Drawing.Point(37, 71);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSifra.MaxLength = 32767;
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.PasswordChar = '\0';
             this.txtSifra.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtSifra.SelectedText = "";
-            this.txtSifra.Size = new System.Drawing.Size(95, 23);
+            this.txtSifra.Size = new System.Drawing.Size(127, 28);
             this.txtSifra.TabIndex = 39;
             this.txtSifra.UseSelectable = true;
             // 
@@ -80,15 +81,17 @@
             // 
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel1.Location = new System.Drawing.Point(25, 106);
+            this.metroLabel1.Location = new System.Drawing.Point(37, 48);
+            this.metroLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(35, 19);
+            this.metroLabel1.Size = new System.Drawing.Size(39, 20);
             this.metroLabel1.TabIndex = 40;
             this.metroLabel1.Text = "Šifra";
             // 
             // toolStrip1
             // 
             this.toolStrip1.BackColor = System.Drawing.Color.White;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
             this.tsSave,
@@ -96,7 +99,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(887, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1183, 27);
             this.toolStrip1.TabIndex = 41;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -107,7 +110,7 @@
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(23, 22);
+            this.tsNew.Size = new System.Drawing.Size(29, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -118,7 +121,7 @@
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(23, 22);
+            this.tsSave.Size = new System.Drawing.Size(29, 24);
             this.tsSave.Text = "tsSave";
             // 
             // tsDelete
@@ -128,24 +131,26 @@
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(23, 22);
+            this.tsDelete.Size = new System.Drawing.Size(29, 24);
             this.tsDelete.Text = "toolStripButton1";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(25, 201);
+            this.label2.Location = new System.Drawing.Point(29, 182);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(50, 17);
+            this.label2.Size = new System.Drawing.Size(68, 23);
             this.label2.TabIndex = 53;
             this.label2.Text = "Putanja";
             // 
             // txtPutanja
             // 
-            this.txtPutanja.Location = new System.Drawing.Point(25, 221);
+            this.txtPutanja.Location = new System.Drawing.Point(29, 207);
+            this.txtPutanja.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPutanja.Name = "txtPutanja";
-            this.txtPutanja.Size = new System.Drawing.Size(322, 20);
+            this.txtPutanja.Size = new System.Drawing.Size(428, 22);
             this.txtPutanja.TabIndex = 54;
             // 
             // button1
@@ -154,9 +159,10 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(353, 217);
+            this.button1.Location = new System.Drawing.Point(462, 200);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(84, 28);
+            this.button1.Size = new System.Drawing.Size(112, 34);
             this.button1.TabIndex = 55;
             this.button1.Text = "Pronadji";
             this.button1.UseVisualStyleBackColor = false;
@@ -168,9 +174,10 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(444, 217);
+            this.button2.Location = new System.Drawing.Point(583, 200);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 28);
+            this.button2.Size = new System.Drawing.Size(112, 34);
             this.button2.TabIndex = 56;
             this.button2.Text = "Otvori";
             this.button2.UseVisualStyleBackColor = false;
@@ -182,9 +189,10 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(534, 217);
+            this.button3.Location = new System.Drawing.Point(703, 200);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(84, 28);
+            this.button3.Size = new System.Drawing.Size(112, 34);
             this.button3.TabIndex = 57;
             this.button3.Text = "Sačuvaj";
             this.button3.UseVisualStyleBackColor = false;
@@ -198,22 +206,24 @@
             // 
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel2.Location = new System.Drawing.Point(25, 150);
+            this.metroLabel2.Location = new System.Drawing.Point(37, 103);
+            this.metroLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(41, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(45, 20);
             this.metroLabel2.TabIndex = 149;
             this.metroLabel2.Text = "Zapis";
             // 
             // txtRegistrator
             // 
             this.txtRegistrator.Lines = new string[0];
-            this.txtRegistrator.Location = new System.Drawing.Point(25, 172);
+            this.txtRegistrator.Location = new System.Drawing.Point(37, 130);
+            this.txtRegistrator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtRegistrator.MaxLength = 32767;
             this.txtRegistrator.Name = "txtRegistrator";
             this.txtRegistrator.PasswordChar = '\0';
             this.txtRegistrator.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtRegistrator.SelectedText = "";
-            this.txtRegistrator.Size = new System.Drawing.Size(95, 23);
+            this.txtRegistrator.Size = new System.Drawing.Size(127, 28);
             this.txtRegistrator.TabIndex = 148;
             this.txtRegistrator.UseSelectable = true;
             // 
@@ -244,7 +254,8 @@
             this.metroGrid1.EnableHeadersVisualStyles = false;
             this.metroGrid1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.metroGrid1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.metroGrid1.Location = new System.Drawing.Point(624, 124);
+            this.metroGrid1.Location = new System.Drawing.Point(832, 153);
+            this.metroGrid1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.metroGrid1.Name = "metroGrid1";
             this.metroGrid1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -255,9 +266,10 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.metroGrid1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.metroGrid1.RowHeadersWidth = 51;
             this.metroGrid1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.metroGrid1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.metroGrid1.Size = new System.Drawing.Size(240, 123);
+            this.metroGrid1.Size = new System.Drawing.Size(320, 151);
             this.metroGrid1.TabIndex = 150;
             // 
             // dataGridView1
@@ -287,7 +299,8 @@
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dataGridView1.Location = new System.Drawing.Point(25, 269);
+            this.dataGridView1.Location = new System.Drawing.Point(33, 331);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -298,9 +311,10 @@
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(842, 387);
+            this.dataGridView1.Size = new System.Drawing.Size(1123, 476);
             this.dataGridView1.TabIndex = 151;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -308,15 +322,16 @@
             // 
             this.toolStrip2.BackColor = System.Drawing.Color.White;
             this.toolStrip2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.toolStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton4,
             this.toolStripButton5,
             this.toolStripButton6,
             this.toolStripButton7});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 679);
+            this.toolStrip2.Location = new System.Drawing.Point(0, 839);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip2.Size = new System.Drawing.Size(887, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(1183, 27);
             this.toolStrip2.TabIndex = 152;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -327,7 +342,7 @@
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton4.Size = new System.Drawing.Size(29, 24);
             this.toolStripButton4.Text = "toolStripButton1";
             // 
             // toolStripButton5
@@ -337,7 +352,7 @@
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton5.Size = new System.Drawing.Size(29, 24);
             this.toolStripButton5.Text = "toolStripButton1";
             // 
             // toolStripButton6
@@ -348,7 +363,7 @@
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
             this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton6.Size = new System.Drawing.Size(29, 24);
             this.toolStripButton6.Text = "toolStripButton1";
             // 
             // toolStripButton7
@@ -359,14 +374,14 @@
             this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton7.Margin = new System.Windows.Forms.Padding(0, 1, 5, 2);
             this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton7.Size = new System.Drawing.Size(29, 24);
             this.toolStripButton7.Text = "toolStripButton1";
             // 
             // frmRegistratorDokumenta
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(887, 704);
+            this.ClientSize = new System.Drawing.Size(1183, 866);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.metroGrid1);
             this.Controls.Add(this.txtRegistrator);
@@ -381,6 +396,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.metroLabel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmRegistratorDokumenta";
             this.Text = "Dokumenta delovodna knjiga";
             this.toolStrip1.ResumeLayout(false);

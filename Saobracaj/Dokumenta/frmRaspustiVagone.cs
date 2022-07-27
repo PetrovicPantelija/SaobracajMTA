@@ -195,6 +195,20 @@ namespace Saobracaj.Dokumenta
             dataAdapter.Fill(ds);
             dataGridView3.ReadOnly = true;
             dataGridView3.DataSource = ds.Tables[0];
+
+            dataGridView3.BorderStyle = BorderStyle.None;
+            dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView3.BackgroundColor = Color.White;
+
+            dataGridView3.EnableHeadersVisualStyles = false;
+            dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+           
+            
             DataGridViewColumn column = dataGridView3.Columns[0];
             dataGridView3.Columns[0].HeaderText = "ID Teretnice";
             dataGridView3.Columns[0].Width = 40;
@@ -305,6 +319,18 @@ namespace Saobracaj.Dokumenta
             dataAdapter.Fill(ds);
             dataGridView3.ReadOnly = true;
             dataGridView3.DataSource = ds.Tables[0];
+            dataGridView3.BorderStyle = BorderStyle.None;
+            dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView3.BackgroundColor = Color.White;
+
+            dataGridView3.EnableHeadersVisualStyles = false;
+            dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
             DataGridViewColumn column = dataGridView3.Columns[0];
             dataGridView3.Columns[0].HeaderText = "ID Teretnice";
             dataGridView3.Columns[0].Width = 40;

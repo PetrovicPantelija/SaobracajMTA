@@ -59,36 +59,31 @@ namespace GridScheduleSample
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.AppearancePropertyGrid1 = new System.Windows.Forms.PropertyGrid();
-			this.SuspendLayout();
-			// 
-			// AppearancePropertyGrid1
-			// 
-			this.AppearancePropertyGrid1.CommandsVisibleIfAvailable = true;
-			this.AppearancePropertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.AppearancePropertyGrid1.LargeButtons = false;
-			this.AppearancePropertyGrid1.LineColor = System.Drawing.SystemColors.ScrollBar;
-			this.AppearancePropertyGrid1.Location = new System.Drawing.Point(0, 0);
-			this.AppearancePropertyGrid1.Name = "AppearancePropertyGrid1";
-			this.AppearancePropertyGrid1.Size = new System.Drawing.Size(376, 614);
-			this.AppearancePropertyGrid1.TabIndex = 0;
-			this.AppearancePropertyGrid1.Text = "PropertyGrid";
-			this.AppearancePropertyGrid1.ViewBackColor = System.Drawing.SystemColors.Window;
-			this.AppearancePropertyGrid1.ViewForeColor = System.Drawing.SystemColors.WindowText;
-			// 
-			// PropertyGridForm
-			// 
-			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.CausesValidation = false;
-			this.ClientSize = new System.Drawing.Size(376, 614);
-			this.Controls.Add(this.AppearancePropertyGrid1);
-			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
-			this.MaximizeBox = false;
-			this.MinimizeBox = false;
-			this.Name = "PropertyGridForm";
-			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "Schedule Appearance Properties";
-			this.ResumeLayout(false);
+            this.AppearancePropertyGrid1 = new System.Windows.Forms.PropertyGrid();
+            this.SuspendLayout();
+            // 
+            // AppearancePropertyGrid1
+            // 
+            this.AppearancePropertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.AppearancePropertyGrid1.LineColor = System.Drawing.SystemColors.ScrollBar;
+            this.AppearancePropertyGrid1.Location = new System.Drawing.Point(0, 0);
+            this.AppearancePropertyGrid1.Name = "AppearancePropertyGrid1";
+            this.AppearancePropertyGrid1.Size = new System.Drawing.Size(376, 614);
+            this.AppearancePropertyGrid1.TabIndex = 0;
+            // 
+            // PropertyGridForm
+            // 
+            this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
+            this.CausesValidation = false;
+            this.ClientSize = new System.Drawing.Size(376, 614);
+            this.Controls.Add(this.AppearancePropertyGrid1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "PropertyGridForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Schedule Appearance Properties";
+            this.ResumeLayout(false);
 
 		}
 		#endregion

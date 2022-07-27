@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNajava));
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            Syncfusion.Windows.Forms.MetroColorTable metroColorTable5 = new Syncfusion.Windows.Forms.MetroColorTable();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             Syncfusion.Windows.Forms.MetroColorTable metroColorTable1 = new Syncfusion.Windows.Forms.MetroColorTable();
             Syncfusion.Windows.Forms.MetroColorTable metroColorTable2 = new Syncfusion.Windows.Forms.MetroColorTable();
             Syncfusion.Windows.Forms.MetroColorTable metroColorTable3 = new Syncfusion.Windows.Forms.MetroColorTable();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            Syncfusion.Windows.Forms.MetroColorTable metroColorTable4 = new Syncfusion.Windows.Forms.MetroColorTable();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.nedraDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nedraDataSet = new Saobracaj.NedraDataSet();
             this.txtSifra = new System.Windows.Forms.TextBox();
@@ -225,7 +225,7 @@
             // txtSifra
             // 
             this.txtSifra.Location = new System.Drawing.Point(113, 27);
-            this.txtSifra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(132, 22);
             this.txtSifra.TabIndex = 1;
@@ -242,7 +242,7 @@
             // 
             // toolStrip1
             // 
-            this.toolStrip1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
@@ -338,6 +338,7 @@
             // 
             // toolStripButton1
             // 
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
@@ -347,6 +348,7 @@
             // 
             // toolStripButton2
             // 
+            this.toolStripButton2.ForeColor = System.Drawing.Color.White;
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
@@ -356,6 +358,7 @@
             // 
             // toolStripButton3
             // 
+            this.toolStripButton3.ForeColor = System.Drawing.Color.White;
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
@@ -365,6 +368,7 @@
             // 
             // toolStripButton4
             // 
+            this.toolStripButton4.ForeColor = System.Drawing.Color.White;
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
@@ -374,6 +378,7 @@
             // 
             // toolStripButton5
             // 
+            this.toolStripButton5.ForeColor = System.Drawing.Color.White;
             this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
@@ -383,7 +388,8 @@
             // 
             // toolStripButton6
             // 
-            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton6.Image = global::Saobracaj.Properties.Resources.Background5;
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Size = new System.Drawing.Size(60, 24);
@@ -393,7 +399,7 @@
             // txtOpis
             // 
             this.txtOpis.Location = new System.Drawing.Point(113, 56);
-            this.txtOpis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtOpis.Margin = new System.Windows.Forms.Padding(4);
             this.txtOpis.Name = "txtOpis";
             this.txtOpis.Size = new System.Drawing.Size(85, 22);
             this.txtOpis.TabIndex = 2;
@@ -420,11 +426,11 @@
             // 
             // cmbVoz
             // 
-            this.cmbVoz.BackColor = System.Drawing.Color.SlateGray;
-            this.cmbVoz.ForeColor = System.Drawing.Color.White;
+            this.cmbVoz.BackColor = System.Drawing.Color.White;
+            this.cmbVoz.ForeColor = System.Drawing.Color.Black;
             this.cmbVoz.FormattingEnabled = true;
             this.cmbVoz.Location = new System.Drawing.Point(113, 251);
-            this.cmbVoz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbVoz.Margin = new System.Windows.Forms.Padding(4);
             this.cmbVoz.Name = "cmbVoz";
             this.cmbVoz.Size = new System.Drawing.Size(103, 24);
             this.cmbVoz.TabIndex = 4;
@@ -442,11 +448,11 @@
             // 
             // cboPosiljalac
             // 
-            this.cboPosiljalac.BackColor = System.Drawing.Color.SlateGray;
-            this.cboPosiljalac.ForeColor = System.Drawing.Color.White;
+            this.cboPosiljalac.BackColor = System.Drawing.Color.White;
+            this.cboPosiljalac.ForeColor = System.Drawing.Color.Black;
             this.cboPosiljalac.FormattingEnabled = true;
             this.cboPosiljalac.Location = new System.Drawing.Point(110, 29);
-            this.cboPosiljalac.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPosiljalac.Margin = new System.Windows.Forms.Padding(4);
             this.cboPosiljalac.Name = "cboPosiljalac";
             this.cboPosiljalac.Size = new System.Drawing.Size(294, 24);
             this.cboPosiljalac.TabIndex = 5;
@@ -463,11 +469,11 @@
             // 
             // cboPrevoznik
             // 
-            this.cboPrevoznik.BackColor = System.Drawing.Color.SlateGray;
-            this.cboPrevoznik.ForeColor = System.Drawing.Color.White;
+            this.cboPrevoznik.BackColor = System.Drawing.Color.White;
+            this.cboPrevoznik.ForeColor = System.Drawing.Color.Black;
             this.cboPrevoznik.FormattingEnabled = true;
             this.cboPrevoznik.Location = new System.Drawing.Point(110, 61);
-            this.cboPrevoznik.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPrevoznik.Margin = new System.Windows.Forms.Padding(4);
             this.cboPrevoznik.Name = "cboPrevoznik";
             this.cboPrevoznik.Size = new System.Drawing.Size(294, 24);
             this.cboPrevoznik.TabIndex = 6;
@@ -484,11 +490,11 @@
             // 
             // cboUputna
             // 
-            this.cboUputna.BackColor = System.Drawing.Color.SlateGray;
-            this.cboUputna.ForeColor = System.Drawing.Color.White;
+            this.cboUputna.BackColor = System.Drawing.Color.White;
+            this.cboUputna.ForeColor = System.Drawing.Color.Black;
             this.cboUputna.FormattingEnabled = true;
             this.cboUputna.Location = new System.Drawing.Point(118, 68);
-            this.cboUputna.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboUputna.Margin = new System.Windows.Forms.Padding(4);
             this.cboUputna.Name = "cboUputna";
             this.cboUputna.Size = new System.Drawing.Size(285, 24);
             this.cboUputna.TabIndex = 8;
@@ -505,11 +511,11 @@
             // 
             // cboOtpravna
             // 
-            this.cboOtpravna.BackColor = System.Drawing.Color.SlateGray;
-            this.cboOtpravna.ForeColor = System.Drawing.Color.White;
+            this.cboOtpravna.BackColor = System.Drawing.Color.White;
+            this.cboOtpravna.ForeColor = System.Drawing.Color.Black;
             this.cboOtpravna.FormattingEnabled = true;
             this.cboOtpravna.Location = new System.Drawing.Point(119, 36);
-            this.cboOtpravna.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboOtpravna.Margin = new System.Windows.Forms.Padding(4);
             this.cboOtpravna.Name = "cboOtpravna";
             this.cboOtpravna.Size = new System.Drawing.Size(285, 24);
             this.cboOtpravna.TabIndex = 7;
@@ -526,22 +532,22 @@
             // 
             // cboPrimalac
             // 
-            this.cboPrimalac.BackColor = System.Drawing.Color.SlateGray;
-            this.cboPrimalac.ForeColor = System.Drawing.Color.White;
+            this.cboPrimalac.BackColor = System.Drawing.Color.White;
+            this.cboPrimalac.ForeColor = System.Drawing.Color.Black;
             this.cboPrimalac.FormattingEnabled = true;
             this.cboPrimalac.Location = new System.Drawing.Point(110, 130);
-            this.cboPrimalac.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPrimalac.Margin = new System.Windows.Forms.Padding(4);
             this.cboPrimalac.Name = "cboPrimalac";
             this.cboPrimalac.Size = new System.Drawing.Size(294, 24);
             this.cboPrimalac.TabIndex = 9;
             // 
             // cboNHM
             // 
-            this.cboNHM.BackColor = System.Drawing.Color.SlateGray;
-            this.cboNHM.ForeColor = System.Drawing.SystemColors.Info;
+            this.cboNHM.BackColor = System.Drawing.Color.White;
+            this.cboNHM.ForeColor = System.Drawing.Color.Black;
             this.cboNHM.FormattingEnabled = true;
             this.cboNHM.Location = new System.Drawing.Point(108, 155);
-            this.cboNHM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboNHM.Margin = new System.Windows.Forms.Padding(4);
             this.cboNHM.Name = "cboNHM";
             this.cboNHM.Size = new System.Drawing.Size(176, 24);
             this.cboNHM.TabIndex = 16;
@@ -559,7 +565,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(14, 145);
+            this.label8.Location = new System.Drawing.Point(7, 141);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(66, 17);
@@ -568,10 +574,10 @@
             // 
             // txtRelacija
             // 
-            this.txtRelacija.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
-            this.txtRelacija.ForeColor = System.Drawing.Color.White;
+            this.txtRelacija.BackColor = System.Drawing.Color.LightGray;
+            this.txtRelacija.ForeColor = System.Drawing.Color.Black;
             this.txtRelacija.Location = new System.Drawing.Point(119, 132);
-            this.txtRelacija.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtRelacija.Margin = new System.Windows.Forms.Padding(4);
             this.txtRelacija.Multiline = true;
             this.txtRelacija.Name = "txtRelacija";
             this.txtRelacija.Size = new System.Drawing.Size(284, 36);
@@ -631,7 +637,7 @@
             // 
             this.chkRID.AutoSize = true;
             this.chkRID.Location = new System.Drawing.Point(16, 280);
-            this.chkRID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkRID.Margin = new System.Windows.Forms.Padding(4);
             this.chkRID.Name = "chkRID";
             this.chkRID.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkRID.Size = new System.Drawing.Size(53, 21);
@@ -645,10 +651,10 @@
             this.dtpPredvidjenoPrimanje.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPredvidjenoPrimanje.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpPredvidjenoPrimanje.Location = new System.Drawing.Point(10, 38);
-            this.dtpPredvidjenoPrimanje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpPredvidjenoPrimanje.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPredvidjenoPrimanje.Name = "dtpPredvidjenoPrimanje";
             this.dtpPredvidjenoPrimanje.ShowUpDown = true;
-            this.dtpPredvidjenoPrimanje.Size = new System.Drawing.Size(127, 22);
+            this.dtpPredvidjenoPrimanje.Size = new System.Drawing.Size(138, 22);
             this.dtpPredvidjenoPrimanje.TabIndex = 18;
             this.dtpPredvidjenoPrimanje.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -668,10 +674,10 @@
             this.dtpStvarnoPrimanje.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpStvarnoPrimanje.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpStvarnoPrimanje.Location = new System.Drawing.Point(156, 40);
-            this.dtpStvarnoPrimanje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpStvarnoPrimanje.Margin = new System.Windows.Forms.Padding(4);
             this.dtpStvarnoPrimanje.Name = "dtpStvarnoPrimanje";
             this.dtpStvarnoPrimanje.ShowUpDown = true;
-            this.dtpStvarnoPrimanje.Size = new System.Drawing.Size(127, 22);
+            this.dtpStvarnoPrimanje.Size = new System.Drawing.Size(143, 22);
             this.dtpStvarnoPrimanje.TabIndex = 19;
             this.dtpStvarnoPrimanje.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -690,10 +696,10 @@
             this.dtpPredvidjenaPredaja.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPredvidjenaPredaja.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpPredvidjenaPredaja.Location = new System.Drawing.Point(10, 87);
-            this.dtpPredvidjenaPredaja.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpPredvidjenaPredaja.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPredvidjenaPredaja.Name = "dtpPredvidjenaPredaja";
             this.dtpPredvidjenaPredaja.ShowUpDown = true;
-            this.dtpPredvidjenaPredaja.Size = new System.Drawing.Size(127, 22);
+            this.dtpPredvidjenaPredaja.Size = new System.Drawing.Size(138, 22);
             this.dtpPredvidjenaPredaja.TabIndex = 20;
             this.dtpPredvidjenaPredaja.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -712,10 +718,10 @@
             this.dtpStvarnaPredaja.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpStvarnaPredaja.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpStvarnaPredaja.Location = new System.Drawing.Point(156, 87);
-            this.dtpStvarnaPredaja.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpStvarnaPredaja.Margin = new System.Windows.Forms.Padding(4);
             this.dtpStvarnaPredaja.Name = "dtpStvarnaPredaja";
             this.dtpStvarnaPredaja.ShowUpDown = true;
-            this.dtpStvarnaPredaja.Size = new System.Drawing.Size(127, 22);
+            this.dtpStvarnaPredaja.Size = new System.Drawing.Size(143, 22);
             this.dtpStvarnaPredaja.TabIndex = 21;
             this.dtpStvarnaPredaja.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -741,11 +747,11 @@
             // 
             // cboStatusPredaje
             // 
-            this.cboStatusPredaje.BackColor = System.Drawing.Color.SlateGray;
-            this.cboStatusPredaje.ForeColor = System.Drawing.Color.White;
+            this.cboStatusPredaje.BackColor = System.Drawing.Color.White;
+            this.cboStatusPredaje.ForeColor = System.Drawing.Color.Black;
             this.cboStatusPredaje.FormattingEnabled = true;
             this.cboStatusPredaje.Location = new System.Drawing.Point(113, 87);
-            this.cboStatusPredaje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboStatusPredaje.Margin = new System.Windows.Forms.Padding(4);
             this.cboStatusPredaje.Name = "cboStatusPredaje";
             this.cboStatusPredaje.Size = new System.Drawing.Size(230, 24);
             this.cboStatusPredaje.TabIndex = 17;
@@ -766,7 +772,7 @@
             this.tabNajave.Controls.Add(this.tabPage7);
             this.tabNajave.Controls.Add(this.tabPage8);
             this.tabNajave.Location = new System.Drawing.Point(4, 473);
-            this.tabNajave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabNajave.Margin = new System.Windows.Forms.Padding(4);
             this.tabNajave.Name = "tabNajave";
             this.tabNajave.SelectedIndex = 0;
             this.tabNajave.Size = new System.Drawing.Size(1807, 271);
@@ -777,9 +783,9 @@
             // 
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(1799, 242);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Poslovi";
@@ -791,7 +797,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(4, 4);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1791, 234);
@@ -803,9 +809,9 @@
             // 
             this.tabPage2.Controls.Add(this.dataGridView2);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(1799, 242);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Prevoznici";
@@ -816,7 +822,7 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(4, 4);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.Size = new System.Drawing.Size(1791, 234);
@@ -826,7 +832,7 @@
             // tabPage3
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1799, 242);
             this.tabPage3.TabIndex = 2;
@@ -837,7 +843,7 @@
             // 
             this.tabPage4.Controls.Add(this.dataGridView3);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1799, 242);
             this.tabPage4.TabIndex = 3;
@@ -853,7 +859,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(7, 4);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.ReadOnly = true;
             this.dataGridView3.RowHeadersWidth = 51;
@@ -864,7 +870,7 @@
             // 
             this.tabPage5.Controls.Add(this.reportViewer1);
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(1799, 242);
             this.tabPage5.TabIndex = 5;
@@ -876,12 +882,12 @@
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource2.Name = "DataSet1";
-            reportDataSource2.Value = this.nedraDataSetBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = this.nedraDataSetBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(7, 0);
-            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.Size = new System.Drawing.Size(1687, 360);
             this.reportViewer1.TabIndex = 0;
@@ -891,7 +897,7 @@
             this.tabPage6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.tabPage6.Controls.Add(this.txtKomentar);
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
-            this.tabPage6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage6.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Size = new System.Drawing.Size(1799, 242);
             this.tabPage6.TabIndex = 6;
@@ -901,7 +907,7 @@
             // 
             this.txtKomentar.BackColor = System.Drawing.Color.White;
             this.txtKomentar.Location = new System.Drawing.Point(7, 4);
-            this.txtKomentar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtKomentar.Margin = new System.Windows.Forms.Padding(4);
             this.txtKomentar.Multiline = true;
             this.txtKomentar.Name = "txtKomentar";
             this.txtKomentar.Size = new System.Drawing.Size(1699, 351);
@@ -909,23 +915,23 @@
             // 
             // tabPage7
             // 
+            this.tabPage7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(82)))), ((int)(((byte)(108)))), ((int)(((byte)(120)))));
             this.tabPage7.Controls.Add(this.btnUnesi);
             this.tabPage7.Controls.Add(this.dataGridView4);
             this.tabPage7.Controls.Add(this.multiColumnComboBox2);
             this.tabPage7.Controls.Add(this.label34);
             this.tabPage7.Location = new System.Drawing.Point(4, 25);
-            this.tabPage7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage7.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Size = new System.Drawing.Size(1799, 242);
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "Dodatne usluge";
-            this.tabPage7.UseVisualStyleBackColor = true;
             // 
             // btnUnesi
             // 
             this.btnUnesi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.btnUnesi.Location = new System.Drawing.Point(348, 14);
-            this.btnUnesi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnUnesi.Margin = new System.Windows.Forms.Padding(4);
             this.btnUnesi.Name = "btnUnesi";
             this.btnUnesi.Size = new System.Drawing.Size(136, 28);
             this.btnUnesi.TabIndex = 161;
@@ -942,7 +948,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Location = new System.Drawing.Point(7, 49);
-            this.dataGridView4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView4.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.ReadOnly = true;
             this.dataGridView4.RowHeadersWidth = 51;
@@ -955,10 +961,10 @@
             this.multiColumnComboBox2.BeforeTouchSize = new System.Drawing.Size(204, 24);
             this.multiColumnComboBox2.Filter = null;
             this.multiColumnComboBox2.Location = new System.Drawing.Point(135, 16);
-            this.multiColumnComboBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.multiColumnComboBox2.Margin = new System.Windows.Forms.Padding(4);
             this.multiColumnComboBox2.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.multiColumnComboBox2.Name = "multiColumnComboBox2";
-            this.multiColumnComboBox2.ScrollMetroColorTable = metroColorTable5;
+            this.multiColumnComboBox2.ScrollMetroColorTable = metroColorTable1;
             this.multiColumnComboBox2.Size = new System.Drawing.Size(204, 24);
             this.multiColumnComboBox2.TabIndex = 159;
             this.multiColumnComboBox2.Click += new System.EventHandler(this.multiColumnComboBox2_Click);
@@ -966,6 +972,7 @@
             // label34
             // 
             this.label34.AutoSize = true;
+            this.label34.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label34.Location = new System.Drawing.Point(32, 17);
             this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label34.Name = "label34";
@@ -986,7 +993,7 @@
             this.tabPage8.Controls.Add(this.multiColumnComboBox3);
             this.tabPage8.Controls.Add(this.label38);
             this.tabPage8.Location = new System.Drawing.Point(4, 25);
-            this.tabPage8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage8.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Size = new System.Drawing.Size(1799, 242);
             this.tabPage8.TabIndex = 8;
@@ -996,7 +1003,7 @@
             // button12
             // 
             this.button12.Location = new System.Drawing.Point(929, 15);
-            this.button12.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button12.Margin = new System.Windows.Forms.Padding(4);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(136, 28);
             this.button12.TabIndex = 171;
@@ -1013,7 +1020,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView6.Location = new System.Drawing.Point(16, 52);
-            this.dataGridView6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView6.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView6.Name = "dataGridView6";
             this.dataGridView6.ReadOnly = true;
             this.dataGridView6.RowHeadersWidth = 51;
@@ -1024,7 +1031,7 @@
             // 
             this.txtTezinaDodatno.DecimalPlaces = 2;
             this.txtTezinaDodatno.Location = new System.Drawing.Point(601, 18);
-            this.txtTezinaDodatno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTezinaDodatno.Margin = new System.Windows.Forms.Padding(4);
             this.txtTezinaDodatno.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -1068,7 +1075,7 @@
             // txtBrojKolaDodatni
             // 
             this.txtBrojKolaDodatni.Location = new System.Drawing.Point(413, 18);
-            this.txtBrojKolaDodatni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBrojKolaDodatni.Margin = new System.Windows.Forms.Padding(4);
             this.txtBrojKolaDodatni.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -1083,7 +1090,7 @@
             // 
             this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button11.Location = new System.Drawing.Point(773, 16);
-            this.button11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button11.Margin = new System.Windows.Forms.Padding(4);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(136, 28);
             this.button11.TabIndex = 164;
@@ -1097,10 +1104,10 @@
             this.multiColumnComboBox3.BeforeTouchSize = new System.Drawing.Size(204, 24);
             this.multiColumnComboBox3.Filter = null;
             this.multiColumnComboBox3.Location = new System.Drawing.Point(124, 18);
-            this.multiColumnComboBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.multiColumnComboBox3.Margin = new System.Windows.Forms.Padding(4);
             this.multiColumnComboBox3.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.multiColumnComboBox3.Name = "multiColumnComboBox3";
-            this.multiColumnComboBox3.ScrollMetroColorTable = metroColorTable1;
+            this.multiColumnComboBox3.ScrollMetroColorTable = metroColorTable2;
             this.multiColumnComboBox3.Size = new System.Drawing.Size(204, 24);
             this.multiColumnComboBox3.TabIndex = 163;
             // 
@@ -1116,11 +1123,11 @@
             // 
             // txtNetoTezina
             // 
-            this.txtNetoTezina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
+            this.txtNetoTezina.BackColor = System.Drawing.Color.LightGray;
             this.txtNetoTezina.DecimalPlaces = 2;
-            this.txtNetoTezina.ForeColor = System.Drawing.Color.White;
+            this.txtNetoTezina.ForeColor = System.Drawing.Color.Black;
             this.txtNetoTezina.Location = new System.Drawing.Point(108, 32);
-            this.txtNetoTezina.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNetoTezina.Margin = new System.Windows.Forms.Padding(4);
             this.txtNetoTezina.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -1134,7 +1141,7 @@
             // txtDuzinaM
             // 
             this.txtDuzinaM.Location = new System.Drawing.Point(108, 63);
-            this.txtDuzinaM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDuzinaM.Margin = new System.Windows.Forms.Padding(4);
             this.txtDuzinaM.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -1148,7 +1155,7 @@
             // txtBrojKola
             // 
             this.txtBrojKola.Location = new System.Drawing.Point(108, 93);
-            this.txtBrojKola.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBrojKola.Margin = new System.Windows.Forms.Padding(4);
             this.txtBrojKola.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -1161,10 +1168,10 @@
             // 
             // txtVerzija
             // 
-            this.txtVerzija.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
-            this.txtVerzija.ForeColor = System.Drawing.Color.White;
+            this.txtVerzija.BackColor = System.Drawing.Color.LightGray;
+            this.txtVerzija.ForeColor = System.Drawing.Color.Black;
             this.txtVerzija.Location = new System.Drawing.Point(274, 27);
-            this.txtVerzija.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtVerzija.Margin = new System.Windows.Forms.Padding(4);
             this.txtVerzija.Name = "txtVerzija";
             this.txtVerzija.Size = new System.Drawing.Size(69, 22);
             this.txtVerzija.TabIndex = 79;
@@ -1184,7 +1191,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
             this.button1.Location = new System.Drawing.Point(433, 60);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(29, 28);
             this.button1.TabIndex = 83;
@@ -1198,7 +1205,7 @@
             this.txtRazlog.ForeColor = System.Drawing.Color.White;
             this.txtRazlog.FormattingEnabled = true;
             this.txtRazlog.Location = new System.Drawing.Point(1537, 31);
-            this.txtRazlog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtRazlog.Margin = new System.Windows.Forms.Padding(4);
             this.txtRazlog.Name = "txtRazlog";
             this.txtRazlog.Size = new System.Drawing.Size(165, 24);
             this.txtRazlog.TabIndex = 22;
@@ -1207,7 +1214,7 @@
             // txtUgovor
             // 
             this.txtUgovor.Location = new System.Drawing.Point(113, 173);
-            this.txtUgovor.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUgovor.Margin = new System.Windows.Forms.Padding(4);
             this.txtUgovor.Name = "txtUgovor";
             this.txtUgovor.Size = new System.Drawing.Size(165, 22);
             this.txtUgovor.TabIndex = 3;
@@ -1236,7 +1243,7 @@
             // 
             this.txtRID.Enabled = false;
             this.txtRID.Location = new System.Drawing.Point(109, 213);
-            this.txtRID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtRID.Margin = new System.Windows.Forms.Padding(4);
             this.txtRID.Name = "txtRID";
             this.txtRID.Size = new System.Drawing.Size(141, 22);
             this.txtRID.TabIndex = 11;
@@ -1245,7 +1252,7 @@
             // 
             this.txtRIDBroj.Enabled = false;
             this.txtRIDBroj.Location = new System.Drawing.Point(79, 246);
-            this.txtRIDBroj.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtRIDBroj.Margin = new System.Windows.Forms.Padding(4);
             this.txtRIDBroj.Name = "txtRIDBroj";
             this.txtRIDBroj.Size = new System.Drawing.Size(141, 22);
             this.txtRIDBroj.TabIndex = 88;
@@ -1262,11 +1269,11 @@
             // 
             // cboVozP
             // 
-            this.cboVozP.BackColor = System.Drawing.Color.SlateGray;
-            this.cboVozP.ForeColor = System.Drawing.Color.White;
+            this.cboVozP.BackColor = System.Drawing.Color.White;
+            this.cboVozP.ForeColor = System.Drawing.Color.Black;
             this.cboVozP.FormattingEnabled = true;
             this.cboVozP.Location = new System.Drawing.Point(253, 251);
-            this.cboVozP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboVozP.Margin = new System.Windows.Forms.Padding(4);
             this.cboVozP.Name = "cboVozP";
             this.cboVozP.Size = new System.Drawing.Size(103, 24);
             this.cboVozP.TabIndex = 90;
@@ -1293,11 +1300,11 @@
             // 
             // cboGranicna
             // 
-            this.cboGranicna.BackColor = System.Drawing.Color.SlateGray;
-            this.cboGranicna.ForeColor = System.Drawing.Color.White;
+            this.cboGranicna.BackColor = System.Drawing.Color.White;
+            this.cboGranicna.ForeColor = System.Drawing.Color.Black;
             this.cboGranicna.FormattingEnabled = true;
             this.cboGranicna.Location = new System.Drawing.Point(119, 100);
-            this.cboGranicna.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboGranicna.Margin = new System.Windows.Forms.Padding(4);
             this.cboGranicna.Name = "cboGranicna";
             this.cboGranicna.Size = new System.Drawing.Size(284, 24);
             this.cboGranicna.TabIndex = 92;
@@ -1306,7 +1313,7 @@
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
             this.button2.Location = new System.Drawing.Point(224, 248);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(21, 28);
             this.button2.TabIndex = 94;
@@ -1326,11 +1333,11 @@
             // 
             // cboPlatilac
             // 
-            this.cboPlatilac.BackColor = System.Drawing.Color.SlateGray;
-            this.cboPlatilac.ForeColor = System.Drawing.Color.White;
+            this.cboPlatilac.BackColor = System.Drawing.Color.White;
+            this.cboPlatilac.ForeColor = System.Drawing.Color.Black;
             this.cboPlatilac.FormattingEnabled = true;
             this.cboPlatilac.Location = new System.Drawing.Point(110, 162);
-            this.cboPlatilac.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPlatilac.Margin = new System.Windows.Forms.Padding(4);
             this.cboPlatilac.Name = "cboPlatilac";
             this.cboPlatilac.Size = new System.Drawing.Size(294, 24);
             this.cboPlatilac.TabIndex = 95;
@@ -1340,7 +1347,7 @@
             // 
             this.chkAdHoc.AutoSize = true;
             this.chkAdHoc.Location = new System.Drawing.Point(81, 280);
-            this.chkAdHoc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkAdHoc.Margin = new System.Windows.Forms.Padding(4);
             this.chkAdHoc.Name = "chkAdHoc";
             this.chkAdHoc.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkAdHoc.Size = new System.Drawing.Size(72, 21);
@@ -1353,7 +1360,7 @@
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
             this.button3.Location = new System.Drawing.Point(412, 29);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(13, 28);
             this.button3.TabIndex = 98;
@@ -1365,7 +1372,7 @@
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
             this.button4.Location = new System.Drawing.Point(412, 36);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(13, 28);
             this.button4.TabIndex = 99;
@@ -1377,7 +1384,7 @@
             // 
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
             this.button5.Location = new System.Drawing.Point(411, 69);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(13, 28);
             this.button5.TabIndex = 100;
@@ -1389,7 +1396,7 @@
             // 
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
             this.button6.Location = new System.Drawing.Point(412, 103);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(13, 28);
             this.button6.TabIndex = 101;
@@ -1401,7 +1408,7 @@
             // 
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
             this.button7.Location = new System.Drawing.Point(412, 126);
-            this.button7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(13, 28);
             this.button7.TabIndex = 102;
@@ -1413,7 +1420,7 @@
             // 
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
             this.button8.Location = new System.Drawing.Point(412, 158);
-            this.button8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(13, 28);
             this.button8.TabIndex = 103;
@@ -1424,7 +1431,7 @@
             // button9
             // 
             this.button9.Location = new System.Drawing.Point(412, 61);
-            this.button9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button9.Margin = new System.Windows.Forms.Padding(4);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(13, 28);
             this.button9.TabIndex = 104;
@@ -1436,7 +1443,7 @@
             // 
             this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
             this.button10.Location = new System.Drawing.Point(412, 91);
-            this.button10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button10.Margin = new System.Windows.Forms.Padding(4);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(13, 28);
             this.button10.TabIndex = 107;
@@ -1455,11 +1462,11 @@
             // 
             // cboPrevoznikZa
             // 
-            this.cboPrevoznikZa.BackColor = System.Drawing.Color.SlateGray;
-            this.cboPrevoznikZa.ForeColor = System.Drawing.Color.White;
+            this.cboPrevoznikZa.BackColor = System.Drawing.Color.White;
+            this.cboPrevoznikZa.ForeColor = System.Drawing.Color.Black;
             this.cboPrevoznikZa.FormattingEnabled = true;
             this.cboPrevoznikZa.Location = new System.Drawing.Point(110, 95);
-            this.cboPrevoznikZa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPrevoznikZa.Margin = new System.Windows.Forms.Padding(4);
             this.cboPrevoznikZa.Name = "cboPrevoznikZa";
             this.cboPrevoznikZa.Size = new System.Drawing.Size(294, 24);
             this.cboPrevoznikZa.TabIndex = 105;
@@ -1467,7 +1474,7 @@
             // txtZadatak
             // 
             this.txtZadatak.Location = new System.Drawing.Point(236, 38);
-            this.txtZadatak.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtZadatak.Margin = new System.Windows.Forms.Padding(4);
             this.txtZadatak.Multiline = true;
             this.txtZadatak.Name = "txtZadatak";
             this.txtZadatak.Size = new System.Drawing.Size(313, 172);
@@ -1488,7 +1495,7 @@
             // 
             this.chkCIM.AutoSize = true;
             this.chkCIM.Location = new System.Drawing.Point(1309, 34);
-            this.chkCIM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkCIM.Margin = new System.Windows.Forms.Padding(4);
             this.chkCIM.Name = "chkCIM";
             this.chkCIM.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkCIM.Size = new System.Drawing.Size(123, 21);
@@ -1499,7 +1506,7 @@
             // txtDispecerRID
             // 
             this.txtDispecerRID.Location = new System.Drawing.Point(18, 330);
-            this.txtDispecerRID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDispecerRID.Margin = new System.Windows.Forms.Padding(4);
             this.txtDispecerRID.Name = "txtDispecerRID";
             this.txtDispecerRID.Size = new System.Drawing.Size(266, 22);
             this.txtDispecerRID.TabIndex = 111;
@@ -1528,11 +1535,11 @@
             // 
             // cboTipPrevoza
             // 
-            this.cboTipPrevoza.BackColor = System.Drawing.Color.SlateGray;
-            this.cboTipPrevoza.ForeColor = System.Drawing.Color.White;
+            this.cboTipPrevoza.BackColor = System.Drawing.Color.White;
+            this.cboTipPrevoza.ForeColor = System.Drawing.Color.Black;
             this.cboTipPrevoza.FormattingEnabled = true;
             this.cboTipPrevoza.Location = new System.Drawing.Point(113, 201);
-            this.cboTipPrevoza.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboTipPrevoza.Margin = new System.Windows.Forms.Padding(4);
             this.cboTipPrevoza.Name = "cboTipPrevoza";
             this.cboTipPrevoza.Size = new System.Drawing.Size(230, 24);
             this.cboTipPrevoza.TabIndex = 149;
@@ -1541,7 +1548,7 @@
             // 
             this.txtNetoTezinaM.DecimalPlaces = 2;
             this.txtNetoTezinaM.Location = new System.Drawing.Point(109, 122);
-            this.txtNetoTezinaM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNetoTezinaM.Margin = new System.Windows.Forms.Padding(4);
             this.txtNetoTezinaM.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -1585,14 +1592,14 @@
             // multiColumnComboBox1
             // 
             this.multiColumnComboBox1.AllowFiltering = false;
-            this.multiColumnComboBox1.BackColor = System.Drawing.Color.GreenYellow;
+            this.multiColumnComboBox1.BackColor = System.Drawing.Color.LightGray;
             this.multiColumnComboBox1.BeforeTouchSize = new System.Drawing.Size(240, 24);
             this.multiColumnComboBox1.Filter = null;
             this.multiColumnComboBox1.Location = new System.Drawing.Point(113, 122);
-            this.multiColumnComboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.multiColumnComboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.multiColumnComboBox1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.multiColumnComboBox1.Name = "multiColumnComboBox1";
-            this.multiColumnComboBox1.ScrollMetroColorTable = metroColorTable2;
+            this.multiColumnComboBox1.ScrollMetroColorTable = metroColorTable3;
             this.multiColumnComboBox1.Size = new System.Drawing.Size(240, 24);
             this.multiColumnComboBox1.TabIndex = 157;
             this.multiColumnComboBox1.Click += new System.EventHandler(this.multiColumnComboBox1_Click);
@@ -1603,7 +1610,7 @@
             // 
             this.chkImaPovrat.AutoSize = true;
             this.chkImaPovrat.Location = new System.Drawing.Point(10, 146);
-            this.chkImaPovrat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkImaPovrat.Margin = new System.Windows.Forms.Padding(4);
             this.chkImaPovrat.Name = "chkImaPovrat";
             this.chkImaPovrat.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkImaPovrat.Size = new System.Drawing.Size(96, 21);
@@ -1616,7 +1623,7 @@
             // 
             this.chkIzNajave.AutoSize = true;
             this.chkIzNajave.Location = new System.Drawing.Point(144, 150);
-            this.chkIzNajave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkIzNajave.Margin = new System.Windows.Forms.Padding(4);
             this.chkIzNajave.Name = "chkIzNajave";
             this.chkIzNajave.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkIzNajave.Size = new System.Drawing.Size(86, 21);
@@ -1628,10 +1635,10 @@
             // 
             // txtNHMPorudzbina
             // 
-            this.txtNHMPorudzbina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(163)))), ((int)(((byte)(74)))));
-            this.txtNHMPorudzbina.ForeColor = System.Drawing.Color.White;
+            this.txtNHMPorudzbina.BackColor = System.Drawing.Color.LightGray;
+            this.txtNHMPorudzbina.ForeColor = System.Drawing.Color.Black;
             this.txtNHMPorudzbina.Location = new System.Drawing.Point(7, 147);
-            this.txtNHMPorudzbina.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNHMPorudzbina.Margin = new System.Windows.Forms.Padding(4);
             this.txtNHMPorudzbina.Multiline = true;
             this.txtNHMPorudzbina.Name = "txtNHMPorudzbina";
             this.txtNHMPorudzbina.Size = new System.Drawing.Size(221, 63);
@@ -1640,14 +1647,14 @@
             // cboTehnologijaID
             // 
             this.cboTehnologijaID.AllowFiltering = false;
-            this.cboTehnologijaID.BackColor = System.Drawing.Color.GreenYellow;
+            this.cboTehnologijaID.BackColor = System.Drawing.Color.LightGray;
             this.cboTehnologijaID.BeforeTouchSize = new System.Drawing.Size(240, 24);
             this.cboTehnologijaID.Filter = null;
             this.cboTehnologijaID.Location = new System.Drawing.Point(113, 283);
-            this.cboTehnologijaID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboTehnologijaID.Margin = new System.Windows.Forms.Padding(4);
             this.cboTehnologijaID.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.cboTehnologijaID.Name = "cboTehnologijaID";
-            this.cboTehnologijaID.ScrollMetroColorTable = metroColorTable3;
+            this.cboTehnologijaID.ScrollMetroColorTable = metroColorTable4;
             this.cboTehnologijaID.Size = new System.Drawing.Size(240, 24);
             this.cboTehnologijaID.TabIndex = 162;
             // 
@@ -1668,25 +1675,25 @@
             this.dataGridView5.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView5.ColumnHeadersVisible = false;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView5.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView5.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView5.Location = new System.Drawing.Point(1218, 290);
-            this.dataGridView5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView5.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView5.Name = "dataGridView5";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView5.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView5.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView5.RowHeadersWidth = 21;
             this.dataGridView5.Size = new System.Drawing.Size(555, 161);
             this.dataGridView5.TabIndex = 163;
@@ -1704,11 +1711,11 @@
             // 
             // cboNHM2
             // 
-            this.cboNHM2.BackColor = System.Drawing.Color.SlateGray;
-            this.cboNHM2.ForeColor = System.Drawing.Color.White;
+            this.cboNHM2.BackColor = System.Drawing.Color.White;
+            this.cboNHM2.ForeColor = System.Drawing.Color.Black;
             this.cboNHM2.FormattingEnabled = true;
             this.cboNHM2.Location = new System.Drawing.Point(108, 182);
-            this.cboNHM2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboNHM2.Margin = new System.Windows.Forms.Padding(4);
             this.cboNHM2.Name = "cboNHM2";
             this.cboNHM2.Size = new System.Drawing.Size(176, 24);
             this.cboNHM2.TabIndex = 164;
@@ -1716,7 +1723,7 @@
             // txtPorDodatno
             // 
             this.txtPorDodatno.Location = new System.Drawing.Point(7, 40);
-            this.txtPorDodatno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPorDodatno.Margin = new System.Windows.Forms.Padding(4);
             this.txtPorDodatno.Multiline = true;
             this.txtPorDodatno.Name = "txtPorDodatno";
             this.txtPorDodatno.Size = new System.Drawing.Size(221, 104);
@@ -1865,9 +1872,9 @@
             this.groupBox6.Controls.Add(this.cboTipPrevoza);
             this.groupBox6.Controls.Add(this.cmbVoz);
             this.groupBox6.Controls.Add(this.label2);
-            this.groupBox6.Location = new System.Drawing.Point(24, 34);
+            this.groupBox6.Location = new System.Drawing.Point(24, 36);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(391, 314);
+            this.groupBox6.Size = new System.Drawing.Size(391, 312);
             this.groupBox6.TabIndex = 173;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Osnovni podaci";
@@ -1877,6 +1884,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1825, 745);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
@@ -1891,7 +1899,7 @@
             this.Controls.Add(this.tabNajave);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmNajava";
             this.Text = "Prevozi";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

@@ -325,7 +325,7 @@
       <HintPath>..\packages\Syncfusion.XlsIO.WinForms.19.4.0.56\lib\net46\Syncfusion.XlsIO.Base.dll</HintPath>
     </Reference>
     <Reference Include="System">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll</HintPath>
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll</HintPath>
     </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
@@ -1694,11 +1694,29 @@
     <Compile Include="Sifarnici\frmCenaPoRadniku.Designer.cs">
       <DependentUpon>frmCenaPoRadniku.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sifarnici\frmDelavci.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnici\frmDelavci.Designer.cs">
+      <DependentUpon>frmDelavci.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sifarnici\frmDelovnaMesta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnici\frmDelovnaMesta.Designer.cs">
+      <DependentUpon>frmDelovnaMesta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sifarnici\frmDodelaLokomotive.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sifarnici\frmDodelaLokomotive.Designer.cs">
       <DependentUpon>frmDodelaLokomotive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sifarnici\frmJediniceMere.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnici\frmJediniceMere.Designer.cs">
+      <DependentUpon>frmJediniceMere.cs</DependentUpon>
     </Compile>
     <Compile Include="Sifarnici\frmKopiranjeTeretnice.cs">
       <SubType>Form</SubType>
@@ -1717,6 +1735,12 @@
     </Compile>
     <Compile Include="Sifarnici\frmLokomotive.Designer.cs">
       <DependentUpon>frmLokomotive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sifarnici\frmMaticniPodatki.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnici\frmMaticniPodatki.Designer.cs">
+      <DependentUpon>frmMaticniPodatki.cs</DependentUpon>
     </Compile>
     <Compile Include="Sifarnici\frmNHM.cs">
       <SubType>Form</SubType>
@@ -1741,6 +1765,12 @@
     </Compile>
     <Compile Include="Sifarnici\frmPravoZahtevZaNabavku.Designer.cs">
       <DependentUpon>frmPravoZahtevZaNabavku.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sifarnici\frmProdajnaGrupa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnici\frmProdajnaGrupa.Designer.cs">
+      <DependentUpon>frmProdajnaGrupa.cs</DependentUpon>
     </Compile>
     <Compile Include="Sifarnici\frmPruge.cs">
       <SubType>Form</SubType>
@@ -1854,14 +1884,19 @@
       <DependentUpon>frmVrsteAktivnosti.cs</DependentUpon>
     </Compile>
     <Compile Include="Sifarnici\InsertCIR.cs" />
+    <Compile Include="Sifarnici\InsertDelavciMTA.cs" />
+    <Compile Include="Sifarnici\InsertDelovnaMesta.cs" />
     <Compile Include="Sifarnici\InsertEvidencijaSatiPoRadniku.cs" />
     <Compile Include="Sifarnici\InsertKontrolneGreske.cs" />
     <Compile Include="Sifarnici\InsertKontrolneGreskeTipDokumenta.cs" />
     <Compile Include="Sifarnici\InsertLokomotivaSerija.cs" />
     <Compile Include="Sifarnici\InsertLokomotive.cs" />
+    <Compile Include="Sifarnici\InsertMaticniPodatki.cs" />
+    <Compile Include="Sifarnici\InsertMerskeEnote.cs" />
     <Compile Include="Sifarnici\Insertnhm.cs" />
     <Compile Include="Sifarnici\InsertParametri.cs" />
     <Compile Include="Sifarnici\InsertPartnerji.cs" />
+    <Compile Include="Sifarnici\InsertProdSkup.cs" />
     <Compile Include="Sifarnici\InsertPruga.cs" />
     <Compile Include="Sifarnici\InsertPrugaStavke.cs" />
     <Compile Include="Sifarnici\InsertRadnikLokomotiva.cs" />
@@ -3046,6 +3081,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="PropertyGridForm.resx">
+      <DependentUpon>PropertyGridForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Servis\frmEvidencijaKvarova.resx">
       <DependentUpon>frmEvidencijaKvarova.cs</DependentUpon>
     </EmbeddedResource>
@@ -3094,8 +3132,17 @@
     <EmbeddedResource Include="Sifarnici\frmCenaPoRadniku.resx">
       <DependentUpon>frmCenaPoRadniku.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sifarnici\frmDelavci.resx">
+      <DependentUpon>frmDelavci.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sifarnici\frmDelovnaMesta.resx">
+      <DependentUpon>frmDelovnaMesta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmDodelaLokomotive.resx">
       <DependentUpon>frmDodelaLokomotive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sifarnici\frmJediniceMere.resx">
+      <DependentUpon>frmJediniceMere.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmKopiranjeTeretnice.resx">
       <DependentUpon>frmKopiranjeTeretnice.cs</DependentUpon>
@@ -3105,6 +3152,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmLokomotive.resx">
       <DependentUpon>frmLokomotive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sifarnici\frmMaticniPodatki.resx">
+      <DependentUpon>frmMaticniPodatki.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmNHM.resx">
       <DependentUpon>frmNHM.cs</DependentUpon>
@@ -3117,6 +3167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmPravoZahtevZaNabavku.resx">
       <DependentUpon>frmPravoZahtevZaNabavku.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sifarnici\frmProdajnaGrupa.resx">
+      <DependentUpon>frmProdajnaGrupa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmPruge.resx">
       <DependentUpon>frmPruge.cs</DependentUpon>

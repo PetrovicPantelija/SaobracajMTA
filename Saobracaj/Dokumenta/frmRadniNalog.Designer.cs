@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRadniNalog));
-            Syncfusion.Windows.Forms.MetroColorTable metroColorTable1 = new Syncfusion.Windows.Forms.MetroColorTable();
             Syncfusion.Windows.Forms.MetroColorTable metroColorTable2 = new Syncfusion.Windows.Forms.MetroColorTable();
+            Syncfusion.Windows.Forms.MetroColorTable metroColorTable3 = new Syncfusion.Windows.Forms.MetroColorTable();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
@@ -137,7 +137,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(1708, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1708, 31);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -148,7 +148,7 @@
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
+            this.tsNew.Size = new System.Drawing.Size(29, 28);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -285,7 +285,7 @@
             this.txtSifra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSifra.ForeColor = System.Drawing.Color.White;
             this.txtSifra.Location = new System.Drawing.Point(16, 50);
-            this.txtSifra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(173, 22);
             this.txtSifra.TabIndex = 1;
@@ -304,7 +304,7 @@
             // txtKomentar
             // 
             this.txtKomentar.Location = new System.Drawing.Point(739, 113);
-            this.txtKomentar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtKomentar.Margin = new System.Windows.Forms.Padding(4);
             this.txtKomentar.Multiline = true;
             this.txtKomentar.Name = "txtKomentar";
             this.txtKomentar.Size = new System.Drawing.Size(279, 83);
@@ -327,7 +327,7 @@
             this.txtTrase.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTrase.ForeColor = System.Drawing.Color.White;
             this.txtTrase.Location = new System.Drawing.Point(229, 52);
-            this.txtTrase.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTrase.Margin = new System.Windows.Forms.Padding(4);
             this.txtTrase.Name = "txtTrase";
             this.txtTrase.Size = new System.Drawing.Size(66, 22);
             this.txtTrase.TabIndex = 136;
@@ -336,7 +336,7 @@
             // 
             this.cboPlaner.FormattingEnabled = true;
             this.cboPlaner.Location = new System.Drawing.Point(739, 50);
-            this.cboPlaner.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPlaner.Margin = new System.Windows.Forms.Padding(4);
             this.cboPlaner.Name = "cboPlaner";
             this.cboPlaner.Size = new System.Drawing.Size(279, 24);
             this.cboPlaner.TabIndex = 138;
@@ -356,7 +356,7 @@
             // 
             this.cboStatusRN.FormattingEnabled = true;
             this.cboStatusRN.Location = new System.Drawing.Point(384, 50);
-            this.cboStatusRN.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboStatusRN.Margin = new System.Windows.Forms.Padding(4);
             this.cboStatusRN.Name = "cboStatusRN";
             this.cboStatusRN.Size = new System.Drawing.Size(279, 24);
             this.cboStatusRN.TabIndex = 140;
@@ -378,7 +378,7 @@
             this.txtLokKM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtLokKM.ForeColor = System.Drawing.Color.White;
             this.txtLokKM.Location = new System.Drawing.Point(229, 110);
-            this.txtLokKM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLokKM.Margin = new System.Windows.Forms.Padding(4);
             this.txtLokKM.Name = "txtLokKM";
             this.txtLokKM.Size = new System.Drawing.Size(66, 22);
             this.txtLokKM.TabIndex = 141;
@@ -390,7 +390,7 @@
             this.txtMotoSati.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtMotoSati.ForeColor = System.Drawing.Color.White;
             this.txtMotoSati.Location = new System.Drawing.Point(123, 110);
-            this.txtMotoSati.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMotoSati.Margin = new System.Windows.Forms.Padding(4);
             this.txtMotoSati.Name = "txtMotoSati";
             this.txtMotoSati.Size = new System.Drawing.Size(66, 22);
             this.txtMotoSati.TabIndex = 142;
@@ -402,7 +402,7 @@
             this.txtBTT.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBTT.ForeColor = System.Drawing.Color.White;
             this.txtBTT.Location = new System.Drawing.Point(16, 110);
-            this.txtBTT.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBTT.Margin = new System.Windows.Forms.Padding(4);
             this.txtBTT.Name = "txtBTT";
             this.txtBTT.Size = new System.Drawing.Size(66, 22);
             this.txtBTT.TabIndex = 143;
@@ -465,7 +465,7 @@
             "Izvoz",
             "Tranzit"});
             this.cboUzroci.Location = new System.Drawing.Point(384, 170);
-            this.cboUzroci.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboUzroci.Margin = new System.Windows.Forms.Padding(4);
             this.cboUzroci.Name = "cboUzroci";
             this.cboUzroci.Size = new System.Drawing.Size(279, 24);
             this.cboUzroci.TabIndex = 147;
@@ -478,17 +478,17 @@
             this.dataGridView4.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView4.Location = new System.Drawing.Point(4, 6);
-            this.dataGridView4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView4.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersWidth = 51;
-            this.dataGridView4.Size = new System.Drawing.Size(830, 406);
+            this.dataGridView4.Size = new System.Drawing.Size(829, 406);
             this.dataGridView4.TabIndex = 149;
             this.dataGridView4.DoubleClick += new System.EventHandler(this.dataGridView4_DoubleClick);
             // 
             // splitContainer1
             // 
             this.splitContainer1.Location = new System.Drawing.Point(16, 485);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -511,7 +511,7 @@
             this.dataGridView2.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(7, 4);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.Size = new System.Drawing.Size(820, 409);
@@ -541,10 +541,10 @@
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(0, 27);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Location = new System.Drawing.Point(0, 31);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(1708, 208);
             this.groupBox1.TabIndex = 153;
             this.groupBox1.TabStop = false;
@@ -564,9 +564,9 @@
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Location = new System.Drawing.Point(1027, 4);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(673, 204);
             this.groupBox2.TabIndex = 165;
             this.groupBox2.TabStop = false;
@@ -577,7 +577,7 @@
             this.txtSifraZap.BackColor = System.Drawing.Color.SlateGray;
             this.txtSifraZap.ForeColor = System.Drawing.Color.White;
             this.txtSifraZap.Location = new System.Drawing.Point(12, 50);
-            this.txtSifraZap.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSifraZap.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifraZap.Name = "txtSifraZap";
             this.txtSifraZap.Size = new System.Drawing.Size(129, 22);
             this.txtSifraZap.TabIndex = 168;
@@ -592,7 +592,7 @@
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.ColumnHeadersVisible = false;
             this.dataGridView3.Location = new System.Drawing.Point(191, 50);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.Size = new System.Drawing.Size(475, 85);
@@ -606,7 +606,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(565, 161);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 33);
             this.button2.TabIndex = 166;
@@ -621,7 +621,7 @@
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(447, 161);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 33);
             this.button1.TabIndex = 165;
@@ -636,17 +636,17 @@
             this.cboPorudzbinaID.BeforeTouchSize = new System.Drawing.Size(129, 24);
             this.cboPorudzbinaID.Filter = null;
             this.cboPorudzbinaID.Location = new System.Drawing.Point(12, 110);
-            this.cboPorudzbinaID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPorudzbinaID.Margin = new System.Windows.Forms.Padding(4);
             this.cboPorudzbinaID.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.cboPorudzbinaID.Name = "cboPorudzbinaID";
-            this.cboPorudzbinaID.ScrollMetroColorTable = metroColorTable1;
+            this.cboPorudzbinaID.ScrollMetroColorTable = metroColorTable2;
             this.cboPorudzbinaID.Size = new System.Drawing.Size(129, 24);
             this.cboPorudzbinaID.TabIndex = 160;
             // 
             // txtBrojKola
             // 
             this.txtBrojKola.Location = new System.Drawing.Point(12, 170);
-            this.txtBrojKola.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBrojKola.Margin = new System.Windows.Forms.Padding(4);
             this.txtBrojKola.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -698,10 +698,10 @@
             this.cboPredhodniRadniNalog.Filter = null;
             this.cboPredhodniRadniNalog.FlatBorderColor = System.Drawing.SystemColors.ControlDarkDark;
             this.cboPredhodniRadniNalog.Location = new System.Drawing.Point(16, 170);
-            this.cboPredhodniRadniNalog.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPredhodniRadniNalog.Margin = new System.Windows.Forms.Padding(4);
             this.cboPredhodniRadniNalog.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.cboPredhodniRadniNalog.Name = "cboPredhodniRadniNalog";
-            this.cboPredhodniRadniNalog.ScrollMetroColorTable = metroColorTable2;
+            this.cboPredhodniRadniNalog.ScrollMetroColorTable = metroColorTable3;
             this.cboPredhodniRadniNalog.Size = new System.Drawing.Size(279, 24);
             this.cboPredhodniRadniNalog.TabIndex = 162;
             // 
@@ -725,9 +725,9 @@
             this.toolStripButton12,
             this.toolStripButton13,
             this.toolStripButton14});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 895);
+            this.toolStrip2.Location = new System.Drawing.Point(0, 891);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1708, 27);
+            this.toolStrip2.Size = new System.Drawing.Size(1708, 31);
             this.toolStrip2.TabIndex = 155;
             this.toolStrip2.Text = "Osveži";
             // 
@@ -780,7 +780,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(16, 7);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1681, 223);
@@ -791,9 +791,9 @@
             // 
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(1673, 190);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Trase";
@@ -808,10 +808,10 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(8, 7);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1655, 164);
+            this.dataGridView1.Size = new System.Drawing.Size(1655, 175);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -821,8 +821,8 @@
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.tabControl1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 235);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Location = new System.Drawing.Point(0, 239);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1708, 246);
             this.panel1.TabIndex = 154;
@@ -840,7 +840,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmRadniNalog";
             this.Text = "Radni nalog";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

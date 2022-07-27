@@ -25,13 +25,13 @@ namespace Saobracaj
         public bool PravoP;
         public MainP()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzcwMDg5QDMxMzgyZTM0MmUzMFhQSmlDM0M2bGpxcXVtT1VScTg1a0dtVTFLcUZiK0tLRnpvRTYyRFpMc3M9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             InitializeComponent();
         }
 
         public MainP(string Logovan, int Lozinka)
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzcwMDg5QDMxMzgyZTM0MmUzMFhQSmlDM0M2bGpxcXVtT1VScTg1a0dtVTFLcUZiK0tLRnpvRTYyRFpMc3M9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             InitializeComponent();
             Korisnik = Logovan;
         }
@@ -794,7 +794,10 @@ namespace Saobracaj
 
         private void toolStripButton64_Click(object sender, EventArgs e)
         {
+            //Tokovi dokumerntacije
 
+            Mobile.frmTokoviDokumentacije td = new Mobile.frmTokoviDokumentacije();
+            td.Show();
         }
 
         private void toolStripButton66_Click(object sender, EventArgs e)
@@ -1192,6 +1195,30 @@ namespace Saobracaj
         {
             frmSelectTransport1 trans1 = new frmSelectTransport1();
             trans1.Show();
+        }
+
+        private void toolStripButton168_Click(object sender, EventArgs e)
+        {
+            frmMaticniPodatki mp = new frmMaticniPodatki();
+            mp.Show();
+        }
+
+        private void prodajnegrupe_Click(object sender, EventArgs e)
+        {
+            frmProdajnaGrupa pg = new             frmProdajnaGrupa();
+            pg.Show();
+        }
+
+        private void toolStripButton171_Click(object sender, EventArgs e)
+        {
+            frmProdajnaGrupa pg = new frmProdajnaGrupa();
+            pg.Show();
+        }
+
+        private void toolStripButton172_Click(object sender, EventArgs e)
+        {
+            frmJediniceMere jm = new frmJediniceMere();
+            jm.Show();
         }
     }
 }

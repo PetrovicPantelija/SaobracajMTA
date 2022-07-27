@@ -43,7 +43,7 @@ namespace Saobracaj.Dokumenta
 
         public frmNajava()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzcwMDg5QDMxMzgyZTM0MmUzMFhQSmlDM0M2bGpxcXVtT1VScTg1a0dtVTFLcUZiK0tLRnpvRTYyRFpMc3M9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
 
             InitializeComponent();
             IdGrupe();
@@ -195,6 +195,18 @@ namespace Saobracaj.Dokumenta
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
 
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
             dataGridView1.Columns[0].Width = 70;
@@ -313,6 +325,18 @@ namespace Saobracaj.Dokumenta
             dataGridView4.ReadOnly = true;
             dataGridView4.DataSource = ds.Tables[0];
 
+            dataGridView4.BorderStyle = BorderStyle.None;
+            dataGridView4.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView4.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView4.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView4.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView4.BackgroundColor = Color.White;
+
+            dataGridView4.EnableHeadersVisualStyles = false;
+            dataGridView4.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView4.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView4.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
             DataGridViewColumn column = dataGridView4.Columns[0];
             dataGridView4.Columns[0].HeaderText = "Porudzbina stavka";
             dataGridView4.Columns[0].Width = 70;
@@ -354,6 +378,18 @@ namespace Saobracaj.Dokumenta
             dataAdapter.Fill(ds);
             dataGridView4.ReadOnly = true;
             dataGridView4.DataSource = ds.Tables[0];
+
+            dataGridView4.BorderStyle = BorderStyle.None;
+            dataGridView4.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView4.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView4.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView4.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView4.BackgroundColor = Color.White;
+
+            dataGridView4.EnableHeadersVisualStyles = false;
+            dataGridView4.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView4.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView4.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
             DataGridViewColumn column = dataGridView4.Columns[0];
             dataGridView4.Columns[0].HeaderText = "Porudzbina stavka";
@@ -1269,6 +1305,18 @@ namespace Saobracaj.Dokumenta
                 dataAdapter.Fill(ds);
                 dataGridView3.ReadOnly = true;
                 dataGridView3.DataSource = ds.Tables[0];
+
+                dataGridView3.BorderStyle = BorderStyle.None;
+                dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+                dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+                dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+                dataGridView3.BackgroundColor = Color.White;
+
+                dataGridView3.EnableHeadersVisualStyles = false;
+                dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+                dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+                dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             }
             else if (tabNajave.SelectedIndex == 7)
             {
@@ -1946,6 +1994,18 @@ namespace Saobracaj.Dokumenta
             dataAdapter.Fill(ds);
             dataGridView5.ReadOnly = true;
             dataGridView5.DataSource = ds.Tables[0];
+
+            dataGridView5.BorderStyle = BorderStyle.None;
+            dataGridView5.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView5.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView5.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView5.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView5.BackgroundColor = Color.White;
+
+            dataGridView5.EnableHeadersVisualStyles = false;
+            dataGridView5.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView5.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView5.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
             DataGridViewColumn column = dataGridView5.Columns[0];
             dataGridView5.Columns[0].HeaderText = "Porudzbina stavka";

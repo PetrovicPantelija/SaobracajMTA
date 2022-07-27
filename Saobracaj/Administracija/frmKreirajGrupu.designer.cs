@@ -181,7 +181,7 @@ namespace Saobracaj.Administracija
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
             this.Name = "frmKreirajGrupu";
-            this.Text = "frmKreirajGrupu";
+            this.Text = "Kreiranje grupa ";
             this.Load += new System.EventHandler(this.frmKreirajGrupu_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
