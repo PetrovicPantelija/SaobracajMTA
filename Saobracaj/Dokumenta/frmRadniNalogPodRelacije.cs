@@ -16,5 +16,15 @@ namespace Saobracaj.Dokumenta
         {
             InitializeComponent();
         }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void tsPoslednja_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

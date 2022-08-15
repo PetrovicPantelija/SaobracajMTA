@@ -59,6 +59,7 @@ namespace GridScheduleSample
 		/// </summary>
 		private void InitializeComponent()
 		{
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PropertyGridForm));
             this.AppearancePropertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.SuspendLayout();
             // 
@@ -78,6 +79,7 @@ namespace GridScheduleSample
             this.ClientSize = new System.Drawing.Size(376, 614);
             this.Controls.Add(this.AppearancePropertyGrid1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "PropertyGridForm";

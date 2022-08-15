@@ -29,6 +29,7 @@ namespace Saobracaj.Sifarnici
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPravoZahtevZaNabavku));
             this.label2 = new System.Windows.Forms.Label();
             this.cboZaposleni = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,35 +41,39 @@ namespace Saobracaj.Sifarnici
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 9);
+            this.label2.Location = new System.Drawing.Point(16, 11);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.Size = new System.Drawing.Size(74, 17);
             this.label2.TabIndex = 196;
             this.label2.Text = "Zaposleni:";
             // 
             // cboZaposleni
             // 
             this.cboZaposleni.FormattingEnabled = true;
-            this.cboZaposleni.Location = new System.Drawing.Point(74, 9);
+            this.cboZaposleni.Location = new System.Drawing.Point(99, 11);
+            this.cboZaposleni.Margin = new System.Windows.Forms.Padding(4);
             this.cboZaposleni.Name = "cboZaposleni";
-            this.cboZaposleni.Size = new System.Drawing.Size(159, 21);
+            this.cboZaposleni.Size = new System.Drawing.Size(211, 24);
             this.cboZaposleni.TabIndex = 195;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(270, 9);
+            this.label1.Location = new System.Drawing.Point(360, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(61, 13);
+            this.label1.Size = new System.Drawing.Size(81, 17);
             this.label1.TabIndex = 198;
             this.label1.Text = "Nadredjeni:";
             // 
             // cboNadredjeni
             // 
             this.cboNadredjeni.FormattingEnabled = true;
-            this.cboNadredjeni.Location = new System.Drawing.Point(337, 12);
+            this.cboNadredjeni.Location = new System.Drawing.Point(449, 15);
+            this.cboNadredjeni.Margin = new System.Windows.Forms.Padding(4);
             this.cboNadredjeni.Name = "cboNadredjeni";
-            this.cboNadredjeni.Size = new System.Drawing.Size(159, 21);
+            this.cboNadredjeni.Size = new System.Drawing.Size(211, 24);
             this.cboNadredjeni.TabIndex = 197;
             // 
             // dataGridView1
@@ -79,21 +84,26 @@ namespace Saobracaj.Sifarnici
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 70);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 86);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(776, 368);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(1035, 453);
             this.dataGridView1.TabIndex = 199;
             // 
             // frmPravoZahtevZaNabavku
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cboNadredjeni);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cboZaposleni);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPravoZahtevZaNabavku";
             this.Text = "frmPravoZahtevZaNabavku";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

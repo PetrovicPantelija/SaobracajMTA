@@ -1025,8 +1025,8 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>0.17639cm</Top>
-            <Height>3.9434cm</Height>
-            <Width>8.0509cm</Width>
+            <Height>3.94339cm</Height>
+            <Width>8.05089cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -1052,7 +1052,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>ŽIT TERMINAL - PRIJEM RASPORED</Value>
+                      <Value>TERMINAL - PRIJEM RASPORED</Value>
                       <Style>
                         <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>

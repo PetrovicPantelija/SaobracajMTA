@@ -87,15 +87,11 @@ namespace Saobracaj
 
         private void toolStripButton9_Click(object sender, EventArgs e)
         {
-            Sifarnici.frmNHM nhm = new Sifarnici.frmNHM();
-            PravoP = nhm.Pravo;
-            if (PravoP == true) { nhm.Show(); } else { return; }
+        
         }
         private void toolStripButton10_Click(object sender, EventArgs e)
         {
-            Sifarnici.frmOsoblje osob = new Sifarnici.frmOsoblje();
-            PravoP = osob.Pravo;
-            if (PravoP == true) { osob.Show(); } else { return; }
+           
         }
         private void toolStripButton11_Click(object sender, EventArgs e)
         {
@@ -105,15 +101,11 @@ namespace Saobracaj
         }
         private void toolStripButton12_Click(object sender, EventArgs e)
         {
-            Sifarnici.frmTipTelegrama ttel = new Sifarnici.frmTipTelegrama();
-            PravoP = ttel.Pravo;
-            if (PravoP == true) { ttel.Show(); } else { return; }
+         
         }
         private void toolStripButton13_Click(object sender, EventArgs e)
         {
-            Sifarnici.frmTelegrami tel = new Sifarnici.frmTelegrami();
-            PravoP = tel.Pravo;
-            if (PravoP == true) { tel.Show(); } else { return; }
+          
         }
         //Priprema
         private void toolStripButton15_Click(object sender, EventArgs e)
@@ -184,9 +176,7 @@ namespace Saobracaj
         }
         private void toolStripButton25_Click(object sender, EventArgs e)
         {
-            Mobile.frmZavrsnaDokumentacija zdok = new Mobile.frmZavrsnaDokumentacija();
-            PravoP = zdok.Pravo;
-            if (PravoP == true) { zdok.Show(); } else { return; }
+          
         }
         private void toolStripButton27_Click(object sender, EventArgs e)
         {
@@ -443,16 +433,12 @@ namespace Saobracaj
 
         private void toolStripButton58_Click(object sender, EventArgs e)
         {
-            Mobile.frmAnalizaGO ago = new Mobile.frmAnalizaGO();
-            PravoP = ago.Pravo;
-            if (PravoP == true) { ago.Show(); } else { return; }
+        
         }
 
         private void toolStripButton59_Click(object sender, EventArgs e)
         {
-            Mobile.frmAnalizaGOSum GoSum = new Mobile.frmAnalizaGOSum();
-            PravoP = GoSum.Pravo;
-            if (PravoP == true) { GoSum.Show(); } else { return; }
+          
         }
 
         private void toolStripButton56_Click(object sender, EventArgs e)
@@ -645,16 +631,12 @@ namespace Saobracaj
 
         private void toolStripButton100_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmBolovanja bol = new Dokumenta.frmBolovanja();
-            PravoP = bol.Pravo;
-            if (PravoP == true) { bol.Show(); } else { return; }
+          
         }
 
         private void toolStripButton101_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmPrekovremeniRad prekrad = new Dokumenta.frmPrekovremeniRad();
-            PravoP = prekrad.Pravo;
-            if (PravoP == true) { prekrad.Show(); } else { return; }
+           
         }
 
         private void toolStripButton103_Click(object sender, EventArgs e)
@@ -722,30 +704,7 @@ namespace Saobracaj
 
         private void toolStripButton111_Click(object sender, EventArgs e)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            myConnection.Open();
-            SqlCommand myCommand = myConnection.CreateCommand();
-            myCommand.CommandText = "sp_AzuriranjeOdmora";
-            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-            SqlTransaction myTransaction = myConnection.BeginTransaction();
-            myCommand.Transaction = myTransaction;
-            myCommand.ExecuteNonQuery();
-            myConnection.Close();
-            MessageBox.Show("Obrada zavrsena");
-            /*
-                        myConnection.Open();
-                        SqlTransaction myTransaction = myConnection.BeginTransaction();
-                        myCommand.Transaction = myTransaction;
-                        bool error = true;
-                        try
-                        {
-                            myCommand.ExecuteNonQuery();
-                            myTransaction.Commit();
-                            myTransaction = myConnection.BeginTransaction();
-                            myCommand.Transaction = myTransaction;
-                        }
-            */
+          
 
         }
 
@@ -1219,6 +1178,209 @@ namespace Saobracaj
         {
             frmJediniceMere jm = new frmJediniceMere();
             jm.Show();
+        }
+
+        private void toolStripButton36_Click_1(object sender, EventArgs e)
+        {
+            Dokumenta.frmDogovori dog = new Dokumenta.frmDogovori();
+            dog.Show();
+        }
+
+        private void toolStripButton173_Click(object sender, EventArgs e)
+        {
+            frmObjekt obj = new frmObjekt();
+            obj.Show();
+        }
+
+        private void toolStripButton174_Click(object sender, EventArgs e)
+        {
+            frmNacinIsporuke nacisp = new frmNacinIsporuke();
+            nacisp.Show();
+        }
+
+        private void toolStripButton175_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmKontaktOsobe ko = new Dokumenta.frmKontaktOsobe();
+            ko.Show();
+        }
+
+        private void toolStripButton169_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void toolStripButton169_Click_1(object sender, EventArgs e)
+        {
+            frmDelovnaMesta delm = new frmDelovnaMesta();
+            delm.Show();
+        }
+
+        private void toolStripButton170_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton176_Click(object sender, EventArgs e)
+        {
+            frmDelavci del = new frmDelavci();
+            del.Show();
+        }
+
+        private void toolStripButton170_Click_1(object sender, EventArgs e)
+        {
+            Dokumenta.frmBolovanja bol = new Dokumenta.frmBolovanja();
+            PravoP = bol.Pravo;
+            if (PravoP == true) { bol.Show(); } else { return; }
+        }
+
+        private void toolStripButton100_Click_1(object sender, EventArgs e)
+        {
+            Dokumenta.frmPrekovremeniRad prekrad = new Dokumenta.frmPrekovremeniRad();
+            PravoP = prekrad.Pravo;
+            if (PravoP == true) { prekrad.Show(); } else { return; }
+        }
+
+        private void toolStripButton50_Click_1(object sender, EventArgs e)
+        {
+            Mobile.frmSlobodniDani slob = new Mobile.frmSlobodniDani(Korisnik);
+            PravoP = slob.Pravo;
+            if (PravoP == true) { slob.Show(); } else { return; }
+        }
+
+        private void toolStripButton51_Click_1(object sender, EventArgs e)
+        {
+            Dokumenta.frmEvidencijaGodišnjihOdmora evgo = new Dokumenta.frmEvidencijaGodišnjihOdmora();
+            PravoP = evgo.Pravo;
+            if (PravoP == true) { evgo.Show(); } else { return; }
+        }
+
+        private void toolStripButton56_Click_1(object sender, EventArgs e)
+        {
+            Mobile.frmAnalizaGO ago = new Mobile.frmAnalizaGO();
+            PravoP = ago.Pravo;
+            if (PravoP == true) { ago.Show(); } else { return; }
+        }
+
+        private void toolStripButton57_Click_1(object sender, EventArgs e)
+        {
+            Mobile.frmAnalizaGOSum GoSum = new Mobile.frmAnalizaGOSum();
+            PravoP = GoSum.Pravo;
+            if (PravoP == true) { GoSum.Show(); } else { return; }
+        }
+
+        private void toolStripButton58_Click_1(object sender, EventArgs e)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            myConnection.Open();
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "sp_AzuriranjeOdmora";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            myCommand.ExecuteNonQuery();
+            myConnection.Close();
+            MessageBox.Show("Obrada zavrsena");
+            /*
+                        myConnection.Open();
+                        SqlTransaction myTransaction = myConnection.BeginTransaction();
+                        myCommand.Transaction = myTransaction;
+                        bool error = true;
+                        try
+                        {
+                            myCommand.ExecuteNonQuery();
+                            myTransaction.Commit();
+                            myTransaction = myConnection.BeginTransaction();
+                            myCommand.Transaction = myTransaction;
+                        }
+            */
+        }
+
+        private void toolStripButton25_Click_1(object sender, EventArgs e)
+        {
+            Testiranje.Pitanja pitanja = new Testiranje.Pitanja();
+            PravoP = pitanja.Pravo;
+            if (PravoP == true) { pitanja.Show(); } else { return; }
+        }
+
+        private void toolStripButton101_Click_1(object sender, EventArgs e)
+        {
+            Testiranje.frmGenerisanjeTestaKorisnik generisanje = new Testiranje.frmGenerisanjeTestaKorisnik();
+            PravoP = generisanje.Pravo;
+            if (PravoP == true) { generisanje.Show(); } else { return; }
+        }
+
+        private void toolStripButton177_Click(object sender, EventArgs e)
+        {
+            Testiranje.TestiranjeStampa tesS = new Testiranje.TestiranjeStampa();
+            PravoP = tesS.Pravo;
+            if (PravoP == true) { tesS.Show(); } else { return; }
+        }
+
+        private void toolStripButton178_Click(object sender, EventArgs e)
+        {
+            Testiranje.Obrasci tes6 = new Testiranje.Obrasci();
+            PravoP = tes6.Pravo;
+            if (PravoP == true) { tes6.Show(); } else { return; }
+        }
+
+        private void toolStripButton179_Click(object sender, EventArgs e)
+        {
+            Sifarnici.frmTelegrami tel = new Sifarnici.frmTelegrami();
+            PravoP = tel.Pravo;
+            if (PravoP == true) { tel.Show(); } else { return; }
+        }
+
+        private void toolStripButton13_Click_1(object sender, EventArgs e)
+        {
+            Administracija.frmNotifikacije not = new Administracija.frmNotifikacije();
+            PravoP = not.Pravo;
+            if (PravoP == true) { not.Show(); } else { return; }
+        }
+
+        private void toolStripButton59_Click_1(object sender, EventArgs e)
+        {
+            Mobile.frmZavrsnaDokumentacija zdok = new Mobile.frmZavrsnaDokumentacija();
+            PravoP = zdok.Pravo;
+            if (PravoP == true) { zdok.Show(); } else { return; }
+        }
+
+        private void toolStripButton26_Click_1(object sender, EventArgs e)
+        {
+            Servis.frmPlombe pl = new Servis.frmPlombe();
+            PravoP = pl.Pravo;
+            if (PravoP == true)
+            {
+                pl.Show();
+            }
+            else { return; }
+        }
+
+        private void toolStripButton28_Click_1(object sender, EventArgs e)
+        {
+            Sifarnici.frmNHM nhm = new Sifarnici.frmNHM();
+            PravoP = nhm.Pravo;
+            if (PravoP == true) { nhm.Show(); } else { return; }
+        }
+
+        private void toolStripButton9_Click_1(object sender, EventArgs e)
+        {
+            Sifarnici.frmOsoblje osob = new Sifarnici.frmOsoblje();
+            PravoP = osob.Pravo;
+            if (PravoP == true) { osob.Show(); } else { return; }
+        }
+
+        private void toolStripButton10_Click_1(object sender, EventArgs e)
+        {
+            Sifarnici.frmTipTelegrama ttel = new Sifarnici.frmTipTelegrama();
+            PravoP = ttel.Pravo;
+            if (PravoP == true) { ttel.Show(); } else { return; }
+        }
+
+        private void toolStripButton12_Click_1(object sender, EventArgs e)
+        {
+            Dokumenta.frmDogovoriPregled dogpre = new Dokumenta.frmDogovoriPregled();
+            dogpre.Show();
         }
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEvidencijaRadaZaglavlje));
             this.button1 = new System.Windows.Forms.Button();
             this.btnPretrazi = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -73,9 +74,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(811, 120);
+            this.button1.Location = new System.Drawing.Point(1081, 148);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(193, 23);
+            this.button1.Size = new System.Drawing.Size(257, 28);
             this.button1.TabIndex = 99;
             this.button1.Text = "Izbriši selektovane stavke";
             this.button1.UseVisualStyleBackColor = true;
@@ -83,9 +85,10 @@
             // 
             // btnPretrazi
             // 
-            this.btnPretrazi.Location = new System.Drawing.Point(318, 5);
+            this.btnPretrazi.Location = new System.Drawing.Point(424, 6);
+            this.btnPretrazi.Margin = new System.Windows.Forms.Padding(4);
             this.btnPretrazi.Name = "btnPretrazi";
-            this.btnPretrazi.Size = new System.Drawing.Size(74, 23);
+            this.btnPretrazi.Size = new System.Drawing.Size(99, 28);
             this.btnPretrazi.TabIndex = 98;
             this.btnPretrazi.Text = "Pretraži";
             this.btnPretrazi.UseVisualStyleBackColor = true;
@@ -94,9 +97,10 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(18, 7);
+            this.label6.Location = new System.Drawing.Point(24, 9);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.Size = new System.Drawing.Size(74, 17);
             this.label6.TabIndex = 97;
             this.label6.Text = "Zaposleni:";
             // 
@@ -104,9 +108,10 @@
             // 
             this.cboZaposleni.BackColor = System.Drawing.Color.White;
             this.cboZaposleni.FormattingEnabled = true;
-            this.cboZaposleni.Location = new System.Drawing.Point(80, 7);
+            this.cboZaposleni.Location = new System.Drawing.Point(107, 9);
+            this.cboZaposleni.Margin = new System.Windows.Forms.Padding(4);
             this.cboZaposleni.Name = "cboZaposleni";
-            this.cboZaposleni.Size = new System.Drawing.Size(171, 21);
+            this.cboZaposleni.Size = new System.Drawing.Size(227, 24);
             this.cboZaposleni.TabIndex = 96;
             // 
             // dataGridView1
@@ -117,9 +122,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 149);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 183);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1264, 169);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(1685, 208);
             this.dataGridView1.TabIndex = 95;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -127,10 +134,11 @@
             // 
             this.dtpPredvidjenoPrimanje.CustomFormat = "yyyy-MM-dd";
             this.dtpPredvidjenoPrimanje.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPredvidjenoPrimanje.Location = new System.Drawing.Point(210, 36);
+            this.dtpPredvidjenoPrimanje.Location = new System.Drawing.Point(280, 44);
+            this.dtpPredvidjenoPrimanje.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPredvidjenoPrimanje.Name = "dtpPredvidjenoPrimanje";
             this.dtpPredvidjenoPrimanje.ShowUpDown = true;
-            this.dtpPredvidjenoPrimanje.Size = new System.Drawing.Size(95, 20);
+            this.dtpPredvidjenoPrimanje.Size = new System.Drawing.Size(125, 22);
             this.dtpPredvidjenoPrimanje.TabIndex = 100;
             this.dtpPredvidjenoPrimanje.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -138,18 +146,20 @@
             // 
             this.dtpVremeDo.CustomFormat = "yyyy-MM-dd";
             this.dtpVremeDo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremeDo.Location = new System.Drawing.Point(210, 62);
+            this.dtpVremeDo.Location = new System.Drawing.Point(280, 76);
+            this.dtpVremeDo.Margin = new System.Windows.Forms.Padding(4);
             this.dtpVremeDo.Name = "dtpVremeDo";
             this.dtpVremeDo.ShowUpDown = true;
-            this.dtpVremeDo.Size = new System.Drawing.Size(95, 20);
+            this.dtpVremeDo.Size = new System.Drawing.Size(125, 22);
             this.dtpVremeDo.TabIndex = 101;
             this.dtpVremeDo.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(318, 35);
+            this.button2.Location = new System.Drawing.Point(424, 43);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(74, 23);
+            this.button2.Size = new System.Drawing.Size(99, 28);
             this.button2.TabIndex = 102;
             this.button2.Text = "Pretraži";
             this.button2.UseVisualStyleBackColor = true;
@@ -157,9 +167,10 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(414, 7);
+            this.button3.Location = new System.Drawing.Point(552, 9);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(108, 23);
+            this.button3.Size = new System.Drawing.Size(144, 28);
             this.button3.TabIndex = 103;
             this.button3.Text = "Otvori zapis";
             this.button3.UseVisualStyleBackColor = true;
@@ -168,17 +179,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(149, 35);
+            this.label1.Location = new System.Drawing.Point(199, 43);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.Size = new System.Drawing.Size(73, 17);
             this.label1.TabIndex = 104;
             this.label1.Text = "Vreme od:";
             // 
             // btn
             // 
-            this.btn.Location = new System.Drawing.Point(537, 7);
+            this.btn.Location = new System.Drawing.Point(716, 9);
+            this.btn.Margin = new System.Windows.Forms.Padding(4);
             this.btn.Name = "btn";
-            this.btn.Size = new System.Drawing.Size(108, 23);
+            this.btn.Size = new System.Drawing.Size(144, 28);
             this.btn.TabIndex = 105;
             this.btn.Text = "Refresh";
             this.btn.UseVisualStyleBackColor = true;
@@ -187,9 +200,10 @@
             // txtUkupniTrosak
             // 
             this.txtUkupniTrosak.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtUkupniTrosak.Location = new System.Drawing.Point(502, 39);
+            this.txtUkupniTrosak.Location = new System.Drawing.Point(669, 48);
+            this.txtUkupniTrosak.Margin = new System.Windows.Forms.Padding(4);
             this.txtUkupniTrosak.Name = "txtUkupniTrosak";
-            this.txtUkupniTrosak.Size = new System.Drawing.Size(49, 20);
+            this.txtUkupniTrosak.Size = new System.Drawing.Size(64, 22);
             this.txtUkupniTrosak.TabIndex = 157;
             this.txtUkupniTrosak.Text = "0";
             this.txtUkupniTrosak.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -197,27 +211,30 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(391, 42);
+            this.label2.Location = new System.Drawing.Point(521, 52);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 13);
+            this.label2.Size = new System.Drawing.Size(136, 17);
             this.label2.TabIndex = 158;
             this.label2.Text = "Ukupni radnik black:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(552, 42);
+            this.label3.Location = new System.Drawing.Point(736, 52);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(49, 13);
+            this.label3.Size = new System.Drawing.Size(63, 17);
             this.label3.TabIndex = 160;
             this.label3.Text = "Plaćeno:";
             // 
             // txtPlaceno
             // 
             this.txtPlaceno.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtPlaceno.Location = new System.Drawing.Point(607, 37);
+            this.txtPlaceno.Location = new System.Drawing.Point(809, 46);
+            this.txtPlaceno.Margin = new System.Windows.Forms.Padding(4);
             this.txtPlaceno.Name = "txtPlaceno";
-            this.txtPlaceno.Size = new System.Drawing.Size(57, 20);
+            this.txtPlaceno.Size = new System.Drawing.Size(75, 22);
             this.txtPlaceno.TabIndex = 159;
             this.txtPlaceno.Text = "0";
             this.txtPlaceno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -225,18 +242,20 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(667, 40);
+            this.label4.Location = new System.Drawing.Point(889, 49);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 13);
+            this.label4.Size = new System.Drawing.Size(80, 17);
             this.label4.TabIndex = 162;
             this.label4.Text = "Neplaćeno:";
             // 
             // txtNeplaceno
             // 
             this.txtNeplaceno.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.txtNeplaceno.Location = new System.Drawing.Point(735, 37);
+            this.txtNeplaceno.Location = new System.Drawing.Point(980, 46);
+            this.txtNeplaceno.Margin = new System.Windows.Forms.Padding(4);
             this.txtNeplaceno.Name = "txtNeplaceno";
-            this.txtNeplaceno.Size = new System.Drawing.Size(57, 20);
+            this.txtNeplaceno.Size = new System.Drawing.Size(75, 22);
             this.txtNeplaceno.TabIndex = 161;
             this.txtNeplaceno.Text = "0";
             this.txtNeplaceno.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -244,9 +263,10 @@
             // button4
             // 
             this.button4.Enabled = false;
-            this.button4.Location = new System.Drawing.Point(811, 36);
+            this.button4.Location = new System.Drawing.Point(1081, 44);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(193, 23);
+            this.button4.Size = new System.Drawing.Size(257, 28);
             this.button4.TabIndex = 163;
             this.button4.Text = "Plati selektovane stavke troškovi";
             this.button4.UseVisualStyleBackColor = true;
@@ -256,19 +276,21 @@
             // chkUnosMasinovođa
             // 
             this.chkUnosMasinovođa.AutoSize = true;
-            this.chkUnosMasinovođa.Location = new System.Drawing.Point(12, 34);
+            this.chkUnosMasinovođa.Location = new System.Drawing.Point(16, 42);
+            this.chkUnosMasinovođa.Margin = new System.Windows.Forms.Padding(4);
             this.chkUnosMasinovođa.Name = "chkUnosMasinovođa";
             this.chkUnosMasinovođa.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkUnosMasinovođa.Size = new System.Drawing.Size(115, 17);
+            this.chkUnosMasinovođa.Size = new System.Drawing.Size(149, 21);
             this.chkUnosMasinovođa.TabIndex = 187;
             this.chkUnosMasinovođa.Text = "Samo mašinovodje";
             this.chkUnosMasinovođa.UseVisualStyleBackColor = true;
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(651, 7);
+            this.button5.Location = new System.Drawing.Point(868, 9);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(140, 23);
+            this.button5.Size = new System.Drawing.Size(187, 28);
             this.button5.TabIndex = 188;
             this.button5.Text = "Update masinovodja";
             this.button5.UseVisualStyleBackColor = true;
@@ -276,9 +298,10 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(811, 62);
+            this.button6.Location = new System.Drawing.Point(1081, 76);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(193, 23);
+            this.button6.Size = new System.Drawing.Size(257, 28);
             this.button6.TabIndex = 189;
             this.button6.Text = "Pregledano računa izvršen";
             this.button6.UseVisualStyleBackColor = true;
@@ -287,18 +310,20 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(667, 66);
+            this.label5.Location = new System.Drawing.Point(889, 81);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(62, 13);
+            this.label5.Size = new System.Drawing.Size(80, 17);
             this.label5.TabIndex = 195;
             this.label5.Text = "Neplaćeno:";
             // 
             // txtNeplacenoRacuni
             // 
             this.txtNeplacenoRacuni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.txtNeplacenoRacuni.Location = new System.Drawing.Point(735, 63);
+            this.txtNeplacenoRacuni.Location = new System.Drawing.Point(980, 78);
+            this.txtNeplacenoRacuni.Margin = new System.Windows.Forms.Padding(4);
             this.txtNeplacenoRacuni.Name = "txtNeplacenoRacuni";
-            this.txtNeplacenoRacuni.Size = new System.Drawing.Size(57, 20);
+            this.txtNeplacenoRacuni.Size = new System.Drawing.Size(75, 22);
             this.txtNeplacenoRacuni.TabIndex = 194;
             this.txtNeplacenoRacuni.Text = "0";
             this.txtNeplacenoRacuni.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -306,18 +331,20 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(552, 68);
+            this.label7.Location = new System.Drawing.Point(736, 84);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(49, 13);
+            this.label7.Size = new System.Drawing.Size(63, 17);
             this.label7.TabIndex = 193;
             this.label7.Text = "Plaćeno:";
             // 
             // txtPlacenoRAcuni
             // 
             this.txtPlacenoRAcuni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtPlacenoRAcuni.Location = new System.Drawing.Point(607, 63);
+            this.txtPlacenoRAcuni.Location = new System.Drawing.Point(809, 78);
+            this.txtPlacenoRAcuni.Margin = new System.Windows.Forms.Padding(4);
             this.txtPlacenoRAcuni.Name = "txtPlacenoRAcuni";
-            this.txtPlacenoRAcuni.Size = new System.Drawing.Size(57, 20);
+            this.txtPlacenoRAcuni.Size = new System.Drawing.Size(75, 22);
             this.txtPlacenoRAcuni.TabIndex = 192;
             this.txtPlacenoRAcuni.Text = "0";
             this.txtPlacenoRAcuni.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -325,27 +352,30 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(412, 68);
+            this.label8.Location = new System.Drawing.Point(549, 84);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(76, 13);
+            this.label8.Size = new System.Drawing.Size(99, 17);
             this.label8.TabIndex = 191;
             this.label8.Text = "Ukupni računi:";
             // 
             // txtUkupniTrosakRacuni
             // 
             this.txtUkupniTrosakRacuni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtUkupniTrosakRacuni.Location = new System.Drawing.Point(502, 65);
+            this.txtUkupniTrosakRacuni.Location = new System.Drawing.Point(669, 80);
+            this.txtUkupniTrosakRacuni.Margin = new System.Windows.Forms.Padding(4);
             this.txtUkupniTrosakRacuni.Name = "txtUkupniTrosakRacuni";
-            this.txtUkupniTrosakRacuni.Size = new System.Drawing.Size(49, 20);
+            this.txtUkupniTrosakRacuni.Size = new System.Drawing.Size(64, 22);
             this.txtUkupniTrosakRacuni.TabIndex = 190;
             this.txtUkupniTrosakRacuni.Text = "0";
             this.txtUkupniTrosakRacuni.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(811, 7);
+            this.button7.Location = new System.Drawing.Point(1081, 9);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(135, 23);
+            this.button7.Size = new System.Drawing.Size(180, 28);
             this.button7.TabIndex = 196;
             this.button7.Text = "Izdračunaj";
             this.button7.UseVisualStyleBackColor = true;
@@ -353,9 +383,10 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(811, 91);
+            this.button8.Location = new System.Drawing.Point(1081, 112);
+            this.button8.Margin = new System.Windows.Forms.Padding(4);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(193, 23);
+            this.button8.Size = new System.Drawing.Size(257, 28);
             this.button8.TabIndex = 197;
             this.button8.Text = "Pregledano kartice";
             this.button8.UseVisualStyleBackColor = true;
@@ -365,10 +396,11 @@
             // 
             this.chkSmederevo1.AutoSize = true;
             this.chkSmederevo1.Enabled = false;
-            this.chkSmederevo1.Location = new System.Drawing.Point(12, 60);
+            this.chkSmederevo1.Location = new System.Drawing.Point(16, 74);
+            this.chkSmederevo1.Margin = new System.Windows.Forms.Padding(4);
             this.chkSmederevo1.Name = "chkSmederevo1";
             this.chkSmederevo1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkSmederevo1.Size = new System.Drawing.Size(80, 17);
+            this.chkSmederevo1.Size = new System.Drawing.Size(102, 21);
             this.chkSmederevo1.TabIndex = 198;
             this.chkSmederevo1.Text = "Smederevo";
             this.chkSmederevo1.UseVisualStyleBackColor = true;
@@ -378,10 +410,11 @@
             // 
             this.chkCG.AutoSize = true;
             this.chkCG.Enabled = false;
-            this.chkCG.Location = new System.Drawing.Point(136, 62);
+            this.chkCG.Location = new System.Drawing.Point(181, 76);
+            this.chkCG.Margin = new System.Windows.Forms.Padding(4);
             this.chkCG.Name = "chkCG";
             this.chkCG.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkCG.Size = new System.Drawing.Size(41, 17);
+            this.chkCG.Size = new System.Drawing.Size(50, 21);
             this.chkCG.TabIndex = 199;
             this.chkCG.Text = "CG";
             this.chkCG.UseVisualStyleBackColor = true;
@@ -391,10 +424,11 @@
             // 
             this.chkRemont.AutoSize = true;
             this.chkRemont.Enabled = false;
-            this.chkRemont.Location = new System.Drawing.Point(141, 62);
+            this.chkRemont.Location = new System.Drawing.Point(188, 76);
+            this.chkRemont.Margin = new System.Windows.Forms.Padding(4);
             this.chkRemont.Name = "chkRemont";
             this.chkRemont.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkRemont.Size = new System.Drawing.Size(63, 17);
+            this.chkRemont.Size = new System.Drawing.Size(79, 21);
             this.chkRemont.TabIndex = 200;
             this.chkRemont.Text = "Remont";
             this.chkRemont.UseVisualStyleBackColor = true;
@@ -404,10 +438,11 @@
             // 
             this.chkKragujevac.AutoSize = true;
             this.chkKragujevac.Enabled = false;
-            this.chkKragujevac.Location = new System.Drawing.Point(47, 60);
+            this.chkKragujevac.Location = new System.Drawing.Point(63, 74);
+            this.chkKragujevac.Margin = new System.Windows.Forms.Padding(4);
             this.chkKragujevac.Name = "chkKragujevac";
             this.chkKragujevac.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkKragujevac.Size = new System.Drawing.Size(80, 17);
+            this.chkKragujevac.Size = new System.Drawing.Size(101, 21);
             this.chkKragujevac.TabIndex = 201;
             this.chkKragujevac.Text = "Kragujevac";
             this.chkKragujevac.UseVisualStyleBackColor = true;
@@ -415,9 +450,10 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(12, 83);
+            this.button9.Location = new System.Drawing.Point(16, 102);
+            this.button9.Margin = new System.Windows.Forms.Padding(4);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(165, 23);
+            this.button9.Size = new System.Drawing.Size(220, 28);
             this.button9.TabIndex = 202;
             this.button9.Text = "Pretraži";
             this.button9.UseVisualStyleBackColor = true;
@@ -425,9 +461,10 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(183, 83);
+            this.button10.Location = new System.Drawing.Point(244, 102);
+            this.button10.Margin = new System.Windows.Forms.Padding(4);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(165, 23);
+            this.button10.Size = new System.Drawing.Size(220, 28);
             this.button10.TabIndex = 203;
             this.button10.Text = "Spoljni";
             this.button10.UseVisualStyleBackColor = true;
@@ -436,19 +473,21 @@
             // chkSpolja
             // 
             this.chkSpolja.AutoSize = true;
-            this.chkSpolja.Location = new System.Drawing.Point(257, 9);
+            this.chkSpolja.Location = new System.Drawing.Point(343, 11);
+            this.chkSpolja.Margin = new System.Windows.Forms.Padding(4);
             this.chkSpolja.Name = "chkSpolja";
             this.chkSpolja.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkSpolja.Size = new System.Drawing.Size(55, 17);
+            this.chkSpolja.Size = new System.Drawing.Size(69, 21);
             this.chkSpolja.TabIndex = 204;
             this.chkSpolja.Text = "Spolja";
             this.chkSpolja.UseVisualStyleBackColor = true;
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(469, 106);
+            this.button11.Location = new System.Drawing.Point(625, 130);
+            this.button11.Margin = new System.Windows.Forms.Padding(4);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(120, 23);
+            this.button11.Size = new System.Drawing.Size(160, 28);
             this.button11.TabIndex = 205;
             this.button11.Text = "Saberi smenu";
             this.button11.UseVisualStyleBackColor = true;
@@ -456,9 +495,10 @@
             // 
             // button12
             // 
-            this.button12.Location = new System.Drawing.Point(1020, 5);
+            this.button12.Location = new System.Drawing.Point(1360, 6);
+            this.button12.Margin = new System.Windows.Forms.Padding(4);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(120, 23);
+            this.button12.Size = new System.Drawing.Size(160, 28);
             this.button12.TabIndex = 206;
             this.button12.Text = "Nadležni mašinovodja";
             this.button12.UseVisualStyleBackColor = true;
@@ -470,16 +510,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(1020, 32);
+            this.dataGridView2.Location = new System.Drawing.Point(1360, 39);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(256, 111);
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.Size = new System.Drawing.Size(341, 137);
             this.dataGridView2.TabIndex = 207;
             // 
             // frmEvidencijaRadaZaglavlje
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1288, 330);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1717, 406);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);
@@ -519,6 +562,8 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cboZaposleni);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmEvidencijaRadaZaglavlje";
             this.Text = "Evidencija rada po zaglavljima";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

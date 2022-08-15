@@ -30,7 +30,7 @@ namespace Saobracaj.Administracija
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPolozenePruge));
-            Syncfusion.Windows.Forms.MetroColorTable metroColorTable2 = new Syncfusion.Windows.Forms.MetroColorTable();
+            Syncfusion.Windows.Forms.MetroColorTable metroColorTable1 = new Syncfusion.Windows.Forms.MetroColorTable();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
@@ -48,7 +48,6 @@ namespace Saobracaj.Administracija
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btn_zapolseni = new System.Windows.Forms.Button();
             this.btn_pruga = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.combo_Pruga)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -56,6 +55,7 @@ namespace Saobracaj.Administracija
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
@@ -107,6 +107,7 @@ namespace Saobracaj.Administracija
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
@@ -176,10 +177,10 @@ namespace Saobracaj.Administracija
             this.combo_Pruga.BeforeTouchSize = new System.Drawing.Size(351, 24);
             this.combo_Pruga.Filter = null;
             this.combo_Pruga.Location = new System.Drawing.Point(377, 69);
-            this.combo_Pruga.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.combo_Pruga.Margin = new System.Windows.Forms.Padding(4);
             this.combo_Pruga.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.combo_Pruga.Name = "combo_Pruga";
-            this.combo_Pruga.ScrollMetroColorTable = metroColorTable2;
+            this.combo_Pruga.ScrollMetroColorTable = metroColorTable1;
             this.combo_Pruga.Size = new System.Drawing.Size(351, 24);
             this.combo_Pruga.TabIndex = 171;
             // 
@@ -196,7 +197,7 @@ namespace Saobracaj.Administracija
             // 
             // dataGridView1
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(11, 116);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -209,42 +210,36 @@ namespace Saobracaj.Administracija
             // 
             // btn_zapolseni
             // 
+            this.btn_zapolseni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btn_zapolseni.ForeColor = System.Drawing.Color.White;
             this.btn_zapolseni.Location = new System.Drawing.Point(901, 30);
             this.btn_zapolseni.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_zapolseni.Name = "btn_zapolseni";
             this.btn_zapolseni.Size = new System.Drawing.Size(201, 31);
             this.btn_zapolseni.TabIndex = 174;
             this.btn_zapolseni.Text = "Traži po zaposlenom";
-            this.btn_zapolseni.UseVisualStyleBackColor = true;
+            this.btn_zapolseni.UseVisualStyleBackColor = false;
             this.btn_zapolseni.Click += new System.EventHandler(this.btn_zapolseni_Click);
             // 
             // btn_pruga
             // 
+            this.btn_pruga.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btn_pruga.ForeColor = System.Drawing.Color.White;
             this.btn_pruga.Location = new System.Drawing.Point(901, 66);
             this.btn_pruga.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_pruga.Name = "btn_pruga";
             this.btn_pruga.Size = new System.Drawing.Size(201, 31);
             this.btn_pruga.TabIndex = 174;
             this.btn_pruga.Text = "Traži po pruzi";
-            this.btn_pruga.UseVisualStyleBackColor = true;
+            this.btn_pruga.UseVisualStyleBackColor = false;
             this.btn_pruga.Click += new System.EventHandler(this.btn_pruga_Click);
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(194)))), ((int)(((byte)(200)))));
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 27);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1115, 12);
-            this.panel5.TabIndex = 175;
             // 
             // frmPolozenePruge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1115, 527);
-            this.Controls.Add(this.panel5);
             this.Controls.Add(this.btn_pruga);
             this.Controls.Add(this.btn_zapolseni);
             this.Controls.Add(this.dataGridView1);
@@ -257,6 +252,7 @@ namespace Saobracaj.Administracija
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmPolozenePruge";
             this.Text = "Položene pruge";
@@ -289,6 +285,5 @@ namespace Saobracaj.Administracija
         private System.Windows.Forms.Button btn_zapolseni;
         private System.Windows.Forms.Button btn_pruga;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.Panel panel5;
     }
 }

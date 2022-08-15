@@ -445,7 +445,7 @@ namespace TrackModal.Dokumeta
                     body = body + "Neto: " + myRow["Neto"].ToString() + "<br />";
                    
                     body = body + "S poštovanjem" + "<br />";
-                    body = body + "ŽIT" + "<br />" + "<br />" + "<br />";
+                    body = body + "RTC LUKA LEGET" + "<br />" + "<br />" + "<br />";
                    
 
                 }

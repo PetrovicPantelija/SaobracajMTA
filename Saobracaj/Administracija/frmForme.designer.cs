@@ -49,6 +49,7 @@ namespace Saobracaj.Administracija
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
@@ -100,6 +101,7 @@ namespace Saobracaj.Administracija
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
@@ -109,7 +111,7 @@ namespace Saobracaj.Administracija
             // 
             // txt_Sifra
             // 
-            this.txt_Sifra.Location = new System.Drawing.Point(43, 76);
+            this.txt_Sifra.Location = new System.Drawing.Point(12, 76);
             this.txt_Sifra.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_Sifra.Name = "txt_Sifra";
             this.txt_Sifra.Size = new System.Drawing.Size(79, 22);
@@ -160,7 +162,7 @@ namespace Saobracaj.Administracija
             // 
             // dataGridView1
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 113);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -175,6 +177,7 @@ namespace Saobracaj.Administracija
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(629, 736);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txt_Code);
@@ -184,6 +187,7 @@ namespace Saobracaj.Administracija
             this.Controls.Add(this.txt_Sifra);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmForme";
             this.Text = "Forme";

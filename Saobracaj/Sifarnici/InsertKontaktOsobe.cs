@@ -85,6 +85,14 @@ namespace Saobracaj.Sifarnici
             parameter7.Value = Operatika;
             myCommand.Parameters.Add(parameter7);
 
+            SqlParameter parameter8 = new SqlParameter();
+            parameter8.ParameterName = "@PaKOOddelek";
+            parameter8.SqlDbType = SqlDbType.Char;
+            parameter8.Size = 35;
+            parameter8.Direction = ParameterDirection.Input;
+            parameter8.Value = Odeljenje;
+            myCommand.Parameters.Add(parameter8);
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -200,6 +208,14 @@ namespace Saobracaj.Sifarnici
             parameter7.Direction = ParameterDirection.Input;
             parameter7.Value = Operatika;
             myCommand.Parameters.Add(parameter7);
+
+            SqlParameter parameter8 = new SqlParameter();
+            parameter8.ParameterName = "@PaKOOddelek";
+            parameter8.SqlDbType = SqlDbType.Char;
+            parameter8.Size = 35;
+            parameter8.Direction = ParameterDirection.Input;
+            parameter8.Value = Odeljenje;
+            myCommand.Parameters.Add(parameter8);
 
 
             myConnection.Open();

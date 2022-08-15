@@ -272,7 +272,7 @@ namespace Saobracaj.Dokumenta
                             body = body + "Zadatak: " + myRow["Zadatak"].ToString() + "<br/><br/>";
                             body = body + "Salje na mail (dok je u fazi testiranja sluzi za proveru mail adresa): " + nizMail + "<br/><br/>";
                         }
-                        body = body + "Srdačan pozdrav, <br/>" + "Dispečerska služba, Kombinovani prevoz";
+                        body = body + "Srdačan pozdrav, <br/>" + "Dispečerska služba, RTC LUKA LEGET";
                         
                         mailMessage.Body = body;
                         mailMessage.IsBodyHtml = true;
@@ -390,7 +390,7 @@ namespace Saobracaj.Dokumenta
                             body = body + "Zadatak: " + myRow["Zadatak"].ToString() + "\n<br/>";
                             body = body + "Salje na mail (dok je u fazi testiranja sluzi za proveru mail adresa): " + nizMail + "<br/><br/>";
                         }
-                        body = body + "<br/>Srdačan pozdrav, \n<br/>" + "Dispečerska služba, Kombinovani prevoz";
+                        body = body + "<br/>Srdačan pozdrav, \n<br/>" + "Dispečerska služba, RTC LUKA LEGET";
                         
                         mailMessage.Body = body;
                         mailMessage.IsBodyHtml = true;

@@ -433,9 +433,10 @@ namespace Saobracaj.Sifarnici
                 {
 
                     if (row.Selected)
-                    {
-                        VratiPodatke(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                    { 
                         txtRB.Text = row.Cells[0].Value.ToString();
+                        VratiPodatke(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                       
                     }
                 }
             }
@@ -453,7 +454,7 @@ namespace Saobracaj.Sifarnici
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select * from PrugaStavke where IDPruge=" + txtOznaka.Text.Trim() + " and RB =" + RB, con);
+            SqlCommand cmd = new SqlCommand("select * from PrugaStavke where IDPruge=" + txtOznaka.Text.Trim() + " and ID =" + RB, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -462,7 +463,7 @@ namespace Saobracaj.Sifarnici
                 stanicaDO.SelectedValue = Convert.ToInt32(dr["StanicaDo"].ToString());
                 RastojanjeKM.Value  = Convert.ToInt32(dr["RastojanjeKM"].ToString());
                 RastojanjeM.Value = Convert.ToInt32(dr["RastojanjeM"].ToString());
-                StacionazaKM.Value = Convert.ToInt32(dr["StacionazaKM"].ToString());
+                StacionazaKM.Value = Convert.ToDecimal(dr["StacionazaKM"].ToString());
                 StacionazaM.Value = Convert.ToInt32(dr["StacionazaM"].ToString());
                 VmaxL.Value = Convert.ToInt32(dr["VmaxL"].ToString());
                 VmaxD.Value = Convert.ToInt32(dr["VmaxD"].ToString());

@@ -124,6 +124,7 @@
             // toolStrip1
             // 
             this.toolStrip1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolStrip1.BackgroundImage")));
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
             this.tsSave,
@@ -135,7 +136,7 @@
             this.tsPoslednja});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1322, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1924, 31);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "Štampaj izveštaj";
             // 
@@ -145,7 +146,7 @@
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(23, 22);
+            this.tsNew.Size = new System.Drawing.Size(29, 28);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -155,7 +156,7 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(23, 22);
+            this.tsSave.Size = new System.Drawing.Size(29, 28);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -165,14 +166,14 @@
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(23, 22);
+            this.tsDelete.Size = new System.Drawing.Size(29, 28);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // tsPrvi
             // 
@@ -180,7 +181,7 @@
             this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
             this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(23, 22);
+            this.tsPrvi.Size = new System.Drawing.Size(29, 28);
             this.tsPrvi.Text = "toolStripButton1";
             // 
             // tsNazad
@@ -189,7 +190,7 @@
             this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
             this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(23, 22);
+            this.tsNazad.Size = new System.Drawing.Size(29, 28);
             this.tsNazad.Text = "toolStripButton1";
             // 
             // tsNapred
@@ -198,7 +199,7 @@
             this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
             this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(23, 22);
+            this.tsNapred.Size = new System.Drawing.Size(29, 28);
             this.tsNapred.Text = "toolStripButton1";
             // 
             // tsPoslednja
@@ -207,85 +208,93 @@
             this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
             this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(23, 22);
+            this.tsPoslednja.Size = new System.Drawing.Size(29, 28);
             this.tsPoslednja.Text = "toolStripButton1";
             // 
             // txtBrVoza
             // 
             this.txtBrVoza.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtBrVoza.Location = new System.Drawing.Point(166, 68);
+            this.txtBrVoza.Location = new System.Drawing.Point(249, 94);
+            this.txtBrVoza.Margin = new System.Windows.Forms.Padding(4);
             this.txtBrVoza.Name = "txtBrVoza";
-            this.txtBrVoza.Size = new System.Drawing.Size(105, 22);
+            this.txtBrVoza.Size = new System.Drawing.Size(156, 26);
             this.txtBrVoza.TabIndex = 8;
             // 
             // lblBrVoza
             // 
             this.lblBrVoza.AutoSize = true;
-            this.lblBrVoza.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lblBrVoza.ForeColor = System.Drawing.Color.White;
-            this.lblBrVoza.Location = new System.Drawing.Point(12, 72);
+            this.lblBrVoza.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.lblBrVoza.ForeColor = System.Drawing.Color.Black;
+            this.lblBrVoza.Location = new System.Drawing.Point(18, 100);
+            this.lblBrVoza.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBrVoza.Name = "lblBrVoza";
-            this.lblBrVoza.Size = new System.Drawing.Size(64, 16);
+            this.lblBrVoza.Size = new System.Drawing.Size(69, 18);
             this.lblBrVoza.TabIndex = 10;
             this.lblBrVoza.Text = "Br. Voza:";
             // 
             // txtSifra
             // 
             this.txtSifra.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtSifra.Location = new System.Drawing.Point(166, 36);
+            this.txtSifra.Location = new System.Drawing.Point(249, 50);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(105, 22);
+            this.txtSifra.Size = new System.Drawing.Size(156, 26);
             this.txtSifra.TabIndex = 7;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 40);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(18, 55);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 16);
+            this.label1.Size = new System.Drawing.Size(42, 18);
             this.label1.TabIndex = 9;
             this.label1.Text = "Šifra:";
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(12, 161);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(18, 223);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(68, 16);
+            this.label8.Size = new System.Drawing.Size(68, 18);
             this.label8.TabIndex = 40;
             this.label8.Text = "Relacija :";
             // 
             // txtRelacija
             // 
             this.txtRelacija.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtRelacija.Location = new System.Drawing.Point(166, 161);
+            this.txtRelacija.Location = new System.Drawing.Point(249, 223);
+            this.txtRelacija.Margin = new System.Windows.Forms.Padding(4);
             this.txtRelacija.Multiline = true;
             this.txtRelacija.Name = "txtRelacija";
-            this.txtRelacija.Size = new System.Drawing.Size(210, 26);
+            this.txtRelacija.Size = new System.Drawing.Size(313, 34);
             this.txtRelacija.TabIndex = 39;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(12, 220);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(18, 305);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(220, 16);
+            this.label2.Size = new System.Drawing.Size(225, 18);
             this.label2.TabIndex = 42;
             this.label2.Text = "Kalendar saobraćaja napomena :";
             // 
             // txtKalendarSaobracaja
             // 
             this.txtKalendarSaobracaja.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtKalendarSaobracaja.Location = new System.Drawing.Point(12, 239);
+            this.txtKalendarSaobracaja.Location = new System.Drawing.Point(18, 331);
+            this.txtKalendarSaobracaja.Margin = new System.Windows.Forms.Padding(4);
             this.txtKalendarSaobracaja.Multiline = true;
             this.txtKalendarSaobracaja.Name = "txtKalendarSaobracaja";
-            this.txtKalendarSaobracaja.Size = new System.Drawing.Size(364, 46);
+            this.txtKalendarSaobracaja.Size = new System.Drawing.Size(544, 62);
             this.txtKalendarSaobracaja.TabIndex = 41;
             // 
             // dtpVremeDolaska
@@ -293,21 +302,23 @@
             this.dtpVremeDolaska.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpVremeDolaska.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpVremeDolaska.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremeDolaska.Location = new System.Drawing.Point(557, 192);
+            this.dtpVremeDolaska.Location = new System.Drawing.Point(836, 266);
+            this.dtpVremeDolaska.Margin = new System.Windows.Forms.Padding(4);
             this.dtpVremeDolaska.Name = "dtpVremeDolaska";
             this.dtpVremeDolaska.ShowUpDown = true;
-            this.dtpVremeDolaska.Size = new System.Drawing.Size(128, 22);
+            this.dtpVremeDolaska.Size = new System.Drawing.Size(190, 26);
             this.dtpVremeDolaska.TabIndex = 71;
             this.dtpVremeDolaska.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(401, 164);
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label16.ForeColor = System.Drawing.Color.Black;
+            this.label16.Location = new System.Drawing.Point(602, 227);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(123, 16);
+            this.label16.Size = new System.Drawing.Size(128, 18);
             this.label16.TabIndex = 73;
             this.label16.Text = "Pl Vreme polaska:";
             // 
@@ -316,49 +327,53 @@
             this.dtpVremePolaska.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpVremePolaska.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpVremePolaska.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremePolaska.Location = new System.Drawing.Point(557, 164);
+            this.dtpVremePolaska.Location = new System.Drawing.Point(836, 227);
+            this.dtpVremePolaska.Margin = new System.Windows.Forms.Padding(4);
             this.dtpVremePolaska.Name = "dtpVremePolaska";
             this.dtpVremePolaska.ShowUpDown = true;
-            this.dtpVremePolaska.Size = new System.Drawing.Size(128, 22);
+            this.dtpVremePolaska.Size = new System.Drawing.Size(190, 26);
             this.dtpVremePolaska.TabIndex = 70;
             this.dtpVremePolaska.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(401, 193);
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label21.ForeColor = System.Drawing.Color.Black;
+            this.label21.Location = new System.Drawing.Point(602, 268);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(127, 16);
+            this.label21.Size = new System.Drawing.Size(133, 18);
             this.label21.TabIndex = 72;
             this.label21.Text = "PL Vreme dolaska:";
             // 
             // txtMaksBrojKola
             // 
             this.txtMaksBrojKola.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtMaksBrojKola.Location = new System.Drawing.Point(546, 97);
+            this.txtMaksBrojKola.Location = new System.Drawing.Point(819, 134);
+            this.txtMaksBrojKola.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaksBrojKola.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtMaksBrojKola.Name = "txtMaksBrojKola";
-            this.txtMaksBrojKola.Size = new System.Drawing.Size(75, 22);
+            this.txtMaksBrojKola.Size = new System.Drawing.Size(112, 26);
             this.txtMaksBrojKola.TabIndex = 76;
             this.txtMaksBrojKola.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtDuzina
             // 
             this.txtDuzina.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtDuzina.Location = new System.Drawing.Point(546, 66);
+            this.txtDuzina.Location = new System.Drawing.Point(819, 91);
+            this.txtDuzina.Margin = new System.Windows.Forms.Padding(4);
             this.txtDuzina.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtDuzina.Name = "txtDuzina";
-            this.txtDuzina.Size = new System.Drawing.Size(75, 22);
+            this.txtDuzina.Size = new System.Drawing.Size(112, 26);
             this.txtDuzina.TabIndex = 75;
             this.txtDuzina.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -366,47 +381,51 @@
             // 
             this.txtMaksBruto.DecimalPlaces = 2;
             this.txtMaksBruto.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtMaksBruto.Location = new System.Drawing.Point(546, 34);
+            this.txtMaksBruto.Location = new System.Drawing.Point(819, 47);
+            this.txtMaksBruto.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaksBruto.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtMaksBruto.Name = "txtMaksBruto";
-            this.txtMaksBruto.Size = new System.Drawing.Size(75, 22);
+            this.txtMaksBruto.Size = new System.Drawing.Size(112, 26);
             this.txtMaksBruto.TabIndex = 74;
             this.txtMaksBruto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(401, 99);
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label14.ForeColor = System.Drawing.Color.Black;
+            this.label14.Location = new System.Drawing.Point(602, 137);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(75, 16);
+            this.label14.Size = new System.Drawing.Size(81, 18);
             this.label14.TabIndex = 79;
             this.label14.Text = "Maks kola:";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(401, 70);
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label11.ForeColor = System.Drawing.Color.Black;
+            this.label11.Location = new System.Drawing.Point(602, 97);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(92, 16);
+            this.label11.Size = new System.Drawing.Size(99, 18);
             this.label11.TabIndex = 78;
             this.label11.Text = "Maks Dužina:";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(401, 38);
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(602, 53);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(108, 16);
+            this.label13.Size = new System.Drawing.Size(115, 18);
             this.label13.TabIndex = 77;
             this.label13.Text = "Maks bruto tež.:";
             // 
@@ -416,9 +435,10 @@
             this.label17.Enabled = false;
             this.label17.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(1023, 292);
+            this.label17.Location = new System.Drawing.Point(1534, 404);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(109, 16);
+            this.label17.Size = new System.Drawing.Size(136, 19);
             this.label17.TabIndex = 85;
             this.label17.Text = "Vreme završ kp:";
             this.label17.Visible = false;
@@ -429,10 +449,11 @@
             this.dtpVremePrimopredaje.Enabled = false;
             this.dtpVremePrimopredaje.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpVremePrimopredaje.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremePrimopredaje.Location = new System.Drawing.Point(1168, 319);
+            this.dtpVremePrimopredaje.Location = new System.Drawing.Point(1752, 442);
+            this.dtpVremePrimopredaje.Margin = new System.Windows.Forms.Padding(4);
             this.dtpVremePrimopredaje.Name = "dtpVremePrimopredaje";
             this.dtpVremePrimopredaje.ShowUpDown = true;
-            this.dtpVremePrimopredaje.Size = new System.Drawing.Size(127, 22);
+            this.dtpVremePrimopredaje.Size = new System.Drawing.Size(188, 26);
             this.dtpVremePrimopredaje.TabIndex = 82;
             this.dtpVremePrimopredaje.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtpVremePrimopredaje.Visible = false;
@@ -443,9 +464,10 @@
             this.label3.Enabled = false;
             this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(1023, 261);
+            this.label3.Location = new System.Drawing.Point(1534, 361);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(139, 16);
+            this.label3.Size = new System.Drawing.Size(172, 19);
             this.label3.TabIndex = 84;
             this.label3.Text = "Vreme zavr. utovara:";
             this.label3.Visible = false;
@@ -456,10 +478,11 @@
             this.dtpVremeZavrsetkaKP.Enabled = false;
             this.dtpVremeZavrsetkaKP.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpVremeZavrsetkaKP.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremeZavrsetkaKP.Location = new System.Drawing.Point(1168, 288);
+            this.dtpVremeZavrsetkaKP.Location = new System.Drawing.Point(1752, 398);
+            this.dtpVremeZavrsetkaKP.Margin = new System.Windows.Forms.Padding(4);
             this.dtpVremeZavrsetkaKP.Name = "dtpVremeZavrsetkaKP";
             this.dtpVremeZavrsetkaKP.ShowUpDown = true;
-            this.dtpVremeZavrsetkaKP.Size = new System.Drawing.Size(127, 22);
+            this.dtpVremeZavrsetkaKP.Size = new System.Drawing.Size(188, 26);
             this.dtpVremeZavrsetkaKP.TabIndex = 81;
             this.dtpVremeZavrsetkaKP.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtpVremeZavrsetkaKP.Visible = false;
@@ -470,10 +493,11 @@
             this.dtpVremeZavrsetkaUtovara.Enabled = false;
             this.dtpVremeZavrsetkaUtovara.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpVremeZavrsetkaUtovara.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremeZavrsetkaUtovara.Location = new System.Drawing.Point(1168, 258);
+            this.dtpVremeZavrsetkaUtovara.Location = new System.Drawing.Point(1752, 358);
+            this.dtpVremeZavrsetkaUtovara.Margin = new System.Windows.Forms.Padding(4);
             this.dtpVremeZavrsetkaUtovara.Name = "dtpVremeZavrsetkaUtovara";
             this.dtpVremeZavrsetkaUtovara.ShowUpDown = true;
-            this.dtpVremeZavrsetkaUtovara.Size = new System.Drawing.Size(127, 22);
+            this.dtpVremeZavrsetkaUtovara.Size = new System.Drawing.Size(188, 26);
             this.dtpVremeZavrsetkaUtovara.TabIndex = 80;
             this.dtpVremeZavrsetkaUtovara.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtpVremeZavrsetkaUtovara.Visible = false;
@@ -484,9 +508,10 @@
             this.label4.Enabled = false;
             this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(1023, 323);
+            this.label4.Location = new System.Drawing.Point(1534, 448);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(143, 16);
+            this.label4.Size = new System.Drawing.Size(172, 19);
             this.label4.TabIndex = 83;
             this.label4.Text = "Vreme primopredaje:";
             this.label4.Visible = false;
@@ -494,34 +519,38 @@
             // txtNapomena
             // 
             this.txtNapomena.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtNapomena.Location = new System.Drawing.Point(705, 49);
+            this.txtNapomena.Location = new System.Drawing.Point(1058, 68);
+            this.txtNapomena.Margin = new System.Windows.Forms.Padding(4);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
-            this.txtNapomena.Size = new System.Drawing.Size(507, 70);
+            this.txtNapomena.Size = new System.Drawing.Size(759, 95);
             this.txtNapomena.TabIndex = 110;
             // 
             // label28
             // 
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label28.ForeColor = System.Drawing.Color.White;
-            this.label28.Location = new System.Drawing.Point(702, 30);
+            this.label28.ForeColor = System.Drawing.Color.Black;
+            this.label28.Location = new System.Drawing.Point(1053, 42);
+            this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(81, 16);
+            this.label28.Size = new System.Drawing.Size(98, 19);
             this.label28.TabIndex = 111;
             this.label28.Text = "Napomena:";
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 384);
+            this.dataGridView1.Location = new System.Drawing.Point(18, 532);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1283, 353);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(1925, 488);
             this.dataGridView1.TabIndex = 137;
             this.dataGridView1.Visible = false;
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -529,20 +558,22 @@
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(1012, 146);
+            this.pictureBox1.Location = new System.Drawing.Point(1518, 202);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(283, 90);
+            this.pictureBox1.Size = new System.Drawing.Size(424, 125);
             this.pictureBox1.TabIndex = 138;
             this.pictureBox1.TabStop = false;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(12, 103);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(18, 143);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(80, 16);
+            this.label6.Size = new System.Drawing.Size(82, 18);
             this.label6.TabIndex = 187;
             this.label6.Text = "Stanica od:";
             // 
@@ -550,19 +581,21 @@
             // 
             this.cboStanicaOd.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboStanicaOd.FormattingEnabled = true;
-            this.cboStanicaOd.Location = new System.Drawing.Point(166, 101);
+            this.cboStanicaOd.Location = new System.Drawing.Point(249, 140);
+            this.cboStanicaOd.Margin = new System.Windows.Forms.Padding(4);
             this.cboStanicaOd.Name = "cboStanicaOd";
-            this.cboStanicaOd.Size = new System.Drawing.Size(150, 24);
+            this.cboStanicaOd.Size = new System.Drawing.Size(223, 27);
             this.cboStanicaOd.TabIndex = 186;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(12, 133);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(18, 184);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(80, 16);
+            this.label5.Size = new System.Drawing.Size(82, 18);
             this.label5.TabIndex = 189;
             this.label5.Text = "Stanica do:";
             // 
@@ -570,9 +603,10 @@
             // 
             this.cboStanicaDo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboStanicaDo.FormattingEnabled = true;
-            this.cboStanicaDo.Location = new System.Drawing.Point(166, 131);
+            this.cboStanicaDo.Location = new System.Drawing.Point(249, 181);
+            this.cboStanicaDo.Margin = new System.Windows.Forms.Padding(4);
             this.cboStanicaDo.Name = "cboStanicaDo";
-            this.cboStanicaDo.Size = new System.Drawing.Size(150, 24);
+            this.cboStanicaDo.Size = new System.Drawing.Size(223, 27);
             this.cboStanicaDo.TabIndex = 188;
             // 
             // btnUbaciRelaciju
@@ -581,9 +615,10 @@
             this.btnUbaciRelaciju.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUbaciRelaciju.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnUbaciRelaciju.ForeColor = System.Drawing.Color.White;
-            this.btnUbaciRelaciju.Location = new System.Drawing.Point(324, 103);
+            this.btnUbaciRelaciju.Location = new System.Drawing.Point(486, 143);
+            this.btnUbaciRelaciju.Margin = new System.Windows.Forms.Padding(4);
             this.btnUbaciRelaciju.Name = "btnUbaciRelaciju";
-            this.btnUbaciRelaciju.Size = new System.Drawing.Size(52, 52);
+            this.btnUbaciRelaciju.Size = new System.Drawing.Size(78, 72);
             this.btnUbaciRelaciju.TabIndex = 213;
             this.btnUbaciRelaciju.Text = "Relacija";
             this.btnUbaciRelaciju.UseVisualStyleBackColor = true;
@@ -592,12 +627,13 @@
             // chkDolazeci
             // 
             this.chkDolazeci.AutoSize = true;
-            this.chkDolazeci.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkDolazeci.ForeColor = System.Drawing.Color.White;
-            this.chkDolazeci.Location = new System.Drawing.Point(10, 192);
+            this.chkDolazeci.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.chkDolazeci.ForeColor = System.Drawing.Color.Black;
+            this.chkDolazeci.Location = new System.Drawing.Point(15, 266);
+            this.chkDolazeci.Margin = new System.Windows.Forms.Padding(4);
             this.chkDolazeci.Name = "chkDolazeci";
             this.chkDolazeci.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDolazeci.Size = new System.Drawing.Size(108, 20);
+            this.chkDolazeci.Size = new System.Drawing.Size(116, 22);
             this.chkDolazeci.TabIndex = 214;
             this.chkDolazeci.Text = "Dolazeći voz";
             this.chkDolazeci.UseVisualStyleBackColor = true;
@@ -606,222 +642,240 @@
             // txtPostNaTerminalD
             // 
             this.txtPostNaTerminalD.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtPostNaTerminalD.Location = new System.Drawing.Point(610, 225);
+            this.txtPostNaTerminalD.Location = new System.Drawing.Point(915, 312);
+            this.txtPostNaTerminalD.Margin = new System.Windows.Forms.Padding(4);
             this.txtPostNaTerminalD.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtPostNaTerminalD.Name = "txtPostNaTerminalD";
-            this.txtPostNaTerminalD.Size = new System.Drawing.Size(75, 22);
+            this.txtPostNaTerminalD.Size = new System.Drawing.Size(112, 26);
             this.txtPostNaTerminalD.TabIndex = 215;
             this.txtPostNaTerminalD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(401, 227);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label7.ForeColor = System.Drawing.Color.Black;
+            this.label7.Location = new System.Drawing.Point(602, 314);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(160, 16);
+            this.label7.Size = new System.Drawing.Size(164, 18);
             this.label7.TabIndex = 216;
             this.label7.Text = "Vreme post na terminal:";
             // 
             // txtKontrolniPregledD
             // 
             this.txtKontrolniPregledD.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtKontrolniPregledD.Location = new System.Drawing.Point(610, 256);
+            this.txtKontrolniPregledD.Location = new System.Drawing.Point(915, 354);
+            this.txtKontrolniPregledD.Margin = new System.Windows.Forms.Padding(4);
             this.txtKontrolniPregledD.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtKontrolniPregledD.Name = "txtKontrolniPregledD";
-            this.txtKontrolniPregledD.Size = new System.Drawing.Size(75, 22);
+            this.txtKontrolniPregledD.Size = new System.Drawing.Size(112, 26);
             this.txtKontrolniPregledD.TabIndex = 217;
             this.txtKontrolniPregledD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(401, 258);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.Location = new System.Drawing.Point(602, 358);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(94, 16);
+            this.label9.Size = new System.Drawing.Size(95, 18);
             this.label9.TabIndex = 218;
             this.label9.Text = "Kont pregled:";
             // 
             // txtVremeIstovaraD
             // 
             this.txtVremeIstovaraD.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtVremeIstovaraD.Location = new System.Drawing.Point(610, 285);
+            this.txtVremeIstovaraD.Location = new System.Drawing.Point(915, 395);
+            this.txtVremeIstovaraD.Margin = new System.Windows.Forms.Padding(4);
             this.txtVremeIstovaraD.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtVremeIstovaraD.Name = "txtVremeIstovaraD";
-            this.txtVremeIstovaraD.Size = new System.Drawing.Size(75, 22);
+            this.txtVremeIstovaraD.Size = new System.Drawing.Size(112, 26);
             this.txtVremeIstovaraD.TabIndex = 219;
             this.txtVremeIstovaraD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(401, 287);
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label10.ForeColor = System.Drawing.Color.Black;
+            this.label10.Location = new System.Drawing.Point(602, 397);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(107, 16);
+            this.label10.Size = new System.Drawing.Size(111, 18);
             this.label10.TabIndex = 220;
             this.label10.Text = "Vreme istovara:";
             // 
             // txtVremePrimopredajeD
             // 
             this.txtVremePrimopredajeD.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtVremePrimopredajeD.Location = new System.Drawing.Point(610, 318);
+            this.txtVremePrimopredajeD.Location = new System.Drawing.Point(915, 440);
+            this.txtVremePrimopredajeD.Margin = new System.Windows.Forms.Padding(4);
             this.txtVremePrimopredajeD.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtVremePrimopredajeD.Name = "txtVremePrimopredajeD";
-            this.txtVremePrimopredajeD.Size = new System.Drawing.Size(75, 22);
+            this.txtVremePrimopredajeD.Size = new System.Drawing.Size(112, 26);
             this.txtVremePrimopredajeD.TabIndex = 221;
             this.txtVremePrimopredajeD.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(401, 318);
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label12.ForeColor = System.Drawing.Color.Black;
+            this.label12.Location = new System.Drawing.Point(602, 440);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(143, 16);
+            this.label12.Size = new System.Drawing.Size(145, 18);
             this.label12.TabIndex = 222;
             this.label12.Text = "Vreme primopredaje:";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(401, 134);
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(602, 186);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(93, 16);
+            this.label15.Size = new System.Drawing.Size(98, 18);
             this.label15.TabIndex = 223;
             this.label15.Text = "Dolazeći voz:";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label18.ForeColor = System.Drawing.Color.White;
-            this.label18.Location = new System.Drawing.Point(702, 133);
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label18.ForeColor = System.Drawing.Color.Black;
+            this.label18.Location = new System.Drawing.Point(1053, 184);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(94, 16);
+            this.label18.Size = new System.Drawing.Size(98, 18);
             this.label18.TabIndex = 224;
             this.label18.Text = "Odlazeći voz:";
             // 
             // txtVremeIzvlacenjaO
             // 
             this.txtVremeIzvlacenjaO.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtVremeIzvlacenjaO.Location = new System.Drawing.Point(911, 255);
+            this.txtVremeIzvlacenjaO.Location = new System.Drawing.Point(1367, 353);
+            this.txtVremeIzvlacenjaO.Margin = new System.Windows.Forms.Padding(4);
             this.txtVremeIzvlacenjaO.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtVremeIzvlacenjaO.Name = "txtVremeIzvlacenjaO";
-            this.txtVremeIzvlacenjaO.Size = new System.Drawing.Size(75, 22);
+            this.txtVremeIzvlacenjaO.Size = new System.Drawing.Size(112, 26);
             this.txtVremeIzvlacenjaO.TabIndex = 231;
             this.txtVremeIzvlacenjaO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(702, 255);
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label19.ForeColor = System.Drawing.Color.Black;
+            this.label19.Location = new System.Drawing.Point(1053, 353);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(122, 16);
+            this.label19.Size = new System.Drawing.Size(123, 18);
             this.label19.TabIndex = 232;
             this.label19.Text = "Vreme izvlačenja:";
             // 
             // txtVremeKontrolnogO
             // 
             this.txtVremeKontrolnogO.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtVremeKontrolnogO.Location = new System.Drawing.Point(911, 222);
+            this.txtVremeKontrolnogO.Location = new System.Drawing.Point(1367, 307);
+            this.txtVremeKontrolnogO.Margin = new System.Windows.Forms.Padding(4);
             this.txtVremeKontrolnogO.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtVremeKontrolnogO.Name = "txtVremeKontrolnogO";
-            this.txtVremeKontrolnogO.Size = new System.Drawing.Size(75, 22);
+            this.txtVremeKontrolnogO.Size = new System.Drawing.Size(112, 26);
             this.txtVremeKontrolnogO.TabIndex = 229;
             this.txtVremeKontrolnogO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label20.ForeColor = System.Drawing.Color.White;
-            this.label20.Location = new System.Drawing.Point(702, 224);
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label20.ForeColor = System.Drawing.Color.Black;
+            this.label20.Location = new System.Drawing.Point(1053, 310);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(125, 16);
+            this.label20.Size = new System.Drawing.Size(130, 18);
             this.label20.TabIndex = 230;
             this.label20.Text = "Vreme kontrolnog:";
             // 
             // txtVremeUtovaraO
             // 
             this.txtVremeUtovaraO.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtVremeUtovaraO.Location = new System.Drawing.Point(911, 193);
+            this.txtVremeUtovaraO.Location = new System.Drawing.Point(1367, 268);
+            this.txtVremeUtovaraO.Margin = new System.Windows.Forms.Padding(4);
             this.txtVremeUtovaraO.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtVremeUtovaraO.Name = "txtVremeUtovaraO";
-            this.txtVremeUtovaraO.Size = new System.Drawing.Size(75, 22);
+            this.txtVremeUtovaraO.Size = new System.Drawing.Size(112, 26);
             this.txtVremeUtovaraO.TabIndex = 227;
             this.txtVremeUtovaraO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(702, 195);
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label22.ForeColor = System.Drawing.Color.Black;
+            this.label22.Location = new System.Drawing.Point(1053, 270);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(105, 16);
+            this.label22.Size = new System.Drawing.Size(108, 18);
             this.label22.TabIndex = 228;
             this.label22.Text = "Vreme utovara:";
             // 
             // txtPostNaTerminalO
             // 
             this.txtPostNaTerminalO.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtPostNaTerminalO.Location = new System.Drawing.Point(911, 162);
+            this.txtPostNaTerminalO.Location = new System.Drawing.Point(1367, 224);
+            this.txtPostNaTerminalO.Margin = new System.Windows.Forms.Padding(4);
             this.txtPostNaTerminalO.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtPostNaTerminalO.Name = "txtPostNaTerminalO";
-            this.txtPostNaTerminalO.Size = new System.Drawing.Size(75, 22);
+            this.txtPostNaTerminalO.Size = new System.Drawing.Size(112, 26);
             this.txtPostNaTerminalO.TabIndex = 225;
             this.txtPostNaTerminalO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label23.ForeColor = System.Drawing.Color.White;
-            this.label23.Location = new System.Drawing.Point(702, 164);
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label23.ForeColor = System.Drawing.Color.Black;
+            this.label23.Location = new System.Drawing.Point(1053, 227);
+            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(160, 16);
+            this.label23.Size = new System.Drawing.Size(164, 18);
             this.label23.TabIndex = 226;
             this.label23.Text = "Vreme post na terminal:";
             // 
@@ -830,21 +884,23 @@
             this.dtpVremeDolaskaO.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpVremeDolaskaO.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpVremeDolaskaO.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremeDolaskaO.Location = new System.Drawing.Point(858, 316);
+            this.dtpVremeDolaskaO.Location = new System.Drawing.Point(1287, 438);
+            this.dtpVremeDolaskaO.Margin = new System.Windows.Forms.Padding(4);
             this.dtpVremeDolaskaO.Name = "dtpVremeDolaskaO";
             this.dtpVremeDolaskaO.ShowUpDown = true;
-            this.dtpVremeDolaskaO.Size = new System.Drawing.Size(128, 22);
+            this.dtpVremeDolaskaO.Size = new System.Drawing.Size(190, 26);
             this.dtpVremeDolaskaO.TabIndex = 234;
             this.dtpVremeDolaskaO.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label24.ForeColor = System.Drawing.Color.White;
-            this.label24.Location = new System.Drawing.Point(702, 288);
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label24.ForeColor = System.Drawing.Color.Black;
+            this.label24.Location = new System.Drawing.Point(1053, 398);
+            this.label24.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(123, 16);
+            this.label24.Size = new System.Drawing.Size(128, 18);
             this.label24.TabIndex = 236;
             this.label24.Text = "Pl Vreme polaska:";
             // 
@@ -853,21 +909,23 @@
             this.dtpVremePolaskaO.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpVremePolaskaO.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpVremePolaskaO.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremePolaskaO.Location = new System.Drawing.Point(858, 288);
+            this.dtpVremePolaskaO.Location = new System.Drawing.Point(1287, 398);
+            this.dtpVremePolaskaO.Margin = new System.Windows.Forms.Padding(4);
             this.dtpVremePolaskaO.Name = "dtpVremePolaskaO";
             this.dtpVremePolaskaO.ShowUpDown = true;
-            this.dtpVremePolaskaO.Size = new System.Drawing.Size(128, 22);
+            this.dtpVremePolaskaO.Size = new System.Drawing.Size(190, 26);
             this.dtpVremePolaskaO.TabIndex = 233;
             this.dtpVremePolaskaO.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label25.ForeColor = System.Drawing.Color.White;
-            this.label25.Location = new System.Drawing.Point(702, 317);
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label25.ForeColor = System.Drawing.Color.Black;
+            this.label25.Location = new System.Drawing.Point(1053, 439);
+            this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(127, 16);
+            this.label25.Size = new System.Drawing.Size(133, 18);
             this.label25.TabIndex = 235;
             this.label25.Text = "PL Vreme dolaska:";
             // 
@@ -875,11 +933,12 @@
             // 
             this.chkPonedeljak.AutoSize = true;
             this.chkPonedeljak.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkPonedeljak.ForeColor = System.Drawing.Color.White;
-            this.chkPonedeljak.Location = new System.Drawing.Point(15, 291);
+            this.chkPonedeljak.ForeColor = System.Drawing.Color.Black;
+            this.chkPonedeljak.Location = new System.Drawing.Point(22, 403);
+            this.chkPonedeljak.Margin = new System.Windows.Forms.Padding(4);
             this.chkPonedeljak.Name = "chkPonedeljak";
             this.chkPonedeljak.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkPonedeljak.Size = new System.Drawing.Size(99, 20);
+            this.chkPonedeljak.Size = new System.Drawing.Size(116, 23);
             this.chkPonedeljak.TabIndex = 237;
             this.chkPonedeljak.Text = "Ponedeljak";
             this.chkPonedeljak.UseVisualStyleBackColor = true;
@@ -888,11 +947,12 @@
             // 
             this.chkUtorak.AutoSize = true;
             this.chkUtorak.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkUtorak.ForeColor = System.Drawing.Color.White;
-            this.chkUtorak.Location = new System.Drawing.Point(15, 317);
+            this.chkUtorak.ForeColor = System.Drawing.Color.Black;
+            this.chkUtorak.Location = new System.Drawing.Point(22, 439);
+            this.chkUtorak.Margin = new System.Windows.Forms.Padding(4);
             this.chkUtorak.Name = "chkUtorak";
             this.chkUtorak.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkUtorak.Size = new System.Drawing.Size(68, 20);
+            this.chkUtorak.Size = new System.Drawing.Size(84, 23);
             this.chkUtorak.TabIndex = 238;
             this.chkUtorak.Text = "Utorak";
             this.chkUtorak.UseVisualStyleBackColor = true;
@@ -901,11 +961,12 @@
             // 
             this.chkSreda.AutoSize = true;
             this.chkSreda.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkSreda.ForeColor = System.Drawing.Color.White;
-            this.chkSreda.Location = new System.Drawing.Point(15, 343);
+            this.chkSreda.ForeColor = System.Drawing.Color.Black;
+            this.chkSreda.Location = new System.Drawing.Point(22, 475);
+            this.chkSreda.Margin = new System.Windows.Forms.Padding(4);
             this.chkSreda.Name = "chkSreda";
             this.chkSreda.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkSreda.Size = new System.Drawing.Size(65, 20);
+            this.chkSreda.Size = new System.Drawing.Size(77, 23);
             this.chkSreda.TabIndex = 239;
             this.chkSreda.Text = "Sreda";
             this.chkSreda.UseVisualStyleBackColor = true;
@@ -914,11 +975,12 @@
             // 
             this.chkCetvrtak.AutoSize = true;
             this.chkCetvrtak.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkCetvrtak.ForeColor = System.Drawing.Color.White;
-            this.chkCetvrtak.Location = new System.Drawing.Point(166, 292);
+            this.chkCetvrtak.ForeColor = System.Drawing.Color.Black;
+            this.chkCetvrtak.Location = new System.Drawing.Point(249, 404);
+            this.chkCetvrtak.Margin = new System.Windows.Forms.Padding(4);
             this.chkCetvrtak.Name = "chkCetvrtak";
             this.chkCetvrtak.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkCetvrtak.Size = new System.Drawing.Size(79, 20);
+            this.chkCetvrtak.Size = new System.Drawing.Size(98, 23);
             this.chkCetvrtak.TabIndex = 240;
             this.chkCetvrtak.Text = "Četvrtak";
             this.chkCetvrtak.UseVisualStyleBackColor = true;
@@ -927,11 +989,12 @@
             // 
             this.chkPetak.AutoSize = true;
             this.chkPetak.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkPetak.ForeColor = System.Drawing.Color.White;
-            this.chkPetak.Location = new System.Drawing.Point(166, 318);
+            this.chkPetak.ForeColor = System.Drawing.Color.Black;
+            this.chkPetak.Location = new System.Drawing.Point(249, 440);
+            this.chkPetak.Margin = new System.Windows.Forms.Padding(4);
             this.chkPetak.Name = "chkPetak";
             this.chkPetak.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkPetak.Size = new System.Drawing.Size(63, 20);
+            this.chkPetak.Size = new System.Drawing.Size(75, 23);
             this.chkPetak.TabIndex = 241;
             this.chkPetak.Text = "Petak";
             this.chkPetak.UseVisualStyleBackColor = true;
@@ -940,11 +1003,12 @@
             // 
             this.chkSubota.AutoSize = true;
             this.chkSubota.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkSubota.ForeColor = System.Drawing.Color.White;
-            this.chkSubota.Location = new System.Drawing.Point(166, 343);
+            this.chkSubota.ForeColor = System.Drawing.Color.Black;
+            this.chkSubota.Location = new System.Drawing.Point(249, 475);
+            this.chkSubota.Margin = new System.Windows.Forms.Padding(4);
             this.chkSubota.Name = "chkSubota";
             this.chkSubota.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkSubota.Size = new System.Drawing.Size(72, 20);
+            this.chkSubota.Size = new System.Drawing.Size(87, 23);
             this.chkSubota.TabIndex = 242;
             this.chkSubota.Text = "Subota";
             this.chkSubota.UseVisualStyleBackColor = true;
@@ -953,11 +1017,12 @@
             // 
             this.chkNedelja.AutoSize = true;
             this.chkNedelja.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkNedelja.ForeColor = System.Drawing.Color.White;
-            this.chkNedelja.Location = new System.Drawing.Point(268, 292);
+            this.chkNedelja.ForeColor = System.Drawing.Color.Black;
+            this.chkNedelja.Location = new System.Drawing.Point(402, 404);
+            this.chkNedelja.Margin = new System.Windows.Forms.Padding(4);
             this.chkNedelja.Name = "chkNedelja";
             this.chkNedelja.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkNedelja.Size = new System.Drawing.Size(76, 20);
+            this.chkNedelja.Size = new System.Drawing.Size(88, 23);
             this.chkNedelja.TabIndex = 243;
             this.chkNedelja.Text = "Nedelja";
             this.chkNedelja.UseVisualStyleBackColor = true;
@@ -968,9 +1033,10 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(686, 164);
+            this.button1.Location = new System.Drawing.Point(1029, 227);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(10, 23);
+            this.button1.Size = new System.Drawing.Size(15, 32);
             this.button1.TabIndex = 244;
             this.button1.Text = "D";
             this.button1.UseVisualStyleBackColor = true;
@@ -982,9 +1048,10 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(686, 190);
+            this.button2.Location = new System.Drawing.Point(1029, 263);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(10, 23);
+            this.button2.Size = new System.Drawing.Size(15, 32);
             this.button2.TabIndex = 245;
             this.button2.Text = "D";
             this.button2.UseVisualStyleBackColor = true;
@@ -996,9 +1063,10 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(988, 287);
+            this.button3.Location = new System.Drawing.Point(1482, 397);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(10, 23);
+            this.button3.Size = new System.Drawing.Size(15, 32);
             this.button3.TabIndex = 246;
             this.button3.Text = "D";
             this.button3.UseVisualStyleBackColor = true;
@@ -1010,9 +1078,10 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(988, 314);
+            this.button4.Location = new System.Drawing.Point(1482, 434);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(10, 23);
+            this.button4.Size = new System.Drawing.Size(15, 32);
             this.button4.TabIndex = 247;
             this.button4.Text = "D";
             this.button4.UseVisualStyleBackColor = true;
@@ -1020,10 +1089,10 @@
             // 
             // frmVoz
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(1322, 749);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1924, 1037);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -1092,7 +1161,10 @@
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.ForeColor = System.Drawing.Color.Black;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmVoz";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Voz";

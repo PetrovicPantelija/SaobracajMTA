@@ -1652,7 +1652,7 @@ namespace Saobracaj.Dokumenta
                 body = body + "<br /> <br /> ";
 
                 body = body + "S poštovanjem" + "<br />";
-                body = body + "Dispičerska služba Kombinovani prevoz" + "<br />" + "<br />" + "<br />";
+                body = body + "Dispičerska služba RTC LUKA LEGET" + "<br />" + "<br />" + "<br />";
 
                 mailMessage.Body = body;
                 mailMessage.IsBodyHtml = true;

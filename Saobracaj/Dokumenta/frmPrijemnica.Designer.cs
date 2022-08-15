@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrijemnica));
             this.label5 = new System.Windows.Forms.Label();
             this.cboPrijemnica = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -38,18 +39,20 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 23);
+            this.label5.Location = new System.Drawing.Point(16, 28);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(58, 13);
+            this.label5.Size = new System.Drawing.Size(77, 17);
             this.label5.TabIndex = 36;
             this.label5.Text = "Prijemnica:";
             // 
             // cboPrijemnica
             // 
             this.cboPrijemnica.FormattingEnabled = true;
-            this.cboPrijemnica.Location = new System.Drawing.Point(76, 23);
+            this.cboPrijemnica.Location = new System.Drawing.Point(101, 28);
+            this.cboPrijemnica.Margin = new System.Windows.Forms.Padding(4);
             this.cboPrijemnica.Name = "cboPrijemnica";
-            this.cboPrijemnica.Size = new System.Drawing.Size(141, 21);
+            this.cboPrijemnica.Size = new System.Drawing.Size(187, 24);
             this.cboPrijemnica.TabIndex = 35;
             this.cboPrijemnica.Leave += new System.EventHandler(this.cboPrijemnica_Leave);
             // 
@@ -60,16 +63,19 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 62);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 76);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(969, 303);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(1292, 373);
             this.dataGridView1.TabIndex = 37;
             // 
             // btnPrihvatiIzmene
             // 
-            this.btnPrihvatiIzmene.Location = new System.Drawing.Point(255, 23);
+            this.btnPrihvatiIzmene.Location = new System.Drawing.Point(340, 28);
+            this.btnPrihvatiIzmene.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrihvatiIzmene.Name = "btnPrihvatiIzmene";
-            this.btnPrihvatiIzmene.Size = new System.Drawing.Size(136, 23);
+            this.btnPrihvatiIzmene.Size = new System.Drawing.Size(181, 28);
             this.btnPrihvatiIzmene.TabIndex = 38;
             this.btnPrihvatiIzmene.Text = "Prihvati Izmene";
             this.btnPrihvatiIzmene.UseVisualStyleBackColor = true;
@@ -77,13 +83,16 @@
             // 
             // frmPrijemnica
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(993, 356);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1324, 438);
             this.Controls.Add(this.btnPrihvatiIzmene);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cboPrijemnica);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPrijemnica";
             this.Text = "main";
             this.Load += new System.EventHandler(this.frmPrijemnica_Load);

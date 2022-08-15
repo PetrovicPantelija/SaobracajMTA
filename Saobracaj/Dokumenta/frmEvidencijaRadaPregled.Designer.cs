@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEvidencijaRadaPregled));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label6 = new System.Windows.Forms.Label();
             this.cboZaposleni = new System.Windows.Forms.ComboBox();
@@ -44,18 +45,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 48);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 59);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(883, 326);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(1177, 401);
             this.dataGridView1.TabIndex = 10;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(18, 12);
+            this.label6.Location = new System.Drawing.Point(24, 15);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.Size = new System.Drawing.Size(74, 17);
             this.label6.TabIndex = 92;
             this.label6.Text = "Zaposleni:";
             // 
@@ -63,16 +67,18 @@
             // 
             this.cboZaposleni.BackColor = System.Drawing.Color.White;
             this.cboZaposleni.FormattingEnabled = true;
-            this.cboZaposleni.Location = new System.Drawing.Point(80, 12);
+            this.cboZaposleni.Location = new System.Drawing.Point(107, 15);
+            this.cboZaposleni.Margin = new System.Windows.Forms.Padding(4);
             this.cboZaposleni.Name = "cboZaposleni";
-            this.cboZaposleni.Size = new System.Drawing.Size(171, 21);
+            this.cboZaposleni.Size = new System.Drawing.Size(227, 24);
             this.cboZaposleni.TabIndex = 91;
             // 
             // btnPretrazi
             // 
-            this.btnPretrazi.Location = new System.Drawing.Point(258, 12);
+            this.btnPretrazi.Location = new System.Drawing.Point(344, 15);
+            this.btnPretrazi.Margin = new System.Windows.Forms.Padding(4);
             this.btnPretrazi.Name = "btnPretrazi";
-            this.btnPretrazi.Size = new System.Drawing.Size(75, 23);
+            this.btnPretrazi.Size = new System.Drawing.Size(100, 28);
             this.btnPretrazi.TabIndex = 93;
             this.btnPretrazi.Text = "Pretraži";
             this.btnPretrazi.UseVisualStyleBackColor = true;
@@ -80,9 +86,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(354, 12);
+            this.button1.Location = new System.Drawing.Point(472, 15);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(158, 23);
+            this.button1.Size = new System.Drawing.Size(211, 28);
             this.button1.TabIndex = 94;
             this.button1.Text = "Izbriši selektovane stavke";
             this.button1.UseVisualStyleBackColor = true;
@@ -90,9 +97,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(531, 12);
+            this.button2.Location = new System.Drawing.Point(708, 15);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(100, 28);
             this.button2.TabIndex = 95;
             this.button2.Text = "Refresh";
             this.button2.UseVisualStyleBackColor = true;
@@ -100,15 +108,18 @@
             // 
             // frmEvidencijaRadaPregled
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(907, 386);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1209, 475);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnPretrazi);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cboZaposleni);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmEvidencijaRadaPregled";
             this.Text = "Evidencija rada pregled";
             this.Load += new System.EventHandler(this.frmEvidencijaRadaPregled_Load);

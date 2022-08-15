@@ -76,7 +76,7 @@
             // txtSifra
             // 
             this.txtSifra.Location = new System.Drawing.Point(23, 82);
-            this.txtSifra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(119, 22);
             this.txtSifra.TabIndex = 1;
@@ -95,7 +95,7 @@
             // txtOpis
             // 
             this.txtOpis.Location = new System.Drawing.Point(23, 140);
-            this.txtOpis.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtOpis.Margin = new System.Windows.Forms.Padding(4);
             this.txtOpis.Name = "txtOpis";
             this.txtOpis.Size = new System.Drawing.Size(391, 22);
             this.txtOpis.TabIndex = 3;
@@ -105,7 +105,7 @@
             this.chkGranicna.AutoSize = true;
             this.chkGranicna.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.chkGranicna.Location = new System.Drawing.Point(588, 81);
-            this.chkGranicna.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkGranicna.Margin = new System.Windows.Forms.Padding(4);
             this.chkGranicna.Name = "chkGranicna";
             this.chkGranicna.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkGranicna.Size = new System.Drawing.Size(158, 24);
@@ -116,7 +116,7 @@
             // txtKod
             // 
             this.txtKod.Location = new System.Drawing.Point(588, 153);
-            this.txtKod.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtKod.Margin = new System.Windows.Forms.Padding(4);
             this.txtKod.Name = "txtKod";
             this.txtKod.Size = new System.Drawing.Size(199, 22);
             this.txtKod.TabIndex = 10;
@@ -125,7 +125,7 @@
             // 
             this.cboDrzava.FormattingEnabled = true;
             this.cboDrzava.Location = new System.Drawing.Point(588, 210);
-            this.cboDrzava.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboDrzava.Margin = new System.Windows.Forms.Padding(4);
             this.cboDrzava.Name = "cboDrzava";
             this.cboDrzava.Size = new System.Drawing.Size(203, 24);
             this.cboDrzava.TabIndex = 11;
@@ -161,7 +161,7 @@
             this.dataGridView1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.dataGridView1.Location = new System.Drawing.Point(8, 314);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -205,7 +205,7 @@
             // 
             this.txtLongitude.DecimalPlaces = 15;
             this.txtLongitude.Location = new System.Drawing.Point(23, 198);
-            this.txtLongitude.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLongitude.Margin = new System.Windows.Forms.Padding(4);
             this.txtLongitude.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -220,7 +220,7 @@
             // 
             this.txtLatitude.DecimalPlaces = 15;
             this.txtLatitude.Location = new System.Drawing.Point(23, 256);
-            this.txtLatitude.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLatitude.Margin = new System.Windows.Forms.Padding(4);
             this.txtLatitude.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -294,7 +294,7 @@
             // toolStrip1
             // 
             this.toolStrip1.AutoSize = false;
-            this.toolStrip1.BackColor = System.Drawing.Color.White;
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
@@ -304,7 +304,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(1012, 42);
+            this.toolStrip1.Size = new System.Drawing.Size(1012, 30);
             this.toolStrip1.TabIndex = 19;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -315,7 +315,7 @@
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
             this.tsNew.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.tsNew.Size = new System.Drawing.Size(34, 39);
+            this.tsNew.Size = new System.Drawing.Size(34, 27);
             this.tsNew.Text = "Novi";
             // 
             // tsSave
@@ -325,7 +325,7 @@
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
             this.tsSave.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.tsSave.Size = new System.Drawing.Size(34, 39);
+            this.tsSave.Size = new System.Drawing.Size(34, 27);
             this.tsSave.Text = "tsSave";
             // 
             // tsDelete
@@ -335,7 +335,7 @@
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
             this.tsDelete.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.tsDelete.Size = new System.Drawing.Size(34, 39);
+            this.tsDelete.Size = new System.Drawing.Size(34, 27);
             this.tsDelete.Text = "toolStripButton1";
             // 
             // label6
@@ -365,6 +365,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1012, 810);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.toolStrip2);
@@ -384,7 +385,7 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmStanice";
             this.Text = "Stanice";
             this.Load += new System.EventHandler(this.frmStanice_Load);

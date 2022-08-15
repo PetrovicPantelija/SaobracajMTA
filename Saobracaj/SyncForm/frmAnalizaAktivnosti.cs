@@ -117,7 +117,7 @@ namespace Saobracaj.SyncForm
         private void frmAnalizaAktivnosti_Load(object sender, EventArgs e)
         {
 
-            var select = "  Select Aktivnosti.ID as ID, " +
+            var select = "  Select Top 5000 Aktivnosti.ID as ID, " +
 " (Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme)) as Zaposleni, VremeOd, " +
 " VremeDo, Aktivnosti.Kartica, Aktivnosti.RAcun, Aktivnosti.UkupniTroskovi, Aktivnosti.Ukupno ,Aktivnosti.Opis as OpisZaglavlje, VrstaAktivnosti.Naziv as VrstaAktivnosti, " +
 "  AktivnostiStavke.BrojVagona, AktivnostiStavke.Sati, AktivnostiStavke.VrstaAktivnostiID , " +
@@ -132,7 +132,7 @@ namespace Saobracaj.SyncForm
 "  join VrstaAktivnosti on VrstaAktivnosti.ID = AktivnostiStavke.VrstaAktivnostiID " +
 "  inner " +
 "  join Delavci nal on AktivnostiStavke.Nalogodavac = nal.DeSifra " +
-"  order by Aktivnosti.ID ";
+"  order by Aktivnosti.ID desc";
 
             var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

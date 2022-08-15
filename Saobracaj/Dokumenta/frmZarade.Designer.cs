@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmZarade));
             this.perftechBeogradDataSet3BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.TESTIRANJEDataSet3 = new Saobracaj.TESTIRANJEDataSet3();
             this.btnStampa = new System.Windows.Forms.Button();
@@ -60,9 +61,10 @@
             // btnStampa
             // 
             this.btnStampa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.btnStampa.Location = new System.Drawing.Point(754, 8);
+            this.btnStampa.Location = new System.Drawing.Point(1005, 10);
+            this.btnStampa.Margin = new System.Windows.Forms.Padding(4);
             this.btnStampa.Name = "btnStampa";
-            this.btnStampa.Size = new System.Drawing.Size(78, 33);
+            this.btnStampa.Size = new System.Drawing.Size(104, 41);
             this.btnStampa.TabIndex = 90;
             this.btnStampa.Text = "Štampaj";
             this.btnStampa.UseVisualStyleBackColor = false;
@@ -77,17 +79,19 @@
             reportDataSource1.Value = this.perftechBeogradDataSet3BindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Dokumenta.Zarada.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(13, 72);
+            this.reportViewer1.Location = new System.Drawing.Point(17, 89);
+            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(819, 316);
+            this.reportViewer1.Size = new System.Drawing.Size(1091, 388);
             this.reportViewer1.TabIndex = 91;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(11, 12);
+            this.label6.Location = new System.Drawing.Point(15, 15);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.Size = new System.Drawing.Size(74, 17);
             this.label6.TabIndex = 93;
             this.label6.Text = "Zaposleni:";
             // 
@@ -95,26 +99,29 @@
             // 
             this.cboZaposleni.BackColor = System.Drawing.Color.White;
             this.cboZaposleni.FormattingEnabled = true;
-            this.cboZaposleni.Location = new System.Drawing.Point(73, 12);
+            this.cboZaposleni.Location = new System.Drawing.Point(97, 15);
+            this.cboZaposleni.Margin = new System.Windows.Forms.Padding(4);
             this.cboZaposleni.Name = "cboZaposleni";
-            this.cboZaposleni.Size = new System.Drawing.Size(144, 21);
+            this.cboZaposleni.Size = new System.Drawing.Size(191, 24);
             this.cboZaposleni.TabIndex = 92;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(397, 13);
+            this.label2.Location = new System.Drawing.Point(529, 16);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 13);
+            this.label2.Size = new System.Drawing.Size(67, 17);
             this.label2.TabIndex = 112;
             this.label2.Text = "VremeDo";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(224, 13);
+            this.label1.Location = new System.Drawing.Point(299, 16);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 13);
+            this.label1.Size = new System.Drawing.Size(68, 17);
             this.label1.TabIndex = 111;
             this.label1.Text = "VremeOd";
             // 
@@ -122,10 +129,11 @@
             // 
             this.dtpVremeDo.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpVremeDo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremeDo.Location = new System.Drawing.Point(454, 11);
+            this.dtpVremeDo.Location = new System.Drawing.Point(605, 14);
+            this.dtpVremeDo.Margin = new System.Windows.Forms.Padding(4);
             this.dtpVremeDo.Name = "dtpVremeDo";
             this.dtpVremeDo.ShowUpDown = true;
-            this.dtpVremeDo.Size = new System.Drawing.Size(110, 20);
+            this.dtpVremeDo.Size = new System.Drawing.Size(145, 22);
             this.dtpVremeDo.TabIndex = 110;
             this.dtpVremeDo.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -133,19 +141,21 @@
             // 
             this.dtpVremeOd.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpVremeOd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremeOd.Location = new System.Drawing.Point(281, 11);
+            this.dtpVremeOd.Location = new System.Drawing.Point(375, 14);
+            this.dtpVremeOd.Margin = new System.Windows.Forms.Padding(4);
             this.dtpVremeOd.Name = "dtpVremeOd";
             this.dtpVremeOd.ShowUpDown = true;
-            this.dtpVremeOd.Size = new System.Drawing.Size(110, 20);
+            this.dtpVremeOd.Size = new System.Drawing.Size(145, 22);
             this.dtpVremeOd.TabIndex = 109;
             this.dtpVremeOd.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // chkMilsped
             // 
             this.chkMilsped.AutoSize = true;
-            this.chkMilsped.Location = new System.Drawing.Point(579, 14);
+            this.chkMilsped.Location = new System.Drawing.Point(772, 17);
+            this.chkMilsped.Margin = new System.Windows.Forms.Padding(4);
             this.chkMilsped.Name = "chkMilsped";
-            this.chkMilsped.Size = new System.Drawing.Size(62, 17);
+            this.chkMilsped.Size = new System.Drawing.Size(78, 21);
             this.chkMilsped.TabIndex = 113;
             this.chkMilsped.Text = "Milšped";
             this.chkMilsped.UseVisualStyleBackColor = true;
@@ -153,9 +163,10 @@
             // chkLokomotiva
             // 
             this.chkLokomotiva.AutoSize = true;
-            this.chkLokomotiva.Location = new System.Drawing.Point(647, 14);
+            this.chkLokomotiva.Location = new System.Drawing.Point(863, 17);
+            this.chkLokomotiva.Margin = new System.Windows.Forms.Padding(4);
             this.chkLokomotiva.Name = "chkLokomotiva";
-            this.chkLokomotiva.Size = new System.Drawing.Size(81, 17);
+            this.chkLokomotiva.Size = new System.Drawing.Size(102, 21);
             this.chkLokomotiva.TabIndex = 114;
             this.chkLokomotiva.Text = "Lokomotiva";
             this.chkLokomotiva.UseVisualStyleBackColor = true;
@@ -163,18 +174,20 @@
             // chkVanLokomotive
             // 
             this.chkVanLokomotive.AutoSize = true;
-            this.chkVanLokomotive.Location = new System.Drawing.Point(647, 37);
+            this.chkVanLokomotive.Location = new System.Drawing.Point(863, 46);
+            this.chkVanLokomotive.Margin = new System.Windows.Forms.Padding(4);
             this.chkVanLokomotive.Name = "chkVanLokomotive";
-            this.chkVanLokomotive.Size = new System.Drawing.Size(103, 17);
+            this.chkVanLokomotive.Size = new System.Drawing.Size(131, 21);
             this.chkVanLokomotive.TabIndex = 115;
             this.chkVanLokomotive.Text = "Van Lokomotive";
             this.chkVanLokomotive.UseVisualStyleBackColor = true;
             // 
             // frmZarade
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(844, 400);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1125, 492);
             this.Controls.Add(this.chkVanLokomotive);
             this.Controls.Add(this.chkLokomotiva);
             this.Controls.Add(this.chkMilsped);
@@ -186,6 +199,8 @@
             this.Controls.Add(this.cboZaposleni);
             this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.btnStampa);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmZarade";
             this.Text = "Obračun po satu";
             this.Load += new System.EventHandler(this.frmZarade_Load);

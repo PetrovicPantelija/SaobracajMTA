@@ -407,5 +407,10 @@ namespace Saobracaj.Sifarnici
             dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
         }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

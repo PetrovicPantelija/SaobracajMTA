@@ -28,9 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WebMapa));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.Mapa = new System.Windows.Forms.WebBrowser();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.Mapa = new System.Windows.Forms.WebBrowser();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -40,41 +41,48 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.webBrowser1);
             this.splitContainer1.Panel2.Controls.Add(this.Mapa);
-            this.splitContainer1.Size = new System.Drawing.Size(655, 328);
-            this.splitContainer1.SplitterDistance = 218;
+            this.splitContainer1.Size = new System.Drawing.Size(873, 404);
+            this.splitContainer1.SplitterDistance = 290;
+            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // Mapa
-            // 
-            this.Mapa.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Mapa.Location = new System.Drawing.Point(0, 0);
-            this.Mapa.MinimumSize = new System.Drawing.Size(20, 20);
-            this.Mapa.Name = "Mapa";
-            this.Mapa.Size = new System.Drawing.Size(433, 328);
-            this.Mapa.TabIndex = 0;
-            this.Mapa.Url = new System.Uri("", System.UriKind.Relative);
             // 
             // webBrowser1
             // 
             this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webBrowser1.Location = new System.Drawing.Point(0, 0);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Margin = new System.Windows.Forms.Padding(4);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(27, 25);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(433, 328);
+            this.webBrowser1.Size = new System.Drawing.Size(578, 404);
             this.webBrowser1.TabIndex = 1;
+            // 
+            // Mapa
+            // 
+            this.Mapa.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Mapa.Location = new System.Drawing.Point(0, 0);
+            this.Mapa.Margin = new System.Windows.Forms.Padding(4);
+            this.Mapa.MinimumSize = new System.Drawing.Size(27, 25);
+            this.Mapa.Name = "Mapa";
+            this.Mapa.Size = new System.Drawing.Size(578, 404);
+            this.Mapa.TabIndex = 0;
+            this.Mapa.Url = new System.Uri("", System.UriKind.Relative);
             // 
             // WebMapa
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(655, 328);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(873, 404);
             this.Controls.Add(this.splitContainer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "WebMapa";
             this.Text = "WebMapa";
             this.Load += new System.EventHandler(this.WebMapa_Load);

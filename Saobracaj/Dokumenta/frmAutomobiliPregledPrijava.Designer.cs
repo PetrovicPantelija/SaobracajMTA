@@ -87,10 +87,10 @@ namespace Saobracaj.Dokumenta
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(25, 324);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1785, 411);
@@ -99,6 +99,7 @@ namespace Saobracaj.Dokumenta
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
@@ -160,7 +161,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.combo_Zaposleni.FormattingEnabled = true;
             this.combo_Zaposleni.Location = new System.Drawing.Point(144, 82);
-            this.combo_Zaposleni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.combo_Zaposleni.Margin = new System.Windows.Forms.Padding(4);
             this.combo_Zaposleni.Name = "combo_Zaposleni";
             this.combo_Zaposleni.Size = new System.Drawing.Size(339, 24);
             this.combo_Zaposleni.TabIndex = 208;
@@ -180,7 +181,7 @@ namespace Saobracaj.Dokumenta
             this.dtpDatumPrijave.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatumPrijave.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDatumPrijave.Location = new System.Drawing.Point(144, 119);
-            this.dtpDatumPrijave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDatumPrijave.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDatumPrijave.MinimumSize = new System.Drawing.Size(0, 30);
             this.dtpDatumPrijave.Name = "dtpDatumPrijave";
             this.dtpDatumPrijave.Size = new System.Drawing.Size(265, 30);
@@ -200,7 +201,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.combo_Automobil.FormattingEnabled = true;
             this.combo_Automobil.Location = new System.Drawing.Point(144, 210);
-            this.combo_Automobil.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.combo_Automobil.Margin = new System.Windows.Forms.Padding(4);
             this.combo_Automobil.Name = "combo_Automobil";
             this.combo_Automobil.Size = new System.Drawing.Size(339, 24);
             this.combo_Automobil.TabIndex = 212;
@@ -308,7 +309,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.combo_CistocaSpoljaZad.FormattingEnabled = true;
             this.combo_CistocaSpoljaZad.Location = new System.Drawing.Point(676, 85);
-            this.combo_CistocaSpoljaZad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.combo_CistocaSpoljaZad.Margin = new System.Windows.Forms.Padding(4);
             this.combo_CistocaSpoljaZad.Name = "combo_CistocaSpoljaZad";
             this.combo_CistocaSpoljaZad.Size = new System.Drawing.Size(191, 24);
             this.combo_CistocaSpoljaZad.TabIndex = 212;
@@ -317,7 +318,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.combo_CistocaUnutraZad.FormattingEnabled = true;
             this.combo_CistocaUnutraZad.Location = new System.Drawing.Point(676, 130);
-            this.combo_CistocaUnutraZad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.combo_CistocaUnutraZad.Margin = new System.Windows.Forms.Padding(4);
             this.combo_CistocaUnutraZad.Name = "combo_CistocaUnutraZad";
             this.combo_CistocaUnutraZad.Size = new System.Drawing.Size(191, 24);
             this.combo_CistocaUnutraZad.TabIndex = 212;
@@ -326,7 +327,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.combo_NivoUljaZad.FormattingEnabled = true;
             this.combo_NivoUljaZad.Location = new System.Drawing.Point(676, 174);
-            this.combo_NivoUljaZad.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.combo_NivoUljaZad.Margin = new System.Windows.Forms.Padding(4);
             this.combo_NivoUljaZad.Name = "combo_NivoUljaZad";
             this.combo_NivoUljaZad.Size = new System.Drawing.Size(191, 24);
             this.combo_NivoUljaZad.TabIndex = 212;
@@ -346,7 +347,7 @@ namespace Saobracaj.Dokumenta
             this.dt_Odjava.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dt_Odjava.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dt_Odjava.Location = new System.Drawing.Point(144, 164);
-            this.dt_Odjava.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dt_Odjava.Margin = new System.Windows.Forms.Padding(4);
             this.dt_Odjava.MinimumSize = new System.Drawing.Size(0, 30);
             this.dt_Odjava.Name = "dt_Odjava";
             this.dt_Odjava.Size = new System.Drawing.Size(265, 30);
@@ -384,7 +385,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.combo_CistocaSpoljaRaz.FormattingEnabled = true;
             this.combo_CistocaSpoljaRaz.Location = new System.Drawing.Point(1075, 82);
-            this.combo_CistocaSpoljaRaz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.combo_CistocaSpoljaRaz.Margin = new System.Windows.Forms.Padding(4);
             this.combo_CistocaSpoljaRaz.Name = "combo_CistocaSpoljaRaz";
             this.combo_CistocaSpoljaRaz.Size = new System.Drawing.Size(191, 24);
             this.combo_CistocaSpoljaRaz.TabIndex = 212;
@@ -403,7 +404,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.combo_CistocaUnutraRaz.FormattingEnabled = true;
             this.combo_CistocaUnutraRaz.Location = new System.Drawing.Point(1075, 123);
-            this.combo_CistocaUnutraRaz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.combo_CistocaUnutraRaz.Margin = new System.Windows.Forms.Padding(4);
             this.combo_CistocaUnutraRaz.Name = "combo_CistocaUnutraRaz";
             this.combo_CistocaUnutraRaz.Size = new System.Drawing.Size(191, 24);
             this.combo_CistocaUnutraRaz.TabIndex = 212;
@@ -422,7 +423,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.combo_NivoUljaRaz.FormattingEnabled = true;
             this.combo_NivoUljaRaz.Location = new System.Drawing.Point(1075, 166);
-            this.combo_NivoUljaRaz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.combo_NivoUljaRaz.Margin = new System.Windows.Forms.Padding(4);
             this.combo_NivoUljaRaz.Name = "combo_NivoUljaRaz";
             this.combo_NivoUljaRaz.Size = new System.Drawing.Size(191, 24);
             this.combo_NivoUljaRaz.TabIndex = 212;
@@ -536,6 +537,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1827, 750);
             this.Controls.Add(this.btn_Napred);
             this.Controls.Add(this.btn_nazad);
@@ -579,7 +581,7 @@ namespace Saobracaj.Dokumenta
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmAutomobiliPregledPrijava";
             this.Text = "Automobili pregled Zaduzenja/Razduzduzenja";
             this.Load += new System.EventHandler(this.frmAutomobiliPregledPrijava_Load);

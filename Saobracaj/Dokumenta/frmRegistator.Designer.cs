@@ -66,7 +66,7 @@
             // 
             this.txtSifra.Lines = new string[0];
             this.txtSifra.Location = new System.Drawing.Point(209, 49);
-            this.txtSifra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.MaxLength = 32767;
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.PasswordChar = '\0';
@@ -81,7 +81,7 @@
             this.cboPartner.FormattingEnabled = true;
             this.cboPartner.ItemHeight = 24;
             this.cboPartner.Location = new System.Drawing.Point(209, 85);
-            this.cboPartner.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPartner.Margin = new System.Windows.Forms.Padding(4);
             this.cboPartner.Name = "cboPartner";
             this.cboPartner.Size = new System.Drawing.Size(364, 30);
             this.cboPartner.TabIndex = 11;
@@ -91,7 +91,7 @@
             // 
             this.txtPredmet.Lines = new string[0];
             this.txtPredmet.Location = new System.Drawing.Point(721, 49);
-            this.txtPredmet.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPredmet.Margin = new System.Windows.Forms.Padding(4);
             this.txtPredmet.MaxLength = 32767;
             this.txtPredmet.Multiline = true;
             this.txtPredmet.Name = "txtPredmet";
@@ -109,7 +109,7 @@
             this.dtpDatum.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatum.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDatum.Location = new System.Drawing.Point(721, 127);
-            this.dtpDatum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDatum.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDatum.MinimumSize = new System.Drawing.Size(0, 30);
             this.dtpDatum.Name = "dtpDatum";
             this.dtpDatum.Size = new System.Drawing.Size(265, 30);
@@ -127,6 +127,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
@@ -239,7 +240,7 @@
             this.cboZaposleni.FormattingEnabled = true;
             this.cboZaposleni.ItemHeight = 24;
             this.cboZaposleni.Location = new System.Drawing.Point(209, 127);
-            this.cboZaposleni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboZaposleni.Margin = new System.Windows.Forms.Padding(4);
             this.cboZaposleni.Name = "cboZaposleni";
             this.cboZaposleni.Size = new System.Drawing.Size(364, 30);
             this.cboZaposleni.TabIndex = 144;
@@ -252,7 +253,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTekst.Lines = new string[0];
             this.txtTekst.Location = new System.Drawing.Point(8, 7);
-            this.txtTekst.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTekst.Margin = new System.Windows.Forms.Padding(4);
             this.txtTekst.MaxLength = 32767;
             this.txtTekst.Multiline = true;
             this.txtTekst.Name = "txtTekst";
@@ -273,7 +274,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(31, 188);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1181, 359);
@@ -283,9 +284,9 @@
             // 
             this.tabPage1.Controls.Add(this.txtTekst);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(1173, 330);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Tekst";
@@ -295,9 +296,9 @@
             // 
             this.tabPage2.Controls.Add(this.reportViewer1);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(1173, 330);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Štampa";
@@ -310,7 +311,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Dokumenta.Troskovi.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(11, 7);
-            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.Size = new System.Drawing.Size(1151, 302);
             this.reportViewer1.TabIndex = 116;
@@ -369,6 +370,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1485, 552);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -383,7 +385,8 @@
             this.Controls.Add(this.txtPredmet);
             this.Controls.Add(this.cboPartner);
             this.Controls.Add(this.txtSifra);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmRegistator";
             this.Text = "Delovodna knjiga  zapis";
             this.Load += new System.EventHandler(this.frmRegistator_Load);

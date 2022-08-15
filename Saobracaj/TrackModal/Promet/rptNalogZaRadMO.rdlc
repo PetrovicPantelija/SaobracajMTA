@@ -858,7 +858,7 @@
             <Top>2.34681cm</Top>
             <Left>6.6716cm</Left>
             <Height>1.2cm</Height>
-            <Width>19.5861cm</Width>
+            <Width>19.58611cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -884,7 +884,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>ŽIT TERMINAL - Otprema</Value>
+                      <Value>TERMINAL - Otprema</Value>
                       <Style>
                         <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>

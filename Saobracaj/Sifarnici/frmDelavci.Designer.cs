@@ -71,6 +71,7 @@ namespace Saobracaj.Sifarnici
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
@@ -416,6 +417,7 @@ namespace Saobracaj.Sifarnici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1153, 558);
             this.Controls.Add(this.chkManevrista);
             this.Controls.Add(this.chkPregledacKola);
@@ -444,6 +446,7 @@ namespace Saobracaj.Sifarnici
             this.Controls.Add(this.txtDePriimek);
             this.Controls.Add(this.lblNaziv);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDelavci";
             this.Text = "Zaposleni";
             this.Load += new System.EventHandler(this.frmDelavci_Load);

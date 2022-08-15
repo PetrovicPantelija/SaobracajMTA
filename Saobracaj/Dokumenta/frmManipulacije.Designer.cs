@@ -77,6 +77,7 @@
             // toolStrip1
             // 
             this.toolStrip1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolStrip1.BackgroundImage")));
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
             this.tsSave,
@@ -90,7 +91,7 @@
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1322, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1763, 27);
             this.toolStrip1.TabIndex = 7;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -100,7 +101,7 @@
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(23, 22);
+            this.tsNew.Size = new System.Drawing.Size(29, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -110,7 +111,7 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(23, 22);
+            this.tsSave.Size = new System.Drawing.Size(29, 24);
             this.tsSave.Text = "tsSave";
             // 
             // tsDelete
@@ -119,13 +120,13 @@
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(23, 22);
+            this.tsDelete.Size = new System.Drawing.Size(29, 24);
             this.tsDelete.Text = "toolStripButton1";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tsPrvi
             // 
@@ -133,7 +134,7 @@
             this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
             this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(23, 22);
+            this.tsPrvi.Size = new System.Drawing.Size(29, 24);
             this.tsPrvi.Text = "toolStripButton1";
             this.tsPrvi.Click += new System.EventHandler(this.tsPrvi_Click);
             // 
@@ -143,7 +144,7 @@
             this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
             this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(23, 22);
+            this.tsNazad.Size = new System.Drawing.Size(29, 24);
             this.tsNazad.Text = "toolStripButton1";
             this.tsNazad.Click += new System.EventHandler(this.tsNazad_Click);
             // 
@@ -153,7 +154,7 @@
             this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
             this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(23, 22);
+            this.tsNapred.Size = new System.Drawing.Size(29, 24);
             this.tsNapred.Text = "toolStripButton1";
             this.tsNapred.Click += new System.EventHandler(this.tsNapred_Click);
             // 
@@ -163,14 +164,14 @@
             this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
             this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(23, 22);
+            this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
             this.tsPoslednja.Text = "toolStripButton1";
             this.tsPoslednja.Click += new System.EventHandler(this.tsPoslednja_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // toolStripButton1
             // 
@@ -178,7 +179,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(119, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(149, 24);
             this.toolStripButton1.Text = "Nalog komitenta ";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -189,9 +190,11 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(281, 158);
+            this.dataGridView2.Location = new System.Drawing.Point(375, 194);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(432, 423);
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.Size = new System.Drawing.Size(576, 521);
             this.dataGridView2.TabIndex = 174;
             // 
             // label2
@@ -199,9 +202,10 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(9, 131);
+            this.label2.Location = new System.Drawing.Point(12, 161);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(74, 16);
+            this.label2.Size = new System.Drawing.Size(92, 19);
             this.label2.TabIndex = 175;
             this.label2.Text = "Kontejner:";
             // 
@@ -212,9 +216,11 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 158);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 194);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(263, 423);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(351, 521);
             this.dataGridView1.TabIndex = 176;
             // 
             // label3
@@ -222,9 +228,10 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(278, 139);
+            this.label3.Location = new System.Drawing.Point(371, 171);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 16);
+            this.label3.Size = new System.Drawing.Size(110, 19);
             this.label3.TabIndex = 177;
             this.label3.Text = "Manipulacija:";
             // 
@@ -236,9 +243,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(847, 158);
+            this.dataGridView3.Location = new System.Drawing.Point(1129, 194);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.Size = new System.Drawing.Size(460, 423);
+            this.dataGridView3.RowHeadersWidth = 51;
+            this.dataGridView3.Size = new System.Drawing.Size(613, 521);
             this.dataGridView3.TabIndex = 178;
             // 
             // btnUnesi
@@ -249,9 +258,10 @@
             this.btnUnesi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUnesi.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnUnesi.ForeColor = System.Drawing.Color.White;
-            this.btnUnesi.Location = new System.Drawing.Point(719, 158);
+            this.btnUnesi.Location = new System.Drawing.Point(959, 194);
+            this.btnUnesi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUnesi.Name = "btnUnesi";
-            this.btnUnesi.Size = new System.Drawing.Size(122, 423);
+            this.btnUnesi.Size = new System.Drawing.Size(163, 521);
             this.btnUnesi.TabIndex = 179;
             this.btnUnesi.Text = ">>";
             this.btnUnesi.UseVisualStyleBackColor = true;
@@ -263,9 +273,10 @@
             this.dtpVremeDo.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpVremeDo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpVremeDo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremeDo.Location = new System.Drawing.Point(889, 125);
+            this.dtpVremeDo.Location = new System.Drawing.Point(1185, 154);
+            this.dtpVremeDo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpVremeDo.Name = "dtpVremeDo";
-            this.dtpVremeDo.Size = new System.Drawing.Size(138, 22);
+            this.dtpVremeDo.Size = new System.Drawing.Size(183, 26);
             this.dtpVremeDo.TabIndex = 185;
             this.dtpVremeDo.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtpVremeDo.ValueChanged += new System.EventHandler(this.dtpVremeDo_ValueChanged);
@@ -275,9 +286,10 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(792, 125);
+            this.label15.Location = new System.Drawing.Point(1056, 154);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(74, 16);
+            this.label15.Size = new System.Drawing.Size(91, 19);
             this.label15.TabIndex = 187;
             this.label15.Text = "Period do:";
             // 
@@ -286,9 +298,10 @@
             this.dtpVremeOd.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpVremeOd.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpVremeOd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremeOd.Location = new System.Drawing.Point(648, 125);
+            this.dtpVremeOd.Location = new System.Drawing.Point(864, 154);
+            this.dtpVremeOd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpVremeOd.Name = "dtpVremeOd";
-            this.dtpVremeOd.Size = new System.Drawing.Size(138, 22);
+            this.dtpVremeOd.Size = new System.Drawing.Size(183, 26);
             this.dtpVremeOd.TabIndex = 184;
             this.dtpVremeOd.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtpVremeOd.ValueChanged += new System.EventHandler(this.dtpVremeOd_ValueChanged);
@@ -298,9 +311,10 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(567, 125);
+            this.label21.Location = new System.Drawing.Point(756, 154);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(74, 16);
+            this.label21.Size = new System.Drawing.Size(91, 19);
             this.label21.TabIndex = 186;
             this.label21.Text = "Period od:";
             this.label21.Click += new System.EventHandler(this.label21_Click);
@@ -310,27 +324,30 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(1040, 33);
+            this.label7.Location = new System.Drawing.Point(1387, 41);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(118, 16);
+            this.label7.Size = new System.Drawing.Size(145, 19);
             this.label7.TabIndex = 183;
             this.label7.Text = "Dodatne beleške:";
             // 
             // txtKomentar
             // 
-            this.txtKomentar.Location = new System.Drawing.Point(1043, 53);
+            this.txtKomentar.Location = new System.Drawing.Point(1391, 65);
+            this.txtKomentar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtKomentar.Multiline = true;
             this.txtKomentar.Name = "txtKomentar";
-            this.txtKomentar.Size = new System.Drawing.Size(266, 56);
+            this.txtKomentar.Size = new System.Drawing.Size(353, 68);
             this.txtKomentar.TabIndex = 182;
             // 
             // cboPrijemVozom
             // 
             this.cboPrijemVozom.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboPrijemVozom.FormattingEnabled = true;
-            this.cboPrijemVozom.Location = new System.Drawing.Point(107, 55);
+            this.cboPrijemVozom.Location = new System.Drawing.Point(143, 68);
+            this.cboPrijemVozom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboPrijemVozom.Name = "cboPrijemVozom";
-            this.cboPrijemVozom.Size = new System.Drawing.Size(279, 24);
+            this.cboPrijemVozom.Size = new System.Drawing.Size(371, 27);
             this.cboPrijemVozom.TabIndex = 189;
             // 
             // label5
@@ -338,9 +355,10 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(12, 55);
+            this.label5.Location = new System.Drawing.Point(16, 68);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 16);
+            this.label5.Size = new System.Drawing.Size(62, 19);
             this.label5.TabIndex = 188;
             this.label5.Text = "Vozom";
             // 
@@ -350,9 +368,10 @@
             this.btnPretrazi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPretrazi.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnPretrazi.ForeColor = System.Drawing.Color.White;
-            this.btnPretrazi.Location = new System.Drawing.Point(413, 49);
+            this.btnPretrazi.Location = new System.Drawing.Point(551, 60);
+            this.btnPretrazi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPretrazi.Name = "btnPretrazi";
-            this.btnPretrazi.Size = new System.Drawing.Size(147, 35);
+            this.btnPretrazi.Size = new System.Drawing.Size(196, 43);
             this.btnPretrazi.TabIndex = 190;
             this.btnPretrazi.Text = "Pretraži";
             this.btnPretrazi.UseVisualStyleBackColor = true;
@@ -364,9 +383,10 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(413, 87);
+            this.button1.Location = new System.Drawing.Point(551, 107);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(147, 35);
+            this.button1.Size = new System.Drawing.Size(196, 43);
             this.button1.TabIndex = 193;
             this.button1.Text = "Pretraži";
             this.button1.UseVisualStyleBackColor = true;
@@ -376,9 +396,10 @@
             // 
             this.cboPrijemKamionom.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboPrijemKamionom.FormattingEnabled = true;
-            this.cboPrijemKamionom.Location = new System.Drawing.Point(107, 93);
+            this.cboPrijemKamionom.Location = new System.Drawing.Point(143, 114);
+            this.cboPrijemKamionom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboPrijemKamionom.Name = "cboPrijemKamionom";
-            this.cboPrijemKamionom.Size = new System.Drawing.Size(279, 24);
+            this.cboPrijemKamionom.Size = new System.Drawing.Size(371, 27);
             this.cboPrijemKamionom.TabIndex = 192;
             // 
             // label6
@@ -386,9 +407,10 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(12, 93);
+            this.label6.Location = new System.Drawing.Point(16, 114);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(73, 16);
+            this.label6.Size = new System.Drawing.Size(88, 19);
             this.label6.TabIndex = 191;
             this.label6.Text = "Kaminom:";
             // 
@@ -396,9 +418,10 @@
             // 
             this.chkVoz.AutoSize = true;
             this.chkVoz.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkVoz.Location = new System.Drawing.Point(392, 56);
+            this.chkVoz.Location = new System.Drawing.Point(523, 69);
+            this.chkVoz.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkVoz.Name = "chkVoz";
-            this.chkVoz.Size = new System.Drawing.Size(15, 14);
+            this.chkVoz.Size = new System.Drawing.Size(18, 17);
             this.chkVoz.TabIndex = 194;
             this.chkVoz.UseVisualStyleBackColor = true;
             // 
@@ -407,9 +430,10 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(721, 68);
+            this.label8.Location = new System.Drawing.Point(961, 84);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(60, 16);
+            this.label8.Size = new System.Drawing.Size(71, 19);
             this.label8.TabIndex = 196;
             this.label8.Text = "Platilac:";
             this.label8.Click += new System.EventHandler(this.label8_Click);
@@ -418,17 +442,19 @@
             // 
             this.cboPlatilac.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboPlatilac.FormattingEnabled = true;
-            this.cboPlatilac.Location = new System.Drawing.Point(795, 65);
+            this.cboPlatilac.Location = new System.Drawing.Point(1060, 80);
+            this.cboPlatilac.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cboPlatilac.Name = "cboPlatilac";
-            this.cboPlatilac.Size = new System.Drawing.Size(232, 24);
+            this.cboPlatilac.Size = new System.Drawing.Size(308, 27);
             this.cboPlatilac.TabIndex = 195;
             // 
             // txtSifra
             // 
             this.txtSifra.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtSifra.Location = new System.Drawing.Point(795, 36);
+            this.txtSifra.Location = new System.Drawing.Point(1060, 44);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(105, 22);
+            this.txtSifra.Size = new System.Drawing.Size(139, 26);
             this.txtSifra.TabIndex = 197;
             // 
             // label1
@@ -436,9 +462,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(721, 36);
+            this.label1.Location = new System.Drawing.Point(961, 44);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 16);
+            this.label1.Size = new System.Drawing.Size(51, 19);
             this.label1.TabIndex = 198;
             this.label1.Text = "Šifra:";
             // 
@@ -448,9 +475,10 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(1043, 117);
+            this.button2.Location = new System.Drawing.Point(1391, 144);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(189, 35);
+            this.button2.Size = new System.Drawing.Size(252, 43);
             this.button2.TabIndex = 199;
             this.button2.Text = "Izbriši manipulaciju";
             this.button2.UseVisualStyleBackColor = true;
@@ -462,9 +490,10 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(906, 32);
+            this.button3.Location = new System.Drawing.Point(1208, 39);
+            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(37, 27);
+            this.button3.Size = new System.Drawing.Size(49, 33);
             this.button3.TabIndex = 200;
             this.button3.Text = "?";
             this.button3.UseVisualStyleBackColor = true;
@@ -476,9 +505,10 @@
             this.chkOtprema.BackColor = System.Drawing.Color.Black;
             this.chkOtprema.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.chkOtprema.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.chkOtprema.Location = new System.Drawing.Point(157, 32);
+            this.chkOtprema.Location = new System.Drawing.Point(209, 39);
+            this.chkOtprema.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkOtprema.Name = "chkOtprema";
-            this.chkOtprema.Size = new System.Drawing.Size(82, 20);
+            this.chkOtprema.Size = new System.Drawing.Size(99, 23);
             this.chkOtprema.TabIndex = 201;
             this.chkOtprema.Text = "Otprema";
             this.chkOtprema.UseVisualStyleBackColor = false;
@@ -492,9 +522,10 @@
             this.chkPrijem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkPrijem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.chkPrijem.ForeColor = System.Drawing.Color.White;
-            this.chkPrijem.Location = new System.Drawing.Point(256, 32);
+            this.chkPrijem.Location = new System.Drawing.Point(341, 39);
+            this.chkPrijem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkPrijem.Name = "chkPrijem";
-            this.chkPrijem.Size = new System.Drawing.Size(69, 20);
+            this.chkPrijem.Size = new System.Drawing.Size(80, 23);
             this.chkPrijem.TabIndex = 202;
             this.chkPrijem.Text = "Prijem";
             this.chkPrijem.UseVisualStyleBackColor = false;
@@ -506,19 +537,20 @@
             this.chkDirektna.BackColor = System.Drawing.Color.Black;
             this.chkDirektna.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.chkDirektna.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.chkDirektna.Location = new System.Drawing.Point(784, 95);
+            this.chkDirektna.Location = new System.Drawing.Point(1045, 117);
+            this.chkDirektna.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.chkDirektna.Name = "chkDirektna";
-            this.chkDirektna.Size = new System.Drawing.Size(167, 20);
+            this.chkDirektna.Size = new System.Drawing.Size(198, 23);
             this.chkDirektna.TabIndex = 203;
             this.chkDirektna.Text = "Direktna manipulacija";
             this.chkDirektna.UseVisualStyleBackColor = false;
             // 
             // frmManipulacije
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(1322, 593);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1763, 730);
             this.Controls.Add(this.chkDirektna);
             this.Controls.Add(this.chkPrijem);
             this.Controls.Add(this.chkOtprema);
@@ -549,6 +581,7 @@
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmManipulacije";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manipulacije";

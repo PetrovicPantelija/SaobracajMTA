@@ -61,7 +61,7 @@
             this.dtpDatumPrijave.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatumPrijave.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDatumPrijave.Location = new System.Drawing.Point(16, 238);
-            this.dtpDatumPrijave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDatumPrijave.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDatumPrijave.MinimumSize = new System.Drawing.Size(0, 30);
             this.dtpDatumPrijave.Name = "dtpDatumPrijave";
             this.dtpDatumPrijave.Size = new System.Drawing.Size(279, 30);
@@ -72,7 +72,7 @@
             this.dtpDatumPromene.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatumPromene.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDatumPromene.Location = new System.Drawing.Point(851, 63);
-            this.dtpDatumPromene.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDatumPromene.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDatumPromene.MinimumSize = new System.Drawing.Size(0, 30);
             this.dtpDatumPromene.Name = "dtpDatumPromene";
             this.dtpDatumPromene.Size = new System.Drawing.Size(279, 30);
@@ -82,7 +82,7 @@
             // 
             this.txtNapomena.Lines = new string[0];
             this.txtNapomena.Location = new System.Drawing.Point(433, 124);
-            this.txtNapomena.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNapomena.Margin = new System.Windows.Forms.Padding(4);
             this.txtNapomena.MaxLength = 32767;
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
@@ -95,7 +95,7 @@
             // 
             // toolStrip1
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.White;
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
@@ -145,7 +145,7 @@
             // 
             this.cboLokomotiva.FormattingEnabled = true;
             this.cboLokomotiva.Location = new System.Drawing.Point(16, 122);
-            this.cboLokomotiva.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboLokomotiva.Margin = new System.Windows.Forms.Padding(4);
             this.cboLokomotiva.Name = "cboLokomotiva";
             this.cboLokomotiva.Size = new System.Drawing.Size(279, 24);
             this.cboLokomotiva.TabIndex = 154;
@@ -164,7 +164,7 @@
             // txtSifra
             // 
             this.txtSifra.Location = new System.Drawing.Point(16, 63);
-            this.txtSifra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(125, 22);
             this.txtSifra.TabIndex = 156;
@@ -184,7 +184,7 @@
             // 
             this.cboPrijavio.FormattingEnabled = true;
             this.cboPrijavio.Location = new System.Drawing.Point(16, 182);
-            this.cboPrijavio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPrijavio.Margin = new System.Windows.Forms.Padding(4);
             this.cboPrijavio.Name = "cboPrijavio";
             this.cboPrijavio.Size = new System.Drawing.Size(279, 24);
             this.cboPrijavio.TabIndex = 158;
@@ -226,7 +226,7 @@
             // 
             this.cboStatusKvara.FormattingEnabled = true;
             this.cboStatusKvara.Location = new System.Drawing.Point(16, 363);
-            this.cboStatusKvara.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboStatusKvara.Margin = new System.Windows.Forms.Padding(4);
             this.cboStatusKvara.Name = "cboStatusKvara";
             this.cboStatusKvara.Size = new System.Drawing.Size(279, 24);
             this.cboStatusKvara.TabIndex = 162;
@@ -257,7 +257,7 @@
             // 
             this.cboPromenio.FormattingEnabled = true;
             this.cboPromenio.Location = new System.Drawing.Point(433, 63);
-            this.cboPromenio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPromenio.Margin = new System.Windows.Forms.Padding(4);
             this.cboPromenio.Name = "cboPromenio";
             this.cboPromenio.Size = new System.Drawing.Size(279, 24);
             this.cboPromenio.TabIndex = 164;
@@ -293,7 +293,7 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(16, 410);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1116, 446);
@@ -306,7 +306,7 @@
             this.cboKvar.ForeColor = System.Drawing.Color.White;
             this.cboKvar.FormattingEnabled = true;
             this.cboKvar.Location = new System.Drawing.Point(16, 302);
-            this.cboKvar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboKvar.Margin = new System.Windows.Forms.Padding(4);
             this.cboKvar.Name = "cboKvar";
             this.cboKvar.Size = new System.Drawing.Size(279, 24);
             this.cboKvar.TabIndex = 184;
@@ -337,7 +337,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label2);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPrijavaKvara";
             this.Text = "Prijava kvara";
             this.Load += new System.EventHandler(this.frmPrijavaKvara_Load);

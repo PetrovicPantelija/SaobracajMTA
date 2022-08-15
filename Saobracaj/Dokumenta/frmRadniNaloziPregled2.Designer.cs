@@ -55,6 +55,8 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
             this.tsSave,
@@ -68,7 +70,7 @@
             this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(901, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1201, 27);
             this.toolStrip1.TabIndex = 10;
             this.toolStrip1.Text = "Unos lokomotiva";
             // 
@@ -78,7 +80,7 @@
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(23, 22);
+            this.tsNew.Size = new System.Drawing.Size(29, 24);
             this.tsNew.Text = "Novi";
             // 
             // tsSave
@@ -87,7 +89,7 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(23, 22);
+            this.tsSave.Size = new System.Drawing.Size(29, 24);
             this.tsSave.Text = "tsSave";
             // 
             // tsDelete
@@ -96,13 +98,13 @@
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(23, 22);
+            this.tsDelete.Size = new System.Drawing.Size(29, 24);
             this.tsDelete.Text = "toolStripButton1";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tsPrvi
             // 
@@ -110,7 +112,7 @@
             this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
             this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(23, 22);
+            this.tsPrvi.Size = new System.Drawing.Size(29, 24);
             this.tsPrvi.Text = "toolStripButton1";
             // 
             // tsNazad
@@ -119,7 +121,7 @@
             this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
             this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(23, 22);
+            this.tsNazad.Size = new System.Drawing.Size(29, 24);
             this.tsNazad.Text = "toolStripButton1";
             // 
             // tsNapred
@@ -128,7 +130,7 @@
             this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
             this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(23, 22);
+            this.tsNapred.Size = new System.Drawing.Size(29, 24);
             this.tsNapred.Text = "toolStripButton1";
             // 
             // tsPoslednja
@@ -137,7 +139,7 @@
             this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
             this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(23, 22);
+            this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
             this.tsPoslednja.Text = "toolStripButton1";
             // 
             // toolStripButton1
@@ -145,7 +147,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(123, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(154, 24);
             this.toolStripButton1.Text = "Otvori radni nalog";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -154,22 +156,24 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(61, 22);
+            this.toolStripButton2.Size = new System.Drawing.Size(76, 24);
             this.toolStripButton2.Text = "Osveži";
             // 
             // txtSifra
             // 
-            this.txtSifra.Location = new System.Drawing.Point(46, 30);
+            this.txtSifra.Location = new System.Drawing.Point(61, 37);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(59, 20);
+            this.txtSifra.Size = new System.Drawing.Size(77, 22);
             this.txtSifra.TabIndex = 123;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 33);
+            this.label1.Location = new System.Drawing.Point(16, 41);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 13);
+            this.label1.Size = new System.Drawing.Size(41, 17);
             this.label1.TabIndex = 124;
             this.label1.Text = "Šifra:";
             // 
@@ -180,19 +184,22 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 56);
+            this.dataGridView1.Location = new System.Drawing.Point(19, 70);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(877, 343);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(1169, 422);
             this.dataGridView1.TabIndex = 122;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // chkZA
             // 
             this.chkZA.AutoSize = true;
-            this.chkZA.Location = new System.Drawing.Point(449, 33);
+            this.chkZA.Location = new System.Drawing.Point(599, 41);
+            this.chkZA.Margin = new System.Windows.Forms.Padding(4);
             this.chkZA.Name = "chkZA";
             this.chkZA.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkZA.Size = new System.Drawing.Size(40, 17);
+            this.chkZA.Size = new System.Drawing.Size(48, 21);
             this.chkZA.TabIndex = 133;
             this.chkZA.Text = "ZA";
             this.chkZA.UseVisualStyleBackColor = true;
@@ -201,10 +208,11 @@
             // chkST
             // 
             this.chkST.AutoSize = true;
-            this.chkST.Location = new System.Drawing.Point(392, 33);
+            this.chkST.Location = new System.Drawing.Point(523, 41);
+            this.chkST.Margin = new System.Windows.Forms.Padding(4);
             this.chkST.Name = "chkST";
             this.chkST.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkST.Size = new System.Drawing.Size(40, 17);
+            this.chkST.Size = new System.Drawing.Size(48, 21);
             this.chkST.TabIndex = 132;
             this.chkST.Text = "ST";
             this.chkST.UseVisualStyleBackColor = true;
@@ -213,10 +221,11 @@
             // chkPL
             // 
             this.chkPL.AutoSize = true;
-            this.chkPL.Location = new System.Drawing.Point(181, 33);
+            this.chkPL.Location = new System.Drawing.Point(241, 41);
+            this.chkPL.Margin = new System.Windows.Forms.Padding(4);
             this.chkPL.Name = "chkPL";
             this.chkPL.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkPL.Size = new System.Drawing.Size(39, 17);
+            this.chkPL.Size = new System.Drawing.Size(47, 21);
             this.chkPL.TabIndex = 131;
             this.chkPL.Text = "PL";
             this.chkPL.UseVisualStyleBackColor = true;
@@ -225,10 +234,11 @@
             // chkOD
             // 
             this.chkOD.AutoSize = true;
-            this.chkOD.Location = new System.Drawing.Point(242, 32);
+            this.chkOD.Location = new System.Drawing.Point(323, 39);
+            this.chkOD.Margin = new System.Windows.Forms.Padding(4);
             this.chkOD.Name = "chkOD";
             this.chkOD.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkOD.Size = new System.Drawing.Size(42, 17);
+            this.chkOD.Size = new System.Drawing.Size(51, 21);
             this.chkOD.TabIndex = 130;
             this.chkOD.Text = "OD";
             this.chkOD.UseVisualStyleBackColor = true;
@@ -237,10 +247,11 @@
             // chkLA
             // 
             this.chkLA.AutoSize = true;
-            this.chkLA.Location = new System.Drawing.Point(318, 33);
+            this.chkLA.Location = new System.Drawing.Point(424, 41);
+            this.chkLA.Margin = new System.Windows.Forms.Padding(4);
             this.chkLA.Name = "chkLA";
             this.chkLA.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkLA.Size = new System.Drawing.Size(41, 17);
+            this.chkLA.Size = new System.Drawing.Size(49, 21);
             this.chkLA.TabIndex = 129;
             this.chkLA.Text = "RA";
             this.chkLA.UseVisualStyleBackColor = true;
@@ -249,10 +260,11 @@
             // chkPR
             // 
             this.chkPR.AutoSize = true;
-            this.chkPR.Location = new System.Drawing.Point(125, 33);
+            this.chkPR.Location = new System.Drawing.Point(167, 41);
+            this.chkPR.Margin = new System.Windows.Forms.Padding(4);
             this.chkPR.Name = "chkPR";
             this.chkPR.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkPR.Size = new System.Drawing.Size(41, 17);
+            this.chkPR.Size = new System.Drawing.Size(49, 21);
             this.chkPR.TabIndex = 128;
             this.chkPR.Text = "PR";
             this.chkPR.UseVisualStyleBackColor = true;
@@ -260,9 +272,10 @@
             // 
             // frmRadniNaloziPregled2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(901, 402);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1201, 495);
             this.Controls.Add(this.chkZA);
             this.Controls.Add(this.chkST);
             this.Controls.Add(this.chkPL);
@@ -274,6 +287,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmRadniNaloziPregled2";
             this.Text = "Radni nalozi";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

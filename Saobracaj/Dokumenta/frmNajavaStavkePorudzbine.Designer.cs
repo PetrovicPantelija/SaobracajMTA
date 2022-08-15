@@ -29,6 +29,7 @@ namespace Saobracaj.Dokumenta
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNajavaStavkePorudzbine));
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.buttonOK = new System.Windows.Forms.Button();
@@ -40,9 +41,10 @@ namespace Saobracaj.Dokumenta
             // panel1
             // 
             this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Location = new System.Drawing.Point(12, 94);
+            this.panel1.Location = new System.Drawing.Point(16, 116);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(987, 415);
+            this.panel1.Size = new System.Drawing.Size(1316, 511);
             this.panel1.TabIndex = 0;
             // 
             // dataGridView1
@@ -50,16 +52,19 @@ namespace Saobracaj.Dokumenta
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(987, 415);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(1316, 511);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(229, 37);
+            this.buttonOK.Location = new System.Drawing.Point(305, 46);
+            this.buttonOK.Margin = new System.Windows.Forms.Padding(4);
             this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(114, 23);
+            this.buttonOK.Size = new System.Drawing.Size(152, 28);
             this.buttonOK.TabIndex = 1;
             this.buttonOK.Text = "Izabran";
             this.buttonOK.UseVisualStyleBackColor = true;
@@ -67,19 +72,23 @@ namespace Saobracaj.Dokumenta
             // 
             // StavkaID
             // 
-            this.StavkaID.Location = new System.Drawing.Point(30, 37);
+            this.StavkaID.Location = new System.Drawing.Point(40, 46);
+            this.StavkaID.Margin = new System.Windows.Forms.Padding(4);
             this.StavkaID.Name = "StavkaID";
-            this.StavkaID.Size = new System.Drawing.Size(100, 20);
+            this.StavkaID.Size = new System.Drawing.Size(132, 22);
             this.StavkaID.TabIndex = 2;
             // 
             // frmNajavaStavkePorudzbine
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1011, 532);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1348, 655);
             this.Controls.Add(this.StavkaID);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmNajavaStavkePorudzbine";
             this.Text = "Stavke porudžbine";
             this.Load += new System.EventHandler(this.frmNajavaStavkePorudzbine_Load);

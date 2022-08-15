@@ -41,13 +41,13 @@ namespace Saobracaj.Sifarnici
             if (status == true)
             {
                 InsertMaticniPodatki ins = new InsertMaticniPodatki();
-                ins.InsMaticniPodatki(txtStaraSifra.Text, txtNaziv.Text, txtDuziNaziv.Text, txtJM1.Text, txtJM2.Text);
+                ins.InsMaticniPodatki(txtStaraSifra.Text, txtNaziv.Text, txtDuziNaziv.Text, txtJM1.SelectedValue.ToString().TrimEnd(), txtJM2.SelectedValue.ToString().TrimEnd(), Convert.ToInt32(cboProdajnaGrupa.SelectedValue));
                 status = false;
             }
             else
             {
                 InsertMaticniPodatki upd = new InsertMaticniPodatki();
-                upd.UpdMaticniPodatki(Convert.ToInt32(txtSifra.Text), txtStaraSifra.Text, txtNaziv.Text, txtDuziNaziv.Text, txtJM1.Text, txtJM2.Text);
+                upd.UpdMaticniPodatki(Convert.ToInt32(txtSifra.Text), txtStaraSifra.Text, txtNaziv.Text, txtDuziNaziv.Text, txtJM1.SelectedValue.ToString().TrimEnd(), txtJM2.SelectedValue.ToString().TrimEnd(), Convert.ToInt32(cboProdajnaGrupa.SelectedValue));
             }
             RefreshDataGRid();
         }
@@ -55,7 +55,7 @@ namespace Saobracaj.Sifarnici
         private void RefreshDataGRid()
         {
 
-            var select = "  select MpSifra, MpStaraSif, MpNaziv, MpDoNaziv, MpSifEnoteMere1, MpSifEnoteMere2  from MaticniPodatki";
+            var select = "  select MpSifra, MpStaraSif, MpNaziv, MpDoNaziv, MpSifEnoteMere1, MpSifEnoteMere2, MpSifProdSkup  from MaticniPodatki";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -104,7 +104,11 @@ namespace Saobracaj.Sifarnici
             DataGridViewColumn column6 = dataGridView1.Columns[5];
             dataGridView1.Columns[5].HeaderText = "JM2";
             dataGridView1.Columns[5].Width = 40;
-            
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Prodajna grupa ID";
+            dataGridView1.Columns[6].Width = 60;
+
         }
 
         private void tsDelete_Click(object sender, EventArgs e)
@@ -129,6 +133,7 @@ namespace Saobracaj.Sifarnici
                         txtDuziNaziv.Text = row.Cells[3].Value.ToString();
                         txtJM1.Text = row.Cells[4].Value.ToString();
                         txtJM2.Text = row.Cells[5].Value.ToString();
+                        cboProdajnaGrupa.SelectedValue = Convert.ToInt32(row.Cells[6].Value.ToString());
                         // txtOpis.Text = row.Cells[1].Value.ToString();
                     }
                 }
@@ -143,6 +148,47 @@ namespace Saobracaj.Sifarnici
 
         private void frmMaticniPodatki_Load(object sender, EventArgs e)
         {
+            var select3 = " select PsSifra, PsNaziv from ProdSkup";
+            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection3 = new SqlConnection(s_connection3);
+            var c3 = new SqlConnection(s_connection3);
+            var dataAdapter3 = new SqlDataAdapter(select3, c3);
+
+            var commandBuilder3 = new SqlCommandBuilder(dataAdapter3);
+            var ds3 = new DataSet();
+            dataAdapter3.Fill(ds3);
+            cboProdajnaGrupa.DataSource = ds3.Tables[0];
+            cboProdajnaGrupa.DisplayMember = "PsNaziv";
+            cboProdajnaGrupa.ValueMember = "PsSifra";
+
+            var select4 = " select MeSifra, MeNaziv from MerskeEnote";
+            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection4 = new SqlConnection(s_connection4);
+            var c4 = new SqlConnection(s_connection4);
+            var dataAdapter4 = new SqlDataAdapter(select4, c4);
+
+            var commandBuilder4 = new SqlCommandBuilder(dataAdapter4);
+            var ds4 = new DataSet();
+            dataAdapter4.Fill(ds4);
+            txtJM1.DataSource = ds4.Tables[0];
+            txtJM1.DisplayMember = "MeNaziv";
+            txtJM1.ValueMember = "MeSifra";
+
+
+            var select5 = " select MeSifra, MeNaziv from MerskeEnote";
+            var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection5 = new SqlConnection(s_connection4);
+            var c5 = new SqlConnection(s_connection5);
+            var dataAdapter5 = new SqlDataAdapter(select5, c5);
+
+            var commandBuilder5= new SqlCommandBuilder(dataAdapter5);
+            var ds5 = new DataSet();
+            dataAdapter5.Fill(ds5);
+            txtJM2.DataSource = ds5.Tables[0];
+            txtJM2.DisplayMember = "MeNaziv";
+            txtJM2.ValueMember = "MeSifra";
+
+
             RefreshDataGRid();
         }
     }

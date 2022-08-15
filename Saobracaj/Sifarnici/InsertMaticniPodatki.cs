@@ -12,7 +12,7 @@ namespace Saobracaj.Sifarnici
 {
     class InsertMaticniPodatki
     {
-        public void InsMaticniPodatki( string MpStaraSif, string MpNaziv, string MpDoNaziv, string MpSifEnoteMere1, string MpSifEnoteMere2)
+        public void InsMaticniPodatki( string MpStaraSif, string MpNaziv, string MpDoNaziv, string MpSifEnoteMere1, string MpSifEnoteMere2, int MpSifProdSkup)
         {
 
 
@@ -83,8 +83,15 @@ namespace Saobracaj.Sifarnici
             parameter6.Value = MpSifEnoteMere2;
             myCommand.Parameters.Add(parameter6);
 
+            SqlParameter parameter7 = new SqlParameter();
+            parameter7.ParameterName = "@MpSifProdSkup";
+            parameter7.SqlDbType = SqlDbType.Int;
+            parameter7.Direction = ParameterDirection.Input;
+            parameter7.Value = MpSifProdSkup;
+            myCommand.Parameters.Add(parameter7);
 
-      
+
+
 
 
 
@@ -126,7 +133,7 @@ namespace Saobracaj.Sifarnici
 
         }
 
-        public void UpdMaticniPodatki(int MpSifra, string MpStaraSif, string MpNaziv, string MpDoNaziv, string MpSifEnoteMere1, string MpSifEnoteMere2)
+        public void UpdMaticniPodatki(int MpSifra, string MpStaraSif, string MpNaziv, string MpDoNaziv, string MpSifEnoteMere1, string MpSifEnoteMere2, int MpSifProdSkup)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -134,7 +141,7 @@ namespace Saobracaj.Sifarnici
             myCommand.CommandText = "UpdateMaticniPodatki";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-            /*
+           
            SqlParameter parameter = new SqlParameter();
            parameter.ParameterName = "@MpSifra";
            parameter.SqlDbType = SqlDbType.Int;
@@ -142,7 +149,7 @@ namespace Saobracaj.Sifarnici
            parameter.Direction = ParameterDirection.Input;
            parameter.Value = MpSifra;
            myCommand.Parameters.Add(parameter);
-           */
+           
 
 
             SqlParameter parameter2 = new SqlParameter();
@@ -186,6 +193,14 @@ namespace Saobracaj.Sifarnici
             parameter6.Direction = ParameterDirection.Input;
             parameter6.Value = MpSifEnoteMere2;
             myCommand.Parameters.Add(parameter6);
+
+
+            SqlParameter parameter7 = new SqlParameter();
+            parameter7.ParameterName = "@MpSifProdSkup";
+            parameter7.SqlDbType = SqlDbType.Int;
+            parameter7.Direction = ParameterDirection.Input;
+            parameter7.Value = MpSifProdSkup;
+            myCommand.Parameters.Add(parameter7);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

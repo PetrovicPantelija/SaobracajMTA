@@ -106,7 +106,7 @@ namespace Saobracaj.Administracija
             this.combo_Lokomotiva.BeforeTouchSize = new System.Drawing.Size(243, 24);
             this.combo_Lokomotiva.Filter = null;
             this.combo_Lokomotiva.Location = new System.Drawing.Point(403, 66);
-            this.combo_Lokomotiva.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.combo_Lokomotiva.Margin = new System.Windows.Forms.Padding(4);
             this.combo_Lokomotiva.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.combo_Lokomotiva.Name = "combo_Lokomotiva";
             this.combo_Lokomotiva.ScrollMetroColorTable = metroColorTable1;
@@ -135,29 +135,33 @@ namespace Saobracaj.Administracija
             // 
             // btn_zapolseni
             // 
+            this.btn_zapolseni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btn_zapolseni.ForeColor = System.Drawing.Color.White;
             this.btn_zapolseni.Location = new System.Drawing.Point(821, 46);
             this.btn_zapolseni.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_zapolseni.Name = "btn_zapolseni";
             this.btn_zapolseni.Size = new System.Drawing.Size(155, 44);
             this.btn_zapolseni.TabIndex = 175;
             this.btn_zapolseni.Text = "Traži po zaposlenom";
-            this.btn_zapolseni.UseVisualStyleBackColor = true;
+            this.btn_zapolseni.UseVisualStyleBackColor = false;
             this.btn_zapolseni.Click += new System.EventHandler(this.btn_zapolseni_Click);
             // 
             // btn_lokomotiva
             // 
+            this.btn_lokomotiva.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btn_lokomotiva.ForeColor = System.Drawing.Color.White;
             this.btn_lokomotiva.Location = new System.Drawing.Point(995, 46);
             this.btn_lokomotiva.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_lokomotiva.Name = "btn_lokomotiva";
             this.btn_lokomotiva.Size = new System.Drawing.Size(173, 44);
             this.btn_lokomotiva.TabIndex = 176;
             this.btn_lokomotiva.Text = "Traži po lokomotivi";
-            this.btn_lokomotiva.UseVisualStyleBackColor = true;
+            this.btn_lokomotiva.UseVisualStyleBackColor = false;
             this.btn_lokomotiva.Click += new System.EventHandler(this.btn_lokomotiva_Click);
             // 
             // dataGridView1
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(15, 119);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -170,6 +174,7 @@ namespace Saobracaj.Administracija
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
@@ -179,7 +184,7 @@ namespace Saobracaj.Administracija
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1180, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(1180, 27);
             this.toolStrip1.TabIndex = 178;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -189,7 +194,7 @@ namespace Saobracaj.Administracija
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 28);
+            this.tsNew.Size = new System.Drawing.Size(29, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -199,7 +204,7 @@ namespace Saobracaj.Administracija
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 28);
+            this.tsSave.Size = new System.Drawing.Size(29, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -209,22 +214,23 @@ namespace Saobracaj.Administracija
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 28);
+            this.tsDelete.Size = new System.Drawing.Size(29, 24);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(115, 28);
+            this.toolStripButton1.Size = new System.Drawing.Size(115, 24);
             this.toolStripButton1.Text = "Položene Pruge";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -232,6 +238,7 @@ namespace Saobracaj.Administracija
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1180, 591);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dataGridView1);
@@ -245,6 +252,7 @@ namespace Saobracaj.Administracija
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txt_Sifra);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmPolozeneLokomotive";
             this.Text = "Položene lokomotive";

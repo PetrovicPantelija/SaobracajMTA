@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrijavaOdjava));
             this.btnRefresh = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.cboZaposleni = new System.Windows.Forms.ComboBox();
@@ -38,9 +39,10 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Location = new System.Drawing.Point(267, 27);
+            this.btnRefresh.Location = new System.Drawing.Point(356, 33);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(90, 23);
+            this.btnRefresh.Size = new System.Drawing.Size(120, 28);
             this.btnRefresh.TabIndex = 101;
             this.btnRefresh.Text = "Pretraži";
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -49,9 +51,10 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(27, 27);
+            this.label6.Location = new System.Drawing.Point(36, 33);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 13);
+            this.label6.Size = new System.Drawing.Size(74, 17);
             this.label6.TabIndex = 100;
             this.label6.Text = "Zaposleni:";
             // 
@@ -59,16 +62,18 @@
             // 
             this.cboZaposleni.BackColor = System.Drawing.Color.White;
             this.cboZaposleni.FormattingEnabled = true;
-            this.cboZaposleni.Location = new System.Drawing.Point(89, 27);
+            this.cboZaposleni.Location = new System.Drawing.Point(119, 33);
+            this.cboZaposleni.Margin = new System.Windows.Forms.Padding(4);
             this.cboZaposleni.Name = "cboZaposleni";
-            this.cboZaposleni.Size = new System.Drawing.Size(171, 21);
+            this.cboZaposleni.Size = new System.Drawing.Size(227, 24);
             this.cboZaposleni.TabIndex = 99;
             // 
             // btnSve
             // 
-            this.btnSve.Location = new System.Drawing.Point(419, 27);
+            this.btnSve.Location = new System.Drawing.Point(559, 33);
+            this.btnSve.Margin = new System.Windows.Forms.Padding(4);
             this.btnSve.Name = "btnSve";
-            this.btnSve.Size = new System.Drawing.Size(90, 23);
+            this.btnSve.Size = new System.Drawing.Size(120, 28);
             this.btnSve.TabIndex = 102;
             this.btnSve.Text = "Pretraži";
             this.btnSve.UseVisualStyleBackColor = true;
@@ -82,21 +87,26 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(30, 68);
+            this.dataGridView1.Location = new System.Drawing.Point(40, 84);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(788, 325);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(1051, 400);
             this.dataGridView1.TabIndex = 103;
             // 
             // frmPrijavaOdjava
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(830, 405);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1107, 498);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnSve);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cboZaposleni);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPrijavaOdjava";
             this.Text = "Prijava na posao";
             this.Load += new System.EventHandler(this.frmPrijavaOdjava_Load);

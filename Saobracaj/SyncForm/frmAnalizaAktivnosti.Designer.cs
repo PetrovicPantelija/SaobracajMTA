@@ -42,10 +42,11 @@ namespace Saobracaj.SyncForm
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2016White;
             this.gridGroupingControl1.Location = new System.Drawing.Point(0, 0);
+            this.gridGroupingControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(800, 450);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1065, 552);
             this.gridGroupingControl1.TabIndex = 3;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
@@ -58,11 +59,12 @@ namespace Saobracaj.SyncForm
             // 
             // frmAnalizaAktivnosti
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1065, 552);
             this.Controls.Add(this.gridGroupingControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmAnalizaAktivnosti";
             this.Text = "Analiza aktivnosti";
             this.Load += new System.EventHandler(this.frmAnalizaAktivnosti_Load);

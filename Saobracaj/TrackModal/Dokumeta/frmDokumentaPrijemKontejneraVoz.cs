@@ -222,6 +222,11 @@ namespace TrackModal.Dokumeta
             } 
 
         }
+
+        private void frmDokumentaPrijemKontejneraVoz_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

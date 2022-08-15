@@ -60,17 +60,19 @@
             // txtSifraNajave
             // 
             this.txtSifraNajave.Enabled = false;
-            this.txtSifraNajave.Location = new System.Drawing.Point(104, 63);
+            this.txtSifraNajave.Location = new System.Drawing.Point(139, 78);
+            this.txtSifraNajave.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifraNajave.Name = "txtSifraNajave";
-            this.txtSifraNajave.Size = new System.Drawing.Size(106, 20);
+            this.txtSifraNajave.Size = new System.Drawing.Size(140, 22);
             this.txtSifraNajave.TabIndex = 2;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 64);
+            this.label3.Location = new System.Drawing.Point(12, 79);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 13);
+            this.label3.Size = new System.Drawing.Size(83, 17);
             this.label3.TabIndex = 24;
             this.label3.Text = "Šifra najave";
             // 
@@ -78,9 +80,10 @@
             // 
             this.cboPartneri.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.cboPartneri.FormattingEnabled = true;
-            this.cboPartneri.Location = new System.Drawing.Point(592, 33);
+            this.cboPartneri.Location = new System.Drawing.Point(789, 41);
+            this.cboPartneri.Margin = new System.Windows.Forms.Padding(4);
             this.cboPartneri.Name = "cboPartneri";
-            this.cboPartneri.Size = new System.Drawing.Size(121, 21);
+            this.cboPartneri.Size = new System.Drawing.Size(160, 24);
             this.cboPartneri.TabIndex = 23;
             this.cboPartneri.Leave += new System.EventHandler(this.cboPartneri_Leave);
             // 
@@ -88,17 +91,19 @@
             // 
             this.txtUIC.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.txtUIC.Enabled = false;
-            this.txtUIC.Location = new System.Drawing.Point(607, 86);
+            this.txtUIC.Location = new System.Drawing.Point(809, 106);
+            this.txtUIC.Margin = new System.Windows.Forms.Padding(4);
             this.txtUIC.Name = "txtUIC";
-            this.txtUIC.Size = new System.Drawing.Size(106, 20);
+            this.txtUIC.Size = new System.Drawing.Size(140, 22);
             this.txtUIC.TabIndex = 22;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(576, 86);
+            this.label2.Location = new System.Drawing.Point(768, 106);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 13);
+            this.label2.Size = new System.Drawing.Size(30, 17);
             this.label2.TabIndex = 21;
             this.label2.Text = "UIC";
             // 
@@ -106,59 +111,66 @@
             // 
             this.txtOpis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.txtOpis.Enabled = false;
-            this.txtOpis.Location = new System.Drawing.Point(484, 60);
+            this.txtOpis.Location = new System.Drawing.Point(645, 74);
+            this.txtOpis.Margin = new System.Windows.Forms.Padding(4);
             this.txtOpis.Name = "txtOpis";
-            this.txtOpis.Size = new System.Drawing.Size(229, 20);
+            this.txtOpis.Size = new System.Drawing.Size(304, 22);
             this.txtOpis.TabIndex = 20;
             // 
             // lblNaziv
             // 
             this.lblNaziv.AutoSize = true;
-            this.lblNaziv.Location = new System.Drawing.Point(431, 60);
+            this.lblNaziv.Location = new System.Drawing.Point(575, 74);
+            this.lblNaziv.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNaziv.Name = "lblNaziv";
-            this.lblNaziv.Size = new System.Drawing.Size(34, 13);
+            this.lblNaziv.Size = new System.Drawing.Size(43, 17);
             this.lblNaziv.TabIndex = 19;
             this.lblNaziv.Text = "Naziv";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(545, 33);
+            this.label1.Location = new System.Drawing.Point(727, 41);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
+            this.label1.Size = new System.Drawing.Size(55, 17);
             this.label1.TabIndex = 26;
             this.label1.Text = "Partner";
             // 
             // txtSifra
             // 
             this.txtSifra.Enabled = false;
-            this.txtSifra.Location = new System.Drawing.Point(104, 37);
+            this.txtSifra.Location = new System.Drawing.Point(139, 46);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(106, 20);
+            this.txtSifra.Size = new System.Drawing.Size(140, 22);
             this.txtSifra.TabIndex = 1;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 37);
+            this.label4.Location = new System.Drawing.Point(16, 46);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(28, 13);
+            this.label4.Size = new System.Drawing.Size(37, 17);
             this.label4.TabIndex = 27;
             this.label4.Text = "Šifra";
             // 
             // txtRedosled
             // 
-            this.txtRedosled.Location = new System.Drawing.Point(104, 93);
+            this.txtRedosled.Location = new System.Drawing.Point(139, 114);
+            this.txtRedosled.Margin = new System.Windows.Forms.Padding(4);
             this.txtRedosled.Name = "txtRedosled";
-            this.txtRedosled.Size = new System.Drawing.Size(106, 20);
+            this.txtRedosled.Size = new System.Drawing.Size(140, 22);
             this.txtRedosled.TabIndex = 3;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 93);
+            this.label5.Location = new System.Drawing.Point(16, 114);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 13);
+            this.label5.Size = new System.Drawing.Size(68, 17);
             this.label5.TabIndex = 29;
             this.label5.Text = "Redosled";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -169,13 +181,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 147);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 181);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(701, 400);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(935, 492);
             this.dataGridView1.TabIndex = 31;
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
             this.tsSave,
@@ -187,7 +203,7 @@
             this.tsPoslednja});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(725, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(967, 27);
             this.toolStrip1.TabIndex = 32;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -197,7 +213,7 @@
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(23, 22);
+            this.tsNew.Size = new System.Drawing.Size(29, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -207,7 +223,7 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(23, 22);
+            this.tsSave.Size = new System.Drawing.Size(29, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -217,13 +233,13 @@
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(23, 22);
+            this.tsDelete.Size = new System.Drawing.Size(29, 24);
             this.tsDelete.Text = "toolStripButton1";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tsPrvi
             // 
@@ -231,7 +247,7 @@
             this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
             this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(23, 22);
+            this.tsPrvi.Size = new System.Drawing.Size(29, 24);
             this.tsPrvi.Text = "toolStripButton1";
             // 
             // tsNazad
@@ -240,7 +256,7 @@
             this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
             this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(23, 22);
+            this.tsNazad.Size = new System.Drawing.Size(29, 24);
             this.tsNazad.Text = "toolStripButton1";
             // 
             // tsNapred
@@ -249,7 +265,7 @@
             this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
             this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(23, 22);
+            this.tsNapred.Size = new System.Drawing.Size(29, 24);
             this.tsNapred.Text = "toolStripButton1";
             // 
             // tsPoslednja
@@ -258,31 +274,34 @@
             this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
             this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(23, 22);
+            this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
             this.tsPoslednja.Text = "toolStripButton1";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 121);
+            this.label6.Location = new System.Drawing.Point(16, 149);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 13);
+            this.label6.Size = new System.Drawing.Size(113, 17);
             this.label6.TabIndex = 34;
             this.label6.Text = "Njihov broj voza:";
             // 
             // cmbVoz
             // 
             this.cmbVoz.FormattingEnabled = true;
-            this.cmbVoz.Location = new System.Drawing.Point(104, 120);
+            this.cmbVoz.Location = new System.Drawing.Point(139, 148);
+            this.cmbVoz.Margin = new System.Windows.Forms.Padding(4);
             this.cmbVoz.Name = "cmbVoz";
-            this.cmbVoz.Size = new System.Drawing.Size(122, 21);
+            this.cmbVoz.Size = new System.Drawing.Size(161, 24);
             this.cmbVoz.TabIndex = 35;
             // 
             // frmNajavaPrevoznik
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(725, 559);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(967, 688);
             this.Controls.Add(this.cmbVoz);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.toolStrip1);
@@ -300,6 +319,7 @@
             this.Controls.Add(this.txtOpis);
             this.Controls.Add(this.lblNaziv);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmNajavaPrevoznik";
             this.Text = "Prevoznici za najavu";
             this.Load += new System.EventHandler(this.frmNajavaPrevoznik_Load);

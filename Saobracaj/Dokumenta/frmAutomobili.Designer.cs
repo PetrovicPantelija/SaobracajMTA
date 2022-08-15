@@ -126,6 +126,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
@@ -222,7 +223,7 @@
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(179, 24);
@@ -232,6 +233,7 @@
             // toolStripButton2
             // 
             this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.ForeColor = System.Drawing.Color.White;
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
@@ -242,6 +244,7 @@
             // toolStripButton3
             // 
             this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton3.ForeColor = System.Drawing.Color.White;
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
@@ -252,6 +255,7 @@
             // toolStripButton4
             // 
             this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton4.ForeColor = System.Drawing.Color.White;
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
@@ -263,6 +267,7 @@
             // toolStripButton5
             // 
             this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton5.ForeColor = System.Drawing.Color.White;
             this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
@@ -273,6 +278,7 @@
             // toolStripButton6
             // 
             this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton6.ForeColor = System.Drawing.Color.White;
             this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
@@ -293,7 +299,7 @@
             // 
             this.chkSluzbeni.AutoSize = true;
             this.chkSluzbeni.Location = new System.Drawing.Point(676, 55);
-            this.chkSluzbeni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkSluzbeni.Margin = new System.Windows.Forms.Padding(4);
             this.chkSluzbeni.Name = "chkSluzbeni";
             this.chkSluzbeni.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkSluzbeni.Size = new System.Drawing.Size(84, 21);
@@ -314,7 +320,7 @@
             // txtRegBr
             // 
             this.txtRegBr.Location = new System.Drawing.Point(155, 122);
-            this.txtRegBr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtRegBr.Margin = new System.Windows.Forms.Padding(4);
             this.txtRegBr.Name = "txtRegBr";
             this.txtRegBr.Size = new System.Drawing.Size(188, 22);
             this.txtRegBr.TabIndex = 199;
@@ -323,7 +329,7 @@
             // 
             this.cboZaposleni.FormattingEnabled = true;
             this.cboZaposleni.Location = new System.Drawing.Point(440, 57);
-            this.cboZaposleni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboZaposleni.Margin = new System.Windows.Forms.Padding(4);
             this.cboZaposleni.Name = "cboZaposleni";
             this.cboZaposleni.Size = new System.Drawing.Size(211, 24);
             this.cboZaposleni.TabIndex = 197;
@@ -331,7 +337,7 @@
             // txtSifra
             // 
             this.txtSifra.Location = new System.Drawing.Point(155, 57);
-            this.txtSifra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(72, 22);
             this.txtSifra.TabIndex = 195;
@@ -359,7 +365,7 @@
             // txtMarka
             // 
             this.txtMarka.Location = new System.Drawing.Point(155, 89);
-            this.txtMarka.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMarka.Margin = new System.Windows.Forms.Padding(4);
             this.txtMarka.Name = "txtMarka";
             this.txtMarka.Size = new System.Drawing.Size(352, 22);
             this.txtMarka.TabIndex = 203;
@@ -373,7 +379,7 @@
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(16, 521);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1532, 204);
@@ -385,7 +391,7 @@
             this.dtpDatumRegistracije.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatumRegistracije.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDatumRegistracije.Location = new System.Drawing.Point(155, 154);
-            this.dtpDatumRegistracije.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDatumRegistracije.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDatumRegistracije.Name = "dtpDatumRegistracije";
             this.dtpDatumRegistracije.ShowUpDown = true;
             this.dtpDatumRegistracije.Size = new System.Drawing.Size(143, 22);
@@ -415,7 +421,7 @@
             // txtGodinaProizvodnje
             // 
             this.txtGodinaProizvodnje.Location = new System.Drawing.Point(503, 154);
-            this.txtGodinaProizvodnje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtGodinaProizvodnje.Margin = new System.Windows.Forms.Padding(4);
             this.txtGodinaProizvodnje.Name = "txtGodinaProizvodnje";
             this.txtGodinaProizvodnje.Size = new System.Drawing.Size(143, 22);
             this.txtGodinaProizvodnje.TabIndex = 208;
@@ -433,7 +439,7 @@
             // txtGorivo
             // 
             this.txtGorivo.Location = new System.Drawing.Point(155, 182);
-            this.txtGorivo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtGorivo.Margin = new System.Windows.Forms.Padding(4);
             this.txtGorivo.Name = "txtGorivo";
             this.txtGorivo.Size = new System.Drawing.Size(188, 22);
             this.txtGorivo.TabIndex = 210;
@@ -451,7 +457,7 @@
             // txtZapreminaMotora
             // 
             this.txtZapreminaMotora.Location = new System.Drawing.Point(503, 186);
-            this.txtZapreminaMotora.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtZapreminaMotora.Margin = new System.Windows.Forms.Padding(4);
             this.txtZapreminaMotora.Name = "txtZapreminaMotora";
             this.txtZapreminaMotora.Size = new System.Drawing.Size(143, 22);
             this.txtZapreminaMotora.TabIndex = 212;
@@ -470,7 +476,7 @@
             // txtKategorija
             // 
             this.txtKategorija.Location = new System.Drawing.Point(155, 214);
-            this.txtKategorija.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtKategorija.Margin = new System.Windows.Forms.Padding(4);
             this.txtKategorija.Name = "txtKategorija";
             this.txtKategorija.Size = new System.Drawing.Size(223, 22);
             this.txtKategorija.TabIndex = 214;
@@ -480,7 +486,7 @@
             this.dtpVServisUradjen.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpVServisUradjen.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpVServisUradjen.Location = new System.Drawing.Point(155, 246);
-            this.dtpVServisUradjen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpVServisUradjen.Margin = new System.Windows.Forms.Padding(4);
             this.dtpVServisUradjen.Name = "dtpVServisUradjen";
             this.dtpVServisUradjen.ShowUpDown = true;
             this.dtpVServisUradjen.Size = new System.Drawing.Size(143, 22);
@@ -510,7 +516,7 @@
             // txtVServisKM
             // 
             this.txtVServisKM.Location = new System.Drawing.Point(155, 278);
-            this.txtVServisKM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtVServisKM.Margin = new System.Windows.Forms.Padding(4);
             this.txtVServisKM.Name = "txtVServisKM";
             this.txtVServisKM.Size = new System.Drawing.Size(143, 22);
             this.txtVServisKM.TabIndex = 218;
@@ -521,7 +527,7 @@
             this.dtpVServisSledeci.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpVServisSledeci.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpVServisSledeci.Location = new System.Drawing.Point(155, 310);
-            this.dtpVServisSledeci.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpVServisSledeci.Margin = new System.Windows.Forms.Padding(4);
             this.dtpVServisSledeci.Name = "dtpVServisSledeci";
             this.dtpVServisSledeci.ShowUpDown = true;
             this.dtpVServisSledeci.Size = new System.Drawing.Size(143, 22);
@@ -543,7 +549,7 @@
             this.dtpMaliServisSledeci.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpMaliServisSledeci.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpMaliServisSledeci.Location = new System.Drawing.Point(155, 406);
-            this.dtpMaliServisSledeci.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpMaliServisSledeci.Margin = new System.Windows.Forms.Padding(4);
             this.dtpMaliServisSledeci.Name = "dtpMaliServisSledeci";
             this.dtpMaliServisSledeci.ShowUpDown = true;
             this.dtpMaliServisSledeci.Size = new System.Drawing.Size(143, 22);
@@ -573,7 +579,7 @@
             // txtMaliServisKM
             // 
             this.txtMaliServisKM.Location = new System.Drawing.Point(155, 374);
-            this.txtMaliServisKM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMaliServisKM.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaliServisKM.Name = "txtMaliServisKM";
             this.txtMaliServisKM.Size = new System.Drawing.Size(143, 22);
             this.txtMaliServisKM.TabIndex = 224;
@@ -584,7 +590,7 @@
             this.dtpMaliServisUradjen.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpMaliServisUradjen.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpMaliServisUradjen.Location = new System.Drawing.Point(155, 342);
-            this.dtpMaliServisUradjen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpMaliServisUradjen.Margin = new System.Windows.Forms.Padding(4);
             this.dtpMaliServisUradjen.Name = "dtpMaliServisUradjen";
             this.dtpMaliServisUradjen.ShowUpDown = true;
             this.dtpMaliServisUradjen.Size = new System.Drawing.Size(143, 22);
@@ -614,7 +620,7 @@
             // txtBrojPlombe1
             // 
             this.txtBrojPlombe1.Location = new System.Drawing.Point(479, 250);
-            this.txtBrojPlombe1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBrojPlombe1.Margin = new System.Windows.Forms.Padding(4);
             this.txtBrojPlombe1.Name = "txtBrojPlombe1";
             this.txtBrojPlombe1.Size = new System.Drawing.Size(167, 22);
             this.txtBrojPlombe1.TabIndex = 228;
@@ -632,7 +638,7 @@
             // txtBrojPlombe2
             // 
             this.txtBrojPlombe2.Location = new System.Drawing.Point(479, 282);
-            this.txtBrojPlombe2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBrojPlombe2.Margin = new System.Windows.Forms.Padding(4);
             this.txtBrojPlombe2.Name = "txtBrojPlombe2";
             this.txtBrojPlombe2.Size = new System.Drawing.Size(167, 22);
             this.txtBrojPlombe2.TabIndex = 230;
@@ -642,7 +648,7 @@
             this.dtpPPAparatDatumOvere.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPPAparatDatumOvere.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpPPAparatDatumOvere.Location = new System.Drawing.Point(479, 314);
-            this.dtpPPAparatDatumOvere.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpPPAparatDatumOvere.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPPAparatDatumOvere.Name = "dtpPPAparatDatumOvere";
             this.dtpPPAparatDatumOvere.ShowUpDown = true;
             this.dtpPPAparatDatumOvere.Size = new System.Drawing.Size(143, 22);
@@ -664,7 +670,7 @@
             this.dtpPPAparatDatumIsteka.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPPAparatDatumIsteka.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpPPAparatDatumIsteka.Location = new System.Drawing.Point(479, 346);
-            this.dtpPPAparatDatumIsteka.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpPPAparatDatumIsteka.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPPAparatDatumIsteka.Name = "dtpPPAparatDatumIsteka";
             this.dtpPPAparatDatumIsteka.ShowUpDown = true;
             this.dtpPPAparatDatumIsteka.Size = new System.Drawing.Size(143, 22);
@@ -694,7 +700,7 @@
             // txtPPAparatSeriskiBroj
             // 
             this.txtPPAparatSeriskiBroj.Location = new System.Drawing.Point(479, 378);
-            this.txtPPAparatSeriskiBroj.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPPAparatSeriskiBroj.Margin = new System.Windows.Forms.Padding(4);
             this.txtPPAparatSeriskiBroj.Name = "txtPPAparatSeriskiBroj";
             this.txtPPAparatSeriskiBroj.Size = new System.Drawing.Size(167, 22);
             this.txtPPAparatSeriskiBroj.TabIndex = 236;
@@ -704,7 +710,7 @@
             this.dtpPrvaPomocDatumIsteka.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPrvaPomocDatumIsteka.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpPrvaPomocDatumIsteka.Location = new System.Drawing.Point(479, 410);
-            this.dtpPrvaPomocDatumIsteka.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpPrvaPomocDatumIsteka.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPrvaPomocDatumIsteka.Name = "dtpPrvaPomocDatumIsteka";
             this.dtpPrvaPomocDatumIsteka.ShowUpDown = true;
             this.dtpPrvaPomocDatumIsteka.Size = new System.Drawing.Size(143, 22);
@@ -725,7 +731,7 @@
             // 
             this.chkImaTrougao.AutoSize = true;
             this.chkImaTrougao.Location = new System.Drawing.Point(819, 55);
-            this.chkImaTrougao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkImaTrougao.Margin = new System.Windows.Forms.Padding(4);
             this.chkImaTrougao.Name = "chkImaTrougao";
             this.chkImaTrougao.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkImaTrougao.Size = new System.Drawing.Size(105, 21);
@@ -737,7 +743,7 @@
             // 
             this.chkSajlaZaVucu.AutoSize = true;
             this.chkSajlaZaVucu.Location = new System.Drawing.Point(969, 55);
-            this.chkSajlaZaVucu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkSajlaZaVucu.Margin = new System.Windows.Forms.Padding(4);
             this.chkSajlaZaVucu.Name = "chkSajlaZaVucu";
             this.chkSajlaZaVucu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkSajlaZaVucu.Size = new System.Drawing.Size(138, 21);
@@ -749,7 +755,7 @@
             // 
             this.chkMarker.AutoSize = true;
             this.chkMarker.Location = new System.Drawing.Point(824, 84);
-            this.chkMarker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkMarker.Margin = new System.Windows.Forms.Padding(4);
             this.chkMarker.Name = "chkMarker";
             this.chkMarker.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkMarker.Size = new System.Drawing.Size(100, 21);
@@ -761,7 +767,7 @@
             // 
             this.chkLanci.AutoSize = true;
             this.chkLanci.Location = new System.Drawing.Point(1017, 84);
-            this.chkLanci.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkLanci.Margin = new System.Windows.Forms.Padding(4);
             this.chkLanci.Name = "chkLanci";
             this.chkLanci.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkLanci.Size = new System.Drawing.Size(90, 21);
@@ -782,7 +788,7 @@
             // txtLokacijaLanci
             // 
             this.txtLokacijaLanci.Location = new System.Drawing.Point(873, 118);
-            this.txtLokacijaLanci.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLokacijaLanci.Margin = new System.Windows.Forms.Padding(4);
             this.txtLokacijaLanci.Name = "txtLokacijaLanci";
             this.txtLokacijaLanci.Size = new System.Drawing.Size(239, 22);
             this.txtLokacijaLanci.TabIndex = 244;
@@ -800,7 +806,7 @@
             // txtZGDot
             // 
             this.txtZGDot.Location = new System.Drawing.Point(873, 154);
-            this.txtZGDot.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtZGDot.Margin = new System.Windows.Forms.Padding(4);
             this.txtZGDot.Name = "txtZGDot";
             this.txtZGDot.Size = new System.Drawing.Size(239, 22);
             this.txtZGDot.TabIndex = 246;
@@ -818,7 +824,7 @@
             // txtZGLokacija
             // 
             this.txtZGLokacija.Location = new System.Drawing.Point(873, 186);
-            this.txtZGLokacija.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtZGLokacija.Margin = new System.Windows.Forms.Padding(4);
             this.txtZGLokacija.Name = "txtZGLokacija";
             this.txtZGLokacija.Size = new System.Drawing.Size(239, 22);
             this.txtZGLokacija.TabIndex = 248;
@@ -836,7 +842,7 @@
             // txtZGSare
             // 
             this.txtZGSare.Location = new System.Drawing.Point(873, 218);
-            this.txtZGSare.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtZGSare.Margin = new System.Windows.Forms.Padding(4);
             this.txtZGSare.Name = "txtZGSare";
             this.txtZGSare.Size = new System.Drawing.Size(239, 22);
             this.txtZGSare.TabIndex = 250;
@@ -854,7 +860,7 @@
             // txtLGSare
             // 
             this.txtLGSare.Location = new System.Drawing.Point(873, 314);
-            this.txtLGSare.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLGSare.Margin = new System.Windows.Forms.Padding(4);
             this.txtLGSare.Name = "txtLGSare";
             this.txtLGSare.Size = new System.Drawing.Size(239, 22);
             this.txtLGSare.TabIndex = 256;
@@ -872,7 +878,7 @@
             // txtLGLokacija
             // 
             this.txtLGLokacija.Location = new System.Drawing.Point(873, 282);
-            this.txtLGLokacija.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLGLokacija.Margin = new System.Windows.Forms.Padding(4);
             this.txtLGLokacija.Name = "txtLGLokacija";
             this.txtLGLokacija.Size = new System.Drawing.Size(239, 22);
             this.txtLGLokacija.TabIndex = 254;
@@ -890,7 +896,7 @@
             // txtLGgumeDOT
             // 
             this.txtLGgumeDOT.Location = new System.Drawing.Point(873, 250);
-            this.txtLGgumeDOT.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLGgumeDOT.Margin = new System.Windows.Forms.Padding(4);
             this.txtLGgumeDOT.Name = "txtLGgumeDOT";
             this.txtLGgumeDOT.Size = new System.Drawing.Size(239, 22);
             this.txtLGgumeDOT.TabIndex = 252;
@@ -908,7 +914,7 @@
             // txtNapomena
             // 
             this.txtNapomena.Location = new System.Drawing.Point(873, 350);
-            this.txtNapomena.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNapomena.Margin = new System.Windows.Forms.Padding(4);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
             this.txtNapomena.Size = new System.Drawing.Size(673, 152);
@@ -927,7 +933,7 @@
             // txtNepravilnosti
             // 
             this.txtNepravilnosti.Location = new System.Drawing.Point(1308, 213);
-            this.txtNepravilnosti.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNepravilnosti.Margin = new System.Windows.Forms.Padding(4);
             this.txtNepravilnosti.Name = "txtNepravilnosti";
             this.txtNepravilnosti.Size = new System.Drawing.Size(239, 22);
             this.txtNepravilnosti.TabIndex = 266;
@@ -946,7 +952,7 @@
             // 
             this.txtNivoUlja.AcceptsReturn = true;
             this.txtNivoUlja.Location = new System.Drawing.Point(1308, 181);
-            this.txtNivoUlja.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNivoUlja.Margin = new System.Windows.Forms.Padding(4);
             this.txtNivoUlja.Name = "txtNivoUlja";
             this.txtNivoUlja.Size = new System.Drawing.Size(239, 22);
             this.txtNivoUlja.TabIndex = 264;
@@ -964,7 +970,7 @@
             // txtCistocaUnutra
             // 
             this.txtCistocaUnutra.Location = new System.Drawing.Point(1308, 149);
-            this.txtCistocaUnutra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCistocaUnutra.Margin = new System.Windows.Forms.Padding(4);
             this.txtCistocaUnutra.Name = "txtCistocaUnutra";
             this.txtCistocaUnutra.Size = new System.Drawing.Size(239, 22);
             this.txtCistocaUnutra.TabIndex = 262;
@@ -982,7 +988,7 @@
             // txtCistocaSpolja
             // 
             this.txtCistocaSpolja.Location = new System.Drawing.Point(1308, 113);
-            this.txtCistocaSpolja.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCistocaSpolja.Margin = new System.Windows.Forms.Padding(4);
             this.txtCistocaSpolja.Name = "txtCistocaSpolja";
             this.txtCistocaSpolja.Size = new System.Drawing.Size(239, 22);
             this.txtCistocaSpolja.TabIndex = 260;
@@ -1001,7 +1007,7 @@
             // 
             this.cboMestoTroska.FormattingEnabled = true;
             this.cboMestoTroska.Location = new System.Drawing.Point(1308, 55);
-            this.cboMestoTroska.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboMestoTroska.Margin = new System.Windows.Forms.Padding(4);
             this.cboMestoTroska.Name = "cboMestoTroska";
             this.cboMestoTroska.Size = new System.Drawing.Size(211, 24);
             this.cboMestoTroska.TabIndex = 267;
@@ -1019,7 +1025,7 @@
             // txtModel
             // 
             this.txtModel.Location = new System.Drawing.Point(503, 122);
-            this.txtModel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtModel.Margin = new System.Windows.Forms.Padding(4);
             this.txtModel.Name = "txtModel";
             this.txtModel.Size = new System.Drawing.Size(143, 22);
             this.txtModel.TabIndex = 270;
@@ -1028,6 +1034,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1371, 740);
             this.Controls.Add(this.label35);
             this.Controls.Add(this.txtModel);
@@ -1107,7 +1114,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmAutomobili";
             this.Text = "Automobili";
             this.Load += new System.EventHandler(this.frmAutomobili_Load);

@@ -29,7 +29,7 @@ namespace TrackModal.Izvestaji
         /// </summary>
         private void InitializeComponent()
         {
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource5 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.btnStampa = new System.Windows.Forms.Button();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.dtpDatumDo = new System.Windows.Forms.DateTimePicker();
@@ -40,9 +40,10 @@ namespace TrackModal.Izvestaji
             // 
             // btnStampa
             // 
-            this.btnStampa.Location = new System.Drawing.Point(665, 10);
+            this.btnStampa.Location = new System.Drawing.Point(887, 12);
+            this.btnStampa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnStampa.Name = "btnStampa";
-            this.btnStampa.Size = new System.Drawing.Size(123, 27);
+            this.btnStampa.Size = new System.Drawing.Size(164, 33);
             this.btnStampa.TabIndex = 308;
             this.btnStampa.Text = "Štampaj";
             this.btnStampa.UseVisualStyleBackColor = true;
@@ -53,14 +54,14 @@ namespace TrackModal.Izvestaji
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource5.Name = "DataSet1";
-            reportDataSource5.Value = null;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource5);
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = null;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(12, 43);
+            this.reportViewer1.Location = new System.Drawing.Point(16, 53);
+            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.reportViewer1.Name = "reportViewer1";
-         //   this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(776, 398);
+            this.reportViewer1.Size = new System.Drawing.Size(1034, 489);
             this.reportViewer1.TabIndex = 307;
             // 
             // dtpDatumDo
@@ -70,9 +71,10 @@ namespace TrackModal.Izvestaji
             this.dtpDatumDo.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatumDo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpDatumDo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDatumDo.Location = new System.Drawing.Point(456, 15);
+            this.dtpDatumDo.Location = new System.Drawing.Point(608, 18);
+            this.dtpDatumDo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpDatumDo.Name = "dtpDatumDo";
-            this.dtpDatumDo.Size = new System.Drawing.Size(150, 22);
+            this.dtpDatumDo.Size = new System.Drawing.Size(199, 26);
             this.dtpDatumDo.TabIndex = 306;
             this.dtpDatumDo.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -80,10 +82,11 @@ namespace TrackModal.Izvestaji
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(327, 15);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(436, 18);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 17);
+            this.label2.Size = new System.Drawing.Size(147, 20);
             this.label2.TabIndex = 305;
             this.label2.Text = "Datum i vreme do:";
             // 
@@ -91,10 +94,11 @@ namespace TrackModal.Izvestaji
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(23, 15);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(31, 18);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 17);
+            this.label1.Size = new System.Drawing.Size(147, 20);
             this.label1.TabIndex = 304;
             this.label1.Text = "Datum i vreme od:";
             // 
@@ -105,24 +109,26 @@ namespace TrackModal.Izvestaji
             this.dtpDatumOd.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatumOd.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpDatumOd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDatumOd.Location = new System.Drawing.Point(152, 15);
+            this.dtpDatumOd.Location = new System.Drawing.Point(203, 18);
+            this.dtpDatumOd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpDatumOd.Name = "dtpDatumOd";
-            this.dtpDatumOd.Size = new System.Drawing.Size(150, 22);
+            this.dtpDatumOd.Size = new System.Drawing.Size(199, 26);
             this.dtpDatumOd.TabIndex = 303;
             this.dtpDatumOd.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // frmSelectTransport1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.btnStampa);
             this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.dtpDatumDo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtpDatumOd);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmSelectTransport1";
             this.Text = "Izveštaj o prevozu kamenog agregata";
             this.Load += new System.EventHandler(this.frmSelectTransport1_Load);

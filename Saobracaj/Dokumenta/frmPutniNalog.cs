@@ -881,7 +881,7 @@ namespace TrackModal.Dokumeta
 
                     mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    mailMessage.Subject = "ŽIT TRANSPORT PUTNI NALOG BR: " + zadnjibroj + " . ";
+                    mailMessage.Subject = "RTC LUKA LEGET TRANSPORT PUTNI NALOG BR: " + zadnjibroj + " . ";
 
                     var select = "  SELECT Tekst from PutniNalogKvarovi" +
                 " where ID= " + Convert.ToInt32(txtSifra.Text);

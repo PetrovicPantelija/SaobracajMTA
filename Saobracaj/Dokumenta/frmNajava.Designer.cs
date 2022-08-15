@@ -1809,7 +1809,7 @@
             this.groupBox3.Controls.Add(this.txtRIDBroj);
             this.groupBox3.Controls.Add(this.chkRID);
             this.groupBox3.Controls.Add(this.chkAdHoc);
-            this.groupBox3.Location = new System.Drawing.Point(911, 34);
+            this.groupBox3.Location = new System.Drawing.Point(890, 34);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(300, 417);
             this.groupBox3.TabIndex = 170;
@@ -1884,7 +1884,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1825, 745);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);

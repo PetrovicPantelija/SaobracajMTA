@@ -57,6 +57,7 @@ namespace Saobracaj.SyncForm
             this.ribbonControlAdv1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.ribbonControlAdv1.Header.AddMainItem(toolStripTabItem1);
             this.ribbonControlAdv1.Location = new System.Drawing.Point(0, 0);
+            this.ribbonControlAdv1.Margin = new System.Windows.Forms.Padding(4);
             this.ribbonControlAdv1.MenuButtonFont = new System.Drawing.Font("Segoe UI", 8.25F);
             this.ribbonControlAdv1.MenuButtonText = "";
             this.ribbonControlAdv1.MenuButtonWidth = 56;
@@ -67,6 +68,7 @@ namespace Saobracaj.SyncForm
             // 
             // ribbonControlAdv1.OfficeMenu
             // 
+            this.ribbonControlAdv1.OfficeMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ribbonControlAdv1.OfficeMenu.Name = "OfficeMenu";
             this.ribbonControlAdv1.OfficeMenu.ShowItemToolTips = true;
             this.ribbonControlAdv1.OfficeMenu.Size = new System.Drawing.Size(12, 65);
@@ -75,7 +77,7 @@ namespace Saobracaj.SyncForm
             this.ribbonControlAdv1.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2016;
             this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem1;
             this.ribbonControlAdv1.ShowRibbonDisplayOptionButton = true;
-            this.ribbonControlAdv1.Size = new System.Drawing.Size(743, 119);
+            this.ribbonControlAdv1.Size = new System.Drawing.Size(989, 146);
             this.ribbonControlAdv1.SystemText.QuickAccessDialogDropDownName = "Start menu";
             this.ribbonControlAdv1.SystemText.RenameDisplayLabelText = "&Display Name:";
             this.ribbonControlAdv1.TabIndex = 0;
@@ -92,12 +94,14 @@ namespace Saobracaj.SyncForm
             this.toolStripTabItem1.Panel.Controls.Add(this.toolStripEx1);
             this.toolStripTabItem1.Panel.Controls.Add(this.toolStripEx2);
             this.toolStripTabItem1.Panel.Controls.Add(this.toolStripEx3);
+            this.toolStripTabItem1.Panel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.toolStripTabItem1.Panel.Name = "ribbonPanel1";
+            this.toolStripTabItem1.Panel.Padding = new System.Windows.Forms.Padding(0, 1, 47, 0);
             this.toolStripTabItem1.Panel.ScrollPosition = 0;
             this.toolStripTabItem1.Panel.TabIndex = 2;
             this.toolStripTabItem1.Panel.Text = "Kalendar";
             this.toolStripTabItem1.Position = 0;
-            this.toolStripTabItem1.Size = new System.Drawing.Size(68, 30);
+            this.toolStripTabItem1.Size = new System.Drawing.Size(82, 41);
             this.toolStripTabItem1.Tag = "1";
             this.toolStripTabItem1.Text = "Kalendar";
             // 
@@ -107,6 +111,7 @@ namespace Saobracaj.SyncForm
             this.toolStripEx1.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.toolStripEx1.ForeColor = System.Drawing.Color.MidnightBlue;
             this.toolStripEx1.Image = null;
+            this.toolStripEx1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripEx1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1});
             this.toolStripEx1.Location = new System.Drawing.Point(0, 1);
@@ -114,7 +119,7 @@ namespace Saobracaj.SyncForm
             this.toolStripEx1.Office12Mode = false;
             this.toolStripEx1.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx1.Size = new System.Drawing.Size(109, 53);
+            this.toolStripEx1.Size = new System.Drawing.Size(127, 61);
             this.toolStripEx1.TabIndex = 0;
             this.toolStripEx1.Text = "Kalendar";
             // 
@@ -124,7 +129,7 @@ namespace Saobracaj.SyncForm
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(91, 36);
+            this.toolStripButton1.Size = new System.Drawing.Size(108, 41);
             this.toolStripButton1.Text = "Otvori kalendar";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -135,15 +140,16 @@ namespace Saobracaj.SyncForm
             this.toolStripEx2.ForeColor = System.Drawing.Color.MidnightBlue;
             this.toolStripEx2.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripEx2.Image = null;
+            this.toolStripEx2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripEx2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton2,
             this.toolStripButton3});
-            this.toolStripEx2.Location = new System.Drawing.Point(111, 1);
+            this.toolStripEx2.Location = new System.Drawing.Point(129, 1);
             this.toolStripEx2.Name = "toolStripEx2";
             this.toolStripEx2.Office12Mode = false;
             this.toolStripEx2.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx2.Size = new System.Drawing.Size(140, 53);
+            this.toolStripEx2.Size = new System.Drawing.Size(165, 61);
             this.toolStripEx2.TabIndex = 1;
             this.toolStripEx2.Text = "Ažuriranje";
             // 
@@ -153,7 +159,7 @@ namespace Saobracaj.SyncForm
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(61, 36);
+            this.toolStripButton2.Size = new System.Drawing.Size(71, 41);
             this.toolStripButton2.Text = "Zaposleni";
             // 
             // toolStripButton3
@@ -162,7 +168,7 @@ namespace Saobracaj.SyncForm
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(70, 36);
+            this.toolStripButton3.Size = new System.Drawing.Size(85, 41);
             this.toolStripButton3.Text = "Lokomotive";
             // 
             // toolStripEx3
@@ -172,15 +178,16 @@ namespace Saobracaj.SyncForm
             this.toolStripEx3.ForeColor = System.Drawing.Color.MidnightBlue;
             this.toolStripEx3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripEx3.Image = null;
+            this.toolStripEx3.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripEx3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton4,
             this.toolStripButton5});
-            this.toolStripEx3.Location = new System.Drawing.Point(253, 1);
+            this.toolStripEx3.Location = new System.Drawing.Point(296, 1);
             this.toolStripEx3.Name = "toolStripEx3";
             this.toolStripEx3.Office12Mode = false;
             this.toolStripEx3.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx3.Size = new System.Drawing.Size(199, 53);
+            this.toolStripEx3.Size = new System.Drawing.Size(236, 61);
             this.toolStripEx3.TabIndex = 2;
             this.toolStripEx3.Text = "Mobilni";
             // 
@@ -190,7 +197,7 @@ namespace Saobracaj.SyncForm
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(86, 36);
+            this.toolStripButton4.Size = new System.Drawing.Size(102, 41);
             this.toolStripButton4.Text = "Prijave mobilni";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
@@ -200,7 +207,7 @@ namespace Saobracaj.SyncForm
             this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(104, 36);
+            this.toolStripButton5.Size = new System.Drawing.Size(125, 41);
             this.toolStripButton5.Text = "Prijave lokomotiva";
             // 
             // toolStripTabItem2
@@ -225,10 +232,11 @@ namespace Saobracaj.SyncForm
             this.gridGroupingControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2016Colorful;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(0, 119);
+            this.gridGroupingControl1.Location = new System.Drawing.Point(0, 146);
+            this.gridGroupingControl1.Margin = new System.Windows.Forms.Padding(4);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(743, 207);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(989, 254);
             this.gridGroupingControl1.TabIndex = 1;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
@@ -241,11 +249,14 @@ namespace Saobracaj.SyncForm
             // 
             // frmPlanRada
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(743, 326);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(989, 400);
             this.Controls.Add(this.gridGroupingControl1);
             this.Controls.Add(this.ribbonControlAdv1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPlanRada";
             this.Text = "Meni plana rada";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

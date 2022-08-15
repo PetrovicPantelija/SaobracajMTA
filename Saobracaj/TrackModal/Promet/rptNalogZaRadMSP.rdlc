@@ -1201,7 +1201,7 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>0.07056cm</Top>
             <Height>3.10583cm</Height>
-            <Width>9.12124cm</Width>
+            <Width>9.12123cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -1227,7 +1227,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>ŽIT TERMINAL - MEĐUSKLADIŠNI PRENOS</Value>
+                      <Value>TERMINAL - MEĐUSKLADIŠNI PRENOS</Value>
                       <Style>
                         <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>

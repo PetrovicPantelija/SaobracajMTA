@@ -135,7 +135,7 @@ namespace Saobracaj.Sifarnici
 
         }
 
-        public void DelMerskeEnote(int DmSifra)
+        public void DelMerskeEnote(string MeSifra)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -144,10 +144,11 @@ namespace Saobracaj.Sifarnici
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
             SqlParameter parameter = new SqlParameter();
-            parameter.ParameterName = "@DmSifra";
-            parameter.SqlDbType = SqlDbType.Int;
+            parameter.ParameterName = "@MeSifra";
+            parameter.SqlDbType = SqlDbType.Char;
+            parameter.Size = 3;
             parameter.Direction = ParameterDirection.Input;
-            parameter.Value = DmSifra;
+            parameter.Value = MeSifra;
             myCommand.Parameters.Add(parameter);
 
 

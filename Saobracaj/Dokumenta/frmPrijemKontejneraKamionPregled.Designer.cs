@@ -56,6 +56,7 @@
             // toolStrip1
             // 
             this.toolStrip1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolStrip1.BackgroundImage")));
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
             this.toolStripButton2,
@@ -64,7 +65,7 @@
             this.toolStripButton6});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1075, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1433, 27);
             this.toolStrip1.TabIndex = 125;
             this.toolStrip1.Text = "Pošalji mail infrastrukturi";
             // 
@@ -75,7 +76,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(182, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(220, 24);
             this.toolStripButton1.Text = "Otvori prijem kamionom";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -86,7 +87,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(70, 22);
+            this.toolStripButton2.Size = new System.Drawing.Size(86, 24);
             this.toolStripButton2.Text = "Osveži";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -97,7 +98,7 @@
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(101, 22);
+            this.toolStripButton4.Size = new System.Drawing.Size(121, 24);
             this.toolStripButton4.Text = "Novi prijem";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
@@ -108,7 +109,7 @@
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(72, 22);
+            this.toolStripButton3.Size = new System.Drawing.Size(85, 24);
             this.toolStripButton3.Text = "Najava";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
@@ -119,16 +120,17 @@
             this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(70, 22);
+            this.toolStripButton6.Size = new System.Drawing.Size(82, 24);
             this.toolStripButton6.Text = "Prijem";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
             // txtSifra
             // 
             this.txtSifra.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtSifra.Location = new System.Drawing.Point(12, 59);
+            this.txtSifra.Location = new System.Drawing.Point(16, 73);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(96, 22);
+            this.txtSifra.Size = new System.Drawing.Size(127, 26);
             this.txtSifra.TabIndex = 129;
             // 
             // label1
@@ -136,9 +138,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(9, 40);
+            this.label1.Location = new System.Drawing.Point(12, 49);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 16);
+            this.label1.Size = new System.Drawing.Size(51, 19);
             this.label1.TabIndex = 130;
             this.label1.Text = "Šifra:";
             // 
@@ -150,18 +153,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 87);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 107);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1051, 433);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(1401, 533);
             this.dataGridView1.TabIndex = 128;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(916, 28);
+            this.pictureBox1.Location = new System.Drawing.Point(1221, 34);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(159, 53);
+            this.pictureBox1.Size = new System.Drawing.Size(212, 65);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 136;
             this.pictureBox1.TabStop = false;
@@ -169,9 +175,10 @@
             // txtRegBrKamiona
             // 
             this.txtRegBrKamiona.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtRegBrKamiona.Location = new System.Drawing.Point(137, 58);
+            this.txtRegBrKamiona.Location = new System.Drawing.Point(183, 71);
+            this.txtRegBrKamiona.Margin = new System.Windows.Forms.Padding(4);
             this.txtRegBrKamiona.Name = "txtRegBrKamiona";
-            this.txtRegBrKamiona.Size = new System.Drawing.Size(185, 22);
+            this.txtRegBrKamiona.Size = new System.Drawing.Size(245, 26);
             this.txtRegBrKamiona.TabIndex = 214;
             // 
             // label30
@@ -179,9 +186,10 @@
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label30.ForeColor = System.Drawing.Color.White;
-            this.label30.Location = new System.Drawing.Point(134, 39);
+            this.label30.Location = new System.Drawing.Point(179, 48);
+            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(96, 16);
+            this.label30.Size = new System.Drawing.Size(118, 19);
             this.label30.TabIndex = 215;
             this.label30.Text = "Reg br vozila:";
             // 
@@ -191,9 +199,10 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(328, 58);
+            this.button1.Location = new System.Drawing.Point(437, 71);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(26, 22);
+            this.button1.Size = new System.Drawing.Size(35, 27);
             this.button1.TabIndex = 216;
             this.button1.Text = "?";
             this.button1.UseVisualStyleBackColor = true;
@@ -202,9 +211,10 @@
             // txtBukingBrodar
             // 
             this.txtBukingBrodar.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtBukingBrodar.Location = new System.Drawing.Point(373, 59);
+            this.txtBukingBrodar.Location = new System.Drawing.Point(497, 73);
+            this.txtBukingBrodar.Margin = new System.Windows.Forms.Padding(4);
             this.txtBukingBrodar.Name = "txtBukingBrodar";
-            this.txtBukingBrodar.Size = new System.Drawing.Size(187, 22);
+            this.txtBukingBrodar.Size = new System.Drawing.Size(248, 26);
             this.txtBukingBrodar.TabIndex = 223;
             // 
             // label27
@@ -212,9 +222,10 @@
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label27.ForeColor = System.Drawing.Color.White;
-            this.label27.Location = new System.Drawing.Point(370, 40);
+            this.label27.Location = new System.Drawing.Point(493, 49);
+            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(102, 16);
+            this.label27.Size = new System.Drawing.Size(128, 19);
             this.label27.TabIndex = 224;
             this.label27.Text = "Buking brodar:";
             // 
@@ -223,18 +234,20 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(605, 40);
+            this.label5.Location = new System.Drawing.Point(807, 49);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 16);
+            this.label5.Size = new System.Drawing.Size(136, 19);
             this.label5.TabIndex = 225;
             this.label5.Text = "Broj kontejnera:";
             // 
             // txtBrojKontejnera
             // 
             this.txtBrojKontejnera.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtBrojKontejnera.Location = new System.Drawing.Point(608, 59);
+            this.txtBrojKontejnera.Location = new System.Drawing.Point(811, 73);
+            this.txtBrojKontejnera.Margin = new System.Windows.Forms.Padding(4);
             this.txtBrojKontejnera.Name = "txtBrojKontejnera";
-            this.txtBrojKontejnera.Size = new System.Drawing.Size(151, 22);
+            this.txtBrojKontejnera.Size = new System.Drawing.Size(200, 26);
             this.txtBrojKontejnera.TabIndex = 226;
             // 
             // button2
@@ -243,9 +256,10 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(566, 58);
+            this.button2.Location = new System.Drawing.Point(755, 71);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(26, 23);
+            this.button2.Size = new System.Drawing.Size(35, 28);
             this.button2.TabIndex = 227;
             this.button2.Text = "?";
             this.button2.UseVisualStyleBackColor = true;
@@ -257,9 +271,10 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(765, 58);
+            this.button3.Location = new System.Drawing.Point(1020, 71);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(26, 22);
+            this.button3.Size = new System.Drawing.Size(35, 27);
             this.button3.TabIndex = 228;
             this.button3.Text = "?";
             this.button3.UseVisualStyleBackColor = true;
@@ -267,10 +282,10 @@
             // 
             // frmPrijemKontejneraKamionPregled
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(1075, 532);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1433, 655);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label5);
@@ -285,6 +300,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPrijemKontejneraKamionPregled";
             this.Text = "Prijem kontejnera kamion";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

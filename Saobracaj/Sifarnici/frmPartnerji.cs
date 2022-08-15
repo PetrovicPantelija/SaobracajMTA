@@ -407,8 +407,9 @@ namespace Saobracaj.Sifarnici
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-           // frmParnerjiKontOsobe pko = new frmParnerjiKontOsobe();
-          //  pko.Show();
+
+             Dokumenta.frmKontaktOsobe pko = new Dokumenta.frmKontaktOsobe(Convert.ToInt32(txtSifra.Text));
+            pko.Show();
         }
     }
 }

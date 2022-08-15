@@ -70,7 +70,8 @@
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dataGridView1.Location = new System.Drawing.Point(7, 98);
+            this.dataGridView1.Location = new System.Drawing.Point(9, 121);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -81,9 +82,10 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(655, 123);
+            this.dataGridView1.Size = new System.Drawing.Size(873, 151);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -91,9 +93,10 @@
             // 
             this.metroButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
             this.metroButton1.FontSize = MetroFramework.MetroButtonSize.Medium;
-            this.metroButton1.Location = new System.Drawing.Point(12, 44);
+            this.metroButton1.Location = new System.Drawing.Point(16, 54);
+            this.metroButton1.Margin = new System.Windows.Forms.Padding(4);
             this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(161, 26);
+            this.metroButton1.Size = new System.Drawing.Size(215, 32);
             this.metroButton1.TabIndex = 1;
             this.metroButton1.Text = "AŽURIRAJ";
             this.metroButton1.UseSelectable = true;
@@ -102,30 +105,33 @@
             // txtZapis
             // 
             this.txtZapis.Lines = new string[0];
-            this.txtZapis.Location = new System.Drawing.Point(222, 60);
+            this.txtZapis.Location = new System.Drawing.Point(296, 74);
+            this.txtZapis.Margin = new System.Windows.Forms.Padding(4);
             this.txtZapis.MaxLength = 32767;
             this.txtZapis.Name = "txtZapis";
             this.txtZapis.PasswordChar = '\0';
             this.txtZapis.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtZapis.SelectedText = "";
-            this.txtZapis.Size = new System.Drawing.Size(161, 23);
+            this.txtZapis.Size = new System.Drawing.Size(215, 28);
             this.txtZapis.TabIndex = 2;
             this.txtZapis.UseSelectable = true;
             // 
             // metroLink1
             // 
-            this.metroLink1.Location = new System.Drawing.Point(222, 31);
+            this.metroLink1.Location = new System.Drawing.Point(296, 38);
+            this.metroLink1.Margin = new System.Windows.Forms.Padding(4);
             this.metroLink1.Name = "metroLink1";
-            this.metroLink1.Size = new System.Drawing.Size(60, 23);
+            this.metroLink1.Size = new System.Drawing.Size(80, 28);
             this.metroLink1.TabIndex = 3;
             this.metroLink1.Text = "Zapis:";
             this.metroLink1.UseSelectable = true;
             // 
             // metroButton2
             // 
-            this.metroButton2.Location = new System.Drawing.Point(486, 44);
+            this.metroButton2.Location = new System.Drawing.Point(648, 54);
+            this.metroButton2.Margin = new System.Windows.Forms.Padding(4);
             this.metroButton2.Name = "metroButton2";
-            this.metroButton2.Size = new System.Drawing.Size(161, 26);
+            this.metroButton2.Size = new System.Drawing.Size(215, 32);
             this.metroButton2.TabIndex = 4;
             this.metroButton2.Text = "OTVORI";
             this.metroButton2.UseSelectable = true;
@@ -133,15 +139,17 @@
             // 
             // frmRegistratorPregled
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(676, 229);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(901, 282);
             this.Controls.Add(this.metroButton2);
             this.Controls.Add(this.metroLink1);
             this.Controls.Add(this.txtZapis);
             this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmRegistratorPregled";
             this.Text = "Pregled delovodna knjiga";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

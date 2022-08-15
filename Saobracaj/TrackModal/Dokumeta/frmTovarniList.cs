@@ -235,5 +235,10 @@ namespace Testiranje.Dokumeta
         {
 
         }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

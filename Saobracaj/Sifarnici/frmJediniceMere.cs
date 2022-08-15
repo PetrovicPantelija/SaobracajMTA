@@ -75,7 +75,8 @@ namespace Saobracaj.Sifarnici
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
-            txtMeSifra.Enabled = false;
+            //   txtMeSifra.Enabled = false;
+            txtMeSifra.Text = "";
             txtMeNaziv.Text = "";
         }
 
@@ -84,12 +85,12 @@ namespace Saobracaj.Sifarnici
             if (status == true)
             {
                 InsertMerskeEnote ins = new InsertMerskeEnote();
-                ins.InsMerskeEnote(txtMeSifra.Text, txtMeNaziv.Text);
+                ins.InsMerskeEnote(txtMeSifra.Text.TrimEnd(), txtMeNaziv.Text.TrimEnd());
             }
             else
             {
                 InsertMerskeEnote upd = new InsertMerskeEnote();
-                upd.UpdMerskeEnote(txtMeSifra.Text, txtMeNaziv.Text);
+                upd.UpdMerskeEnote(txtMeSifra.Text.TrimEnd(), txtMeNaziv.Text.TrimEnd());
             }
             RefreshDataGrid();
         }
@@ -97,6 +98,11 @@ namespace Saobracaj.Sifarnici
         private void dataGridView1_Click(object sender, EventArgs e)
         {
 
+         
+        }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
             try
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -113,5 +119,13 @@ namespace Saobracaj.Sifarnici
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
         }
+
+        private void tsDelete_Click(object sender, EventArgs e)
+        {
+            InsertMerskeEnote del = new InsertMerskeEnote();
+            del.DelMerskeEnote(txtMeSifra.Text.TrimEnd());
+       
+        RefreshDataGrid();
+    }
     }
 }

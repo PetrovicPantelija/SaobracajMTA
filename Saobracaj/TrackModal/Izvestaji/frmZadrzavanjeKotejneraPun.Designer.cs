@@ -29,6 +29,7 @@ namespace Testiranje.Izvestaji
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmZadrzavanjeKotejneraPun));
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.cboKomitent = new System.Windows.Forms.ComboBox();
@@ -48,9 +49,10 @@ namespace Testiranje.Izvestaji
             this.label4.BackColor = System.Drawing.Color.SteelBlue;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(397, 15);
+            this.label4.Location = new System.Drawing.Point(529, 18);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(314, 29);
+            this.label4.Size = new System.Drawing.Size(391, 36);
             this.label4.TabIndex = 292;
             this.label4.Text = "Zadržavanje punih kotejnera";
             // 
@@ -60,26 +62,29 @@ namespace Testiranje.Izvestaji
             this.panel1.Controls.Add(this.label4);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1108, 59);
+            this.panel1.Size = new System.Drawing.Size(1477, 73);
             this.panel1.TabIndex = 292;
             // 
             // cboKomitent
             // 
             this.cboKomitent.FormattingEnabled = true;
-            this.cboKomitent.Location = new System.Drawing.Point(654, 121);
+            this.cboKomitent.Location = new System.Drawing.Point(872, 149);
+            this.cboKomitent.Margin = new System.Windows.Forms.Padding(4);
             this.cboKomitent.Name = "cboKomitent";
-            this.cboKomitent.Size = new System.Drawing.Size(200, 21);
+            this.cboKomitent.Size = new System.Drawing.Size(265, 24);
             this.cboKomitent.TabIndex = 300;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(651, 100);
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(868, 123);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(131, 17);
+            this.label3.Size = new System.Drawing.Size(155, 20);
             this.label3.TabIndex = 299;
             this.label3.Text = "Izaberite komitenta:";
             // 
@@ -90,9 +95,10 @@ namespace Testiranje.Izvestaji
             this.dtpDatumDo.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatumDo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpDatumDo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDatumDo.Location = new System.Drawing.Point(334, 120);
+            this.dtpDatumDo.Location = new System.Drawing.Point(445, 148);
+            this.dtpDatumDo.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDatumDo.Name = "dtpDatumDo";
-            this.dtpDatumDo.Size = new System.Drawing.Size(200, 22);
+            this.dtpDatumDo.Size = new System.Drawing.Size(265, 26);
             this.dtpDatumDo.TabIndex = 298;
             this.dtpDatumDo.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -101,9 +107,10 @@ namespace Testiranje.Izvestaji
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(331, 100);
+            this.label2.Location = new System.Drawing.Point(441, 123);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 17);
+            this.label2.Size = new System.Drawing.Size(147, 20);
             this.label2.TabIndex = 297;
             this.label2.Text = "Datum i vreme do:";
             // 
@@ -112,9 +119,10 @@ namespace Testiranje.Izvestaji
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(11, 100);
+            this.label1.Location = new System.Drawing.Point(15, 123);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(123, 17);
+            this.label1.Size = new System.Drawing.Size(147, 20);
             this.label1.TabIndex = 296;
             this.label1.Text = "Datum i vreme od:";
             // 
@@ -125,9 +133,10 @@ namespace Testiranje.Izvestaji
             this.dtpDatumOd.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatumOd.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpDatumOd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDatumOd.Location = new System.Drawing.Point(14, 120);
+            this.dtpDatumOd.Location = new System.Drawing.Point(19, 148);
+            this.dtpDatumOd.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDatumOd.Name = "dtpDatumOd";
-            this.dtpDatumOd.Size = new System.Drawing.Size(200, 22);
+            this.dtpDatumOd.Size = new System.Drawing.Size(265, 26);
             this.dtpDatumOd.TabIndex = 295;
             this.dtpDatumOd.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -137,17 +146,18 @@ namespace Testiranje.Izvestaji
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Testiranje.Izvestaji.rptZadrzavanjeKontejneraPun.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(14, 166);
+            this.reportViewer1.Location = new System.Drawing.Point(19, 204);
+            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer1.Name = "reportViewer1";
-          //  this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(1084, 562);
+            this.reportViewer1.Size = new System.Drawing.Size(1445, 691);
             this.reportViewer1.TabIndex = 294;
             // 
             // btnUcitaj
             // 
-            this.btnUcitaj.Location = new System.Drawing.Point(974, 118);
+            this.btnUcitaj.Location = new System.Drawing.Point(1299, 145);
+            this.btnUcitaj.Margin = new System.Windows.Forms.Padding(4);
             this.btnUcitaj.Name = "btnUcitaj";
-            this.btnUcitaj.Size = new System.Drawing.Size(123, 27);
+            this.btnUcitaj.Size = new System.Drawing.Size(164, 33);
             this.btnUcitaj.TabIndex = 293;
             this.btnUcitaj.Text = "Učitaj";
             this.btnUcitaj.UseVisualStyleBackColor = true;
@@ -155,10 +165,10 @@ namespace Testiranje.Izvestaji
             // 
             // frmZadrzavanjeKotejneraPun
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(1108, 745);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1477, 917);
             this.Controls.Add(this.cboKomitent);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dtpDatumDo);
@@ -168,6 +178,8 @@ namespace Testiranje.Izvestaji
             this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.btnUcitaj);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmZadrzavanjeKotejneraPun";
             this.Text = "frmZadrzavanjeKotejneraPun";
             this.Load += new System.EventHandler(this.frmZadrzavanjeKotejneraPun_Load);

@@ -1048,7 +1048,7 @@ namespace Saobracaj.Dokumenta
                
                 mailMessage = new MailMessage("pantelija.petrovic@kprevoz.co.rs", Kome);
 
-                mailMessage.Subject = "OM broj Kombinovani prevoz: " + zadnjibroj + " odjava OM  BROJA. ";
+                mailMessage.Subject = "OM broj RTC LUKA LEGET: " + zadnjibroj + " odjava OM  BROJA. ";
 
                 var select = " Select ROW_NUMBER() OVER(ORDER BY n1.ID DESC) AS Row, n1.ID as NajavaID, " +
                " n1.PrevozniPut, " +
@@ -1094,7 +1094,7 @@ namespace Saobracaj.Dokumenta
                     body = body + "Pošiljalac: " + myRow["Posiljac"].ToString() + "<br />";
                     body = body + "Primalac: " + myRow["Primalac"].ToString() + "<br />";
                     body = body + "S poštovanjem" + "<br />";
-                    body = body + "Dispičerska služba Kombinovani prevoz" + "<br />" + "<br />" + "<br />";
+                    body = body + "Dispičerska služba RTC LUKA LEGET" + "<br />" + "<br />" + "<br />";
                     body = body + "DODELJENI BROJ JE: _______________________ " + "<br />";
 
                 }

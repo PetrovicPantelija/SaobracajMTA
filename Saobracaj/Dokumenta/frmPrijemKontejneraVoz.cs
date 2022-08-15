@@ -612,7 +612,7 @@ namespace TrackModal.Dokumeta
 
                     mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    mailMessage.Subject = "ŽIT pristigla najava. Br.: " + zadnjibroj + " . ";
+                    mailMessage.Subject = "RTC LUKA LEGET pristigla najava. Br.: " + zadnjibroj + " . ";
 
                     var select = "  SELECT PrijemKontejneraVozStavke.[ID] , Voz.BrVoza, BrojKontejnera, BrojVagona, Tara, Neto, Voz.Relacija, Voz.VremePolaska, Voz.VremeDolaska, " +
                     " PrijemKontejneraVozStavke.Primalac,  PrijemKontejneraVozStavke.Posiljalac, PrijemKontejneraVozStavke.VlasnikKontejnera, PrijemKontejneraVozStavke.Organizator " +
@@ -654,8 +654,8 @@ namespace TrackModal.Dokumeta
 
                     }
 
-                    body = body + "<br /> Po izvršenom dolasku voza i prijemu kontejnera na terminal ŽIT-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
-                    body = body + "Terminal ŽIT Beograd Ranžirna <br />";
+                    body = body + "<br /> Po izvršenom dolasku voza i prijemu kontejnera na terminal Leget-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
+                    body = body + "Terminal RTC LUKA LEGET <br />";
                     body = body + "Tel: <br />";
                     body = body + "Email: <br />";
 
@@ -711,7 +711,7 @@ namespace TrackModal.Dokumeta
 
                     mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    mailMessage.Subject = "ŽIT pristigla najava. Br. voza: " + zadnjibroj + " . ";
+                    mailMessage.Subject = "RTC LUKA LEGET pristigla najava. Br. voza: " + zadnjibroj + " . ";
 
                     var select = "  SELECT PrijemKontejneraVozStavke.[ID] , Voz.BrVoza, BrojKontejnera, BrojVagona, Tara, Neto, Voz.Relacija, Voz.VremePolaska, Voz.VremeDolaska, " +
                     " PrijemKontejneraVozStavke.Primalac,  PrijemKontejneraVozStavke.Posiljalac, PrijemKontejneraVozStavke.VlasnikKontejnera, PrijemKontejneraVozStavke.Organizator " +
@@ -753,8 +753,8 @@ namespace TrackModal.Dokumeta
 
                     }
 
-                    body = body + "<br /> Po izvršenom dolasku voza i prijemu kontejnera na terminal ŽIT-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
-                    body = body + "Terminal ŽIT Beograd Ranžirna <br />";
+                    body = body + "<br /> Po izvršenom dolasku voza i prijemu kontejnera na terminal Leget-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
+                    body = body + "Terminal RTC LUKA LEGET <br />";
                   
 
 
@@ -802,7 +802,7 @@ namespace TrackModal.Dokumeta
 
                     mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    mailMessage.Subject = "ŽIT pristigla najava. Br. : " + zadnjibroj + " . ";
+                    mailMessage.Subject = "RTC LUKA LEGET pristigla najava. Br. : " + zadnjibroj + " . ";
 
                     var select = "  SELECT PrijemKontejneraVozStavke.[ID] , Voz.BrVoza, BrojKontejnera, BrojVagona, Tara, Neto, Voz.Relacija, Voz.VremePolaska, Voz.VremeDolaska, " +
                     " PrijemKontejneraVozStavke.Primalac,  PrijemKontejneraVozStavke.Posiljalac, PrijemKontejneraVozStavke.VlasnikKontejnera, PrijemKontejneraVozStavke.Organizator " +
@@ -844,8 +844,8 @@ namespace TrackModal.Dokumeta
 
                     }
 
-                    body = body + "<br /> Po izvršenom dolasku voza i prijemu kontejnera na terminal ŽIT-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
-                    body = body + "Terminal ŽIT Beograd Ranžirna <br />";
+                    body = body + "<br /> Po izvršenom dolasku voza i prijemu kontejnera na terminal Leget-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
+                    body = body + "Terminal RTC LUKA LEGET <br />";
                  
 
 
@@ -893,7 +893,7 @@ namespace TrackModal.Dokumeta
 
                     mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    mailMessage.Subject = "ŽIT pristigla najava. Br. voza: " + zadnjibroj + " . ";
+                    mailMessage.Subject = "RTC LUKA LEGET pristigla najava. Br. voza: " + zadnjibroj + " . ";
 
                     var select = "  SELECT PrijemKontejneraVozStavke.[ID] , Voz.BrVoza, BrojKontejnera, BrojVagona, Tara, Neto, Voz.Relacija, Voz.VremePolaska, Voz.VremeDolaska, " +
                     " PrijemKontejneraVozStavke.Primalac,  PrijemKontejneraVozStavke.Posiljalac, PrijemKontejneraVozStavke.VlasnikKontejnera, PrijemKontejneraVozStavke.Organizator " +
@@ -935,8 +935,8 @@ namespace TrackModal.Dokumeta
 
                     }
 
-                    body = body + "<br /> Po izvršenom dolasku voza i prijemu kontejnera na terminal ŽIT-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
-                    body = body + "Terminal ŽIT Beograd Ranžirna <br />";
+                    body = body + "<br /> Po izvršenom dolasku voza i prijemu kontejnera na terminal Leget-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
+                    body = body + "Terminal RTC LUKA LEGET <br />";
                   
 
 
@@ -984,7 +984,7 @@ namespace TrackModal.Dokumeta
 
                     mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    mailMessage.Subject = "ŽIT pristigao voz. Br. zapisa: " + zadnjibroj + " . ";
+                    mailMessage.Subject = "RTC LUKA LEGET pristigao voz. Br. zapisa: " + zadnjibroj + " . ";
 
                     var select = "  SELECT PrijemKontejneraVozStavke.[ID] , Voz.BrVoza, BrojKontejnera, BrojVagona, Tara, Neto, Voz.Relacija, Voz.VremePolaska, Voz.VremeDolaska, " +
                     " PrijemKontejneraVoz.VremeDolaska as vd, PrijemKontejneraVozStavke.Primalac,  PrijemKontejneraVozStavke.Posiljalac, PrijemKontejneraVozStavke.VlasnikKontejnera, PrijemKontejneraVozStavke.Organizator " +
@@ -1014,7 +1014,7 @@ namespace TrackModal.Dokumeta
                             body = body + " Dolazak na relaciji :" + myRow["Relacija"].ToString() + "  vozom br.: " + myRow["BrVoza"].ToString() + "<br />";
                             body = body + " vreme polaska:  " + myRow["VremePolaska"].ToString() + "   stvarno vreme dolaska: " + myRow["vd"].ToString() + "<br /><br /> ";
 
-                            body = body + " Prijavljujemo dolazak kontejnera na ŽIT terminal  <br />";
+                            body = body + " Prijavljujemo dolazak kontejnera na Leget terminal  <br />";
                             body = body + "Broj kontejnera: <br />";
                         }
                         countS = countS + 1;
@@ -1023,7 +1023,7 @@ namespace TrackModal.Dokumeta
                     }
 
                  
-                    body = body + "Terminal ŽIT Beograd Ranžirna <br />";
+                    body = body + "Terminal RTC LUKA LEGET <br />";
                   
 
 
@@ -1071,7 +1071,7 @@ namespace TrackModal.Dokumeta
 
                     mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    mailMessage.Subject = "ŽIT pristigao voz. Br. zapisa: " + zadnjibroj + " . ";
+                    mailMessage.Subject = "RTC LUKA LEGET pristigao voz. Br. zapisa: " + zadnjibroj + " . ";
 
                     var select = "  SELECT PrijemKontejneraVozStavke.[ID] , Voz.BrVoza, BrojKontejnera, BrojVagona, Tara, Neto, Voz.Relacija, Voz.VremePolaska, Voz.VremeDolaska, " +
                     " PrijemKontejneraVoz.VremeDolaska as vd, PrijemKontejneraVozStavke.Primalac,  PrijemKontejneraVozStavke.Posiljalac, PrijemKontejneraVozStavke.VlasnikKontejnera, PrijemKontejneraVozStavke.Organizator " +
@@ -1101,7 +1101,7 @@ namespace TrackModal.Dokumeta
                             body = body + " Dolazak na relaciji :" + myRow["Relacija"].ToString() + "  vozom br.: " + myRow["BrVoza"].ToString() + "<br />";
                             body = body + " vreme polaska:  " + myRow["VremePolaska"].ToString() + "   stvarno vreme dolaska: " + myRow["vd"].ToString() + "<br /><br /> ";
 
-                            body = body + " Prijavljujemo dolazak kontejnera na ŽIT terminal  <br />";
+                            body = body + " Prijavljujemo dolazak kontejnera na RTC LUKA LEGET terminal  <br />";
                             body = body + "Broj kontejnera: <br />";
                         }
                         countS = countS + 1;
@@ -1110,7 +1110,7 @@ namespace TrackModal.Dokumeta
                     }
 
 
-                    body = body + "Terminal ŽIT Beograd Ranžirna <br />";
+                    body = body + "Terminal RTC LUKA LEGET <br />";
                   
 
                     mailMessage.Body = body;
@@ -1157,7 +1157,7 @@ namespace TrackModal.Dokumeta
 
                     mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    mailMessage.Subject = "ŽIT pristigao voz. Br. zapisa: " + zadnjibroj + " . ";
+                    mailMessage.Subject = "RTC LUKA LEGET pristigao voz. Br. zapisa: " + zadnjibroj + " . ";
 
                     var select = "  SELECT PrijemKontejneraVozStavke.[ID] , Voz.BrVoza, BrojKontejnera, BrojVagona, Tara, Neto, Voz.Relacija, Voz.VremePolaska, Voz.VremeDolaska, " +
                     " PrijemKontejneraVoz.VremeDolaska as vd, PrijemKontejneraVozStavke.Primalac,  PrijemKontejneraVozStavke.Posiljalac, PrijemKontejneraVozStavke.VlasnikKontejnera, PrijemKontejneraVozStavke.Organizator " +
@@ -1187,7 +1187,7 @@ namespace TrackModal.Dokumeta
                             body = body + " Dolazak na relaciji :" + myRow["Relacija"].ToString() + "  vozom br.: " + myRow["BrVoza"].ToString() + "<br />";
                             body = body + " vreme polaska:  " + myRow["VremePolaska"].ToString() + "   stvarno vreme dolaska: " + myRow["vd"].ToString() + "<br /><br /> ";
 
-                            body = body + " Prijavljujemo dolazak kontejnera na ŽIT terminal  <br />";
+                            body = body + " Prijavljujemo dolazak kontejnera na RTC LUKA LEGET terminal  <br />";
                             body = body + "Broj kontejnera: <br />";
                         }
                         countS = countS + 1;
@@ -1196,7 +1196,7 @@ namespace TrackModal.Dokumeta
                     }
 
 
-                    body = body + "Terminal ŽIT Beograd Ranžirna <br />";
+                    body = body + "Terminal RTC LUKA LEGET  <br />";
                 
 
 
@@ -1244,7 +1244,7 @@ namespace TrackModal.Dokumeta
 
                     mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    mailMessage.Subject = "ŽIT pristigao voz. Br. zapisa: " + zadnjibroj + " . ";
+                    mailMessage.Subject = "RTC LUKA LEGET pristigao voz. Br. zapisa: " + zadnjibroj + " . ";
 
                     var select = "  SELECT PrijemKontejneraVozStavke.[ID] , Voz.BrVoza, BrojKontejnera, BrojVagona, Tara, Neto, Voz.Relacija, Voz.VremePolaska, Voz.VremeDolaska, " +
                     " PrijemKontejneraVoz.VremeDolaska as vd, PrijemKontejneraVozStavke.Primalac,  PrijemKontejneraVozStavke.Posiljalac, PrijemKontejneraVozStavke.VlasnikKontejnera, PrijemKontejneraVozStavke.Organizator " +
@@ -1274,7 +1274,7 @@ namespace TrackModal.Dokumeta
                             body = body + " Dolazak na relaciji :" + myRow["Relacija"].ToString() + "  vozom br.: " + myRow["BrVoza"].ToString() + "<br />";
                             body = body + " vreme polaska:  " + myRow["VremePolaska"].ToString() + "   stvarno vreme dolaska: " + myRow["vd"].ToString() + "<br /><br /> ";
 
-                            body = body + " Prijavljujemo dolazak kontejnera na ŽIT terminal  <br />";
+                            body = body + " Prijavljujemo dolazak kontejnera na RTC LUKA LEGET terminal  <br />";
                             body = body + "Broj kontejnera: <br />";
                         }
                         countS = countS + 1;
@@ -1283,7 +1283,7 @@ namespace TrackModal.Dokumeta
                     }
 
 
-                    body = body + "Terminal ŽIT Beograd Ranžirna <br />";
+                    body = body + "Terminal RTC LUKA LEGETa <br />";
                   
 
 
@@ -1334,7 +1334,7 @@ namespace TrackModal.Dokumeta
 
                     mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    mailMessage.Subject = "ŽIT pristigla najava. Br. zapisa: " + zadnjibroj + " . ";
+                    mailMessage.Subject = "RTC LUKA LEGET pristigla najava. Br. zapisa: " + zadnjibroj + " . ";
 
                     var select = "  SELECT PrijemKontejneraVozStavke.[ID] , RegBrKamiona, BrojKontejnera, BrojVagona, Tara, Neto, ImeVozaca, PrijemKontejneraVozStavke.VremeDolaska, " +
                     " PrijemKontejneraVozStavke.Primalac,  PrijemKontejneraVozStavke.Posiljalac, PrijemKontejneraVozStavke.VlasnikKontejnera, PrijemKontejneraVozStavke.Organizator " +
@@ -1374,8 +1374,8 @@ namespace TrackModal.Dokumeta
 
                     }
 
-                    body = body + "<br /> Po izvršenom dolasku kamiona i prijemu kontejnera na terminal ŽIT-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
-                    body = body + "Terminal ŽIT Beograd Ranžirna <br />";
+                    body = body + "<br /> Po izvršenom dolasku kamiona i prijemu kontejnera na terminal RTC LUKA LEGET obavestićemo Vas blagovremeno na e-mailom.   <br />";
+                    body = body + "Terminal RTC LUKA LEGET<br />";
                   
 
 
@@ -1424,7 +1424,7 @@ namespace TrackModal.Dokumeta
 
                     mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    mailMessage.Subject = "ŽIT pristigla najava. Br. zapisa " + zadnjibroj + " . ";
+                    mailMessage.Subject = "RTC LUKA LEGET pristigla najava. Br. zapisa " + zadnjibroj + " . ";
 
                     var select = "  SELECT PrijemKontejneraVozStavke.[ID] , RegBrKamiona, BrojKontejnera, BrojVagona, Tara, Neto, ImeVozaca, PrijemKontejneraVozStavke.VremeDolaska, " +
                    " PrijemKontejneraVozStavke.Primalac,  PrijemKontejneraVozStavke.Posiljalac, PrijemKontejneraVozStavke.VlasnikKontejnera, PrijemKontejneraVozStavke.Organizator " +
@@ -1464,8 +1464,8 @@ namespace TrackModal.Dokumeta
 
                     }
 
-                    body = body + "<br /> Po izvršenom dolasku kamiona i prijemu kontejnera na terminal ŽIT-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
-                    body = body + "Terminal ŽIT Beograd Ranžirna <br />";
+                    body = body + "<br /> Po izvršenom dolasku kamiona i prijemu kontejnera na terminal RTC LUKA LEGET obavestićemo Vas blagovremeno na e-mailom.   <br />";
+                    body = body + "Terminal RTC LUKA LEGET <br />";
 
 
 
@@ -1513,7 +1513,7 @@ namespace TrackModal.Dokumeta
 
                     mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    mailMessage.Subject = "ŽIT pristigla najava. Br. zapisa: " + zadnjibroj + " . ";
+                    mailMessage.Subject = "RTC LUKA LEGET pristigla najava. Br. zapisa: " + zadnjibroj + " . ";
 
                     var select = "  SELECT PrijemKontejneraVozStavke.[ID] , RegBrKamiona, BrojKontejnera, BrojVagona, Tara, Neto, ImeVozaca, PrijemKontejneraVozStavke.VremeDolaska, " +
                    " PrijemKontejneraVozStavke.Primalac,  PrijemKontejneraVozStavke.Posiljalac, PrijemKontejneraVozStavke.VlasnikKontejnera, PrijemKontejneraVozStavke.Organizator " +
@@ -1553,8 +1553,8 @@ namespace TrackModal.Dokumeta
 
                     }
 
-                    body = body + "<br /> Po izvršenom dolasku kamiona i prijemu kontejnera na terminal ŽIT-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
-                    body = body + "Terminal ŽIT Beograd Ranžirna <br />";
+                    body = body + "<br /> Po izvršenom dolasku kamiona i prijemu kontejnera na terminal RTC LUKA LEGET obavestićemo Vas blagovremeno na e-mailom.   <br />";
+                    body = body + "Terminal RTC LUKA LEGET <br />";
 
 
 
@@ -1602,7 +1602,7 @@ namespace TrackModal.Dokumeta
 
                     mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    mailMessage.Subject = "ŽIT pristigla najava. Br. zapisa: " + zadnjibroj + " . ";
+                    mailMessage.Subject = "RTC LUKA LEGET pristigla najava. Br. zapisa: " + zadnjibroj + " . ";
 
                     var select = "  SELECT PrijemKontejneraVozStavke.[ID] , RegBrKamiona, BrojKontejnera, BrojVagona, Tara, Neto, ImeVozaca, PrijemKontejneraVozStavke.VremeDolaska, " +
                     " PrijemKontejneraVozStavke.Primalac,  PrijemKontejneraVozStavke.Posiljalac, PrijemKontejneraVozStavke.VlasnikKontejnera, PrijemKontejneraVozStavke.Organizator " +
@@ -1642,8 +1642,8 @@ namespace TrackModal.Dokumeta
 
                     }
 
-                    body = body + "<br /> Po izvršenom dolasku kamiona i prijemu kontejnera na terminal ŽIT-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
-                    body = body + "Terminal ŽIT Beograd Ranžirna <br />";
+                    body = body + "<br /> Po izvršenom dolasku kamiona i prijemu kontejnera na terminal RTC LUKA LEGET obavestićemo Vas blagovremeno na e-mailom.   <br />";
+                    body = body + "Terminal RTC LUKA LEGET <br />";
 
 
 
@@ -1691,7 +1691,7 @@ namespace TrackModal.Dokumeta
 
                     mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    mailMessage.Subject = "ŽIT pristigao  kamion Br. zapisa: " + zadnjibroj + " . ";
+                    mailMessage.Subject = "RTC LUKA LEGET pristigao  kamion Br. zapisa: " + zadnjibroj + " . ";
 
                     var select = "  SELECT PrijemKontejneraVozStavke.[ID] , RegBrKamiona, BrojKontejnera, BrojVagona, Tara, Neto, ImeVozaca, PrijemKontejneraVozStavke.VremeDolaska, " +
                      " PrijemKontejneraVozStavke.Primalac,  PrijemKontejneraVozStavke.Posiljalac, PrijemKontejneraVozStavke.VlasnikKontejnera, PrijemKontejneraVozStavke.Organizator " +
@@ -1732,7 +1732,7 @@ namespace TrackModal.Dokumeta
                     }
 
                     body = body + "<br /> <br />";
-                    body = body + "Terminal ŽIT Beograd Ranžirna <br />";
+                    body = body + "Terminal RTC LUKA LEGET <br />";
 
 
 
@@ -1780,7 +1780,7 @@ namespace TrackModal.Dokumeta
 
                     mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    mailMessage.Subject = "ŽIT pristigao kamion Br. zapisa: " + zadnjibroj + " . ";
+                    mailMessage.Subject = "RTC LUKA LEGET pristigao kamion Br. zapisa: " + zadnjibroj + " . ";
 
                     var select = "  SELECT PrijemKontejneraVozStavke.[ID] , RegBrKamiona, BrojKontejnera, BrojVagona, Tara, Neto, ImeVozaca, PrijemKontejneraVozStavke.VremeDolaska, " +
                  " PrijemKontejneraVozStavke.Primalac,  PrijemKontejneraVozStavke.Posiljalac, PrijemKontejneraVozStavke.VlasnikKontejnera, PrijemKontejneraVozStavke.Organizator " +
@@ -1820,9 +1820,9 @@ namespace TrackModal.Dokumeta
 
                     }
 
-                    // body = body + "<br /> Po izvršenom dolasku kamiona i prijemu kontejnera na terminal ŽIT-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
+                    // body = body + "<br /> Po izvršenom dolasku kamiona i prijemu kontejnera na terminal Leget-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
                     body = body + "<br /> <br />";
-                    body = body + "Terminal ŽIT Beograd Ranžirna <br />";
+                    body = body + "Terminal RTC LUKA LEGET <br />";
 
 
 
@@ -1871,7 +1871,7 @@ namespace TrackModal.Dokumeta
 
                     mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    mailMessage.Subject = "ŽIT pristigao kamion Br. zapisa: " + zadnjibroj + " . ";
+                    mailMessage.Subject = "RTC LUKA LEGET pristigao kamion Br. zapisa: " + zadnjibroj + " . ";
 
                     var select = "  SELECT PrijemKontejneraVozStavke.[ID] , RegBrKamiona, BrojKontejnera, BrojVagona, Tara, Neto, ImeVozaca, PrijemKontejneraVozStavke.VremeDolaska," +
                  " PrijemKontejneraVozStavke.Primalac,  PrijemKontejneraVozStavke.Posiljalac, PrijemKontejneraVozStavke.VlasnikKontejnera, PrijemKontejneraVozStavke.Organizator " +
@@ -1911,9 +1911,9 @@ namespace TrackModal.Dokumeta
 
                     }
 
-                    // body = body + "<br /> Po izvršenom dolasku kamiona i prijemu kontejnera na terminal ŽIT-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
+                    // body = body + "<br /> Po izvršenom dolasku kamiona i prijemu kontejnera na terminal Leget-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
                     body = body + "<br /> <br />";
-                    body = body + "Terminal ŽIT Beograd Ranžirna <br />";
+                    body = body + "Terminal RTC LUKA LEGET <br />";
 
 
 
@@ -1963,7 +1963,7 @@ namespace TrackModal.Dokumeta
 
                     mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    mailMessage.Subject = "ŽIT pristigao kamion Br. zapisa: " + zadnjibroj + " . ";
+                    mailMessage.Subject = "RTC LUKA LEGET pristigao kamion Br. zapisa: " + zadnjibroj + " . ";
 
                     var select = "  SELECT PrijemKontejneraVozStavke.[ID] , RegBrKamiona, BrojKontejnera, BrojVagona, Tara, Neto, ImeVozaca, PrijemKontejneraVozStavke.VremeDolaska, " +
                  " PrijemKontejneraVozStavke.Primalac,  PrijemKontejneraVozStavke.Posiljalac, PrijemKontejneraVozStavke.VlasnikKontejnera, PrijemKontejneraVozStavke.Organizator " +
@@ -2003,9 +2003,9 @@ namespace TrackModal.Dokumeta
 
                     }
 
-                    // body = body + "<br /> Po izvršenom dolasku kamiona i prijemu kontejnera na terminal ŽIT-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
+                    // body = body + "<br /> Po izvršenom dolasku kamiona i prijemu kontejnera na terminal Leget-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
                     body = body + "<br /> <br />";
-                    body = body + "Terminal ŽIT Beograd Ranžirna <br />";
+                    body = body + "Terminal RTC LUKA LEGET<br />";
 
 
 

@@ -36,9 +36,7 @@ namespace Saobracaj.Sifarnici
             this.label2 = new System.Windows.Forms.Label();
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtJM1 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtJM2 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDuziNaziv = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -47,13 +45,11 @@ namespace Saobracaj.Sifarnici
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsPrvi = new System.Windows.Forms.ToolStripButton();
-            this.tsNazad = new System.Windows.Forms.ToolStripButton();
-            this.tsNapred = new System.Windows.Forms.ToolStripButton();
-            this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboProdajnaGrupa = new System.Windows.Forms.ComboBox();
+            this.txtJM1 = new System.Windows.Forms.ComboBox();
+            this.txtJM2 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -61,7 +57,7 @@ namespace Saobracaj.Sifarnici
             // txtSifra
             // 
             this.txtSifra.Location = new System.Drawing.Point(173, 53);
-            this.txtSifra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(72, 22);
             this.txtSifra.TabIndex = 197;
@@ -79,7 +75,7 @@ namespace Saobracaj.Sifarnici
             // txtStaraSifra
             // 
             this.txtStaraSifra.Location = new System.Drawing.Point(173, 85);
-            this.txtStaraSifra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtStaraSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtStaraSifra.Name = "txtStaraSifra";
             this.txtStaraSifra.Size = new System.Drawing.Size(204, 22);
             this.txtStaraSifra.TabIndex = 199;
@@ -97,7 +93,7 @@ namespace Saobracaj.Sifarnici
             // txtNaziv
             // 
             this.txtNaziv.Location = new System.Drawing.Point(173, 117);
-            this.txtNaziv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNaziv.Margin = new System.Windows.Forms.Padding(4);
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(376, 22);
             this.txtNaziv.TabIndex = 201;
@@ -112,14 +108,6 @@ namespace Saobracaj.Sifarnici
             this.label3.TabIndex = 202;
             this.label3.Text = "Naziv:";
             // 
-            // txtJM1
-            // 
-            this.txtJM1.Location = new System.Drawing.Point(173, 183);
-            this.txtJM1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtJM1.Name = "txtJM1";
-            this.txtJM1.Size = new System.Drawing.Size(72, 22);
-            this.txtJM1.TabIndex = 203;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -129,14 +117,6 @@ namespace Saobracaj.Sifarnici
             this.label4.Size = new System.Drawing.Size(38, 17);
             this.label4.TabIndex = 204;
             this.label4.Text = "JM1:";
-            // 
-            // txtJM2
-            // 
-            this.txtJM2.Location = new System.Drawing.Point(173, 215);
-            this.txtJM2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.txtJM2.Name = "txtJM2";
-            this.txtJM2.Size = new System.Drawing.Size(72, 22);
-            this.txtJM2.TabIndex = 205;
             // 
             // label5
             // 
@@ -151,7 +131,7 @@ namespace Saobracaj.Sifarnici
             // txtDuziNaziv
             // 
             this.txtDuziNaziv.Location = new System.Drawing.Point(173, 149);
-            this.txtDuziNaziv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDuziNaziv.Margin = new System.Windows.Forms.Padding(4);
             this.txtDuziNaziv.Name = "txtDuziNaziv";
             this.txtDuziNaziv.Size = new System.Drawing.Size(500, 22);
             this.txtDuziNaziv.TabIndex = 207;
@@ -175,7 +155,7 @@ namespace Saobracaj.Sifarnici
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(16, 260);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1180, 279);
@@ -217,54 +197,15 @@ namespace Saobracaj.Sifarnici
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
-            // tsPrvi
-            // 
-            this.tsPrvi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
-            this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(29, 24);
-            this.tsPrvi.Text = "toolStripButton1";
-            // 
-            // tsNazad
-            // 
-            this.tsNazad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
-            this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(29, 24);
-            this.tsNazad.Text = "toolStripButton1";
-            // 
-            // tsNapred
-            // 
-            this.tsNapred.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
-            this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(29, 24);
-            this.tsNapred.Text = "toolStripButton1";
-            // 
-            // tsPoslednja
-            // 
-            this.tsPoslednja.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
-            this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
-            this.tsPoslednja.Text = "toolStripButton1";
-            // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
             this.tsSave,
             this.tsDelete,
-            this.toolStripSeparator1,
-            this.tsPrvi,
-            this.tsNazad,
-            this.tsNapred,
-            this.tsPoslednja});
+            this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1212, 27);
@@ -274,35 +215,54 @@ namespace Saobracaj.Sifarnici
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(647, 53);
+            this.label7.Location = new System.Drawing.Point(730, 53);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(110, 17);
             this.label7.TabIndex = 211;
             this.label7.Text = "Prodajna grupa:";
             // 
-            // comboBox1
+            // cboProdajnaGrupa
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(765, 53);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(201, 24);
-            this.comboBox1.TabIndex = 212;
+            this.cboProdajnaGrupa.FormattingEnabled = true;
+            this.cboProdajnaGrupa.Location = new System.Drawing.Point(848, 53);
+            this.cboProdajnaGrupa.Margin = new System.Windows.Forms.Padding(4);
+            this.cboProdajnaGrupa.Name = "cboProdajnaGrupa";
+            this.cboProdajnaGrupa.Size = new System.Drawing.Size(201, 24);
+            this.cboProdajnaGrupa.TabIndex = 212;
+            // 
+            // txtJM1
+            // 
+            this.txtJM1.FormattingEnabled = true;
+            this.txtJM1.Location = new System.Drawing.Point(173, 180);
+            this.txtJM1.Margin = new System.Windows.Forms.Padding(4);
+            this.txtJM1.Name = "txtJM1";
+            this.txtJM1.Size = new System.Drawing.Size(201, 24);
+            this.txtJM1.TabIndex = 213;
+            // 
+            // txtJM2
+            // 
+            this.txtJM2.FormattingEnabled = true;
+            this.txtJM2.Location = new System.Drawing.Point(173, 212);
+            this.txtJM2.Margin = new System.Windows.Forms.Padding(4);
+            this.txtJM2.Name = "txtJM2";
+            this.txtJM2.Size = new System.Drawing.Size(201, 24);
+            this.txtJM2.TabIndex = 214;
             // 
             // frmMaticniPodatki
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1212, 554);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.txtJM2);
+            this.Controls.Add(this.txtJM1);
+            this.Controls.Add(this.cboProdajnaGrupa);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtDuziNaziv);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtJM2);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtJM1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.label3);
@@ -311,7 +271,8 @@ namespace Saobracaj.Sifarnici
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMaticniPodatki";
             this.Text = "Prevozna usluga";
             this.Load += new System.EventHandler(this.frmMaticniPodatki_Load);
@@ -330,9 +291,7 @@ namespace Saobracaj.Sifarnici
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtNaziv;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtJM1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtJM2;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtDuziNaziv;
         private System.Windows.Forms.Label label6;
@@ -341,12 +300,10 @@ namespace Saobracaj.Sifarnici
         private System.Windows.Forms.ToolStripButton tsSave;
         private System.Windows.Forms.ToolStripButton tsDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton tsPrvi;
-        private System.Windows.Forms.ToolStripButton tsNazad;
-        private System.Windows.Forms.ToolStripButton tsNapred;
-        private System.Windows.Forms.ToolStripButton tsPoslednja;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboProdajnaGrupa;
+        private System.Windows.Forms.ComboBox txtJM1;
+        private System.Windows.Forms.ComboBox txtJM2;
     }
 }

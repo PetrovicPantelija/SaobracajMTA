@@ -299,6 +299,10 @@ namespace Testiranje.Sifarnici
                 VratiPodatke((Convert.ToInt32(txtSifra.Text) +1).ToString());
 
         }
-   
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

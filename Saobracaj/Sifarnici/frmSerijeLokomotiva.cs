@@ -92,6 +92,8 @@ namespace Saobracaj.Sifarnici
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
             this.tsSave,
@@ -103,7 +105,7 @@ namespace Saobracaj.Sifarnici
             this.tsPoslednja});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(572, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(572, 27);
             this.toolStrip1.TabIndex = 8;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -113,7 +115,7 @@ namespace Saobracaj.Sifarnici
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(23, 22);
+            this.tsNew.Size = new System.Drawing.Size(29, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -123,7 +125,7 @@ namespace Saobracaj.Sifarnici
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(23, 22);
+            this.tsSave.Size = new System.Drawing.Size(29, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -133,13 +135,13 @@ namespace Saobracaj.Sifarnici
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(23, 22);
+            this.tsDelete.Size = new System.Drawing.Size(29, 24);
             this.tsDelete.Text = "toolStripButton1";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tsPrvi
             // 
@@ -147,7 +149,7 @@ namespace Saobracaj.Sifarnici
             this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
             this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(23, 22);
+            this.tsPrvi.Size = new System.Drawing.Size(29, 24);
             this.tsPrvi.Text = "toolStripButton1";
             // 
             // tsNazad
@@ -156,7 +158,7 @@ namespace Saobracaj.Sifarnici
             this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
             this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(23, 22);
+            this.tsNazad.Size = new System.Drawing.Size(29, 24);
             this.tsNazad.Text = "toolStripButton1";
             // 
             // tsNapred
@@ -165,7 +167,7 @@ namespace Saobracaj.Sifarnici
             this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
             this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(23, 22);
+            this.tsNapred.Size = new System.Drawing.Size(29, 24);
             this.tsNapred.Text = "toolStripButton1";
             // 
             // tsPoslednja
@@ -174,7 +176,7 @@ namespace Saobracaj.Sifarnici
             this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
             this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(23, 22);
+            this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
             this.tsPoslednja.Text = "toolStripButton1";
             // 
             // dataGridView1
@@ -185,6 +187,7 @@ namespace Saobracaj.Sifarnici
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 157);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(554, 172);
             this.dataGridView1.TabIndex = 28;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -193,7 +196,7 @@ namespace Saobracaj.Sifarnici
             // 
             this.txtOznaka.Location = new System.Drawing.Point(58, 68);
             this.txtOznaka.Name = "txtOznaka";
-            this.txtOznaka.Size = new System.Drawing.Size(159, 20);
+            this.txtOznaka.Size = new System.Drawing.Size(159, 22);
             this.txtOznaka.TabIndex = 27;
             // 
             // label2
@@ -201,7 +204,7 @@ namespace Saobracaj.Sifarnici
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 68);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 13);
+            this.label2.Size = new System.Drawing.Size(57, 17);
             this.label2.TabIndex = 26;
             this.label2.Text = "Oznaka";
             // 
@@ -209,7 +212,7 @@ namespace Saobracaj.Sifarnici
             // 
             this.txtSifra.Location = new System.Drawing.Point(58, 40);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(100, 20);
+            this.txtSifra.Size = new System.Drawing.Size(100, 22);
             this.txtSifra.TabIndex = 25;
             // 
             // label1
@@ -217,7 +220,7 @@ namespace Saobracaj.Sifarnici
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(31, 13);
+            this.label1.Size = new System.Drawing.Size(41, 17);
             this.label1.TabIndex = 24;
             this.label1.Text = "Šifra:";
             // 
@@ -225,7 +228,7 @@ namespace Saobracaj.Sifarnici
             // 
             this.txtOpis.Location = new System.Drawing.Point(58, 94);
             this.txtOpis.Name = "txtOpis";
-            this.txtOpis.Size = new System.Drawing.Size(508, 20);
+            this.txtOpis.Size = new System.Drawing.Size(508, 22);
             this.txtOpis.TabIndex = 30;
             // 
             // label3
@@ -233,7 +236,7 @@ namespace Saobracaj.Sifarnici
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 94);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(28, 13);
+            this.label3.Size = new System.Drawing.Size(37, 17);
             this.label3.TabIndex = 29;
             this.label3.Text = "Opis";
             // 
@@ -249,16 +252,16 @@ namespace Saobracaj.Sifarnici
             0,
             0});
             this.txtTezina.Name = "txtTezina";
-            this.txtTezina.Size = new System.Drawing.Size(81, 20);
+            this.txtTezina.Size = new System.Drawing.Size(81, 22);
             this.txtTezina.TabIndex = 188;
             this.txtTezina.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblUkupnoT
             // 
             this.lblUkupnoT.AutoSize = true;
-            this.lblUkupnoT.Location = new System.Drawing.Point(14, 123);
+            this.lblUkupnoT.Location = new System.Drawing.Point(9, 122);
             this.lblUkupnoT.Name = "lblUkupnoT";
-            this.lblUkupnoT.Size = new System.Drawing.Size(39, 13);
+            this.lblUkupnoT.Size = new System.Drawing.Size(51, 17);
             this.lblUkupnoT.TabIndex = 187;
             this.lblUkupnoT.Text = "Težina";
             // 
@@ -274,21 +277,22 @@ namespace Saobracaj.Sifarnici
             0,
             0});
             this.txtSnaga.Name = "txtSnaga";
-            this.txtSnaga.Size = new System.Drawing.Size(81, 20);
+            this.txtSnaga.Size = new System.Drawing.Size(81, 22);
             this.txtSnaga.TabIndex = 190;
             this.txtSnaga.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(160, 123);
+            this.label4.Location = new System.Drawing.Point(149, 122);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.Size = new System.Drawing.Size(49, 17);
             this.label4.TabIndex = 189;
             this.label4.Text = "Snaga";
             // 
             // frmSerijeLokomotiva
             // 
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(572, 332);
             this.Controls.Add(this.txtSnaga);
             this.Controls.Add(this.label4);

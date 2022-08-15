@@ -195,5 +195,26 @@ namespace Saobracaj.Sifarnici
         {
            RefreshDataGrid();
         }
+
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+
+
+                        txtSifra.Text = row.Cells[0].Value.ToString();
+                        txtOpis.Text = row.Cells[1].Value.ToString();
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+        }
     }
 }

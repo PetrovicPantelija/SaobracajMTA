@@ -41,5 +41,10 @@ namespace Testiranje.Izvestaji
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
         }
+
+        private void frmMenadadzerPoVozu_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

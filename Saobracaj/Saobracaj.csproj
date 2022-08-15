@@ -460,6 +460,12 @@
     <Compile Include="Administracija\frmKreirajGrupu.designer.cs">
       <DependentUpon>frmKreirajGrupu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administracija\frmNotifikacije.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracija\frmNotifikacije.designer.cs">
+      <DependentUpon>frmNotifikacije.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administracija\frmPolozeneLokomotive.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -489,6 +495,7 @@
     <Compile Include="Administracija\InsertGrupe.cs" />
     <Compile Include="Administracija\InsertKorisnici.cs" />
     <Compile Include="Administracija\InsertKorisnikGrupa.cs" />
+    <Compile Include="Administracija\InsertObavestenje.cs" />
     <Compile Include="Administracija\InsertPolozeneLokomotive.cs" />
     <Compile Include="Administracija\InsertPolozenePruge.cs" />
     <Compile Include="Administracija\InsertSistematizacija.cs" />
@@ -575,6 +582,18 @@
     </Compile>
     <Compile Include="Dokumenta\frmCIR.Designer.cs">
       <DependentUpon>frmCIR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumenta\frmDogovori.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmDogovori.Designer.cs">
+      <DependentUpon>frmDogovori.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumenta\frmDogovoriPregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmDogovoriPregled.Designer.cs">
+      <DependentUpon>frmDogovoriPregled.cs</DependentUpon>
     </Compile>
     <Compile Include="Dokumenta\frmDokumentaOtpremaKontejnera.cs">
       <SubType>Form</SubType>
@@ -671,6 +690,12 @@
     </Compile>
     <Compile Include="Dokumenta\frmIzracunZarada.Designer.cs">
       <DependentUpon>frmIzracunZarada.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumenta\frmKontaktOsobe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmKontaktOsobe.Designer.cs">
+      <DependentUpon>frmKontaktOsobe.cs</DependentUpon>
     </Compile>
     <Compile Include="Dokumenta\frmKontejneriNaPrijemnici.cs">
       <SubType>Form</SubType>
@@ -1192,6 +1217,7 @@
     <Compile Include="Dokumenta\InsertNajavaLog.cs" />
     <Compile Include="Dokumenta\InsertNajavaPrevoznik.cs" />
     <Compile Include="Dokumenta\InsertNalogZaPrevoz.cs" />
+    <Compile Include="Dokumenta\InsertNarocilo.cs" />
     <Compile Include="Dokumenta\InsertNaruceneManipulacije.cs" />
     <Compile Include="Dokumenta\InsertObracunSati.cs" />
     <Compile Include="Dokumenta\InsertOsnovnaZarada.cs" />
@@ -1644,6 +1670,12 @@
     <Compile Include="Servis\frmNamirenjaSumarno.Designer.cs">
       <DependentUpon>frmNamirenjaSumarno.cs</DependentUpon>
     </Compile>
+    <Compile Include="Servis\frmPlombe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Servis\frmPlombe.designer.cs">
+      <DependentUpon>frmPlombe.cs</DependentUpon>
+    </Compile>
     <Compile Include="Servis\frmPregledPopisa1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1678,6 +1710,7 @@
     <Compile Include="Servis\InsertKvarovi.cs" />
     <Compile Include="Servis\InsertLokomotiveVrstaPopisa.cs" />
     <Compile Include="Servis\InsertNamirenja.cs" />
+    <Compile Include="Servis\InsertPlombe.cs" />
     <Compile Include="Servis\InsertPrijavaKvara.cs" />
     <Compile Include="Servis\InsertPrijavaKvaraAuto.cs" />
     <Compile Include="Servis\InsertPrijavaMasinovodje.cs" />
@@ -1742,11 +1775,23 @@
     <Compile Include="Sifarnici\frmMaticniPodatki.Designer.cs">
       <DependentUpon>frmMaticniPodatki.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sifarnici\frmNacinIsporuke.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnici\frmNacinIsporuke.Designer.cs">
+      <DependentUpon>frmNacinIsporuke.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sifarnici\frmNHM.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Sifarnici\frmNHM.Designer.cs">
       <DependentUpon>frmNHM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sifarnici\frmObjekt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnici\frmObjekt.Designer.cs">
+      <DependentUpon>frmObjekt.cs</DependentUpon>
     </Compile>
     <Compile Include="Sifarnici\frmOsoblje.cs">
       <SubType>Form</SubType>
@@ -1887,12 +1932,14 @@
     <Compile Include="Sifarnici\InsertDelavciMTA.cs" />
     <Compile Include="Sifarnici\InsertDelovnaMesta.cs" />
     <Compile Include="Sifarnici\InsertEvidencijaSatiPoRadniku.cs" />
+    <Compile Include="Sifarnici\InsertKontaktOsobe.cs" />
     <Compile Include="Sifarnici\InsertKontrolneGreske.cs" />
     <Compile Include="Sifarnici\InsertKontrolneGreskeTipDokumenta.cs" />
     <Compile Include="Sifarnici\InsertLokomotivaSerija.cs" />
     <Compile Include="Sifarnici\InsertLokomotive.cs" />
     <Compile Include="Sifarnici\InsertMaticniPodatki.cs" />
     <Compile Include="Sifarnici\InsertMerskeEnote.cs" />
+    <Compile Include="Sifarnici\InsertNacinDobave.cs" />
     <Compile Include="Sifarnici\Insertnhm.cs" />
     <Compile Include="Sifarnici\InsertParametri.cs" />
     <Compile Include="Sifarnici\InsertPartnerji.cs" />
@@ -1906,6 +1953,7 @@
     <Compile Include="Sifarnici\InsertTelegrami.cs" />
     <Compile Include="Sifarnici\InsertTimovi.cs" />
     <Compile Include="Sifarnici\InsertTipPrevoza.cs" />
+    <Compile Include="Sifarnici\InsertTipSaobPrevoza.cs" />
     <Compile Include="Sifarnici\InsertTipTelegrama.cs" />
     <Compile Include="Sifarnici\InsertTrasaStanice.cs" />
     <Compile Include="Sifarnici\InsertTrase.cs" />
@@ -2579,6 +2627,9 @@
     <EmbeddedResource Include="Administracija\frmKreirajGrupu.resx">
       <DependentUpon>frmKreirajGrupu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administracija\frmNotifikacije.resx">
+      <DependentUpon>frmNotifikacije.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Administracija\frmPolozeneLokomotive.resx">
       <DependentUpon>frmPolozeneLokomotive.cs</DependentUpon>
     </EmbeddedResource>
@@ -2633,6 +2684,12 @@
     <EmbeddedResource Include="Dokumenta\frmCIR.resx">
       <DependentUpon>frmCIR.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmDogovori.resx">
+      <DependentUpon>frmDogovori.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmDogovoriPregled.resx">
+      <DependentUpon>frmDogovoriPregled.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmDokumentaOtpremaKontejnera.resx">
       <DependentUpon>frmDokumentaOtpremaKontejnera.cs</DependentUpon>
     </EmbeddedResource>
@@ -2680,6 +2737,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmIzracunZarada.resx">
       <DependentUpon>frmIzracunZarada.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmKontaktOsobe.resx">
+      <DependentUpon>frmKontaktOsobe.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmKontejneriNaPrijemnici.resx">
       <DependentUpon>frmKontejneriNaPrijemnici.cs</DependentUpon>
@@ -2999,6 +3059,9 @@
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Main2.resx">
+      <DependentUpon>Main2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainP.resx">
       <DependentUpon>MainP.cs</DependentUpon>
     </EmbeddedResource>
@@ -3114,6 +3177,9 @@
     <EmbeddedResource Include="Servis\frmNamirenjaSumarno.resx">
       <DependentUpon>frmNamirenjaSumarno.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Servis\frmPlombe.resx">
+      <DependentUpon>frmPlombe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Servis\frmPregledPopisa1.resx">
       <DependentUpon>frmPregledPopisa1.cs</DependentUpon>
     </EmbeddedResource>
@@ -3156,8 +3222,14 @@
     <EmbeddedResource Include="Sifarnici\frmMaticniPodatki.resx">
       <DependentUpon>frmMaticniPodatki.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sifarnici\frmNacinIsporuke.resx">
+      <DependentUpon>frmNacinIsporuke.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmNHM.resx">
       <DependentUpon>frmNHM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sifarnici\frmObjekt.resx">
+      <DependentUpon>frmObjekt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmOsoblje.resx">
       <DependentUpon>frmOsoblje.cs</DependentUpon>
@@ -4006,6 +4078,7 @@
   <ItemGroup>
     <Content Include="itextsharp.dll" />
     <None Include="Resources\mtaLogo.JPG" />
+    <None Include="Resources\LEGET-colorP.jpg" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

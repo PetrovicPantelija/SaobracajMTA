@@ -66,5 +66,10 @@ namespace Testiranje.Izvestaji
 
          
         }
+
+        private void frmManipulacijeGrupno_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

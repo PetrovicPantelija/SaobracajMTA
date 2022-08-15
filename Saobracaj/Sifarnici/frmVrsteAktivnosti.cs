@@ -109,22 +109,27 @@ namespace Saobracaj.Sifarnici
 
             DataGridViewColumn column10 = dataGridView1.Columns[9];
             dataGridView1.Columns[9].HeaderText = "Smederevo";
+            dataGridView1.Columns[9].Visible = false;
             dataGridView1.Columns[9].Width = 50;
 
             DataGridViewColumn column11 = dataGridView1.Columns[10];
             dataGridView1.Columns[10].HeaderText = "Kragujevac";
+            dataGridView1.Columns[10].Visible = false;
             dataGridView1.Columns[10].Width = 50;
 
             DataGridViewColumn column12 = dataGridView1.Columns[11];
             dataGridView1.Columns[11].HeaderText = "CG";
+            dataGridView1.Columns[11].Visible = false;
             dataGridView1.Columns[11].Width = 50;
 
             DataGridViewColumn column13 = dataGridView1.Columns[12];
             dataGridView1.Columns[12].HeaderText = "Remont";
+            dataGridView1.Columns[12].Visible = false;
             dataGridView1.Columns[12].Width = 50;
 
             DataGridViewColumn column14 = dataGridView1.Columns[13];
             dataGridView1.Columns[13].HeaderText = "Milsped";
+            dataGridView1.Columns[13].Visible = false;
             dataGridView1.Columns[13].Width = 50;
 
             DataGridViewColumn column15 = dataGridView1.Columns[14];

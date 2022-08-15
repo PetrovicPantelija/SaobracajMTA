@@ -30,34 +30,38 @@ namespace Testiranje.Izvestaji
         private void InitializeComponent()
         {
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTransportIzv1));
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.btnStampa = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.dtpDatumPrevoza = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // reportViewer1
             // 
-            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             reportDataSource1.Name = "DataSet1";
             reportDataSource1.Value = null;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(16, 106);
+            this.reportViewer1.Location = new System.Drawing.Point(21, 130);
+            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer1.Name = "reportViewer1";
-        //    this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(1023, 488);
+            this.reportViewer1.Size = new System.Drawing.Size(1363, 600);
             this.reportViewer1.TabIndex = 101;
             // 
             // btnStampa
             // 
-            this.btnStampa.Location = new System.Drawing.Point(546, 7);
+            this.btnStampa.Location = new System.Drawing.Point(728, 9);
+            this.btnStampa.Margin = new System.Windows.Forms.Padding(4);
             this.btnStampa.Name = "btnStampa";
-            this.btnStampa.Size = new System.Drawing.Size(123, 27);
+            this.btnStampa.Size = new System.Drawing.Size(164, 33);
             this.btnStampa.TabIndex = 100;
             this.btnStampa.Text = "Štampaj";
             this.btnStampa.UseVisualStyleBackColor = true;
@@ -67,9 +71,10 @@ namespace Testiranje.Izvestaji
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(13, 12);
+            this.label16.Location = new System.Drawing.Point(17, 15);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(193, 16);
+            this.label16.Size = new System.Drawing.Size(241, 19);
             this.label16.TabIndex = 310;
             this.label16.Text = "Datum izvršenog prevoza od:";
             // 
@@ -80,9 +85,10 @@ namespace Testiranje.Izvestaji
             this.dtpDatumPrevoza.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatumPrevoza.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpDatumPrevoza.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDatumPrevoza.Location = new System.Drawing.Point(212, 12);
+            this.dtpDatumPrevoza.Location = new System.Drawing.Point(283, 15);
+            this.dtpDatumPrevoza.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDatumPrevoza.Name = "dtpDatumPrevoza";
-            this.dtpDatumPrevoza.Size = new System.Drawing.Size(150, 22);
+            this.dtpDatumPrevoza.Size = new System.Drawing.Size(199, 26);
             this.dtpDatumPrevoza.TabIndex = 309;
             this.dtpDatumPrevoza.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -91,9 +97,10 @@ namespace Testiranje.Izvestaji
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(13, 49);
+            this.label1.Location = new System.Drawing.Point(17, 60);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(193, 16);
+            this.label1.Size = new System.Drawing.Size(241, 19);
             this.label1.TabIndex = 312;
             this.label1.Text = "Datum izvršenog prevoza do:";
             // 
@@ -104,24 +111,53 @@ namespace Testiranje.Izvestaji
             this.dateTimePicker1.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dateTimePicker1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(212, 49);
+            this.dateTimePicker1.Location = new System.Drawing.Point(283, 60);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(150, 22);
+            this.dateTimePicker1.Size = new System.Drawing.Size(199, 26);
             this.dateTimePicker1.TabIndex = 311;
             this.dateTimePicker1.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(17, 15);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(202, 18);
+            this.label2.TabIndex = 310;
+            this.label2.Text = "Datum izvršenog prevoza od:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(17, 60);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(202, 18);
+            this.label3.TabIndex = 312;
+            this.label3.Text = "Datum izvršenog prevoza do:";
+            // 
             // frmTransportIzv1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1827, 922);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.dtpDatumPrevoza);
             this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.btnStampa);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmTransportIzv1";
             this.Text = "Prevoz kamenog agregata";
             this.ResumeLayout(false);
@@ -137,5 +173,7 @@ namespace Testiranje.Izvestaji
         private System.Windows.Forms.DateTimePicker dtpDatumPrevoza;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

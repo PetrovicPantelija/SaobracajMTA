@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPregledSmena));
             this.label2 = new System.Windows.Forms.Label();
             this.dtpVremeDo = new System.Windows.Forms.DateTimePicker();
             this.btnPretrazi = new System.Windows.Forms.Button();
@@ -42,9 +43,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(167, 13);
+            this.label2.Location = new System.Drawing.Point(223, 16);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 13);
+            this.label2.Size = new System.Drawing.Size(71, 17);
             this.label2.TabIndex = 208;
             this.label2.Text = "Vreme Do";
             // 
@@ -52,18 +54,20 @@
             // 
             this.dtpVremeDo.CustomFormat = "yyyy-MM-dd HH:mm";
             this.dtpVremeDo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremeDo.Location = new System.Drawing.Point(170, 29);
+            this.dtpVremeDo.Location = new System.Drawing.Point(227, 36);
+            this.dtpVremeDo.Margin = new System.Windows.Forms.Padding(4);
             this.dtpVremeDo.Name = "dtpVremeDo";
             this.dtpVremeDo.ShowUpDown = true;
-            this.dtpVremeDo.Size = new System.Drawing.Size(110, 20);
+            this.dtpVremeDo.Size = new System.Drawing.Size(145, 22);
             this.dtpVremeDo.TabIndex = 207;
             this.dtpVremeDo.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
             // btnPretrazi
             // 
-            this.btnPretrazi.Location = new System.Drawing.Point(286, 26);
+            this.btnPretrazi.Location = new System.Drawing.Point(381, 32);
+            this.btnPretrazi.Margin = new System.Windows.Forms.Padding(4);
             this.btnPretrazi.Name = "btnPretrazi";
-            this.btnPretrazi.Size = new System.Drawing.Size(111, 23);
+            this.btnPretrazi.Size = new System.Drawing.Size(148, 28);
             this.btnPretrazi.TabIndex = 206;
             this.btnPretrazi.Text = "Pretraži sve neplaćeno";
             this.btnPretrazi.UseVisualStyleBackColor = true;
@@ -72,9 +76,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 13);
+            this.label1.Location = new System.Drawing.Point(19, 16);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 13);
+            this.label1.Size = new System.Drawing.Size(72, 17);
             this.label1.TabIndex = 212;
             this.label1.Text = "Vreme Od";
             // 
@@ -82,10 +87,11 @@
             // 
             this.dtpVremeOd.CustomFormat = "yyyy-MM-dd HH:mm";
             this.dtpVremeOd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremeOd.Location = new System.Drawing.Point(17, 29);
+            this.dtpVremeOd.Location = new System.Drawing.Point(23, 36);
+            this.dtpVremeOd.Margin = new System.Windows.Forms.Padding(4);
             this.dtpVremeOd.Name = "dtpVremeOd";
             this.dtpVremeOd.ShowUpDown = true;
-            this.dtpVremeOd.Size = new System.Drawing.Size(110, 20);
+            this.dtpVremeOd.Size = new System.Drawing.Size(145, 22);
             this.dtpVremeOd.TabIndex = 213;
             this.dtpVremeOd.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
@@ -97,16 +103,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 55);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 68);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(770, 435);
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(1027, 535);
             this.dataGridView1.TabIndex = 214;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(596, 26);
+            this.button1.Location = new System.Drawing.Point(795, 32);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(186, 23);
+            this.button1.Size = new System.Drawing.Size(248, 28);
             this.button1.TabIndex = 215;
             this.button1.Text = "Pretraži po radnom mestu";
             this.button1.UseVisualStyleBackColor = true;
@@ -115,16 +124,18 @@
             // cboRadnoMesto
             // 
             this.cboRadnoMesto.FormattingEnabled = true;
-            this.cboRadnoMesto.Location = new System.Drawing.Point(431, 26);
+            this.cboRadnoMesto.Location = new System.Drawing.Point(575, 32);
+            this.cboRadnoMesto.Margin = new System.Windows.Forms.Padding(4);
             this.cboRadnoMesto.Name = "cboRadnoMesto";
-            this.cboRadnoMesto.Size = new System.Drawing.Size(159, 21);
+            this.cboRadnoMesto.Size = new System.Drawing.Size(211, 24);
             this.cboRadnoMesto.TabIndex = 216;
             // 
             // frmPregledSmena
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 390);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1059, 480);
             this.Controls.Add(this.cboRadnoMesto);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
@@ -133,6 +144,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dtpVremeDo);
             this.Controls.Add(this.btnPretrazi);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPregledSmena";
             this.Text = "Pregled smena";
             this.Load += new System.EventHandler(this.frmPregledSmena_Load);
