@@ -35,9 +35,6 @@ namespace Saobracaj.Sifarnici
         private ToolStripButton tsSave;
         private ToolStripButton tsDelete;
         private ToolStripSeparator toolStripSeparator1;
-        private ToolStripButton tsPrvi;
-        private ToolStripButton tsNazad;
-        private ToolStripButton tsNapred;
         private DataGridView dataGridView1;
         private TextBox txtOznaka;
         private Label label2;
@@ -45,7 +42,6 @@ namespace Saobracaj.Sifarnici
         private Label label1;
         private TextBox txtOpis;
         private Label label3;
-        private ToolStripButton tsPoslednja;
         private NumericUpDown txtTezina;
         private Label lblUkupnoT;
         private NumericUpDown txtSnaga;
@@ -69,10 +65,6 @@ namespace Saobracaj.Sifarnici
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsPrvi = new System.Windows.Forms.ToolStripButton();
-            this.tsNazad = new System.Windows.Forms.ToolStripButton();
-            this.tsNapred = new System.Windows.Forms.ToolStripButton();
-            this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtOznaka = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -98,11 +90,7 @@ namespace Saobracaj.Sifarnici
             this.tsNew,
             this.tsSave,
             this.tsDelete,
-            this.toolStripSeparator1,
-            this.tsPrvi,
-            this.tsNazad,
-            this.tsNapred,
-            this.tsPoslednja});
+            this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(572, 27);
@@ -143,42 +131,6 @@ namespace Saobracaj.Sifarnici
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
-            // tsPrvi
-            // 
-            this.tsPrvi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
-            this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(29, 24);
-            this.tsPrvi.Text = "toolStripButton1";
-            // 
-            // tsNazad
-            // 
-            this.tsNazad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
-            this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(29, 24);
-            this.tsNazad.Text = "toolStripButton1";
-            // 
-            // tsNapred
-            // 
-            this.tsNapred.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
-            this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(29, 24);
-            this.tsNapred.Text = "toolStripButton1";
-            // 
-            // tsPoslednja
-            // 
-            this.tsPoslednja.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
-            this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
-            this.tsPoslednja.Text = "toolStripButton1";
-            // 
             // dataGridView1
             // 
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -194,7 +146,7 @@ namespace Saobracaj.Sifarnici
             // 
             // txtOznaka
             // 
-            this.txtOznaka.Location = new System.Drawing.Point(58, 68);
+            this.txtOznaka.Location = new System.Drawing.Point(75, 66);
             this.txtOznaka.Name = "txtOznaka";
             this.txtOznaka.Size = new System.Drawing.Size(159, 22);
             this.txtOznaka.TabIndex = 27;
@@ -210,7 +162,7 @@ namespace Saobracaj.Sifarnici
             // 
             // txtSifra
             // 
-            this.txtSifra.Location = new System.Drawing.Point(58, 40);
+            this.txtSifra.Location = new System.Drawing.Point(75, 40);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(100, 22);
             this.txtSifra.TabIndex = 25;
@@ -226,9 +178,9 @@ namespace Saobracaj.Sifarnici
             // 
             // txtOpis
             // 
-            this.txtOpis.Location = new System.Drawing.Point(58, 94);
+            this.txtOpis.Location = new System.Drawing.Point(75, 94);
             this.txtOpis.Name = "txtOpis";
-            this.txtOpis.Size = new System.Drawing.Size(508, 22);
+            this.txtOpis.Size = new System.Drawing.Size(491, 22);
             this.txtOpis.TabIndex = 30;
             // 
             // label3

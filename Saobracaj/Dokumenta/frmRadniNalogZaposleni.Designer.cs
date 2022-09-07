@@ -193,6 +193,7 @@
             // 
             // toolStripButton1
             // 
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
@@ -343,11 +344,11 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(16, 156);
+            this.tabControl1.Location = new System.Drawing.Point(21, 156);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1415, 266);
+            this.tabControl1.Size = new System.Drawing.Size(1410, 310);
             this.tabControl1.TabIndex = 91;
             // 
             // tabPage1
@@ -357,7 +358,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(1407, 237);
+            this.tabPage1.Size = new System.Drawing.Size(1402, 281);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Planirani zaposleni";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -372,7 +373,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1388, 219);
+            this.dataGridView1.Size = new System.Drawing.Size(1383, 263);
             this.dataGridView1.TabIndex = 8;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -701,11 +702,11 @@
             // dataGridView3
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(1439, 191);
+            this.dataGridView3.Location = new System.Drawing.Point(1439, 181);
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.Size = new System.Drawing.Size(164, 226);
+            this.dataGridView3.Size = new System.Drawing.Size(164, 281);
             this.dataGridView3.TabIndex = 9;
             // 
             // label17
@@ -721,7 +722,7 @@
             // txtNapomena
             // 
             this.txtNapomena.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtNapomena.Location = new System.Drawing.Point(1149, 27);
+            this.txtNapomena.Location = new System.Drawing.Point(1148, 45);
             this.txtNapomena.Margin = new System.Windows.Forms.Padding(4);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
@@ -731,7 +732,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(1145, 7);
+            this.label18.Location = new System.Drawing.Point(1145, 24);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(81, 17);

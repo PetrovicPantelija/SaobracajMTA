@@ -60,13 +60,13 @@
             // 
             this.chk3.AutoSize = true;
             this.chk3.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chk3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chk3.ForeColor = System.Drawing.Color.White;
+            this.chk3.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chk3.ForeColor = System.Drawing.Color.Black;
             this.chk3.Location = new System.Drawing.Point(583, 25);
             this.chk3.Margin = new System.Windows.Forms.Padding(4);
             this.chk3.Name = "chk3";
             this.chk3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk3.Size = new System.Drawing.Size(218, 23);
+            this.chk3.Size = new System.Drawing.Size(187, 23);
             this.chk3.TabIndex = 325;
             this.chk3.Text = "Izvršen nalog za prevoz";
             this.chk3.UseVisualStyleBackColor = true;
@@ -75,13 +75,13 @@
             // 
             this.chk2.AutoSize = true;
             this.chk2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chk2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chk2.ForeColor = System.Drawing.Color.White;
+            this.chk2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chk2.ForeColor = System.Drawing.Color.Black;
             this.chk2.Location = new System.Drawing.Point(303, 25);
             this.chk2.Margin = new System.Windows.Forms.Padding(4);
             this.chk2.Name = "chk2";
             this.chk2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk2.Size = new System.Drawing.Size(229, 23);
+            this.chk2.Size = new System.Drawing.Size(197, 23);
             this.chk2.TabIndex = 324;
             this.chk2.Text = "Lansiran nalog za prevoz";
             this.chk2.UseVisualStyleBackColor = true;
@@ -90,20 +90,20 @@
             // 
             this.chk1.AutoSize = true;
             this.chk1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chk1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chk1.ForeColor = System.Drawing.Color.White;
+            this.chk1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chk1.ForeColor = System.Drawing.Color.Black;
             this.chk1.Location = new System.Drawing.Point(41, 25);
             this.chk1.Margin = new System.Windows.Forms.Padding(4);
             this.chk1.Name = "chk1";
             this.chk1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chk1.Size = new System.Drawing.Size(206, 23);
+            this.chk1.Size = new System.Drawing.Size(178, 23);
             this.chk1.TabIndex = 323;
             this.chk1.Text = "Radni nalog za prevoz";
             this.chk1.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
@@ -113,7 +113,7 @@
             this.button1.Size = new System.Drawing.Size(280, 33);
             this.button1.TabIndex = 326;
             this.button1.Text = "Pretraga";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtSifra
@@ -128,18 +128,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(16, 58);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 19);
+            this.label1.Size = new System.Drawing.Size(47, 19);
             this.label1.TabIndex = 328;
             this.label1.Text = "Šifra:";
             // 
             // button2
             // 
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.White;
@@ -149,7 +149,7 @@
             this.button2.Size = new System.Drawing.Size(280, 33);
             this.button2.TabIndex = 329;
             this.button2.Text = "Otvori";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // frmPregledNaloziZaPrevoz

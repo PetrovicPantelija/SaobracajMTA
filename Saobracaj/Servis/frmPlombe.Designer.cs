@@ -66,6 +66,7 @@ namespace Saobracaj.Servis
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
@@ -217,38 +218,45 @@ namespace Saobracaj.Servis
             // 
             // btn_UcitajSliku
             // 
+            this.btn_UcitajSliku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btn_UcitajSliku.ForeColor = System.Drawing.Color.White;
             this.btn_UcitajSliku.Location = new System.Drawing.Point(1023, 49);
             this.btn_UcitajSliku.Name = "btn_UcitajSliku";
             this.btn_UcitajSliku.Size = new System.Drawing.Size(91, 27);
             this.btn_UcitajSliku.TabIndex = 42;
             this.btn_UcitajSliku.Text = "Učitaj";
-            this.btn_UcitajSliku.UseVisualStyleBackColor = true;
+            this.btn_UcitajSliku.UseVisualStyleBackColor = false;
             this.btn_UcitajSliku.Click += new System.EventHandler(this.button1_Click);
             // 
             // btn_SacuvajSliku
             // 
+            this.btn_SacuvajSliku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btn_SacuvajSliku.ForeColor = System.Drawing.Color.White;
             this.btn_SacuvajSliku.Location = new System.Drawing.Point(1141, 49);
             this.btn_SacuvajSliku.Name = "btn_SacuvajSliku";
             this.btn_SacuvajSliku.Size = new System.Drawing.Size(91, 27);
             this.btn_SacuvajSliku.TabIndex = 42;
             this.btn_SacuvajSliku.Text = "Sačuvaj";
-            this.btn_SacuvajSliku.UseVisualStyleBackColor = true;
+            this.btn_SacuvajSliku.UseVisualStyleBackColor = false;
             this.btn_SacuvajSliku.Click += new System.EventHandler(this.button2_Click);
             // 
             // btn_Otvori
             // 
+            this.btn_Otvori.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btn_Otvori.ForeColor = System.Drawing.Color.White;
             this.btn_Otvori.Location = new System.Drawing.Point(1141, 113);
             this.btn_Otvori.Name = "btn_Otvori";
             this.btn_Otvori.Size = new System.Drawing.Size(91, 27);
             this.btn_Otvori.TabIndex = 42;
             this.btn_Otvori.Text = "Otvori";
-            this.btn_Otvori.UseVisualStyleBackColor = true;
+            this.btn_Otvori.UseVisualStyleBackColor = false;
             this.btn_Otvori.Click += new System.EventHandler(this.btn_Otvori_Click);
             // 
             // frmPlombe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.ClientSize = new System.Drawing.Size(1261, 727);
             this.Controls.Add(this.btn_SacuvajSliku);
             this.Controls.Add(this.btn_Otvori);
@@ -267,8 +275,9 @@ namespace Saobracaj.Servis
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPlombe";
-            this.Text = "frmPlombe";
+            this.Text = "Plombe";
             this.Load += new System.EventHandler(this.frmPlombe_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

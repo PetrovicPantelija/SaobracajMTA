@@ -63,10 +63,10 @@ namespace Saobracaj.Dokumenta
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(367, 22);
+            this.button1.Location = new System.Drawing.Point(367, 11);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(140, 27);
+            this.button1.Size = new System.Drawing.Size(140, 38);
             this.button1.TabIndex = 3;
             this.button1.Text = "Proveri";
             this.button1.UseVisualStyleBackColor = false;
@@ -99,7 +99,7 @@ namespace Saobracaj.Dokumenta
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmNajavaLog";
-            this.Text = "frmNajavaLog";
+            this.Text = "Log posla";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.combo_Najava)).EndInit();
             this.ResumeLayout(false);

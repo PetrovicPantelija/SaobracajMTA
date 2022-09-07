@@ -68,7 +68,7 @@
             this.button4.Location = new System.Drawing.Point(269, 12);
             this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(249, 28);
+            this.button4.Size = new System.Drawing.Size(254, 43);
             this.button4.TabIndex = 100;
             this.button4.Text = "Pronađi bilo gde";
             this.button4.UseVisualStyleBackColor = false;
@@ -145,7 +145,7 @@
             this.button1.Location = new System.Drawing.Point(545, 12);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(239, 28);
+            this.button1.Size = new System.Drawing.Size(242, 43);
             this.button1.TabIndex = 108;
             this.button1.Text = "Pronađi samo u 9";
             this.button1.UseVisualStyleBackColor = false;

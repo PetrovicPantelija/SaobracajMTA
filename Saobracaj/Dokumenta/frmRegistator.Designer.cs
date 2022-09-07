@@ -98,7 +98,7 @@
             this.txtPredmet.PasswordChar = '\0';
             this.txtPredmet.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtPredmet.SelectedText = "";
-            this.txtPredmet.Size = new System.Drawing.Size(724, 66);
+            this.txtPredmet.Size = new System.Drawing.Size(738, 66);
             this.txtPredmet.Style = MetroFramework.MetroColorStyle.Green;
             this.txtPredmet.TabIndex = 13;
             this.txtPredmet.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -219,6 +219,7 @@
             // 
             // toolStripButton1
             // 
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
@@ -228,6 +229,7 @@
             // 
             // toolStripButton2
             // 
+            this.toolStripButton2.ForeColor = System.Drawing.Color.White;
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
@@ -260,7 +262,7 @@
             this.txtTekst.PasswordChar = '\0';
             this.txtTekst.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtTekst.SelectedText = "";
-            this.txtTekst.Size = new System.Drawing.Size(1155, 313);
+            this.txtTekst.Size = new System.Drawing.Size(1402, 313);
             this.txtTekst.Style = MetroFramework.MetroColorStyle.Green;
             this.txtTekst.TabIndex = 146;
             this.txtTekst.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -277,7 +279,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1181, 359);
+            this.tabControl1.Size = new System.Drawing.Size(1428, 359);
             this.tabControl1.TabIndex = 147;
             // 
             // tabPage1
@@ -287,7 +289,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(1173, 330);
+            this.tabPage1.Size = new System.Drawing.Size(1420, 330);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Tekst";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -329,7 +331,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(32, 85);
+            this.label1.Location = new System.Drawing.Point(31, 88);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 17);
@@ -339,7 +341,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(40, 130);
+            this.label2.Location = new System.Drawing.Point(32, 130);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 17);

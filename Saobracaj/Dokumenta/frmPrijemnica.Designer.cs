@@ -72,13 +72,15 @@
             // 
             // btnPrihvatiIzmene
             // 
-            this.btnPrihvatiIzmene.Location = new System.Drawing.Point(340, 28);
+            this.btnPrihvatiIzmene.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnPrihvatiIzmene.ForeColor = System.Drawing.Color.White;
+            this.btnPrihvatiIzmene.Location = new System.Drawing.Point(340, 13);
             this.btnPrihvatiIzmene.Margin = new System.Windows.Forms.Padding(4);
             this.btnPrihvatiIzmene.Name = "btnPrihvatiIzmene";
-            this.btnPrihvatiIzmene.Size = new System.Drawing.Size(181, 28);
+            this.btnPrihvatiIzmene.Size = new System.Drawing.Size(181, 43);
             this.btnPrihvatiIzmene.TabIndex = 38;
             this.btnPrihvatiIzmene.Text = "Prihvati Izmene";
-            this.btnPrihvatiIzmene.UseVisualStyleBackColor = true;
+            this.btnPrihvatiIzmene.UseVisualStyleBackColor = false;
             this.btnPrihvatiIzmene.Click += new System.EventHandler(this.btnPrihvatiIzmene_Click);
             // 
             // frmPrijemnica

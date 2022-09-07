@@ -64,13 +64,15 @@
             // 
             // btnPretrazi
             // 
+            this.btnPretrazi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnPretrazi.ForeColor = System.Drawing.Color.White;
             this.btnPretrazi.Location = new System.Drawing.Point(381, 32);
             this.btnPretrazi.Margin = new System.Windows.Forms.Padding(4);
             this.btnPretrazi.Name = "btnPretrazi";
             this.btnPretrazi.Size = new System.Drawing.Size(148, 28);
             this.btnPretrazi.TabIndex = 206;
             this.btnPretrazi.Text = "Pretraži sve neplaćeno";
-            this.btnPretrazi.UseVisualStyleBackColor = true;
+            this.btnPretrazi.UseVisualStyleBackColor = false;
             this.btnPretrazi.Click += new System.EventHandler(this.btnPretrazi_Click);
             // 
             // label1
@@ -112,13 +114,15 @@
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(795, 32);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(248, 28);
             this.button1.TabIndex = 215;
             this.button1.Text = "Pretraži po radnom mestu";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // cboRadnoMesto

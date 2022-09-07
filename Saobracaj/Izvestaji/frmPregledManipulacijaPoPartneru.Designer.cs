@@ -52,8 +52,8 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 192);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Location = new System.Drawing.Point(13, 181);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1275, 347);
@@ -61,17 +61,17 @@
             // 
             // button1
             // 
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(525, 94);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(212, 31);
             this.button1.TabIndex = 267;
             this.button1.Text = "Pozovi podatke";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dtpDatumDo
@@ -82,7 +82,7 @@
             this.dtpDatumDo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpDatumDo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDatumDo.Location = new System.Drawing.Point(600, 49);
-            this.dtpDatumDo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDatumDo.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDatumDo.Name = "dtpDatumDo";
             this.dtpDatumDo.Size = new System.Drawing.Size(199, 26);
             this.dtpDatumDo.TabIndex = 266;
@@ -120,7 +120,7 @@
             this.dtpDatumOd.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpDatumOd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDatumOd.Location = new System.Drawing.Point(195, 49);
-            this.dtpDatumOd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDatumOd.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDatumOd.Name = "dtpDatumOd";
             this.dtpDatumOd.Size = new System.Drawing.Size(199, 26);
             this.dtpDatumOd.TabIndex = 263;
@@ -129,12 +129,12 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(23, 94);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(71, 19);
+            this.label8.Size = new System.Drawing.Size(66, 19);
             this.label8.TabIndex = 270;
             this.label8.Text = "Platilac:";
             // 
@@ -143,7 +143,7 @@
             this.cboPlatilac.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboPlatilac.FormattingEnabled = true;
             this.cboPlatilac.Location = new System.Drawing.Point(195, 94);
-            this.cboPlatilac.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPlatilac.Margin = new System.Windows.Forms.Padding(4);
             this.cboPlatilac.Name = "cboPlatilac";
             this.cboPlatilac.Size = new System.Drawing.Size(308, 27);
             this.cboPlatilac.TabIndex = 269;
@@ -162,28 +162,28 @@
             // 
             // button3
             // 
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(404, 134);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(35, 27);
             this.button3.TabIndex = 274;
             this.button3.Text = "?";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(23, 134);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(136, 19);
+            this.label5.Size = new System.Drawing.Size(121, 19);
             this.label5.TabIndex = 272;
             this.label5.Text = "Broj kontejnera:";
             // 
@@ -191,7 +191,7 @@
             // 
             this.txtBrojKontejnera.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtBrojKontejnera.Location = new System.Drawing.Point(195, 134);
-            this.txtBrojKontejnera.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBrojKontejnera.Margin = new System.Windows.Forms.Padding(4);
             this.txtBrojKontejnera.Name = "txtBrojKontejnera";
             this.txtBrojKontejnera.Size = new System.Drawing.Size(200, 26);
             this.txtBrojKontejnera.TabIndex = 273;
@@ -214,7 +214,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtpDatumOd);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPregledManipulacijaPoPartneru";
             this.Text = "Pregled manipulacija po partneru";
             this.Load += new System.EventHandler(this.frmPregledManipulacijaPoPartneru_Load);

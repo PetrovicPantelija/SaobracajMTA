@@ -69,10 +69,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtTR = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnUgovor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // chkBrodar
@@ -133,7 +131,7 @@
             // 
             // btnUgovor
             // 
-            this.btnUgovor.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUgovor.BackgroundImage")));
+            this.btnUgovor.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnUgovor.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.btnUgovor.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
@@ -409,11 +407,11 @@
             // txtNapomena
             // 
             this.txtNapomena.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtNapomena.Location = new System.Drawing.Point(1536, 79);
+            this.txtNapomena.Location = new System.Drawing.Point(1526, 76);
             this.txtNapomena.Margin = new System.Windows.Forms.Padding(4);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
-            this.txtNapomena.Size = new System.Drawing.Size(482, 182);
+            this.txtNapomena.Size = new System.Drawing.Size(369, 182);
             this.txtNapomena.TabIndex = 124;
             // 
             // label6
@@ -436,11 +434,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(48, 378);
+            this.dataGridView1.Location = new System.Drawing.Point(47, 320);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1972, 359);
+            this.dataGridView1.Size = new System.Drawing.Size(1848, 427);
             this.dataGridView1.TabIndex = 126;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -530,23 +528,12 @@
             this.label10.TabIndex = 134;
             this.label10.Text = "TR:";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(1809, 300);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(212, 70);
-            this.pictureBox1.TabIndex = 135;
-            this.pictureBox1.TabStop = false;
-            // 
             // frmKomitent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1924, 760);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtTR);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtMaticniBroj);
@@ -591,7 +578,6 @@
             this.btnUgovor.ResumeLayout(false);
             this.btnUgovor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -639,6 +625,5 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtTR;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

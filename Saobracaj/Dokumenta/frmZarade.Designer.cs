@@ -61,6 +61,7 @@
             // btnStampa
             // 
             this.btnStampa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnStampa.ForeColor = System.Drawing.Color.White;
             this.btnStampa.Location = new System.Drawing.Point(1005, 10);
             this.btnStampa.Margin = new System.Windows.Forms.Padding(4);
             this.btnStampa.Name = "btnStampa";

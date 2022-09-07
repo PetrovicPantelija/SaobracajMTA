@@ -37,17 +37,15 @@
             this.btnPretrazi = new System.Windows.Forms.Button();
             this.btnPromeni = new System.Windows.Forms.Button();
             this.btnIzbrisi = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnUnesi
             // 
             this.btnUnesi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnUnesi.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUnesi.BackgroundImage")));
+            this.btnUnesi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.btnUnesi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUnesi.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnUnesi.ForeColor = System.Drawing.Color.White;
@@ -57,7 +55,7 @@
             this.btnUnesi.Size = new System.Drawing.Size(169, 554);
             this.btnUnesi.TabIndex = 182;
             this.btnUnesi.Text = ">>";
-            this.btnUnesi.UseVisualStyleBackColor = true;
+            this.btnUnesi.UseVisualStyleBackColor = false;
             this.btnUnesi.Click += new System.EventHandler(this.btnUnesi_Click);
             // 
             // dataGridView2
@@ -116,7 +114,7 @@
             // 
             // btnPretrazi
             // 
-            this.btnPretrazi.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPretrazi.BackgroundImage")));
+            this.btnPretrazi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.btnPretrazi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPretrazi.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnPretrazi.ForeColor = System.Drawing.Color.White;
@@ -126,12 +124,12 @@
             this.btnPretrazi.Size = new System.Drawing.Size(196, 43);
             this.btnPretrazi.TabIndex = 183;
             this.btnPretrazi.Text = "Pretraži";
-            this.btnPretrazi.UseVisualStyleBackColor = true;
+            this.btnPretrazi.UseVisualStyleBackColor = false;
             this.btnPretrazi.Click += new System.EventHandler(this.btnPretrazi_Click);
             // 
             // btnPromeni
             // 
-            this.btnPromeni.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPromeni.BackgroundImage")));
+            this.btnPromeni.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.btnPromeni.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPromeni.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnPromeni.ForeColor = System.Drawing.Color.White;
@@ -141,12 +139,12 @@
             this.btnPromeni.Size = new System.Drawing.Size(196, 43);
             this.btnPromeni.TabIndex = 184;
             this.btnPromeni.Text = "Promeni prava";
-            this.btnPromeni.UseVisualStyleBackColor = true;
+            this.btnPromeni.UseVisualStyleBackColor = false;
             this.btnPromeni.Click += new System.EventHandler(this.btnPromeni_Click);
             // 
             // btnIzbrisi
             // 
-            this.btnIzbrisi.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnIzbrisi.BackgroundImage")));
+            this.btnIzbrisi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.btnIzbrisi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnIzbrisi.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnIzbrisi.ForeColor = System.Drawing.Color.White;
@@ -156,18 +154,8 @@
             this.btnIzbrisi.Size = new System.Drawing.Size(196, 43);
             this.btnIzbrisi.TabIndex = 185;
             this.btnIzbrisi.Text = "Izbriši selektovane";
-            this.btnIzbrisi.UseVisualStyleBackColor = true;
+            this.btnIzbrisi.UseVisualStyleBackColor = false;
             this.btnIzbrisi.Click += new System.EventHandler(this.btnIzbrisi_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(1251, 15);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(188, 62);
-            this.pictureBox1.TabIndex = 128;
-            this.pictureBox1.TabStop = false;
             // 
             // frmPravoPristupaFormi
             // 
@@ -175,7 +163,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1455, 730);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnIzbrisi);
             this.Controls.Add(this.btnPromeni);
             this.Controls.Add(this.btnPretrazi);
@@ -192,7 +179,6 @@
             this.Load += new System.EventHandler(this.frmPravoPristupaFormi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -208,6 +194,5 @@
         private System.Windows.Forms.Button btnPretrazi;
         private System.Windows.Forms.Button btnPromeni;
         private System.Windows.Forms.Button btnIzbrisi;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -41,13 +41,14 @@ namespace Testiranje.Izvestaji
             // 
             // btnStampa
             // 
+            this.btnStampa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.btnStampa.Location = new System.Drawing.Point(835, 12);
             this.btnStampa.Margin = new System.Windows.Forms.Padding(4);
             this.btnStampa.Name = "btnStampa";
             this.btnStampa.Size = new System.Drawing.Size(164, 33);
             this.btnStampa.TabIndex = 302;
             this.btnStampa.Text = "Štampaj";
-            this.btnStampa.UseVisualStyleBackColor = true;
+            this.btnStampa.UseVisualStyleBackColor = false;
             this.btnStampa.Click += new System.EventHandler(this.btnStampa_Click);
             // 
             // reportViewer1
@@ -129,6 +130,7 @@ namespace Testiranje.Izvestaji
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtpDatumOd);
+            this.ForeColor = System.Drawing.Color.White;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmSelectTransport2";

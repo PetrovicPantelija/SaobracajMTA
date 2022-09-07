@@ -123,5 +123,10 @@ namespace Saobracaj.Sifarnici
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
         }
+
+        private void tsPoslednja_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

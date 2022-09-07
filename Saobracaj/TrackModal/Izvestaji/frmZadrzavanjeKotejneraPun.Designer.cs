@@ -49,7 +49,7 @@ namespace Testiranje.Izvestaji
             this.label4.BackColor = System.Drawing.Color.SteelBlue;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(529, 18);
+            this.label4.Location = new System.Drawing.Point(526, 0);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(391, 36);
@@ -64,7 +64,7 @@ namespace Testiranje.Izvestaji
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1477, 73);
+            this.panel1.Size = new System.Drawing.Size(1477, 42);
             this.panel1.TabIndex = 292;
             // 
             // cboKomitent
@@ -181,7 +181,7 @@ namespace Testiranje.Izvestaji
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmZadrzavanjeKotejneraPun";
-            this.Text = "frmZadrzavanjeKotejneraPun";
+            this.Text = "Zadržavanje punih kontejnera";
             this.Load += new System.EventHandler(this.frmZadrzavanjeKotejneraPun_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();

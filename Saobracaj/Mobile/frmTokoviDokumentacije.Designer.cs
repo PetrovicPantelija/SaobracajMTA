@@ -74,7 +74,7 @@
             this.dataGridView1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.dataGridView1.Location = new System.Drawing.Point(13, 199);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -94,46 +94,53 @@
             // 
             // metroButton1
             // 
-            this.metroButton1.Location = new System.Drawing.Point(31, 89);
-            this.metroButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.metroButton1.ForeColor = System.Drawing.Color.White;
+            this.metroButton1.Location = new System.Drawing.Point(13, 13);
+            this.metroButton1.Margin = new System.Windows.Forms.Padding(4);
             this.metroButton1.Name = "metroButton1";
             this.metroButton1.Size = new System.Drawing.Size(263, 28);
             this.metroButton1.TabIndex = 3;
             this.metroButton1.Text = "Ažuriraj";
+            this.metroButton1.UseCustomBackColor = true;
+            this.metroButton1.UseCustomForeColor = true;
             this.metroButton1.UseSelectable = true;
             this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
             // 
             // metroButton2
             // 
-            this.metroButton2.Location = new System.Drawing.Point(31, 124);
-            this.metroButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.metroButton2.ForeColor = System.Drawing.Color.White;
+            this.metroButton2.Location = new System.Drawing.Point(13, 48);
+            this.metroButton2.Margin = new System.Windows.Forms.Padding(4);
             this.metroButton2.Name = "metroButton2";
             this.metroButton2.Size = new System.Drawing.Size(263, 28);
             this.metroButton2.TabIndex = 4;
             this.metroButton2.Text = "Otvori slike";
+            this.metroButton2.UseCustomBackColor = true;
+            this.metroButton2.UseCustomForeColor = true;
             this.metroButton2.UseSelectable = true;
             this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
             // 
             // flpThumbnails
             // 
-            this.flpThumbnails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.flpThumbnails.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.flpThumbnails.AutoScroll = true;
             this.flpThumbnails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.flpThumbnails.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.flpThumbnails.Location = new System.Drawing.Point(975, 48);
-            this.flpThumbnails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flpThumbnails.Margin = new System.Windows.Forms.Padding(4);
             this.flpThumbnails.Name = "flpThumbnails";
             this.flpThumbnails.Size = new System.Drawing.Size(513, 493);
             this.flpThumbnails.TabIndex = 55;
             // 
             // btnPickDirectory
             // 
-            this.btnPickDirectory.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnPickDirectory.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnPickDirectory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnPickDirectory.Location = new System.Drawing.Point(919, 85);
-            this.btnPickDirectory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPickDirectory.Location = new System.Drawing.Point(881, 13);
+            this.btnPickDirectory.Margin = new System.Windows.Forms.Padding(4);
             this.btnPickDirectory.Name = "btnPickDirectory";
             this.btnPickDirectory.Size = new System.Drawing.Size(35, 28);
             this.btnPickDirectory.TabIndex = 61;
@@ -141,8 +148,8 @@
             // 
             // txtDirectory
             // 
-            this.txtDirectory.Location = new System.Drawing.Point(535, 89);
-            this.txtDirectory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDirectory.Location = new System.Drawing.Point(498, 13);
+            this.txtDirectory.Margin = new System.Windows.Forms.Padding(4);
             this.txtDirectory.Name = "txtDirectory";
             this.txtDirectory.Size = new System.Drawing.Size(375, 22);
             this.txtDirectory.TabIndex = 60;
@@ -151,7 +158,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(361, 89);
+            this.label2.Location = new System.Drawing.Point(340, 13);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 17);
@@ -161,8 +168,8 @@
             // txtSifra
             // 
             this.txtSifra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtSifra.Location = new System.Drawing.Point(452, 89);
-            this.txtSifra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSifra.Location = new System.Drawing.Point(417, 13);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(73, 22);
             this.txtSifra.TabIndex = 58;
@@ -171,6 +178,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1496, 554);
             this.Controls.Add(this.btnPickDirectory);
             this.Controls.Add(this.txtDirectory);
@@ -181,7 +189,7 @@
             this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmTokoviDokumentacije";
             this.Text = "Tokovi dokumentacije";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -30,6 +30,7 @@ namespace TrackModal.Izvestaji
         private void InitializeComponent()
         {
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSelectTransport2));
             this.btnStampa = new System.Windows.Forms.Button();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.dtpDatumDo = new System.Windows.Forms.DateTimePicker();
@@ -40,13 +41,15 @@ namespace TrackModal.Izvestaji
             // 
             // btnStampa
             // 
+            this.btnStampa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnStampa.ForeColor = System.Drawing.Color.White;
             this.btnStampa.Location = new System.Drawing.Point(835, 12);
-            this.btnStampa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnStampa.Margin = new System.Windows.Forms.Padding(4);
             this.btnStampa.Name = "btnStampa";
-            this.btnStampa.Size = new System.Drawing.Size(164, 33);
+            this.btnStampa.Size = new System.Drawing.Size(193, 33);
             this.btnStampa.TabIndex = 302;
             this.btnStampa.Text = "Štampaj";
-            this.btnStampa.UseVisualStyleBackColor = true;
+            this.btnStampa.UseVisualStyleBackColor = false;
             this.btnStampa.Click += new System.EventHandler(this.btnStampa_Click);
             // 
             // reportViewer1
@@ -58,8 +61,8 @@ namespace TrackModal.Izvestaji
             reportDataSource1.Value = null;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(-400, -49);
-            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reportViewer1.Location = new System.Drawing.Point(20, 53);
+            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.Size = new System.Drawing.Size(1034, 489);
             this.reportViewer1.TabIndex = 301;
@@ -72,7 +75,7 @@ namespace TrackModal.Izvestaji
             this.dtpDatumDo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpDatumDo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDatumDo.Location = new System.Drawing.Point(608, 18);
-            this.dtpDatumDo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDatumDo.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDatumDo.Name = "dtpDatumDo";
             this.dtpDatumDo.Size = new System.Drawing.Size(199, 26);
             this.dtpDatumDo.TabIndex = 300;
@@ -110,7 +113,7 @@ namespace TrackModal.Izvestaji
             this.dtpDatumOd.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpDatumOd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDatumOd.Location = new System.Drawing.Point(203, 18);
-            this.dtpDatumOd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDatumOd.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDatumOd.Name = "dtpDatumOd";
             this.dtpDatumOd.Size = new System.Drawing.Size(199, 26);
             this.dtpDatumOd.TabIndex = 297;
@@ -128,7 +131,8 @@ namespace TrackModal.Izvestaji
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtpDatumOd);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmSelectTransport2";
             this.Text = "Izveštaj po tipu kontejnera";
             this.Load += new System.EventHandler(this.frmSelectTransport2_Load);

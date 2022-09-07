@@ -174,6 +174,7 @@
             // 
             // toolStripButton1
             // 
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
@@ -368,6 +369,7 @@
             // btn_svi
             // 
             this.btn_svi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
+            this.btn_svi.ForeColor = System.Drawing.Color.White;
             this.btn_svi.Location = new System.Drawing.Point(1208, 169);
             this.btn_svi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_svi.Name = "btn_svi";

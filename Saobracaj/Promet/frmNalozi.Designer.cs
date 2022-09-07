@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNalozi));
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.btnStampa = new System.Windows.Forms.Button();
             this.txtSifra = new System.Windows.Forms.TextBox();
@@ -44,50 +45,56 @@
             reportDataSource1.Value = null;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(10, 51);
+            this.reportViewer1.Location = new System.Drawing.Point(13, 63);
+            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer1.Name = "reportViewer1";
-        //    this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(934, 543);
+            this.reportViewer1.Size = new System.Drawing.Size(1245, 668);
             this.reportViewer1.TabIndex = 101;
             // 
             // btnStampa
             // 
-            this.btnStampa.Location = new System.Drawing.Point(214, 12);
+            this.btnStampa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnStampa.ForeColor = System.Drawing.Color.White;
+            this.btnStampa.Location = new System.Drawing.Point(285, 15);
+            this.btnStampa.Margin = new System.Windows.Forms.Padding(4);
             this.btnStampa.Name = "btnStampa";
-            this.btnStampa.Size = new System.Drawing.Size(103, 23);
+            this.btnStampa.Size = new System.Drawing.Size(151, 40);
             this.btnStampa.TabIndex = 100;
             this.btnStampa.Text = "Štampaj";
-            this.btnStampa.UseVisualStyleBackColor = true;
+            this.btnStampa.UseVisualStyleBackColor = false;
             this.btnStampa.Click += new System.EventHandler(this.btnStampa_Click);
             // 
             // txtSifra
             // 
-            this.txtSifra.Location = new System.Drawing.Point(96, 13);
+            this.txtSifra.Location = new System.Drawing.Point(130, 24);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(89, 20);
+            this.txtSifra.Size = new System.Drawing.Size(117, 22);
             this.txtSifra.TabIndex = 98;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(7, 16);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(13, 24);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.Size = new System.Drawing.Size(76, 17);
             this.label1.TabIndex = 99;
             this.label1.Text = "Dokument:";
             // 
             // frmNalozi
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(956, 555);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1275, 683);
             this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.btnStampa);
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmNalozi";
             this.Text = "Štampa Radnog naloga";
             this.Load += new System.EventHandler(this.frmNalozi_Load);

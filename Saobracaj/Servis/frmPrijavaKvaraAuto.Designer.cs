@@ -68,6 +68,7 @@ namespace Saobracaj.Servis
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsb_New,
@@ -82,31 +83,31 @@ namespace Saobracaj.Servis
             // 
             // tsb_New
             // 
-            this.tsb_New.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsb_New.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsb_New.Image = ((System.Drawing.Image)(resources.GetObject("tsb_New.Image")));
             this.tsb_New.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_New.Name = "tsb_New";
-            this.tsb_New.Size = new System.Drawing.Size(43, 24);
+            this.tsb_New.Size = new System.Drawing.Size(29, 24);
             this.tsb_New.Text = "New";
             this.tsb_New.Click += new System.EventHandler(this.tsb_New_Click);
             // 
             // tsb_Save
             // 
-            this.tsb_Save.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsb_Save.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsb_Save.Image = ((System.Drawing.Image)(resources.GetObject("tsb_Save.Image")));
             this.tsb_Save.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_Save.Name = "tsb_Save";
-            this.tsb_Save.Size = new System.Drawing.Size(44, 24);
+            this.tsb_Save.Size = new System.Drawing.Size(29, 24);
             this.tsb_Save.Text = "Save";
             this.tsb_Save.Click += new System.EventHandler(this.tsb_Save_Click);
             // 
             // tsb_Delete
             // 
-            this.tsb_Delete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsb_Delete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsb_Delete.Image = ((System.Drawing.Image)(resources.GetObject("tsb_Delete.Image")));
             this.tsb_Delete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsb_Delete.Name = "tsb_Delete";
-            this.tsb_Delete.Size = new System.Drawing.Size(57, 24);
+            this.tsb_Delete.Size = new System.Drawing.Size(29, 24);
             this.tsb_Delete.Text = "Delete";
             this.tsb_Delete.Click += new System.EventHandler(this.tsb_Delete_Click);
             // 
@@ -123,7 +124,7 @@ namespace Saobracaj.Servis
             // txt_Sifra
             // 
             this.txt_Sifra.Location = new System.Drawing.Point(168, 63);
-            this.txt_Sifra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_Sifra.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Sifra.Name = "txt_Sifra";
             this.txt_Sifra.Size = new System.Drawing.Size(132, 22);
             this.txt_Sifra.TabIndex = 157;
@@ -142,7 +143,7 @@ namespace Saobracaj.Servis
             // 
             this.combo_Automobil.FormattingEnabled = true;
             this.combo_Automobil.Location = new System.Drawing.Point(168, 103);
-            this.combo_Automobil.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.combo_Automobil.Margin = new System.Windows.Forms.Padding(4);
             this.combo_Automobil.Name = "combo_Automobil";
             this.combo_Automobil.Size = new System.Drawing.Size(339, 24);
             this.combo_Automobil.TabIndex = 159;
@@ -161,7 +162,7 @@ namespace Saobracaj.Servis
             // 
             this.combo_Prijavio.FormattingEnabled = true;
             this.combo_Prijavio.Location = new System.Drawing.Point(168, 146);
-            this.combo_Prijavio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.combo_Prijavio.Margin = new System.Windows.Forms.Padding(4);
             this.combo_Prijavio.Name = "combo_Prijavio";
             this.combo_Prijavio.Size = new System.Drawing.Size(339, 24);
             this.combo_Prijavio.TabIndex = 161;
@@ -181,7 +182,7 @@ namespace Saobracaj.Servis
             this.dt_Prijava.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dt_Prijava.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dt_Prijava.Location = new System.Drawing.Point(168, 190);
-            this.dt_Prijava.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dt_Prijava.Margin = new System.Windows.Forms.Padding(4);
             this.dt_Prijava.MinimumSize = new System.Drawing.Size(0, 30);
             this.dt_Prijava.Name = "dt_Prijava";
             this.dt_Prijava.Size = new System.Drawing.Size(265, 30);
@@ -204,7 +205,7 @@ namespace Saobracaj.Servis
             this.combo_Kvar.BeforeTouchSize = new System.Drawing.Size(339, 24);
             this.combo_Kvar.Filter = null;
             this.combo_Kvar.Location = new System.Drawing.Point(168, 239);
-            this.combo_Kvar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.combo_Kvar.Margin = new System.Windows.Forms.Padding(4);
             this.combo_Kvar.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.combo_Kvar.Name = "combo_Kvar";
             this.combo_Kvar.ScrollMetroColorTable = metroColorTable1;
@@ -225,7 +226,7 @@ namespace Saobracaj.Servis
             // 
             this.combo_Status.FormattingEnabled = true;
             this.combo_Status.Location = new System.Drawing.Point(168, 286);
-            this.combo_Status.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.combo_Status.Margin = new System.Windows.Forms.Padding(4);
             this.combo_Status.Name = "combo_Status";
             this.combo_Status.Size = new System.Drawing.Size(339, 24);
             this.combo_Status.TabIndex = 171;
@@ -244,7 +245,7 @@ namespace Saobracaj.Servis
             // 
             this.combo_Promenio.FormattingEnabled = true;
             this.combo_Promenio.Location = new System.Drawing.Point(168, 327);
-            this.combo_Promenio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.combo_Promenio.Margin = new System.Windows.Forms.Padding(4);
             this.combo_Promenio.Name = "combo_Promenio";
             this.combo_Promenio.Size = new System.Drawing.Size(339, 24);
             this.combo_Promenio.TabIndex = 173;
@@ -264,7 +265,7 @@ namespace Saobracaj.Servis
             this.dt_Promena.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dt_Promena.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dt_Promena.Location = new System.Drawing.Point(168, 361);
-            this.dt_Promena.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dt_Promena.Margin = new System.Windows.Forms.Padding(4);
             this.dt_Promena.MinimumSize = new System.Drawing.Size(0, 30);
             this.dt_Promena.Name = "dt_Promena";
             this.dt_Promena.Size = new System.Drawing.Size(265, 30);
@@ -273,7 +274,7 @@ namespace Saobracaj.Servis
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(547, 63);
+            this.label9.Location = new System.Drawing.Point(547, 82);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(77, 17);
@@ -284,7 +285,7 @@ namespace Saobracaj.Servis
             // 
             this.txt_Napomena.Lines = new string[0];
             this.txt_Napomena.Location = new System.Drawing.Point(549, 103);
-            this.txt_Napomena.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_Napomena.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Napomena.MaxLength = 32767;
             this.txt_Napomena.Multiline = true;
             this.txt_Napomena.Name = "txt_Napomena";
@@ -303,7 +304,7 @@ namespace Saobracaj.Servis
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(39, 404);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1384, 345);
@@ -323,63 +324,74 @@ namespace Saobracaj.Servis
             // 
             // btn_OtvoriSliku
             // 
+            this.btn_OtvoriSliku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btn_OtvoriSliku.ForeColor = System.Drawing.Color.White;
             this.btn_OtvoriSliku.Location = new System.Drawing.Point(968, 324);
             this.btn_OtvoriSliku.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_OtvoriSliku.Name = "btn_OtvoriSliku";
             this.btn_OtvoriSliku.Size = new System.Drawing.Size(109, 34);
             this.btn_OtvoriSliku.TabIndex = 219;
             this.btn_OtvoriSliku.Text = "Otvori";
-            this.btn_OtvoriSliku.UseVisualStyleBackColor = true;
+            this.btn_OtvoriSliku.UseVisualStyleBackColor = false;
             this.btn_OtvoriSliku.Click += new System.EventHandler(this.btn_OtvoriSliku_Click);
             // 
             // btn_Napred
             // 
+            this.btn_Napred.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btn_Napred.ForeColor = System.Drawing.Color.White;
             this.btn_Napred.Location = new System.Drawing.Point(1211, 324);
             this.btn_Napred.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Napred.Name = "btn_Napred";
             this.btn_Napred.Size = new System.Drawing.Size(83, 34);
             this.btn_Napred.TabIndex = 220;
             this.btn_Napred.Text = ">>";
-            this.btn_Napred.UseVisualStyleBackColor = true;
+            this.btn_Napred.UseVisualStyleBackColor = false;
             this.btn_Napred.Click += new System.EventHandler(this.btn_Napred_Click);
             // 
             // btn_nazad
             // 
+            this.btn_nazad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btn_nazad.ForeColor = System.Drawing.Color.White;
             this.btn_nazad.Location = new System.Drawing.Point(1115, 324);
             this.btn_nazad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_nazad.Name = "btn_nazad";
             this.btn_nazad.Size = new System.Drawing.Size(91, 34);
             this.btn_nazad.TabIndex = 221;
             this.btn_nazad.Text = "<<";
-            this.btn_nazad.UseVisualStyleBackColor = true;
+            this.btn_nazad.UseVisualStyleBackColor = false;
             this.btn_nazad.Click += new System.EventHandler(this.btn_nazad_Click);
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(1317, 324);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(109, 34);
             this.button1.TabIndex = 222;
             this.button1.Text = "Otvori folder";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txt_Vise
             // 
+            this.txt_Vise.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.txt_Vise.ForeColor = System.Drawing.Color.White;
             this.txt_Vise.Location = new System.Drawing.Point(550, 322);
-            this.txt_Vise.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txt_Vise.Margin = new System.Windows.Forms.Padding(4);
             this.txt_Vise.Name = "txt_Vise";
             this.txt_Vise.Size = new System.Drawing.Size(145, 42);
             this.txt_Vise.TabIndex = 219;
             this.txt_Vise.Text = "Promeni više";
-            this.txt_Vise.UseVisualStyleBackColor = true;
+            this.txt_Vise.UseVisualStyleBackColor = false;
             this.txt_Vise.Click += new System.EventHandler(this.txt_Vise_Click);
             // 
             // frmPrijavaKvaraAuto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.ClientSize = new System.Drawing.Size(1439, 750);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_nazad);
@@ -407,10 +419,11 @@ namespace Saobracaj.Servis
             this.Controls.Add(this.txt_Sifra);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmPrijavaKvaraAuto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmPrijavaKvaraAuto";
+            this.Text = "Prijava kvara automobili";
             this.Load += new System.EventHandler(this.frmPrijavaKvaraAuto_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

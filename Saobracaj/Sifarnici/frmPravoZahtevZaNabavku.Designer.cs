@@ -84,11 +84,11 @@ namespace Saobracaj.Sifarnici
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 86);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 70);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1035, 453);
+            this.dataGridView1.Size = new System.Drawing.Size(1035, 469);
             this.dataGridView1.TabIndex = 199;
             // 
             // frmPravoZahtevZaNabavku
@@ -105,7 +105,7 @@ namespace Saobracaj.Sifarnici
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPravoZahtevZaNabavku";
-            this.Text = "frmPravoZahtevZaNabavku";
+            this.Text = "Pravo zahtev za nabavku";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

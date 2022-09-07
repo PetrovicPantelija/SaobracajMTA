@@ -28,6 +28,7 @@ namespace Saobracaj.Dokumenta
 
         private void RefreshDataGrid()
         {
+           
             var select = "  select NaStNar as ID, NaStatus, NaDatNar, NaPartPlac, Partnerji.PaNaziv, Narocilo.NaNacinDobave, NacinDobave.NDobOpis as NacinIsporuke, TipSaobPrevoza.ID, TipSaobPrevoza.Naziv  NaOpomba1 from Narocilo " +
 " inner join Partnerji on PaSifra = NaPartPlac " +
 " inner join NacinDobave on NaNacinDobave = NDobSifra " +

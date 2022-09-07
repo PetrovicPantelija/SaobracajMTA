@@ -42,7 +42,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.chkStanice = new System.Windows.Forms.CheckBox();
             this.txtKod = new System.Windows.Forms.TextBox();
@@ -50,13 +49,12 @@
             this.txtDrzava = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
-            this.toolStrip1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolStrip1.BackgroundImage")));
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
@@ -69,7 +67,7 @@
             this.tsPoslednja});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1133, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(1133, 27);
             this.toolStrip1.TabIndex = 116;
             this.toolStrip1.Text = "Štampaj izveštaj";
             // 
@@ -79,7 +77,7 @@
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 28);
+            this.tsNew.Size = new System.Drawing.Size(29, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -89,7 +87,7 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 28);
+            this.tsSave.Size = new System.Drawing.Size(29, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -99,14 +97,14 @@
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 28);
+            this.tsDelete.Size = new System.Drawing.Size(29, 24);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tsPrvi
             // 
@@ -114,7 +112,7 @@
             this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
             this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(29, 28);
+            this.tsPrvi.Size = new System.Drawing.Size(29, 24);
             this.tsPrvi.Text = "toolStripButton1";
             this.tsPrvi.Click += new System.EventHandler(this.tsPrvi_Click);
             // 
@@ -124,7 +122,7 @@
             this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
             this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(29, 28);
+            this.tsNazad.Size = new System.Drawing.Size(29, 24);
             this.tsNazad.Text = "toolStripButton1";
             this.tsNazad.Click += new System.EventHandler(this.tsNazad_Click);
             // 
@@ -134,7 +132,7 @@
             this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
             this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(29, 28);
+            this.tsNapred.Size = new System.Drawing.Size(29, 24);
             this.tsNapred.Text = "toolStripButton1";
             // 
             // tsPoslednja
@@ -143,7 +141,7 @@
             this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
             this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(29, 28);
+            this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
             this.tsPoslednja.Text = "toolStripButton1";
             // 
             // txtOpis
@@ -188,16 +186,6 @@
             this.label1.TabIndex = 141;
             this.label1.Text = "Šifra:";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(904, 50);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(191, 62);
-            this.pictureBox1.TabIndex = 146;
-            this.pictureBox1.TabStop = false;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -217,12 +205,12 @@
             // chkStanice
             // 
             this.chkStanice.AutoSize = true;
-            this.chkStanice.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkStanice.ForeColor = System.Drawing.Color.White;
+            this.chkStanice.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkStanice.ForeColor = System.Drawing.Color.Black;
             this.chkStanice.Location = new System.Drawing.Point(92, 116);
             this.chkStanice.Margin = new System.Windows.Forms.Padding(4);
             this.chkStanice.Name = "chkStanice";
-            this.chkStanice.Size = new System.Drawing.Size(102, 23);
+            this.chkStanice.Size = new System.Drawing.Size(92, 23);
             this.chkStanice.TabIndex = 196;
             this.chkStanice.Text = "Granična";
             this.chkStanice.UseVisualStyleBackColor = true;
@@ -281,7 +269,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.chkStanice);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtOpis);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSifra);
@@ -294,7 +281,6 @@
             this.Load += new System.EventHandler(this.frmStanice_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -316,7 +302,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtSifra;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.CheckBox chkStanice;
         private System.Windows.Forms.TextBox txtKod;

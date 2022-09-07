@@ -563,5 +563,10 @@ namespace Saobracaj.Dokumenta
             frmEvidencijaKvarova kvar = new frmEvidencijaKvarova();
             kvar.Show();
         }
+
+        private void txtCistocaUnutra_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

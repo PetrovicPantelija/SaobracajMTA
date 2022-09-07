@@ -416,25 +416,35 @@ namespace Saobracaj.Dokumenta
             // button1
             // 
             this.button1.AccessibleName = "Button";
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(967, 245);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(143, 34);
+            this.button1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button1.Style.ForeColor = System.Drawing.Color.White;
             this.button1.TabIndex = 223;
             this.button1.Text = "Unesi";
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // sfButton1
             // 
             this.sfButton1.AccessibleName = "Button";
+            this.sfButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.sfButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.sfButton1.ForeColor = System.Drawing.Color.White;
             this.sfButton1.Location = new System.Drawing.Point(1268, 245);
             this.sfButton1.Margin = new System.Windows.Forms.Padding(4);
             this.sfButton1.Name = "sfButton1";
             this.sfButton1.Size = new System.Drawing.Size(143, 34);
+            this.sfButton1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.sfButton1.Style.ForeColor = System.Drawing.Color.White;
             this.sfButton1.TabIndex = 224;
             this.sfButton1.Text = "Izbaci";
+            this.sfButton1.UseVisualStyleBackColor = false;
             this.sfButton1.Click += new System.EventHandler(this.sfButton1_Click);
             // 
             // txtNapomenaStavka
@@ -459,13 +469,18 @@ namespace Saobracaj.Dokumenta
             // sfButton2
             // 
             this.sfButton2.AccessibleName = "Button";
+            this.sfButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.sfButton2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.sfButton2.ForeColor = System.Drawing.Color.White;
             this.sfButton2.Location = new System.Drawing.Point(1117, 245);
             this.sfButton2.Margin = new System.Windows.Forms.Padding(4);
             this.sfButton2.Name = "sfButton2";
             this.sfButton2.Size = new System.Drawing.Size(143, 34);
+            this.sfButton2.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.sfButton2.Style.ForeColor = System.Drawing.Color.White;
             this.sfButton2.TabIndex = 227;
             this.sfButton2.Text = "Promeni";
+            this.sfButton2.UseVisualStyleBackColor = false;
             this.sfButton2.Click += new System.EventHandler(this.sfButton2_Click);
             // 
             // cboTipDokumenta
@@ -512,13 +527,18 @@ namespace Saobracaj.Dokumenta
             // sfButton3
             // 
             this.sfButton3.AccessibleName = "Button";
+            this.sfButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.sfButton3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.sfButton3.ForeColor = System.Drawing.Color.White;
             this.sfButton3.Location = new System.Drawing.Point(345, 64);
             this.sfButton3.Margin = new System.Windows.Forms.Padding(4);
             this.sfButton3.Name = "sfButton3";
             this.sfButton3.Size = new System.Drawing.Size(77, 34);
+            this.sfButton3.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.sfButton3.Style.ForeColor = System.Drawing.Color.White;
             this.sfButton3.TabIndex = 232;
             this.sfButton3.Text = "?";
+            this.sfButton3.UseVisualStyleBackColor = false;
             this.sfButton3.Click += new System.EventHandler(this.sfButton3_Click);
             // 
             // frmKontrola

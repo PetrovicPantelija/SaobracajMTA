@@ -1382,5 +1382,76 @@ namespace Saobracaj
             Dokumenta.frmDogovoriPregled dogpre = new Dokumenta.frmDogovoriPregled();
             dogpre.Show();
         }
+
+        private void ribbonControlAdv1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton34_Click_1(object sender, EventArgs e)
+        {
+            Uvoz.Brodovi brod = new Uvoz.Brodovi();
+            brod.Show();
+        }
+
+        private void toolStripButton104_Click_1(object sender, EventArgs e)
+        {
+            Uvoz.Carinarnice car = new Uvoz.Carinarnice();
+            car.Show();
+        }
+
+        private void toolStripButton105_Click_1(object sender, EventArgs e)
+        {
+            Uvoz.Nalogodavci nal = new Uvoz.Nalogodavci();
+            nal.Show();
+        }
+
+        private void toolStripButton106_Click_1(object sender, EventArgs e)
+        {
+            Uvoz.Uvoz uv = new Uvoz.Uvoz();
+            uv.Show();
+        }
+
+        private void toolStripButton107_Click_1(object sender, EventArgs e)
+        {
+            Uvoz.UvozKonacna uvk = new Uvoz.UvozKonacna();
+            uvk.Show();
+        }
+
+        private void toolStripButton180_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmSerijeKola uvk = new Uvoz.frmSerijeKola();
+            uvk.Show();
+        }
+
+        private void toolStripButton181_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmKontejnerskiTerminali kt = new Uvoz.frmKontejnerskiTerminali();
+            kt.Show();
+        }
+
+        private void toolStripButton182_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmVrstaRobeHS vrHS = new Uvoz.frmVrstaRobeHS();
+            vrHS.Show();
+        }
+
+        private void toolStripButton182_Click_1(object sender, EventArgs e)
+        {
+            Uvoz.frmVrstaRobeHS vrHS = new Uvoz.frmVrstaRobeHS();
+            vrHS.Show();
+        }
+
+        private void toolStripButton183_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmVrstaRobeADR vrADR = new Uvoz.frmVrstaRobeADR();
+            vrADR.Show();
+        }
+
+        private void toolStripButton184_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmVrstaCarinskogPostupka vrCP = new Uvoz.frmVrstaCarinskogPostupka();
+            vrCP.Show();
+        }
     }
 }

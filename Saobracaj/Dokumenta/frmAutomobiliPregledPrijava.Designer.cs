@@ -491,46 +491,54 @@ namespace Saobracaj.Dokumenta
             // 
             // btn_OtvoriSliku
             // 
+            this.btn_OtvoriSliku.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btn_OtvoriSliku.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_OtvoriSliku.Location = new System.Drawing.Point(1703, 28);
             this.btn_OtvoriSliku.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_OtvoriSliku.Name = "btn_OtvoriSliku";
             this.btn_OtvoriSliku.Size = new System.Drawing.Size(109, 34);
             this.btn_OtvoriSliku.TabIndex = 218;
             this.btn_OtvoriSliku.Text = "Otvori";
-            this.btn_OtvoriSliku.UseVisualStyleBackColor = true;
+            this.btn_OtvoriSliku.UseVisualStyleBackColor = false;
             this.btn_OtvoriSliku.Click += new System.EventHandler(this.btn_OtvoriSliku_Click);
             // 
             // btn_nazad
             // 
+            this.btn_nazad.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btn_nazad.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_nazad.Location = new System.Drawing.Point(1703, 124);
             this.btn_nazad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_nazad.Name = "btn_nazad";
             this.btn_nazad.Size = new System.Drawing.Size(109, 34);
             this.btn_nazad.TabIndex = 218;
             this.btn_nazad.Text = "<<";
-            this.btn_nazad.UseVisualStyleBackColor = true;
+            this.btn_nazad.UseVisualStyleBackColor = false;
             this.btn_nazad.Click += new System.EventHandler(this.btn_nazad_Click);
             // 
             // btn_Napred
             // 
+            this.btn_Napred.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btn_Napred.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_Napred.Location = new System.Drawing.Point(1703, 73);
             this.btn_Napred.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Napred.Name = "btn_Napred";
             this.btn_Napred.Size = new System.Drawing.Size(109, 34);
             this.btn_Napred.TabIndex = 218;
             this.btn_Napred.Text = ">>";
-            this.btn_Napred.UseVisualStyleBackColor = true;
+            this.btn_Napred.UseVisualStyleBackColor = false;
             this.btn_Napred.Click += new System.EventHandler(this.btn_Napred_Click);
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button1.Location = new System.Drawing.Point(1703, 218);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(109, 34);
             this.button1.TabIndex = 218;
             this.button1.Text = "Otvori folder";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmAutomobiliPregledPrijava

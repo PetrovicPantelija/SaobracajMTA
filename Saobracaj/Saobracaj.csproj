@@ -2609,6 +2609,90 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TestiranjeDataSet9.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\Brodovi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\Brodovi.designer.cs">
+      <DependentUpon>Brodovi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\Carinarnice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\Carinarnice.designer.cs">
+      <DependentUpon>Carinarnice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\frmKontejnerskiTerminali.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmKontejnerskiTerminali.Designer.cs">
+      <DependentUpon>frmKontejnerskiTerminali.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\frmSerijeKola.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmSerijeKola.Designer.cs">
+      <DependentUpon>frmSerijeKola.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\frmuvKvalitetKontejnera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmuvKvalitetKontejnera.Designer.cs">
+      <DependentUpon>frmuvKvalitetKontejnera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\frmVrstaCarinskogPostupka.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmVrstaCarinskogPostupka.Designer.cs">
+      <DependentUpon>frmVrstaCarinskogPostupka.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\frmVrstaRobeADR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmVrstaRobeADR.Designer.cs">
+      <DependentUpon>frmVrstaRobeADR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\frmVrstaRobeHS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmVrstaRobeHS.Designer.cs">
+      <DependentUpon>frmVrstaRobeHS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\fruvNacinPakovanja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\fruvNacinPakovanja.Designer.cs">
+      <DependentUpon>fruvNacinPakovanja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\InsertBrodovi.cs" />
+    <Compile Include="Uvoz\InsertCarinarnice.cs" />
+    <Compile Include="Uvoz\InsertKontejnerskiTerminali.cs" />
+    <Compile Include="Uvoz\InsertNalogodavci.cs" />
+    <Compile Include="Uvoz\InsertSerijeKola.cs" />
+    <Compile Include="Uvoz\InsertuvKvalitetKontejnera.cs" />
+    <Compile Include="Uvoz\InsertuvNacinPakovanja.cs" />
+    <Compile Include="Uvoz\InsertUvoz.cs" />
+    <Compile Include="Uvoz\InsertUvozKonacna.cs" />
+    <Compile Include="Uvoz\InsertVrstaCarinskogPostupka.cs" />
+    <Compile Include="Uvoz\insertVrstaRobeADR.cs" />
+    <Compile Include="Uvoz\InsertVrstaRobeHS.cs" />
+    <Compile Include="Uvoz\Nalogodavci.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\Nalogodavci.designer.cs">
+      <DependentUpon>Nalogodavci.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\Uvoz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\Uvoz.designer.cs">
+      <DependentUpon>Uvoz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\UvozKonacna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\UvozKonacna.designer.cs">
+      <DependentUpon>UvozKonacna.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Administracija\frmDodeliGrupu.resx">
       <DependentUpon>frmDodeliGrupu.cs</DependentUpon>
     </EmbeddedResource>
@@ -3546,6 +3630,42 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TrackModal\Sifarnici\PrvaProbaForma.resx">
       <DependentUpon>PrvaProbaForma.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\Brodovi.resx">
+      <DependentUpon>Brodovi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\Carinarnice.resx">
+      <DependentUpon>Carinarnice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmKontejnerskiTerminali.resx">
+      <DependentUpon>frmKontejnerskiTerminali.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmSerijeKola.resx">
+      <DependentUpon>frmSerijeKola.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmuvKvalitetKontejnera.resx">
+      <DependentUpon>frmuvKvalitetKontejnera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmVrstaCarinskogPostupka.resx">
+      <DependentUpon>frmVrstaCarinskogPostupka.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmVrstaRobeADR.resx">
+      <DependentUpon>frmVrstaRobeADR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmVrstaRobeHS.resx">
+      <DependentUpon>frmVrstaRobeHS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\fruvNacinPakovanja.resx">
+      <DependentUpon>fruvNacinPakovanja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\Nalogodavci.resx">
+      <DependentUpon>Nalogodavci.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\Uvoz.resx">
+      <DependentUpon>Uvoz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\UvozKonacna.resx">
+      <DependentUpon>UvozKonacna.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="NedraDataSet.xsc">
       <DependentUpon>NedraDataSet.xsd</DependentUpon>

@@ -109,7 +109,7 @@
             this.btnStampa.Location = new System.Drawing.Point(533, 15);
             this.btnStampa.Margin = new System.Windows.Forms.Padding(4);
             this.btnStampa.Name = "btnStampa";
-            this.btnStampa.Size = new System.Drawing.Size(200, 32);
+            this.btnStampa.Size = new System.Drawing.Size(196, 46);
             this.btnStampa.TabIndex = 90;
             this.btnStampa.Text = "Štampaj";
             this.btnStampa.UseVisualStyleBackColor = false;
@@ -121,10 +121,10 @@
             reportDataSource1.Value = this.SelectSumVremeAktivnostiBindingSource;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.rptUkupnoZaPeriod.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(16, 93);
+            this.reportViewer1.Location = new System.Drawing.Point(13, 93);
             this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(1003, 254);
+            this.reportViewer1.Size = new System.Drawing.Size(1042, 349);
             this.reportViewer1.TabIndex = 91;
             // 
             // SelectSumVremeAktivnostiTableAdapter
@@ -136,7 +136,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1036, 341);
+            this.ClientSize = new System.Drawing.Size(1068, 455);
             this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.btnStampa);
             this.Controls.Add(this.label17);
@@ -146,7 +146,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmZaposleniUkupno";
-            this.Text = "frmZaposleniUkupno";
+            this.Text = "Zaposleni ukupno";
             this.Load += new System.EventHandler(this.frmZaposleniUkupno_Load);
             ((System.ComponentModel.ISupportInitialize)(this.SelectSumVremeAktivnostiBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TESTIRANJEDataSet4)).EndInit();

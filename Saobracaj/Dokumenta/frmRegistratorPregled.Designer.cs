@@ -35,8 +35,8 @@
             this.dataGridView1 = new MetroFramework.Controls.MetroGrid();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.txtZapis = new MetroFramework.Controls.MetroTextBox();
-            this.metroLink1 = new MetroFramework.Controls.MetroLink();
             this.metroButton2 = new MetroFramework.Controls.MetroButton();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,7 +91,7 @@
             // 
             // metroButton1
             // 
-            this.metroButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
+            this.metroButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.metroButton1.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.metroButton1.Location = new System.Drawing.Point(16, 54);
             this.metroButton1.Margin = new System.Windows.Forms.Padding(4);
@@ -116,19 +116,10 @@
             this.txtZapis.TabIndex = 2;
             this.txtZapis.UseSelectable = true;
             // 
-            // metroLink1
-            // 
-            this.metroLink1.Location = new System.Drawing.Point(296, 38);
-            this.metroLink1.Margin = new System.Windows.Forms.Padding(4);
-            this.metroLink1.Name = "metroLink1";
-            this.metroLink1.Size = new System.Drawing.Size(80, 28);
-            this.metroLink1.TabIndex = 3;
-            this.metroLink1.Text = "Zapis:";
-            this.metroLink1.UseSelectable = true;
-            // 
             // metroButton2
             // 
-            this.metroButton2.Location = new System.Drawing.Point(648, 54);
+            this.metroButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.metroButton2.Location = new System.Drawing.Point(530, 70);
             this.metroButton2.Margin = new System.Windows.Forms.Padding(4);
             this.metroButton2.Name = "metroButton2";
             this.metroButton2.Size = new System.Drawing.Size(215, 32);
@@ -137,14 +128,25 @@
             this.metroButton2.UseSelectable = true;
             this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(292, 47);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(50, 23);
+            this.label2.TabIndex = 54;
+            this.label2.Text = "Zapis";
+            // 
             // frmRegistratorPregled
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(901, 282);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.metroButton2);
-            this.Controls.Add(this.metroLink1);
             this.Controls.Add(this.txtZapis);
             this.Controls.Add(this.metroButton1);
             this.Controls.Add(this.dataGridView1);
@@ -154,6 +156,7 @@
             this.Text = "Pregled delovodna knjiga";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -162,7 +165,7 @@
         private MetroFramework.Controls.MetroGrid dataGridView1;
         private MetroFramework.Controls.MetroButton metroButton1;
         private MetroFramework.Controls.MetroTextBox txtZapis;
-        private MetroFramework.Controls.MetroLink metroLink1;
         private MetroFramework.Controls.MetroButton metroButton2;
+        private System.Windows.Forms.Label label2;
     }
 }

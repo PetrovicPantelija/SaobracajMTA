@@ -55,7 +55,7 @@
             // 
             // button1
             // 
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
@@ -65,7 +65,7 @@
             this.button1.Size = new System.Drawing.Size(238, 35);
             this.button1.TabIndex = 261;
             this.button1.Text = "Pozovi podatke";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // dtpDatumDo
@@ -98,7 +98,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label1.Location = new System.Drawing.Point(66, 11);
+            this.label1.Location = new System.Drawing.Point(23, 11);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(129, 18);
@@ -112,7 +112,7 @@
             this.dtpDatumOd.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatumOd.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpDatumOd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDatumOd.Location = new System.Drawing.Point(260, 11);
+            this.dtpDatumOd.Location = new System.Drawing.Point(160, 13);
             this.dtpDatumOd.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDatumOd.Name = "dtpDatumOd";
             this.dtpDatumOd.Size = new System.Drawing.Size(223, 26);

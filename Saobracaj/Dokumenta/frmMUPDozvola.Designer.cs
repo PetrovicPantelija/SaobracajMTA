@@ -171,6 +171,7 @@
             // 
             // toolStripButton2
             // 
+            this.toolStripButton2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
@@ -180,6 +181,7 @@
             // toolStripButton1
             // 
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
@@ -399,24 +401,28 @@
             // 
             // btnPosaljiMail
             // 
+            this.btnPosaljiMail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnPosaljiMail.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnPosaljiMail.Location = new System.Drawing.Point(424, 202);
             this.btnPosaljiMail.Margin = new System.Windows.Forms.Padding(4);
             this.btnPosaljiMail.Name = "btnPosaljiMail";
             this.btnPosaljiMail.Size = new System.Drawing.Size(204, 30);
             this.btnPosaljiMail.TabIndex = 201;
             this.btnPosaljiMail.Text = "Pošalji mail";
-            this.btnPosaljiMail.UseVisualStyleBackColor = true;
+            this.btnPosaljiMail.UseVisualStyleBackColor = false;
             this.btnPosaljiMail.Click += new System.EventHandler(this.btnPosaljiMail_Click);
             // 
             // btnStampa
             // 
+            this.btnStampa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnStampa.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnStampa.Location = new System.Drawing.Point(39, 309);
             this.btnStampa.Margin = new System.Windows.Forms.Padding(4);
             this.btnStampa.Name = "btnStampa";
             this.btnStampa.Size = new System.Drawing.Size(259, 28);
             this.btnStampa.TabIndex = 202;
             this.btnStampa.Text = "Štampaj";
-            this.btnStampa.UseVisualStyleBackColor = true;
+            this.btnStampa.UseVisualStyleBackColor = false;
             this.btnStampa.Click += new System.EventHandler(this.btnStampa_Click);
             // 
             // cboLokacija

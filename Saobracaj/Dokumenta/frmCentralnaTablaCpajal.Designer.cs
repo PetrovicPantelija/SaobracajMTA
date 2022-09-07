@@ -291,6 +291,7 @@ namespace Saobracaj.Dokumenta
             // 
             // otvoriNajavuToolStripMenuItem
             // 
+            this.otvoriNajavuToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.otvoriNajavuToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("otvoriNajavuToolStripMenuItem.Image")));
             this.otvoriNajavuToolStripMenuItem.Name = "otvoriNajavuToolStripMenuItem";
             this.otvoriNajavuToolStripMenuItem.Size = new System.Drawing.Size(134, 24);
@@ -299,6 +300,7 @@ namespace Saobracaj.Dokumenta
             // 
             // otvoriRNToolStripMenuItem
             // 
+            this.otvoriRNToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.otvoriRNToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("otvoriRNToolStripMenuItem.Image")));
             this.otvoriRNToolStripMenuItem.Name = "otvoriRNToolStripMenuItem";
             this.otvoriRNToolStripMenuItem.Size = new System.Drawing.Size(108, 24);
@@ -307,6 +309,7 @@ namespace Saobracaj.Dokumenta
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.otvoriNajavuToolStripMenuItem,
@@ -329,7 +332,7 @@ namespace Saobracaj.Dokumenta
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmCentralnaTablaCpajal";
-            this.Text = "Centralna tabla Čpajak";
+            this.Text = "Centralna tabla ";
             this.Load += new System.EventHandler(this.frmCentralnaTablaCpajal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();

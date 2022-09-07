@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCIR));
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.btnManipulacija = new System.Windows.Forms.ToolStrip();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
@@ -132,7 +132,7 @@
             this.toolStripLabel2});
             this.btnManipulacija.Location = new System.Drawing.Point(0, 0);
             this.btnManipulacija.Name = "btnManipulacija";
-            this.btnManipulacija.Size = new System.Drawing.Size(1433, 27);
+            this.btnManipulacija.Size = new System.Drawing.Size(1433, 31);
             this.btnManipulacija.TabIndex = 115;
             this.btnManipulacija.Text = "Manipulacije kontejnerom";
             // 
@@ -142,7 +142,7 @@
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
+            this.tsNew.Size = new System.Drawing.Size(29, 28);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -152,7 +152,7 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(29, 28);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -162,14 +162,14 @@
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsDelete.Size = new System.Drawing.Size(29, 28);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click_1);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // tsPrvi
             // 
@@ -177,7 +177,7 @@
             this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
             this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(29, 24);
+            this.tsPrvi.Size = new System.Drawing.Size(29, 28);
             this.tsPrvi.Text = "toolStripButton1";
             // 
             // tsNazad
@@ -186,7 +186,7 @@
             this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
             this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(29, 24);
+            this.tsNazad.Size = new System.Drawing.Size(29, 28);
             this.tsNazad.Text = "toolStripButton1";
             // 
             // tsNapred
@@ -195,7 +195,7 @@
             this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
             this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(29, 24);
+            this.tsNapred.Size = new System.Drawing.Size(29, 28);
             this.tsNapred.Text = "toolStripButton1";
             // 
             // tsPoslednja
@@ -204,7 +204,7 @@
             this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
             this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
+            this.tsPoslednja.Size = new System.Drawing.Size(29, 28);
             this.tsPoslednja.Text = "toolStripButton1";
             // 
             // toolStripLabel1
@@ -213,7 +213,7 @@
             this.toolStripLabel1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.toolStripLabel1.ForeColor = System.Drawing.Color.White;
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(101, 24);
+            this.toolStripLabel1.Size = new System.Drawing.Size(101, 28);
             this.toolStripLabel1.Text = "Štampa CIR";
             this.toolStripLabel1.Click += new System.EventHandler(this.toolStripLabel1_Click);
             // 
@@ -223,7 +223,7 @@
             this.toolStripLabel2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.toolStripLabel2.ForeColor = System.Drawing.Color.White;
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(138, 24);
+            this.toolStripLabel2.Size = new System.Drawing.Size(138, 28);
             this.toolStripLabel2.Text = "Pozovi postojeći";
             this.toolStripLabel2.Click += new System.EventHandler(this.toolStripLabel2_Click);
             // 
@@ -239,12 +239,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(16, 50);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 19);
+            this.label1.Size = new System.Drawing.Size(47, 19);
             this.label1.TabIndex = 181;
             this.label1.Text = "Šifra:";
             // 
@@ -268,12 +268,12 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label22.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label22.ForeColor = System.Drawing.Color.Black;
             this.label22.Location = new System.Drawing.Point(189, 50);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(74, 19);
+            this.label22.Size = new System.Drawing.Size(69, 19);
             this.label22.TabIndex = 216;
             this.label22.Text = "Veličina:";
             this.label22.Visible = false;
@@ -283,13 +283,13 @@
             this.chkMaterijalCelik.AutoSize = true;
             this.chkMaterijalCelik.Checked = true;
             this.chkMaterijalCelik.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkMaterijalCelik.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkMaterijalCelik.ForeColor = System.Drawing.Color.White;
+            this.chkMaterijalCelik.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkMaterijalCelik.ForeColor = System.Drawing.Color.Black;
             this.chkMaterijalCelik.Location = new System.Drawing.Point(16, 353);
             this.chkMaterijalCelik.Margin = new System.Windows.Forms.Padding(4);
             this.chkMaterijalCelik.Name = "chkMaterijalCelik";
             this.chkMaterijalCelik.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkMaterijalCelik.Size = new System.Drawing.Size(69, 23);
+            this.chkMaterijalCelik.Size = new System.Drawing.Size(68, 23);
             this.chkMaterijalCelik.TabIndex = 238;
             this.chkMaterijalCelik.Text = "Čelik";
             this.chkMaterijalCelik.UseVisualStyleBackColor = true;
@@ -298,12 +298,12 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label11.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label11.ForeColor = System.Drawing.Color.Black;
             this.label11.Location = new System.Drawing.Point(16, 111);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(127, 19);
+            this.label11.Size = new System.Drawing.Size(111, 19);
             this.label11.TabIndex = 240;
             this.label11.Text = "Tip kontejnera:";
             // 
@@ -321,13 +321,13 @@
             // chkAlumini
             // 
             this.chkAlumini.AutoSize = true;
-            this.chkAlumini.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkAlumini.ForeColor = System.Drawing.Color.White;
+            this.chkAlumini.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkAlumini.ForeColor = System.Drawing.Color.Black;
             this.chkAlumini.Location = new System.Drawing.Point(16, 385);
             this.chkAlumini.Margin = new System.Windows.Forms.Padding(4);
             this.chkAlumini.Name = "chkAlumini";
             this.chkAlumini.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkAlumini.Size = new System.Drawing.Size(88, 23);
+            this.chkAlumini.Size = new System.Drawing.Size(86, 23);
             this.chkAlumini.TabIndex = 241;
             this.chkAlumini.Text = "Alumini";
             this.chkAlumini.UseVisualStyleBackColor = true;
@@ -336,13 +336,13 @@
             // chkincoming
             // 
             this.chkincoming.AutoSize = true;
-            this.chkincoming.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkincoming.ForeColor = System.Drawing.Color.White;
+            this.chkincoming.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkincoming.ForeColor = System.Drawing.Color.Black;
             this.chkincoming.Location = new System.Drawing.Point(293, 153);
             this.chkincoming.Margin = new System.Windows.Forms.Padding(4);
             this.chkincoming.Name = "chkincoming";
             this.chkincoming.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkincoming.Size = new System.Drawing.Size(99, 23);
+            this.chkincoming.Size = new System.Drawing.Size(90, 23);
             this.chkincoming.TabIndex = 242;
             this.chkincoming.Text = "Otprema";
             this.chkincoming.UseVisualStyleBackColor = true;
@@ -351,13 +351,13 @@
             // chkPun
             // 
             this.chkPun.AutoSize = true;
-            this.chkPun.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkPun.ForeColor = System.Drawing.Color.White;
+            this.chkPun.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkPun.ForeColor = System.Drawing.Color.Black;
             this.chkPun.Location = new System.Drawing.Point(16, 297);
             this.chkPun.Margin = new System.Windows.Forms.Padding(4);
             this.chkPun.Name = "chkPun";
             this.chkPun.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkPun.Size = new System.Drawing.Size(62, 23);
+            this.chkPun.Size = new System.Drawing.Size(57, 23);
             this.chkPun.TabIndex = 243;
             this.chkPun.Text = "Pun";
             this.chkPun.UseVisualStyleBackColor = true;
@@ -366,12 +366,12 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label25.ForeColor = System.Drawing.Color.White;
+            this.label25.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label25.ForeColor = System.Drawing.Color.Black;
             this.label25.Location = new System.Drawing.Point(12, 482);
             this.label25.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(49, 19);
+            this.label25.Size = new System.Drawing.Size(42, 19);
             this.label25.TabIndex = 245;
             this.label25.Text = "Tara:";
             // 
@@ -395,12 +395,12 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(16, 608);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(136, 19);
+            this.label3.Size = new System.Drawing.Size(121, 19);
             this.label3.TabIndex = 247;
             this.label3.Text = "Broj kontejnera:";
             // 
@@ -417,13 +417,13 @@
             // chkPlomba1
             // 
             this.chkPlomba1.AutoSize = true;
-            this.chkPlomba1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkPlomba1.ForeColor = System.Drawing.Color.White;
+            this.chkPlomba1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkPlomba1.ForeColor = System.Drawing.Color.Black;
             this.chkPlomba1.Location = new System.Drawing.Point(15, 673);
             this.chkPlomba1.Margin = new System.Windows.Forms.Padding(4);
             this.chkPlomba1.Name = "chkPlomba1";
             this.chkPlomba1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkPlomba1.Size = new System.Drawing.Size(212, 23);
+            this.chkPlomba1.Size = new System.Drawing.Size(188, 23);
             this.chkPlomba1.TabIndex = 248;
             this.chkPlomba1.Text = "Plomba 1 je neispravna";
             this.chkPlomba1.UseVisualStyleBackColor = true;
@@ -431,13 +431,13 @@
             // chkPlomba2
             // 
             this.chkPlomba2.AutoSize = true;
-            this.chkPlomba2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkPlomba2.ForeColor = System.Drawing.Color.White;
+            this.chkPlomba2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkPlomba2.ForeColor = System.Drawing.Color.Black;
             this.chkPlomba2.Location = new System.Drawing.Point(16, 745);
             this.chkPlomba2.Margin = new System.Windows.Forms.Padding(4);
             this.chkPlomba2.Name = "chkPlomba2";
             this.chkPlomba2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkPlomba2.Size = new System.Drawing.Size(212, 23);
+            this.chkPlomba2.Size = new System.Drawing.Size(188, 23);
             this.chkPlomba2.TabIndex = 249;
             this.chkPlomba2.Text = "Plomba 2 je neispravna";
             this.chkPlomba2.UseVisualStyleBackColor = true;
@@ -445,12 +445,12 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(229, 185);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(64, 19);
+            this.label6.Size = new System.Drawing.Size(55, 19);
             this.label6.TabIndex = 253;
             this.label6.Text = "Vagon:";
             // 
@@ -467,12 +467,12 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(229, 254);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 19);
+            this.label2.Size = new System.Drawing.Size(69, 19);
             this.label2.TabIndex = 255;
             this.label2.Text = "Truck in:";
             // 
@@ -489,13 +489,13 @@
             // chkDemaged
             // 
             this.chkDemaged.AutoSize = true;
-            this.chkDemaged.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkDemaged.ForeColor = System.Drawing.Color.White;
+            this.chkDemaged.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkDemaged.ForeColor = System.Drawing.Color.Black;
             this.chkDemaged.Location = new System.Drawing.Point(293, 337);
             this.chkDemaged.Margin = new System.Windows.Forms.Padding(4);
             this.chkDemaged.Name = "chkDemaged";
             this.chkDemaged.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkDemaged.Size = new System.Drawing.Size(96, 23);
+            this.chkDemaged.Size = new System.Drawing.Size(87, 23);
             this.chkDemaged.TabIndex = 256;
             this.chkDemaged.Text = "Oštećen";
             this.chkDemaged.UseVisualStyleBackColor = true;
@@ -506,13 +506,13 @@
             this.chkIspravan.AutoSize = true;
             this.chkIspravan.Checked = true;
             this.chkIspravan.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkIspravan.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkIspravan.ForeColor = System.Drawing.Color.White;
+            this.chkIspravan.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkIspravan.ForeColor = System.Drawing.Color.Black;
             this.chkIspravan.Location = new System.Drawing.Point(293, 369);
             this.chkIspravan.Margin = new System.Windows.Forms.Padding(4);
             this.chkIspravan.Name = "chkIspravan";
             this.chkIspravan.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkIspravan.Size = new System.Drawing.Size(98, 23);
+            this.chkIspravan.Size = new System.Drawing.Size(86, 23);
             this.chkIspravan.TabIndex = 257;
             this.chkIspravan.Text = "Ispravan";
             this.chkIspravan.UseVisualStyleBackColor = true;
@@ -521,13 +521,13 @@
             // chkPrevoz
             // 
             this.chkPrevoz.AutoSize = true;
-            this.chkPrevoz.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkPrevoz.ForeColor = System.Drawing.Color.White;
+            this.chkPrevoz.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkPrevoz.ForeColor = System.Drawing.Color.Black;
             this.chkPrevoz.Location = new System.Drawing.Point(293, 422);
             this.chkPrevoz.Margin = new System.Windows.Forms.Padding(4);
             this.chkPrevoz.Name = "chkPrevoz";
             this.chkPrevoz.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkPrevoz.Size = new System.Drawing.Size(229, 23);
+            this.chkPrevoz.Size = new System.Drawing.Size(195, 23);
             this.chkPrevoz.TabIndex = 258;
             this.chkPrevoz.Text = "Transportno nesposoban";
             this.chkPrevoz.UseVisualStyleBackColor = true;
@@ -535,12 +535,12 @@
             // Containerresponsible
             // 
             this.Containerresponsible.AutoSize = true;
-            this.Containerresponsible.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.Containerresponsible.ForeColor = System.Drawing.Color.White;
+            this.Containerresponsible.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Containerresponsible.ForeColor = System.Drawing.Color.Black;
             this.Containerresponsible.Location = new System.Drawing.Point(259, 482);
             this.Containerresponsible.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.Containerresponsible.Name = "Containerresponsible";
-            this.Containerresponsible.Size = new System.Drawing.Size(98, 19);
+            this.Containerresponsible.Size = new System.Drawing.Size(87, 19);
             this.Containerresponsible.TabIndex = 260;
             this.Containerresponsible.Text = "Napomene:";
             // 
@@ -557,12 +557,12 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(264, 608);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(89, 19);
+            this.label4.Size = new System.Drawing.Size(80, 19);
             this.label4.TabIndex = 262;
             this.label4.Text = "Primedbe:";
             // 
@@ -579,12 +579,12 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label5.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(489, 53);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 19);
+            this.label5.Size = new System.Drawing.Size(62, 19);
             this.label5.TabIndex = 264;
             this.label5.Text = "Primio:";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -602,12 +602,12 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(485, 122);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(94, 19);
+            this.label7.Size = new System.Drawing.Size(83, 19);
             this.label7.TabIndex = 266;
             this.label7.Text = "Pregledao:";
             // 
@@ -624,12 +624,12 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(489, 213);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(71, 19);
+            this.label8.Size = new System.Drawing.Size(62, 19);
             this.label8.TabIndex = 268;
             this.label8.Text = "Predao:";
             // 
@@ -646,13 +646,13 @@
             // chkPrijem
             // 
             this.chkPrijem.AutoSize = true;
-            this.chkPrijem.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkPrijem.ForeColor = System.Drawing.Color.White;
+            this.chkPrijem.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkPrijem.ForeColor = System.Drawing.Color.Black;
             this.chkPrijem.Location = new System.Drawing.Point(296, 121);
             this.chkPrijem.Margin = new System.Windows.Forms.Padding(4);
             this.chkPrijem.Name = "chkPrijem";
             this.chkPrijem.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkPrijem.Size = new System.Drawing.Size(80, 23);
+            this.chkPrijem.Size = new System.Drawing.Size(78, 23);
             this.chkPrijem.TabIndex = 269;
             this.chkPrijem.Text = "Prijem";
             this.chkPrijem.UseVisualStyleBackColor = true;
@@ -671,7 +671,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label9.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(292, 50);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
@@ -698,12 +698,12 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label16.ForeColor = System.Drawing.Color.White;
+            this.label16.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label16.ForeColor = System.Drawing.Color.Black;
             this.label16.Location = new System.Drawing.Point(323, 746);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(198, 19);
+            this.label16.Size = new System.Drawing.Size(177, 19);
             this.label16.TabIndex = 251;
             this.label16.Text = "Datum prijema/otpreme:";
             // 
@@ -725,12 +725,12 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label10.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label10.ForeColor = System.Drawing.Color.Black;
             this.label10.Location = new System.Drawing.Point(767, 50);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(93, 19);
+            this.label10.Size = new System.Drawing.Size(82, 19);
             this.label10.TabIndex = 274;
             this.label10.Text = "Oštećenja:";
             // 
@@ -746,7 +746,7 @@
             // 
             // button1
             // 
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
@@ -756,12 +756,12 @@
             this.button1.Size = new System.Drawing.Size(161, 31);
             this.button1.TabIndex = 275;
             this.button1.Text = "Ubaci";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button3
             // 
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button3.ForeColor = System.Drawing.Color.White;
@@ -771,7 +771,7 @@
             this.button3.Size = new System.Drawing.Size(161, 31);
             this.button3.TabIndex = 276;
             this.button3.Text = "Izbriši";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // reportViewer1
@@ -779,9 +779,9 @@
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource2.Name = "DataSet1";
-            reportDataSource2.Value = null;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = null;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(548, 322);
             this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
@@ -809,12 +809,12 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(16, 219);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(60, 19);
+            this.label12.Size = new System.Drawing.Size(54, 19);
             this.label12.TabIndex = 281;
             this.label12.Text = "Širina:";
             // 
@@ -838,12 +838,12 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label13.ForeColor = System.Drawing.Color.Black;
             this.label13.Location = new System.Drawing.Point(16, 182);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(69, 19);
+            this.label13.Size = new System.Drawing.Size(61, 19);
             this.label13.TabIndex = 279;
             this.label13.Text = "Dužina:";
             // 
@@ -867,12 +867,12 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label14.ForeColor = System.Drawing.Color.White;
+            this.label14.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label14.ForeColor = System.Drawing.Color.Black;
             this.label14.Location = new System.Drawing.Point(16, 254);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(62, 19);
+            this.label14.Size = new System.Drawing.Size(56, 19);
             this.label14.TabIndex = 283;
             this.label14.Text = "Visina:";
             // 
@@ -889,25 +889,25 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label15.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label15.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label15.Location = new System.Drawing.Point(1004, 50);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(46, 19);
+            this.label15.Size = new System.Drawing.Size(43, 19);
             this.label15.TabIndex = 286;
             this.label15.Text = "Deo:";
             // 
             // chkPrazan
             // 
             this.chkPrazan.AutoSize = true;
-            this.chkPrazan.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.chkPrazan.ForeColor = System.Drawing.Color.White;
+            this.chkPrazan.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkPrazan.ForeColor = System.Drawing.Color.Black;
             this.chkPrazan.Location = new System.Drawing.Point(16, 322);
             this.chkPrazan.Margin = new System.Windows.Forms.Padding(4);
             this.chkPrazan.Name = "chkPrazan";
             this.chkPrazan.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkPrazan.Size = new System.Drawing.Size(86, 23);
+            this.chkPrazan.Size = new System.Drawing.Size(76, 23);
             this.chkPrazan.TabIndex = 287;
             this.chkPrazan.Text = "Prazan";
             this.chkPrazan.UseVisualStyleBackColor = true;
@@ -916,12 +916,12 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label17.ForeColor = System.Drawing.Color.White;
+            this.label17.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label17.ForeColor = System.Drawing.Color.Black;
             this.label17.Location = new System.Drawing.Point(16, 427);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(52, 19);
+            this.label17.Size = new System.Drawing.Size(48, 19);
             this.label17.TabIndex = 289;
             this.label17.Text = "Neto:";
             // 
@@ -945,12 +945,12 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label18.ForeColor = System.Drawing.Color.White;
+            this.label18.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label18.ForeColor = System.Drawing.Color.Black;
             this.label18.Location = new System.Drawing.Point(16, 549);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(51, 19);
+            this.label18.Size = new System.Drawing.Size(48, 19);
             this.label18.TabIndex = 291;
             this.label18.Text = "BRK:";
             // 
@@ -995,24 +995,24 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label19.ForeColor = System.Drawing.Color.White;
+            this.label19.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label19.ForeColor = System.Drawing.Color.Black;
             this.label19.Location = new System.Drawing.Point(16, 705);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(67, 19);
+            this.label19.Size = new System.Drawing.Size(61, 19);
             this.label19.TabIndex = 294;
             this.label19.Text = "Plomba";
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label20.ForeColor = System.Drawing.Color.White;
+            this.label20.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label20.ForeColor = System.Drawing.Color.Black;
             this.label20.Location = new System.Drawing.Point(4, 777);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(81, 19);
+            this.label20.Size = new System.Drawing.Size(74, 19);
             this.label20.TabIndex = 295;
             this.label20.Text = "Plomba 2";
             // 
@@ -1028,7 +1028,7 @@
             // 
             // button2
             // 
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.White;
@@ -1038,7 +1038,7 @@
             this.button2.Size = new System.Drawing.Size(136, 50);
             this.button2.TabIndex = 297;
             this.button2.Text = "Povuci Manipulacije";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // frmCIR

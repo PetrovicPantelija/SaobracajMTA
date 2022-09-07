@@ -49,7 +49,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(32, 21);
+            this.label5.Location = new System.Drawing.Point(13, 20);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(86, 17);
@@ -59,7 +59,7 @@
             // cboTeretnicaIz
             // 
             this.cboTeretnicaIz.FormattingEnabled = true;
-            this.cboTeretnicaIz.Location = new System.Drawing.Point(36, 41);
+            this.cboTeretnicaIz.Location = new System.Drawing.Point(13, 41);
             this.cboTeretnicaIz.Margin = new System.Windows.Forms.Padding(4);
             this.cboTeretnicaIz.Name = "cboTeretnicaIz";
             this.cboTeretnicaIz.Size = new System.Drawing.Size(253, 24);
@@ -71,7 +71,7 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(36, 74);
+            this.dataGridView1.Location = new System.Drawing.Point(13, 74);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
@@ -82,7 +82,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(643, 74);
+            this.button1.Location = new System.Drawing.Point(620, 74);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(68, 287);
@@ -96,11 +96,11 @@
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(719, 74);
+            this.dataGridView2.Location = new System.Drawing.Point(696, 74);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(737, 287);
+            this.dataGridView2.Size = new System.Drawing.Size(760, 287);
             this.dataGridView2.TabIndex = 39;
             // 
             // label1
@@ -139,14 +139,15 @@
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button2.Location = new System.Drawing.Point(647, 482);
+            this.button2.Location = new System.Drawing.Point(620, 482);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(183, 158);
             this.button2.TabIndex = 43;
             this.button2.Text = ">>>";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label2
@@ -163,7 +164,7 @@
             // cboStanicaIsklj
             // 
             this.cboStanicaIsklj.FormattingEnabled = true;
-            this.cboStanicaIsklj.Location = new System.Drawing.Point(643, 449);
+            this.cboStanicaIsklj.Location = new System.Drawing.Point(620, 450);
             this.cboStanicaIsklj.Margin = new System.Windows.Forms.Padding(4);
             this.cboStanicaIsklj.Name = "cboStanicaIsklj";
             this.cboStanicaIsklj.Size = new System.Drawing.Size(187, 24);
@@ -172,6 +173,7 @@
             // 
             // button3
             // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button3.Location = new System.Drawing.Point(833, 368);
             this.button3.Margin = new System.Windows.Forms.Padding(4);
@@ -179,7 +181,7 @@
             this.button3.Size = new System.Drawing.Size(623, 50);
             this.button3.TabIndex = 46;
             this.button3.Text = "/\\ /\\ /\\";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // frmTeretnicaKopiranjeStavki

@@ -103,11 +103,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 169);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 169);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(809, 254);
+            this.dataGridView1.Size = new System.Drawing.Size(810, 272);
             this.dataGridView1.TabIndex = 10;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -168,7 +168,7 @@
             // chkRid
             // 
             this.chkRid.AutoSize = true;
-            this.chkRid.Location = new System.Drawing.Point(13, 140);
+            this.chkRid.Location = new System.Drawing.Point(12, 140);
             this.chkRid.Margin = new System.Windows.Forms.Padding(4);
             this.chkRid.Name = "chkRid";
             this.chkRid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;

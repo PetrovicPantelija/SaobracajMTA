@@ -33,9 +33,7 @@ namespace Testiranje.Izvestaji
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTransportIzv1));
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.btnStampa = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
             this.dtpDatumPrevoza = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -58,25 +56,15 @@ namespace Testiranje.Izvestaji
             // 
             // btnStampa
             // 
+            this.btnStampa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnStampa.ForeColor = System.Drawing.Color.White;
             this.btnStampa.Location = new System.Drawing.Point(728, 9);
             this.btnStampa.Margin = new System.Windows.Forms.Padding(4);
             this.btnStampa.Name = "btnStampa";
             this.btnStampa.Size = new System.Drawing.Size(164, 33);
             this.btnStampa.TabIndex = 100;
             this.btnStampa.Text = "Štampaj";
-            this.btnStampa.UseVisualStyleBackColor = true;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label16.ForeColor = System.Drawing.Color.White;
-            this.label16.Location = new System.Drawing.Point(17, 15);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(241, 19);
-            this.label16.TabIndex = 310;
-            this.label16.Text = "Datum izvršenog prevoza od:";
+            this.btnStampa.UseVisualStyleBackColor = false;
             // 
             // dtpDatumPrevoza
             // 
@@ -91,18 +79,6 @@ namespace Testiranje.Izvestaji
             this.dtpDatumPrevoza.Size = new System.Drawing.Size(199, 26);
             this.dtpDatumPrevoza.TabIndex = 309;
             this.dtpDatumPrevoza.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(17, 60);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(241, 19);
-            this.label1.TabIndex = 312;
-            this.label1.Text = "Datum izvršenog prevoza do:";
             // 
             // dateTimePicker1
             // 
@@ -149,10 +125,8 @@ namespace Testiranje.Izvestaji
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1827, 922);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label16);
             this.Controls.Add(this.dtpDatumPrevoza);
             this.Controls.Add(this.reportViewer1);
             this.Controls.Add(this.btnStampa);
@@ -169,9 +143,7 @@ namespace Testiranje.Izvestaji
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private System.Windows.Forms.Button btnStampa;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.DateTimePicker dtpDatumPrevoza;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;

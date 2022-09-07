@@ -174,6 +174,7 @@
             // toolStripTextBox1
             // 
             this.toolStripTextBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.toolStripTextBox1.ForeColor = System.Drawing.Color.White;
             this.toolStripTextBox1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripTextBox1.Image")));
             this.toolStripTextBox1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripTextBox1.Name = "toolStripTextBox1";
@@ -273,6 +274,7 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(425, 25);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";

@@ -932,10 +932,10 @@
             // 
             // txtNepravilnosti
             // 
-            this.txtNepravilnosti.Location = new System.Drawing.Point(1308, 213);
+            this.txtNepravilnosti.Location = new System.Drawing.Point(1228, 216);
             this.txtNepravilnosti.Margin = new System.Windows.Forms.Padding(4);
             this.txtNepravilnosti.Name = "txtNepravilnosti";
-            this.txtNepravilnosti.Size = new System.Drawing.Size(239, 22);
+            this.txtNepravilnosti.Size = new System.Drawing.Size(130, 22);
             this.txtNepravilnosti.TabIndex = 266;
             // 
             // label31
@@ -951,10 +951,10 @@
             // txtNivoUlja
             // 
             this.txtNivoUlja.AcceptsReturn = true;
-            this.txtNivoUlja.Location = new System.Drawing.Point(1308, 181);
+            this.txtNivoUlja.Location = new System.Drawing.Point(1228, 186);
             this.txtNivoUlja.Margin = new System.Windows.Forms.Padding(4);
             this.txtNivoUlja.Name = "txtNivoUlja";
-            this.txtNivoUlja.Size = new System.Drawing.Size(239, 22);
+            this.txtNivoUlja.Size = new System.Drawing.Size(130, 22);
             this.txtNivoUlja.TabIndex = 264;
             // 
             // label32
@@ -969,11 +969,12 @@
             // 
             // txtCistocaUnutra
             // 
-            this.txtCistocaUnutra.Location = new System.Drawing.Point(1308, 149);
+            this.txtCistocaUnutra.Location = new System.Drawing.Point(1228, 151);
             this.txtCistocaUnutra.Margin = new System.Windows.Forms.Padding(4);
             this.txtCistocaUnutra.Name = "txtCistocaUnutra";
-            this.txtCistocaUnutra.Size = new System.Drawing.Size(239, 22);
+            this.txtCistocaUnutra.Size = new System.Drawing.Size(130, 22);
             this.txtCistocaUnutra.TabIndex = 262;
+            this.txtCistocaUnutra.TextChanged += new System.EventHandler(this.txtCistocaUnutra_TextChanged);
             // 
             // label33
             // 
@@ -987,16 +988,16 @@
             // 
             // txtCistocaSpolja
             // 
-            this.txtCistocaSpolja.Location = new System.Drawing.Point(1308, 113);
+            this.txtCistocaSpolja.Location = new System.Drawing.Point(1228, 119);
             this.txtCistocaSpolja.Margin = new System.Windows.Forms.Padding(4);
             this.txtCistocaSpolja.Name = "txtCistocaSpolja";
-            this.txtCistocaSpolja.Size = new System.Drawing.Size(239, 22);
+            this.txtCistocaSpolja.Size = new System.Drawing.Size(130, 22);
             this.txtCistocaSpolja.TabIndex = 260;
             // 
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(1197, 55);
+            this.label34.Location = new System.Drawing.Point(1127, 55);
             this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(93, 17);
@@ -1006,10 +1007,10 @@
             // cboMestoTroska
             // 
             this.cboMestoTroska.FormattingEnabled = true;
-            this.cboMestoTroska.Location = new System.Drawing.Point(1308, 55);
+            this.cboMestoTroska.Location = new System.Drawing.Point(1228, 57);
             this.cboMestoTroska.Margin = new System.Windows.Forms.Padding(4);
             this.cboMestoTroska.Name = "cboMestoTroska";
-            this.cboMestoTroska.Size = new System.Drawing.Size(211, 24);
+            this.cboMestoTroska.Size = new System.Drawing.Size(130, 24);
             this.cboMestoTroska.TabIndex = 267;
             // 
             // label35

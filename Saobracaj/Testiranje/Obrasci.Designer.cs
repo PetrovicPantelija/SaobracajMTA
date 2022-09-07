@@ -88,7 +88,7 @@ namespace Saobracaj.Testiranje
             this.cboKorisnik.BackColor = System.Drawing.Color.White;
             this.cboKorisnik.FormattingEnabled = true;
             this.cboKorisnik.Location = new System.Drawing.Point(20, 31);
-            this.cboKorisnik.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboKorisnik.Margin = new System.Windows.Forms.Padding(4);
             this.cboKorisnik.Name = "cboKorisnik";
             this.cboKorisnik.Size = new System.Drawing.Size(253, 24);
             this.cboKorisnik.TabIndex = 202;
@@ -98,11 +98,13 @@ namespace Saobracaj.Testiranje
             this.sfButton1.AccessibleName = "Button";
             this.sfButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.sfButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F);
+            this.sfButton1.ForeColor = System.Drawing.Color.White;
             this.sfButton1.Location = new System.Drawing.Point(673, 52);
-            this.sfButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sfButton1.Margin = new System.Windows.Forms.Padding(4);
             this.sfButton1.Name = "sfButton1";
             this.sfButton1.Size = new System.Drawing.Size(209, 34);
             this.sfButton1.Style.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.sfButton1.Style.ForeColor = System.Drawing.Color.White;
             this.sfButton1.TabIndex = 203;
             this.sfButton1.Text = "Štampaj obrazac  br 6";
             this.sfButton1.UseVisualStyleBackColor = false;
@@ -122,7 +124,7 @@ namespace Saobracaj.Testiranje
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Location = new System.Drawing.Point(20, 96);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1196, 521);
@@ -132,9 +134,9 @@ namespace Saobracaj.Testiranje
             // 
             this.tabPage1.Controls.Add(this.reportViewer1);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(1188, 492);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Manevrista";
@@ -150,7 +152,7 @@ namespace Saobracaj.Testiranje
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(8, 7);
-            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.Size = new System.Drawing.Size(1169, 473);
             this.reportViewer1.TabIndex = 2;
@@ -159,9 +161,9 @@ namespace Saobracaj.Testiranje
             // 
             this.tabPage2.Controls.Add(this.reportViewer2);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(1188, 492);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Pregledač kola";
@@ -177,7 +179,7 @@ namespace Saobracaj.Testiranje
             this.reportViewer2.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer2.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
             this.reportViewer2.Location = new System.Drawing.Point(8, 7);
-            this.reportViewer2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reportViewer2.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer2.Name = "reportViewer2";
             this.reportViewer2.Size = new System.Drawing.Size(1169, 473);
             this.reportViewer2.TabIndex = 3;
@@ -186,7 +188,7 @@ namespace Saobracaj.Testiranje
             // 
             this.tabPage3.Controls.Add(this.reportViewer3);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1188, 492);
             this.tabPage3.TabIndex = 2;
@@ -203,7 +205,7 @@ namespace Saobracaj.Testiranje
             this.reportViewer3.LocalReport.DataSources.Add(reportDataSource3);
             this.reportViewer3.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
             this.reportViewer3.Location = new System.Drawing.Point(8, 7);
-            this.reportViewer3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reportViewer3.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer3.Name = "reportViewer3";
             this.reportViewer3.Size = new System.Drawing.Size(1169, 473);
             this.reportViewer3.TabIndex = 3;
@@ -212,7 +214,7 @@ namespace Saobracaj.Testiranje
             // 
             this.tabPage4.Controls.Add(this.reportViewer4);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1188, 492);
             this.tabPage4.TabIndex = 3;
@@ -229,7 +231,7 @@ namespace Saobracaj.Testiranje
             this.reportViewer4.LocalReport.DataSources.Add(reportDataSource4);
             this.reportViewer4.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
             this.reportViewer4.Location = new System.Drawing.Point(8, 7);
-            this.reportViewer4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reportViewer4.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer4.Name = "reportViewer4";
             this.reportViewer4.Size = new System.Drawing.Size(1169, 473);
             this.reportViewer4.TabIndex = 3;
@@ -238,7 +240,7 @@ namespace Saobracaj.Testiranje
             // 
             this.tabPage5.Controls.Add(this.reportViewer5);
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(1188, 492);
             this.tabPage5.TabIndex = 4;
@@ -255,7 +257,7 @@ namespace Saobracaj.Testiranje
             this.reportViewer5.LocalReport.DataSources.Add(reportDataSource5);
             this.reportViewer5.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
             this.reportViewer5.Location = new System.Drawing.Point(8, 7);
-            this.reportViewer5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reportViewer5.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer5.Name = "reportViewer5";
             this.reportViewer5.Size = new System.Drawing.Size(1169, 473);
             this.reportViewer5.TabIndex = 3;
@@ -264,7 +266,7 @@ namespace Saobracaj.Testiranje
             // 
             this.tabPage6.Controls.Add(this.reportViewer6);
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
-            this.tabPage6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage6.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Size = new System.Drawing.Size(1188, 492);
             this.tabPage6.TabIndex = 5;
@@ -281,7 +283,7 @@ namespace Saobracaj.Testiranje
             this.reportViewer6.LocalReport.DataSources.Add(reportDataSource6);
             this.reportViewer6.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
             this.reportViewer6.Location = new System.Drawing.Point(8, 7);
-            this.reportViewer6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reportViewer6.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer6.Name = "reportViewer6";
             this.reportViewer6.Size = new System.Drawing.Size(1169, 473);
             this.reportViewer6.TabIndex = 3;
@@ -290,7 +292,7 @@ namespace Saobracaj.Testiranje
             // 
             this.tabPage7.Controls.Add(this.reportViewer7);
             this.tabPage7.Location = new System.Drawing.Point(4, 25);
-            this.tabPage7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage7.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Size = new System.Drawing.Size(1188, 492);
             this.tabPage7.TabIndex = 6;
@@ -307,7 +309,7 @@ namespace Saobracaj.Testiranje
             this.reportViewer7.LocalReport.DataSources.Add(reportDataSource7);
             this.reportViewer7.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
             this.reportViewer7.Location = new System.Drawing.Point(8, 7);
-            this.reportViewer7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reportViewer7.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer7.Name = "reportViewer7";
             this.reportViewer7.Size = new System.Drawing.Size(1169, 473);
             this.reportViewer7.TabIndex = 3;
@@ -316,7 +318,7 @@ namespace Saobracaj.Testiranje
             // 
             this.tabPage8.Controls.Add(this.reportViewer8);
             this.tabPage8.Location = new System.Drawing.Point(4, 25);
-            this.tabPage8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage8.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Size = new System.Drawing.Size(1188, 492);
             this.tabPage8.TabIndex = 7;
@@ -333,7 +335,7 @@ namespace Saobracaj.Testiranje
             this.reportViewer8.LocalReport.DataSources.Add(reportDataSource8);
             this.reportViewer8.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
             this.reportViewer8.Location = new System.Drawing.Point(8, 7);
-            this.reportViewer8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reportViewer8.Margin = new System.Windows.Forms.Padding(4);
             this.reportViewer8.Name = "reportViewer8";
             this.reportViewer8.Size = new System.Drawing.Size(1169, 473);
             this.reportViewer8.TabIndex = 3;
@@ -341,7 +343,7 @@ namespace Saobracaj.Testiranje
             // txtMesto
             // 
             this.txtMesto.Location = new System.Drawing.Point(395, 64);
-            this.txtMesto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtMesto.Margin = new System.Windows.Forms.Padding(4);
             this.txtMesto.Name = "txtMesto";
             this.txtMesto.Size = new System.Drawing.Size(165, 22);
             this.txtMesto.TabIndex = 224;
@@ -373,7 +375,7 @@ namespace Saobracaj.Testiranje
             this.dtpDatumTesta.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatumTesta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDatumTesta.Location = new System.Drawing.Point(395, 31);
-            this.dtpDatumTesta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDatumTesta.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDatumTesta.Name = "dtpDatumTesta";
             this.dtpDatumTesta.ShowUpDown = true;
             this.dtpDatumTesta.Size = new System.Drawing.Size(163, 22);
@@ -395,7 +397,7 @@ namespace Saobracaj.Testiranje
             this.Controls.Add(this.cboKorisnik);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Obrasci";
             this.Text = "Obrasci";
             this.Load += new System.EventHandler(this.Obrasci_Load);

@@ -50,15 +50,13 @@
             this.txtNamena = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnPretraziPoSkladistu = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
-            this.toolStrip1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("toolStrip1.BackgroundImage")));
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
@@ -273,7 +271,7 @@
             // 
             // btnPretraziPoSkladistu
             // 
-            this.btnPretraziPoSkladistu.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPretraziPoSkladistu.BackgroundImage")));
+            this.btnPretraziPoSkladistu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.btnPretraziPoSkladistu.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPretraziPoSkladistu.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnPretraziPoSkladistu.ForeColor = System.Drawing.Color.White;
@@ -283,18 +281,8 @@
             this.btnPretraziPoSkladistu.Size = new System.Drawing.Size(75, 31);
             this.btnPretraziPoSkladistu.TabIndex = 143;
             this.btnPretraziPoSkladistu.Text = "?";
-            this.btnPretraziPoSkladistu.UseVisualStyleBackColor = true;
+            this.btnPretraziPoSkladistu.UseVisualStyleBackColor = false;
             this.btnPretraziPoSkladistu.Click += new System.EventHandler(this.btnPretraziPoSkladistu_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(844, 143);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(188, 62);
-            this.pictureBox1.TabIndex = 128;
-            this.pictureBox1.TabStop = false;
             // 
             // frmPozicija
             // 
@@ -302,7 +290,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1048, 485);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnPretraziPoSkladistu);
             this.Controls.Add(this.txtNamena);
             this.Controls.Add(this.label4);
@@ -326,7 +313,6 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -355,6 +341,5 @@
         private System.Windows.Forms.TextBox txtNamena;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnPretraziPoSkladistu;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

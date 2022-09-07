@@ -44,13 +44,15 @@
             // 
             // btnStampa
             // 
-            this.btnStampa.Location = new System.Drawing.Point(1023, 11);
+            this.btnStampa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnStampa.ForeColor = System.Drawing.Color.White;
+            this.btnStampa.Location = new System.Drawing.Point(1025, 4);
             this.btnStampa.Margin = new System.Windows.Forms.Padding(4);
             this.btnStampa.Name = "btnStampa";
-            this.btnStampa.Size = new System.Drawing.Size(129, 28);
+            this.btnStampa.Size = new System.Drawing.Size(127, 35);
             this.btnStampa.TabIndex = 92;
             this.btnStampa.Text = "Štampaj";
-            this.btnStampa.UseVisualStyleBackColor = true;
+            this.btnStampa.UseVisualStyleBackColor = false;
             this.btnStampa.Click += new System.EventHandler(this.btnStampa_Click);
             // 
             // reportViewer1

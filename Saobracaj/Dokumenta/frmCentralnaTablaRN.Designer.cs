@@ -62,6 +62,7 @@ namespace Saobracaj.Dokumenta
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.otvoriNajavuToolStripMenuItem,
@@ -74,6 +75,7 @@ namespace Saobracaj.Dokumenta
             // 
             // otvoriNajavuToolStripMenuItem
             // 
+            this.otvoriNajavuToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.otvoriNajavuToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("otvoriNajavuToolStripMenuItem.Image")));
             this.otvoriNajavuToolStripMenuItem.Name = "otvoriNajavuToolStripMenuItem";
             this.otvoriNajavuToolStripMenuItem.Size = new System.Drawing.Size(134, 24);
@@ -81,6 +83,7 @@ namespace Saobracaj.Dokumenta
             // 
             // otvoriRNToolStripMenuItem
             // 
+            this.otvoriRNToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.otvoriRNToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("otvoriRNToolStripMenuItem.Image")));
             this.otvoriRNToolStripMenuItem.Name = "otvoriRNToolStripMenuItem";
             this.otvoriRNToolStripMenuItem.Size = new System.Drawing.Size(108, 24);

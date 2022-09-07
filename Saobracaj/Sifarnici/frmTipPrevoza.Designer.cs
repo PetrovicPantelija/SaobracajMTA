@@ -158,7 +158,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmTipPrevoza";
-            this.Text = "frmTipPrevoza";
+            this.Text = "Tipovi prevoza";
             this.Load += new System.EventHandler(this.frmTipPrevoza_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

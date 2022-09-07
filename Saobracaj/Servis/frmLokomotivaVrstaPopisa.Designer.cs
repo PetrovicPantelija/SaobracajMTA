@@ -40,10 +40,6 @@
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsPrvi = new System.Windows.Forms.ToolStripButton();
-            this.tsNazad = new System.Windows.Forms.ToolStripButton();
-            this.tsNapred = new System.Windows.Forms.ToolStripButton();
-            this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
             this.button2 = new System.Windows.Forms.Button();
             this.cboVrstaPopisa = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -60,8 +56,9 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(511, 81);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(56, 28);
             this.button1.TabIndex = 162;
@@ -77,7 +74,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(24, 209);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1084, 330);
@@ -88,7 +85,7 @@
             // 
             this.cboLokomotiva.FormattingEnabled = true;
             this.cboLokomotiva.Location = new System.Drawing.Point(161, 81);
-            this.cboLokomotiva.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboLokomotiva.Margin = new System.Windows.Forms.Padding(4);
             this.cboLokomotiva.Name = "cboLokomotiva";
             this.cboLokomotiva.Size = new System.Drawing.Size(339, 24);
             this.cboLokomotiva.TabIndex = 160;
@@ -106,7 +103,7 @@
             // txtSifra
             // 
             this.txtSifra.Location = new System.Drawing.Point(161, 49);
-            this.txtSifra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(132, 22);
             this.txtSifra.TabIndex = 156;
@@ -129,11 +126,7 @@
             this.tsNew,
             this.tsSave,
             this.tsDelete,
-            this.toolStripSeparator1,
-            this.tsPrvi,
-            this.tsNazad,
-            this.tsNapred,
-            this.tsPoslednja});
+            this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1124, 27);
@@ -175,47 +168,12 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
-            // tsPrvi
-            // 
-            this.tsPrvi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
-            this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(29, 24);
-            this.tsPrvi.Text = "toolStripButton1";
-            // 
-            // tsNazad
-            // 
-            this.tsNazad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
-            this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(29, 24);
-            this.tsNazad.Text = "toolStripButton1";
-            // 
-            // tsNapred
-            // 
-            this.tsNapred.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
-            this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(29, 24);
-            this.tsNapred.Text = "toolStripButton1";
-            // 
-            // tsPoslednja
-            // 
-            this.tsPoslednja.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
-            this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
-            this.tsPoslednja.Text = "toolStripButton1";
-            // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(511, 114);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(56, 28);
             this.button2.TabIndex = 166;
@@ -227,7 +185,7 @@
             // 
             this.cboVrstaPopisa.FormattingEnabled = true;
             this.cboVrstaPopisa.Location = new System.Drawing.Point(161, 114);
-            this.cboVrstaPopisa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboVrstaPopisa.Margin = new System.Windows.Forms.Padding(4);
             this.cboVrstaPopisa.Name = "cboVrstaPopisa";
             this.cboVrstaPopisa.Size = new System.Drawing.Size(339, 24);
             this.cboVrstaPopisa.TabIndex = 165;
@@ -245,7 +203,7 @@
             // txtReferetnaKolicina
             // 
             this.txtReferetnaKolicina.Location = new System.Drawing.Point(161, 177);
-            this.txtReferetnaKolicina.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtReferetnaKolicina.Margin = new System.Windows.Forms.Padding(4);
             this.txtReferetnaKolicina.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -259,7 +217,7 @@
             // txtKolicina
             // 
             this.txtKolicina.Location = new System.Drawing.Point(161, 148);
-            this.txtKolicina.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtKolicina.Margin = new System.Windows.Forms.Padding(4);
             this.txtKolicina.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -294,6 +252,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.ClientSize = new System.Drawing.Size(1124, 554);
             this.Controls.Add(this.txtReferetnaKolicina);
             this.Controls.Add(this.txtKolicina);
@@ -310,7 +269,7 @@
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmLokomotivaVrstaPopisa";
             this.Text = "Lokomotiva vrste popisa";
             this.Load += new System.EventHandler(this.frmLokomotivaVrstaPopisa_Load);
@@ -337,10 +296,6 @@
         private System.Windows.Forms.ToolStripButton tsSave;
         private System.Windows.Forms.ToolStripButton tsDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton tsPrvi;
-        private System.Windows.Forms.ToolStripButton tsNazad;
-        private System.Windows.Forms.ToolStripButton tsNapred;
-        private System.Windows.Forms.ToolStripButton tsPoslednja;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox cboVrstaPopisa;
         private System.Windows.Forms.Label label3;

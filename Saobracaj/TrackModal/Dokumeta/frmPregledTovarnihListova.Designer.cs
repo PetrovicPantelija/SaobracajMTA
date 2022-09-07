@@ -51,7 +51,7 @@ namespace Testiranje.Dokumeta
             this.toolStripButton4});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1139, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(1139, 27);
             this.toolStrip1.TabIndex = 130;
             this.toolStrip1.Text = "Pošalji mail infrastrukturi";
             // 
@@ -62,7 +62,7 @@ namespace Testiranje.Dokumeta
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(142, 28);
+            this.toolStripButton1.Size = new System.Drawing.Size(142, 24);
             this.toolStripButton1.Text = "Tovarni listovi";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -73,7 +73,7 @@ namespace Testiranje.Dokumeta
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(68, 28);
+            this.toolStripButton2.Size = new System.Drawing.Size(68, 24);
             this.toolStripButton2.Text = "Novi";
             // 
             // toolStripButton4
@@ -83,7 +83,7 @@ namespace Testiranje.Dokumeta
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(82, 28);
+            this.toolStripButton4.Size = new System.Drawing.Size(82, 24);
             this.toolStripButton4.Text = "Otvori";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click_1);
             // 
@@ -134,6 +134,7 @@ namespace Testiranje.Dokumeta
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPregledTovarnihListova";
             this.Text = "Pregled Tovarnih listova";

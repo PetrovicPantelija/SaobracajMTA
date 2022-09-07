@@ -49,7 +49,7 @@
             this.dtpStvarnoPrimanje.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpStvarnoPrimanje.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpStvarnoPrimanje.Location = new System.Drawing.Point(381, 15);
-            this.dtpStvarnoPrimanje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpStvarnoPrimanje.Margin = new System.Windows.Forms.Padding(4);
             this.dtpStvarnoPrimanje.Name = "dtpStvarnoPrimanje";
             this.dtpStvarnoPrimanje.ShowUpDown = true;
             this.dtpStvarnoPrimanje.Size = new System.Drawing.Size(145, 22);
@@ -60,7 +60,7 @@
             this.dtpPredvidjenoPrimanje.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPredvidjenoPrimanje.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpPredvidjenoPrimanje.Location = new System.Drawing.Point(120, 15);
-            this.dtpPredvidjenoPrimanje.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpPredvidjenoPrimanje.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPredvidjenoPrimanje.Name = "dtpPredvidjenoPrimanje";
             this.dtpPredvidjenoPrimanje.ShowUpDown = true;
             this.dtpPredvidjenoPrimanje.Size = new System.Drawing.Size(145, 22);
@@ -90,7 +90,7 @@
             // 
             this.cboRID.FormattingEnabled = true;
             this.cboRID.Location = new System.Drawing.Point(655, 17);
-            this.cboRID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboRID.Margin = new System.Windows.Forms.Padding(4);
             this.cboRID.Name = "cboRID";
             this.cboRID.Size = new System.Drawing.Size(187, 24);
             this.cboRID.TabIndex = 41;
@@ -109,7 +109,7 @@
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button4.Location = new System.Drawing.Point(536, 11);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(40, 28);
             this.button4.TabIndex = 100;
@@ -123,7 +123,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(16, 50);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1168, 306);
@@ -133,7 +133,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.Location = new System.Drawing.Point(851, 15);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(37, 28);
             this.button1.TabIndex = 102;
@@ -148,7 +148,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(16, 394);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.Size = new System.Drawing.Size(1168, 254);
@@ -181,7 +181,7 @@
             this.Controls.Add(this.dtpStvarnoPrimanje);
             this.Controls.Add(this.dtpPredvidjenoPrimanje);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPregledRID";
             this.Text = "Pregled RID";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

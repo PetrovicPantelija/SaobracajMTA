@@ -39,13 +39,15 @@
             // 
             // btnRefresh
             // 
+            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnRefresh.ForeColor = System.Drawing.Color.White;
             this.btnRefresh.Location = new System.Drawing.Point(356, 33);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(120, 28);
             this.btnRefresh.TabIndex = 101;
             this.btnRefresh.Text = "Pretraži";
-            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // label6
@@ -70,13 +72,15 @@
             // 
             // btnSve
             // 
+            this.btnSve.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btnSve.ForeColor = System.Drawing.Color.White;
             this.btnSve.Location = new System.Drawing.Point(559, 33);
             this.btnSve.Margin = new System.Windows.Forms.Padding(4);
             this.btnSve.Name = "btnSve";
             this.btnSve.Size = new System.Drawing.Size(120, 28);
             this.btnSve.TabIndex = 102;
             this.btnSve.Text = "Pretraži";
-            this.btnSve.UseVisualStyleBackColor = true;
+            this.btnSve.UseVisualStyleBackColor = false;
             this.btnSve.Click += new System.EventHandler(this.btnSve_Click);
             // 
             // dataGridView1

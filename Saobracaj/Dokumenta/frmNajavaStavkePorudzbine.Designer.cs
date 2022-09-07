@@ -61,13 +61,15 @@ namespace Saobracaj.Dokumenta
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(305, 46);
+            this.buttonOK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.buttonOK.ForeColor = System.Drawing.Color.White;
+            this.buttonOK.Location = new System.Drawing.Point(267, 39);
             this.buttonOK.Margin = new System.Windows.Forms.Padding(4);
             this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(152, 28);
+            this.buttonOK.Size = new System.Drawing.Size(190, 52);
             this.buttonOK.TabIndex = 1;
             this.buttonOK.Text = "Izabran";
-            this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.UseVisualStyleBackColor = false;
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // StavkaID

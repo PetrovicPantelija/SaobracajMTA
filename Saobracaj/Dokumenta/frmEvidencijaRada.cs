@@ -2237,6 +2237,11 @@ namespace Saobracaj.Dokumenta
         {
 
         }
+
+        private void tsNapred_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
         /* protected void Submit(object sender, EventArgs e)

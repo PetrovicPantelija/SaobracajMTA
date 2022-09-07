@@ -42,7 +42,7 @@ namespace Saobracaj.Mobile
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2016White;
             this.gridGroupingControl1.Location = new System.Drawing.Point(0, 0);
-            this.gridGroupingControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridGroupingControl1.Margin = new System.Windows.Forms.Padding(4);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
@@ -65,7 +65,7 @@ namespace Saobracaj.Mobile
             this.ClientSize = new System.Drawing.Size(1189, 541);
             this.Controls.Add(this.gridGroupingControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmAnalizaGO";
             this.Text = "Analiza godisnjih odmora";
             this.Load += new System.EventHandler(this.frmAnalizaGO_Load);

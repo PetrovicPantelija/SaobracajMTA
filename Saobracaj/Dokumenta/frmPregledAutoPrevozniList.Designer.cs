@@ -49,7 +49,7 @@ namespace TrackModal.Dokumeta
             this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1297, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1297, 31);
             this.toolStrip1.TabIndex = 132;
             this.toolStrip1.Text = "Pošalji mail infrastrukturi";
             // 
@@ -60,7 +60,7 @@ namespace TrackModal.Dokumeta
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(213, 24);
+            this.toolStripButton1.Size = new System.Drawing.Size(213, 28);
             this.toolStripButton1.Text = "Otvori autoprevoznilist";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -71,7 +71,7 @@ namespace TrackModal.Dokumeta
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(86, 24);
+            this.toolStripButton2.Size = new System.Drawing.Size(86, 28);
             this.toolStripButton2.Text = "Osveži";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -103,12 +103,12 @@ namespace TrackModal.Dokumeta
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(16, 44);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(51, 19);
+            this.label1.Size = new System.Drawing.Size(47, 19);
             this.label1.TabIndex = 142;
             this.label1.Text = "Šifra:";
             // 

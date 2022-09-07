@@ -84,24 +84,28 @@ namespace Saobracaj.Dokumenta
             // 
             // btn_Provera
             // 
+            this.btn_Provera.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btn_Provera.ForeColor = System.Drawing.Color.White;
             this.btn_Provera.Location = new System.Drawing.Point(163, 16);
             this.btn_Provera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Provera.Name = "btn_Provera";
             this.btn_Provera.Size = new System.Drawing.Size(137, 44);
             this.btn_Provera.TabIndex = 2;
             this.btn_Provera.Text = "Uporedi";
-            this.btn_Provera.UseVisualStyleBackColor = true;
+            this.btn_Provera.UseVisualStyleBackColor = false;
             this.btn_Provera.Click += new System.EventHandler(this.btn_Provera_Click);
             // 
             // btn_Izmena
             // 
+            this.btn_Izmena.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.btn_Izmena.ForeColor = System.Drawing.Color.White;
             this.btn_Izmena.Location = new System.Drawing.Point(339, 16);
             this.btn_Izmena.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_Izmena.Name = "btn_Izmena";
             this.btn_Izmena.Size = new System.Drawing.Size(137, 44);
             this.btn_Izmena.TabIndex = 3;
             this.btn_Izmena.Text = "Potvrdi Izmene";
-            this.btn_Izmena.UseVisualStyleBackColor = true;
+            this.btn_Izmena.UseVisualStyleBackColor = false;
             this.btn_Izmena.Click += new System.EventHandler(this.btn_Izmena_Click);
             // 
             // frmTeretnicaTerenIzmena
