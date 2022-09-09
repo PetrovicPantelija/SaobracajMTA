@@ -2687,6 +2687,12 @@
     <Compile Include="Uvoz\Uvoz.designer.cs">
       <DependentUpon>Uvoz.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\UvozDokumenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\UvozDokumenta.Designer.cs">
+      <DependentUpon>UvozDokumenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\UvozKonacna.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3663,6 +3669,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\Uvoz.resx">
       <DependentUpon>Uvoz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\UvozDokumenta.resx">
+      <DependentUpon>UvozDokumenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\UvozKonacna.resx">
       <DependentUpon>UvozKonacna.cs</DependentUpon>

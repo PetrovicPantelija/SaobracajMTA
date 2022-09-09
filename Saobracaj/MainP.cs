@@ -1453,5 +1453,17 @@ namespace Saobracaj
             Uvoz.frmVrstaCarinskogPostupka vrCP = new Uvoz.frmVrstaCarinskogPostupka();
             vrCP.Show();
         }
+
+        private void toolStripButton185_Click(object sender, EventArgs e)
+        {
+            Uvoz.fruvNacinPakovanja vrNP = new Uvoz.fruvNacinPakovanja();
+            vrNP.Show();
+        }
+
+        private void toolStripButton186_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmuvKvalitetKontejnera vrKK = new Uvoz.frmuvKvalitetKontejnera();
+            vrKK.Show();
+        }
     }
 }
