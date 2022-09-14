@@ -83,6 +83,7 @@ namespace Saobracaj.Dokumenta
             this.tsSave.Name = "tsSave";
             this.tsSave.Size = new System.Drawing.Size(29, 24);
             this.tsSave.Text = "tsSave";
+            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
             // tsDelete
             // 
@@ -92,6 +93,7 @@ namespace Saobracaj.Dokumenta
             this.tsDelete.Name = "tsDelete";
             this.tsDelete.Size = new System.Drawing.Size(29, 24);
             this.tsDelete.Text = "toolStripButton1";
+            this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // toolStripSeparator1
             // 

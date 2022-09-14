@@ -31,14 +31,8 @@ namespace Saobracaj.Uvoz
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UvozDokumenta));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
-            this.tsSave = new System.Windows.Forms.ToolStripButton();
-            this.tsDelete = new System.Windows.Forms.ToolStripButton();
-            this.tsPrvi = new System.Windows.Forms.ToolStripButton();
-            this.tsNazad = new System.Windows.Forms.ToolStripButton();
-            this.tsNapred = new System.Windows.Forms.ToolStripButton();
-            this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button4 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -47,33 +41,28 @@ namespace Saobracaj.Uvoz
             this.button1 = new System.Windows.Forms.Button();
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtSifraNajave = new System.Windows.Forms.TextBox();
+            this.txtSifraUvoza = new System.Windows.Forms.TextBox();
+            this.ofd1 = new System.Windows.Forms.OpenFileDialog();
+            this.fbd1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.button3 = new System.Windows.Forms.Button();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
-            this.tsSave,
-            this.tsDelete,
             this.toolStripSeparator1,
-            this.tsPrvi,
-            this.tsNazad,
-            this.tsNapred,
-            this.tsPoslednja});
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(884, 27);
-            this.toolStrip1.TabIndex = 36;
+            this.toolStrip1.Size = new System.Drawing.Size(1040, 27);
+            this.toolStrip1.TabIndex = 72;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tsNew
             // 
@@ -83,155 +72,147 @@ namespace Saobracaj.Uvoz
             this.tsNew.Name = "tsNew";
             this.tsNew.Size = new System.Drawing.Size(29, 24);
             this.tsNew.Text = "Novi";
+            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
-            // tsSave
+            // toolStripSeparator1
             // 
-            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
-            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
-            this.tsSave.Text = "tsSave";
-            // 
-            // tsDelete
-            // 
-            this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
-            this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 24);
-            this.tsDelete.Text = "toolStripButton1";
-            // 
-            // tsPrvi
-            // 
-            this.tsPrvi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
-            this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(29, 24);
-            this.tsPrvi.Text = "toolStripButton1";
-            // 
-            // tsNazad
-            // 
-            this.tsNazad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
-            this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(29, 24);
-            this.tsNazad.Text = "toolStripButton1";
-            // 
-            // tsNapred
-            // 
-            this.tsNapred.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
-            this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(29, 24);
-            this.tsNapred.Text = "toolStripButton1";
-            // 
-            // tsPoslednja
-            // 
-            this.tsPoslednja.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
-            this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
-            this.tsPoslednja.Text = "toolStripButton1";
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // dataGridView1
             // 
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(14, 102);
+            this.dataGridView1.Location = new System.Drawing.Point(13, 106);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(857, 348);
-            this.dataGridView1.TabIndex = 71;
+            this.dataGridView1.Size = new System.Drawing.Size(1014, 428);
+            this.dataGridView1.TabIndex = 81;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(790, 68);
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button4.Location = new System.Drawing.Point(768, 60);
             this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(81, 25);
-            this.button4.TabIndex = 70;
+            this.button4.Size = new System.Drawing.Size(96, 37);
+            this.button4.TabIndex = 80;
             this.button4.Text = "Sačuvaj";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(676, 69);
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.Location = new System.Drawing.Point(659, 61);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(81, 25);
-            this.button2.TabIndex = 69;
+            this.button2.Size = new System.Drawing.Size(96, 37);
+            this.button2.TabIndex = 79;
             this.button2.Text = "Otvori";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 72);
+            this.label1.Location = new System.Drawing.Point(9, 77);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 17);
-            this.label1.TabIndex = 68;
+            this.label1.TabIndex = 78;
             this.label1.Text = "Dokument";
             // 
             // txtPutanja
             // 
-            this.txtPutanja.Location = new System.Drawing.Point(124, 69);
+            this.txtPutanja.Location = new System.Drawing.Point(123, 74);
             this.txtPutanja.Margin = new System.Windows.Forms.Padding(4);
             this.txtPutanja.Name = "txtPutanja";
             this.txtPutanja.Size = new System.Drawing.Size(428, 22);
-            this.txtPutanja.TabIndex = 66;
+            this.txtPutanja.TabIndex = 76;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(561, 69);
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Location = new System.Drawing.Point(560, 61);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(79, 25);
-            this.button1.TabIndex = 67;
+            this.button1.Size = new System.Drawing.Size(93, 37);
+            this.button1.TabIndex = 77;
             this.button1.Text = "Pronađi";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtSifra
             // 
             this.txtSifra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtSifra.Location = new System.Drawing.Point(14, 37);
+            this.txtSifra.Location = new System.Drawing.Point(13, 42);
             this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(73, 22);
-            this.txtSifra.TabIndex = 63;
+            this.txtSifra.TabIndex = 73;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(120, 40);
+            this.label4.Location = new System.Drawing.Point(119, 45);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(110, 17);
-            this.label4.TabIndex = 65;
-            this.label4.Text = "Šifra automobila";
+            this.label4.Size = new System.Drawing.Size(81, 17);
+            this.label4.TabIndex = 75;
+            this.label4.Text = "Šifra Uvoza";
             // 
-            // txtSifraNajave
+            // txtSifraUvoza
             // 
-            this.txtSifraNajave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtSifraNajave.Location = new System.Drawing.Point(237, 37);
-            this.txtSifraNajave.Margin = new System.Windows.Forms.Padding(4);
-            this.txtSifraNajave.Name = "txtSifraNajave";
-            this.txtSifraNajave.Size = new System.Drawing.Size(113, 22);
-            this.txtSifraNajave.TabIndex = 64;
+            this.txtSifraUvoza.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtSifraUvoza.Location = new System.Drawing.Point(236, 42);
+            this.txtSifraUvoza.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSifraUvoza.Name = "txtSifraUvoza";
+            this.txtSifraUvoza.Size = new System.Drawing.Size(113, 22);
+            this.txtSifraUvoza.TabIndex = 74;
+            // 
+            // ofd1
+            // 
+            this.ofd1.FileName = "ofd1";
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button3.Location = new System.Drawing.Point(883, 59);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(96, 37);
+            this.button3.TabIndex = 82;
+            this.button3.Text = "Izbriši";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(113, 24);
+            this.toolStripButton1.Text = "Dokumentacija";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // UvozDokumenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 463);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1040, 698);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
@@ -240,10 +221,10 @@ namespace Saobracaj.Uvoz
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txtSifraNajave);
+            this.Controls.Add(this.txtSifraUvoza);
             this.Controls.Add(this.toolStrip1);
             this.Name = "UvozDokumenta";
-            this.Text = "UvozDokumenta";
+            this.Text = "Uvoz Dokumenta";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -256,13 +237,7 @@ namespace Saobracaj.Uvoz
 
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsNew;
-        private System.Windows.Forms.ToolStripButton tsSave;
-        private System.Windows.Forms.ToolStripButton tsDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton tsPrvi;
-        private System.Windows.Forms.ToolStripButton tsNazad;
-        private System.Windows.Forms.ToolStripButton tsNapred;
-        private System.Windows.Forms.ToolStripButton tsPoslednja;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button2;
@@ -271,6 +246,10 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txtSifra;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtSifraNajave;
+        private System.Windows.Forms.TextBox txtSifraUvoza;
+        private System.Windows.Forms.OpenFileDialog ofd1;
+        private System.Windows.Forms.FolderBrowserDialog fbd1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

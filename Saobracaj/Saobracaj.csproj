@@ -132,6 +132,10 @@
     <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.16.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.16.0\lib\net461\Microsoft.IdentityModel.Tokens.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportViewer.Common.v12.12.0.0.1\lib\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
@@ -2627,6 +2631,18 @@
     <Compile Include="Uvoz\frmKontejnerskiTerminali.Designer.cs">
       <DependentUpon>frmKontejnerskiTerminali.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\frmPregledNerasporedjeni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmPregledNerasporedjeni.Designer.cs">
+      <DependentUpon>frmPregledNerasporedjeni.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\frmPregledPlanovaUtovara.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmPregledPlanovaUtovara.Designer.cs">
+      <DependentUpon>frmPregledPlanovaUtovara.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\frmSerijeKola.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2638,6 +2654,12 @@
     </Compile>
     <Compile Include="Uvoz\frmuvKvalitetKontejnera.Designer.cs">
       <DependentUpon>frmuvKvalitetKontejnera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\frmUvozKonacnaZaglavlje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmUvozKonacnaZaglavlje.Designer.cs">
+      <DependentUpon>frmUvozKonacnaZaglavlje.cs</DependentUpon>
     </Compile>
     <Compile Include="Uvoz\frmVrstaCarinskogPostupka.cs">
       <SubType>Form</SubType>
@@ -2671,7 +2693,9 @@
     <Compile Include="Uvoz\InsertuvKvalitetKontejnera.cs" />
     <Compile Include="Uvoz\InsertuvNacinPakovanja.cs" />
     <Compile Include="Uvoz\InsertUvoz.cs" />
+    <Compile Include="Uvoz\InsertUvozDokumenta.cs" />
     <Compile Include="Uvoz\InsertUvozKonacna.cs" />
+    <Compile Include="Uvoz\InsertUvozKonacnaZaglavlje.cs" />
     <Compile Include="Uvoz\InsertVrstaCarinskogPostupka.cs" />
     <Compile Include="Uvoz\insertVrstaRobeADR.cs" />
     <Compile Include="Uvoz\InsertVrstaRobeHS.cs" />
@@ -3646,11 +3670,20 @@
     <EmbeddedResource Include="Uvoz\frmKontejnerskiTerminali.resx">
       <DependentUpon>frmKontejnerskiTerminali.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmPregledNerasporedjeni.resx">
+      <DependentUpon>frmPregledNerasporedjeni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmPregledPlanovaUtovara.resx">
+      <DependentUpon>frmPregledPlanovaUtovara.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmSerijeKola.resx">
       <DependentUpon>frmSerijeKola.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmuvKvalitetKontejnera.resx">
       <DependentUpon>frmuvKvalitetKontejnera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmUvozKonacnaZaglavlje.resx">
+      <DependentUpon>frmUvozKonacnaZaglavlje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmVrstaCarinskogPostupka.resx">
       <DependentUpon>frmVrstaCarinskogPostupka.cs</DependentUpon>

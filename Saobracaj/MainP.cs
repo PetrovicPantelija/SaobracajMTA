@@ -1465,5 +1465,35 @@ namespace Saobracaj
             Uvoz.frmuvKvalitetKontejnera vrKK = new Uvoz.frmuvKvalitetKontejnera();
             vrKK.Show();
         }
+
+        private void toolStripButton187_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmPregledNerasporedjeni pner = new Uvoz.frmPregledNerasporedjeni();
+            pner.Show();
+        }
+
+        private void toolStripButton188_Click(object sender, EventArgs e)
+        {
+            frmTipKontejnera tkon = new frmTipKontejnera();
+            tkon.Show();
+        }
+
+        private void toolStripButton189_Click(object sender, EventArgs e)
+        {
+            frmVrstaManipulacije vm = new frmVrstaManipulacije();
+            vm.Show();
+        }
+
+        private void toolStripButton190_Click(object sender, EventArgs e)
+        {
+            frmVoz voz = new frmVoz();
+            voz.Show();
+        }
+
+        private void toolStripButton191_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmPregledPlanovaUtovara fppp = new Uvoz.frmPregledPlanovaUtovara();
+            fppp.Show();
+        }
     }
 }

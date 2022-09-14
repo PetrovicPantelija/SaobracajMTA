@@ -21,12 +21,13 @@ namespace Testiranje.Dokumeta
     {
 
 
-        string KorisnikCene;
+        string KorisnikCene = "Panta";
         bool status = false;
       //  int VozID = 1;
         public frmVoz()
         {
             InitializeComponent();
+            KorisnikCene = "Panta";
         }
 
         public frmVoz(string Korisnik)
@@ -467,6 +468,113 @@ namespace Testiranje.Dokumeta
         {
             dtpVremeDolaskaO.Value = DateTime.Today;
          
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            InsertVoz ins = new InsertVoz();
+            ins.InsSerijeKola(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboSerijaKola.SelectedValue));
+            RefreshDataGrid2();
+        }
+        private void RefreshDataGrid2()
+        {
+            var select = "  select SerijeKola.ID as Zapis, IDVoza, VozSerijeKola.TipKontejnera as IDT, Naziv, Broj20 as Nosivost20 from VozSerijeKola " + 
+ " inner join SerijeKola on SerijeKola.Id = VozSerijeKola.TipKontejnera where IDVoza = " + Convert.ToInt32(txtSifra.Text);
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = ds.Tables[0];
+
+            dataGridView2.BorderStyle = BorderStyle.None;
+            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView2.BackgroundColor = Color.White;
+
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+         
+            DataGridViewColumn column = dataGridView2.Columns[0];
+            dataGridView2.Columns[0].HeaderText = "ID";
+            dataGridView2.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView2.Columns[1];
+            dataGridView2.Columns[1].HeaderText = "ID Voza";
+            dataGridView2.Columns[1].Width = 50;
+
+            DataGridViewColumn column3 = dataGridView2.Columns[2];
+            dataGridView2.Columns[2].HeaderText = "TSV";
+            dataGridView2.Columns[2].Width = 50;
+
+            DataGridViewColumn column4 = dataGridView2.Columns[3];
+            dataGridView2.Columns[3].HeaderText = "Naziv serije";
+            dataGridView2.Columns[3].Width = 100;
+
+            DataGridViewColumn column5 = dataGridView2.Columns[4];
+            dataGridView2.Columns[4].HeaderText = "Nosivost 20 ST";
+            dataGridView2.Columns[4].Width = 50;
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            InsertVoz ins = new InsertVoz();
+            ins.DelSerijeKola(Convert.ToInt32(txtSifraSerijeKola.Text));
+            RefreshDataGrid2();
+            VratiUkupanBrojKontejnera();
+        }
+
+        private void VratiUkupanBrojKontejnera()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select isnull(SUM(Broj20),0) as BrojKontejnera from VozSerijeKola " +
+            " inner join SerijeKola on SerijeKola.Id = VozSerijeKola.TipKontejnera where IDVoza = " + txtSifra.Text, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                nmrUkupanBrojKontejnera.Value = Convert.ToInt32(dr["BrojKontejnera"].ToString());
+            }
+
+            con.Close();
+
+        }
+
+        private void dataGridView2_SelectionChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txtSifraSerijeKola.Text = row.Cells[0].Value.ToString();
+                        cboSerijaKola.SelectedValue = Convert.ToInt32(row.Cells[2].Value.ToString());
+                    }
+                }
+
+
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
         }
     }
 }

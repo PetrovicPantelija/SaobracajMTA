@@ -25,6 +25,88 @@ namespace Saobracaj.Uvoz
             FillCombo();
         }
 
+        public Uvoz(int sifra)
+        {
+            InitializeComponent();
+            FillGV();
+            FillCheck();
+            FillCombo();
+            VratiPodatke(sifra);
+            FillDG2();
+            FillDG3();
+        }
+        private void VratiPodatke(int Sifra)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT [ID] " +
+      " ,[EtaBroda] ,[AtaBroda] ,[StatusPrijema] ,[BrojKontejnera] " +
+      " ,[DobijenNalogBrodara] ,[DobijeBZ] ,[Napomena] ,[PIN] " +
+      " ,[DirigacijaKontejeraZa] ,[NazivBroda] ,[BrodskaTeretnica] ,[ADR] " +
+      " ,[VlasnikKontejnera] ,[BukingBrodara]      ,[Nalogodavac]      ,[VrstaUsluge] " +
+      " ,[Uvoznik]      ,[NHMBroj]      ,[NazivRobe]      ,[SpedicijaGranica] " +
+      " ,[SpedicijaRTC]      ,[CarinskiPostupak]      ,[PostupakSaRobom]      ,[NacinPakovanja] " +
+      " ,[OdredisnaCarina]      ,[OdredisnaSpedicija]      ,[MestoIstovara]      ,[KontaktOsoba] " +
+      " ,[Email]      ,[BrojPlombe1]      ,[BrojPlombe2]      ,[NetoRobe] " +
+      " ,[BrutoRobe]      ,[TaraKontejnera]      ,[BrutoKontejnera]      ,[NapomenaZaPozicioniranje] " +
+      " ,[AtaOtpreme]      ,[BrojVoza]      ,[RelacijaVoza]      ,[AtaDolazak] " +
+      " ,[TipKontejnera]      ,[Koleta] " +
+  " FROM [Uvoz] where ID=" + Sifra, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtID.Text = dr["ID"].ToString();
+                dtEtaRijeka.Value = Convert.ToDateTime(dr["EtaBroda"].ToString());
+                dtAtaRijeka.Value = Convert.ToDateTime(dr["AtaBroda"].ToString());
+                txtStatus.Text = dr["StatusPrijema"].ToString();
+                txtBrKont.Text = dr["BrojKontejnera"].ToString();
+                txtTipKont.SelectedValue = Convert.ToInt32(dr["TipKontejnera"].ToString());
+                dtNalogBrodara.Value = Convert.ToDateTime(dr["DobijenNalogBrodara"].ToString());
+                txtBZ.Text = dr["DobijeBZ"].ToString();
+                txtPIN.Text = dr["PIN"].ToString();
+                cbDirigacija.SelectedValue = Convert.ToInt32(dr["DirigacijaKontejeraZa"].ToString());
+                cbBrod.SelectedValue = Convert.ToInt32(dr["NazivBroda"].ToString());
+                txtTeretnica.Text = dr["BrodskaTeretnica"].ToString();
+                txtADR.Text = dr["ADR"].ToString();
+                cbVlasnikKont.SelectedValue = Convert.ToInt32(dr["VlasnikKontejnera"].ToString());
+                txtBuking.Text = dr["ADR"].ToString();
+                cboUvoznik.SelectedValue = Convert.ToInt32(dr["Uvoznik"].ToString());
+                cboSpedicijaG.SelectedValue =  Convert.ToInt32(dr["SpedicijaGranica"].ToString());
+                //cboNHM
+                // cboNazivRobe
+                cboSpedicijaRTC.SelectedValue = Convert.ToInt32(dr["SpedicijaRTC"].ToString());
+                cboCarinskiPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
+                cbNacinPakovanja.SelectedValue = Convert.ToInt32(dr["NacinPakovanja"].ToString());
+                cbOcarina.SelectedValue = Convert.ToInt32(dr["OdredisnaCarina"].ToString());
+                cbOspedicija.SelectedValue = Convert.ToInt32(dr["OdredisnaSpedicija"].ToString());
+                txtMesto.Text = dr["MestoIstovara"].ToString(); 
+                cbPostupak.SelectedValue = Convert.ToInt32(dr["PostupakSaRobom"].ToString());
+                txtPlomba1.Text = dr["BrojPlombe1"].ToString();
+                txtPlomba2.Text = dr["BrojPlombe2"].ToString();
+                txtKontaktOsoba.Text = dr["KontaktOsoba"].ToString();
+                txtMail.Text = dr["Email"].ToString();
+                dtAtaOtprema.Value = Convert.ToDateTime(dr["AtaOtpreme"].ToString());
+                txtRelacija.Text = dr["RelacijaVoza"].ToString();
+                txtBrojVoza.Text = dr["BrojVoza"].ToString();
+                dtAtaDolazak.Value = Convert.ToDateTime(dr["AtaOtpreme"].ToString());
+                txtKoleta.Value = Convert.ToDecimal(dr["Koleta"].ToString());
+                txtNetoR.Value = Convert.ToDecimal(dr["NetoRobe"].ToString());
+                txtBrutoR.Value = Convert.ToDecimal(dr["BrutoRobe"].ToString());
+                txtTaraK.Value = Convert.ToDecimal(dr["TaraKontejnera"].ToString());
+                txtBrutoK.Value = Convert.ToDecimal(dr["BrutoKontejnera"].ToString());
+                txtNapomena.Text = dr["Napomena"].ToString();
+                cbNapomenaPoz.SelectedValue =  Convert.ToInt32(dr["NapomenaZaPozicioniranje"].ToString());
+
+
+            }
+            con.Close();
+
+
+        }
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             Brodovi brod = new Brodovi();
@@ -186,17 +268,33 @@ namespace Saobracaj.Uvoz
             cbOspedicija.DisplayMember = "PaNaziv";
             cbOspedicija.ValueMember = "PaSifra";
 
-            var nhm = "Select ID,Broj,Naziv from NHM order by ID";
-            var nhmAD = new SqlDataAdapter(nhm, conn);
-            var nhmDS = new DataSet();
-            nhmAD.Fill(nhmDS);
-            cboNHM.DataSource = nhmDS.Tables[0];
-            cboNHM.DisplayMember = "Broj";
-            cboNHM.ValueMember = "ID";
-            //naziv robe
-            cboNazivRobe.DataSource = nhmDS.Tables[0];
+            var tipkontejnera = "Select ID, SkNaziv From TipKontenjera order by id";
+            var tkAD = new SqlDataAdapter(tipkontejnera, conn);
+            var tkDS = new DataSet();
+            tkAD.Fill(tkDS);
+            txtTipKont.DataSource = tkDS.Tables[0];
+            txtTipKont.DisplayMember = "SkNaziv";
+            txtTipKont.ValueMember = "ID";
+
+
+
+            //Panta
+            var VRHS = "Select ID,(Rtrim(Naziv) + ' ' + HSKod) as Naziv from VrstaRobeHS order by ID";
+            var VRHSAD = new SqlDataAdapter(VRHS, conn);
+            var VRHSDS = new DataSet();
+            VRHSAD.Fill(VRHSDS);
+            cboNazivRobe.DataSource = VRHSDS.Tables[0];
             cboNazivRobe.DisplayMember = "Naziv";
-            cboNazivRobe.ValueMember = "Naziv";
+            cboNazivRobe.ValueMember = "ID";
+
+
+            var nhm = "Select ID,(Rtrim(Broj) + '-' + Naziv) as Naziv from NHM order by ID";
+            var nhmSAD = new SqlDataAdapter(nhm, conn);
+            var nhmSDS = new DataSet();
+            nhmSAD.Fill(nhmSDS);
+            cboNHM.DataSource = nhmSDS.Tables[0];
+            cboNHM.DisplayMember = "Naziv";
+            cboNHM.ValueMember = "ID";
         }
         private void FillCheck()
         {
@@ -220,6 +318,38 @@ namespace Saobracaj.Uvoz
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int temp = Convert.ToInt32(txtADR.Text);
+            }
+            catch (Exception h)
+            {
+                MessageBox.Show("Unesite numeričku vrednost ADR-a");
+                return;
+            }
+
+            try
+            {
+                int temp = Convert.ToInt32(txtBrojVoza.Text);
+            }
+            catch (Exception h)
+            {
+                MessageBox.Show("Unesite numeričku vrednost Broja voza");
+                return;
+            }
+
+            try
+            {
+                int temp = Convert.ToInt32(txtBuking.Text);
+            }
+            catch (Exception h)
+            {
+                MessageBox.Show("Unesite numeričku vrednost Broja voza");
+                return;
+            }
+
+
+
             for (int i = 0; i < clNalogodavac.Items.Count; i++)
             {
                 if (clNalogodavac.GetItemCheckState(i) == CheckState.Checked)
@@ -254,17 +384,17 @@ namespace Saobracaj.Uvoz
             }
             InsertUvoz ins = new InsertUvoz();
             ins.UpdUvoz(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtEtaRijeka.Value.ToString()),
-                Convert.ToDateTime(dtAtaRijeka.Value.ToString()), txtStatus.Text.ToString().TrimEnd(), Convert.ToInt32(txtBrKont.Text),
-                txtTipKont.Text.ToString().TrimEnd(), Convert.ToDateTime(dtNalogBrodara.Value.ToString()), txtBZ.Text.ToString().TrimEnd(),
+                Convert.ToDateTime(dtAtaRijeka.Value.ToString()), txtStatus.Text.ToString().TrimEnd(), txtBrKont.Text,
+                Convert.ToInt32(txtTipKont.SelectedValue), Convert.ToDateTime(dtNalogBrodara.Value.ToString()), txtBZ.Text.ToString().TrimEnd(),
                 txtNapomena.Text.ToString().TrimEnd(), txtPIN.Text.ToString().TrimEnd(), Convert.ToInt32(cbDirigacija.SelectedValue), Convert.ToInt32(cbBrod.SelectedValue),
-                Convert.ToInt32(txtTeretnica.Text), Convert.ToInt32(txtADR.Text), Convert.ToInt32(cbVlasnikKont.SelectedValue), Convert.ToInt32(txtBuking.Text), nalogodavci,
+                txtTeretnica.Text, Convert.ToInt32(txtADR.Text), Convert.ToInt32(cbVlasnikKont.SelectedValue), Convert.ToInt32(txtBuking.Text), nalogodavci,
                 usluge, Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboNHM.SelectedValue), cboNazivRobe.SelectedValue.ToString(), Convert.ToInt32(cboSpedicijaG.SelectedValue),
                 Convert.ToInt32(cboSpedicijaRTC.SelectedValue), Convert.ToInt32(cboCarinskiPostupak.SelectedValue), Convert.ToInt32(cbPostupak.SelectedValue),
                 Convert.ToInt32(cbNacinPakovanja.SelectedValue), Convert.ToInt32(cbOcarina.SelectedValue), Convert.ToInt32(cbOspedicija.SelectedValue),
-                txtMesto.Text.ToString().TrimEnd(), txtKontaktOsoba.Text.ToString().TrimEnd(), txtMail.Text.ToString(), Convert.ToInt32(txtPlomba1.Text),
-                Convert.ToInt32(txtPlomba2.Text), Convert.ToDecimal(txtNetoR.Value), Convert.ToDecimal(txtBrutoR.Value), Convert.ToDecimal(txtTaraK.Value),
+                txtMesto.Text.ToString().TrimEnd(), txtKontaktOsoba.Text.ToString().TrimEnd(), txtMail.Text.ToString(), txtPlomba1.Text,
+                txtPlomba2.Text, Convert.ToDecimal(txtNetoR.Value), Convert.ToDecimal(txtBrutoR.Value), Convert.ToDecimal(txtTaraK.Value),
                 Convert.ToDecimal(txtBrutoK.Value), Convert.ToInt32(cbNapomenaPoz.SelectedValue), Convert.ToDateTime(dtAtaOtprema.Value.ToString()),
-                Convert.ToInt32(txtBrojVoza.Text), txtRelacija.Text.ToString().TrimEnd(), Convert.ToDateTime(dtAtaDolazak.Value.ToString()));
+                Convert.ToInt32(txtBrojVoza.Text), txtRelacija.Text.ToString().TrimEnd(), Convert.ToDateTime(dtAtaDolazak.Value.ToString()), Convert.ToDecimal(txtKoleta.Value));
             FillGV();
             tsNew.Enabled = true;
             txtID.Text = "";
@@ -391,17 +521,17 @@ namespace Saobracaj.Uvoz
                 }
             }
             uvK.InsUvozKonacna(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtEtaRijeka.Value.ToString()),
-                Convert.ToDateTime(dtAtaRijeka.Value.ToString()), txtStatus.Text.ToString().TrimEnd(), Convert.ToInt32(txtBrKont.Text),
-                txtTipKont.Text.ToString().TrimEnd(), Convert.ToDateTime(dtNalogBrodara.Value.ToString()), txtBZ.Text.ToString().TrimEnd(),
+                Convert.ToDateTime(dtAtaRijeka.Value.ToString()), txtStatus.Text.ToString().TrimEnd(), txtBrKont.Text,
+                Convert.ToInt32(txtTipKont.SelectedValue), Convert.ToDateTime(dtNalogBrodara.Value.ToString()), txtBZ.Text.ToString().TrimEnd(),
                 txtNapomena.Text.ToString().TrimEnd(), txtPIN.Text.ToString().TrimEnd(), Convert.ToInt32(cbDirigacija.SelectedValue), Convert.ToInt32(cbBrod.SelectedValue),
-                Convert.ToInt32(txtTeretnica.Text), Convert.ToInt32(txtADR.Text), Convert.ToInt32(cbVlasnikKont.SelectedValue), Convert.ToInt32(txtBuking.Text), nalogodavci,
-                usluge, Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboNHM.SelectedValue), cboNazivRobe.SelectedValue.ToString(), Convert.ToInt32(cboSpedicijaG.SelectedValue),
+                txtTeretnica.Text, Convert.ToInt32(txtADR.Text), Convert.ToInt32(cbVlasnikKont.SelectedValue), Convert.ToInt32(txtBuking.Text), nalogodavci,
+                usluge, Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboNHM.SelectedValue), Convert.ToInt32(cboNazivRobe.SelectedValue), Convert.ToInt32(cboSpedicijaG.SelectedValue),
                 Convert.ToInt32(cboSpedicijaRTC.SelectedValue), Convert.ToInt32(cboCarinskiPostupak.SelectedValue), Convert.ToInt32(cbPostupak.SelectedValue),
                 Convert.ToInt32(cbNacinPakovanja.SelectedValue), Convert.ToInt32(cbOcarina.SelectedValue), Convert.ToInt32(cbOspedicija.SelectedValue),
-                txtMesto.Text.ToString().TrimEnd(), txtKontaktOsoba.Text.ToString().TrimEnd(), txtMail.Text.ToString(), Convert.ToInt32(txtPlomba1.Text),
-                Convert.ToInt32(txtPlomba2.Text), Convert.ToDecimal(txtNetoR.Value), Convert.ToDecimal(txtBrutoR.Value), Convert.ToDecimal(txtTaraK.Value),
+                txtMesto.Text.ToString().TrimEnd(), txtKontaktOsoba.Text.ToString().TrimEnd(), txtMail.Text.ToString(), txtPlomba1.Text,
+                txtPlomba2.Text, Convert.ToDecimal(txtNetoR.Value), Convert.ToDecimal(txtBrutoR.Value), Convert.ToDecimal(txtTaraK.Value),
                 Convert.ToDecimal(txtBrutoK.Value), Convert.ToInt32(cbNapomenaPoz.SelectedValue), Convert.ToDateTime(dtAtaOtprema.Value.ToString()),
-                Convert.ToInt32(txtBrojVoza.Text), txtRelacija.Text.ToString().TrimEnd(), Convert.ToDateTime(dtAtaDolazak.Value.ToString()));
+                Convert.ToInt32(txtBrojVoza.Text), txtRelacija.Text.ToString().TrimEnd(), Convert.ToDateTime(dtAtaDolazak.Value.ToString()), Convert.ToInt32(txtKoleta.Value));
             try
             {
                 SqlConnection conn = new SqlConnection(connection);
@@ -424,6 +554,158 @@ namespace Saobracaj.Uvoz
         {
             UvozKonacna frm = new UvozKonacna();
             frm.Show();
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            UvozDokumenta uvdok = new UvozDokumenta(txtID.Text);
+            uvdok.Show();
+        }
+
+        private void cbNacinPakovanja_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FillDG2()
+        {
+            var select = " SELECT     UvozNHM.ID, NHM.Broj, UvozNHM.IDNHM FROM NHM INNER JOIN " +
+                      " UvozNHM ON NHM.ID = UvozNHM.IDNHM where Uvoznhm.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by Uvoznhm.ID desc ";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = ds.Tables[0];
+
+            dataGridView2.BorderStyle = BorderStyle.None;
+            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView2.BackgroundColor = Color.White;
+
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView2.Columns[0];
+            dataGridView2.Columns[0].HeaderText = "ID";
+            dataGridView2.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView2.Columns[1];
+            dataGridView2.Columns[1].HeaderText = "NHM Broj";
+            dataGridView2.Columns[1].Width = 100;
+
+
+
+        }
+
+        private void FillDG3()
+        {
+            var select = "select UvozVrstaRobeHS.ID, IDVrstaRobeHS, VrstaRobeHS.HSKod from UvozVrstaRobeHS " +
+" inner join  VrstaRobeHS on VrstaRobeHS.ID = UvozVrstaRobeHS.IDVrstaRobeHS where idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by UvozVrstaRobeHS.ID desc ";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView3.ReadOnly = true;
+            dataGridView3.DataSource = ds.Tables[0];
+
+            dataGridView3.BorderStyle = BorderStyle.None;
+            dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView3.BackgroundColor = Color.White;
+
+            dataGridView3.EnableHeadersVisualStyles = false;
+            dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView3.Columns[0];
+            dataGridView3.Columns[0].HeaderText = "ID";
+            dataGridView3.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView3.Columns[1];
+            dataGridView3.Columns[1].HeaderText = "VRID";
+            dataGridView3.Columns[1].Width = 20;
+
+            DataGridViewColumn column3 = dataGridView3.Columns[2];
+            dataGridView3.Columns[2].HeaderText = "VRKOD";
+            dataGridView3.Columns[2].Width = 20;
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            InsertUvozKonacna uvK = new InsertUvozKonacna();
+            uvK.InsUvozNHM(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNHM.SelectedValue));
+            FillDG2();
+           // refreshdataNHM doraditi
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            InsertUvozKonacna uvK = new InsertUvozKonacna();
+            uvK.DelUvozNHM( Convert.ToInt32(cboNHM.SelectedValue));
+            FillDG2();
+            // refreshdataNHM doraditi
+        }
+
+        private void dataGridView2_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txtIDNHM.Text = row.Cells[0].Value.ToString();
+                      
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void dataGridView3_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView3.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txtVrstaRobeHS.Text = row.Cells[0].Value.ToString();
+
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            InsertUvozKonacna uvK = new InsertUvozKonacna();
+            uvK.InsUvozVrstaRobeHS(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNHM.SelectedValue));
+            FillDG3();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            InsertUvozKonacna uvK = new InsertUvozKonacna();
+            uvK.DelUvozVrstaRobeHS(Convert.ToInt32(cboNHM.SelectedValue));
+            FillDG3();
+        }
+
+        private void clVrstaUsluga_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

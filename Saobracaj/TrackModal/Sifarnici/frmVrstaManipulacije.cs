@@ -19,11 +19,12 @@ namespace Testiranje.Sifarnici
     {
          
             
-        string KorisnikCene;
+        string KorisnikCene = "Panta";
         bool status = false;
         public frmVrstaManipulacije()
         {
             InitializeComponent();
+            KorisnikCene = "Panta";
         }
 
         public frmVrstaManipulacije(string Korisnik)
@@ -208,12 +209,9 @@ namespace Testiranje.Sifarnici
             cboTipManipulacije.ValueMember = "ID";
 
 
-            if (KorisnikCene != "Kecman" && KorisnikCene != "M.Jelisavčić" && KorisnikCene != "panta" && KorisnikCene != "Dušan Bašanović")
-            {
-                tsNew.Enabled = false;
-                tsSave.Enabled = false;
-                tsDelete.Enabled = false;
-            }
+            
+             
+            
         }
 
         private void tsPrvi_Click(object sender, EventArgs e)

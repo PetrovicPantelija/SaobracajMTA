@@ -270,16 +270,21 @@ namespace Saobracaj
             this.toolStripButton182 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton183 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton184 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton185 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton186 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton188 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton189 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton190 = new System.Windows.Forms.ToolStripButton();
             this.toolStripEx44 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
+            this.toolStripButton187 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton106 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton107 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton191 = new System.Windows.Forms.ToolStripButton();
             this.toolStripEx27 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.toolStripButton89 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton90 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton102 = new System.Windows.Forms.ToolStripButton();
             this.imageListAdv1 = new Syncfusion.Windows.Forms.Tools.ImageListAdv(this.components);
-            this.toolStripButton185 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton186 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlAdv1)).BeginInit();
             this.ribbonControlAdv1.SuspendLayout();
             this.toolStripTabItem1.Panel.SuspendLayout();
@@ -3475,13 +3480,16 @@ namespace Saobracaj
             this.toolStripButton183,
             this.toolStripButton184,
             this.toolStripButton185,
-            this.toolStripButton186});
+            this.toolStripButton186,
+            this.toolStripButton188,
+            this.toolStripButton189,
+            this.toolStripButton190});
             this.toolStripEx4.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.toolStripEx4.Location = new System.Drawing.Point(0, 1);
             this.toolStripEx4.Name = "toolStripEx4";
             this.toolStripEx4.Office12Mode = false;
             this.toolStripEx4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx4.Size = new System.Drawing.Size(175, 629);
+            this.toolStripEx4.Size = new System.Drawing.Size(175, 624);
             this.toolStripEx4.TabIndex = 0;
             // 
             // toolStripButton34
@@ -3564,6 +3572,56 @@ namespace Saobracaj
             this.toolStripButton184.Text = "Vrsta Carinskog postupka";
             this.toolStripButton184.Click += new System.EventHandler(this.toolStripButton184_Click);
             // 
+            // toolStripButton185
+            // 
+            this.toolStripButton185.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton185.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton185.Image")));
+            this.toolStripButton185.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton185.Name = "toolStripButton185";
+            this.toolStripButton185.Size = new System.Drawing.Size(113, 23);
+            this.toolStripButton185.Text = "Način pakovanja";
+            this.toolStripButton185.Click += new System.EventHandler(this.toolStripButton185_Click);
+            // 
+            // toolStripButton186
+            // 
+            this.toolStripButton186.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton186.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton186.Image")));
+            this.toolStripButton186.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton186.Name = "toolStripButton186";
+            this.toolStripButton186.Size = new System.Drawing.Size(127, 23);
+            this.toolStripButton186.Text = "Kvalitet kontejnera";
+            this.toolStripButton186.Click += new System.EventHandler(this.toolStripButton186_Click);
+            // 
+            // toolStripButton188
+            // 
+            this.toolStripButton188.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton188.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton188.Image")));
+            this.toolStripButton188.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton188.Name = "toolStripButton188";
+            this.toolStripButton188.Size = new System.Drawing.Size(100, 23);
+            this.toolStripButton188.Text = "Tip kontejnera";
+            this.toolStripButton188.Click += new System.EventHandler(this.toolStripButton188_Click);
+            // 
+            // toolStripButton189
+            // 
+            this.toolStripButton189.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton189.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton189.Image")));
+            this.toolStripButton189.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton189.Name = "toolStripButton189";
+            this.toolStripButton189.Size = new System.Drawing.Size(123, 23);
+            this.toolStripButton189.Text = "Vrste manipulacija";
+            this.toolStripButton189.Click += new System.EventHandler(this.toolStripButton189_Click);
+            // 
+            // toolStripButton190
+            // 
+            this.toolStripButton190.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton190.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton190.Image")));
+            this.toolStripButton190.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton190.Name = "toolStripButton190";
+            this.toolStripButton190.Size = new System.Drawing.Size(53, 23);
+            this.toolStripButton190.Text = "Vozovi";
+            this.toolStripButton190.Click += new System.EventHandler(this.toolStripButton190_Click);
+            // 
             // toolStripEx44
             // 
             this.toolStripEx44.Dock = System.Windows.Forms.DockStyle.None;
@@ -3573,15 +3631,27 @@ namespace Saobracaj
             this.toolStripEx44.Image = null;
             this.toolStripEx44.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStripEx44.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton187,
             this.toolStripButton106,
-            this.toolStripButton107});
+            this.toolStripButton107,
+            this.toolStripButton191});
             this.toolStripEx44.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.toolStripEx44.Location = new System.Drawing.Point(177, 1);
             this.toolStripEx44.Name = "toolStripEx44";
             this.toolStripEx44.Office12Mode = false;
             this.toolStripEx44.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx44.Size = new System.Drawing.Size(116, 629);
+            this.toolStripEx44.Size = new System.Drawing.Size(191, 624);
             this.toolStripEx44.TabIndex = 1;
+            // 
+            // toolStripButton187
+            // 
+            this.toolStripButton187.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton187.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton187.Image")));
+            this.toolStripButton187.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton187.Name = "toolStripButton187";
+            this.toolStripButton187.Size = new System.Drawing.Size(186, 23);
+            this.toolStripButton187.Text = "Pregled nerasporedjeni uvoz";
+            this.toolStripButton187.Click += new System.EventHandler(this.toolStripButton187_Click);
             // 
             // toolStripButton106
             // 
@@ -3602,6 +3672,16 @@ namespace Saobracaj
             this.toolStripButton107.Size = new System.Drawing.Size(111, 23);
             this.toolStripButton107.Text = "Pojedinačni plan";
             this.toolStripButton107.Click += new System.EventHandler(this.toolStripButton107_Click_1);
+            // 
+            // toolStripButton191
+            // 
+            this.toolStripButton191.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton191.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton191.Image")));
+            this.toolStripButton191.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton191.Name = "toolStripButton191";
+            this.toolStripButton191.Size = new System.Drawing.Size(129, 23);
+            this.toolStripButton191.Text = "Svi planovi utovara";
+            this.toolStripButton191.Click += new System.EventHandler(this.toolStripButton191_Click);
             // 
             // toolStripEx27
             // 
@@ -3647,26 +3727,6 @@ namespace Saobracaj
             this.toolStripButton102.Name = "toolStripButton102";
             this.toolStripButton102.Size = new System.Drawing.Size(31, 20);
             this.toolStripButton102.Text = "toolStripButton15";
-            // 
-            // toolStripButton185
-            // 
-            this.toolStripButton185.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton185.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton185.Image")));
-            this.toolStripButton185.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton185.Name = "toolStripButton185";
-            this.toolStripButton185.Size = new System.Drawing.Size(113, 23);
-            this.toolStripButton185.Text = "Način pakovanja";
-            this.toolStripButton185.Click += new System.EventHandler(this.toolStripButton185_Click);
-            // 
-            // toolStripButton186
-            // 
-            this.toolStripButton186.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton186.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton186.Image")));
-            this.toolStripButton186.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton186.Name = "toolStripButton186";
-            this.toolStripButton186.Size = new System.Drawing.Size(127, 23);
-            this.toolStripButton186.Text = "Kvalitet kontejnera";
-            this.toolStripButton186.Click += new System.EventHandler(this.toolStripButton186_Click);
             // 
             // MainP
             // 
@@ -4029,5 +4089,10 @@ namespace Saobracaj
         private System.Windows.Forms.ToolStripButton toolStripButton184;
         private System.Windows.Forms.ToolStripButton toolStripButton185;
         private System.Windows.Forms.ToolStripButton toolStripButton186;
+        private System.Windows.Forms.ToolStripButton toolStripButton187;
+        private System.Windows.Forms.ToolStripButton toolStripButton188;
+        private System.Windows.Forms.ToolStripButton toolStripButton189;
+        private System.Windows.Forms.ToolStripButton toolStripButton190;
+        private System.Windows.Forms.ToolStripButton toolStripButton191;
     }
 }

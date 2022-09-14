@@ -13,11 +13,11 @@ namespace Saobracaj.Uvoz
     class InsertUvoz
     {
         string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
-        public void UpdUvoz(int ID,DateTime ETABroda,DateTime ATABroda,string Status,int BrojKont,string TipKont,DateTime DobijenNalog,string DobijeBZ,string Napomena,
-            string PIN,int DirigacijaKont,int NazivBroda,int BTeretnica,int ADR,int Vlasnik,int Buking,string Nalogodavac,string VrstaUsluge,int Uvoznik,int NHM,
+        public void UpdUvoz(int ID,DateTime ETABroda,DateTime ATABroda,string Status,string BrojKont,int TipKont,DateTime DobijenNalog,string DobijeBZ,string Napomena,
+            string PIN,int DirigacijaKont,int NazivBroda,string BTeretnica,int ADR,int Vlasnik,int Buking,string Nalogodavac,string VrstaUsluge,int Uvoznik,int NHM,
             string NazivRobe,int SpedicijaGranicna,int SpedicijaRTC,int CarinskiPostupak,int PostupakRoba,int NacinPakovanja,int OdredisnaCarina,int OdredisnaSpedicija,
-            string MestoIstovara,string KontaktOsoba,string Mail,int Plomba1,int Plomba2,decimal NetoRoba,decimal BrutoRoba,decimal TaraKont,decimal BrutoKont,
-            int NapomenaPoz,DateTime ATAOtpreme,int BrojVoza,string Relacija,DateTime ATADolazak)
+            string MestoIstovara,string KontaktOsoba,string Mail,string Plomba1,string Plomba2,decimal NetoRoba,decimal BrutoRoba,decimal TaraKont,decimal BrutoKont,
+            int NapomenaPoz,DateTime ATAOtpreme,int BrojVoza,string Relacija,DateTime ATADolazak, decimal Koleta)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -55,15 +55,15 @@ namespace Saobracaj.Uvoz
 
             SqlParameter brojKont = new SqlParameter();
             brojKont.ParameterName = "@BrojKontejnera";
-            brojKont.SqlDbType = SqlDbType.Int;
+            brojKont.SqlDbType = SqlDbType.NVarChar;
+            brojKont.Size = 50;
             brojKont.Direction = ParameterDirection.Input;
             brojKont.Value = BrojKont;
             cmd.Parameters.Add(brojKont);
 
             SqlParameter tipKont = new SqlParameter();
             tipKont.ParameterName = "@TipKontejnera";
-            tipKont.SqlDbType = SqlDbType.NVarChar;
-            tipKont.Size = 50;
+            tipKont.SqlDbType = SqlDbType.Int;
             tipKont.Direction = ParameterDirection.Input;
             tipKont.Value = TipKont;
             cmd.Parameters.Add(tipKont);
@@ -115,7 +115,8 @@ namespace Saobracaj.Uvoz
 
             SqlParameter teretnica = new SqlParameter();
             teretnica.ParameterName = "@BrodskaTeretnica";
-            teretnica.SqlDbType = SqlDbType.Int;
+            teretnica.SqlDbType = SqlDbType.NVarChar;
+            teretnica.Size = 50;
             teretnica.Direction = ParameterDirection.Input;
             teretnica.Value = BTeretnica;
             cmd.Parameters.Add(teretnica);
@@ -254,14 +255,16 @@ namespace Saobracaj.Uvoz
 
             SqlParameter plomba1 = new SqlParameter();
             plomba1.ParameterName = "@BrojPlombe1";
-            plomba1.SqlDbType = SqlDbType.Int;
+            plomba1.SqlDbType = SqlDbType.NVarChar;
+            plomba1.Size = 50;
             plomba1.Direction = ParameterDirection.Input;
             plomba1.Value = Plomba1;
             cmd.Parameters.Add(plomba1);
 
             SqlParameter plomba2 = new SqlParameter();
             plomba2.ParameterName = "@BrojPlombe2";
-            plomba2.SqlDbType = SqlDbType.Int;
+            plomba2.SqlDbType = SqlDbType.NVarChar;
+            plomba2.Size = 50;
             plomba2.Direction = ParameterDirection.Input;
             plomba2.Value = Plomba2;
             cmd.Parameters.Add(plomba2);
@@ -329,6 +332,13 @@ namespace Saobracaj.Uvoz
             ataD.Direction = ParameterDirection.Input;
             ataD.Value = ATADolazak;
             cmd.Parameters.Add(ataD);
+
+            SqlParameter koleta= new SqlParameter();
+            koleta.ParameterName = "@Koleta";
+            koleta.SqlDbType = SqlDbType.Decimal;
+            koleta.Direction = ParameterDirection.Input;
+            koleta.Value = Koleta;
+            cmd.Parameters.Add(koleta);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

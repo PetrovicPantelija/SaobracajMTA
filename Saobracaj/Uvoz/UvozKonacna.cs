@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
 
 namespace Saobracaj.Uvoz
 {
@@ -18,6 +19,14 @@ namespace Saobracaj.Uvoz
         string nalogodavci = "";
         string usluge = "";
         public UvozKonacna()
+        {
+            InitializeComponent();
+            FillCheck();
+            FillCombo();
+            FillGV();
+        }
+
+        public UvozKonacna(int Sifra)
         {
             InitializeComponent();
             FillCheck();
@@ -139,18 +148,34 @@ namespace Saobracaj.Uvoz
             cbOspedicija.DataSource = partDS5.Tables[0];
             cbOspedicija.DisplayMember = "PaNaziv";
             cbOspedicija.ValueMember = "PaSifra";
-
-            var nhm = "Select ID,Broj,Naziv from NHM order by ID";
-            var nhmAD = new SqlDataAdapter(nhm, conn);
-            var nhmDS = new DataSet();
-            nhmAD.Fill(nhmDS);
-            cboNHM.DataSource = nhmDS.Tables[0];
-            cboNHM.DisplayMember = "Broj";
-            cboNHM.ValueMember = "ID";
-            //naziv robe
-            cboNazivRobe.DataSource = nhmDS.Tables[0];
+            //Panta
+            var VRHS = "Select ID,(Rtrim(Naziv) + ' ' + HSKod) as Naziv from VrstaRobeHS order by ID";
+            var VRHSAD = new SqlDataAdapter(VRHS, conn);
+            var VRHSDS = new DataSet();
+            VRHSAD.Fill(VRHSDS);
+            cboNazivRobe.DataSource = VRHSDS.Tables[0];
             cboNazivRobe.DisplayMember = "Naziv";
-            cboNazivRobe.ValueMember = "Naziv";
+            cboNazivRobe.ValueMember = "ID";
+
+
+            var nhm = "Select ID,(Rtrim(Broj) + '-' + Naziv) as Naziv from NHM order by ID ";
+            var nhmSAD = new SqlDataAdapter(nhm, conn);
+            var nhmSDS = new DataSet();
+            nhmSAD.Fill(nhmSDS);
+            cboNHM.DataSource = nhmSDS.Tables[0];
+            cboNHM.DisplayMember = "Naziv";
+            cboNHM.ValueMember = "ID";
+            //Panta
+
+            var voz = "select ID, (Cast(ID as NVarChar(10)) + '-'+Cast(BrVoza as NVarchar(15)) + '-' + Relacija + '-' + Cast(VremePolaska as nvarchar(20))) as Naziv   from Voz ";
+            var vozSAD = new SqlDataAdapter(voz, conn);
+            var vozSDS = new DataSet();
+            vozSAD.Fill(vozSDS);
+            cboVoz.DataSource = vozSDS.Tables[0];
+            cboVoz.DisplayMember = "Naziv";
+            cboVoz.ValueMember = "ID";
+
+
         }
         private void FillCheck()
         {
@@ -287,18 +312,207 @@ namespace Saobracaj.Uvoz
             }
             InsertUvozKonacna ins = new InsertUvozKonacna();
             ins.UpdUvozKonacna(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtEtaRijeka.Value.ToString()),
-                Convert.ToDateTime(dtAtaRijeka.Value.ToString()), txtStatus.Text.ToString().TrimEnd(), Convert.ToInt32(txtBrKont.Text),
-                txtTipKont.Text.ToString().TrimEnd(), Convert.ToDateTime(dtNalogBrodara.Value.ToString()), txtBZ.Text.ToString().TrimEnd(),
+                Convert.ToDateTime(dtAtaRijeka.Value.ToString()), txtStatus.Text.ToString().TrimEnd(), txtBrKont.Text,
+                Convert.ToInt32(txtTipKont.Text.ToString().TrimEnd()), Convert.ToDateTime(dtNalogBrodara.Value.ToString()), txtBZ.Text.ToString().TrimEnd(),
                 txtNapomena.Text.ToString().TrimEnd(), txtPIN.Text.ToString().TrimEnd(), Convert.ToInt32(cbDirigacija.SelectedValue), Convert.ToInt32(cbBrod.SelectedValue),
-                Convert.ToInt32(txtTeretnica.Text), Convert.ToInt32(txtADR.Text), Convert.ToInt32(cbVlasnikKont.SelectedValue), Convert.ToInt32(txtBuking.Text), nalogodavci,
-                usluge, Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboNHM.SelectedValue), cboNazivRobe.SelectedValue.ToString(), Convert.ToInt32(cboSpedicijaG.SelectedValue),
+                txtTeretnica.Text, Convert.ToInt32(txtADR.Text), Convert.ToInt32(cbVlasnikKont.SelectedValue), Convert.ToInt32(txtBuking.Text), nalogodavci,
+                usluge, Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboNHM.SelectedValue), Convert.ToInt32(cboNazivRobe.SelectedValue), Convert.ToInt32(cboSpedicijaG.SelectedValue),
                 Convert.ToInt32(cboSpedicijaRTC.SelectedValue), Convert.ToInt32(cboCarinskiPostupak.SelectedValue), Convert.ToInt32(cbPostupak.SelectedValue),
                 Convert.ToInt32(cbNacinPakovanja.SelectedValue), Convert.ToInt32(cbOcarina.SelectedValue), Convert.ToInt32(cbOspedicija.SelectedValue),
-                txtMesto.Text.ToString().TrimEnd(), txtKontaktOsoba.Text.ToString().TrimEnd(), txtMail.Text.ToString(), Convert.ToInt32(txtPlomba1.Text),
-                Convert.ToInt32(txtPlomba2.Text), Convert.ToDecimal(txtNetoR.Value), Convert.ToDecimal(txtBrutoR.Value), Convert.ToDecimal(txtTaraK.Value),
+                txtMesto.Text.ToString().TrimEnd(), txtKontaktOsoba.Text.ToString().TrimEnd(), txtMail.Text.ToString(), txtPlomba1.Text,
+                txtPlomba2.Text, Convert.ToDecimal(txtNetoR.Value), Convert.ToDecimal(txtBrutoR.Value), Convert.ToDecimal(txtTaraK.Value),
                 Convert.ToDecimal(txtBrutoK.Value), Convert.ToInt32(cbNapomenaPoz.SelectedValue), Convert.ToDateTime(dtAtaOtprema.Value.ToString()),
-                Convert.ToInt32(txtBrojVoza.Text), txtRelacija.Text.ToString().TrimEnd(), Convert.ToDateTime(dtAtaDolazak.Value.ToString()));
+                Convert.ToInt32(txtBrojVoza.Text), txtRelacija.Text.ToString().TrimEnd(), Convert.ToDateTime(dtAtaDolazak.Value.ToString()), Convert.ToInt32(txtKoleta.Value));
             FillGV();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            InsertUvozKonacnaZaglavlje ins = new InsertUvozKonacnaZaglavlje();
+            ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text);
+            //refreshStavke(); - Dodati
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            var select = "SELECT row_number() OVER (ORDER BY UvozKonacna.ID) RB, " +
+       " TipKontejnera, BrojKontejnera, " +
+       " Partnerji.PaNaziv, Partnerji.PaEMatSt1, (Cast(BrojPlombe1 as nvarchar(25)) + '/' + Cast(BrojPlombe2 as nvarchar(25))) as Plombe, " +
+       "  VrstaRobeHS.Naziv as Roba,VrstaRobe.Naziv as NHM, 0 as Koleta, 0 as Tara, 0 as Masarobe, 0 as ukupnatezina, 0 as K447, 0 as tezinapok447 " +
+        " FROM UvozKonacna " +
+        " inner join Partnerji on PaSifra = VlasnikKontejnera " +
+        " left join VrstaRobeHS on VrstaRobeHS.ID = UvozKonacna.NazivRobe " +
+        " left join VrstaRobe on VrstaRobe.ID = NHMBroj Where UvozKonacna.ID = " + Convert.ToInt32(txtID.Text);
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+
+            Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+            object missing = System.Reflection.Missing.Value;
+            Workbook wBook = excel.Workbooks.Add(missing);
+
+            Worksheet wSheet = new Worksheet();
+            try
+            {
+
+                wSheet = (Worksheet)wBook.Worksheets.get_Item(1);
+                for (int i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+                {
+                    for (int j = 0; j <= ds.Tables[0].Columns.Count - 1; j++)
+                    {
+                        wSheet.Cells[1, 15].EntireRow.Font.Bold = true;
+                        wSheet.Range["A1:N1"].Interior.Color = System.Drawing.Color.AliceBlue;
+                        wSheet.Cells[1, "A"] = "RB";
+                        wSheet.Cells[1, "B"] = "Tip Kontejnera";
+                        wSheet.Cells[1, "C"] = "Broj kontejnera";
+                        wSheet.Cells[1, "D"] = "Partner";
+                        wSheet.Cells[1, "E"] = "PIB";
+                        wSheet.Cells[1, "F"] = "Plombe";
+                        wSheet.Cells[1, "G"] = "Roba";
+                        wSheet.Cells[1, "H"] = "NHM";
+                        wSheet.Cells[1, "I"] = "Koleta";
+                        wSheet.Cells[1, "J"] = "Tara";
+                        wSheet.Cells[1, "K"] = "MasaRobe";
+                        wSheet.Cells[1, "L"] = "UkupnaTezina";
+                        wSheet.Cells[1, "M"] = "K447";
+                        wSheet.Cells[1, "N"] = "P447";
+                       
+                        wSheet.Cells[i + 2, j + 1] = ds.Tables[0].Rows[i].ItemArray[j].ToString();
+                        wSheet.Cells[i + 2, j + 1].EntireColumn.AutoFit();
+                        Borders border = wSheet.Cells[i + 2, j + 1].Borders;
+                        border.Weight = 2d;
+
+                    }
+                }
+
+                string date = DateTime.Now.ToString("dd-MM-yyyy");
+                string path = Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory);
+                object filename = @"VLeget A106" + date + ".xlsx";
+                wBook.SaveAs(filename);
+                wBook.Close();
+                excel.Quit();
+                excel = null;
+                wBook = null;
+                wSheet = null;
+
+
+                MessageBox.Show("Dokument je kreiran");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+
+        private void tsNew_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            InsertUvozKonacna uvK = new InsertUvozKonacna();
+            uvK.InsUvozKonacnaNHM(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNHM.SelectedValue));
+            FillDG2();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            InsertUvozKonacna uvK = new InsertUvozKonacna();
+            uvK.DelUvozKonacnaNHM(Convert.ToInt32(cboNHM.SelectedValue));
+            FillDG2();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            InsertUvozKonacna uvK = new InsertUvozKonacna();
+            uvK.InsUvozKonacnaVrstaRobeHS(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNHM.SelectedValue));
+            FillDG3();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            InsertUvozKonacna uvK = new InsertUvozKonacna();
+            uvK.DelUvozKonacnaVrstaRobeHS(Convert.ToInt32(cboNHM.SelectedValue));
+            FillDG3();
+        }
+
+        private void FillDG2()
+        {
+            var select = "  SELECT NHM.Broj, NHM.Naziv, UvozNHM.IDNHM, NHM.ID FROM NHM INNER JOIN " +
+                      " UvozKonacnaNHM ON NHM.ID = UvozKonacnaNHM.IDNHM where UvozKonacnanhm.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by Uvoznhm.ID desc "; 
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = ds.Tables[0];
+
+        }
+
+        private void FillDG3()
+        {
+            var select = "select UvozKonacnaVrstaRobeHS.ID, IDVrstaRobeHS, VrstaRobeHS.HSKod from UvozKonacnaVrstaRobeHS " +
+" inner join  VrstaRobeHS on VrstaRobeHS.ID = UvozKonacnaVrstaRobeHS.IDVrstaRobeHS where idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by UvozKonacnaVrstaRobeHS.ID desc ";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView3.ReadOnly = true;
+            dataGridView3.DataSource = ds.Tables[0];
+
+        }
+
+        private void dataGridView2_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txtIDNHM.Text = row.Cells[0].Value.ToString();
+
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void dataGridView3_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView3.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txtVrstaRobeHS.Text = row.Cells[0].Value.ToString();
+
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void UvozKonacna_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

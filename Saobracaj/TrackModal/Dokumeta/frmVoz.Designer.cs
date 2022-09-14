@@ -105,6 +105,18 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.txtSifraSerijeKola = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.cboSerijaKola = new System.Windows.Forms.ComboBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.nmrUkupanBrojKontejnera = new System.Windows.Forms.NumericUpDown();
+            this.label29 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaksBrojKola)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDuzina)).BeginInit();
@@ -119,6 +131,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtVremeKontrolnogO)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtVremeUtovaraO)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPostNaTerminalO)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrUkupanBrojKontejnera)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -546,11 +563,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(18, 532);
+            this.dataGridView1.Location = new System.Drawing.Point(7, 7);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1925, 488);
+            this.dataGridView1.Size = new System.Drawing.Size(1861, 465);
             this.dataGridView1.TabIndex = 137;
             this.dataGridView1.Visible = false;
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -1087,12 +1104,162 @@
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Location = new System.Drawing.Point(15, 506);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1883, 519);
+            this.tabControl1.TabIndex = 248;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.dataGridView1);
+            this.tabPage1.Location = new System.Drawing.Point(4, 27);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1875, 488);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Vozovi";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.label29);
+            this.tabPage2.Controls.Add(this.nmrUkupanBrojKontejnera);
+            this.tabPage2.Controls.Add(this.dataGridView2);
+            this.tabPage2.Controls.Add(this.button6);
+            this.tabPage2.Controls.Add(this.button5);
+            this.tabPage2.Controls.Add(this.label27);
+            this.tabPage2.Controls.Add(this.cboSerijaKola);
+            this.tabPage2.Controls.Add(this.txtSifraSerijeKola);
+            this.tabPage2.Controls.Add(this.label26);
+            this.tabPage2.Location = new System.Drawing.Point(4, 27);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1875, 488);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Sastav voza";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // txtSifraSerijeKola
+            // 
+            this.txtSifraSerijeKola.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txtSifraSerijeKola.Location = new System.Drawing.Point(143, 35);
+            this.txtSifraSerijeKola.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSifraSerijeKola.Name = "txtSifraSerijeKola";
+            this.txtSifraSerijeKola.Size = new System.Drawing.Size(100, 26);
+            this.txtSifraSerijeKola.TabIndex = 10;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label26.ForeColor = System.Drawing.Color.Black;
+            this.label26.Location = new System.Drawing.Point(14, 32);
+            this.label26.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(42, 18);
+            this.label26.TabIndex = 11;
+            this.label26.Text = "Šifra:";
+            // 
+            // cboSerijaKola
+            // 
+            this.cboSerijaKola.FormattingEnabled = true;
+            this.cboSerijaKola.Location = new System.Drawing.Point(144, 69);
+            this.cboSerijaKola.Margin = new System.Windows.Forms.Padding(4);
+            this.cboSerijaKola.Name = "cboSerijaKola";
+            this.cboSerijaKola.Size = new System.Drawing.Size(187, 26);
+            this.cboSerijaKola.TabIndex = 49;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label27.ForeColor = System.Drawing.Color.Black;
+            this.label27.Location = new System.Drawing.Point(14, 69);
+            this.label27.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(81, 18);
+            this.label27.TabIndex = 50;
+            this.label27.Text = "Serija kola:";
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button5.ForeColor = System.Drawing.Color.White;
+            this.button5.Location = new System.Drawing.Point(7, 119);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(164, 43);
+            this.button5.TabIndex = 51;
+            this.button5.Text = "Ubaci";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button6.ForeColor = System.Drawing.Color.White;
+            this.button6.Location = new System.Drawing.Point(191, 119);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(164, 43);
+            this.button6.TabIndex = 52;
+            this.button6.Text = "Izbaci";
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(402, 7);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.Size = new System.Drawing.Size(1455, 464);
+            this.dataGridView2.TabIndex = 138;
+            this.dataGridView2.Visible = false;
+            this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
+            // 
+            // nmrUkupanBrojKontejnera
+            // 
+            this.nmrUkupanBrojKontejnera.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.nmrUkupanBrojKontejnera.Location = new System.Drawing.Point(133, 211);
+            this.nmrUkupanBrojKontejnera.Name = "nmrUkupanBrojKontejnera";
+            this.nmrUkupanBrojKontejnera.Size = new System.Drawing.Size(125, 24);
+            this.nmrUkupanBrojKontejnera.TabIndex = 139;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label29.ForeColor = System.Drawing.Color.Black;
+            this.label29.Location = new System.Drawing.Point(14, 211);
+            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(112, 18);
+            this.label29.TabIndex = 140;
+            this.label29.Text = "Broj kontejnera:";
+            // 
             // frmVoz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1924, 1037);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -1133,7 +1300,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cboStanicaOd);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtNapomena);
             this.Controls.Add(this.label28);
             this.Controls.Add(this.label17);
@@ -1184,6 +1350,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtVremeKontrolnogO)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtVremeUtovaraO)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPostNaTerminalO)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrUkupanBrojKontejnera)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1267,5 +1439,17 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TextBox txtSifraSerijeKola;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.ComboBox cboSerijaKola;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.NumericUpDown nmrUkupanBrojKontejnera;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
     }
 }
