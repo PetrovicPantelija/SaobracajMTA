@@ -31,10 +31,10 @@ namespace Saobracaj.Uvoz
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVrstaCarinskogPostupka));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtOznaka = new System.Windows.Forms.TextBox();
             this.txtNaziv = new System.Windows.Forms.TextBox();
@@ -48,6 +48,7 @@ namespace Saobracaj.Uvoz
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
@@ -59,11 +60,6 @@ namespace Saobracaj.Uvoz
             this.toolStrip1.Size = new System.Drawing.Size(598, 27);
             this.toolStrip1.TabIndex = 48;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tsNew
             // 
@@ -95,6 +91,11 @@ namespace Saobracaj.Uvoz
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -111,16 +112,16 @@ namespace Saobracaj.Uvoz
             // 
             // txtOznaka
             // 
-            this.txtOznaka.Location = new System.Drawing.Point(400, 67);
+            this.txtOznaka.Location = new System.Drawing.Point(449, 67);
             this.txtOznaka.Name = "txtOznaka";
-            this.txtOznaka.Size = new System.Drawing.Size(172, 22);
+            this.txtOznaka.Size = new System.Drawing.Size(123, 22);
             this.txtOznaka.TabIndex = 54;
             // 
             // txtNaziv
             // 
-            this.txtNaziv.Location = new System.Drawing.Point(180, 67);
+            this.txtNaziv.Location = new System.Drawing.Point(133, 67);
             this.txtNaziv.Name = "txtNaziv";
-            this.txtNaziv.Size = new System.Drawing.Size(172, 22);
+            this.txtNaziv.Size = new System.Drawing.Size(298, 22);
             this.txtNaziv.TabIndex = 55;
             // 
             // txtID
@@ -135,7 +136,7 @@ namespace Saobracaj.Uvoz
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(397, 43);
+            this.label3.Location = new System.Drawing.Point(446, 43);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 17);
             this.label3.TabIndex = 51;
@@ -144,7 +145,7 @@ namespace Saobracaj.Uvoz
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(177, 43);
+            this.label2.Location = new System.Drawing.Point(130, 43);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(43, 17);
             this.label2.TabIndex = 52;
@@ -163,6 +164,7 @@ namespace Saobracaj.Uvoz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(598, 450);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtOznaka);
@@ -172,8 +174,9 @@ namespace Saobracaj.Uvoz
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmVrstaCarinskogPostupka";
-            this.Text = "Vrsta carinskog postupka";
+            this.Text = "Vrsta carinskih postupaka";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

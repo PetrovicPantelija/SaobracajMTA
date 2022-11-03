@@ -122,7 +122,7 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            UvozKonacna pUvoz = new UvozKonacna(Convert.ToInt32(txtSifra.Text));
+            frmUvozKonacna pUvoz = new frmUvozKonacna(Convert.ToInt32(txtSifra.Text));
             pUvoz.Show();
         }
 
@@ -130,6 +130,11 @@ namespace Saobracaj.Uvoz
         {
             frmUvozKonacnaZaglavlje fukz = new frmUvozKonacnaZaglavlje();
             fukz.Show();
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

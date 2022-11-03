@@ -34,13 +34,18 @@ namespace Testiranje.Dokumeta
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
+            KorisnikCene = "Panta";
+            RefreshDataGrid();
         }
 
         public frmVoz(int Voz, string Korisnik)
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
+            KorisnikCene = "Panta";
             txtSifra.Text = Voz.ToString();
+            RefreshDataGrid2();
+            VratiUkupanBrojKontejnera();
             
         }
         private void tsSave_Click(object sender, EventArgs e)
@@ -326,18 +331,16 @@ namespace Testiranje.Dokumeta
                     {
                         txtSifra.Text = row.Cells[0].Value.ToString();
                         VratiPodatke(txtSifra.Text);
-                       
+                        VratiUkupanBrojKontejnera();
+                        RefreshDataGrid2();
                     }
                 }
-
-
             }
             catch
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
         }
-
 
         private void VratiPodatkeMax()
         {
@@ -358,8 +361,6 @@ namespace Testiranje.Dokumeta
         }
         private void frmVoz_Load(object sender, EventArgs e)
         {
-            
-
             var select = " Select Distinct ID, Rtrim(Opis) as Opis  From Stanice";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -385,6 +386,22 @@ namespace Testiranje.Dokumeta
             cboStanicaDo.DataSource = ds2.Tables[0];
             cboStanicaDo.DisplayMember = "Opis";
             cboStanicaDo.ValueMember = "ID";
+
+
+            var select3 = "  Select Distinct ID, (Naziv + ' BRK: ' + Cast(Broj20 as nvarchar(10))) as Naziv  From SerijeKola";
+            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection3 = new SqlConnection(s_connection2);
+            var c3 = new SqlConnection(s_connection3);
+            var dataAdapter3 = new SqlDataAdapter(select3, c3);
+
+            var commandBuilder3 = new SqlCommandBuilder(dataAdapter3);
+            var ds3 = new DataSet();
+            dataAdapter3.Fill(ds3);
+            cboSerijaKola.DataSource = ds3.Tables[0];
+            cboSerijaKola.DisplayMember = "Naziv";
+            cboSerijaKola.ValueMember = "ID";
+
+            //cboSerijaKola
 
             RefreshDataGrid();
         }
@@ -414,12 +431,12 @@ namespace Testiranje.Dokumeta
                 }
                 else
 	            {
-                 dtpVremePolaska.Enabled = false;
-                 dtpVremeDolaska.Enabled = false;
-                 txtPostNaTerminalD.Enabled = false;
-                 txtKontrolniPregledD.Enabled = false;
-                 txtVremeIstovaraD.Enabled = false;
-                 txtVremePrimopredajeD.Enabled = false;
+                dtpVremePolaska.Enabled = false;
+                dtpVremeDolaska.Enabled = false;
+                txtPostNaTerminalD.Enabled = false;
+                txtKontrolniPregledD.Enabled = false;
+                txtVremeIstovaraD.Enabled = false;
+                txtVremePrimopredajeD.Enabled = false;
                 txtPostNaTerminalO.Enabled = true;
                 txtPostNaTerminalO.Enabled = true;
                 txtVremeUtovaraO.Enabled = true;
@@ -427,9 +444,7 @@ namespace Testiranje.Dokumeta
                 txtVremeIzvlacenjaO.Enabled = true;
                 dtpVremePolaskaO.Enabled = true;
                 dtpVremeDolaskaO.Enabled = true;
-	} 
-            
-            
+	            } 
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -473,12 +488,13 @@ namespace Testiranje.Dokumeta
         private void button5_Click(object sender, EventArgs e)
         {
             InsertVoz ins = new InsertVoz();
-            ins.InsSerijeKola(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboSerijaKola.SelectedValue));
+            ins.InsSerijeKola(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboSerijaKola.SelectedValue),  Convert.ToInt32(nmBrojSerija.Value));
             RefreshDataGrid2();
+            VratiUkupanBrojKontejnera();
         }
         private void RefreshDataGrid2()
         {
-            var select = "  select SerijeKola.ID as Zapis, IDVoza, VozSerijeKola.TipKontejnera as IDT, Naziv, Broj20 as Nosivost20 from VozSerijeKola " + 
+            var select = "  select SerijeKola.ID as Zapis, IDVoza, VozSerijeKola.TipKontejnera as IDT, Naziv, Broj20 as Nosivost20, BrojSerija from VozSerijeKola " + 
  " inner join SerijeKola on SerijeKola.Id = VozSerijeKola.TipKontejnera where IDVoza = " + Convert.ToInt32(txtSifra.Text);
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -542,7 +558,7 @@ namespace Testiranje.Dokumeta
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select isnull(SUM(Broj20),0) as BrojKontejnera from VozSerijeKola " +
+            SqlCommand cmd = new SqlCommand("select isnull(SUM(Broj20 * VozSerijeKola.BrojSerija),0) as BrojKontejnera from VozSerijeKola " +
             " inner join SerijeKola on SerijeKola.Id = VozSerijeKola.TipKontejnera where IDVoza = " + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -575,6 +591,16 @@ namespace Testiranje.Dokumeta
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
+        }
+
+        private void label27_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_SelectionChanged_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

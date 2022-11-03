@@ -18,7 +18,7 @@ namespace Testiranje.Dokumeta
 {
     public partial class frmPregledVozova : Form
     {
-        string KorisnikCene;
+        string KorisnikCene = "Panta";
         public frmPregledVozova()
         {
             InitializeComponent();

@@ -17,7 +17,7 @@ namespace Saobracaj.Uvoz
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "InsertuvKvalitetKontejnera";
+            cmd.CommandText = "InsertuvNacinPakovanja";
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter naziv = new SqlParameter();

@@ -1414,7 +1414,7 @@ namespace Saobracaj
 
         private void toolStripButton107_Click_1(object sender, EventArgs e)
         {
-            Uvoz.UvozKonacna uvk = new Uvoz.UvozKonacna();
+            Uvoz.frmUvozKonacna uvk = new Uvoz.frmUvozKonacna();
             uvk.Show();
         }
 
@@ -1494,6 +1494,61 @@ namespace Saobracaj
         {
             Uvoz.frmPregledPlanovaUtovara fppp = new Uvoz.frmPregledPlanovaUtovara();
             fppp.Show();
+        }
+
+        private void toolStripButton192_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmFormiranjePlana fplan = new Uvoz.frmFormiranjePlana();
+            fplan.Show();
+        }
+
+        private void toolStripButton193_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmPlanUtovaraOdgovorExcel pue = new Uvoz.frmPlanUtovaraOdgovorExcel();
+            pue.Show();
+        }
+
+        private void toolStripButton194_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmVrstePostupakaUvoz fvp = new Uvoz.frmVrstePostupakaUvoz();
+            fvp.Show();
+        }
+
+        private void toolStripButton195_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmPrijemVozaIzPlana pvizp = new Uvoz.frmPrijemVozaIzPlana();
+            pvizp.Show();
+
+        }
+
+        private void toolStripButton196_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmAnalizaUvoza auv = new Uvoz.frmAnalizaUvoza();
+            auv.Show();
+        }
+
+        private void toolStripButton197_Click(object sender, EventArgs e)
+        {
+            frmPregledVozova pvozo = new frmPregledVozova();
+            pvozo.Show();
+        }
+
+        private void toolStripButton198_Click(object sender, EventArgs e)
+        {
+            Sifarnici.frmPartnerji part = new Sifarnici.frmPartnerji();
+            part.Show(); 
+        }
+
+        private void toolStripButton199_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmDirigacijaKontejneraZa dkz = new Uvoz.frmDirigacijaKontejneraZa();
+            dkz.Show();
+        }
+
+        private void toolStripButton200_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmNapomenaZaPozicioniranje dkz = new Uvoz.frmNapomenaZaPozicioniranje();
+            dkz.Show();
         }
     }
 }

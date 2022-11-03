@@ -11,7 +11,7 @@ namespace Saobracaj.Sifarnici
 {
     class InsertPartnerji
     {
-        public void InsPartneri(string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB, string UIC, bool Prevoznik, bool Posiljalac, bool Primalac)
+        public void InsPartneri(string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB, string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar ,  int Vlasnik, int Spediter , int Platilac  , int Organizator)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -163,7 +163,43 @@ namespace Saobracaj.Sifarnici
             parameter16.Value = Primalac;
             myCommand.Parameters.Add(parameter16);
 
+            
 
+            SqlParameter parameter17 = new SqlParameter();
+            parameter17.ParameterName = "@Brodar";
+            parameter17.SqlDbType = SqlDbType.Int;
+            parameter17.Direction = ParameterDirection.Input;
+            parameter17.Value = Brodar;
+            myCommand.Parameters.Add(parameter17);
+
+            SqlParameter parameter18 = new SqlParameter();
+            parameter18.ParameterName = "@Vlasnik";
+            parameter18.SqlDbType = SqlDbType.Int;
+            parameter18.Direction = ParameterDirection.Input;
+            parameter18.Value = Vlasnik;
+            myCommand.Parameters.Add(parameter18);
+
+            SqlParameter parameter19 = new SqlParameter();
+            parameter19.ParameterName = "@Spediter";
+            parameter19.SqlDbType = SqlDbType.Int;
+            parameter19.Direction = ParameterDirection.Input;
+            parameter19.Value = Spediter;
+            myCommand.Parameters.Add(parameter19);
+
+            SqlParameter parameter20 = new SqlParameter();
+            parameter20.ParameterName = "@Platilac";
+            parameter20.SqlDbType = SqlDbType.Int;
+            parameter20.Direction = ParameterDirection.Input;
+            parameter20.Value = Platilac;
+            myCommand.Parameters.Add(parameter20);
+
+            SqlParameter parameter21 = new SqlParameter();
+            parameter21.ParameterName = "@Organizator";
+            parameter21.SqlDbType = SqlDbType.Int;
+            parameter21.Direction = ParameterDirection.Input;
+            parameter21.Value = Organizator;
+            myCommand.Parameters.Add(parameter21);
+         
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -199,7 +235,7 @@ namespace Saobracaj.Sifarnici
             }
         }
 
-        public void UpdPartneri(int ID, string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB,  string UIC, bool Prevoznik, bool Posiljalac, bool Primalac)
+        public void UpdPartneri(int ID, string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB,  string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar, int Vlasnik, int Spediter, int Platilac, int Organizator)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -358,6 +394,40 @@ namespace Saobracaj.Sifarnici
             parameter16.Value = Primalac;
             myCommand.Parameters.Add(parameter16);
 
+            SqlParameter parameter17 = new SqlParameter();
+            parameter17.ParameterName = "@Brodar";
+            parameter17.SqlDbType = SqlDbType.Int;
+            parameter17.Direction = ParameterDirection.Input;
+            parameter17.Value = Brodar;
+            myCommand.Parameters.Add(parameter17);
+
+            SqlParameter parameter18 = new SqlParameter();
+            parameter18.ParameterName = "@Vlasnik";
+            parameter18.SqlDbType = SqlDbType.Int;
+            parameter18.Direction = ParameterDirection.Input;
+            parameter18.Value = Vlasnik;
+            myCommand.Parameters.Add(parameter18);
+
+            SqlParameter parameter19 = new SqlParameter();
+            parameter19.ParameterName = "@Spediter";
+            parameter19.SqlDbType = SqlDbType.Int;
+            parameter19.Direction = ParameterDirection.Input;
+            parameter19.Value = Spediter;
+            myCommand.Parameters.Add(parameter19);
+
+            SqlParameter parameter20 = new SqlParameter();
+            parameter20.ParameterName = "@Platilac";
+            parameter20.SqlDbType = SqlDbType.Int;
+            parameter20.Direction = ParameterDirection.Input;
+            parameter20.Value = Platilac;
+            myCommand.Parameters.Add(parameter20);
+
+            SqlParameter parameter21 = new SqlParameter();
+            parameter21.ParameterName = "@Organizator";
+            parameter21.SqlDbType = SqlDbType.Int;
+            parameter21.Direction = ParameterDirection.Input;
+            parameter21.Value = Organizator;
+            myCommand.Parameters.Add(parameter21);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

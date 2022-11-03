@@ -736,7 +736,7 @@ namespace Testiranje.Dokumeta
               }
           }
 
-        public void InsSerijeKola(int IDVoza, int TipKontejnera)
+        public void InsSerijeKola(int IDVoza, int TipKontejnera, int BrojSerija)
         {
             //TipKontejnera je serija kola 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -760,6 +760,13 @@ namespace Testiranje.Dokumeta
             parameter1.Direction = ParameterDirection.Input;
             parameter1.Value = TipKontejnera;
             myCommand.Parameters.Add(parameter1);
+
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@BrojSerija";
+            parameter2.SqlDbType = SqlDbType.Int;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = BrojSerija;
+            myCommand.Parameters.Add(parameter2);
 
 
 

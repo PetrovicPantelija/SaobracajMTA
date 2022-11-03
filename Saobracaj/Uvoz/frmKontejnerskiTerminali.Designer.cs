@@ -48,6 +48,7 @@ namespace Saobracaj.Uvoz
             // 
             // toolStrip1
             // 
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
@@ -76,7 +77,7 @@ namespace Saobracaj.Uvoz
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(29, 28);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -86,14 +87,14 @@ namespace Saobracaj.Uvoz
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsDelete.Size = new System.Drawing.Size(29, 28);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // dataGridView1
             // 
@@ -101,26 +102,26 @@ namespace Saobracaj.Uvoz
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(18, 134);
+            this.dataGridView1.Location = new System.Drawing.Point(18, 115);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(560, 367);
+            this.dataGridView1.Size = new System.Drawing.Size(560, 386);
             this.dataGridView1.TabIndex = 57;
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_Click);
             // 
             // txtOznaka
             // 
-            this.txtOznaka.Location = new System.Drawing.Point(406, 72);
+            this.txtOznaka.Location = new System.Drawing.Point(435, 72);
             this.txtOznaka.Name = "txtOznaka";
-            this.txtOznaka.Size = new System.Drawing.Size(172, 22);
+            this.txtOznaka.Size = new System.Drawing.Size(143, 22);
             this.txtOznaka.TabIndex = 54;
             // 
             // txtNaziv
             // 
             this.txtNaziv.Location = new System.Drawing.Point(147, 72);
             this.txtNaziv.Name = "txtNaziv";
-            this.txtNaziv.Size = new System.Drawing.Size(211, 22);
+            this.txtNaziv.Size = new System.Drawing.Size(266, 22);
             this.txtNaziv.TabIndex = 55;
             // 
             // txtID
@@ -135,7 +136,7 @@ namespace Saobracaj.Uvoz
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(403, 48);
+            this.label3.Location = new System.Drawing.Point(442, 48);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 17);
             this.label3.TabIndex = 51;
@@ -163,6 +164,7 @@ namespace Saobracaj.Uvoz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(595, 513);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtOznaka);
@@ -172,6 +174,7 @@ namespace Saobracaj.Uvoz
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmKontejnerskiTerminali";
             this.Text = "Kontejnerski terminali";
             this.toolStrip1.ResumeLayout(false);

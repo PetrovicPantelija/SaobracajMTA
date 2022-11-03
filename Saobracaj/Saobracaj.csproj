@@ -52,7 +52,7 @@
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+    <Prefer32Bit>true</Prefer32Bit>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
@@ -2121,9 +2121,6 @@
     <Compile Include="TrackModal\Dokumeta\InsertNalogZaPrevoz.cs" />
     <Compile Include="TrackModal\Dokumeta\InsertNaruceneManipulacije.cs" />
     <Compile Include="TrackModal\Dokumeta\InsertOtprema.cs" />
-    <Compile Include="TrackModal\Dokumeta\InsertPrijemKontejnera.cs" />
-    <Compile Include="TrackModal\Dokumeta\InsertPrijemKontejneraVoz.cs" />
-    <Compile Include="TrackModal\Dokumeta\InsertPrijemKontejneraVozStavke.cs" />
     <Compile Include="TrackModal\Dokumeta\InsertPutniNalog.cs" />
     <Compile Include="TrackModal\Dokumeta\InsertPutniNalogGorivo.cs" />
     <Compile Include="TrackModal\Dokumeta\InsertPutniNalogGume.cs" />
@@ -2625,11 +2622,41 @@
     <Compile Include="Uvoz\Carinarnice.designer.cs">
       <DependentUpon>Carinarnice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\frmAnalizaUvoza.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmAnalizaUvoza.Designer.cs">
+      <DependentUpon>frmAnalizaUvoza.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\frmDirigacijaKontejneraZa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmDirigacijaKontejneraZa.Designer.cs">
+      <DependentUpon>frmDirigacijaKontejneraZa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\frmFormiranjePlana.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmFormiranjePlana.Designer.cs">
+      <DependentUpon>frmFormiranjePlana.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\frmKontejnerskiTerminali.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Uvoz\frmKontejnerskiTerminali.Designer.cs">
       <DependentUpon>frmKontejnerskiTerminali.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\frmNapomenaZaPozicioniranje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmNapomenaZaPozicioniranje.Designer.cs">
+      <DependentUpon>frmNapomenaZaPozicioniranje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\frmPlanUtovaraOdgovorExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmPlanUtovaraOdgovorExcel.Designer.cs">
+      <DependentUpon>frmPlanUtovaraOdgovorExcel.cs</DependentUpon>
     </Compile>
     <Compile Include="Uvoz\frmPregledNerasporedjeni.cs">
       <SubType>Form</SubType>
@@ -2642,6 +2669,12 @@
     </Compile>
     <Compile Include="Uvoz\frmPregledPlanovaUtovara.Designer.cs">
       <DependentUpon>frmPregledPlanovaUtovara.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\frmPrijemVozaIzPlana.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmPrijemVozaIzPlana.Designer.cs">
+      <DependentUpon>frmPrijemVozaIzPlana.cs</DependentUpon>
     </Compile>
     <Compile Include="Uvoz\frmSerijeKola.cs">
       <SubType>Form</SubType>
@@ -2679,16 +2712,24 @@
     <Compile Include="Uvoz\frmVrstaRobeHS.Designer.cs">
       <DependentUpon>frmVrstaRobeHS.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\frmVrstePostupakaUvoz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmVrstePostupakaUvoz.Designer.cs">
+      <DependentUpon>frmVrstePostupakaUvoz.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\fruvNacinPakovanja.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Uvoz\fruvNacinPakovanja.Designer.cs">
       <DependentUpon>fruvNacinPakovanja.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\InertDirigacijaKontejneraZa.cs" />
     <Compile Include="Uvoz\InsertBrodovi.cs" />
     <Compile Include="Uvoz\InsertCarinarnice.cs" />
     <Compile Include="Uvoz\InsertKontejnerskiTerminali.cs" />
     <Compile Include="Uvoz\InsertNalogodavci.cs" />
+    <Compile Include="Uvoz\InsertNapomenaZaPozioniranje.cs" />
     <Compile Include="Uvoz\InsertSerijeKola.cs" />
     <Compile Include="Uvoz\InsertuvKvalitetKontejnera.cs" />
     <Compile Include="Uvoz\InsertuvNacinPakovanja.cs" />
@@ -2699,6 +2740,7 @@
     <Compile Include="Uvoz\InsertVrstaCarinskogPostupka.cs" />
     <Compile Include="Uvoz\insertVrstaRobeADR.cs" />
     <Compile Include="Uvoz\InsertVrstaRobeHS.cs" />
+    <Compile Include="Uvoz\InsertVrstePostupakaUvoz.cs" />
     <Compile Include="Uvoz\Nalogodavci.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3667,14 +3709,32 @@
     <EmbeddedResource Include="Uvoz\Carinarnice.resx">
       <DependentUpon>Carinarnice.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmAnalizaUvoza.resx">
+      <DependentUpon>frmAnalizaUvoza.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmDirigacijaKontejneraZa.resx">
+      <DependentUpon>frmDirigacijaKontejneraZa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmFormiranjePlana.resx">
+      <DependentUpon>frmFormiranjePlana.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmKontejnerskiTerminali.resx">
       <DependentUpon>frmKontejnerskiTerminali.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmNapomenaZaPozicioniranje.resx">
+      <DependentUpon>frmNapomenaZaPozicioniranje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmPlanUtovaraOdgovorExcel.resx">
+      <DependentUpon>frmPlanUtovaraOdgovorExcel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmPregledNerasporedjeni.resx">
       <DependentUpon>frmPregledNerasporedjeni.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmPregledPlanovaUtovara.resx">
       <DependentUpon>frmPregledPlanovaUtovara.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmPrijemVozaIzPlana.resx">
+      <DependentUpon>frmPrijemVozaIzPlana.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmSerijeKola.resx">
       <DependentUpon>frmSerijeKola.cs</DependentUpon>
@@ -3693,6 +3753,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmVrstaRobeHS.resx">
       <DependentUpon>frmVrstaRobeHS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmVrstePostupakaUvoz.resx">
+      <DependentUpon>frmVrstePostupakaUvoz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\fruvNacinPakovanja.resx">
       <DependentUpon>fruvNacinPakovanja.cs</DependentUpon>

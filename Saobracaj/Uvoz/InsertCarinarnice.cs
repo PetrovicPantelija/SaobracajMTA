@@ -35,7 +35,7 @@ namespace Saobracaj.Uvoz
             cINaziv.Size = 100;
             cINaziv.Direction = ParameterDirection.Input;
             cINaziv.Value = CINaziv;
-            cmd.Parameters.Add(CINaziv);
+            cmd.Parameters.Add(cINaziv);
             
             SqlParameter cIOznaka = new SqlParameter();
             cIOznaka.ParameterName = "@CIOznaka";
@@ -43,7 +43,7 @@ namespace Saobracaj.Uvoz
             cIOznaka.Size = 100;
             cIOznaka.Direction = ParameterDirection.Input;
             cIOznaka.Value = CIOznaka;
-            cmd.Parameters.Add(CIOznaka);
+            cmd.Parameters.Add(cIOznaka);
 
             SqlParameter cIEmail = new SqlParameter();
             cIEmail.ParameterName = "@CIEmail";
@@ -51,7 +51,7 @@ namespace Saobracaj.Uvoz
             cIEmail.Size = 100;
             cIEmail.Direction = ParameterDirection.Input;
             cIEmail.Value = CIEmail;
-            cmd.Parameters.Add(CIEmail);
+            cmd.Parameters.Add(cIEmail);
 
             SqlParameter cITelefon = new SqlParameter();
             cITelefon.ParameterName = "@CITelefon";
@@ -59,7 +59,7 @@ namespace Saobracaj.Uvoz
             cITelefon.Size = 100;
             cITelefon.Direction = ParameterDirection.Input;
             cITelefon.Value = CITelefon;
-            cmd.Parameters.Add(CITelefon);
+            cmd.Parameters.Add(cITelefon);
 
 
             conn.Open();
@@ -124,7 +124,7 @@ namespace Saobracaj.Uvoz
             cINaziv.Size = 100;
             cINaziv.Direction = ParameterDirection.Input;
             cINaziv.Value = CINaziv;
-            cmd.Parameters.Add(CINaziv);
+            cmd.Parameters.Add(cINaziv);
 
             SqlParameter cIOznaka = new SqlParameter();
             cIOznaka.ParameterName = "@CIOznaka";
@@ -132,7 +132,7 @@ namespace Saobracaj.Uvoz
             cIOznaka.Size = 100;
             cIOznaka.Direction = ParameterDirection.Input;
             cIOznaka.Value = CIOznaka;
-            cmd.Parameters.Add(CIOznaka);
+            cmd.Parameters.Add(cIOznaka);
 
             SqlParameter cIEmail = new SqlParameter();
             cIEmail.ParameterName = "@CIEmail";
@@ -140,7 +140,7 @@ namespace Saobracaj.Uvoz
             cIEmail.Size = 100;
             cIEmail.Direction = ParameterDirection.Input;
             cIEmail.Value = CIEmail;
-            cmd.Parameters.Add(CIEmail);
+            cmd.Parameters.Add(cIEmail);
 
             SqlParameter cITelefon = new SqlParameter();
             cITelefon.ParameterName = "@CITelefon";
@@ -148,7 +148,7 @@ namespace Saobracaj.Uvoz
             cITelefon.Size = 100;
             cITelefon.Direction = ParameterDirection.Input;
             cITelefon.Value = CITelefon;
-            cmd.Parameters.Add(CITelefon);
+            cmd.Parameters.Add(cITelefon);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -186,7 +186,7 @@ namespace Saobracaj.Uvoz
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "DelteCarinarnice";
+            cmd.CommandText = "DeleteCarinarnice";
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter id = new SqlParameter();

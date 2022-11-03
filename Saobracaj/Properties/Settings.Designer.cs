@@ -38,7 +38,7 @@ namespace Saobracaj.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.6\\SQLEXPRESS2008K;Initial Catalog=TESTIRANJE;User ID=sa;Pas" +
-            "sword=4321")]
+            "sword=duki7990")]
         public string NedraConnectionString {
             get {
                 return ((string)(this["NedraConnectionString"]));

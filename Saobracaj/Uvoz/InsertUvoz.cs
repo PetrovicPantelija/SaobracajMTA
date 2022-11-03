@@ -17,8 +17,15 @@ namespace Saobracaj.Uvoz
             string PIN,int DirigacijaKont,int NazivBroda,string BTeretnica,int ADR,int Vlasnik,int Buking,string Nalogodavac,string VrstaUsluge,int Uvoznik,int NHM,
             string NazivRobe,int SpedicijaGranicna,int SpedicijaRTC,int CarinskiPostupak,int PostupakRoba,int NacinPakovanja,int OdredisnaCarina,int OdredisnaSpedicija,
             string MestoIstovara,string KontaktOsoba,string Mail,string Plomba1,string Plomba2,decimal NetoRoba,decimal BrutoRoba,decimal TaraKont,decimal BrutoKont,
-            int NapomenaPoz,DateTime ATAOtpreme,int BrojVoza,string Relacija,DateTime ATADolazak, decimal Koleta)
+            int NapomenaPoz,DateTime ATAOtpreme,int BrojVoza,string Relacija,DateTime ATADolazak, decimal Koleta, int RLTerminali
+            , string Napomena1, string VrstaPregleda, int Nalogodavac1, string Ref1, int Nalogodavac2,
+string Ref2, int Nalogodavac3, string Ref3, int Brodar)
         {
+
+             
+
+              
+
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "UpdateUvoz";
@@ -339,6 +346,81 @@ namespace Saobracaj.Uvoz
             koleta.Direction = ParameterDirection.Input;
             koleta.Value = Koleta;
             cmd.Parameters.Add(koleta);
+
+            SqlParameter rlterminali = new SqlParameter();
+            rlterminali.ParameterName = "@RLTerminali";
+            rlterminali.SqlDbType = SqlDbType.Decimal;
+            rlterminali.Direction = ParameterDirection.Input;
+            rlterminali.Value = RLTerminali;
+            cmd.Parameters.Add(rlterminali);
+
+            SqlParameter napomena1 = new SqlParameter();
+            napomena1.ParameterName = "@Napomena1";
+            napomena1.SqlDbType = SqlDbType.NVarChar;
+            napomena1.Size = 100;
+            napomena1.Direction = ParameterDirection.Input;
+            napomena1.Value = Napomena1;
+            cmd.Parameters.Add(napomena1);
+
+            SqlParameter vrstapregleda = new SqlParameter();
+            vrstapregleda.ParameterName = "@VrstaPregleda";
+            vrstapregleda.SqlDbType = SqlDbType.NVarChar;
+            vrstapregleda.Size = 100;
+            vrstapregleda.Direction = ParameterDirection.Input;
+            vrstapregleda.Value = VrstaPregleda;
+            cmd.Parameters.Add(vrstapregleda);
+
+            SqlParameter nalogodavac1 = new SqlParameter();
+            nalogodavac1.ParameterName = "@Nalogodavac1";
+            nalogodavac1.SqlDbType = SqlDbType.Int;
+            nalogodavac1.Direction = ParameterDirection.Input;
+            nalogodavac1.Value = Nalogodavac1;
+            cmd.Parameters.Add(nalogodavac1);
+
+            SqlParameter ref1 = new SqlParameter();
+            ref1.ParameterName = "@Ref1";
+            ref1.SqlDbType = SqlDbType.NVarChar;
+            ref1.Size = 100;
+            ref1.Direction = ParameterDirection.Input;
+            ref1.Value = Ref1;
+            cmd.Parameters.Add(ref1);
+
+            SqlParameter nalogodavac2 = new SqlParameter();
+            nalogodavac2.ParameterName = "@Nalogodavac2";
+            nalogodavac2.SqlDbType = SqlDbType.Int;
+            nalogodavac2.Direction = ParameterDirection.Input;
+            nalogodavac2.Value = Nalogodavac2;
+            cmd.Parameters.Add(nalogodavac2);
+
+            SqlParameter ref2 = new SqlParameter();
+            ref2.ParameterName = "@Ref2";
+            ref2.SqlDbType = SqlDbType.NVarChar;
+            ref2.Size = 100;
+            ref2.Direction = ParameterDirection.Input;
+            ref2.Value = Ref2;
+            cmd.Parameters.Add(ref2);
+
+            SqlParameter nalogodavac3 = new SqlParameter();
+            nalogodavac3.ParameterName = "@Nalogodavac3";
+            nalogodavac3.SqlDbType = SqlDbType.Int;
+            nalogodavac3.Direction = ParameterDirection.Input;
+            nalogodavac3.Value = Nalogodavac3;
+            cmd.Parameters.Add(nalogodavac3);
+
+            SqlParameter ref3 = new SqlParameter();
+            ref3.ParameterName = "@Ref3";
+            ref3.SqlDbType = SqlDbType.NVarChar;
+            ref3.Size = 100;
+            ref3.Direction = ParameterDirection.Input;
+            ref3.Value = Ref3;
+            cmd.Parameters.Add(ref3);
+
+            SqlParameter brodar = new SqlParameter();
+            brodar.ParameterName = "@Brodar";
+            brodar.SqlDbType = SqlDbType.Int;
+            brodar.Direction = ParameterDirection.Input;
+            brodar.Value = Brodar;
+            cmd.Parameters.Add(brodar);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

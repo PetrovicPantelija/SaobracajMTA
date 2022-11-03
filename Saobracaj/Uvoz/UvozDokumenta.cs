@@ -42,6 +42,11 @@ namespace Saobracaj.Uvoz
 
         private void RefreshDataGrid()
         {
+            if (txtSifraUvoza.Text == "")
+            {
+                MessageBox.Show("Odaberite stavku");
+                return;
+            }
             int pomNaj = Convert.ToInt32(txtSifraUvoza.Text);
             var select = "select * from UvozDokumenta  where UvozDokumenta.IDUvoz =  " + pomNaj;
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;

@@ -3149,7 +3149,7 @@ namespace TrackModal.Dokumeta
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    InsertPrijemKontejneraVozStavke insTer = new InsertPrijemKontejneraVozStavke();
+                    Saobracaj.Dokumeta.InsertPrijemKontejneraVozStavke insTer = new Saobracaj.Dokumeta.InsertPrijemKontejneraVozStavke();
                     insTer.UpdateOtpremaKontejneraVozStavkeRB(Convert.ToInt32(row.Cells[1].Value.ToString()), Convert.ToInt32(row.Cells[0].Value.ToString()));
                //Row.CellS
                 }

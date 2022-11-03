@@ -68,6 +68,11 @@
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.chkVlasnik = new System.Windows.Forms.CheckBox();
+            this.chkOrganizator = new System.Windows.Forms.CheckBox();
+            this.chkPlatilac = new System.Windows.Forms.CheckBox();
+            this.chkSpediter = new System.Windows.Forms.CheckBox();
+            this.chkBrodar = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -112,11 +117,12 @@
             // chkPosiljalac
             // 
             this.chkPosiljalac.AutoSize = true;
+            this.chkPosiljalac.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPosiljalac.Location = new System.Drawing.Point(77, 292);
             this.chkPosiljalac.Margin = new System.Windows.Forms.Padding(4);
             this.chkPosiljalac.Name = "chkPosiljalac";
             this.chkPosiljalac.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkPosiljalac.Size = new System.Drawing.Size(89, 21);
+            this.chkPosiljalac.Size = new System.Drawing.Size(85, 21);
             this.chkPosiljalac.TabIndex = 13;
             this.chkPosiljalac.Text = "Pošiljalac";
             this.chkPosiljalac.UseVisualStyleBackColor = true;
@@ -124,11 +130,12 @@
             // chkPrevoznik
             // 
             this.chkPrevoznik.AutoSize = true;
+            this.chkPrevoznik.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPrevoznik.Location = new System.Drawing.Point(73, 263);
             this.chkPrevoznik.Margin = new System.Windows.Forms.Padding(4);
             this.chkPrevoznik.Name = "chkPrevoznik";
             this.chkPrevoznik.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkPrevoznik.Size = new System.Drawing.Size(92, 21);
+            this.chkPrevoznik.Size = new System.Drawing.Size(88, 21);
             this.chkPrevoznik.TabIndex = 14;
             this.chkPrevoznik.Text = "Prevoznik";
             this.chkPrevoznik.UseVisualStyleBackColor = true;
@@ -136,11 +143,12 @@
             // chkPrimalac
             // 
             this.chkPrimalac.AutoSize = true;
-            this.chkPrimalac.Location = new System.Drawing.Point(83, 320);
+            this.chkPrimalac.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkPrimalac.Location = new System.Drawing.Point(78, 320);
             this.chkPrimalac.Margin = new System.Windows.Forms.Padding(4);
             this.chkPrimalac.Name = "chkPrimalac";
             this.chkPrimalac.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkPrimalac.Size = new System.Drawing.Size(84, 21);
+            this.chkPrimalac.Size = new System.Drawing.Size(82, 21);
             this.chkPrimalac.TabIndex = 15;
             this.chkPrimalac.Text = "Primalac";
             this.chkPrimalac.UseVisualStyleBackColor = true;
@@ -152,11 +160,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 395);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 449);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1609, 570);
+            this.dataGridView1.Size = new System.Drawing.Size(1609, 516);
             this.dataGridView1.TabIndex = 16;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -171,7 +179,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 49);
+            this.label3.Location = new System.Drawing.Point(17, 49);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(37, 17);
@@ -247,7 +255,7 @@
             // 
             // txtPosta
             // 
-            this.txtPosta.Location = new System.Drawing.Point(485, 89);
+            this.txtPosta.Location = new System.Drawing.Point(483, 79);
             this.txtPosta.Margin = new System.Windows.Forms.Padding(4);
             this.txtPosta.Name = "txtPosta";
             this.txtPosta.Size = new System.Drawing.Size(304, 22);
@@ -256,7 +264,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(405, 89);
+            this.label7.Location = new System.Drawing.Point(385, 79);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(44, 17);
@@ -265,7 +273,7 @@
             // 
             // txtDrzava
             // 
-            this.txtDrzava.Location = new System.Drawing.Point(485, 118);
+            this.txtDrzava.Location = new System.Drawing.Point(483, 108);
             this.txtDrzava.Margin = new System.Windows.Forms.Padding(4);
             this.txtDrzava.Name = "txtDrzava";
             this.txtDrzava.Size = new System.Drawing.Size(304, 22);
@@ -274,7 +282,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(405, 121);
+            this.label8.Location = new System.Drawing.Point(385, 111);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 17);
@@ -283,7 +291,7 @@
             // 
             // txtTelefon
             // 
-            this.txtTelefon.Location = new System.Drawing.Point(485, 150);
+            this.txtTelefon.Location = new System.Drawing.Point(483, 140);
             this.txtTelefon.Margin = new System.Windows.Forms.Padding(4);
             this.txtTelefon.Name = "txtTelefon";
             this.txtTelefon.Size = new System.Drawing.Size(304, 22);
@@ -292,7 +300,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(405, 153);
+            this.label9.Location = new System.Drawing.Point(385, 143);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(56, 17);
@@ -301,7 +309,7 @@
             // 
             // txtTR
             // 
-            this.txtTR.Location = new System.Drawing.Point(485, 182);
+            this.txtTR.Location = new System.Drawing.Point(483, 172);
             this.txtTR.Margin = new System.Windows.Forms.Padding(4);
             this.txtTR.Name = "txtTR";
             this.txtTR.Size = new System.Drawing.Size(304, 22);
@@ -310,7 +318,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(384, 186);
+            this.label10.Location = new System.Drawing.Point(384, 176);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(90, 17);
@@ -319,7 +327,7 @@
             // 
             // txtNapomena
             // 
-            this.txtNapomena.Location = new System.Drawing.Point(485, 214);
+            this.txtNapomena.Location = new System.Drawing.Point(483, 204);
             this.txtNapomena.Margin = new System.Windows.Forms.Padding(4);
             this.txtNapomena.Name = "txtNapomena";
             this.txtNapomena.Size = new System.Drawing.Size(304, 22);
@@ -328,7 +336,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(384, 214);
+            this.label11.Location = new System.Drawing.Point(384, 204);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(77, 17);
@@ -337,7 +345,7 @@
             // 
             // txtMaticniBroj
             // 
-            this.txtMaticniBroj.Location = new System.Drawing.Point(485, 246);
+            this.txtMaticniBroj.Location = new System.Drawing.Point(483, 236);
             this.txtMaticniBroj.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaticniBroj.Name = "txtMaticniBroj";
             this.txtMaticniBroj.Size = new System.Drawing.Size(304, 22);
@@ -346,7 +354,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(384, 246);
+            this.label12.Location = new System.Drawing.Point(384, 236);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(80, 17);
@@ -355,7 +363,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(485, 278);
+            this.txtEmail.Location = new System.Drawing.Point(483, 268);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(304, 22);
@@ -364,7 +372,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(384, 278);
+            this.label13.Location = new System.Drawing.Point(384, 268);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(42, 17);
@@ -373,7 +381,7 @@
             // 
             // txtPIB
             // 
-            this.txtPIB.Location = new System.Drawing.Point(485, 310);
+            this.txtPIB.Location = new System.Drawing.Point(483, 300);
             this.txtPIB.Margin = new System.Windows.Forms.Padding(4);
             this.txtPIB.Name = "txtPIB";
             this.txtPIB.Size = new System.Drawing.Size(304, 22);
@@ -382,7 +390,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(384, 310);
+            this.label14.Location = new System.Drawing.Point(384, 300);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(29, 17);
@@ -451,12 +459,87 @@
             this.toolStripButton1.Text = "Kontakl osobe";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // chkVlasnik
+            // 
+            this.chkVlasnik.AutoSize = true;
+            this.chkVlasnik.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkVlasnik.ForeColor = System.Drawing.Color.Black;
+            this.chkVlasnik.Location = new System.Drawing.Point(86, 378);
+            this.chkVlasnik.Margin = new System.Windows.Forms.Padding(4);
+            this.chkVlasnik.Name = "chkVlasnik";
+            this.chkVlasnik.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkVlasnik.Size = new System.Drawing.Size(74, 21);
+            this.chkVlasnik.TabIndex = 202;
+            this.chkVlasnik.Text = "Vlasnik";
+            this.chkVlasnik.UseVisualStyleBackColor = true;
+            // 
+            // chkOrganizator
+            // 
+            this.chkOrganizator.AutoSize = true;
+            this.chkOrganizator.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkOrganizator.ForeColor = System.Drawing.Color.Black;
+            this.chkOrganizator.Location = new System.Drawing.Point(199, 322);
+            this.chkOrganizator.Margin = new System.Windows.Forms.Padding(4);
+            this.chkOrganizator.Name = "chkOrganizator";
+            this.chkOrganizator.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkOrganizator.Size = new System.Drawing.Size(99, 21);
+            this.chkOrganizator.TabIndex = 201;
+            this.chkOrganizator.Text = "Organizator";
+            this.chkOrganizator.UseVisualStyleBackColor = true;
+            // 
+            // chkPlatilac
+            // 
+            this.chkPlatilac.AutoSize = true;
+            this.chkPlatilac.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkPlatilac.ForeColor = System.Drawing.Color.Black;
+            this.chkPlatilac.Location = new System.Drawing.Point(225, 293);
+            this.chkPlatilac.Margin = new System.Windows.Forms.Padding(4);
+            this.chkPlatilac.Name = "chkPlatilac";
+            this.chkPlatilac.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkPlatilac.Size = new System.Drawing.Size(73, 21);
+            this.chkPlatilac.TabIndex = 200;
+            this.chkPlatilac.Text = "Platilac";
+            this.chkPlatilac.UseVisualStyleBackColor = true;
+            // 
+            // chkSpediter
+            // 
+            this.chkSpediter.AutoSize = true;
+            this.chkSpediter.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkSpediter.ForeColor = System.Drawing.Color.Black;
+            this.chkSpediter.Location = new System.Drawing.Point(220, 264);
+            this.chkSpediter.Margin = new System.Windows.Forms.Padding(4);
+            this.chkSpediter.Name = "chkSpediter";
+            this.chkSpediter.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkSpediter.Size = new System.Drawing.Size(78, 21);
+            this.chkSpediter.TabIndex = 198;
+            this.chkSpediter.Text = "Špediter";
+            this.chkSpediter.UseVisualStyleBackColor = true;
+            // 
+            // chkBrodar
+            // 
+            this.chkBrodar.AutoSize = true;
+            this.chkBrodar.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkBrodar.ForeColor = System.Drawing.Color.Black;
+            this.chkBrodar.Location = new System.Drawing.Point(89, 349);
+            this.chkBrodar.Margin = new System.Windows.Forms.Padding(4);
+            this.chkBrodar.Name = "chkBrodar";
+            this.chkBrodar.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkBrodar.Size = new System.Drawing.Size(71, 21);
+            this.chkBrodar.TabIndex = 197;
+            this.chkBrodar.Text = "Brodar";
+            this.chkBrodar.UseVisualStyleBackColor = true;
+            // 
             // frmPartnerji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1641, 980);
+            this.Controls.Add(this.chkVlasnik);
+            this.Controls.Add(this.chkOrganizator);
+            this.Controls.Add(this.chkPlatilac);
+            this.Controls.Add(this.chkSpediter);
+            this.Controls.Add(this.chkBrodar);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.txtPIB);
             this.Controls.Add(this.label14);
@@ -545,5 +628,10 @@
         private System.Windows.Forms.ToolStripButton tsDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.CheckBox chkVlasnik;
+        private System.Windows.Forms.CheckBox chkOrganizator;
+        private System.Windows.Forms.CheckBox chkPlatilac;
+        private System.Windows.Forms.CheckBox chkSpediter;
+        private System.Windows.Forms.CheckBox chkBrodar;
     }
 }
