@@ -38,9 +38,11 @@ namespace Testiranje.Sifarnici
 
          private void RefreshDataGrid()
          {
-             var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Komitenti].Naziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik] FROM [dbo].[Cene] " +
+             var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik], VrstePostupakaUvoz.Naziv, p2.PaNaziv as Uvoznik FROM [dbo].[Cene] " +
              " inner join TipCenovnika on TipCenovnika.ID = Cene.TipCenovnika " +
-             " inner join Komitenti on Komitenti.ID = Cene.Komitent " +
+             " inner join Partnerji on Partnerji.PaSifra = Cene.Komitent " +
+             " inner join Partnerji p2 on p2.PaSifra = Cene.Uvoznik " +
+             " inner join VrstePostupakaUvoz  on VrstePostupakaUvoz.ID = Cene.PostupakSaRobom " +
              " inner join VrstaManipulacije on VrstaManipulacije.Id = Cene.VrstaManipulacije order by ID desc";
              var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
              SqlConnection myConnection = new SqlConnection(s_connection);
@@ -98,13 +100,24 @@ namespace Testiranje.Sifarnici
              DataGridViewColumn column8 = dataGridView1.Columns[7];
              dataGridView1.Columns[7].HeaderText = "Korisnik";
              dataGridView1.Columns[7].Width = 80;
-         }
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Postupak sa robom";
+            dataGridView1.Columns[8].Width = 100;
+
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Uvoznik";
+            dataGridView1.Columns[9].Width = 100;
+        }
 
         private void RefreshDataGridPoCenovniku()
         {
-            var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Komitenti].Naziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik] FROM [dbo].[Cene] " +
+            var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik] , VrstePostupakaUvoz.Naziv, p2.PaNaziv as Uvoznik FROM [dbo].[Cene] " +
             " inner join TipCenovnika on TipCenovnika.ID = Cene.TipCenovnika " +
-            " inner join Komitenti on Komitenti.ID = Cene.Komitent " +
+            " inner join Partnerji on Partnerji.PaSifra = Cene.Komitent " +
+            " inner join Partnerji p2 on p2.PaSifra = Cene.Uvoznik " +
+             " inner join VrstePostupakaUvoz  on VrstePostupakaUvoz.ID = Cene.PostupakSaRobom " +
             " inner join VrstaManipulacije on VrstaManipulacije.Id = Cene.VrstaManipulacije " +
             " where Cene.TipCenovnika = " + cboTipCenovnika.SelectedValue + 
             " order by ID desc";
@@ -164,14 +177,25 @@ namespace Testiranje.Sifarnici
             DataGridViewColumn column8 = dataGridView1.Columns[7];
             dataGridView1.Columns[7].HeaderText = "Korisnik";
             dataGridView1.Columns[7].Width = 80;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Postupak sa robom";
+            dataGridView1.Columns[8].Width = 100;
+
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Uvoznik";
+            dataGridView1.Columns[9].Width = 100;
         }
 
         private void RefreshDataGridPoPartneru()
         {
-            var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Komitenti].Naziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik] FROM [dbo].[Cene] " +
+            var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik], VrstePostupakaUvoz.Naziv, p2.PaNaziv as Uvoznik FROM [dbo].[Cene] " +
             " inner join TipCenovnika on TipCenovnika.ID = Cene.TipCenovnika " +
-            " inner join Komitenti on Komitenti.ID = Cene.Komitent " +
-            " inner join VrstaManipulacije on VrstaManipulacije.Id = Cene.VrstaManipulacije where Komitenti.ID = " + Convert.ToInt32(cboKomitent.SelectedValue) +
+            " inner join Partnerji on Partnerji.PaSifra = Cene.Komitent " +
+             " inner join Partnerji p2 on p2.PaSifra = Cene.Uvoznik " +
+             " inner join VrstePostupakaUvoz  on VrstePostupakaUvoz.ID = Cene.PostupakSaRobom " +
+            " inner join VrstaManipulacije on VrstaManipulacije.Id = Cene.VrstaManipulacije where Partnerji.PaSifra = " + Convert.ToInt32(cboKomitent.SelectedValue) +
             "order by Cene.ID desc";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -196,7 +220,6 @@ namespace Testiranje.Sifarnici
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
-            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
             dataGridView1.Columns[0].Width = 40;
@@ -229,6 +252,15 @@ namespace Testiranje.Sifarnici
             DataGridViewColumn column8 = dataGridView1.Columns[7];
             dataGridView1.Columns[7].HeaderText = "Korisnik";
             dataGridView1.Columns[7].Width = 80;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Postupak sa robom";
+            dataGridView1.Columns[8].Width = 100;
+
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Uvoznik";
+            dataGridView1.Columns[9].Width = 100;
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -236,14 +268,14 @@ namespace Testiranje.Sifarnici
              if (status == true)
              {
                  InsertCene ins = new InsertCene();
-                 ins.InsCene(Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToDouble(txtCena2.Text));
+                 ins.InsCene(Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToDouble(txtCena2.Text), Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboPostupakSaRobom.SelectedValue));
                  status = false;
              }
              else
              {
                  //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                  InsertCene upd = new InsertCene();
-                 upd.UpdCene(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToDouble(txtCena2.Text));
+                 upd.UpdCene(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToDouble(txtCena2.Text),  Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboPostupakSaRobom.SelectedValue));
              }
              RefreshDataGrid();
          }
@@ -316,7 +348,7 @@ namespace Testiranje.Sifarnici
 
          private void frmCene_Load(object sender, EventArgs e)
          {
-             var select = " Select Distinct ID, Naziv  From Komitenti";
+             var select = " Select Distinct PaSifra, PaNaziv  From Partnerji";
              var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
              SqlConnection myConnection = new SqlConnection(s_connection);
              var c = new SqlConnection(s_connection);
@@ -326,8 +358,8 @@ namespace Testiranje.Sifarnici
              var ds = new DataSet();
              dataAdapter.Fill(ds);
              cboKomitent.DataSource = ds.Tables[0];
-             cboKomitent.DisplayMember = "Naziv";
-             cboKomitent.ValueMember = "ID";
+             cboKomitent.DisplayMember = "PaNaziv";
+             cboKomitent.ValueMember = "PaSifra";
             //
              var select3 = " select ID, Naziv from TipCenovnika";
              var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -355,14 +387,48 @@ namespace Testiranje.Sifarnici
              cboVrstaManipulacije.DisplayMember = "Naziv";
              cboVrstaManipulacije.ValueMember = "ID";
 
-             RefreshDataGrid();
-            if (KorisnikCene != "Kecman" && KorisnikCene != "M.Jelisavčić" && KorisnikCene != "Dušan Bašanović")
+
+           // var dir3 = "Select ID,Naziv from VrstePostupakaUvoz order by Naziv";
+            var select5 = " Select ID,Naziv from VrstePostupakaUvoz order by Naziv ";
+            var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection5 = new SqlConnection(s_connection5);
+            var c5 = new SqlConnection(s_connection5);
+            var dataAdapter5 = new SqlDataAdapter(select5, c5);
+
+            var commandBuilder5 = new SqlCommandBuilder(dataAdapter5);
+            var ds5 = new DataSet();
+            dataAdapter5.Fill(ds5);
+            cboPostupakSaRobom.DataSource = ds5.Tables[0];
+            cboPostupakSaRobom.DisplayMember = "Naziv";
+            cboPostupakSaRobom.ValueMember = "ID";
+
+
+            var select6 = " Select PaSifra,PaNaziv from Partnerji order by PaNaziv ";
+            var s_connection6 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection6 = new SqlConnection(s_connection6);
+            var c6 = new SqlConnection(s_connection6);
+            var dataAdapter6 = new SqlDataAdapter(select6, c6);
+
+            var commandBuilder6 = new SqlCommandBuilder(dataAdapter6);
+            var ds6 = new DataSet();
+            dataAdapter6.Fill(ds6);
+            cboUvoznik.DataSource = ds6.Tables[0];
+            cboUvoznik.DisplayMember = "PaNaziv";
+            cboUvoznik.ValueMember = "PaSifra";
+
+
+
+
+            RefreshDataGrid();
+           /*
+            if (KorisnikCene != "Kecman" && KorisnikCene != "Panta" && KorisnikCene != "Dušan Bašanović")
             {
                 //Dušan Bašanović
                 tsNew.Enabled = false;
                 tsSave.Enabled = false;
                 tsDelete.Enabled = false;
             }
+           */
          }
 
          private void tsPrvi_Click(object sender, EventArgs e)

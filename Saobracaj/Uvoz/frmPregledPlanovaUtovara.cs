@@ -26,6 +26,7 @@ namespace Saobracaj.Uvoz
                 " inner join Voz on Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
                 " inner join stanice s1 on s1.ID = Voz.StanicaOd " +
                 " inner join stanice s2 on s2.ID = Voz.StanicaDo " +
+                " where UvozKonacnaZaglavlje.Vozom = 1" +
                 " order by UvozKonacnaZaglavlje.ID desc";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

@@ -1550,5 +1550,83 @@ namespace Saobracaj
             Uvoz.frmNapomenaZaPozicioniranje dkz = new Uvoz.frmNapomenaZaPozicioniranje();
             dkz.Show();
         }
+
+        private void toolStripButton201_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmPrebacivanjeIzPlanaUPlan pup = new Uvoz.frmPrebacivanjeIzPlanaUPlan();
+            pup.Show();
+        }
+
+        private void toolStripButton202_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmRadniNaloziInterni rni = new Uvoz.frmRadniNaloziInterni();
+            rni.Show();
+        }
+
+        private void toolStripButton203_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmRadniNalogInterniPregled RNIP = new Uvoz.frmRadniNalogInterniPregled();
+            RNIP.Show();
+        }
+
+        private void toolStripButton204_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmForrmiranjePlanaDrumski forPD = new Uvoz.frmForrmiranjePlanaDrumski();
+            forPD.Show();
+        }
+
+        private void toolStripButton205_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmPregledPlanoviUtovaraDrumski ppUD = new Uvoz.frmPregledPlanoviUtovaraDrumski();
+            ppUD.Show();
+        }
+
+        private void toolStripButton206_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmPregledRadnihNalogaInterni frnp = new Uvoz.frmPregledRadnihNalogaInterni();
+            frnp.Show();
+        }
+
+        private void toolStripButton207_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmIzvoz izvPoc = new Izvoz.frmIzvoz();
+            izvPoc.Show();
+        }
+
+        private void toolStripButton208_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmKrajnjaDestinacija KraDes = new Izvoz.frmKrajnjaDestinacija();
+            KraDes.Show();
+        }
+
+        private void toolStripButton209_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmMestaUtovara frmMes = new Izvoz.frmMestaUtovara();
+            frmMes.Show();
+        }
+
+        private void toolStripButton210_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmAdresaStatusVozila adrstatvoz = new Izvoz.frmAdresaStatusVozila();
+            adrstatvoz.Show();
+        }
+
+        private void toolStripButton211_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmNaslovStatusaVozila naslstatvoz = new Izvoz.frmNaslovStatusaVozila();
+            naslstatvoz.Show();
+        }
+
+        private void toolStripButton212_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmInspekciskiTretman insTret = new Izvoz.frmInspekciskiTretman();
+            insTret.Show();
+        }
+
+        private void toolStripButton213_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmPregledKontejneraIzvoz prIzvoz = new Izvoz.frmPregledKontejneraIzvoz();
+            prIzvoz.Show();
+        }
     }
 }

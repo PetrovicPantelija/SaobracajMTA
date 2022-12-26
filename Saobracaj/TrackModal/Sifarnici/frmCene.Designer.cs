@@ -56,6 +56,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.cboUvoznik = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cboPostupakSaRobom = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.txtCena)).BeginInit();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -68,7 +72,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(352, 101);
+            this.button2.Location = new System.Drawing.Point(386, 101);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(43, 31);
@@ -110,7 +114,7 @@
             // 
             this.cboKomitent.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboKomitent.FormattingEnabled = true;
-            this.cboKomitent.Location = new System.Drawing.Point(147, 139);
+            this.cboKomitent.Location = new System.Drawing.Point(180, 140);
             this.cboKomitent.Margin = new System.Windows.Forms.Padding(4);
             this.cboKomitent.Name = "cboKomitent";
             this.cboKomitent.Size = new System.Drawing.Size(279, 27);
@@ -124,14 +128,14 @@
             this.label2.Location = new System.Drawing.Point(11, 143);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 18);
+            this.label2.Size = new System.Drawing.Size(162, 18);
             this.label2.TabIndex = 98;
-            this.label2.Text = "Komitent:";
+            this.label2.Text = "Komitent/Nalogodavac:";
             // 
             // txtSifra
             // 
             this.txtSifra.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtSifra.Location = new System.Drawing.Point(147, 68);
+            this.txtSifra.Location = new System.Drawing.Point(181, 68);
             this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(139, 26);
@@ -166,7 +170,7 @@
             // 
             this.cboTipCenovnika.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboTipCenovnika.FormattingEnabled = true;
-            this.cboTipCenovnika.Location = new System.Drawing.Point(147, 102);
+            this.cboTipCenovnika.Location = new System.Drawing.Point(181, 102);
             this.cboTipCenovnika.Margin = new System.Windows.Forms.Padding(4);
             this.cboTipCenovnika.Name = "cboTipCenovnika";
             this.cboTipCenovnika.Size = new System.Drawing.Size(196, 27);
@@ -311,11 +315,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 188);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 249);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1212, 282);
+            this.dataGridView1.Size = new System.Drawing.Size(1212, 221);
             this.dataGridView1.TabIndex = 109;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -354,7 +358,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(435, 139);
+            this.button1.Location = new System.Drawing.Point(467, 137);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(45, 31);
@@ -387,12 +391,60 @@
             this.label7.TabIndex = 114;
             this.label7.Text = "EUR";
             // 
+            // cboUvoznik
+            // 
+            this.cboUvoznik.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.cboUvoznik.FormattingEnabled = true;
+            this.cboUvoznik.Location = new System.Drawing.Point(180, 175);
+            this.cboUvoznik.Margin = new System.Windows.Forms.Padding(4);
+            this.cboUvoznik.Name = "cboUvoznik";
+            this.cboUvoznik.Size = new System.Drawing.Size(279, 27);
+            this.cboUvoznik.TabIndex = 115;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label8.ForeColor = System.Drawing.Color.Black;
+            this.label8.Location = new System.Drawing.Point(11, 178);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(62, 18);
+            this.label8.TabIndex = 116;
+            this.label8.Text = "Uvoznik";
+            // 
+            // cboPostupakSaRobom
+            // 
+            this.cboPostupakSaRobom.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.cboPostupakSaRobom.FormattingEnabled = true;
+            this.cboPostupakSaRobom.Location = new System.Drawing.Point(180, 210);
+            this.cboPostupakSaRobom.Margin = new System.Windows.Forms.Padding(4);
+            this.cboPostupakSaRobom.Name = "cboPostupakSaRobom";
+            this.cboPostupakSaRobom.Size = new System.Drawing.Size(279, 27);
+            this.cboPostupakSaRobom.TabIndex = 117;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label9.ForeColor = System.Drawing.Color.Black;
+            this.label9.Location = new System.Drawing.Point(11, 213);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(139, 18);
+            this.label9.TabIndex = 118;
+            this.label9.Text = "Postupak sa robom";
+            // 
             // frmCene
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1241, 485);
+            this.Controls.Add(this.cboPostupakSaRobom);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.cboUvoznik);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.button1);
@@ -457,5 +509,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cboUvoznik;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cboPostupakSaRobom;
+        private System.Windows.Forms.Label label9;
     }
 }

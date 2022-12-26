@@ -14,7 +14,7 @@ namespace Testiranje
     class InsertCene
     {
 
-          public void InsCene(int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik, double Cena2)
+          public void InsCene(int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik, double Cena2, int Uvoznik, int PostupakSaRobom)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -77,6 +77,20 @@ namespace Testiranje
             parameter6.Value = Cena2;
             myCommand.Parameters.Add(parameter6);
 
+            SqlParameter parameter7 = new SqlParameter();
+            parameter7.ParameterName = "@Uvoznik";
+            parameter7.SqlDbType = SqlDbType.Int;
+            parameter7.Direction = ParameterDirection.Input;
+            parameter7.Value = Uvoznik;
+            myCommand.Parameters.Add(parameter7);
+
+            SqlParameter parameter8 = new SqlParameter();
+            parameter8.ParameterName = "@PostupakSaRobom";
+            parameter8.SqlDbType = SqlDbType.Int;
+            parameter8.Direction = ParameterDirection.Input;
+            parameter8.Value = PostupakSaRobom;
+            myCommand.Parameters.Add(parameter8);
+
 
 
             myConnection.Open();
@@ -116,7 +130,7 @@ namespace Testiranje
             }
         }
 
-          public void UpdCene(int ID, int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik, double Cena2)
+          public void UpdCene(int ID, int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik, double Cena2, int Uvoznik, int PostupakSaRobom)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -183,6 +197,20 @@ namespace Testiranje
             parameter7.Direction = ParameterDirection.Input;
             parameter7.Value = Cena2;
             myCommand.Parameters.Add(parameter7);
+
+            SqlParameter parameter8 = new SqlParameter();
+            parameter8.ParameterName = "@Uvoznik";
+            parameter8.SqlDbType = SqlDbType.Int;
+            parameter8.Direction = ParameterDirection.Input;
+            parameter8.Value = Uvoznik;
+            myCommand.Parameters.Add(parameter8);
+
+            SqlParameter parameter9 = new SqlParameter();
+            parameter9.ParameterName = "@PostupakSaRobom";
+            parameter9.SqlDbType = SqlDbType.Int;
+            parameter9.Direction = ParameterDirection.Input;
+            parameter9.Value = PostupakSaRobom;
+            myCommand.Parameters.Add(parameter9);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

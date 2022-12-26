@@ -72,14 +72,14 @@ namespace Saobracaj.Uvoz
             if (status == true)
             {
                 InsertUvozKonacnaZaglavlje ins = new InsertUvozKonacnaZaglavlje();
-                ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text);
+                ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text,1, "", Convert.ToDateTime("1.1.1900"), "","");
                 RefreshDataGrid();
                 status = false;
             }
             else
             {
                 InsertUvozKonacnaZaglavlje ins = new InsertUvozKonacnaZaglavlje();
-                ins.UpdUvozKonacnaZaglavlje(Convert.ToInt32(txtID.Text),Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text);
+                ins.UpdUvozKonacnaZaglavlje(Convert.ToInt32(txtID.Text),Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "");
                 RefreshDataGrid();
                 status = false;
             }
