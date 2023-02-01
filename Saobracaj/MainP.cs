@@ -1628,5 +1628,17 @@ namespace Saobracaj
             Izvoz.frmPregledKontejneraIzvoz prIzvoz = new Izvoz.frmPregledKontejneraIzvoz();
             prIzvoz.Show();
         }
+
+        private void toolStripButton215_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmPlanoviIzvoza pl = new Izvoz.frmPlanoviIzvoza();
+            pl.Show();
+        }
+
+        private void toolStripButton214_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmPlanoviIzvoza pl = new Izvoz.frmPlanoviIzvoza();
+            pl.Show();
+        }
     }
 }

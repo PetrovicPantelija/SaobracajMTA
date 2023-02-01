@@ -167,7 +167,8 @@ namespace Saobracaj.Uvoz
  "  inner join Brodovi on Brodovi.ID = UvozKonacna.NazivBroda " +
                               "   inner join VrstaRobeADR on VrstaRobeADR.ID = ADR " +
                               "    inner join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom    inner join uvNacinPakovanja " +
- " on uvNacinPakovanja.ID = NacinPakovanja  inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija  order by UvozKonacna.ID desc "; 
+ " on uvNacinPakovanja.ID = NacinPakovanja  inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija " +
+ " where UvozKonacna.IdNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text) + "  order by UvozKonacna.ID desc "; 
           
       
             SqlConnection conn = new SqlConnection(connection);
@@ -410,6 +411,39 @@ namespace Saobracaj.Uvoz
             cboRLTerminal.DataSource = rlSDS.Tables[0];
             cboRLTerminal.DisplayMember = "Naziv";
             cboRLTerminal.ValueMember = "ID";
+
+            var partner7 = "Select PaSifra,PaNaziv From Partnerji order by PaSifra";
+            var partAD7 = new SqlDataAdapter(partner7, conn);
+            var partDS7 = new DataSet();
+            partAD7.Fill(partDS7);
+            cboBrodar.DataSource = partDS7.Tables[0];
+            cboBrodar.DisplayMember = "PaNaziv";
+            cboBrodar.ValueMember = "PaSifra";
+
+            var partner8 = "Select PaSifra,PaNaziv From Partnerji order by PaSifra";
+            var partAD8 = new SqlDataAdapter(partner8, conn);
+            var partDS8 = new DataSet();
+            partAD8.Fill(partDS8);
+            cboNalogodavac1.DataSource = partDS8.Tables[0];
+            cboNalogodavac1.DisplayMember = "PaNaziv";
+            cboNalogodavac1.ValueMember = "PaSifra";
+
+            var partner9 = "Select PaSifra,PaNaziv From Partnerji order by PaSifra";
+            var partAD9 = new SqlDataAdapter(partner9, conn);
+            var partDS9 = new DataSet();
+            partAD9.Fill(partDS9);
+            cboNalogodavac2.DataSource = partDS9.Tables[0];
+            cboNalogodavac2.DisplayMember = "PaNaziv";
+            cboNalogodavac2.ValueMember = "PaSifra";
+
+            var partner10 = "Select PaSifra,PaNaziv From Partnerji order by PaSifra";
+            var partAD10 = new SqlDataAdapter(partner10, conn);
+            var partDS10 = new DataSet();
+            partAD9.Fill(partDS10);
+            cboNalogodavac3.DataSource = partDS10.Tables[0];
+            cboNalogodavac3.DisplayMember = "PaNaziv";
+            cboNalogodavac3.ValueMember = "PaSifra";
+
 
         }
         private void FillCheck()
@@ -2032,6 +2066,12 @@ namespace Saobracaj.Uvoz
         private void label50_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            frmUnosManipulacija um = new frmUnosManipulacija();
+            um.Show();
         }
     }
     }

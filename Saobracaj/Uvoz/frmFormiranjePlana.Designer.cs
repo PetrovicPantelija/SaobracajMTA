@@ -38,6 +38,10 @@ namespace Saobracaj.Uvoz
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFormiranjePlana));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtSpakovaniUB = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
+            this.nmrUkupanBrojKontejneraSS = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.nmSpakovanih = new System.Windows.Forms.NumericUpDown();
             this.label29 = new System.Windows.Forms.Label();
@@ -53,6 +57,8 @@ namespace Saobracaj.Uvoz
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSpakovaniUB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrUkupanBrojKontejneraSS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmSpakovanih)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrUkupanBrojKontejnera)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -74,6 +80,10 @@ namespace Saobracaj.Uvoz
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.splitContainer1.Panel2.Controls.Add(this.label2);
+            this.splitContainer1.Panel2.Controls.Add(this.txtSpakovaniUB);
+            this.splitContainer1.Panel2.Controls.Add(this.label3);
+            this.splitContainer1.Panel2.Controls.Add(this.nmrUkupanBrojKontejneraSS);
             this.splitContainer1.Panel2.Controls.Add(this.label1);
             this.splitContainer1.Panel2.Controls.Add(this.nmSpakovanih);
             this.splitContainer1.Panel2.Controls.Add(this.label29);
@@ -127,6 +137,46 @@ namespace Saobracaj.Uvoz
             this.dataGridView1.Size = new System.Drawing.Size(577, 624);
             this.dataGridView1.TabIndex = 59;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(20, 199);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(244, 18);
+            this.label2.TabIndex = 168;
+            this.label2.Text = "Ukupan broj kontejnera spakovanih:";
+            // 
+            // txtSpakovaniUB
+            // 
+            this.txtSpakovaniUB.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.txtSpakovaniUB.Location = new System.Drawing.Point(343, 199);
+            this.txtSpakovaniUB.Name = "txtSpakovaniUB";
+            this.txtSpakovaniUB.Size = new System.Drawing.Size(125, 22);
+            this.txtSpakovaniUB.TabIndex = 167;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(20, 171);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(193, 18);
+            this.label3.TabIndex = 166;
+            this.label3.Text = "Ukupan broj kontejnera voz:";
+            // 
+            // nmrUkupanBrojKontejneraSS
+            // 
+            this.nmrUkupanBrojKontejneraSS.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.nmrUkupanBrojKontejneraSS.Location = new System.Drawing.Point(343, 171);
+            this.nmrUkupanBrojKontejneraSS.Name = "nmrUkupanBrojKontejneraSS";
+            this.nmrUkupanBrojKontejneraSS.Size = new System.Drawing.Size(125, 22);
+            this.nmrUkupanBrojKontejneraSS.TabIndex = 165;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -135,9 +185,9 @@ namespace Saobracaj.Uvoz
             this.label1.Location = new System.Drawing.Point(20, 141);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(244, 18);
+            this.label1.Size = new System.Drawing.Size(216, 18);
             this.label1.TabIndex = 164;
-            this.label1.Text = "Ukupan broj kontejnera spakovanih:";
+            this.label1.Text = "Ukupan broj mesta spakovanih:";
             // 
             // nmSpakovanih
             // 
@@ -155,9 +205,9 @@ namespace Saobracaj.Uvoz
             this.label29.Location = new System.Drawing.Point(20, 113);
             this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(193, 18);
+            this.label29.Size = new System.Drawing.Size(165, 18);
             this.label29.TabIndex = 162;
-            this.label29.Text = "Ukupan broj kontejnera voz:";
+            this.label29.Text = "Ukupan broj mesta voz:";
             this.label29.Click += new System.EventHandler(this.label29_Click);
             // 
             // nmrUkupanBrojKontejnera
@@ -282,6 +332,8 @@ namespace Saobracaj.Uvoz
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSpakovaniUB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrUkupanBrojKontejneraSS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmSpakovanih)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrUkupanBrojKontejnera)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
@@ -304,5 +356,9 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.NumericUpDown nmrUkupanBrojKontejnera;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown nmSpakovanih;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown txtSpakovaniUB;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown nmrUkupanBrojKontejneraSS;
     }
 }

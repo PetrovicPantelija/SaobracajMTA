@@ -41,6 +41,26 @@ namespace Saobracaj.Uvoz
 
         }
 
+        private void VratiUkupanBrojKontejneraPrenetihBezSerije()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select count(*) as BrjKontejnera from UvozKonacna " +
+            " where IDNadredjeni = " + cboPlanUtovara.SelectedValue, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtSpakovaniUB.Value = Convert.ToInt32(dr["BrojKontejnera"].ToString());
+            }
+
+            con.Close();
+
+        }
+
         private void VratiUkupanBrojKontejnera()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -61,9 +81,29 @@ namespace Saobracaj.Uvoz
 
         }
 
+        private void VratiUkupanBrojKontejneraSumaSerija()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select isnull(BrojSerija),0) as BrojKontejnera from VozSerijeKola " +
+            " inner join SerijeKola on SerijeKola.Id = VozSerijeKola.TipKontejnera where IDVoza = (Select Top 1 IDVoza from UvozKonacnaZaglavlje where ID = " + cboPlanUtovara.SelectedValue + " ) ", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                nmrUkupanBrojKontejneraSS.Value = Convert.ToInt32(dr["BrojKontejnera"].ToString());
+            }
+
+            con.Close();
+
+        }
+
         private void RefreshDataGrid3()
         {
-            var select = "  select SerijeKola.ID as Zapis, UvozKonacnaZaglavlje.IDVoza, VozSerijeKola.TipKontejnera as IDT, Naziv, Broj20 as Nosivost20, BrojSerija from VozSerijeKola " +
+            var select = "  select SerijeKola.ID as Zapis, UvozKonacnaZaglavlje.IDVoza, VozSerijeKola.TipKontejnera as IDT, Naziv, Broj20 as Nosivost20, BrojSerija, (Broj20 * BrojSerija) as UkupnoPoSeriji  from VozSerijeKola " +
   " inner join UvozKonacnaZaglavlje on UvozKonacnaZaglavlje.IdVoza = VozSerijeKola.IDVoza " +
   "  inner join SerijeKola on SerijeKola.Id = VozSerijeKola.TipKontejnera where UvozkonacnaZaglavlje.ID = " + Convert.ToInt32(cboPlanUtovara.SelectedValue);
 
@@ -101,15 +141,23 @@ namespace Saobracaj.Uvoz
 
             DataGridViewColumn column3 = dataGridView3.Columns[2];
             dataGridView3.Columns[2].HeaderText = "TSV";
-            dataGridView3.Columns[2].Width = 50;
+            dataGridView3.Columns[2].Width = 40;
 
             DataGridViewColumn column4 = dataGridView3.Columns[3];
             dataGridView3.Columns[3].HeaderText = "Naziv serije";
-            dataGridView3.Columns[3].Width = 100;
+            dataGridView3.Columns[3].Width = 80;
 
             DataGridViewColumn column5 = dataGridView3.Columns[4];
             dataGridView3.Columns[4].HeaderText = "Nosivost 20 ST";
-            dataGridView3.Columns[4].Width = 70;
+            dataGridView3.Columns[4].Width = 60;
+
+            DataGridViewColumn column6 = dataGridView3.Columns[5];
+            dataGridView3.Columns[5].HeaderText = "Broj Serija";
+            dataGridView3.Columns[5].Width = 60;
+
+            DataGridViewColumn column7 = dataGridView3.Columns[6];
+            dataGridView3.Columns[6].HeaderText = "Ukupno po Seriji";
+            dataGridView3.Columns[6].Width = 70;
 
         }
         private void RefreshDataGrid1()
@@ -248,6 +296,7 @@ namespace Saobracaj.Uvoz
             RefreshDataGrid2();
             RefreshDataGrid3();
             VratiUkupanBrojKontejnera();
+            VratiUkupanBrojKontejneraSumaSerija();
             VratiUkupanBrojKontejneraPrenetih();
         }
 

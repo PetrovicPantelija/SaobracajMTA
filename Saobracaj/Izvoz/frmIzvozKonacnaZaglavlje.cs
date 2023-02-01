@@ -11,13 +11,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
 
-namespace Saobracaj.Uvoz
+namespace Saobracaj.Izvoz
 {
-    public partial class frmUvozKonacnaZaglavlje : Form
+    public partial class frmIzvozKonacnaZaglavlje : Form
     {
+
         bool status = false;
         public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-        public frmUvozKonacnaZaglavlje()
+        public frmIzvozKonacnaZaglavlje()
         {
             InitializeComponent();
         }
@@ -71,15 +72,15 @@ namespace Saobracaj.Uvoz
         {
             if (status == true)
             {
-                InsertUvozKonacnaZaglavlje ins = new InsertUvozKonacnaZaglavlje();
-                ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text,1, "", Convert.ToDateTime("1.1.1900"), "","");
+                InsertIzvozKonacnaZaglavlje ins = new InsertIzvozKonacnaZaglavlje();
+                ins.InsIzvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "");
                 RefreshDataGrid();
                 status = false;
             }
             else
             {
-                InsertUvozKonacnaZaglavlje ins = new InsertUvozKonacnaZaglavlje();
-                ins.UpdUvozKonacnaZaglavlje(Convert.ToInt32(txtID.Text),Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "");
+                InsertIzvozKonacnaZaglavlje ins = new InsertIzvozKonacnaZaglavlje();
+                ins.UpdIzvozKonacnaZaglavlje(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "");
                 RefreshDataGrid();
                 status = false;
             }
@@ -87,19 +88,19 @@ namespace Saobracaj.Uvoz
 
         private void tsDelete_Click(object sender, EventArgs e)
         {
-            InsertUvozKonacnaZaglavlje ins = new InsertUvozKonacnaZaglavlje();
-            ins.DelUvozKonacnaZaglavlje(Convert.ToInt32(txtID.Text));
+            InsertIzvozKonacnaZaglavlje ins = new InsertIzvozKonacnaZaglavlje();
+            ins.DelIzvozKonacnaZaglavlje(Convert.ToInt32(txtID.Text));
             RefreshDataGrid();
             status = false;
         }
 
         private void RefreshDataGrid()
         {
-            var select = " Select UvozKonacnaZaglavlje.ID, UvozKonacnaZaglavlje.IDVoza, Voz.BrVoza, Voz.VremePolaska, Voz.VremeDolaska, s1.Opis as StanicaOd, s2.Opis as StanicaDo, Voz.Relacija as Relacija from UvozKonacnaZaglavlje " +
-            " inner join Voz on Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
+            var select = " Select IzvozKonacnaZaglavlje.ID, IzvozKonacnaZaglavlje.IDVoza, Voz.BrVoza, Voz.VremePolaska, Voz.VremeDolaska, s1.Opis as StanicaOd, s2.Opis as StanicaDo, Voz.Relacija as Relacija from IzvozKonacnaZaglavlje " +
+            " inner join Voz on Voz.ID = IzvozKonacnaZaglavlje.IDVoza " +
             " inner join stanice s1 on s1.ID = Voz.StanicaOd " +
             " inner join stanice s2 on s2.ID = Voz.StanicaDo " +
-            " order by UvozKonacnaZaglavlje.ID desc";
+            " order by IzvozKonacnaZaglavlje.ID desc";
             // var select = "SELECT RkShippingItemPak.ShippingItemPakId as ID, RkShipping.ShippingNo as BarkodUtovara, RkShipping.BrojIstovara as BrojUtovara, RkShipping.DatumIstovara as DatumUtovara, RkShipping.BrojUtovara as BrojIstovara,  RkShipping.DatumUtovara as DatumIstovara , Saloni.MestoIsporuke, RkShippingItemPak.PaketName, RkShippingItemPak.LargoPakId, RkShippingItemPak.LargoNaziv, RkShippingItemPak.Paleta, RkShippingItemPak.Tezina,  RkShippingItemPak.LargoDimenzija  FROM [dbo].RkShippingItemPak inner join RkShipping on [dbo].RkShippingItemPak.ShipingIDz = RkShipping.[ShippingID] inner join SysKomitenti on RkShipping.KupacIDz = SysKomitenti.KomintentID inner join Saloni on RkShipping.SalonIDz = Saloni.SifraKomintentaMestoIsporuke where RkShipping.Vozilo  = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "'";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -136,7 +137,12 @@ namespace Saobracaj.Uvoz
 
         }
 
-        private void frmUvozKonacnaZaglavlje_Load(object sender, EventArgs e)
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmIzvozKonacnaZaglavlje_Load(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(connection);
 
@@ -165,26 +171,6 @@ namespace Saobracaj.Uvoz
                     {
                         txtID.Text = row.Cells[0].Value.ToString();
 
-                    }
-                }
-
-
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
-        }
-
-        private void dataGridView5_SelectionChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
-                        txtID.Text = row.Cells[0].Value.ToString();
                     }
                 }
             }

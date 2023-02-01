@@ -1069,7 +1069,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar)
             }
         }
 
-        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena)
+        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina)
         {
             //  @IdNadredjena int,
             //@IDVrstaManipulacije int,
@@ -1097,10 +1097,17 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar)
 
             SqlParameter cena = new SqlParameter();
             cena.ParameterName = "@Cena";
-            cena.SqlDbType = SqlDbType.Int;
+            cena.SqlDbType = SqlDbType.Decimal;
             cena.Direction = ParameterDirection.Input;
             cena.Value = Cena;
             cmd.Parameters.Add(cena);
+
+            SqlParameter kolicina = new SqlParameter();
+            kolicina.ParameterName = "@Kolicina";
+            kolicina.SqlDbType = SqlDbType.Decimal;
+            kolicina.Direction = ParameterDirection.Input;
+            kolicina.Value = Kolicina;
+            cmd.Parameters.Add(kolicina);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

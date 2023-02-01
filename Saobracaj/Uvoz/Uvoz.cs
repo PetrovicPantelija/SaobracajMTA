@@ -56,7 +56,7 @@ namespace Saobracaj.Uvoz
       " ,[Email]      ,[BrojPlombe1]      ,[BrojPlombe2]      ,[NetoRobe] " +
       " ,[BrutoRobe]      ,[TaraKontejnera]      ,[BrutoKontejnera]      ,[NapomenaZaPozicioniranje] " +
       " ,[AtaOtpreme]      ,[BrojVoza]      ,[RelacijaVoza]      ,[AtaDolazak] " +
-      " ,[TipKontejnera]      ,[Koleta], RLTerminali " +
+      " ,[TipKontejnera]      ,[Koleta], RLTerminali, " +
       " Napomena1,VrstaPregleda,Nalogodavac1 ,Ref1 ,Nalogodavac2,Ref2 ,Nalogodavac3 ,Ref3 ,Brodar " +
   " FROM [Uvoz] where ID=" + Sifra, con);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -104,6 +104,8 @@ namespace Saobracaj.Uvoz
                 txtBrutoK.Value = Convert.ToDecimal(dr["BrutoKontejnera"].ToString());
                 txtNapomena.Text = dr["Napomena"].ToString();
                 cbNapomenaPoz.SelectedValue =  Convert.ToInt32(dr["NapomenaZaPozicioniranje"].ToString());
+                //Panta
+                
                 cboRLTerminal.SelectedValue = Convert.ToInt32(dr["RLTerminali"].ToString());
                 cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
                 txtNapomena1.Text = dr["Napomena1"].ToString();
@@ -687,7 +689,7 @@ namespace Saobracaj.Uvoz
                 txtRelacija.Text = dr["RelacijaVoza"].ToString();
                 dtAtaDolazak.Value = Convert.ToDateTime(dr["AtaDolazak"].ToString());
                 txtKoleta.Value = Convert.ToDecimal(dr["Koleta"].ToString());
-                cboRLTerminal.SelectedValue = Convert.ToInt32(dr["RLTErminali"].ToString()); 
+                cboRLTerminal.SelectedValue = Convert.ToInt32(dr["RLTerminali"].ToString()); 
                  txtNapomena1.Text = dr["Napomena1"].ToString();
                   txtVrstaPregleda.Text = dr["VrstaPregleda"].ToString();  
                     cboNalogodavac1.SelectedValue = Convert.ToInt32(dr["Nalogodavac1"].ToString());
