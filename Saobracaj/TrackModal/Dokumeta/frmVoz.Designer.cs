@@ -108,6 +108,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label30 = new System.Windows.Forms.Label();
+            this.nmBrojSerija = new System.Windows.Forms.NumericUpDown();
             this.label29 = new System.Windows.Forms.Label();
             this.nmrUkupanBrojKontejnera = new System.Windows.Forms.NumericUpDown();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -117,8 +119,7 @@
             this.cboSerijaKola = new System.Windows.Forms.ComboBox();
             this.txtSifraSerijeKola = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
-            this.nmBrojSerija = new System.Windows.Forms.NumericUpDown();
-            this.label30 = new System.Windows.Forms.Label();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaksBrojKola)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDuzina)).BeginInit();
@@ -136,9 +137,9 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmBrojSerija)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrUkupanBrojKontejnera)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmBrojSerija)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -153,10 +154,11 @@
             this.tsPrvi,
             this.tsNazad,
             this.tsNapred,
-            this.tsPoslednja});
+            this.tsPoslednja,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1897, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1897, 31);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "Štampaj izveštaj";
             // 
@@ -166,7 +168,7 @@
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
+            this.tsNew.Size = new System.Drawing.Size(29, 28);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -176,7 +178,7 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(29, 28);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -186,14 +188,14 @@
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsDelete.Size = new System.Drawing.Size(29, 28);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // tsPrvi
             // 
@@ -201,7 +203,7 @@
             this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
             this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(29, 24);
+            this.tsPrvi.Size = new System.Drawing.Size(29, 28);
             this.tsPrvi.Text = "toolStripButton1";
             // 
             // tsNazad
@@ -210,7 +212,7 @@
             this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
             this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(29, 24);
+            this.tsNazad.Size = new System.Drawing.Size(29, 28);
             this.tsNazad.Text = "toolStripButton1";
             // 
             // tsNapred
@@ -219,7 +221,7 @@
             this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
             this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(29, 24);
+            this.tsNapred.Size = new System.Drawing.Size(29, 28);
             this.tsNapred.Text = "toolStripButton1";
             // 
             // tsPoslednja
@@ -228,7 +230,7 @@
             this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
             this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
+            this.tsPoslednja.Size = new System.Drawing.Size(29, 28);
             this.tsPoslednja.Text = "toolStripButton1";
             // 
             // txtBrVoza
@@ -1149,6 +1151,26 @@
             this.tabPage2.Text = "Sastav voza";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label30.ForeColor = System.Drawing.Color.Black;
+            this.label30.Location = new System.Drawing.Point(14, 102);
+            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(78, 18);
+            this.label30.TabIndex = 142;
+            this.label30.Text = "Broj serija:";
+            // 
+            // nmBrojSerija
+            // 
+            this.nmBrojSerija.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.nmBrojSerija.Location = new System.Drawing.Point(143, 102);
+            this.nmBrojSerija.Name = "nmBrojSerija";
+            this.nmBrojSerija.Size = new System.Drawing.Size(125, 24);
+            this.nmBrojSerija.TabIndex = 141;
+            // 
             // label29
             // 
             this.label29.AutoSize = true;
@@ -1258,25 +1280,16 @@
             this.label26.TabIndex = 11;
             this.label26.Text = "Šifra:";
             // 
-            // nmBrojSerija
+            // toolStripButton1
             // 
-            this.nmBrojSerija.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.nmBrojSerija.Location = new System.Drawing.Point(143, 102);
-            this.nmBrojSerija.Name = "nmBrojSerija";
-            this.nmBrojSerija.Size = new System.Drawing.Size(125, 24);
-            this.nmBrojSerija.TabIndex = 141;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label30.ForeColor = System.Drawing.Color.Black;
-            this.label30.Location = new System.Drawing.Point(14, 102);
-            this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(78, 18);
-            this.label30.TabIndex = 142;
-            this.label30.Text = "Broj serija:";
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(172, 28);
+            this.toolStripButton1.Text = "Otvaranje plana utovara";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // frmVoz
             // 
@@ -1379,9 +1392,9 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmBrojSerija)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrUkupanBrojKontejnera)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nmBrojSerija)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1479,5 +1492,6 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.NumericUpDown nmBrojSerija;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

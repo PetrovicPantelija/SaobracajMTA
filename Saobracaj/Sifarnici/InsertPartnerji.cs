@@ -11,7 +11,7 @@ namespace Saobracaj.Sifarnici
 {
     class InsertPartnerji
     {
-        public void InsPartneri(string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB, string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar ,  int Vlasnik, int Spediter , int Platilac  , int Organizator)
+        public void InsPartneri(string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB, string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar ,  int Vlasnik, int Spediter , int Platilac  , int Organizator,int Nalogodavac, int Uvoznik)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -199,7 +199,22 @@ namespace Saobracaj.Sifarnici
             parameter21.Direction = ParameterDirection.Input;
             parameter21.Value = Organizator;
             myCommand.Parameters.Add(parameter21);
-         
+
+
+            SqlParameter parameter22 = new SqlParameter();
+            parameter22.ParameterName = "@Nalogodavac";
+            parameter22.SqlDbType = SqlDbType.Int;
+            parameter22.Direction = ParameterDirection.Input;
+            parameter22.Value = Nalogodavac;
+            myCommand.Parameters.Add(parameter22);
+
+            SqlParameter parameter23 = new SqlParameter();
+            parameter23.ParameterName = "@Uvoznik";
+            parameter23.SqlDbType = SqlDbType.Int;
+            parameter23.Direction = ParameterDirection.Input;
+            parameter23.Value = Uvoznik;
+            myCommand.Parameters.Add(parameter23);
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -235,7 +250,7 @@ namespace Saobracaj.Sifarnici
             }
         }
 
-        public void UpdPartneri(int ID, string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB,  string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar, int Vlasnik, int Spediter, int Platilac, int Organizator)
+        public void UpdPartneri(int ID, string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB,  string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar, int Vlasnik, int Spediter, int Platilac, int Organizator, int Nalogodavac, int Uvoznik)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -428,6 +443,20 @@ namespace Saobracaj.Sifarnici
             parameter21.Direction = ParameterDirection.Input;
             parameter21.Value = Organizator;
             myCommand.Parameters.Add(parameter21);
+
+            SqlParameter parameter22 = new SqlParameter();
+            parameter22.ParameterName = "@Nalogodavac";
+            parameter22.SqlDbType = SqlDbType.Int;
+            parameter22.Direction = ParameterDirection.Input;
+            parameter22.Value = Nalogodavac;
+            myCommand.Parameters.Add(parameter22);
+
+            SqlParameter parameter23 = new SqlParameter();
+            parameter23.ParameterName = "@Uvoznik";
+            parameter23.SqlDbType = SqlDbType.Int;
+            parameter23.Direction = ParameterDirection.Input;
+            parameter23.Value = Uvoznik;
+            myCommand.Parameters.Add(parameter23);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

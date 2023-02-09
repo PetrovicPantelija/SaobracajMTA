@@ -1640,5 +1640,23 @@ namespace Saobracaj
             Izvoz.frmPlanoviIzvoza pl = new Izvoz.frmPlanoviIzvoza();
             pl.Show();
         }
+
+        private void toolStripButton217_Click(object sender, EventArgs e)
+        {
+            frmTipCenovnika frmTC = new frmTipCenovnika(Korisnik);
+            frmTC.Show();
+        }
+
+        private void toolStripButton216_Click(object sender, EventArgs e)
+        {
+            frmCene frmcen = new frmCene(Korisnik);
+            frmcen.Show();
+        }
+
+        private void toolStripButton107_Click_2(object sender, EventArgs e)
+        {
+            frmOrganizacionaJedinica otg = new frmOrganizacionaJedinica();
+            otg.Show();
+        }
     }
 }

@@ -50,6 +50,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.cboTipManipulacije = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.cboOrgJed = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -69,7 +71,7 @@
             this.tsPoslednja});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1048, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(1061, 27);
             this.toolStrip1.TabIndex = 107;
             this.toolStrip1.Text = "Štampaj izveštaj";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
@@ -80,7 +82,7 @@
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 28);
+            this.tsNew.Size = new System.Drawing.Size(29, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -200,11 +202,11 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.GridColor = System.Drawing.Color.White;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 223);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 272);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1019, 201);
+            this.dataGridView1.Size = new System.Drawing.Size(1032, 375);
             this.dataGridView1.TabIndex = 112;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -287,12 +289,37 @@
             this.label5.TabIndex = 241;
             this.label5.Text = "Tip manipulacije:";
             // 
+            // cboOrgJed
+            // 
+            this.cboOrgJed.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cboOrgJed.FormattingEnabled = true;
+            this.cboOrgJed.Location = new System.Drawing.Point(407, 222);
+            this.cboOrgJed.Margin = new System.Windows.Forms.Padding(4);
+            this.cboOrgJed.Name = "cboOrgJed";
+            this.cboOrgJed.Size = new System.Drawing.Size(279, 27);
+            this.cboOrgJed.TabIndex = 244;
+            this.cboOrgJed.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(233, 213);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(166, 55);
+            this.label6.TabIndex = 243;
+            this.label6.Text = "Organizaciona jedinica koja izvšava zadatak:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
             // frmVrstaManipulacije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1048, 438);
+            this.ClientSize = new System.Drawing.Size(1061, 661);
+            this.Controls.Add(this.cboOrgJed);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.cboTipManipulacije);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtJM2);
@@ -344,5 +371,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cboTipManipulacije;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cboOrgJed;
+        private System.Windows.Forms.Label label6;
     }
 }

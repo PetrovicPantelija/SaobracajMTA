@@ -14,7 +14,7 @@ namespace Testiranje.Sifarnici
     class InsertVrstaManipulacije
     {
 
-          public void InsVrstaManipulacije(string Naziv ,DateTime  Datum , string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije)
+          public void InsVrstaManipulacije(string Naziv ,DateTime  Datum , string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -77,6 +77,13 @@ namespace Testiranje.Sifarnici
             parameter9.Value = TipManipulacije;
             myCommand.Parameters.Add(parameter9);
 
+            SqlParameter parameter10 = new SqlParameter();
+            parameter10.ParameterName = "@OrgJed";
+            parameter10.SqlDbType = SqlDbType.Int;
+            parameter10.Direction = ParameterDirection.Input;
+            parameter10.Value = OrgJed;
+            myCommand.Parameters.Add(parameter10);
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -114,7 +121,7 @@ namespace Testiranje.Sifarnici
             }
         }
 
-          public void UpdVrstaManipulacije(int ID, string Naziv ,DateTime  Datum , string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije)
+          public void UpdVrstaManipulacije(int ID, string Naziv ,DateTime  Datum , string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed)
             {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -183,6 +190,13 @@ namespace Testiranje.Sifarnici
             parameter9.Direction = ParameterDirection.Input;
             parameter9.Value = TipManipulacije;
             myCommand.Parameters.Add(parameter9);
+
+            SqlParameter parameter10 = new SqlParameter();
+            parameter10.ParameterName = "@OrgJed";
+            parameter10.SqlDbType = SqlDbType.Int;
+            parameter10.Direction = ParameterDirection.Input;
+            parameter10.Value = OrgJed;
+            myCommand.Parameters.Add(parameter10);
 
 
             myConnection.Open();

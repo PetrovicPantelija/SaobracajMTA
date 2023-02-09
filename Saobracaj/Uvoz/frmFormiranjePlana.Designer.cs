@@ -76,6 +76,7 @@ namespace Saobracaj.Uvoz
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
+            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 
@@ -142,7 +143,7 @@ namespace Saobracaj.Uvoz
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(20, 199);
+            this.label2.Location = new System.Drawing.Point(20, 168);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(244, 18);
@@ -152,7 +153,7 @@ namespace Saobracaj.Uvoz
             // txtSpakovaniUB
             // 
             this.txtSpakovaniUB.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.txtSpakovaniUB.Location = new System.Drawing.Point(343, 199);
+            this.txtSpakovaniUB.Location = new System.Drawing.Point(343, 169);
             this.txtSpakovaniUB.Name = "txtSpakovaniUB";
             this.txtSpakovaniUB.Size = new System.Drawing.Size(125, 22);
             this.txtSpakovaniUB.TabIndex = 167;
@@ -162,20 +163,22 @@ namespace Saobracaj.Uvoz
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(20, 171);
+            this.label3.Location = new System.Drawing.Point(166, 217);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(193, 18);
+            this.label3.Size = new System.Drawing.Size(289, 18);
             this.label3.TabIndex = 166;
-            this.label3.Text = "Ukupan broj kontejnera voz:";
+            this.label3.Text = "Visuble -False Ukupan broj kontejnera voz:";
+            this.label3.Visible = false;
             // 
             // nmrUkupanBrojKontejneraSS
             // 
             this.nmrUkupanBrojKontejneraSS.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.nmrUkupanBrojKontejneraSS.Location = new System.Drawing.Point(343, 171);
+            this.nmrUkupanBrojKontejneraSS.Location = new System.Drawing.Point(366, 217);
             this.nmrUkupanBrojKontejneraSS.Name = "nmrUkupanBrojKontejneraSS";
-            this.nmrUkupanBrojKontejneraSS.Size = new System.Drawing.Size(125, 22);
+            this.nmrUkupanBrojKontejneraSS.Size = new System.Drawing.Size(102, 22);
             this.nmrUkupanBrojKontejneraSS.TabIndex = 165;
+            this.nmrUkupanBrojKontejneraSS.Visible = false;
             // 
             // label1
             // 
@@ -324,7 +327,7 @@ namespace Saobracaj.Uvoz
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmFormiranjePlana";
-            this.Text = "Formiranje plana";
+            this.Text = "Formiranje plana ubacivanje stavki";
             this.Load += new System.EventHandler(this.frmFormiranjePlana_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

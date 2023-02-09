@@ -73,6 +73,8 @@
             this.chkPlatilac = new System.Windows.Forms.CheckBox();
             this.chkSpediter = new System.Windows.Forms.CheckBox();
             this.chkBrodar = new System.Windows.Forms.CheckBox();
+            this.chkNalogodavac = new System.Windows.Forms.CheckBox();
+            this.chkUvoznik = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -529,12 +531,42 @@
             this.chkBrodar.Text = "Brodar";
             this.chkBrodar.UseVisualStyleBackColor = true;
             // 
+            // chkNalogodavac
+            // 
+            this.chkNalogodavac.AutoSize = true;
+            this.chkNalogodavac.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkNalogodavac.ForeColor = System.Drawing.Color.Black;
+            this.chkNalogodavac.Location = new System.Drawing.Point(191, 349);
+            this.chkNalogodavac.Margin = new System.Windows.Forms.Padding(4);
+            this.chkNalogodavac.Name = "chkNalogodavac";
+            this.chkNalogodavac.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkNalogodavac.Size = new System.Drawing.Size(107, 21);
+            this.chkNalogodavac.TabIndex = 203;
+            this.chkNalogodavac.Text = "Nalogodavac";
+            this.chkNalogodavac.UseVisualStyleBackColor = true;
+            // 
+            // chkUvoznik
+            // 
+            this.chkUvoznik.AutoSize = true;
+            this.chkUvoznik.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkUvoznik.ForeColor = System.Drawing.Color.Black;
+            this.chkUvoznik.Location = new System.Drawing.Point(220, 378);
+            this.chkUvoznik.Margin = new System.Windows.Forms.Padding(4);
+            this.chkUvoznik.Name = "chkUvoznik";
+            this.chkUvoznik.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkUvoznik.Size = new System.Drawing.Size(78, 21);
+            this.chkUvoznik.TabIndex = 204;
+            this.chkUvoznik.Text = "Uvoznik";
+            this.chkUvoznik.UseVisualStyleBackColor = true;
+            // 
             // frmPartnerji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1641, 980);
+            this.Controls.Add(this.chkUvoznik);
+            this.Controls.Add(this.chkNalogodavac);
             this.Controls.Add(this.chkVlasnik);
             this.Controls.Add(this.chkOrganizator);
             this.Controls.Add(this.chkPlatilac);
@@ -633,5 +665,7 @@
         private System.Windows.Forms.CheckBox chkPlatilac;
         private System.Windows.Forms.CheckBox chkSpediter;
         private System.Windows.Forms.CheckBox chkBrodar;
+        private System.Windows.Forms.CheckBox chkNalogodavac;
+        private System.Windows.Forms.CheckBox chkUvoznik;
     }
 }

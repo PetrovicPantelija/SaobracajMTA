@@ -15,10 +15,19 @@ namespace Saobracaj.Uvoz
 {
     public partial class frmFormiranjePlana : Form
     {
+        int pomPostojiPlan = 0;
+        int pomPlan = 0;
         public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         public frmFormiranjePlana()
         {
             InitializeComponent();
+        }
+
+        public frmFormiranjePlana(int Plan)
+        {
+            InitializeComponent();
+            pomPostojiPlan = 1;
+            pomPlan = Plan;
         }
 
         private void VratiUkupanBrojKontejneraPrenetih()
@@ -48,7 +57,7 @@ namespace Saobracaj.Uvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select count(*) as BrjKontejnera from UvozKonacna " +
+            SqlCommand cmd = new SqlCommand("select count(*) as BrojKontejnera from UvozKonacna " +
             " where IDNadredjeni = " + cboPlanUtovara.SelectedValue, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -88,7 +97,7 @@ namespace Saobracaj.Uvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select isnull(BrojSerija),0) as BrojKontejnera from VozSerijeKola " +
+            SqlCommand cmd = new SqlCommand("select isnull(BrojSerija,0) as BrojKontejnera from VozSerijeKola " +
             " inner join SerijeKola on SerijeKola.Id = VozSerijeKola.TipKontejnera where IDVoza = (Select Top 1 IDVoza from UvozKonacnaZaglavlje where ID = " + cboPlanUtovara.SelectedValue + " ) ", con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -240,7 +249,7 @@ namespace Saobracaj.Uvoz
 "    inner join Carinarnice on Carinarnice.ID = UvozKonacna.OdredisnaCarina" +
 "     inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = UvozKonacna.CarinskiPostupak" +
 "     inner join Predefinisaneporuke on PredefinisanePoruke.ID = UvozKonacna.NapomenaZaPozicioniranje" +
-"    inner join PredefinisanePoruke pp1 on pp1.ID = DirigacijaKontejeraZa" +
+"    inner join DirigacijaKontejneraZa pp1 on pp1.ID = UvozKonacna.DirigacijaKontejeraZa" +
 "     inner join Brodovi on Brodovi.ID = UvozKonacna.NazivBroda" +
 "    inner join VrstaRobeADR on VrstaRobeADR.ID = ADR" +
 "    inner join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom" +
@@ -289,6 +298,7 @@ namespace Saobracaj.Uvoz
             RefreshDataGrid2();
             VratiUkupanBrojKontejnera();
             VratiUkupanBrojKontejneraPrenetih();
+            VratiUkupanBrojKontejneraPrenetihBezSerije();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -298,6 +308,7 @@ namespace Saobracaj.Uvoz
             VratiUkupanBrojKontejnera();
             VratiUkupanBrojKontejneraSumaSerija();
             VratiUkupanBrojKontejneraPrenetih();
+            VratiUkupanBrojKontejneraPrenetihBezSerije();
         }
 
         private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
@@ -307,8 +318,10 @@ namespace Saobracaj.Uvoz
         }
         private void FillCombo()
         {
-            var planutovara = "select UvozKonacnaZaglavlje.ID,(Cast(BrVoza as nvarchar(15)) + ' '  + Relacija) as Naziv from UvozKonacnaZaglavlje " +
-              " inner join Voz on Voz.Id = UvozKonacnaZaglavlje.IdVoza order by UvozKonacnaZaglavlje.ID desc";
+            var planutovara = "select UvozKonacnaZaglavlje.ID, ( 'P:' + Cast(UvozKonacnaZaglavlje.ID as nvarchar(4)) + ' T:' " + 
+ " + Cast(Convert(Nvarchar(10), Voz.VremePolaska, 104) as nvarchar(12)) + ' V:' + Cast(BrVoza as nvarchar(15)) + ' ' + Relacija) as Naziv " +
+" from UvozKonacnaZaglavlje " +
+" inner join Voz on Voz.Id = UvozKonacnaZaglavlje.IdVoza order by UvozKonacnaZaglavlje.ID desc";
             var planutovaraSAD = new SqlDataAdapter(planutovara, connection);
             var planutovaraSDS = new DataSet();
             planutovaraSAD.Fill(planutovaraSDS);
@@ -323,6 +336,17 @@ namespace Saobracaj.Uvoz
             RefreshDataGrid1();
             RefreshDataGrid2();
             FillCombo();
+            if (pomPostojiPlan == 1)
+            {
+                cboPlanUtovara.SelectedValue = pomPlan;
+                RefreshDataGrid2();
+                RefreshDataGrid3();
+                VratiUkupanBrojKontejnera();
+                VratiUkupanBrojKontejneraSumaSerija();
+                VratiUkupanBrojKontejneraPrenetih();
+                VratiUkupanBrojKontejneraPrenetihBezSerije();
+
+            }
            
         }
 
@@ -332,6 +356,11 @@ namespace Saobracaj.Uvoz
         }
 
         private void nmrUkupanBrojKontejnera_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

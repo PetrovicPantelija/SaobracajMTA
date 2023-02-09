@@ -1001,7 +1001,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar)
             }
         }
 
-        public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena)
+        public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed)
         {
           //  @IdNadredjena int,
 //@IDVrstaManipulacije int,
@@ -1033,6 +1033,20 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar)
             cena.Direction = ParameterDirection.Input;
             cena.Value = Cena;
             cmd.Parameters.Add(cena);
+
+            SqlParameter kolicina = new SqlParameter();
+            kolicina.ParameterName = "@Kolicina";
+            kolicina.SqlDbType = SqlDbType.Decimal;
+            kolicina.Direction = ParameterDirection.Input;
+            kolicina.Value = Kolicina;
+            cmd.Parameters.Add(kolicina);
+
+            SqlParameter orgjed = new SqlParameter();
+            orgjed.ParameterName = "@OrgJed";
+            orgjed.SqlDbType = SqlDbType.Int;
+            orgjed.Direction = ParameterDirection.Input;
+            orgjed.Value = OrgJed;
+            cmd.Parameters.Add(orgjed);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -1069,7 +1083,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar)
             }
         }
 
-        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina)
+        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed)
         {
             //  @IdNadredjena int,
             //@IDVrstaManipulacije int,
@@ -1080,6 +1094,8 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar)
             cmd.CommandText = "InsertUvozKonacnaVrstaManipulacije";
             cmd.CommandType = CommandType.StoredProcedure;
 
+
+            //IDNadredjena treba da bude ID svake stavke tj. svakog kontejnera
             SqlParameter idnadredjena = new SqlParameter();
             idnadredjena.ParameterName = "@IDNadredjena";
             idnadredjena.SqlDbType = SqlDbType.Int;
@@ -1108,6 +1124,13 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar)
             kolicina.Direction = ParameterDirection.Input;
             kolicina.Value = Kolicina;
             cmd.Parameters.Add(kolicina);
+
+            SqlParameter orgjed = new SqlParameter();
+            orgjed.ParameterName = "@OrgJed";
+            orgjed.SqlDbType = SqlDbType.Int;
+            orgjed.Direction = ParameterDirection.Input;
+            orgjed.Value = OrgJed;
+            cmd.Parameters.Add(orgjed);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -1939,7 +1962,6 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar)
             }
 
         }
-
 
         public void PrenesiUPlanUtovara(int ID, int IDNadredjena)
         {

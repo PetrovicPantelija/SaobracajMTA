@@ -210,7 +210,7 @@ namespace Saobracaj.Uvoz
  "  inner join Partnerji n2 on n2.PaSifra = Nalogodavac2 " +
  "  inner join Partnerji n3 on n3.PaSifra = Nalogodavac3 " +
  "  inner join Partnerji b on b.PaSifra = Uvoz.Brodar " +
-  " inner join PredefinisanePoruke pp1 on pp1.ID = DirigacijaKontejeraZa   " +
+  " inner join  DirigacijaKontejneraZa pp1 on pp1.ID = Uvoz.DirigacijaKontejeraZa   " +
  "  inner join Brodovi on Brodovi.ID = Uvoz.NazivBroda " +
                               "   inner join VrstaRobeADR on VrstaRobeADR.ID = ADR " +
                               "    inner join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom    inner join uvNacinPakovanja " +
@@ -359,7 +359,7 @@ namespace Saobracaj.Uvoz
             cbNacinPakovanja.DisplayMember = "Naziv";
             cbNacinPakovanja.ValueMember = "ID";
             //napomena pozicioniranje
-            var dir5 = "Select ID,Naziv from NapomenaZaPozicioniranje order by Naziv";
+            var dir5 = "Select ID,Naziv from PredefinisanePoruke order by Naziv";
             var dirAD5 = new SqlDataAdapter(dir5, conn);
             var dirDS5 = new DataSet();
             dirAD5.Fill(dirDS5);
@@ -383,7 +383,7 @@ namespace Saobracaj.Uvoz
             cbOcarina.DisplayMember = "Naziv";
             cbOcarina.ValueMember = "ID";
 
-            var partner = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
+            var partner = "Select PaSifra,PaNaziv From Partnerji where Vlasnik = 1  order by PaNaziv";
             var partAD = new SqlDataAdapter(partner, conn);
             var partDS = new DataSet();
             partAD.Fill(partDS);
@@ -391,7 +391,7 @@ namespace Saobracaj.Uvoz
             cbVlasnikKont.DisplayMember = "PaNaziv";
             cbVlasnikKont.ValueMember = "PaSifra";
             //uvoznik
-            var partner2 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
+            var partner2 = "Select PaSifra,PaNaziv From Partnerji where UvoznikCH = 1 order by PaNaziv";
             var partAD2 = new SqlDataAdapter(partner2, conn);
             var partDS2 = new DataSet();
             partAD2.Fill(partDS2);
@@ -400,7 +400,7 @@ namespace Saobracaj.Uvoz
             cboUvoznik.ValueMember = "PaSifra";
             //spedicija na granici
            
-            var partner3 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
+            var partner3 = "Select PaSifra,PaNaziv From Partnerji where  Spediter = 1 order by PaNaziv";
             var partAD3 = new SqlDataAdapter(partner3, conn);
             var partDS3 = new DataSet();
             partAD3.Fill(partDS3);
@@ -409,7 +409,7 @@ namespace Saobracaj.Uvoz
             cboSpedicijaG.ValueMember = "PaSifra";
             //spedicija rtc luka leget
             
-            var partner4 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
+            var partner4 = "Select PaSifra,PaNaziv From Partnerji  where Spediter = 1 order by PaNaziv";
             var partAD4 = new SqlDataAdapter(partner4, conn);
             var partDS4 = new DataSet();
             partAD4.Fill(partDS4);
@@ -417,7 +417,7 @@ namespace Saobracaj.Uvoz
             cboSpedicijaRTC.DisplayMember = "PaNaziv";
             cboSpedicijaRTC.ValueMember = "PaSifra";
             //odredisna spedicija
-            var partner5 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
+            var partner5 = "Select PaSifra,PaNaziv From Partnerji where Spediter = 1 order by PaNaziv";
             var partAD5 = new SqlDataAdapter(partner5, conn);
             var partDS5 = new DataSet();
             partAD5.Fill(partDS5);
@@ -480,7 +480,7 @@ namespace Saobracaj.Uvoz
             cboRLTerminal.DisplayMember = "Naziv";
             cboRLTerminal.ValueMember = "ID";
 
-            var nalogodavac1 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
+            var nalogodavac1 = "Select PaSifra,PaNaziv From Partnerji where NalogodavacCH = 1 order by PaNaziv";
             var nal1AD = new SqlDataAdapter(nalogodavac1, conn);
             var nal1DS = new DataSet();
             nal1AD.Fill(nal1DS);
@@ -488,7 +488,7 @@ namespace Saobracaj.Uvoz
             cboNalogodavac1.DisplayMember = "PaNaziv";
             cboNalogodavac1.ValueMember = "PaSifra";
 
-            var nalogodavac2 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
+            var nalogodavac2 = "Select PaSifra,PaNaziv From Partnerji where NalogodavacCH = 1 order by PaNaziv";
             var nal2AD = new SqlDataAdapter(nalogodavac2, conn);
             var nal2DS = new DataSet();
             nal2AD.Fill(nal2DS);
@@ -496,7 +496,7 @@ namespace Saobracaj.Uvoz
             cboNalogodavac2.DisplayMember = "PaNaziv";
             cboNalogodavac2.ValueMember = "PaSifra";
 
-            var nalogodavac3 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
+            var nalogodavac3 = "Select PaSifra,PaNaziv From Partnerji where NalogodavacCH = 1 order by PaNaziv";
             var nal3AD = new SqlDataAdapter(nalogodavac3, conn);
             var nal3DS = new DataSet();
             nal3AD.Fill(nal3DS);
@@ -504,7 +504,7 @@ namespace Saobracaj.Uvoz
             cboNalogodavac3.DisplayMember = "PaNaziv";
             cboNalogodavac3.ValueMember = "PaSifra";
 
-            var bro = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
+            var bro = "Select PaSifra,PaNaziv From Partnerji where Brodar = 1 order by PaNaziv";
             var broAD = new SqlDataAdapter(bro, conn);
             var broDS = new DataSet();
             broAD.Fill(broDS);
@@ -884,7 +884,7 @@ namespace Saobracaj.Uvoz
 
             DataGridViewColumn column3 = dataGridView2.Columns[2];
             dataGridView2.Columns[2].HeaderText = "ID";
-            dataGridView2.Columns[2].Width = 50;
+            dataGridView2.Columns[2].Width = 20;
 
             DataGridViewColumn column4 = dataGridView2.Columns[3];
             dataGridView2.Columns[3].HeaderText = "NHM";
@@ -970,7 +970,7 @@ namespace Saobracaj.Uvoz
 
             DataGridViewColumn column3 = dataGridView4.Columns[2];
             dataGridView4.Columns[2].HeaderText = "Napomena";
-            dataGridView4.Columns[2].Width = 100;
+            dataGridView4.Columns[2].Width = 160;
 
         }
 
@@ -1025,7 +1025,7 @@ namespace Saobracaj.Uvoz
         private void button4_Click(object sender, EventArgs e)
         {
             InsertUvozKonacna uvK = new InsertUvozKonacna();
-            uvK.InsUvozVrstaRobeHS(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNHM.SelectedValue));
+            uvK.InsUvozVrstaRobeHS(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNazivRobe.SelectedValue));
             FillDG3();
         }
 
@@ -1363,8 +1363,8 @@ namespace Saobracaj.Uvoz
 
         private void UbaciStavkuUsluge(int ID, int Manipulacija, double Cena)
         {
-            InsertUvozKonacna uvK = new InsertUvozKonacna();
-            uvK.InsUbaciUslugu(Convert.ToInt32(txtID.Text), Manipulacija, Cena);
+          //  InsertUvozKonacna uvK = new InsertUvozKonacna();
+          //  uvK.InsUbaciUslugu(Convert.ToInt32(txtID.Text), Manipulacija, Cena, );
             FillDG8();
         }
 
@@ -1441,6 +1441,55 @@ namespace Saobracaj.Uvoz
 
 
           
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text == "")
+            { txtID.Text = "0"; }
+            // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
+            frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
+            um.Show();
+        }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtRef2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label48_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtRef1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboNalogodavac2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label46_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboNalogodavac1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label49_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

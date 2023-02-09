@@ -16,10 +16,17 @@ namespace Saobracaj.Uvoz
     public partial class frmUvozKonacnaZaglavlje : Form
     {
         bool status = false;
+        int pomVoz = 0;
         public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         public frmUvozKonacnaZaglavlje()
         {
             InitializeComponent();
+        }
+
+        public frmUvozKonacnaZaglavlje(int Voz)
+        {
+            InitializeComponent();
+            pomVoz = Voz;
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -67,6 +74,25 @@ namespace Saobracaj.Uvoz
 
         }
 
+        private void VratiZadnjiBroj()
+        {
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Max([ID]) as ID from UvozKonacnaZaglavlje", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtID.Text = dr["ID"].ToString();
+            }
+        
+            con.Close();
+        }
+
         private void tsSave_Click(object sender, EventArgs e)
         {
             if (status == true)
@@ -74,6 +100,7 @@ namespace Saobracaj.Uvoz
                 InsertUvozKonacnaZaglavlje ins = new InsertUvozKonacnaZaglavlje();
                 ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text,1, "", Convert.ToDateTime("1.1.1900"), "","");
                 RefreshDataGrid();
+                VratiZadnjiBroj();
                 status = false;
             }
             else
@@ -147,6 +174,12 @@ namespace Saobracaj.Uvoz
             cboVoz.DataSource = vozSDS.Tables[0];
             cboVoz.DisplayMember = "Naziv";
             cboVoz.ValueMember = "ID";
+
+            if (pomVoz > 1)
+            {
+                cboVoz.SelectedValue = pomVoz;
+            
+            }
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -192,6 +225,12 @@ namespace Saobracaj.Uvoz
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            frmFormiranjePlana fplan = new frmFormiranjePlana(Convert.ToInt32(txtID.Text));
+            fplan.Show();
         }
     }
 }

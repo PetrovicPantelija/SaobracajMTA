@@ -70,7 +70,7 @@ namespace Saobracaj.Uvoz
   "    inner join Carinarnice on Carinarnice.ID = Uvoz.OdredisnaCarina" +
   "     inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = Uvoz.CarinskiPostupak" +
   "     inner join Predefinisaneporuke on PredefinisanePoruke.ID = Uvoz.NapomenaZaPozicioniranje" +
-  "    inner join PredefinisanePoruke pp1 on pp1.ID = DirigacijaKontejeraZa" +
+   " inner join  DirigacijaKontejneraZa pp1 on pp1.ID = Uvoz.DirigacijaKontejeraZa   " +
   "     inner join Brodovi on Brodovi.ID = Uvoz.NazivBroda" +
   "    inner join VrstaRobeADR on VrstaRobeADR.ID = ADR" +
   "    inner join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom" +

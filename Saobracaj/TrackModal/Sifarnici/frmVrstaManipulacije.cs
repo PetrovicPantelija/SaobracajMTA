@@ -52,14 +52,14 @@ namespace Testiranje.Sifarnici
             if (status == true)
             {
                 InsertVrstaManipulacije ins = new InsertVrstaManipulacije();
-                ins.InsVrstaManipulacije(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue));
+                ins.InsVrstaManipulacije(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue));
                 status = false;
             }
             else
             {
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertVrstaManipulacije upd = new InsertVrstaManipulacije();
-                upd.UpdVrstaManipulacije(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue));
+                upd.UpdVrstaManipulacije(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue));
             }
             RefreshDataGrid();
         }
@@ -84,10 +84,12 @@ namespace Testiranje.Sifarnici
 
         private void RefreshDataGrid()
         {
-            var select = " SELECT [ID] ,Naziv,JM," +
-                " CASE WHEN UticeSkladisno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as UticeSkladisno, " + 
-                "[Datum],[Korisnik], TipManipulacije " +
-             " FROM [dbo].[VrstaManipulacije]";
+            var select = " SELECT VrstaManipulacije.[ID] as VID,VrstaManipulacije.Naziv as VrstaM,VrstaManipulacije.JM as JMM," +
+                " CASE WHEN UticeSkladisno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as UticeSkladisno, " +
+                "VrstaManipulacije.[Datum] as Dat,VrstaManipulacije.[Korisnik] as Kor, TipManipulacije, VrstaManipulacije.OrgJed, OrganizacioneJedinice.Naziv " +
+             " FROM [dbo].[VrstaManipulacije] " +
+             " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = VrstaManipulacije.OrgJed" +
+             " order by VrstaManipulacije.[ID]";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -139,7 +141,15 @@ namespace Testiranje.Sifarnici
 
             DataGridViewColumn column7 = dataGridView1.Columns[6];
             dataGridView1.Columns[6].HeaderText = "Tip Manipulacije";
-            dataGridView1.Columns[6].Width = 80;
+            dataGridView1.Columns[6].Width = 40;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "OrgJed";
+            dataGridView1.Columns[7].Width = 80;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "OrgJed";
+            dataGridView1.Columns[8].Width = 80;
         }
 
         private void VratiPodatke(string ID)
@@ -149,7 +159,7 @@ namespace Testiranje.Sifarnici
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT ID , Naziv, JM, UticeSkladisno, TipManipulacije from VrstaManipulacije where ID=" + txtSifra.Text, con);
+            SqlCommand cmd = new SqlCommand("SELECT ID , Naziv, JM, UticeSkladisno, TipManipulacije, OrgJed from VrstaManipulacije where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -163,6 +173,7 @@ namespace Testiranje.Sifarnici
                 else { chkUticeSkladisno.Checked = false; }
 
                 cboTipManipulacije.SelectedValue = Convert.ToInt32(dr["TipManipulacije"].ToString());
+                cboOrgJed.SelectedValue = Convert.ToInt32(dr["OrgJed"].ToString());
 
             }
 
@@ -208,10 +219,26 @@ namespace Testiranje.Sifarnici
             cboTipManipulacije.DisplayMember = "Naziv";
             cboTipManipulacije.ValueMember = "ID";
 
+            // SELECT ID, Naziv from OrganizacioneJedinice
 
-            
-             
-            
+            var select2 = " SELECT ID, Naziv from OrganizacioneJedinice order by ID";
+            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection2 = new SqlConnection(s_connection2);
+            var c2 = new SqlConnection(s_connection2);
+            var dataAdapter2 = new SqlDataAdapter(select2, c2);
+
+            var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
+            var ds2 = new DataSet();
+            dataAdapter2.Fill(ds2);
+            cboOrgJed.DataSource = ds2.Tables[0];
+            cboOrgJed.DisplayMember = "Naziv";
+            cboOrgJed.ValueMember = "ID";
+
+
+
+
+
+
         }
 
         private void tsPrvi_Click(object sender, EventArgs e)
@@ -324,6 +351,16 @@ namespace Testiranje.Sifarnici
         }
 
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
         {
 
         }

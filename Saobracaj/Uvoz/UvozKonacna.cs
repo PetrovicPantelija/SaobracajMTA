@@ -125,7 +125,6 @@ namespace Saobracaj.Uvoz
 
         }
 
-
         private void FillGV()
         {
             var select = "    SELECT UvozKonacna.ID, BrojKontejnera, BrodskaTeretnica as BL,  DobijenNalogBrodara as Dobijen_Nalog_Brodara ,ATABroda, Brodovi.Naziv as Brod,Napomena1 as Napomena1, DobijeBZ as DatumBZ ,PIN, " +
@@ -163,7 +162,7 @@ namespace Saobracaj.Uvoz
  "  inner join Partnerji n2 on n2.PaSifra = Nalogodavac2 " +
  "  inner join Partnerji n3 on n3.PaSifra = Nalogodavac3 " +
  "  inner join Partnerji b on b.PaSifra = UvozKonacna.Brodar " +
-  " inner join PredefinisanePoruke pp1 on pp1.ID = DirigacijaKontejeraZa   " +
+  " inner join DirigacijaKontejneraZa pp1 on pp1.ID = UvozKonacna.DirigacijaKontejeraZa   " +
  "  inner join Brodovi on Brodovi.ID = UvozKonacna.NazivBroda " +
                               "   inner join VrstaRobeADR on VrstaRobeADR.ID = ADR " +
                               "    inner join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom    inner join uvNacinPakovanja " +
@@ -319,7 +318,7 @@ namespace Saobracaj.Uvoz
             cbOcarina.DisplayMember = "Naziv";
             cbOcarina.ValueMember = "ID";
 
-            var partner = "Select PaSifra,PaNaziv From Partnerji order by PaSifra";
+            var partner = "Select PaSifra,PaNaziv From Partnerji where Vlasnik = 1 order by PaSifra";
             var partAD = new SqlDataAdapter(partner, conn);
             var partDS = new DataSet();
             partAD.Fill(partDS);
@@ -327,7 +326,7 @@ namespace Saobracaj.Uvoz
             cbVlasnikKont.DisplayMember = "PaNaziv";
             cbVlasnikKont.ValueMember = "PaSifra";
             //uvoznik
-            var partner2 = "Select PaSifra,PaNaziv From Partnerji order by PaSifra";
+            var partner2 = "Select PaSifra,PaNaziv From Partnerji where UvoznikCH = 1 order by PaSifra";
             var partAD2 = new SqlDataAdapter(partner2, conn);
             var partDS2 = new DataSet();
             partAD2.Fill(partDS2);
@@ -336,7 +335,7 @@ namespace Saobracaj.Uvoz
             cboUvoznik.ValueMember = "PaSifra";
             //spedicija na granici
            
-            var partner3 = "Select PaSifra,PaNaziv From Partnerji order by PaSifra";
+            var partner3 = "Select PaSifra,PaNaziv From Partnerji where Spediter = 1 order by PaSifra";
             var partAD3 = new SqlDataAdapter(partner3, conn);
             var partDS3 = new DataSet();
             partAD3.Fill(partDS3);
@@ -345,7 +344,7 @@ namespace Saobracaj.Uvoz
             cboSpedicijaG.ValueMember = "PaSifra";
             //spedicija rtc luka leget
            
-            var partner4 = "Select PaSifra,PaNaziv From Partnerji order by PaSifra";
+            var partner4 = "Select PaSifra,PaNaziv From Partnerji where Spediter = 1 order by PaSifra";
             var partAD4 = new SqlDataAdapter(partner4, conn);
             var partDS4 = new DataSet();
             partAD4.Fill(partDS4);
@@ -353,7 +352,7 @@ namespace Saobracaj.Uvoz
             cboSpedicijaRTC.DisplayMember = "PaNaziv";
             cboSpedicijaRTC.ValueMember = "PaSifra";
             //odredisna spedicija
-            var partner5 = "Select PaSifra,PaNaziv From Partnerji order by PaSifra";
+            var partner5 = "Select PaSifra,PaNaziv From Partnerji where Spediter = 1 order by PaSifra";
             var partAD5 = new SqlDataAdapter(partner5, conn);
             var partDS5 = new DataSet();
             partAD5.Fill(partDS5);
@@ -412,7 +411,7 @@ namespace Saobracaj.Uvoz
             cboRLTerminal.DisplayMember = "Naziv";
             cboRLTerminal.ValueMember = "ID";
 
-            var partner7 = "Select PaSifra,PaNaziv From Partnerji order by PaSifra";
+            var partner7 = "Select PaSifra,PaNaziv From Partnerji where Brodar = 1 order by PaSifra";
             var partAD7 = new SqlDataAdapter(partner7, conn);
             var partDS7 = new DataSet();
             partAD7.Fill(partDS7);
@@ -420,7 +419,7 @@ namespace Saobracaj.Uvoz
             cboBrodar.DisplayMember = "PaNaziv";
             cboBrodar.ValueMember = "PaSifra";
 
-            var partner8 = "Select PaSifra,PaNaziv From Partnerji order by PaSifra";
+            var partner8 = "Select PaSifra,PaNaziv From Partnerji where NalogodavacCH = 1 order by PaSifra";
             var partAD8 = new SqlDataAdapter(partner8, conn);
             var partDS8 = new DataSet();
             partAD8.Fill(partDS8);
@@ -428,7 +427,7 @@ namespace Saobracaj.Uvoz
             cboNalogodavac1.DisplayMember = "PaNaziv";
             cboNalogodavac1.ValueMember = "PaSifra";
 
-            var partner9 = "Select PaSifra,PaNaziv From Partnerji order by PaSifra";
+            var partner9 = "Select PaSifra,PaNaziv From Partnerji where NalogodavacCH = 1 order by PaSifra";
             var partAD9 = new SqlDataAdapter(partner9, conn);
             var partDS9 = new DataSet();
             partAD9.Fill(partDS9);
@@ -436,7 +435,7 @@ namespace Saobracaj.Uvoz
             cboNalogodavac2.DisplayMember = "PaNaziv";
             cboNalogodavac2.ValueMember = "PaSifra";
 
-            var partner10 = "Select PaSifra,PaNaziv From Partnerji order by PaSifra";
+            var partner10 = "Select PaSifra,PaNaziv From Partnerji where NalogodavacCH = 1 order by PaSifra";
             var partAD10 = new SqlDataAdapter(partner10, conn);
             var partDS10 = new DataSet();
             partAD9.Fill(partDS10);
@@ -664,43 +663,43 @@ namespace Saobracaj.Uvoz
             //refreshStavke(); - Dodati
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void ExportToHZ()
         {
             var select = "SELECT row_number() OVER (ORDER BY UvozKonacna.ID) RB, AtaBroda, " +
-     "  BrojKontejnera,TipKontenjera.Naziv as TipKontejnera,  PIN, Brodovi.Naziv as Brod, BrodskaTeretnica, " +
-     " (VrstaRobeAdr.Naziv + +VrstaRobeAdr.UnKod) as ADR, " +
-     "    Partnerji.PaNaziv as Primalac, Partnerji.PaEMatSt1 as PIB, (Cast(BrojPlombe1 as nvarchar(25)) + '/' + Cast(BrojPlombe2 as nvarchar(25))) as Plombe, " +
-      "    (" +
- "  SELECT " +
- "  STUFF(" +
-"  (" +
-"  SELECT distinct " +
- "  '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20)) " +
-"  FROM UvozVrstaRobeHS " +
-"  inner join VrstaRobeHS on UvozVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID " +
-"  where UvozVrstaRobeHS.IDNadredjena = UvozKonacna.ID " +
-"  FOR XML PATH('') " +
-"   ), 1, 1, '' " +
-"  ) As Skupljen) as VrsteRobe,  " +
-"  (" +
-"  SELECT " +
- "  STUFF(" +
-"  (" +
- "  SELECT distinct " +
- "  '/' + Cast(NHM.Broj as nvarchar(20)) " +
-"  FROM UvozNHM " +
-"  inner join NHM on UvozNHM.IDNHM = NHM.ID " +
-"   where UvozNHM.IDNadredjena = UvozKonacna.ID " +
-"  FOR XML PATH('') " +
-"   ), 1, 1, '' " +
-"   ) As Skupljen) as NHM,  " +
- "        Koleta as Koleta, TaraKontejnera as Tara, BrutoRobe as Masarobe, BrutoKontejnera as ukupnatezina, 0 as K447, 0 as tezinapok447 " +
- "        FROM UvozKonacna " +
- " inner join Brodovi on Brodovi.ID = UvozKonacna.NazivBroda " +
- "        inner join Partnerji on PaSifra = VlasnikKontejnera " +
-  "        inner join TipKontenjera on TipKontenjera.Id = UvozKonacna.TipKontejnera " +
-   "    left join VrstaRobeADR on VrstaRobeADR.ID = UvozKonacna.ADR " +
-"  Where UvozKonacna.IDNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text);
+        "  BrojKontejnera,TipKontenjera.Naziv as TipKontejnera,  PIN, Brodovi.Naziv as Brod, BrodskaTeretnica, " +
+        " (VrstaRobeAdr.Naziv + +VrstaRobeAdr.UnKod) as ADR, " +
+        "    Partnerji.PaNaziv as Primalac, Partnerji.PaEMatSt1 as PIB, (Cast(BrojPlombe1 as nvarchar(25)) + '/' + Cast(BrojPlombe2 as nvarchar(25))) as Plombe, " +
+         "    (" +
+    "  SELECT " +
+    "  STUFF(" +
+   "  (" +
+   "  SELECT distinct " +
+    "  '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20)) " +
+   "  FROM UvozVrstaRobeHS " +
+   "  inner join VrstaRobeHS on UvozVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID " +
+   "  where UvozVrstaRobeHS.IDNadredjena = UvozKonacna.ID " +
+   "  FOR XML PATH('') " +
+   "   ), 1, 1, '' " +
+   "  ) As Skupljen) as VrsteRobe,  " +
+   "  (" +
+   "  SELECT " +
+    "  STUFF(" +
+   "  (" +
+    "  SELECT distinct " +
+    "  '/' + Cast(NHM.Broj as nvarchar(20)) " +
+   "  FROM UvozNHM " +
+   "  inner join NHM on UvozNHM.IDNHM = NHM.ID " +
+   "   where UvozNHM.IDNadredjena = UvozKonacna.ID " +
+   "  FOR XML PATH('') " +
+   "   ), 1, 1, '' " +
+   "   ) As Skupljen) as NHM,  " +
+    "        Koleta as Koleta, TaraKontejnera as Tara, BrutoRobe as Masarobe, BrutoKontejnera as ukupnatezina, 0 as K447, 0 as tezinapok447 " +
+    "        FROM UvozKonacna " +
+    " inner join Brodovi on Brodovi.ID = UvozKonacna.NazivBroda " +
+    "        inner join Partnerji on PaSifra = VlasnikKontejnera " +
+     "        inner join TipKontenjera on TipKontenjera.Id = UvozKonacna.TipKontejnera " +
+      "    left join VrstaRobeADR on VrstaRobeADR.ID = UvozKonacna.ADR " +
+   "  Where UvozKonacna.IDNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text);
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -744,7 +743,7 @@ namespace Saobracaj.Uvoz
                         wSheet.Cells[1, "P"] = "UkupnaTezina";
                         wSheet.Cells[1, "Q"] = "K447";
                         wSheet.Cells[1, "R"] = "P447";
-                       
+
                         wSheet.Cells[i + 2, j + 1] = ds.Tables[0].Rows[i].ItemArray[j].ToString();
                         wSheet.Cells[i + 2, j + 1].EntireColumn.AutoFit();
                         Borders border = wSheet.Cells[i + 2, j + 1].Borders;
@@ -770,6 +769,13 @@ namespace Saobracaj.Uvoz
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+
+
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+           
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -940,57 +946,56 @@ namespace Saobracaj.Uvoz
             InsertUvozKonacnaZaglavlje del = new InsertUvozKonacnaZaglavlje();
             del.DelUvozKonacnaZaglavlje(Convert.ToInt32(txtNadredjeni.Text));
         }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
+        private void ExportToDrumski()
         {
             var select = "SELECT row_number() OVER (ORDER BY UvozKonacna.ID) RB, " +
-    "    [EtaBroda],[BrojKontejnera], TipKontenjera.Naziv,UvozKonacna.Napomena, " +
-    "    KontejnerskiTerminali.Naziv as RLTerminal, BrodskaTeretnica, (VrstaRobeAdr.Naziv +  + VrstaRobeAdr.UnKod) as ADR , Partnerji.PaNaziv as Vlasnik, Partnerji.PaEMatSt1 as VlasnikPIB,nalogodavac, " +
-     "    p1.PaNaziv as Uvoznik, p1.PaEMatSt1 as UvoznikPIB,  " +
-" ( " +
-" SELECT " +
-" STUFF(" +
-"  (" +
-"  SELECT distinct " +
-"   '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20)) " +
- "  FROM UvozKonacnaVrstaRobeHS " +
- "  inner join VrstaRobeHS on UvozKonacnaVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID " +
-" where UvozKonacnaVrstaRobeHS.IDNadredjena = UvozKonacna.ID " +
-"  FOR XML PATH('') " +
-"   ), 1, 1, '' " +
- " ) As Skupljen) as VrsteRobe,  " +
- " (" +
-" SELECT " +
-" STUFF(" +
-"  (" +
-"  SELECT distinct " +
-"   '/' + Cast(NHM.Broj as nvarchar(20)) " +
- "  FROM UvozKonacnaNHM " +
- "  inner join NHM on UvozKonacnaNHM.IDNHM = NHM.ID " +
-" where UvozKonacnaNHM.IDNadredjena = UvozKonacna.ID " +
-"  FOR XML PATH('') " +
- "  ), 1, 1, '' " +
- " ) As Skupljen) as NHM, " +
- " p2.PaNaziv as SpedicijaRTC, " +
- " VrstaCarinskogPostupka.Naziv as CarinskiPostupak, " +
- "  PostupakSarobom, Napomena,  " +
-   "     (Carinarnice.CINaziv + ' ' + Carinarnice.CIOznaka + ' ' + CIEmail + ' ' + CITelefon + ' / ' + p3.PaNaziv) as Carinarnica, " +
-   "     (MestoIstovara + ' ' + KontaktOsoba) as MestoIstovara, Email, " +
-   "     PredefinisanePoruke.Naziv as NapomenaZaPozicioniranje, NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera, Koleta " +
-   "     FROM UvozKonacna " +
-   "     inner join Partnerji on PaSifra = VlasnikKontejnera " +
-    "    inner join Partnerji p1 on p1.PaSifra = Uvoznik " +
-    "      inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC " +
-    "       inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
-   "    left join VrstaRobeHS on VrstaRobeHS.ID = UvozKonacna.NazivRobe " +
-   "    left join VrstaRobe on VrstaRobe.ID = NHMBroj " +
-   "    left join VrstaRobeADR on VrstaRobeADR.ID = UvozKonacna.ADR " +
-    "   left join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
-   "     left join Carinarnice on Carinarnice.ID = UvozKonacna.OdredisnaCarina " +
-    "     left join KontejnerskiTerminali on KontejnerskiTerminali.ID = UvozKonacna.RLTerminali " +
-   "    left join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = UvozKonacna.CarinskiPostupak " +
-   "    left join Predefinisaneporuke on PredefinisanePoruke.ID = UvozKonacna.NapomenaZaPozicioniranje " +
-   "   Where UvozKonacna.IDNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text);
+      "    [EtaBroda],[BrojKontejnera], TipKontenjera.Naziv,UvozKonacna.Napomena, " +
+      "    KontejnerskiTerminali.Naziv as RLTerminal, BrodskaTeretnica, (VrstaRobeAdr.Naziv +  + VrstaRobeAdr.UnKod) as ADR , Partnerji.PaNaziv as Vlasnik, Partnerji.PaEMatSt1 as VlasnikPIB,nalogodavac, " +
+       "    p1.PaNaziv as Uvoznik, p1.PaEMatSt1 as UvoznikPIB,  " +
+  " ( " +
+  " SELECT " +
+  " STUFF(" +
+  "  (" +
+  "  SELECT distinct " +
+  "   '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20)) " +
+   "  FROM UvozKonacnaVrstaRobeHS " +
+   "  inner join VrstaRobeHS on UvozKonacnaVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID " +
+  " where UvozKonacnaVrstaRobeHS.IDNadredjena = UvozKonacna.ID " +
+  "  FOR XML PATH('') " +
+  "   ), 1, 1, '' " +
+   " ) As Skupljen) as VrsteRobe,  " +
+   " (" +
+  " SELECT " +
+  " STUFF(" +
+  "  (" +
+  "  SELECT distinct " +
+  "   '/' + Cast(NHM.Broj as nvarchar(20)) " +
+   "  FROM UvozKonacnaNHM " +
+   "  inner join NHM on UvozKonacnaNHM.IDNHM = NHM.ID " +
+  " where UvozKonacnaNHM.IDNadredjena = UvozKonacna.ID " +
+  "  FOR XML PATH('') " +
+   "  ), 1, 1, '' " +
+   " ) As Skupljen) as NHM, " +
+   " p2.PaNaziv as SpedicijaRTC, " +
+   " VrstaCarinskogPostupka.Naziv as CarinskiPostupak, " +
+   "  PostupakSarobom, Napomena,  " +
+     "     (Carinarnice.CINaziv + ' ' + Carinarnice.CIOznaka + ' ' + CIEmail + ' ' + CITelefon + ' / ' + p3.PaNaziv) as Carinarnica, " +
+     "     (MestoIstovara + ' ' + KontaktOsoba) as MestoIstovara, Email, " +
+     "     PredefinisanePoruke.Naziv as NapomenaZaPozicioniranje, NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera, Koleta " +
+     "     FROM UvozKonacna " +
+     "     inner join Partnerji on PaSifra = VlasnikKontejnera " +
+      "    inner join Partnerji p1 on p1.PaSifra = Uvoznik " +
+      "      inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC " +
+      "       inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
+     "    left join VrstaRobeHS on VrstaRobeHS.ID = UvozKonacna.NazivRobe " +
+     "    left join VrstaRobe on VrstaRobe.ID = NHMBroj " +
+     "    left join VrstaRobeADR on VrstaRobeADR.ID = UvozKonacna.ADR " +
+      "   left join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
+     "     left join Carinarnice on Carinarnice.ID = UvozKonacna.OdredisnaCarina " +
+      "     left join KontejnerskiTerminali on KontejnerskiTerminali.ID = UvozKonacna.RLTerminali " +
+     "    left join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = UvozKonacna.CarinskiPostupak " +
+     "    left join Predefinisaneporuke on PredefinisanePoruke.ID = UvozKonacna.NapomenaZaPozicioniranje " +
+     "   Where UvozKonacna.IDNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text);
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -1035,7 +1040,7 @@ namespace Saobracaj.Uvoz
                         wSheet.Cells[1, "R"] = "Postupanje sa robom/kontejeromnt";
                         wSheet.Cells[1, "S"] = "Napomena za RTC LUKA LEGET";
                         wSheet.Cells[1, "T"] = "Odredišna Carinska ispostav+špedicija";
-                       
+
                         wSheet.Cells[1, "U"] = "Mesto istovara+kontakt osoba";
                         wSheet.Cells[1, "V"] = "e-mail adrese za slanje statusa";
                         wSheet.Cells[1, "W"] = "Napomena za pozicioniranje kontejner";
@@ -1043,7 +1048,7 @@ namespace Saobracaj.Uvoz
                         wSheet.Cells[1, "Y"] = "Bruto robe (kg)";
                         wSheet.Cells[1, "Z"] = "Tara kontejnera (kg)";
                         wSheet.Cells[1, "AA"] = "Bruto kontejnera (kg)";
-                     
+
 
 
                         wSheet.Cells[i + 2, j + 1] = ds.Tables[0].Rows[i].ItemArray[j].ToString();
@@ -1056,7 +1061,7 @@ namespace Saobracaj.Uvoz
 
                 string date = DateTime.Now.ToString("dd-MM-yyyy");
                 string path = Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory);
-                object filename = @"ExportDrumski" + date+ ".xlsx";
+                object filename = @"ExportDrumski" + date + ".xlsx";
                 wBook.SaveAs(filename);
                 wBook.Close();
                 excel.Quit();
@@ -1071,57 +1076,58 @@ namespace Saobracaj.Uvoz
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+
         }
 
-        private void toolStripButton3_Click(object sender, EventArgs e)
+        private void ExportToMagacin()
         {
-                var select = "SELECT row_number() OVER (ORDER BY UvozKonacna.ID) RB, " +
-    "    [EtaBroda],[BrojKontejnera], TipKontenjera.Naziv,UvozKonacna.Napomena, " +
-    "    KontejnerskiTerminali.Naziv as RLTerminal, BrodskaTeretnica, ADR, Partnerji.PaNaziv as Vlasnik, Partnerji.PaEMatSt1 as VlasnikPIB,nalogodavac, " +
-     "    p1.PaNaziv as Uvoznik, p1.PaEMatSt1 as UvoznikPIB,  " +
-" ( " +
-" SELECT " +
-" STUFF(" +
-"  (" +
-"  SELECT distinct " +
-"   '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20)) " +
- "  FROM UvozKonacnaVrstaRobeHS " +
- "  inner join VrstaRobeHS on UvozKonacnaVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID " +
-" where UvozKonacnaVrstaRobeHS.IDNadredjena = UvozKonacna.ID " +
-"  FOR XML PATH('') " +
-"   ), 1, 1, '' " +
- " ) As Skupljen) as VrsteRobe,  " +
- " (" +
-" SELECT " +
-" STUFF(" +
-"  (" +
-"  SELECT distinct " +
-"   '/' + Cast(NHM.Broj as nvarchar(20)) " +
- "  FROM UvozKonacnaNHM " +
- "  inner join NHM on UvozKonacnaNHM.IDNHM = NHM.ID " +
-" where UvozKonacnaNHM.IDNadredjena = UvozKonacna.ID " +
-"  FOR XML PATH('') " +
- "  ), 1, 1, '' " +
- " ) As Skupljen) as NHM, " +
- " p2.PaNaziv as SpedicijaRTC, " +
- " VrstaCarinskogPostupka.Naziv as CarinskiPostupak, " +
- "  PostupakSarobom, Napomena,  " +
-   "     (Carinarnice.CINaziv + ' ' + Carinarnice.CIOznaka + ' ' + CIEmail + ' ' + CITelefon + ' / ' + p3.PaNaziv) as Carinarnica, " +
-   "     (MestoIstovara + ' ' + KontaktOsoba) as MestoIstovara, "+
-   "     PredefinisanePoruke.Naziv as NapomenaZaPozicioniranje, NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera, Koleta " +
-   "     FROM UvozKonacna " +
-   "     inner join Partnerji on PaSifra = VlasnikKontejnera " +
-    "    inner join Partnerji p1 on p1.PaSifra = Uvoznik " +
-    "      inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC " +
-    "       inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
-   "    left join VrstaRobeHS on VrstaRobeHS.ID = UvozKonacna.NazivRobe " +
-   "    left join VrstaRobe on VrstaRobe.ID = NHMBroj " +
-    "   left join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
-   "     left join Carinarnice on Carinarnice.ID = UvozKonacna.OdredisnaCarina " +
-    "     left join KontejnerskiTerminali on KontejnerskiTerminali.ID = UvozKonacna.RLTerminali " +
-   "    left join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = UvozKonacna.CarinskiPostupak " +
-   "    left join Predefinisaneporuke on PredefinisanePoruke.ID = UvozKonacna.NapomenaZaPozicioniranje " +
-   "   Where UvozKonacna.IDNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text);
+            var select = "SELECT row_number() OVER (ORDER BY UvozKonacna.ID) RB, " +
+       "    [EtaBroda],[BrojKontejnera], TipKontenjera.Naziv,UvozKonacna.Napomena, " +
+       "    KontejnerskiTerminali.Naziv as RLTerminal, BrodskaTeretnica, ADR, Partnerji.PaNaziv as Vlasnik, Partnerji.PaEMatSt1 as VlasnikPIB,nalogodavac, " +
+        "    p1.PaNaziv as Uvoznik, p1.PaEMatSt1 as UvoznikPIB,  " +
+   " ( " +
+   " SELECT " +
+   " STUFF(" +
+   "  (" +
+   "  SELECT distinct " +
+   "   '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20)) " +
+    "  FROM UvozKonacnaVrstaRobeHS " +
+    "  inner join VrstaRobeHS on UvozKonacnaVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID " +
+   " where UvozKonacnaVrstaRobeHS.IDNadredjena = UvozKonacna.ID " +
+   "  FOR XML PATH('') " +
+   "   ), 1, 1, '' " +
+    " ) As Skupljen) as VrsteRobe,  " +
+    " (" +
+   " SELECT " +
+   " STUFF(" +
+   "  (" +
+   "  SELECT distinct " +
+   "   '/' + Cast(NHM.Broj as nvarchar(20)) " +
+    "  FROM UvozKonacnaNHM " +
+    "  inner join NHM on UvozKonacnaNHM.IDNHM = NHM.ID " +
+   " where UvozKonacnaNHM.IDNadredjena = UvozKonacna.ID " +
+   "  FOR XML PATH('') " +
+    "  ), 1, 1, '' " +
+    " ) As Skupljen) as NHM, " +
+    " p2.PaNaziv as SpedicijaRTC, " +
+    " VrstaCarinskogPostupka.Naziv as CarinskiPostupak, " +
+    "  PostupakSarobom, Napomena,  " +
+      "     (Carinarnice.CINaziv + ' ' + Carinarnice.CIOznaka + ' ' + CIEmail + ' ' + CITelefon + ' / ' + p3.PaNaziv) as Carinarnica, " +
+      "     (MestoIstovara + ' ' + KontaktOsoba) as MestoIstovara, " +
+      "     PredefinisanePoruke.Naziv as NapomenaZaPozicioniranje, NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera, Koleta " +
+      "     FROM UvozKonacna " +
+      "     inner join Partnerji on PaSifra = VlasnikKontejnera " +
+       "    inner join Partnerji p1 on p1.PaSifra = Uvoznik " +
+       "      inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC " +
+       "       inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
+      "    left join VrstaRobeHS on VrstaRobeHS.ID = UvozKonacna.NazivRobe " +
+      "    left join VrstaRobe on VrstaRobe.ID = NHMBroj " +
+       "   left join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
+      "     left join Carinarnice on Carinarnice.ID = UvozKonacna.OdredisnaCarina " +
+       "     left join KontejnerskiTerminali on KontejnerskiTerminali.ID = UvozKonacna.RLTerminali " +
+      "    left join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = UvozKonacna.CarinskiPostupak " +
+      "    left join Predefinisaneporuke on PredefinisanePoruke.ID = UvozKonacna.NapomenaZaPozicioniranje " +
+      "   Where UvozKonacna.IDNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text);
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -1166,7 +1172,7 @@ namespace Saobracaj.Uvoz
                         wSheet.Cells[1, "R"] = "Postupanje sa robom/kontejeromnt";
                         wSheet.Cells[1, "S"] = "Napomena za RTC LUKA LEGET";
                         wSheet.Cells[1, "T"] = "Odredišna Carinska ispostav+špedicija";
-                       
+
                         wSheet.Cells[1, "U"] = "Mesto istovara+kontakt osoba";
                         wSheet.Cells[1, "V"] = "Napomena za pozicioniranje kontejner";
                         wSheet.Cells[1, "W"] = "Neto robe (kg)";
@@ -1188,7 +1194,7 @@ namespace Saobracaj.Uvoz
 
                 string date = DateTime.Now.ToString("dd-MM-yyyy");
                 string path = Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory);
-                object filename = @"ExportMagacin" + date+ ".xlsx";
+                object filename = @"ExportMagacin" + date + ".xlsx";
                 wBook.SaveAs(filename);
                 wBook.Close();
                 excel.Quit();
@@ -1204,50 +1210,58 @@ namespace Saobracaj.Uvoz
                 MessageBox.Show(ex.Message.ToString());
             }
         }
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+          
+        }
 
-        private void toolStripButton5_Click(object sender, EventArgs e)
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+               
+        }
+        private void ExportToBezbednost()
         {
             var select = "SELECT row_number() OVER (ORDER BY UvozKonacna.ID) RB, " +
- "    [EtaBroda],[BrojKontejnera], TipKontenjera.Naziv, " +
- "     BrodskaTeretnica, ADR, Partnerji.PaNaziv as Vlasnik, Partnerji.PaEMatSt1 as VlasnikPIB,nalogodavac, " +
-  "    p1.PaNaziv as Uvoznik, p1.PaEMatSt1 as UvoznikPIB,  " +
-" ( " +
-" SELECT " +
-" STUFF(" +
-"  (" +
-"  SELECT distinct " +
-"   '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20)) " +
-"  FROM UvozKonacnaVrstaRobeHS " +
-"  inner join VrstaRobeHS on UvozKonacnaVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID " +
-" where UvozKonacnaVrstaRobeHS.IDNadredjena = UvozKonacna.ID " +
-"  FOR XML PATH('') " +
-"   ), 1, 1, '' " +
-" ) As Skupljen) as VrsteRobe,  " +
-" (" +
-" SELECT " +
-" STUFF(" +
-"  (" +
-"  SELECT distinct " +
-"   '/' + Cast(RTRIM(NHM.Broj) as nvarchar(20)) " +
-"  FROM UvozKonacnaNHM " +
-"  inner join NHM on UvozKonacnaNHM.IDNHM = NHM.ID " +
-" where UvozKonacnaNHM.IDNadredjena = UvozKonacna.ID " +
-"  FOR XML PATH('') " +
-"  ), 1, 1, '' " +
-" ) As Skupljen) as NHM, " +
-"    NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera, Koleta " +
-"     FROM UvozKonacna " +
-"     inner join Partnerji on PaSifra = VlasnikKontejnera " +
- "    inner join Partnerji p1 on p1.PaSifra = Uvoznik " +
- "      inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC " +
- "       inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
-"    left join VrstaRobeHS on VrstaRobeHS.ID = UvozKonacna.NazivRobe " +
-"    left join VrstaRobe on VrstaRobe.ID = NHMBroj " +
- "   left join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
-"     left join Carinarnice on Carinarnice.ID = UvozKonacna.OdredisnaCarina " +
-"    left join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = UvozKonacna.CarinskiPostupak " +
-"    left join Predefinisaneporuke on PredefinisanePoruke.ID = UvozKonacna.NapomenaZaPozicioniranje " +
-"   Where UvozKonacna.IDNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text);
+    "    [EtaBroda],[BrojKontejnera], TipKontenjera.Naziv, " +
+    "     BrodskaTeretnica, ADR, Partnerji.PaNaziv as Vlasnik, Partnerji.PaEMatSt1 as VlasnikPIB,nalogodavac, " +
+     "    p1.PaNaziv as Uvoznik, p1.PaEMatSt1 as UvoznikPIB,  " +
+   " ( " +
+   " SELECT " +
+   " STUFF(" +
+   "  (" +
+   "  SELECT distinct " +
+   "   '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20)) " +
+   "  FROM UvozKonacnaVrstaRobeHS " +
+   "  inner join VrstaRobeHS on UvozKonacnaVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID " +
+   " where UvozKonacnaVrstaRobeHS.IDNadredjena = UvozKonacna.ID " +
+   "  FOR XML PATH('') " +
+   "   ), 1, 1, '' " +
+   " ) As Skupljen) as VrsteRobe,  " +
+   " (" +
+   " SELECT " +
+   " STUFF(" +
+   "  (" +
+   "  SELECT distinct " +
+   "   '/' + Cast(RTRIM(NHM.Broj) as nvarchar(20)) " +
+   "  FROM UvozKonacnaNHM " +
+   "  inner join NHM on UvozKonacnaNHM.IDNHM = NHM.ID " +
+   " where UvozKonacnaNHM.IDNadredjena = UvozKonacna.ID " +
+   "  FOR XML PATH('') " +
+   "  ), 1, 1, '' " +
+   " ) As Skupljen) as NHM, " +
+   "    NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera, Koleta " +
+   "     FROM UvozKonacna " +
+   "     inner join Partnerji on PaSifra = VlasnikKontejnera " +
+    "    inner join Partnerji p1 on p1.PaSifra = Uvoznik " +
+    "      inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC " +
+    "       inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
+   "    left join VrstaRobeHS on VrstaRobeHS.ID = UvozKonacna.NazivRobe " +
+   "    left join VrstaRobe on VrstaRobe.ID = NHMBroj " +
+    "   left join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
+   "     left join Carinarnice on Carinarnice.ID = UvozKonacna.OdredisnaCarina " +
+   "    left join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = UvozKonacna.CarinskiPostupak " +
+   "    left join Predefinisaneporuke on PredefinisanePoruke.ID = UvozKonacna.NapomenaZaPozicioniranje " +
+   "   Where UvozKonacna.IDNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text);
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -1319,6 +1333,11 @@ namespace Saobracaj.Uvoz
             {
                 MessageBox.Show(ex.Message.ToString());
             }
+
+        }
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+           
         }
 
         private void toolStripButton6_Click(object sender, EventArgs e)
@@ -1412,135 +1431,6 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton8_Click(object sender, EventArgs e)
         {
-            var select = "SELECT row_number() OVER (ORDER BY UvozKonacna.ID) RB, " +
-  "    [BrojKontejnera], TipKontenjera.Naziv as TipKontejnera,UvozKonacna.Napomena, " +
-  "    BrodskaTeretnica, (VrstaRobeAdr.Naziv +  + VrstaRobeAdr.UnKod) as ADR ,  " +
-   "    p1.PaNaziv as Uvoznik, p1.PaEMatSt1 as UvoznikPIB,  " +
-" ( " +
-" SELECT " +
-" STUFF(" +
-"  (" +
-"  SELECT distinct " +
-"   '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20)) " +
-"  FROM UvozKonacnaVrstaRobeHS " +
-"  inner join VrstaRobeHS on UvozKonacnaVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID " +
-" where UvozKonacnaVrstaRobeHS.IDNadredjena = UvozKonacna.ID " +
-"  FOR XML PATH('') " +
-"   ), 1, 1, '' " +
-" ) As Skupljen) as VrsteRobe,  " +
-" (" +
-" SELECT " +
-" STUFF(" +
-"  (" +
-"  SELECT distinct " +
-"   '/' + Cast(NHM.Broj as nvarchar(20)) " +
-"  FROM UvozKonacnaNHM " +
-"  inner join NHM on UvozKonacnaNHM.IDNHM = NHM.ID " +
-" where UvozKonacnaNHM.IDNadredjena = UvozKonacna.ID " +
-"  FOR XML PATH('') " +
-"  ), 1, 1, '' " +
-" ) As Skupljen) as NHM, " +
-" p3.PaNaziv as SpedicijaGranica, " +
-" p2.PaNaziv as SpedicijaRTC, " +
-" VrstaCarinskogPostupka.Naziv as CarinskiPostupak, " +
-" VrstePostupakaUvoz.Naziv as PostupakSarobom, Napomena,  " +
- "     (Carinarnice.CINaziv + ' ' + Carinarnice.CIOznaka + ' ' + CIEmail + ' ' + CITelefon + ' / ' + p3.PaNaziv) as Carinarnica, " +
- "     (MestoIstovara + ' ' + KontaktOsoba) as MestoIstovara, Email, " +
- "      BrutoRobe, TaraKontejnera, BrutoKontejnera " +
- "     FROM UvozKonacna " +
- "     inner join Partnerji on PaSifra = VlasnikKontejnera " +
-  "    inner join Partnerji p1 on p1.PaSifra = Uvoznik " +
-  "      inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC " +
-  "       inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
- "    left join VrstaRobeHS on VrstaRobeHS.ID = UvozKonacna.NazivRobe " +
- "    left join VrstaRobe on VrstaRobe.ID = NHMBroj " +
- "    left join VrstaRobeADR on VrstaRobeADR.ID = UvozKonacna.ADR " +
-  "   left join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
- "     left join Carinarnice on Carinarnice.ID = UvozKonacna.OdredisnaCarina " +
-  "     left join KontejnerskiTerminali on KontejnerskiTerminali.ID = UvozKonacna.RLTerminali " +
- "    left join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = UvozKonacna.CarinskiPostupak " +
- "    left join Predefinisaneporuke on PredefinisanePoruke.ID = UvozKonacna.NapomenaZaPozicioniranje " +
-  "    left join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = UvozKonacna.PostupakSaRobom " +
- "   Where UvozKonacna.IDNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text);
-
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
-
-            var ds = new DataSet();
-            dataAdapter.Fill(ds);
-
-            Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-            object missing = System.Reflection.Missing.Value;
-            Workbook wBook = excel.Workbooks.Add(missing);
-
-            Worksheet wSheet = new Worksheet();
-            try
-            {
-
-                wSheet = (Worksheet)wBook.Worksheets.get_Item(1);
-                for (int i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
-                {
-                    for (int j = 0; j <= ds.Tables[0].Columns.Count - 1; j++)
-                    {
-                        wSheet.Cells[1, 15].EntireRow.Font.Bold = true;
-                        wSheet.Range["A1:N1"].Interior.Color = System.Drawing.Color.AliceBlue;
-                        wSheet.Cells[1, "A"] = "RB";
-                     
-                        wSheet.Cells[1, "B"] = "Broj kontejnera";
-                        wSheet.Cells[1, "C"] = "Tip kontejnera";
-                        wSheet.Cells[1, "D"] = "Napomena za stavku";
-                  
-                        wSheet.Cells[1, "E"] = "BL-brodska tertnica";
-                        wSheet.Cells[1, "F"] = "ADR";
-                        
-                        wSheet.Cells[1, "G"] = "Uvoznik";
-                        wSheet.Cells[1, "H"] = "Uvoznik PIB";
-                        wSheet.Cells[1, "I"] = "Vrsta robe";
-                        wSheet.Cells[1, "J"] = "NHM";
-                        wSheet.Cells[1, "K"] = "Špedicija - granica";
-                        wSheet.Cells[1, "L"] = "Špedicija - Leget";
-                        wSheet.Cells[1, "M"] = "Carinski postupak";
-                        wSheet.Cells[1, "N"] = "Postupanje sa robom/kontejeromnt";
-                        wSheet.Cells[1, "O"] = "Napomena za RTC LUKA LEGET";
-                        wSheet.Cells[1, "P"] = "Odredišna Carinska ispostav+špedicija";
-
-                        wSheet.Cells[1, "R"] = "Mesto istovara+kontakt osoba";
-                        wSheet.Cells[1, "S"] = "e-mail adrese za slanje statusa";
-                        wSheet.Cells[1, "T"] = "Napomena za pozicioniranje kontejner";
-                      
-                        wSheet.Cells[1, "U"] = "Bruto robe (kg)";
-                        wSheet.Cells[1, "V"] = "Tara kontejnera (kg)";
-                        wSheet.Cells[1, "W"] = "Bruto kontejnera (kg)";
-
-
-
-                        wSheet.Cells[i + 2, j + 1] = ds.Tables[0].Rows[i].ItemArray[j].ToString();
-                        wSheet.Cells[i + 2, j + 1].EntireColumn.AutoFit();
-                        Borders border = wSheet.Cells[i + 2, j + 1].Borders;
-                        border.Weight = 2d;
-
-                    }
-                }
-
-                string date = DateTime.Now.ToString("dd-MM-yyyy");
-                string path = Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory);
-                object filename = @"ExportSpediter" + date + ".xlsx";
-                wBook.SaveAs(filename);
-                wBook.Close();
-                excel.Quit();
-                excel = null;
-                wBook = null;
-                wSheet = null;
-
-
-                MessageBox.Show("Dokument za drumski prevoz je kreiran");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString());
-            }
         }
 
         private void cbPostupak_SelectedIndexChanged(object sender, EventArgs e)
@@ -1651,7 +1541,7 @@ namespace Saobracaj.Uvoz
         private void UbaciStavkuUsluge(int ID, int Manipulacija, double Cena)
         {
             InsertUvozKonacna uvK = new InsertUvozKonacna();
-            uvK.InsUbaciUsluguKonacna(Convert.ToInt32(txtID.Text), Manipulacija, Cena);
+         //   uvK.InsUbaciUsluguKonacna(Convert.ToInt32(txtID.Text), Manipulacija, Cena);
             FillDG8();
         }
 
@@ -1866,7 +1756,7 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton9_Click(object sender, EventArgs e)
         {
-            FormirajOpstiExcel();
+            
            /* DialogResult dialogResult = MessageBox.Show("Da li pravite i naloge Da/Ne", "Radni nalog", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
@@ -2070,8 +1960,205 @@ namespace Saobracaj.Uvoz
 
         private void button14_Click(object sender, EventArgs e)
         {
-            frmUnosManipulacija um = new frmUnosManipulacija();
+
+            if (txtID.Text == "")
+            { txtID.Text = "0"; }
+           // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
+            frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
             um.Show();
+        }
+
+        private void exportToExcelHŽToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExportToHZ();
+        }
+
+        private void exportToExcelDrumskiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExportToDrumski();
+        }
+
+        private void toolStripButton11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exportToExcelBezbednostToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExportToBezbednost();
+        }
+
+        private void exportToExcelMagacinToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExportToMagacin();
+        }
+        private void ExportToSpediter()
+        {
+
+            var select = "SELECT row_number() OVER (ORDER BY UvozKonacna.ID) RB, " +
+  "    [BrojKontejnera], TipKontenjera.Naziv as TipKontejnera,UvozKonacna.Napomena, " +
+  "    BrodskaTeretnica, (VrstaRobeAdr.Naziv +  + VrstaRobeAdr.UnKod) as ADR ,  " +
+   "    p1.PaNaziv as Uvoznik, p1.PaEMatSt1 as UvoznikPIB,  " +
+" ( " +
+" SELECT " +
+" STUFF(" +
+"  (" +
+"  SELECT distinct " +
+"   '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20)) " +
+"  FROM UvozKonacnaVrstaRobeHS " +
+"  inner join VrstaRobeHS on UvozKonacnaVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID " +
+" where UvozKonacnaVrstaRobeHS.IDNadredjena = UvozKonacna.ID " +
+"  FOR XML PATH('') " +
+"   ), 1, 1, '' " +
+" ) As Skupljen) as VrsteRobe,  " +
+" (" +
+" SELECT " +
+" STUFF(" +
+"  (" +
+"  SELECT distinct " +
+"   '/' + Cast(NHM.Broj as nvarchar(20)) " +
+"  FROM UvozKonacnaNHM " +
+"  inner join NHM on UvozKonacnaNHM.IDNHM = NHM.ID " +
+" where UvozKonacnaNHM.IDNadredjena = UvozKonacna.ID " +
+"  FOR XML PATH('') " +
+"  ), 1, 1, '' " +
+" ) As Skupljen) as NHM, " +
+" p3.PaNaziv as SpedicijaGranica, " +
+" p2.PaNaziv as SpedicijaRTC, " +
+" VrstaCarinskogPostupka.Naziv as CarinskiPostupak, " +
+" VrstePostupakaUvoz.Naziv as PostupakSarobom, Napomena,  " +
+ "     (Carinarnice.CINaziv + ' ' + Carinarnice.CIOznaka + ' ' + CIEmail + ' ' + CITelefon + ' / ' + p3.PaNaziv) as Carinarnica, " +
+ "     (MestoIstovara + ' ' + KontaktOsoba) as MestoIstovara, Email, " +
+ "      BrutoRobe, TaraKontejnera, BrutoKontejnera " +
+ "     FROM UvozKonacna " +
+ "     inner join Partnerji on PaSifra = VlasnikKontejnera " +
+  "    inner join Partnerji p1 on p1.PaSifra = Uvoznik " +
+  "      inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC " +
+  "       inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
+ "    left join VrstaRobeHS on VrstaRobeHS.ID = UvozKonacna.NazivRobe " +
+ "    left join VrstaRobe on VrstaRobe.ID = NHMBroj " +
+ "    left join VrstaRobeADR on VrstaRobeADR.ID = UvozKonacna.ADR " +
+  "   left join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
+ "     left join Carinarnice on Carinarnice.ID = UvozKonacna.OdredisnaCarina " +
+  "     left join KontejnerskiTerminali on KontejnerskiTerminali.ID = UvozKonacna.RLTerminali " +
+ "    left join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = UvozKonacna.CarinskiPostupak " +
+ "    left join Predefinisaneporuke on PredefinisanePoruke.ID = UvozKonacna.NapomenaZaPozicioniranje " +
+  "    left join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = UvozKonacna.PostupakSaRobom " +
+ "   Where UvozKonacna.IDNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text);
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+
+            Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+            object missing = System.Reflection.Missing.Value;
+            Workbook wBook = excel.Workbooks.Add(missing);
+
+            Worksheet wSheet = new Worksheet();
+            try
+            {
+
+                wSheet = (Worksheet)wBook.Worksheets.get_Item(1);
+                for (int i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+                {
+                    for (int j = 0; j <= ds.Tables[0].Columns.Count - 1; j++)
+                    {
+                        wSheet.Cells[1, 15].EntireRow.Font.Bold = true;
+                        wSheet.Range["A1:N1"].Interior.Color = System.Drawing.Color.AliceBlue;
+                        wSheet.Cells[1, "A"] = "RB";
+
+                        wSheet.Cells[1, "B"] = "Broj kontejnera";
+                        wSheet.Cells[1, "C"] = "Tip kontejnera";
+                        wSheet.Cells[1, "D"] = "Napomena za stavku";
+
+                        wSheet.Cells[1, "E"] = "BL-brodska tertnica";
+                        wSheet.Cells[1, "F"] = "ADR";
+
+                        wSheet.Cells[1, "G"] = "Uvoznik";
+                        wSheet.Cells[1, "H"] = "Uvoznik PIB";
+                        wSheet.Cells[1, "I"] = "Vrsta robe";
+                        wSheet.Cells[1, "J"] = "NHM";
+                        wSheet.Cells[1, "K"] = "Špedicija - granica";
+                        wSheet.Cells[1, "L"] = "Špedicija - Leget";
+                        wSheet.Cells[1, "M"] = "Carinski postupak";
+                        wSheet.Cells[1, "N"] = "Postupanje sa robom/kontejeromnt";
+                        wSheet.Cells[1, "O"] = "Napomena za RTC LUKA LEGET";
+                        wSheet.Cells[1, "P"] = "Odredišna Carinska ispostav+špedicija";
+
+                        wSheet.Cells[1, "R"] = "Mesto istovara+kontakt osoba";
+                        wSheet.Cells[1, "S"] = "e-mail adrese za slanje statusa";
+                        wSheet.Cells[1, "T"] = "Napomena za pozicioniranje kontejner";
+
+                        wSheet.Cells[1, "U"] = "Bruto robe (kg)";
+                        wSheet.Cells[1, "V"] = "Tara kontejnera (kg)";
+                        wSheet.Cells[1, "W"] = "Bruto kontejnera (kg)";
+
+
+
+                        wSheet.Cells[i + 2, j + 1] = ds.Tables[0].Rows[i].ItemArray[j].ToString();
+                        wSheet.Cells[i + 2, j + 1].EntireColumn.AutoFit();
+                        Borders border = wSheet.Cells[i + 2, j + 1].Borders;
+                        border.Weight = 2d;
+
+                    }
+                }
+
+                string date = DateTime.Now.ToString("dd-MM-yyyy");
+                string path = Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory);
+                object filename = @"ExportSpediter" + date + ".xlsx";
+                wBook.SaveAs(filename);
+                wBook.Close();
+                excel.Quit();
+                excel = null;
+                wBook = null;
+                wSheet = null;
+
+
+                MessageBox.Show("Dokument za drumski prevoz je kreiran");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
+        private void exportToExcelŠpediterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ExportToSpediter();
+        }
+
+        private void exportToExcelOpšteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormirajOpstiExcel();
+        }
+
+        private void txtNapomena_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label26_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label31_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton1_Click_1(object sender, EventArgs e)
+        {
+            frmFormiranjePlana fplan = new frmFormiranjePlana(Convert.ToInt32(txtNadredjeni.Text));
+            fplan.Show();
+        }
+
+        private void toolStripButton2_Click_1(object sender, EventArgs e)
+        {
+            FillGV();
         }
     }
     }

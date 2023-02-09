@@ -60,6 +60,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.cboPostupakSaRobom = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtCena)).BeginInit();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -422,6 +423,7 @@
             this.cboPostupakSaRobom.Name = "cboPostupakSaRobom";
             this.cboPostupakSaRobom.Size = new System.Drawing.Size(279, 27);
             this.cboPostupakSaRobom.TabIndex = 117;
+            this.cboPostupakSaRobom.Visible = false;
             // 
             // label9
             // 
@@ -434,6 +436,22 @@
             this.label9.Size = new System.Drawing.Size(139, 18);
             this.label9.TabIndex = 118;
             this.label9.Text = "Postupak sa robom";
+            this.label9.Visible = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(467, 178);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(45, 31);
+            this.button3.TabIndex = 119;
+            this.button3.Text = "?";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // frmCene
             // 
@@ -441,6 +459,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1241, 485);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.cboPostupakSaRobom);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.cboUvoznik);
@@ -513,5 +532,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cboPostupakSaRobom;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button3;
     }
 }
