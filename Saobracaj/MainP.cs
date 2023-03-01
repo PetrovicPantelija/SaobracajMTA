@@ -1666,5 +1666,11 @@ namespace Saobracaj
         {
             Process.Start(@"\\192.168.1.6\Panta\Lupustva\Sifarnici-Upustvo.pdf");
         }
+
+        private void toolStripButton219_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmTrainList tl = new Dokumenta.frmTrainList();
+            tl.Show();
+        }
     }
 }
