@@ -50,6 +50,8 @@ namespace Saobracaj.Dokumenta
             IdForme();
             PravoPristupa();
             RefreshDataGrid();
+            tabNajave.TabPages.Remove(tabPage3);
+            tabNajave.TabPages.Remove(tabPage4);
            
         }
         public string IdGrupe()
@@ -145,6 +147,8 @@ namespace Saobracaj.Dokumenta
             IdForme();
             PravoPristupa();
             RefreshDataGrid();
+            tabNajave.TabPages.Remove(tabPage3);
+            tabNajave.TabPages.Remove(tabPage4);
         }
 
         public frmNajava(string Sifra)
@@ -153,7 +157,9 @@ namespace Saobracaj.Dokumenta
             txtSifra.Text = Sifra;
             VratiPodatke(txtSifra.Text);
             RefreshDataGrid();
-            
+            tabNajave.TabPages.Remove(tabPage3);
+            tabNajave.TabPages.Remove(tabPage4);
+
         }
 
         private void RefreshDataGrid()

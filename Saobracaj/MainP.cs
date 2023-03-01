@@ -1672,5 +1672,15 @@ namespace Saobracaj
             Dokumenta.frmTrainList tl = new Dokumenta.frmTrainList();
             tl.Show();
         }
+
+        private void toolStripEx1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void toolStripButton220_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

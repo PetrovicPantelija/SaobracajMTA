@@ -177,6 +177,8 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.txtOznaka = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.nedraDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nedraDataSet)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -261,7 +263,7 @@
             this.toolStripButton6});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1825, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(1825, 27);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "Štampaj izveštaj";
             // 
@@ -271,7 +273,7 @@
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 28);
+            this.tsNew.Size = new System.Drawing.Size(29, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -281,7 +283,7 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 28);
+            this.tsSave.Size = new System.Drawing.Size(29, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -291,14 +293,14 @@
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 28);
+            this.tsDelete.Size = new System.Drawing.Size(29, 24);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tsPrvi
             // 
@@ -306,7 +308,7 @@
             this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
             this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(29, 28);
+            this.tsPrvi.Size = new System.Drawing.Size(29, 24);
             this.tsPrvi.Text = "toolStripButton1";
             // 
             // tsNazad
@@ -315,7 +317,7 @@
             this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
             this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(29, 28);
+            this.tsNazad.Size = new System.Drawing.Size(29, 24);
             this.tsNazad.Text = "toolStripButton1";
             // 
             // tsNapred
@@ -324,7 +326,7 @@
             this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
             this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(29, 28);
+            this.tsNapred.Size = new System.Drawing.Size(29, 24);
             this.tsNapred.Text = "toolStripButton1";
             // 
             // tsPoslednja
@@ -333,7 +335,7 @@
             this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
             this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(29, 28);
+            this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
             this.tsPoslednja.Text = "toolStripButton1";
             // 
             // toolStripButton1
@@ -342,7 +344,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(150, 28);
+            this.toolStripButton1.Size = new System.Drawing.Size(150, 24);
             this.toolStripButton1.Text = "Dokumenta posla";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -352,7 +354,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(116, 28);
+            this.toolStripButton2.Size = new System.Drawing.Size(116, 24);
             this.toolStripButton2.Text = "Posalji email";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -362,7 +364,7 @@
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(141, 28);
+            this.toolStripButton3.Size = new System.Drawing.Size(141, 24);
             this.toolStripButton3.Text = "Štampaj izveštaj";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
@@ -372,7 +374,7 @@
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(82, 28);
+            this.toolStripButton4.Size = new System.Drawing.Size(82, 24);
             this.toolStripButton4.Text = "Refresh";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
@@ -382,7 +384,7 @@
             this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(134, 28);
+            this.toolStripButton5.Size = new System.Drawing.Size(134, 24);
             this.toolStripButton5.Text = "Pronadji Vagon";
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
@@ -392,7 +394,7 @@
             this.toolStripButton6.Image = global::Saobracaj.Properties.Resources.Background5;
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(60, 28);
+            this.toolStripButton6.Size = new System.Drawing.Size(60, 24);
             this.toolStripButton6.Text = "LOG";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
@@ -1283,7 +1285,7 @@
             this.cboVozP.Location = new System.Drawing.Point(253, 251);
             this.cboVozP.Margin = new System.Windows.Forms.Padding(4);
             this.cboVozP.Name = "cboVozP";
-            this.cboVozP.Size = new System.Drawing.Size(103, 24);
+            this.cboVozP.Size = new System.Drawing.Size(119, 24);
             this.cboVozP.TabIndex = 90;
             // 
             // label19
@@ -1549,7 +1551,7 @@
             this.cboTipPrevoza.Location = new System.Drawing.Point(113, 201);
             this.cboTipPrevoza.Margin = new System.Windows.Forms.Padding(4);
             this.cboTipPrevoza.Name = "cboTipPrevoza";
-            this.cboTipPrevoza.Size = new System.Drawing.Size(230, 24);
+            this.cboTipPrevoza.Size = new System.Drawing.Size(259, 24);
             this.cboTipPrevoza.TabIndex = 149;
             // 
             // txtNetoTezinaM
@@ -1656,14 +1658,14 @@
             // 
             this.cboTehnologijaID.AllowFiltering = false;
             this.cboTehnologijaID.BackColor = System.Drawing.Color.LightGray;
-            this.cboTehnologijaID.BeforeTouchSize = new System.Drawing.Size(240, 24);
+            this.cboTehnologijaID.BeforeTouchSize = new System.Drawing.Size(259, 24);
             this.cboTehnologijaID.Filter = null;
             this.cboTehnologijaID.Location = new System.Drawing.Point(113, 283);
             this.cboTehnologijaID.Margin = new System.Windows.Forms.Padding(4);
             this.cboTehnologijaID.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.cboTehnologijaID.Name = "cboTehnologijaID";
             this.cboTehnologijaID.ScrollMetroColorTable = metroColorTable4;
-            this.cboTehnologijaID.Size = new System.Drawing.Size(240, 24);
+            this.cboTehnologijaID.Size = new System.Drawing.Size(259, 24);
             this.cboTehnologijaID.TabIndex = 162;
             // 
             // label35
@@ -1858,10 +1860,12 @@
             // 
             // groupBox6
             // 
+            this.groupBox6.Controls.Add(this.txtOznaka);
             this.groupBox6.Controls.Add(this.txtSifra);
             this.groupBox6.Controls.Add(this.label1);
             this.groupBox6.Controls.Add(this.txtVerzija);
             this.groupBox6.Controls.Add(this.txtOpis);
+            this.groupBox6.Controls.Add(this.label42);
             this.groupBox6.Controls.Add(this.lblNaziv);
             this.groupBox6.Controls.Add(this.label18);
             this.groupBox6.Controls.Add(this.cboTehnologijaID);
@@ -1887,6 +1891,24 @@
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Osnovni podaci";
             this.groupBox6.Enter += new System.EventHandler(this.groupBox6_Enter);
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(206, 59);
+            this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(76, 21);
+            this.label42.TabIndex = 6;
+            this.label42.Text = "Oznaka:";
+            // 
+            // txtOznaka
+            // 
+            this.txtOznaka.Location = new System.Drawing.Point(274, 57);
+            this.txtOznaka.Margin = new System.Windows.Forms.Padding(4);
+            this.txtOznaka.Name = "txtOznaka";
+            this.txtOznaka.Size = new System.Drawing.Size(98, 22);
+            this.txtOznaka.TabIndex = 1;
             // 
             // frmNajava
             // 
@@ -2102,5 +2124,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox txtOznaka;
+        private System.Windows.Forms.Label label42;
     }
 }
