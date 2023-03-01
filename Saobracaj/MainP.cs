@@ -16,6 +16,9 @@ using Saobracaj.Sifarnici;
 using TrackModal.Dokumeta;
 using TrackModal.Izvestaji;
 using TrackModal.Promet;
+using System.IO;
+
+using System.Diagnostics;
 
 namespace Saobracaj
 {
@@ -1657,6 +1660,11 @@ namespace Saobracaj
         {
             frmOrganizacionaJedinica otg = new frmOrganizacionaJedinica();
             otg.Show();
+        }
+
+        private void toolStripButton218_Click(object sender, EventArgs e)
+        {
+            Process.Start(@"\\192.168.1.6\Panta\Lupustva\Sifarnici-Upustvo.pdf");
         }
     }
 }
