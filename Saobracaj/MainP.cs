@@ -1682,5 +1682,11 @@ namespace Saobracaj
         {
 
         }
+
+        private void toolStripButton221_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmValute valute = new Izvoz.frmValute();
+            valute.Show();
+        }
     }
 }

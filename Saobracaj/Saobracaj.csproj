@@ -1435,6 +1435,12 @@
     <Compile Include="Izvoz\frmPregledKontejneraIzvoz.Designer.cs">
       <DependentUpon>frmPregledKontejneraIzvoz.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\frmValute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmValute.Designer.cs">
+      <DependentUpon>frmValute.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\InsertAdresaStatusVozila.cs" />
     <Compile Include="Izvoz\InsertInspekciskiTretman.cs" />
     <Compile Include="Izvoz\InsertIzvoz.cs" />
@@ -1443,6 +1449,7 @@
     <Compile Include="Izvoz\InsertKrajnjaDestinacija.cs" />
     <Compile Include="Izvoz\InsertMestaUtovara.cs" />
     <Compile Include="Izvoz\InsertNaslovStatusaVozila.cs" />
+    <Compile Include="Izvoz\InsertValute.cs" />
     <Compile Include="MailRepository.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -3378,6 +3385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmPregledKontejneraIzvoz.resx">
       <DependentUpon>frmPregledKontejneraIzvoz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmValute.resx">
+      <DependentUpon>frmValute.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

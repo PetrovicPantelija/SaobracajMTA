@@ -405,7 +405,7 @@ namespace Saobracaj.Izvoz
             // txtBrutoR
             // 
             this.txtBrutoR.DecimalPlaces = 2;
-            this.txtBrutoR.Location = new System.Drawing.Point(288, 441);
+            this.txtBrutoR.Location = new System.Drawing.Point(287, 333);
             this.txtBrutoR.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -418,7 +418,7 @@ namespace Saobracaj.Izvoz
             // txtNetoR
             // 
             this.txtNetoR.DecimalPlaces = 2;
-            this.txtNetoR.Location = new System.Drawing.Point(287, 394);
+            this.txtNetoR.Location = new System.Drawing.Point(286, 286);
             this.txtNetoR.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -431,7 +431,7 @@ namespace Saobracaj.Izvoz
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(286, 421);
+            this.label34.Location = new System.Drawing.Point(285, 313);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(88, 17);
             this.label34.TabIndex = 181;
@@ -440,7 +440,7 @@ namespace Saobracaj.Izvoz
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(285, 375);
+            this.label33.Location = new System.Drawing.Point(284, 267);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(80, 17);
             this.label33.TabIndex = 182;
@@ -449,7 +449,7 @@ namespace Saobracaj.Izvoz
             // txtBrutoO
             // 
             this.txtBrutoO.DecimalPlaces = 2;
-            this.txtBrutoO.Location = new System.Drawing.Point(288, 489);
+            this.txtBrutoO.Location = new System.Drawing.Point(287, 381);
             this.txtBrutoO.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -462,7 +462,7 @@ namespace Saobracaj.Izvoz
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(286, 466);
+            this.label8.Location = new System.Drawing.Point(285, 358);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(132, 17);
             this.label8.TabIndex = 184;
@@ -471,7 +471,7 @@ namespace Saobracaj.Izvoz
             // txtKoleta
             // 
             this.txtKoleta.DecimalPlaces = 2;
-            this.txtKoleta.Location = new System.Drawing.Point(289, 529);
+            this.txtKoleta.Location = new System.Drawing.Point(288, 421);
             this.txtKoleta.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -484,7 +484,7 @@ namespace Saobracaj.Izvoz
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(286, 510);
+            this.label43.Location = new System.Drawing.Point(285, 402);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(48, 17);
             this.label43.TabIndex = 186;
@@ -493,7 +493,7 @@ namespace Saobracaj.Izvoz
             // txtKoletaO
             // 
             this.txtKoletaO.DecimalPlaces = 2;
-            this.txtKoletaO.Location = new System.Drawing.Point(287, 574);
+            this.txtKoletaO.Location = new System.Drawing.Point(286, 466);
             this.txtKoletaO.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -506,7 +506,7 @@ namespace Saobracaj.Izvoz
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(286, 554);
+            this.label9.Location = new System.Drawing.Point(285, 446);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(115, 17);
             this.label9.TabIndex = 188;
@@ -515,7 +515,7 @@ namespace Saobracaj.Izvoz
             // txtCBM
             // 
             this.txtCBM.DecimalPlaces = 2;
-            this.txtCBM.Location = new System.Drawing.Point(287, 625);
+            this.txtCBM.Location = new System.Drawing.Point(286, 517);
             this.txtCBM.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -528,7 +528,7 @@ namespace Saobracaj.Izvoz
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(284, 605);
+            this.label10.Location = new System.Drawing.Point(283, 497);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(37, 17);
             this.label10.TabIndex = 190;
@@ -537,7 +537,7 @@ namespace Saobracaj.Izvoz
             // txtCBMO
             // 
             this.txtCBMO.DecimalPlaces = 2;
-            this.txtCBMO.Location = new System.Drawing.Point(288, 672);
+            this.txtCBMO.Location = new System.Drawing.Point(287, 564);
             this.txtCBMO.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -550,7 +550,7 @@ namespace Saobracaj.Izvoz
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(285, 651);
+            this.label11.Location = new System.Drawing.Point(284, 543);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(120, 17);
             this.label11.TabIndex = 192;
@@ -738,7 +738,7 @@ namespace Saobracaj.Izvoz
             // 
             this.txtADR.FormattingEnabled = true;
             this.txtADR.ItemHeight = 16;
-            this.txtADR.Location = new System.Drawing.Point(22, 484);
+            this.txtADR.Location = new System.Drawing.Point(1087, 47);
             this.txtADR.Name = "txtADR";
             this.txtADR.Size = new System.Drawing.Size(203, 24);
             this.txtADR.TabIndex = 205;
@@ -746,7 +746,7 @@ namespace Saobracaj.Izvoz
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(22, 465);
+            this.label13.Location = new System.Drawing.Point(1092, 27);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(37, 17);
             this.label13.TabIndex = 206;
@@ -755,7 +755,7 @@ namespace Saobracaj.Izvoz
             // txtVrednostRobeFaktura
             // 
             this.txtVrednostRobeFaktura.DecimalPlaces = 2;
-            this.txtVrednostRobeFaktura.Location = new System.Drawing.Point(289, 303);
+            this.txtVrednostRobeFaktura.Location = new System.Drawing.Point(19, 545);
             this.txtVrednostRobeFaktura.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -768,7 +768,7 @@ namespace Saobracaj.Izvoz
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(286, 279);
+            this.label14.Location = new System.Drawing.Point(16, 521);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(159, 17);
             this.label14.TabIndex = 208;
@@ -776,7 +776,7 @@ namespace Saobracaj.Izvoz
             // 
             // txtValuta
             // 
-            this.txtValuta.Location = new System.Drawing.Point(288, 345);
+            this.txtValuta.Location = new System.Drawing.Point(18, 587);
             this.txtValuta.Name = "txtValuta";
             this.txtValuta.Size = new System.Drawing.Size(178, 22);
             this.txtValuta.TabIndex = 209;
@@ -784,7 +784,7 @@ namespace Saobracaj.Izvoz
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(286, 327);
+            this.label16.Location = new System.Drawing.Point(16, 569);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(48, 17);
             this.label16.TabIndex = 210;
@@ -1127,10 +1127,10 @@ namespace Saobracaj.Izvoz
             // 
             // txtDodatneNapomene
             // 
-            this.txtDodatneNapomene.Location = new System.Drawing.Point(1087, 573);
+            this.txtDodatneNapomene.Location = new System.Drawing.Point(1087, 587);
             this.txtDodatneNapomene.Multiline = true;
             this.txtDodatneNapomene.Name = "txtDodatneNapomene";
-            this.txtDodatneNapomene.Size = new System.Drawing.Size(258, 131);
+            this.txtDodatneNapomene.Size = new System.Drawing.Size(258, 117);
             this.txtDodatneNapomene.TabIndex = 248;
             // 
             // label37
@@ -1424,7 +1424,7 @@ namespace Saobracaj.Izvoz
             this.panel1.Controls.Add(this.dataGridView6);
             this.panel1.Controls.Add(this.dataGridView5);
             this.panel1.Controls.Add(this.label55);
-            this.panel1.Location = new System.Drawing.Point(472, 258);
+            this.panel1.Location = new System.Drawing.Point(423, 257);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(348, 446);
             this.panel1.TabIndex = 276;
