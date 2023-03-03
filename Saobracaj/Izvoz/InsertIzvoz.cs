@@ -580,7 +580,7 @@ namespace Saobracaj.Izvoz
                             int NacinPakovanja, int NacinPretovara, string DodatneNapomeneDrumski, int Vaganje,
                             decimal VGMTezina, decimal Tara, decimal VGMBrod, int Izvoznik,
                             int Klijent1, int Napomena1REf, int DobijenNalogKlijent1, int Klijent2,
-                            int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR)
+                            int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, string Vozilo, string Vozac)
         {
 
             
@@ -958,6 +958,22 @@ namespace Saobracaj.Izvoz
             adr.Direction = ParameterDirection.Input;
             adr.Value = ADR;
             cmd.Parameters.Add(adr);
+
+            SqlParameter vozilo = new SqlParameter();
+            vozilo.ParameterName = "@Vozilo";
+            vozilo.SqlDbType = SqlDbType.NVarChar;
+            vozilo.Size = 50;
+            vozilo.Direction = ParameterDirection.Input;
+            vozilo.Value = Vozilo;
+            cmd.Parameters.Add(vozilo);
+
+            SqlParameter vozac = new SqlParameter();
+            vozac.ParameterName = "@Vozac";
+            vozac.SqlDbType = SqlDbType.NVarChar;
+            vozac.Size = 50;
+            vozac.Direction = ParameterDirection.Input;
+            vozac.Value = Vozac;
+            cmd.Parameters.Add(vozac);
 
 
 

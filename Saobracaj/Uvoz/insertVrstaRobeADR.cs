@@ -13,7 +13,7 @@ namespace Saobracaj.Uvoz
     class insertVrstaRobeADR
     {
         string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
-        public void InsVrstaRobeADR(string Naziv, string UNKod)
+        public void InsVrstaRobeADR(string Naziv, string UNKod, string Klasa)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -35,6 +35,15 @@ namespace Saobracaj.Uvoz
             unKod.Direction = ParameterDirection.Input;
             unKod.Value = UNKod;
             cmd.Parameters.Add(unKod);
+
+
+            SqlParameter klasa = new SqlParameter();
+            klasa.ParameterName = "@Klasa";
+            klasa.SqlDbType = SqlDbType.NVarChar;
+            klasa.Size = 20;
+            klasa.Direction = ParameterDirection.Input;
+            klasa.Value = Klasa;
+            cmd.Parameters.Add(klasa);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -70,7 +79,7 @@ namespace Saobracaj.Uvoz
                 }
             }
         }
-        public void UpdVrstaRobeADR(int ID, string Naziv, string UNKod)
+        public void UpdVrstaRobeADR(int ID, string Naziv, string UNKod, string Klasa)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -99,6 +108,15 @@ namespace Saobracaj.Uvoz
             unKod.Direction = ParameterDirection.Input;
             unKod.Value = UNKod;
             cmd.Parameters.Add(unKod);
+
+
+            SqlParameter klasa = new SqlParameter();
+            klasa.ParameterName = "@Klasa";
+            klasa.SqlDbType = SqlDbType.NVarChar;
+            klasa.Size = 20;
+            klasa.Direction = ParameterDirection.Input;
+            klasa.Value = Klasa;
+            cmd.Parameters.Add(klasa);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

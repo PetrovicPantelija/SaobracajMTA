@@ -276,7 +276,142 @@ namespace Saobracaj.Izvoz
         private void frmIzvoz_Load(object sender, EventArgs e)
         {
             FillCombo();
+            FillDG();
         }
+
+        private void FillDG()
+        {
+            var select = "    SELECT     Izvoz.ID, Izvoz.BrojVagona, Izvoz.BrojKontejnera, Izvoz.VrstaKontejnera AS VKID, TipKontenjera.Naziv AS TipKontejnera, Izvoz.BrodskaPlomba, Izvoz.OstalePlombe, " +
+                "          Izvoz.BookingBrodara, " +
+              "            (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaManipulacije.Naziv as nvarchar(20))   FROM IzvozVrstaManipulacije" +
+  "     inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozVrstaManipulacije.IDVrstaManipulacije   where IzvozVrstaManipulacije.IDNadredjena = Izvoz.ID" +
+ "     FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as VrsteUsluga,  " +
+  "    (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20))   FROM IzvozVrstaRobeHS " +
+ "     inner join VrstaRobeHS on IzvozVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID   where IzvozVrstaRobeHS.IDNadredjena = Izvoz.ID " +
+  "     FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as HS,  " +
+ "      (SELECT  STUFF((SELECT distinct    '/' + Cast(NHM.Broj as nvarchar(20)) " +
+ "     FROM IzvozNHM  inner join NHM on IzvozNHM.IDNHM = NHM.ID  where IzvozNHM.IDNadredjena = Izvoz.ID   FOR XML PATH('')), 1, 1, ''  ) As Skupljen) as NHM,  " +
+                 "         Izvoz.Brodar, Partnerji.PaNaziv AS Brodar, Izvoz.CutOffPort, Izvoz.NetoRobe, Izvoz.BrutoRobe, Izvoz.BrutoRobeO, Izvoz.BrojKoleta, " +
+                "          Izvoz.BrojKoletaO, Izvoz.CBM, Izvoz.CBMO, Izvoz.VrednostRobeFaktura, Izvoz.Valuta, Izvoz.KrajnaDestinacija AS KDID, KrajnjaDestinacija.Naziv AS KrajnjaNaZiv, " +
+                 "         Izvoz.Postupanje, VrstePostupakaUvoz.Naziv AS PostupanjeID, Izvoz.MestoPreuzimanja, KontejnerskiTerminali.Naziv AS MestoPNaziv, " +
+                 "         KontejnerskiTerminali.Oznaka AS MPOznaka, Izvoz.Cirada, Izvoz.PlaniraniDatumUtovara, Izvoz.MesoUtovara, MestaUtovara.Naziv AS MestoUtovNaziv, " +
+                 "         Izvoz.KontaktOsoba, Izvoz.MestoCarinjenja, Carinarnice.CINaziv, Carinarnice.CIOznaka, Izvoz.Spedicija, Partnerji_1.PaNaziv AS SpedicijaNaziv, " +
+                 "         Izvoz.AdresaSlanjaStatusa, AdresaStatusVozila.Naziv AS AdresaNaziv, Izvoz.NaslovSlanjaStatusa, NaslovStatusaVozila.Naziv AS Naslov, Izvoz.EtaLeget, " +
+                  "        Izvoz.NapomenaReexport, VrstaCarinskogPostupka.Naziv AS ReeksportNaziv, VrstaCarinskogPostupka.Oznaka AS ReexportOznaka, Izvoz.Inspekcija, " +
+                  "        InspekciskiTretman.Naziv AS InspekcijaID, Izvoz.AutoDana, Izvoz.NajavaVozila, Izvoz.NacinPakovanja, uvNacinPakovanja.Naziv AS NacinPakovanjaNaziv, " +
+                  "        Izvoz.NacinPretovara, Izvoz.DodatneNapomeneDrumski, Izvoz.Vaganje, Izvoz.Tara, Izvoz.VGMTezina, Izvoz.VGMBrod, Izvoz.Izvoznik, " +
+                   "       Partnerji_2.PaNaziv AS IzvoznikNasl, Izvoz.ADR, VrstaRobeADR.UNKod, VrstaRobeADR.Klasa, VrstaRobeADR.Naziv, Izvoz.Klijent1, Partnerji_3.PaNaziv AS Klijent1, " +
+                  "        Izvoz.Napomena1REf, Izvoz.DobijenNalogKlijent1, Izvoz.Klijent2, Partnerji_4.PaNaziv AS KLijent2Naziv, Izvoz.Napomena2REf, Izvoz.Klijent3, " +
+                 "         Partnerji_5.PaNaziv AS Klijent3Naziv, Izvoz.Napomena3REf, Izvoz.SpediterRijeka, Partnerji_6.PaNaziv AS SpediterRijekaNaziv " +
+"    FROM         Izvoz INNER JOIN " +
+                    "      TipKontenjera ON Izvoz.VrstaKontejnera = TipKontenjera.ID INNER JOIN " +
+                    "      Partnerji ON Izvoz.Brodar = Partnerji.PaSifra INNER JOIN " +
+                   "       KrajnjaDestinacija ON Izvoz.KrajnaDestinacija = KrajnjaDestinacija.ID INNER JOIN " +
+                   "       VrstePostupakaUvoz ON Izvoz.Postupanje = VrstePostupakaUvoz.ID INNER JOIN " +
+                   "       MestaUtovara ON Izvoz.MesoUtovara = MestaUtovara.ID INNER JOIN " +
+                   "       Carinarnice ON Izvoz.MestoCarinjenja = Carinarnice.ID INNER JOIN " +
+                   "       Partnerji AS Partnerji_1 ON Izvoz.Spedicija = Partnerji_1.PaSifra INNER JOIN " +
+                   "       AdresaStatusVozila ON Izvoz.AdresaSlanjaStatusa = AdresaStatusVozila.ID INNER JOIN " +
+                   "       NaslovStatusaVozila ON Izvoz.NaslovSlanjaStatusa = NaslovStatusaVozila.ID INNER JOIN " +
+                   "       VrstaCarinskogPostupka ON Izvoz.NapomenaReexport = VrstaCarinskogPostupka.id INNER JOIN " +
+                   "       InspekciskiTretman ON Izvoz.Inspekcija = InspekciskiTretman.ID INNER JOIN " +
+                  "        uvNacinPakovanja ON Izvoz.NacinPakovanja = uvNacinPakovanja.ID INNER JOIN " +
+                   "       Partnerji AS Partnerji_2 ON Partnerji.PaSifra = Partnerji_2.PaSifra AND Izvoz.Izvoznik = Partnerji_2.PaSifra INNER JOIN " +
+                   "       VrstaRobeADR ON Izvoz.ADR = VrstaRobeADR.ID INNER JOIN " +
+                   "       Partnerji AS Partnerji_3 ON Partnerji.PaSifra = Partnerji_3.PaSifra AND Izvoz.Klijent1 = Partnerji_3.PaSifra INNER JOIN " +
+                   "       Partnerji AS Partnerji_4 ON Partnerji.PaSifra = Partnerji_4.PaSifra AND Izvoz.Klijent2 = Partnerji_4.PaSifra INNER JOIN " +
+                   "       Partnerji AS Partnerji_5 ON Partnerji.PaSifra = Partnerji_5.PaSifra AND Izvoz.Klijent3 = Partnerji_5.PaSifra INNER JOIN " +
+                   "       Partnerji AS Partnerji_6 ON Partnerji.PaSifra = Partnerji_6.PaSifra AND Izvoz.SpediterRijeka = Partnerji_6.PaSifra Inner JOIN " +
+                   "       KontejnerskiTerminali on  KontejnerskiTerminali.ID = Izvoz.MestoPreuzimanja order by Izvoz.ID desc ";
+
+
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Frozen = true;
+            dataGridView1.Columns[0].Width = 50;
+
+            DataGridViewColumn column1 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "BrojKontejnera";
+            dataGridView1.Columns[1].Frozen = true;
+            dataGridView1.Columns[1].Width = 100;
+            /*
+            DataGridViewColumn column2 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "BL";
+            dataGridView1.Columns[2].Frozen = true;
+            dataGridView1.Columns[2].Width = 90;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Dobijen_Nalog_Brodara";
+            // dataGridView1.Columns[1].Frozen = true;
+            dataGridView1.Columns[3].Width = 50;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "ATABroda";
+            dataGridView1.Columns[4].Width = 80;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Brod";
+            dataGridView1.Columns[5].Width = 100;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Napomena";
+            dataGridView1.Columns[6].Width = 100;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "DatumBZ";
+            dataGridView1.Columns[7].Width = 80;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "PIN";
+            dataGridView1.Columns[8].Width = 60;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "BrojKontejnera";
+            //   dataGridView1.Columns[7].Frozen = true;
+            dataGridView1.Columns[9].Width = 100;
+
+            DataGridViewColumn column10 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "Vrsta kontejnera";
+            dataGridView1.Columns[10].Width = 120;
+
+            DataGridViewColumn column11 = dataGridView1.Columns[11];
+            dataGridView1.Columns[11].HeaderText = "R_L_SRB";
+            dataGridView1.Columns[11].Width = 120;
+
+            DataGridViewColumn column12 = dataGridView1.Columns[12];
+            dataGridView1.Columns[12].HeaderText = "Dirigacija_Kontejnera_Za";
+            dataGridView1.Columns[12].Width = 100;
+
+            DataGridViewColumn column13 = dataGridView1.Columns[13];
+            dataGridView1.Columns[13].HeaderText = "BL";
+            // dataGridView1.Columns[13].Frozen = true;
+            dataGridView1.Columns[13].Width = 90;
+
+            RefreshDataGridColor();
+*/
+        }
+
+
+
         private void FillCombo()
         {
             SqlConnection conn = new SqlConnection(connection);
@@ -298,7 +433,7 @@ namespace Saobracaj.Izvoz
             cboBrodar.ValueMember = "PaSifra";
 
 
-            var adr = "Select ID, (Naziv + ' - ' + UNKod) as Naziv From VrstaRobeADR order by (UNKod + ' ' + Naziv)";
+            var adr = "Select ID, (  UNKod +' - '+ Klasa + ' - ' + Naziv  ) as Naziv From VrstaRobeADR order by UNKod";
             var adrSAD = new SqlDataAdapter(adr, conn);
             var adrSDS = new DataSet();
             adrSAD.Fill(adrSDS);
@@ -446,9 +581,6 @@ namespace Saobracaj.Izvoz
             cboSpediterURijeci.ValueMember = "PaSifra";
 
 
-          
-
-
 
             //Panta
             var VRHS = "Select ID,(HSKod + '   ' + Rtrim(Naziv)) as Naziv from VrstaRobeHS order by HSKod";
@@ -460,13 +592,22 @@ namespace Saobracaj.Izvoz
             cboNazivRobe.ValueMember = "ID";
 
 
-            var nhm = "Select ID,(Naziv + '-' + Rtrim(Broj)) as Naziv from NHM order by Broj";
+            var nhm = "Select ID,(RTRIM(Naziv) + '-' + Rtrim(Broj)) as Naziv from NHM order by Broj";
             var nhmSAD = new SqlDataAdapter(nhm, conn);
             var nhmSDS = new DataSet();
             nhmSAD.Fill(nhmSDS);
             cboNHM.DataSource = nhmSDS.Tables[0];
             cboNHM.DisplayMember = "Naziv";
             cboNHM.ValueMember = "ID";
+
+
+            var val = "Select VaSifra, VaNaziv from Valute order by VaSifra";
+            var valSAD = new SqlDataAdapter(val, conn);
+            var valSDS = new DataSet();
+            valSAD.Fill(valSDS);
+            txtValuta.DataSource = valSDS.Tables[0];
+            txtValuta.DisplayMember = "VaNaziv";
+            txtValuta.ValueMember = "VaSifra";
 
 
         }
@@ -499,6 +640,7 @@ namespace Saobracaj.Izvoz
                 conn.Open();
                 var q = cmd.ExecuteNonQuery();
                 conn.Close();
+              
             }
             catch (Exception ex)
             {
@@ -507,6 +649,11 @@ namespace Saobracaj.Izvoz
             GetID();
             tsNew.Enabled = false;
             txtBrKont.Text = "";
+            chkNajavaVozila.Checked = false;
+            txtVozilo.Text = "";
+            txtVozac.Text = "";
+            txtVozilo.Enabled = false;
+            txtVozac.Enabled = false;
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -557,7 +704,7 @@ namespace Saobracaj.Izvoz
                 Convert.ToInt32(cboKlijent1.SelectedValue), Convert.ToInt32(txtRef1.Text), pomDobijenNalog,
                 Convert.ToInt32(cboKlijent2.SelectedValue), Convert.ToInt32(txtRef2.Text),
                 Convert.ToInt32(cboKlijent3.SelectedValue), Convert.ToInt32(txtRef3.Text),
-                 Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text, Convert.ToInt32(txtADR.SelectedValue));
+                 Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text, Convert.ToInt32(txtADR.SelectedValue), txtVozilo.Text, txtVozac.Text);
             //Fale ostale plombe
             // Convert.ToDecimal(txtDodatneNapomene.Text -- treba staviti nvarchar
 
@@ -923,6 +1070,20 @@ namespace Saobracaj.Izvoz
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void chkNajavaVozila_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkNajavaVozila.Checked == true)
+            {
+                txtVozilo.Enabled = true;
+                txtVozac.Enabled = true;
+            }
+            else
+            {
+                txtVozilo.Enabled = true;
+                txtVozac.Enabled = true;
+            }
         }
     }
 }

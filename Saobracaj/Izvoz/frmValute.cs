@@ -72,7 +72,7 @@ namespace Saobracaj.Izvoz
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
-            txtSifra.Enabled = false;
+          //  txtSifra.Enabled = false;
             txtNaziv.Text = "";
         }
 

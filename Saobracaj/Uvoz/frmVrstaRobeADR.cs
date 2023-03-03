@@ -74,11 +74,11 @@ namespace Saobracaj.Uvoz
             insertVrstaRobeADR ins = new insertVrstaRobeADR();
             if (status == true)
             {
-                ins.InsVrstaRobeADR(txtNaziv.Text.ToString().TrimEnd(), txtUNCode.Text);
+                ins.InsVrstaRobeADR(txtNaziv.Text.ToString().TrimEnd(), txtUNCode.Text, txtKlasa.Text);
             }
             else
             {
-                ins.UpdVrstaRobeADR(Convert.ToInt32(txtID.Text.ToString()), txtNaziv.Text.ToString().TrimEnd(), txtUNCode.Text);
+                ins.UpdVrstaRobeADR(Convert.ToInt32(txtID.Text.ToString()), txtNaziv.Text.ToString().TrimEnd(), txtUNCode.Text, txtKlasa.Text);
             }
             FillGV();
             tsNew.Enabled = true;
