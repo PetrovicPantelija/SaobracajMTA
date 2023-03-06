@@ -93,6 +93,16 @@ namespace Saobracaj.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap excel_icon_transparent_10 {
+            get {
+                object obj = ResourceManager.GetObject("excel-icon-transparent-10", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LEGET_colorP {
             get {
                 object obj = ResourceManager.GetObject("LEGET-colorP", resourceCulture);

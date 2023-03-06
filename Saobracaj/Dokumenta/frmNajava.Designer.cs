@@ -56,6 +56,7 @@
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.txtOpis = new System.Windows.Forms.TextBox();
             this.lblNaziv = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -174,11 +175,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.cboSerija = new System.Windows.Forms.ComboBox();
+            this.label43 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.label42 = new System.Windows.Forms.Label();
             this.txtOznaka = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nedraDataSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nedraDataSet)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -260,10 +263,11 @@
             this.toolStripButton3,
             this.toolStripButton4,
             this.toolStripButton5,
-            this.toolStripButton6});
+            this.toolStripButton6,
+            this.toolStripButton7});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1825, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1797, 27);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "Štampaj izveštaj";
             // 
@@ -397,6 +401,15 @@
             this.toolStripButton6.Size = new System.Drawing.Size(60, 24);
             this.toolStripButton6.Text = "LOG";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
+            // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.Image = global::Saobracaj.Properties.Resources.excel_icon_transparent_10;
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(132, 24);
+            this.toolStripButton7.Text = "Excel kašnjenja";
+            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
             // 
             // txtOpis
             // 
@@ -778,7 +791,7 @@
             this.tabNajave.Name = "tabNajave";
             this.tabNajave.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tabNajave.SelectedIndex = 0;
-            this.tabNajave.Size = new System.Drawing.Size(1807, 271);
+            this.tabNajave.Size = new System.Drawing.Size(1779, 305);
             this.tabNajave.TabIndex = 75;
             this.tabNajave.SelectedIndexChanged += new System.EventHandler(this.tabNajave_SelectedIndexChanged);
             // 
@@ -789,7 +802,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(1799, 242);
+            this.tabPage1.Size = new System.Drawing.Size(1771, 276);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Poslovi";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -802,8 +815,9 @@
             this.dataGridView1.Location = new System.Drawing.Point(4, 4);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1791, 234);
+            this.dataGridView1.Size = new System.Drawing.Size(1763, 268);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -815,7 +829,7 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(1799, 242);
+            this.tabPage2.Size = new System.Drawing.Size(1771, 276);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Prevoznici";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -828,7 +842,7 @@
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(1791, 234);
+            this.dataGridView2.Size = new System.Drawing.Size(1763, 268);
             this.dataGridView2.TabIndex = 1;
             this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
@@ -837,7 +851,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1799, 242);
+            this.tabPage3.Size = new System.Drawing.Size(1771, 276);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Verzije";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -848,7 +862,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1799, 242);
+            this.tabPage4.Size = new System.Drawing.Size(1771, 276);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Vagoni";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -875,7 +889,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 25);
             this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1799, 242);
+            this.tabPage5.Size = new System.Drawing.Size(1771, 276);
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Štampa";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -902,7 +916,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 25);
             this.tabPage6.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1799, 242);
+            this.tabPage6.Size = new System.Drawing.Size(1771, 276);
             this.tabPage6.TabIndex = 6;
             this.tabPage6.Text = "Komentar";
             // 
@@ -926,7 +940,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 25);
             this.tabPage7.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(1799, 242);
+            this.tabPage7.Size = new System.Drawing.Size(1771, 276);
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "Dodatne usluge";
             // 
@@ -999,7 +1013,7 @@
             this.tabPage8.Location = new System.Drawing.Point(4, 25);
             this.tabPage8.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(1799, 242);
+            this.tabPage8.Size = new System.Drawing.Size(1771, 276);
             this.tabPage8.TabIndex = 8;
             this.tabPage8.Text = "Deljenje voza";
             // 
@@ -1801,12 +1815,14 @@
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.label14);
+            this.groupBox3.Controls.Add(this.cboSerija);
             this.groupBox3.Controls.Add(this.cboNHM2);
             this.groupBox3.Controls.Add(this.label36);
             this.groupBox3.Controls.Add(this.txtNetoTezina);
             this.groupBox3.Controls.Add(this.txtDuzinaM);
             this.groupBox3.Controls.Add(this.txtBrojKola);
             this.groupBox3.Controls.Add(this.label32);
+            this.groupBox3.Controls.Add(this.label43);
             this.groupBox3.Controls.Add(this.label31);
             this.groupBox3.Controls.Add(this.txtNetoTezinaM);
             this.groupBox3.Controls.Add(this.label23);
@@ -1821,11 +1837,32 @@
             this.groupBox3.Controls.Add(this.chkAdHoc);
             this.groupBox3.Location = new System.Drawing.Point(890, 34);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(300, 417);
+            this.groupBox3.Size = new System.Drawing.Size(321, 417);
             this.groupBox3.TabIndex = 170;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Kola";
             this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+            // 
+            // cboSerija
+            // 
+            this.cboSerija.BackColor = System.Drawing.Color.White;
+            this.cboSerija.ForeColor = System.Drawing.Color.Black;
+            this.cboSerija.FormattingEnabled = true;
+            this.cboSerija.Location = new System.Drawing.Point(208, 276);
+            this.cboSerija.Margin = new System.Windows.Forms.Padding(4);
+            this.cboSerija.Name = "cboSerija";
+            this.cboSerija.Size = new System.Drawing.Size(88, 24);
+            this.cboSerija.TabIndex = 164;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(160, 280);
+            this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(48, 17);
+            this.label43.TabIndex = 96;
+            this.label43.Text = "Serija:";
             // 
             // groupBox4
             // 
@@ -1892,16 +1929,6 @@
             this.groupBox6.Text = "Osnovni podaci";
             this.groupBox6.Enter += new System.EventHandler(this.groupBox6_Enter);
             // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(206, 59);
-            this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(76, 21);
-            this.label42.TabIndex = 6;
-            this.label42.Text = "Oznaka:";
-            // 
             // txtOznaka
             // 
             this.txtOznaka.Location = new System.Drawing.Point(274, 57);
@@ -1910,12 +1937,22 @@
             this.txtOznaka.Size = new System.Drawing.Size(98, 22);
             this.txtOznaka.TabIndex = 1;
             // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(206, 59);
+            this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(61, 17);
+            this.label42.TabIndex = 6;
+            this.label42.Text = "Oznaka:";
+            // 
             // frmNajava
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1825, 745);
+            this.ClientSize = new System.Drawing.Size(1797, 779);
             this.Controls.Add(this.groupBox6);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -2126,5 +2163,8 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TextBox txtOznaka;
         private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.ComboBox cboSerija;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.ToolStripButton toolStripButton7;
     }
 }
