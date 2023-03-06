@@ -1457,6 +1457,7 @@
     <Compile Include="Izvoz\InsertInspekciskiTretman.cs" />
     <Compile Include="Izvoz\InsertIzvoz.cs" />
     <Compile Include="Izvoz\InsertIzvozDokumenta.cs" />
+    <Compile Include="Izvoz\InsertIzvozKonacna.cs" />
     <Compile Include="Izvoz\InsertIzvozKonacnaZaglavlje.cs" />
     <Compile Include="Izvoz\InsertKrajnjaDestinacija.cs" />
     <Compile Include="Izvoz\InsertMestaUtovara.cs" />

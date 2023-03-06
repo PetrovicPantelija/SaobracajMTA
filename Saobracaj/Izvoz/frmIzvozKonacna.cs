@@ -27,7 +27,7 @@ namespace Saobracaj.Izvoz
         public frmIzvozKonacna(int ID)
         {
             InitializeComponent();
-            FillGV();
+            FillDG();
 
             FillCombo();
             VratiPodatke(ID);
