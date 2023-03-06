@@ -223,7 +223,7 @@ namespace Saobracaj.Izvoz
                 }
             }
         }
-        public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena)
+        public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed)
         {
             //  @IdNadredjena int,
             //@IDVrstaManipulacije int,
@@ -255,6 +255,20 @@ namespace Saobracaj.Izvoz
             cena.Direction = ParameterDirection.Input;
             cena.Value = Cena;
             cmd.Parameters.Add(cena);
+
+            SqlParameter kolicina = new SqlParameter();
+            kolicina.ParameterName = "@Kolicina";
+            kolicina.SqlDbType = SqlDbType.Decimal;
+            kolicina.Direction = ParameterDirection.Input;
+            kolicina.Value = Kolicina;
+            cmd.Parameters.Add(kolicina);
+
+            SqlParameter orgjed = new SqlParameter();
+            orgjed.ParameterName = "@OrgJed";
+            orgjed.SqlDbType = SqlDbType.Int;
+            orgjed.Direction = ParameterDirection.Input;
+            orgjed.Value = OrgJed;
+            cmd.Parameters.Add(orgjed);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -291,7 +305,7 @@ namespace Saobracaj.Izvoz
             }
         }
 
-        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena)
+        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed)
         {
             //  @IdNadredjena int,
             //@IDVrstaManipulacije int,
@@ -323,6 +337,20 @@ namespace Saobracaj.Izvoz
             cena.Direction = ParameterDirection.Input;
             cena.Value = Cena;
             cmd.Parameters.Add(cena);
+
+            SqlParameter kolicina = new SqlParameter();
+            kolicina.ParameterName = "@Kolicina";
+            kolicina.SqlDbType = SqlDbType.Decimal;
+            kolicina.Direction = ParameterDirection.Input;
+            kolicina.Value = Kolicina;
+            cmd.Parameters.Add(kolicina);
+
+            SqlParameter orgjed = new SqlParameter();
+            orgjed.ParameterName = "@OrgJed";
+            orgjed.SqlDbType = SqlDbType.Int;
+            orgjed.Direction = ParameterDirection.Input;
+            orgjed.Value = OrgJed;
+            cmd.Parameters.Add(orgjed);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -1023,7 +1051,7 @@ namespace Saobracaj.Izvoz
                            int NacinPakovanja, int NacinPretovara, string DodatneNapomeneDrumski, int Vaganje,
                            decimal VGMTezina, decimal Tara, decimal VGMBrod, int Izvoznik,
                            int Klijent1, int Napomena1REf, int DobijenNalogKlijent1, int Klijent2,
-                           int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, int IDNadredjena)
+                           int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, int IDNadredjena, string Vozilo, string Vozac)
         {
 
 
@@ -1032,7 +1060,7 @@ namespace Saobracaj.Izvoz
 
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "UpdateIzvoz";
+            cmd.CommandText = "UpdateIzvozKonacna";
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter id = new SqlParameter();
@@ -1408,6 +1436,22 @@ namespace Saobracaj.Izvoz
             idnadredjena.Direction = ParameterDirection.Input;
             idnadredjena.Value = IDNadredjena;
             cmd.Parameters.Add(idnadredjena);
+
+            SqlParameter vozilo = new SqlParameter();
+            vozilo.ParameterName = "@Vozilo";
+            vozilo.SqlDbType = SqlDbType.NVarChar;
+            vozilo.Size = 50;
+            vozilo.Direction = ParameterDirection.Input;
+            vozilo.Value = Vozilo;
+            cmd.Parameters.Add(vozilo);
+
+            SqlParameter vozac = new SqlParameter();
+            vozac.ParameterName = "@Vozac";
+            vozac.SqlDbType = SqlDbType.NVarChar;
+            vozac.Size = 50;
+            vozac.Direction = ParameterDirection.Input;
+            vozac.Value = Vozac;
+            cmd.Parameters.Add(vozac);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

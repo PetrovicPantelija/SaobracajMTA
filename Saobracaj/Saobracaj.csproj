@@ -1375,6 +1375,12 @@
     <Compile Include="Izvoz\frmAdresaStatusVozila.Designer.cs">
       <DependentUpon>frmAdresaStatusVozila.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\frmFormiranjePlanaIzvoz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmFormiranjePlanaIzvoz.Designer.cs">
+      <DependentUpon>frmFormiranjePlanaIzvoz.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmInspekciskiTretman.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1404,6 +1410,12 @@
     </Compile>
     <Compile Include="Izvoz\frmIzvozKonacnaZaglavlje.Designer.cs">
       <DependentUpon>frmIzvozKonacnaZaglavlje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvoz\frmIzvozUnosManipulacije.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmIzvozUnosManipulacije.Designer.cs">
+      <DependentUpon>frmIzvozUnosManipulacije.cs</DependentUpon>
     </Compile>
     <Compile Include="Izvoz\frmKrajnjaDestinacija.cs">
       <SubType>Form</SubType>
@@ -3356,6 +3368,9 @@
     <EmbeddedResource Include="Izvoz\frmAdresaStatusVozila.resx">
       <DependentUpon>frmAdresaStatusVozila.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmFormiranjePlanaIzvoz.resx">
+      <DependentUpon>frmFormiranjePlanaIzvoz.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmInspekciskiTretman.resx">
       <DependentUpon>frmInspekciskiTretman.cs</DependentUpon>
     </EmbeddedResource>
@@ -3370,6 +3385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmIzvozKonacnaZaglavlje.resx">
       <DependentUpon>frmIzvozKonacnaZaglavlje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmIzvozUnosManipulacije.resx">
+      <DependentUpon>frmIzvozUnosManipulacije.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmKrajnjaDestinacija.resx">
       <DependentUpon>frmKrajnjaDestinacija.cs</DependentUpon>

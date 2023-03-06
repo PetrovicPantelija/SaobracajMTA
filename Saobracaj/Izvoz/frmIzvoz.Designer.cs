@@ -151,13 +151,13 @@ namespace Saobracaj.Izvoz
             this.txtRef2 = new System.Windows.Forms.TextBox();
             this.label48 = new System.Windows.Forms.Label();
             this.txtRef1 = new System.Windows.Forms.TextBox();
-            this.cboKlijent2 = new System.Windows.Forms.ComboBox();
+            this.cboNalogodavac2 = new System.Windows.Forms.ComboBox();
             this.label46 = new System.Windows.Forms.Label();
-            this.cboKlijent1 = new System.Windows.Forms.ComboBox();
+            this.cboNalogodavac1 = new System.Windows.Forms.ComboBox();
             this.label42 = new System.Windows.Forms.Label();
             this.label50 = new System.Windows.Forms.Label();
             this.txtRef3 = new System.Windows.Forms.TextBox();
-            this.cboKlijent3 = new System.Windows.Forms.ComboBox();
+            this.cboNalogodavac3 = new System.Windows.Forms.ComboBox();
             this.label47 = new System.Windows.Forms.Label();
             this.cboDobijenNalog = new System.Windows.Forms.CheckBox();
             this.cboSpediterURijeci = new System.Windows.Forms.ComboBox();
@@ -177,6 +177,7 @@ namespace Saobracaj.Izvoz
             this.txtVozilo = new System.Windows.Forms.TextBox();
             this.label45 = new System.Windows.Forms.Label();
             this.txtVozac = new System.Windows.Forms.TextBox();
+            this.button14 = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNetoR)).BeginInit();
@@ -1264,41 +1265,41 @@ namespace Saobracaj.Izvoz
             this.txtRef1.TabIndex = 54;
             this.txtRef1.Text = "0";
             // 
-            // cboKlijent2
+            // cboNalogodavac2
             // 
-            this.cboKlijent2.FormattingEnabled = true;
-            this.cboKlijent2.ItemHeight = 16;
-            this.cboKlijent2.Location = new System.Drawing.Point(1393, 478);
-            this.cboKlijent2.Name = "cboKlijent2";
-            this.cboKlijent2.Size = new System.Drawing.Size(239, 24);
-            this.cboKlijent2.TabIndex = 56;
+            this.cboNalogodavac2.FormattingEnabled = true;
+            this.cboNalogodavac2.ItemHeight = 16;
+            this.cboNalogodavac2.Location = new System.Drawing.Point(1393, 478);
+            this.cboNalogodavac2.Name = "cboNalogodavac2";
+            this.cboNalogodavac2.Size = new System.Drawing.Size(239, 24);
+            this.cboNalogodavac2.TabIndex = 56;
             // 
             // label46
             // 
             this.label46.AutoSize = true;
             this.label46.Location = new System.Drawing.Point(1393, 455);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(58, 17);
+            this.label46.Size = new System.Drawing.Size(103, 17);
             this.label46.TabIndex = 264;
-            this.label46.Text = "Klijent 2";
+            this.label46.Text = "Nalogodavac 2";
             // 
-            // cboKlijent1
+            // cboNalogodavac1
             // 
-            this.cboKlijent1.FormattingEnabled = true;
-            this.cboKlijent1.ItemHeight = 16;
-            this.cboKlijent1.Location = new System.Drawing.Point(1393, 320);
-            this.cboKlijent1.Name = "cboKlijent1";
-            this.cboKlijent1.Size = new System.Drawing.Size(239, 24);
-            this.cboKlijent1.TabIndex = 53;
+            this.cboNalogodavac1.FormattingEnabled = true;
+            this.cboNalogodavac1.ItemHeight = 16;
+            this.cboNalogodavac1.Location = new System.Drawing.Point(1393, 320);
+            this.cboNalogodavac1.Name = "cboNalogodavac1";
+            this.cboNalogodavac1.Size = new System.Drawing.Size(239, 24);
+            this.cboNalogodavac1.TabIndex = 53;
             // 
             // label42
             // 
             this.label42.AutoSize = true;
             this.label42.Location = new System.Drawing.Point(1393, 300);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(58, 17);
+            this.label42.Size = new System.Drawing.Size(103, 17);
             this.label42.TabIndex = 263;
-            this.label42.Text = "Klijent 1";
+            this.label42.Text = "Nalogodavac 1";
             // 
             // label50
             // 
@@ -1317,23 +1318,23 @@ namespace Saobracaj.Izvoz
             this.txtRef3.TabIndex = 59;
             this.txtRef3.Text = "0";
             // 
-            // cboKlijent3
+            // cboNalogodavac3
             // 
-            this.cboKlijent3.FormattingEnabled = true;
-            this.cboKlijent3.ItemHeight = 16;
-            this.cboKlijent3.Location = new System.Drawing.Point(1395, 582);
-            this.cboKlijent3.Name = "cboKlijent3";
-            this.cboKlijent3.Size = new System.Drawing.Size(239, 24);
-            this.cboKlijent3.TabIndex = 58;
+            this.cboNalogodavac3.FormattingEnabled = true;
+            this.cboNalogodavac3.ItemHeight = 16;
+            this.cboNalogodavac3.Location = new System.Drawing.Point(1395, 582);
+            this.cboNalogodavac3.Name = "cboNalogodavac3";
+            this.cboNalogodavac3.Size = new System.Drawing.Size(239, 24);
+            this.cboNalogodavac3.TabIndex = 58;
             // 
             // label47
             // 
             this.label47.AutoSize = true;
             this.label47.Location = new System.Drawing.Point(1393, 561);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(58, 17);
+            this.label47.Size = new System.Drawing.Size(103, 17);
             this.label47.TabIndex = 269;
-            this.label47.Text = "Klijent 3";
+            this.label47.Text = "Nalogodavac 3";
             // 
             // cboDobijenNalog
             // 
@@ -1420,10 +1421,11 @@ namespace Saobracaj.Izvoz
             this.panel1.Controls.Add(this.dataGridView6);
             this.panel1.Controls.Add(this.dataGridView5);
             this.panel1.Controls.Add(this.label55);
-            this.panel1.Location = new System.Drawing.Point(423, 257);
+            this.panel1.Location = new System.Drawing.Point(423, 431);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(139, 446);
+            this.panel1.Size = new System.Drawing.Size(139, 272);
             this.panel1.TabIndex = 276;
+            this.panel1.Visible = false;
             // 
             // button10
             // 
@@ -1449,7 +1451,6 @@ namespace Saobracaj.Izvoz
             this.button9.TabIndex = 24;
             this.button9.Text = "V V V V V";
             this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // label56
             // 
@@ -1591,12 +1592,26 @@ namespace Saobracaj.Izvoz
             this.txtVozac.Size = new System.Drawing.Size(243, 22);
             this.txtVozac.TabIndex = 44;
             // 
+            // button14
+            // 
+            this.button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button14.Location = new System.Drawing.Point(423, 279);
+            this.button14.Margin = new System.Windows.Forms.Padding(4);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(139, 145);
+            this.button14.TabIndex = 282;
+            this.button14.Text = "Unos manipulacija";
+            this.button14.UseVisualStyleBackColor = false;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
             // frmIzvoz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1731, 991);
+            this.Controls.Add(this.button14);
             this.Controls.Add(this.label45);
             this.Controls.Add(this.txtVozac);
             this.Controls.Add(this.label15);
@@ -1610,15 +1625,15 @@ namespace Saobracaj.Izvoz
             this.Controls.Add(this.cboDobijenNalog);
             this.Controls.Add(this.label50);
             this.Controls.Add(this.txtRef3);
-            this.Controls.Add(this.cboKlijent3);
+            this.Controls.Add(this.cboNalogodavac3);
             this.Controls.Add(this.label47);
             this.Controls.Add(this.label49);
             this.Controls.Add(this.txtRef2);
             this.Controls.Add(this.label48);
             this.Controls.Add(this.txtRef1);
-            this.Controls.Add(this.cboKlijent2);
+            this.Controls.Add(this.cboNalogodavac2);
             this.Controls.Add(this.label46);
-            this.Controls.Add(this.cboKlijent1);
+            this.Controls.Add(this.cboNalogodavac1);
             this.Controls.Add(this.label42);
             this.Controls.Add(this.cboIzvoznik);
             this.Controls.Add(this.label41);
@@ -1857,13 +1872,13 @@ namespace Saobracaj.Izvoz
         private System.Windows.Forms.TextBox txtRef2;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.TextBox txtRef1;
-        private System.Windows.Forms.ComboBox cboKlijent2;
+        private System.Windows.Forms.ComboBox cboNalogodavac2;
         private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.ComboBox cboKlijent1;
+        private System.Windows.Forms.ComboBox cboNalogodavac1;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.TextBox txtRef3;
-        private System.Windows.Forms.ComboBox cboKlijent3;
+        private System.Windows.Forms.ComboBox cboNalogodavac3;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.CheckBox cboDobijenNalog;
         private System.Windows.Forms.ComboBox cboSpediterURijeci;
@@ -1883,5 +1898,6 @@ namespace Saobracaj.Izvoz
         private System.Windows.Forms.TextBox txtVozilo;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.TextBox txtVozac;
+        private System.Windows.Forms.Button button14;
     }
 }

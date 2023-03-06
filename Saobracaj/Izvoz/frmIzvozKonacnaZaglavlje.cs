@@ -17,10 +17,17 @@ namespace Saobracaj.Izvoz
     {
 
         bool status = false;
+        int pomVoz = 0;
         public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         public frmIzvozKonacnaZaglavlje()
         {
             InitializeComponent();
+        }
+
+        public frmIzvozKonacnaZaglavlje(int Voz)
+        {
+            InitializeComponent();
+            pomVoz = Voz;
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -144,6 +151,9 @@ namespace Saobracaj.Izvoz
 
         private void frmIzvozKonacnaZaglavlje_Load(object sender, EventArgs e)
         {
+            
+
+
             SqlConnection conn = new SqlConnection(connection);
 
             var voz = "select ID, (Cast(ID as NVarChar(10)) + '-'+Cast(BrVoza as NVarchar(15)) + '-' + Relacija + '-' + Cast(VremePolaska as nvarchar(20))) as Naziv   from Voz ";
@@ -153,14 +163,40 @@ namespace Saobracaj.Izvoz
             cboVoz.DataSource = vozSDS.Tables[0];
             cboVoz.DisplayMember = "Naziv";
             cboVoz.ValueMember = "ID";
+
+            if (pomVoz > 1)
+            {
+                cboVoz.SelectedValue = pomVoz;
+
+            }
+
+
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
+
             VratiVoz();
             RefreshDataGrid();
         }
+        private void VratiZadnjiBroj()
+        {
 
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Max([ID]) as ID from IzvozKonacnaZaglavlje", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtID.Text = dr["ID"].ToString();
+            }
+
+            con.Close();
+        }
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -178,6 +214,30 @@ namespace Saobracaj.Izvoz
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
+        }
+
+        private void dataGridView5_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txtID.Text = row.Cells[0].Value.ToString();
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            frmFormiranjePlanaIzvoz fplan = new frmFormiranjePlanaIzvoz(Convert.ToInt32(txtID.Text));
+            fplan.Show();
         }
     }
 }

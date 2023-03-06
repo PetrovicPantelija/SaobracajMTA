@@ -110,8 +110,9 @@ namespace Saobracaj.Izvoz
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(107, 24);
-            this.toolStripButton1.Text = "Napravi nalog";
+            this.toolStripButton1.Size = new System.Drawing.Size(243, 24);
+            this.toolStripButton1.Text = "Dopuna kontejnera nerasporedjeni";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // dataGridView5
             // 
@@ -126,6 +127,7 @@ namespace Saobracaj.Izvoz
             this.dataGridView5.RowHeadersWidth = 51;
             this.dataGridView5.Size = new System.Drawing.Size(922, 81);
             this.dataGridView5.TabIndex = 167;
+            this.dataGridView5.SelectionChanged += new System.EventHandler(this.dataGridView5_SelectionChanged);
             // 
             // label44
             // 

@@ -340,7 +340,7 @@ namespace Saobracaj.Uvoz
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(58, 17);
             this.label2.TabIndex = 220;
-            this.label2.Text = "Uvoznik";
+            this.label2.Text = "Izvoznik";
             // 
             // button3
             // 

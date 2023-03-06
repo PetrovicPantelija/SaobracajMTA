@@ -608,5 +608,11 @@ namespace Testiranje.Dokumeta
             Saobracaj.Uvoz.frmUvozKonacnaZaglavlje fukz = new Saobracaj.Uvoz.frmUvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text));
             fukz.Show();
         }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            Saobracaj.Izvoz.frmIzvozKonacnaZaglavlje fukz = new Saobracaj.Izvoz.frmIzvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text));
+            fukz.Show();
+        }
     }
 }

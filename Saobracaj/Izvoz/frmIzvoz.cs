@@ -124,11 +124,11 @@ namespace Saobracaj.Izvoz
                 txtTaraKontejnera.Value = Convert.ToDecimal(dr["Tara"].ToString());
                 txVGMBrodBruto.Value= Convert.ToDecimal(dr["VGMBrod"].ToString());
                 cboIzvoznik.SelectedValue = Convert.ToInt32(dr["Izvoznik"].ToString());
-                cboKlijent1.SelectedValue = Convert.ToInt32(dr["Klijent1"].ToString());
+                cboNalogodavac1.SelectedValue = Convert.ToInt32(dr["Klijent1"].ToString());
                 txtRef1.Text = dr["Napomena1REf"].ToString();
-                cboKlijent2.SelectedValue = Convert.ToInt32(dr["Klijent2"].ToString());
+                cboNalogodavac2.SelectedValue = Convert.ToInt32(dr["Klijent2"].ToString());
                 txtRef2.Text = dr["Napomena2REf"].ToString();
-                cboKlijent3.SelectedValue = Convert.ToInt32(dr["Klijent3"].ToString());
+                cboNalogodavac3.SelectedValue = Convert.ToInt32(dr["Klijent3"].ToString());
                 txtRef3.Text = dr["Napomena3REf"].ToString();
                 cboSpediterURijeci.SelectedValue = Convert.ToInt32(dr["SpediterRijeka"].ToString());
 
@@ -552,25 +552,25 @@ namespace Saobracaj.Izvoz
             var nal1AD = new SqlDataAdapter(nalogodavac1, conn);
             var nal1DS = new DataSet();
             nal1AD.Fill(nal1DS);
-            cboKlijent1.DataSource = nal1DS.Tables[0];
-            cboKlijent1.DisplayMember = "PaNaziv";
-            cboKlijent1.ValueMember = "PaSifra";
+            cboNalogodavac1.DataSource = nal1DS.Tables[0];
+            cboNalogodavac1.DisplayMember = "PaNaziv";
+            cboNalogodavac1.ValueMember = "PaSifra";
 
             var nalogodavac2 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
             var nal2AD = new SqlDataAdapter(nalogodavac2, conn);
             var nal2DS = new DataSet();
             nal2AD.Fill(nal2DS);
-            cboKlijent2.DataSource = nal2DS.Tables[0];
-            cboKlijent2.DisplayMember = "PaNaziv";
-            cboKlijent2.ValueMember = "PaSifra";
+            cboNalogodavac2.DataSource = nal2DS.Tables[0];
+            cboNalogodavac2.DisplayMember = "PaNaziv";
+            cboNalogodavac2.ValueMember = "PaSifra";
 
             var nalogodavac3 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
             var nal3AD = new SqlDataAdapter(nalogodavac3, conn);
             var nal3DS = new DataSet();
             nal3AD.Fill(nal3DS);
-            cboKlijent3.DataSource = nal3DS.Tables[0];
-            cboKlijent3.DisplayMember = "PaNaziv";
-            cboKlijent3.ValueMember = "PaSifra";
+            cboNalogodavac3.DataSource = nal3DS.Tables[0];
+            cboNalogodavac3.DisplayMember = "PaNaziv";
+            cboNalogodavac3.ValueMember = "PaSifra";
 
             var nalogodavac4 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
             var nal4AD = new SqlDataAdapter(nalogodavac4, conn);
@@ -701,9 +701,9 @@ namespace Saobracaj.Izvoz
                 Convert.ToInt32(cboReexport.SelectedValue), Convert.ToInt32(cboInspekciskiTretman.SelectedValue), Convert.ToDecimal(txtAutoDana.Value),
                 pomNajavaVozila, Convert.ToInt32(cbNacinPakovanja.SelectedValue), pomNacinPretovara, txtDodatneNapomene.Text, pomVaganje, Convert.ToDecimal(txtOdvaganaTezina.Value),
                 Convert.ToDecimal(txtTaraKontejnera.Value), Convert.ToDecimal(txVGMBrodBruto.Value), Convert.ToInt32(cboIzvoznik.SelectedValue),
-                Convert.ToInt32(cboKlijent1.SelectedValue), Convert.ToInt32(txtRef1.Text), pomDobijenNalog,
-                Convert.ToInt32(cboKlijent2.SelectedValue), Convert.ToInt32(txtRef2.Text),
-                Convert.ToInt32(cboKlijent3.SelectedValue), Convert.ToInt32(txtRef3.Text),
+                Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(txtRef1.Text), pomDobijenNalog,
+                Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(txtRef2.Text),
+                Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(txtRef3.Text),
                  Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text, Convert.ToInt32(txtADR.SelectedValue), txtVozilo.Text, txtVozac.Text);
             //Fale ostale plombe
             // Convert.ToDecimal(txtDodatneNapomene.Text -- treba staviti nvarchar
@@ -835,14 +835,14 @@ namespace Saobracaj.Izvoz
             dataGridView6.Columns[3].Width = 50;
             dataGridView6.Columns[3].Visible = false;
         }
-
+/*
         private void UbaciStavkuUsluge(int ID, int Manipulacija, double Cena)
         {
             InsertIzvoz uvK = new InsertIzvoz();
             uvK.InsUbaciUslugu(Convert.ToInt32(txtID.Text), Manipulacija, Cena);
             FillDG8();
         }
-
+*/
         private void FillDG8()
         {
             var select = "select  IzvozVrstaManipulacije.ID, VrstaManipulacije.Naziv, IzvozVrstaManipulacije.Cena, VrstaManipulacije.ID from IzvozVrstaManipulacije " +
@@ -888,31 +888,7 @@ namespace Saobracaj.Izvoz
 
         }
 
-        private void button9_Click(object sender, EventArgs e)
-        {
-            int pomID = 0;
-            int pomManupulacija = 0;
-            double pomCena = 0;
-            try
-            {
-                foreach (DataGridViewRow row in dataGridView6.Rows)
-                {
-                    if (row.Selected)
-                    {
-                        pomID = Convert.ToInt32(row.Cells[0].Value.ToString());
-                        pomManupulacija = Convert.ToInt32(row.Cells[3].Value.ToString());
-                        pomCena = Convert.ToDouble(row.Cells[2].Value.ToString());
-                        UbaciStavkuUsluge(pomID, pomManupulacija, pomCena);
-                    }
-                }
-
-
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
-        }
+      
 
         private void FillDG2()
         {
@@ -1084,6 +1060,15 @@ namespace Saobracaj.Izvoz
                 txtVozilo.Enabled = true;
                 txtVozac.Enabled = true;
             }
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text == "")
+            { txtID.Text = "0"; }
+            // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
+            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue));
+            um.Show();
         }
     }
 }
