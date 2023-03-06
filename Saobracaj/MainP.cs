@@ -1680,7 +1680,8 @@ namespace Saobracaj
 
         private void toolStripButton220_Click(object sender, EventArgs e)
         {
-
+            frmVagoniSerije frm = new frmVagoniSerije();
+            frm.Show();
         }
     }
 }

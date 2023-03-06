@@ -14,6 +14,8 @@ using System.Net;
 using System.Net.Mail; 
 using Microsoft.Reporting.WinForms;
 using Syncfusion.Windows.Forms.Grid.Grouping;
+using Microsoft.Office.Interop.Excel;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Saobracaj.Dokumenta
 {
@@ -164,7 +166,7 @@ namespace Saobracaj.Dokumenta
 
         private void RefreshDataGrid()
         {
-            var select = "  SELECT    najava.ID, stanice_4.opis as Granicna, " +
+            var select = "  SELECT    najava.ID,najava.Oznaka, stanice_4.opis as Granicna, " +
             " Najava.BrojNajave, Najava.Voz, Partnerji_1.PaNaziv as Posiljalac, " +
             " Partnerji.PaNaziv AS Prevoznik, Partnerji_2.PaNaziv AS Primalac, " +
             " stanice.Opis AS Uputna, stanice_1.Opis AS Otpravna,  Najava.PrevozniPut as Relacija , " +
@@ -172,7 +174,7 @@ namespace Saobracaj.Dokumenta
             "  Najava.PredvidjenaPredaja, Najava.StvarnaPredaja, " +
      "   CASE WHEN Najava.RID > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StatusN , " +
       "     Najava.ONBroj,  Najava.Status, Najava.Tezina, Najava.Duzina, " +
-       "   Najava.BrojKola, Najava.NetoTezinaM, Najava.DatumUnosa, Partnerji_3.PaNaziv as PrevoznikZa, Najava.Faktura, Najava.Korisnik " +
+       "   Najava.BrojKola, Najava.NetoTezinaM, Najava.DatumUnosa, Partnerji_3.PaNaziv as PrevoznikZa, Najava.Faktura, Najava.Korisnik,Najava.SerijaVagona " +
         "   FROM  Najava INNER JOIN Partnerji AS Partnerji_1 ON " +
          "  Najava.Posiljalac = Partnerji_1.PaSifra " +
           " INNER JOIN Partnerji ON Najava.Prevoznik = Partnerji.PaSifra " +
@@ -200,7 +202,7 @@ namespace Saobracaj.Dokumenta
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
-
+            
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -212,103 +214,111 @@ namespace Saobracaj.Dokumenta
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-
+            
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
             dataGridView1.Columns[0].Width = 70;
 
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Granična";
-            dataGridView1.Columns[1].Width = 100;
+            DataGridViewColumn column1 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Oznaka";
+            dataGridView1.Columns[1].Width = 70;
 
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Broj";
-            dataGridView1.Columns[2].Width = 50;
+            DataGridViewColumn column2 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Granična";
+            dataGridView1.Columns[2].Width = 100;
 
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Voz";
+            DataGridViewColumn column3 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Broj";
             dataGridView1.Columns[3].Width = 50;
 
-            DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Posiljalac";
+            DataGridViewColumn column4 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Voz";
             dataGridView1.Columns[4].Width = 50;
 
-            DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Prevoznik";
+            DataGridViewColumn column5 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Posiljalac";
             dataGridView1.Columns[5].Width = 50;
 
-            DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Primalac";
+            DataGridViewColumn column6 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Prevoznik";
             dataGridView1.Columns[6].Width = 50;
 
-            DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Uputna";
+            DataGridViewColumn column7 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Primalac";
             dataGridView1.Columns[7].Width = 50;
 
-             DataGridViewColumn column9 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "Otpravna";
+            DataGridViewColumn column8 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Uputna";
             dataGridView1.Columns[8].Width = 50;
 
-            DataGridViewColumn column10 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Relacija";
-            dataGridView1.Columns[9].Width = 150;
+             DataGridViewColumn column9 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Otpravna";
+            dataGridView1.Columns[9].Width = 50;
+
+            DataGridViewColumn column10 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "Relacija";
+            dataGridView1.Columns[10].Width = 150;
 
 
-            DataGridViewColumn column11 = dataGridView1.Columns[10];
-            dataGridView1.Columns[10].HeaderText = "Predviđeno Primanje";
-            dataGridView1.Columns[10].Width = 100;
-
-            DataGridViewColumn column12 = dataGridView1.Columns[11];
-            dataGridView1.Columns[11].HeaderText = "Stvarno primanje";
+            DataGridViewColumn column11 = dataGridView1.Columns[11];
+            dataGridView1.Columns[11].HeaderText = "Predviđeno Primanje";
             dataGridView1.Columns[11].Width = 100;
 
-            DataGridViewColumn column13 = dataGridView1.Columns[12];
-            dataGridView1.Columns[12].HeaderText = "Predviđena predaja";
+            DataGridViewColumn column12 = dataGridView1.Columns[12];
+            dataGridView1.Columns[12].HeaderText = "Stvarno primanje";
             dataGridView1.Columns[12].Width = 100;
 
-            DataGridViewColumn column14 = dataGridView1.Columns[13];
-            dataGridView1.Columns[13].HeaderText = "Stvarna predaja";
+            DataGridViewColumn column13 = dataGridView1.Columns[13];
+            dataGridView1.Columns[13].HeaderText = "Predviđena predaja";
             dataGridView1.Columns[13].Width = 100;
 
-            DataGridViewColumn column15 = dataGridView1.Columns[14];
-            dataGridView1.Columns[14].HeaderText = "RID";
-            dataGridView1.Columns[14].Width = 50;
+            DataGridViewColumn column14 = dataGridView1.Columns[14];
+            dataGridView1.Columns[14].HeaderText = "Stvarna predaja";
+            dataGridView1.Columns[14].Width = 100;
 
-            DataGridViewColumn column16 = dataGridView1.Columns[15];
-            dataGridView1.Columns[15].HeaderText = "RID broj";
+            DataGridViewColumn column15 = dataGridView1.Columns[15];
+            dataGridView1.Columns[15].HeaderText = "RID";
             dataGridView1.Columns[15].Width = 50;
 
-            DataGridViewColumn column17 = dataGridView1.Columns[16];
-            dataGridView1.Columns[16].HeaderText = "Status";
+            DataGridViewColumn column16 = dataGridView1.Columns[16];
+            dataGridView1.Columns[16].HeaderText = "RID broj";
             dataGridView1.Columns[16].Width = 50;
 
-            DataGridViewColumn column18 = dataGridView1.Columns[17];
-            dataGridView1.Columns[17].HeaderText = "Težina";
+            DataGridViewColumn column17 = dataGridView1.Columns[17];
+            dataGridView1.Columns[17].HeaderText = "Status";
             dataGridView1.Columns[17].Width = 50;
 
-            DataGridViewColumn column19 = dataGridView1.Columns[18];
-            dataGridView1.Columns[18].HeaderText = "Dužina";
+            DataGridViewColumn column18 = dataGridView1.Columns[18];
+            dataGridView1.Columns[18].HeaderText = "Težina";
             dataGridView1.Columns[18].Width = 50;
 
-            DataGridViewColumn column20 = dataGridView1.Columns[19];
-            dataGridView1.Columns[19].HeaderText = "Broj kola";
+            DataGridViewColumn column19 = dataGridView1.Columns[19];
+            dataGridView1.Columns[19].HeaderText = "Dužina";
             dataGridView1.Columns[19].Width = 50;
 
-            DataGridViewColumn column21 = dataGridView1.Columns[20];
-            dataGridView1.Columns[20].HeaderText = "Neto";
+            DataGridViewColumn column20 = dataGridView1.Columns[20];
+            dataGridView1.Columns[20].HeaderText = "Broj kola";
             dataGridView1.Columns[20].Width = 50;
 
-            DataGridViewColumn column22 = dataGridView1.Columns[21];
-            dataGridView1.Columns[21].HeaderText = "Datum promene";
-            dataGridView1.Columns[21].Width = 100;
+            DataGridViewColumn column21 = dataGridView1.Columns[21];
+            dataGridView1.Columns[21].HeaderText = "Neto";
+            dataGridView1.Columns[21].Width = 50;
 
-            DataGridViewColumn column23 = dataGridView1.Columns[22];
-            dataGridView1.Columns[22].HeaderText = "Prevoznik za";
+            DataGridViewColumn column22 = dataGridView1.Columns[22];
+            dataGridView1.Columns[22].HeaderText = "Datum promene";
             dataGridView1.Columns[22].Width = 100;
 
-            DataGridViewColumn column24 = dataGridView1.Columns[23];
-            dataGridView1.Columns[23].HeaderText = "Faktura";
-            dataGridView1.Columns[23].Width = 80;
+            DataGridViewColumn column23 = dataGridView1.Columns[23];
+            dataGridView1.Columns[23].HeaderText = "Prevoznik za";
+            dataGridView1.Columns[23].Width = 100;
+
+            DataGridViewColumn column24 = dataGridView1.Columns[24];
+            dataGridView1.Columns[24].HeaderText = "Faktura";
+            dataGridView1.Columns[24].Width = 80;
+
+            DataGridViewColumn column26 = dataGridView1.Columns[26];
+            dataGridView1.Columns[26].HeaderText = "Serija Vagona";
+            dataGridView1.Columns[26].Width = 50;
 
         }
 
@@ -422,8 +432,9 @@ namespace Saobracaj.Dokumenta
             txtSifra.Text = "";
             txtSifra.Enabled = false;
             txtOpis.Text = "";
+            txtOznaka.Enabled = true;
 
-          
+
             cmbVoz.SelectedValue = 0;
             cboPosiljalac.SelectedValue = 0;
             cboPrevoznik.SelectedValue = 0;
@@ -671,6 +682,13 @@ namespace Saobracaj.Dokumenta
             cboNHM2.DisplayMember = "NHM";
             cboNHM2.ValueMember = "ID";
 
+            var querySerija = "Select ID,Serija From VagoniSerije";
+            SqlDataAdapter da = new SqlDataAdapter(querySerija, c15);
+            DataSet ds16 = new DataSet();
+            da.Fill(ds16);
+            cboSerija.DataSource = ds16.Tables[0];
+            cboSerija.DisplayMember = "Serija";
+            cboSerija.ValueMember = "Serija";
 
             //Tehnologija
 
@@ -757,10 +775,6 @@ namespace Saobracaj.Dokumenta
 
         return 1;
 
-
-
-
-        
         }
         private void LogInsert()
         {
@@ -772,7 +786,6 @@ namespace Saobracaj.Dokumenta
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-
                 int id = Convert.ToInt32(dr["ID"].ToString());
                 string brNajave = dr["BrojNajave"].ToString().TrimEnd();
                 int voz = Convert.ToInt32(dr["Voz"].ToString());
@@ -844,35 +857,56 @@ namespace Saobracaj.Dokumenta
             }
             if (status == true)
             {
-                InsertNajava ins = new InsertNajava();
-                if (chkRID.Checked)
+
+                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                string query = "Select Oznaka From Najava Where Oznaka='" + txtOznaka.Text.ToString().TrimEnd() + "'";
+                SqlConnection conn = new SqlConnection(s_connection);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.HasRows == true || txtOznaka.Text == "")
                 {
-                    PomRID = 1;
+                    MessageBox.Show("Oznaka prevoza već postoji!");
+                    return;
                 }
                 else
                 {
-                    PomRID = 0;
+                    InsertNajava ins = new InsertNajava();
+                    if (chkRID.Checked)
+                    {
+                        PomRID = 1;
+                    }
+                    else
+                    {
+                        PomRID = 0;
+                    }
+
+                    ins.InsNaj(txtOpis.Text, Convert.ToInt32(cmbVoz.SelectedValue), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrevoznik.SelectedValue), Convert.ToInt32(cboOtpravna.SelectedValue), 
+                        Convert.ToInt32(cboUputna.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboNHM.SelectedValue), txtRelacija.Text, Convert.ToDouble(txtNetoTezina.Text), 
+                        Convert.ToDouble(txtDuzinaM.Text), Convert.ToInt32(txtBrojKola.Text), chkRID.Checked, Convert.ToDateTime(dtpPredvidjenoPrimanje.Value), Convert.ToDateTime(dtpStvarnoPrimanje.Value), 
+                        Convert.ToDateTime(dtpPredvidjenaPredaja.Value), Convert.ToDateTime(dtpStvarnaPredaja.Value), Convert.ToInt32(cboStatusPredaje.SelectedValue), txtRID.Text.TrimEnd(), txtRIDBroj.Text.Trim(), 
+                        txtKomentar.Text, Convert.ToInt32(cboVozP.SelectedValue), Convert.ToInt32(cboGranicna.SelectedValue), Convert.ToInt32(cboPlatilac.SelectedValue), chkAdHoc.Checked, 
+                        Convert.ToInt32(cboPrevoznikZa.SelectedValue), txtUgovor.Text, txtZadatak.Text, chkCIM.Checked, KorisnikNajava, txtDispecerRID.Text, Convert.ToInt32(cboTipPrevoza.SelectedValue), 
+                        Convert.ToDouble(txtNetoTezinaM.Value), Convert.ToInt32(multiColumnComboBox1.SelectedValue), PomImaPovrat, Convert.ToInt32(cboTehnologijaID.SelectedValue), 
+                        Convert.ToInt32(cboNHM2.SelectedValue), txtPorDodatno.Text, txtOznaka.Text.ToString().TrimEnd(), cboSerija.SelectedValue.ToString());
+
+
+                    if (chkRID.Checked == true && txtRIDBroj.Text.TrimEnd() == "")
+                    {
+                        PosaljiMailOdjavaDisp("panta0307@gmail.com");
+                        // PosaljiMailOdjavaDisp("ivana.randjelovic@kprevoz.co.rs");
+                        PosaljiMailOdjavaDisp("panta0307@gmail.com");
+                        PosaljiMailOdjavaDisp("panta0307@gmail.com");
+                        PosaljiMailOdjavaDisp("panta0307@gmail.com");
+                        PosaljiMailOdjavaDisp("panta0307@gmail.com");
+                        //PosaljiMail("ivana.randjelovic@kprevoz.co.rs");
+                        //PosaljiMail("vladeta.milosavljevic@kprevoz.co.rs");
+                    }
+                    LogInsert();
+                    RefreshDataGrid();
+                    status = false;
                 }
-
-
-
-                ins.InsNaj(txtOpis.Text, Convert.ToInt32(cmbVoz.SelectedValue), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrevoznik.SelectedValue), Convert.ToInt32(cboOtpravna.SelectedValue), Convert.ToInt32(cboUputna.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboNHM.SelectedValue), txtRelacija.Text, Convert.ToDouble(txtNetoTezina.Text), Convert.ToDouble(txtDuzinaM.Text), Convert.ToInt32(txtBrojKola.Text), chkRID.Checked, Convert.ToDateTime(dtpPredvidjenoPrimanje.Value), Convert.ToDateTime(dtpStvarnoPrimanje.Value), Convert.ToDateTime(dtpPredvidjenaPredaja.Value), Convert.ToDateTime(dtpStvarnaPredaja.Value), Convert.ToInt32(cboStatusPredaje.SelectedValue), txtRID.Text.TrimEnd(), txtRIDBroj.Text.Trim(), txtKomentar.Text, Convert.ToInt32(cboVozP.SelectedValue), Convert.ToInt32(cboGranicna.SelectedValue), Convert.ToInt32(cboPlatilac.SelectedValue), chkAdHoc.Checked, Convert.ToInt32(cboPrevoznikZa.SelectedValue), txtUgovor.Text, txtZadatak.Text, chkCIM.Checked, KorisnikNajava, txtDispecerRID.Text, Convert.ToInt32(cboTipPrevoza.SelectedValue), Convert.ToDouble(txtNetoTezinaM.Value), Convert.ToInt32(multiColumnComboBox1.SelectedValue), PomImaPovrat, Convert.ToInt32(cboTehnologijaID.SelectedValue), Convert.ToInt32(cboNHM2.SelectedValue), txtPorDodatno.Text);
-
-
-                if (chkRID.Checked == true && txtRIDBroj.Text.TrimEnd() == "")
-                {
-                    PosaljiMailOdjavaDisp("milica.p.s@kprevoz.co.rs");
-                    // PosaljiMailOdjavaDisp("ivana.randjelovic@kprevoz.co.rs");
-                    PosaljiMailOdjavaDisp("priprema@kprevoz.co.rs");
-                    PosaljiMailOdjavaDisp("disp@kprevoz.co.rs");
-                    PosaljiMailOdjavaDisp("milos.cpajak@kprevoz.co.rs");
-                    PosaljiMailOdjavaDisp("uros.gligorijevic@kprevoz.co.rs");
-                    //PosaljiMail("ivana.randjelovic@kprevoz.co.rs");
-                    //PosaljiMail("vladeta.milosavljevic@kprevoz.co.rs");
-                }
-                LogInsert();
-                RefreshDataGrid();
-                status = false;
             }
             else
             {
@@ -890,15 +924,15 @@ namespace Saobracaj.Dokumenta
                     Convert.ToInt32(cboGranicna.SelectedValue), Convert.ToInt32(cboPlatilac.SelectedValue), chkAdHoc.Checked,
                     Convert.ToInt32(cboPrevoznikZa.SelectedValue), txtUgovor.Text, txtZadatak.Text, chkCIM.Checked, KorisnikNajava, txtDispecerRID.Text,
                     Convert.ToInt32(cboTipPrevoza.SelectedValue), Convert.ToDouble(txtNetoTezinaM.Value), Convert.ToInt32(multiColumnComboBox1.Text),
-                    PomImaPovrat, Convert.ToInt32(cboTehnologijaID.SelectedValue), Convert.ToInt32(cboNHM2.SelectedValue), txtPorDodatno.Text);
+                    PomImaPovrat, Convert.ToInt32(cboTehnologijaID.SelectedValue), Convert.ToInt32(cboNHM2.SelectedValue), txtPorDodatno.Text, txtOznaka.Text.ToString().TrimEnd(), cboSerija.SelectedValue.ToString());
                 status = false;
                 txtSifra.Enabled = false;
                 RefreshDataGrid();
                 if (chkRID.Checked == true && txtUgovor.Text == "" && Convert.ToInt32(cboStatusPredaje.SelectedValue) == 7)
                 {
-                    PosaljiMailOdjava("milica.p.s@kprevoz.co.rs");
-                    PosaljiMailOdjava("ivana.randjelovic@kprevoz.co.rs");
-                    PosaljiMailOdjava("teodora.novakovic@kprevoz.co.rs");
+                    PosaljiMailOdjava("panta0307@gmail.com");
+                    PosaljiMailOdjava("panta0307@gmail.com");
+                    PosaljiMailOdjava("panta0307@gmail.com");
 
                 }
                 int rid = 0;
@@ -1197,7 +1231,9 @@ namespace Saobracaj.Dokumenta
                     if (row.Selected)
                     {
                         txtSifra.Text = row.Cells[0].Value.ToString();
+                        txtOznaka.Text = row.Cells[1].Value.ToString();
                         VratiPodatkeSelect(txtSifra.Text);
+                        txtOznaka.Enabled = false;
                        // txtOpis.Text = row.Cells[1].Value.ToString();
                     }
                 }
@@ -1366,11 +1402,22 @@ namespace Saobracaj.Dokumenta
 
             }
         }
-
+        public int idMail; 
+        public string oznakaMail; 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            frmSendEmailWithAttacment frmWAtt = new frmSendEmailWithAttacment();
-            frmWAtt.Show();
+            if (txtSifra.Text == "")
+            {
+                MessageBox.Show("Morate izabrati najavu!");
+                return;
+            }
+            else
+            {
+                idMail = Convert.ToInt32(txtSifra.Text);
+                oznakaMail = txtOznaka.Text.ToString().TrimEnd();
+                frmSendEmailWithAttacment frmWAtt = new frmSendEmailWithAttacment(idMail, oznakaMail);
+                frmWAtt.Show();
+            }
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
@@ -1420,7 +1467,7 @@ namespace Saobracaj.Dokumenta
 
             SqlCommand cmd = new SqlCommand("SELECT [ID] ,[BrojNajave] ,[Voz] ,[Posiljalac] ,[Prevoznik],[Otpravna] ,[Uputna] ,[Primalac] ,[RobaNHM] ,[PrevozniPut] " +
             " ,[Tezina] ,[Duzina] ,[BrojKola] ,[RID] ,[PredvidjenoPrimanje] ,[StvarnoPrimanje] ,[PredvidjenaPredaja] ,[StvarnaPredaja] " +
-            " ,[Status] ,[OnBroj] ,[Verzija] ,[Razlog] ,[DatumUnosa] ,[RIDBroj] ,[Komentar], [VozP], [Granicna], Platilac, AdHoc, PrevoznikZa, Faktura, Zadatak, CIM, DispecerRID, TipPrevoza, NetoTezinaM, PorudzbinaID, ImaPovrat, TehnologijaID, RobaNHM2, DodatnoPorudznina FROM [TESTIRANJE].[dbo].[Najava] where ID=" + txtSifra.Text, con);
+            " ,[Status] ,[OnBroj] ,[Verzija] ,[Razlog] ,[DatumUnosa] ,[RIDBroj] ,[Komentar], [VozP], [Granicna], Platilac, AdHoc, PrevoznikZa, Faktura, Zadatak, CIM, DispecerRID, TipPrevoza, NetoTezinaM, PorudzbinaID, ImaPovrat, TehnologijaID, RobaNHM2, DodatnoPorudznina,SerijaVagona FROM [TESTIRANJE].[dbo].[Najava] where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -1511,6 +1558,8 @@ namespace Saobracaj.Dokumenta
                 cboTehnologijaID.SelectedValue = Convert.ToInt32(dr["TehnologijaID"].ToString());
                 cboNHM2.SelectedValue = Convert.ToInt32(dr["RobaNHM2"].ToString());
                 txtPorDodatno.Text = dr["DodatnoPorudznina"].ToString();
+                cboSerija.SelectedValue = dr["SerijaVagona"].ToString();
+
             }
 
             con.Close();
@@ -2722,6 +2771,86 @@ namespace Saobracaj.Dokumenta
             Dokumenta.frmPronadjiVagon pv = new Dokumenta.frmPronadjiVagon();
            
         }
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            var select = "Select Najava.Oznaka,stanice.Opis as Granicna,partnerji.PaNaziv as Posiljalac,partnerji1.PaNaziv as Primalac,stanice1.Opis as Uputna," +
+                "stanice2.Opis as Otpravna,PredvidjenoPrimanje,StvarnoPrimanje,PredvidjenaPredaja,StvarnaPredaja,Status,Tezina,BrojKola,partnerji2.PaNaziv as Platilac," +
+                "(Select(Cast(datediff(SECOND, StvarnoPrimanje, GETDATE()) / 86400 as nvarchar) + ':' + " +
+                "Cast(datediff(SECOND, StvarnoPrimanje, GETDATE()) / 3600 % 24 as nvarchar) + ':' + " +
+                "Cast(datediff(SECOND, StvarnoPrimanje, GETDATE()) / 60 % 60 as nvarchar))) as [Kasnjenje(dani: sati:minuti)] " +
+                "From Najava " +
+                "inner join stanice on Najava.Granicna = Stanice.ID " +
+                "inner join stanice as stanice1 on Najava.Uputna = stanice1.ID " +
+                "inner join stanice as stanice2 on Najava.Otpravna = stanice2.ID " +
+                "inner join partnerji on Najava.Posiljalac = Partnerji.PaSifra " +
+                "inner join partnerji as partnerji1 on Najava.Primalac = partnerji1.PaSifra " +
+                "inner join partnerji as partnerji2 on Najava.Platilac = partnerji2.PaSifra " +
+                "Where(Status=2 or Status = 3 or status = 4 or status=5) and StvarnoPrimanje<>'1900-01-01 00:00:00.000'";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+
+            Excel.Application excel = new Excel.Application();
+            object missing = System.Reflection.Missing.Value;
+            Workbook wBook = excel.Workbooks.Add(missing);
+
+            Worksheet wSheet = new Worksheet();
+            try
+            {
+
+                wSheet = (Worksheet)wBook.Worksheets.get_Item(1);
+                for (int i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+                {
+                    for (int j = 0; j <= ds.Tables[0].Columns.Count - 1; j++)
+                    {
+                        wSheet.Cells[1, 15].EntireRow.Font.Bold = true;
+                        wSheet.Range["A1:O1"].Interior.Color = System.Drawing.Color.Red;
+                        wSheet.Cells[1, "A"] = "Broj najave";
+                        wSheet.Cells[1, "B"] = "Trenutna";
+                        wSheet.Cells[1, "C"] = "Posiljalac";
+                        wSheet.Cells[1, "D"] = "Primalac";
+                        wSheet.Cells[1, "E"] = "Uputna";
+                        wSheet.Cells[1, "F"] = "Otpravna";
+                        wSheet.Cells[1, "G"] = "Predvidjeno Primanje";
+                        wSheet.Cells[1, "H"] = "Stvarno Primanje";
+                        wSheet.Cells[1, "I"] = "Predvidjena Predaja";
+                        wSheet.Cells[1, "J"] = "Stvarna Predaja";
+                        wSheet.Cells[1, "K"] = "Status";
+                        wSheet.Cells[1, "L"] = "Bruto";
+                        wSheet.Cells[1, "M"] = "Broj kola";
+                        wSheet.Cells[1, "N"] = "Platilac";
+                        wSheet.Cells[1, "O"] = "Kasnjenje (dani:sati:minuti)";
+                        wSheet.Cells[i + 2, j + 1] = ds.Tables[0].Rows[i].ItemArray[j].ToString();
+                        wSheet.Cells[i + 2, j + 1].EntireColumn.AutoFit();
+                        Borders border = wSheet.Cells[i + 2, j + 1].Borders;
+                        border.Weight = 2d;
+
+                    }
+                }
+
+                string date = DateTime.Now.ToString("dd-MM-yyyy");
+                string path = Environment.GetFolderPath(System.Environment.SpecialFolder.DesktopDirectory);
+                object filename = @"Izvestaj o kasnjenju " + date + ".xlsx";
+                wBook.SaveAs(filename);
+                wBook.Close();
+                excel.Quit();
+                excel = null;
+                wBook = null;
+                wSheet = null;
+
+
+                MessageBox.Show("Dokument je kreiran");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+        }
 
         private void chkAdHoc_CheckedChanged(object sender, EventArgs e)
         {
@@ -2767,6 +2896,8 @@ namespace Saobracaj.Dokumenta
         {
 
         }
+
+
 
         /*
         frmNajavaStavkePorudzbine nsp = new frmNajavaStavkePorudzbine(Convert.ToInt32(cboPlatilac.SelectedValue));

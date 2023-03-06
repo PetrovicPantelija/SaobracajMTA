@@ -1837,6 +1837,12 @@
     <Compile Include="Sifarnici\frmDodelaLokomotive.Designer.cs">
       <DependentUpon>frmDodelaLokomotive.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sifarnici\frmVagoniSerije.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnici\frmVagoniSerije.designer.cs">
+      <DependentUpon>frmVagoniSerije.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sifarnici\frmJediniceMere.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2049,6 +2055,7 @@
     <Compile Include="Sifarnici\InsertTipTelegrama.cs" />
     <Compile Include="Sifarnici\InsertTrasaStanice.cs" />
     <Compile Include="Sifarnici\InsertTrase.cs" />
+    <Compile Include="Sifarnici\InsertVagoniSerije.cs" />
     <Compile Include="Sifarnici\InsertVrstaAktivnosti.cs" />
     <Compile Include="SimpleScheduleDataProvider.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
@@ -3530,6 +3537,9 @@
     <EmbeddedResource Include="Sifarnici\frmDodelaLokomotive.resx">
       <DependentUpon>frmDodelaLokomotive.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sifarnici\frmVagoniSerije.resx">
+      <DependentUpon>frmVagoniSerije.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmJediniceMere.resx">
       <DependentUpon>frmJediniceMere.cs</DependentUpon>
     </EmbeddedResource>
@@ -4492,6 +4502,7 @@
     <Content Include="itextsharp.dll" />
     <None Include="Resources\mtaLogo.JPG" />
     <None Include="Resources\LEGET-colorP.jpg" />
+    <None Include="Resources\excel-icon-transparent-101.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
