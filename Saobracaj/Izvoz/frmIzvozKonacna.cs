@@ -764,7 +764,8 @@ namespace Saobracaj.Izvoz
         private void UbaciStavkuUsluge(int ID, int Manipulacija, double Cena)
         {
             InsertIzvoz uvK = new InsertIzvoz();
-            uvK.InsUbaciUsluguKonacna(Convert.ToInt32(txtID.Text), Manipulacija, Cena);
+            //Panta nije dobro
+           // uvK.InsUbaciUsluguKonacna(Convert.ToInt32(txtID.Text), Manipulacija, Cena,Kolicina, Org);
             FillDG8();
         }
 
