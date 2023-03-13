@@ -156,7 +156,7 @@ namespace Saobracaj.Izvoz
 
             SqlConnection conn = new SqlConnection(connection);
 
-            var voz = "select ID, (Cast(ID as NVarChar(10)) + '-'+Cast(BrVoza as NVarchar(15)) + '-' + Relacija + '-' + Cast(VremePolaska as nvarchar(20))) as Naziv   from Voz ";
+            var voz = "select ID, (Cast(ID as NVarChar(10)) + '-'+Cast(BrVoza as NVarchar(15)) + '-' + Relacija + '-' + Cast(VremePolaska as nvarchar(20))) as Naziv   from Voz where Dolazeci = 0";
             var vozSAD = new SqlDataAdapter(voz, conn);
             var vozSDS = new DataSet();
             vozSAD.Fill(vozSDS);

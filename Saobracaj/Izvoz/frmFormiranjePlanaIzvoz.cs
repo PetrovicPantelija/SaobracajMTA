@@ -38,8 +38,8 @@ namespace Saobracaj.Izvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select Isnull(SUM(CASE WHEN TipKontejnera = 2 THEN 1 else 2 END),0) as BrojKontejnera from IzvozKonacna " +
-            " where IDNadredjeni = " + cboPlanUtovara.SelectedValue, con);
+            SqlCommand cmd = new SqlCommand("select Isnull(SUM(CASE WHEN VrstaKontejnera = 2 THEN 1 else 2 END),0) as BrojKontejnera from IzvozKonacna " +
+            " where IDNadredjena = " + cboPlanUtovara.SelectedValue, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -59,7 +59,7 @@ namespace Saobracaj.Izvoz
             con.Open();
 
             SqlCommand cmd = new SqlCommand("select count(*) as BrojKontejnera from IzvozKonacna " +
-            " where IDNadredjeni = " + cboPlanUtovara.SelectedValue, con);
+            " where IDNadredjena = " + cboPlanUtovara.SelectedValue, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -113,7 +113,7 @@ namespace Saobracaj.Izvoz
 
         private void RefreshDataGrid3()
         {
-            var select = "  select SerijeKola.ID as Zapis, UvozKonacnaZaglavlje.IDVoza, VozSerijeKola.TipKontejnera as IDT, Naziv, Broj20 as Nosivost20, BrojSerija, (Broj20 * BrojSerija) as UkupnoPoSeriji  from VozSerijeKola " +
+            var select = "  select SerijeKola.ID as Zapis, IzvozKonacnaZaglavlje.IDVoza, VozSerijeKola.TipKontejnera as IDT, Naziv, Broj20 as Nosivost20, BrojSerija, (Broj20 * BrojSerija) as UkupnoPoSeriji  from VozSerijeKola " +
   " inner join IzvozKonacnaZaglavlje on IzvozKonacnaZaglavlje.IdVoza = VozSerijeKola.IDVoza " +
   "  inner join SerijeKola on SerijeKola.Id = VozSerijeKola.TipKontejnera where IzvozkonacnaZaglavlje.ID = " + Convert.ToInt32(cboPlanUtovara.SelectedValue);
 
@@ -202,49 +202,35 @@ namespace Saobracaj.Izvoz
 
         private void RefreshDataGrid2()
         {
-            var select = "    SELECT     IzvozKonacna.ID, IzvozKonacna.BrojVagona, IzvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera AS VKID, TipKontenjera.Naziv AS TipKontejnera, IzvozKonacna.BrodskaPlomba, IzvozKonacna.OstalePlombe, " +
-                "          IzvozKonacna.BookingBrodara, " +
-              "            (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaManipulacije.Naziv as nvarchar(20))   FROM IzvozKonacnaVrstaManipulacije" +
-  "     inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije   where IzvozKonacnaVrstaManipulacije.IDNadredjena = IzvozKonacna.ID" +
- "     FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as VrsteUsluga,  " +
-  "    (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20))   FROM IzvozKonacnaVrstaRobeHS " +
- "     inner join VrstaRobeHS on IzvozKonacnaVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID   where IzvozKonacnaVrstaRobeHS.IDNadredjena = IzvozKonacna.ID " +
-  "     FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as HS,  " +
- "      (SELECT  STUFF((SELECT distinct    '/' + Cast(NHM.Broj as nvarchar(20)) " +
- "     FROM IzvozKonacnaNHM  inner join NHM on IzvozKonacnaNHM.IDNHM = NHM.ID  where IzvozKonacnaNHM.IDNadredjena = IzvozKonacna.ID   FOR XML PATH('')), 1, 1, ''  ) As Skupljen) as NHM,  " +
-                 "         IzvozKonacna.Brodar, Partnerji.PaNaziv AS Brodar, IzvozKonacna.CutOffPort, IzvozKonacna.NetoRobe, IzvozKonacna.BrutoRobe, IzvozKonacna.BrutoRobeO, IzvozKonacna.BrojKoleta, " +
-                "          IzvozKonacna.BrojKoletaO, IzvozKonacna.CBM, IzvozKonacna.CBMO, IzvozKonacna.VrednostRobeFaktura, IzvozKonacna.Valuta, IzvozKonacna.KrajnaDestinacija AS KDID, KrajnjaDestinacija.Naziv AS KrajnjaNaZiv, " +
-                 "         IzvozKonacna.Postupanje, VrstePostupakaUvoz.Naziv AS PostupanjeID, IzvozKonacna.MestoPreuzimanja, KontejnerskiTerminali.Naziv AS MestoPNaziv, " +
-                 "         KontejnerskiTerminali.Oznaka AS MPOznaka, IzvozKonacna.Cirada, IzvozKonacna.PlaniraniDatumUtovara, IzvozKonacna.MesoUtovara, MestaUtovara.Naziv AS MestoUtovNaziv, " +
-                 "         IzvozKonacna.KontaktOsoba, IzvozKonacna.MestoCarinjenja, Carinarnice.CINaziv, Carinarnice.CIOznaka, IzvozKonacna.Spedicija, Partnerji_1.PaNaziv AS SpedicijaNaziv, " +
-                 "         IzvozKonacna.AdresaSlanjaStatusa, AdresaStatusVozila.Naziv AS AdresaNaziv, IzvozKonacna.NaslovSlanjaStatusa, NaslovStatusaVozila.Naziv AS Naslov, IzvozKonacna.EtaLeget, " +
-                  "        IzvozKonacna.NapomenaReexport, VrstaCarinskogPostupka.Naziv AS ReeksportNaziv, VrstaCarinskogPostupka.Oznaka AS ReexportOznaka, IzvozKonacna.Inspekcija, " +
-                  "        InspekciskiTretman.Naziv AS InspekcijaID, IzvozKonacna.AutoDana, IzvozKonacna.NajavaVozila, IzvozKonacna.NacinPakovanja, uvNacinPakovanja.Naziv AS NacinPakovanjaNaziv, " +
-                  "        IzvozKonacna.NacinPretovara, IzvozKonacna.DodatneNapomeneDrumski, IzvozKonacna.Vaganje, IzvozKonacna.Tara, IzvozKonacna.VGMTezina, IzvozKonacna.VGMBrod, IzvozKonacna.IzvozKonacnanik, " +
-                   "       Partnerji_2.PaNaziv AS IzvozKonacnanikNasl, IzvozKonacna.ADR, VrstaRobeADR.UNKod, VrstaRobeADR.Klasa, VrstaRobeADR.Naziv, IzvozKonacna.Klijent1, Partnerji_3.PaNaziv AS Klijent1, " +
-                  "        IzvozKonacna.Napomena1REf, IzvozKonacna.DobijenNalogKlijent1, IzvozKonacna.Klijent2, Partnerji_4.PaNaziv AS KLijent2Naziv, IzvozKonacna.Napomena2REf, IzvozKonacna.Klijent3, " +
-                 "         Partnerji_5.PaNaziv AS Klijent3Naziv, IzvozKonacna.Napomena3REf, IzvozKonacna.SpediterRijeka, Partnerji_6.PaNaziv AS SpediterRijekaNaziv " +
-"    FROM         IzvozKonacna INNER JOIN " +
-                    "      TipKontenjera ON IzvozKonacna.VrstaKontejnera = TipKontenjera.ID INNER JOIN " +
-                    "      Partnerji ON IzvozKonacna.Brodar = Partnerji.PaSifra INNER JOIN " +
-                   "       KrajnjaDestinacija ON IzvozKonacna.KrajnaDestinacija = KrajnjaDestinacija.ID INNER JOIN " +
-                   "       VrstePostupakaUvoz ON IzvozKonacna.Postupanje = VrstePostupakaUvoz.ID INNER JOIN " +
-                   "       MestaUtovara ON IzvozKonacna.MesoUtovara = MestaUtovara.ID INNER JOIN " +
-                   "       Carinarnice ON IzvozKonacna.MestoCarinjenja = Carinarnice.ID INNER JOIN " +
-                   "       Partnerji AS Partnerji_1 ON IzvozKonacna.Spedicija = Partnerji_1.PaSifra INNER JOIN " +
-                   "       AdresaStatusVozila ON IzvozKonacna.AdresaSlanjaStatusa = AdresaStatusVozila.ID INNER JOIN " +
-                   "       NaslovStatusaVozila ON IzvozKonacna.NaslovSlanjaStatusa = NaslovStatusaVozila.ID INNER JOIN " +
-                   "       VrstaCarinskogPostupka ON IzvozKonacna.NapomenaReexport = VrstaCarinskogPostupka.id INNER JOIN " +
-                   "       InspekciskiTretman ON IzvozKonacna.Inspekcija = InspekciskiTretman.ID INNER JOIN " +
-                  "        uvNacinPakovanja ON IzvozKonacna.NacinPakovanja = uvNacinPakovanja.ID INNER JOIN " +
-                   "       Partnerji AS Partnerji_2 ON Partnerji.PaSifra = Partnerji_2.PaSifra AND IzvozKonacna.IzvozKonacnanik = Partnerji_2.PaSifra INNER JOIN " +
-                   "       VrstaRobeADR ON IzvozKonacna.ADR = VrstaRobeADR.ID INNER JOIN " +
-                   "       Partnerji AS Partnerji_3 ON Partnerji.PaSifra = Partnerji_3.PaSifra AND IzvozKonacna.Klijent1 = Partnerji_3.PaSifra INNER JOIN " +
-                   "       Partnerji AS Partnerji_4 ON Partnerji.PaSifra = Partnerji_4.PaSifra AND IzvozKonacna.Klijent2 = Partnerji_4.PaSifra INNER JOIN " +
-                   "       Partnerji AS Partnerji_5 ON Partnerji.PaSifra = Partnerji_5.PaSifra AND IzvozKonacna.Klijent3 = Partnerji_5.PaSifra INNER JOIN " +
-                   "       Partnerji AS Partnerji_6 ON Partnerji.PaSifra = Partnerji_6.PaSifra AND IzvozKonacna.SpediterRijeka = Partnerji_6.PaSifra Inner JOIN " +
-                   "       KontejnerskiTerminali on  KontejnerskiTerminali.ID = IzvozKonacna.MestoPreuzimanja " +
-            " where IzvozKonacna.IdNadredjeni = " + Convert.ToInt32(cboPlanUtovara.SelectedValue) + " order by IzvozKonacna.ID desc";
+            var select = "    SELECT  IzvozKonacna.ID as ID,    IzvozKonacna.VrstaKontejnera, TipKontenjera.Naziv, IzvozKonacna.BrojVagona, IzvozKonacna.BrojKontejnera, IzvozKonacna.BrodskaPlomba, IzvozKonacna.OstalePlombe, IzvozKonacna.BookingBrodara, " +
+"     Partnerji.PaNaziv,     IzvozKonacna.CutOffPort, IzvozKonacna.NetoRobe, IzvozKonacna.BrutoRobe, IzvozKonacna.BrutoRobeO, IzvozKonacna.BrojKoleta, IzvozKonacna.BrojKoletaO, IzvozKonacna.CBM, IzvozKonacna.CBMO, " +
+"     IzvozKonacna.VrednostRobeFaktura,   (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaManipulacije.Naziv as nvarchar(20))   FROM IzvozVrstaManipulacije " +
+ "          inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozVrstaManipulacije.IDVrstaManipulacije   where IzvozVrstaManipulacije.IDNadredjena = IzvozKonacna.ID " +
+ "           FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as VrsteUsluga,        (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20)) " +
+ "            FROM IzvozVrstaRobeHS        inner join VrstaRobeHS on IzvozVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID   where IzvozVrstaRobeHS.IDNadredjena = IzvozKonacna.ID " +
+ "             FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as HS,       (SELECT  STUFF((SELECT distinct    '/' + Cast(NHM.Broj as nvarchar(20)) " +
+ "             FROM IzvozNHM  inner join NHM on IzvozNHM.IDNHM = NHM.ID  where IzvozNHM.IDNadredjena = IzvozKonacna.ID   FOR XML PATH('')), 1, 1, ''  ) As Skupljen) as NHM,  " +
+ "             IzvozKonacna.Valuta, KrajnjaDestinacija.Naziv AS KrajnjaDestinacija, VrstePostupakaUvoz.Naziv AS Postupak, KontejnerskiTerminali.Naziv AS PPCNT, " +
+ "              KontejnerskiTerminali.Oznaka, IzvozKonacna.Cirada, IzvozKonacna.PlaniraniDatumUtovara, MestaUtovara.Naziv AS MestoUtovara, IzvozKonacna.KontaktOsoba,  " +
+ "              Carinarnice.Naziv AS Carinarnica, Carinarnice.CIOznaka, Partnerji_1.PaNaziv AS Spedicija, AdresaStatusVozila.Naziv AS AdresaStatusVozila,  " +
+ "               NaslovStatusaVozila.Naziv AS NaslovStatusaVozila, IzvozKonacna.EtaLeget, VrstaCarinskogPostupka.Naziv AS Reexport, InspekciskiTretman.Naziv AS InspekciskiTretman,  " +
+ "                    IzvozKonacna.AutoDana, IzvozKonacna.NajavaVozila, IzvozKonacna.DodatneNapomeneDrumski, IzvozKonacna.Vaganje, IzvozKonacna.VGMTezina, IzvozKonacna.Tara, IzvozKonacna.VGMBrod, " +
+ "                    Partnerji_2.PaNaziv AS Izvoznik, Partnerji_3.PaNaziv AS Klijent1, IzvozKonacna.Napomena1REf, IzvozKonacna.DobijenNalogKlijent1, Partnerji_4.PaNaziv AS klijent2, " +
+ "                      IzvozKonacna.Napomena2REf, Partnerji_5.PaNaziv AS Klijent3, IzvozKonacna.Napomena3REf, Partnerji_6.PaNaziv AS SpediterRijeka, uvNacinPakovanja.Naziv AS NacinPakovanja, " +
+ "                              IzvozKonacna.NacinPretovara FROM         IzvozKonacna INNER JOIN TipKontenjera ON IzvozKonacna.VrstaKontejnera = TipKontenjera.ID INNER JOIN " +
+ "                               Partnerji ON IzvozKonacna.Brodar = Partnerji.PaSifra INNER JOIN         KrajnjaDestinacija ON IzvozKonacna.KrajnaDestinacija = KrajnjaDestinacija.ID " +
+ "                               INNER JOIN         VrstePostupakaUvoz ON IzvozKonacna.Postupanje = VrstePostupakaUvoz.ID INNER JOIN " +
+"    KontejnerskiTerminali ON IzvozKonacna.MestoPreuzimanja = KontejnerskiTerminali.id INNER JOIN         MestaUtovara ON IzvozKonacna.MesoUtovara = MestaUtovara.ID " +
+"    INNER JOIN         Carinarnice ON IzvozKonacna.MestoCarinjenja = Carinarnice.ID INNER JOIN        Partnerji AS Partnerji_1 ON IzvozKonacna.Spedicija = Partnerji_1.PaSifra " +
+"    INNER JOIN        AdresaStatusVozila ON IzvozKonacna.AdresaSlanjaStatusa = AdresaStatusVozila.ID " +
+"    INNER JOIN        NaslovStatusaVozila ON IzvozKonacna.NaslovSlanjaStatusa = NaslovStatusaVozila.ID " +
+"    INNER JOIN         VrstaCarinskogPostupka ON IzvozKonacna.NapomenaReexport = VrstaCarinskogPostupka.id " +
+"    INNER JOIN        InspekciskiTretman ON IzvozKonacna.Inspekcija = InspekciskiTretman.ID INNER JOIN        Partnerji AS Partnerji_2 ON IzvozKonacna.Izvoznik = Partnerji_2.PaSifra " +
+"    INNER JOIN        Partnerji AS Partnerji_3 ON IzvozKonacna.Klijent1 = Partnerji_3.PaSifra INNER JOIN       Partnerji AS Partnerji_4 ON IzvozKonacna.Klijent2 = Partnerji_4.PaSifra " +
+"    INNER JOIN         Partnerji AS Partnerji_5 ON IzvozKonacna.Klijent3 = Partnerji_5.PaSifra INNER JOIN          Partnerji AS Partnerji_6 " +
+"    ON IzvozKonacna.SpediterRijeka = Partnerji_6.PaSifra " +
+ "    INNER JOIN         uvNacinPakovanja ON IzvozKonacna.NacinPakovanja = uvNacinPakovanja.ID " +
+            " where IzvozKonacna.IdNadredjena = " + Convert.ToInt32(cboPlanUtovara.SelectedValue) + " order by IzvozKonacna.ID desc";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();

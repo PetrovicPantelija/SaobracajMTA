@@ -174,7 +174,7 @@ namespace Saobracaj.Izvoz
             this.groupBox1.Size = new System.Drawing.Size(599, 92);
             this.groupBox1.TabIndex = 165;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Plan utovara";
+            this.groupBox1.Text = "Plan Izvoza";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // button7

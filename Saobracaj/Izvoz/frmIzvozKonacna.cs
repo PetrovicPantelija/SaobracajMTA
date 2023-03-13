@@ -27,10 +27,13 @@ namespace Saobracaj.Izvoz
         public frmIzvozKonacna(int ID)
         {
             InitializeComponent();
-            FillDG();
 
+            txtNadredjeni.Text = ID.ToString();
+            FillDG();
+            
             FillCombo();
             VratiPodatke(ID);
+            FillZaglavlje(ID);
             FillDG2();
             FillDG3();
 
@@ -38,10 +41,70 @@ namespace Saobracaj.Izvoz
 
         }
 
+        private void FillZaglavlje(int Sifra)
+        {
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select ID, idVoza,Napomena from IzvozKonacnaZaglavlje where ID=" + Sifra, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtNadredjeni.Text = dr["ID"].ToString();
+                cboVoz.SelectedValue = Convert.ToInt32(dr["idVoza"].ToString());
+                txtNapomenaZaglavlje.Text = dr["Napomena"].ToString();
+
+            }
+            con.Close();
+            VratiVoz();
+        }
+
+        private void VratiVoz()
+        {
+            var select = "SELECT [ID] ,[BrVoza],[Relacija], " +
+                " CONVERT(varchar,VremePolaska,104)      + ' '      + SUBSTRING(CONVERT(varchar,VremePolaska,108),1,5) as VremePolaska, " +
+                " CONVERT(varchar,[VremeDolaska],104)      + ' '      + SUBSTRING(CONVERT(varchar,[VremeDolaska],108),1,5)  as VremeDolaska, " +
+                " [MaksimalnaBruto],[MaksimalnaDuzina] " +
+                " ,[MaksimalanBrojKola] " +
+                " ,[Napomena]" +
+                " ,[PostNaTerminalD] as Postavka,[KontrolniPregledD] as Kontrolni ,[VremePrimopredajeD] as Primopredaja,[VremeIstovaraD] as Istovar" +
+                " ,[Datum] ,[Korisnik],[Dolazeci] " +
+                " FROM [dbo].[Voz] where ID =  " + Convert.ToInt32(cboVoz.SelectedValue);
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView4.ReadOnly = true;
+            dataGridView4.DataSource = ds.Tables[0];
+
+            dataGridView4.BorderStyle = BorderStyle.None;
+            dataGridView4.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView4.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView4.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView4.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView4.BackgroundColor = Color.White;
+
+            dataGridView4.EnableHeadersVisualStyles = false;
+            dataGridView4.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView4.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView4.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+
+
+        }
+
         private void FillDG2()
         {
             var select = " SELECT     IzvozKonacnaNHM.ID, NHM.Broj, IzvozKonacnaNHM.IDNHM, NHM.Naziv FROM NHM INNER JOIN " +
-                      " IzvozKonacnaNHM ON NHM.ID = IzvozKonacnaNHM.IDNHM where IzvozKonacnanhm.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by IzvozKonacnanhm.ID desc ";
+                      " IzvozKonacnaNHM ON NHM.ID = IzvozKonacnaNHM.IDNHM where IzvozKonacnanhm.idnadredjena = " + Convert.ToInt32(txtNadredjeni.Text) + " order by IzvozKonacnanhm.ID desc ";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -86,7 +149,7 @@ namespace Saobracaj.Izvoz
         private void FillDG3()
         {
             var select = "select IzvozKonacnaVrstaRobeHS.ID, IDVrstaRobeHS, VrstaRobeHS.HSKod as Kod,VrstaRobeHS.Naziv as HS from IzvozKonacnaVrstaRobeHS " +
-            " inner join  VrstaRobeHS on VrstaRobeHS.ID = IzvozKonacnaVrstaRobeHS.IDVrstaRobeHS where idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by IzvozVrstaRobeHS.ID desc ";
+            " inner join  VrstaRobeHS on VrstaRobeHS.ID = IzvozKonacnaVrstaRobeHS.IDVrstaRobeHS where idnadredjena = " + Convert.ToInt32(txtNadredjeni.Text) + " order by IzvozKonacnaVrstaRobeHS.ID desc ";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -216,11 +279,11 @@ namespace Saobracaj.Izvoz
                 txtTaraKontejnera.Value = Convert.ToDecimal(dr["Tara"].ToString());
                 txVGMBrodBruto.Value = Convert.ToDecimal(dr["VGMBrod"].ToString());
                 cboIzvoznik.SelectedValue = Convert.ToInt32(dr["Izvoznik"].ToString());
-                cboKlijent1.SelectedValue = Convert.ToInt32(dr["Klijent1"].ToString());
+                cboNalogodavac1.SelectedValue = Convert.ToInt32(dr["Klijent1"].ToString());
                 txtRef1.Text = dr["Napomena1REf"].ToString();
-                cboKlijent2.SelectedValue = Convert.ToInt32(dr["Klijent2"].ToString());
+                cboNalogodavac2.SelectedValue = Convert.ToInt32(dr["Klijent2"].ToString());
                 txtRef2.Text = dr["Napomena2REf"].ToString();
-                cboKlijent3.SelectedValue = Convert.ToInt32(dr["Klijent3"].ToString());
+                cboNalogodavac3.SelectedValue = Convert.ToInt32(dr["Klijent3"].ToString());
                 txtRef3.Text = dr["Napomena3REf"].ToString();
                 cboSpediterURijeci.SelectedValue = Convert.ToInt32(dr["SpediterRijeka"].ToString());
 
@@ -316,6 +379,15 @@ namespace Saobracaj.Izvoz
             cboSpedicija.DisplayMember = "PaNaziv";
             cboSpedicija.ValueMember = "PaSifra";
 
+            //Spedicija
+            var partner4 = "Select PaSifra,PaNaziv From Partnerji where Spediter =1 order by PaNaziv";
+            var partAD4 = new SqlDataAdapter(partner3, conn);
+            var partDS4 = new DataSet();
+            partAD4.Fill(partDS4);
+            cboSpedicijaJ.DataSource = partDS4.Tables[0];
+            cboSpedicijaJ.DisplayMember = "PaNaziv";
+            cboSpedicijaJ.ValueMember = "PaSifra";
+
             //Adresa statusa vozila
             var dir5 = "Select ID,Naziv from AdresaStatusVozila order by Naziv";
             var dirAD5 = new SqlDataAdapter(dir5, conn);
@@ -326,11 +398,11 @@ namespace Saobracaj.Izvoz
             cboAdresaStatusVozila.ValueMember = "ID";
 
             //Naslov statusa vozila
-            var partner4 = "Select ID,Naziv from NaslovStatusaVozila order by Naziv";
-            var partAD4 = new SqlDataAdapter(partner4, conn);
-            var partDS4 = new DataSet();
-            partAD4.Fill(partDS4);
-            cboNaslovStatusaVozila.DataSource = partDS4.Tables[0];
+            var partner40 = "Select ID,Naziv from NaslovStatusaVozila order by Naziv";
+            var partAD40 = new SqlDataAdapter(partner40, conn);
+            var partDS40 = new DataSet();
+            partAD40.Fill(partDS40);
+            cboNaslovStatusaVozila.DataSource = partDS40.Tables[0];
             cboNaslovStatusaVozila.DisplayMember = "Naziv";
             cboNaslovStatusaVozila.ValueMember = "ID";
 
@@ -376,25 +448,25 @@ namespace Saobracaj.Izvoz
             var nal1AD = new SqlDataAdapter(nalogodavac1, conn);
             var nal1DS = new DataSet();
             nal1AD.Fill(nal1DS);
-            cboKlijent1.DataSource = nal1DS.Tables[0];
-            cboKlijent1.DisplayMember = "PaNaziv";
-            cboKlijent1.ValueMember = "PaSifra";
+            cboNalogodavac1.DataSource = nal1DS.Tables[0];
+            cboNalogodavac1.DisplayMember = "PaNaziv";
+            cboNalogodavac1.ValueMember = "PaSifra";
 
             var nalogodavac2 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
             var nal2AD = new SqlDataAdapter(nalogodavac2, conn);
             var nal2DS = new DataSet();
             nal2AD.Fill(nal2DS);
-            cboKlijent2.DataSource = nal2DS.Tables[0];
-            cboKlijent2.DisplayMember = "PaNaziv";
-            cboKlijent2.ValueMember = "PaSifra";
+            cboNalogodavac2.DataSource = nal2DS.Tables[0];
+            cboNalogodavac2.DisplayMember = "PaNaziv";
+            cboNalogodavac2.ValueMember = "PaSifra";
 
             var nalogodavac3 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
             var nal3AD = new SqlDataAdapter(nalogodavac3, conn);
             var nal3DS = new DataSet();
             nal3AD.Fill(nal3DS);
-            cboKlijent3.DataSource = nal3DS.Tables[0];
-            cboKlijent3.DisplayMember = "PaNaziv";
-            cboKlijent3.ValueMember = "PaSifra";
+            cboNalogodavac3.DataSource = nal3DS.Tables[0];
+            cboNalogodavac3.DisplayMember = "PaNaziv";
+            cboNalogodavac3.ValueMember = "PaSifra";
 
             var nalogodavac4 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
             var nal4AD = new SqlDataAdapter(nalogodavac4, conn);
@@ -405,6 +477,13 @@ namespace Saobracaj.Izvoz
             cboSpediterURijeci.ValueMember = "PaSifra";
 
 
+            var voz = "select ID, (Cast(ID as NVarChar(10)) + '-'+Cast(BrVoza as NVarchar(15)) + '-' + Relacija + '-' + Cast(VremePolaska as nvarchar(20))) as Naziv   from Voz ";
+            var vozSAD = new SqlDataAdapter(voz, conn);
+            var vozSDS = new DataSet();
+            vozSAD.Fill(vozSDS);
+            cboVoz.DataSource = vozSDS.Tables[0];
+            cboVoz.DisplayMember = "Naziv";
+            cboVoz.ValueMember = "ID";
 
 
 
@@ -432,49 +511,35 @@ namespace Saobracaj.Izvoz
 
         private void FillDG()
         {
-            var select = "    SELECT     IzvozKonacna.ID, IzvozKonacna.BrojVagona, IzvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera AS VKID, TipKontenjera.Naziv AS TipKontejnera, IzvozKonacna.BrodskaPlomba, IzvozKonacna.OstalePlombe, " +
-                "          IzvozKonacna.BookingBrodara, " +
-              "            (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaManipulacije.Naziv as nvarchar(20))   FROM IzvozKonacnaVrstaManipulacije" +
-  "     inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije   where IzvozKonacnaVrstaManipulacije.IDNadredjena = IzvozKonacna.ID" +
- "     FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as VrsteUsluga,  " +
-  "    (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20))   FROM IzvozKonacnaVrstaRobeHS " +
- "     inner join VrstaRobeHS on IzvozKonacnaVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID   where IzvozKonacnaVrstaRobeHS.IDNadredjena = IzvozKonacna.ID " +
-  "     FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as HS,  " +
- "      (SELECT  STUFF((SELECT distinct    '/' + Cast(NHM.Broj as nvarchar(20)) " +
- "     FROM IzvozKonacnaNHM  inner join NHM on IzvozKonacnaNHM.IDNHM = NHM.ID  where IzvozKonacnaNHM.IDNadredjena = IzvozKonacna.ID   FOR XML PATH('')), 1, 1, ''  ) As Skupljen) as NHM,  " +
-                 "         IzvozKonacna.Brodar, Partnerji.PaNaziv AS Brodar, IzvozKonacna.CutOffPort, IzvozKonacna.NetoRobe, IzvozKonacna.BrutoRobe, IzvozKonacna.BrutoRobeO, IzvozKonacna.BrojKoleta, " +
-                "          IzvozKonacna.BrojKoletaO, IzvozKonacna.CBM, IzvozKonacna.CBMO, IzvozKonacna.VrednostRobeFaktura, IzvozKonacna.Valuta, IzvozKonacna.KrajnaDestinacija AS KDID, KrajnjaDestinacija.Naziv AS KrajnjaNaZiv, " +
-                 "         IzvozKonacna.Postupanje, VrstePostupakaUvoz.Naziv AS PostupanjeID, IzvozKonacna.MestoPreuzimanja, KontejnerskiTerminali.Naziv AS MestoPNaziv, " +
-                 "         KontejnerskiTerminali.Oznaka AS MPOznaka, IzvozKonacna.Cirada, IzvozKonacna.PlaniraniDatumUtovara, IzvozKonacna.MesoUtovara, MestaUtovara.Naziv AS MestoUtovNaziv, " +
-                 "         IzvozKonacna.KontaktOsoba, IzvozKonacna.MestoCarinjenja, Carinarnice.CINaziv, Carinarnice.CIOznaka, IzvozKonacna.Spedicija, Partnerji_1.PaNaziv AS SpedicijaNaziv, " +
-                 "         IzvozKonacna.AdresaSlanjaStatusa, AdresaStatusVozila.Naziv AS AdresaNaziv, IzvozKonacna.NaslovSlanjaStatusa, NaslovStatusaVozila.Naziv AS Naslov, IzvozKonacna.EtaLeget, " +
-                  "        IzvozKonacna.NapomenaReexport, VrstaCarinskogPostupka.Naziv AS ReeksportNaziv, VrstaCarinskogPostupka.Oznaka AS ReexportOznaka, IzvozKonacna.Inspekcija, " +
-                  "        InspekciskiTretman.Naziv AS InspekcijaID, IzvozKonacna.AutoDana, IzvozKonacna.NajavaVozila, IzvozKonacna.NacinPakovanja, uvNacinPakovanja.Naziv AS NacinPakovanjaNaziv, " +
-                  "        IzvozKonacna.NacinPretovara, IzvozKonacna.DodatneNapomeneDrumski, IzvozKonacna.Vaganje, IzvozKonacna.Tara, IzvozKonacna.VGMTezina, IzvozKonacna.VGMBrod, IzvozKonacna.Izvoznik, " +
-                   "       Partnerji_2.PaNaziv AS IzvoznikNasl, IzvozKonacna.ADR, VrstaRobeADR.UNKod, VrstaRobeADR.Klasa, VrstaRobeADR.Naziv, IzvozKonacna.Klijent1, Partnerji_3.PaNaziv AS Klijent1, " +
-                  "        IzvozKonacna.Napomena1REf, IzvozKonacna.DobijenNalogKlijent1, IzvozKonacna.Klijent2, Partnerji_4.PaNaziv AS KLijent2Naziv, IzvozKonacna.Napomena2REf, IzvozKonacna.Klijent3, " +
-                 "         Partnerji_5.PaNaziv AS Klijent3Naziv, IzvozKonacna.Napomena3REf, IzvozKonacna.SpediterRijeka, Partnerji_6.PaNaziv AS SpediterRijekaNaziv " +
-"    FROM         IzvozKonacna INNER JOIN " +
-                    "      TipKontenjera ON IzvozKonacna.VrstaKontejnera = TipKontenjera.ID INNER JOIN " +
-                    "      Partnerji ON Izvoz.Brodar = Partnerji.PaSifra INNER JOIN " +
-                   "       KrajnjaDestinacija ON IzvozKonacna.KrajnaDestinacija = KrajnjaDestinacija.ID INNER JOIN " +
-                   "       VrstePostupakaUvoz ON IzvozKonacna.Postupanje = VrstePostupakaUvoz.ID INNER JOIN " +
-                   "       MestaUtovara ON IzvozKonacna.MesoUtovara = MestaUtovara.ID INNER JOIN " +
-                   "       Carinarnice ON IzvozKonacna.MestoCarinjenja = Carinarnice.ID INNER JOIN " +
-                   "       Partnerji AS Partnerji_1 ON IzvozKonacna.Spedicija = Partnerji_1.PaSifra INNER JOIN " +
-                   "       AdresaStatusVozila ON IzvozKonacna.AdresaSlanjaStatusa = AdresaStatusVozila.ID INNER JOIN " +
-                   "       NaslovStatusaVozila ON IzvozKonacna.NaslovSlanjaStatusa = NaslovStatusaVozila.ID INNER JOIN " +
-                   "       VrstaCarinskogPostupka ON IzvozKonacna.NapomenaReexport = VrstaCarinskogPostupka.id INNER JOIN " +
-                   "       InspekciskiTretman ON IzvozKonacna.Inspekcija = InspekciskiTretman.ID INNER JOIN " +
-                  "        uvNacinPakovanja ON IzvozKonacna.NacinPakovanja = uvNacinPakovanja.ID INNER JOIN " +
-                   "       Partnerji AS Partnerji_2 ON Partnerji.PaSifra = Partnerji_2.PaSifra AND IzvozKonacna.Izvoznik = Partnerji_2.PaSifra INNER JOIN " +
-                   "       VrstaRobeADR ON Izvoz.ADR = VrstaRobeADR.ID INNER JOIN " +
-                   "       Partnerji AS Partnerji_3 ON Partnerji.PaSifra = Partnerji_3.PaSifra AND IzvozKonacna.Klijent1 = Partnerji_3.PaSifra INNER JOIN " +
-                   "       Partnerji AS Partnerji_4 ON Partnerji.PaSifra = Partnerji_4.PaSifra AND IzvozKonacna.Klijent2 = Partnerji_4.PaSifra INNER JOIN " +
-                   "       Partnerji AS Partnerji_5 ON Partnerji.PaSifra = Partnerji_5.PaSifra AND IzvozKonacna.Klijent3 = Partnerji_5.PaSifra INNER JOIN " +
-                   "       Partnerji AS Partnerji_6 ON Partnerji.PaSifra = Partnerji_6.PaSifra AND IzvozKonacna.SpediterRijeka = Partnerji_6.PaSifra Inner JOIN " +
-                   "       KontejnerskiTerminali on  KontejnerskiTerminali.ID = IzvozKonacna.MestoPreuzimanja " +
-                   " where IzvozKonacna.IdNadredjena = " + Convert.ToInt32(cboNadredjena.SelectedValue) + " order by IzvozKonacna.ID desc ";
+            var select = "    SELECT  IzvozKonacna.ID as ID,    IzvozKonacna.VrstaKontejnera, TipKontenjera.Naziv, IzvozKonacna.BrojVagona, IzvozKonacna.BrojKontejnera, IzvozKonacna.BrodskaPlomba, IzvozKonacna.OstalePlombe, IzvozKonacna.BookingBrodara, " +
+ "     Partnerji.PaNaziv,     IzvozKonacna.CutOffPort, IzvozKonacna.NetoRobe, IzvozKonacna.BrutoRobe, IzvozKonacna.BrutoRobeO, IzvozKonacna.BrojKoleta, IzvozKonacna.BrojKoletaO, IzvozKonacna.CBM, IzvozKonacna.CBMO, " +
+ "     IzvozKonacna.VrednostRobeFaktura,   (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaManipulacije.Naziv as nvarchar(20))   FROM IzvozVrstaManipulacije " +
+  "          inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozVrstaManipulacije.IDVrstaManipulacije   where IzvozVrstaManipulacije.IDNadredjena = IzvozKonacna.ID " +
+  "           FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as VrsteUsluga,        (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20)) " +
+  "            FROM IzvozVrstaRobeHS        inner join VrstaRobeHS on IzvozVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID   where IzvozVrstaRobeHS.IDNadredjena = IzvozKonacna.ID " +
+  "             FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as HS,       (SELECT  STUFF((SELECT distinct    '/' + Cast(NHM.Broj as nvarchar(20)) " +
+  "             FROM IzvozNHM  inner join NHM on IzvozNHM.IDNHM = NHM.ID  where IzvozNHM.IDNadredjena = IzvozKonacna.ID   FOR XML PATH('')), 1, 1, ''  ) As Skupljen) as NHM,  " +
+  "             IzvozKonacna.Valuta, KrajnjaDestinacija.Naziv AS KrajnjaDestinacija, VrstePostupakaUvoz.Naziv AS Postupak, KontejnerskiTerminali.Naziv AS PPCNT, " +
+  "              KontejnerskiTerminali.Oznaka, IzvozKonacna.Cirada, IzvozKonacna.PlaniraniDatumUtovara, MestaUtovara.Naziv AS MestoUtovara, IzvozKonacna.KontaktOsoba,  " +
+  "              Carinarnice.Naziv AS Carinarnica, Carinarnice.CIOznaka, Partnerji_1.PaNaziv AS Spedicija, AdresaStatusVozila.Naziv AS AdresaStatusVozila,  " +
+  "               NaslovStatusaVozila.Naziv AS NaslovStatusaVozila, IzvozKonacna.EtaLeget, VrstaCarinskogPostupka.Naziv AS Reexport, InspekciskiTretman.Naziv AS InspekciskiTretman,  " +
+  "                    IzvozKonacna.AutoDana, IzvozKonacna.NajavaVozila, IzvozKonacna.DodatneNapomeneDrumski, IzvozKonacna.Vaganje, IzvozKonacna.VGMTezina, IzvozKonacna.Tara, IzvozKonacna.VGMBrod, " +
+  "                    Partnerji_2.PaNaziv AS Izvoznik, Partnerji_3.PaNaziv AS Klijent1, IzvozKonacna.Napomena1REf, IzvozKonacna.DobijenNalogKlijent1, Partnerji_4.PaNaziv AS klijent2, " +
+  "                      IzvozKonacna.Napomena2REf, Partnerji_5.PaNaziv AS Klijent3, IzvozKonacna.Napomena3REf, Partnerji_6.PaNaziv AS SpediterRijeka, uvNacinPakovanja.Naziv AS NacinPakovanja, " +
+  "                              IzvozKonacna.NacinPretovara FROM         IzvozKonacna INNER JOIN TipKontenjera ON IzvozKonacna.VrstaKontejnera = TipKontenjera.ID INNER JOIN " +
+  "                               Partnerji ON IzvozKonacna.Brodar = Partnerji.PaSifra INNER JOIN         KrajnjaDestinacija ON IzvozKonacna.KrajnaDestinacija = KrajnjaDestinacija.ID " +
+  "                               INNER JOIN         VrstePostupakaUvoz ON IzvozKonacna.Postupanje = VrstePostupakaUvoz.ID INNER JOIN " +
+ "    KontejnerskiTerminali ON IzvozKonacna.MestoPreuzimanja = KontejnerskiTerminali.id INNER JOIN         MestaUtovara ON IzvozKonacna.MesoUtovara = MestaUtovara.ID " +
+ "    INNER JOIN         Carinarnice ON IzvozKonacna.MestoCarinjenja = Carinarnice.ID INNER JOIN        Partnerji AS Partnerji_1 ON IzvozKonacna.Spedicija = Partnerji_1.PaSifra " +
+ "    INNER JOIN        AdresaStatusVozila ON IzvozKonacna.AdresaSlanjaStatusa = AdresaStatusVozila.ID " +
+ "    INNER JOIN        NaslovStatusaVozila ON IzvozKonacna.NaslovSlanjaStatusa = NaslovStatusaVozila.ID " +
+ "    INNER JOIN         VrstaCarinskogPostupka ON IzvozKonacna.NapomenaReexport = VrstaCarinskogPostupka.id " +
+ "    INNER JOIN        InspekciskiTretman ON IzvozKonacna.Inspekcija = InspekciskiTretman.ID INNER JOIN        Partnerji AS Partnerji_2 ON IzvozKonacna.Izvoznik = Partnerji_2.PaSifra " +
+ "    INNER JOIN        Partnerji AS Partnerji_3 ON IzvozKonacna.Klijent1 = Partnerji_3.PaSifra INNER JOIN       Partnerji AS Partnerji_4 ON IzvozKonacna.Klijent2 = Partnerji_4.PaSifra " +
+ "    INNER JOIN         Partnerji AS Partnerji_5 ON IzvozKonacna.Klijent3 = Partnerji_5.PaSifra INNER JOIN          Partnerji AS Partnerji_6 " +
+ "    ON IzvozKonacna.SpediterRijeka = Partnerji_6.PaSifra " +
+  "    INNER JOIN         uvNacinPakovanja ON IzvozKonacna.NacinPakovanja = uvNacinPakovanja.ID " +
+             " where IzvozKonacna.IdNadredjena = " + Convert.ToInt32(txtNadredjeni.Text) + " order by IzvozKonacna.ID desc";
 
 
             SqlConnection conn = new SqlConnection(connection);
@@ -600,17 +665,17 @@ namespace Saobracaj.Izvoz
                 txtBrodskaPlomba.Text, Convert.ToInt32(txtBokingBrodara.Value), Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToDateTime(dtpCutOffPort.Value),
                 Convert.ToDecimal(txtNetoR.Value), Convert.ToDecimal(txtBrutoR.Value), Convert.ToDecimal(txtBrutoO.Value), Convert.ToInt32(txtKoleta.Value),
                 Convert.ToInt32(txtKoletaO.Value), Convert.ToDecimal(txtCBM.Value), Convert.ToDecimal(txtCBMO.Value), Convert.ToDecimal(txtVrednostRobeFaktura.Value),
-                txtValuta.Text, Convert.ToInt32(cboKrajnjaDestinacija.SelectedValue), Convert.ToInt32(cboPostupanjeSaRobom.SelectedValue),
+                Convert.ToString(txtValuta.SelectedValue), Convert.ToInt32(cboKrajnjaDestinacija.SelectedValue), Convert.ToInt32(cboPostupanjeSaRobom.SelectedValue),
                 Convert.ToInt32(cboPPCNT.SelectedValue), pomCirada, Convert.ToDateTime(dtpPlanUtovara.Value), Convert.ToInt32(cboMestoUtovara.SelectedValue),
                 txtKontaktOsoba.Text, Convert.ToInt32(cboCarina.SelectedValue), Convert.ToInt32(cboSpedicija.SelectedValue),
                 Convert.ToInt32(cboAdresaStatusVozila.SelectedValue), Convert.ToInt32(cboNaslovStatusaVozila.SelectedValue), Convert.ToDateTime(dtpEtaLeget.Value),
                 Convert.ToInt32(cboReexport.SelectedValue), Convert.ToInt32(cboInspekciskiTretman.SelectedValue), Convert.ToDecimal(txtAutoDana.Value),
                 pomNajavaVozila, Convert.ToInt32(cbNacinPakovanja.SelectedValue), pomNacinPretovara, txtDodatneNapomene.Text, pomVaganje, Convert.ToDecimal(txtOdvaganaTezina.Value),
                 Convert.ToDecimal(txtTaraKontejnera.Value), Convert.ToDecimal(txVGMBrodBruto.Value), Convert.ToInt32(cboIzvoznik.SelectedValue),
-                Convert.ToInt32(cboKlijent1.SelectedValue), Convert.ToInt32(txtRef1.Text), pomDobijenNalog,
-                Convert.ToInt32(cboKlijent2.SelectedValue), Convert.ToInt32(txtRef2.Text),
-                Convert.ToInt32(cboKlijent3.SelectedValue), Convert.ToInt32(txtRef3.Text),
-                 Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text, Convert.ToInt32(txtADR.SelectedValue), Convert.ToInt32(cboNadredjena.SelectedValue), txtVozilo.Text, txtVozac.Text);
+                Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(txtRef1.Text), pomDobijenNalog,
+                Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(txtRef2.Text),
+                Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(txtRef3.Text),
+                 Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text, Convert.ToInt32(txtADR.SelectedValue), Convert.ToInt32(txtNadredjeni.Text), txtVozilo.Text, txtVozac.Text, Convert.ToInt32(cboSpedicijaJ.SelectedValue), Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value));
             //Fale ostale plombe
             // Convert.ToDecimal(txtDodatneNapomene.Text -- treba staviti nvarchar
 
@@ -889,6 +954,250 @@ namespace Saobracaj.Izvoz
         private void frmIzvozKonacna_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            InsertIzvozKonacnaZaglavlje ins = new InsertIzvozKonacnaZaglavlje();
+            ins.InsIzvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "");
+            //refreshStavke(); - Dodati
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            InsertIzvozKonacnaZaglavlje upd = new InsertIzvozKonacnaZaglavlje();
+            upd.UpdIzvozKonacnaZaglavlje(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "");
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            InsertIzvozKonacnaZaglavlje del = new InsertIzvozKonacnaZaglavlje();
+            del.DelIzvozKonacnaZaglavlje(Convert.ToInt32(txtNadredjeni.Text));
+        }
+        private void VratiPodatkeSelect(int ID)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT [ID],[BrojVagona]      ,[BrojKontejnera],[VrstaKontejnera] " +
+   "   ,[BrodskaPlomba],[BookingBrodara],[Brodar],[CutOffPort] " +
+   "      ,[NetoRobe],[BrutoRobe],[BrutoRobeO],[BrojKoleta] " +
+   "      ,[BrojKoletaO],[CBM],[CBMO],[VrednostRobeFaktura] " +
+   "      ,[Valuta],[KrajnaDestinacija],[Postupanje],[MestoPreuzimanja] " +
+   "      ,[Cirada],[PlaniraniDatumUtovara],[MesoUtovara],[KontaktOsoba] " +
+   "      ,[MestoCarinjenja],[Spedicija],[AdresaSlanjaStatusa],[NaslovSlanjaStatusa] " +
+   "      ,[EtaLeget],[NapomenaReexport],[Inspekcija],[AutoDana] " +
+    "     ,[NajavaVozila],[NacinPakovanja],[NacinPretovara],[DodatneNapomeneDrumski] " +
+    "     ,[Vaganje],[VGMTezina],[Tara],[VGMBrod] " +
+   "      ,[Izvoznik],[Klijent1],[Napomena1REf],[DodatneNapomeneDrumski] " +
+   "      ,[Klijent2],[Napomena2REf],[Klijent3],[Napomena3REf] " +
+   "      ,[SpediterRijeka],[OstalePlombe],[ADR],[Vozilo],[Vozac], SpedicijaJ, PeriodSkladistenjaOd, PeriodSkladistenjaDo " +
+ "  FROM [Izvoz] where ID=" + ID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtVozilo.Text = dr["Vozilo"].ToString();
+                txtVozac.Text = dr["Vozac"].ToString();
+                txtOstalePlombe.Text = dr["OstalePlombe"].ToString();
+                cboSpediterURijeci.SelectedValue = Convert.ToInt32(dr["SpediterRijeka"].ToString());
+                if (dr["DodatneNapomeneDrumski"].ToString() == "1")
+                {
+                    cboDobijenNalog.Checked = true;
+                }
+                else
+                {
+                    cboDobijenNalog.Checked = false;
+                }
+                txtRef3.Text = dr["Napomena3REf"].ToString();
+                txtRef2.Text = dr["Napomena2REf"].ToString();
+                txtRef1.Text = dr["Napomena1REf"].ToString();
+                cboNalogodavac1.SelectedValue = Convert.ToInt32(dr["Klijent1"].ToString());
+                cboNalogodavac2.SelectedValue = Convert.ToInt32(dr["Klijent2"].ToString());
+                cboNalogodavac3.SelectedValue = Convert.ToInt32(dr["Klijent3"].ToString());
+                cboIzvoznik.SelectedValue = Convert.ToInt32(dr["Izvoznik"].ToString());
+                txVGMBrodBruto.Value = Convert.ToDecimal(dr["VGMBrod"].ToString());
+                txtTaraKontejnera.Value = Convert.ToDecimal(dr["Tara"].ToString());
+                txtOdvaganaTezina.Value = Convert.ToDecimal(dr["VGMTezina"].ToString());
+                if (dr["Vaganje"].ToString() == "1")
+                {
+                    chkVaganje.Checked = true;
+                }
+                else
+                {
+                    chkVaganje.Checked = false;
+                }
+                txtDodatneNapomene.Text = dr["DodatneNapomeneDrumski"].ToString();
+                if (dr["NacinPretovara"].ToString() == "1")
+                {
+                    chkNacinPretovara.Checked = true;
+                }
+                else
+                {
+                    chkNacinPretovara.Checked = false;
+                }
+                cbNacinPakovanja.SelectedValue = Convert.ToInt32(dr["NacinPakovanja"].ToString());
+                if (dr["NajavaVozila"].ToString() == "1")
+                {
+                    chkNajavaVozila.Checked = true;
+                }
+                else
+                {
+                    chkNajavaVozila.Checked = false;
+                }
+                dtpPeriodSkladistenjaDo.Value = Convert.ToDateTime(dr["PeriodSkladistenjaDo"].ToString());
+                dtpPeriodSkladistenjaOd.Value = Convert.ToDateTime(dr["PeriodSkladistenjaOd"].ToString());
+                cboSpedicijaJ.SelectedValue = Convert.ToInt32(dr["SpedicijaJ"].ToString());
+                txtAutoDana.Value = Convert.ToDecimal(dr["AutoDana"].ToString());
+                cboInspekciskiTretman.SelectedValue = Convert.ToInt32(dr["Inspekcija"].ToString());
+                cboReexport.SelectedValue = Convert.ToInt32(dr["NapomenaReexport"].ToString());
+                dtpEtaLeget.Value = Convert.ToDateTime(dr["EtaLeget"].ToString());
+                cboNaslovStatusaVozila.SelectedValue = Convert.ToInt32(dr["NaslovSlanjaStatusa"].ToString());
+                cboAdresaStatusVozila.SelectedValue = Convert.ToInt32(dr["AdresaSlanjaStatusa"].ToString());
+                txtADR.SelectedValue = Convert.ToInt32(dr["ADR"].ToString());
+                cboSpedicija.SelectedValue = Convert.ToInt32(dr["Spedicija"].ToString());
+                cboCarina.SelectedValue = Convert.ToInt32(dr["MestoCarinjenja"].ToString());
+                txtKontaktOsoba.Text = Convert.ToString(dr["KontaktOsoba"].ToString());
+                cboMestoUtovara.SelectedValue = Convert.ToInt32(dr["MesoUtovara"].ToString());
+                dtpPlanUtovara.Value = Convert.ToDateTime(dr["PlaniraniDatumUtovara"].ToString());
+                if (dr["Cirada"].ToString() == "1")
+                {
+                    chkCirada.Checked = true;
+                }
+                else
+                {
+                    chkCirada.Checked = false;
+                }
+                cboPPCNT.SelectedValue = Convert.ToInt32(dr["MestoPreuzimanja"].ToString());
+                cboPostupanjeSaRobom.SelectedValue = Convert.ToInt32(dr["Postupanje"].ToString());
+                cboKrajnjaDestinacija.SelectedValue = Convert.ToInt32(dr["KrajnaDestinacija"].ToString());
+                txtValuta.SelectedValue = dr["Valuta"].ToString();
+                txtVrednostRobeFaktura.Value = Convert.ToDecimal(dr["VrednostRobeFaktura"].ToString());
+                txtCBMO.Value = Convert.ToDecimal(dr["CBMO"].ToString());
+                txtCBM.Value = Convert.ToDecimal(dr["CBM"].ToString());
+                txtKoletaO.Value = Convert.ToDecimal(dr["BrojKoletaO"].ToString());
+                txtKoleta.Value = Convert.ToDecimal(dr["BrojKoleta"].ToString());
+                txtBrutoO.Value = Convert.ToDecimal(dr["BrutoRobeO"].ToString());
+                txtBrutoR.Value = Convert.ToDecimal(dr["BrutoRobe"].ToString());
+                txtNetoR.Value = Convert.ToDecimal(dr["NetoRobe"].ToString());
+                dtpCutOffPort.Value = Convert.ToDateTime(dr["CutOffPort"].ToString());
+                cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
+                txtBokingBrodara.Value = Convert.ToDecimal(dr["BookingBrodara"].ToString());
+                txtOstalePlombe.Text = dr["OstalePlombe"].ToString();
+                txtBrodskaPlomba.Text = dr["BrodskaPlomba"].ToString();
+                txtTipKont.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
+                txtBrKont.Text = dr["BrojKontejnera"].ToString();
+                txtBrojVagona.Text = dr["BrojVagona"].ToString();
+
+
+                /*
+
+                dtEtaRijeka.Value = Convert.ToDateTime(dr["EtaBroda"].ToString());
+                dtAtaRijeka.Value = Convert.ToDateTime(dr["AtaBroda"].ToString());
+                txtStatus.Text = dr["StatusPrijema"].ToString();
+                txtBrKont.Text = dr["BrojKontejnera"].ToString();
+                txtTipKont.SelectedValue = Convert.ToInt32(dr["TipKontejnera"].ToString());
+                dtNalogBrodara.Value = Convert.ToDateTime(dr["DobijenNalogBrodara"].ToString());
+                txtBZ.Text = dr["DobijeBZ"].ToString();
+                txtNapomena.Text = dr["Napomena"].ToString();
+                txtPIN.Text = dr["PIN"].ToString();
+                cbDirigacija.SelectedValue = Convert.ToInt32(dr["DirigacijaKontejeraZa"].ToString());
+                cbBrod.SelectedValue = Convert.ToInt32(dr["NazivBroda"].ToString());
+                txtTeretnica.Text = dr["BrodskaTeretnica"].ToString();
+                txtADR.SelectedValue = Convert.ToInt32(dr["ADR"].ToString());
+                cbVlasnikKont.SelectedValue = Convert.ToInt32(dr["VlasnikKontejnera"].ToString());
+                txtBuking.Text = dr["BukingBrodara"].ToString();
+                cboUvoznik.SelectedValue = Convert.ToInt32(dr["Uvoznik"].ToString());
+                cboNHM.SelectedValue = 1;
+                cboSpedicijaG.SelectedValue = Convert.ToInt32(dr["SpedicijaGranica"].ToString());
+                cboSpedicijaRTC.SelectedValue = Convert.ToInt32(dr["SpedicijaRTC"].ToString());
+                cboCarinskiPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
+                cbPostupak.SelectedValue = Convert.ToInt32(dr["PostupakSaRobom"].ToString());
+                cbNacinPakovanja.SelectedValue = Convert.ToInt32(dr["NacinPakovanja"].ToString());
+                cbOcarina.SelectedValue = Convert.ToInt32(dr["OdredisnaCarina"].ToString());
+                cbOspedicija.SelectedValue = Convert.ToInt32(dr["OdredisnaSpedicija"].ToString());
+                txtMesto.Text = dr["MestoIstovara"].ToString();
+                txtKontaktOsoba.Text = dr["KontaktOsoba"].ToString();
+                txtMail.Text = dr["Email"].ToString();
+                txtPlomba1.Text = dr["BrojPlombe1"].ToString();
+                txtPlomba2.Text = dr["BrojPlombe2"].ToString();
+                txtNetoR.Value = Convert.ToDecimal(dr["NetoRobe"].ToString());
+                txtBrutoR.Value = Convert.ToDecimal(dr["BrutoRobe"].ToString());
+                txtTaraK.Value = Convert.ToDecimal(dr["TaraKontejnera"].ToString());
+                txtBrutoK.Value = Convert.ToDecimal(dr["BrutoKontejnera"].ToString());
+                cbNapomenaPoz.SelectedValue = Convert.ToInt32(dr["NapomenaZaPozicioniranje"].ToString());
+                dtAtaOtprema.Value = Convert.ToDateTime(dr["AtaOtpreme"].ToString());
+                txtBrojVoza.Text = dr["BrojVoza"].ToString();
+                txtRelacija.Text = dr["RelacijaVoza"].ToString();
+                dtAtaDolazak.Value = Convert.ToDateTime(dr["AtaDolazak"].ToString());
+                txtKoleta.Value = Convert.ToDecimal(dr["Koleta"].ToString());
+                cboRLTerminal.SelectedValue = Convert.ToInt32(dr["RLTerminali"].ToString());
+                txtNapomena1.Text = dr["Napomena1"].ToString();
+                txtVrstaPregleda.Text = dr["VrstaPregleda"].ToString();
+                cboNalogodavac1.SelectedValue = Convert.ToInt32(dr["Nalogodavac1"].ToString());
+                txtRef1.Text = dr["Ref1"].ToString();
+                cboNalogodavac2.SelectedValue = Convert.ToInt32(dr["Nalogodavac2"].ToString());
+                txtRef2.Text = dr["Ref2"].ToString();
+                cboNalogodavac3.SelectedValue = Convert.ToInt32(dr["Nalogodavac3"].ToString());
+                txtRef3.Text = dr["Ref3"].ToString();
+
+                cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
+                */
+
+
+
+
+            }
+
+
+
+            con.Close();
+
+
+        }
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected)
+                {
+                    txtID.Text = row.Cells[0].Value.ToString();
+                    VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+                    FillDG2();
+                    FillDG3();
+
+                    FillDG8();
+
+                }
+            }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Da li pravite Opšte naloge za selektovane zapise Da/Ne", "Radni nalog", MessageBoxButtons.YesNo);
+
+            if (dialogResult == DialogResult.Yes)
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        Uvoz.InsertRadniNalogInterni ins = new Uvoz.InsertRadniNalogInterni();
+                        ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(5), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanIzvoz", Convert.ToInt32(row.Cells[0].Value.ToString()), "sa", "sa");
+                    }
+                }
+            }
+            else
+            {
+                // FormirajOpstiExcel();
+            }
         }
     }
 }

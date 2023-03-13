@@ -1689,5 +1689,17 @@ namespace Saobracaj
             Izvoz.frmValute valute = new Izvoz.frmValute();
             valute.Show();
         }
+
+        private void toolStripButton222_Click(object sender, EventArgs e)
+        {
+            frmVoz voz = new frmVoz();
+            voz.Show();
+        }
+
+        private void toolStripButton224_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmFormiranjePlanaIzvoz fpi = new Izvoz.frmFormiranjePlanaIzvoz();
+            fpi.Show();
+        }
     }
 }

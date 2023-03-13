@@ -608,7 +608,7 @@ namespace Saobracaj.Izvoz
                             int NacinPakovanja, int NacinPretovara, string DodatneNapomeneDrumski, int Vaganje,
                             decimal VGMTezina, decimal Tara, decimal VGMBrod, int Izvoznik,
                             int Klijent1, int Napomena1REf, int DobijenNalogKlijent1, int Klijent2,
-                            int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, string Vozilo, string Vozac)
+                            int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo)
         {
 
             
@@ -1003,6 +1003,27 @@ namespace Saobracaj.Izvoz
             vozac.Value = Vozac;
             cmd.Parameters.Add(vozac);
 
+            SqlParameter spedicijaJ = new SqlParameter();
+            spedicijaJ.ParameterName = "@SpedicijaJ";
+            spedicijaJ.SqlDbType = SqlDbType.Int;
+            spedicijaJ.Direction = ParameterDirection.Input;
+            spedicijaJ.Value = SpedicijaJ;
+            cmd.Parameters.Add(spedicijaJ);
+
+            SqlParameter periodskladistenjaOd = new SqlParameter();
+            periodskladistenjaOd.ParameterName = "@PeriodSkladistenjaOd";
+            periodskladistenjaOd.SqlDbType = SqlDbType.DateTime;
+            periodskladistenjaOd.Direction = ParameterDirection.Input;
+            periodskladistenjaOd.Value = PeriodSkladistenjaOd;
+            cmd.Parameters.Add(periodskladistenjaOd);
+
+            SqlParameter periodskladistenjaDo = new SqlParameter();
+            periodskladistenjaDo.ParameterName = "@PeriodSkladistenjaDo";
+            periodskladistenjaDo.SqlDbType = SqlDbType.DateTime;
+            periodskladistenjaDo.Direction = ParameterDirection.Input;
+            periodskladistenjaDo.Value = PeriodSkladistenjaDo;
+            cmd.Parameters.Add(periodskladistenjaDo);
+
 
 
             conn.Open();
@@ -1051,7 +1072,7 @@ namespace Saobracaj.Izvoz
                            int NacinPakovanja, int NacinPretovara, string DodatneNapomeneDrumski, int Vaganje,
                            decimal VGMTezina, decimal Tara, decimal VGMBrod, int Izvoznik,
                            int Klijent1, int Napomena1REf, int DobijenNalogKlijent1, int Klijent2,
-                           int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, int IDNadredjena, string Vozilo, string Vozac)
+                           int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, int IDNadredjena, string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo)
         {
 
 
@@ -1452,6 +1473,27 @@ namespace Saobracaj.Izvoz
             vozac.Direction = ParameterDirection.Input;
             vozac.Value = Vozac;
             cmd.Parameters.Add(vozac);
+
+            SqlParameter spedicijaJ = new SqlParameter();
+            spedicijaJ.ParameterName = "@SpedicijaJ";
+            spedicijaJ.SqlDbType = SqlDbType.Int;
+            spedicijaJ.Direction = ParameterDirection.Input;
+            spedicijaJ.Value = SpedicijaJ;
+            cmd.Parameters.Add(spedicijaJ);
+
+            SqlParameter periodskladistenjaOd = new SqlParameter();
+            periodskladistenjaOd.ParameterName = "@PeriodSkladistenjaOd";
+            periodskladistenjaOd.SqlDbType = SqlDbType.DateTime;
+            periodskladistenjaOd.Direction = ParameterDirection.Input;
+            periodskladistenjaOd.Value = PeriodSkladistenjaOd;
+            cmd.Parameters.Add(periodskladistenjaOd);
+
+            SqlParameter periodskladistenjaDo = new SqlParameter();
+            periodskladistenjaDo.ParameterName = "@PeriodSkladistenjaDo";
+            periodskladistenjaDo.SqlDbType = SqlDbType.DateTime;
+            periodskladistenjaDo.Direction = ParameterDirection.Input;
+            periodskladistenjaDo.Value = PeriodSkladistenjaDo;
+            cmd.Parameters.Add(periodskladistenjaDo);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
