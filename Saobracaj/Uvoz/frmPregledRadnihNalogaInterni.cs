@@ -38,7 +38,24 @@ namespace Saobracaj.Uvoz
 " inner join UvozKonacnaVrstaManipulacije on UvozKonacnaVrstaManipulacije.ID = RadniNalogInterni.IDManipulacijaJed " +
 " inner join Cene on UvozKonacnaVrstaManipulacije.IDVrstaManipulacije = Cene.ID " +
 " inner join VrstaManipulacije on Cene.VrstaManipulacije = VrstaManipulacije.ID " +
-" order by RadniNalogInterni.ID desc";
+" " +
+" union " +
+"SELECT RadniNalogInterni.[ID] " +
+" ,[OJIzdavanja], o1.Naziv as Izdao " +
+" ,[OJRealizacije] ,o2.Naziv as Realizuje " +
+" ,[DatumIzdavanja] ,[DatumRealizacije] " +
+" ,RadniNalogInterni.[Napomena] ,[Uradjen] " +
+" ,[Osnov] ,[BrojOsnov], IzvozKonacna.BrojKontejnera, VrstaManipulacije.Naziv, IzvozKonacnaVrstaManipulacije.Kolicina" +
+" ,[KorisnikIzdao] ,[KorisnikZavrsio], IDManipulacijaJed as IDUMAN,  Cene.Komitent as NalogodavacCena, Cene.Uvoznik as IzvoznikkCena, " +
+" Cene.VrstaManipulacije " +
+" FROM [RadniNalogInterni] " +
+" inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov " +
+" inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
+" inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
+" inner join IzvozKonacnaVrstaManipulacije on IzvozKonacnaVrstaManipulacije.ID = RadniNalogInterni.IDManipulacijaJed " +
+" inner join Cene on IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije = Cene.ID " +
+" inner join VrstaManipulacije on Cene.VrstaManipulacije = VrstaManipulacije.ID " +
+"  ";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();

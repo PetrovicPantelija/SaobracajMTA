@@ -144,7 +144,9 @@ namespace Saobracaj.Izvoz
                 con.Close();
         }
 
-        private void FillGV()
+      
+        /*
+          private void FillGV()
         {
             var select = " SELECT     Izvoz.VrstaKontejnera, TipKontenjera.Naziv, Izvoz.ID, Izvoz.BrojVagona, Izvoz.BrojKontejnera, Izvoz.BrodskaPlomba, Izvoz.OstalePlombe, Izvoz.BookingBrodara, Partnerji.PaNaziv, " +
                   "    Izvoz.CutOffPort, Izvoz.NetoRobe, Izvoz.BrutoRobe, Izvoz.BrutoRobeO, Izvoz.BrojKoleta, Izvoz.BrojKoletaO, Izvoz.CBM, Izvoz.CBMO, Izvoz.VrednostRobeFaktura, " +
@@ -269,8 +271,6 @@ namespace Saobracaj.Izvoz
 
 
         }
-        /*
-        
          */
 
         private void frmIzvoz_Load(object sender, EventArgs e)

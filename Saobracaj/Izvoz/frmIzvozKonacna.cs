@@ -837,7 +837,7 @@ namespace Saobracaj.Izvoz
         private void FillDG8()
         {
             var select = "select  IzvozKonacnaVrstaManipulacije.ID, VrstaManipulacije.Naziv, IzvozKonacnaVrstaManipulacije.Cena, VrstaManipulacije.ID from IzvozKonacnaVrstaManipulacije " +
-            " inner join VrstaManipulacije on VrstaManipulacije.ID = UvozVrstaManipulacije.IDVrstaManipulacije " +
+            " inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
                 " where IzvozKonacnaVrstaManipulacije.IDNadredjena = " + Convert.ToInt32(txtID.Text);
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
@@ -999,7 +999,7 @@ namespace Saobracaj.Izvoz
    "      ,[Izvoznik],[Klijent1],[Napomena1REf],[DodatneNapomeneDrumski] " +
    "      ,[Klijent2],[Napomena2REf],[Klijent3],[Napomena3REf] " +
    "      ,[SpediterRijeka],[OstalePlombe],[ADR],[Vozilo],[Vozac], SpedicijaJ, PeriodSkladistenjaOd, PeriodSkladistenjaDo " +
- "  FROM [Izvoz] where ID=" + ID, con);
+ "  FROM [IzvozKonacna] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -1190,7 +1190,7 @@ namespace Saobracaj.Izvoz
                     if (row.Selected)
                     {
                         Uvoz.InsertRadniNalogInterni ins = new Uvoz.InsertRadniNalogInterni();
-                        ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(5), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanIzvoz", Convert.ToInt32(row.Cells[0].Value.ToString()), "sa", "sa");
+                        ins.InsRadniNalogInterniIzvoz(Convert.ToInt32(2), Convert.ToInt32(5), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanIzvoz", Convert.ToInt32(row.Cells[0].Value.ToString()), "sa", "sa");
                     }
                 }
             }
@@ -1198,6 +1198,15 @@ namespace Saobracaj.Izvoz
             {
                 // FormirajOpstiExcel();
             }
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            if (txtNadredjeni.Text == "")
+            { txtNadredjeni.Text = "0"; }
+            // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
+            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue));
+            um.Show();
         }
     }
 }
