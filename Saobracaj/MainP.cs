@@ -1683,5 +1683,35 @@ namespace Saobracaj
             frmVagoniSerije frm = new frmVagoniSerije();
             frm.Show();
         }
+
+        private void toolStripButton223_Click(object sender, EventArgs e)
+        {
+            Nepravilnosti.frmGrupaNepravilnosti frm = new Nepravilnosti.frmGrupaNepravilnosti();
+            frm.Show();
+        }
+
+        private void toolStripButton224_Click(object sender, EventArgs e)
+        {
+            Nepravilnosti.frmNeispravnostPostupak frm = new Nepravilnosti.frmNeispravnostPostupak();
+            frm.Show();
+        }
+
+        private void toolStripButton225_Click(object sender, EventArgs e)
+        {
+            Nepravilnosti.frmOpisNeispravnosti frm = new Nepravilnosti.frmOpisNeispravnosti();
+            frm.Show();
+        }
+
+        private void toolStripButton226_Click(object sender, EventArgs e)
+        {
+            Nepravilnosti.frmRazredNepravilnosti frm = new Nepravilnosti.frmRazredNepravilnosti();
+            frm.Show();
+        }
+
+        private void toolStripButton227_Click(object sender, EventArgs e)
+        {
+            Nepravilnosti.frmVrstaNepravilnosti frm = new Nepravilnosti.frmVrstaNepravilnosti();
+            frm.Show();
+        }
     }
 }
