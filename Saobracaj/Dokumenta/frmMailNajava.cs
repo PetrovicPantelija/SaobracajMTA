@@ -36,7 +36,7 @@ namespace Saobracaj.Dokumenta
                 "inner join stanice on Najava.Otpravna = stanice.ID " +
                 "inner join stanice as stanice1 on najava.Uputna = stanice1.ID " +
                 "inner join stanice as stanice2 on Najava.Granicna = stanice2.ID " +
-                "WHERE Najava.Faktura = '' and Partnerji.Posiljalac = 1 and partnerjiKontOseba.PaKOTip = 1 and(status = 1 or status = 2 or status = 4 or status = 5) " +
+                "WHERE Najava.Faktura = '' and Partnerji.Posiljalac = 1  and(status = 1 or status = 2 or status = 4 or status = 5) " +
                 "order by PaSifra";
 
             SqlConnection conn = new SqlConnection(connect);
@@ -100,7 +100,7 @@ namespace Saobracaj.Dokumenta
                 "inner join stanice on Najava.Otpravna = stanice.ID " +
                 "inner join stanice as stanice1 on najava.Uputna = stanice1.ID " +
                 "inner join stanice as stanice2 on Najava.Granicna = stanice2.ID " +
-                "WHERE Najava.Faktura = '' and Partnerji.Posiljalac = 1 and partnerjiKontOseba.PaKOTip = 1 and(status = 1 or status = 2 or status = 4 or status = 5)";
+                "WHERE Najava.Faktura = '' and Partnerji.Posiljalac = 1 and(status = 1 or status = 2 or status = 4 or status = 5)";
             SqlCommand cmd = new SqlCommand(query, con);
             SqlDataAdapter da;
             DataSet ds = new DataSet();
@@ -127,7 +127,7 @@ namespace Saobracaj.Dokumenta
                 "inner join stanice on Najava.Otpravna = stanice.ID " +
                 "inner join stanice as stanice1 on najava.Uputna = stanice1.ID " +
                 "inner join stanice as stanice2 on Najava.Granicna = stanice2.ID " +
-                "WHERE Najava.Faktura = '' and Partnerji.Posiljalac = 1 and partnerjiKontOseba.PaKOTip = 1 and status= "+Convert.ToInt32(comboBox1.SelectedValue) +
+                "WHERE Najava.Faktura = '' and Partnerji.Posiljalac = 1 and status= "+Convert.ToInt32(comboBox1.SelectedValue) +
                 "order by PaSifra";
 
             SqlConnection conn = new SqlConnection(connect);
@@ -185,7 +185,7 @@ namespace Saobracaj.Dokumenta
                     cbList_Partneri.SetSelected(i,true);
                     PaSifra = Convert.ToInt32(cbList_Partneri.SelectedValue);
 
-                    string query = "Select PaKOMail From PartnerjiKontOseba Where PaKoTip=1 and PaKOSifra= "+PaSifra;
+                    string query = "Select PaKOMail From PartnerjiKontOseba Where PaKOSifra= "+PaSifra;
                     SqlConnection conn = new SqlConnection(connect);
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(query, conn);
@@ -230,7 +230,7 @@ namespace Saobracaj.Dokumenta
                             "inner join stanice on Najava.Otpravna = stanice.ID " +
                             "inner join stanice as stanice1 on najava.Uputna = stanice1.ID " +
                             "inner join stanice as stanice2 on Najava.Granicna = stanice2.ID " +
-                            "WHERE Najava.Faktura = '' and Partnerji.Posiljalac = 1 and partnerjiKontOseba.PaKOTip = 1 and" +
+                            "WHERE Najava.Faktura = '' and Partnerji.Posiljalac = 1  and" +
                             "(status = 1 or status = 2 or status = 4 or status = 5) and PaSifra = "+PaSifra+" " +
                             "order by Najava.ID";
                         var dataAdapter = new SqlDataAdapter(select, conn);
@@ -304,7 +304,7 @@ namespace Saobracaj.Dokumenta
                     cbList_Partneri.SetSelected(i, true);
                     PaSifra = Convert.ToInt32(cbList_Partneri.SelectedValue);
 
-                    string query = "Select PaKOMail From PartnerjiKontOseba Where PaKoTip=1 and PaKOSifra= " + PaSifra;
+                    string query = "Select PaKOMail From PartnerjiKontOseba Where PaKOSifra= " + PaSifra;
                     SqlConnection conn = new SqlConnection(connect);
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(query, conn);
@@ -348,7 +348,7 @@ namespace Saobracaj.Dokumenta
                             "inner join stanice on Najava.Otpravna = stanice.ID " +
                             "inner join stanice as stanice1 on najava.Uputna = stanice1.ID " +
                             "inner join stanice as stanice2 on Najava.Granicna = stanice2.ID " +
-                            "WHERE Najava.Faktura = '' and Partnerji.Posiljalac = 1 and partnerjiKontOseba.PaKOTip = 1 and" +
+                            "WHERE Najava.Faktura = '' and Partnerji.Posiljalac = 1 and" +
                             "(status = 1 or status = 2 or status = 4 or status = 5) and PaSifra = " + PaSifra + " " +
                             "order by Najava.ID";
                         var dataAdapter = new SqlDataAdapter(select, conn);

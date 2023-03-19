@@ -190,6 +190,11 @@ namespace Saobracaj.Dokumenta
             RefreshDataGrid();
         }
 
+        public string GetKontakt()
+        {
+            return txtPaKOIme.Text.TrimEnd() + " " + txtPaKOPriimek.Text.TrimEnd();
+        }
+
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             try

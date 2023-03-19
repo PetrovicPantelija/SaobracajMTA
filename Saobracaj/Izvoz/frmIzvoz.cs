@@ -67,7 +67,7 @@ namespace Saobracaj.Izvoz
                     txtTipKont.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
                     txtBrodskaPlomba.Text = dr["BrodskaPlomba"].ToString();
                     txtOstalePlombe.Text = dr["OstalePlombe"].ToString();
-                    txtBokingBrodara.Value = Convert.ToInt32(dr["BookingBrodara"].ToString());
+                    txtBokingBrodara.Text = dr["BookingBrodara"].ToString();
                    cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
                 dtpCutOffPort.Value = Convert.ToDateTime(dr["CutOffPort"].ToString());
                     txtNetoR.Value = Convert.ToDecimal(dr["NetoRobe"].ToString());
@@ -696,7 +696,7 @@ namespace Saobracaj.Izvoz
             }
 
             ins.UpdIzvoz(Convert.ToInt32(txtID.Text), txtBrojVagona.Text, txtBrKont.Text, Convert.ToInt32(txtTipKont.SelectedValue),
-                txtBrodskaPlomba.Text, Convert.ToInt32(txtBokingBrodara.Value), Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToDateTime(dtpCutOffPort.Value),
+                txtBrodskaPlomba.Text, Convert.ToInt32(txtBokingBrodara.Text), Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToDateTime(dtpCutOffPort.Value),
                 Convert.ToDecimal(txtNetoR.Value), Convert.ToDecimal(txtBrutoR.Value), Convert.ToDecimal(txtBrutoO.Value), Convert.ToInt32(txtKoleta.Value),
                 Convert.ToInt32(txtKoletaO.Value), Convert.ToDecimal(txtCBM.Value), Convert.ToDecimal(txtCBMO.Value), Convert.ToDecimal(txtVrednostRobeFaktura.Value),
                 Convert.ToString(txtValuta.SelectedValue), Convert.ToInt32(cboKrajnjaDestinacija.SelectedValue), Convert.ToInt32(cboPostupanjeSaRobom.SelectedValue),
@@ -1157,7 +1157,7 @@ namespace Saobracaj.Izvoz
                 txtNetoR.Value = Convert.ToDecimal(dr["NetoRobe"].ToString());
                 dtpCutOffPort.Value = Convert.ToDateTime(dr["CutOffPort"].ToString());
                 cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
-                txtBokingBrodara.Value = Convert.ToDecimal(dr["BookingBrodara"].ToString());
+                txtBokingBrodara.Text = dr["BookingBrodara"].ToString();
                 txtOstalePlombe.Text = dr["OstalePlombe"].ToString();
                 txtBrodskaPlomba.Text   = dr["BrodskaPlomba"].ToString();
                 txtTipKont.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
@@ -1269,6 +1269,25 @@ namespace Saobracaj.Izvoz
             // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
             frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue));
             um.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            using (var detailForm = new frmKontaktOsobeMU())
+            {
+                detailForm.ShowDialog();
+
+                txtAdresaMestaUtovara.Text = detailForm.GetKontakt();
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            using (var detailForm = new Dokumenta.frmKontaktOsobe())
+            {
+                detailForm.ShowDialog();
+                txtKontaktSpeditera.Text = detailForm.GetKontakt();
+            }
         }
     }
 }

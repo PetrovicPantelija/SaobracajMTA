@@ -117,5 +117,11 @@ namespace Saobracaj.Izvoz
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            frmKontaktOsobeMU ko = new frmKontaktOsobeMU(Convert.ToInt32(txtID.Text));
+            ko.Show();
+        }
     }
 }

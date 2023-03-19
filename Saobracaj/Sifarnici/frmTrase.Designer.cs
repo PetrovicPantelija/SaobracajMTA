@@ -461,11 +461,8 @@
             // 
             this.cboGodinaVazenja.FormattingEnabled = true;
             this.cboGodinaVazenja.Items.AddRange(new object[] {
-            "2018",
-            "2019",
-            "2020",
-            "2021",
-            "2022"});
+            "2022",
+            "2023"});
             this.cboGodinaVazenja.Location = new System.Drawing.Point(1387, 300);
             this.cboGodinaVazenja.Margin = new System.Windows.Forms.Padding(4);
             this.cboGodinaVazenja.Name = "cboGodinaVazenja";

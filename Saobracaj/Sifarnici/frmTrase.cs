@@ -146,7 +146,7 @@ namespace Saobracaj.Sifarnici
                       " Trase.ProcenatKocenja, Trase.Cena, Trase.Rastojanje, CONVERT(VARCHAR(8),Trase.VremePolaska,108) as VremePolaska, CONVERT(VARCHAR(8),Trase.VremeDolaska,108) as VremeDolaska, Trase.DuzinaTrajanja, Trase.Rezi, Trase.Godina " +
                       " FROM         Trase INNER JOIN " +
                       " stanice ON Trase.Pocetna = stanice.ID INNER JOIN " +
-                      " stanice AS stanice_1 ON Trase.Krajnja = stanice_1.ID";
+                      " stanice AS stanice_1 ON Trase.Krajnja = stanice_1.ID Order By Trase.ID desc ";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);

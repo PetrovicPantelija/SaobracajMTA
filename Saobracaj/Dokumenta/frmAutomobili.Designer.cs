@@ -273,6 +273,7 @@
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(135, 24);
             this.toolStripButton5.Text = "Evidencija kvarova";
+            this.toolStripButton5.Visible = false;
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // toolStripButton6
@@ -738,6 +739,7 @@
             this.chkImaTrougao.TabIndex = 239;
             this.chkImaTrougao.Text = "Ima trougao";
             this.chkImaTrougao.UseVisualStyleBackColor = true;
+            this.chkImaTrougao.Visible = false;
             // 
             // chkSajlaZaVucu
             // 
@@ -750,6 +752,7 @@
             this.chkSajlaZaVucu.TabIndex = 240;
             this.chkSajlaZaVucu.Text = "Ima sajlu za vuču";
             this.chkSajlaZaVucu.UseVisualStyleBackColor = true;
+            this.chkSajlaZaVucu.Visible = false;
             // 
             // chkMarker
             // 
@@ -762,6 +765,7 @@
             this.chkMarker.TabIndex = 241;
             this.chkMarker.Text = "Ima marker";
             this.chkMarker.UseVisualStyleBackColor = true;
+            this.chkMarker.Visible = false;
             // 
             // chkLanci
             // 
@@ -774,6 +778,7 @@
             this.chkLanci.TabIndex = 242;
             this.chkLanci.Text = "Ima lance";
             this.chkLanci.UseVisualStyleBackColor = true;
+            this.chkLanci.Visible = false;
             // 
             // label22
             // 
@@ -784,6 +789,7 @@
             this.label22.Size = new System.Drawing.Size(97, 17);
             this.label22.TabIndex = 243;
             this.label22.Text = "Lokacija lanci:";
+            this.label22.Visible = false;
             // 
             // txtLokacijaLanci
             // 
@@ -792,6 +798,7 @@
             this.txtLokacijaLanci.Name = "txtLokacijaLanci";
             this.txtLokacijaLanci.Size = new System.Drawing.Size(239, 22);
             this.txtLokacijaLanci.TabIndex = 244;
+            this.txtLokacijaLanci.Visible = false;
             // 
             // label23
             // 
@@ -802,6 +809,7 @@
             this.label23.Size = new System.Drawing.Size(130, 17);
             this.label23.TabIndex = 245;
             this.label23.Text = "Zimske gume DOT:";
+            this.label23.Visible = false;
             // 
             // txtZGDot
             // 
@@ -810,6 +818,7 @@
             this.txtZGDot.Name = "txtZGDot";
             this.txtZGDot.Size = new System.Drawing.Size(239, 22);
             this.txtZGDot.TabIndex = 246;
+            this.txtZGDot.Visible = false;
             // 
             // label24
             // 
@@ -820,6 +829,7 @@
             this.label24.Size = new System.Drawing.Size(147, 17);
             this.label24.TabIndex = 247;
             this.label24.Text = "Zimske gume lokacija:";
+            this.label24.Visible = false;
             // 
             // txtZGLokacija
             // 
@@ -828,6 +838,7 @@
             this.txtZGLokacija.Name = "txtZGLokacija";
             this.txtZGLokacija.Size = new System.Drawing.Size(239, 22);
             this.txtZGLokacija.TabIndex = 248;
+            this.txtZGLokacija.Visible = false;
             // 
             // label25
             // 
@@ -838,6 +849,7 @@
             this.label25.Size = new System.Drawing.Size(128, 17);
             this.label25.TabIndex = 249;
             this.label25.Text = "Zimske gume šare:";
+            this.label25.Visible = false;
             // 
             // txtZGSare
             // 
@@ -846,6 +858,7 @@
             this.txtZGSare.Name = "txtZGSare";
             this.txtZGSare.Size = new System.Drawing.Size(239, 22);
             this.txtZGSare.TabIndex = 250;
+            this.txtZGSare.Visible = false;
             // 
             // label26
             // 
@@ -856,6 +869,7 @@
             this.label26.Size = new System.Drawing.Size(122, 17);
             this.label26.TabIndex = 255;
             this.label26.Text = "Letnje gume šare:";
+            this.label26.Visible = false;
             // 
             // txtLGSare
             // 
@@ -864,6 +878,7 @@
             this.txtLGSare.Name = "txtLGSare";
             this.txtLGSare.Size = new System.Drawing.Size(239, 22);
             this.txtLGSare.TabIndex = 256;
+            this.txtLGSare.Visible = false;
             // 
             // label27
             // 
@@ -874,6 +889,7 @@
             this.label27.Size = new System.Drawing.Size(141, 17);
             this.label27.TabIndex = 253;
             this.label27.Text = "Letnje gume lokacija:";
+            this.label27.Visible = false;
             // 
             // txtLGLokacija
             // 
@@ -882,6 +898,7 @@
             this.txtLGLokacija.Name = "txtLGLokacija";
             this.txtLGLokacija.Size = new System.Drawing.Size(239, 22);
             this.txtLGLokacija.TabIndex = 254;
+            this.txtLGLokacija.Visible = false;
             // 
             // label28
             // 
@@ -892,6 +909,7 @@
             this.label28.Size = new System.Drawing.Size(124, 17);
             this.label28.TabIndex = 251;
             this.label28.Text = "Letnje gume DOT:";
+            this.label28.Visible = false;
             // 
             // txtLGgumeDOT
             // 
@@ -900,6 +918,7 @@
             this.txtLGgumeDOT.Name = "txtLGgumeDOT";
             this.txtLGgumeDOT.Size = new System.Drawing.Size(239, 22);
             this.txtLGgumeDOT.TabIndex = 252;
+            this.txtLGgumeDOT.Visible = false;
             // 
             // label29
             // 
@@ -910,6 +929,7 @@
             this.label29.Size = new System.Drawing.Size(81, 17);
             this.label29.TabIndex = 257;
             this.label29.Text = "Napomena:";
+            this.label29.Visible = false;
             // 
             // txtNapomena
             // 
@@ -919,6 +939,7 @@
             this.txtNapomena.Name = "txtNapomena";
             this.txtNapomena.Size = new System.Drawing.Size(673, 152);
             this.txtNapomena.TabIndex = 258;
+            this.txtNapomena.Visible = false;
             // 
             // label30
             // 
@@ -929,6 +950,7 @@
             this.label30.Size = new System.Drawing.Size(94, 17);
             this.label30.TabIndex = 265;
             this.label30.Text = "Nepravilnosti:";
+            this.label30.Visible = false;
             // 
             // txtNepravilnosti
             // 
@@ -937,6 +959,7 @@
             this.txtNepravilnosti.Name = "txtNepravilnosti";
             this.txtNepravilnosti.Size = new System.Drawing.Size(130, 22);
             this.txtNepravilnosti.TabIndex = 266;
+            this.txtNepravilnosti.Visible = false;
             // 
             // label31
             // 
@@ -947,6 +970,7 @@
             this.label31.Size = new System.Drawing.Size(66, 17);
             this.label31.TabIndex = 263;
             this.label31.Text = "Nivo ulja:";
+            this.label31.Visible = false;
             // 
             // txtNivoUlja
             // 
@@ -956,6 +980,7 @@
             this.txtNivoUlja.Name = "txtNivoUlja";
             this.txtNivoUlja.Size = new System.Drawing.Size(130, 22);
             this.txtNivoUlja.TabIndex = 264;
+            this.txtNivoUlja.Visible = false;
             // 
             // label32
             // 
@@ -966,6 +991,7 @@
             this.label32.Size = new System.Drawing.Size(103, 17);
             this.label32.TabIndex = 261;
             this.label32.Text = "Čistoća unutra:";
+            this.label32.Visible = false;
             // 
             // txtCistocaUnutra
             // 
@@ -974,6 +1000,7 @@
             this.txtCistocaUnutra.Name = "txtCistocaUnutra";
             this.txtCistocaUnutra.Size = new System.Drawing.Size(130, 22);
             this.txtCistocaUnutra.TabIndex = 262;
+            this.txtCistocaUnutra.Visible = false;
             this.txtCistocaUnutra.TextChanged += new System.EventHandler(this.txtCistocaUnutra_TextChanged);
             // 
             // label33
@@ -985,6 +1012,7 @@
             this.label33.Size = new System.Drawing.Size(99, 17);
             this.label33.TabIndex = 259;
             this.label33.Text = "Čistoća spolja:";
+            this.label33.Visible = false;
             // 
             // txtCistocaSpolja
             // 
@@ -993,6 +1021,7 @@
             this.txtCistocaSpolja.Name = "txtCistocaSpolja";
             this.txtCistocaSpolja.Size = new System.Drawing.Size(130, 22);
             this.txtCistocaSpolja.TabIndex = 260;
+            this.txtCistocaSpolja.Visible = false;
             // 
             // label34
             // 
@@ -1003,6 +1032,7 @@
             this.label34.Size = new System.Drawing.Size(93, 17);
             this.label34.TabIndex = 268;
             this.label34.Text = "Mesto troška:";
+            this.label34.Visible = false;
             // 
             // cboMestoTroska
             // 
@@ -1012,6 +1042,7 @@
             this.cboMestoTroska.Name = "cboMestoTroska";
             this.cboMestoTroska.Size = new System.Drawing.Size(130, 24);
             this.cboMestoTroska.TabIndex = 267;
+            this.cboMestoTroska.Visible = false;
             // 
             // label35
             // 

@@ -26,6 +26,8 @@ namespace Saobracaj.Dokumenta
         {
             InitializeComponent();
             BrojDogovora = Convert.ToInt32(NaStNar);
+            txtNaStNar.Text = BrojDogovora.ToString();
+            RefreshDataGridPoStavkeMAX();
         }
 
         private void frmDogovori_Load(object sender, EventArgs e)
@@ -192,6 +194,80 @@ namespace Saobracaj.Dokumenta
 
         }
 
+        private void RefreshDataGridPoStavkeMAX()
+        {
+
+            var select = "  Select  NaPNarZap ,  NaPStNar ,  NaPSifra ,  NaPNaziv ,  NaPEM , NaPEM2 ,   NaPKolNar , NaPKolNar2 ,   NaPOpomba ,  NaPNote  from NarociloPostav where NaPStNar = " + txtNaStNar.Text;
+
+
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+
+
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "Šifra";
+            dataGridView1.Columns[0].Width = 40;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Nadredjeni";
+            dataGridView1.Columns[1].Width = 50;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "MpSifra";
+            dataGridView1.Columns[2].Width = 50;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Mp Naziv";
+            dataGridView1.Columns[3].Width = 150;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "JM1";
+            dataGridView1.Columns[4].Width = 50;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "JM2";
+            dataGridView1.Columns[5].Width = 50;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Količina";
+            dataGridView1.Columns[6].Width = 100;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Količina 2";
+            dataGridView1.Columns[7].Width = 100;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Napomena";
+            dataGridView1.Columns[8].Width = 80;
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Beleška";
+            dataGridView1.Columns[9].Width = 180;
+
+        }
+
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
@@ -200,17 +276,41 @@ namespace Saobracaj.Dokumenta
             txtNaOpomba1.Text = "";
         }
 
+        private void VratiPodatkeMAX()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT Max(NaStNar) as Broj from Narocilo", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                // Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene
+                txtNaStNar.Text = dr["Broj"].ToString();
+            }
+
+            con.Close();
+        }
+
         private void tsSave_Click(object sender, EventArgs e)
         {
             if (status == true)
             {
                 InsertNarocilo ins = new InsertNarocilo();
                 ins.InsNarocilo(txtNaStatus.Text, Convert.ToDateTime(dtpNaDatNar.Value), Convert.ToInt32(cboNaPartPlac.SelectedValue), Convert.ToInt32(cboNaNacinDobave.SelectedValue), Convert.ToInt32(cboNaSifObjekt.SelectedValue), txtNaOpomba1.Text);
+                VratiPodatkeMAX();
+
+                RefreshDataGridPoStavkeMAX();
             }
             else
             {
                 InsertNarocilo upd = new InsertNarocilo();
                 upd.UpdNarocilo(Convert.ToInt32(txtNaStNar.Text), txtNaStatus.Text, Convert.ToDateTime(dtpNaDatNar.Value), Convert.ToInt32(cboNaPartPlac.SelectedValue), Convert.ToInt32(cboNaNacinDobave.SelectedValue), Convert.ToInt32(cboNaSifObjekt.SelectedValue), txtNaOpomba1.Text);
+                RefreshDataGridPoStavkeMAX();
+
             }
         }
 
@@ -297,7 +397,16 @@ namespace Saobracaj.Dokumenta
         private void button11_Click(object sender, EventArgs e)
         {
             InsertNarocilo ins = new InsertNarocilo();
-            ins.InsNarociloStavka( Convert.ToInt32(txtNaStNar.Text), Convert.ToInt32(cboNaPartPlac.SelectedValue), cboNaPartPlac.Text, txtNaPEM.Text, txtNaPem2.Text,  Convert.ToDecimal(txtNaPKolNar.Value), Convert.ToDecimal(txtNaPKolNar2.Value), txtNaPOpomba.Text, txtNaPNote.Text);
+            if (txtNaPem2.Text == "")
+                { txtNaPem2.Text = " "; }
+
+            if (txtNaPOpomba.Text == "")
+            { txtNaPOpomba.Text = " "; }
+
+            if (txtNaPNote.Text == "")
+            { txtNaPNote.Text = " "; }
+
+            ins.InsNarociloStavka( Convert.ToInt32(txtNaStNar.Text), Convert.ToInt32(cboNaPSifra.SelectedValue), cboNaPSifra.Text, txtNaPEM.Text, txtNaPem2.Text,  Convert.ToDecimal(txtNaPKolNar.Value), Convert.ToDecimal(txtNaPKolNar2.Value), txtNaPOpomba.Text, txtNaPNote.Text);
             RefreshDataGrid();
         }
 
@@ -305,7 +414,7 @@ namespace Saobracaj.Dokumenta
         {
 
             InsertNarocilo ins = new InsertNarocilo();
-            ins.UpdNarociloStavka(Convert.ToInt32(txtNaPNarZap.Text), Convert.ToInt32(txtNaStNar.Text), Convert.ToInt32(cboNaPartPlac.SelectedValue), cboNaPartPlac.Text, txtNaPEM.Text, txtNaPem2.Text, Convert.ToDecimal(txtNaPKolNar.Value), Convert.ToDecimal(txtNaPKolNar2.Value), txtNaPOpomba.Text, txtNaPNote.Text);
+            ins.UpdNarociloStavka(Convert.ToInt32(txtNaPNarZap.Text), Convert.ToInt32(txtNaStNar.Text), Convert.ToInt32(cboNaPSifra.SelectedValue), cboNaPSifra.Text, txtNaPEM.Text, txtNaPem2.Text, Convert.ToDecimal(txtNaPKolNar.Value), Convert.ToDecimal(txtNaPKolNar2.Value), txtNaPOpomba.Text, txtNaPNote.Text);
         }
 
         private void button2_Click(object sender, EventArgs e)

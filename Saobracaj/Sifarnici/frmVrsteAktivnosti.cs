@@ -412,5 +412,14 @@ namespace Saobracaj.Sifarnici
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
         }
+
+        private void tsDelete_Click(object sender, EventArgs e)
+        {
+            InsertVrstaAktivnosti upd = new InsertVrstaAktivnosti();
+            upd.DeleteVrstaAktivnosti(Convert.ToInt32(txtSifra.Text));
+            status = false;
+            txtSifra.Enabled = false;
+            RefreshDataGrid();
+        }
     }
 }

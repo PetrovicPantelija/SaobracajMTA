@@ -116,6 +116,7 @@
             this.tsDelete.Name = "tsDelete";
             this.tsDelete.Size = new System.Drawing.Size(29, 24);
             this.tsDelete.Text = "toolStripButton1";
+            this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // toolStripSeparator1
             // 
@@ -238,6 +239,7 @@
             this.chkObracunPoSatu.TabIndex = 161;
             this.chkObracunPoSatu.Text = "Obračun po satu";
             this.chkObracunPoSatu.UseVisualStyleBackColor = true;
+            this.chkObracunPoSatu.Visible = false;
             // 
             // chkPotrebanRazlog
             // 
@@ -250,6 +252,7 @@
             this.chkPotrebanRazlog.TabIndex = 162;
             this.chkPotrebanRazlog.Text = "Potreban unos razloga";
             this.chkPotrebanRazlog.UseVisualStyleBackColor = true;
+            this.chkPotrebanRazlog.Visible = false;
             // 
             // chkPotrebanNalogodavac
             // 
@@ -262,6 +265,7 @@
             this.chkPotrebanNalogodavac.TabIndex = 163;
             this.chkPotrebanNalogodavac.Text = "Potreban unos nalogodavca";
             this.chkPotrebanNalogodavac.UseVisualStyleBackColor = true;
+            this.chkPotrebanNalogodavac.Visible = false;
             // 
             // chkPotrebnoVozilo
             // 
@@ -274,6 +278,7 @@
             this.chkPotrebnoVozilo.TabIndex = 164;
             this.chkPotrebnoVozilo.Text = "Potreban unos vozila";
             this.chkPotrebnoVozilo.UseVisualStyleBackColor = true;
+            this.chkPotrebnoVozilo.Visible = false;
             // 
             // chkObaveznaNapomena
             // 
@@ -286,6 +291,7 @@
             this.chkObaveznaNapomena.TabIndex = 165;
             this.chkObaveznaNapomena.Text = "Obavezna napomena";
             this.chkObaveznaNapomena.UseVisualStyleBackColor = true;
+            this.chkObaveznaNapomena.Visible = false;
             // 
             // txtFiksniDeo
             // 
@@ -301,6 +307,7 @@
             this.txtFiksniDeo.Size = new System.Drawing.Size(105, 22);
             this.txtFiksniDeo.TabIndex = 168;
             this.txtFiksniDeo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtFiksniDeo.Visible = false;
             // 
             // label2
             // 
@@ -311,6 +318,7 @@
             this.label2.Size = new System.Drawing.Size(55, 17);
             this.label2.TabIndex = 167;
             this.label2.Text = "( EUR )";
+            this.label2.Visible = false;
             // 
             // label3
             // 
@@ -321,6 +329,7 @@
             this.label3.Size = new System.Drawing.Size(76, 17);
             this.label3.TabIndex = 166;
             this.label3.Text = "Fiksni deo:";
+            this.label3.Visible = false;
             // 
             // chkSmederevo
             // 
@@ -398,6 +407,7 @@
             this.chkUlaziUDnevnicu.TabIndex = 174;
             this.chkUlaziUDnevnicu.Text = "Ulazi u dnevnicu";
             this.chkUlaziUDnevnicu.UseVisualStyleBackColor = true;
+            this.chkUlaziUDnevnicu.Visible = false;
             // 
             // txtVremeVagon
             // 
@@ -413,6 +423,7 @@
             this.txtVremeVagon.Size = new System.Drawing.Size(105, 22);
             this.txtVremeVagon.TabIndex = 176;
             this.txtVremeVagon.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtVremeVagon.Visible = false;
             // 
             // label4
             // 
@@ -423,6 +434,7 @@
             this.label4.Size = new System.Drawing.Size(96, 17);
             this.label4.TabIndex = 175;
             this.label4.Text = "Vreme vagon:";
+            this.label4.Visible = false;
             // 
             // label5
             // 
@@ -433,6 +445,7 @@
             this.label5.Size = new System.Drawing.Size(86, 17);
             this.label5.TabIndex = 178;
             this.label5.Text = "MaxVagona:";
+            this.label5.Visible = false;
             // 
             // label6
             // 
@@ -443,6 +456,7 @@
             this.label6.Size = new System.Drawing.Size(61, 17);
             this.label6.TabIndex = 180;
             this.label6.Text = "MaxSati:";
+            this.label6.Visible = false;
             // 
             // txtMaxSati
             // 
@@ -458,6 +472,7 @@
             this.txtMaxSati.Size = new System.Drawing.Size(105, 22);
             this.txtMaxSati.TabIndex = 181;
             this.txtMaxSati.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMaxSati.Visible = false;
             // 
             // txtMaxVagona
             // 
@@ -473,6 +488,7 @@
             this.txtMaxVagona.Size = new System.Drawing.Size(105, 22);
             this.txtMaxVagona.TabIndex = 182;
             this.txtMaxVagona.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtMaxVagona.Visible = false;
             // 
             // frmVrsteAktivnosti
             // 

@@ -80,6 +80,7 @@ namespace Saobracaj.Sifarnici
                 lok.InsVagoniSerije(txtSerija.Text.ToString().TrimEnd());
                 status = false;
                 tsNew.Enabled = true;
+                
             }
             else
             {

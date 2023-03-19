@@ -325,7 +325,7 @@ namespace Saobracaj
         private void toolStripButton52_Click(object sender, EventArgs e)
         {
             Sifarnici.frmVrsteAktivnosti vrakt = new Sifarnici.frmVrsteAktivnosti();
-            if (Korisnik == "admin")
+            if (Korisnik == "test")
             {
                 vrakt.Show();
             }
@@ -335,7 +335,7 @@ namespace Saobracaj
         private void toolStripButton53_Click(object sender, EventArgs e)
         {
             Sifarnici.frmCenaPoRadniku cpr = new Sifarnici.frmCenaPoRadniku();
-            if (Korisnik == "admin")
+            if (Korisnik == "test")
             {
                 cpr.Show();
             }
@@ -1700,6 +1700,12 @@ namespace Saobracaj
         {
             Izvoz.frmFormiranjePlanaIzvoz fpi = new Izvoz.frmFormiranjePlanaIzvoz();
             fpi.Show();
+        }
+
+        private void toolStripButton225_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmKontaktOsobeMU koM = new Izvoz.frmKontaktOsobeMU();
+            koM.Show();
         }
     }
 }

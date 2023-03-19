@@ -40,6 +40,7 @@ namespace Saobracaj.Izvoz
             this.label3 = new System.Windows.Forms.Label();
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.lblNaziv = new System.Windows.Forms.Label();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +53,8 @@ namespace Saobracaj.Izvoz
             this.tsNew,
             this.tsSave,
             this.tsDelete,
-            this.toolStripSeparator1});
+            this.toolStripSeparator1,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(800, 27);
@@ -145,6 +147,17 @@ namespace Saobracaj.Izvoz
             this.lblNaziv.TabIndex = 238;
             this.lblNaziv.Text = "Opis";
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(113, 24);
+            this.toolStripButton1.Text = "Kontakt osobe ";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // frmMestaUtovara
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -181,5 +194,6 @@ namespace Saobracaj.Izvoz
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNaziv;
         private System.Windows.Forms.Label lblNaziv;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

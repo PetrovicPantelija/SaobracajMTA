@@ -1882,7 +1882,7 @@ namespace Saobracaj.Dokumenta
                  "NaPNote as Napomena   from Narocilo inner join NarociloPostav " +
     " on Narocilo.NaStNar = NarociloPostav.NaPStNar " +
     " inner join MaticniPodatki  on MaticniPodatki.MpSifra = NarociloPostav.NaPSifra " +
-    " where MpSifProdSkup in (1) and Narocilo.NaStNar > 542 and NaStatus = 'PO' and NaPartPlac = " + Convert.ToInt32(cboPlatilac.SelectedValue);
+    " where MpSifProdSkup in (1) and NaStatus = 'PO' and NaPartPlac = " + Convert.ToInt32(cboPlatilac.SelectedValue);
                 //Uslov porucbine
 
                 var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -2190,7 +2190,7 @@ namespace Saobracaj.Dokumenta
                 }
                 else
                 {
-                    NapunicboNHM1("9920");
+                    NapunicboNHM1("99220000");
                 }
                 // cboNHM.SelectedValue = NHMOvi;
                 cboNHM2.SelectedValue = 0;
@@ -2201,7 +2201,7 @@ namespace Saobracaj.Dokumenta
                 if (NacinD == "7")
                 {
                     //Prazno - Puno
-                    NapunicboNHM1("9920");
+                    NapunicboNHM1("99220000");
                     NapunicboNHM2(NHMOvi);
 
                 }

@@ -1417,6 +1417,12 @@
     <Compile Include="Izvoz\frmIzvozUnosManipulacije.Designer.cs">
       <DependentUpon>frmIzvozUnosManipulacije.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\frmKontaktOsobeMU.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmKontaktOsobeMU.Designer.cs">
+      <DependentUpon>frmKontaktOsobeMU.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmKrajnjaDestinacija.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2051,6 +2057,7 @@
     <Compile Include="Sifarnici\InsertDelovnaMesta.cs" />
     <Compile Include="Sifarnici\InsertEvidencijaSatiPoRadniku.cs" />
     <Compile Include="Sifarnici\InsertKontaktOsobe.cs" />
+    <Compile Include="Sifarnici\InsertKontaktOsobeMU.cs" />
     <Compile Include="Sifarnici\InsertKontrolneGreske.cs" />
     <Compile Include="Sifarnici\InsertKontrolneGreskeTipDokumenta.cs" />
     <Compile Include="Sifarnici\InsertLokomotivaSerija.cs" />
@@ -3396,6 +3403,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmIzvozUnosManipulacije.resx">
       <DependentUpon>frmIzvozUnosManipulacije.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmKontaktOsobeMU.resx">
+      <DependentUpon>frmKontaktOsobeMU.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmKrajnjaDestinacija.resx">
       <DependentUpon>frmKrajnjaDestinacija.cs</DependentUpon>
