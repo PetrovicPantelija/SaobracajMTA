@@ -2179,8 +2179,11 @@ namespace Saobracaj.Dokumenta
             }
 
             con.Close();
-
-            NHMOvi = NHMOvi.Remove(0, 5);
+            if (NHMOvi.Length > 5)
+            {
+                NHMOvi = NHMOvi.Remove(0, 5);
+            }
+          
             if (ImaPovrat == 0)
             {
                 //Nema povrat ali treba upisati u sve NHM ove koji se pojave

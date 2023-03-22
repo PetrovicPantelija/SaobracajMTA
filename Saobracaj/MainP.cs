@@ -1707,5 +1707,36 @@ namespace Saobracaj
             Izvoz.frmKontaktOsobeMU koM = new Izvoz.frmKontaktOsobeMU();
             koM.Show();
         }
+
+        private void toolStripButton226_Click(object sender, EventArgs e)
+        {
+            Nepravilnosti.frmGrupaNepravilnosti np = new Nepravilnosti.frmGrupaNepravilnosti();
+            np.Show();
+        }
+
+        private void toolStripButton227_Click(object sender, EventArgs e)
+        {
+
+            Nepravilnosti.frmNeispravnostPostupak np = new Nepravilnosti.frmNeispravnostPostupak();
+            np.Show();
+        }
+
+        private void toolStripButton228_Click(object sender, EventArgs e)
+        {
+            Nepravilnosti.frmOpisNeispravnosti np = new Nepravilnosti.frmOpisNeispravnosti();
+            np.Show();
+        }
+
+        private void toolStripButton229_Click(object sender, EventArgs e)
+        {
+            Nepravilnosti.frmRazredNepravilnosti np = new Nepravilnosti.frmRazredNepravilnosti();
+            np.Show();
+        }
+
+        private void toolStripButton230_Click(object sender, EventArgs e)
+        {
+            Nepravilnosti.frmVrstaNepravilnosti np = new Nepravilnosti.frmVrstaNepravilnosti();
+            np.Show();
+        }
     }
 }

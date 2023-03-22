@@ -295,6 +295,26 @@ namespace Saobracaj.Dokumenta
             con.Close();
         }
 
+        private void VratiPodatkeJM()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT MPSifEnoteMere1 as JM1, MPSifEnoteMere2 as JM2 from MaticniPOdatki where MpSifra = " + Convert.ToInt32(cboNaPSifra.SelectedValue), con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                // Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene
+                txtNaPEM.Text = dr["JM1"].ToString();
+                txtNaPem2.Text = dr["JM2"].ToString();
+            }
+
+            con.Close();
+        }
+
         private void tsSave_Click(object sender, EventArgs e)
         {
             if (status == true)
@@ -318,6 +338,7 @@ namespace Saobracaj.Dokumenta
         {
             InsertNarocilo del = new InsertNarocilo();
             del.DeleteNarocilo(Convert.ToInt32(txtNaStNar.Text));
+            RefreshDataGridPoStavkeMAX();
         }
 
         private void RefreshDataGrid()
@@ -407,7 +428,7 @@ namespace Saobracaj.Dokumenta
             { txtNaPNote.Text = " "; }
 
             ins.InsNarociloStavka( Convert.ToInt32(txtNaStNar.Text), Convert.ToInt32(cboNaPSifra.SelectedValue), cboNaPSifra.Text, txtNaPEM.Text, txtNaPem2.Text,  Convert.ToDecimal(txtNaPKolNar.Value), Convert.ToDecimal(txtNaPKolNar2.Value), txtNaPOpomba.Text, txtNaPNote.Text);
-            RefreshDataGrid();
+            RefreshDataGridPoStavkeMAX();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -415,12 +436,24 @@ namespace Saobracaj.Dokumenta
 
             InsertNarocilo ins = new InsertNarocilo();
             ins.UpdNarociloStavka(Convert.ToInt32(txtNaPNarZap.Text), Convert.ToInt32(txtNaStNar.Text), Convert.ToInt32(cboNaPSifra.SelectedValue), cboNaPSifra.Text, txtNaPEM.Text, txtNaPem2.Text, Convert.ToDecimal(txtNaPKolNar.Value), Convert.ToDecimal(txtNaPKolNar2.Value), txtNaPOpomba.Text, txtNaPNote.Text);
+            RefreshDataGridPoStavkeMAX();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             InsertNarocilo ins = new InsertNarocilo();
             ins.DeleteNarociloStavka(Convert.ToInt32(txtNaPNarZap.Text));
+            RefreshDataGridPoStavkeMAX();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboNaPSifra_Leave(object sender, EventArgs e)
+        {
+            VratiPodatkeJM();
         }
     }
 }

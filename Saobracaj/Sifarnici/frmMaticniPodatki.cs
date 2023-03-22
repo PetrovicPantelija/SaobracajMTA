@@ -86,16 +86,16 @@ namespace Saobracaj.Sifarnici
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Kod";
-            dataGridView1.Columns[1].Width = 50;
+            dataGridView1.Columns[1].Width = 80;
 
             DataGridViewColumn column3 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "Naziv";
-            dataGridView1.Columns[2].Width = 100;
+            dataGridView1.Columns[2].Width = 150;
 
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
             dataGridView1.Columns[3].HeaderText = "Duži naziv";
-            dataGridView1.Columns[3].Width = 150;
+            dataGridView1.Columns[3].Width = 250;
 
             DataGridViewColumn column5 = dataGridView1.Columns[4];
             dataGridView1.Columns[4].HeaderText = "JM1";

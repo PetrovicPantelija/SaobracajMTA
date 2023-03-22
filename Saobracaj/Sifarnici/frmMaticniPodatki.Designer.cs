@@ -228,7 +228,7 @@ namespace Saobracaj.Sifarnici
             this.cboProdajnaGrupa.Location = new System.Drawing.Point(848, 53);
             this.cboProdajnaGrupa.Margin = new System.Windows.Forms.Padding(4);
             this.cboProdajnaGrupa.Name = "cboProdajnaGrupa";
-            this.cboProdajnaGrupa.Size = new System.Drawing.Size(201, 24);
+            this.cboProdajnaGrupa.Size = new System.Drawing.Size(339, 24);
             this.cboProdajnaGrupa.TabIndex = 212;
             // 
             // txtJM1

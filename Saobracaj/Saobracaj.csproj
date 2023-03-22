@@ -1543,6 +1543,37 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>NedraDataSet2.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Neispravnosti\frmGrupaNepravilnosti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Neispravnosti\frmGrupaNepravilnosti.designer.cs">
+      <DependentUpon>frmGrupaNepravilnosti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Neispravnosti\frmNeispravnostPostupak.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Neispravnosti\frmNeispravnostPostupak.designer.cs">
+      <DependentUpon>frmNeispravnostPostupak.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Neispravnosti\frmOpisNeispravnosti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Neispravnosti\frmOpisNeispravnosti.designer.cs">
+      <DependentUpon>frmOpisNeispravnosti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Neispravnosti\frmRazredNepravilnosti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Neispravnosti\frmRazredNepravilnosti.designer.cs">
+      <DependentUpon>frmRazredNepravilnosti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Neispravnosti\frmVrstaNepravilnosti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Neispravnosti\frmVrstaNepravilnosti.designer.cs">
+      <DependentUpon>frmVrstaNepravilnosti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Neispravnosti\InsertNepravilnosti.cs" />
     <Compile Include="Perftech_BeogradDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3454,6 +3485,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Mobile\frmZavrsnaDokumentacija.resx">
       <DependentUpon>frmZavrsnaDokumentacija.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Neispravnosti\frmGrupaNepravilnosti.resx">
+      <DependentUpon>frmGrupaNepravilnosti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Neispravnosti\frmNeispravnostPostupak.resx">
+      <DependentUpon>frmNeispravnostPostupak.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Neispravnosti\frmOpisNeispravnosti.resx">
+      <DependentUpon>frmOpisNeispravnosti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Neispravnosti\frmRazredNepravilnosti.resx">
+      <DependentUpon>frmRazredNepravilnosti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Neispravnosti\frmVrstaNepravilnosti.resx">
+      <DependentUpon>frmVrstaNepravilnosti.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Promet\frmLager.resx">
       <DependentUpon>frmLager.cs</DependentUpon>
