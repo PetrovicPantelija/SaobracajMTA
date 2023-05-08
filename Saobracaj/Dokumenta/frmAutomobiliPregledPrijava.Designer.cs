@@ -42,13 +42,9 @@ namespace Saobracaj.Dokumenta
             this.dtpDatumPrijave = new MetroFramework.Controls.MetroDateTime();
             this.label2 = new System.Windows.Forms.Label();
             this.combo_Automobil = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txt_Relacija = new System.Windows.Forms.TextBox();
             this.cb_DirPredZad = new System.Windows.Forms.CheckBox();
             this.txt_KmZaduzenje = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.cb_Plomba1Zad = new System.Windows.Forms.CheckBox();
-            this.cb_Plomba2Zad = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -66,8 +62,6 @@ namespace Saobracaj.Dokumenta
             this.label13 = new System.Windows.Forms.Label();
             this.combo_NivoUljaRaz = new System.Windows.Forms.ComboBox();
             this.cb_DirPredRaz = new System.Windows.Forms.CheckBox();
-            this.cb_Plomba1Raz = new System.Windows.Forms.CheckBox();
-            this.cb_Plomba2Raz = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
             this.txt_Sifra = new System.Windows.Forms.TextBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -75,6 +69,19 @@ namespace Saobracaj.Dokumenta
             this.btn_nazad = new System.Windows.Forms.Button();
             this.btn_Napred = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.txtPosao = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtNGRazduzenje = new System.Windows.Forms.TextBox();
+            this.txtNGZaduzenje = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cboMestoPolaska = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.cboMestoDolaska = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtUloga = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.txtAktivnostID = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -206,24 +213,6 @@ namespace Saobracaj.Dokumenta
             this.combo_Automobil.Size = new System.Drawing.Size(339, 24);
             this.combo_Automobil.TabIndex = 212;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 257);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 17);
-            this.label1.TabIndex = 211;
-            this.label1.Text = "Relacija:";
-            // 
-            // txt_Relacija
-            // 
-            this.txt_Relacija.Location = new System.Drawing.Point(144, 252);
-            this.txt_Relacija.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txt_Relacija.Name = "txt_Relacija";
-            this.txt_Relacija.Size = new System.Drawing.Size(185, 22);
-            this.txt_Relacija.TabIndex = 213;
-            // 
             // cb_DirPredZad
             // 
             this.cb_DirPredZad.AutoSize = true;
@@ -252,28 +241,6 @@ namespace Saobracaj.Dokumenta
             this.label4.Size = new System.Drawing.Size(103, 17);
             this.label4.TabIndex = 211;
             this.label4.Text = "KM Zaduženje:";
-            // 
-            // cb_Plomba1Zad
-            // 
-            this.cb_Plomba1Zad.AutoSize = true;
-            this.cb_Plomba1Zad.Location = new System.Drawing.Point(495, 249);
-            this.cb_Plomba1Zad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cb_Plomba1Zad.Name = "cb_Plomba1Zad";
-            this.cb_Plomba1Zad.Size = new System.Drawing.Size(213, 21);
-            this.cb_Plomba1Zad.TabIndex = 215;
-            this.cb_Plomba1Zad.Text = "Plomba 1 Potvrda Zaduženja";
-            this.cb_Plomba1Zad.UseVisualStyleBackColor = true;
-            // 
-            // cb_Plomba2Zad
-            // 
-            this.cb_Plomba2Zad.AutoSize = true;
-            this.cb_Plomba2Zad.Location = new System.Drawing.Point(495, 279);
-            this.cb_Plomba2Zad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cb_Plomba2Zad.Name = "cb_Plomba2Zad";
-            this.cb_Plomba2Zad.Size = new System.Drawing.Size(213, 21);
-            this.cb_Plomba2Zad.TabIndex = 215;
-            this.cb_Plomba2Zad.Text = "Plomba 2 Potvrda Zaduženja";
-            this.cb_Plomba2Zad.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -439,28 +406,6 @@ namespace Saobracaj.Dokumenta
             this.cb_DirPredRaz.Text = "Direktna primopredaja Razduživanje";
             this.cb_DirPredRaz.UseVisualStyleBackColor = true;
             // 
-            // cb_Plomba1Raz
-            // 
-            this.cb_Plomba1Raz.AutoSize = true;
-            this.cb_Plomba1Raz.Location = new System.Drawing.Point(881, 246);
-            this.cb_Plomba1Raz.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cb_Plomba1Raz.Name = "cb_Plomba1Raz";
-            this.cb_Plomba1Raz.Size = new System.Drawing.Size(231, 21);
-            this.cb_Plomba1Raz.TabIndex = 215;
-            this.cb_Plomba1Raz.Text = "Plomba 1 Potvrda Razduživanje";
-            this.cb_Plomba1Raz.UseVisualStyleBackColor = true;
-            // 
-            // cb_Plomba2Raz
-            // 
-            this.cb_Plomba2Raz.AutoSize = true;
-            this.cb_Plomba2Raz.Location = new System.Drawing.Point(881, 277);
-            this.cb_Plomba2Raz.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cb_Plomba2Raz.Name = "cb_Plomba2Raz";
-            this.cb_Plomba2Raz.Size = new System.Drawing.Size(231, 21);
-            this.cb_Plomba2Raz.TabIndex = 215;
-            this.cb_Plomba2Raz.Text = "Plomba 2 Potvrda Razduživanje";
-            this.cb_Plomba2Raz.UseVisualStyleBackColor = true;
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -541,27 +486,153 @@ namespace Saobracaj.Dokumenta
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // txtPosao
+            // 
+            this.txtPosao.Location = new System.Drawing.Point(144, 248);
+            this.txtPosao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtPosao.Name = "txtPosao";
+            this.txtPosao.Size = new System.Drawing.Size(185, 22);
+            this.txtPosao.TabIndex = 220;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(21, 254);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(52, 17);
+            this.label1.TabIndex = 219;
+            this.label1.Text = "Posao:";
+            // 
+            // txtNGRazduzenje
+            // 
+            this.txtNGRazduzenje.Location = new System.Drawing.Point(1075, 250);
+            this.txtNGRazduzenje.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNGRazduzenje.Name = "txtNGRazduzenje";
+            this.txtNGRazduzenje.Size = new System.Drawing.Size(191, 22);
+            this.txtNGRazduzenje.TabIndex = 223;
+            // 
+            // txtNGZaduzenje
+            // 
+            this.txtNGZaduzenje.Location = new System.Drawing.Point(676, 249);
+            this.txtNGZaduzenje.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNGZaduzenje.Name = "txtNGZaduzenje";
+            this.txtNGZaduzenje.Size = new System.Drawing.Size(191, 22);
+            this.txtNGZaduzenje.TabIndex = 224;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(879, 250);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(162, 17);
+            this.label14.TabIndex = 221;
+            this.label14.Text = "Nivo goriva Razduženje:";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(491, 253);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(154, 17);
+            this.label16.TabIndex = 222;
+            this.label16.Text = "Nivo goriva Zaduženje:";
+            // 
+            // cboMestoPolaska
+            // 
+            this.cboMestoPolaska.FormattingEnabled = true;
+            this.cboMestoPolaska.Location = new System.Drawing.Point(674, 277);
+            this.cboMestoPolaska.Margin = new System.Windows.Forms.Padding(4);
+            this.cboMestoPolaska.Name = "cboMestoPolaska";
+            this.cboMestoPolaska.Size = new System.Drawing.Size(193, 24);
+            this.cboMestoPolaska.TabIndex = 226;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(492, 280);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(103, 17);
+            this.label17.TabIndex = 225;
+            this.label17.Text = "Mesto polaska:";
+            // 
+            // cboMestoDolaska
+            // 
+            this.cboMestoDolaska.FormattingEnabled = true;
+            this.cboMestoDolaska.Location = new System.Drawing.Point(1073, 277);
+            this.cboMestoDolaska.Margin = new System.Windows.Forms.Padding(4);
+            this.cboMestoDolaska.Name = "cboMestoDolaska";
+            this.cboMestoDolaska.Size = new System.Drawing.Size(193, 24);
+            this.cboMestoDolaska.TabIndex = 228;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(887, 277);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(103, 17);
+            this.label18.TabIndex = 227;
+            this.label18.Text = "Mesto dolaska:";
+            // 
+            // txtUloga
+            // 
+            this.txtUloga.Location = new System.Drawing.Point(144, 277);
+            this.txtUloga.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtUloga.Name = "txtUloga";
+            this.txtUloga.Size = new System.Drawing.Size(185, 22);
+            this.txtUloga.TabIndex = 230;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(21, 283);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(49, 17);
+            this.label19.TabIndex = 229;
+            this.label19.Text = "Uloga:";
+            // 
+            // txtAktivnostID
+            // 
+            this.txtAktivnostID.Location = new System.Drawing.Point(335, 248);
+            this.txtAktivnostID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtAktivnostID.Name = "txtAktivnostID";
+            this.txtAktivnostID.Size = new System.Drawing.Size(128, 22);
+            this.txtAktivnostID.TabIndex = 231;
+            // 
             // frmAutomobiliPregledPrijava
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1827, 750);
+            this.Controls.Add(this.txtAktivnostID);
+            this.Controls.Add(this.txtUloga);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.cboMestoDolaska);
+            this.Controls.Add(this.label18);
+            this.Controls.Add(this.cboMestoPolaska);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.txtNGRazduzenje);
+            this.Controls.Add(this.txtNGZaduzenje);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.txtPosao);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_Napred);
             this.Controls.Add(this.btn_nazad);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_OtvoriSliku);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txt_Sifra);
-            this.Controls.Add(this.cb_Plomba2Raz);
-            this.Controls.Add(this.cb_Plomba2Zad);
-            this.Controls.Add(this.cb_Plomba1Raz);
-            this.Controls.Add(this.cb_Plomba1Zad);
             this.Controls.Add(this.cb_DirPredRaz);
             this.Controls.Add(this.cb_DirPredZad);
             this.Controls.Add(this.txt_KmRazduzenje);
             this.Controls.Add(this.txt_KmZaduzenje);
-            this.Controls.Add(this.txt_Relacija);
             this.Controls.Add(this.combo_NivoUljaRaz);
             this.Controls.Add(this.combo_NivoUljaZad);
             this.Controls.Add(this.combo_CistocaUnutraRaz);
@@ -577,7 +648,6 @@ namespace Saobracaj.Dokumenta
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dt_Odjava);
             this.Controls.Add(this.label9);
@@ -616,13 +686,9 @@ namespace Saobracaj.Dokumenta
         private MetroFramework.Controls.MetroDateTime dtpDatumPrijave;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox combo_Automobil;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txt_Relacija;
         private System.Windows.Forms.CheckBox cb_DirPredZad;
         private System.Windows.Forms.TextBox txt_KmZaduzenje;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.CheckBox cb_Plomba1Zad;
-        private System.Windows.Forms.CheckBox cb_Plomba2Zad;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
@@ -640,8 +706,6 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox combo_NivoUljaRaz;
         private System.Windows.Forms.CheckBox cb_DirPredRaz;
-        private System.Windows.Forms.CheckBox cb_Plomba1Raz;
-        private System.Windows.Forms.CheckBox cb_Plomba2Raz;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox txt_Sifra;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -649,5 +713,18 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.Button btn_nazad;
         private System.Windows.Forms.Button btn_Napred;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtPosao;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtNGRazduzenje;
+        private System.Windows.Forms.TextBox txtNGZaduzenje;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.ComboBox cboMestoPolaska;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox cboMestoDolaska;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txtUloga;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox txtAktivnostID;
     }
 }

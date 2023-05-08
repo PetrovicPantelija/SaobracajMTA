@@ -38,6 +38,7 @@
             this.tsNazad = new System.Windows.Forms.ToolStripButton();
             this.tsNapred = new System.Windows.Forms.ToolStripButton();
             this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
@@ -46,6 +47,8 @@
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cboTrainList = new System.Windows.Forms.ComboBox();
+            this.label38 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.txtRN = new System.Windows.Forms.TextBox();
             this.chkPrevozna = new System.Windows.Forms.CheckBox();
@@ -142,6 +145,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.button10 = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -177,6 +181,7 @@
             this.tsNazad,
             this.tsNapred,
             this.tsPoslednja,
+            this.toolStripButton8,
             this.toolStripButton3,
             this.toolStripButton1,
             this.toolStripButton4,
@@ -261,6 +266,17 @@
             this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
             this.tsPoslednja.Text = "toolStripButton1";
             // 
+            // toolStripButton8
+            // 
+            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton8.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
+            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton8.Name = "toolStripButton8";
+            this.toolStripButton8.Size = new System.Drawing.Size(188, 24);
+            this.toolStripButton8.Text = "Uvoz teretnice iz train lista";
+            this.toolStripButton8.Click += new System.EventHandler(this.toolStripButton8_Click);
+            // 
             // toolStripButton3
             // 
             this.toolStripButton3.ForeColor = System.Drawing.Color.White;
@@ -333,6 +349,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button10);
+            this.panel1.Controls.Add(this.cboTrainList);
+            this.panel1.Controls.Add(this.label38);
             this.panel1.Controls.Add(this.label37);
             this.panel1.Controls.Add(this.txtRN);
             this.panel1.Controls.Add(this.chkPrevozna);
@@ -360,6 +379,28 @@
             this.panel1.Size = new System.Drawing.Size(1616, 87);
             this.panel1.TabIndex = 8;
             // 
+            // cboTrainList
+            // 
+            this.cboTrainList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(82)))), ((int)(((byte)(75)))));
+            this.cboTrainList.ForeColor = System.Drawing.Color.White;
+            this.cboTrainList.FormattingEnabled = true;
+            this.cboTrainList.Location = new System.Drawing.Point(123, 58);
+            this.cboTrainList.Margin = new System.Windows.Forms.Padding(4);
+            this.cboTrainList.Name = "cboTrainList";
+            this.cboTrainList.Size = new System.Drawing.Size(163, 24);
+            this.cboTrainList.TabIndex = 127;
+            this.cboTrainList.SelectedValueChanged += new System.EventHandler(this.cboTrainList_SelectedValueChanged);
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(10, 60);
+            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(62, 17);
+            this.label38.TabIndex = 126;
+            this.label38.Text = "Train list";
+            // 
             // label37
             // 
             this.label37.AutoSize = true;
@@ -382,7 +423,7 @@
             // chkPrevozna
             // 
             this.chkPrevozna.AutoSize = true;
-            this.chkPrevozna.Location = new System.Drawing.Point(1389, 57);
+            this.chkPrevozna.Location = new System.Drawing.Point(1357, 57);
             this.chkPrevozna.Margin = new System.Windows.Forms.Padding(4);
             this.chkPrevozna.Name = "chkPrevozna";
             this.chkPrevozna.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -394,7 +435,7 @@
             // chkPredajna
             // 
             this.chkPredajna.AutoSize = true;
-            this.chkPredajna.Location = new System.Drawing.Point(1393, 30);
+            this.chkPredajna.Location = new System.Drawing.Point(1360, 28);
             this.chkPredajna.Margin = new System.Windows.Forms.Padding(4);
             this.chkPredajna.Name = "chkPredajna";
             this.chkPredajna.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -406,7 +447,7 @@
             // chkPrijemna
             // 
             this.chkPrijemna.AutoSize = true;
-            this.chkPrijemna.Location = new System.Drawing.Point(1396, 6);
+            this.chkPrijemna.Location = new System.Drawing.Point(1362, 3);
             this.chkPrijemna.Margin = new System.Windows.Forms.Padding(4);
             this.chkPrijemna.Name = "chkPrijemna";
             this.chkPrijemna.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -1482,6 +1523,19 @@
             this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // button10
+            // 
+            this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button10.ForeColor = System.Drawing.Color.White;
+            this.button10.Location = new System.Drawing.Point(294, 57);
+            this.button10.Margin = new System.Windows.Forms.Padding(4);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(21, 26);
+            this.button10.TabIndex = 155;
+            this.button10.Text = "Ubaci";
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.button10_Click);
+            // 
             // frmTeretnica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1644,5 +1698,9 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
+        private System.Windows.Forms.ToolStripButton toolStripButton8;
+        private System.Windows.Forms.ComboBox cboTrainList;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Button button10;
     }
 }

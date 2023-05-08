@@ -121,6 +121,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTezinaVozaM)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTezinaLokM)).BeginInit();
@@ -478,13 +479,14 @@
             this.tsSave,
             this.tsDelete,
             this.toolStripSeparator1,
-            this.toolStripButton1});
+            this.toolStripButton1,
+            this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(1609, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1609, 31);
             this.toolStrip1.TabIndex = 48;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.Text = "Spisak stanica na trasi";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
             // tsNew
@@ -494,7 +496,7 @@
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
+            this.tsNew.Size = new System.Drawing.Size(29, 28);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -505,7 +507,7 @@
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(29, 28);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -516,7 +518,7 @@
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsDelete.Size = new System.Drawing.Size(29, 28);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
@@ -524,7 +526,7 @@
             // 
             this.toolStripSeparator1.Margin = new System.Windows.Forms.Padding(5, 0, 0, 0);
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
             // 
             // toolStripButton1
             // 
@@ -534,7 +536,7 @@
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(100, 24);
+            this.toolStripButton1.Size = new System.Drawing.Size(100, 28);
             this.toolStripButton1.Text = "Trasa ruta";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -1037,10 +1039,10 @@
             this.toolStripButton5,
             this.toolStripButton7,
             this.toolStripButton6});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 895);
+            this.toolStrip2.Location = new System.Drawing.Point(0, 891);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip2.Size = new System.Drawing.Size(1609, 27);
+            this.toolStrip2.Size = new System.Drawing.Size(1609, 31);
             this.toolStrip2.TabIndex = 97;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -1051,7 +1053,7 @@
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.toolStripButton4.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton4.Size = new System.Drawing.Size(29, 28);
             this.toolStripButton4.Text = "toolStripButton1";
             // 
             // toolStripButton5
@@ -1061,7 +1063,7 @@
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.toolStripButton5.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton5.Size = new System.Drawing.Size(29, 28);
             this.toolStripButton5.Text = "toolStripButton1";
             // 
             // toolStripButton7
@@ -1072,7 +1074,7 @@
             this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton7.Name = "toolStripButton7";
             this.toolStripButton7.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.toolStripButton7.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton7.Size = new System.Drawing.Size(29, 28);
             this.toolStripButton7.Text = "toolStripButton1";
             // 
             // toolStripButton6
@@ -1083,7 +1085,7 @@
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Padding = new System.Windows.Forms.Padding(5, 0, 0, 0);
-            this.toolStripButton6.Size = new System.Drawing.Size(29, 24);
+            this.toolStripButton6.Size = new System.Drawing.Size(29, 28);
             this.toolStripButton6.Text = "toolStripButton1";
             // 
             // label42
@@ -1248,6 +1250,17 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1592, 437);
             this.tabControl1.TabIndex = 49;
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(157, 28);
+            this.toolStripButton2.Text = "Spisak stanica na trasi";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // frmTrase
             // 
@@ -1464,5 +1477,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
     }
 }

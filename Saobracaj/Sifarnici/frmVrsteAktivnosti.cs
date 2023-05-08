@@ -80,24 +80,29 @@ namespace Saobracaj.Sifarnici
             DataGridViewColumn column3 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "Obračun po satu";
             dataGridView1.Columns[2].Width = 50;
+            dataGridView1.Columns[2].Visible = false;
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
             dataGridView1.Columns[3].HeaderText = "Potreban razlog";
             dataGridView1.Columns[3].Width = 50;
+            dataGridView1.Columns[3].Visible = false;
 
-             DataGridViewColumn column5 = dataGridView1.Columns[4];
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
             dataGridView1.Columns[4].HeaderText = "Potreban nalogodavac";
             dataGridView1.Columns[4].Width = 50;
+            dataGridView1.Columns[4].Visible = false;
 
             DataGridViewColumn column6 = dataGridView1.Columns[5];
             dataGridView1.Columns[5].HeaderText = "Potrebno vozilo";
             dataGridView1.Columns[5].Width = 50;
+            dataGridView1.Columns[5].Visible = false;
 
-		     DataGridViewColumn column7 = dataGridView1.Columns[6];
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
             dataGridView1.Columns[6].HeaderText = "Obavezna napomena";
             dataGridView1.Columns[6].Width = 50;
+            dataGridView1.Columns[6].Visible = false;
 
-           
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
             dataGridView1.Columns[7].HeaderText = "Cena";
@@ -106,11 +111,13 @@ namespace Saobracaj.Sifarnici
             DataGridViewColumn column9 = dataGridView1.Columns[8];
             dataGridView1.Columns[8].HeaderText = "Opis";
             dataGridView1.Columns[8].Width = 500;
+           // dataGridView1.Columns[8].Visible = false;
 
             DataGridViewColumn column10 = dataGridView1.Columns[9];
             dataGridView1.Columns[9].HeaderText = "Smederevo";
             dataGridView1.Columns[9].Visible = false;
             dataGridView1.Columns[9].Width = 50;
+            dataGridView1.Columns[9].Visible = false;
 
             DataGridViewColumn column11 = dataGridView1.Columns[10];
             dataGridView1.Columns[10].HeaderText = "Kragujevac";
@@ -135,15 +142,17 @@ namespace Saobracaj.Sifarnici
             DataGridViewColumn column15 = dataGridView1.Columns[14];
             dataGridView1.Columns[14].HeaderText = "Dnevnica";
             dataGridView1.Columns[14].Width = 50;
-
+            dataGridView1.Columns[14].Visible = false;
 
             DataGridViewColumn column16 = dataGridView1.Columns[15];
             dataGridView1.Columns[15].HeaderText = "MaxSATI";
             dataGridView1.Columns[15].Width = 50;
+            dataGridView1.Columns[15].Visible = false;
 
             DataGridViewColumn column17 = dataGridView1.Columns[16];
             dataGridView1.Columns[16].HeaderText = "MaxVagona";
             dataGridView1.Columns[16].Width = 50;
+            dataGridView1.Columns[16].Visible = false;
         }
 
         private void tsNew_Click(object sender, EventArgs e)

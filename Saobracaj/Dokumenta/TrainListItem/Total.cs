@@ -8,8 +8,7 @@ namespace Saobracaj.Dokumenta.TrainListItem
 {
     internal class Total
     {
-        private List<TrainListItemModel> itemList;
-        public int TotalUnitTare { get; set; } = 0;
+        public decimal TotalUnitTare { get; set; } = 0;
         public decimal TotalGoods { get; set; } = 0;
         public decimal TotalWagonTare { get; set; } = 0;
         public decimal TotalWeight { get; set; } = 0;
@@ -17,16 +16,24 @@ namespace Saobracaj.Dokumenta.TrainListItem
 
         public Total(List<TrainListItemModel> itemList, int id_sup)
         {
-            foreach (TrainListItemModel obj in itemList)
+            if (itemList.Count > 0)
             {
-                if (obj.TrainListId == id_sup)
+                TotalUnitTare += itemList[0].KontTara;
+                TotalGoods += itemList[0].Neto;
+                TotalWagonTare += itemList[0].TaraKola;
+                TotalTrainLength += itemList[0].DuzinaKola;
+                for (int i = 1; i < itemList.Count; i++)
                 {
-                    TotalUnitTare += obj.UnitTare;
-                    TotalGoods += obj.KG2;
-                    TotalWagonTare += obj.WagonTare;
-                    TotalWeight += obj.Total;
-                    TotalTrainLength += obj.WagonLength;
+                    TotalUnitTare += itemList[i].KontTara;
+                    TotalGoods += itemList[i].Neto;
+                    if (itemList[i].RedniBroj != itemList[i - 1].RedniBroj)
+                    {
+                        TotalWagonTare += itemList[i].TaraKola;
+                        TotalTrainLength += itemList[i].DuzinaKola;
+                    }
                 }
+                TotalUnitTare = TotalUnitTare / 2;
+                     TotalWeight = TotalGoods + TotalUnitTare + TotalWagonTare;
             }
         }
     }

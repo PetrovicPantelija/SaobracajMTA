@@ -46,13 +46,14 @@
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(345, 15);
+            this.button2.Location = new System.Drawing.Point(650, 13);
             this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(81, 30);
             this.button2.TabIndex = 226;
             this.button2.Text = "Refresh";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // dataGridView1
             // 
@@ -60,11 +61,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(760, 68);
+            this.dataGridView1.Location = new System.Drawing.Point(1065, 68);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(483, 437);
+            this.dataGridView1.Size = new System.Drawing.Size(223, 437);
             this.dataGridView1.TabIndex = 225;
             // 
             // btnUnesi
@@ -73,7 +74,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.btnUnesi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.btnUnesi.ForeColor = System.Drawing.Color.White;
-            this.btnUnesi.Location = new System.Drawing.Point(709, 66);
+            this.btnUnesi.Location = new System.Drawing.Point(1014, 67);
             this.btnUnesi.Margin = new System.Windows.Forms.Padding(4);
             this.btnUnesi.Name = "btnUnesi";
             this.btnUnesi.Size = new System.Drawing.Size(43, 438);
@@ -86,7 +87,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(661, 15);
+            this.button1.Location = new System.Drawing.Point(1014, 35);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(153, 30);
@@ -99,7 +100,7 @@
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(345, 65);
+            this.dataGridView2.Location = new System.Drawing.Point(650, 66);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
@@ -119,7 +120,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(341, 48);
+            this.label1.Location = new System.Drawing.Point(647, 42);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 17);
@@ -135,7 +136,7 @@
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.Size = new System.Drawing.Size(321, 439);
+            this.dataGridView3.Size = new System.Drawing.Size(626, 439);
             this.dataGridView3.TabIndex = 228;
             // 
             // frmPravoAktivnostiViseRadnika
@@ -143,7 +144,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1259, 556);
+            this.ClientSize = new System.Drawing.Size(1304, 556);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
@@ -155,7 +156,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPravoAktivnostiViseRadnika";
-            this.Text = "frmPravoAktivnostiViseRadnika";
+            this.Text = "Dodela prava za grupu radnika";
             this.Load += new System.EventHandler(this.frmPravoAktivnostiViseRadnika_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();

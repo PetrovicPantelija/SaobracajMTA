@@ -23,16 +23,16 @@ namespace Saobracaj.Dokumenta.TrainList
                 SqlCommand command = new SqlCommand("TrainList_Insert", con);
                 command.CommandType = CommandType.StoredProcedure;
 
-                command.Parameters.AddWithValue("@DepartureTime", obj.DepartureTime);
-                command.Parameters.AddWithValue("@TrainNo", obj.TrainNo);
-                command.Parameters.AddWithValue("@Note", obj.Note);
+                command.Parameters.AddWithValue("@VremeDolaska", obj.VremeDolaska);
+                command.Parameters.AddWithValue("@KomOznaka", obj.KomOznaka);
+                command.Parameters.AddWithValue("@Napomena", obj.Napomena);
                 try
                 {
                     success = command.ExecuteNonQuery();
                 }
                 catch (SqlException)
                 {
-                    throw new Exception("ERROR!");
+                    // throw new Exception("ERROR!");
                 }
             }
             return success;
@@ -49,9 +49,9 @@ namespace Saobracaj.Dokumenta.TrainList
                 command.CommandType = CommandType.StoredProcedure;
 
                 command.Parameters.AddWithValue("@Id", obj.Id);
-                command.Parameters.AddWithValue("@DepartureTime", obj.DepartureTime);
-                command.Parameters.AddWithValue("@TrainNo", obj.TrainNo);
-                command.Parameters.AddWithValue("@Note", obj.Note);
+                command.Parameters.AddWithValue("@VremeDolaska", obj.VremeDolaska);
+                command.Parameters.AddWithValue("@KomOznaka", obj.KomOznaka);
+                command.Parameters.AddWithValue("@Napomena", obj.Napomena);
                 try
                 {
                     success = command.ExecuteNonQuery();
@@ -105,13 +105,13 @@ namespace Saobracaj.Dokumenta.TrainList
                     {
                         while (reader.Read())
                         {
-                            returnThese.Add(new TrainListModel { Id = (int)reader[0], DepartureTime = (DateTime)reader[1], TrainNo = (string)reader[2], Note = (string)reader[3] });
+                            returnThese.Add(new TrainListModel { Id = (int)reader[0], VremeDolaska = (DateTime)reader[1], KomOznaka = (string)reader[2], Napomena = (string)reader[3] });
                         }
                     }
                 }
                 catch (SqlException)
                 {
-                    throw new Exception("ERROR!");
+                    // throw new Exception("ERROR!");
                 }
             }
             return returnThese;
@@ -135,7 +135,7 @@ namespace Saobracaj.Dokumenta.TrainList
                     {
                         while (reader.Read())
                         {
-                            returnThese.Add(new TrainListModel { Id = (int)reader[0], DepartureTime = (DateTime)reader[1], TrainNo = (string)reader[2], Note = (string)reader[3] });
+                            returnThese.Add(new TrainListModel { Id = (int)reader[0], VremeDolaska = (DateTime)reader[1], KomOznaka = (string)reader[2], Napomena = (string)reader[3] });
                         }
                     }
                 }

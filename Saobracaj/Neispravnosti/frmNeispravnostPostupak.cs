@@ -52,8 +52,13 @@ namespace Saobracaj.Nepravilnosti
             dataGridView1.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Naziv";
-            dataGridView1.Columns[1].Width = 250;
+            dataGridView1.Columns[1].HeaderText = "Kod";
+            dataGridView1.Columns[1].Width = 90;
+
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Opis";
+            dataGridView1.Columns[2].Width = 390;
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -66,11 +71,11 @@ namespace Saobracaj.Nepravilnosti
             Nepravilnosti.InsertNepravilnosti ins = new InsertNepravilnosti();
             if (status == true)
             {
-                ins.InsSifNeispravnostPostupak(txtNaziv.Text.ToString().TrimEnd());
+                ins.InsSifNeispravnostPostupak(txtNaziv.Text.ToString().TrimEnd(), txtOpis.Text.ToString().TrimEnd());
             }
             else
             {
-                ins.UpdSifNeispravnostPostupak(Convert.ToInt32(txtID.Text), txtNaziv.Text.ToString().TrimEnd());
+                ins.UpdSifNeispravnostPostupak(Convert.ToInt32(txtID.Text), txtNaziv.Text.ToString().TrimEnd() , txtOpis.Text.ToString().TrimEnd());
             }
             MessageBox.Show("Uspešno sačuvan zapis");
             FillGV();
@@ -93,6 +98,7 @@ namespace Saobracaj.Nepravilnosti
                     {
                         txtID.Text = row.Cells[0].Value.ToString();
                         txtNaziv.Text = row.Cells[1].Value.ToString();
+                        txtOpis.Text = row.Cells[2].Value.ToString();
                     }
                 }
             }

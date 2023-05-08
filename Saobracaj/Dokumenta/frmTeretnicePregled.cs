@@ -142,10 +142,11 @@ namespace Saobracaj.Dokumenta
  "   where TeretnicaStavke.BrojTeretnice = d1.ID " +
  "   FOR XML PATH('') " +
  "   ), 1, 1, '' " +
- " ) As Skupljen) as Najave, d1.Korisnik " +
+ " ) As Skupljen) as Najave, TrainList.KomOznaka, d1.Korisnik " +
 " FROM Teretnica d1 INNER JOIN  stanice ON d1.StanicaOd = stanice.ID " +
 " INNER JOIN stanice AS stanice_1 ON d1.StanicaDo = stanice_1.ID " +
 " INNER JOIN  stanice AS stanice_2 ON d1.StanicaPopisa = stanice_2.ID  " +
+" left join TrainList on d1.TrainListID = TrainList.ID " +
 "  order by d1.ID desc";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -204,11 +205,15 @@ namespace Saobracaj.Dokumenta
 
             DataGridViewColumn column9 = dataGridView1.Columns[8];
             dataGridView1.Columns[8].HeaderText = "Najave";
-            dataGridView1.Columns[8].Width = 150;
+            dataGridView1.Columns[8].Width = 100;
 
             DataGridViewColumn column10 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Korisnik";
-            dataGridView1.Columns[9].Width = 150;
+            dataGridView1.Columns[9].HeaderText = "Posao";
+            dataGridView1.Columns[9].Width = 100;
+
+            DataGridViewColumn column11 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "Korisnik";
+            dataGridView1.Columns[10].Width = 150;
 
            
         }
@@ -327,6 +332,12 @@ namespace Saobracaj.Dokumenta
         private void tsDelete_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            frmTeretnica ter = new frmTeretnica();
+            ter.Show();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Saobracaj.Dokumenta
 
     class InsertTeretnica
     {
-        public void InsTeretnica(string BrojTeretnice, int StanicaOd, int StanicaDo, int StanicaPopisa, DateTime VremeOd, DateTime VremeDo, string BrojLista, int Prijemna, int Predajna, string Korisnik, int Prevozna, int RN)
+        public void InsTeretnica(string BrojTeretnice, int StanicaOd, int StanicaDo, int StanicaPopisa, DateTime VremeOd, DateTime VremeDo, string BrojLista, int Prijemna, int Predajna, string Korisnik, int Prevozna, int RN, int TrainListID)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -116,6 +116,14 @@ namespace Saobracaj.Dokumenta
             parameter12.Value = Prevozna;
             myCommand.Parameters.Add(parameter12);
 
+
+            SqlParameter parameter13 = new SqlParameter();
+            parameter13.ParameterName = "@TrainListID";
+            parameter13.SqlDbType = SqlDbType.Int;
+            parameter13.Direction = ParameterDirection.Input;
+            parameter13.Value = TrainListID;
+            myCommand.Parameters.Add(parameter13);
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -153,7 +161,7 @@ namespace Saobracaj.Dokumenta
             }
         }
 
-        public void UpdTeretnica(int ID, string BrojTeretnice, int StanicaOd, int StanicaDo, int StanicaPopisa, DateTime VremeOd, DateTime VremeDo, string BrojLista, int Prijemna, int Predajna, string Korisnik, int Prevozna, int RN)
+        public void UpdTeretnica(int ID, string BrojTeretnice, int StanicaOd, int StanicaDo, int StanicaPopisa, DateTime VremeOd, DateTime VremeDo, string BrojLista, int Prijemna, int Predajna, string Korisnik, int Prevozna, int RN, int TrainListID)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -256,6 +264,14 @@ namespace Saobracaj.Dokumenta
             parameter12.Direction = ParameterDirection.Input;
             parameter12.Value = RN;
             myCommand.Parameters.Add(parameter12);
+
+
+            SqlParameter parameter13 = new SqlParameter();
+            parameter13.ParameterName = "@TrainListID";
+            parameter13.SqlDbType = SqlDbType.Int;
+            parameter13.Direction = ParameterDirection.Input;
+            parameter13.Value = TrainListID;
+            myCommand.Parameters.Add(parameter13);
 
 
             myConnection.Open();

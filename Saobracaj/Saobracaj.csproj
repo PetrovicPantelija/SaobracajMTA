@@ -494,6 +494,12 @@
     <Compile Include="Administracija\frmSistematizacijaPovezivanje.Designer.cs">
       <DependentUpon>frmSistematizacijaPovezivanje.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administracija\frmStavkePrimopredaje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracija\frmStavkePrimopredaje.Designer.cs">
+      <DependentUpon>frmStavkePrimopredaje.cs</DependentUpon>
+    </Compile>
     <Compile Include="Administracija\InsertAdministracije.cs" />
     <Compile Include="Administracija\InsertForme.cs" />
     <Compile Include="Administracija\InsertGrupe.cs" />
@@ -503,6 +509,7 @@
     <Compile Include="Administracija\InsertPolozeneLokomotive.cs" />
     <Compile Include="Administracija\InsertPolozenePruge.cs" />
     <Compile Include="Administracija\InsertSistematizacija.cs" />
+    <Compile Include="Administracija\InsertStavkePrimopredaje.cs" />
     <Compile Include="Dokumenta\frmAutomobili.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -695,6 +702,12 @@
     <Compile Include="Dokumenta\frmIzracunZarada.Designer.cs">
       <DependentUpon>frmIzracunZarada.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dokumenta\frmKomercijalniPregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmKomercijalniPregled.Designer.cs">
+      <DependentUpon>frmKomercijalniPregled.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\frmKontaktOsobe.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -832,6 +845,12 @@
     </Compile>
     <Compile Include="Dokumenta\frmPredjenaKilometrazaLokomotiva.Designer.cs">
       <DependentUpon>frmPredjenaKilometrazaLokomotiva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumenta\frmPregledAktivnosti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmPregledAktivnosti.Designer.cs">
+      <DependentUpon>frmPregledAktivnosti.cs</DependentUpon>
     </Compile>
     <Compile Include="Dokumenta\frmPregledAutoPrevozniList.cs">
       <SubType>Form</SubType>
@@ -1127,6 +1146,12 @@
     <Compile Include="Dokumenta\frmRIDTeretnice.Designer.cs">
       <DependentUpon>frmRIDTeretnice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dokumenta\frmRutaTrase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmRutaTrase.Designer.cs">
+      <DependentUpon>frmRutaTrase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\frmSpisakBukingaOtpreme.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1144,6 +1169,12 @@
     </Compile>
     <Compile Include="Dokumenta\frmStampaRadnogNaloga.Designer.cs">
       <DependentUpon>frmStampaRadnogNaloga.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumenta\frmTehnickiPregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmTehnickiPregled.Designer.cs">
+      <DependentUpon>frmTehnickiPregled.cs</DependentUpon>
     </Compile>
     <Compile Include="Dokumenta\frmTeretnica.cs">
       <SubType>Form</SubType>
@@ -1186,6 +1217,12 @@
     </Compile>
     <Compile Include="Dokumenta\frmTraseRadniNalog.Designer.cs">
       <DependentUpon>frmTraseRadniNalog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumenta\frmVucaStatusi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmVucaStatusi.Designer.cs">
+      <DependentUpon>frmVucaStatusi.cs</DependentUpon>
     </Compile>
     <Compile Include="Dokumenta\frmZaradaMasinovodja.cs">
       <SubType>Form</SubType>
@@ -1263,10 +1300,13 @@
     <Compile Include="Dokumenta\InsertReceiveMail.cs" />
     <Compile Include="Dokumenta\InsertRegistrator.cs" />
     <Compile Include="Dokumenta\InsertRegistratorDokumenta.cs" />
+    <Compile Include="Dokumenta\InsertRutaTrase.cs" />
     <Compile Include="Dokumenta\InsertTeretnica.cs" />
+    <Compile Include="Dokumenta\InsertTrainList.cs" />
     <Compile Include="Dokumenta\InsertTraseDokumenta.cs" />
     <Compile Include="Dokumenta\InsertUzrociKasnjenjaLok.cs" />
     <Compile Include="Dokumenta\InsertVozPaket.cs" />
+    <Compile Include="Dokumenta\InsertVucaStatusi.cs" />
     <Compile Include="Dokumenta\PivotTable.cs" />
     <Compile Include="Dokumenta\frmTeretnicaTerenIzmena.cs">
       <SubType>Form</SubType>
@@ -1574,10 +1614,14 @@
       <DependentUpon>frmVrstaNepravilnosti.cs</DependentUpon>
     </Compile>
     <Compile Include="Neispravnosti\InsertNepravilnosti.cs" />
-    <Compile Include="Perftech_BeogradDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
+    <Compile Include="Perftech_BeogradDataSet.cs">
       <DependentUpon>Perftech_BeogradDataSet.xsd</DependentUpon>
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="Perftech_BeogradDataSet.Designer.cs">
+      <DependentUpon>Perftech_BeogradDataSet.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Perftech_BeogradDataSet1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -2179,6 +2223,11 @@
     </Compile>
     <Compile Include="Tehnologija\InsertTehnologija.cs" />
     <Compile Include="Tehnologija\InsertTestoviPitanja.cs" />
+    <Compile Include="TESTIRANJEDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TESTIRANJEDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Testiranje\frmGenerisanjeTestaKorisnik.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2994,6 +3043,9 @@
     <EmbeddedResource Include="Administracija\frmSistematizacijaPovezivanje.resx">
       <DependentUpon>frmSistematizacijaPovezivanje.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Administracija\frmStavkePrimopredaje.resx">
+      <DependentUpon>frmStavkePrimopredaje.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmAutomobili.resx">
       <DependentUpon>frmAutomobili.cs</DependentUpon>
     </EmbeddedResource>
@@ -3090,6 +3142,9 @@
     <EmbeddedResource Include="Dokumenta\frmIzracunZarada.resx">
       <DependentUpon>frmIzracunZarada.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmKomercijalniPregled.resx">
+      <DependentUpon>frmKomercijalniPregled.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmKontaktOsobe.resx">
       <DependentUpon>frmKontaktOsobe.cs</DependentUpon>
     </EmbeddedResource>
@@ -3158,6 +3213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmPredjenaKilometrazaLokomotiva.resx">
       <DependentUpon>frmPredjenaKilometrazaLokomotiva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmPregledAktivnosti.resx">
+      <DependentUpon>frmPregledAktivnosti.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmPregledAutoPrevozniList.resx">
       <DependentUpon>frmPregledAutoPrevozniList.cs</DependentUpon>
@@ -3308,6 +3366,9 @@
     <EmbeddedResource Include="Dokumenta\frmRIDTeretnice.resx">
       <DependentUpon>frmRIDTeretnice.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmRutaTrase.resx">
+      <DependentUpon>frmRutaTrase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmSpisakBukingaOtpreme.resx">
       <DependentUpon>frmSpisakBukingaOtpreme.cs</DependentUpon>
     </EmbeddedResource>
@@ -3318,6 +3379,9 @@
     <EmbeddedResource Include="Dokumenta\frmStampaRadnogNaloga.rdlc" />
     <EmbeddedResource Include="Dokumenta\frmStampaRadnogNaloga.resx">
       <DependentUpon>frmStampaRadnogNaloga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmTehnickiPregled.resx">
+      <DependentUpon>frmTehnickiPregled.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmTeretnica.resx">
       <DependentUpon>frmTeretnica.cs</DependentUpon>
@@ -3339,6 +3403,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmTraseRadniNalog.resx">
       <DependentUpon>frmTraseRadniNalog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmVucaStatusi.resx">
+      <DependentUpon>frmVucaStatusi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmZaradaMasinovodja.resx">
       <DependentUpon>frmZaradaMasinovodja.cs</DependentUpon>
@@ -3409,7 +3476,8 @@
     <EmbeddedResource Include="Izvestaji\rptEvidencijaKvarova.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptMUPDozvola.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptUkupnoZaPeriod.rdlc" />
-    <EmbeddedResource Include="Izvestaji\Teretnica.rdlc" />
+    <EmbeddedResource Include="Izvestaji\Teretnica2.rdlc" />
+    <EmbeddedResource Include="Izvestaji\TeretnicaProba.rdlc" />
     <EmbeddedResource Include="Izvestaji\ZaradeStavkePoZaposlenom.rdlc" />
     <EmbeddedResource Include="Izvoz\frmAdresaStatusVozila.resx">
       <DependentUpon>frmAdresaStatusVozila.cs</DependentUpon>
@@ -4082,9 +4150,9 @@
       <DependentUpon>Perftech_BeogradDataSet.xsd</DependentUpon>
     </None>
     <None Include="Perftech_BeogradDataSet.xsd">
+      <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>Perftech_BeogradDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </None>
     <None Include="Perftech_BeogradDataSet.xss">
       <DependentUpon>Perftech_BeogradDataSet.xsd</DependentUpon>
@@ -4274,6 +4342,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="TESTIRANJEDataSet.xsc">
+      <DependentUpon>TESTIRANJEDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TESTIRANJEDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TESTIRANJEDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TESTIRANJEDataSet.xss">
+      <DependentUpon>TESTIRANJEDataSet.xsd</DependentUpon>
+    </None>
     <None Include="TrackModal\Izvestaji\DataSetFaktursanjeMan.xsc">
       <DependentUpon>DataSetFaktursanjeMan.xsd</DependentUpon>
     </None>

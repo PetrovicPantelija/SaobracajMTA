@@ -36,10 +36,12 @@ namespace Saobracaj.Nepravilnosti
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtOpis = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -50,11 +52,11 @@ namespace Saobracaj.Nepravilnosti
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(8, 83);
+            this.dataGridView1.Location = new System.Drawing.Point(8, 233);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(401, 355);
+            this.dataGridView1.Size = new System.Drawing.Size(622, 380);
             this.dataGridView1.TabIndex = 58;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -79,9 +81,9 @@ namespace Saobracaj.Nepravilnosti
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(133, 35);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 17);
+            this.label2.Size = new System.Drawing.Size(33, 17);
             this.label2.TabIndex = 53;
-            this.label2.Text = "Naziv";
+            this.label2.Text = "Kod";
             // 
             // label1
             // 
@@ -103,9 +105,14 @@ namespace Saobracaj.Nepravilnosti
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(425, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(642, 31);
             this.toolStrip1.TabIndex = 51;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tsNew
             // 
@@ -113,7 +120,7 @@ namespace Saobracaj.Nepravilnosti
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
+            this.tsNew.Size = new System.Drawing.Size(29, 28);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -137,17 +144,31 @@ namespace Saobracaj.Nepravilnosti
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
-            // toolStripSeparator1
+            // label3
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 89);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(37, 17);
+            this.label3.TabIndex = 62;
+            this.label3.Text = "Opis";
+            // 
+            // txtOpis
+            // 
+            this.txtOpis.Location = new System.Drawing.Point(8, 109);
+            this.txtOpis.Multiline = true;
+            this.txtOpis.Name = "txtOpis";
+            this.txtOpis.Size = new System.Drawing.Size(622, 108);
+            this.txtOpis.TabIndex = 61;
             // 
             // frmNeispravnostPostupak
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(425, 450);
+            this.ClientSize = new System.Drawing.Size(642, 625);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtOpis);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.txtID);
@@ -178,5 +199,7 @@ namespace Saobracaj.Nepravilnosti
         private System.Windows.Forms.ToolStripButton tsSave;
         private System.Windows.Forms.ToolStripButton tsDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtOpis;
     }
 }

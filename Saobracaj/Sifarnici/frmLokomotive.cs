@@ -213,7 +213,7 @@ namespace Saobracaj.Sifarnici
                         txtLokomotiva.Text = row.Cells[0].Value.ToString();
                         txtNaziv.Text = row.Cells[1].Value.ToString();
                         txtPassword.Text = row.Cells[2].Value.ToString();
-                        if (row.Cells[4].Value.ToString() == "1")
+                        if (row.Cells[3].Value.ToString() == "1")
                         {
                             chkAktivna.Checked = true;
                         }
@@ -221,7 +221,7 @@ namespace Saobracaj.Sifarnici
                         {
                             chkAktivna.Checked = false;
                         }
-                        if (row.Cells[5].Value.ToString() == "1")
+                        if (row.Cells[4].Value.ToString() == "1")
                         {
                             chkDizel.Checked = true;
                         }

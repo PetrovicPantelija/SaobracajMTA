@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="TESTIRANJEDataSet" targetNamespace="http://tempuri.org/TESTIRANJEDataSet.xsd" xmlns:mstns="http://tempuri.org/TESTIRANJEDataSet.xsd" xmlns="http://tempuri.org/TESTIRANJEDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="Perftech_BeogradDataSet" targetNamespace="http://tempuri.org/Perftech_BeogradDataSet.xsd" xmlns:mstns="http://tempuri.org/Perftech_BeogradDataSet.xsd" xmlns="http://tempuri.org/Perftech_BeogradDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="NedraConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="NedraConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.NedraConnectionString" Provider="System.Data.SqlClient" />
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="TESTIRANJEConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TESTIRANJEConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.TESTIRANJEConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="Perftech_BeogradConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="Perftech_BeogradConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.Perftech_BeogradConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SelectTeretnicaTableAdapter" GeneratorDataComponentClassName="SelectTeretnicaTableAdapter" Name="SelectTeretnica" UserDataComponentName="SelectTeretnicaTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="TESTIRANJEConnectionString (Settings)" DbObjectName="TESTIRANJE.dbo.SelectTeretnica" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="NedraConnectionString (Settings)" DbObjectName="TESTIRANJE.dbo.SelectTeretnica" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.SelectTeretnica</CommandText>
@@ -62,6 +62,8 @@
               <Mapping SourceColumn="Uvozna" DataSetColumn="Uvozna" />
               <Mapping SourceColumn="Izvozna" DataSetColumn="Izvozna" />
               <Mapping SourceColumn="Dokument2" DataSetColumn="Dokument2" />
+              <Mapping SourceColumn="ZemljaOd" DataSetColumn="ZemljaOd" />
+              <Mapping SourceColumn="ZemljaDo" DataSetColumn="ZemljaDo" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -70,7 +72,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="TESTIRANJEDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="TESTIRANJEDataSet" msprop:Generator_UserDSName="TESTIRANJEDataSet">
+  <xs:element name="Perftech_BeogradDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="Perftech_BeogradDataSet" msprop:Generator_UserDSName="Perftech_BeogradDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="SelectTeretnica" msprop:Generator_TableClassName="SelectTeretnicaDataTable" msprop:Generator_TableVarName="tableSelectTeretnica" msprop:Generator_TablePropName="SelectTeretnica" msprop:Generator_RowDeletingName="SelectTeretnicaRowDeleting" msprop:Generator_RowChangingName="SelectTeretnicaRowChanging" msprop:Generator_RowEvHandlerName="SelectTeretnicaRowChangeEventHandler" msprop:Generator_RowDeletedName="SelectTeretnicaRowDeleted" msprop:Generator_UserTableName="SelectTeretnica" msprop:Generator_RowChangedName="SelectTeretnicaRowChanged" msprop:Generator_RowEvArgName="SelectTeretnicaRowChangeEvent" msprop:Generator_RowClassName="SelectTeretnicaRow">
@@ -238,6 +240,20 @@
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ZemljaOd" msprop:Generator_ColumnVarNameInTable="columnZemljaOd" msprop:Generator_ColumnPropNameInRow="ZemljaOd" msprop:Generator_ColumnPropNameInTable="ZemljaOdColumn" msprop:Generator_UserColumnName="ZemljaOd" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ZemljaDo" msprop:Generator_ColumnVarNameInTable="columnZemljaDo" msprop:Generator_ColumnPropNameInRow="ZemljaDo" msprop:Generator_ColumnPropNameInTable="ZemljaDoColumn" msprop:Generator_UserColumnName="ZemljaDo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>

@@ -12,7 +12,7 @@ namespace Saobracaj.Sifarnici
 {
     class InsertVagoniSerije
     {
-        public void InsVagoniSerije(string Serija)
+        public void InsVagoniSerije(string Serija, string BrojcanaSerija, int BrojOsovina)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection conn = new SqlConnection(s_connection);
@@ -27,6 +27,24 @@ namespace Saobracaj.Sifarnici
             serija.Direction = ParameterDirection.Input;
             serija.Value = Serija;
             cmd.Parameters.Add(serija);
+
+
+            SqlParameter brojcanaserija = new SqlParameter();
+            brojcanaserija.ParameterName = "@BrojcanaSerija";
+            brojcanaserija.SqlDbType = SqlDbType.NVarChar;
+            brojcanaserija.Size = 20;
+            brojcanaserija.Direction = ParameterDirection.Input;
+            brojcanaserija.Value = BrojcanaSerija;
+            cmd.Parameters.Add(brojcanaserija);
+
+
+            SqlParameter brojosovina = new SqlParameter();
+            brojosovina.ParameterName = "@BrojOsovina";
+            brojosovina.SqlDbType = SqlDbType.Int;
+            // brojcanaserija.Size = 20;
+            brojosovina.Direction = ParameterDirection.Input;
+            brojosovina.Value = BrojOsovina;
+            cmd.Parameters.Add(brojosovina);
 
             conn.Open();
             SqlTransaction tran = conn.BeginTransaction();
@@ -54,7 +72,7 @@ namespace Saobracaj.Sifarnici
                 if (error) { }
             }
         }
-        public void UpdVagoniSerije(int ID, string Serija)
+        public void UpdVagoniSerije(int ID, string Serija, string BrojcanaSerija, int BrojOsovina)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -77,10 +95,30 @@ namespace Saobracaj.Sifarnici
             serija.Value = Serija;
             myCommand.Parameters.Add(serija);
 
+            SqlParameter brojcanaserija = new SqlParameter();
+            brojcanaserija.ParameterName = "@BrojcanaSerija";
+            brojcanaserija.SqlDbType = SqlDbType.NVarChar;
+            brojcanaserija.Size = 20;
+            brojcanaserija.Direction = ParameterDirection.Input;
+            brojcanaserija.Value = BrojcanaSerija;
+            myCommand.Parameters.Add(brojcanaserija);
+
+            SqlParameter brojosovina = new SqlParameter();
+            brojosovina.ParameterName = "@BrojOsovina";
+            brojosovina.SqlDbType = SqlDbType.Int;
+            // brojcanaserija.Size = 20;
+            brojosovina.Direction = ParameterDirection.Input;
+            brojosovina.Value = BrojOsovina;
+            myCommand.Parameters.Add(brojosovina);
+
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
             bool error = true;
+
+            myCommand.Transaction = myTransaction;
+            
             try
             {
                 myCommand.ExecuteNonQuery();
@@ -88,27 +126,19 @@ namespace Saobracaj.Sifarnici
                 myTransaction = myConnection.BeginTransaction();
                 myCommand.Transaction = myTransaction;
             }
-
             catch (SqlException)
             {
-                throw new Exception("Neuspešan upis NHM brojeva");
+                throw new Exception("Neuspešana promena");
             }
-
             finally
             {
                 if (!error)
                 {
                     myTransaction.Commit();
-                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    MessageBox.Show("Neuspesna promena", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 myConnection.Close();
-
-                if (error)
-                {
-                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-                }
+                if (error) { }
             }
         }
         public void DelVagoniSerije(int ID)

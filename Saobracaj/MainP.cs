@@ -41,15 +41,50 @@ namespace Saobracaj
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            Sifarnici.frmStanice stan = new Sifarnici.frmStanice();
-            PravoP = stan.Pravo;
-            if (PravoP == true) { stan.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmStanice")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Sifarnici.frmStanice stan = new Sifarnici.frmStanice();
+                PravoP = stan.Pravo;
+                if (PravoP == true) { stan.Show(); } else { return; }
+            }
+
+
+
+           
         }
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            Sifarnici.frmTrase trase = new Sifarnici.frmTrase();
-            PravoP = trase.Pravo;
-            if (PravoP == true) { trase.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmTrase")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Sifarnici.frmTrase trase = new Sifarnici.frmTrase();
+                PravoP = trase.Pravo;
+                if (PravoP == true) { trase.Show(); } else { return; }
+            }
+
+
+           
         }
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
@@ -59,33 +94,118 @@ namespace Saobracaj
         }
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            Sifarnici.frmLokomotive lokomotive = new Sifarnici.frmLokomotive();
-            PravoP = lokomotive.Pravo;
-            if (PravoP == true) { lokomotive.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmLokomotive")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+
+                Sifarnici.frmLokomotive lokomotive = new Sifarnici.frmLokomotive();
+                PravoP = lokomotive.Pravo;
+                if (PravoP == true) { lokomotive.Show(); } else { return; }
+            }
+
+
         }
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
-            Sifarnici.frmSerijeLokomotiva serije = new Sifarnici.frmSerijeLokomotiva();
-            PravoP = serije.Pravo;
-            if (PravoP == true) { serije.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmSerijeLokomotiva")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+
+                Sifarnici.frmSerijeLokomotiva serije = new Sifarnici.frmSerijeLokomotiva();
+                PravoP = serije.Pravo;
+                if (PravoP == true) { serije.Show(); } else { return; }
+            }
+
+
+
+          
         }
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
-            Sifarnici.frmStatusVoza statvoz = new Sifarnici.frmStatusVoza();
-            PravoP = statvoz.Pravo;
-            if (PravoP == true) { statvoz.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmStatusVoza")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Sifarnici.frmStatusVoza statvoz = new Sifarnici.frmStatusVoza();
+                PravoP = statvoz.Pravo;
+                if (PravoP == true) { statvoz.Show(); } else { return; }
+            }
+
         }
         private void toolStripButton8_Click(object sender, EventArgs e)
         {
-            Sifarnici.frmRazlozi raz = new Sifarnici.frmRazlozi();
-            PravoP = raz.Pravo;
-            if (PravoP == true) { raz.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmRazlozi")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Sifarnici.frmRazlozi raz = new Sifarnici.frmRazlozi();
+                PravoP = raz.Pravo;
+                if (PravoP == true) { raz.Show(); } else { return; }
+            }
+
+
+          
         }
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
-            Sifarnici.frmTipPrevoza tipP = new Sifarnici.frmTipPrevoza();
-            PravoP = tipP.Pravo;
-            if (PravoP == true) { tipP.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmTipPrevoza")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Sifarnici.frmTipPrevoza tipP = new Sifarnici.frmTipPrevoza();
+                PravoP = tipP.Pravo;
+                if (PravoP == true) { tipP.Show(); } else { return; }
+            }
+
+
+         
         }
 
         private void toolStripButton9_Click(object sender, EventArgs e)
@@ -98,9 +218,27 @@ namespace Saobracaj
         }
         private void toolStripButton11_Click(object sender, EventArgs e)
         {
-            Sifarnici.frmPartnerji part = new Sifarnici.frmPartnerji();
-            PravoP = part.Pravo;
-            if (PravoP == true) { part.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPartnerji")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Sifarnici.frmPartnerji part = new Sifarnici.frmPartnerji();
+                PravoP = part.Pravo;
+                if (PravoP == true) { part.Show(); } else { return; }
+            }
+
+
+
+           
         }
         private void toolStripButton12_Click(object sender, EventArgs e)
         {
@@ -113,51 +251,188 @@ namespace Saobracaj
         //Priprema
         private void toolStripButton15_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmNajava frmNaj = new Dokumenta.frmNajava(Korisnik, 0);
-            PravoP = frmNaj.Pravo;
-            if (PravoP == true) { frmNaj.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmNajava")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmNajava frmNaj = new Dokumenta.frmNajava(Korisnik, 0);
+                PravoP = frmNaj.Pravo;
+                if (PravoP == true) { frmNaj.Show(); } else { return; }
+            }
+
+
+           
         }
         private void toolStripButton16_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmNajava frmNaj = new Dokumenta.frmNajava(Korisnik, 1);
-            PravoP = frmNaj.Pravo;
-            if (PravoP == true) { frmNaj.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmNajava")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmNajava frmNaj = new Dokumenta.frmNajava(Korisnik, 1);
+                PravoP = frmNaj.Pravo;
+                if (PravoP == true) { frmNaj.Show(); } else { return; }
+            }
+
+
+           
         }
         private void toolStripButton17_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmNajava20 naj = new Dokumenta.frmNajava20();
-            PravoP = naj.Pravo;
-            if (PravoP == true) { naj.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmNajava20")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmNajava20 naj = new Dokumenta.frmNajava20();
+                PravoP = naj.Pravo;
+                if (PravoP == true) { naj.Show(); } else { return; }
+            }
+
+
+
+           
         }
         private void toolStripButton18_Click(object sender, EventArgs e)
         {
-            SyncForm.frmNajavaArhivaAnaliza sNA = new SyncForm.frmNajavaArhivaAnaliza();
-            PravoP = sNA.Pravo;
-            if (PravoP == true) { sNA.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmNajavaArhivaAnaliza")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                SyncForm.frmNajavaArhivaAnaliza sNA = new SyncForm.frmNajavaArhivaAnaliza();
+                PravoP = sNA.Pravo;
+                if (PravoP == true) { sNA.Show(); } else { return; }
+            }
+
+
+
+          
         }
         private void toolStripButton14_Click(object sender, EventArgs e)
         {
-            SyncForm.frmAnalizaPorudzbina apor = new SyncForm.frmAnalizaPorudzbina();
-            PravoP = apor.Pravo;
-            if (PravoP == true) { apor.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmAnalizaPorudzbina")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                SyncForm.frmAnalizaPorudzbina apor = new SyncForm.frmAnalizaPorudzbina();
+                PravoP = apor.Pravo;
+                if (PravoP == true) { apor.Show(); } else { return; }
+            }
+
+
+          
         }
         private void toolStripButton19_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmTeretnicePregled frmTer = new Dokumenta.frmTeretnicePregled(Korisnik);
-            PravoP = frmTer.Pravo;
-            if (PravoP == true) { frmTer.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmTeretnicePregled")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmTeretnicePregled frmTer = new Dokumenta.frmTeretnicePregled(Korisnik);
+                PravoP = frmTer.Pravo;
+                if (PravoP == true) { frmTer.Show(); } else { return; }
+            }
+
+           
         }
         private void toolStripButton20_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmIskljuceniVagoni iv = new Dokumenta.frmIskljuceniVagoni();
-            PravoP = iv.Pravo;
-            if (PravoP == true) { iv.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmIskljuceniVagoni")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmIskljuceniVagoni iv = new Dokumenta.frmIskljuceniVagoni();
+                PravoP = iv.Pravo;
+                if (PravoP == true) { iv.Show(); } else { return; }
+            }
+
+
+            
         }
         private void toolStripButton21_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmNajaveBezTeretnice nbt = new Dokumenta.frmNajaveBezTeretnice();
-            PravoP = nbt.Pravo;
-            if (PravoP == true) { nbt.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmNajaveBezTeretnice")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmNajaveBezTeretnice nbt = new Dokumenta.frmNajaveBezTeretnice();
+                PravoP = nbt.Pravo;
+                if (PravoP == true) { nbt.Show(); } else { return; }
+            }
+
+
+           
         }
         private void toolStripButton22_Click(object sender, EventArgs e)
         {
@@ -189,24 +464,75 @@ namespace Saobracaj
         }
         private void toolStripButton28_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmPregledRN prn = new Dokumenta.frmPregledRN();
-            PravoP = prn.Pravo;
-            if (PravoP == true) { prn.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPregledRN")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmPregledRN prn = new Dokumenta.frmPregledRN();
+                PravoP = prn.Pravo;
+                if (PravoP == true) { prn.Show(); } else { return; }
+            }
+
+
+          
         }
         private void toolStripButton29_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmRadniNalogPregled frmp2 = new Dokumenta.frmRadniNalogPregled();
-            PravoP = frmp2.Pravo;
-            if (PravoP == true) { frmp2.Show(); } else { return; }
-            //Ovde imam duplo
-            //  Dokumenta.frmRadniNalogPregled frmRN = new Dokumenta.frmRadniNalogPregled();
-            //  frmRN.Show();
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmRadniNalogPregled")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmRadniNalogPregled frmp2 = new Dokumenta.frmRadniNalogPregled();
+                PravoP = frmp2.Pravo;
+                if (PravoP == true) { frmp2.Show(); } else { return; }
+            }
+
+
+
+          
+          
         }
         private void toolStripButton30_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmRAdniNalogPregledPoLokomotivama rnpl = new Dokumenta.frmRAdniNalogPregledPoLokomotivama();
-            PravoP = rnpl.Pravo;
-            if (PravoP == true) { rnpl.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmRAdniNalogPregledPoLokomotivama")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmRAdniNalogPregledPoLokomotivama rnpl = new Dokumenta.frmRAdniNalogPregledPoLokomotivama();
+                PravoP = rnpl.Pravo;
+                if (PravoP == true) { rnpl.Show(); } else { return; }
+            }
+
+
+
+          
         }
         private void toolStripButton31_Click(object sender, EventArgs e)
         {
@@ -247,65 +573,224 @@ namespace Saobracaj
 
         private void toolStripButton36_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmAutomobili autom = new Dokumenta.frmAutomobili();
-            PravoP = autom.Pravo;
-            if (PravoP == true) { autom.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmAutomobili")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmAutomobili autom = new Dokumenta.frmAutomobili();
+                PravoP = autom.Pravo;
+                if (PravoP == true) { autom.Show(); } else { return; }
+            }
+
+
+          
         }
 
         private void toolStripButton39_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmRegistator reg = new Dokumenta.frmRegistator();
-            PravoP = reg.Pravo;
-            if (PravoP == true) { reg.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmRegistator")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmRegistator reg = new Dokumenta.frmRegistator();
+                PravoP = reg.Pravo;
+                if (PravoP == true) { reg.Show(); } else { return; }
+            }
+
+
+
+           
         }
 
         private void toolStripButton40_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmRegistratorPregled regpre = new Dokumenta.frmRegistratorPregled();
-            PravoP = regpre.Pravo;
-            if (PravoP == true) { regpre.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmRegistratorPregled")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmRegistratorPregled regpre = new Dokumenta.frmRegistratorPregled();
+                PravoP = regpre.Pravo;
+                if (PravoP == true) { regpre.Show(); } else { return; }
+            }
+
+
+          
         }
 
         private void toolStripButton41_Click(object sender, EventArgs e)
         {
-            Servis.frmVrstePopisa vrPopisa = new Servis.frmVrstePopisa();
-            PravoP = vrPopisa.Pravo;
-            if (PravoP == true) { vrPopisa.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmVrstePopisa")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Servis.frmVrstePopisa vrPopisa = new Servis.frmVrstePopisa();
+                PravoP = vrPopisa.Pravo;
+                if (PravoP == true) { vrPopisa.Show(); } else { return; }
+            }
+
+
+
+           
         }
 
         private void toolStripButton42_Click(object sender, EventArgs e)
         {
-            Servis.frmLokomotivaVrstaPopisa lokvp = new Servis.frmLokomotivaVrstaPopisa();
-            PravoP = lokvp.Pravo;
-            if (PravoP == true) { lokvp.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmLokomotivaVrstaPopisa")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Servis.frmLokomotivaVrstaPopisa lokvp = new Servis.frmLokomotivaVrstaPopisa();
+                PravoP = lokvp.Pravo;
+                if (PravoP == true) { lokvp.Show(); } else { return; }
+            }
+
+
+
+          
         }
 
         private void toolStripButton43_Click(object sender, EventArgs e)
         {
-            Servis.frmGrupaKvarova gkv = new Servis.frmGrupaKvarova();
-            PravoP = gkv.Pravo;
-            if (PravoP == true) { gkv.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmGrupaKvarova")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Servis.frmGrupaKvarova gkv = new Servis.frmGrupaKvarova();
+                PravoP = gkv.Pravo;
+                if (PravoP == true) { gkv.Show(); } else { return; }
+            }
+
+
+
+          
         }
 
         private void toolStripButton44_Click(object sender, EventArgs e)
         {
-            Servis.frmKvarovi kv = new Servis.frmKvarovi();
-            PravoP = kv.Pravo;
-            if (PravoP == true) { kv.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmKvarovi")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Servis.frmKvarovi kv = new Servis.frmKvarovi();
+                PravoP = kv.Pravo;
+                if (PravoP == true) { kv.Show(); } else { return; }
+            }
+
+
+
+          
         }
 
         private void toolStripButton45_Click(object sender, EventArgs e)
         {
-            Servis.frmEvidencijaKvarova pkvar = new Servis.frmEvidencijaKvarova();
-            PravoP = pkvar.Pravo;
-            if (PravoP == true) { pkvar.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmEvidencijaKvarova")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Servis.frmEvidencijaKvarova pkvar = new Servis.frmEvidencijaKvarova();
+                PravoP = pkvar.Pravo;
+                if (PravoP == true) { pkvar.Show(); } else { return; }
+            }
+
+
+
+          
         }
 
         private void toolStripButton46_Click(object sender, EventArgs e)
         {
-            Servis.frmEvidencijaKvarovaAnaliza evkva = new Servis.frmEvidencijaKvarovaAnaliza();
-            PravoP = evkva.Pravo;
-            if (PravoP == true) { evkva.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmEvidencijaKvarovaAnaliza")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Servis.frmEvidencijaKvarovaAnaliza evkva = new Servis.frmEvidencijaKvarovaAnaliza();
+                PravoP = evkva.Pravo;
+                if (PravoP == true) { evkva.Show(); } else { return; }
+            }
+
+
+
         }
 
         private void toolStripButton50_Click(object sender, EventArgs e)
@@ -344,17 +829,52 @@ namespace Saobracaj
 
         private void toolStripButton54_Click(object sender, EventArgs e)
         {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPravoAktivnosti")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmPravoAktivnosti pravo = new Dokumenta.frmPravoAktivnosti();
+                PravoP = pravo.Pravo;
+                if (PravoP == true) { pravo.Show(); } else { return; }
+            }
 
-            Dokumenta.frmPravoAktivnosti pravo = new Dokumenta.frmPravoAktivnosti();
-            PravoP = pravo.Pravo;
-            if (PravoP == true) { pravo.Show(); } else { return; }
+
+
+         
         }
 
         private void toolStripButton55_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmPravoAktivnostiViseRadnika pravovise = new Dokumenta.frmPravoAktivnostiViseRadnika();
-            PravoP = pravovise.Pravo;
-            if (PravoP == true) { pravovise.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPravoAktivnostiViseRadnika")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+
+                Dokumenta.frmPravoAktivnostiViseRadnika pravovise = new Dokumenta.frmPravoAktivnostiViseRadnika();
+                PravoP = pravovise.Pravo;
+                if (PravoP == true) { pravovise.Show(); } else { return; }
+            }
+
+
+
         }
 
         private void toolStripButton72_Click(object sender, EventArgs e)
@@ -401,37 +921,126 @@ namespace Saobracaj
 
         private void toolStripButton61_Click(object sender, EventArgs e)
         {
-            SyncForm.frmPregledMobilni drugi = new SyncForm.frmPregledMobilni();
-            PravoP = drugi.Pravo;
-            if (PravoP == true) { drugi.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPregledMobilni")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+
+                SyncForm.frmPregledMobilni drugi = new SyncForm.frmPregledMobilni();
+                PravoP = drugi.Pravo;
+                if (PravoP == true) { drugi.Show(); } else { return; }
+            }
+
+
+
+           
         }
 
         private void toolStripButton62_Click(object sender, EventArgs e)
         {
-            Servis.frmPrijavaMasinovodje mas = new Servis.frmPrijavaMasinovodje();
-            PravoP = mas.Pravo;
-            if (PravoP == true) { mas.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPrijavaMasinovodje")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Servis.frmPrijavaMasinovodje mas = new Servis.frmPrijavaMasinovodje();
+                PravoP = mas.Pravo;
+                if (PravoP == true) { mas.Show(); } else { return; }
+            }
+
+
+          
         }
 
         private void toolStripButton63_Click(object sender, EventArgs e)
         {
-            SyncForm.frmPregledMasinovodje novi = new SyncForm.frmPregledMasinovodje();
-            PravoP = novi.Pravo;
-            if (PravoP == true) { novi.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPregledMasinovodje")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                SyncForm.frmPregledMasinovodje novi = new SyncForm.frmPregledMasinovodje();
+                PravoP = novi.Pravo;
+                if (PravoP == true) { novi.Show(); } else { return; }
+            }
+
+
+
+           
         }
 
         private void toolStripButton48_Click(object sender, EventArgs e)
         {
-            Servis.frmNamirenja namir = new Servis.frmNamirenja();
-            PravoP = namir.Pravo;
-            if (PravoP == true) { namir.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmNamirenja")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Servis.frmNamirenja namir = new Servis.frmNamirenja();
+                PravoP = namir.Pravo;
+                if (PravoP == true) { namir.Show(); } else { return; }
+            }
+
+
+
+          
         }
 
         private void toolStripButton49_Click(object sender, EventArgs e)
         {
-            Servis.frmNamirenjaSumarno namSum = new Servis.frmNamirenjaSumarno();
-            PravoP = namSum.Pravo;
-            if (PravoP == true) { namSum.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmNamirenjaSumarno")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Servis.frmNamirenjaSumarno namSum = new Servis.frmNamirenjaSumarno();
+                PravoP = namSum.Pravo;
+                if (PravoP == true) { namSum.Show(); } else { return; }
+            }
+
+
+           
         }
 
         private void toolStripButton58_Click(object sender, EventArgs e)
@@ -446,9 +1055,27 @@ namespace Saobracaj
 
         private void toolStripButton56_Click(object sender, EventArgs e)
         {
-            Mobile.frmSlobodniDani slob = new Mobile.frmSlobodniDani(Korisnik);
-            PravoP = slob.Pravo;
-            if (PravoP == true) { slob.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmSlobodniDani")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Mobile.frmSlobodniDani slob = new Mobile.frmSlobodniDani(Korisnik);
+                PravoP = slob.Pravo;
+                if (PravoP == true) { slob.Show(); } else { return; }
+            }
+
+
+
+          
         }
 
         private void toolStripButton77_Click(object sender, EventArgs e)
@@ -512,9 +1139,29 @@ namespace Saobracaj
 
         private void toolStripButton71_Click(object sender, EventArgs e)
         {
-            SyncForm.frmAnalizaAktivnosti aAktiv = new SyncForm.frmAnalizaAktivnosti();
-            PravoP = aAktiv.Pravo;
-            if (PravoP == true) { aAktiv.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmAnalizaAktivnosti")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                SyncForm.frmAnalizaAktivnosti aAktiv = new SyncForm.frmAnalizaAktivnosti();
+                PravoP = aAktiv.Pravo;
+                if (PravoP == true) { aAktiv.Show(); } else { return; }
+            }
+
+
+
+
+
+          
         }
         private void toolStripButton75_Click(object sender, EventArgs e)
         {
@@ -533,27 +1180,98 @@ namespace Saobracaj
         }
         private void toolStripButton81_Click(object sender, EventArgs e)
         {
-            Tehnologija.frmTehnologija teh = new Tehnologija.frmTehnologija(Korisnik);
-            PravoP = teh.Pravo;
-            if (PravoP == true) { teh.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmTehnologija")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Tehnologija.frmTehnologija teh = new Tehnologija.frmTehnologija(Korisnik);
+                PravoP = teh.Pravo;
+                if (PravoP == true) { teh.Show(); } else { return; }
+            }
+
+
+
+           
         }
         private void toolStripButton82_Click(object sender, EventArgs e)
         {
-            Sifarnici.frmTraseAnaliticki ta = new Sifarnici.frmTraseAnaliticki();
-            PravoP = ta.Pravo;
-            if (PravoP == true) { ta.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmTraseAnaliticki")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Sifarnici.frmTraseAnaliticki ta = new Sifarnici.frmTraseAnaliticki();
+                PravoP = ta.Pravo;
+                if (PravoP == true) { ta.Show(); } else { return; }
+            }
+
+
+          
         }
         private void toolStripButton83_Click(object sender, EventArgs e)
         {
-            Tehnologija.frmTehnologijaPregled tehp = new Tehnologija.frmTehnologijaPregled(Korisnik);
-            PravoP = tehp.Pravo;
-            if (PravoP == true) { tehp.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmTehnologijaPregled")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+
+                Tehnologija.frmTehnologijaPregled tehp = new Tehnologija.frmTehnologijaPregled(Korisnik);
+                PravoP = tehp.Pravo;
+                if (PravoP == true) { tehp.Show(); } else { return; }
+            }
+
+
+
         }
         private void toolStripButton84_Click(object sender, EventArgs e)
         {
-            Servis.frmPrijavaKvara pkv = new Servis.frmPrijavaKvara();
-            PravoP = pkv.Pravo;
-            if (PravoP == true) { pkv.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPrijavaKvara")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Servis.frmPrijavaKvara pkv = new Servis.frmPrijavaKvara();
+                PravoP = pkv.Pravo;
+                if (PravoP == true) { pkv.Show(); } else { return; }
+            }
+
+
+
+           
         }
         private void RibbonPanel_Click(object sender, EventArgs e)
         {
@@ -562,21 +1280,74 @@ namespace Saobracaj
         }
         private void toolStripButton85_Click(object sender, EventArgs e)
         {
-            Sifarnici.frmSifarnikKontrolnihGresaka skg = new Sifarnici.frmSifarnikKontrolnihGresaka();
-            PravoP = skg.Pravo;
-            if (PravoP == true) { skg.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmSifarnikKontrolnihGresaka")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Sifarnici.frmSifarnikKontrolnihGresaka skg = new Sifarnici.frmSifarnikKontrolnihGresaka();
+                PravoP = skg.Pravo;
+                if (PravoP == true) { skg.Show(); } else { return; }
+            }
+
+
+
+          
         }
         private void toolStripButton86_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmKontrola kontrola = new Dokumenta.frmKontrola();
-            PravoP = kontrola.Pravo;
-            if (PravoP == true) { kontrola.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmKontrola")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+
+                Dokumenta.frmKontrola kontrola = new Dokumenta.frmKontrola();
+                PravoP = kontrola.Pravo;
+                if (PravoP == true) { kontrola.Show(); } else { return; }
+            }
+
+
+
         }
         private void toolStripButton87_Click(object sender, EventArgs e)
         {
-            Sifarnici.frmSifarnikKontrolnihTipovaDokumenta kgtp = new Sifarnici.frmSifarnikKontrolnihTipovaDokumenta();
-            PravoP = kgtp.Pravo;
-            if (PravoP == true) { kgtp.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmSifarnikKontrolnihTipovaDokumenta")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Sifarnici.frmSifarnikKontrolnihTipovaDokumenta kgtp = new Sifarnici.frmSifarnikKontrolnihTipovaDokumenta();
+                PravoP = kgtp.Pravo;
+                if (PravoP == true) { kgtp.Show(); } else { return; }
+            }
+
+
+         
         }
         private void toolStripButton88_Click(object sender, EventArgs e)
         {
@@ -586,22 +1357,75 @@ namespace Saobracaj
         }
         private void toolStripButton91_Click(object sender, EventArgs e)
         {
-            Servis.frmPregledPopisa1 pp = new Servis.frmPregledPopisa1();
-            PravoP = pp.Pravo;
-            if (PravoP == true) { pp.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPregledPopisa1")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Servis.frmPregledPopisa1 pp = new Servis.frmPregledPopisa1();
+                PravoP = pp.Pravo;
+                if (PravoP == true) { pp.Show(); } else { return; }
+            }
+
+
+          
         }
         private void toolStripButton92_Click(object sender, EventArgs e)
         {
-            SyncForm.frmPregledPopisa2 ppp = new SyncForm.frmPregledPopisa2();
-            PravoP = ppp.Pravo;
-            if (PravoP == true) { ppp.Show(); } else { return; }
+
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPregledPopisa2")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                SyncForm.frmPregledPopisa2 ppp = new SyncForm.frmPregledPopisa2();
+                PravoP = ppp.Pravo;
+                if (PravoP == true) { ppp.Show(); } else { return; }
+            }
+
+
+
+          
         }
 
         private void toolStripButton93_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmPredjenaKilometrazaLokomotiva predjKM = new Dokumenta.frmPredjenaKilometrazaLokomotiva();
-            PravoP = predjKM.Pravo;
-            if (PravoP == true) { predjKM.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPredjenaKilometrazaLokomotiva")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmPredjenaKilometrazaLokomotiva predjKM = new Dokumenta.frmPredjenaKilometrazaLokomotiva();
+                PravoP = predjKM.Pravo;
+                if (PravoP == true) { predjKM.Show(); } else { return; }
+            }
+
+
+         
         }
 
         private void toolStripButton94_Click(object sender, EventArgs e)
@@ -613,16 +1437,51 @@ namespace Saobracaj
 
         private void toolStripButton95_Click(object sender, EventArgs e)
         {
-            Servis.frmGrupaKvarovaAuto gka = new Servis.frmGrupaKvarovaAuto();
-            PravoP = gka.Pravo;
-            if (PravoP == true) { gka.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmGrupaKvarovaAuto")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Servis.frmGrupaKvarovaAuto gka = new Servis.frmGrupaKvarovaAuto();
+                PravoP = gka.Pravo;
+                if (PravoP == true) { gka.Show(); } else { return; }
+            }
+
+
+
         }
 
         private void toolStripButton96_Click(object sender, EventArgs e)
         {
-            Servis.frmKvaroviAuto kvaut = new Servis.frmKvaroviAuto();
-            PravoP = kvaut.Pravo;
-            if (PravoP == true) { kvaut.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmKvaroviAuto")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Servis.frmKvaroviAuto kvaut = new Servis.frmKvaroviAuto();
+                PravoP = kvaut.Pravo;
+                if (PravoP == true) { kvaut.Show(); } else { return; }
+            }
+
+
+
+           
         }
 
         private void toolStripButton99_Click(object sender, EventArgs e)
@@ -679,30 +1538,102 @@ namespace Saobracaj
 
         private void toolStripButton108_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmAutomobili auto = new Dokumenta.frmAutomobili();
-            PravoP = auto.Pravo;
-            if (PravoP == true) { auto.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmAutomobili")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmAutomobili auto = new Dokumenta.frmAutomobili();
+                PravoP = auto.Pravo;
+                if (PravoP == true) { auto.Show(); } else { return; }
+            }
+
+
+
+
+          
         }
 
         private void toolStripButton109_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmAutomobiliPregledPrijava prijaveautomobili = new Dokumenta.frmAutomobiliPregledPrijava();
-            PravoP = prijaveautomobili.Pravo;
-            if (PravoP == true) { prijaveautomobili.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmAutomobiliPregledPrijava")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmAutomobiliPregledPrijava prijaveautomobili = new Dokumenta.frmAutomobiliPregledPrijava();
+                PravoP = prijaveautomobili.Pravo;
+                if (PravoP == true) { prijaveautomobili.Show(); } else { return; }
+            }
+
+
+
+          
         }
 
         private void toolStripButton97_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmAutomobiliKvarovi kvarovi = new Dokumenta.frmAutomobiliKvarovi();
-            PravoP = kvarovi.Pravo;
-            if (PravoP == true) { kvarovi.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmAutomobiliKvarovi")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmAutomobiliKvarovi kvarovi = new Dokumenta.frmAutomobiliKvarovi();
+                PravoP = kvarovi.Pravo;
+                if (PravoP == true) { kvarovi.Show(); } else { return; }
+            }
+
+
+
+         
         }
 
         private void toolStripButton110_Click(object sender, EventArgs e)
         {
-            Servis.frmPrijavaKvaraAuto prijavaKvarAuto = new Servis.frmPrijavaKvaraAuto();
-            PravoP = prijavaKvarAuto.Pravo;
-            if (PravoP == true) { prijavaKvarAuto.Show(); } else { return; }
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPrijavaKvaraAuto")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Servis.frmPrijavaKvaraAuto prijavaKvarAuto = new Servis.frmPrijavaKvaraAuto();
+                PravoP = prijavaKvarAuto.Pravo;
+                if (PravoP == true) { prijavaKvarAuto.Show(); } else { return; }
+            }
+
+
+           
         }
 
         private void toolStripButton111_Click(object sender, EventArgs e)
@@ -757,9 +1688,23 @@ namespace Saobracaj
         private void toolStripButton64_Click(object sender, EventArgs e)
         {
             //Tokovi dokumerntacije
-
-            Mobile.frmTokoviDokumentacije td = new Mobile.frmTokoviDokumentacije();
-            td.Show();
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmTokoviDokumentacije")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Mobile.frmTokoviDokumentacije td = new Mobile.frmTokoviDokumentacije();
+                td.Show();
+            }
+          
         }
 
         private void toolStripButton66_Click(object sender, EventArgs e)
@@ -779,13 +1724,31 @@ namespace Saobracaj
 
         private void toolStripButton116_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmPropratnice propratnice = new Dokumenta.frmPropratnice();
-            PravoP = propratnice.Pravo;
-            if (PravoP == true)
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
             {
-                propratnice.Show();
+                //iterate through
+                if (frm.Name == "frmPropratnice")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
             }
-            else { return; }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmPropratnice propratnice = new Dokumenta.frmPropratnice();
+                PravoP = propratnice.Pravo;
+                if (PravoP == true)
+                {
+                    propratnice.Show();
+                }
+                else { return; }
+            }
+
+
+
+          
         }
         private void toolStripButton117_Click(object sender, EventArgs e)
         {
@@ -1669,8 +2632,23 @@ namespace Saobracaj
 
         private void toolStripButton219_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmTrainList tl = new Dokumenta.frmTrainList();
-            tl.Show();
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmTrainList")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Dokumenta.frmTrainList tl = new Dokumenta.frmTrainList();
+                tl.Show(); 
+            }    
+            
         }
 
         private void toolStripEx1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -1737,6 +2715,50 @@ namespace Saobracaj
         {
             Nepravilnosti.frmVrstaNepravilnosti np = new Nepravilnosti.frmVrstaNepravilnosti();
             np.Show();
+        }
+
+        private void toolStripButton231_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmPregledAktivnosti pr = new Dokumenta.frmPregledAktivnosti();
+            pr.Show();
+        }
+
+        private void toolStripTabItem10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripTabItem5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripTabItem7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripEx39_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void toolStripButton232_Click(object sender, EventArgs e)
+        {
+            frmTipKontejnera tk = new frmTipKontejnera();
+            tk.Show();
+        }
+
+        private void toolStripButton233_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmVucaStatusi vs = new Dokumenta.frmVucaStatusi();
+            vs.Show();
+        }
+
+        private void toolStripButton234_Click(object sender, EventArgs e)
+        {
+            Administracija.frmStavkePrimopredaje spp = new Administracija.frmStavkePrimopredaje();
+            spp.Show();
         }
     }
 }

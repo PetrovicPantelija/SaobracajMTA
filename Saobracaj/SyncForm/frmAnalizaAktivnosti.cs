@@ -117,22 +117,13 @@ namespace Saobracaj.SyncForm
         private void frmAnalizaAktivnosti_Load(object sender, EventArgs e)
         {
 
-            var select = "  Select Top 5000 Aktivnosti.ID as ID, " +
-" (Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme)) as Zaposleni, VremeOd, " +
-" VremeDo, Aktivnosti.Kartica, Aktivnosti.RAcun, Aktivnosti.UkupniTroskovi, Aktivnosti.Ukupno ,Aktivnosti.Opis as OpisZaglavlje, VrstaAktivnosti.Naziv as VrstaAktivnosti, " +
-"  AktivnostiStavke.BrojVagona, AktivnostiStavke.Sati, AktivnostiStavke.VrstaAktivnostiID , " +
-"  AktivnostiStavke.Napomena, AktivnostiStavke.Razlog, " +
-"  AktivnostiStavke.Koeficijent, AktivnostiStavke.Posao as IDPosla, " +
-"  (Rtrim(Nal.DePriimek) + ' ' + Rtrim(Nal.DeIme)) as Zaposleni " +
-"  from Aktivnosti " +
-"  inner join Delavci on Aktivnosti.Zaposleni = Delavci.DeSifra " +
-"  inner " +
-"  join AktivnostiStavke on AktivnostiStavke.IDNadredjena = Aktivnosti.ID " +
-"  inner " +
-"  join VrstaAktivnosti on VrstaAktivnosti.ID = AktivnostiStavke.VrstaAktivnostiID " +
-"  inner " +
-"  join Delavci nal on AktivnostiStavke.Nalogodavac = nal.DeSifra " +
-"  order by Aktivnosti.ID desc";
+            var select = "   Select Top 5000 Aktivnosti.ID as ID,  (Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme)) as Zaposleni, VremeOd, " +
+    " VremeDo, Aktivnosti.Kartica, Aktivnosti.RAcun, Aktivnosti.UkupniTroskovi, Aktivnosti.Ukupno ,Aktivnosti.Opis as OpisZaglavlje, VrstaAktivnosti.Naziv as VrstaAktivnosti,  " +
+    "   AktivnostiStavke.Sati, AktivnostiStavke.VrstaAktivnostiID ,   AktivnostiStavke.Napomena,  AktivnostiStavke.Koeficijent, AktivnostiStavke.Posao as IDPosla " +
+    "  from Aktivnosti inner join Delavci on Aktivnosti.Zaposleni = Delavci.DeSifra " +
+    " inner     join AktivnostiStavke on AktivnostiStavke.IDNadredjena = Aktivnosti.ID " +
+    " inner     join VrstaAktivnosti on VrstaAktivnosti.ID = AktivnostiStavke.VrstaAktivnostiID " +
+    " order by Aktivnosti.ID desc";
 
             var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

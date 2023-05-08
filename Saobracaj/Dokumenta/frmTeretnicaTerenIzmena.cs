@@ -29,7 +29,138 @@ namespace Saobracaj.Dokumenta
             Teretnica = Convert.ToInt32(IdTeretnice);
             FillGV1();
             FillGV2();
+            FillGV3();
+            FillGV4();
         }
+
+        private void FillGV4()
+        {
+
+            var select = "Select * from TeretnicaKomercijalniPregled" +
+            " where Teretnica = " + Teretnica +
+            "  ";
+
+
+            SqlConnection myConnection = new SqlConnection(connect);
+            var conn = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, conn);
+
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView4.ReadOnly = false;
+            dataGridView4.DataSource = ds.Tables[0];
+
+            dataGridView4.BorderStyle = BorderStyle.None;
+            dataGridView4.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView4.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView4.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView4.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView4.BackgroundColor = Color.White;
+
+            dataGridView4.EnableHeadersVisualStyles = false;
+            dataGridView4.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView4.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView4.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+           
+                dataGridView4.Columns[0].Width = 30; //RB
+                dataGridView4.Columns[1].Width = 30; //ID
+            dataGridView4.Columns[2].Width = 30; //IDNajave
+            dataGridView4.Columns[3].Width = 350; //Uvrstena
+            /*
+               dataGridView1.Columns[2].Width = 50; //IDNajave
+               dataGridView1.Columns[3].Width = 50; //Uvrstena
+               dataGridView1.Columns[4].Width = 50; //Otkacena
+               dataGridView1.Columns[5].Width = 90; //BrKola
+               dataGridView1.Columns[6].Width = 30; //Serija
+               dataGridView1.Columns[7].Width = 40; //BrojOS
+               dataGridView1.Columns[8].Width = 50; //Duzina
+               dataGridView1.Columns[9].Width = 50; //Tara
+               dataGridView1.Columns[10].Width = 50; //Neto
+               dataGridView1.Columns[11].Width = 30; //G
+               dataGridView1.Columns[12].Width = 40; //P
+               dataGridView1.Columns[13].Width = 30; //R
+               dataGridView1.Columns[14].Width = 30; //PR
+               dataGridView1.Columns[15].Width = 30; //VRN
+               dataGridView1.Columns[16].Width = 70; //Otpravna
+               dataGridView1.Columns[17].Width = 70; //Uputna
+               dataGridView1.Columns[18].Width = 70; //Reon
+               dataGridView1.Columns[19].Width = 70; //Primedba
+               dataGridView1.Columns[20].Width = 70; //RucKoc
+               dataGridView1.Columns[21].Width = 70; //Izvozna
+               dataGridView1.Columns[22].Width = 70; //Uvozna
+               dataGridView1.Columns[23].Width = 70; //RID
+               dataGridView1.Columns[24].Width = 70; //Dokument
+       */
+
+        }
+        private void FillGV3()
+        {
+
+            var select = "Select KomercijalniPregled.ID as IDKomercijalnogPregleda,AktivnostiStavke.Teretnica, KomercijalniPregled.IDStavke, KomercijalniPregled.BrojKola," +
+            " RedniBrojKola, Stanje, VrstaKocnice, Duzina, Tara,KocnaMasa, RucnaKocnica,  " +
+            " SifOpisNeispravnosti.Naziv as VrstaNepravilnosti, KomercijalniPregled.OpisNeispravnosti as ONID, " +
+            " SifVrstaNepravilnosti.Naziv AS VrstaNepravilnosti " +
+            " from KomercijalniPregled " +
+            " inner Join AktivnostiStavke on KomercijalniPregled.IDStavke = AktivnostiStavke.ID " +
+            "  LEFT OUTER JOIN " +
+            " SifVrstaNepravilnosti ON KomercijalniPregled.OpisNeispravnosti = SifVrstaNepravilnosti.ID LEFT OUTER JOIN " +
+            " SifOpisNeispravnosti ON KomercijalniPregled.VrstaNepravilnosti = SifOpisNeispravnosti.ID " +
+            " where AktivnostiStavke.VrstaAktivnostiID = 59 " +
+            " and AktivnostiStavke.Teretnica = " + Teretnica +
+            "  order by RedniBrojKola";
+
+
+                SqlConnection myConnection = new SqlConnection(connect);
+                var conn = new SqlConnection(connect);
+                var dataAdapter = new SqlDataAdapter(select, conn);
+
+                var ds = new DataSet();
+                dataAdapter.Fill(ds);
+                dataGridView3.ReadOnly = false;
+                dataGridView3.DataSource = ds.Tables[0];
+
+                dataGridView3.BorderStyle = BorderStyle.None;
+                dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+                dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+                dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+                dataGridView3.BackgroundColor = Color.White;
+
+                dataGridView3.EnableHeadersVisualStyles = false;
+                dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+                dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+                dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            /*
+                dataGridView1.Columns[0].Width = 30; //RB
+                dataGridView1.Columns[1].Width = 50; //ID
+                dataGridView1.Columns[2].Width = 50; //IDNajave
+                dataGridView1.Columns[3].Width = 50; //Uvrstena
+                dataGridView1.Columns[4].Width = 50; //Otkacena
+                dataGridView1.Columns[5].Width = 90; //BrKola
+                dataGridView1.Columns[6].Width = 30; //Serija
+                dataGridView1.Columns[7].Width = 40; //BrojOS
+                dataGridView1.Columns[8].Width = 50; //Duzina
+                dataGridView1.Columns[9].Width = 50; //Tara
+                dataGridView1.Columns[10].Width = 50; //Neto
+                dataGridView1.Columns[11].Width = 30; //G
+                dataGridView1.Columns[12].Width = 40; //P
+                dataGridView1.Columns[13].Width = 30; //R
+                dataGridView1.Columns[14].Width = 30; //PR
+                dataGridView1.Columns[15].Width = 30; //VRN
+                dataGridView1.Columns[16].Width = 70; //Otpravna
+                dataGridView1.Columns[17].Width = 70; //Uputna
+                dataGridView1.Columns[18].Width = 70; //Reon
+                dataGridView1.Columns[19].Width = 70; //Primedba
+                dataGridView1.Columns[20].Width = 70; //RucKoc
+                dataGridView1.Columns[21].Width = 70; //Izvozna
+                dataGridView1.Columns[22].Width = 70; //Uvozna
+                dataGridView1.Columns[23].Width = 70; //RID
+                dataGridView1.Columns[24].Width = 70; //Dokument
+        */
+
+        }
+
+
         private void FillGV2()
         {
             var select = "Select distinct RedniBroj,IdPopisaneStavkeTeretnice,BrojPopisaneTeretnice,RTrim(BrojKola) as BrojKola," +
@@ -319,6 +450,39 @@ namespace Saobracaj.Dokumenta
             {
                 return;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            InsertTeretnicaStavke t = new InsertTeretnicaStavke();
+            t.UpdTeretnicaStavkeKomercijalniPregled(Teretnica, Convert.ToInt32(txtAktivnostStavkeID.Text));
+        }
+
+        private void dataGridView3_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView3.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txtAktivnostStavkeID.Text = row.Cells[2].Value.ToString();
+                       
+                    }
+                }
+
+
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            InsertTeretnicaStavke t = new InsertTeretnicaStavke();
+            t.ProveraTeretniceKomercijalniPregled(Teretnica, Convert.ToInt32(txtAktivnostStavkeID.Text));
         }
     }
 }

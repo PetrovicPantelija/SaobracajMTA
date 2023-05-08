@@ -13,7 +13,7 @@ namespace Saobracaj.Dokumenta
     class InsertAutomobiliPregledPrijava
     {
         string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-        public void InsAutomobiliPregledPrijava(int Zaposleni, DateTime DatumPrijave, DateTime DatumOdjave, int AutomobilId, string Relacija, int CistocaSpoljaZaduzivanje,
+        public void InsAutomobiliPregledPrijava(int Zaposleni, DateTime DatumPrijave, DateTime DatumOdjave, int AutomobilId,  int CistocaSpoljaZaduzivanje,
         int CistocaIznutraZaduzivanje, int CistocaSpoljaRazduzivanje, int CistocaIznutraRazduzivanje, int NivoUljaZaduzivanje, bool DirektnaPrimopredajaZaduzivanje,
         int NivoUljaRazduzivanje, bool DirektnaPrimopredajaRazduzivanje, float KilometrazaZaduzivanje, float KilometrazaRazduzivanje, bool Plomba1PotvrdaZaduzenje,
         bool Plomba2PotvrdaZaduzenje, bool Plomba1PotvrdaRazduzenje, bool Plomba2PotvrdaRazduzenje)
@@ -51,13 +51,7 @@ namespace Saobracaj.Dokumenta
             paramAuto.Value = AutomobilId;
             cmd.Parameters.Add(paramAuto);
 
-            SqlParameter paramRelacija = new SqlParameter();
-            paramRelacija.ParameterName = "@Relacija";
-            paramRelacija.SqlDbType = SqlDbType.NVarChar;
-            paramRelacija.Size = 50;
-            paramRelacija.Direction = ParameterDirection.Input;
-            paramRelacija.Value = Relacija;
-            cmd.Parameters.Add(paramRelacija);
+           
 
             SqlParameter paramCistocaSpZad = new SqlParameter();
             paramCistocaSpZad.ParameterName = "@CistocaSpoljaZaduzivanje";
@@ -187,7 +181,7 @@ namespace Saobracaj.Dokumenta
                 }
             }
         }
-        public void UpdAutomobiliPregledPrijava(int ID, int Zaposleni, DateTime DatumPrijave, DateTime DatumOdjave, int AutomobilId, string Relacija, int CistocaSpoljaZaduzivanje,
+        public void UpdAutomobiliPregledPrijava(int ID, int Zaposleni, DateTime DatumPrijave, DateTime DatumOdjave, int AutomobilId,  int CistocaSpoljaZaduzivanje,
         int CistocaIznutraZaduzivanje, int CistocaSpoljaRazduzivanje, int CistocaIznutraRazduzivanje, int NivoUljaZaduzivanje, bool DirektnaPrimopredajaZaduzivanje,
         int NivoUljaRazduzivanje, bool DirektnaPrimopredajaRazduzivanje, float KilometrazaZaduzivanje, float KilometrazaRazduzivanje, bool Plomba1PotvrdaZaduzenje,
         bool Plomba2PotvrdaZaduzenje, bool Plomba1PotvrdaRazduzenje, bool Plomba2PotvrdaRazduzenje)
@@ -232,13 +226,6 @@ namespace Saobracaj.Dokumenta
             paramAuto.Value = AutomobilId;
             cmd.Parameters.Add(paramAuto);
 
-            SqlParameter paramRelacija = new SqlParameter();
-            paramRelacija.ParameterName = "@Relacija";
-            paramRelacija.SqlDbType = SqlDbType.NVarChar;
-            paramRelacija.Size = 50;
-            paramRelacija.Direction = ParameterDirection.Input;
-            paramRelacija.Value = Relacija;
-            cmd.Parameters.Add(paramRelacija);
 
             SqlParameter paramCistocaSpZad = new SqlParameter();
             paramCistocaSpZad.ParameterName = "@CistocaSpoljaZaduzivanje";

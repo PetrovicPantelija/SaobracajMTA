@@ -216,8 +216,8 @@ namespace Saobracaj.Dokumenta
                     
                     try
                     {
-                        string cuvaj = "disp@kprevoz.co.rs";
-                        mailMessage = new MailMessage("disp@kprevoz.co.rs", "stefan.obradovic@kprevoz.co.rs,milos.cpajak@kprevoz.co.rs,pantelija.petrovic@kprevoz.co.rs");
+                        string cuvaj = "panta@kprevoz.co.rs";
+                        mailMessage = new MailMessage("panta@kprevoz.co.rs", "panta@kprevoz.co.rs,panta@kprevoz.co.rs,panta@kprevoz.co.rs");
                         mailMessage.CC.Add(cuvaj);
                         mailMessage.Subject = "Status najave";
 

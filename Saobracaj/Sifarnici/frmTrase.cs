@@ -609,5 +609,11 @@ namespace Saobracaj.Sifarnici
         {
 
         }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmRutaTrase tr = new Dokumenta.frmRutaTrase(txtSifra.Text, txtVoz.Text);
+            tr.Show();
+        }
     }
 }

@@ -147,7 +147,8 @@ namespace Saobracaj.Dokumenta
 
         private void RefreshDataGridRAdnici()
         {
-            var select = "  select Delavci.DeSifra, (Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme)) as Zaposleni  from Delavci order by DeSifra";
+            var select = "  select Delavci.DeSifra, (Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme)) as Zaposleni, DelovnaMesta.DmNaziv  from Delavci " +
+" inner join DelovnaMesta on DeSifDelMes = DelovnaMesta.DmSifra order by Delavci.DeSifra";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -166,7 +167,11 @@ namespace Saobracaj.Dokumenta
 
             DataGridViewColumn column3 = dataGridView3.Columns[1];
             dataGridView3.Columns[1].HeaderText = "Radnik";
-            dataGridView3.Columns[1].Width = 300;
+            dataGridView3.Columns[1].Width = 200;
+
+            DataGridViewColumn column4 = dataGridView3.Columns[2];
+            dataGridView3.Columns[2].HeaderText = "Radno mesto";
+            dataGridView3.Columns[2].Width = 300;
 
         }
        
@@ -237,6 +242,11 @@ namespace Saobracaj.Dokumenta
          
 
             RefreshDataGridPoAktivnostima();
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
 
         }
     }

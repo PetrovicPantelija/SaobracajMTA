@@ -58,6 +58,8 @@ namespace Saobracaj.Sifarnici
                     {
                         txtID.Text = row.Cells[0].Value.ToString();
                         txtSerija.Text = row.Cells[1].Value.ToString();
+                        txtBrojcanaSerija.Text = row.Cells[2].Value.ToString();
+                        txtBrojOsovina.Value = Convert.ToInt32(row.Cells[3].Value.ToString());
                     }
                 }
             }
@@ -67,6 +69,7 @@ namespace Saobracaj.Sifarnici
         private void tsNew_Click(object sender, EventArgs e)
         {
             txtID.Text = "";
+            txtID.Enabled = true;
             status = true;
             tsNew.Enabled = false;
         }
@@ -77,14 +80,14 @@ namespace Saobracaj.Sifarnici
             InsertVagoniSerije lok = new InsertVagoniSerije();
             if (status == true)
             {
-                lok.InsVagoniSerije(txtSerija.Text.ToString().TrimEnd());
+                lok.InsVagoniSerije(txtSerija.Text.ToString().TrimEnd(), txtBrojcanaSerija.Text, Convert.ToInt32(txtBrojOsovina.Value));
                 status = false;
                 tsNew.Enabled = true;
                 
             }
             else
             {
-                lok.UpdVagoniSerije(Convert.ToInt32(txtID.Text.ToString()), txtSerija.Text.ToString().TrimEnd());
+                lok.UpdVagoniSerije(Convert.ToInt32(txtID.Text.ToString()), txtSerija.Text.ToString().TrimEnd(),txtBrojcanaSerija.Text,  Convert.ToInt32(txtBrojOsovina.Value));
             }
             RefreshGV();
         }
@@ -98,6 +101,11 @@ namespace Saobracaj.Sifarnici
         private void frmVagoniSerije_Load(object sender, EventArgs e)
         {
             RefreshGV();
+        }
+
+        private void txtBrojcanaSerija_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

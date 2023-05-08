@@ -20,7 +20,8 @@ namespace Saobracaj.Dokumenta
     {
         int pomTrasa = 0;
         Boolean status = false;
-
+        string OznakaBroj = "";
+        int IzNajave = 0;
         public frmRadniNalog()
         {
             InitializeComponent();
@@ -33,6 +34,13 @@ namespace Saobracaj.Dokumenta
             VratiTeretnice(IDRadnogNaloga);
             RefreshDataGridNajave();
 
+        }
+
+        public frmRadniNalog(string BrojOznaka, int IzNajave)
+        {
+            InitializeComponent();
+            OznakaBroj = BrojOznaka;
+            IzNajave = 1;
         }
 
         private void VratiPodatke(string IdRadnogNaloga)
@@ -435,7 +443,7 @@ namespace Saobracaj.Dokumenta
             cboPlaner.ValueMember = "ID";
 
 
-            var select6 = " Select Najava.ID, Najava.TehnologijaID, Tehnologija.PorudzbinaID as MP ,MpNaziv,Tezina as NajavaTezina,Duzina as NajavaDuzina , BrojKola as NajavaBrojKola, Tehnologija.Tonaza, Tehnologija.TonazaPovratak  from Najava " +
+            var select6 = " Select Najava.ID, Najava.Oznaka, Najava.TehnologijaID, Tehnologija.PorudzbinaID as MP ,MpNaziv,Tezina as NajavaTezina,Duzina as NajavaDuzina , BrojKola as NajavaBrojKola, Tehnologija.Tonaza, Tehnologija.TonazaPovratak  from Najava " +
             " inner join Tehnologija on Tehnologija.ID = Najava.TehnologijaID " +
             " inner join MaticniPodatki on MaticniPodatki.MpSifra = Tehnologija.PorudzbinaID " +
             " order by Najava.ID desc";
@@ -452,7 +460,7 @@ namespace Saobracaj.Dokumenta
             DataView view = new DataView(ds6.Tables[0]);
             //multiColumnComboBox1.ReadOnly = true;
             cboPorudzbinaID.DataSource = view;
-            cboPorudzbinaID.DisplayMember = "ID";
+            cboPorudzbinaID.DisplayMember = "Oznaka";
             cboPorudzbinaID.ValueMember = "ID";
 
 
@@ -483,6 +491,9 @@ namespace Saobracaj.Dokumenta
                 VratiPodatke(txtSifra.Text);
                 VratiTrase(txtSifra.Text);
             }
+
+            if (IzNajave == 1)
+            { cboPorudzbinaID.SelectedValue = Convert.ToInt32(OznakaBroj); }
             /*
             var select = " Select Distinct ID, (Rtrim(Cast(ID as nvarchar(10))) +  '--'  + Rtrim(BrojNajave) ) as Najava From Najava";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -860,7 +871,7 @@ namespace Saobracaj.Dokumenta
         private void button1_Click(object sender, EventArgs e)
         {
             InsertRadniNalog ins = new InsertRadniNalog();
-            ins.InsRadniNalogVezaNajava(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPorudzbinaID.Text), Convert.ToInt32(txtBrojKola.Value));
+            ins.InsRadniNalogVezaNajava(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPorudzbinaID.SelectedValue), Convert.ToInt32(txtBrojKola.Value));
             RefreshDataGridNajave();
             // VratiTrase(txtSifra.Text);
         }

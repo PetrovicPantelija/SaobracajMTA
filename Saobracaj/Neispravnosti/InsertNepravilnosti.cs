@@ -13,7 +13,7 @@ namespace Saobracaj.Nepravilnosti
     class InsertNepravilnosti
     {
         string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-        public void InsSifGrupaNepravilnosti(string Naziv)
+        public void InsSifGrupaNepravilnosti(string Naziv, string Opis)
         {
 
             SqlConnection conn = new SqlConnection(connection);
@@ -28,6 +28,14 @@ namespace Saobracaj.Nepravilnosti
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = Naziv;
             cmd.Parameters.Add(parameter);
+
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@Opis";
+            parameter2.SqlDbType = SqlDbType.NVarChar;
+            parameter2.Size = 1000;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = Opis;
+            cmd.Parameters.Add(parameter2);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -63,7 +71,7 @@ namespace Saobracaj.Nepravilnosti
                 }
             }
         }
-        public void UpdSifGrupaNepravilnosti(int ID,string Naziv)
+        public void UpdSifGrupaNepravilnosti(int ID,string Naziv, string Opis)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -84,6 +92,14 @@ namespace Saobracaj.Nepravilnosti
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = Naziv;
             cmd.Parameters.Add(parameter);
+
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@Opis";
+            parameter2.SqlDbType = SqlDbType.NVarChar;
+            parameter2.Size = 1000;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = Opis;
+            cmd.Parameters.Add(parameter2);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -168,7 +184,7 @@ namespace Saobracaj.Nepravilnosti
             }
         }
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public void InsSifNeispravnostPostupak(string Naziv)
+        public void InsSifNeispravnostPostupak(string Naziv, string Opis)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -182,6 +198,15 @@ namespace Saobracaj.Nepravilnosti
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = Naziv;
             cmd.Parameters.Add(parameter);
+
+
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@Opis";
+            parameter2.SqlDbType = SqlDbType.NVarChar;
+            parameter2.Size = 1000;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = Opis;
+            cmd.Parameters.Add(parameter2);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -217,7 +242,7 @@ namespace Saobracaj.Nepravilnosti
                 }
             }
         }
-        public void UpdSifNeispravnostPostupak(int ID, string Naziv)
+        public void UpdSifNeispravnostPostupak(int ID, string Naziv, string Opis)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -238,6 +263,15 @@ namespace Saobracaj.Nepravilnosti
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = Naziv;
             cmd.Parameters.Add(parameter);
+
+
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@Opis";
+            parameter2.SqlDbType = SqlDbType.NVarChar;
+            parameter2.Size = 1000;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = Opis;
+            cmd.Parameters.Add(parameter2);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -323,7 +357,7 @@ namespace Saobracaj.Nepravilnosti
             }
         }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public void InsSifOpisNeispravnosti(string Naziv)
+        public void InsSifOpisNeispravnosti(string Naziv, string Opis)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -337,6 +371,15 @@ namespace Saobracaj.Nepravilnosti
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = Naziv;
             cmd.Parameters.Add(parameter);
+
+
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@Opis";
+            parameter2.SqlDbType = SqlDbType.NVarChar;
+            parameter2.Size = 1000;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = Opis;
+            cmd.Parameters.Add(parameter2);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -372,7 +415,7 @@ namespace Saobracaj.Nepravilnosti
                 }
             }
         }
-        public void UpdSifOpisNeispravnosti(int ID, string Naziv)
+        public void UpdSifOpisNeispravnosti(int ID, string Naziv, string Opis)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -393,6 +436,15 @@ namespace Saobracaj.Nepravilnosti
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = Naziv;
             cmd.Parameters.Add(parameter);
+
+
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@Opis";
+            parameter2.SqlDbType = SqlDbType.NVarChar;
+            parameter2.Size = 1000;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = Opis;
+            cmd.Parameters.Add(parameter2);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -477,7 +529,7 @@ namespace Saobracaj.Nepravilnosti
             }
         }
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public void InsSifRazredNepravilnosti(string Naziv)
+        public void InsSifRazredNepravilnosti(string Naziv, string Opis)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -491,6 +543,15 @@ namespace Saobracaj.Nepravilnosti
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = Naziv;
             cmd.Parameters.Add(parameter);
+
+
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@Opis";
+            parameter2.SqlDbType = SqlDbType.NVarChar;
+            parameter2.Size = 1000;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = Opis;
+            cmd.Parameters.Add(parameter2);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -526,7 +587,7 @@ namespace Saobracaj.Nepravilnosti
                 }
             }
         }
-        public void UpdSifRazredNepravilnosti(int ID, string Naziv)
+        public void UpdSifRazredNepravilnosti(int ID, string Naziv, string Opis)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -547,6 +608,15 @@ namespace Saobracaj.Nepravilnosti
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = Naziv;
             cmd.Parameters.Add(parameter);
+
+
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@Opis";
+            parameter2.SqlDbType = SqlDbType.NVarChar;
+            parameter2.Size = 1000;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = Opis;
+            cmd.Parameters.Add(parameter2);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -631,7 +701,7 @@ namespace Saobracaj.Nepravilnosti
             }
         }
         /////////////////////////////////////////////////////////////////////////////////////
-        public void InsSifVrstaNepravilnosti(string Naziv)
+        public void InsSifVrstaNepravilnosti(string Naziv, string Opis)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -645,6 +715,15 @@ namespace Saobracaj.Nepravilnosti
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = Naziv;
             cmd.Parameters.Add(parameter);
+
+
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@Opis";
+            parameter2.SqlDbType = SqlDbType.NVarChar;
+            parameter2.Size = 1000;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = Opis;
+            cmd.Parameters.Add(parameter2);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -680,7 +759,7 @@ namespace Saobracaj.Nepravilnosti
                 }
             }
         }
-        public void UpdSifVrstaNepravilnosti(int ID, string Naziv)
+        public void UpdSifVrstaNepravilnosti(int ID, string Naziv, string Opis)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -701,6 +780,15 @@ namespace Saobracaj.Nepravilnosti
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = Naziv;
             cmd.Parameters.Add(parameter);
+
+
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@Opis";
+            parameter2.SqlDbType = SqlDbType.NVarChar;
+            parameter2.Size = 1000;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = Opis;
+            cmd.Parameters.Add(parameter2);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

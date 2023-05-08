@@ -217,8 +217,9 @@
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(84, 28);
+            this.toolStripButton3.Size = new System.Drawing.Size(84, 24);
             this.toolStripButton3.Text = "Osoblje";
+            this.toolStripButton3.Visible = false;
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // toolStripSeparator4
@@ -249,8 +250,9 @@
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(109, 28);
+            this.toolStripButton5.Size = new System.Drawing.Size(109, 24);
             this.toolStripButton5.Text = "Štampa RN";
+            this.toolStripButton5.Visible = false;
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // toolStripSeparator6
@@ -461,6 +463,7 @@
             this.label8.Size = new System.Drawing.Size(101, 20);
             this.label8.TabIndex = 148;
             this.label8.Text = "Tip prevoza:";
+            this.label8.Visible = false;
             // 
             // cboUzroci
             // 
@@ -476,6 +479,7 @@
             this.cboUzroci.Name = "cboUzroci";
             this.cboUzroci.Size = new System.Drawing.Size(279, 24);
             this.cboUzroci.TabIndex = 147;
+            this.cboUzroci.Visible = false;
             // 
             // dataGridView4
             // 
@@ -488,7 +492,7 @@
             this.dataGridView4.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersWidth = 51;
-            this.dataGridView4.Size = new System.Drawing.Size(823, 406);
+            this.dataGridView4.Size = new System.Drawing.Size(819, 406);
             this.dataGridView4.TabIndex = 149;
             this.dataGridView4.DoubleClick += new System.EventHandler(this.dataGridView4_DoubleClick);
             // 
@@ -577,7 +581,7 @@
             this.groupBox2.Size = new System.Drawing.Size(673, 204);
             this.groupBox2.TabIndex = 165;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Radni nalog formiran iz najave";
+            this.groupBox2.Text = "Radni nalog formiran iz posla";
             // 
             // txtSifraZap
             // 
@@ -640,14 +644,14 @@
             // 
             this.cboPorudzbinaID.AllowFiltering = false;
             this.cboPorudzbinaID.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.cboPorudzbinaID.BeforeTouchSize = new System.Drawing.Size(129, 24);
+            this.cboPorudzbinaID.BeforeTouchSize = new System.Drawing.Size(158, 24);
             this.cboPorudzbinaID.Filter = null;
             this.cboPorudzbinaID.Location = new System.Drawing.Point(12, 110);
             this.cboPorudzbinaID.Margin = new System.Windows.Forms.Padding(4);
             this.cboPorudzbinaID.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.cboPorudzbinaID.Name = "cboPorudzbinaID";
             this.cboPorudzbinaID.ScrollMetroColorTable = metroColorTable1;
-            this.cboPorudzbinaID.Size = new System.Drawing.Size(129, 24);
+            this.cboPorudzbinaID.Size = new System.Drawing.Size(158, 24);
             this.cboPorudzbinaID.TabIndex = 160;
             // 
             // txtBrojKola
@@ -663,6 +667,7 @@
             this.txtBrojKola.Size = new System.Drawing.Size(131, 22);
             this.txtBrojKola.TabIndex = 164;
             this.txtBrojKola.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtBrojKola.Visible = false;
             // 
             // label11
             // 
@@ -682,9 +687,9 @@
             this.label9.Location = new System.Drawing.Point(12, 85);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(65, 20);
+            this.label9.Size = new System.Drawing.Size(56, 20);
             this.label9.TabIndex = 150;
-            this.label9.Text = " Najava";
+            this.label9.Text = "Posao";
             // 
             // label16
             // 
@@ -696,6 +701,7 @@
             this.label16.Size = new System.Drawing.Size(116, 20);
             this.label16.TabIndex = 163;
             this.label16.Text = "Bruto Vagona:";
+            this.label16.Visible = false;
             // 
             // cboPredhodniRadniNalog
             // 

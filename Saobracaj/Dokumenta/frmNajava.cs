@@ -433,7 +433,7 @@ namespace Saobracaj.Dokumenta
             txtSifra.Enabled = false;
             txtOpis.Text = "";
             txtOznaka.Enabled = true;
-
+            /*
 
             cmbVoz.SelectedValue = 0;
             cboPosiljalac.SelectedValue = 0;
@@ -472,7 +472,7 @@ namespace Saobracaj.Dokumenta
             cboPrevoznikZa.SelectedValue = 0;
             txtUgovor.Text = "";
             txtZadatak.Text = "";
-          
+          */
 
    /*
    Napisati kod
@@ -2898,6 +2898,24 @@ namespace Saobracaj.Dokumenta
         private void txtZadatak_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton8_Click(object sender, EventArgs e)
+        {
+            frmTrainList tl = new frmTrainList(txtOznaka.Text);
+            tl.Show();
+        }
+
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+            frmTrainList novi = new frmTrainList(txtOznaka.Text, 1, dtpPredvidjenoPrimanje.Value);
+            novi.Show();
+        }
+
+        private void toolStripButton10_Click(object sender, EventArgs e)
+        {
+            frmRadniNalog rn = new frmRadniNalog(txtSifra.Text,1);
+            rn.Show();
         }
 
 

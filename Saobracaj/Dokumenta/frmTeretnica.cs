@@ -22,9 +22,11 @@ namespace Saobracaj.Dokumenta
         int pomPredajna = 0;
         int pomPrevozna = 0;
         string Korisnik = "";
+        int NovaTeretnica = 0;
         public frmTeretnica()
         {
             InitializeComponent();
+            NovaTeretnica = 1;
         }
 
         public frmTeretnica(string IdTeretnice, string KorisnikTeretnica)
@@ -34,6 +36,7 @@ namespace Saobracaj.Dokumenta
             txtSifra.Text = IdTeretnice;
             VratiPodatke(IdTeretnice);
             RefreshDataGrid();
+            NovaTeretnica = 0;
         }
 
         private void VratiPodatke(string IdTeretnice)
@@ -176,7 +179,7 @@ namespace Saobracaj.Dokumenta
                 }
                
                 InsertTeretnica ins = new InsertTeretnica();
-                ins.InsTeretnica(txtVozBroj.Text, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboStanicaPopisa.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, txtBrojLista.Text, pomPrijemna, pomPredajna, Korisnik, pomPrevozna, Convert.ToInt32(txtRN.Text));
+                ins.InsTeretnica(txtVozBroj.Text, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboStanicaPopisa.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, txtBrojLista.Text, pomPrijemna, pomPredajna, Korisnik, pomPrevozna, Convert.ToInt32(txtRN.Text), Convert.ToInt32(cboTrainList.SelectedValue));
                 VratiPodatkeMax();
                 //RefreshDataGrid();
                 status = false;
@@ -192,12 +195,25 @@ namespace Saobracaj.Dokumenta
                     pomPrijemna = 0;
                 }
                 InsertTeretnica upd = new InsertTeretnica();
-                upd.UpdTeretnica(Convert.ToInt32(txtSifra.Text), txtVozBroj.Text, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboStanicaPopisa.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, txtBrojLista.Text, pomPrijemna, pomPredajna, Korisnik, pomPrevozna, Convert.ToInt32(txtRN.Text));
+                upd.UpdTeretnica(Convert.ToInt32(txtSifra.Text), txtVozBroj.Text, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboStanicaPopisa.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, txtBrojLista.Text, pomPrijemna, pomPredajna, Korisnik, pomPrevozna, Convert.ToInt32(txtRN.Text), Convert.ToInt32(cboTrainList.SelectedValue));
             }
         }
 
         private void frmTeretnica_Load(object sender, EventArgs e)
         {
+            var select = " Select Distinct ID, RTrim(KomOznaka) as KomOznaka  From TrainList order by ID desc";
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            cboTrainList.DataSource = ds.Tables[0];
+            cboTrainList.DisplayMember = "KomOznaka";
+            cboTrainList.ValueMember = "ID";
+
             var select6 = " Select ID, RTrim(Opis) as Stanica From Stanice order by opis";
             var s_connection6 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection6 = new SqlConnection(s_connection6);
@@ -262,9 +278,13 @@ namespace Saobracaj.Dokumenta
             cboIzvozna.DataSource = ds14.Tables[0];
             cboIzvozna.DisplayMember = "Stanica";
             cboIzvozna.ValueMember = "ID";
-            
-            VratiPodatke(txtSifra.Text);
-            this.reportViewer1.RefreshReport();
+            if (NovaTeretnica != 1)
+            {
+                VratiPodatke(txtSifra.Text);
+                this.reportViewer1.RefreshReport();
+
+            }
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -502,8 +522,10 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter();
-            TESTIRANJEDataSet.SelectTeretnicaDataTable dt = new TESTIRANJEDataSet.SelectTeretnicaDataTable();
+            
+            Saobracaj.TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new Saobracaj.TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter();
+
+            Saobracaj.TESTIRANJEDataSet.SelectTeretnicaDataTable dt = new Saobracaj.TESTIRANJEDataSet.SelectTeretnicaDataTable();
            
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();
@@ -530,8 +552,8 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter();
-            TESTIRANJEDataSet.SelectTeretnicaDataTable dt = new TESTIRANJEDataSet.SelectTeretnicaDataTable();
+            Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter();
+            Perftech_BeogradDataSet.SelectTeretnicaDataTable dt = new Perftech_BeogradDataSet.SelectTeretnicaDataTable();
 
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();
@@ -549,8 +571,8 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter();
-            TESTIRANJEDataSet.SelectTeretnicaDataTable dt = new TESTIRANJEDataSet.SelectTeretnicaDataTable();
+            Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter();
+            Perftech_BeogradDataSet.SelectTeretnicaDataTable dt = new Perftech_BeogradDataSet.SelectTeretnicaDataTable();
 
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();
@@ -575,8 +597,8 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
-            TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter  ta = new TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter();
-            TESTIRANJEDataSet.SelectTeretnicaDataTable dt = new TESTIRANJEDataSet.SelectTeretnicaDataTable();
+            Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter  ta = new Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter();
+            Perftech_BeogradDataSet.SelectTeretnicaDataTable dt = new Perftech_BeogradDataSet.SelectTeretnicaDataTable();
 
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();
@@ -611,9 +633,9 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
-            TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter();
+            Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter();
             // NedraDataSetTableAdapters.SelectNajavaTableAdapter ta = new NedraDataSetTableAdapters.SelectNajavaTableAdapter();
-            TESTIRANJEDataSet.SelectTeretnicaDataTable dt = new TESTIRANJEDataSet.SelectTeretnicaDataTable();
+            Perftech_BeogradDataSet.SelectTeretnicaDataTable dt = new Perftech_BeogradDataSet.SelectTeretnicaDataTable();
 
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();
@@ -811,6 +833,48 @@ namespace Saobracaj.Dokumenta
         {
             frmTeretnicaTerenIzmena teren = new frmTeretnicaTerenIzmena(txtSifra.Text);
             teren.Show();
+        }
+
+        private void toolStripButton8_Click(object sender, EventArgs e)
+        {
+            InsertTeretnicaStavke its = new InsertTeretnicaStavke();
+            its.PrenesiTrainList(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboTrainList.SelectedValue));
+            RefreshDataGrid();
+        }
+
+        private void VratiStanice()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Otpravna, Uputna, PredvidjenoPrimanje, PredvidjenaPredaja from Najava where Oznaka =  '" + cboTrainList.Text + "'"
+            , con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+
+                cboStanicaOd.SelectedValue = Convert.ToInt32(dr["Otpravna"].ToString());
+                cboStanicaDo.SelectedValue = Convert.ToInt32(dr["Uputna"].ToString());
+                cboStanicaPopisa.SelectedValue = Convert.ToInt32(dr["Otpravna"].ToString());
+                dtpVremeOd.Value = Convert.ToDateTime(dr["PredvidjenoPrimanje"].ToString());
+                dtpVremeDo.Value = Convert.ToDateTime(dr["PredvidjenaPredaja"].ToString());
+            }
+            con.Close();
+
+
+        }
+
+        private void cboTrainList_SelectedValueChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            VratiStanice();
         }
     }
 }

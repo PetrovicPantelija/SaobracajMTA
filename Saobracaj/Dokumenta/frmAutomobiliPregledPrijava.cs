@@ -24,16 +24,10 @@ namespace Saobracaj.Dokumenta
         private const int ThumbWidth = 458;
         private const int ThumbHeight = 288;
         int slika = 0;
+        int DosaoSpolja = 0;
 
         public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         bool status = false;
-        public frmAutomobiliPregledPrijava()
-        {
-            InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
-        }
         string niz = "";
         public static string code = "frmAutomobiliPregledPrijava";
         public bool Pravo;
@@ -43,6 +37,24 @@ namespace Saobracaj.Dokumenta
         bool update;
         bool delete;
         string Kor = Sifarnici.frmLogovanje.user.ToString();
+        public frmAutomobiliPregledPrijava()
+        {
+            InitializeComponent();
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
+        }
+
+        public frmAutomobiliPregledPrijava(int sifra)
+        {
+            InitializeComponent();
+            txt_Sifra.Text = sifra.ToString();
+            FillGV();
+            DosaoSpolja = 1;
+        }
+       
+
+      
         public string IdGrupe()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -130,6 +142,11 @@ namespace Saobracaj.Dokumenta
         {
             FillGV();
             FillData();
+            if (DosaoSpolja == 1)
+            {
+                VratiPodatke(txt_Sifra.Text);
+            
+            }
         }
         private void FillData()
         {
@@ -199,28 +216,46 @@ namespace Saobracaj.Dokumenta
             combo_NivoUljaRaz.DataSource = ds7.Tables[0];
             combo_NivoUljaRaz.DisplayMember = "UljeStatus";
             combo_NivoUljaRaz.ValueMember = "Id";
+
+
+            var query8 = "Select Id,Opis From Stanice";
+            da = new SqlDataAdapter(query8, conn);
+            var ds8 = new DataSet();
+            da.Fill(ds8);
+            cboMestoPolaska.DataSource = ds8.Tables[0];
+            cboMestoPolaska.DisplayMember = "Opis";
+            cboMestoPolaska.ValueMember = "Id";
+
+            var query9 = "Select Id,Opis From Stanice";
+            da = new SqlDataAdapter(query9, conn);
+            var ds9 = new DataSet();
+            da.Fill(ds9);
+            cboMestoDolaska.DataSource = ds9.Tables[0];
+            cboMestoDolaska.DisplayMember = "Opis";
+            cboMestoDolaska.ValueMember = "Id";
         }
         private void FillGV()
         {
-            var select = "  SELECT     ZaposleniPrijavaAuto.Id, Delavci.DeStaraSif, RTRIM(Delavci.DePriimek) + '  ' + RTRIM(Delavci.DeIme) AS Zaposleni, ZaposleniPrijavaAuto.DatumPrijave, " +
-      "    ZaposleniPrijavaAuto.DatumOdjave, ZaposleniPrijavaAuto.AutomobilId, Automobili.RegBr, Automobili.Marka, ZaposleniPrijavaAuto.Relacija, " +
-      "    ZaposleniPrijavaAuto.DirektnaPrimopredajaZaduzivanje,ZaposleniPrijavaAuto.DirektnaPrimopredajaRazduzivanje, ZaposleniPrijavaAuto.KilometrazaZaduzivanje, ZaposleniPrijavaAuto.KilometrazaRazduzivanje, " +
-      "    ZaposleniPrijavaAuto.Plomba1PotvrdaZaduzenje, ZaposleniPrijavaAuto.Plomba2PotvrdaZaduzenje, ZaposleniPrijavaAuto.Plomba1PotvrdaRazduzenje, " +
-      "    ZaposleniPrijavaAuto.Plomba2PotvrdaRazduzenje, " +
-      "    CistocaSpolja.CistocaVrsta as CistocaSpolja, CistocaIznutra.CistocaVrsta AS CistocaIznutra, CistocaSpoljaRazduzivanje.CistocaVrsta AS CistocaSpoljaRazduzivanje, " +
-      "     CistocaIznutraRazduzivanje.CistocaVrsta AS CistocaUnutraRazduzivanje,  UljeAuto.UljeStatus as UljeZaduzivanje, UljeAutoRazduzivanje.UljeStatus AS UljeRazduzivanje " +
-      "    FROM         ZaposleniPrijavaAuto INNER JOIN " +
-      "    Delavci ON ZaposleniPrijavaAuto.Zaposleni = Delavci.DeSifra INNER JOIN " +
-      "    Automobili ON ZaposleniPrijavaAuto.AutomobilId = Automobili.ID INNER JOIN " +
-      "    UljeAuto ON ZaposleniPrijavaAuto.NivoUljaZaduzivanje = UljeAuto.Id LEFT JOIN " +
-      "    UljeAutoRazduzivanje ON ZaposleniPrijavaAuto.NivoUljaRazduzivanje = UljeAutoRazduzivanje.Id " +
-      "    LEFT JOIN " +
-      "    CistocaSpoljaRazduzivanje ON ZaposleniPrijavaAuto.CistocaSpoljaRazduzivanje = CistocaSpoljaRazduzivanje.Id " +
-      "    LEFT JOIN CistocaIznutra ON ZaposleniPrijavaAuto.CistocaIznutraZaduzivanje = CistocaIznutra.Id " +
-      "    LEFT JOIN " +
-      "    CistocaIznutraRazduzivanje ON ZaposleniPrijavaAuto.CistocaIznutraRazduzivanje = CistocaIznutraRazduzivanje.ID LEFT JOIN " +
-      "    CistocaSpolja ON ZaposleniPrijavaAuto.CistocaSpoljaZaduzivanje = CistocaSpolja.Id " +
-      "    Order by  ZaposleniPrijavaAuto.Id desc ";
+            var select = "  SELECT     ZaposleniPrijavaAuto.Id, ZaposleniPrijavaAuto.OznakaPosla, Delavci.DeStaraSif, RTRIM(Delavci.DePriimek) + '  ' + RTRIM(Delavci.DeIme) AS Zaposleni, " +
+               "      ZaposleniPrijavaAuto.DatumPrijave, ZaposleniPrijavaAuto.DatumOdjave, ZaposleniPrijavaAuto.AutomobilId, Automobili.RegBr, Automobili.Marka, " + 
+                "           ZaposleniPrijavaAuto.DirektnaPrimopredajaZaduzivanje, ZaposleniPrijavaAuto.DirektnaPrimopredajaRazduzivanje, ZaposleniPrijavaAuto.KilometrazaZaduzivanje, " +
+                 "          ZaposleniPrijavaAuto.KilometrazaRazduzivanje, CistocaSpolja.CistocaVrsta AS CistocaSpolja, CistocaIznutra.CistocaVrsta AS CistocaIznutra,  " +
+                 "          CistocaSpoljaRazduzivanje.CistocaVrsta AS CistocaSpoljaRazduzivanje, CistocaIznutraRazduzivanje.CistocaVrsta AS CistocaUnutraRazduzivanje,  " +
+                 "          UljeAuto.UljeStatus AS UljeZaduzivanje, UljeAutoRazduzivanje.UljeStatus AS UljeRazduzivanje, ZaposleniPrijavaAuto.IdPosla,  " +
+                 "          ZaposleniPrijavaAuto.NivoGorivaZaduzivanje, ZaposleniPrijavaAuto.NivoGorivaRazduzivanje, ZaposleniPrijavaAuto.Uloga, ZaposleniPrijavaAuto.MestoPolaska,  " +
+                 "          ZaposleniPrijavaAuto.MestoDolaska,  ZaposleniPrijavaAuto.AktivnostId, stanice.Opis AS MestoPolaska, stanice_1.Opis AS MestoDolaska  " +
+"     FROM         ZaposleniPrijavaAuto INNER JOIN  " +
+                  "         Delavci ON ZaposleniPrijavaAuto.Zaposleni = Delavci.DeSifra INNER JOIN  " +
+                  "         Automobili ON ZaposleniPrijavaAuto.AutomobilId = Automobili.ID INNER JOIN  " +
+                  "         UljeAuto ON ZaposleniPrijavaAuto.NivoUljaZaduzivanje = UljeAuto.Id INNER JOIN  " +
+                  "         stanice ON  ZaposleniPrijavaAuto.MestoPolaska = stanice.ID INNER JOIN  " +
+                  "         stanice AS stanice_1 ON ZaposleniPrijavaAuto.MestoDolaska = stanice_1.ID LEFT OUTER JOIN  " +
+                   "        UljeAutoRazduzivanje ON ZaposleniPrijavaAuto.NivoUljaRazduzivanje = UljeAutoRazduzivanje.Id LEFT OUTER JOIN  " +
+                   "        CistocaSpoljaRazduzivanje ON ZaposleniPrijavaAuto.CistocaSpoljaRazduzivanje = CistocaSpoljaRazduzivanje.Id LEFT OUTER JOIN  " +
+                  "             CistocaIznutra ON ZaposleniPrijavaAuto.CistocaIznutraZaduzivanje = CistocaIznutra.Id LEFT OUTER JOIN  " +
+                  "         CistocaIznutraRazduzivanje ON ZaposleniPrijavaAuto.CistocaIznutraRazduzivanje = CistocaIznutraRazduzivanje.Id LEFT OUTER JOIN  " +
+                  "         CistocaSpolja ON ZaposleniPrijavaAuto.CistocaSpoljaZaduzivanje = CistocaSpolja.Id  " +
+"     ORDER BY ZaposleniPrijavaAuto.Id DESC";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -244,7 +279,7 @@ namespace Saobracaj.Dokumenta
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-
+            /*
             dataGridView1.Columns[0].HeaderText = "ID";
             dataGridView1.Columns[2].HeaderText = "Zaposleni";
             dataGridView1.Columns[3].HeaderText = "DatumPrijave";
@@ -252,6 +287,7 @@ namespace Saobracaj.Dokumenta
             dataGridView1.Columns[8].HeaderText = "Relacija";
             dataGridView1.Columns[11].HeaderText = "KilometrazaZaduzivanje";
             dataGridView1.Columns[12].HeaderText = "KilometrazaRazduzivanje";
+            */
         }
 
         private void tsDelete_Click(object sender, EventArgs e)
@@ -284,57 +320,42 @@ namespace Saobracaj.Dokumenta
             if (cb_DirPredRaz.Checked)
             {
                 dirPredRaz = true;
-            }
-            if (cb_Plomba1Raz.Checked)
-            {
-                plomba1Raz = true;
-            }
-            if (cb_Plomba1Zad.Checked)
-            {
-                plomba1Zad = true;
-            }
-            if (cb_Plomba2Zad.Checked)
-            {
-                plomba2Zad = true;
-            }
-            if (cb_Plomba2Raz.Checked)
-            {
-                plomba2Raz = true;
-            }
-            if (txt_KmRazduzenje.Text.Equals(""))
-            {
-                txt_KmRazduzenje.Text = "0";
-            }
-            if (txt_KmZaduzenje.Text.Equals(""))
-            {
-                txt_KmZaduzenje.Text = "0";
-            }
-            if (status == true)
-            {
-                insert.InsAutomobiliPregledPrijava(Convert.ToInt32(combo_Zaposleni.SelectedValue.ToString()),
-                    Convert.ToDateTime(dtpDatumPrijave.Value),
-                    Convert.ToDateTime(dt_Odjava.Value), Convert.ToInt32(combo_Automobil.SelectedValue.ToString()), txt_Relacija.Text,
-                    Convert.ToInt32(combo_CistocaSpoljaZad.SelectedValue.ToString()), Convert.ToInt32(combo_CistocaUnutraZad.SelectedValue.ToString()),
-                    Convert.ToInt32(combo_CistocaSpoljaRaz.SelectedValue.ToString()), Convert.ToInt32(combo_CistocaUnutraRaz.SelectedValue.ToString()),
-                    Convert.ToInt32(combo_NivoUljaZad.SelectedValue.ToString()), dirPredZad, Convert.ToInt32(combo_NivoUljaRaz.SelectedValue.ToString()),
-                    dirPredRaz, float.Parse(txt_KmZaduzenje.Text), float.Parse(txt_KmRazduzenje.Text), plomba1Zad, plomba2Zad,
-                    plomba1Raz, plomba2Raz);
-                FillGV();
 
-                txt_Sifra.Enabled = true;
-                status = false;
-            }
-            else
-            {
-                insert.UpdAutomobiliPregledPrijava(Convert.ToInt32(txt_Sifra.Text), Convert.ToInt32(combo_Zaposleni.SelectedValue.ToString()),
-                    Convert.ToDateTime(dtpDatumPrijave.Value),
-                    Convert.ToDateTime(dt_Odjava.Value), Convert.ToInt32(combo_Automobil.SelectedValue.ToString()), txt_Relacija.Text,
-                    Convert.ToInt32(combo_CistocaSpoljaZad.SelectedValue.ToString()), Convert.ToInt32(combo_CistocaUnutraZad.SelectedValue.ToString()),
-                    Convert.ToInt32(combo_CistocaSpoljaRaz.SelectedValue.ToString()), Convert.ToInt32(combo_CistocaUnutraRaz.SelectedValue.ToString()),
-                    Convert.ToInt32(combo_NivoUljaZad.SelectedValue.ToString()), dirPredZad, Convert.ToInt32(combo_NivoUljaRaz.SelectedValue.ToString()),
-                    dirPredRaz, float.Parse(txt_KmZaduzenje.Text), float.Parse(txt_KmRazduzenje.Text), plomba1Zad, plomba2Zad,
-                    plomba1Raz, plomba2Raz);
-                FillGV();
+                if (txt_KmRazduzenje.Text.Equals(""))
+                {
+                    txt_KmRazduzenje.Text = "0";
+                }
+                if (txt_KmZaduzenje.Text.Equals(""))
+                {
+                    txt_KmZaduzenje.Text = "0";
+                }
+                if (status == true)
+                {
+                    insert.InsAutomobiliPregledPrijava(Convert.ToInt32(combo_Zaposleni.SelectedValue.ToString()),
+                        Convert.ToDateTime(dtpDatumPrijave.Value),
+                        Convert.ToDateTime(dt_Odjava.Value), Convert.ToInt32(combo_Automobil.SelectedValue.ToString()),
+                        Convert.ToInt32(combo_CistocaSpoljaZad.SelectedValue.ToString()), Convert.ToInt32(combo_CistocaUnutraZad.SelectedValue.ToString()),
+                        Convert.ToInt32(combo_CistocaSpoljaRaz.SelectedValue.ToString()), Convert.ToInt32(combo_CistocaUnutraRaz.SelectedValue.ToString()),
+                        Convert.ToInt32(combo_NivoUljaZad.SelectedValue.ToString()), dirPredZad, Convert.ToInt32(combo_NivoUljaRaz.SelectedValue.ToString()),
+                        dirPredRaz, float.Parse(txt_KmZaduzenje.Text), float.Parse(txt_KmRazduzenje.Text), plomba1Zad, plomba2Zad,
+                        plomba1Raz, plomba2Raz);
+                    FillGV();
+
+                    txt_Sifra.Enabled = true;
+                    status = false;
+                }
+                else
+                {
+                    insert.UpdAutomobiliPregledPrijava(Convert.ToInt32(txt_Sifra.Text), Convert.ToInt32(combo_Zaposleni.SelectedValue.ToString()),
+                        Convert.ToDateTime(dtpDatumPrijave.Value),
+                        Convert.ToDateTime(dt_Odjava.Value), Convert.ToInt32(combo_Automobil.SelectedValue.ToString()),
+                        Convert.ToInt32(combo_CistocaSpoljaZad.SelectedValue.ToString()), Convert.ToInt32(combo_CistocaUnutraZad.SelectedValue.ToString()),
+                        Convert.ToInt32(combo_CistocaSpoljaRaz.SelectedValue.ToString()), Convert.ToInt32(combo_CistocaUnutraRaz.SelectedValue.ToString()),
+                        Convert.ToInt32(combo_NivoUljaZad.SelectedValue.ToString()), dirPredZad, Convert.ToInt32(combo_NivoUljaRaz.SelectedValue.ToString()),
+                        dirPredRaz, float.Parse(txt_KmZaduzenje.Text), float.Parse(txt_KmRazduzenje.Text), plomba1Zad, plomba2Zad,
+                        plomba1Raz, plomba2Raz);
+                    FillGV();
+                }
             }
         }
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -346,28 +367,12 @@ namespace Saobracaj.Dokumenta
                     if (row.Selected)
                     {
                         txt_Sifra.Text = row.Cells[0].Value.ToString();
-                        txt_KmZaduzenje.Text = row.Cells[11].Value.ToString();
-                        txt_KmRazduzenje.Text = row.Cells[12].Value.ToString();
-                        txt_Relacija.Text = row.Cells[8].Value.ToString();
+                        VratiPodatke(txt_Sifra.Text);
 
-                        combo_Automobil.Text = row.Cells[6].Value.ToString();
-                        combo_Zaposleni.Text = row.Cells[2].Value.ToString();
-                        combo_CistocaSpoljaZad.Text = row.Cells[17].Value.ToString();
-                        combo_CistocaUnutraZad.Text = row.Cells[18].Value.ToString();
-                        combo_NivoUljaZad.Text = row.Cells[21].Value.ToString();
-
-                        dtpDatumPrijave.Value = Convert.ToDateTime(row.Cells[3].Value.ToString());
+                      
                         if (row.Cells[9].Value.Equals(true))
                         {
                             cb_DirPredZad.Checked = true;
-                        }
-                        if (row.Cells[13].Value.Equals(true))
-                        {
-                            cb_Plomba1Zad.Checked = true;
-                        }
-                        if (row.Cells[14].Value.Equals(true))
-                        {
-                            cb_Plomba2Zad.Checked = true;
                         }
                         PictureBoxes.Clear();
                         filenames.Clear();
@@ -475,6 +480,68 @@ namespace Saobracaj.Dokumenta
         {
             slika--;
             Slike();
+        }
+
+
+        private void VratiPodatke(string ID)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT [Id] " +
+    " ,[Zaposleni]      ,[DatumPrijave]      ,[DatumOdjave]      ,[AutomobilId] " +
+    "   ,[CistocaSpoljaZaduzivanje]      ,[CistocaIznutraZaduzivanje] " +
+    "   ,[CistocaSpoljaRazduzivanje]      ,[CistocaIznutraRazduzivanje] " +
+     "  ,[NivoUljaZaduzivanje]      ,[DirektnaPrimopredajaZaduzivanje] " +
+    "   ,[NivoUljaRazduzivanje]      ,[DirektnaPrimopredajaRazduzivanje] " +
+    "   ,[KilometrazaZaduzivanje]      ,[KilometrazaRazduzivanje] " +
+    "   ,[OznakaPosla]      ,[IdPosla]      ,[NivoGorivaZaduzivanje]      ,[NivoGorivaRazduzivanje] " +
+     "  ,[MestoPolaska]      ,[MestoDolaska]      ,[AktivnostId]      ,[Uloga] " +
+ "  FROM [ZaposleniPrijavaAuto] where ID=" + txt_Sifra.Text, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                combo_Zaposleni.SelectedValue = Convert.ToInt32(dr["Zaposleni"].ToString());
+                dtpDatumPrijave.Value = Convert.ToDateTime(dr["DatumPrijave"].ToString());
+                dt_Odjava.Value = Convert.ToDateTime(dr["DatumOdjave"].ToString());
+                combo_Automobil.SelectedValue = Convert.ToInt32(dr["AutomobilId"].ToString());
+                combo_CistocaSpoljaZad.SelectedValue= Convert.ToInt32(dr["CistocaSpoljaZaduzivanje"].ToString()); ;
+                combo_CistocaUnutraZad.SelectedValue = Convert.ToInt32(dr["CistocaIznutraZaduzivanje"].ToString()); ;
+                combo_CistocaSpoljaRaz.SelectedValue = Convert.ToInt32(dr["CistocaSpoljaRazduzivanje"].ToString());
+                combo_CistocaUnutraRaz.SelectedValue = Convert.ToInt32(dr["CistocaIznutraRazduzivanje"].ToString());
+                combo_NivoUljaZad.SelectedValue = Convert.ToInt32(dr["NivoUljaZaduzivanje"].ToString());
+                combo_NivoUljaRaz.SelectedValue = Convert.ToInt32(dr["NivoUljaRazduzivanje"].ToString());
+                if (dr["DirektnaPrimopredajaZaduzivanje"].ToString() == "1")
+                {
+                    cb_DirPredZad.Checked = true;
+                }
+                else
+                {
+                    cb_DirPredZad.Checked = false;
+                }
+                if (dr["DirektnaPrimopredajaRazduzivanje"].ToString() == "1")
+                {
+                    cb_DirPredRaz.Checked = true;
+                }
+                else
+                {
+                    cb_DirPredRaz.Checked = false;
+                }
+
+                txtNGZaduzenje.Text = dr["NivoGorivaZaduzivanje"].ToString();
+                txtNGRazduzenje.Text = dr["NivoGorivaRazduzivanje"].ToString();
+                txt_KmZaduzenje.Text = dr["KilometrazaZaduzivanje"].ToString();
+                txt_KmRazduzenje.Text = dr["KilometrazaRazduzivanje"].ToString();
+                txtPosao.Text  = dr["OznakaPosla"].ToString();
+                txtUloga.Text = dr["Uloga"].ToString();
+                cboMestoPolaska.SelectedValue = Convert.ToInt32(dr["MestoPolaska"].ToString());
+                cboMestoDolaska.SelectedValue = Convert.ToInt32(dr["MestoDolaska"].ToString());
+
+            }
+            con.Close();
         }
     }
 }
