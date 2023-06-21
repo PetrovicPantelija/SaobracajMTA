@@ -46,7 +46,7 @@ namespace Saobracaj.Dokumenta
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select [ID],[BrojTeretnice] ,[StanicaOd],[StanicaDo],[StanicaPopisa],[VremeOd],[VremeDo],[BrojLista], [Prijemna], [Predajna], [Prevozna], [RN] from Teretnica where ID=" + IdTeretnice, con);
+            SqlCommand cmd = new SqlCommand("select [ID],[BrojTeretnice] ,[StanicaOd],[StanicaDo],[StanicaPopisa],[VremeOd],[VremeDo],[BrojLista], [Prijemna], [Predajna], [Prevozna], [RN], Napomena, TrainListID from Teretnica where ID=" + IdTeretnice, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -59,6 +59,8 @@ namespace Saobracaj.Dokumenta
                 dtpVremeDo.Value = Convert.ToDateTime(dr["VremeDo"].ToString());
                 txtBrojLista.Text = dr["BrojLista"].ToString();
                 txtRN.Text = dr["RN"].ToString();
+                txtNapomena.Text = dr["Napomena"].ToString();
+                cboTrainList.SelectedValue = Convert.ToInt32(dr["TrainListID"].ToString());
                 if (dr["Prijemna"].ToString() == "1")
                 {
                     chkPrijemna.Checked = true;
@@ -179,7 +181,7 @@ namespace Saobracaj.Dokumenta
                 }
                
                 InsertTeretnica ins = new InsertTeretnica();
-                ins.InsTeretnica(txtVozBroj.Text, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboStanicaPopisa.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, txtBrojLista.Text, pomPrijemna, pomPredajna, Korisnik, pomPrevozna, Convert.ToInt32(txtRN.Text), Convert.ToInt32(cboTrainList.SelectedValue));
+                ins.InsTeretnica(txtVozBroj.Text, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboStanicaPopisa.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, txtBrojLista.Text, pomPrijemna, pomPredajna, Korisnik, pomPrevozna, Convert.ToInt32(txtRN.Text), Convert.ToInt32(cboTrainList.SelectedValue), txtNapomena.Text);
                 VratiPodatkeMax();
                 //RefreshDataGrid();
                 status = false;
@@ -195,7 +197,7 @@ namespace Saobracaj.Dokumenta
                     pomPrijemna = 0;
                 }
                 InsertTeretnica upd = new InsertTeretnica();
-                upd.UpdTeretnica(Convert.ToInt32(txtSifra.Text), txtVozBroj.Text, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboStanicaPopisa.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, txtBrojLista.Text, pomPrijemna, pomPredajna, Korisnik, pomPrevozna, Convert.ToInt32(txtRN.Text), Convert.ToInt32(cboTrainList.SelectedValue));
+                upd.UpdTeretnica(Convert.ToInt32(txtSifra.Text), txtVozBroj.Text, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboStanicaPopisa.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, txtBrojLista.Text, pomPrijemna, pomPredajna, Korisnik, pomPrevozna, Convert.ToInt32(txtRN.Text), Convert.ToInt32(cboTrainList.SelectedValue),  txtNapomena.Text);
             }
         }
 
@@ -539,6 +541,7 @@ namespace Saobracaj.Dokumenta
             reportViewer1.LocalReport.ReportPath = "Teretnica.rdlc";
             reportViewer1.LocalReport.SetParameters(par);
             reportViewer1.LocalReport.DataSources.Add(rds);
+           
             reportViewer1.RefreshReport();
 
             InsertTeretnica upd = new InsertTeretnica();
@@ -552,8 +555,9 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter();
-            Perftech_BeogradDataSet.SelectTeretnicaDataTable dt = new Perftech_BeogradDataSet.SelectTeretnicaDataTable();
+            Saobracaj.TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new Saobracaj.TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter();
+
+            Saobracaj.TESTIRANJEDataSet.SelectTeretnicaDataTable dt = new Saobracaj.TESTIRANJEDataSet.SelectTeretnicaDataTable();
 
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();
@@ -571,8 +575,9 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter();
-            Perftech_BeogradDataSet.SelectTeretnicaDataTable dt = new Perftech_BeogradDataSet.SelectTeretnicaDataTable();
+            Saobracaj.TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new Saobracaj.TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter();
+
+            Saobracaj.TESTIRANJEDataSet.SelectTeretnicaDataTable dt = new Saobracaj.TESTIRANJEDataSet.SelectTeretnicaDataTable();
 
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();
@@ -597,8 +602,9 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
-            Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter  ta = new Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter();
-            Perftech_BeogradDataSet.SelectTeretnicaDataTable dt = new Perftech_BeogradDataSet.SelectTeretnicaDataTable();
+            Saobracaj.TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new Saobracaj.TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter();
+
+            Saobracaj.TESTIRANJEDataSet.SelectTeretnicaDataTable dt = new Saobracaj.TESTIRANJEDataSet.SelectTeretnicaDataTable();
 
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();
@@ -633,9 +639,9 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
-            Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new Perftech_BeogradDataSetTableAdapters.SelectTeretnicaTableAdapter();
-            // NedraDataSetTableAdapters.SelectNajavaTableAdapter ta = new NedraDataSetTableAdapters.SelectNajavaTableAdapter();
-            Perftech_BeogradDataSet.SelectTeretnicaDataTable dt = new Perftech_BeogradDataSet.SelectTeretnicaDataTable();
+            Saobracaj.TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new Saobracaj.TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter();
+
+            Saobracaj.TESTIRANJEDataSet.SelectTeretnicaDataTable dt = new Saobracaj.TESTIRANJEDataSet.SelectTeretnicaDataTable();
 
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();
@@ -849,7 +855,8 @@ namespace Saobracaj.Dokumenta
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select Otpravna, Uputna, PredvidjenoPrimanje, PredvidjenaPredaja from Najava where Oznaka =  '" + cboTrainList.Text + "'"
+            SqlCommand cmd = new SqlCommand("select Otpravna, Uputna, PredvidjenoPrimanje, PredvidjenaPredaja, " +
+            " ('OM:' + RTRIM(RIDBroj) + '' + '  NP:' + Rtrim(OnBroj)) as Zadatak  from Najava where Oznaka =  '" + cboTrainList.Text + "'"
             , con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -861,6 +868,7 @@ namespace Saobracaj.Dokumenta
                 cboStanicaPopisa.SelectedValue = Convert.ToInt32(dr["Otpravna"].ToString());
                 dtpVremeOd.Value = Convert.ToDateTime(dr["PredvidjenoPrimanje"].ToString());
                 dtpVremeDo.Value = Convert.ToDateTime(dr["PredvidjenaPredaja"].ToString());
+                txtNapomena.Text = dr["Zadatak"].ToString();
             }
             con.Close();
 
@@ -875,6 +883,11 @@ namespace Saobracaj.Dokumenta
         private void button10_Click(object sender, EventArgs e)
         {
             VratiStanice();
+        }
+
+        private void tsPrvi_Click(object sender, EventArgs e)
+        {
+            RefreshDataGrid();
         }
     }
 }

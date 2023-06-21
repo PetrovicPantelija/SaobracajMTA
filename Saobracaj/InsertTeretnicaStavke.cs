@@ -466,6 +466,7 @@ namespace Saobracaj
             }
         }
 
+        
         public void DeleteTeretnicaStavke(int BrojTeretnice, int RB)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;

@@ -484,5 +484,13 @@ namespace Saobracaj.Dokumenta
             InsertTeretnicaStavke t = new InsertTeretnicaStavke();
             t.ProveraTeretniceKomercijalniPregled(Teretnica, Convert.ToInt32(txtAktivnostStavkeID.Text));
         }
+
+        private void tsNew_Click(object sender, EventArgs e)
+        {
+            FillGV1();
+            FillGV2();
+            FillGV3();
+            FillGV4();
+        }
     }
 }

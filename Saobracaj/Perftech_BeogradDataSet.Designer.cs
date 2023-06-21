@@ -24,7 +24,7 @@ namespace Saobracaj {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class Perftech_BeogradDataSet : global::System.Data.DataSet {
         
-        private SelectTeretnicaDataTable tableSelectTeretnica;
+        private SelectTeretnicaterDataTable tableSelectTeretnicater;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -54,8 +54,8 @@ namespace Saobracaj {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["SelectTeretnica"] != null)) {
-                    base.Tables.Add(new SelectTeretnicaDataTable(ds.Tables["SelectTeretnica"]));
+                if ((ds.Tables["SelectTeretnicater"] != null)) {
+                    base.Tables.Add(new SelectTeretnicaterDataTable(ds.Tables["SelectTeretnicater"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace Saobracaj {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SelectTeretnicaDataTable SelectTeretnica {
+        public SelectTeretnicaterDataTable SelectTeretnicater {
             get {
-                return this.tableSelectTeretnica;
+                return this.tableSelectTeretnicater;
             }
         }
         
@@ -152,8 +152,8 @@ namespace Saobracaj {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["SelectTeretnica"] != null)) {
-                    base.Tables.Add(new SelectTeretnicaDataTable(ds.Tables["SelectTeretnica"]));
+                if ((ds.Tables["SelectTeretnicater"] != null)) {
+                    base.Tables.Add(new SelectTeretnicaterDataTable(ds.Tables["SelectTeretnicater"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace Saobracaj {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableSelectTeretnica = ((SelectTeretnicaDataTable)(base.Tables["SelectTeretnica"]));
+            this.tableSelectTeretnicater = ((SelectTeretnicaterDataTable)(base.Tables["SelectTeretnicater"]));
             if ((initTable == true)) {
-                if ((this.tableSelectTeretnica != null)) {
-                    this.tableSelectTeretnica.InitVars();
+                if ((this.tableSelectTeretnicater != null)) {
+                    this.tableSelectTeretnicater.InitVars();
                 }
             }
         }
@@ -204,13 +204,13 @@ namespace Saobracaj {
             this.Namespace = "http://tempuri.org/Perftech_BeogradDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableSelectTeretnica = new SelectTeretnicaDataTable();
-            base.Tables.Add(this.tableSelectTeretnica);
+            this.tableSelectTeretnicater = new SelectTeretnicaterDataTable();
+            base.Tables.Add(this.tableSelectTeretnicater);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private bool ShouldSerializeSelectTeretnica() {
+        private bool ShouldSerializeSelectTeretnicater() {
             return false;
         }
         
@@ -270,14 +270,14 @@ namespace Saobracaj {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public delegate void SelectTeretnicaRowChangeEventHandler(object sender, SelectTeretnicaRowChangeEvent e);
+        public delegate void SelectTeretnicaterRowChangeEventHandler(object sender, SelectTeretnicaterRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SelectTeretnicaDataTable : global::System.Data.TypedTableBase<SelectTeretnicaRow> {
+        public partial class SelectTeretnicaterDataTable : global::System.Data.TypedTableBase<SelectTeretnicaterRow> {
             
             private global::System.Data.DataColumn columnID;
             
@@ -361,10 +361,12 @@ namespace Saobracaj {
             
             private global::System.Data.DataColumn columnZemljaDo;
             
+            private global::System.Data.DataColumn columnNapomena;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SelectTeretnicaDataTable() {
-                this.TableName = "SelectTeretnica";
+            public SelectTeretnicaterDataTable() {
+                this.TableName = "SelectTeretnicater";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -372,7 +374,7 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal SelectTeretnicaDataTable(global::System.Data.DataTable table) {
+            internal SelectTeretnicaterDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -389,7 +391,7 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected SelectTeretnicaDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected SelectTeretnicaterDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -724,6 +726,14 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn NapomenaColumn {
+                get {
+                    return this.columnNapomena;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -733,33 +743,33 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SelectTeretnicaRow this[int index] {
+            public SelectTeretnicaterRow this[int index] {
                 get {
-                    return ((SelectTeretnicaRow)(this.Rows[index]));
+                    return ((SelectTeretnicaterRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event SelectTeretnicaRowChangeEventHandler SelectTeretnicaRowChanging;
+            public event SelectTeretnicaterRowChangeEventHandler SelectTeretnicaterRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event SelectTeretnicaRowChangeEventHandler SelectTeretnicaRowChanged;
+            public event SelectTeretnicaterRowChangeEventHandler SelectTeretnicaterRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event SelectTeretnicaRowChangeEventHandler SelectTeretnicaRowDeleting;
+            public event SelectTeretnicaterRowChangeEventHandler SelectTeretnicaterRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event SelectTeretnicaRowChangeEventHandler SelectTeretnicaRowDeleted;
+            public event SelectTeretnicaterRowChangeEventHandler SelectTeretnicaterRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void AddSelectTeretnicaRow(SelectTeretnicaRow row) {
+            public void AddSelectTeretnicaterRow(SelectTeretnicaterRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SelectTeretnicaRow AddSelectTeretnicaRow(
+            public SelectTeretnicaterRow AddSelectTeretnicaterRow(
                         int ID, 
                         string BrojTeretnice, 
                         int StanicaOd, 
@@ -800,8 +810,9 @@ namespace Saobracaj {
                         string Izvozna, 
                         string Dokument2, 
                         string ZemljaOd, 
-                        string ZemljaDo) {
-                SelectTeretnicaRow rowSelectTeretnicaRow = ((SelectTeretnicaRow)(this.NewRow()));
+                        string ZemljaDo, 
+                        string Napomena) {
+                SelectTeretnicaterRow rowSelectTeretnicaterRow = ((SelectTeretnicaterRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
                         BrojTeretnice,
@@ -843,16 +854,17 @@ namespace Saobracaj {
                         Izvozna,
                         Dokument2,
                         ZemljaOd,
-                        ZemljaDo};
-                rowSelectTeretnicaRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSelectTeretnicaRow);
-                return rowSelectTeretnicaRow;
+                        ZemljaDo,
+                        Napomena};
+                rowSelectTeretnicaterRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSelectTeretnicaterRow);
+                return rowSelectTeretnicaterRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                SelectTeretnicaDataTable cln = ((SelectTeretnicaDataTable)(base.Clone()));
+                SelectTeretnicaterDataTable cln = ((SelectTeretnicaterDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -860,7 +872,7 @@ namespace Saobracaj {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new SelectTeretnicaDataTable();
+                return new SelectTeretnicaterDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -907,6 +919,7 @@ namespace Saobracaj {
                 this.columnDokument2 = base.Columns["Dokument2"];
                 this.columnZemljaOd = base.Columns["ZemljaOd"];
                 this.columnZemljaDo = base.Columns["ZemljaDo"];
+                this.columnNapomena = base.Columns["Napomena"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -994,6 +1007,8 @@ namespace Saobracaj {
                 base.Columns.Add(this.columnZemljaOd);
                 this.columnZemljaDo = new global::System.Data.DataColumn("ZemljaDo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnZemljaDo);
+                this.columnNapomena = new global::System.Data.DataColumn("Napomena", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNapomena);
                 this.columnBrojTeretnice.MaxLength = 50;
                 this.columnBrojLista.MaxLength = 20;
                 this.columnStanicaOd1.AllowDBNull = false;
@@ -1026,32 +1041,33 @@ namespace Saobracaj {
                 this.columnDokument2.MaxLength = 20;
                 this.columnZemljaOd.MaxLength = 3;
                 this.columnZemljaDo.MaxLength = 3;
+                this.columnNapomena.MaxLength = 300;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SelectTeretnicaRow NewSelectTeretnicaRow() {
-                return ((SelectTeretnicaRow)(this.NewRow()));
+            public SelectTeretnicaterRow NewSelectTeretnicaterRow() {
+                return ((SelectTeretnicaterRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SelectTeretnicaRow(builder);
+                return new SelectTeretnicaterRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(SelectTeretnicaRow);
+                return typeof(SelectTeretnicaterRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.SelectTeretnicaRowChanged != null)) {
-                    this.SelectTeretnicaRowChanged(this, new SelectTeretnicaRowChangeEvent(((SelectTeretnicaRow)(e.Row)), e.Action));
+                if ((this.SelectTeretnicaterRowChanged != null)) {
+                    this.SelectTeretnicaterRowChanged(this, new SelectTeretnicaterRowChangeEvent(((SelectTeretnicaterRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1059,8 +1075,8 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.SelectTeretnicaRowChanging != null)) {
-                    this.SelectTeretnicaRowChanging(this, new SelectTeretnicaRowChangeEvent(((SelectTeretnicaRow)(e.Row)), e.Action));
+                if ((this.SelectTeretnicaterRowChanging != null)) {
+                    this.SelectTeretnicaterRowChanging(this, new SelectTeretnicaterRowChangeEvent(((SelectTeretnicaterRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1068,8 +1084,8 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.SelectTeretnicaRowDeleted != null)) {
-                    this.SelectTeretnicaRowDeleted(this, new SelectTeretnicaRowChangeEvent(((SelectTeretnicaRow)(e.Row)), e.Action));
+                if ((this.SelectTeretnicaterRowDeleted != null)) {
+                    this.SelectTeretnicaterRowDeleted(this, new SelectTeretnicaterRowChangeEvent(((SelectTeretnicaterRow)(e.Row)), e.Action));
                 }
             }
             
@@ -1077,14 +1093,14 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.SelectTeretnicaRowDeleting != null)) {
-                    this.SelectTeretnicaRowDeleting(this, new SelectTeretnicaRowChangeEvent(((SelectTeretnicaRow)(e.Row)), e.Action));
+                if ((this.SelectTeretnicaterRowDeleting != null)) {
+                    this.SelectTeretnicaterRowDeleting(this, new SelectTeretnicaterRowChangeEvent(((SelectTeretnicaterRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void RemoveSelectTeretnicaRow(SelectTeretnicaRow row) {
+            public void RemoveSelectTeretnicaterRow(SelectTeretnicaterRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -1111,7 +1127,7 @@ namespace Saobracaj {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SelectTeretnicaDataTable";
+                attribute2.FixedValue = "SelectTeretnicaterDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -1155,15 +1171,15 @@ namespace Saobracaj {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class SelectTeretnicaRow : global::System.Data.DataRow {
+        public partial class SelectTeretnicaterRow : global::System.Data.DataRow {
             
-            private SelectTeretnicaDataTable tableSelectTeretnica;
+            private SelectTeretnicaterDataTable tableSelectTeretnicater;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal SelectTeretnicaRow(global::System.Data.DataRowBuilder rb) : 
+            internal SelectTeretnicaterRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableSelectTeretnica = ((SelectTeretnicaDataTable)(this.Table));
+                this.tableSelectTeretnicater = ((SelectTeretnicaterDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1171,14 +1187,14 @@ namespace Saobracaj {
             public int ID {
                 get {
                     try {
-                        return ((int)(this[this.tableSelectTeretnica.IDColumn]));
+                        return ((int)(this[this.tableSelectTeretnicater.IDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ID\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ID\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.IDColumn] = value;
+                    this[this.tableSelectTeretnicater.IDColumn] = value;
                 }
             }
             
@@ -1187,14 +1203,14 @@ namespace Saobracaj {
             public string BrojTeretnice {
                 get {
                     try {
-                        return ((string)(this[this.tableSelectTeretnica.BrojTeretniceColumn]));
+                        return ((string)(this[this.tableSelectTeretnicater.BrojTeretniceColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'BrojTeretnice\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'BrojTeretnice\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.BrojTeretniceColumn] = value;
+                    this[this.tableSelectTeretnicater.BrojTeretniceColumn] = value;
                 }
             }
             
@@ -1203,14 +1219,14 @@ namespace Saobracaj {
             public int StanicaOd {
                 get {
                     try {
-                        return ((int)(this[this.tableSelectTeretnica.StanicaOdColumn]));
+                        return ((int)(this[this.tableSelectTeretnicater.StanicaOdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'StanicaOd\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'StanicaOd\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.StanicaOdColumn] = value;
+                    this[this.tableSelectTeretnicater.StanicaOdColumn] = value;
                 }
             }
             
@@ -1219,14 +1235,14 @@ namespace Saobracaj {
             public int StanicaDo {
                 get {
                     try {
-                        return ((int)(this[this.tableSelectTeretnica.StanicaDoColumn]));
+                        return ((int)(this[this.tableSelectTeretnicater.StanicaDoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'StanicaDo\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'StanicaDo\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.StanicaDoColumn] = value;
+                    this[this.tableSelectTeretnicater.StanicaDoColumn] = value;
                 }
             }
             
@@ -1235,14 +1251,14 @@ namespace Saobracaj {
             public int StanicaPopisa {
                 get {
                     try {
-                        return ((int)(this[this.tableSelectTeretnica.StanicaPopisaColumn]));
+                        return ((int)(this[this.tableSelectTeretnicater.StanicaPopisaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'StanicaPopisa\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'StanicaPopisa\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.StanicaPopisaColumn] = value;
+                    this[this.tableSelectTeretnicater.StanicaPopisaColumn] = value;
                 }
             }
             
@@ -1251,14 +1267,14 @@ namespace Saobracaj {
             public System.DateTime VremeOd {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableSelectTeretnica.VremeOdColumn]));
+                        return ((global::System.DateTime)(this[this.tableSelectTeretnicater.VremeOdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'VremeOd\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'VremeOd\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.VremeOdColumn] = value;
+                    this[this.tableSelectTeretnicater.VremeOdColumn] = value;
                 }
             }
             
@@ -1267,14 +1283,14 @@ namespace Saobracaj {
             public System.DateTime VremeDo {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableSelectTeretnica.VremeDoColumn]));
+                        return ((global::System.DateTime)(this[this.tableSelectTeretnicater.VremeDoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'VremeDo\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'VremeDo\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.VremeDoColumn] = value;
+                    this[this.tableSelectTeretnicater.VremeDoColumn] = value;
                 }
             }
             
@@ -1283,14 +1299,14 @@ namespace Saobracaj {
             public string BrojLista {
                 get {
                     try {
-                        return ((string)(this[this.tableSelectTeretnica.BrojListaColumn]));
+                        return ((string)(this[this.tableSelectTeretnicater.BrojListaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'BrojLista\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'BrojLista\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.BrojListaColumn] = value;
+                    this[this.tableSelectTeretnicater.BrojListaColumn] = value;
                 }
             }
             
@@ -1299,14 +1315,14 @@ namespace Saobracaj {
             public int RB {
                 get {
                     try {
-                        return ((int)(this[this.tableSelectTeretnica.RBColumn]));
+                        return ((int)(this[this.tableSelectTeretnicater.RBColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'RB\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RB\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.RBColumn] = value;
+                    this[this.tableSelectTeretnicater.RBColumn] = value;
                 }
             }
             
@@ -1315,14 +1331,15 @@ namespace Saobracaj {
             public int BrojTeretniceStavke {
                 get {
                     try {
-                        return ((int)(this[this.tableSelectTeretnica.BrojTeretniceStavkeColumn]));
+                        return ((int)(this[this.tableSelectTeretnicater.BrojTeretniceStavkeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'BrojTeretniceStavke\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'BrojTeretniceStavke\' in table \'SelectTeretnicater\' is DBNul" +
+                                "l.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.BrojTeretniceStavkeColumn] = value;
+                    this[this.tableSelectTeretnicater.BrojTeretniceStavkeColumn] = value;
                 }
             }
             
@@ -1330,10 +1347,10 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string StanicaOd1 {
                 get {
-                    return ((string)(this[this.tableSelectTeretnica.StanicaOd1Column]));
+                    return ((string)(this[this.tableSelectTeretnicater.StanicaOd1Column]));
                 }
                 set {
-                    this[this.tableSelectTeretnica.StanicaOd1Column] = value;
+                    this[this.tableSelectTeretnicater.StanicaOd1Column] = value;
                 }
             }
             
@@ -1341,10 +1358,10 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string StanicaDo1 {
                 get {
-                    return ((string)(this[this.tableSelectTeretnica.StanicaDo1Column]));
+                    return ((string)(this[this.tableSelectTeretnicater.StanicaDo1Column]));
                 }
                 set {
-                    this[this.tableSelectTeretnica.StanicaDo1Column] = value;
+                    this[this.tableSelectTeretnicater.StanicaDo1Column] = value;
                 }
             }
             
@@ -1352,10 +1369,10 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string StanicaPopisa1 {
                 get {
-                    return ((string)(this[this.tableSelectTeretnica.StanicaPopisa1Column]));
+                    return ((string)(this[this.tableSelectTeretnicater.StanicaPopisa1Column]));
                 }
                 set {
-                    this[this.tableSelectTeretnica.StanicaPopisa1Column] = value;
+                    this[this.tableSelectTeretnicater.StanicaPopisa1Column] = value;
                 }
             }
             
@@ -1363,10 +1380,10 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string Uvrstrena {
                 get {
-                    return ((string)(this[this.tableSelectTeretnica.UvrstrenaColumn]));
+                    return ((string)(this[this.tableSelectTeretnicater.UvrstrenaColumn]));
                 }
                 set {
-                    this[this.tableSelectTeretnica.UvrstrenaColumn] = value;
+                    this[this.tableSelectTeretnicater.UvrstrenaColumn] = value;
                 }
             }
             
@@ -1374,10 +1391,10 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string Otkacena {
                 get {
-                    return ((string)(this[this.tableSelectTeretnica.OtkacenaColumn]));
+                    return ((string)(this[this.tableSelectTeretnicater.OtkacenaColumn]));
                 }
                 set {
-                    this[this.tableSelectTeretnica.OtkacenaColumn] = value;
+                    this[this.tableSelectTeretnicater.OtkacenaColumn] = value;
                 }
             }
             
@@ -1385,10 +1402,10 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string Otpravna {
                 get {
-                    return ((string)(this[this.tableSelectTeretnica.OtpravnaColumn]));
+                    return ((string)(this[this.tableSelectTeretnicater.OtpravnaColumn]));
                 }
                 set {
-                    this[this.tableSelectTeretnica.OtpravnaColumn] = value;
+                    this[this.tableSelectTeretnicater.OtpravnaColumn] = value;
                 }
             }
             
@@ -1396,10 +1413,10 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string Uputna {
                 get {
-                    return ((string)(this[this.tableSelectTeretnica.UputnaColumn]));
+                    return ((string)(this[this.tableSelectTeretnicater.UputnaColumn]));
                 }
                 set {
-                    this[this.tableSelectTeretnica.UputnaColumn] = value;
+                    this[this.tableSelectTeretnicater.UputnaColumn] = value;
                 }
             }
             
@@ -1408,14 +1425,14 @@ namespace Saobracaj {
             public int IDNajave {
                 get {
                     try {
-                        return ((int)(this[this.tableSelectTeretnica.IDNajaveColumn]));
+                        return ((int)(this[this.tableSelectTeretnicater.IDNajaveColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'IDNajave\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'IDNajave\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.IDNajaveColumn] = value;
+                    this[this.tableSelectTeretnicater.IDNajaveColumn] = value;
                 }
             }
             
@@ -1424,14 +1441,14 @@ namespace Saobracaj {
             public string BrojKola {
                 get {
                     try {
-                        return ((string)(this[this.tableSelectTeretnica.BrojKolaColumn]));
+                        return ((string)(this[this.tableSelectTeretnicater.BrojKolaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'BrojKola\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'BrojKola\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.BrojKolaColumn] = value;
+                    this[this.tableSelectTeretnicater.BrojKolaColumn] = value;
                 }
             }
             
@@ -1440,14 +1457,14 @@ namespace Saobracaj {
             public string Serija {
                 get {
                     try {
-                        return ((string)(this[this.tableSelectTeretnica.SerijaColumn]));
+                        return ((string)(this[this.tableSelectTeretnicater.SerijaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Serija\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Serija\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.SerijaColumn] = value;
+                    this[this.tableSelectTeretnicater.SerijaColumn] = value;
                 }
             }
             
@@ -1456,14 +1473,14 @@ namespace Saobracaj {
             public decimal Duzina {
                 get {
                     try {
-                        return ((decimal)(this[this.tableSelectTeretnica.DuzinaColumn]));
+                        return ((decimal)(this[this.tableSelectTeretnicater.DuzinaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Duzina\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Duzina\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.DuzinaColumn] = value;
+                    this[this.tableSelectTeretnicater.DuzinaColumn] = value;
                 }
             }
             
@@ -1472,14 +1489,14 @@ namespace Saobracaj {
             public decimal Tara {
                 get {
                     try {
-                        return ((decimal)(this[this.tableSelectTeretnica.TaraColumn]));
+                        return ((decimal)(this[this.tableSelectTeretnicater.TaraColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Tara\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Tara\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.TaraColumn] = value;
+                    this[this.tableSelectTeretnicater.TaraColumn] = value;
                 }
             }
             
@@ -1488,14 +1505,14 @@ namespace Saobracaj {
             public decimal Neto {
                 get {
                     try {
-                        return ((decimal)(this[this.tableSelectTeretnica.NetoColumn]));
+                        return ((decimal)(this[this.tableSelectTeretnicater.NetoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Neto\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Neto\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.NetoColumn] = value;
+                    this[this.tableSelectTeretnicater.NetoColumn] = value;
                 }
             }
             
@@ -1504,14 +1521,14 @@ namespace Saobracaj {
             public decimal G {
                 get {
                     try {
-                        return ((decimal)(this[this.tableSelectTeretnica.GColumn]));
+                        return ((decimal)(this[this.tableSelectTeretnicater.GColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'G\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'G\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.GColumn] = value;
+                    this[this.tableSelectTeretnicater.GColumn] = value;
                 }
             }
             
@@ -1520,14 +1537,14 @@ namespace Saobracaj {
             public decimal P {
                 get {
                     try {
-                        return ((decimal)(this[this.tableSelectTeretnica.PColumn]));
+                        return ((decimal)(this[this.tableSelectTeretnicater.PColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'P\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'P\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.PColumn] = value;
+                    this[this.tableSelectTeretnicater.PColumn] = value;
                 }
             }
             
@@ -1536,14 +1553,14 @@ namespace Saobracaj {
             public decimal R {
                 get {
                     try {
-                        return ((decimal)(this[this.tableSelectTeretnica.RColumn]));
+                        return ((decimal)(this[this.tableSelectTeretnicater.RColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'R\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'R\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.RColumn] = value;
+                    this[this.tableSelectTeretnicater.RColumn] = value;
                 }
             }
             
@@ -1552,14 +1569,14 @@ namespace Saobracaj {
             public decimal RR {
                 get {
                     try {
-                        return ((decimal)(this[this.tableSelectTeretnica.RRColumn]));
+                        return ((decimal)(this[this.tableSelectTeretnicater.RRColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'RR\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RR\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.RRColumn] = value;
+                    this[this.tableSelectTeretnicater.RRColumn] = value;
                 }
             }
             
@@ -1568,14 +1585,14 @@ namespace Saobracaj {
             public string VRNP {
                 get {
                     try {
-                        return ((string)(this[this.tableSelectTeretnica.VRNPColumn]));
+                        return ((string)(this[this.tableSelectTeretnicater.VRNPColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'VRNP\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'VRNP\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.VRNPColumn] = value;
+                    this[this.tableSelectTeretnicater.VRNPColumn] = value;
                 }
             }
             
@@ -1584,14 +1601,14 @@ namespace Saobracaj {
             public string Reon {
                 get {
                     try {
-                        return ((string)(this[this.tableSelectTeretnica.ReonColumn]));
+                        return ((string)(this[this.tableSelectTeretnicater.ReonColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Reon\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Reon\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.ReonColumn] = value;
+                    this[this.tableSelectTeretnicater.ReonColumn] = value;
                 }
             }
             
@@ -1600,14 +1617,14 @@ namespace Saobracaj {
             public string Primedba {
                 get {
                     try {
-                        return ((string)(this[this.tableSelectTeretnica.PrimedbaColumn]));
+                        return ((string)(this[this.tableSelectTeretnicater.PrimedbaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Primedba\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Primedba\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.PrimedbaColumn] = value;
+                    this[this.tableSelectTeretnicater.PrimedbaColumn] = value;
                 }
             }
             
@@ -1616,14 +1633,14 @@ namespace Saobracaj {
             public decimal RucKoc {
                 get {
                     try {
-                        return ((decimal)(this[this.tableSelectTeretnica.RucKocColumn]));
+                        return ((decimal)(this[this.tableSelectTeretnicater.RucKocColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'RucKoc\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'RucKoc\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.RucKocColumn] = value;
+                    this[this.tableSelectTeretnicater.RucKocColumn] = value;
                 }
             }
             
@@ -1632,14 +1649,14 @@ namespace Saobracaj {
             public decimal BrojOsovina {
                 get {
                     try {
-                        return ((decimal)(this[this.tableSelectTeretnica.BrojOsovinaColumn]));
+                        return ((decimal)(this[this.tableSelectTeretnicater.BrojOsovinaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'BrojOsovina\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'BrojOsovina\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.BrojOsovinaColumn] = value;
+                    this[this.tableSelectTeretnicater.BrojOsovinaColumn] = value;
                 }
             }
             
@@ -1648,14 +1665,14 @@ namespace Saobracaj {
             public string Dokument {
                 get {
                     try {
-                        return ((string)(this[this.tableSelectTeretnica.DokumentColumn]));
+                        return ((string)(this[this.tableSelectTeretnicater.DokumentColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Dokument\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Dokument\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.DokumentColumn] = value;
+                    this[this.tableSelectTeretnicater.DokumentColumn] = value;
                 }
             }
             
@@ -1664,14 +1681,14 @@ namespace Saobracaj {
             public string NHM {
                 get {
                     try {
-                        return ((string)(this[this.tableSelectTeretnica.NHMColumn]));
+                        return ((string)(this[this.tableSelectTeretnicater.NHMColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NHM\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'NHM\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.NHMColumn] = value;
+                    this[this.tableSelectTeretnicater.NHMColumn] = value;
                 }
             }
             
@@ -1680,14 +1697,14 @@ namespace Saobracaj {
             public string DrzavaOd {
                 get {
                     try {
-                        return ((string)(this[this.tableSelectTeretnica.DrzavaOdColumn]));
+                        return ((string)(this[this.tableSelectTeretnicater.DrzavaOdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DrzavaOd\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'DrzavaOd\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.DrzavaOdColumn] = value;
+                    this[this.tableSelectTeretnicater.DrzavaOdColumn] = value;
                 }
             }
             
@@ -1696,14 +1713,14 @@ namespace Saobracaj {
             public string DrzavaDo {
                 get {
                     try {
-                        return ((string)(this[this.tableSelectTeretnica.DrzavaDoColumn]));
+                        return ((string)(this[this.tableSelectTeretnicater.DrzavaDoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DrzavaDo\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'DrzavaDo\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.DrzavaDoColumn] = value;
+                    this[this.tableSelectTeretnicater.DrzavaDoColumn] = value;
                 }
             }
             
@@ -1711,10 +1728,10 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string Uvozna {
                 get {
-                    return ((string)(this[this.tableSelectTeretnica.UvoznaColumn]));
+                    return ((string)(this[this.tableSelectTeretnicater.UvoznaColumn]));
                 }
                 set {
-                    this[this.tableSelectTeretnica.UvoznaColumn] = value;
+                    this[this.tableSelectTeretnicater.UvoznaColumn] = value;
                 }
             }
             
@@ -1722,10 +1739,10 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string Izvozna {
                 get {
-                    return ((string)(this[this.tableSelectTeretnica.IzvoznaColumn]));
+                    return ((string)(this[this.tableSelectTeretnicater.IzvoznaColumn]));
                 }
                 set {
-                    this[this.tableSelectTeretnica.IzvoznaColumn] = value;
+                    this[this.tableSelectTeretnicater.IzvoznaColumn] = value;
                 }
             }
             
@@ -1734,14 +1751,14 @@ namespace Saobracaj {
             public string Dokument2 {
                 get {
                     try {
-                        return ((string)(this[this.tableSelectTeretnica.Dokument2Column]));
+                        return ((string)(this[this.tableSelectTeretnicater.Dokument2Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Dokument2\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Dokument2\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.Dokument2Column] = value;
+                    this[this.tableSelectTeretnicater.Dokument2Column] = value;
                 }
             }
             
@@ -1750,14 +1767,14 @@ namespace Saobracaj {
             public string ZemljaOd {
                 get {
                     try {
-                        return ((string)(this[this.tableSelectTeretnica.ZemljaOdColumn]));
+                        return ((string)(this[this.tableSelectTeretnicater.ZemljaOdColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ZemljaOd\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ZemljaOd\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.ZemljaOdColumn] = value;
+                    this[this.tableSelectTeretnicater.ZemljaOdColumn] = value;
                 }
             }
             
@@ -1766,399 +1783,427 @@ namespace Saobracaj {
             public string ZemljaDo {
                 get {
                     try {
-                        return ((string)(this[this.tableSelectTeretnica.ZemljaDoColumn]));
+                        return ((string)(this[this.tableSelectTeretnicater.ZemljaDoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ZemljaDo\' in table \'SelectTeretnica\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'ZemljaDo\' in table \'SelectTeretnicater\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTeretnica.ZemljaDoColumn] = value;
+                    this[this.tableSelectTeretnicater.ZemljaDoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Napomena {
+                get {
+                    try {
+                        return ((string)(this[this.tableSelectTeretnicater.NapomenaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Napomena\' in table \'SelectTeretnicater\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSelectTeretnicater.NapomenaColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsIDNull() {
-                return this.IsNull(this.tableSelectTeretnica.IDColumn);
+                return this.IsNull(this.tableSelectTeretnicater.IDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetIDNull() {
-                this[this.tableSelectTeretnica.IDColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.IDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsBrojTeretniceNull() {
-                return this.IsNull(this.tableSelectTeretnica.BrojTeretniceColumn);
+                return this.IsNull(this.tableSelectTeretnicater.BrojTeretniceColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetBrojTeretniceNull() {
-                this[this.tableSelectTeretnica.BrojTeretniceColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.BrojTeretniceColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsStanicaOdNull() {
-                return this.IsNull(this.tableSelectTeretnica.StanicaOdColumn);
+                return this.IsNull(this.tableSelectTeretnicater.StanicaOdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetStanicaOdNull() {
-                this[this.tableSelectTeretnica.StanicaOdColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.StanicaOdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsStanicaDoNull() {
-                return this.IsNull(this.tableSelectTeretnica.StanicaDoColumn);
+                return this.IsNull(this.tableSelectTeretnicater.StanicaDoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetStanicaDoNull() {
-                this[this.tableSelectTeretnica.StanicaDoColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.StanicaDoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsStanicaPopisaNull() {
-                return this.IsNull(this.tableSelectTeretnica.StanicaPopisaColumn);
+                return this.IsNull(this.tableSelectTeretnicater.StanicaPopisaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetStanicaPopisaNull() {
-                this[this.tableSelectTeretnica.StanicaPopisaColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.StanicaPopisaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsVremeOdNull() {
-                return this.IsNull(this.tableSelectTeretnica.VremeOdColumn);
+                return this.IsNull(this.tableSelectTeretnicater.VremeOdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetVremeOdNull() {
-                this[this.tableSelectTeretnica.VremeOdColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.VremeOdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsVremeDoNull() {
-                return this.IsNull(this.tableSelectTeretnica.VremeDoColumn);
+                return this.IsNull(this.tableSelectTeretnicater.VremeDoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetVremeDoNull() {
-                this[this.tableSelectTeretnica.VremeDoColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.VremeDoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsBrojListaNull() {
-                return this.IsNull(this.tableSelectTeretnica.BrojListaColumn);
+                return this.IsNull(this.tableSelectTeretnicater.BrojListaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetBrojListaNull() {
-                this[this.tableSelectTeretnica.BrojListaColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.BrojListaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsRBNull() {
-                return this.IsNull(this.tableSelectTeretnica.RBColumn);
+                return this.IsNull(this.tableSelectTeretnicater.RBColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetRBNull() {
-                this[this.tableSelectTeretnica.RBColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.RBColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsBrojTeretniceStavkeNull() {
-                return this.IsNull(this.tableSelectTeretnica.BrojTeretniceStavkeColumn);
+                return this.IsNull(this.tableSelectTeretnicater.BrojTeretniceStavkeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetBrojTeretniceStavkeNull() {
-                this[this.tableSelectTeretnica.BrojTeretniceStavkeColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.BrojTeretniceStavkeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsIDNajaveNull() {
-                return this.IsNull(this.tableSelectTeretnica.IDNajaveColumn);
+                return this.IsNull(this.tableSelectTeretnicater.IDNajaveColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetIDNajaveNull() {
-                this[this.tableSelectTeretnica.IDNajaveColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.IDNajaveColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsBrojKolaNull() {
-                return this.IsNull(this.tableSelectTeretnica.BrojKolaColumn);
+                return this.IsNull(this.tableSelectTeretnicater.BrojKolaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetBrojKolaNull() {
-                this[this.tableSelectTeretnica.BrojKolaColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.BrojKolaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsSerijaNull() {
-                return this.IsNull(this.tableSelectTeretnica.SerijaColumn);
+                return this.IsNull(this.tableSelectTeretnicater.SerijaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetSerijaNull() {
-                this[this.tableSelectTeretnica.SerijaColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.SerijaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsDuzinaNull() {
-                return this.IsNull(this.tableSelectTeretnica.DuzinaColumn);
+                return this.IsNull(this.tableSelectTeretnicater.DuzinaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetDuzinaNull() {
-                this[this.tableSelectTeretnica.DuzinaColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.DuzinaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsTaraNull() {
-                return this.IsNull(this.tableSelectTeretnica.TaraColumn);
+                return this.IsNull(this.tableSelectTeretnicater.TaraColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetTaraNull() {
-                this[this.tableSelectTeretnica.TaraColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.TaraColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsNetoNull() {
-                return this.IsNull(this.tableSelectTeretnica.NetoColumn);
+                return this.IsNull(this.tableSelectTeretnicater.NetoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetNetoNull() {
-                this[this.tableSelectTeretnica.NetoColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.NetoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsGNull() {
-                return this.IsNull(this.tableSelectTeretnica.GColumn);
+                return this.IsNull(this.tableSelectTeretnicater.GColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetGNull() {
-                this[this.tableSelectTeretnica.GColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.GColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsPNull() {
-                return this.IsNull(this.tableSelectTeretnica.PColumn);
+                return this.IsNull(this.tableSelectTeretnicater.PColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetPNull() {
-                this[this.tableSelectTeretnica.PColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.PColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsRNull() {
-                return this.IsNull(this.tableSelectTeretnica.RColumn);
+                return this.IsNull(this.tableSelectTeretnicater.RColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetRNull() {
-                this[this.tableSelectTeretnica.RColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.RColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsRRNull() {
-                return this.IsNull(this.tableSelectTeretnica.RRColumn);
+                return this.IsNull(this.tableSelectTeretnicater.RRColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetRRNull() {
-                this[this.tableSelectTeretnica.RRColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.RRColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsVRNPNull() {
-                return this.IsNull(this.tableSelectTeretnica.VRNPColumn);
+                return this.IsNull(this.tableSelectTeretnicater.VRNPColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetVRNPNull() {
-                this[this.tableSelectTeretnica.VRNPColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.VRNPColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsReonNull() {
-                return this.IsNull(this.tableSelectTeretnica.ReonColumn);
+                return this.IsNull(this.tableSelectTeretnicater.ReonColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetReonNull() {
-                this[this.tableSelectTeretnica.ReonColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.ReonColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsPrimedbaNull() {
-                return this.IsNull(this.tableSelectTeretnica.PrimedbaColumn);
+                return this.IsNull(this.tableSelectTeretnicater.PrimedbaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetPrimedbaNull() {
-                this[this.tableSelectTeretnica.PrimedbaColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.PrimedbaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsRucKocNull() {
-                return this.IsNull(this.tableSelectTeretnica.RucKocColumn);
+                return this.IsNull(this.tableSelectTeretnicater.RucKocColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetRucKocNull() {
-                this[this.tableSelectTeretnica.RucKocColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.RucKocColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsBrojOsovinaNull() {
-                return this.IsNull(this.tableSelectTeretnica.BrojOsovinaColumn);
+                return this.IsNull(this.tableSelectTeretnicater.BrojOsovinaColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetBrojOsovinaNull() {
-                this[this.tableSelectTeretnica.BrojOsovinaColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.BrojOsovinaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsDokumentNull() {
-                return this.IsNull(this.tableSelectTeretnica.DokumentColumn);
+                return this.IsNull(this.tableSelectTeretnicater.DokumentColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetDokumentNull() {
-                this[this.tableSelectTeretnica.DokumentColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.DokumentColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsNHMNull() {
-                return this.IsNull(this.tableSelectTeretnica.NHMColumn);
+                return this.IsNull(this.tableSelectTeretnicater.NHMColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetNHMNull() {
-                this[this.tableSelectTeretnica.NHMColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.NHMColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsDrzavaOdNull() {
-                return this.IsNull(this.tableSelectTeretnica.DrzavaOdColumn);
+                return this.IsNull(this.tableSelectTeretnicater.DrzavaOdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetDrzavaOdNull() {
-                this[this.tableSelectTeretnica.DrzavaOdColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.DrzavaOdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsDrzavaDoNull() {
-                return this.IsNull(this.tableSelectTeretnica.DrzavaDoColumn);
+                return this.IsNull(this.tableSelectTeretnicater.DrzavaDoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetDrzavaDoNull() {
-                this[this.tableSelectTeretnica.DrzavaDoColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.DrzavaDoColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsDokument2Null() {
-                return this.IsNull(this.tableSelectTeretnica.Dokument2Column);
+                return this.IsNull(this.tableSelectTeretnicater.Dokument2Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetDokument2Null() {
-                this[this.tableSelectTeretnica.Dokument2Column] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.Dokument2Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsZemljaOdNull() {
-                return this.IsNull(this.tableSelectTeretnica.ZemljaOdColumn);
+                return this.IsNull(this.tableSelectTeretnicater.ZemljaOdColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetZemljaOdNull() {
-                this[this.tableSelectTeretnica.ZemljaOdColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.ZemljaOdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsZemljaDoNull() {
-                return this.IsNull(this.tableSelectTeretnica.ZemljaDoColumn);
+                return this.IsNull(this.tableSelectTeretnicater.ZemljaDoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetZemljaDoNull() {
-                this[this.tableSelectTeretnica.ZemljaDoColumn] = global::System.Convert.DBNull;
+                this[this.tableSelectTeretnicater.ZemljaDoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsNapomenaNull() {
+                return this.IsNull(this.tableSelectTeretnicater.NapomenaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetNapomenaNull() {
+                this[this.tableSelectTeretnicater.NapomenaColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2166,22 +2211,22 @@ namespace Saobracaj {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class SelectTeretnicaRowChangeEvent : global::System.EventArgs {
+        public class SelectTeretnicaterRowChangeEvent : global::System.EventArgs {
             
-            private SelectTeretnicaRow eventRow;
+            private SelectTeretnicaterRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SelectTeretnicaRowChangeEvent(SelectTeretnicaRow row, global::System.Data.DataRowAction action) {
+            public SelectTeretnicaterRowChangeEvent(SelectTeretnicaterRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SelectTeretnicaRow Row {
+            public SelectTeretnicaterRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -2209,7 +2254,7 @@ namespace Saobracaj.Perftech_BeogradDataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class SelectTeretnicaTableAdapter : global::System.ComponentModel.Component {
+    public partial class SelectTeretnicaterTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -2223,7 +2268,7 @@ namespace Saobracaj.Perftech_BeogradDataSetTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public SelectTeretnicaTableAdapter() {
+        public SelectTeretnicaterTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -2320,7 +2365,7 @@ namespace Saobracaj.Perftech_BeogradDataSetTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "SelectTeretnica";
+            tableMapping.DataSetTable = "SelectTeretnicater";
             tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("BrojTeretnice", "BrojTeretnice");
             tableMapping.ColumnMappings.Add("StanicaOd", "StanicaOd");
@@ -2362,6 +2407,7 @@ namespace Saobracaj.Perftech_BeogradDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Dokument2", "Dokument2");
             tableMapping.ColumnMappings.Add("ZemljaOd", "ZemljaOd");
             tableMapping.ColumnMappings.Add("ZemljaDo", "ZemljaDo");
+            tableMapping.ColumnMappings.Add("Napomena", "Napomena");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -2388,7 +2434,7 @@ namespace Saobracaj.Perftech_BeogradDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(Perftech_BeogradDataSet.SelectTeretnicaDataTable dataTable, global::System.Nullable<int> ID) {
+        public virtual int Fill(Perftech_BeogradDataSet.SelectTeretnicaterDataTable dataTable, global::System.Nullable<int> ID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((ID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(ID.Value));
@@ -2407,7 +2453,7 @@ namespace Saobracaj.Perftech_BeogradDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Perftech_BeogradDataSet.SelectTeretnicaDataTable GetData(global::System.Nullable<int> ID) {
+        public virtual Perftech_BeogradDataSet.SelectTeretnicaterDataTable GetData(global::System.Nullable<int> ID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((ID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(ID.Value));
@@ -2415,7 +2461,7 @@ namespace Saobracaj.Perftech_BeogradDataSetTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            Perftech_BeogradDataSet.SelectTeretnicaDataTable dataTable = new Perftech_BeogradDataSet.SelectTeretnicaDataTable();
+            Perftech_BeogradDataSet.SelectTeretnicaterDataTable dataTable = new Perftech_BeogradDataSet.SelectTeretnicaterDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

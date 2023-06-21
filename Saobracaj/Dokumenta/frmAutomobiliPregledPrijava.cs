@@ -236,7 +236,7 @@ namespace Saobracaj.Dokumenta
         }
         private void FillGV()
         {
-            var select = "  SELECT     ZaposleniPrijavaAuto.Id, ZaposleniPrijavaAuto.OznakaPosla, Delavci.DeStaraSif, RTRIM(Delavci.DePriimek) + '  ' + RTRIM(Delavci.DeIme) AS Zaposleni, " +
+            var select = "  SELECT     ZaposleniPrijavaAuto.Id, AktivnostID, ZaposleniPrijavaAuto.OznakaPosla, Delavci.DeStaraSif, RTRIM(Delavci.DePriimek) + '  ' + RTRIM(Delavci.DeIme) AS Zaposleni, " +
                "      ZaposleniPrijavaAuto.DatumPrijave, ZaposleniPrijavaAuto.DatumOdjave, ZaposleniPrijavaAuto.AutomobilId, Automobili.RegBr, Automobili.Marka, " + 
                 "           ZaposleniPrijavaAuto.DirektnaPrimopredajaZaduzivanje, ZaposleniPrijavaAuto.DirektnaPrimopredajaRazduzivanje, ZaposleniPrijavaAuto.KilometrazaZaduzivanje, " +
                  "          ZaposleniPrijavaAuto.KilometrazaRazduzivanje, CistocaSpolja.CistocaVrsta AS CistocaSpolja, CistocaIznutra.CistocaVrsta AS CistocaIznutra,  " +
@@ -246,9 +246,9 @@ namespace Saobracaj.Dokumenta
                  "          ZaposleniPrijavaAuto.MestoDolaska,  ZaposleniPrijavaAuto.AktivnostId, stanice.Opis AS MestoPolaska, stanice_1.Opis AS MestoDolaska  " +
 "     FROM         ZaposleniPrijavaAuto INNER JOIN  " +
                   "         Delavci ON ZaposleniPrijavaAuto.Zaposleni = Delavci.DeSifra INNER JOIN  " +
-                  "         Automobili ON ZaposleniPrijavaAuto.AutomobilId = Automobili.ID INNER JOIN  " +
+                  "         Automobili ON ZaposleniPrijavaAuto.AutomobilId = Automobili.ID left JOIN  " +
                   "         UljeAuto ON ZaposleniPrijavaAuto.NivoUljaZaduzivanje = UljeAuto.Id INNER JOIN  " +
-                  "         stanice ON  ZaposleniPrijavaAuto.MestoPolaska = stanice.ID INNER JOIN  " +
+                  "         stanice ON  ZaposleniPrijavaAuto.MestoPolaska = stanice.ID left JOIN  " +
                   "         stanice AS stanice_1 ON ZaposleniPrijavaAuto.MestoDolaska = stanice_1.ID LEFT OUTER JOIN  " +
                    "        UljeAutoRazduzivanje ON ZaposleniPrijavaAuto.NivoUljaRazduzivanje = UljeAutoRazduzivanje.Id LEFT OUTER JOIN  " +
                    "        CistocaSpoljaRazduzivanje ON ZaposleniPrijavaAuto.CistocaSpoljaRazduzivanje = CistocaSpoljaRazduzivanje.Id LEFT OUTER JOIN  " +

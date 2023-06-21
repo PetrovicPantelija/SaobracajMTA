@@ -102,9 +102,9 @@ namespace Saobracaj.Sifarnici
 
 
         }
-
-
-         public void UpdStanice(int ID, string Opis, int Granicna, string Kod, string Drzava,  double Longitude, double Latitude)
+        //Ubacuje u dve tabele - duplirano
+       
+        public void UpdStanice(int ID, string Opis, int Granicna, string Kod, string Drzava,  double Longitude, double Latitude)
          {
              var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
              SqlConnection myConnection = new SqlConnection(s_connection);
@@ -203,7 +203,6 @@ namespace Saobracaj.Sifarnici
 
          }
 
-
         public void DeleteStanice(int ID)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -253,6 +252,10 @@ namespace Saobracaj.Sifarnici
                 }
             }
         }
+
+       
+    
+    
     }
 }
 

@@ -445,7 +445,7 @@ namespace Saobracaj.Uvoz
             cboNazivRobe.ValueMember = "ID";
 
 
-            var nhm = "Select ID,(Naziv + '-' + Rtrim(Broj)) as Naziv from NHM order by Broj";
+            var nhm = "Select ID,(Rtrim(Naziv) + '-' + Rtrim(Broj)) as Naziv from NHM order by NHM.Naziv";
             var nhmSAD = new SqlDataAdapter(nhm, conn);
             var nhmSDS = new DataSet();
             nhmSAD.Fill(nhmSDS);
@@ -1490,6 +1490,19 @@ namespace Saobracaj.Uvoz
         private void label49_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+           
+            var nhm = "Select ID,Rtrim(Broj) + '-' + (Rtrim(Naziv)) as Naziv from NHM order by NHM.Broj";
+            var nhmSAD = new SqlDataAdapter(nhm, conn);
+            var nhmSDS = new DataSet();
+            nhmSAD.Fill(nhmSDS);
+            cboNHM.DataSource = nhmSDS.Tables[0];
+            cboNHM.DisplayMember = "Naziv";
+            cboNHM.ValueMember = "ID";
         }
     }
 }

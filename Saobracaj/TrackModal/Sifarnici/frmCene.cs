@@ -38,7 +38,8 @@ namespace Testiranje.Sifarnici
 
          private void RefreshDataGrid()
          {
-             var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik], VrstePostupakaUvoz.Naziv, p2.PaNaziv as Uvoznik FROM [dbo].[Cene] " +
+             var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik], VrstePostupakaUvoz.Naziv, p2.PaNaziv as UvoznikNazivCenovnika " +
+      " , Razred      , OznakaManipulacije      , OrgJed FROM [dbo].[Cene] " +
              " inner join TipCenovnika on TipCenovnika.ID = Cene.TipCenovnika " +
              " inner join Partnerji on Partnerji.PaSifra = Cene.Komitent " +
              " inner join Partnerji p2 on p2.PaSifra = Cene.Uvoznik " +
@@ -113,7 +114,8 @@ namespace Testiranje.Sifarnici
 
         private void RefreshDataGridPoCenovniku()
         {
-            var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik] , VrstePostupakaUvoz.Naziv, p2.PaNaziv as Uvoznik FROM [dbo].[Cene] " +
+            var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik] , VrstePostupakaUvoz.Naziv, p2.PaNaziv as UvoznikNazivCenovnika " +
+      " , Razred      , OznakaManipulacije      , OrgJed FROM [dbo].[Cene] " +
             " inner join TipCenovnika on TipCenovnika.ID = Cene.TipCenovnika " +
             " inner join Partnerji on Partnerji.PaSifra = Cene.Komitent " +
             " inner join Partnerji p2 on p2.PaSifra = Cene.Uvoznik " +
@@ -190,7 +192,8 @@ namespace Testiranje.Sifarnici
 
         private void RefreshDataGridPoPartneru()
         {
-            var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik], VrstePostupakaUvoz.Naziv, p2.PaNaziv as Uvoznik FROM [dbo].[Cene] " +
+            var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik], VrstePostupakaUvoz.Naziv, p2.PaNaziv as Uvoznik, NazivCenovnika " +
+      " , Razred      , OznakaManipulacije      , OrgJed FROM [dbo].[Cene] " +
             " inner join TipCenovnika on TipCenovnika.ID = Cene.TipCenovnika " +
             " inner join Partnerji on Partnerji.PaSifra = Cene.Komitent " +
              " inner join Partnerji p2 on p2.PaSifra = Cene.Uvoznik " +
@@ -344,14 +347,14 @@ namespace Testiranje.Sifarnici
              if (status == true)
              {
                  InsertCene ins = new InsertCene();
-                 ins.InsCene(Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToDouble(txtCena2.Text), Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboPostupakSaRobom.SelectedValue));
+                 ins.InsCene(Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToDouble(txtCena2.Text), Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboPostupakSaRobom.SelectedValue), txtNazivCenovnika.Text, cboRazred.Text, txtOznakaManipulacije.Text, Convert.ToInt32(cboOrgJed.SelectedValue));
                  status = false;
              }
              else
              {
                  //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                  InsertCene upd = new InsertCene();
-                 upd.UpdCene(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToDouble(txtCena2.Text),  Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboPostupakSaRobom.SelectedValue));
+                 upd.UpdCene(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToDouble(txtCena2.Text),  Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboPostupakSaRobom.SelectedValue), txtNazivCenovnika.Text, cboRazred.Text, txtOznakaManipulacije.Text, Convert.ToInt32(cboOrgJed.SelectedValue));
              }
              RefreshDataGrid();
          }
@@ -380,9 +383,9 @@ namespace Testiranje.Sifarnici
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT ID , TipCenovnika , Komitent, Cena, VrstaManipulacije, Cena2 from Cene where ID=" + txtSifra.Text, con);
+            SqlCommand cmd = new SqlCommand("SELECT ID , TipCenovnika , Komitent, Cena, VrstaManipulacije, Cena2, Uvoznik,PostupakSaRobom,NazivCenovnika ,Razred ,OznakaManipulacije ,OrgJed from Cene where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
-
+    
             while (dr.Read())
             {
                 cboTipCenovnika.SelectedValue = Convert.ToInt32(dr["TipCenovnika"].ToString());
@@ -390,6 +393,11 @@ namespace Testiranje.Sifarnici
                 cboVrstaManipulacije.SelectedValue = Convert.ToInt32(dr["VrstaManipulacije"].ToString());
                 txtCena.Text = Convert.ToDecimal(dr["Cena"].ToString()).ToString();
                 txtCena2.Text = Convert.ToDecimal(dr["Cena2"].ToString()).ToString();
+               cboUvoznik.SelectedValue = Convert.ToInt32(dr["Uvoznik"].ToString());
+                txtNazivCenovnika.Text = dr["NazivCenovnika"].ToString();
+                    cboRazred.Text = dr["Razred"].ToString();
+                txtOznakaManipulacije.Text = dr["OznakaManipulacije"].ToString();
+                cboOrgJed.SelectedValue = Convert.ToInt32(dr["OrgJed"].ToString());
             }
 
             con.Close();
@@ -491,6 +499,20 @@ namespace Testiranje.Sifarnici
             cboUvoznik.DataSource = ds6.Tables[0];
             cboUvoznik.DisplayMember = "PaNaziv";
             cboUvoznik.ValueMember = "PaSifra";
+
+            var select2 = " SELECT ID, Naziv from OrganizacioneJedinice order by ID";
+            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection2 = new SqlConnection(s_connection2);
+            var c2 = new SqlConnection(s_connection2);
+            var dataAdapter2 = new SqlDataAdapter(select2, c2);
+
+            var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
+            var ds2 = new DataSet();
+            dataAdapter2.Fill(ds2);
+            cboOrgJed.DataSource = ds2.Tables[0];
+            cboOrgJed.DisplayMember = "Naziv";
+            cboOrgJed.ValueMember = "ID";
+
 
 
 
@@ -641,6 +663,95 @@ namespace Testiranje.Sifarnici
         private void button3_Click(object sender, EventArgs e)
         {
             RefreshDataGridPoPartneruUvozniku();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            Saobracaj.TrackModal.Sifarnici.frmKopiranjeCenovnikaPoTipu kc = new Saobracaj.TrackModal.Sifarnici.frmKopiranjeCenovnikaPoTipu();
+            kc.Show();
+        }
+
+        private void RefreshDataGridPoRazredu()
+        {
+            var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik], VrstePostupakaUvoz.Naziv, p2.PaNaziv as Uvoznik, NazivCenovnika " +
+      " , Razred      , OznakaManipulacije      , OrgJed FROM [dbo].[Cene] " +
+               " inner join TipCenovnika on TipCenovnika.ID = Cene.TipCenovnika " +
+               " inner join Partnerji on Partnerji.PaSifra = Cene.Komitent " +
+                " inner join Partnerji p2 on p2.PaSifra = Cene.Uvoznik " +
+                " inner join VrstePostupakaUvoz  on VrstePostupakaUvoz.ID = Cene.PostupakSaRobom " +
+               " inner join VrstaManipulacije on VrstaManipulacije.Id = Cene.VrstaManipulacije where Cene.Uvoznik = " + Convert.ToInt32(cboUvoznik.SelectedValue) + " and Cene.Komitent = " + Convert.ToInt32(cboKomitent.SelectedValue) +
+               "order by Cene.ID desc";
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 40;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Tip Cenovnika";
+            dataGridView1.Columns[1].Width = 130;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Komitent";
+            dataGridView1.Columns[2].Width = 250;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Cena JM/EUR";
+            dataGridView1.Columns[3].Width = 80;
+
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Cena JM2/EUR";
+            dataGridView1.Columns[4].Width = 80;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Vrsta manipulacije";
+            dataGridView1.Columns[5].Width = 300;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Datum";
+            dataGridView1.Columns[6].Width = 80;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Korisnik";
+            dataGridView1.Columns[7].Width = 80;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Postupak sa robom";
+            dataGridView1.Columns[8].Width = 100;
+
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Uvoznik";
+            dataGridView1.Columns[9].Width = 100;
+
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            RefreshDataGridPoRazredu();
         }
     }
     }

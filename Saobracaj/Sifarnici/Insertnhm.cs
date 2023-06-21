@@ -12,7 +12,7 @@ namespace Saobracaj.Sifarnici
 {
     class Insertnhm
     {
-        public void InsNHM(string Broj, string Naziv, int RID)
+        public void InsNHM(string Broj, string Naziv, int RID, int ADRID, int Uvozni)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -39,10 +39,24 @@ namespace Saobracaj.Sifarnici
             SqlParameter parameter3 = new SqlParameter();
             parameter3.ParameterName = "@RID";
             parameter3.SqlDbType = SqlDbType.Int;
-        
             parameter3.Direction = ParameterDirection.Input;
             parameter3.Value = RID;
             myCommand.Parameters.Add(parameter3);
+
+
+            SqlParameter parameter4 = new SqlParameter();
+            parameter4.ParameterName = "@ADRID";
+            parameter4.SqlDbType = SqlDbType.Int;
+            parameter4.Direction = ParameterDirection.Input;
+            parameter4.Value = ADRID;
+            myCommand.Parameters.Add(parameter4);
+
+            SqlParameter parameter5 = new SqlParameter();
+            parameter5.ParameterName = "@Uvozni";
+            parameter5.SqlDbType = SqlDbType.Int;
+            parameter5.Direction = ParameterDirection.Input;
+            parameter5.Value = Uvozni;
+            myCommand.Parameters.Add(parameter5);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -82,7 +96,7 @@ namespace Saobracaj.Sifarnici
         }
 
 
-        public void UpdStanice(int ID, string Broj, string Naziv, int RID)
+        public void UpdNHM(int ID, string Broj, string Naziv, int RID, int ADRID, int Uvozni)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -119,6 +133,20 @@ namespace Saobracaj.Sifarnici
             parameter4.Direction = ParameterDirection.Input;
             parameter4.Value = RID;
             myCommand.Parameters.Add(parameter4);
+
+            SqlParameter parameter5 = new SqlParameter();
+            parameter5.ParameterName = "@ADRID";
+            parameter5.SqlDbType = SqlDbType.Int;
+            parameter5.Direction = ParameterDirection.Input;
+            parameter5.Value = ADRID;
+            myCommand.Parameters.Add(parameter5);
+
+            SqlParameter parameter6 = new SqlParameter();
+            parameter6.ParameterName = "@Uvozni";
+            parameter6.SqlDbType = SqlDbType.Int;
+            parameter6.Direction = ParameterDirection.Input;
+            parameter6.Value = Uvozni;
+            myCommand.Parameters.Add(parameter6);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -158,7 +186,7 @@ namespace Saobracaj.Sifarnici
         }
 
 
-        public void DeleteStanice(int ID)
+        public void DeleteNHM(int ID)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

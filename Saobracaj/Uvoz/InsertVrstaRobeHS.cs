@@ -13,7 +13,7 @@ namespace Saobracaj.Uvoz
     class InsertVrstaRobeHS
     {
         string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
-        public void InsVrstaRobeHS(string Naziv, string HSKod)
+        public void InsVrstaRobeHS(string Naziv, string HSKod, int ADRID, int Izvozni)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -35,6 +35,20 @@ namespace Saobracaj.Uvoz
             hsKod.Direction = ParameterDirection.Input;
             hsKod.Value = HSKod;
             cmd.Parameters.Add(hsKod);
+
+            SqlParameter adrid = new SqlParameter();
+            adrid.ParameterName = "@ADRID";
+            adrid.SqlDbType = SqlDbType.Int;
+            adrid.Direction = ParameterDirection.Input;
+            adrid.Value = ADRID;
+            cmd.Parameters.Add(adrid);
+
+            SqlParameter izvozni = new SqlParameter();
+            izvozni.ParameterName = "@Izvozni";
+            izvozni.SqlDbType = SqlDbType.Int;
+            izvozni.Direction = ParameterDirection.Input;
+            izvozni.Value = Izvozni;
+            cmd.Parameters.Add(izvozni);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -70,7 +84,7 @@ namespace Saobracaj.Uvoz
                 }
             }
         }
-        public void UpdVrstaRobeHS(int ID, string Naziv, string HSKod)
+        public void UpdVrstaRobeHS(int ID, string Naziv, string HSKod, int ADRID, int Izvozni)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -99,6 +113,20 @@ namespace Saobracaj.Uvoz
             hsKod.Direction = ParameterDirection.Input;
             hsKod.Value = HSKod;
             cmd.Parameters.Add(hsKod);
+
+            SqlParameter adrid = new SqlParameter();
+            adrid.ParameterName = "@ADRID";
+            adrid.SqlDbType = SqlDbType.Int;
+            adrid.Direction = ParameterDirection.Input;
+            adrid.Value = ADRID;
+            cmd.Parameters.Add(adrid);
+
+            SqlParameter izvozni = new SqlParameter();
+            izvozni.ParameterName = "@Izvozni";
+            izvozni.SqlDbType = SqlDbType.Int;
+            izvozni.Direction = ParameterDirection.Input;
+            izvozni.Value = Izvozni;
+            cmd.Parameters.Add(izvozni);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

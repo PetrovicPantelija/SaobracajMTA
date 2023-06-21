@@ -23,6 +23,19 @@ namespace Saobracaj.Sifarnici
 
         private void frmDelavci_Load(object sender, EventArgs e)
         {
+            var select2 = " Select Distinct DmSifra, DmNaziv  From DelovnaMesta";
+            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection2 = new SqlConnection(s_connection2);
+            var c2 = new SqlConnection(s_connection2);
+            var dataAdapter2 = new SqlDataAdapter(select2, c2);
+
+            var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
+            var ds2 = new DataSet();
+            dataAdapter2.Fill(ds2);
+            txtDeSifDelMes.DataSource = ds2.Tables[0];
+            txtDeSifDelMes.DisplayMember = "DmNaziv";
+            txtDeSifDelMes.ValueMember = "DmSifra";
+
             RefreshDataGrid();
         }
 
@@ -197,14 +210,94 @@ namespace Saobracaj.Sifarnici
                // txtDeSifra.Text,  txtDePriimek.Text,  txtDeIme.Text, txtDeTelefon1.Text,  txtDeTelefon2.Text ,  txtDeEMail.Text , txtDeUlHisStBivS.Text , txtDeKrajBivS.Text , txtDeSifDelMes.Text ,  txtDeSifStat.Text ,  PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja)
                 //  txtNaziv.Text,  txtUlica.Text,  txtMesto.Text,  txtOblast.Text, txtPosta.Text ,txtDrzava.Text, txtTelefon.Text, txtTR.Text ,  txtNapomena.Text,txtMaticniBroj.Text,  txtEmail.Text,  txtPIB.Text
                 InsertDelavciMTA ins = new InsertDelavciMTA();
-                ins.InsDelavciMTA( txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.Text), txtDeSifStat.Text,  PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja);
+                ins.InsDelavciMTA( txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.SelectedValue), txtDeSifStat.Text,  PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja);
             }
             else
             {
                 InsertDelavciMTA upd = new InsertDelavciMTA();
-                upd.UpdDelavciMTA(Convert.ToInt32(txtDeSifra.Text), txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.Text), txtDeSifStat.Text,  PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja);
+                upd.UpdDelavciMTA(Convert.ToInt32(txtDeSifra.Text), txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.SelectedValue), txtDeSifStat.Text,  PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja);
             }
             RefreshDataGrid();
+        }
+
+        private void VratiPodatke(string ID)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT     Delavci.DeSifra, RTRIM(Delavci.DePriimek) as Prezime, RTRIM(Delavci.DeIme) AS Ime, Delavci.DeTelefon1, Delavci.DeTelefon2, Delavci.DeEMail, " +
+                      "   CASE WHEN Delavci.Masinovodja > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Masinovodja , " +
+                       "   CASE WHEN Delavci.Pregledac  > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Pomocnik , " +
+                         "   CASE WHEN Delavci.Vozovodja   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Vozovodja  , " +
+                          "   CASE WHEN Delavci.PregledacKola   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PregledacKola  , " +
+                          "   CASE WHEN Delavci.Manevrista   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Manevrista  , " +
+                     "   DelovnaMesta.DmSifra, DelovnaMesta.DmNaziv, Delavci.DeUlHisStBivS, Delavci.DeKrajBivS, Delavci.DeSifStat " +
+                     " FROM         Delavci INNER JOIN " +
+                     "  DelovnaMesta ON Delavci.DeSifDelMes = DelovnaMesta.DmSifra where DeSifStat <> 'P' ANd    Delavci.DeSifra=" + ID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                // Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene
+
+                txtDePriimek.Text = dr["Prezime"].ToString().ToString();
+                txtDeIme.Text = dr["Ime"].ToString().ToString();
+                txtDeTelefon1.Text = dr["DeTelefon1"].ToString().ToString();
+                txtDeTelefon2.Text = dr["DeTelefon2"].ToString().ToString();
+                txtDeEMail.Text = dr["DeEMail"].ToString().ToString();
+                txtDeUlHisStBivS.Text = dr["DeUlHisStBivS"].ToString().ToString();
+                txtDeKrajBivS.Text = dr["DeKrajBivS"].ToString().ToString();
+                txtDeSifDelMes.SelectedValue = Convert.ToInt32(dr["DmSifra"].ToString().ToString());
+                txtDeSifStat.Text = dr["DeSifStat"].ToString().ToString();
+
+                if (dr["Manevrista"].ToString().ToString() == "1")
+                {
+                    chkManevrista.Checked = true;
+                }
+                else
+                {
+                    chkManevrista.Checked = false;
+                }
+                if (dr["Masinovodja"].ToString().ToString() == "1")
+                {
+                    chkMasinovodja.Checked = true;
+                }
+                else
+                {
+                    chkMasinovodja.Checked = false;
+                }
+                if (dr["Pomocnik"].ToString().ToString() == "1")
+                {
+                    chkPomocnik.Checked = true;
+                }
+                else
+                {
+                    chkPomocnik.Checked = false;
+
+                }
+                if (dr["Vozovodja"].ToString().ToString() == "1")
+                {
+                    chkVozovodja.Checked = true;
+                }
+                else
+                {
+                    chkVozovodja.Checked = false;
+                }
+
+                if (dr["PregledacKola"].ToString().ToString() == "1")
+                {
+                    chkPregledacKola.Checked = true;
+                }
+                else
+                {
+                    chkPregledacKola.Checked = false;
+                }
+
+            }
+
+            con.Close();
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -216,40 +309,10 @@ namespace Saobracaj.Sifarnici
                     if (row.Selected)
                     {
                         txtDeSifra.Text = row.Cells[0].Value.ToString();
-                        txtDePriimek.Text = row.Cells[1].Value.ToString();
-                        txtDeIme.Text = row.Cells[2].Value.ToString();
-                        txtDeTelefon1.Text = row.Cells[3].Value.ToString();
-                        txtDeTelefon2.Text = row.Cells[4].Value.ToString();
-                        txtDeEMail.Text = row.Cells[5].Value.ToString();
-                        txtDeUlHisStBivS.Text = row.Cells[6].Value.ToString();
-                        txtDeKrajBivS.Text = row.Cells[7].Value.ToString();
-                        txtDeSifDelMes.Text = row.Cells[8].Value.ToString();
-                        txtDeSifStat.Text = row.Cells[9].Value.ToString();
-
-                        if (row.Cells[10].Value.ToString() == "1")
-                        {
-                            chkManevrista.Checked = true;
-                        }
-                        else
-                        {
-                            chkManevrista.Checked = false;
-                        }
-                        if (row.Cells[11].Value.ToString() == "1")
-                        {
-                            chkMasinovodja.Checked = true;
-                        }
-                        else
-                        {
-                            chkMasinovodja.Checked = false;
-                        }
-                        if (row.Cells[12].Value.ToString() == "1")
-                        {
-                            chkPomocnik.Checked = true;
-                        }
-                        else
-                        {
-                            chkPomocnik.Checked = false;
-                        }
+                        VratiPodatke(txtDeSifra.Text);
+                        
+                    
+                        /*
                         if (row.Cells[13].Value.ToString() == "1")
                         {
                             chkPregledacKola.Checked = true;
@@ -266,7 +329,7 @@ namespace Saobracaj.Sifarnici
                         {
                             chkVozovodja.Checked = false;
                         }
-                       
+                       */
                     }
                 }
             }
@@ -284,6 +347,13 @@ namespace Saobracaj.Sifarnici
         private void tsNazad_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tsDelete_Click(object sender, EventArgs e)
+        {
+            InsertDelavciMTA del = new InsertDelavciMTA();
+            del.DelDelavciMTA(Convert.ToInt32(txtDeSifra.Text));
+            RefreshDataGrid();
         }
     }
 }

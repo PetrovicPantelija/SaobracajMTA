@@ -858,6 +858,12 @@
     <Compile Include="Dokumenta\frmPregledAutoPrevozniList.designer.cs">
       <DependentUpon>frmPregledAutoPrevozniList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dokumenta\frmPregledLokomotivaPrimopredaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmPregledLokomotivaPrimopredaja.Designer.cs">
+      <DependentUpon>frmPregledLokomotivaPrimopredaja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\frmPregledNaloziZaPrevoz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1217,6 +1223,12 @@
     </Compile>
     <Compile Include="Dokumenta\frmTraseRadniNalog.Designer.cs">
       <DependentUpon>frmTraseRadniNalog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumenta\frmVucaPregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmVucaPregled.Designer.cs">
+      <DependentUpon>frmVucaPregled.cs</DependentUpon>
     </Compile>
     <Compile Include="Dokumenta\frmVucaStatusi.cs">
       <SubType>Form</SubType>
@@ -2541,6 +2553,12 @@
     <Compile Include="TrackModal\Sifarnici\frmKomitentUgovori.Designer.cs">
       <DependentUpon>frmKomitentUgovori.cs</DependentUpon>
     </Compile>
+    <Compile Include="TrackModal\Sifarnici\frmKopiranjeCenovnikaPoTipu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TrackModal\Sifarnici\frmKopiranjeCenovnikaPoTipu.Designer.cs">
+      <DependentUpon>frmKopiranjeCenovnikaPoTipu.cs</DependentUpon>
+    </Compile>
     <Compile Include="TrackModal\Sifarnici\frmKorisnici.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3220,6 +3238,9 @@
     <EmbeddedResource Include="Dokumenta\frmPregledAutoPrevozniList.resx">
       <DependentUpon>frmPregledAutoPrevozniList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmPregledLokomotivaPrimopredaja.resx">
+      <DependentUpon>frmPregledLokomotivaPrimopredaja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmPregledNaloziZaPrevoz.resx">
       <DependentUpon>frmPregledNaloziZaPrevoz.cs</DependentUpon>
     </EmbeddedResource>
@@ -3403,6 +3424,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmTraseRadniNalog.resx">
       <DependentUpon>frmTraseRadniNalog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmVucaPregled.resx">
+      <DependentUpon>frmVucaPregled.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmVucaStatusi.resx">
       <DependentUpon>frmVucaStatusi.cs</DependentUpon>
@@ -3972,6 +3996,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TrackModal\Sifarnici\frmKomitentUgovori.resx">
       <DependentUpon>frmKomitentUgovori.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TrackModal\Sifarnici\frmKopiranjeCenovnikaPoTipu.resx">
+      <DependentUpon>frmKopiranjeCenovnikaPoTipu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TrackModal\Sifarnici\frmKorisnici.resx">
       <DependentUpon>frmKorisnici.cs</DependentUpon>

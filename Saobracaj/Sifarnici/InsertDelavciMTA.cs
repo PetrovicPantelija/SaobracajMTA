@@ -145,7 +145,15 @@ namespace Saobracaj.Sifarnici
             parameter13.Value = PomMasinovodja;
             myCommand.Parameters.Add(parameter13);
 
-           
+            SqlParameter parameter14 = new SqlParameter();
+            parameter14.ParameterName = "@DeSifDelMes";
+            parameter14.SqlDbType = SqlDbType.Int;
+            //   parameter13.Size = 10;
+            parameter14.Direction = ParameterDirection.Input;
+            parameter14.Value = DeSifDelMes;
+            myCommand.Parameters.Add(parameter14);
+
+
 
 
             myConnection.Open();
@@ -304,6 +312,14 @@ namespace Saobracaj.Sifarnici
             parameter13.Direction = ParameterDirection.Input;
             parameter13.Value = PomMasinovodja;
             myCommand.Parameters.Add(parameter13);
+
+            SqlParameter parameter14 = new SqlParameter();
+            parameter14.ParameterName = "@DeSifDelMes";
+            parameter14.SqlDbType = SqlDbType.Int;
+            //   parameter13.Size = 10;
+            parameter14.Direction = ParameterDirection.Input;
+            parameter14.Value = DeSifDelMes;
+            myCommand.Parameters.Add(parameter14);
 
 
             myConnection.Open();

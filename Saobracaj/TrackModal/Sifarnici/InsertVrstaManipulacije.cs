@@ -14,9 +14,11 @@ namespace Testiranje.Sifarnici
     class InsertVrstaManipulacije
     {
 
-          public void InsVrstaManipulacije(string Naziv ,DateTime  Datum , string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed)
+          public void InsVrstaManipulacije(string Naziv ,DateTime  Datum , string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena)
         {
-
+           // @Oznaka nvarchar(50), 
+  // @Relacija nvarchar(100), 
+  // @Cena numeric(18,2)
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -84,6 +86,31 @@ namespace Testiranje.Sifarnici
             parameter10.Value = OrgJed;
             myCommand.Parameters.Add(parameter10);
 
+            SqlParameter parameter11 = new SqlParameter();
+            parameter11.ParameterName = "@Oznaka";
+            parameter11.SqlDbType = SqlDbType.Int;
+            parameter11.Direction = ParameterDirection.Input;
+            parameter11.Value = Oznaka;
+            myCommand.Parameters.Add(parameter11);
+
+            SqlParameter parameter12 = new SqlParameter();
+            parameter12.ParameterName = "@Relacija";
+            parameter12.SqlDbType = SqlDbType.Int;
+            parameter12.Direction = ParameterDirection.Input;
+            parameter12.Value = Relacija;
+            myCommand.Parameters.Add(parameter12);
+
+            SqlParameter parameter13 = new SqlParameter();
+            parameter13.ParameterName = "@Cena";
+            parameter13.SqlDbType = SqlDbType.Decimal;
+            parameter13.Direction = ParameterDirection.Input;
+            parameter13.Value = Cena;
+            myCommand.Parameters.Add(parameter13);
+
+            // @Oznaka nvarchar(50), 
+            // @Relacija nvarchar(100), 
+            // @Cena numeric(18,2)
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -121,7 +148,7 @@ namespace Testiranje.Sifarnici
             }
         }
 
-          public void UpdVrstaManipulacije(int ID, string Naziv ,DateTime  Datum , string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed)
+          public void UpdVrstaManipulacije(int ID, string Naziv ,DateTime  Datum , string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena)
             {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -197,6 +224,27 @@ namespace Testiranje.Sifarnici
             parameter10.Direction = ParameterDirection.Input;
             parameter10.Value = OrgJed;
             myCommand.Parameters.Add(parameter10);
+
+            SqlParameter parameter11 = new SqlParameter();
+            parameter11.ParameterName = "@Oznaka";
+            parameter11.SqlDbType = SqlDbType.Int;
+            parameter11.Direction = ParameterDirection.Input;
+            parameter11.Value = Oznaka;
+            myCommand.Parameters.Add(parameter11);
+
+            SqlParameter parameter12 = new SqlParameter();
+            parameter12.ParameterName = "@Relacija";
+            parameter12.SqlDbType = SqlDbType.Int;
+            parameter12.Direction = ParameterDirection.Input;
+            parameter12.Value = Relacija;
+            myCommand.Parameters.Add(parameter12);
+
+            SqlParameter parameter13 = new SqlParameter();
+            parameter13.ParameterName = "@Cena";
+            parameter13.SqlDbType = SqlDbType.Decimal;
+            parameter13.Direction = ParameterDirection.Input;
+            parameter13.Value = Cena;
+            myCommand.Parameters.Add(parameter13);
 
 
             myConnection.Open();

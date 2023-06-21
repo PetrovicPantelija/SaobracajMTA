@@ -361,6 +361,8 @@ namespace Saobracaj {
             
             private global::System.Data.DataColumn columnZemljaDo;
             
+            private global::System.Data.DataColumn columnNapomena;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public SelectTeretnicaDataTable() {
@@ -724,6 +726,14 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn NapomenaColumn {
+                get {
+                    return this.columnNapomena;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -800,7 +810,8 @@ namespace Saobracaj {
                         string Izvozna, 
                         string Dokument2, 
                         string ZemljaOd, 
-                        string ZemljaDo) {
+                        string ZemljaDo, 
+                        string Napomena) {
                 SelectTeretnicaRow rowSelectTeretnicaRow = ((SelectTeretnicaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -843,7 +854,8 @@ namespace Saobracaj {
                         Izvozna,
                         Dokument2,
                         ZemljaOd,
-                        ZemljaDo};
+                        ZemljaDo,
+                        Napomena};
                 rowSelectTeretnicaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSelectTeretnicaRow);
                 return rowSelectTeretnicaRow;
@@ -907,6 +919,7 @@ namespace Saobracaj {
                 this.columnDokument2 = base.Columns["Dokument2"];
                 this.columnZemljaOd = base.Columns["ZemljaOd"];
                 this.columnZemljaDo = base.Columns["ZemljaDo"];
+                this.columnNapomena = base.Columns["Napomena"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -994,6 +1007,8 @@ namespace Saobracaj {
                 base.Columns.Add(this.columnZemljaOd);
                 this.columnZemljaDo = new global::System.Data.DataColumn("ZemljaDo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnZemljaDo);
+                this.columnNapomena = new global::System.Data.DataColumn("Napomena", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNapomena);
                 this.columnBrojTeretnice.MaxLength = 50;
                 this.columnBrojLista.MaxLength = 20;
                 this.columnStanicaOd1.AllowDBNull = false;
@@ -1026,6 +1041,7 @@ namespace Saobracaj {
                 this.columnDokument2.MaxLength = 20;
                 this.columnZemljaOd.MaxLength = 3;
                 this.columnZemljaDo.MaxLength = 3;
+                this.columnNapomena.MaxLength = 300;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1779,6 +1795,22 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Napomena {
+                get {
+                    try {
+                        return ((string)(this[this.tableSelectTeretnica.NapomenaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Napomena\' in table \'SelectTeretnica\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSelectTeretnica.NapomenaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsIDNull() {
                 return this.IsNull(this.tableSelectTeretnica.IDColumn);
             }
@@ -2160,6 +2192,18 @@ namespace Saobracaj {
             public void SetZemljaDoNull() {
                 this[this.tableSelectTeretnica.ZemljaDoColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsNapomenaNull() {
+                return this.IsNull(this.tableSelectTeretnica.NapomenaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetNapomenaNull() {
+                this[this.tableSelectTeretnica.NapomenaColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -2362,6 +2406,7 @@ namespace Saobracaj.TESTIRANJEDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Dokument2", "Dokument2");
             tableMapping.ColumnMappings.Add("ZemljaOd", "ZemljaOd");
             tableMapping.ColumnMappings.Add("ZemljaDo", "ZemljaDo");
+            tableMapping.ColumnMappings.Add("Napomena", "Napomena");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -2369,7 +2414,7 @@ namespace Saobracaj.TESTIRANJEDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Saobracaj.Properties.Settings.Default.TESTIRANJEConnectionString;
+            this._connection.ConnectionString = global::Saobracaj.Properties.Settings.Default.NedraConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

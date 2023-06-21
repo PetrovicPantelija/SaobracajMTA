@@ -119,7 +119,7 @@ namespace Saobracaj.Sifarnici
         }
         private void RefreshDataGrid()
         {
-            var select = " Select ID,Broj, Naziv, CASE WHEN RID > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as RID from NHM";
+            var select = " Select ID,Broj, Naziv, CASE WHEN RID > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as RID, ADRID, Uvozni from NHM";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -159,10 +159,20 @@ namespace Saobracaj.Sifarnici
             dataGridView1.Columns[3].HeaderText = "RID";
             dataGridView1.Columns[3].Width = 100;
 
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "ADRID";
+            dataGridView1.Columns[4].Width = 100;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Uvozni";
+            dataGridView1.Columns[5].Width = 100;
+
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            int tmpUvozni = 0;
+            
             if (chkRid.Checked == true)
             {
                 chekiran = 1;
@@ -171,17 +181,28 @@ namespace Saobracaj.Sifarnici
             {
                 chekiran = 0;
             }
+
+
+            if (chkUvozni.Checked == true)
+            {
+                tmpUvozni = 1;
+            }
+            else
+            {
+                tmpUvozni = 0;
+            }
+
             if (status == true)
             {
                 Insertnhm ins = new Insertnhm();
-                ins.InsNHM(txtBroj.Text,  txtNaziv.Text, chekiran);
+                ins.InsNHM(txtBroj.Text,  txtNaziv.Text, chekiran, Convert.ToInt32(txtADR.Text), tmpUvozni);
                 RefreshDataGrid();
                 status = false;
             }
             else
             {
                 Insertnhm upd = new Insertnhm();
-                upd.UpdStanice(Convert.ToInt32(txtSifra.Text), txtBroj.Text, txtNaziv.Text, chekiran);
+                upd.UpdNHM(Convert.ToInt32(txtSifra.Text), txtBroj.Text, txtNaziv.Text, chekiran, Convert.ToInt32(txtADR.Text), tmpUvozni);
                 status = false;
                 txtSifra.Enabled = false;
                 RefreshDataGrid();
@@ -201,7 +222,7 @@ namespace Saobracaj.Sifarnici
         private void tsDelete_Click(object sender, EventArgs e)
         {
             Insertnhm del = new Insertnhm();
-            del.DeleteStanice(Convert.ToInt32(txtSifra.Text));
+            del.DeleteNHM(Convert.ToInt32(txtSifra.Text));
             status = false;
             txtSifra.Enabled = false;
             RefreshDataGrid();
@@ -220,6 +241,15 @@ namespace Saobracaj.Sifarnici
                         txtBroj.Text = row.Cells[1].Value.ToString();
                         txtNaziv.Text = row.Cells[2].Value.ToString();
                         chkRid.Checked = Convert.ToBoolean(row.Cells[3].Value.ToString());
+                        txtADR.SelectedValue= Convert.ToBoolean(row.Cells[4].Value.ToString());
+                        if (row.Cells[5].Value.ToString() == "1")
+                        {
+                            chkUvozni.Checked = true;
+                        }
+                        else
+                        {
+                            chkUvozni.Checked = false;
+                        }
                     }
                 }
             }
@@ -232,6 +262,16 @@ namespace Saobracaj.Sifarnici
         private void frmNHM_Load(object sender, EventArgs e)
         {
             RefreshDataGrid();
+            var conn = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+           
+            
+            var adr = "Select ID, (Naziv + ' - ' + UNKod) as Naziv From VrstaRobeADR order by (UNKod + ' ' + Naziv)";
+            var adrSAD = new SqlDataAdapter(adr, conn);
+            var adrSDS = new DataSet();
+            adrSAD.Fill(adrSDS);
+            txtADR.DataSource = adrSDS.Tables[0];
+            txtADR.DisplayMember = "Naziv";
+            txtADR.ValueMember = "ID";
         }
         }
     }

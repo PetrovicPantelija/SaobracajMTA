@@ -131,7 +131,8 @@ namespace Saobracaj.Dokumenta
 
         private void button7_Click(object sender, EventArgs e)
         {
-
+            frmPregledLokomotivaPrimopredaja plp = new frmPregledLokomotivaPrimopredaja();
+            plp.Show();
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -185,6 +186,12 @@ namespace Saobracaj.Dokumenta
         {
             frmKomercijalniPregled tp = new frmKomercijalniPregled(Convert.ToInt32(txt_Sifra.Text));
             tp.Show();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            frmVucaPregled vucp = new frmVucaPregled();
+            vucp.Show();
         }
     }
 }

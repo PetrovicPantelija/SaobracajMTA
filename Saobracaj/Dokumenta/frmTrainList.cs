@@ -366,6 +366,24 @@ namespace Saobracaj.Dokumenta
             }
         }
 
+        int ProveraPostojiTrainList()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
+            string query = "select Count(*) as Broj from TrainList where KomOznaka = " + "'" + txt_trainNo.Text + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            int i = 0;
+            while (dr.Read())
+            {
+                i = Convert.ToInt32(dr["Broj"].ToString());
+            }
+
+            conn.Close();
+            return i;
+        }
         private void btnCancel_Click(object sender, EventArgs e)
         {
             groupBoxAddEdit.Visible = false;
@@ -377,6 +395,13 @@ namespace Saobracaj.Dokumenta
 
         private void btnAddUpdate_Click(object sender, EventArgs e)
         {
+            //Provera da li postoji trainlist
+            int i = ProveraPostojiTrainList();
+            if (i == 1)
+            {
+                MessageBox.Show("Za taj posao već postoji TrainList");
+                return;
+            }
             if (btnAddUpdate.Text == "Add")
             {
                 TrainListModel trainList = new TrainListModel()
@@ -466,6 +491,72 @@ namespace Saobracaj.Dokumenta
 
         }
 
+        private void RefreshDatagridDuzinaTaraPredhodni()
+        {
+            var select = " Select * from ATrainListStavke";
+
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView3.ReadOnly = true;
+            dataGridView3.DataSource = ds.Tables[0];
+
+            dataGridView3.BorderStyle = BorderStyle.None;
+            dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView3.BackgroundColor = Color.White;
+
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (dataGridView3[1, row.Index].Value.ToString() != dataGridView3[5, row.Index].Value.ToString())
+                {
+                    dataGridView3[5, row.Index].Style.BackColor = Color.LightGreen; //doesn't work
+
+                }
+                    //row.Cells[col.Index].Style.BackColor = Color.Green; //doesn't work
+                    //col.Cells[row.Index].Style.BackColor = Color.Green; //doesn't work
+                 //   dataGridView1[col.Index, row.Index].Style.BackColor = Color.Green; //doesn't work
+              
+            }
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (dataGridView3[2, row.Index].Value.ToString() != dataGridView3[6, row.Index].Value.ToString())
+                {
+                    dataGridView3[6, row.Index].Style.BackColor = Color.LightYellow; //doesn't work
+
+                }
+            }
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (dataGridView3[3, row.Index].Value.ToString() != dataGridView3[7, row.Index].Value.ToString())
+                {
+                    dataGridView3[7, row.Index].Style.BackColor = Color.LightSteelBlue; //doesn't work
+
+                }
+            }
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (dataGridView3[4, row.Index].Value.ToString() != dataGridView3[8, row.Index].Value.ToString())
+                {
+                    dataGridView3[8, row.Index].Style.BackColor = Color.LightPink; //doesn't work
+
+                }
+            }
+
+        }
+
         private void RefreshDatagridSumarno()
         {
             var select = " SELECT OznakaKola as Oznaka, Min(RedniBroj) as RB, Min(ID) as ID, Max(TaraKola) as Tara, Min(DuzinaKola) as DuzinaKOla, Sum(Neto) as Neto, SUM(KontTara) as KontTara  FROM TrainListStavke " +
@@ -536,7 +627,8 @@ namespace Saobracaj.Dokumenta
                 sNetoKont.Text = dr["Neto"].ToString();
                 // txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
                 VratiBrojKontejnera();
-                sBruto.Text = (Convert.ToDecimal(sTaraKont.Text) + Convert.ToDecimal(sNetoKont.Text) + Convert.ToDecimal(sTaraKola.Text)).ToString();
+              //  sBruto.Text = (Convert.ToDecimal(sTaraKont.Text) + Convert.ToDecimal(sNetoKont.Text) + Convert.ToDecimal(sTaraKola.Text)).ToString();
+                sBruto.Text =  (Convert.ToDecimal(sNetoKont.Text) + Convert.ToDecimal(sTaraKola.Text)).ToString();
             }
             con.Close();
 
@@ -615,6 +707,61 @@ namespace Saobracaj.Dokumenta
             InsertTrainList del = new InsertTrainList();
             del.DelSveStavkeTrainLista(Convert.ToInt32(textBoxSearch.Text));
             dataGrid1.Refresh();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            InsertTrainList del = new InsertTrainList();
+            del.ProveriTrainListTrainLista(Convert.ToInt32(textBoxSearch.Text));
+            del.ProveriTrainListTrainLista2(Convert.ToInt32(textBoxSearch.Text));
+            RefreshDatagridDuzinaTaraPredhodni();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView3.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        InsertTrainList del = new InsertTrainList();
+                        del.PromeniVrednostiZaSvakaKola(row.Cells[0].Value.ToString(), Convert.ToInt32(textBoxSearch.Text));
+                        
+                        // txtOpis.Text = row.Cells[1].Value.ToString();
+                    }
+                }
+             
+
+            }
+            catch
+            {
+                // MessageBox.Show("Nije uspela selekcija stavki");
+            }
+
+            //  RefreshDatagridKontrolisano();
+            //  RefreshDatagridSumarno();
+            //  SelectROWDataGRID1();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            InsertTrainList del = new InsertTrainList();
+            del.ProveriTrainListTrainListaTer(Convert.ToInt32(textBoxSearch.Text));
+            del.ProveriTrainListTrainLista2Ter(Convert.ToInt32(textBoxSearch.Text));
+            RefreshDatagridDuzinaTaraPredhodni();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            InsertTrainList upd = new InsertTrainList();
+            upd.UpdateNajave(Convert.ToDouble(sNetoKont.Text), Convert.ToDouble(sDuzinaKola.Text), Convert.ToInt32(txtBrojKola.Text), txt_trainNo.Text, Convert.ToDouble(sBruto.Text));
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            frmTeretnica ter = new frmTeretnica();
+            ter.Show();
         }
     }
 }

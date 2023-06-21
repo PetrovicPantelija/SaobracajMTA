@@ -66,14 +66,20 @@ namespace Saobracaj.Uvoz
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+
+            int Izvozni = 0;            
             InsertVrstaRobeHS ins = new InsertVrstaRobeHS();
+            if (chkIzvozni.Checked == true)
+            {
+                Izvozni = 1;
+            }
             if (status == true)
             {
-                ins.InsVrstaRobeHS(txtNaziv.Text.ToString().TrimEnd(),txtHSCode.Text) ;
+                ins.InsVrstaRobeHS(txtNaziv.Text.ToString().TrimEnd(),txtHSCode.Text, Convert.ToInt32(txtADR.SelectedValue), Izvozni) ;
             }
             else
             {
-                ins.UpdVrstaRobeHS(Convert.ToInt32(txtID.Text.ToString()),txtNaziv.Text.ToString().TrimEnd(), txtHSCode.Text);
+                ins.UpdVrstaRobeHS(Convert.ToInt32(txtID.Text.ToString()),txtNaziv.Text.ToString().TrimEnd(), txtHSCode.Text, Convert.ToInt32(txtADR.SelectedValue), Izvozni);
             }
             FillGV();
             tsNew.Enabled = true;
@@ -98,10 +104,26 @@ namespace Saobracaj.Uvoz
                         txtID.Text = row.Cells[0].Value.ToString();
                         txtNaziv.Text = row.Cells[1].Value.ToString();
                        txtHSCode.Text = row.Cells[2].Value.ToString();
+                        txtADR.SelectedValue = Convert.ToInt32(row.Cells[3].Value.ToString());
+
                     }
                 }
             }
             catch { }
+        }
+
+        private void frmVrstaRobeHS_Load(object sender, EventArgs e)
+        {
+            var conn = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+
+
+            var adr = "Select ID, (Naziv + ' - ' + UNKod) as Naziv From VrstaRobeADR order by (UNKod + ' ' + Naziv)";
+            var adrSAD = new SqlDataAdapter(adr, conn);
+            var adrSDS = new DataSet();
+            adrSAD.Fill(adrSDS);
+            txtADR.DataSource = adrSDS.Tables[0];
+            txtADR.DisplayMember = "Naziv";
+            txtADR.ValueMember = "ID";
         }
     }
 }

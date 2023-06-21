@@ -343,7 +343,13 @@ select
 
                 pomsmer = 1;
             }
-            upd.UpdatePrijavaMasinovodje(Convert.ToInt32(txtSifra.Text), txtLokomotiva.SelectedValue.ToString(), pomsmer,Convert.ToInt32(cboZaposleni.SelectedValue), dtpDatum.Value, Convert.ToInt32(cboStanica.SelectedValue), Convert.ToDouble(txtMotoSati.Text), Convert.ToDouble(txtKM.Text), Convert.ToDouble(txtGorivo.Text), txtNapomena.Text);
+            if (txtGorivo.Text == "")
+            { txtGorivo.Text = "0"; }
+            if (txtMotoSati.Text == "")
+            { txtMotoSati.Text = "0"; }
+            if (txtKM.Text == "")
+            { txtKM.Text = "0"; }
+            upd.UpdatePrijavaMasinovodje(Convert.ToInt32(txtSifra.Text), txtLokomotiva.SelectedValue.ToString(), pomsmer,Convert.ToInt32(cboZaposleni.SelectedValue), Convert.ToDateTime(dtpDatum.Value), Convert.ToInt32(cboStanica.SelectedValue), Convert.ToDouble(txtMotoSati.Text), Convert.ToDouble(txtKM.Text), Convert.ToDouble(txtGorivo.Text), txtNapomena.Text);
             RefreshDataGrid();
         }
 

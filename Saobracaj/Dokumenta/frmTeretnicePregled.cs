@@ -173,7 +173,7 @@ namespace Saobracaj.Dokumenta
 
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
-            dataGridView1.Columns[0].Width = 30;
+            dataGridView1.Columns[0].Width = 60;
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Voz broj";
@@ -247,22 +247,23 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            var select = " SELECT  top 100 d1.ID, d1.BrojTeretnice, stanice.Opis AS StanicaOd, " +
+            var select = " SELECT  top 3000 d1.ID, d1.BrojTeretnice, stanice.Opis AS StanicaOd, " +
 " stanice_1.Opis AS StanicaDo, stanice_2.Opis AS StanicaPopisa, d1.VremeOd, " +
 " d1.VremeDo, d1.BrojLista,( " +
 " SELECT  " +
 "  STUFF( " +
-"   ( " +
-"   SELECT distinct " +
-"     '/' + Cast(IDNajave as nvarchar(6)) " +
-"   FROM TeretnicaStavke " +
-"   where TeretnicaStavke.BrojTeretnice = d1.ID " +
-"   FOR XML PATH('') " +
-"   ), 1, 1, '' " +
-" ) As Skupljen) as Najave, d1.Korisnik " +
+ "   ( " +
+ "   SELECT distinct " +
+ "     '/' + Cast(IDNajave as nvarchar(6)) " +
+ "   FROM TeretnicaStavke " +
+ "   where TeretnicaStavke.BrojTeretnice = d1.ID " +
+ "   FOR XML PATH('') " +
+ "   ), 1, 1, '' " +
+ " ) As Skupljen) as Najave, TrainList.KomOznaka, d1.Korisnik " +
 " FROM Teretnica d1 INNER JOIN  stanice ON d1.StanicaOd = stanice.ID " +
 " INNER JOIN stanice AS stanice_1 ON d1.StanicaDo = stanice_1.ID " +
 " INNER JOIN  stanice AS stanice_2 ON d1.StanicaPopisa = stanice_2.ID  " +
+" left join TrainList on d1.TrainListID = TrainList.ID " +
 "  order by d1.ID desc";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -289,7 +290,7 @@ namespace Saobracaj.Dokumenta
 
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
-            dataGridView1.Columns[0].Width = 30;
+            dataGridView1.Columns[0].Width = 60;
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Voz broj";
@@ -321,11 +322,15 @@ namespace Saobracaj.Dokumenta
 
             DataGridViewColumn column9 = dataGridView1.Columns[8];
             dataGridView1.Columns[8].HeaderText = "Najave";
-            dataGridView1.Columns[8].Width = 150;
+            dataGridView1.Columns[8].Width = 100;
 
             DataGridViewColumn column10 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Korisnik";
-            dataGridView1.Columns[9].Width = 150;
+            dataGridView1.Columns[9].HeaderText = "Posao";
+            dataGridView1.Columns[9].Width = 100;
+
+            DataGridViewColumn column11 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "Korisnik";
+            dataGridView1.Columns[10].Width = 150;
 
         }
 
