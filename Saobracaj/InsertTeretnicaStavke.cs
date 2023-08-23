@@ -1331,7 +1331,7 @@ namespace Saobracaj
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
-            myCommand.CommandText = "ProveraTeretnicaStavkeKomercijalniPregled";
+            myCommand.CommandText = "ProveraTeretnicaKomercijalniPregled";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
             SqlParameter parameter = new SqlParameter();

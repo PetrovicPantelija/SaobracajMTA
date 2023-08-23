@@ -24,7 +24,7 @@ namespace Saobracaj.Dokumenta
 
         private void frmPrijavaOdjava_Load(object sender, EventArgs e)
         {
-            var select3 = " select DeSifra as ID, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis from Delavci where DeSifStat <> 'P' order by opis";
+            var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci where DeSifStat <> 'P' order by opis";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
@@ -41,7 +41,7 @@ namespace Saobracaj.Dokumenta
         private void btnSve_Click(object sender, EventArgs e)
         {
             var select = "";
-            select = "select top 1000 ID, Zaposleni, RTRIM(DePriimek) + ' ' + Rtrim(DeIme), DatumPrijave, DatumOdjave, LongPrijave, LatPrijave, LongOdjave, LatOdjave from ZaposleniPrijava " +
+            select = "select top 1000 ID, Zaposleni, Rtrim(DeIme) + ' ' + RTRIM(DePriimek), DatumPrijave, DatumOdjave, LongPrijave, LatPrijave, LongOdjave, LatOdjave from ZaposleniPrijava " +
 " inner join Delavci on ZaposleniPrijava.Zaposleni = Delavci.DeSifra  ";
             
                             //  "  where  Aktivnosti.Masinovodja = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) + " order by Aktivnosti.ID desc";
@@ -111,7 +111,7 @@ namespace Saobracaj.Dokumenta
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             var select = "";
-            select = "select top 1000 ID, Zaposleni, RTRIM(DePriimek) + ' ' + Rtrim(DeIme), DatumPrijave, DatumOdjave, LongPrijave, LatPrijave, LongOdjave, LatOdjave from ZaposleniPrijava " +
+            select = "select top 1000 ID, Zaposleni,Rtrim(DeIme)  + ' ' + RTRIM(DePriimek), DatumPrijave, DatumOdjave, LongPrijave, LatPrijave, LongOdjave, LatOdjave from ZaposleniPrijava " +
 " inner join Delavci on ZaposleniPrijava.Zaposleni = Delavci.DeSifra  " +
   "  where  Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) ;
 

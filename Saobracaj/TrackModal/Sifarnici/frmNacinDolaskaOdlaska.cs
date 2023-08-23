@@ -165,12 +165,11 @@ namespace Testiranje.Sifarnici
         private void frmNacinDolaskaOdlaska_Load(object sender, EventArgs e)
         {
             RefreshDataGrid();
-            if (KorisnikCene != "Kecman" && KorisnikCene != "M.Jelisavčić" && KorisnikCene != "Dušan Bašanović")
-            {
+         
                 tsNew.Enabled = false;
                 tsSave.Enabled = false;
                 tsDelete.Enabled = false;
-            }
+           
         }
 
         private void tsPrvi_Click(object sender, EventArgs e)

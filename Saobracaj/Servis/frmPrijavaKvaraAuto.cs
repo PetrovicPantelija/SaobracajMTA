@@ -355,7 +355,7 @@ namespace Saobracaj.Servis
             else
             {
                 string folder = txt_Sifra.Text.ToString().TrimEnd();
-                string path = @"\\192.168.1.6\KvaroviAutoSlike\" + folder;
+                string path = @"\\192.168.129.7\TA\KvaroviAutoSlike\" + folder;
                 string[] files = Directory.GetFiles(path);
                 if (files.Length == 0)
                 {
@@ -438,7 +438,7 @@ namespace Saobracaj.Servis
         private void button1_Click(object sender, EventArgs e)
         {
             string folder = txt_Sifra.Text.ToString().TrimEnd();
-            string path = @"\\192.168.1.6\KvaroviAutoSlike\" + folder;
+            string path = @"\\192.168.129.7\TA\KvaroviAutoSlike\" + folder;
             System.Diagnostics.Process.Start(path);
         }
 

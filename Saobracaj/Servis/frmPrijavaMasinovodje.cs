@@ -111,11 +111,14 @@ namespace Saobracaj.Servis
         }
         private void RefreshDataGrid()
         {
-            var select = "select Lokomotivaprijava.ID as ID, Lokomotiva, (select case when Smer = 1 then 'ODJAVA' else 'PRIJAVA' end) as Smer,Stanice.Opis as Stanica," +
-                " LokomotivaPrijava.Datum, Rtrim(Delavci.DeIme)+ ' ' + Rtrim(Delavci.DePriimek) as Zaposleni," +
-                " MotoSati, KM, Gorivo, Napomena, AktivnostID  from LokomotivaPrijava " +
-                " inner join Delavci on Delavci.DeSifra = LokomotivaPrijava.Zaposleni " +
-                " inner join Stanice on Stanice.ID = LokomotivaPrijava.Stanica order by LokomotivaPrijava.ID desc ";
+            var select = "select distinct top 200 Lokomotivaprijava.ID as ID, AktivnostiStavke.OznakaPosla, Lokomotivaprijava.Lokomotiva ,(select case when Smer = 1 then 'ODJAVA' else 'PRIJAVA' end) as Smer,Stanice.Opis as Stanica," +
+" LokomotivaPrijava.Datum, Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek) as Zaposleni," +
+" Lokomotivaprijava.MotoSati, Lokomotivaprijava.KM, Lokomotivaprijava.Gorivo, Lokomotivaprijava.Napomena, Lokomotivaprijava.AktivnostID, AktivnostiStavke.Posao from LokomotivaPrijava" +
+" inner join Delavci on Delavci.DeSifra = LokomotivaPrijava.Zaposleni" +
+" inner join Stanice on Stanice.ID = LokomotivaPrijava.Stanica" +
+" left join Aktivnosti on Aktivnosti.ID = LokomotivaPrijava.AktivnostID" +
+" left join AktivnostiStavke on AktivnostiStavke.IDNadredjena = Aktivnosti.ID" +
+" order by LokomotivaPrijava.ID desc ";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -145,9 +148,19 @@ namespace Saobracaj.Servis
             {
                 int pom = Convert.ToInt32(row.Cells[0].Value.ToString());
                 int Postoji = 0;
+
+                Postoji = ProveriIDZeleno2(pom);
+                if (Postoji == 1)
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
+                    row.DefaultCellStyle.SelectionBackColor = Color.LightGreen;
+                }
+               
                 //Proveri zadnjih 48 sati
                 //Convert.ToDateTime(row.Cells[4].Value.ToString())
-                TimeSpan span = Convert.ToDateTime(row.Cells[4].Value.ToString()).Subtract(DateTime.Now);
+
+                /*
+                TimeSpan span = Convert.ToDateTime(row.Cells[5].Value.ToString()).Subtract(DateTime.Now);
                 if (span.Days > Convert.ToInt32(txtDana.Text))
                 {
                     Postoji = ProveriIDZeleno(pom);
@@ -158,9 +171,89 @@ namespace Saobracaj.Servis
                     }
                     dataGridView1.Refresh();
                 }
+                */
             }
 
+ dataGridView1.Refresh();
+            /*
+             Select t1.Zaposleni, t1.ID from (
+select 
+ sum(case when smer = 0 then 1 else 0 end) Prijave,
+  sum(case when smer <> 0 then 1 else 0 end) Odjave,
+  LokomotivaPrijava.Zaposleni,Max(LokomotivaPrijava.ID) as ID 
+  from LokomotivaPrijava
+  group by  LokomotivaPrijava.Zaposleni) t1
+  where t1.Prijave > t1.Odjave
+            */
 
+        }
+
+        private void RefreshDataGridNZapisa()
+        {
+            var select = "select distinct top "+ BrZapisa.Value + " Lokomotivaprijava.ID as ID, AktivnostiStavke.OznakaPosla, Lokomotivaprijava.Lokomotiva ,(select case when Smer = 1 then 'ODJAVA' else 'PRIJAVA' end) as Smer,Stanice.Opis as Stanica," +
+" LokomotivaPrijava.Datum, Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek) as Zaposleni," +
+" Lokomotivaprijava.MotoSati, Lokomotivaprijava.KM, Lokomotivaprijava.Gorivo, Lokomotivaprijava.Napomena, Lokomotivaprijava.AktivnostID, AktivnostiStavke.Posao from LokomotivaPrijava" +
+" inner join Delavci on Delavci.DeSifra = LokomotivaPrijava.Zaposleni" +
+" inner join Stanice on Stanice.ID = LokomotivaPrijava.Stanica" +
+" left join Aktivnosti on Aktivnosti.ID = LokomotivaPrijava.AktivnostID" +
+" left join AktivnostiStavke on AktivnostiStavke.IDNadredjena = Aktivnosti.ID" +
+" order by LokomotivaPrijava.ID desc ";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                int pom = Convert.ToInt32(row.Cells[0].Value.ToString());
+                int Postoji = 0;
+
+                Postoji = ProveriIDZeleno2(pom);
+                if (Postoji == 1)
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
+                    row.DefaultCellStyle.SelectionBackColor = Color.LightGreen;
+                }
+
+                //Proveri zadnjih 48 sati
+                //Convert.ToDateTime(row.Cells[4].Value.ToString())
+
+                /*
+                TimeSpan span = Convert.ToDateTime(row.Cells[5].Value.ToString()).Subtract(DateTime.Now);
+                if (span.Days > Convert.ToInt32(txtDana.Text))
+                {
+                    Postoji = ProveriIDZeleno(pom);
+                    if (Postoji == 1)
+                    {
+                        row.DefaultCellStyle.BackColor = Color.LightGreen;
+                        row.DefaultCellStyle.SelectionBackColor = Color.LightGreen;
+                    }
+                    dataGridView1.Refresh();
+                }
+                */
+            }
+
+            dataGridView1.Refresh();
             /*
              Select t1.Zaposleni, t1.ID from (
 select 
@@ -227,6 +320,38 @@ select
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        int ProveriIDZeleno2(int ID)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(
+                " Select Count(*) as Smer from LokomotivaPrijava where AktivnostID = ( " +
+" Select  AktivnostID from LokomotivaPrijava where LokomotivaPrijava.id =  " + ID + ")", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+
+            while (dr.Read())
+            {
+                if (dr["Smer"].ToString() == "1")
+                {
+                    con.Close();
+                    return 1;
+                }
+                else
+                {
+                    con.Close();
+                    return 0;
+                    
+
+                }
+            }
+            return 0;
+           
         }
 
         int ProveriIDZeleno(int ID)
@@ -393,6 +518,11 @@ select
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
+        }
+
+        private void metroButton6_Click(object sender, EventArgs e)
+        {
+            RefreshDataGridNZapisa();
         }
     }
 }

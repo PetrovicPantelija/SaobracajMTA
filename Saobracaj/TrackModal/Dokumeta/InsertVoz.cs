@@ -13,7 +13,7 @@ namespace Testiranje.Dokumeta
     class InsertVoz
     {
 
-        public void InsVoz(int BrVoza, string Relacija, string KalendarSaobracaja, DateTime VremePolaska, DateTime VremeDolaska, double MaksimalnaBruto, double MaksimalnaDuzina, double MaksimalanBrojKola, DateTime VremeZavrsetkaUtovara, DateTime VremeZavrsetkaKP, DateTime VremePrimopredaje, string Napomena, DateTime Datum, string Korisnik , int Dolazeci, int PostNaTerminalD, int KontrolniPregledD, int VremeIstovaraD, int VremePrimopredajeD            ,int Ponedeljak, int Utorak, int Sreda, int Cetvrtak, int Petak, int Subota, int Nedelja, int PostNaTerminalO ,int VremeUtovaraO,int VremeKontrolnogO, int VremeIzvlacenjaO,DateTime VremePolaskaO, DateTime VremeDolaskaO, int StanicaOd, int StanicaDo)
+        public void InsVoz(int BrVoza, string Relacija, string KalendarSaobracaja, DateTime VremePolaska, DateTime VremeDolaska, double MaksimalnaBruto, double MaksimalnaDuzina, double MaksimalanBrojKola, DateTime VremeZavrsetkaUtovara, DateTime VremeZavrsetkaKP, DateTime VremePrimopredaje, string Napomena, DateTime Datum, string Korisnik , int Dolazeci, int PostNaTerminalD, int KontrolniPregledD, int VremeIstovaraD, int VremePrimopredajeD            ,int Ponedeljak, int Utorak, int Sreda, int Cetvrtak, int Petak, int Subota, int Nedelja, int PostNaTerminalO ,int VremeUtovaraO,int VremeKontrolnogO, int VremeIzvlacenjaO,DateTime VremePolaskaO, DateTime VremeDolaskaO, int StanicaOd, int StanicaDo, int Operater)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -285,6 +285,14 @@ namespace Testiranje.Dokumeta
             parameter32.Direction = ParameterDirection.Input;
             parameter32.Value = StanicaDo;
             myCommand.Parameters.Add(parameter32);
+
+
+            SqlParameter parameter33 = new SqlParameter();
+            parameter33.ParameterName = "@Operater";
+            parameter33.SqlDbType = SqlDbType.Int;
+            parameter33.Direction = ParameterDirection.Input;
+            parameter33.Value = Operater;
+            myCommand.Parameters.Add(parameter33);
             /*
            , int Dolazeci, int PostNaTerminalD, int KontrolniPregledD, int VremeIstovaraD, int VremePrimopredajeD
             ,int Ponedeljak, int Utorak, int Sreda, int Cetvrtak, int Petak, int Subota, int Nedelja, int PostNaTerminalO ,int VremeUtovaraO,int VremeKontrolnogO, int VremeIzvlacenjaO
@@ -328,7 +336,7 @@ namespace Testiranje.Dokumeta
             }
         }
 
-        public void UpdVoz(int ID, int BrVoza, string Relacija, string KalendarSaobracaja, DateTime VremePolaska, DateTime VremeDolaska, double MaksimalnaBruto, double MaksimalnaDuzina, double MaksimalanBrojKola, DateTime VremeZavrsetkaUtovara, DateTime VremeZavrsetkaKP, DateTime VremePrimopredaje, string Napomena, DateTime Datum, string Korisnik, int Dolazeci, int PostNaTerminalD, int KontrolniPregledD, int VremeIstovaraD, int VremePrimopredajeD            ,int Ponedeljak, int Utorak, int Sreda, int Cetvrtak, int Petak, int Subota, int Nedelja, int PostNaTerminalO ,int VremeUtovaraO,int VremeKontrolnogO, int VremeIzvlacenjaO,DateTime VremePolaskaO, DateTime VremeDolaskaO, int StanicaOd, int StanicaDo)
+        public void UpdVoz(int ID, int BrVoza, string Relacija, string KalendarSaobracaja, DateTime VremePolaska, DateTime VremeDolaska, double MaksimalnaBruto, double MaksimalnaDuzina, double MaksimalanBrojKola, DateTime VremeZavrsetkaUtovara, DateTime VremeZavrsetkaKP, DateTime VremePrimopredaje, string Napomena, DateTime Datum, string Korisnik, int Dolazeci, int PostNaTerminalD, int KontrolniPregledD, int VremeIstovaraD, int VremePrimopredajeD            ,int Ponedeljak, int Utorak, int Sreda, int Cetvrtak, int Petak, int Subota, int Nedelja, int PostNaTerminalO ,int VremeUtovaraO,int VremeKontrolnogO, int VremeIzvlacenjaO,DateTime VremePolaskaO, DateTime VremeDolaskaO, int StanicaOd, int StanicaDo, int Operater)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -591,6 +599,13 @@ namespace Testiranje.Dokumeta
             parameter32.Direction = ParameterDirection.Input;
             parameter32.Value = StanicaDo;
             myCommand.Parameters.Add(parameter32);
+
+            SqlParameter parameter33 = new SqlParameter();
+            parameter33.ParameterName = "@Operater";
+            parameter33.SqlDbType = SqlDbType.Int;
+            parameter33.Direction = ParameterDirection.Input;
+            parameter33.Value = Operater;
+            myCommand.Parameters.Add(parameter33);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

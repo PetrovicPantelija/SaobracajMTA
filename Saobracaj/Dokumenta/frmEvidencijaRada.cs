@@ -351,7 +351,7 @@ namespace Saobracaj.Dokumenta
 
             */
             
-            var select3 = " select DeSifra as ID, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis from Delavci order by opis";
+            var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci order by opis";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
@@ -366,7 +366,7 @@ namespace Saobracaj.Dokumenta
 
            
 
-            var select5 = " select DeSifra as ID, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis from Delavci where DeSifStat <> 'P' order by opis";
+            var select5 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci where DeSifStat <> 'P' order by opis";
             var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5= new SqlConnection(s_connection5);
@@ -383,7 +383,7 @@ namespace Saobracaj.Dokumenta
 
 
            // --------------------------
-            var select6 = " select DeSifra as ID, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis from Delavci where DeSifStat <> 'P' order by opis";
+            var select6 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci where DeSifStat <> 'P' order by opis";
             var s_connection6 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection6 = new SqlConnection(s_connection6);
             var c6 = new SqlConnection(s_connection6);
@@ -688,9 +688,9 @@ namespace Saobracaj.Dokumenta
         private void RefreshDataGridNadlezniMasinovodja()
         {
             var select = "select AktivnostiStavke.ID, AktivnostiStavke.IdNadredjena, VrstaAktivnosti.Naziv, Sati, BrojVagona, koeficijent, napomena, " +
-           " razlog, (Cast(nalogodavac as nvarchar(3)) + ' - ' + Rtrim(D1.DePriimek) + ' ' + Rtrim(D1.DeIme)) as Nalogodavac, vozilo, " +
+           " razlog, (Cast(nalogodavac as nvarchar(3)) + ' - ' + Rtrim(D1.DeIme) + ' ' + Rtrim(D1.DePriimek)) as Nalogodavac, vozilo, " +
             "  Posao, " +
-            " (Cast(nadlezni as nvarchar(3)) + ' - ' + Rtrim(D2.DePriimek) + ' ' + Rtrim(D2.DeIme)) as Nadlezni " +
+            " (Cast(nadlezni as nvarchar(3)) + ' - ' + Rtrim(D2.DeIme) + ' ' + Rtrim(D2.DePriimek)) as Nadlezni " +
             " from AktivnostiStavke " +
            " inner join VrstaAktivnosti on VrstaAktivnosti.ID = aKTIVNOSTIsTAVKE.VrstAAktivnostiID " +
            " inner " +
@@ -859,9 +859,9 @@ namespace Saobracaj.Dokumenta
         private void RefreshDataGridPoAktivnostima()
         {
             var select = "select VrstaAktivnosti.Naziv, Sati, BrojVagona, koeficijent, napomena, " +
-            " razlog, (Cast(nalogodavac as nvarchar(3)) + ' - ' + Rtrim(D1.DePriimek) + ' ' + Rtrim(D1.DeIme)) as Nalogodavac, vozilo, " +
+            " razlog, (Cast(nalogodavac as nvarchar(3)) + ' - ' + Rtrim(D1.DeIme) + ' ' +Rtrim(D1.DePriimek) ) as Nalogodavac, vozilo, " +
              " AktivnostiStavke.ID, Posao, " +
-             " (Cast(nadlezni as nvarchar(3)) + ' - ' + Rtrim(D2.DePriimek) + ' ' + Rtrim(D2.DeIme)) as Nadlezni " +
+             " (Cast(nadlezni as nvarchar(3)) + ' - ' + Rtrim(D2.DeIme) + ' ' + Rtrim(D2.DePriimek)) as Nadlezni " +
              " from AktivnostiStavke " +
             " inner join VrstaAktivnosti on VrstaAktivnosti.ID = aKTIVNOSTIsTAVKE.VrstAAktivnostiID " +
             " inner " +
@@ -1548,7 +1548,7 @@ namespace Saobracaj.Dokumenta
 
                 mailMessage.Subject = "Uneti podaci za smenu ";
 
-                var select = "Select ID, Rtrim(Delavci.DePriimek) + ' ' + RTrim(Delavci.DeIme) as Zaposleni, " +
+                var select = "Select ID, RTrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek) as Zaposleni, " +
                 " VremeOd, VremeDo, Ukupno, UkupniTroskovi, Opis, RN, Oznaka, " +
                 " Racun, Kartica, Izracun, Razlika, Zarada " +
                 " from Aktivnosti " + 
@@ -1592,7 +1592,7 @@ namespace Saobracaj.Dokumenta
 
 
                 var select2 = " select VrstaAktivnosti.Naziv as Naziv, AktivnostiStavke.Sati as Sati, AktivnostiStavke.BrojVagona, " +
-               " AktivnostiStavke.Razlog, Rtrim(Delavci.DePriimek) + ' ' + RTrim(Delavci.DeIme) as Nalogodavac, " +
+               " AktivnostiStavke.Razlog, RTrim(Delavci.DeIme) + ' ' +Rtrim(Delavci.DePriimek)  as Nalogodavac, " +
                 " AktivnostiStavke.Vozilo, AktivnostiStavke.Napomena, VrstaAktivnosti.ObracunPoSatu, VrstaAktivnosti.Cena, VrstaAktivnosti.Id,AktivnostiStavke.Koeficijent from AktivnostiStavke " +
                " inner join VrstaAktivnosti on AktivnostiStavke.VrstaAktivnostiID = VrstaAktivnosti.ID " +
                " Left join Delavci on AktivnostiStavke.Nalogodavac = Delavci.DeSifra " +

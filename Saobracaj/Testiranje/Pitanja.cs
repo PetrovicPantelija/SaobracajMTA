@@ -247,7 +247,7 @@ namespace Saobracaj.Testiranje
         {
             GrupeTestova();
 
-            var select3 = " select DeSifra as ID, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis from Delavci order by opis";
+            var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci order by opis";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
@@ -261,7 +261,7 @@ namespace Saobracaj.Testiranje
             cboClanKomisije1.ValueMember = "ID";
 
 
-            var select4 = " select DeSifra as ID, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis from Delavci order by opis";
+            var select4 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci order by opis";
             var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
@@ -274,7 +274,7 @@ namespace Saobracaj.Testiranje
             cboClanKomisije2.DisplayMember = "Opis";
             cboClanKomisije2.ValueMember = "ID";
 
-            var select5 = " select DeSifra as ID, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis from Delavci order by opis";
+            var select5 = " select DeSifra as ID, (RTrim(DeIme)+ ' ' +Rtrim(DePriimek)  ) as Opis from Delavci order by opis";
             var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection5);

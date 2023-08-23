@@ -62,6 +62,9 @@ namespace Saobracaj.TrackModal.Sifarnici
             // 
             this.cboTipCenovnikaIz.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboTipCenovnikaIz.FormattingEnabled = true;
+            this.cboTipCenovnikaIz.Items.AddRange(new object[] {
+            "0-Opsti",
+            "1-Partner"});
             this.cboTipCenovnikaIz.Location = new System.Drawing.Point(126, 41);
             this.cboTipCenovnikaIz.Name = "cboTipCenovnikaIz";
             this.cboTipCenovnikaIz.Size = new System.Drawing.Size(148, 24);
@@ -82,6 +85,9 @@ namespace Saobracaj.TrackModal.Sifarnici
             // 
             this.cboTipCenovnikaU.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboTipCenovnikaU.FormattingEnabled = true;
+            this.cboTipCenovnikaU.Items.AddRange(new object[] {
+            "0-Opsti",
+            "1-Partner"});
             this.cboTipCenovnikaU.Location = new System.Drawing.Point(401, 41);
             this.cboTipCenovnikaU.Name = "cboTipCenovnikaU";
             this.cboTipCenovnikaU.Size = new System.Drawing.Size(148, 24);

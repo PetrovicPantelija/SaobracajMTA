@@ -31,6 +31,7 @@ namespace Saobracaj.Dokumenta
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btn_OtvoriSliku = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,17 +57,31 @@ namespace Saobracaj.Dokumenta
             this.btn_OtvoriSliku.Location = new System.Drawing.Point(12, 11);
             this.btn_OtvoriSliku.Margin = new System.Windows.Forms.Padding(2);
             this.btn_OtvoriSliku.Name = "btn_OtvoriSliku";
-            this.btn_OtvoriSliku.Size = new System.Drawing.Size(82, 28);
+            this.btn_OtvoriSliku.Size = new System.Drawing.Size(129, 28);
             this.btn_OtvoriSliku.TabIndex = 219;
-            this.btn_OtvoriSliku.Text = "Refresh";
+            this.btn_OtvoriSliku.Text = "Refresh sve";
             this.btn_OtvoriSliku.UseVisualStyleBackColor = false;
             this.btn_OtvoriSliku.Click += new System.EventHandler(this.btn_OtvoriSliku_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Location = new System.Drawing.Point(162, 11);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(166, 28);
+            this.button1.TabIndex = 220;
+            this.button1.Text = "Refresh samo aktivni poslovi";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmVucaPregled
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1336, 753);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_OtvoriSliku);
             this.Controls.Add(this.dataGridView1);
             this.Name = "frmVucaPregled";
@@ -81,5 +96,6 @@ namespace Saobracaj.Dokumenta
 
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btn_OtvoriSliku;
+        private System.Windows.Forms.Button button1;
     }
 }

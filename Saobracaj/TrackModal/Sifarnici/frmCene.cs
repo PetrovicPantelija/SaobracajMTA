@@ -19,7 +19,7 @@ namespace Testiranje.Sifarnici
 {
     public partial class frmCene : Form
     {
-        string KorisnikCene;
+        string KorisnikCene = "sa";
         public frmCene()
         {
             InitializeComponent();
@@ -38,8 +38,8 @@ namespace Testiranje.Sifarnici
 
          private void RefreshDataGrid()
          {
-             var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik], VrstePostupakaUvoz.Naziv, p2.PaNaziv as UvoznikNazivCenovnika " +
-      " , Razred      , OznakaManipulacije      , OrgJed FROM [dbo].[Cene] " +
+             var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,Cene.[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik], VrstePostupakaUvoz.Naziv, p2.PaNaziv as UvoznikNazivCenovnika " +
+      " , Razred      , OznakaManipulacije      , Cene.OrgJed FROM [dbo].[Cene] " +
              " inner join TipCenovnika on TipCenovnika.ID = Cene.TipCenovnika " +
              " inner join Partnerji on Partnerji.PaSifra = Cene.Komitent " +
              " inner join Partnerji p2 on p2.PaSifra = Cene.Uvoznik " +
@@ -192,8 +192,8 @@ namespace Testiranje.Sifarnici
 
         private void RefreshDataGridPoPartneru()
         {
-            var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik], VrstePostupakaUvoz.Naziv, p2.PaNaziv as Uvoznik, NazivCenovnika " +
-      " , Razred      , OznakaManipulacije      , OrgJed FROM [dbo].[Cene] " +
+            var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,Cene.[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik], VrstePostupakaUvoz.Naziv, p2.PaNaziv as Uvoznik, NazivCenovnika " +
+      " , Razred      , OznakaManipulacije      , Cene.OrgJed FROM [dbo].[Cene] " +
             " inner join TipCenovnika on TipCenovnika.ID = Cene.TipCenovnika " +
             " inner join Partnerji on Partnerji.PaSifra = Cene.Komitent " +
              " inner join Partnerji p2 on p2.PaSifra = Cene.Uvoznik " +
@@ -268,7 +268,8 @@ namespace Testiranje.Sifarnici
 
         private void RefreshDataGridPoPartneruUvozniku()
         {
-            var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik], VrstePostupakaUvoz.Naziv, p2.PaNaziv as Uvoznik FROM [dbo].[Cene] " +
+            var select = "SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,Cene.[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik], VrstePostupakaUvoz.Naziv, p2.PaNaziv as Uvoznik, NazivCenovnika " +
+      " , Razred      , OznakaManipulacije      , Cene.OrgJed FROM [dbo].[Cene] " +
             " inner join TipCenovnika on TipCenovnika.ID = Cene.TipCenovnika " +
             " inner join Partnerji on Partnerji.PaSifra = Cene.Komitent " +
              " inner join Partnerji p2 on p2.PaSifra = Cene.Uvoznik " +
@@ -673,8 +674,8 @@ namespace Testiranje.Sifarnici
 
         private void RefreshDataGridPoRazredu()
         {
-            var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik], VrstePostupakaUvoz.Naziv, p2.PaNaziv as Uvoznik, NazivCenovnika " +
-      " , Razred      , OznakaManipulacije      , OrgJed FROM [dbo].[Cene] " +
+            var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,Cene.[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik], VrstePostupakaUvoz.Naziv, p2.PaNaziv as Uvoznik, NazivCenovnika " +
+      " , Razred      , OznakaManipulacije      , Cene.OrgJed FROM [dbo].[Cene] " +
                " inner join TipCenovnika on TipCenovnika.ID = Cene.TipCenovnika " +
                " inner join Partnerji on Partnerji.PaSifra = Cene.Komitent " +
                 " inner join Partnerji p2 on p2.PaSifra = Cene.Uvoznik " +
@@ -752,6 +753,11 @@ namespace Testiranje.Sifarnici
         private void button4_Click(object sender, EventArgs e)
         {
             RefreshDataGridPoRazredu();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            txtNazivCenovnika.Text = cboUvoznik.Text + cboKomitent.Text;
         }
     }
     }

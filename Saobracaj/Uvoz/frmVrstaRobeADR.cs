@@ -56,6 +56,14 @@ namespace Saobracaj.Uvoz
             DataGridViewColumn column3 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "UN kod";
             dataGridView1.Columns[2].Width = 70;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Klasa";
+            dataGridView1.Columns[3].Width = 70;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Grupa";
+            dataGridView1.Columns[4].Width = 70;
         }
 
         private void frmVrstaRobeADR_Load(object sender, EventArgs e)
@@ -74,11 +82,11 @@ namespace Saobracaj.Uvoz
             insertVrstaRobeADR ins = new insertVrstaRobeADR();
             if (status == true)
             {
-                ins.InsVrstaRobeADR(txtNaziv.Text.ToString().TrimEnd(), txtUNCode.Text, txtKlasa.Text);
+                ins.InsVrstaRobeADR(txtNaziv.Text.ToString().TrimEnd(), txtUNCode.Text, txtKlasa.Text, txtGrupa.Text);
             }
             else
             {
-                ins.UpdVrstaRobeADR(Convert.ToInt32(txtID.Text.ToString()), txtNaziv.Text.ToString().TrimEnd(), txtUNCode.Text, txtKlasa.Text);
+                ins.UpdVrstaRobeADR(Convert.ToInt32(txtID.Text.ToString()), txtNaziv.Text.ToString().TrimEnd(), txtUNCode.Text, txtKlasa.Text,  txtGrupa.Text);
             }
             FillGV();
             tsNew.Enabled = true;
@@ -103,6 +111,8 @@ namespace Saobracaj.Uvoz
                         txtID.Text = row.Cells[0].Value.ToString();
                         txtNaziv.Text = row.Cells[1].Value.ToString();
                         txtUNCode.Text = row.Cells[2].Value.ToString();
+                        txtKlasa.Text = row.Cells[3].Value.ToString();
+                        txtGrupa.Text = row.Cells[4].Value.ToString();
                     }
                 }
             }

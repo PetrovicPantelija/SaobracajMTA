@@ -70,7 +70,7 @@ namespace Saobracaj.Izvoz
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(805, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(604, 27);
             this.toolStrip1.TabIndex = 201;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -80,7 +80,7 @@ namespace Saobracaj.Izvoz
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
+            this.tsNew.Size = new System.Drawing.Size(24, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -90,7 +90,7 @@ namespace Saobracaj.Izvoz
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -100,7 +100,7 @@ namespace Saobracaj.Izvoz
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsDelete.Size = new System.Drawing.Size(24, 24);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
@@ -114,36 +114,35 @@ namespace Saobracaj.Izvoz
             this.txtPaKOSifra.BackColor = System.Drawing.Color.White;
             this.txtPaKOSifra.ForeColor = System.Drawing.Color.Black;
             this.txtPaKOSifra.FormattingEnabled = true;
-            this.txtPaKOSifra.Location = new System.Drawing.Point(293, 45);
-            this.txtPaKOSifra.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPaKOSifra.Location = new System.Drawing.Point(220, 37);
             this.txtPaKOSifra.Name = "txtPaKOSifra";
-            this.txtPaKOSifra.Size = new System.Drawing.Size(294, 24);
+            this.txtPaKOSifra.Size = new System.Drawing.Size(222, 21);
             this.txtPaKOSifra.TabIndex = 268;
             // 
             // txtPaKOZapSt
             // 
-            this.txtPaKOZapSt.Location = new System.Drawing.Point(95, 45);
-            this.txtPaKOZapSt.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPaKOZapSt.Location = new System.Drawing.Point(71, 37);
             this.txtPaKOZapSt.Name = "txtPaKOZapSt";
-            this.txtPaKOZapSt.Size = new System.Drawing.Size(75, 22);
+            this.txtPaKOZapSt.Size = new System.Drawing.Size(57, 20);
             this.txtPaKOZapSt.TabIndex = 267;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 45);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(10, 37);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(21, 17);
+            this.label8.Size = new System.Drawing.Size(18, 13);
             this.label8.TabIndex = 266;
             this.label8.Text = "ID";
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.dataGridView1);
-            this.groupBox2.Location = new System.Drawing.Point(13, 275);
+            this.groupBox2.Location = new System.Drawing.Point(10, 223);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(765, 206);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Size = new System.Drawing.Size(574, 167);
             this.groupBox2.TabIndex = 265;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Pregled stavki";
@@ -155,22 +154,20 @@ namespace Saobracaj.Izvoz
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(7, 22);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Location = new System.Drawing.Point(5, 18);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(751, 171);
+            this.dataGridView1.Size = new System.Drawing.Size(563, 139);
             this.dataGridView1.TabIndex = 229;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // chkOperatika
             // 
             this.chkOperatika.AutoSize = true;
-            this.chkOperatika.Location = new System.Drawing.Point(438, 77);
-            this.chkOperatika.Margin = new System.Windows.Forms.Padding(4);
+            this.chkOperatika.Location = new System.Drawing.Point(328, 63);
             this.chkOperatika.Name = "chkOperatika";
             this.chkOperatika.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkOperatika.Size = new System.Drawing.Size(127, 21);
+            this.chkOperatika.Size = new System.Drawing.Size(96, 17);
             this.chkOperatika.TabIndex = 264;
             this.chkOperatika.Text = "Koristi operater";
             this.chkOperatika.UseVisualStyleBackColor = true;
@@ -178,129 +175,116 @@ namespace Saobracaj.Izvoz
             // 
             // txtPaKOOpomba
             // 
-            this.txtPaKOOpomba.Location = new System.Drawing.Point(95, 225);
-            this.txtPaKOOpomba.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPaKOOpomba.Location = new System.Drawing.Point(71, 183);
             this.txtPaKOOpomba.Multiline = true;
             this.txtPaKOOpomba.Name = "txtPaKOOpomba";
-            this.txtPaKOOpomba.Size = new System.Drawing.Size(676, 43);
+            this.txtPaKOOpomba.Size = new System.Drawing.Size(508, 36);
             this.txtPaKOOpomba.TabIndex = 263;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 225);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(10, 183);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 17);
+            this.label7.Size = new System.Drawing.Size(40, 13);
             this.label7.TabIndex = 262;
-            this.label7.Text = "Napomena";
+            this.label7.Text = "Adresa";
             // 
             // txtPaKOMail
             // 
-            this.txtPaKOMail.Location = new System.Drawing.Point(95, 195);
-            this.txtPaKOMail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPaKOMail.Location = new System.Drawing.Point(71, 158);
             this.txtPaKOMail.Name = "txtPaKOMail";
-            this.txtPaKOMail.Size = new System.Drawing.Size(254, 22);
+            this.txtPaKOMail.Size = new System.Drawing.Size(192, 20);
             this.txtPaKOMail.TabIndex = 261;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(13, 195);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(10, 158);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 17);
+            this.label6.Size = new System.Drawing.Size(32, 13);
             this.label6.TabIndex = 260;
             this.label6.Text = "Email";
             // 
             // txtPaKOTel
             // 
-            this.txtPaKOTel.Location = new System.Drawing.Point(95, 165);
-            this.txtPaKOTel.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPaKOTel.Location = new System.Drawing.Point(71, 134);
             this.txtPaKOTel.Name = "txtPaKOTel";
-            this.txtPaKOTel.Size = new System.Drawing.Size(254, 22);
+            this.txtPaKOTel.Size = new System.Drawing.Size(192, 20);
             this.txtPaKOTel.TabIndex = 259;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 165);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(10, 134);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 17);
+            this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 258;
             this.label5.Text = "Telefon";
             // 
             // txtPaKOOddelek
             // 
-            this.txtPaKOOddelek.Location = new System.Drawing.Point(95, 135);
-            this.txtPaKOOddelek.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPaKOOddelek.Location = new System.Drawing.Point(71, 110);
             this.txtPaKOOddelek.Name = "txtPaKOOddelek";
-            this.txtPaKOOddelek.Size = new System.Drawing.Size(254, 22);
+            this.txtPaKOOddelek.Size = new System.Drawing.Size(192, 20);
             this.txtPaKOOddelek.TabIndex = 257;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 135);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(10, 110);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(68, 17);
+            this.label4.Size = new System.Drawing.Size(51, 13);
             this.label4.TabIndex = 256;
             this.label4.Text = "Odeljenje";
             // 
             // txtPaKOPriimek
             // 
-            this.txtPaKOPriimek.Location = new System.Drawing.Point(95, 105);
-            this.txtPaKOPriimek.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPaKOPriimek.Location = new System.Drawing.Point(71, 85);
             this.txtPaKOPriimek.Name = "txtPaKOPriimek";
-            this.txtPaKOPriimek.Size = new System.Drawing.Size(254, 22);
+            this.txtPaKOPriimek.Size = new System.Drawing.Size(192, 20);
             this.txtPaKOPriimek.TabIndex = 255;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 105);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(10, 85);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 17);
+            this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 254;
             this.label2.Text = "Prezime";
             // 
             // txtPaKOIme
             // 
-            this.txtPaKOIme.Location = new System.Drawing.Point(95, 75);
-            this.txtPaKOIme.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPaKOIme.Location = new System.Drawing.Point(71, 61);
             this.txtPaKOIme.Name = "txtPaKOIme";
-            this.txtPaKOIme.Size = new System.Drawing.Size(294, 22);
+            this.txtPaKOIme.Size = new System.Drawing.Size(222, 20);
             this.txtPaKOIme.TabIndex = 253;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 75);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(10, 61);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 17);
+            this.label1.Size = new System.Drawing.Size(24, 13);
             this.label1.TabIndex = 252;
             this.label1.Text = "Ime";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(187, 45);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(140, 37);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 17);
+            this.label3.Size = new System.Drawing.Size(75, 13);
             this.label3.TabIndex = 251;
             this.label3.Text = "Mesto utovara";
             // 
             // frmKontaktOsobeMU
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(805, 502);
+            this.ClientSize = new System.Drawing.Size(604, 408);
             this.Controls.Add(this.txtPaKOSifra);
             this.Controls.Add(this.txtPaKOZapSt);
             this.Controls.Add(this.label8);
@@ -321,6 +305,7 @@ namespace Saobracaj.Izvoz
             this.Controls.Add(this.label3);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmKontaktOsobeMU";
             this.Text = "Kontakt osobe na mestu utovara";
             this.Load += new System.EventHandler(this.frmKontaktOsobeMU_Load);

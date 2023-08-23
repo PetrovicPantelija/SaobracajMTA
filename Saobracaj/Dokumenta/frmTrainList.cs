@@ -21,9 +21,11 @@ namespace Saobracaj.Dokumenta
         private TrainListDAO _trainList = new TrainListDAO();
         private TrainListItemDAO _trainListItem = new TrainListItemDAO();
 
+        int SelectedRowIndexTekuci;
         int trainListSelectedRow;
         int trainListItemSelectedRow;
         int OtvaranjeIzNajave = 0;
+        int SamoTekuci = 1;
 
         public frmTrainList()
         {
@@ -31,15 +33,19 @@ namespace Saobracaj.Dokumenta
             setStyle();
         }
 
-        public frmTrainList(string Oznaka)
+        public frmTrainList(string Oznaka, int samoTekuci)
         {
             InitializeComponent();
             setStyle();
             OtvaranjeIzNajave = 1;
             txt_trainNo.Text = Oznaka;
+            if (samoTekuci == 1)
+            { chkAktvni.Checked = true;}
+            else
+            { chkAktvni.Checked = false; }
         }
 
-        public frmTrainList(string Oznaka, int i, DateTime PredvidjenoVreme)
+        public frmTrainList(string Oznaka, int i, DateTime PredvidjenoVreme, int samoTekuci)
         {
             InitializeComponent();
             setStyle();
@@ -62,6 +68,136 @@ namespace Saobracaj.Dokumenta
             departure_time.Value = DateTime.Now;
 
             txt_trainNo.Text = Oznaka;
+            if (samoTekuci == 1)
+            { chkAktvni.Checked = true; }
+            else
+            { chkAktvni.Checked = false; }
+        }
+
+        private void REfreshSve()
+        {
+            if (OtvaranjeIzNajave == 2)
+            { groupBoxAddEdit.Visible = true; }
+            else
+            {
+                groupBoxAddEdit.Visible = false;
+            }
+            //_trainList data ;
+            // var data = ;
+            //PANTA Get all
+            if (chkAktvni.Checked == true)
+            {
+                var data = _trainList.GetAllActive();
+                if (data.Count > 0)
+                {
+                    dataGrid1.DataSource = data;
+                    dataGrid1.Columns[0].Width = 0;
+                    //  dataGrid1.Rows[SelectedRowIndexTekuci].Selected = true;
+                    //  dataGrid1.CurrentRow.Selected = ;
+                    //  trainListSelectedRow = dataGrid1.CurrentRow.Index;
+                    dataGrid1.CurrentRow.Selected = true;
+                    trainListSelectedRow = SelectedRowIndexTekuci;
+
+                    List<TrainListItemModel> itemList = _trainListItem.GetAllBySuperiorId((int)dataGrid1.Rows[trainListSelectedRow].Cells[0].Value);
+                    if (itemList.Count > 0)
+                    {
+                        dataGrid2.DataSource = itemList;
+                        dataGrid2.Columns[0].Width = 0;
+                        dataGrid2.Columns[1].Visible = false;
+
+                        Total totalCalc = new Total(itemList, (int)dataGrid1.Rows[trainListSelectedRow].Cells[0].Value);
+                        txt_TotalUnitTare.Text = totalCalc.TotalUnitTare.ToString() + " kg";
+                        txt_TotalGoods.Text = totalCalc.TotalGoods.ToString() + " kg";
+                        txt_TotalWagonTare.Text = totalCalc.TotalWagonTare.ToString() + " kg";
+                        txt_TotalWeight.Text = totalCalc.TotalWeight.ToString() + " kg";
+                        txt_TotalTrainLength.Text = totalCalc.TotalTrainLength.ToString() + " m";
+
+                        trainListItemSelectedRow = dataGrid2.CurrentRow.Index;
+                        List<int> NHM = _trainListItem.GetAllNHMBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
+                        txt_NHM.Text = "";
+                        foreach (int n in NHM)
+                        {
+                            txt_NHM.Text += n.ToString() + Environment.NewLine;
+                        }
+                        List<string> MRN = _trainListItem.GetAllMRNBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
+                        txt_MRN.Text = "";
+                        foreach (string n in MRN)
+                        {
+                            txt_MRN.Text += n + Environment.NewLine;
+                        }
+                        List<string> Seals = _trainListItem.GetAllSealsBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
+                        txt_Seals.Text = "";
+                        foreach (string n in Seals)
+                        {
+                            txt_Seals.Text += n + Environment.NewLine;
+                        }
+                        List<string> UN = _trainListItem.GetAllUNBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
+                        txt_UN.Text = "";
+                        foreach (string n in UN)
+                        {
+                            txt_UN.Text += n + Environment.NewLine;
+                        }
+                    }
+
+                }
+                
+            }
+            else
+            {
+                var data = _trainList.GetAll();
+                if (data.Count > 0)
+                {
+                    dataGrid1.DataSource = data;
+                    dataGrid1.Columns[0].Width = 0;
+                   // dataGrid1.Rows[SelectedRowIndexTekuci].Selected = true;
+                    //  dataGrid1.CurrentRow.Selected = ;
+                    //  trainListSelectedRow = dataGrid1.CurrentRow.Index;
+                    trainListSelectedRow = SelectedRowIndexTekuci;
+                    List<TrainListItemModel> itemList = _trainListItem.GetAllBySuperiorId((int)dataGrid1.Rows[trainListSelectedRow].Cells[0].Value);
+                    if (itemList.Count > 0)
+                    {
+                        dataGrid2.DataSource = itemList;
+                        dataGrid2.Columns[0].Width = 0;
+                        dataGrid2.Columns[1].Visible = false;
+
+                        Total totalCalc = new Total(itemList, (int)dataGrid1.Rows[trainListSelectedRow].Cells[0].Value);
+                        txt_TotalUnitTare.Text = totalCalc.TotalUnitTare.ToString() + " kg";
+                        txt_TotalGoods.Text = totalCalc.TotalGoods.ToString() + " kg";
+                        txt_TotalWagonTare.Text = totalCalc.TotalWagonTare.ToString() + " kg";
+                        txt_TotalWeight.Text = totalCalc.TotalWeight.ToString() + " kg";
+                        txt_TotalTrainLength.Text = totalCalc.TotalTrainLength.ToString() + " m";
+
+                        trainListItemSelectedRow = dataGrid2.CurrentRow.Index;
+                        List<int> NHM = _trainListItem.GetAllNHMBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
+                        txt_NHM.Text = "";
+                        foreach (int n in NHM)
+                        {
+                            txt_NHM.Text += n.ToString() + Environment.NewLine;
+                        }
+                        List<string> MRN = _trainListItem.GetAllMRNBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
+                        txt_MRN.Text = "";
+                        foreach (string n in MRN)
+                        {
+                            txt_MRN.Text += n + Environment.NewLine;
+                        }
+                        List<string> Seals = _trainListItem.GetAllSealsBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
+                        txt_Seals.Text = "";
+                        foreach (string n in Seals)
+                        {
+                            txt_Seals.Text += n + Environment.NewLine;
+                        }
+                        List<string> UN = _trainListItem.GetAllUNBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
+                        txt_UN.Text = "";
+                        foreach (string n in UN)
+                        {
+                            txt_UN.Text += n + Environment.NewLine;
+                        }
+                    }
+
+                }
+        
+            }
+            SelectROWDataGRID1();
         }
         private void frmTrainList_Load(object sender, EventArgs e)
         {
@@ -71,65 +207,131 @@ namespace Saobracaj.Dokumenta
             {
                 groupBoxAddEdit.Visible = false;
             }
-            
-
-            var data = _trainList.GetAll();
-            if (data.Count > 0)
-            {
-                dataGrid1.DataSource = data;
-                dataGrid1.Columns[0].Width = 0;
-                trainListSelectedRow = dataGrid1.CurrentRow.Index;
-
-                List<TrainListItemModel> itemList = _trainListItem.GetAllBySuperiorId((int)dataGrid1.Rows[trainListSelectedRow].Cells[0].Value);
-                if (itemList.Count > 0)
+            //_trainList data ;
+           // var data = ;
+            //PANTA Get all
+            if (chkAktvni.Checked == true)
                 {
-                    dataGrid2.DataSource = itemList;
-                    dataGrid2.Columns[0].Width = 0;
-                    dataGrid2.Columns[1].Visible = false;
+             var data = _trainList.GetAllActive();
+                if (data.Count > 0)
+                {
+                    dataGrid1.DataSource = data;
+                    dataGrid1.Columns[0].Width = 0;
+                    trainListSelectedRow = dataGrid1.CurrentRow.Index;
 
-                    Total totalCalc = new Total(itemList, (int)dataGrid1.Rows[trainListSelectedRow].Cells[0].Value);
-                    txt_TotalUnitTare.Text = totalCalc.TotalUnitTare.ToString() + " kg";
-                    txt_TotalGoods.Text = totalCalc.TotalGoods.ToString() + " kg";
-                    txt_TotalWagonTare.Text = totalCalc.TotalWagonTare.ToString() + " kg";
-                    txt_TotalWeight.Text = totalCalc.TotalWeight.ToString() + " kg";
-                    txt_TotalTrainLength.Text = totalCalc.TotalTrainLength.ToString() + " m";
+                    List<TrainListItemModel> itemList = _trainListItem.GetAllBySuperiorId((int)dataGrid1.Rows[trainListSelectedRow].Cells[0].Value);
+                    if (itemList.Count > 0)
+                    {
+                        dataGrid2.DataSource = itemList;
+                        dataGrid2.Columns[0].Width = 0;
+                        dataGrid2.Columns[1].Visible = false;
 
-                    trainListItemSelectedRow = dataGrid2.CurrentRow.Index;
-                    List<int> NHM = _trainListItem.GetAllNHMBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
-                    txt_NHM.Text = "";
-                    foreach (int n in NHM)
-                    {
-                        txt_NHM.Text += n.ToString() + Environment.NewLine;
+                        Total totalCalc = new Total(itemList, (int)dataGrid1.Rows[trainListSelectedRow].Cells[0].Value);
+                        txt_TotalUnitTare.Text = totalCalc.TotalUnitTare.ToString() + " kg";
+                        txt_TotalGoods.Text = totalCalc.TotalGoods.ToString() + " kg";
+                        txt_TotalWagonTare.Text = totalCalc.TotalWagonTare.ToString() + " kg";
+                        txt_TotalWeight.Text = totalCalc.TotalWeight.ToString() + " kg";
+                        txt_TotalTrainLength.Text = totalCalc.TotalTrainLength.ToString() + " m";
+
+                        trainListItemSelectedRow = dataGrid2.CurrentRow.Index;
+                        List<int> NHM = _trainListItem.GetAllNHMBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
+                        txt_NHM.Text = "";
+                        foreach (int n in NHM)
+                        {
+                            txt_NHM.Text += n.ToString() + Environment.NewLine;
+                        }
+                        List<string> MRN = _trainListItem.GetAllMRNBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
+                        txt_MRN.Text = "";
+                        foreach (string n in MRN)
+                        {
+                            txt_MRN.Text += n + Environment.NewLine;
+                        }
+                        List<string> Seals = _trainListItem.GetAllSealsBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
+                        txt_Seals.Text = "";
+                        foreach (string n in Seals)
+                        {
+                            txt_Seals.Text += n + Environment.NewLine;
+                        }
+                        List<string> UN = _trainListItem.GetAllUNBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
+                        txt_UN.Text = "";
+                        foreach (string n in UN)
+                        {
+                            txt_UN.Text += n + Environment.NewLine;
+                        }
                     }
-                    List<string> MRN = _trainListItem.GetAllMRNBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
-                    txt_MRN.Text = "";
-                    foreach (string n in MRN)
-                    {
-                        txt_MRN.Text += n + Environment.NewLine;
-                    }
-                    List<string> Seals = _trainListItem.GetAllSealsBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
-                    txt_Seals.Text = "";
-                    foreach (string n in Seals)
-                    {
-                        txt_Seals.Text += n + Environment.NewLine;
-                    }
-                    List<string> UN = _trainListItem.GetAllUNBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
-                    txt_UN.Text = "";
-                    foreach (string n in UN)
-                    {
-                        txt_UN.Text += n + Environment.NewLine;
-                    }
+
                 }
-
+                if (OtvaranjeIzNajave == 1)
+                {
+                    VratiTrainListID();
+                    RefreshDatagridKontrolisano();
+                    RefreshDatagridSumarno();
+                    SelectROWDataGRID1();
+                    //Treba obeleziti plan
+                }
             }
-            if (OtvaranjeIzNajave == 1)
+            else
             {
-                VratiTrainListID();
-                RefreshDatagridKontrolisano();
-                RefreshDatagridSumarno();
-                SelectROWDataGRID1();
-                //Treba obeleziti plan
+              var  data = _trainList.GetAll();
+                if (data.Count > 0)
+                {
+                    dataGrid1.DataSource = data;
+                    dataGrid1.Columns[0].Width = 0;
+                    trainListSelectedRow = dataGrid1.CurrentRow.Index;
+
+                    List<TrainListItemModel> itemList = _trainListItem.GetAllBySuperiorId((int)dataGrid1.Rows[trainListSelectedRow].Cells[0].Value);
+                    if (itemList.Count > 0)
+                    {
+                        dataGrid2.DataSource = itemList;
+                        dataGrid2.Columns[0].Width = 0;
+                        dataGrid2.Columns[1].Visible = false;
+
+                        Total totalCalc = new Total(itemList, (int)dataGrid1.Rows[trainListSelectedRow].Cells[0].Value);
+                        txt_TotalUnitTare.Text = totalCalc.TotalUnitTare.ToString() + " kg";
+                        txt_TotalGoods.Text = totalCalc.TotalGoods.ToString() + " kg";
+                        txt_TotalWagonTare.Text = totalCalc.TotalWagonTare.ToString() + " kg";
+                        txt_TotalWeight.Text = totalCalc.TotalWeight.ToString() + " kg";
+                        txt_TotalTrainLength.Text = totalCalc.TotalTrainLength.ToString() + " m";
+
+                        trainListItemSelectedRow = dataGrid2.CurrentRow.Index;
+                        List<int> NHM = _trainListItem.GetAllNHMBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
+                        txt_NHM.Text = "";
+                        foreach (int n in NHM)
+                        {
+                            txt_NHM.Text += n.ToString() + Environment.NewLine;
+                        }
+                        List<string> MRN = _trainListItem.GetAllMRNBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
+                        txt_MRN.Text = "";
+                        foreach (string n in MRN)
+                        {
+                            txt_MRN.Text += n + Environment.NewLine;
+                        }
+                        List<string> Seals = _trainListItem.GetAllSealsBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
+                        txt_Seals.Text = "";
+                        foreach (string n in Seals)
+                        {
+                            txt_Seals.Text += n + Environment.NewLine;
+                        }
+                        List<string> UN = _trainListItem.GetAllUNBySuperiorId((int)dataGrid2.Rows[trainListItemSelectedRow].Cells[0].Value);
+                        txt_UN.Text = "";
+                        foreach (string n in UN)
+                        {
+                            txt_UN.Text += n + Environment.NewLine;
+                        }
+                    }
+
+                }
+                if (OtvaranjeIzNajave == 1)
+                {
+                    VratiTrainListID();
+                    RefreshDatagridKontrolisano();
+                    RefreshDatagridSumarno();
+                    SelectROWDataGRID1();
+                    //Treba obeleziti plan
+                }
             }
+            
+           
         }
 
         private void VratiTrainListID()
@@ -174,6 +376,9 @@ namespace Saobracaj.Dokumenta
         */
         private void dataGrid1_Click(object sender, EventArgs e)
         {
+            //PPP
+            SelectedRowIndexTekuci = dataGrid1.CurrentRow.Index;
+
             try
             {
                 foreach (DataGridViewRow row in dataGrid1.Rows)
@@ -188,6 +393,7 @@ namespace Saobracaj.Dokumenta
                 if (dataGrid1.RowCount > 0)
                 {
                     trainListSelectedRow = dataGrid1.CurrentRow.Index;
+                    SelectedRowIndexTekuci = trainListSelectedRow;
                     List<TrainListItemModel> itemList = _trainListItem.GetAllBySuperiorId((int)dataGrid1.Rows[trainListSelectedRow].Cells[0].Value);
                     dataGrid2.DataSource = itemList;
                     dataGrid2.Columns[0].Width = 0;
@@ -218,6 +424,7 @@ namespace Saobracaj.Dokumenta
         }
         private void dataGrid2_Click(object sender, EventArgs e)
         {
+            //Panta
             if (dataGrid2.RowCount > 0)
             {
                 trainListItemSelectedRow = dataGrid2.CurrentRow.Index;
@@ -628,7 +835,12 @@ namespace Saobracaj.Dokumenta
                 // txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
                 VratiBrojKontejnera();
               //  sBruto.Text = (Convert.ToDecimal(sTaraKont.Text) + Convert.ToDecimal(sNetoKont.Text) + Convert.ToDecimal(sTaraKola.Text)).ToString();
-                sBruto.Text =  (Convert.ToDecimal(sNetoKont.Text) + Convert.ToDecimal(sTaraKola.Text)).ToString();
+                if ((sTaraKont.Text != "") && (sNetoKont.Text != ""))
+                {
+                    sBruto.Text = (Convert.ToDecimal(sNetoKont.Text) + Convert.ToDecimal(sTaraKola.Text)).ToString();
+                }
+
+                
             }
             con.Close();
 
@@ -727,11 +939,12 @@ namespace Saobracaj.Dokumenta
                     {
                         InsertTrainList del = new InsertTrainList();
                         del.PromeniVrednostiZaSvakaKola(row.Cells[0].Value.ToString(), Convert.ToInt32(textBoxSearch.Text));
-                        
+                        // dataGrid2_Click(e.);
+                        MessageBox.Show("Ponovo uradite refresh sa klikom na izabrani posao i digme stare vrednosti");
                         // txtOpis.Text = row.Cells[1].Value.ToString();
                     }
                 }
-             
+                REfreshSve();
 
             }
             catch
@@ -752,10 +965,16 @@ namespace Saobracaj.Dokumenta
             RefreshDatagridDuzinaTaraPredhodni();
         }
 
+        private void VratiNaNajavu()
+        {
+            InsertTrainList upd = new InsertTrainList();
+            upd.UpdateNajave(Convert.ToDouble(sNetoKont.Text), Convert.ToDouble(sDuzinaKola.Text), Convert.ToInt32(txtBrojKola.Text), txt_trainNo.Text, Convert.ToDouble(sBruto.Text), Convert.ToInt32(txtBrojKontejnera.Text));
+        }
+
         private void button5_Click(object sender, EventArgs e)
         {
             InsertTrainList upd = new InsertTrainList();
-            upd.UpdateNajave(Convert.ToDouble(sNetoKont.Text), Convert.ToDouble(sDuzinaKola.Text), Convert.ToInt32(txtBrojKola.Text), txt_trainNo.Text, Convert.ToDouble(sBruto.Text));
+            upd.UpdateNajave(Convert.ToDouble(sNetoKont.Text), Convert.ToDouble(sDuzinaKola.Text), Convert.ToInt32(txtBrojKola.Text), txt_trainNo.Text, Convert.ToDouble(sBruto.Text), Convert.ToInt32(txtBrojKontejnera.Text));
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)

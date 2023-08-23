@@ -75,7 +75,7 @@ namespace Saobracaj.Dokumenta
             string result = Path.GetFileName(fileName);
             string targetPath = "";
 
-            targetPath = @"\\192.168.1.6\Registrator\" + FolderDestinacije;
+            targetPath = @"\\192.168.129.7\TA\Registrator\" + FolderDestinacije;
             string sourceFile = putanja;
             string destFile = System.IO.Path.Combine(targetPath, result);
 

@@ -236,7 +236,7 @@ namespace Saobracaj.Dokumenta
         }
         private void FillGV()
         {
-            var select = "  SELECT     ZaposleniPrijavaAuto.Id, AktivnostID, ZaposleniPrijavaAuto.OznakaPosla, Delavci.DeStaraSif, RTRIM(Delavci.DePriimek) + '  ' + RTRIM(Delavci.DeIme) AS Zaposleni, " +
+            var select = "  SELECT     ZaposleniPrijavaAuto.Id, AktivnostID, ZaposleniPrijavaAuto.OznakaPosla, Delavci.DeStaraSif, RTRIM(Delavci.DeIme + '  ' + RTRIM(Delavci.DePriimek)) AS Zaposleni, " +
                "      ZaposleniPrijavaAuto.DatumPrijave, ZaposleniPrijavaAuto.DatumOdjave, ZaposleniPrijavaAuto.AutomobilId, Automobili.RegBr, Automobili.Marka, " + 
                 "           ZaposleniPrijavaAuto.DirektnaPrimopredajaZaduzivanje, ZaposleniPrijavaAuto.DirektnaPrimopredajaRazduzivanje, ZaposleniPrijavaAuto.KilometrazaZaduzivanje, " +
                  "          ZaposleniPrijavaAuto.KilometrazaRazduzivanje, CistocaSpolja.CistocaVrsta AS CistocaSpolja, CistocaIznutra.CistocaVrsta AS CistocaIznutra,  " +
@@ -279,6 +279,147 @@ namespace Saobracaj.Dokumenta
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Aktivnosti ID";
+            dataGridView1.Columns[1].Width = 50;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Oznaka posla";
+           // dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[2].Width = 100;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "DeStaraSif";
+            dataGridView1.Columns[3].Visible = false;
+            dataGridView1.Columns[3].Width = 100;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Zaposleni";
+            dataGridView1.Columns[4].Width = 160;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Datum prijave";
+            dataGridView1.Columns[5].Width = 100;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Datum odjave";
+            dataGridView1.Columns[6].Width = 100;
+
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Automobil ID";
+            dataGridView1.Columns[7].Visible = false;
+            dataGridView1.Columns[7].Width = 100;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Reg br";
+            dataGridView1.Columns[8].Width = 80;
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Marka";
+            dataGridView1.Columns[9].Visible = false;
+            dataGridView1.Columns[9].Width = 100;
+
+            DataGridViewColumn column11 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "DirektnaPrimopredaja";
+            dataGridView1.Columns[10].Visible = false;
+            dataGridView1.Columns[10].Width = 100;
+
+            DataGridViewColumn column12 = dataGridView1.Columns[11];
+            dataGridView1.Columns[11].HeaderText = "DirektnaPrimopredaja";
+            dataGridView1.Columns[11].Visible = false;
+            dataGridView1.Columns[11].Width = 100;
+
+            DataGridViewColumn column13 = dataGridView1.Columns[12];
+            dataGridView1.Columns[12].HeaderText = "Kolometraza zaduzenja";
+            dataGridView1.Columns[12].Width = 80;
+
+            DataGridViewColumn column14 = dataGridView1.Columns[13];
+            dataGridView1.Columns[13].HeaderText = "Kolometraza razduzenja";
+            dataGridView1.Columns[13].Width = 80;
+
+            DataGridViewColumn column15 = dataGridView1.Columns[14];
+            dataGridView1.Columns[14].HeaderText = "Cistoca spolja";
+            dataGridView1.Columns[14].Visible = false;
+            dataGridView1.Columns[14].Width = 100;
+
+            DataGridViewColumn column16 = dataGridView1.Columns[15];
+            dataGridView1.Columns[15].HeaderText = "Cistoca unutra";
+            dataGridView1.Columns[15].Visible = false;
+            dataGridView1.Columns[15].Width = 100;
+
+            DataGridViewColumn column17 = dataGridView1.Columns[16];
+            dataGridView1.Columns[16].HeaderText = "Cistoca spolja razduzivanje";
+            dataGridView1.Columns[16].Visible = false;
+            dataGridView1.Columns[16].Width = 100;
+
+            DataGridViewColumn column18 = dataGridView1.Columns[17];
+            dataGridView1.Columns[17].HeaderText = "Cistoca Unutra razduzivanje";
+            dataGridView1.Columns[17].Visible = false;
+            dataGridView1.Columns[17].Width = 100;
+
+            DataGridViewColumn column19 = dataGridView1.Columns[18];
+            dataGridView1.Columns[18].HeaderText = "Ulje zad";
+            dataGridView1.Columns[18].Visible = false;
+            dataGridView1.Columns[18].Width = 100;
+
+            DataGridViewColumn column20 = dataGridView1.Columns[19];
+            dataGridView1.Columns[19].HeaderText = "Ulje raz";
+            dataGridView1.Columns[19].Visible = false;
+            dataGridView1.Columns[19].Width = 100;
+
+            DataGridViewColumn column21 = dataGridView1.Columns[20];
+            dataGridView1.Columns[20].HeaderText = "ID posla";
+            dataGridView1.Columns[20].Visible = false;
+            dataGridView1.Columns[20].Width = 100;
+
+            DataGridViewColumn column22 = dataGridView1.Columns[21];
+            dataGridView1.Columns[21].HeaderText = "Nivo gor zad";
+            dataGridView1.Columns[21].Visible = false;
+            dataGridView1.Columns[21].Width = 100;
+
+            DataGridViewColumn column23 = dataGridView1.Columns[22];
+            dataGridView1.Columns[22].HeaderText = "Nivo gor raz";
+            dataGridView1.Columns[22].Visible = false;
+            dataGridView1.Columns[22].Width = 100;
+
+            DataGridViewColumn column24 = dataGridView1.Columns[23];
+            dataGridView1.Columns[23].HeaderText = "Uloga";
+           // dataGridView1.Columns[22].Visible = false;
+            dataGridView1.Columns[23].Width = 100;
+
+            DataGridViewColumn column25 = dataGridView1.Columns[24];
+            dataGridView1.Columns[24].HeaderText = "MP ID";
+            dataGridView1.Columns[24].Visible = false;
+            dataGridView1.Columns[24].Width = 100;
+
+            DataGridViewColumn column26 = dataGridView1.Columns[25];
+            dataGridView1.Columns[25].HeaderText = "MD ID";
+            dataGridView1.Columns[25].Visible = false;
+            dataGridView1.Columns[25].Width = 100;
+
+
+            DataGridViewColumn column27 = dataGridView1.Columns[26];
+            dataGridView1.Columns[26].HeaderText = "Aktivnosti ID";
+            dataGridView1.Columns[26].Visible = false;
+            dataGridView1.Columns[26].Width = 100;
+
+            DataGridViewColumn column28 = dataGridView1.Columns[27];
+            dataGridView1.Columns[27].HeaderText = "Mesto polaska";
+            // dataGridView1.Columns[25].Visible = false;
+            dataGridView1.Columns[27].Width = 140;
+
+            DataGridViewColumn column29 = dataGridView1.Columns[28];
+            dataGridView1.Columns[28].HeaderText = "Mesto dolaska";
+            // dataGridView1.Columns[25].Visible = false;
+            dataGridView1.Columns[28].Width = 140;
+
             /*
             dataGridView1.Columns[0].HeaderText = "ID";
             dataGridView1.Columns[2].HeaderText = "Zaposleni";
@@ -396,7 +537,7 @@ namespace Saobracaj.Dokumenta
             else
             {
                 string folder = txt_Sifra.Text.ToString().TrimEnd();
-                string path = @"\\192.168.1.6\CistocaSluzbeniAutomobili\" + folder;
+                string path = @"\\192.168.129.7\TA\CistocaSluzbeniAutomobili\" + folder;
                 string[] files = Directory.GetFiles(path);
                 if (files.Length == 0)
                 {
@@ -466,7 +607,7 @@ namespace Saobracaj.Dokumenta
         private void button1_Click(object sender, EventArgs e)
         {
             string folder = txt_Sifra.Text.ToString().TrimEnd();
-            string path = @"\\192.168.1.6\CistocaSluzbeniAutomobili\" + folder;
+            string path = @"\\192.168.129.7\TA\CistocaSluzbeniAutomobili\" + folder;
             System.Diagnostics.Process.Start(path);
         }
 

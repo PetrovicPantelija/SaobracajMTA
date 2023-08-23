@@ -537,27 +537,27 @@ namespace Saobracaj.Sifarnici
 
             if (Tip == 1)
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\Listice\" + FolderDestinacije;
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\Listice\" + FolderDestinacije;
             }
             else if (Tip == 2)
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\" + FolderDestinacije + @"\CIM";
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\" + FolderDestinacije + @"\CIM";
             }
             else if (Tip == 3)
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\" + FolderDestinacije + @"\CIT23";
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\" + FolderDestinacije + @"\CIT23";
             }
             else if (Tip == 4)
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\" + FolderDestinacije + @"\Racuni";
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\" + FolderDestinacije + @"\Racuni";
             }
             else if (Tip == 5)
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\" + FolderDestinacije + @"\PrijemnaTeretnica";
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\" + FolderDestinacije + @"\PrijemnaTeretnica";
             }
             else
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\" + FolderDestinacije;
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\" + FolderDestinacije;
             }
 
             string sourceFile = putanja;

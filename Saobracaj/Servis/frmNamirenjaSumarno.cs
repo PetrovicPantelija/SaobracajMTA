@@ -119,7 +119,7 @@ namespace Saobracaj.Servis
         }
         private void frmNamirenjaSumarno_Load(object sender, EventArgs e)
         {
-            var select = "select  LokomotivaNamirenje.ID as IDNamirenja, LokomotivaVrstaNamirenja.Naziv as VrstaNamirenja,LokomotivaPrijava.Lokomotiva,  (Rtrim(DElavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme)) as Zaposleni , LokomotivaNamirenje.DatumNamirenja as DatumNamirenja, Cast(LokomotivaNamirenje.Kolicina as integer) as Kolicina, LokomotivaNamirenje.Napomena from LokomotivaNamirenje " +
+            var select = "select  LokomotivaNamirenje.ID as IDNamirenja, LokomotivaVrstaNamirenja.Naziv as VrstaNamirenja,LokomotivaPrijava.Lokomotiva,  (Rtrim(Delavci.DeIme) + ' ' + Rtrim(DElavci.DePriimek)) as Zaposleni , LokomotivaNamirenje.DatumNamirenja as DatumNamirenja, Cast(LokomotivaNamirenje.Kolicina as integer) as Kolicina, LokomotivaNamirenje.Napomena from LokomotivaNamirenje " +
             " inner join lokomotivaVrstaNamirenja on lokomotivaVrstaNamirenja.ID = LokomotivaNamirenje.VrstaNamirenjaID " +
             " inner join LokomotivaPrijava on LokomotivaPrijava.ID = LokomotivaNamirenje.LokomotivaPrijavaID " +
             " inner join Delavci on Delavci.DeSifra = LokomotivaPrijava.Zaposleni ";

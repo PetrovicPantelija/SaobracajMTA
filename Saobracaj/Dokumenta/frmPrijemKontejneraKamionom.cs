@@ -610,6 +610,12 @@ namespace TrackModal.Dokumeta
         {
 
         }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            frmPregledNaloziZaPrevoz pnzp = new frmPregledNaloziZaPrevoz();
+            pnzp.Show();
+        }
     }
 }
 

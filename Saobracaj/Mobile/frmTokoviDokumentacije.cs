@@ -47,7 +47,7 @@ namespace Saobracaj.Mobile
         }
         private void RefreshDataGrid()
         {
-            var select = "select Top 500 EvidencijaTokoviDokumentacije.ID,Zaposleni as ZaposleniID, Rtrim(DePriimek) + ' ' + Rtrim(DeIme) as Zaposleni, EvidencijaTokoviDokumentacije.Datum, EvidencijaTokoviDokumentacije.Mesto, " +
+            var select = "select Top 500 EvidencijaTokoviDokumentacije.ID,Zaposleni as ZaposleniID, Rtrim(DeIme) + ' ' + Rtrim(DePriimek) as Zaposleni, EvidencijaTokoviDokumentacije.Datum, EvidencijaTokoviDokumentacije.Mesto, " +
             " EvidencijaTokoviDokumentacije.IDPosla, EvidencijaTokoviDokumentacije.Status, EvidencijaTokoviDokumentacije.Napomena from EvidencijaTokoviDokumentacije " +
             " inner join Delavci on DeSifra = EvidencijaTokoviDokumentacije.Zaposleni " +
             " order by EvidencijaTokoviDokumentacije.ID desc";
@@ -148,7 +148,7 @@ namespace Saobracaj.Mobile
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
-            string path = Path.Combine(@"//192.168.1.6/TokoviDokumentacijeSlike/", txtSifra.Text + "/");
+            string path = Path.Combine(@"//192.168.129.7/TA/TokoviDokumentacijeSlike/", txtSifra.Text + "/");
             //txtPutanja.Text = "\\192.168.1.6\";
             DirectoryInfo dir_info = new DirectoryInfo(path);
             txtDirectory.Text = dir_info.FullName;

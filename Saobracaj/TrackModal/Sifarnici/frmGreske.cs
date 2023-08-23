@@ -162,12 +162,12 @@ namespace Testiranje.Sifarnici
             private void frmGreske_Load(object sender, EventArgs e)
             {
                 RefreshDataGrid();
-            if (KorisnikCene != "Kecman" && KorisnikCene != "U.Kecman" && KorisnikCene != "Dušan Bašanović")
-            {
+           // if (KorisnikCene != "Kecman" && KorisnikCene != "U.Kecman" && KorisnikCene != "Dušan Bašanović")
+          //  {
                 tsNew.Enabled = false;
                 tsSave.Enabled = false;
                 tsDelete.Enabled = false;
-            }
+           // }
         }
 
         private void tsPrvi_Click(object sender, EventArgs e)

@@ -561,7 +561,7 @@ namespace MDB_ScheduleSample_CS
             dataAdapter = new SqlDataAdapter(sqlString, c);
             dataAdapter.Fill(scheduleDataSet, Table_Appointments);
 
-            sqlString = "SELECT DeSifra, (Rtrim(DePriimek) + ' ' + Rtrim(DeIme)) as Ime FROM " + Table_Delavci;
+            sqlString = "SELECT DeSifra, (Rtrim(DeIme)+ ' ' + Rtrim(DePriimek) ) as Ime FROM " + Table_Delavci;
             dataAdapter = new SqlDataAdapter(sqlString, c);
             dataAdapter.Fill(scheduleDataSet, Table_Delavci);
 

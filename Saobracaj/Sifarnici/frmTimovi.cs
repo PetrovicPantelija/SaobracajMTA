@@ -48,7 +48,7 @@ namespace Saobracaj.Sifarnici
 
         private void DataGridView2Refresh()
         {
-            var select = "select IDTima, Korisnik, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Ime from PripadnostTimu " +
+            var select = "select IDTima, Korisnik, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Ime from PripadnostTimu " +
             " inner join Delavci on Delavci.DeSifra = PripadnostTimu.Korisnik " +
             " inner join Tim on Tim.ID = PripadnostTimu.IdTima where PripadnostTimu.IdTima =  " + Convert.ToInt32(txtSifra.Text);
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -66,7 +66,7 @@ namespace Saobracaj.Sifarnici
 
         private void frmTimovi_Load(object sender, EventArgs e)
         {
-            var select = " SELECT     Delavci.DeSifra, RTRIM(Delavci.DePriimek) + ' ' + RTRIM(Delavci.DeIme) AS Naziv from Delavci where DeSifStat <> 'P'";
+            var select = " SELECT     Delavci.DeSifra, RTRIM(Delavci.DeIme) + ' ' +RTRIM(Delavci.DePriimek)  AS Naziv from Delavci where DeSifStat <> 'P'";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);

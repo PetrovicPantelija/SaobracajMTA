@@ -29,6 +29,13 @@ namespace Saobracaj.Dokumenta
             NovaTeretnica = 1;
         }
 
+        public frmTeretnica(string KorisnikTeretnica)
+        {
+            InitializeComponent();
+            NovaTeretnica = 1;
+            Korisnik = KorisnikTeretnica;
+        }
+
         public frmTeretnica(string IdTeretnice, string KorisnikTeretnica)
         {
             InitializeComponent();
@@ -888,6 +895,61 @@ namespace Saobracaj.Dokumenta
         private void tsPrvi_Click(object sender, EventArgs e)
         {
             RefreshDataGrid();
+        }
+
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+            Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListTableAdapter ta = new Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListTableAdapter();
+            Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListSumeTableAdapter ta2 = new Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListSumeTableAdapter();
+            Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListDataTable dt = new Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListDataTable();
+            Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListSumeDataTable dt2 = new Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListSumeDataTable();
+            
+            ta.Fill(dt, Convert.ToInt32(cboTrainList.SelectedValue));
+            ReportDataSource rds = new ReportDataSource();
+            rds.Name = "DataSet1TA";
+            rds.Value = dt;
+
+            ta2.Fill(dt2, Convert.ToInt32(cboTrainList.SelectedValue));
+            ReportDataSource rd2s = new ReportDataSource();
+            rd2s.Name = "DataSet1";
+            rd2s.Value = dt2;
+
+            ReportParameter[] par = new ReportParameter[1];
+            par[0] = new ReportParameter("BR", cboTrainList.SelectedValue.ToString());
+            reportViewer6.LocalReport.DataSources.Clear();
+            reportViewer6.LocalReport.ReportPath = "K200TA.rdlc";
+            reportViewer6.LocalReport.SetParameters(par);
+            reportViewer6.LocalReport.DataSources.Add(rds);
+            reportViewer6.LocalReport.DataSources.Add(rd2s);
+            reportViewer6.RefreshReport();
+        }
+
+        private void toolStripButton10_Click(object sender, EventArgs e)
+        {
+            Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListTableAdapter ta = new Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListTableAdapter();
+            Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListSumeTableAdapter ta2 = new Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListSumeTableAdapter();
+            Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListDataTable dt = new Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListDataTable();
+            Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListSumeDataTable dt2 = new Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListSumeDataTable();
+            //  Saobracaj.TESTIRANJEDataSet1TA.Se.seleSelectTrainListDataTable dt = new Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListDataTable();
+
+            ta.Fill(dt, Convert.ToInt32(cboTrainList.SelectedValue));
+            ReportDataSource rds = new ReportDataSource();
+            rds.Name = "DataSet1TA";
+            rds.Value = dt;
+
+            ta2.Fill(dt2, Convert.ToInt32(cboTrainList.SelectedValue));
+            ReportDataSource rd2s = new ReportDataSource();
+            rd2s.Name = "DataSet1";
+            rd2s.Value = dt2;
+
+            ReportParameter[] par = new ReportParameter[1];
+            par[0] = new ReportParameter("BR", cboTrainList.SelectedValue.ToString());
+            reportViewer7.LocalReport.DataSources.Clear();
+            reportViewer7.LocalReport.ReportPath = "KOl65TA.rdlc";
+            reportViewer7.LocalReport.SetParameters(par);
+            reportViewer7.LocalReport.DataSources.Add(rds);
+            reportViewer7.LocalReport.DataSources.Add(rd2s);
+            reportViewer7.RefreshReport();
         }
     }
 }

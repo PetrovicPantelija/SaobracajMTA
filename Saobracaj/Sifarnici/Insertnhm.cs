@@ -31,7 +31,7 @@ namespace Saobracaj.Sifarnici
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@Naziv";
             parameter2.SqlDbType = SqlDbType.Char;
-            parameter.Size = 50;
+            parameter.Size = 1000;
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = Naziv;
             myCommand.Parameters.Add(parameter2);
@@ -123,6 +123,7 @@ namespace Saobracaj.Sifarnici
             SqlParameter parameter3 = new SqlParameter();
             parameter3.ParameterName = "@Naziv";
             parameter3.SqlDbType = SqlDbType.NVarChar;
+            parameter3.Size = 1000;
             parameter3.Direction = ParameterDirection.Input;
             parameter3.Value = Naziv;
             myCommand.Parameters.Add(parameter3);

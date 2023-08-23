@@ -14,7 +14,7 @@ namespace Testiranje.Sifarnici
     class InsertVrstaManipulacije
     {
 
-          public void InsVrstaManipulacije(string Naziv ,DateTime  Datum , string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena)
+          public void InsVrstaManipulacije(string Naziv ,DateTime  Datum , string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID)
         {
            // @Oznaka nvarchar(50), 
   // @Relacija nvarchar(100), 
@@ -107,6 +107,13 @@ namespace Testiranje.Sifarnici
             parameter13.Value = Cena;
             myCommand.Parameters.Add(parameter13);
 
+            SqlParameter parameter14 = new SqlParameter();
+            parameter14.ParameterName = "@GrupaVrsteManipulacijeID";
+            parameter14.SqlDbType = SqlDbType.Decimal;
+            parameter14.Direction = ParameterDirection.Input;
+            parameter14.Value = GrupaVrsteManipulacijeID;
+            myCommand.Parameters.Add(parameter14);
+
             // @Oznaka nvarchar(50), 
             // @Relacija nvarchar(100), 
             // @Cena numeric(18,2)
@@ -148,7 +155,7 @@ namespace Testiranje.Sifarnici
             }
         }
 
-          public void UpdVrstaManipulacije(int ID, string Naziv ,DateTime  Datum , string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena)
+          public void UpdVrstaManipulacije(int ID, string Naziv ,DateTime  Datum , string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID)
             {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -245,6 +252,13 @@ namespace Testiranje.Sifarnici
             parameter13.Direction = ParameterDirection.Input;
             parameter13.Value = Cena;
             myCommand.Parameters.Add(parameter13);
+           
+            SqlParameter parameter14 = new SqlParameter();
+            parameter14.ParameterName = "@GrupaVrsteManipulacijeID";
+            parameter14.SqlDbType = SqlDbType.Decimal;
+            parameter14.Direction = ParameterDirection.Input;
+            parameter14.Value = GrupaVrsteManipulacijeID;
+            myCommand.Parameters.Add(parameter14);
 
 
             myConnection.Open();

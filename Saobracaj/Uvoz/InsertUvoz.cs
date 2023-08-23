@@ -16,10 +16,10 @@ namespace Saobracaj.Uvoz
         public void UpdUvoz(int ID,DateTime ETABroda,DateTime ATABroda,string Status,string BrojKont,int TipKont,DateTime DobijenNalog,string DobijeBZ,string Napomena,
             string PIN,int DirigacijaKont,int NazivBroda,string BTeretnica,int ADR,int Vlasnik,int Buking,string Nalogodavac,string VrstaUsluge,int Uvoznik,int NHM,
             string NazivRobe,int SpedicijaGranicna,int SpedicijaRTC,int CarinskiPostupak,int PostupakRoba,int NacinPakovanja,int OdredisnaCarina,int OdredisnaSpedicija,
-            string MestoIstovara,string KontaktOsoba,string Mail,string Plomba1,string Plomba2,decimal NetoRoba,decimal BrutoRoba,decimal TaraKont,decimal BrutoKont,
+            int MestoIstovara,int KontaktOsoba,string Mail,string Plomba1,string Plomba2,decimal NetoRoba,decimal BrutoRoba,decimal TaraKont,decimal BrutoKont,
             int NapomenaPoz,DateTime ATAOtpreme,int BrojVoza,string Relacija,DateTime ATADolazak, decimal Koleta, int RLTerminali
-            , string Napomena1, string VrstaPregleda, int Nalogodavac1, string Ref1, int Nalogodavac2,
-string Ref2, int Nalogodavac3, string Ref3, int Brodar)
+            , string Napomena1, int VrstaPregleda, int Nalogodavac1, string Ref1, int Nalogodavac2,
+string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila)
         {
 
              
@@ -238,16 +238,16 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar)
 
             SqlParameter mesto = new SqlParameter();
             mesto.ParameterName = "@MestoIstovara";
-            mesto.SqlDbType = SqlDbType.NVarChar;
-            mesto.Size = 50;
+            mesto.SqlDbType = SqlDbType.Int;
+           // mesto.Size = 50;
             mesto.Direction = ParameterDirection.Input;
             mesto.Value = MestoIstovara;
             cmd.Parameters.Add(mesto);
 
             SqlParameter kontakt = new SqlParameter();
             kontakt.ParameterName = "@KontaktOsoba";
-            kontakt.SqlDbType = SqlDbType.NVarChar;
-            kontakt.Size = 50;
+            kontakt.SqlDbType = SqlDbType.Int;
+         //   kontakt.Size = 50;
             kontakt.Direction = ParameterDirection.Input;
             kontakt.Value = KontaktOsoba;
             cmd.Parameters.Add(kontakt);
@@ -364,8 +364,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar)
 
             SqlParameter vrstapregleda = new SqlParameter();
             vrstapregleda.ParameterName = "@VrstaPregleda";
-            vrstapregleda.SqlDbType = SqlDbType.NVarChar;
-            vrstapregleda.Size = 100;
+            vrstapregleda.SqlDbType = SqlDbType.Int;
             vrstapregleda.Direction = ParameterDirection.Input;
             vrstapregleda.Value = VrstaPregleda;
             cmd.Parameters.Add(vrstapregleda);
@@ -421,6 +420,16 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar)
             brodar.Direction = ParameterDirection.Input;
             brodar.Value = Brodar;
             cmd.Parameters.Add(brodar);
+
+            //NaslovStatusaVozila
+
+            SqlParameter rnaslovstatusavozila = new SqlParameter();
+            rnaslovstatusavozila.ParameterName = "@NaslovStatusaVozila";
+            rnaslovstatusavozila.SqlDbType = SqlDbType.NVarChar;
+            rnaslovstatusavozila.Size = 1000;
+            rnaslovstatusavozila.Direction = ParameterDirection.Input;
+            rnaslovstatusavozila.Value = NaslovStatusaVozila;
+            cmd.Parameters.Add(rnaslovstatusavozila);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

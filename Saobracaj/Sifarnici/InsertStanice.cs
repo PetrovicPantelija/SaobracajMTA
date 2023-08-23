@@ -12,7 +12,7 @@ namespace Saobracaj.Sifarnici
 {
     class InsertStanice
     {
-         public void InsStanice(string Opis, int Granicna, string Kod, string Drzava, double Longitude, double Latitude)
+         public void InsStanice(string Opis, int Granicna, string Kod, string Drzava, double Longitude, double Latitude, string Prelaz)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -66,6 +66,14 @@ namespace Saobracaj.Sifarnici
             parameter6.Value = Latitude;
             myCommand.Parameters.Add(parameter6);
 
+            SqlParameter parameter7 = new SqlParameter();
+            parameter7.ParameterName = "@Prelaz";
+            parameter7.SqlDbType = SqlDbType.NVarChar;
+            parameter7.Size = 30;
+            parameter7.Direction = ParameterDirection.Input;
+            parameter7.Value = Prelaz;
+            myCommand.Parameters.Add(parameter7);
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -104,7 +112,7 @@ namespace Saobracaj.Sifarnici
         }
         //Ubacuje u dve tabele - duplirano
        
-        public void UpdStanice(int ID, string Opis, int Granicna, string Kod, string Drzava,  double Longitude, double Latitude)
+        public void UpdStanice(int ID, string Opis, int Granicna, string Kod, string Drzava,  double Longitude, double Latitude, string Prelaz)
          {
              var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
              SqlConnection myConnection = new SqlConnection(s_connection);
@@ -165,6 +173,14 @@ namespace Saobracaj.Sifarnici
             parameter7.Direction = ParameterDirection.Input;
             parameter7.Value = Latitude;
             myCommand.Parameters.Add(parameter7);
+
+            SqlParameter parameter8 = new SqlParameter();
+            parameter8.ParameterName = "@Prelaz";
+            parameter8.SqlDbType = SqlDbType.NVarChar;
+            parameter8.Size = 30;
+            parameter8.Direction = ParameterDirection.Input;
+            parameter8.Value = Prelaz;
+            myCommand.Parameters.Add(parameter8);
 
             myConnection.Open();
              SqlTransaction myTransaction = myConnection.BeginTransaction();

@@ -15,6 +15,7 @@ namespace Saobracaj.Izvoz
     public partial class frmIzvozKonacna : Form
     {
         public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        int NHMObrni = 0;
         public frmIzvozKonacna()
         {
             InitializeComponent();
@@ -240,18 +241,18 @@ namespace Saobracaj.Izvoz
                 cboPPCNT.SelectedValue = Convert.ToInt32(dr["MestoPreuzimanja"].ToString());
 
                 if (dr["Cirada"].ToString() == "1")
-                { chkCirada.Checked = true; }
+                { chkCirada.Text = "CIRADA"; }
                 else
-                { chkCirada.Checked = false; }
+                { chkCirada.Text = "PLATFORMA"; }
 
                 dtpPlanUtovara.Value = Convert.ToDateTime(dr["PlaniraniDatumUtovara"].ToString());
-                cboMestoUtovara.SelectedValue = Convert.ToInt32(dr["MesoUtovara"].ToString());
+                cboMestoUtovara.SelectedValue = Convert.ToInt32(dr["MestoUtovara"].ToString());
                 txtKontaktOsoba.Text = dr["KontaktOsoba"].ToString();
                 cboCarina.SelectedValue = Convert.ToInt32(dr["MestoCarinjenja"].ToString());
                 cboSpedicija.SelectedValue = Convert.ToInt32(dr["Spedicija"].ToString());
                 // txtKontaktSpeditera
-                cboAdresaStatusVozila.SelectedValue = Convert.ToInt32(dr["AdresaSlanjaStatusa"].ToString());
-                cboNaslovStatusaVozila.SelectedValue = Convert.ToInt32(dr["NaslovSlanjaStatusa"].ToString());
+                cboAdresaStatusVozila.Text= dr["AdresaSlanjaStatusa"].ToString();
+                cboNaslovStatusaVozila.Text= dr["NaslovSlanjaStatusa"].ToString();
                 dtpEtaLeget.Value = Convert.ToDateTime(dr["EtaLeget"].ToString());
                 cboReexport.SelectedValue = Convert.ToInt32(dr["NapomenaReexport"].ToString());
                 cboInspekciskiTretman.SelectedValue = Convert.ToInt32(dr["Inspekcija"].ToString());
@@ -387,7 +388,7 @@ namespace Saobracaj.Izvoz
             cboSpedicijaJ.DataSource = partDS4.Tables[0];
             cboSpedicijaJ.DisplayMember = "PaNaziv";
             cboSpedicijaJ.ValueMember = "PaSifra";
-
+            /*
             //Adresa statusa vozila
             var dir5 = "Select ID,Naziv from AdresaStatusVozila order by Naziv";
             var dirAD5 = new SqlDataAdapter(dir5, conn);
@@ -396,8 +397,9 @@ namespace Saobracaj.Izvoz
             cboAdresaStatusVozila.DataSource = dirDS5.Tables[0];
             cboAdresaStatusVozila.DisplayMember = "Naziv";
             cboAdresaStatusVozila.ValueMember = "ID";
-
+            */
             //Naslov statusa vozila
+            /*
             var partner40 = "Select ID,Naziv from NaslovStatusaVozila order by Naziv";
             var partAD40 = new SqlDataAdapter(partner40, conn);
             var partDS40 = new DataSet();
@@ -405,7 +407,7 @@ namespace Saobracaj.Izvoz
             cboNaslovStatusaVozila.DataSource = partDS40.Tables[0];
             cboNaslovStatusaVozila.DisplayMember = "Naziv";
             cboNaslovStatusaVozila.ValueMember = "ID";
-
+            */
 
 
 
@@ -631,7 +633,7 @@ namespace Saobracaj.Izvoz
         {
             InsertIzvoz ins = new InsertIzvoz();
             int pomCirada = 0;
-            if (chkCirada.Checked == true)
+            if (chkCirada.Text == "CIRADA")
             {
                 pomCirada = 1;
             }
@@ -668,14 +670,14 @@ namespace Saobracaj.Izvoz
                 Convert.ToString(txtValuta.SelectedValue), Convert.ToInt32(cboKrajnjaDestinacija.SelectedValue), Convert.ToInt32(cboPostupanjeSaRobom.SelectedValue),
                 Convert.ToInt32(cboPPCNT.SelectedValue), pomCirada, Convert.ToDateTime(dtpPlanUtovara.Value), Convert.ToInt32(cboMestoUtovara.SelectedValue),
                 txtKontaktOsoba.Text, Convert.ToInt32(cboCarina.SelectedValue), Convert.ToInt32(cboSpedicija.SelectedValue),
-                Convert.ToInt32(cboAdresaStatusVozila.SelectedValue), Convert.ToInt32(cboNaslovStatusaVozila.SelectedValue), Convert.ToDateTime(dtpEtaLeget.Value),
+                cboAdresaStatusVozila.Text, cboNaslovStatusaVozila.Text, Convert.ToDateTime(dtpEtaLeget.Value),
                 Convert.ToInt32(cboReexport.SelectedValue), Convert.ToInt32(cboInspekciskiTretman.SelectedValue), Convert.ToDecimal(txtAutoDana.Value),
                 pomNajavaVozila, Convert.ToInt32(cbNacinPakovanja.SelectedValue), pomNacinPretovara, txtDodatneNapomene.Text, pomVaganje, Convert.ToDecimal(txtOdvaganaTezina.Value),
                 Convert.ToDecimal(txtTaraKontejnera.Value), Convert.ToDecimal(txVGMBrodBruto.Value), Convert.ToInt32(cboIzvoznik.SelectedValue),
                 Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(txtRef1.Text), pomDobijenNalog,
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(txtRef2.Text),
                 Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(txtRef3.Text),
-                 Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text, Convert.ToInt32(txtADR.SelectedValue), Convert.ToInt32(txtNadredjeni.Text), txtVozilo.Text, txtVozac.Text, Convert.ToInt32(cboSpedicijaJ.SelectedValue), Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value));
+                 Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text, Convert.ToInt32(txtADR.SelectedValue), Convert.ToInt32(txtNadredjeni.Text), txtVozilo.Text, txtVozac.Text, Convert.ToInt32(cboSpedicijaJ.SelectedValue), Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToInt32(cboVrstaPlombe.SelectedValue), txtNapomenaZaRobu.Text);
             //Fale ostale plombe
             // Convert.ToDecimal(txtDodatneNapomene.Text -- treba staviti nvarchar
 
@@ -696,7 +698,7 @@ namespace Saobracaj.Izvoz
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
                 Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue));
             */
-            // FillGV();
+           //  FillGV();
             //  RefreshDataGridColor();
             
             txtID.Text = "";
@@ -1059,8 +1061,8 @@ namespace Saobracaj.Izvoz
                 cboInspekciskiTretman.SelectedValue = Convert.ToInt32(dr["Inspekcija"].ToString());
                 cboReexport.SelectedValue = Convert.ToInt32(dr["NapomenaReexport"].ToString());
                 dtpEtaLeget.Value = Convert.ToDateTime(dr["EtaLeget"].ToString());
-                cboNaslovStatusaVozila.SelectedValue = Convert.ToInt32(dr["NaslovSlanjaStatusa"].ToString());
-                cboAdresaStatusVozila.SelectedValue = Convert.ToInt32(dr["AdresaSlanjaStatusa"].ToString());
+                cboNaslovStatusaVozila.Text = dr["NaslovSlanjaStatusa"].ToString();
+                cboAdresaStatusVozila.Text= dr["AdresaSlanjaStatusa"].ToString();
                 txtADR.SelectedValue = Convert.ToInt32(dr["ADR"].ToString());
                 cboSpedicija.SelectedValue = Convert.ToInt32(dr["Spedicija"].ToString());
                 cboCarina.SelectedValue = Convert.ToInt32(dr["MestoCarinjenja"].ToString());
@@ -1069,11 +1071,11 @@ namespace Saobracaj.Izvoz
                 dtpPlanUtovara.Value = Convert.ToDateTime(dr["PlaniraniDatumUtovara"].ToString());
                 if (dr["Cirada"].ToString() == "1")
                 {
-                    chkCirada.Checked = true;
+                    chkCirada.Text = "CIRADA";
                 }
                 else
                 {
-                    chkCirada.Checked = false;
+                    chkCirada.Text = "PLATFORMA";
                 }
                 cboPPCNT.SelectedValue = Convert.ToInt32(dr["MestoPreuzimanja"].ToString());
                 cboPostupanjeSaRobom.SelectedValue = Convert.ToInt32(dr["Postupanje"].ToString());
@@ -1225,14 +1227,127 @@ namespace Saobracaj.Izvoz
         private void button15_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(connection);
+            switch (NHMObrni)
+            {
+                case 1:
+                    {
+                        var nhm = "Select ID,Rtrim(Broj) + '-' + (Rtrim(Naziv)) as Naziv from NHM order by NHM.Broj";
+                        var nhmSAD = new SqlDataAdapter(nhm, conn);
+                        var nhmSDS = new DataSet();
+                        nhmSAD.Fill(nhmSDS);
+                        cboNHM.DataSource = nhmSDS.Tables[0];
+                        cboNHM.DisplayMember = "Naziv";
+                        cboNHM.ValueMember = "ID";
+                        NHMObrni = 0;
+                        break;
 
-            var nhm = "Select ID,Rtrim(Broj) + '-' + (Rtrim(Naziv)) as Naziv from NHM order by NHM.Broj";
-            var nhmSAD = new SqlDataAdapter(nhm, conn);
-            var nhmSDS = new DataSet();
-            nhmSAD.Fill(nhmSDS);
-            cboNHM.DataSource = nhmSDS.Tables[0];
-            cboNHM.DisplayMember = "Naziv";
-            cboNHM.ValueMember = "ID";
+                    }
+                case 0:
+                    {
+                        var nhm = "Select ID,Rtrim(Naziv) + '-' + (Rtrim(Broj)) as Naziv from NHM order by NHM.Naziv";
+                        var nhmSAD = new SqlDataAdapter(nhm, conn);
+                        var nhmSDS = new DataSet();
+                        nhmSAD.Fill(nhmSDS);
+                        cboNHM.DataSource = nhmSDS.Tables[0];
+                        cboNHM.DisplayMember = "Naziv";
+                        cboNHM.ValueMember = "ID";
+                        NHMObrni = 1;
+                        break;
+                    }
+                default:
+                    break;
+            }
+
+        }
+        private void VratiAdresuKontaktaIzNapomene(int Sifra)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select PaKOOpomba from partnerjiKontOsebaMU where PaKOZapSt = =" + Sifra, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtAdresaMestaUtovara.Text = dr["PaKOOpomba"].ToString();
+
+
+            }
+            con.Close();
+
+
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+
+            var ko = "select PaKoZapSt, (Rtrim(PaKOIme) + ' ' + Rtrim(PaKoPriimek)) as Naziv from partnerjiKontOsebaMU where PaKOSifra = '" + Convert.ToInt32(cboMestoUtovara.SelectedValue) + "'  order by PaKOIme";
+            var koAD = new SqlDataAdapter(ko, conn);
+            var koDS = new DataSet();
+            koAD.Fill(koDS);
+            txtKontaktOsoba.DataSource = koDS.Tables[0];
+            txtKontaktOsoba.DisplayMember = "Naziv";
+            txtKontaktOsoba.ValueMember = "PaKoZapSt";
+
+
+           // VratiAdresuKontaktaIzNapomene(Convert.ToInt32(cboMestoUtovara.SelectedValue));
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            using (var detailForm = new frmKontaktOsobeMU(Convert.ToInt32(cboMestoUtovara.SelectedValue)))
+            {
+                detailForm.ShowDialog();
+
+                txtAdresaMestaUtovara.Text = detailForm.GetKontaktAdresa(Convert.ToInt32(cboMestoUtovara.SelectedValue));
+            }
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            using (var detailForm = new Dokumenta.frmKontaktOsobe(Convert.ToInt32(cboSpedicija.SelectedValue)))
+            {
+                detailForm.ShowDialog();
+                txtKontaktSpeditera.Text = detailForm.GetKontakt(Convert.ToInt32(cboSpedicija.SelectedValue));
+            }
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            using (var detailForm = new Dokumenta.frmKontaktOsobe(Convert.ToInt32(cboNalogodavac3.SelectedValue)))
+            {
+                detailForm.ShowDialog();
+                cboAdresaStatusVozila.Text = detailForm.GetKontakt(Convert.ToInt32(cboNalogodavac3.SelectedValue));
+            }
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            if (checkedListBox2.GetItemCheckState(0) == CheckState.Checked)
+            {
+                cboNaslovStatusaVozila.Text = "Broj kontejnera: " + txtBrKont.Text;
+            }
+
+            if (checkedListBox2.GetItemCheckState(1) == CheckState.Checked)
+            {
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " Buking brodara: " + txtBokingBrodara.Text;
+            }
+
+            if (checkedListBox2.GetItemCheckState(2) == CheckState.Checked)
+            {
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " Brodar: " + cboBrodar.Text;
+            }
+            if (checkedListBox2.GetItemCheckState(3) == CheckState.Checked)
+            {
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " Izvoznik: " + cboIzvoznik.Text;
+            }
+            if (checkedListBox2.GetItemCheckState(4) == CheckState.Checked)
+            {
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " Nalogodavac za drumski prevoz: " + cboNalogodavac3.Text;
+            }
         }
     }
 }

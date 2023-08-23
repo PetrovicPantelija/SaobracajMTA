@@ -33,7 +33,7 @@ namespace Saobracaj.Servis
 
         private void RefreshDataGrid()
         {
-            var select = "select EvidencijaKvarovaAuto.ID, KvaroviAuto.ID, Automobil, KvaroviAuto.Naziv as Kvar, GrupaKvarovaAuto.Naziv as GrupaKvarova, DatumPrijave, Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme) as Prijavio,  StatusKvara.Naziv as Status, Rtrim(D2.DePriimek) + ' ' + Rtrim(D2.DeIme) as Prijavio, DatumPromene, Napomena  from EvidencijaKvarovaAuto " +
+            var select = "select EvidencijaKvarovaAuto.ID, KvaroviAuto.ID, Automobil, KvaroviAuto.Naziv as Kvar, GrupaKvarovaAuto.Naziv as GrupaKvarova, DatumPrijave, Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek) as Prijavio,  StatusKvara.Naziv as Status, Rtrim(D2.DeIme) + ' ' + Rtrim(D2.DePriimek) as Prijavio, DatumPromene, Napomena  from EvidencijaKvarovaAuto " +
              " inner join Delavci on Delavci.DeSifra = EvidencijaKvarovaAuto.Prijavio " +
              " inner join Delavci d2 on d2.DeSifra = EvidencijaKvarovaAuto.Promenio " +
              " inner join KvaroviAuto on KvaroviAuto.ID = EvidencijaKvarovaAuto.Kvar " +
@@ -86,7 +86,7 @@ namespace Saobracaj.Servis
 
         private void RefreshDataGridPoStatusu()
         {
-            var select = "select EvidencijaKvarovaAuto.ID, KvaroviAuto.ID, Automobil, KvaroviAuto.Naziv as Kvar, GrupaKvarovaAuto.Naziv as GrupaKvarova, DatumPrijave, Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme) as Prijavio,  StatusKvara.Naziv as Status, Rtrim(D2.DePriimek) + ' ' + Rtrim(D2.DeIme) as Prijavio, DatumPromene, Napomena  from EvidencijaKvarovaAuto " +
+            var select = "select EvidencijaKvarovaAuto.ID, KvaroviAuto.ID, Automobil, KvaroviAuto.Naziv as Kvar, GrupaKvarovaAuto.Naziv as GrupaKvarova, DatumPrijave, Rtrim(Delavci.DeIme + ' ' + Rtrim(Delavci.DePriimek)) as Prijavio,  StatusKvara.Naziv as Status, Rtrim(D2.DeIme) + ' ' + Rtrim(D2.DePriimek) as Prijavio, DatumPromene, Napomena  from EvidencijaKvarovaAuto " +
              " inner join Delavci on Delavci.DeSifra = EvidencijaKvarovaAuto.Prijavio " +
              " inner join Delavci d2 on d2.DeSifra = EvidencijaKvarova.Promenio " +
              " inner join KvaroviAuto on KvaroviAuto.ID = EvidencijaKvarovaAuto.Kvar " +
@@ -149,7 +149,7 @@ namespace Saobracaj.Servis
 
         private void RefreshDataGridLokomotiva()
         {
-            var select = "select EvidencijaKvarovaAuto.ID, KvaroviAuto.ID, Automobil, KvaroviAuto.Naziv as Kvar, GrupaKvarovaAuto.Naziv as GrupaKvarova, DatumPrijave, Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme) as Prijavio,  StatusKvara.Naziv as Status, Rtrim(D2.DePriimek) + ' ' + Rtrim(D2.DeIme) as Prijavio, DatumPromene, Napomena  from EvidencijaKvarovaAuto " +
+            var select = "select EvidencijaKvarovaAuto.ID, KvaroviAuto.ID, Automobil, KvaroviAuto.Naziv as Kvar, GrupaKvarovaAuto.Naziv as GrupaKvarova, DatumPrijave, Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek) as Prijavio,  StatusKvara.Naziv as Status, Rtrim(D2.DeIme) + ' ' + Rtrim(D2.DePriimek) as Prijavio, DatumPromene, Napomena  from EvidencijaKvarovaAuto " +
              " inner join Delavci on Delavci.DeSifra = EvidencijaKvarovaAuto.Prijavio " +
              " inner join Delavci d2 on d2.DeSifra = EvidencijaKvarova.Promenio " +
              " inner join KvaroviAuto on KvaroviAuto.ID = EvidencijaKvarovaAuto.Kvar " +
@@ -326,7 +326,7 @@ namespace Saobracaj.Servis
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
-            string path = Path.Combine(@"//192.168.1.6/KvaroviSlike/", txtSifra.Text + "/");
+            string path = Path.Combine(@"//192.168.129.7/TA/KvaroviSlike/", txtSifra.Text + "/");
             //txtPutanja.Text = "\\192.168.1.6\";
             DirectoryInfo dir_info = new DirectoryInfo(path);
             txtDirectory.Text = dir_info.FullName;

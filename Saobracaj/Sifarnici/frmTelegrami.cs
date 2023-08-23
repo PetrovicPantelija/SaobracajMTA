@@ -586,7 +586,7 @@ namespace Saobracaj.Sifarnici
             string result = Path.GetFileName(fileName);
             string targetPath = "";
 
-            targetPath = @"\\192.168.1.6\Telegrami\" + FolderDestinacije + ID;
+            targetPath = @"\\192.168.129.7\TA\Telegrami\" + FolderDestinacije + ID;
 
             string sourceFile = putanja;
             string destFile = System.IO.Path.Combine(targetPath, result);

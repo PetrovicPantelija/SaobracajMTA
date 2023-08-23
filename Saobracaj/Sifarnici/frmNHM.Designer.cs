@@ -60,7 +60,7 @@
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(627, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(747, 27);
             this.toolStrip1.TabIndex = 5;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -106,18 +106,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 218);
+            this.dataGridView1.Location = new System.Drawing.Point(9, 279);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(608, 258);
+            this.dataGridView1.Size = new System.Drawing.Size(728, 388);
             this.dataGridView1.TabIndex = 10;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // txtNaziv
             // 
             this.txtNaziv.Location = new System.Drawing.Point(47, 88);
+            this.txtNaziv.Multiline = true;
             this.txtNaziv.Name = "txtNaziv";
-            this.txtNaziv.Size = new System.Drawing.Size(306, 20);
+            this.txtNaziv.Size = new System.Drawing.Size(568, 109);
             this.txtNaziv.TabIndex = 3;
             // 
             // lblNaziv
@@ -149,7 +150,7 @@
             // 
             this.txtBroj.Location = new System.Drawing.Point(47, 62);
             this.txtBroj.Name = "txtBroj";
-            this.txtBroj.Size = new System.Drawing.Size(159, 20);
+            this.txtBroj.Size = new System.Drawing.Size(183, 20);
             this.txtBroj.TabIndex = 2;
             // 
             // label2
@@ -164,7 +165,7 @@
             // chkRid
             // 
             this.chkRid.AutoSize = true;
-            this.chkRid.Location = new System.Drawing.Point(9, 114);
+            this.chkRid.Location = new System.Drawing.Point(47, 203);
             this.chkRid.Name = "chkRid";
             this.chkRid.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkRid.Size = new System.Drawing.Size(91, 17);
@@ -176,16 +177,16 @@
             // 
             this.txtADR.FormattingEnabled = true;
             this.txtADR.ItemHeight = 13;
-            this.txtADR.Location = new System.Drawing.Point(12, 151);
+            this.txtADR.Location = new System.Drawing.Point(47, 225);
             this.txtADR.Margin = new System.Windows.Forms.Padding(2);
             this.txtADR.Name = "txtADR";
-            this.txtADR.Size = new System.Drawing.Size(184, 21);
+            this.txtADR.Size = new System.Drawing.Size(341, 21);
             this.txtADR.TabIndex = 52;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(14, 134);
+            this.label13.Location = new System.Drawing.Point(11, 225);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(30, 13);
@@ -197,7 +198,7 @@
             this.chkUvozni.AutoSize = true;
             this.chkUvozni.Checked = true;
             this.chkUvozni.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkUvozni.Location = new System.Drawing.Point(9, 177);
+            this.chkUvozni.Location = new System.Drawing.Point(9, 251);
             this.chkUvozni.Name = "chkUvozni";
             this.chkUvozni.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkUvozni.Size = new System.Drawing.Size(51, 17);
@@ -210,7 +211,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(627, 487);
+            this.ClientSize = new System.Drawing.Size(747, 678);
             this.Controls.Add(this.chkUvozni);
             this.Controls.Add(this.txtADR);
             this.Controls.Add(this.label13);

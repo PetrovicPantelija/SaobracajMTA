@@ -133,7 +133,7 @@ namespace Saobracaj.Sifarnici
             {
                 InsertStanice ins = new InsertStanice();
                 // ins.DeleteSaloni();
-                ins.InsStanice(txtOpis.Text, pomGranicna, txtKod.Text, cboDrzava.Text, Convert.ToDouble(txtLongitude.Value), Convert.ToDouble(txtLatitude.Value));
+                ins.InsStanice(txtOpis.Text, pomGranicna, txtKod.Text, cboDrzava.Text, Convert.ToDouble(txtLongitude.Value), Convert.ToDouble(txtLatitude.Value),txtPrelaz.Text);
                 //MessageBox.Show("Uspešno uneta stanica");
                 RefreshDataGrid();
                 status = false;
@@ -141,7 +141,7 @@ namespace Saobracaj.Sifarnici
             else
             { 
                 InsertStanice upd = new InsertStanice();
-                upd.UpdStanice(Convert.ToInt32(txtSifra.Text), txtOpis.Text, pomGranicna, txtKod.Text, cboDrzava.Text,  Convert.ToDouble(txtLongitude.Value), Convert.ToDouble(txtLatitude.Value));
+                upd.UpdStanice(Convert.ToInt32(txtSifra.Text), txtOpis.Text, pomGranicna, txtKod.Text, cboDrzava.Text,  Convert.ToDouble(txtLongitude.Value), Convert.ToDouble(txtLatitude.Value), txtPrelaz.Text);
                 status = false;
                 txtSifra.Enabled = false;
                 RefreshDataGrid();
@@ -154,7 +154,7 @@ namespace Saobracaj.Sifarnici
         }
         private void FillCombo()
         {
-            var select = " Select ID, opis, (case when granicna = 1 then 'true' else 'false' end) as granicna, Kod,Drzava, Longitude, Latitude from Stanice";
+            var select = " Select ID, opis, (case when granicna = 1 then 'true' else 'false' end) as granicna, Kod,Drzava, Longitude, Latitude, Prelaz from Stanice";
             // var select = "SELECT RkShippingItemPak.ShippingItemPakId as ID, RkShipping.ShippingNo as BarkodUtovara, RkShipping.BrojIstovara as BrojUtovara, RkShipping.DatumIstovara as DatumUtovara, RkShipping.BrojUtovara as BrojIstovara,  RkShipping.DatumUtovara as DatumIstovara , Saloni.MestoIsporuke, RkShippingItemPak.PaketName, RkShippingItemPak.LargoPakId, RkShippingItemPak.LargoNaziv, RkShippingItemPak.Paleta, RkShippingItemPak.Tezina,  RkShippingItemPak.LargoDimenzija  FROM [dbo].RkShippingItemPak inner join RkShipping on [dbo].RkShippingItemPak.ShipingIDz = RkShipping.[ShippingID] inner join SysKomitenti on RkShipping.KupacIDz = SysKomitenti.KomintentID inner join Saloni on RkShipping.SalonIDz = Saloni.SifraKomintentaMestoIsporuke where RkShipping.Vozilo  = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "'";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -207,6 +207,10 @@ namespace Saobracaj.Sifarnici
             DataGridViewColumn column7 = dataGridView1.Columns[6];
             dataGridView1.Columns[6].HeaderText = "Latitude";
             dataGridView1.Columns[6].Width = 80;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Prelaz";
+            dataGridView1.Columns[7].Width = 80;
 
 
             var select2 = " Select Distinct DrSifra, RTrim(DrNaziv) as Naziv From Drzave";
@@ -282,6 +286,10 @@ namespace Saobracaj.Sifarnici
             DataGridViewColumn column7 = dataGridView1.Columns[6];
             dataGridView1.Columns[6].HeaderText = "Latitude";
             dataGridView1.Columns[6].Width = 80;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Prelaz";
+            dataGridView1.Columns[7].Width = 80;
         }
 
         private void dataGridView1_Click(object sender, EventArgs e)
@@ -305,6 +313,7 @@ namespace Saobracaj.Sifarnici
                         cboDrzava.Text = row.Cells[4].Value.ToString();
                         txtLongitude.Value = Convert.ToDecimal(row.Cells[5].Value);
                         txtLatitude.Value = Convert.ToDecimal(row.Cells[6].Value);
+                        txtPrelaz.Text = row.Cells[7].Value.ToString();
                     }
                 }
 

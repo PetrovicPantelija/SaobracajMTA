@@ -106,7 +106,7 @@ namespace Saobracaj.Uvoz
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(9, 112);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -117,7 +117,7 @@ namespace Saobracaj.Uvoz
             // txtNaziv
             // 
             this.txtNaziv.Location = new System.Drawing.Point(106, 56);
-            this.txtNaziv.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtNaziv.Margin = new System.Windows.Forms.Padding(2);
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(162, 20);
             this.txtNaziv.TabIndex = 62;
@@ -127,7 +127,7 @@ namespace Saobracaj.Uvoz
             this.txtID.BackColor = System.Drawing.Color.PeachPuff;
             this.txtID.Enabled = false;
             this.txtID.Location = new System.Drawing.Point(12, 56);
-            this.txtID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtID.Margin = new System.Windows.Forms.Padding(2);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(76, 20);
             this.txtID.TabIndex = 63;
@@ -166,7 +166,7 @@ namespace Saobracaj.Uvoz
             // 
             this.txtHSCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtHSCode.Location = new System.Drawing.Point(303, 56);
-            this.txtHSCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtHSCode.Margin = new System.Windows.Forms.Padding(2);
             this.txtHSCode.Mask = "00000000";
             this.txtHSCode.Name = "txtHSCode";
             this.txtHSCode.Size = new System.Drawing.Size(76, 23);
@@ -177,7 +177,7 @@ namespace Saobracaj.Uvoz
             this.chkIzvozni.AutoSize = true;
             this.chkIzvozni.Checked = true;
             this.chkIzvozni.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkIzvozni.Location = new System.Drawing.Point(397, 80);
+            this.chkIzvozni.Location = new System.Drawing.Point(526, 90);
             this.chkIzvozni.Name = "chkIzvozni";
             this.chkIzvozni.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkIzvozni.Size = new System.Drawing.Size(51, 17);
@@ -189,10 +189,10 @@ namespace Saobracaj.Uvoz
             // 
             this.txtADR.FormattingEnabled = true;
             this.txtADR.ItemHeight = 13;
-            this.txtADR.Location = new System.Drawing.Point(400, 54);
+            this.txtADR.Location = new System.Drawing.Point(405, 58);
             this.txtADR.Margin = new System.Windows.Forms.Padding(2);
             this.txtADR.Name = "txtADR";
-            this.txtADR.Size = new System.Drawing.Size(184, 21);
+            this.txtADR.Size = new System.Drawing.Size(173, 21);
             this.txtADR.TabIndex = 67;
             // 
             // label13
@@ -223,7 +223,7 @@ namespace Saobracaj.Uvoz
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmVrstaRobeHS";
             this.Text = "Vrsta robe";
             this.Load += new System.EventHandler(this.frmVrstaRobeHS_Load);

@@ -26,6 +26,7 @@ namespace Saobracaj.Izvoz
         public frmIzvozUnosManipulacije()
         {
             InitializeComponent();
+            FillDG6();
         }
 
         public frmIzvozUnosManipulacije(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Izvoznik)
@@ -38,6 +39,7 @@ namespace Saobracaj.Izvoz
             pNalogodavac3 = Nalogodavac3;
             pIzvoznik = Izvoznik;
             txtNadredjeni.Text = pIDPlana.ToString();
+            FillDG6();
             FillDG8();
         }
 
@@ -49,10 +51,11 @@ namespace Saobracaj.Izvoz
         private void FillDG6()
         {
             //Opsti cenovnik pozivanje
-            var select = "SELECT [ID]      ,[Naziv]      " +
-     "       ,[JM]           ,[JM2] " +
-    "  ,[TipManipulacije]      ,[OrgJed]      ,[Oznaka]      ,[Relacija] " +
-     " ,[Cena] ,[Datum] ,[Korisnik] FROM [VrstaManipulacije]";
+            var select = " SELECT VrstaManipulacije.[ID]      ,VrstaManipulacije.[Naziv]    " +
+  " , VrstaManipulacije.[JM]           ,VrstaManipulacije.[JM2] " +
+ " ,VrstaManipulacije.[TipManipulacije]      ,VrstaManipulacije.[OrgJed]      ,[Oznaka]      ,[Relacija],OrganizacioneJedinice.Naziv as OJ " +
+" ,VrstaManipulacije.[Cena] ,VrstaManipulacije.[Datum] ,VrstaManipulacije.[Korisnik] FROM[VrstaManipulacije] " +
+" inner join OrganizacioneJedinice on VrstaManipulacije.OrgJed = OrganizacioneJedinice.ID ";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -464,18 +467,18 @@ namespace Saobracaj.Izvoz
             dataGridView6.Columns[5].HeaderText = "OrgJed";
             dataGridView6.Columns[5].Width = 50;
         }
-        private void UbaciStavkuUsluge(int ID, int Manipulacija, double Cena, double Kolicina, int OrgJed)
+        private void UbaciStavkuUsluge(int ID, int Manipulacija, double Cena, double Kolicina, int OrgJed, int Platilac)
         {
             if (txtNadredjeni.Text != "0")
             {
                 InsertIzvoz uvK = new InsertIzvoz();
-                uvK.InsUbaciUsluguKonacna(ID, Manipulacija, Cena, Kolicina, OrgJed);
+                uvK.InsUbaciUsluguKonacna(ID, Manipulacija, Cena, Kolicina, OrgJed, Platilac);
                 FillDG8();
             }
             else
             {
                 InsertIzvoz uvK = new InsertIzvoz();
-                uvK.InsUbaciUslugu(ID, Manipulacija, Cena, Kolicina, OrgJed);
+                uvK.InsUbaciUslugu(ID, Manipulacija, Cena, Kolicina, OrgJed, Platilac);
                 FillDG8();
 
             }
@@ -488,34 +491,35 @@ namespace Saobracaj.Izvoz
             var select = "";
             if (txtNadredjeni.Text == "0")
             {
-                select = "select  IzvozVrstaManipulacije.ID as ID, IzvozVrstaManipulacije.IDNadredjena as KontejnerID, Izvoz.BrojKontejnera, " +
- " IzvozVrstaManipulacije.Kolicina, " +
- " VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
- " IzvozVrstaManipulacije.Cena,OrganizacioneJedinice.ID, OrganizacioneJedinice.Naziv as OrganizacionaJedinica, " +
- " Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Nalogodavac, p2.PaSifra as Izvoznik, p2.PaNaziv as Izvoznik " +
-  "  from IzvozVrstaManipulacije " +
-  "  inner join Cene on IzvozVrstaManipulacije.IDVrstaManipulacije = Cene.ID " +
-  "  inner   join VrstaManipulacije on VrstaManipulacije.ID = Cene.VrstaManipulacije " +
- " inner   join Partnerji on Cene.Komitent = Partnerji.PaSifra " +
- " inner    join Partnerji p2 on Cene.Uvoznik = p2.PaSifra " +
- " inner    join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozVrstaManipulacije.OrgJed " +
- " inner    join Izvoz on IzvozVrstaManipulacije.IDNadredjena = Izvoz.ID";
+                select = "  select  IzvozVrstaManipulacije.ID as ID, IzvozVrstaManipulacije.IDNadredjena as KontejnerID, Izvoz.BrojKontejnera, " +
+  " IzvozVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv,  " +
+ "  IzvozVrstaManipulacije.Cena,OrganizacioneJedinice.ID as OJID, OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
+ "  Partnerji.PaSifra as PlatilacID,PArtnerji.PaNaziv as Platilac " +
+ "  from IzvozVrstaManipulacije " +
+ " inner join VrstaManipulacije on VrstaManipulacije.ID = IDVrstaManipulacije " +
+ " inner " +
+  " join PArtnerji on PArtnerji.PaSifra = IzvozVrstaManipulacije.Platilac " +
+" inner " +
+"   join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozVrstaManipulacije.OrgJed " +
+" inner " +
+ "  join Izvoz on IzvozVrstaManipulacije.IDNadredjena = Izvoz.ID";
 
 
             }
             else
             {
-                select = "select  IzvozKonacnaVrstaManipulacije.ID as ID, IzvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, IzvozKonacna.BrojKontejnera,  IzvozKonacnaVrstaManipulacije.Kolicina, " +
- " VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
-"   IzvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID, " +
- "  OrganizacioneJedinice.Naziv as OrganizacionaJedinica, " +
- "   Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Nalogodavac, p2.PaSifra as Uvoznik, p2.PaNaziv as Uvoznik " +
- "     from IzvozKonacnaVrstaManipulacije inner join Cene on IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije = Cene.ID " +
- "    inner     join VrstaManipulacije on VrstaManipulacije.ID = Cene.VrstaManipulacije " +
-"  inner     join Partnerji on Cene.Komitent = Partnerji.PaSifra  inner " +
-  "    join Partnerji p2 on Cene.Uvoznik = p2.PaSifra " +
-"  inner     join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozKonacnaVrstaManipulacije.OrgJed  inner " +
-  "    join IzvozKonacna on IzvozKonacnaVrstaManipulacije.IDNadredjena = IzvozKonacna.ID  where IzvozKonacna.IDNadredjena = " + Convert.ToInt32(txtNadredjeni.Text);
+                select = " select IzvozKonacnaVrstaManipulacije.ID as ID, IzvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, IzvozKonacna.BrojKontejnera, " +
+  " IzvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv,  " +
+ "  IzvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID, OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
+ "  Partnerji.PaSifra as PlatilacID,PArtnerji.PaNaziv as Platilac " +
+ "  from IzvozKonacnaVrstaManipulacije " +
+ " inner join VrstaManipulacije on VrstaManipulacije.ID = IDVrstaManipulacije " +
+ " inner " +
+  " join PArtnerji on PArtnerji.PaSifra = IzvozKonacnaVrstaManipulacije.Platilac " +
+" inner " +
+"   join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozKonacnaVrstaManipulacije.OrgJed " +
+" inner " +
+ "  join IzvozKonacna on IzvozKonacnaVrstaManipulacije.IDNadredjena = IzvozKonacna.ID  where IzvozKonacna.IDNadredjena = " + Convert.ToInt32(txtNadredjeni.Text);
             }
 
             SqlConnection conn = new SqlConnection(connection);
@@ -544,12 +548,25 @@ namespace Saobracaj.Izvoz
             dataGridView7.Columns[0].Width = 20;
 
             DataGridViewColumn column2 = dataGridView7.Columns[1];
-            dataGridView7.Columns[1].HeaderText = "Man";
+            dataGridView7.Columns[1].HeaderText = "KontID";
             dataGridView7.Columns[1].Width = 30;
 
             DataGridViewColumn column3 = dataGridView7.Columns[2];
             dataGridView7.Columns[2].HeaderText = "Kontejner";
-            dataGridView7.Columns[2].Width = 50;
+            dataGridView7.Columns[2].Width = 1000;
+
+            DataGridViewColumn column4 = dataGridView7.Columns[3];
+            dataGridView7.Columns[3].HeaderText = "Kolicina";
+            dataGridView7.Columns[3].Width = 50;
+
+            DataGridViewColumn column5 = dataGridView7.Columns[4];
+            dataGridView7.Columns[4].HeaderText = "USLID";
+            dataGridView7.Columns[4].Width = 50;
+
+
+            DataGridViewColumn column6 = dataGridView7.Columns[5];
+            dataGridView7.Columns[5].HeaderText = "Usluga";
+            dataGridView7.Columns[5].Width = 50;
 
         }
 
@@ -621,6 +638,7 @@ namespace Saobracaj.Izvoz
             int pomManupulacija = 0;
             double pomCena = 0;
             double pomkolicina = 1;
+            int pomPlatilac = 0;
             try
             {
                 foreach (DataGridViewRow row in dataGridView6.Rows)
@@ -652,7 +670,7 @@ namespace Saobracaj.Izvoz
                             }
 
                             con.Close();
-
+                            pomPlatilac = Convert.ToInt32(cboNalogodavac1.SelectedValue);
 
                         }
 
@@ -678,7 +696,7 @@ namespace Saobracaj.Izvoz
 
                             con.Close();
 
-
+                            pomPlatilac = Convert.ToInt32(cboNalogodavac1.SelectedValue);
                         }
 
                         if (CenaNadjenaTip2 == 0 && CenaNadjenaTip2 == 0)
@@ -702,7 +720,7 @@ namespace Saobracaj.Izvoz
                             }
 
                             con.Close();
-
+                            pomPlatilac = Convert.ToInt32(cboNalogodavac1.SelectedValue);;
 
                         }
 
@@ -714,14 +732,14 @@ namespace Saobracaj.Izvoz
                             if (row2.Selected)
                             {
                                 pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
-                                UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed);
+                                UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed, pomPlatilac);
                             }
                         }
 
 
                     }
                 }
-
+                FillDG8();
 
             }
             catch
@@ -758,7 +776,7 @@ namespace Saobracaj.Izvoz
             cboNalogodavac3.DisplayMember = "PaNaziv";
             cboNalogodavac3.ValueMember = "PaSifra";
 
-            var partner2 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
+            var partner2 = "Select PaSifra,PaNaziv From Partnerji where Brodar = 1 order by PaNaziv";
             var partAD2 = new SqlDataAdapter(partner2, conn);
             var partDS2 = new DataSet();
             partAD2.Fill(partDS2);
@@ -770,42 +788,40 @@ namespace Saobracaj.Izvoz
         private void FillGVIzvoz()
         {
             var select = " SELECT  Izvoz.ID as ID,    Izvoz.VrstaKontejnera, TipKontenjera.Naziv, Izvoz.BrojVagona, Izvoz.BrojKontejnera, Izvoz.BrodskaPlomba, Izvoz.OstalePlombe, Izvoz.BookingBrodara, Partnerji.PaNaziv, " +
-                  "    Izvoz.CutOffPort, Izvoz.NetoRobe, Izvoz.BrutoRobe, Izvoz.BrutoRobeO, Izvoz.BrojKoleta, Izvoz.BrojKoletaO, Izvoz.CBM, Izvoz.CBMO, Izvoz.VrednostRobeFaktura, " +
-                   "  (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaManipulacije.Naziv as nvarchar(20))   FROM IzvozVrstaManipulacije " +
-   "       inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozVrstaManipulacije.IDVrstaManipulacije   where IzvozVrstaManipulacije.IDNadredjena = Izvoz.ID " +
-   "        FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as VrsteUsluga,   " +
-   "     (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20))   FROM IzvozVrstaRobeHS " +
-   "       inner join VrstaRobeHS on IzvozVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID   where IzvozVrstaRobeHS.IDNadredjena = Izvoz.ID " +
-   "        FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as HS,   " +
-   "    (SELECT  STUFF((SELECT distinct    '/' + Cast(NHM.Broj as nvarchar(20)) " +
-  "            FROM IzvozNHM  inner join NHM on IzvozNHM.IDNHM = NHM.ID  where IzvozNHM.IDNadredjena = Izvoz.ID   FOR XML PATH('')), 1, 1, ''  ) As Skupljen) as NHM, " +
-                  "        Izvoz.Valuta, KrajnjaDestinacija.Naziv AS KrajnjaDestinacija, VrstePostupakaUvoz.Naziv AS Postupak, KontejnerskiTerminali.Naziv AS PPCNT, " +
-                  "        KontejnerskiTerminali.Oznaka, Izvoz.Cirada, Izvoz.PlaniraniDatumUtovara, MestaUtovara.Naziv AS MestoUtovara, Izvoz.KontaktOsoba,  " +
-                  "        Carinarnice.Naziv AS Carinarnica, Carinarnice.CIOznaka, Partnerji_1.PaNaziv AS Spedicija, AdresaStatusVozila.Naziv AS AdresaStatusVozila, " +
-                  "        NaslovStatusaVozila.Naziv AS NaslovStatusaVozila, Izvoz.EtaLeget, VrstaCarinskogPostupka.Naziv AS Reexport, InspekciskiTretman.Naziv AS InspekciskiTretman, " +
-                  "        Izvoz.AutoDana, Izvoz.NajavaVozila, Izvoz.DodatneNapomeneDrumski, Izvoz.Vaganje, Izvoz.VGMTezina, Izvoz.Tara, Izvoz.VGMBrod, " +
-                  "        Partnerji_2.PaNaziv AS Izvoznik, Partnerji_3.PaNaziv AS Klijent1, Izvoz.Napomena1REf, Izvoz.DobijenNalogKlijent1, Partnerji_4.PaNaziv AS klijent2, " +
-                  "        Izvoz.Napomena2REf, Partnerji_5.PaNaziv AS Klijent3, Izvoz.Napomena3REf, Partnerji_6.PaNaziv AS SpediterRijeka, uvNacinPakovanja.Naziv AS NacinPakovanja, " +
-                  "        Izvoz.NacinPretovara " +
-"    FROM         Izvoz INNER JOIN " +
-                   "       TipKontenjera ON Izvoz.VrstaKontejnera = TipKontenjera.ID INNER JOIN " +
-                  "        Partnerji ON Izvoz.Brodar = Partnerji.PaSifra INNER JOIN " +
-                  "        KrajnjaDestinacija ON Izvoz.KrajnaDestinacija = KrajnjaDestinacija.ID INNER JOIN " +
-                  "        VrstePostupakaUvoz ON Izvoz.Postupanje = VrstePostupakaUvoz.ID INNER JOIN " +
-                  "        KontejnerskiTerminali ON Izvoz.MestoPreuzimanja = KontejnerskiTerminali.id INNER JOIN " +
-                  "        MestaUtovara ON Izvoz.MesoUtovara = MestaUtovara.ID INNER JOIN " +
-                  "        Carinarnice ON Izvoz.MestoCarinjenja = Carinarnice.ID INNER JOIN " +
-                   "       Partnerji AS Partnerji_1 ON Izvoz.Spedicija = Partnerji_1.PaSifra INNER JOIN " +
-                   "       AdresaStatusVozila ON Izvoz.AdresaSlanjaStatusa = AdresaStatusVozila.ID INNER JOIN " +
-                   "       NaslovStatusaVozila ON Izvoz.NaslovSlanjaStatusa = NaslovStatusaVozila.ID INNER JOIN " +
-                  "        VrstaCarinskogPostupka ON Izvoz.NapomenaReexport = VrstaCarinskogPostupka.id INNER JOIN " +
-                   "       InspekciskiTretman ON Izvoz.Inspekcija = InspekciskiTretman.ID INNER JOIN " +
-                   "       Partnerji AS Partnerji_2 ON Izvoz.Izvoznik = Partnerji_2.PaSifra INNER JOIN " +
-                   "       Partnerji AS Partnerji_3 ON Izvoz.Klijent1 = Partnerji_3.PaSifra INNER JOIN " +
-                    "      Partnerji AS Partnerji_4 ON Izvoz.Klijent2 = Partnerji_4.PaSifra INNER JOIN " +
-                  "        Partnerji AS Partnerji_5 ON Izvoz.Klijent3 = Partnerji_5.PaSifra INNER JOIN " +
-                 "         Partnerji AS Partnerji_6 ON Izvoz.SpediterRijeka = Partnerji_6.PaSifra INNER JOIN " +
-                  "        uvNacinPakovanja ON Izvoz.NacinPakovanja = uvNacinPakovanja.ID order by Izvoz.ID desc ";
+                      "    Izvoz.CutOffPort, Izvoz.NetoRobe, Izvoz.BrutoRobe, Izvoz.BrutoRobeO, Izvoz.BrojKoleta, Izvoz.BrojKoletaO, Izvoz.CBM, Izvoz.CBMO, Izvoz.VrednostRobeFaktura, " +
+                       "  (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaManipulacije.Naziv as nvarchar(20))   FROM IzvozVrstaManipulacije " +
+       "       inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozVrstaManipulacije.IDVrstaManipulacije   where IzvozVrstaManipulacije.IDNadredjena = Izvoz.ID " +
+       "        FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as VrsteUsluga,   " +
+       "     (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20))   FROM IzvozVrstaRobeHS " +
+       "       inner join VrstaRobeHS on IzvozVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID   where IzvozVrstaRobeHS.IDNadredjena = Izvoz.ID " +
+       "        FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as HS,   " +
+       "    (SELECT  STUFF((SELECT distinct    '/' + Cast(NHM.Broj as nvarchar(20)) " +
+      "            FROM IzvozNHM  inner join NHM on IzvozNHM.IDNHM = NHM.ID  where IzvozNHM.IDNadredjena = Izvoz.ID   FOR XML PATH('')), 1, 1, ''  ) As Skupljen) as NHM, " +
+                      "        Izvoz.Valuta, KrajnjaDestinacija.Naziv AS KrajnjaDestinacija, VrstePostupakaUvoz.Naziv AS Postupak, KontejnerskiTerminali.Naziv AS PPCNT, " +
+                      "        KontejnerskiTerminali.Oznaka, Izvoz.Cirada, Izvoz.PlaniraniDatumUtovara, MestaUtovara.Naziv AS MestoUtovara, Izvoz.KontaktOsoba,  " +
+                      "        Carinarnice.Naziv AS Carinarnica, Carinarnice.CIOznaka, Partnerji_1.PaNaziv AS Spedicija,  AdresaSlanjaStatusa, " +
+                      "          NaslovSlanjaStatusa, Izvoz.EtaLeget, VrstaCarinskogPostupka.Naziv AS Reexport, InspekciskiTretman.Naziv AS InspekciskiTretman, " +
+                      "        Izvoz.AutoDana, Izvoz.NajavaVozila, Izvoz.DodatneNapomeneDrumski, Izvoz.Vaganje, Izvoz.VGMTezina, Izvoz.Tara, Izvoz.VGMBrod, " +
+                      "        Partnerji_2.PaNaziv AS Izvoznik, Partnerji_3.PaNaziv AS Klijent1, Izvoz.Napomena1REf, Izvoz.DobijenNalogKlijent1, Partnerji_4.PaNaziv AS klijent2, " +
+                      "        Izvoz.Napomena2REf, Partnerji_5.PaNaziv AS Klijent3, Izvoz.Napomena3REf, Partnerji_6.PaNaziv AS SpediterRijeka, uvNacinPakovanja.Naziv AS NacinPakovanja, " +
+                      "        Izvoz.NacinPretovara " +
+    "    FROM         Izvoz INNER JOIN " +
+                       "       TipKontenjera ON Izvoz.VrstaKontejnera = TipKontenjera.ID LEFT JOIN " +
+                      "        Partnerji ON Izvoz.Brodar = Partnerji.PaSifra LEFT JOIN " +
+                      "        KrajnjaDestinacija ON Izvoz.KrajnaDestinacija = KrajnjaDestinacija.ID LEFT JOIN " +
+                      "        VrstePostupakaUvoz ON Izvoz.Postupanje = VrstePostupakaUvoz.ID LEFT JOIN " +
+                      "        KontejnerskiTerminali ON Izvoz.MestoPreuzimanja = KontejnerskiTerminali.id LEFT JOIN " +
+                      "        MestaUtovara ON Izvoz.MesoUtovara = MestaUtovara.ID LEFT JOIN " +
+                      "        Carinarnice ON Izvoz.MestoCarinjenja = Carinarnice.ID LEFT JOIN " +
+                       "       Partnerji AS Partnerji_1 ON Izvoz.Spedicija = Partnerji_1.PaSifra LEFT JOIN " +
+                      "        VrstaCarinskogPostupka ON Izvoz.NapomenaReexport = VrstaCarinskogPostupka.id LEFT JOIN " +
+                       "       InspekciskiTretman ON Izvoz.Inspekcija = InspekciskiTretman.ID LEFT JOIN " +
+                       "       Partnerji AS Partnerji_2 ON Izvoz.Izvoznik = Partnerji_2.PaSifra LEFT JOIN " +
+                       "       Partnerji AS Partnerji_3 ON Izvoz.Klijent1 = Partnerji_3.PaSifra LEFT JOIN " +
+                        "      Partnerji AS Partnerji_4 ON Izvoz.Klijent2 = Partnerji_4.PaSifra LEFT JOIN " +
+                      "        Partnerji AS Partnerji_5 ON Izvoz.Klijent3 = Partnerji_5.PaSifra LEFT JOIN " +
+                     "         Partnerji AS Partnerji_6 ON Izvoz.SpediterRijeka = Partnerji_6.PaSifra LEFT JOIN " +
+                      "        uvNacinPakovanja ON Izvoz.NacinPakovanja = uvNacinPakovanja.ID order by Izvoz.ID desc ";
 
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
@@ -1010,6 +1026,7 @@ namespace Saobracaj.Izvoz
             int pomManupulacija = 0;
             double pomCena = 0;
             double pomkolicina = 1;
+            int pomPlatilac = 0;
             try
             {
                 foreach (DataGridViewRow row in dataGridView6.Rows)
@@ -1041,7 +1058,7 @@ namespace Saobracaj.Izvoz
                             }
 
                             con.Close();
-
+                            pomPlatilac = Convert.ToInt32(cboNalogodavac2.SelectedValue);
 
                         }
 
@@ -1066,7 +1083,7 @@ namespace Saobracaj.Izvoz
                             }
 
                             con.Close();
-
+                            pomPlatilac = Convert.ToInt32(cboNalogodavac2.SelectedValue);
 
                         }
 
@@ -1091,7 +1108,7 @@ namespace Saobracaj.Izvoz
                             }
 
                             con.Close();
-
+                            pomPlatilac = Convert.ToInt32(cboNalogodavac2.SelectedValue);
 
                         }
 
@@ -1103,14 +1120,14 @@ namespace Saobracaj.Izvoz
                             if (row2.Selected)
                             {
                                 pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
-                                UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed);
+                                UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed,pomPlatilac);
                             }
                         }
 
 
                     }
                 }
-
+                FillDG8();
 
             }
             catch
@@ -1127,6 +1144,7 @@ namespace Saobracaj.Izvoz
             int pomManupulacija = 0;
             double pomCena = 0;
             double pomkolicina = 1;
+            int pomPlatilac = 0;
             try
             {
                 foreach (DataGridViewRow row in dataGridView6.Rows)
@@ -1159,7 +1177,7 @@ namespace Saobracaj.Izvoz
 
                             con.Close();
 
-
+                            pomPlatilac = Convert.ToInt32(cboNalogodavac3.SelectedValue);
                         }
 
                         if (CenaNadjenaTip2 == 1 && CenaNadjenaTip2 == 0)
@@ -1183,7 +1201,7 @@ namespace Saobracaj.Izvoz
                             }
 
                             con.Close();
-
+                            pomPlatilac = Convert.ToInt32(cboNalogodavac3.SelectedValue);
 
                         }
 
@@ -1208,7 +1226,7 @@ namespace Saobracaj.Izvoz
                             }
 
                             con.Close();
-
+                            pomPlatilac = Convert.ToInt32(cboNalogodavac3.SelectedValue);
 
                         }
 
@@ -1220,7 +1238,7 @@ namespace Saobracaj.Izvoz
                             if (row2.Selected)
                             {
                                 pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
-                                UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed);
+                                UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed, pomPlatilac);
                             }
                         }
 
@@ -1228,7 +1246,141 @@ namespace Saobracaj.Izvoz
                     }
                 }
 
+                FillDG8();
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+        }
 
+        private void button8_Click(object sender, EventArgs e)
+        {
+            int pom = 0;
+            InsertIzvoz uvK = new InsertIzvoz();
+          
+            try
+            {
+              
+                        foreach (DataGridViewRow row2 in dataGridView7.Rows)
+                        {
+                            if (row2.Selected)
+                            {
+                        if (txtNadredjeni.Text == "0")
+                        {
+                            pom = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                            uvK.DelIzvozKonacnaUsluga(pom);
+                        }
+                        else
+                        {
+                            pom = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                            uvK.DelIzvozUsluga(pom);
+                        }
+                            }
+                        }
+                FillDG8();
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspelo brisanje");
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            int pom = 0;
+            InsertIzvoz uvK = new InsertIzvoz();
+
+            try
+            {
+
+                foreach (DataGridViewRow row2 in dataGridView7.Rows)
+                {
+                    if (row2.Selected)
+                    {
+                        if (txtNadredjeni.Text == "0")
+                        {
+                            pom = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaIzvozKonacnaUsluga(pom, Convert.ToInt32(cboUvoznik.SelectedValue));
+                        }
+                        else
+                        {
+                            pom = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaIzvozUsluga(pom, Convert.ToInt32(cboUvoznik.SelectedValue));
+                        }
+                    }
+                }
+                FillDG8();
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspelo brisanje");
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+           //Uzima cenu samo za PArtnera
+            int pomID = 0;
+            int pomManupulacija = 0;
+            double pomCena = 0;
+            double pomkolicina = 1;
+            int pomPlatilac = 0;
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView6.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        pomManupulacija = Convert.ToInt32(row.Cells[0].Value.ToString());
+                       // CenaNadjenaTip1 = PretraziPoNalogodavciIIzvozniku(pomManupulacija, Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
+                       // CenaNadjenaTip2 = PretraziPoNalogodavci(pomManupulacija, Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
+
+
+                       
+
+                      
+
+                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            SqlConnection con = new SqlConnection(s_connection);
+
+                            con.Open();
+
+                            SqlCommand cmd = new SqlCommand("select ID, Cena, OrgJed from Cene where TipCenovnika =1 and VrstaManipulacije = " + pomManupulacija, con);
+                            SqlDataReader dr = cmd.ExecuteReader();
+
+                            while (dr.Read())
+                            {
+                                //Izmenjeno
+                                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                                pomCena = Convert.ToDouble(dr["Cena"].ToString());
+                                pomkolicina = 1;
+                                pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+
+                            }
+                            
+                            con.Close();
+                            pomPlatilac = Convert.ToInt32(cboUvoznik.SelectedValue);
+
+                        
+
+                        //  pomCena = Convert.ToDouble(row.Cells[2].Value.ToString());
+                        // pomkolicina= Convert.ToDouble(row.Cells[4].Value.ToString());
+                        //   pomOrgJed = Convert.ToInt32(row.Cells[5].Value.ToString());
+                        foreach (DataGridViewRow row2 in dataGridView1.Rows)
+                        {
+                            if (row2.Selected)
+                            {
+                                pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                                UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed, pomPlatilac);
+                            }
+                        }
+
+
+                    }
+                }
+
+                FillDG8();
             }
             catch
             {

@@ -116,7 +116,7 @@ namespace Saobracaj.SyncForm
         }
         private void frmPregledMobilni_Load(object sender, EventArgs e)
         {
-            var select = "  Select ZaposleniPrijava.ID,Zaposleni as ZaposleniID, Rtrim(DePriimek) + ' ' + Rtrim(DeIme) as Zaposleni,DatumPrijave, DatumOdjave, AktivnostID, LongPrijave, LatPrijave, LongOdjave, LatOdjave from ZaposleniPrijava " +
+            var select = "  Select ZaposleniPrijava.ID,Zaposleni as ZaposleniID, Rtrim(DeIme) + ' ' + Rtrim(DePriimek) as Zaposleni,DatumPrijave, DatumOdjave, AktivnostID, LongPrijave, LatPrijave, LongOdjave, LatOdjave from ZaposleniPrijava " +
           " inner join Delavci on DeSifra = ZaposleniPrijava.Zaposleni order by ZaposleniPrijava.ID desc ";
 
 

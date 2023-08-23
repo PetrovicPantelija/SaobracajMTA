@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTeretnica));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
-            this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsPrvi = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
@@ -44,6 +44,7 @@
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtNapomena = new System.Windows.Forms.TextBox();
             this.button10 = new System.Windows.Forms.Button();
             this.cboTrainList = new System.Windows.Forms.ComboBox();
             this.label38 = new System.Windows.Forms.Label();
@@ -143,7 +144,12 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.txtNapomena = new System.Windows.Forms.TextBox();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.reportViewer6 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.reportViewer7 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -164,6 +170,8 @@
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
+            this.tabPage8.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -183,7 +191,9 @@
             this.toolStripButton2,
             this.toolStripButton5,
             this.toolStripButton6,
-            this.toolStripButton7});
+            this.toolStripButton7,
+            this.toolStripButton9,
+            this.toolStripButton10});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1377, 27);
@@ -200,16 +210,6 @@
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
-            // tsSave
-            // 
-            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
-            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(24, 24);
-            this.tsSave.Text = "tsSave";
-            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
-            // 
             // tsDelete
             // 
             this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -224,6 +224,16 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tsSave
+            // 
+            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
+            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsSave.Name = "tsSave";
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
+            this.tsSave.Text = "tsSave";
+            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
             // tsPrvi
             // 
@@ -347,6 +357,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1223, 71);
             this.panel1.TabIndex = 8;
+            // 
+            // txtNapomena
+            // 
+            this.txtNapomena.Location = new System.Drawing.Point(1108, 26);
+            this.txtNapomena.Multiline = true;
+            this.txtNapomena.Name = "txtNapomena";
+            this.txtNapomena.Size = new System.Drawing.Size(112, 43);
+            this.txtNapomena.TabIndex = 156;
             // 
             // button10
             // 
@@ -1223,6 +1241,8 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage7);
+            this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Location = new System.Drawing.Point(28, 208);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -1236,7 +1256,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1295, 254);
+            this.tabPage1.Size = new System.Drawing.Size(1336, 254);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Stavke teretnice";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1271,7 +1291,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1295, 254);
+            this.tabPage2.Size = new System.Drawing.Size(1336, 254);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Štampa teretnice";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1315,7 +1335,7 @@
             this.tabPage4.Controls.Add(this.reportViewer3);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1295, 254);
+            this.tabPage4.Size = new System.Drawing.Size(1336, 254);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Kol-65";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1337,7 +1357,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1295, 254);
+            this.tabPage5.Size = new System.Drawing.Size(1336, 254);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "K-200 Bosna";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -1358,7 +1378,7 @@
             this.tabPage6.Controls.Add(this.reportViewer5);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1295, 254);
+            this.tabPage6.Size = new System.Drawing.Size(1336, 254);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Kol-65 Bosna";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -1408,13 +1428,69 @@
             this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
-            // txtNapomena
+            // tabPage7
             // 
-            this.txtNapomena.Location = new System.Drawing.Point(1108, 26);
-            this.txtNapomena.Multiline = true;
-            this.txtNapomena.Name = "txtNapomena";
-            this.txtNapomena.Size = new System.Drawing.Size(112, 43);
-            this.txtNapomena.TabIndex = 156;
+            this.tabPage7.Controls.Add(this.reportViewer6);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(1336, 254);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "K200TA";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.reportViewer7);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Size = new System.Drawing.Size(1336, 254);
+            this.tabPage8.TabIndex = 7;
+            this.tabPage8.Text = "KOL65";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // reportViewer6
+            // 
+            this.reportViewer6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.reportViewer6.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Teretnica.rdlc";
+            this.reportViewer6.Location = new System.Drawing.Point(18, 5);
+            this.reportViewer6.Name = "reportViewer6";
+            this.reportViewer6.Size = new System.Drawing.Size(1300, 244);
+            this.reportViewer6.TabIndex = 3;
+            // 
+            // reportViewer7
+            // 
+            this.reportViewer7.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.reportViewer7.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Teretnica.rdlc";
+            this.reportViewer7.Location = new System.Drawing.Point(18, 5);
+            this.reportViewer7.Name = "reportViewer7";
+            this.reportViewer7.Size = new System.Drawing.Size(1300, 244);
+            this.reportViewer7.TabIndex = 3;
+            // 
+            // toolStripButton9
+            // 
+            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton9.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
+            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton9.Name = "toolStripButton9";
+            this.toolStripButton9.Size = new System.Drawing.Size(58, 24);
+            this.toolStripButton9.Text = "K-200 - 2";
+            this.toolStripButton9.Click += new System.EventHandler(this.toolStripButton9_Click);
+            // 
+            // toolStripButton10
+            // 
+            this.toolStripButton10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton10.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton10.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton10.Image")));
+            this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton10.Name = "toolStripButton10";
+            this.toolStripButton10.Size = new System.Drawing.Size(56, 24);
+            this.toolStripButton10.Text = "Kol-65-2";
+            this.toolStripButton10.Click += new System.EventHandler(this.toolStripButton10_Click);
             // 
             // frmTeretnica
             // 
@@ -1458,6 +1534,8 @@
             this.tabPage4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage6.ResumeLayout(false);
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage8.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1580,5 +1658,11 @@
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.TextBox txtNapomena;
+        private System.Windows.Forms.ToolStripButton toolStripButton9;
+        private System.Windows.Forms.ToolStripButton toolStripButton10;
+        private System.Windows.Forms.TabPage tabPage7;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer6;
+        private System.Windows.Forms.TabPage tabPage8;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer7;
     }
 }

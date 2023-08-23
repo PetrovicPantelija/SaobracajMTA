@@ -139,7 +139,7 @@ namespace Saobracaj.Dokumenta
         }
         private void RefreshDataGRid()
         {
-            var select3 = " select DeSifra as ID, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis from Delavci order by opis";
+            var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci order by opis";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
@@ -169,7 +169,7 @@ namespace Saobracaj.Dokumenta
 
 
             var select = "  select Automobili.ID as ID, Automobili.Zaposleni, " +
-           " Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme) as ZaposleniNaziv, " +
+           " Rtrim(Delavci.DeIme) + ' ' +  Rtrim(Delavci.DePriimek) as ZaposleniNaziv, " +
            " Automobili.RegBr, Automobili.Marka, Automobili.Sluzbeni, VServisSledeci as VelServisSled, MServisSledeci as MaliServSled,PPAparatDatumIsteka,PRvaPomocDatumIsteka,DatumRegistracije from Automobili " +
 " inner join Delavci on Delavci.DeSifra = Automobili.Zaposleni ";
 

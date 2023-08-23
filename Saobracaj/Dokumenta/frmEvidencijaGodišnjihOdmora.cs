@@ -221,7 +221,7 @@ namespace Saobracaj.Dokumenta
 
         private void frmEvidencijaGodišnjihOdmora_Load(object sender, EventArgs e)
         {
-            var select3 = " select DeSifra as ID, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis from Delavci where DeSifStat <> 'P' order by opis";
+            var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci where DeSifStat <> 'P' order by opis";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
@@ -248,7 +248,7 @@ namespace Saobracaj.Dokumenta
             cboGodina.ValueMember = "Godina";
 
 
-            var select5 = " select DeSifra as ID, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis from Delavci where DeSifStat <> 'P' order by opis";
+            var select5 = " select DeSifra as ID, (RTrim(DeIme) + ' ' +Rtrim(DePriimek) ) as Opis from Delavci where DeSifStat <> 'P' order by opis";
             var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection5);
@@ -410,7 +410,7 @@ namespace Saobracaj.Dokumenta
         {
             if (cboGodina.Text != "")
             { 
-            var select = " Select ID, IDNadredjena, VremeOd, VremeDo, Ukupno, Napomena, Razlog, (Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme)) as Odobrio , StatusGodmora, DatumZahteva, DatumPovratka,PoslatMail, PoslatoResenje from DopustStavke " +
+            var select = " Select ID, IDNadredjena, VremeOd, VremeDo, Ukupno, Napomena, Razlog, (Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek)) as Odobrio , StatusGodmora, DatumZahteva, DatumPovratka,PoslatMail, PoslatoResenje from DopustStavke " +
             " inner join Dopust on Dopust.DoStZapisa = DopustStavke.IdNadredjena " +
              " inner join Delavci on DopustStavke.Odobrio = Delavci.DeSifra " +
             " where  + "  + " Dopust.DoLeto = " + Convert.ToInt32(cboGodina.Text) + " And Dopust.DoSifDe = " + Convert.ToInt32(cboZaposleni.SelectedValue) ;

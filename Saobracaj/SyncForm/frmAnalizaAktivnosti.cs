@@ -117,7 +117,7 @@ namespace Saobracaj.SyncForm
         private void frmAnalizaAktivnosti_Load(object sender, EventArgs e)
         {
 
-            var select = "   Select Top 5000 Aktivnosti.ID as ID,  (Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme)) as Zaposleni, VremeOd, " +
+            var select = "   Select Top 5000 Aktivnosti.ID as ID,  (Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek)) as Zaposleni, VremeOd, " +
     " VremeDo, Aktivnosti.Kartica, Aktivnosti.RAcun, Aktivnosti.UkupniTroskovi, Aktivnosti.Ukupno ,Aktivnosti.Opis as OpisZaglavlje, VrstaAktivnosti.Naziv as VrstaAktivnosti,  " +
     "   AktivnostiStavke.Sati, AktivnostiStavke.VrstaAktivnostiID ,   AktivnostiStavke.Napomena,  AktivnostiStavke.Koeficijent, AktivnostiStavke.Posao as IDPosla " +
     "  from Aktivnosti inner join Delavci on Aktivnosti.Zaposleni = Delavci.DeSifra " +

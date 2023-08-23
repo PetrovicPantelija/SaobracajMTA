@@ -205,7 +205,7 @@ namespace Saobracaj.Dokumenta
         private void bunifuFlatButton1_Click(object sender, EventArgs e)
         {
 
-            var select = "select (Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme)) as Zaposleni, CONVERT(char(10), VremeOd,104) as VremeOd," +
+            var select = "select (Rtrim(Delavci.DeIme) + ' ' +Rtrim(Delavci.DePriimek) ) as Zaposleni, CONVERT(char(10), VremeOd,104) as VremeOd," +
                 " (Select " +
 " CASE " +
 "    WHEN Sum(Aktivnosti.Ukupno) < 7 and Sum(Aktivnosti.Ukupno) > 0 THEN 0.5 " +
@@ -216,7 +216,7 @@ namespace Saobracaj.Dokumenta
             " inner join Delavci on Aktivnosti.Zaposleni = Delavci.DeSifra " +
             " inner join DelovnaMesta on Delavci.DeSifDelMes = DelovnaMesta.DmSifra " +
             " where Aktivnosti.VremeOd >= '" + dtpVremeOd.Text + "' and Aktivnosti.VremeOd < '" + dtpVremeDo.Text + "' and DelovnaMesta.DmSifra = " + Convert.ToInt32(cboRadnaMesta.SelectedValue) +
-            " group by (Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme)), VremeOd";
+            " group by (Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek)), VremeOd";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

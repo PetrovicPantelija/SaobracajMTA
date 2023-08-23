@@ -122,7 +122,7 @@ namespace Saobracaj.Dokumenta
         }
         private void frmBolovanja_Load(object sender, EventArgs e)
         {
-            var select3 = " select DeSifra as ID, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis from Delavci where DeSifStat <> 'P' order by opis";
+            var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci where DeSifStat <> 'P' order by opis";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
@@ -168,7 +168,7 @@ namespace Saobracaj.Dokumenta
 
         private void RefreshDataGrid1()
         {
-            var select = " Select Bolovanje.ID,  DatumOd, DatumDo, Ukupno, Napomena,  (Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme)) as Radnik " +
+            var select = " Select Bolovanje.ID,  DatumOd, DatumDo, Ukupno, Napomena,  (Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek)) as Radnik " +
  " from Bolovanje inner join Delavci on " +
  " Bolovanje.ZaposleniID = Delavci.DeSifra  where Bolovanje.ZaposleniID = " + Convert.ToInt32(cboZaposleni.SelectedValue) + " order by id desc";
 
@@ -230,7 +230,7 @@ namespace Saobracaj.Dokumenta
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var select =  " Select Bolovanje.ID,  DatumOd, DatumDo, Ukupno, Napomena,  (Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme)) as Radnik " +
+            var select =  " Select Bolovanje.ID,  DatumOd, DatumDo, Ukupno, Napomena,  (Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek)) as Radnik " +
  " from Bolovanje inner join Delavci on " +
  " Bolovanje.ZaposleniID = Delavci.DeSifra order by id desc";
 

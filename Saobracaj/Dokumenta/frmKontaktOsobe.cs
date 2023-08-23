@@ -48,8 +48,9 @@ namespace Saobracaj.Dokumenta
 
             if (IzPartnera == 1)
             {
-                RefreshDataGridPoPartneru();
                 txtPaKOSifra.SelectedValue = pomPartner;
+                RefreshDataGridPoPartneru();
+                
             }
             else
             {
@@ -104,7 +105,7 @@ namespace Saobracaj.Dokumenta
         private void RefreshDataGridPoPartneru()
         {
             var select = " SELECT [PaKOZapSt]      ,[PaKOSifra]      ,[PaKOIme]      ,[PaKOPriimek]      ,[PaKOOddelek]      ,[PaKOTel] " +
-     " ,[PaKOMail]      ,[PaKOOpomba]      ,[Operatika]  FROM [TESTIRANJE].[dbo].[partnerjiKontOseba] Where PaKOSifra = " + txtPaKOSifra.SelectedValue;
+     " ,[PaKOMail]      ,[PaKOOpomba]      ,[Operatika]  FROM [TESTIRANJE].[dbo].[partnerjiKontOseba] where PaKoSifra = " + Convert.ToInt32(txtPaKOSifra.SelectedValue);
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -145,6 +146,7 @@ namespace Saobracaj.Dokumenta
 
         }
 
+       
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
@@ -190,9 +192,21 @@ namespace Saobracaj.Dokumenta
             RefreshDataGrid();
         }
 
-        public string GetKontakt()
+        public string GetKontaktMail()
         {
-            return txtPaKOIme.Text.TrimEnd() + " " + txtPaKOPriimek.Text.TrimEnd();
+            return txtPaKOMail.Text.TrimEnd();
+        }
+
+        public string GetKontakt(int Partner)
+        {
+            
+            RefreshDataGridPoPartneru();
+            return txtPaKOIme.Text.TrimEnd() + " " + txtPaKOPriimek.Text.TrimEnd() + " " + txtPaKOTel.Text.TrimEnd();
+        }
+
+        public string GetKontaktSpeditera()
+        {
+            return txtPaKOIme.Text.TrimEnd() + " " + txtPaKOPriimek.Text.TrimEnd() + " " + txtPaKOTel.Text.TrimEnd();
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)

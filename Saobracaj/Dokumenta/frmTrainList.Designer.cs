@@ -95,6 +95,7 @@ namespace Saobracaj.Dokumenta
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.chkAktvni = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid1)).BeginInit();
             this.groupBoxAddEdit.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -825,12 +826,25 @@ namespace Saobracaj.Dokumenta
             this.toolStripButton1.Text = "Nova teretnica";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // chkAktvni
+            // 
+            this.chkAktvni.AutoSize = true;
+            this.chkAktvni.Checked = true;
+            this.chkAktvni.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAktvni.Location = new System.Drawing.Point(192, 54);
+            this.chkAktvni.Name = "chkAktvni";
+            this.chkAktvni.Size = new System.Drawing.Size(95, 17);
+            this.chkAktvni.TabIndex = 94;
+            this.chkAktvni.Text = "Tekuci poslovi";
+            this.chkAktvni.UseVisualStyleBackColor = true;
+            // 
             // frmTrainList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1359, 760);
+            this.Controls.Add(this.chkAktvni);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
@@ -970,6 +984,7 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.CheckBox chkAktvni;
     }
 }
 

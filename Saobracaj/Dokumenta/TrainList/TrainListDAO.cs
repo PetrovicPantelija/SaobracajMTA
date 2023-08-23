@@ -117,6 +117,35 @@ namespace Saobracaj.Dokumenta.TrainList
             return returnThese;
         }
 
+        public List<TrainListModel> GetAllActive()
+        {
+            List<TrainListModel> returnThese = new List<TrainListModel>();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                SqlCommand command = new SqlCommand("TrainList_GetAllActive", con);
+                command.CommandType = CommandType.StoredProcedure;
+
+                //cmd.Parameters.Add(new SqlParameter("@CustomerID", custId));
+                try
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            returnThese.Add(new TrainListModel { Id = (int)reader[0], VremeDolaska = (DateTime)reader[1], KomOznaka = (string)reader[2], Napomena = (string)reader[3] });
+                        }
+                    }
+                }
+                catch (SqlException)
+                {
+                    // throw new Exception("ERROR!");
+                }
+            }
+            return returnThese;
+        }
+
         public List<TrainListModel> Search(string term)
         {
             List<TrainListModel> returnThese = new List<TrainListModel>();

@@ -156,7 +156,7 @@ namespace Saobracaj.Administracija
 
         private void frmKorisnici_Load(object sender, EventArgs e)
         {
-            var select3 = "  Select DeSifra, (Rtrim(DePriimek) + ' ' +Rtrim(DeIme)) as Naziv from Delavci where DeSifStat = 'A' order by DePriimek"  ;
+            var select3 = "  Select DeSifra, (Rtrim(DeIme) + ' ' +Rtrim(DePriimek)) as Naziv from Delavci where DeSifStat = 'A' order by DeIme"  ;
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);

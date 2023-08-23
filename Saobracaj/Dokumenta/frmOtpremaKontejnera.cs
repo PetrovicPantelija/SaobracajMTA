@@ -3179,6 +3179,12 @@ namespace TrackModal.Dokumeta
                 pnm.Show();
             }
         }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            Testiranje.Dokumeta.frmTovarniList tl = new Testiranje.Dokumeta.frmTovarniList();
+            tl.Show();
+        }
     }
 }
 

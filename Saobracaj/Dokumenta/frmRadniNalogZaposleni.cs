@@ -58,7 +58,7 @@ namespace Saobracaj.Dokumenta
 
           
 
-            var select3 = " select DeSifra as ID, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis from Delavci order by opis";
+            var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci order by opis";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
@@ -229,7 +229,7 @@ namespace Saobracaj.Dokumenta
                       Trase ON RadniNalogTraseLokZap.IDTrase = Trase.ID INNER JOIN
                       Delavci ON RadniNalogTraseLokZap.DeSifra = Delavci.DeSifra
             */
-            var select = " SELECT     RadniNalogTraseLokZap.IDRadnogNaloga as RN, RadniNalogTraseLokZap.IDTrase as Trasa, RadniNalogTraseLokZap.RB as RB, RadniNalogTraseLokZap.SMSifra, RadniNalogTraseLokZap.DeSifra, Delavci.DePriimek as Prezime, Delavci.DeIme as Ime,  RadniNalogTraseLokZap.DatumPolaska as VremeOd, RadniNalogTraseLokZap.DatumDolaska as VremeDo, RadniNalogTraseLokZap.PlaniranoVreme as Vreme, Trase.Voz  , " +
+            var select = " SELECT     RadniNalogTraseLokZap.IDRadnogNaloga as RN, RadniNalogTraseLokZap.IDTrase as Trasa, RadniNalogTraseLokZap.RB as RB, RadniNalogTraseLokZap.SMSifra, RadniNalogTraseLokZap.DeSifra,  Delavci.DeIme as Ime, Delavci.DePriimek as Prezime, RadniNalogTraseLokZap.DatumPolaska as VremeOd, RadniNalogTraseLokZap.DatumDolaska as VremeDo, RadniNalogTraseLokZap.PlaniranoVreme as Vreme, Trase.Voz  , " +
             "  CASE WHEN RadniNalogTraseLokZap.Masinovodja > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Masinovodja, " +
              " (CASE WHEN RadniNalogTraseLokZap.Pomocnik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  ,  " +
             " (CASE WHEN RadniNalogTraseLokZap.Vozovodja > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END) ,  " +
@@ -284,11 +284,11 @@ namespace Saobracaj.Dokumenta
             dataGridView1.Columns[4].Width = 50;
 
             DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Prezime";
+            dataGridView1.Columns[5].HeaderText = "Ime";
             dataGridView1.Columns[5].Width = 100;
 
             DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Ime";
+            dataGridView1.Columns[6].HeaderText = "Prezime";
             dataGridView1.Columns[6].Width = 100;
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];

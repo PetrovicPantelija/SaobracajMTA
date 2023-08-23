@@ -119,7 +119,9 @@ namespace Saobracaj.Sifarnici
         }
         private void RefreshDataGrid()
         {
-            var select = " Select ID,Broj, Naziv, CASE WHEN RID > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as RID, ADRID, Uvozni from NHM";
+            var select = " Select NHM.ID,NHM.Broj, NHM.Naziv, CASE WHEN NHM.RID > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as RID, ADRID, Uvozni " +
+" , VrstaRobeADR.NAziv, VrstaRobeADR.Klasa, VrstaRobeADR.Grupa from NHM " +
+"  left join VrstaRobeADR on NHM.ADRID = VrstaRobeADR.ID";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -202,7 +204,7 @@ namespace Saobracaj.Sifarnici
             else
             {
                 Insertnhm upd = new Insertnhm();
-                upd.UpdNHM(Convert.ToInt32(txtSifra.Text), txtBroj.Text, txtNaziv.Text, chekiran, Convert.ToInt32(txtADR.Text), tmpUvozni);
+                upd.UpdNHM(Convert.ToInt32(txtSifra.Text), txtBroj.Text, txtNaziv.Text, chekiran, Convert.ToInt32(txtADR.SelectedValue), tmpUvozni);
                 status = false;
                 txtSifra.Enabled = false;
                 RefreshDataGrid();
@@ -241,7 +243,12 @@ namespace Saobracaj.Sifarnici
                         txtBroj.Text = row.Cells[1].Value.ToString();
                         txtNaziv.Text = row.Cells[2].Value.ToString();
                         chkRid.Checked = Convert.ToBoolean(row.Cells[3].Value.ToString());
-                        txtADR.SelectedValue= Convert.ToBoolean(row.Cells[4].Value.ToString());
+                        if (row.Cells[4].Value.ToString() != "")
+                        {txtADR.SelectedValue= Convert.ToInt32(row.Cells[4].Value.ToString()); }
+                        else
+                        {
+                            txtADR.SelectedValue = 0;
+                        }    
                         if (row.Cells[5].Value.ToString() == "1")
                         {
                             chkUvozni.Checked = true;

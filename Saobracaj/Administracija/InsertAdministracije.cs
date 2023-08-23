@@ -12,6 +12,7 @@ namespace Saobracaj.Administracija
 {
     class InsertAdministracije
     {
+        public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         public void UpdateNull()
         {
 
@@ -57,6 +58,140 @@ namespace Saobracaj.Administracija
 
 
             }
+        }
+
+        public void InsertPravoGrupeNaForme(int IDGrupe, int IDForme, int Upis, int Izmena , int Brisanje)
+        {
+
+
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertPravoGrupeNaForme";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+
+            SqlParameter paramIDGrupe = new SqlParameter();
+            paramIDGrupe.ParameterName = "@IDGrupe";
+            paramIDGrupe.SqlDbType = SqlDbType.Int;
+            paramIDGrupe.Direction = ParameterDirection.Input;
+            paramIDGrupe.Value = IDGrupe;
+            cmd.Parameters.Add(paramIDGrupe);
+
+            SqlParameter paramIDForme = new SqlParameter();
+            paramIDForme.ParameterName = "@IDForme";
+            paramIDForme.SqlDbType = SqlDbType.Int;
+            paramIDForme.Direction = ParameterDirection.Input;
+            paramIDForme.Value = IDForme;
+            cmd.Parameters.Add(paramIDForme);
+
+
+            SqlParameter paramUpis = new SqlParameter();
+            paramUpis.ParameterName = "@Upis";
+            paramUpis.SqlDbType = SqlDbType.Int;
+            paramUpis.Direction = ParameterDirection.Input;
+            paramUpis.Value = Upis;
+            cmd.Parameters.Add(paramUpis);
+
+            SqlParameter paramIzmena = new SqlParameter();
+            paramIzmena.ParameterName = "@Izmena";
+            paramIzmena.SqlDbType = SqlDbType.Int;
+            paramIzmena.Direction = ParameterDirection.Input;
+            paramIzmena.Value = Izmena;
+            cmd.Parameters.Add(paramIzmena);
+
+            SqlParameter paramBrisanje = new SqlParameter();
+            paramBrisanje.ParameterName = "@Brisanje";
+            paramBrisanje.SqlDbType = SqlDbType.Int;
+            paramBrisanje.Direction = ParameterDirection.Input;
+            paramBrisanje.Value = Brisanje;
+            cmd.Parameters.Add(paramBrisanje);
+
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            cmd.Transaction = tran;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+                tran = conn.BeginTransaction();
+                cmd.Transaction = tran;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Neuspešan upis");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    tran.Commit();
+                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                conn.Close();
+            }
+            if (error)
+            {
+
+            }
+
+        }
+
+        public void DeletePravoGrupeNaForme(int IDGrupe, int IDForme)
+        {
+
+
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DeletePravoGrupeNaForme";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+
+            SqlParameter paramIDGrupe = new SqlParameter();
+            paramIDGrupe.ParameterName = "@IDGrupe";
+            paramIDGrupe.SqlDbType = SqlDbType.Int;
+            paramIDGrupe.Direction = ParameterDirection.Input;
+            paramIDGrupe.Value = IDGrupe;
+            cmd.Parameters.Add(paramIDGrupe);
+
+            SqlParameter paramIDForme = new SqlParameter();
+            paramIDForme.ParameterName = "@IDForme";
+            paramIDForme.SqlDbType = SqlDbType.Int;
+            paramIDForme.Direction = ParameterDirection.Input;
+            paramIDForme.Value = IDForme;
+            cmd.Parameters.Add(paramIDForme);
+
+            conn.Open();
+            SqlTransaction tran = conn.BeginTransaction();
+            cmd.Transaction = tran;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tran.Commit();
+                tran = conn.BeginTransaction();
+                cmd.Transaction = tran;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Neuspešan upis");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    tran.Commit();
+                    MessageBox.Show("Unos NHM broja je uspešno završena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                conn.Close();
+            }
+            if (error)
+            {
+
+            }
+
         }
 
     }

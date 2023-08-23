@@ -355,5 +355,63 @@ namespace Saobracaj.Sifarnici
             del.DelDelavciMTA(Convert.ToInt32(txtDeSifra.Text));
             RefreshDataGrid();
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            int PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja;
+
+            if (chkManevrista.Checked)
+            {
+                PomManevrista = 1;
+            }
+            else
+            {
+                PomManevrista = 0;
+            }
+
+            if (chkPomocnik.Checked)
+            {
+                PomPomocnik = 1;
+            }
+            else
+            {
+                PomPomocnik = 0;
+            }
+
+            if (chkVozovodja.Checked)
+            {
+                PomVozovodja = 1;
+            }
+            else
+            {
+                PomVozovodja = 0;
+            }
+
+            if (chkPregledacKola.Checked)
+            {
+                PomPregledacKola = 1;
+            }
+            else
+            {
+                PomPregledacKola = 0;
+            }
+
+            if (chkMasinovodja.Checked)
+            {
+                PomMasinovodja = 1;
+            }
+            else
+            {
+                PomMasinovodja = 0;
+            }
+          
+                // txtDeSifra.Text,  txtDePriimek.Text,  txtDeIme.Text, txtDeTelefon1.Text,  txtDeTelefon2.Text ,  txtDeEMail.Text , txtDeUlHisStBivS.Text , txtDeKrajBivS.Text , txtDeSifDelMes.Text ,  txtDeSifStat.Text ,  PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja)
+                //  txtNaziv.Text,  txtUlica.Text,  txtMesto.Text,  txtOblast.Text, txtPosta.Text ,txtDrzava.Text, txtTelefon.Text, txtTR.Text ,  txtNapomena.Text,txtMaticniBroj.Text,  txtEmail.Text,  txtPIB.Text
+                InsertDelavciMTA ins = new InsertDelavciMTA();
+                ins.InsDelavciStariMTA(Convert.ToInt32(txtDeSifra.Text),   txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.SelectedValue), txtDeSifStat.Text, PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja);
+         
+         
+            RefreshDataGrid();
+        }
     }
 }

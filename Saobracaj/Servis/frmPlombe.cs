@@ -228,7 +228,7 @@ namespace Saobracaj.Servis
             string result = Path.GetFileName(fileName);
             string targetPath = "";
 
-            targetPath = @"\\192.168.1.6\Plombe\" + FolderDestinacije + ID;
+            targetPath = @"\\192.168.129.7\TA\Plombe\" + FolderDestinacije + ID;
 
             string sourceFile = putanja;
             string destFile = System.IO.Path.Combine(targetPath, result);

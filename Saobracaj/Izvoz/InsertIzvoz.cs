@@ -126,6 +126,222 @@ namespace Saobracaj.Izvoz
             }
         }
 
+
+        public void DelIzvozKonacnaUsluga(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DeleteIzvozKonacnaVrstaManipulacije";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void DelIzvozUsluga(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DeleteIzvozVrstaManipulacije";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+
+
+        public void UpdPlatiocaIzvozKonacnaUsluga(int ID, int Platioc)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdPlatiocaIzvozKonacnaVrstaManipulacije";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            SqlParameter platioc = new SqlParameter();
+            platioc.ParameterName = "@Platioc";
+            platioc.SqlDbType = SqlDbType.Int;
+            platioc.Direction = ParameterDirection.Input;
+            platioc.Value = Platioc;
+            cmd.Parameters.Add(platioc);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void UpdPlatiocaIzvozUsluga(int ID, int Platioc)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdPlatiocIzvozVrstaManipulacije";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            SqlParameter platioc = new SqlParameter();
+            platioc.ParameterName = "@Platioc";
+            platioc.SqlDbType = SqlDbType.Int;
+            platioc.Direction = ParameterDirection.Input;
+            platioc.Value = Platioc;
+            cmd.Parameters.Add(platioc);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+
+
+
         public void DelIzvozNHM(int ID)
         {
             SqlConnection conn = new SqlConnection(connection);
@@ -223,7 +439,7 @@ namespace Saobracaj.Izvoz
                 }
             }
         }
-        public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed)
+        public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac)
         {
             //  @IdNadredjena int,
             //@IDVrstaManipulacije int,
@@ -270,6 +486,13 @@ namespace Saobracaj.Izvoz
             orgjed.Value = OrgJed;
             cmd.Parameters.Add(orgjed);
 
+            SqlParameter platilac = new SqlParameter();
+            platilac.ParameterName = "@Platilac";
+            platilac.SqlDbType = SqlDbType.Int;
+            platilac.Direction = ParameterDirection.Input;
+            platilac.Value = Platilac;
+            cmd.Parameters.Add(platilac);
+
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -305,7 +528,7 @@ namespace Saobracaj.Izvoz
             }
         }
 
-        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed)
+        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac)
         {
             //  @IdNadredjena int,
             //@IDVrstaManipulacije int,
@@ -351,6 +574,13 @@ namespace Saobracaj.Izvoz
             orgjed.Direction = ParameterDirection.Input;
             orgjed.Value = OrgJed;
             cmd.Parameters.Add(orgjed);
+
+            SqlParameter platilac= new SqlParameter();
+            platilac.ParameterName = "@Platilac";
+            platilac.SqlDbType = SqlDbType.Int;
+            platilac.Direction = ParameterDirection.Input;
+            platilac.Value = Platilac;
+            cmd.Parameters.Add(platilac);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -602,13 +832,14 @@ namespace Saobracaj.Izvoz
                             decimal BrutoRobe, decimal BrutoRobeO, int BrojKoleta, int BrojKoletaO,
                             decimal CBM, decimal CBMO, decimal VrednostRobeFaktura, string Valuta,
                             int KrajnaDestinacija, int Postupanje, int MestoPreuzimanja, int Cirada,
-                            DateTime PlaniraniDatumUtovara, int MesoUtovara, string KontaktOsoba, int MestoCarinjenja,
-                            int Spedicija, int AdresaSlanjaStatusa, int NaslovSlanjaStatusa, DateTime EtaLeget,
+                            DateTime PlaniraniDatumUtovara, int MesoUtovara, int KontaktOsoba, int MestoCarinjenja,
+                            int Spedicija, string AdresaSlanjaStatusa, string NaslovSlanjaStatusa, DateTime EtaLeget,
                             int NapomenaReexport, int Inspekcija, decimal AutoDana, int NajavaVozila,
                             int NacinPakovanja, int NacinPretovara, string DodatneNapomeneDrumski, int Vaganje,
                             decimal VGMTezina, decimal Tara, decimal VGMBrod, int Izvoznik,
                             int Klijent1, int Napomena1REf, int DobijenNalogKlijent1, int Klijent2,
-                            int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo)
+                            int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, 
+                            string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, int VrstaBrodskePlombe, string NapomenaZaRobu)
         {
 
             
@@ -790,8 +1021,8 @@ namespace Saobracaj.Izvoz
 
             SqlParameter kontaktOsoba = new SqlParameter();
             kontaktOsoba.ParameterName = "@KontaktOsoba";
-            kontaktOsoba.SqlDbType = SqlDbType.NVarChar;
-            kontaktOsoba.Size = 50;
+            kontaktOsoba.SqlDbType = SqlDbType.Int;
+           // kontaktOsoba.Size = 50;
             kontaktOsoba.Direction = ParameterDirection.Input;
             kontaktOsoba.Value = KontaktOsoba;
             cmd.Parameters.Add(kontaktOsoba);
@@ -812,14 +1043,16 @@ namespace Saobracaj.Izvoz
 
             SqlParameter adresaslanjastatusa = new SqlParameter();
             adresaslanjastatusa.ParameterName = "@AdresaSlanjaStatusa";
-            adresaslanjastatusa.SqlDbType = SqlDbType.Int;
+            adresaslanjastatusa.SqlDbType = SqlDbType.NVarChar;
+            adresaslanjastatusa.Size = 100;
             adresaslanjastatusa.Direction = ParameterDirection.Input;
             adresaslanjastatusa.Value = AdresaSlanjaStatusa;
             cmd.Parameters.Add(adresaslanjastatusa);
 
             SqlParameter naslovSlanjaStatusa = new SqlParameter();
             naslovSlanjaStatusa.ParameterName = "@NaslovSlanjaStatusa";
-            naslovSlanjaStatusa.SqlDbType = SqlDbType.Int;
+            naslovSlanjaStatusa.SqlDbType = SqlDbType.NVarChar;
+            naslovSlanjaStatusa.Size = 1000;
             naslovSlanjaStatusa.Direction = ParameterDirection.Input;
             naslovSlanjaStatusa.Value = NaslovSlanjaStatusa;
             cmd.Parameters.Add(naslovSlanjaStatusa);
@@ -1025,6 +1258,23 @@ namespace Saobracaj.Izvoz
             cmd.Parameters.Add(periodskladistenjaDo);
 
 
+            SqlParameter vrstabrodplombe = new SqlParameter();
+            vrstabrodplombe.ParameterName = "@VrstaBrodskePlombe";
+            vrstabrodplombe.SqlDbType = SqlDbType.Int;
+            vrstabrodplombe.Direction = ParameterDirection.Input;
+            vrstabrodplombe.Value = VrstaBrodskePlombe;
+            cmd.Parameters.Add(vrstabrodplombe);
+
+
+            SqlParameter napomenazarobu = new SqlParameter();
+            napomenazarobu.ParameterName = "@NapomenaZaRobu";
+            napomenazarobu.SqlDbType = SqlDbType.NVarChar;
+            napomenazarobu.Size = 500;
+            napomenazarobu.Direction = ParameterDirection.Input;
+            napomenazarobu.Value = NapomenaZaRobu;
+            cmd.Parameters.Add(napomenazarobu);
+
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -1067,12 +1317,12 @@ namespace Saobracaj.Izvoz
                            decimal CBM, decimal CBMO, decimal VrednostRobeFaktura, string Valuta,
                            int KrajnaDestinacija, int Postupanje, int MestoPreuzimanja, int Cirada,
                            DateTime PlaniraniDatumUtovara, int MesoUtovara, string KontaktOsoba, int MestoCarinjenja,
-                           int Spedicija, int AdresaSlanjaStatusa, int NaslovSlanjaStatusa, DateTime EtaLeget,
+                           int Spedicija, string AdresaSlanjaStatusa, string NaslovSlanjaStatusa, DateTime EtaLeget,
                            int NapomenaReexport, int Inspekcija, decimal AutoDana, int NajavaVozila,
                            int NacinPakovanja, int NacinPretovara, string DodatneNapomeneDrumski, int Vaganje,
                            decimal VGMTezina, decimal Tara, decimal VGMBrod, int Izvoznik,
                            int Klijent1, int Napomena1REf, int DobijenNalogKlijent1, int Klijent2,
-                           int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, int IDNadredjena, string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo)
+                           int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, int IDNadredjena, string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, int VrstaBrodskePlombe, string NapomenaZaRobu)
         {
 
 
@@ -1276,14 +1526,16 @@ namespace Saobracaj.Izvoz
 
             SqlParameter adresaslanjastatusa = new SqlParameter();
             adresaslanjastatusa.ParameterName = "@AdresaSlanjaStatusa";
-            adresaslanjastatusa.SqlDbType = SqlDbType.Int;
+            adresaslanjastatusa.SqlDbType = SqlDbType.NVarChar;
+            adresaslanjastatusa.Size = 100;
             adresaslanjastatusa.Direction = ParameterDirection.Input;
             adresaslanjastatusa.Value = AdresaSlanjaStatusa;
             cmd.Parameters.Add(adresaslanjastatusa);
 
             SqlParameter naslovSlanjaStatusa = new SqlParameter();
             naslovSlanjaStatusa.ParameterName = "@NaslovSlanjaStatusa";
-            naslovSlanjaStatusa.SqlDbType = SqlDbType.Int;
+            naslovSlanjaStatusa.SqlDbType = SqlDbType.NVarChar;
+            naslovSlanjaStatusa.Size = 1000;
             naslovSlanjaStatusa.Direction = ParameterDirection.Input;
             naslovSlanjaStatusa.Value = NaslovSlanjaStatusa;
             cmd.Parameters.Add(naslovSlanjaStatusa);
@@ -1494,6 +1746,24 @@ namespace Saobracaj.Izvoz
             periodskladistenjaDo.Direction = ParameterDirection.Input;
             periodskladistenjaDo.Value = PeriodSkladistenjaDo;
             cmd.Parameters.Add(periodskladistenjaDo);
+
+
+            SqlParameter vrstabrodplombe = new SqlParameter();
+            vrstabrodplombe.ParameterName = "@VrstaBrodskePlombe";
+            vrstabrodplombe.SqlDbType = SqlDbType.Int;
+            vrstabrodplombe.Direction = ParameterDirection.Input;
+            vrstabrodplombe.Value = VrstaBrodskePlombe;
+            cmd.Parameters.Add(vrstabrodplombe);
+
+
+            SqlParameter napomenazarobu = new SqlParameter();
+            napomenazarobu.ParameterName = "@NapomenaZaRobu";
+            napomenazarobu.SqlDbType = SqlDbType.NVarChar;
+            napomenazarobu.Size = 500;
+            napomenazarobu.Direction = ParameterDirection.Input;
+            napomenazarobu.Value = NapomenaZaRobu;
+            cmd.Parameters.Add(napomenazarobu);
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

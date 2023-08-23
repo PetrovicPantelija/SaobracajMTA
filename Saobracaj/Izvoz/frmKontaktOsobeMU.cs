@@ -47,8 +47,9 @@ namespace Saobracaj.Izvoz
 
             if (IzPartnera == 1)
             {
-                RefreshDataGridPoPartneru();
                 txtPaKOSifra.SelectedValue = pomPartner;
+                RefreshDataGridPoPartneru();
+               
             }
             else
             {
@@ -140,14 +141,22 @@ namespace Saobracaj.Izvoz
 
 
 
-
-
         }
 
-        public string GetKontakt()
+      
+            public string GetKontakt()
+            {
+                return txtPaKOIme.Text.TrimEnd() + " " + txtPaKOPriimek.Text.TrimEnd() + " " + txtPaKOTel.Text.TrimEnd();
+            }
+
+        public string GetKontaktAdresa(int Partner)
         {
-            return txtPaKOIme.Text.TrimEnd() + " " + txtPaKOPriimek.Text.TrimEnd();
+
+            RefreshDataGridPoPartneru();
+            return txtPaKOOpomba.Text.TrimEnd();
         }
+
+
 
         private void tsNew_Click(object sender, EventArgs e)
         {

@@ -56,7 +56,76 @@ namespace Saobracaj.Dokumenta
         {
            // txtPutanja.Text = txtPutanja.Text.Replace("192.168.1.6", "WSS");
             System.Diagnostics.Process.Start(txtPutanja.Text);
+            //TA\Racuni\2259\Racuni
         }
+
+        private void RefreshDataGridAktivnosti()
+        {
+            var select = "";
+
+        
+                select = "Select Aktivnosti.ID as Zapis,  Aktivnosti.Oznaka, " +
+                                 " (RTrim(DeIme) + ' ' + RTRim(DePriimek)) as Zaposleni,  " +
+                                 "  VremeOD, VremeDo,  Aktivnosti.Opis, UkupniTroskovi, RAcun, Kartica," +
+                                   " Aktivnosti.DatumInserta " +
+                                  " from Aktivnosti  " +
+                                 " inner join Delavci on Delavci.DeSifra = Aktivnosti.Zaposleni  " +
+                                   " inner join Kraji on Kraji.KrSifra = Aktivnosti.MestoUpucivanja" +
+                                  " order by Aktivnosti.ID desc";
+      
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView2.Columns[0];
+            dataGridView2.Columns[0].HeaderText = "ID";
+            dataGridView2.Columns[0].Width = 30;
+
+            DataGridViewColumn column1 = dataGridView2.Columns[1];
+            dataGridView2.Columns[1].HeaderText = "Oznaka";
+            dataGridView2.Columns[1].Width = 30;
+
+            DataGridViewColumn column2 = dataGridView2.Columns[2];
+            dataGridView2.Columns[2].HeaderText = "Zaposleni";
+            dataGridView2.Columns[2].Width = 100;
+
+            DataGridViewColumn column3 = dataGridView2.Columns[3];
+            dataGridView2.Columns[3].HeaderText = "Vreme od";
+            dataGridView2.Columns[3].Width = 100;
+
+            DataGridViewColumn column4 = dataGridView2.Columns[4];
+            dataGridView2.Columns[4].HeaderText = "Vreme do";
+            dataGridView2.Columns[4].Width = 100;
+
+         
+            DataGridViewColumn column5 = dataGridView2.Columns[5];
+            dataGridView2.Columns[5].HeaderText = "Opis";
+            dataGridView2.Columns[5].Width = 120;
+
+            DataGridViewColumn column6 = dataGridView2.Columns[6];
+            dataGridView2.Columns[6].HeaderText = "Ukupni troškovi";
+            dataGridView2.Columns[6].Width = 50;
+
+
+            DataGridViewColumn column8 = dataGridView2.Columns[8];
+            dataGridView2.Columns[8].HeaderText = "Računi";
+            dataGridView2.Columns[8].Width = 50;
+
+            DataGridViewColumn column9 = dataGridView2.Columns[9];
+            dataGridView2.Columns[9].HeaderText = "Kartice";
+            dataGridView2.Columns[9].Width = 50;
+
+
+        }
+
 
         private void RefreshDataGrid()
         {
@@ -106,7 +175,7 @@ namespace Saobracaj.Dokumenta
             string result = Path.GetFileName(fileName);
             string targetPath = "";
 
-            targetPath = @"\\192.168.1.6\Racuni\" + FolderDestinacije + @"\Racuni";
+            targetPath = @"\\192.168.129.7\TA\Racuni\" + FolderDestinacije + @"\Racuni";
             
             string sourceFile = putanja;
             string destFile = System.IO.Path.Combine(targetPath, result);
@@ -158,7 +227,7 @@ namespace Saobracaj.Dokumenta
 
         private void frmEvidencijaRadaDokumenti_Load(object sender, EventArgs e)
         {
-            RefreshDataGrid();
+            RefreshDataGridAktivnosti();
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -171,6 +240,7 @@ namespace Saobracaj.Dokumenta
                     {
                         txtSifra.Text = row.Cells[0].Value.ToString();
                         txtPutanja.Text = row.Cells[2].Value.ToString();
+                        txtPutanja.Text = txtPutanja.Text.Replace("192.168.129.7", "\\\\192.168.129.7\\TA");
 
                     }
                 }
@@ -181,6 +251,59 @@ namespace Saobracaj.Dokumenta
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
+        }
+
+        private void VratiDokumentaAktivnosti()
+        {
+
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txtSifra.Text = row.Cells[0].Value.ToString();
+                      
+
+                    }
+                }
+
+
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+
+
+        }
+
+        private void dataGridView2_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                VratiDokumentaAktivnosti();
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (row.Selected)
+                    {
+                       
+                        txtSifraNajave.Text = row.Cells[0].Value.ToString();
+                        RefreshDataGrid();
+                        // txtPutanja.Text = row.Cells[2].Value.ToString();
+                    }
+                }
+                
+
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+            string path = Path.Combine(@"//192.168.129.7/TA/Racuni/", txtSifra.Text + "/");
+            //txtPutanja.Text = "\\192.168.1.6\";
+            DirectoryInfo dir_info = new DirectoryInfo(path);
+            txtPutanja.Text = dir_info.FullName;
         }
     }
 }

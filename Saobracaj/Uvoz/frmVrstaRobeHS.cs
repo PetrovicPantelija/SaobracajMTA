@@ -24,7 +24,9 @@ namespace Saobracaj.Uvoz
         }
         private void FillGV()
         {
-            var select = "Select * From VrstaRobeHS order by ID desc";
+            var select = "Select VrstaRobeHS.ID, VrstaRobeHS.Naziv, VrstaRobeHS.HSKOd, ADRID, Izvozni " +
+" , VrstaRobeADR.NAziv, VrstaRobeADR.Klasa, VrstaRobeADR.Grupa from VrstaRobeHS " +
+"  left join VrstaRobeADR on VrstaRobeHS.ADRID = VrstaRobeADR.ID";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -56,6 +58,15 @@ namespace Saobracaj.Uvoz
             DataGridViewColumn column3 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "HS kod";
             dataGridView1.Columns[2].Width = 70;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "ADR ID";
+            dataGridView1.Columns[3].Width = 70;
+
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Izvozni";
+            dataGridView1.Columns[4].Width = 70;
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -103,8 +114,21 @@ namespace Saobracaj.Uvoz
                     {
                         txtID.Text = row.Cells[0].Value.ToString();
                         txtNaziv.Text = row.Cells[1].Value.ToString();
-                       txtHSCode.Text = row.Cells[2].Value.ToString();
-                        txtADR.SelectedValue = Convert.ToInt32(row.Cells[3].Value.ToString());
+                        txtHSCode.Text = row.Cells[2].Value.ToString();
+                        if (row.Cells[4].Value.ToString() != "")
+                        { txtADR.SelectedValue = Convert.ToInt32(row.Cells[4].Value.ToString()); }
+                        else
+                        {
+                            txtADR.SelectedValue = 0;
+                        }
+                        if (row.Cells[4].Value.ToString() == "1")
+                        {
+                            chkIzvozni.Checked = true;
+                        }
+                        else
+                        {
+                            chkIzvozni.Checked = false;
+                        }
 
                     }
                 }

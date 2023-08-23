@@ -30,14 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVrstaManipulacije));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsNew = new System.Windows.Forms.ToolStripButton();
-            this.tsSave = new System.Windows.Forms.ToolStripButton();
-            this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsPrvi = new System.Windows.Forms.ToolStripButton();
-            this.tsNazad = new System.Windows.Forms.ToolStripButton();
-            this.tsNapred = new System.Windows.Forms.ToolStripButton();
-            this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNaziv = new System.Windows.Forms.TextBox();
@@ -59,6 +52,15 @@
             this.txtCena = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.cboGrupaVrsteManipulacije = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tsNew = new System.Windows.Forms.ToolStripButton();
+            this.tsSave = new System.Windows.Forms.ToolStripButton();
+            this.tsDelete = new System.Windows.Forms.ToolStripButton();
+            this.tsPrvi = new System.Windows.Forms.ToolStripButton();
+            this.tsNazad = new System.Windows.Forms.ToolStripButton();
+            this.tsNapred = new System.Windows.Forms.ToolStripButton();
+            this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCena)).BeginInit();
@@ -84,80 +86,10 @@
             this.toolStrip1.Text = "Štampaj izveštaj";
             this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
-            // tsNew
-            // 
-            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
-            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(24, 24);
-            this.tsNew.Text = "Novi";
-            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
-            // 
-            // tsSave
-            // 
-            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
-            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(24, 24);
-            this.tsSave.Text = "tsSave";
-            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
-            // 
-            // tsDelete
-            // 
-            this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
-            this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(24, 24);
-            this.tsDelete.Text = "toolStripButton1";
-            this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
-            // 
-            // tsPrvi
-            // 
-            this.tsPrvi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
-            this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(24, 24);
-            this.tsPrvi.Text = "toolStripButton1";
-            this.tsPrvi.Click += new System.EventHandler(this.tsPrvi_Click);
-            // 
-            // tsNazad
-            // 
-            this.tsNazad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
-            this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(24, 24);
-            this.tsNazad.Text = "toolStripButton1";
-            this.tsNazad.Click += new System.EventHandler(this.tsNazad_Click);
-            // 
-            // tsNapred
-            // 
-            this.tsNapred.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
-            this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(24, 24);
-            this.tsNapred.Text = "toolStripButton1";
-            this.tsNapred.Click += new System.EventHandler(this.tsNapred_Click);
-            // 
-            // tsPoslednja
-            // 
-            this.tsPoslednja.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
-            this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(24, 24);
-            this.tsPoslednja.Text = "toolStripButton1";
-            this.tsPoslednja.Click += new System.EventHandler(this.tsPoslednja_Click);
             // 
             // txtSifra
             // 
@@ -279,11 +211,11 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(180, 143);
+            this.label5.Location = new System.Drawing.Point(175, 143);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(101, 15);
+            this.label5.Size = new System.Drawing.Size(67, 15);
             this.label5.TabIndex = 241;
-            this.label5.Text = "Tip manipulacije:";
+            this.label5.Text = "Tip usluge:";
             // 
             // cboOrgJed
             // 
@@ -382,12 +314,104 @@
             this.label9.TabIndex = 251;
             this.label9.Text = "EUR";
             // 
+            // cboGrupaVrsteManipulacije
+            // 
+            this.cboGrupaVrsteManipulacije.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cboGrupaVrsteManipulacije.FormattingEnabled = true;
+            this.cboGrupaVrsteManipulacije.Location = new System.Drawing.Point(293, 52);
+            this.cboGrupaVrsteManipulacije.Name = "cboGrupaVrsteManipulacije";
+            this.cboGrupaVrsteManipulacije.Size = new System.Drawing.Size(210, 24);
+            this.cboGrupaVrsteManipulacije.TabIndex = 253;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label10.ForeColor = System.Drawing.Color.Black;
+            this.label10.Location = new System.Drawing.Point(202, 52);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(84, 15);
+            this.label10.TabIndex = 252;
+            this.label10.Text = "Grupa usluge:";
+            // 
+            // tsNew
+            // 
+            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
+            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNew.Name = "tsNew";
+            this.tsNew.Size = new System.Drawing.Size(24, 24);
+            this.tsNew.Text = "Novi";
+            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
+            // 
+            // tsSave
+            // 
+            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
+            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsSave.Name = "tsSave";
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
+            this.tsSave.Text = "tsSave";
+            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
+            // 
+            // tsDelete
+            // 
+            this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
+            this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsDelete.Name = "tsDelete";
+            this.tsDelete.Size = new System.Drawing.Size(24, 24);
+            this.tsDelete.Text = "toolStripButton1";
+            this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
+            // 
+            // tsPrvi
+            // 
+            this.tsPrvi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
+            this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsPrvi.Name = "tsPrvi";
+            this.tsPrvi.Size = new System.Drawing.Size(24, 24);
+            this.tsPrvi.Text = "toolStripButton1";
+            this.tsPrvi.Click += new System.EventHandler(this.tsPrvi_Click);
+            // 
+            // tsNazad
+            // 
+            this.tsNazad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
+            this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNazad.Name = "tsNazad";
+            this.tsNazad.Size = new System.Drawing.Size(24, 24);
+            this.tsNazad.Text = "toolStripButton1";
+            this.tsNazad.Click += new System.EventHandler(this.tsNazad_Click);
+            // 
+            // tsNapred
+            // 
+            this.tsNapred.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
+            this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNapred.Name = "tsNapred";
+            this.tsNapred.Size = new System.Drawing.Size(24, 24);
+            this.tsNapred.Text = "toolStripButton1";
+            this.tsNapred.Click += new System.EventHandler(this.tsNapred_Click);
+            // 
+            // tsPoslednja
+            // 
+            this.tsPoslednja.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
+            this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsPoslednja.Name = "tsPoslednja";
+            this.tsPoslednja.Size = new System.Drawing.Size(24, 24);
+            this.tsPoslednja.Text = "toolStripButton1";
+            this.tsPoslednja.Click += new System.EventHandler(this.tsPoslednja_Click);
+            // 
             // frmVrstaManipulacije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1173, 537);
+            this.Controls.Add(this.cboGrupaVrsteManipulacije);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtCena);
             this.Controls.Add(this.label13);
@@ -414,7 +438,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmVrstaManipulacije";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Vrsta manipulacije";
+            this.Text = "Vrsta usluge";
             this.Load += new System.EventHandler(this.frmVrstaManipulacije_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -457,5 +481,7 @@
         private System.Windows.Forms.NumericUpDown txtCena;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox cboGrupaVrsteManipulacije;
+        private System.Windows.Forms.Label label10;
     }
 }

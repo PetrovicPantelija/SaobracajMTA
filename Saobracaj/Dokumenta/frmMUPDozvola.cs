@@ -184,7 +184,7 @@ namespace Saobracaj.Dokumenta
             var select = "";
 
         
-            select = " select top 100 MUPDozvola.ID,  MUPDozvola.Zaposleni, (RTRIM(Delavci.DePriimek) + ' ' + RTrim(Delavci.DeIme)) as ImeIPrezime, Delavci.DeEMail as Email,  MUPDozvola.VremeOd, MUPDozvola.VremeDo, MUPDozvola.JMBG, MUPDozvola.RadnoMesto, MUPDozvola.Relacija  from MupDozvola " +
+            select = " select top 100 MUPDozvola.ID,  MUPDozvola.Zaposleni, (RTrim(Delavci.DeIme) + ' ' + RTRIM(Delavci.DePriimek)) as ImeIPrezime, Delavci.DeEMail as Email,  MUPDozvola.VremeOd, MUPDozvola.VremeDo, MUPDozvola.JMBG, MUPDozvola.RadnoMesto, MUPDozvola.Relacija  from MupDozvola " +
  " inner join Delavci on Delavci.DeSifra = MUPDozvola.Zaposleni order by MUPDozvola.ID desc";
 
      

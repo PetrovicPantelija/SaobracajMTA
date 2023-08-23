@@ -49,7 +49,7 @@ namespace Saobracaj.Sifarnici
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
-            SqlCommand command = new SqlCommand("SELECT Korisnik FROM Korisnici where Rtrim(Password) = '" + txtPassword.Text + "'", myConnection);
+            SqlCommand command = new SqlCommand("SELECT Korisnik FROM Korisnici where Rtrim(Password) = '" + txtPassword.Text + "' and RTRIM(Korisnik) = '"+ cboKorisnik.Text + "'", myConnection);
             myConnection.Open();
 
             SqlDataReader reader = command.ExecuteReader();
@@ -70,7 +70,7 @@ namespace Saobracaj.Sifarnici
                 }
                 else
                 {
-                    MessageBox.Show("Nije ispravno uneta lozinka");
+                    MessageBox.Show("Nije jedinstvena lozinka");
                     return;
                 }
             }
@@ -83,7 +83,8 @@ namespace Saobracaj.Sifarnici
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
-            SqlCommand command = new SqlCommand("SELECT Korisnik FROM Korisnici where Password = '" + txtPassword.Text + "'", myConnection);
+            SqlCommand command = new SqlCommand("SELECT Korisnik FROM Korisnici where Rtrim(Password) = '" + txtPassword.Text + "' and RTRIM(Korisnik) = '" + cboKorisnik.Text + "'", myConnection);
+
             myConnection.Open();
             
             SqlDataReader reader = command.ExecuteReader();

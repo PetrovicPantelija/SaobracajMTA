@@ -82,7 +82,7 @@ namespace Testiranje.Dokumeta
             if (status == true)
             {
                 InsertVoz ins = new InsertVoz();
-                ins.InsVoz(Convert.ToInt32(txtBrVoza.Text), txtRelacija.Text, txtKalendarSaobracaja.Text, Convert.ToDateTime(dtpVremePolaska.Value), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDouble(txtMaksBruto.Text), Convert.ToDouble(txtDuzina.Text), Convert.ToDouble(txtMaksBrojKola.Text), Convert.ToDateTime(dtpVremeZavrsetkaUtovara.Value), Convert.ToDateTime(dtpVremeZavrsetkaKP.Value), Convert.ToDateTime(dtpVremePrimopredaje.Value), txtNapomena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Dolazeci, Convert.ToInt32(txtPostNaTerminalD.Value), Convert.ToInt32(txtKontrolniPregledD.Value), Convert.ToInt32(txtVremeIstovaraD.Value), Convert.ToInt32(txtVremePrimopredajeD.Value), Ponedeljak, Utorak, Sreda, Cetvrtak, Petak, Subota, Nedelja, Convert.ToInt32(txtPostNaTerminalO.Value), Convert.ToInt32(txtVremeUtovaraO.Value), Convert.ToInt32(txtVremeKontrolnogO.Value), Convert.ToInt32(txtVremeIzvlacenjaO.Value), dtpVremePolaskaO.Value, dtpVremeDolaskaO.Value, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue));
+                ins.InsVoz(Convert.ToInt32(txtBrVoza.Text), txtRelacija.Text, txtKalendarSaobracaja.Text, Convert.ToDateTime(dtpVremePolaska.Value), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDouble(txtMaksBruto.Text), Convert.ToDouble(txtDuzina.Text), Convert.ToDouble(txtMaksBrojKola.Text), Convert.ToDateTime(dtpVremeZavrsetkaUtovara.Value), Convert.ToDateTime(dtpVremeZavrsetkaKP.Value), Convert.ToDateTime(dtpVremePrimopredaje.Value), txtNapomena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Dolazeci, Convert.ToInt32(txtPostNaTerminalD.Value), Convert.ToInt32(txtKontrolniPregledD.Value), Convert.ToInt32(txtVremeIstovaraD.Value), Convert.ToInt32(txtVremePrimopredajeD.Value), Ponedeljak, Utorak, Sreda, Cetvrtak, Petak, Subota, Nedelja, Convert.ToInt32(txtPostNaTerminalO.Value), Convert.ToInt32(txtVremeUtovaraO.Value), Convert.ToInt32(txtVremeKontrolnogO.Value), Convert.ToInt32(txtVremeIzvlacenjaO.Value), dtpVremePolaskaO.Value, dtpVremeDolaskaO.Value, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboOperater.SelectedValue));
                 status = false;
                 VratiPodatkeMax();
             }
@@ -90,7 +90,7 @@ namespace Testiranje.Dokumeta
             {
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertVoz upd = new InsertVoz();
-                upd.UpdVoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtBrVoza.Text), txtRelacija.Text, txtKalendarSaobracaja.Text, Convert.ToDateTime(dtpVremePolaska.Value), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDouble(txtMaksBruto.Text), Convert.ToDouble(txtDuzina.Text), Convert.ToDouble(txtMaksBrojKola.Text), Convert.ToDateTime(dtpVremeZavrsetkaUtovara.Value), Convert.ToDateTime(dtpVremeZavrsetkaKP.Value), Convert.ToDateTime(dtpVremePrimopredaje.Value), txtNapomena.Text, Convert.ToDateTime(DateTime.Now),KorisnikCene, Dolazeci, Convert.ToInt32(txtPostNaTerminalD.Value), Convert.ToInt32(txtKontrolniPregledD.Value), Convert.ToInt32(txtVremeIstovaraD.Value), Convert.ToInt32(txtVremePrimopredajeD.Value), Ponedeljak, Utorak, Sreda, Cetvrtak, Petak, Subota, Nedelja, Convert.ToInt32(txtPostNaTerminalO.Value), Convert.ToInt32(txtVremeUtovaraO.Value), Convert.ToInt32(txtVremeKontrolnogO.Value), Convert.ToInt32(txtVremeIzvlacenjaO.Value), dtpVremePolaskaO.Value, dtpVremeDolaskaO.Value, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue));
+                upd.UpdVoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtBrVoza.Text), txtRelacija.Text, txtKalendarSaobracaja.Text, Convert.ToDateTime(dtpVremePolaska.Value), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDouble(txtMaksBruto.Text), Convert.ToDouble(txtDuzina.Text), Convert.ToDouble(txtMaksBrojKola.Text), Convert.ToDateTime(dtpVremeZavrsetkaUtovara.Value), Convert.ToDateTime(dtpVremeZavrsetkaKP.Value), Convert.ToDateTime(dtpVremePrimopredaje.Value), txtNapomena.Text, Convert.ToDateTime(DateTime.Now),KorisnikCene, Dolazeci, Convert.ToInt32(txtPostNaTerminalD.Value), Convert.ToInt32(txtKontrolniPregledD.Value), Convert.ToInt32(txtVremeIstovaraD.Value), Convert.ToInt32(txtVremePrimopredajeD.Value), Ponedeljak, Utorak, Sreda, Cetvrtak, Petak, Subota, Nedelja, Convert.ToInt32(txtPostNaTerminalO.Value), Convert.ToInt32(txtVremeUtovaraO.Value), Convert.ToInt32(txtVremeKontrolnogO.Value), Convert.ToInt32(txtVremeIzvlacenjaO.Value), dtpVremePolaskaO.Value, dtpVremeDolaskaO.Value, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboOperater.SelectedValue));
                 status = false;
             }
             RefreshDataGrid();
@@ -218,7 +218,7 @@ namespace Testiranje.Dokumeta
 
             con.Open();
            
-            SqlCommand cmd = new SqlCommand("SELECT [ID],[BrVoza],[Relacija],[KalendarSaobracaja],[VremePolaska],[VremeDolaska],[MaksimalnaBruto],[MaksimalnaDuzina],[MaksimalanBrojKola],[VremeZavrsetkaUtovara],[VremeZavrsetkaKP],[VremePrimopredaje],[Napomena],[Datum],[Korisnik] ,Dolazeci,PostNaTerminalD ,KontrolniPregledD,VremeIstovaraD ,VremePrimopredajeD,Ponedeljak ,Utorak	,Sreda,Cetvrtak,Petak	,Subota ,Nedelja,PostNaTerminalO,VremeUtovaraO ,VremeKontrolnogO ,VremeIzvlacenjaO	,VremePolaskaO ,VremeDolaskaO, StanicaOd, StanicaDo, Napomena  FROM [dbo].[Voz] where ID=" + txtSifra.Text, con);
+            SqlCommand cmd = new SqlCommand("SELECT [ID],[BrVoza],[Relacija],[KalendarSaobracaja],[VremePolaska],[VremeDolaska],[MaksimalnaBruto],[MaksimalnaDuzina],[MaksimalanBrojKola],[VremeZavrsetkaUtovara],[VremeZavrsetkaKP],[VremePrimopredaje],[Napomena],[Datum],[Korisnik] ,Dolazeci,PostNaTerminalD ,KontrolniPregledD,VremeIstovaraD ,VremePrimopredajeD,Ponedeljak ,Utorak	,Sreda,Cetvrtak,Petak	,Subota ,Nedelja,PostNaTerminalO,VremeUtovaraO ,VremeKontrolnogO ,VremeIzvlacenjaO	,VremePolaskaO ,VremeDolaskaO, StanicaOd, StanicaDo, Napomena, Operater  FROM [dbo].[Voz] where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -285,6 +285,7 @@ namespace Testiranje.Dokumeta
 
                 cboStanicaOd.SelectedValue = Convert.ToInt32(dr["StanicaOd"].ToString());
                 cboStanicaDo.SelectedValue = Convert.ToInt32(dr["StanicaDo"].ToString());
+                cboOperater.SelectedValue =  Convert.ToInt32(dr["Operater"].ToString());
             }
             if (chkDolazeci.Checked == true)
             {
@@ -390,7 +391,7 @@ namespace Testiranje.Dokumeta
 
             var select3 = "  Select Distinct ID, (Naziv + ' BRK: ' + Cast(Broj20 as nvarchar(10))) as Naziv  From SerijeKola";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection3 = new SqlConnection(s_connection2);
+            SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
 
@@ -400,6 +401,20 @@ namespace Testiranje.Dokumeta
             cboSerijaKola.DataSource = ds3.Tables[0];
             cboSerijaKola.DisplayMember = "Naziv";
             cboSerijaKola.ValueMember = "ID";
+
+
+            var select4 = "  select PaSifra, PaNaziv from Partnerji order by PaNaziv";
+            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection4 = new SqlConnection(s_connection4);
+            var c4 = new SqlConnection(s_connection4);
+            var dataAdapter4 = new SqlDataAdapter(select4, c4);
+
+            var commandBuilder4 = new SqlCommandBuilder(dataAdapter4);
+            var ds4 = new DataSet();
+            dataAdapter4.Fill(ds4);
+            cboOperater.DataSource = ds4.Tables[0];
+            cboOperater.DisplayMember = "PaNaziv";
+            cboOperater.ValueMember = "PaSifra";
 
             //cboSerijaKola
 

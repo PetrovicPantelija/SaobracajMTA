@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStanice));
             this.label1 = new System.Windows.Forms.Label();
             this.txtSifra = new System.Windows.Forms.TextBox();
@@ -45,19 +45,21 @@
             this.txtLongitude = new System.Windows.Forms.NumericUpDown();
             this.txtLatitude = new System.Windows.Forms.NumericUpDown();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsNew = new System.Windows.Forms.ToolStripButton();
+            this.tsSave = new System.Windows.Forms.ToolStripButton();
+            this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsNew = new System.Windows.Forms.ToolStripButton();
-            this.tsSave = new System.Windows.Forms.ToolStripButton();
-            this.tsDelete = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.txtPrelaz = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLongitude)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLatitude)).BeginInit();
@@ -69,68 +71,61 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(19, 58);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(14, 47);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 20);
+            this.label1.Size = new System.Drawing.Size(37, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "Šifra";
             // 
             // txtSifra
             // 
-            this.txtSifra.Location = new System.Drawing.Point(23, 82);
-            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSifra.Location = new System.Drawing.Point(17, 67);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(119, 22);
+            this.txtSifra.Size = new System.Drawing.Size(90, 20);
             this.txtSifra.TabIndex = 1;
             // 
             // lblNaziv
             // 
             this.lblNaziv.AutoSize = true;
             this.lblNaziv.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.lblNaziv.Location = new System.Drawing.Point(19, 116);
-            this.lblNaziv.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNaziv.Location = new System.Drawing.Point(14, 94);
             this.lblNaziv.Name = "lblNaziv";
-            this.lblNaziv.Size = new System.Drawing.Size(51, 20);
+            this.lblNaziv.Size = new System.Drawing.Size(43, 17);
             this.lblNaziv.TabIndex = 2;
             this.lblNaziv.Text = "Naziv";
             // 
             // txtOpis
             // 
-            this.txtOpis.Location = new System.Drawing.Point(23, 140);
-            this.txtOpis.Margin = new System.Windows.Forms.Padding(4);
+            this.txtOpis.Location = new System.Drawing.Point(17, 114);
             this.txtOpis.Name = "txtOpis";
-            this.txtOpis.Size = new System.Drawing.Size(391, 22);
+            this.txtOpis.Size = new System.Drawing.Size(294, 20);
             this.txtOpis.TabIndex = 3;
             // 
             // chkGranicna
             // 
             this.chkGranicna.AutoSize = true;
             this.chkGranicna.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.chkGranicna.Location = new System.Drawing.Point(588, 81);
-            this.chkGranicna.Margin = new System.Windows.Forms.Padding(4);
+            this.chkGranicna.Location = new System.Drawing.Point(441, 66);
             this.chkGranicna.Name = "chkGranicna";
             this.chkGranicna.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkGranicna.Size = new System.Drawing.Size(158, 24);
+            this.chkGranicna.Size = new System.Drawing.Size(134, 21);
             this.chkGranicna.TabIndex = 6;
             this.chkGranicna.Text = "Granična stanica";
             this.chkGranicna.UseVisualStyleBackColor = true;
             // 
             // txtKod
             // 
-            this.txtKod.Location = new System.Drawing.Point(588, 153);
-            this.txtKod.Margin = new System.Windows.Forms.Padding(4);
+            this.txtKod.Location = new System.Drawing.Point(441, 124);
             this.txtKod.Name = "txtKod";
-            this.txtKod.Size = new System.Drawing.Size(199, 22);
+            this.txtKod.Size = new System.Drawing.Size(150, 20);
             this.txtKod.TabIndex = 10;
             // 
             // cboDrzava
             // 
             this.cboDrzava.FormattingEnabled = true;
-            this.cboDrzava.Location = new System.Drawing.Point(588, 210);
-            this.cboDrzava.Margin = new System.Windows.Forms.Padding(4);
+            this.cboDrzava.Location = new System.Drawing.Point(441, 171);
             this.cboDrzava.Name = "cboDrzava";
-            this.cboDrzava.Size = new System.Drawing.Size(203, 24);
+            this.cboDrzava.Size = new System.Drawing.Size(153, 21);
             this.cboDrzava.TabIndex = 11;
             // 
             // dataGridView1
@@ -143,42 +138,41 @@
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SunkenHorizontal;
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.dataGridView1.Location = new System.Drawing.Point(8, 314);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 255);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(988, 447);
+            this.dataGridView1.Size = new System.Drawing.Size(741, 363);
             this.dataGridView1.TabIndex = 12;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -186,10 +180,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label4.Location = new System.Drawing.Point(19, 169);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(14, 137);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(82, 20);
+            this.label4.Size = new System.Drawing.Size(71, 17);
             this.label4.TabIndex = 13;
             this.label4.Text = "Longitude";
             // 
@@ -197,40 +190,37 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label5.Location = new System.Drawing.Point(19, 231);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(14, 188);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 20);
+            this.label5.Size = new System.Drawing.Size(59, 17);
             this.label5.TabIndex = 15;
             this.label5.Text = "Latitude";
             // 
             // txtLongitude
             // 
             this.txtLongitude.DecimalPlaces = 15;
-            this.txtLongitude.Location = new System.Drawing.Point(23, 198);
-            this.txtLongitude.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLongitude.Location = new System.Drawing.Point(17, 161);
             this.txtLongitude.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtLongitude.Name = "txtLongitude";
-            this.txtLongitude.Size = new System.Drawing.Size(392, 22);
+            this.txtLongitude.Size = new System.Drawing.Size(294, 20);
             this.txtLongitude.TabIndex = 16;
             this.txtLongitude.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtLatitude
             // 
             this.txtLatitude.DecimalPlaces = 15;
-            this.txtLatitude.Location = new System.Drawing.Point(23, 256);
-            this.txtLatitude.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLatitude.Location = new System.Drawing.Point(17, 208);
             this.txtLatitude.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtLatitude.Name = "txtLatitude";
-            this.txtLatitude.Size = new System.Drawing.Size(392, 22);
+            this.txtLatitude.Size = new System.Drawing.Size(294, 20);
             this.txtLatitude.TabIndex = 17;
             this.txtLatitude.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -245,12 +235,95 @@
             this.toolStripButton5,
             this.toolStripButton7,
             this.toolStripButton6});
-            this.toolStrip2.Location = new System.Drawing.Point(0, 783);
+            this.toolStrip2.Location = new System.Drawing.Point(0, 631);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip2.Size = new System.Drawing.Size(1012, 27);
+            this.toolStrip2.Size = new System.Drawing.Size(759, 27);
             this.toolStrip2.TabIndex = 18;
             this.toolStrip2.Text = "toolStrip2";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label6.Location = new System.Drawing.Point(438, 151);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(53, 17);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Država";
+            this.label6.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label7.Location = new System.Drawing.Point(438, 104);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(33, 17);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Kod";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsNew,
+            this.toolStripSeparator2,
+            this.tsSave,
+            this.toolStripSeparator3,
+            this.tsDelete,
+            this.toolStripSeparator1});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(759, 27);
+            this.toolStrip1.TabIndex = 111;
+            this.toolStrip1.Text = "Štampaj izveštaj";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // tsNew
+            // 
+            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
+            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNew.Name = "tsNew";
+            this.tsNew.Size = new System.Drawing.Size(24, 24);
+            this.tsNew.Text = "Novi";
+            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
+            // 
+            // tsSave
+            // 
+            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
+            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsSave.Name = "tsSave";
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
+            this.tsSave.Text = "tsSave";
+            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
+            // 
+            // tsDelete
+            // 
+            this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
+            this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsDelete.Name = "tsDelete";
+            this.tsDelete.Size = new System.Drawing.Size(24, 24);
+            this.tsDelete.Text = "toolStripButton1";
+            this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // toolStripButton4
             // 
@@ -294,97 +367,31 @@
             this.toolStripButton6.Size = new System.Drawing.Size(29, 24);
             this.toolStripButton6.Text = "toolStripButton1";
             // 
-            // label6
+            // txtPrelaz
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label6.Location = new System.Drawing.Point(584, 186);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(63, 20);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Država";
-            this.label6.Click += new System.EventHandler(this.label2_Click);
+            this.txtPrelaz.Location = new System.Drawing.Point(441, 215);
+            this.txtPrelaz.Name = "txtPrelaz";
+            this.txtPrelaz.Size = new System.Drawing.Size(153, 20);
+            this.txtPrelaz.TabIndex = 112;
             // 
-            // label7
+            // label2
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label7.Location = new System.Drawing.Point(584, 128);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(38, 20);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "Kod";
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsNew,
-            this.toolStripSeparator2,
-            this.tsSave,
-            this.toolStripSeparator3,
-            this.tsDelete,
-            this.toolStripSeparator1});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1012, 27);
-            this.toolStrip1.TabIndex = 111;
-            this.toolStrip1.Text = "Štampaj izveštaj";
-            // 
-            // tsNew
-            // 
-            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
-            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
-            this.tsNew.Text = "Novi";
-            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
-            // 
-            // tsSave
-            // 
-            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
-            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
-            this.tsSave.Text = "tsSave";
-            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
-            // 
-            // tsDelete
-            // 
-            this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
-            this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 24);
-            this.tsDelete.Text = "toolStripButton1";
-            this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label2.Location = new System.Drawing.Point(438, 195);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 17);
+            this.label2.TabIndex = 113;
+            this.label2.Text = "Prelaz";
             // 
             // frmStanice
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1012, 810);
+            this.ClientSize = new System.Drawing.Size(759, 658);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtPrelaz);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.txtLatitude);
@@ -403,7 +410,6 @@
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmStanice";
             this.Text = "Stanice";
             this.Load += new System.EventHandler(this.frmStanice_Load);
@@ -447,5 +453,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.TextBox txtPrelaz;
+        private System.Windows.Forms.Label label2;
     }
 }

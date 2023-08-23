@@ -429,7 +429,7 @@ namespace Saobracaj.Dokumenta
             cboStatusRN.DisplayMember = "StatusRN";
             cboStatusRN.ValueMember = "SDnSifra";
 
-            var select3 = " select DeSifra as ID, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis from Delavci";
+            var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
@@ -817,14 +817,7 @@ namespace Saobracaj.Dokumenta
 
         private void dataGridView4_DoubleClick(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView4.Rows)
-            {
-                if (row.Selected)
-                {
-                    frmTeretnica ter = new frmTeretnica(row.Cells[1].Value.ToString(), "sa");
-                     ter.Show();
-                }
-            }
+           
            
            
         }

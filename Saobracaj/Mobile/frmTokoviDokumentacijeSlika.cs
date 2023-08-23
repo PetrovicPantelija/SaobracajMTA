@@ -35,7 +35,7 @@ namespace Saobracaj.Mobile
 
         private void button1_Click(object sender, EventArgs e)
         {
-            txtPutanja.Text = @"\\192.168.1.6\TokoviDokumentacijeSlike\" + txtSifraNajave.Text;
+            txtPutanja.Text = @"\\192.168.129.7\TA\TokoviDokumentacijeSlike\" + txtSifraNajave.Text;
             
             string PictureFolder = txtPutanja.Text;
             ofd1.InitialDirectory = PictureFolder;
@@ -62,7 +62,7 @@ namespace Saobracaj.Mobile
             string result = Path.GetFileName(fileName);
             string targetPath = "";
 
-            targetPath = @"\\192.168.1.6\TokoviDokumentacijeSlike\" + FolderDestinacije + @"\TokoviDokumentacijeSlike";
+            targetPath = @"\\192.168.129.7\TA\TokoviDokumentacijeSlike\" + FolderDestinacije + @"\TokoviDokumentacijeSlike";
 
             string sourceFile = putanja;
             string destFile = System.IO.Path.Combine(targetPath, result);

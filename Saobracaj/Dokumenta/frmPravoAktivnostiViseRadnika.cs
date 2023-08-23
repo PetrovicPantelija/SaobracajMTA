@@ -147,7 +147,7 @@ namespace Saobracaj.Dokumenta
 
         private void RefreshDataGridRAdnici()
         {
-            var select = "  select Delavci.DeSifra, (Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme)) as Zaposleni, DelovnaMesta.DmNaziv  from Delavci " +
+            var select = "  select Delavci.DeSifra, (Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek)) as Zaposleni, DelovnaMesta.DmNaziv  from Delavci " +
 " inner join DelovnaMesta on DeSifDelMes = DelovnaMesta.DmSifra order by Delavci.DeSifra";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;

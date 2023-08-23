@@ -121,7 +121,7 @@ namespace Saobracaj.Mobile
         private void frmAnalizaGOSum_Load(object sender, EventArgs e)
         {
 
-            var select = " Select RazporeditveStrMesto.RzSMSifStrMesta as MestoTroska, DelovnaMesta.DmNaziv as RadnoMesto, SUM(DoSkupaj) as Dana, (CASE WHEN Sum(Iskorisceno) IS NULL THEN 0 ELSE Sum(Iskorisceno) END) as Iskorisceno, (SUM(DoSkupaj) - (CASE WHEN Sum(Iskorisceno) IS NULL THEN 0 ELSE Sum(Iskorisceno) END)) as Preostalo, (Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme)) as Zaposleni from Dopust " +
+            var select = " Select RazporeditveStrMesto.RzSMSifStrMesta as MestoTroska, DelovnaMesta.DmNaziv as RadnoMesto, SUM(DoSkupaj) as Dana, (CASE WHEN Sum(Iskorisceno) IS NULL THEN 0 ELSE Sum(Iskorisceno) END) as Iskorisceno, (SUM(DoSkupaj) - (CASE WHEN Sum(Iskorisceno) IS NULL THEN 0 ELSE Sum(Iskorisceno) END)) as Preostalo, (Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek)) as Zaposleni from Dopust " +
              "   inner join Delavci on Delavci.DeSifra = Dopust.DoSifDe " +
              "   inner join DelovnaMesta on DelovnaMesta.DmSifra = Delavci.DeSifDelMes " +
              "   inner join RazporeditveStrMesto on RazporeditveStrMesto.RzSMSifDe = Delavci.DeSifra " +
@@ -130,7 +130,7 @@ namespace Saobracaj.Mobile
              "   inner join Delavci on Delavci.DeSifra = Dopust.DoSifDe " +
              "   Where DeSifStat IN('A', 'R') " +
              "   group by Delavci.DeSifra) t1 on T1.DeSifra = Delavci.DeSifra " +
-             "   group by(Rtrim(Delavci.DePriimek) +' ' + Rtrim(Delavci.DeIme)), RazporeditveStrMesto.RzSMSifStrMesta, DelovnaMesta.DmNaziv ";
+             "   group by(Rtrim(Delavci.DeIme) +' ' + Rtrim(Delavci.DePriimek)), RazporeditveStrMesto.RzSMSifStrMesta, DelovnaMesta.DmNaziv ";
 
 
 

@@ -102,8 +102,7 @@
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dataGridView1.Location = new System.Drawing.Point(8, 7);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -117,7 +116,7 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1524, 436);
+            this.dataGridView1.Size = new System.Drawing.Size(1143, 354);
             this.dataGridView1.TabIndex = 19;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -125,10 +124,9 @@
             // 
             this.metroButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.metroButton1.ForeColor = System.Drawing.Color.White;
-            this.metroButton1.Location = new System.Drawing.Point(43, 22);
-            this.metroButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroButton1.Location = new System.Drawing.Point(32, 18);
             this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(209, 37);
+            this.metroButton1.Size = new System.Drawing.Size(157, 30);
             this.metroButton1.TabIndex = 20;
             this.metroButton1.Text = "Ažuriraj sve";
             this.metroButton1.UseCustomBackColor = true;
@@ -139,10 +137,9 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(8, 31);
-            this.metroLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel3.Location = new System.Drawing.Point(6, 25);
             this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(200, 20);
+            this.metroLabel3.Size = new System.Drawing.Size(187, 19);
             this.metroLabel3.TabIndex = 22;
             this.metroLabel3.Text = "Novi status selektovanog kvara";
             this.metroLabel3.UseCustomBackColor = true;
@@ -150,21 +147,19 @@
             // cboStatusi
             // 
             this.cboStatusi.FormattingEnabled = true;
-            this.cboStatusi.ItemHeight = 24;
-            this.cboStatusi.Location = new System.Drawing.Point(13, 58);
-            this.cboStatusi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboStatusi.ItemHeight = 23;
+            this.cboStatusi.Location = new System.Drawing.Point(10, 47);
             this.cboStatusi.Name = "cboStatusi";
-            this.cboStatusi.Size = new System.Drawing.Size(243, 30);
+            this.cboStatusi.Size = new System.Drawing.Size(183, 29);
             this.cboStatusi.TabIndex = 21;
             this.cboStatusi.UseSelectable = true;
             // 
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(8, 20);
-            this.metroLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel1.Location = new System.Drawing.Point(6, 16);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(80, 20);
+            this.metroLabel1.Size = new System.Drawing.Size(77, 19);
             this.metroLabel1.TabIndex = 24;
             this.metroLabel1.Text = "Lokomotiva";
             this.metroLabel1.UseCustomBackColor = true;
@@ -172,20 +167,18 @@
             // cboLokomotiva
             // 
             this.cboLokomotiva.FormattingEnabled = true;
-            this.cboLokomotiva.ItemHeight = 24;
-            this.cboLokomotiva.Location = new System.Drawing.Point(121, 20);
-            this.cboLokomotiva.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboLokomotiva.ItemHeight = 23;
+            this.cboLokomotiva.Location = new System.Drawing.Point(91, 16);
             this.cboLokomotiva.Name = "cboLokomotiva";
-            this.cboLokomotiva.Size = new System.Drawing.Size(316, 30);
+            this.cboLokomotiva.Size = new System.Drawing.Size(238, 29);
             this.cboLokomotiva.TabIndex = 23;
             this.cboLokomotiva.UseSelectable = true;
             // 
             // cboPretraziLokomotivu
             // 
-            this.cboPretraziLokomotivu.Location = new System.Drawing.Point(447, 20);
-            this.cboPretraziLokomotivu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboPretraziLokomotivu.Location = new System.Drawing.Point(335, 16);
             this.cboPretraziLokomotivu.Name = "cboPretraziLokomotivu";
-            this.cboPretraziLokomotivu.Size = new System.Drawing.Size(51, 37);
+            this.cboPretraziLokomotivu.Size = new System.Drawing.Size(38, 30);
             this.cboPretraziLokomotivu.TabIndex = 25;
             this.cboPretraziLokomotivu.Text = "?";
             this.cboPretraziLokomotivu.UseSelectable = true;
@@ -195,10 +188,9 @@
             // 
             this.metroButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.metroButton2.ForeColor = System.Drawing.Color.White;
-            this.metroButton2.Location = new System.Drawing.Point(341, 113);
-            this.metroButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroButton2.Location = new System.Drawing.Point(256, 92);
             this.metroButton2.Name = "metroButton2";
-            this.metroButton2.Size = new System.Drawing.Size(164, 37);
+            this.metroButton2.Size = new System.Drawing.Size(123, 30);
             this.metroButton2.TabIndex = 26;
             this.metroButton2.Text = "Promeni status";
             this.metroButton2.UseCustomBackColor = true;
@@ -209,21 +201,19 @@
             // cboZaposleni
             // 
             this.cboZaposleni.FormattingEnabled = true;
-            this.cboZaposleni.ItemHeight = 24;
-            this.cboZaposleni.Location = new System.Drawing.Point(265, 58);
-            this.cboZaposleni.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboZaposleni.ItemHeight = 23;
+            this.cboZaposleni.Location = new System.Drawing.Point(199, 47);
             this.cboZaposleni.Name = "cboZaposleni";
-            this.cboZaposleni.Size = new System.Drawing.Size(243, 30);
+            this.cboZaposleni.Size = new System.Drawing.Size(183, 29);
             this.cboZaposleni.TabIndex = 27;
             this.cboZaposleni.UseSelectable = true;
             // 
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(265, 31);
-            this.metroLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel2.Location = new System.Drawing.Point(199, 25);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(108, 20);
+            this.metroLabel2.Size = new System.Drawing.Size(103, 19);
             this.metroLabel2.TabIndex = 28;
             this.metroLabel2.Text = "Promenio status";
             this.metroLabel2.UseCustomBackColor = true;
@@ -232,10 +222,9 @@
             // 
             this.btnPickDirectory.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnPickDirectory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnPickDirectory.Location = new System.Drawing.Point(1465, 53);
-            this.btnPickDirectory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPickDirectory.Location = new System.Drawing.Point(1099, 56);
             this.btnPickDirectory.Name = "btnPickDirectory";
-            this.btnPickDirectory.Size = new System.Drawing.Size(35, 28);
+            this.btnPickDirectory.Size = new System.Drawing.Size(26, 23);
             this.btnPickDirectory.TabIndex = 61;
             this.btnPickDirectory.Text = "?";
             this.btnPickDirectory.UseVisualStyleBackColor = true;
@@ -243,30 +232,27 @@
             // 
             // txtDirectory
             // 
-            this.txtDirectory.Location = new System.Drawing.Point(1099, 71);
-            this.txtDirectory.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDirectory.Location = new System.Drawing.Point(824, 58);
             this.txtDirectory.Name = "txtDirectory";
-            this.txtDirectory.Size = new System.Drawing.Size(357, 22);
+            this.txtDirectory.Size = new System.Drawing.Size(269, 20);
             this.txtDirectory.TabIndex = 60;
             this.txtDirectory.TextChanged += new System.EventHandler(this.txtDirectory_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(923, 71);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(692, 58);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 17);
+            this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 59;
             this.label2.Text = "Directory:";
             // 
             // txtSifra
             // 
             this.txtSifra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtSifra.Location = new System.Drawing.Point(1016, 71);
-            this.txtSifra.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSifra.Location = new System.Drawing.Point(762, 58);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(56, 22);
+            this.txtSifra.Size = new System.Drawing.Size(43, 20);
             this.txtSifra.TabIndex = 58;
             // 
             // flpThumbnails
@@ -274,10 +260,9 @@
             this.flpThumbnails.AutoScroll = true;
             this.flpThumbnails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.flpThumbnails.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.flpThumbnails.Location = new System.Drawing.Point(923, 105);
-            this.flpThumbnails.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flpThumbnails.Location = new System.Drawing.Point(692, 85);
             this.flpThumbnails.Name = "flpThumbnails";
-            this.flpThumbnails.Size = new System.Drawing.Size(659, 242);
+            this.flpThumbnails.Size = new System.Drawing.Size(495, 197);
             this.flpThumbnails.TabIndex = 62;
             // 
             // groupBox1
@@ -289,11 +274,9 @@
             this.groupBox1.Controls.Add(this.cboKvar);
             this.groupBox1.Controls.Add(this.metroLabel4);
             this.groupBox1.Controls.Add(this.cboGrupaKvara);
-            this.groupBox1.Location = new System.Drawing.Point(557, 22);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Location = new System.Drawing.Point(418, 18);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox1.Size = new System.Drawing.Size(356, 325);
+            this.groupBox1.Size = new System.Drawing.Size(267, 264);
             this.groupBox1.TabIndex = 63;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Promena vrste kvara";
@@ -302,10 +285,9 @@
             // 
             this.metroButton6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.metroButton6.ForeColor = System.Drawing.Color.White;
-            this.metroButton6.Location = new System.Drawing.Point(189, 251);
-            this.metroButton6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroButton6.Location = new System.Drawing.Point(142, 204);
             this.metroButton6.Name = "metroButton6";
-            this.metroButton6.Size = new System.Drawing.Size(159, 37);
+            this.metroButton6.Size = new System.Drawing.Size(119, 30);
             this.metroButton6.TabIndex = 33;
             this.metroButton6.Text = "Štampaj";
             this.metroButton6.UseCustomBackColor = true;
@@ -317,10 +299,9 @@
             // 
             this.metroButton5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.metroButton5.ForeColor = System.Drawing.Color.White;
-            this.metroButton5.Location = new System.Drawing.Point(5, 251);
-            this.metroButton5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroButton5.Location = new System.Drawing.Point(4, 204);
             this.metroButton5.Name = "metroButton5";
-            this.metroButton5.Size = new System.Drawing.Size(176, 37);
+            this.metroButton5.Size = new System.Drawing.Size(132, 30);
             this.metroButton5.TabIndex = 32;
             this.metroButton5.Text = "Selektovani za štampu";
             this.metroButton5.UseCustomBackColor = true;
@@ -332,10 +313,9 @@
             // 
             this.metroButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.metroButton3.ForeColor = System.Drawing.Color.White;
-            this.metroButton3.Location = new System.Drawing.Point(189, 177);
-            this.metroButton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroButton3.Location = new System.Drawing.Point(142, 144);
             this.metroButton3.Name = "metroButton3";
-            this.metroButton3.Size = new System.Drawing.Size(159, 37);
+            this.metroButton3.Size = new System.Drawing.Size(119, 30);
             this.metroButton3.TabIndex = 31;
             this.metroButton3.Text = "Promeni kvar";
             this.metroButton3.UseCustomBackColor = true;
@@ -346,10 +326,9 @@
             // metroLabel5
             // 
             this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(29, 107);
-            this.metroLabel5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel5.Location = new System.Drawing.Point(22, 87);
             this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(35, 20);
+            this.metroLabel5.Size = new System.Drawing.Size(33, 19);
             this.metroLabel5.TabIndex = 30;
             this.metroLabel5.Text = "Kvar";
             this.metroLabel5.UseCustomBackColor = true;
@@ -357,21 +336,19 @@
             // cboKvar
             // 
             this.cboKvar.FormattingEnabled = true;
-            this.cboKvar.ItemHeight = 24;
-            this.cboKvar.Location = new System.Drawing.Point(29, 134);
-            this.cboKvar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboKvar.ItemHeight = 23;
+            this.cboKvar.Location = new System.Drawing.Point(22, 109);
             this.cboKvar.Name = "cboKvar";
-            this.cboKvar.Size = new System.Drawing.Size(243, 30);
+            this.cboKvar.Size = new System.Drawing.Size(183, 29);
             this.cboKvar.TabIndex = 29;
             this.cboKvar.UseSelectable = true;
             // 
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(24, 33);
-            this.metroLabel4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.metroLabel4.Location = new System.Drawing.Point(18, 27);
             this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(84, 20);
+            this.metroLabel4.Size = new System.Drawing.Size(80, 19);
             this.metroLabel4.TabIndex = 24;
             this.metroLabel4.Text = "Grupa kvara";
             this.metroLabel4.UseCustomBackColor = true;
@@ -379,11 +356,10 @@
             // cboGrupaKvara
             // 
             this.cboGrupaKvara.FormattingEnabled = true;
-            this.cboGrupaKvara.ItemHeight = 24;
-            this.cboGrupaKvara.Location = new System.Drawing.Point(29, 60);
-            this.cboGrupaKvara.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboGrupaKvara.ItemHeight = 23;
+            this.cboGrupaKvara.Location = new System.Drawing.Point(22, 49);
             this.cboGrupaKvara.Name = "cboGrupaKvara";
-            this.cboGrupaKvara.Size = new System.Drawing.Size(243, 30);
+            this.cboGrupaKvara.Size = new System.Drawing.Size(183, 29);
             this.cboGrupaKvara.TabIndex = 23;
             this.cboGrupaKvara.UseSelectable = true;
             this.cboGrupaKvara.SelectedValueChanged += new System.EventHandler(this.cboGrupaKvara_SelectedValueChanged);
@@ -396,11 +372,9 @@
             this.groupBox2.Controls.Add(this.metroLabel2);
             this.groupBox2.Controls.Add(this.cboZaposleni);
             this.groupBox2.Controls.Add(this.metroButton2);
-            this.groupBox2.Location = new System.Drawing.Point(41, 160);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Location = new System.Drawing.Point(31, 130);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox2.Size = new System.Drawing.Size(513, 187);
+            this.groupBox2.Size = new System.Drawing.Size(385, 152);
             this.groupBox2.TabIndex = 64;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Promena statusa";
@@ -409,10 +383,9 @@
             // 
             this.metroButton4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.metroButton4.ForeColor = System.Drawing.Color.White;
-            this.metroButton4.Location = new System.Drawing.Point(13, 101);
-            this.metroButton4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.metroButton4.Location = new System.Drawing.Point(10, 82);
             this.metroButton4.Name = "metroButton4";
-            this.metroButton4.Size = new System.Drawing.Size(209, 37);
+            this.metroButton4.Size = new System.Drawing.Size(157, 30);
             this.metroButton4.TabIndex = 29;
             this.metroButton4.Text = "Prikazi po kvaru";
             this.metroButton4.UseCustomBackColor = true;
@@ -425,11 +398,9 @@
             this.groupBox3.Controls.Add(this.metroLabel1);
             this.groupBox3.Controls.Add(this.cboLokomotiva);
             this.groupBox3.Controls.Add(this.cboPretraziLokomotivu);
-            this.groupBox3.Location = new System.Drawing.Point(41, 85);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Location = new System.Drawing.Point(31, 69);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox3.Size = new System.Drawing.Size(505, 68);
+            this.groupBox3.Size = new System.Drawing.Size(379, 55);
             this.groupBox3.TabIndex = 65;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Filter po lokomotivi";
@@ -441,21 +412,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(43, 374);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Location = new System.Drawing.Point(32, 304);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1551, 479);
+            this.tabControl1.Size = new System.Drawing.Size(1163, 389);
             this.tabControl1.TabIndex = 66;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage1.Size = new System.Drawing.Size(1543, 450);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Size = new System.Drawing.Size(1155, 363);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Stavke";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -463,11 +432,10 @@
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.reportViewer1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.tabPage2.Size = new System.Drawing.Size(1543, 450);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Size = new System.Drawing.Size(1155, 363);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Štampaj";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -478,18 +446,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Teretnica.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(27, 23);
-            this.reportViewer1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.reportViewer1.Location = new System.Drawing.Point(20, 19);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(1505, 446);
+            this.reportViewer1.Size = new System.Drawing.Size(1129, 363);
             this.reportViewer1.TabIndex = 1;
             // 
             // frmEvidencijaKvarova
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
-            this.ClientSize = new System.Drawing.Size(1613, 922);
+            this.ClientSize = new System.Drawing.Size(1210, 749);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -501,7 +468,6 @@
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.metroButton1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmEvidencijaKvarova";
             this.Text = "Evidencija Kvarova";
             this.Load += new System.EventHandler(this.frmEvidencijaKvarova_Load);

@@ -120,7 +120,7 @@ namespace Saobracaj.Testiranje
         }
         private void Obrasci_Load(object sender, EventArgs e)
         {
-            var select2 = "Select DeSifra, (Rtrim(DePriimek) + ' ' + Rtrim(DeIme)) as Korisnik from Delavci order by Rtrim(DePriimek)";
+            var select2 = "Select DeSifra, (Rtrim(DeIme) + ' ' + Rtrim(DePriimek)) as Korisnik from Delavci order by Rtrim(DeIme)";
 
             var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);

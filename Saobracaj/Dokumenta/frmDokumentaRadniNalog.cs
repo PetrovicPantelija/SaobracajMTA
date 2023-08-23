@@ -110,11 +110,11 @@ namespace Saobracaj.Dokumenta
 
             if (CIM == true)
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\RN\" + FolderDestinacije + @"\CIM";
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\RN\" + FolderDestinacije + @"\CIM";
             }
             else
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\RN\" + FolderDestinacije;
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\RN\" + FolderDestinacije;
             }
 
             //string targetPath = @"\\192.168.1.9\Saobracaj\" + FolderDestinacije;
@@ -183,32 +183,32 @@ namespace Saobracaj.Dokumenta
 
             if (tip == 1)
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\RN\Teretnica\" + FolderDestinacije + "";
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\RN\Teretnica\" + FolderDestinacije + "";
             }
             else if (tip == 2)
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\RN\k65\" + FolderDestinacije + "";
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\RN\k65\" + FolderDestinacije + "";
             }
             else if (tip == 3)
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\RN\kol200\" + FolderDestinacije + "";
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\RN\kol200\" + FolderDestinacije + "";
             }
 
             else if (tip == 4)
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\RN\C56\" + FolderDestinacije + "";
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\RN\C56\" + FolderDestinacije + "";
             }
             else if (tip == 5)
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\RN\CIT23\" + FolderDestinacije + "";
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\RN\CIT23\" + FolderDestinacije + "";
             }
             else if (tip == 6)
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\RN\CIM\" + FolderDestinacije + "";
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\RN\CIM\" + FolderDestinacije + "";
             }
             else 
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\RN\" + FolderDestinacije + "";
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\RN\" + FolderDestinacije + "";
             }
 
         

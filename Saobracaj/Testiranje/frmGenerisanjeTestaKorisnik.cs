@@ -146,7 +146,7 @@ namespace Saobracaj.Testiranje
 
         private void IzbaciKorisnike()
         {
-            var select = "  select Korisnici.Korisnik, Rtrim(DePriimek) + ' ' + Rtrim(DeIme) as Zaposleni, Delavci.DeSifra, DelovnaMesta.DmNaziv as RadnoMesto  from Korisnici " +
+            var select = "  select Korisnici.Korisnik, Rtrim(DeIme) + ' ' +Rtrim(DePriimek)  as Zaposleni, Delavci.DeSifra, DelovnaMesta.DmNaziv as RadnoMesto  from Korisnici " +
 " inner join Delavci on Korisnici.DeSifra = Delavci.DeSifra " +
 " inner join DelovnaMesta on DelovnaMesta.DmSifra = Delavci.DeSifDelMes " +
 " order by DelovnaMesta.DmNaziv";

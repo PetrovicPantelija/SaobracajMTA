@@ -341,8 +341,13 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            frmTeretnica ter = new frmTeretnica();
+            frmTeretnica ter = new frmTeretnica(Kor);
             ter.Show();
+        }
+
+        private void tsNew_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

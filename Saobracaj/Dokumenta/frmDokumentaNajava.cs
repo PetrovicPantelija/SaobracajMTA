@@ -134,27 +134,27 @@ namespace Saobracaj.Dokumenta
 
             if (Tip == 1)
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\" + FolderDestinacije + @"\TovarniList";
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\" + FolderDestinacije + @"\TovarniList";
             }
             else if (Tip == 2)
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\" + FolderDestinacije + @"\CIM";
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\" + FolderDestinacije + @"\CIM";
             }
             else if (Tip == 3)
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\" + FolderDestinacije + @"\CIT23";
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\" + FolderDestinacije + @"\CIT23";
             }
             else if (Tip == 4)
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\" + FolderDestinacije + @"\Racuni";
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\" + FolderDestinacije + @"\Racuni";
             }
             else if (Tip == 5)
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\" + FolderDestinacije + @"\PrijemnaTeretnica";
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\" + FolderDestinacije + @"\PrijemnaTeretnica";
             }
             else
             {
-                targetPath = @"\\192.168.1.6\Saobracaj\" + FolderDestinacije;
+                targetPath = @"\\192.168.129.7\TA\Saobracaj\" + FolderDestinacije;
             }
         
         string sourceFile = putanja;
@@ -604,7 +604,7 @@ namespace Saobracaj.Dokumenta
         {
              //CreateMergedPDF(@"\\192.168.1.6\Saobracaj\" + txtSifraNajave.Text + @"\\Objedinjen.pdf", @"\\192.168.1.6\Saobracaj\" + txtSifraNajave.Text);
 
-            var files = Directory.GetFiles(@"\\192.168.1.6\Saobracaj\" + txtSifraNajave.Text, "*.*", SearchOption.AllDirectories);
+            var files = Directory.GetFiles(@"\\192.168.129.7\TA\Saobracaj\" + txtSifraNajave.Text, "*.*", SearchOption.AllDirectories);
 
             List<string> imageFiles = new List<string>();
             foreach (string filename in files)
@@ -613,15 +613,15 @@ namespace Saobracaj.Dokumenta
                     imageFiles.Add(filename);
             }
             string[] array = imageFiles.ToArray();
-            ImagesToPdf(array, @"\\192.168.1.6\Saobracaj\" + txtSifraNajave.Text + @"\\IzSlika");
+            ImagesToPdf(array, @"\\192.168.129.7\TA\Saobracaj\" + txtSifraNajave.Text + @"\\IzSlika");
 
-            CreateMergedPDF(@"\\192.168.1.6\Saobracaj\" + txtSifraNajave.Text + @"\Izlaz\Objedinjen.pdf", @"\\192.168.1.6\Saobracaj\" + txtSifraNajave.Text);
-            txtObjedinjen.Text = @"\\192.168.1.6\Saobracaj\" + txtSifraNajave.Text + @"\Izlaz\Objedinjen.pdf";
+            CreateMergedPDF(@"\\192.168.129.7\TA\Saobracaj\" + txtSifraNajave.Text + @"\Izlaz\Objedinjen.pdf", @"\\192.168.129.7\TA\Saobracaj\" + txtSifraNajave.Text);
+            txtObjedinjen.Text = @"\\192.168.129.7\TA\Saobracaj\" + txtSifraNajave.Text + @"\Izlaz\Objedinjen.pdf";
         }
 
         private void button5_Click_1(object sender, EventArgs e)
         {
-            txtObjedinjen.Text = txtObjedinjen.Text.Replace("192.168.1.6", "WSS");
+            txtObjedinjen.Text = txtObjedinjen.Text.Replace("\\192.168.129.7", "WSS");
             System.Diagnostics.Process.Start(txtObjedinjen.Text);
         }
 

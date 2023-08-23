@@ -52,14 +52,14 @@ namespace Testiranje.Sifarnici
             if (status == true)
             {
                 InsertVrstaManipulacije ins = new InsertVrstaManipulacije();
-                ins.InsVrstaManipulacije(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value));
+                ins.InsVrstaManipulacije(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue));
                 status = false;
             }
             else
             {
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertVrstaManipulacije upd = new InsertVrstaManipulacije();
-                upd.UpdVrstaManipulacije(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value));
+                upd.UpdVrstaManipulacije(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue));
             }
             RefreshDataGrid();
         }
@@ -249,6 +249,20 @@ namespace Testiranje.Sifarnici
             cboOrgJed.DataSource = ds2.Tables[0];
             cboOrgJed.DisplayMember = "Naziv";
             cboOrgJed.ValueMember = "ID";
+
+
+            var select3 = " SELECT ID, Naziv from GrupaVrsteManipulacije order by ID";
+            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection3 = new SqlConnection(s_connection3);
+            var c3 = new SqlConnection(s_connection3);
+            var dataAdapter3 = new SqlDataAdapter(select3, c3);
+
+            var commandBuilder3 = new SqlCommandBuilder(dataAdapter3);
+            var ds3 = new DataSet();
+            dataAdapter3.Fill(ds3);
+            cboGrupaVrsteManipulacije.DataSource = ds3.Tables[0];
+            cboGrupaVrsteManipulacije.DisplayMember = "Naziv";
+            cboGrupaVrsteManipulacije.ValueMember = "ID";
 
 
 

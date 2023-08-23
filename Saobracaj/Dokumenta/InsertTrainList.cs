@@ -171,7 +171,8 @@ namespace Saobracaj.Dokumenta
 
             SqlParameter oznakakola = new SqlParameter();
             oznakakola.ParameterName = "@OznakaKola";
-            oznakakola.SqlDbType = SqlDbType.Int;
+            oznakakola.SqlDbType = SqlDbType.NVarChar;
+            oznakakola.Size = 30;
             oznakakola.Direction = ParameterDirection.Input;
             oznakakola.Value = OznakaKola;
             myCommand.Parameters.Add(oznakakola);
@@ -319,7 +320,7 @@ namespace Saobracaj.Dokumenta
             }
         }
 
-        public void UpdateNajave(double Tezina, double Duzina, int BrojKola, string Oznaka, double NetoTezinaM)
+        public void UpdateNajave(double Tezina, double Duzina, int BrojKola, string Oznaka, double NetoTezinaM, int BrojKontejnera)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -362,6 +363,14 @@ namespace Saobracaj.Dokumenta
             netotezinam.Direction = ParameterDirection.Input;
             netotezinam.Value = NetoTezinaM;
             myCommand.Parameters.Add(netotezinam);
+
+
+            SqlParameter brojkontejnera = new SqlParameter();
+            brojkontejnera.ParameterName = "@BrojKontejnera";
+            brojkontejnera.SqlDbType = SqlDbType.Int;
+            brojkontejnera.Direction = ParameterDirection.Input;
+            brojkontejnera.Value = BrojKontejnera;
+            myCommand.Parameters.Add(brojkontejnera);
 
 
             myConnection.Open();

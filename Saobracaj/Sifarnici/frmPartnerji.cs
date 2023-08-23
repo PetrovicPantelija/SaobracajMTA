@@ -31,6 +31,7 @@ namespace Saobracaj.Sifarnici
         int PomSpediter = 0;
         int PomNalogodavac = 0;
         int PomUvoznik = 0;
+        int PomIzvoznik = 0;
 
 
         bool status = false;
@@ -140,20 +141,20 @@ namespace Saobracaj.Sifarnici
                 {
                     if (row.Selected)
                     {
-                        txtSifra.Text = row.Cells[0].Value.ToString();
-                        txtNaziv.Text = row.Cells[1].Value.ToString();
-                        txtUlica.Text = row.Cells[2].Value.ToString();
-                        txtMesto.Text = row.Cells[3].Value.ToString();
-                        txtOblast.Text = row.Cells[4].Value.ToString();
-                        txtPosta.Text = row.Cells[5].Value.ToString();
-                        txtDrzava.Text = row.Cells[6].Value.ToString();
-                        txtTelefon.Text = row.Cells[7].Value.ToString();
-                        txtTR.Text = row.Cells[8].Value.ToString();
-                        txtNapomena.Text = row.Cells[9].Value.ToString();
-                        txtMaticniBroj.Text = row.Cells[10].Value.ToString();
-                        txtEmail.Text = row.Cells[11].Value.ToString();
-                        txtPIB.Text = row.Cells[12].Value.ToString();
-                        txtUIC.Text = row.Cells[13].Value.ToString();
+                        txtSifra.Text = row.Cells[0].Value.ToString().Trim();
+                        txtNaziv.Text = row.Cells[1].Value.ToString().Trim();
+                        txtUlica.Text = row.Cells[2].Value.ToString().Trim();
+                        txtMesto.Text = row.Cells[3].Value.ToString().Trim();
+                        txtOblast.Text = row.Cells[4].Value.ToString().Trim();
+                        txtPosta.Text = row.Cells[5].Value.ToString().Trim();
+                        txtDrzava.Text = row.Cells[6].Value.ToString().Trim();
+                        txtTelefon.Text = row.Cells[7].Value.ToString().Trim();
+                        txtTR.Text = row.Cells[8].Value.ToString().Trim();
+                        txtNapomena.Text = row.Cells[9].Value.ToString().Trim();
+                        txtMaticniBroj.Text = row.Cells[10].Value.ToString().Trim();
+                        txtEmail.Text = row.Cells[11].Value.ToString().Trim();
+                        txtPIB.Text = row.Cells[12].Value.ToString().Trim();
+                        txtUIC.Text = row.Cells[13].Value.ToString().Trim();
                         chkPrevoznik.Checked = Convert.ToBoolean(row.Cells[14].Value.ToString());
                         chkPosiljalac.Checked = Convert.ToBoolean(row.Cells[15].Value.ToString());
                         chkPrimalac.Checked = Convert.ToBoolean(row.Cells[16].Value.ToString());
@@ -207,6 +208,18 @@ namespace Saobracaj.Sifarnici
                         {
                             chkUvoznik.Checked = false;
                         }
+                        txtUICDrzava.Text = row.Cells[24].Value.ToString().Trim();
+                        txtTR2.Text = row.Cells[25].Value.ToString().Trim();
+                        txtFaks.Text = row.Cells[26].Value.ToString().Trim();
+
+                        if (row.Cells[27].Value.ToString() == "1")
+                        { chkIzvoznik.Checked = true; }
+                        else
+                        {
+                            chkIzvoznik.Checked = false;
+                        }
+
+
 
                         RefreshDataGrid2(txtSifra.Text);
                     }
@@ -227,7 +240,7 @@ namespace Saobracaj.Sifarnici
         {
             var select = " Select PaSifra, Rtrim(PaNaziv) as PaNaziv, PaUlicaHisnaSt , PaKraj, PaDelDrzave, PaPostnaSt, PaSifDrzave, PaTelefon1, PaZiroRac, " +
                 " PaOpomba, PaDMatSt, PaEMail, PaEMatSt1, Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac ,  Brodar " +
-            " , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH from Partnerji";
+            " , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik from Partnerji";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -337,6 +350,23 @@ namespace Saobracaj.Sifarnici
             dataGridView1.Columns[16].HeaderText = "Primalac";
             dataGridView1.Columns[16].Width = 40;
 
+            DataGridViewColumn column18 = dataGridView1.Columns[17];
+            dataGridView1.Columns[17].HeaderText = "UIC DRZAVA";
+            dataGridView1.Columns[17].Width = 60;
+
+            DataGridViewColumn column19 = dataGridView1.Columns[18];
+            dataGridView1.Columns[18].HeaderText = "TR2";
+            dataGridView1.Columns[18].Width = 60;
+
+
+            DataGridViewColumn column20 = dataGridView1.Columns[19];
+            dataGridView1.Columns[19].HeaderText = "FAKS";
+            dataGridView1.Columns[19].Width = 60;
+
+            DataGridViewColumn column21 = dataGridView1.Columns[20];
+            dataGridView1.Columns[20].HeaderText = "Izvoznik";
+            dataGridView1.Columns[20].Width = 60;
+
         }
 
      
@@ -438,6 +468,9 @@ namespace Saobracaj.Sifarnici
             txtEmail.Text = "";
             txtPIB.Text = "";
             txtUIC.Text = "";
+            txtUICDrzava.Text = "";
+            txtTR2.Text = "";
+            txtFaks.Text = "";
             chkPrevoznik.Checked = false;
             chkPosiljalac.Checked = false;
             chkPrimalac.Checked = false;
@@ -448,6 +481,7 @@ namespace Saobracaj.Sifarnici
             chkOrganizator.Checked = false;
             chkNalogodavac.Checked = false;
             chkUvoznik.Checked = false;
+            chkIzvoznik.Checked = false;
 
         }
 
@@ -525,16 +559,25 @@ namespace Saobracaj.Sifarnici
                 PomUvoznik = 0;
             }
 
+            if (chkIzvoznik.Checked)
+            {
+                PomIzvoznik = 1;
+            }
+            else
+            {
+                PomIzvoznik = 0;
+            }
+
             if (status == true)
             {
               //  txtNaziv.Text,  txtUlica.Text,  txtMesto.Text,  txtOblast.Text, txtPosta.Text ,txtDrzava.Text, txtTelefon.Text, txtTR.Text ,  txtNapomena.Text,txtMaticniBroj.Text,  txtEmail.Text,  txtPIB.Text
                 InsertPartnerji ins = new InsertPartnerji();
-                ins.InsPartneri( txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtOblast.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtMaticniBroj.Text, txtEmail.Text, txtPIB.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik );
+                ins.InsPartneri( txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtOblast.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtMaticniBroj.Text, txtEmail.Text, txtPIB.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik, txtMUAdresa.Text, txtMUKontakt.Text, txtUICDrzava.Text, txtTR2.Text, txtFaks.Text , PomIzvoznik);
             }
             else
             {
                 InsertPartnerji upd = new InsertPartnerji();
-                upd.UpdPartneri(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtOblast.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtMaticniBroj.Text, txtEmail.Text, txtPIB.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik);
+                upd.UpdPartneri(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtOblast.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtMaticniBroj.Text, txtEmail.Text, txtPIB.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik, txtMUAdresa.Text, txtMUKontakt.Text, txtUICDrzava.Text, txtTR2.Text, txtFaks.Text, PomIzvoznik);
             }
             RefreshDataGrid();
         }

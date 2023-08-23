@@ -129,7 +129,7 @@ namespace Saobracaj.Mobile
             var select = "select ZavrsnaDokumenta.ID, ZavrsnaDokumenta.Napomena, " +
             " ZavrsnaDokumenta.DatumVazenja, ZavrsnaDokumenta.NajavaID, ZavrsnaDokumenta.Kreirano, ZavrsnaDokumenta.Kreirao, " +
             " TipZavrsnogDokumentaID.Naziv as TipDokumenta, " +
-            " (Delavci.DePriimek + ' ' + DeIme) as RadnikKreirao " +
+            " (DeIme+ ' ' + Delavci.DePriimek ) as RadnikKreirao " +
             " from ZavrsnaDokumenta " +
             " inner join TipZavrsnogDokumentaID on ZavrsnaDokumenta.TipZavrsnogDokumentaID = TipZavrsnogDokumentaID.ID " +
             " inner " +
@@ -252,7 +252,7 @@ namespace Saobracaj.Mobile
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
-            string path = Path.Combine(@"//192.168.1.6/ZavrsnaDokumenta/", txtSifra.Text + "/");
+            string path = Path.Combine(@"//192.168.129.7/TA/ZavrsnaDokumenta/", txtSifra.Text + "/");
             DirectoryInfo dir_info = new DirectoryInfo(path);
             txtDirectory.Text = dir_info.FullName;
         }

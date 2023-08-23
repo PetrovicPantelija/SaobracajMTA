@@ -116,7 +116,7 @@ namespace Saobracaj.Servis
         }
         private void frmEvidencijaKvarovaAnaliza_Load(object sender, EventArgs e)
         {
-            var select = "  select EvidencijaKvarova.ID, Kvarovi.ID, Lokomotiva, Kvarovi.Naziv as Kvar, GrupaKvarova.Naziv as GrupaKvarova, DatumPrijave, Rtrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme) as Prijavio,  StatusKvara.Naziv as Status, Rtrim(D2.DePriimek) + ' ' + Rtrim(D2.DeIme) as Prijavio, DatumPromene, Napomena  from EvidencijaKvarova " +
+            var select = "  select EvidencijaKvarova.ID, Kvarovi.ID, Lokomotiva, Kvarovi.Naziv as Kvar, GrupaKvarova.Naziv as GrupaKvarova, DatumPrijave, Rtrim(Delavci.DeIme)+ ' ' +Rtrim(Delavci.DePriimek)   as Prijavio,  StatusKvara.Naziv as Status,Rtrim(D2.DeIme) + ' ' +Rtrim(D2.DePriimek)   as Prijavio, DatumPromene, Napomena  from EvidencijaKvarova " +
              " inner join Delavci on Delavci.DeSifra = EvidencijaKvarova.Prijavio " +
              " inner join Delavci d2 on d2.DeSifra = EvidencijaKvarova.Promenio " +
              " inner join Kvarovi on Kvarovi.ID = EvidencijaKvarova.Kvar " +

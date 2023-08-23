@@ -13,7 +13,7 @@ namespace Saobracaj.Uvoz
     class insertVrstaRobeADR
     {
         string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
-        public void InsVrstaRobeADR(string Naziv, string UNKod, string Klasa)
+        public void InsVrstaRobeADR(string Naziv, string UNKod, string Klasa, string Grupa)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -44,6 +44,14 @@ namespace Saobracaj.Uvoz
             klasa.Direction = ParameterDirection.Input;
             klasa.Value = Klasa;
             cmd.Parameters.Add(klasa);
+
+            SqlParameter grupa = new SqlParameter();
+            grupa.ParameterName = "@Grupa";
+            grupa.SqlDbType = SqlDbType.NVarChar;
+            grupa.Size = 20;
+            grupa.Direction = ParameterDirection.Input;
+            grupa.Value = Grupa;
+            cmd.Parameters.Add(grupa);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -79,7 +87,7 @@ namespace Saobracaj.Uvoz
                 }
             }
         }
-        public void UpdVrstaRobeADR(int ID, string Naziv, string UNKod, string Klasa)
+        public void UpdVrstaRobeADR(int ID, string Naziv, string UNKod, string Klasa, string Grupa)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -117,6 +125,16 @@ namespace Saobracaj.Uvoz
             klasa.Direction = ParameterDirection.Input;
             klasa.Value = Klasa;
             cmd.Parameters.Add(klasa);
+
+
+            SqlParameter grupa = new SqlParameter();
+            grupa.ParameterName = "@Grupa";
+            grupa.SqlDbType = SqlDbType.NVarChar;
+            grupa.Size = 20;
+            grupa.Direction = ParameterDirection.Input;
+            grupa.Value = Grupa;
+            cmd.Parameters.Add(grupa);
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

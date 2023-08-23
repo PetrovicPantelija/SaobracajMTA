@@ -30,7 +30,7 @@ namespace Saobracaj.Sifarnici
 
         private void RefreshDataGRid()
         {
-            var select3 = " select DeSifra as ID, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis from Delavci order by opis";
+            var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci order by opis";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
@@ -45,7 +45,7 @@ namespace Saobracaj.Sifarnici
 
 
 
-            var select = "  Select EvidencijaCenaRadnik.Id, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis, " +
+            var select = "  Select EvidencijaCenaRadnik.Id, (RTrim(DeIme)+ ' ' + Rtrim(DePriimek) ) as Opis, " +
  " CASE WHEN EvidencijaCenaRadnik.ObracunPoSatu > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as ObracunPoSatu , Cena  from EvidencijaCenaRadnik " +
  " inner join Delavci on Delavci.DeSifra " +
  " = EvidencijaCenaRadnik.Zaposleni ";

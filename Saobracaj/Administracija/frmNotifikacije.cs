@@ -136,7 +136,7 @@ namespace Saobracaj.Administracija
         }
         private void FillGV()
         {
-            var query = "Select ID,Kreirao,RTrim(Korisnici.Korisnik) as KorisnikKreirao,RTrim(Poruka) as Poruka,Notifikacije.Korisnik,(RTrim(Delavci.DePriimek)+' '+RTrim(Delavci.DeIme)) as Zaposleni," +
+            var query = "Select ID,Kreirao,RTrim(Korisnici.Korisnik) as KorisnikKreirao,RTrim(Poruka) as Poruka,Notifikacije.Korisnik,(RTrim(Delavci.DeIme)+' '+RTrim(Delavci.DePriimek)) as Zaposleni," +
                 "DatumSlanja,Procitao,DatumCitanja " +
                 "From Notifikacije " +
                 "Inner join Delavci on Notifikacije.Korisnik = Delavci.DeSifra " +

@@ -49,7 +49,7 @@ namespace Saobracaj.Dokumenta
             cboPartneri.ValueMember = "PaSifra";
 
 
-            var select4 = " select DeSifra as ID, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis from Delavci where DeSifStat <> 'P' order by opis";
+            var select4 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci where DeSifStat <> 'P' order by opis";
             var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);

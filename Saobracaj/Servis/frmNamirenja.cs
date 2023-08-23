@@ -150,7 +150,7 @@ namespace Saobracaj.Servis
             string imeslike = "\\192.168.1.6" + @"\NamirenjaGorivomIUljem\26\16033648948435708401413646490656.jpg";
             pictureBox1.Image = new Bitmap(imeslike);
             */
-            var select = "select  LokomotivaNamirenje.ID as IDNamirenja, LokomotivaVrstaNamirenja.Naziv as VrstaNamirenja,LokomotivaPrijava.Lokomotiva,  (Rtrim(DElavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme)) as Zaposleni , LokomotivaNamirenje.DatumNamirenja as DatumNamirenja, LokomotivaNamirenje.Kolicina, LokomotivaNamirenje.Kolicina2 ,LokomotivaNamirenje.Napomena from LokomotivaNamirenje " +
+            var select = "select  LokomotivaNamirenje.ID as IDNamirenja, LokomotivaVrstaNamirenja.Naziv as VrstaNamirenja,LokomotivaPrijava.Lokomotiva,  (Rtrim(Delavci.DeIme) + ' ' + Rtrim(DElavci.DePriimek)) as Zaposleni , LokomotivaNamirenje.DatumNamirenja as DatumNamirenja, LokomotivaNamirenje.Kolicina, LokomotivaNamirenje.Kolicina2 ,LokomotivaNamirenje.Napomena from LokomotivaNamirenje " +
             " inner join lokomotivaVrstaNamirenja on lokomotivaVrstaNamirenja.ID = LokomotivaNamirenje.VrstaNamirenjaID " +
             " inner join LokomotivaPrijava on LokomotivaPrijava.ID = LokomotivaNamirenje.LokomotivaPrijavaID " +
             " inner join Delavci on Delavci.DeSifra = LokomotivaPrijava.Zaposleni " +
@@ -279,7 +279,7 @@ namespace Saobracaj.Servis
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
-            string path = Path.Combine(@"//192.168.1.6/NamirenjaGorivomIUljem/", txtSifra.Text + "/");
+            string path = Path.Combine(@"//192.168.129.7/TA/NamirenjaGorivomIUljem/", txtSifra.Text + "/");
             //txtPutanja.Text = "\\192.168.1.6\";
             DirectoryInfo dir_info = new DirectoryInfo(path);
             txtDirectory.Text = dir_info.FullName;

@@ -157,7 +157,7 @@ namespace Saobracaj.Dokumenta
             ins.InsProracunKM(Convert.ToDateTime(dtpVremeOd.Value), Convert.ToDateTime(dtpVremeDo.Value));
             ins.InsProracunKM2(Convert.ToDateTime(dtpVremeOd.Value), Convert.ToDateTime(dtpVremeDo.Value));
             RefreshDataGrid();
-            MessageBox.Show("Gotovo, to ti je završeno");
+            MessageBox.Show("Obrada izvrsena");
         }
     }
 }

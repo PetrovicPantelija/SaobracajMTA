@@ -187,9 +187,10 @@ namespace Testiranje
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = ID;
             myCommand.Parameters.Add(parameter);
-            
-            
-           
+
+       
+
+
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@TipCenovnika";
             parameter1.SqlDbType = SqlDbType.Int;
@@ -232,6 +233,15 @@ namespace Testiranje
             parameter6.Direction = ParameterDirection.Input;
             parameter6.Value = Korisnik;
             myCommand.Parameters.Add(parameter6);
+
+
+          
+
+
+ 
+
+
+
 
             SqlParameter parameter7 = new SqlParameter();
             parameter7.ParameterName = "@Cena2";

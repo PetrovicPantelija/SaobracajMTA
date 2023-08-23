@@ -116,7 +116,7 @@ namespace Saobracaj.SyncForm
         }
         private void frmPregledPopisa2_Load(object sender, EventArgs e)
         {
-            var select = "  Select top 500 t1.IDLokomotivaPrijava, t1.Lokomotiva, LokomotivaPrijava.Zaposleni as ZaposleniID, (RTrim(Delavci.DePriimek) + ' ' + Rtrim(Delavci.DeIme)) as Zaposleni, LokomotivaPopis.Kolicina, " +
+            var select = "  Select top 500 t1.IDLokomotivaPrijava, t1.Lokomotiva, LokomotivaPrijava.Zaposleni as ZaposleniID, (Rtrim(Delavci.DeIme) + ' ' + RTrim(Delavci.DePriimek)) as Zaposleni, LokomotivaPopis.Kolicina, " +
             " LokomotiveVrstePopisa.ReferentnaKolicina, LokomotivaPopis.Vreme, " +
             " LokomotivaPopis.Napomena, LokomotiveVrstePopisa.ID as IDVrstePopisa, " +
             " VrstaPopisa.Naziv as VrstaPopisa  from(select LokomotivaPrijava.ID as IDLokomotivaPrijava," +

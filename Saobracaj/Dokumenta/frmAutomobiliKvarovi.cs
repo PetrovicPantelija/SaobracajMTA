@@ -118,7 +118,7 @@ namespace Saobracaj.Dokumenta
         }
         private void frmAutomobiliKvarovi_Load(object sender, EventArgs e)
         {
-            var select = "  SELECT     Automobili.RegBr, EvidencijaKvarovaAuto.Automobil, KvaroviAuto.Naziv as KVar, GrupaKvarovaAuto.Naziv AS Grupa, Delavci.DeSifra, Delavci.DePriimek, Delavci.DeIme, " +
+            var select = "  SELECT     Automobili.RegBr, EvidencijaKvarovaAuto.Automobil, KvaroviAuto.Naziv as KVar, GrupaKvarovaAuto.Naziv AS Grupa, Delavci.DeSifra, Delavci.DeIme,Delavci.DePriimek,  " +
                    "   EvidencijaKvarovaAuto.Promenio, EvidencijaKvarovaAuto.Kritican, EvidencijaKvarovaAuto.DatumPrijave, EvidencijaKvarovaAuto.Prijavio, " +
                    "   EvidencijaKvarovaAuto.Kvar, EvidencijaKvarovaAuto.DatumPromene, EvidencijaKvarovaAuto.Napomena, EvidencijaKvarovaAuto.AutomobilId "+
                    "   FROM         EvidencijaKvarovaAuto INNER JOIN " +
