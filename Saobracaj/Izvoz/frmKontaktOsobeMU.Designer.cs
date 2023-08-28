@@ -38,8 +38,6 @@ namespace Saobracaj.Izvoz
             this.txtPaKOSifra = new System.Windows.Forms.ComboBox();
             this.txtPaKOZapSt = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.chkOperatika = new System.Windows.Forms.CheckBox();
             this.txtPaKOOpomba = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -54,8 +52,8 @@ namespace Saobracaj.Izvoz
             this.txtPaKOIme = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.toolStrip1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,7 +68,7 @@ namespace Saobracaj.Izvoz
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(604, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(692, 27);
             this.toolStrip1.TabIndex = 201;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -134,32 +132,6 @@ namespace Saobracaj.Izvoz
             this.label8.Size = new System.Drawing.Size(18, 13);
             this.label8.TabIndex = 266;
             this.label8.Text = "ID";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.dataGridView1);
-            this.groupBox2.Location = new System.Drawing.Point(10, 223);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox2.Size = new System.Drawing.Size(574, 167);
-            this.groupBox2.TabIndex = 265;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Pregled stavki";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(5, 18);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(563, 139);
-            this.dataGridView1.TabIndex = 229;
-            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // chkOperatika
             // 
@@ -279,16 +251,29 @@ namespace Saobracaj.Izvoz
             this.label3.TabIndex = 251;
             this.label3.Text = "Mesto utovara";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 234);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.Size = new System.Drawing.Size(668, 301);
+            this.dataGridView1.TabIndex = 269;
+            // 
             // frmKontaktOsobeMU
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(604, 408);
+            this.ClientSize = new System.Drawing.Size(692, 547);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtPaKOSifra);
             this.Controls.Add(this.txtPaKOZapSt);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.chkOperatika);
             this.Controls.Add(this.txtPaKOOpomba);
             this.Controls.Add(this.label7);
@@ -305,13 +290,12 @@ namespace Saobracaj.Izvoz
             this.Controls.Add(this.label3);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmKontaktOsobeMU";
             this.Text = "Kontakt osobe na mestu utovara";
             this.Load += new System.EventHandler(this.frmKontaktOsobeMU_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -328,8 +312,6 @@ namespace Saobracaj.Izvoz
         private System.Windows.Forms.ComboBox txtPaKOSifra;
         private System.Windows.Forms.TextBox txtPaKOZapSt;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.CheckBox chkOperatika;
         private System.Windows.Forms.TextBox txtPaKOOpomba;
         private System.Windows.Forms.Label label7;
@@ -344,5 +326,6 @@ namespace Saobracaj.Izvoz
         private System.Windows.Forms.TextBox txtPaKOIme;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

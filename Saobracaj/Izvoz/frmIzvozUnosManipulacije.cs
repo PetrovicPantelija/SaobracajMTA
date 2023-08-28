@@ -553,7 +553,7 @@ namespace Saobracaj.Izvoz
 
             DataGridViewColumn column3 = dataGridView7.Columns[2];
             dataGridView7.Columns[2].HeaderText = "Kontejner";
-            dataGridView7.Columns[2].Width = 1000;
+            dataGridView7.Columns[2].Width = 100;
 
             DataGridViewColumn column4 = dataGridView7.Columns[3];
             dataGridView7.Columns[3].HeaderText = "Kolicina";
@@ -1266,7 +1266,7 @@ namespace Saobracaj.Izvoz
                         {
                             if (row2.Selected)
                             {
-                        if (txtNadredjeni.Text == "0")
+                        if (txtNadredjeni.Text != "0")
                         {
                             pom = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
                             uvK.DelIzvozKonacnaUsluga(pom);
@@ -1298,7 +1298,7 @@ namespace Saobracaj.Izvoz
                 {
                     if (row2.Selected)
                     {
-                        if (txtNadredjeni.Text == "0")
+                        if (txtNadredjeni.Text != "0")
                         {
                             pom = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
                             uvK.UpdPlatiocaIzvozKonacnaUsluga(pom, Convert.ToInt32(cboUvoznik.SelectedValue));

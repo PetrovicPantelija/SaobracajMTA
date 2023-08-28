@@ -93,9 +93,31 @@ namespace Saobracaj.Izvoz
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Partner ID";
-            dataGridView1.Columns[1].Width = 150;
+            dataGridView1.Columns[1].Width = 50;
 
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Ime";
+            dataGridView1.Columns[2].Width = 100;
 
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Prezime";
+            dataGridView1.Columns[3].Width = 100;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Odeljenje";
+            dataGridView1.Columns[4].Width = 100;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Tel";
+            dataGridView1.Columns[5].Width = 70;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Email";
+            dataGridView1.Columns[6].Width = 70;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Adresa";
+            dataGridView1.Columns[7].Width = 120;
 
 
 

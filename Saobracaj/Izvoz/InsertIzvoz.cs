@@ -287,7 +287,7 @@ namespace Saobracaj.Izvoz
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "UpdPlatiocIzvozVrstaManipulacije";
+            cmd.CommandText = "UpdPlatiocaIzvozVrstaManipulacije";
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter id = new SqlParameter();

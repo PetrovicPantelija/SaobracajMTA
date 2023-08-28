@@ -192,8 +192,9 @@ namespace Saobracaj.Dokumenta
             RefreshDataGrid();
         }
 
-        public string GetKontaktMail()
+        public string GetKontaktMail(int Partner)
         {
+            RefreshDataGridPoPartneru();
             return txtPaKOMail.Text.TrimEnd();
         }
 

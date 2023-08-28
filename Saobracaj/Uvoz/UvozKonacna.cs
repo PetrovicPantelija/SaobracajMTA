@@ -171,29 +171,29 @@ namespace Saobracaj.Uvoz
 " PredefinisanePoruke.Naziv as NapomenaZaPozicioniranje,  " +
  " NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera, " +
  " Koleta" +
- " FROM UvozKonacna inner join Partnerji on PaSifra = VlasnikKontejnera " +
- " inner join Partnerji p1 on p1.PaSifra = Uvoznik " +
- " inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC " +
-" inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
- "  inner join VrstaRobeHS on VrstaRobeHS.ID = UvozKonacna.NazivRobe " +
-"  inner join NHM on NHM.ID = NHMBroj " +
- " inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
- "  inner join Carinarnice on Carinarnice.ID = UvozKonacna.OdredisnaCarina " +
- "  inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = UvozKonacna.CarinskiPostupak " +
- " inner join Predefinisaneporuke on PredefinisanePoruke.ID = UvozKonacna.NapomenaZaPozicioniranje " +
- "  inner join KontejnerskiTerminali on KontejnerskiTerminali.ID = UvozKonacna.RLTErminali " +
- "  inner join Partnerji n1 on n1.PaSifra = Nalogodavac1 " +
- "  inner join Partnerji n2 on n2.PaSifra = Nalogodavac2 " +
- "  inner join Partnerji n3 on n3.PaSifra = Nalogodavac3 " +
- "  inner join Partnerji b on b.PaSifra = UvozKonacna.Brodar " +
-  " inner join DirigacijaKontejneraZa pp1 on pp1.ID = UvozKonacna.DirigacijaKontejeraZa   " +
- "  inner join Brodovi on Brodovi.ID = UvozKonacna.NazivBroda " +
-                              "   inner join VrstaRobeADR on VrstaRobeADR.ID = ADR " +
-                              "    inner join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom    " +
-                              " INNER join MestaUtovara on UvozKOnacna.MestoIstovara = MestaUtovara.ID " +
-" inner join partnerjiKontOsebaMU on UvozKonacna.KontaktOsoba = partnerjiKontOsebaMU.PaKOSifra " +
-                              "inner join uvNacinPakovanja " +
- " on uvNacinPakovanja.ID = NacinPakovanja  inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija " +
+ " FROM UvozKonacna Left join Partnerji on PaSifra = VlasnikKontejnera " +
+ " Left join Partnerji p1 on p1.PaSifra = Uvoznik " +
+ " Left join Partnerji p2 on p2.PaSifra = SpedicijaRTC " +
+" Left join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
+ "  Left join VrstaRobeHS on VrstaRobeHS.ID = UvozKonacna.NazivRobe " +
+"  Left join NHM on NHM.ID = NHMBroj " +
+ " Left join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
+ "  Left join Carinarnice on Carinarnice.ID = UvozKonacna.OdredisnaCarina " +
+ "  Left join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = UvozKonacna.CarinskiPostupak " +
+ " Left join Predefinisaneporuke on PredefinisanePoruke.ID = UvozKonacna.NapomenaZaPozicioniranje " +
+ "  Left join KontejnerskiTerminali on KontejnerskiTerminali.ID = UvozKonacna.RLTErminali " +
+ "  Left join Partnerji n1 on n1.PaSifra = Nalogodavac1 " +
+ "  Left join Partnerji n2 on n2.PaSifra = Nalogodavac2 " +
+ "  Left join Partnerji n3 on n3.PaSifra = Nalogodavac3 " +
+ "  Left join Partnerji b on b.PaSifra = UvozKonacna.Brodar " +
+  " Left join DirigacijaKontejneraZa pp1 on pp1.ID = UvozKonacna.DirigacijaKontejeraZa   " +
+ "  Left join Brodovi on Brodovi.ID = UvozKonacna.NazivBroda " +
+                              "   Left join VrstaRobeADR on VrstaRobeADR.ID = ADR " +
+                              "    Left join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom    " +
+                              " Left join MestaUtovara on UvozKOnacna.MestoIstovara = MestaUtovara.ID " +
+" Left join partnerjiKontOsebaMU on UvozKonacna.KontaktOsoba = partnerjiKontOsebaMU.PaKOSifra " +
+                              "Left join uvNacinPakovanja " +
+ " on uvNacinPakovanja.ID = NacinPakovanja  Left join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija " +
  " where UvozKonacna.IdNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text) + "  order by UvozKonacna.ID desc ";
 
 
@@ -2446,7 +2446,7 @@ namespace Saobracaj.Uvoz
             {
                 detailForm.ShowDialog();
 
-                txtMail.Text = detailForm.GetKontaktMail();
+                txtMail.Text = detailForm.GetKontaktMail(Convert.ToInt32(cboNalogodavac3.SelectedValue));
             }
         }
 
