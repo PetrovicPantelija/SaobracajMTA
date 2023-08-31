@@ -1295,7 +1295,7 @@ namespace Saobracaj.Izvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select PaKOOpomba from partnerjiKontOsebaMU where PaKOZapSt = =" + Sifra, con);
+            SqlCommand cmd = new SqlCommand("select PaKOOpomba from partnerjiKontOsebaMU where PaKOZapSt  =" + Sifra, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -1353,7 +1353,7 @@ namespace Saobracaj.Izvoz
             {
                 detailForm.ShowDialog();
                 cboAdresaStatusVozila.Text = detailForm.GetKontaktMail(Convert.ToInt32(cboNalogodavac3.SelectedValue));
-            }
+            } 
         }
 
         private void button18_Click(object sender, EventArgs e)
@@ -1430,7 +1430,7 @@ namespace Saobracaj.Izvoz
 " from IzvozKonacnaVrstaManipulacije " +
 " Inner    join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
 " inner " +
-" join PArtnerji on IzvozVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
+" join PArtnerji on IzvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
 " inner " +
 " join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozKonacnaVrstaManipulacije.OrgJed " +
 " inner " +

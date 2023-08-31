@@ -971,7 +971,7 @@ namespace Saobracaj.Izvoz
             // txtAdresaMestaUtovara
             // 
             this.txtAdresaMestaUtovara.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtAdresaMestaUtovara.Location = new System.Drawing.Point(401, 375);
+            this.txtAdresaMestaUtovara.Location = new System.Drawing.Point(397, 374);
             this.txtAdresaMestaUtovara.Margin = new System.Windows.Forms.Padding(2);
             this.txtAdresaMestaUtovara.Name = "txtAdresaMestaUtovara";
             this.txtAdresaMestaUtovara.Size = new System.Drawing.Size(186, 20);
@@ -1225,7 +1225,7 @@ namespace Saobracaj.Izvoz
             // chkVaganje
             // 
             this.chkVaganje.AutoSize = true;
-            this.chkVaganje.Location = new System.Drawing.Point(898, 381);
+            this.chkVaganje.Location = new System.Drawing.Point(896, 377);
             this.chkVaganje.Margin = new System.Windows.Forms.Padding(2);
             this.chkVaganje.Name = "chkVaganje";
             this.chkVaganje.Size = new System.Drawing.Size(75, 17);
@@ -1236,7 +1236,7 @@ namespace Saobracaj.Izvoz
             // txtOdvaganaTezina
             // 
             this.txtOdvaganaTezina.DecimalPlaces = 3;
-            this.txtOdvaganaTezina.Location = new System.Drawing.Point(890, 426);
+            this.txtOdvaganaTezina.Location = new System.Drawing.Point(891, 420);
             this.txtOdvaganaTezina.Margin = new System.Windows.Forms.Padding(2);
             this.txtOdvaganaTezina.Maximum = new decimal(new int[] {
             100000,
@@ -1249,26 +1249,26 @@ namespace Saobracaj.Izvoz
             // 
             // label38
             // 
-            this.label38.Location = new System.Drawing.Point(890, 400);
+            this.label38.Location = new System.Drawing.Point(893, 395);
             this.label38.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(201, 21);
+            this.label38.Size = new System.Drawing.Size(201, 19);
             this.label38.TabIndex = 252;
             this.label38.Text = "VGM – ODVAGANA TEŽINA ROBE";
             // 
             // label39
             // 
-            this.label39.Location = new System.Drawing.Point(887, 444);
+            this.label39.Location = new System.Drawing.Point(890, 444);
             this.label39.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(195, 23);
+            this.label39.Size = new System.Drawing.Size(190, 17);
             this.label39.TabIndex = 254;
             this.label39.Text = "TARA KONTEJNERA";
             // 
             // txtTaraKontejnera
             // 
             this.txtTaraKontejnera.DecimalPlaces = 3;
-            this.txtTaraKontejnera.Location = new System.Drawing.Point(892, 469);
+            this.txtTaraKontejnera.Location = new System.Drawing.Point(892, 462);
             this.txtTaraKontejnera.Margin = new System.Windows.Forms.Padding(2);
             this.txtTaraKontejnera.Maximum = new decimal(new int[] {
             100000,
@@ -1287,7 +1287,7 @@ namespace Saobracaj.Izvoz
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(187, 31);
             this.label40.TabIndex = 256;
-            this.label40.Text = "VGM – BROD (BRUTO MASA KONTEJNERA)";
+            this.label40.Text = "VGM-BROD (BTTO MASA KONTEJNERA)";
             // 
             // txVGMBrodBruto
             // 
@@ -1377,9 +1377,9 @@ namespace Saobracaj.Izvoz
             this.label46.Location = new System.Drawing.Point(1117, 147);
             this.label46.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(146, 13);
+            this.label46.Size = new System.Drawing.Size(119, 13);
             this.label46.TabIndex = 264;
-            this.label46.Text = "Nalogodavac za manipulacije";
+            this.label46.Text = "Nalogodavac za usluge";
             // 
             // cboNalogodavac1
             // 
@@ -1897,7 +1897,7 @@ namespace Saobracaj.Izvoz
             // 
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button7.Location = new System.Drawing.Point(1320, 237);
+            this.button7.Location = new System.Drawing.Point(1314, 234);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(14, 31);
             this.button7.TabIndex = 417;

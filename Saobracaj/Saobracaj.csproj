@@ -4884,6 +4884,7 @@
     <None Include="Resources\mtaLogo.JPG" />
     <None Include="Resources\LEGET-colorP.jpg" />
     <None Include="Resources\excel-icon-transparent-101.png" />
+    <None Include="Resources\kontejners.jpg" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

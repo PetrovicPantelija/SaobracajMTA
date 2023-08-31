@@ -810,21 +810,17 @@ namespace Saobracaj
         private void toolStripButton52_Click(object sender, EventArgs e)
         {
             Sifarnici.frmVrsteAktivnosti vrakt = new Sifarnici.frmVrsteAktivnosti();
-            if (Korisnik == "test")
-            {
+          
                 vrakt.Show();
-            }
-            else { MessageBox.Show("Nemate prava za pristup ovoj formi"); return; }
+         
         }
 
         private void toolStripButton53_Click(object sender, EventArgs e)
         {
             Sifarnici.frmCenaPoRadniku cpr = new Sifarnici.frmCenaPoRadniku();
-            if (Korisnik == "test")
-            {
+          
                 cpr.Show();
-            }
-            else { MessageBox.Show("Nemate prava za pristup ovoj formi"); return; }
+           
         }
 
         private void toolStripButton54_Click(object sender, EventArgs e)
@@ -3241,6 +3237,11 @@ namespace Saobracaj
         {
             SyncForm.frmPregledMobilni2 drugi = new SyncForm.frmPregledMobilni2();
             drugi.Show();
+        }
+
+        private void toolStripEx6_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
     }
