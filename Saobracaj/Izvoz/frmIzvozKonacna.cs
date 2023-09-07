@@ -706,7 +706,7 @@ namespace Saobracaj.Izvoz
                 Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(txtRef1.Text), pomDobijenNalog,
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(txtRef2.Text),
                 Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(txtRef3.Text),
-                 Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text, Convert.ToInt32(txtADR.SelectedValue), Convert.ToInt32(txtNadredjeni.Text), txtVozilo.Text, txtVozac.Text, Convert.ToInt32(cboSpedicijaJ.SelectedValue), Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToInt32(cboVrstaPlombe.SelectedValue), txtNapomenaZaRobu.Text);
+                 Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text, Convert.ToInt32(txtADR.SelectedValue), Convert.ToInt32(txtNadredjeni.Text), txtVozilo.Text, txtVozac.Text, Convert.ToInt32(cboSpedicijaJ.SelectedValue), Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToInt32(cboVrstaPlombe.SelectedValue), txtNapomenaZaRobu.Text, Convert.ToDecimal(txtVGMBrod.Value));
             //Fale ostale plombe
             // Convert.ToDecimal(txtDodatneNapomene.Text -- treba staviti nvarchar
 
@@ -1029,7 +1029,7 @@ namespace Saobracaj.Izvoz
     "     ,[Vaganje],[VGMTezina],[Tara],[VGMBrod] " +
    "      ,[Izvoznik],[Klijent1],[Napomena1REf],[DodatneNapomeneDrumski] " +
    "      ,[Klijent2],[Napomena2REf],[Klijent3],[Napomena3REf] " +
-   "      ,[SpediterRijeka],[OstalePlombe],[ADR],[Vozilo],[Vozac], SpedicijaJ, PeriodSkladistenjaOd, PeriodSkladistenjaDo " +
+   "      ,[SpediterRijeka],[OstalePlombe],[ADR],[Vozilo],[Vozac], SpedicijaJ, PeriodSkladistenjaOd, PeriodSkladistenjaDo , VrstaBrodskePlombe, NapomenaZaRobu, VGMBrod2 " +
  "  FROM [IzvozKonacna] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -1057,6 +1057,7 @@ namespace Saobracaj.Izvoz
                 txVGMBrodBruto.Value = Convert.ToDecimal(dr["VGMBrod"].ToString());
                 txtTaraKontejnera.Value = Convert.ToDecimal(dr["Tara"].ToString());
                 txtOdvaganaTezina.Value = Convert.ToDecimal(dr["VGMTezina"].ToString());
+                txtVGMBrod.Value = Convert.ToDecimal(dr["VGMBrod2"].ToString());
                 if (dr["Vaganje"].ToString() == "1")
                 {
                     chkVaganje.Checked = true;
@@ -1126,7 +1127,8 @@ namespace Saobracaj.Izvoz
                 txtTipKont.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
                 txtBrKont.Text = dr["BrojKontejnera"].ToString();
                 txtBrojVagona.Text = dr["BrojVagona"].ToString();
-
+                cboVrstaPlombe.SelectedValue = Convert.ToInt32(dr["VrstaBrodskePlombe"].ToString());
+                txtNapomenaZaRobu.Text = dr["NapomenaZaRobu"].ToString();
 
                 /*
 
@@ -1416,7 +1418,7 @@ namespace Saobracaj.Izvoz
 
         private void txtTaraKontejnera_Leave(object sender, EventArgs e)
         {
-            txVGMBrodBruto.Value = txtOdvaganaTezina.Value - txtTaraKontejnera.Value;
+            txVGMBrodBruto.Value = txtOdvaganaTezina.Value + txtTaraKontejnera.Value;
         }
 
         private void FillDGUsluge()
@@ -1475,8 +1477,9 @@ namespace Saobracaj.Izvoz
 
         private void FillDGIK()
         {
-            var select = "select IzvozKonacnaNapomenePozicioniranja.ID, IDNapomene, PredefinisanePoruke.Naziv from IzvozKonacnaNapomenePozicioniranja " +
-" inner join  PredefinisanePoruke on PredefinisanePoruke.ID = IzvozKonacnaNapomenePozicioniranja.IDNapomene where IzvozKonacnaNapomenePozicioniranja.IdNadredjena = " + Convert.ToInt32(txtID.Text) + " order by IzvozNapomenePozicioniranja.ID desc ";
+            var select = "select IzvozKonacnaNapomenePozicioniranja.ID, IzvozKonacnaNapomenePozicioniranja.IDNapomene, PredefinisanePoruke.Naziv " +
+" from IzvozKonacnaNapomenePozicioniranja inner join PredefinisanePoruke on PredefinisanePoruke.ID = IzvozKonacnaNapomenePozicioniranja.IDNapomene " +
+" where IzvozKonacnaNapomenePozicioniranja.IdNadredjena = " + Convert.ToInt32(txtID.Text) + " order by IzvozKOnacnaNapomenePozicioniranja.ID desc ";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -1539,6 +1542,25 @@ namespace Saobracaj.Izvoz
                 }
             }
             catch { }
+        }
+
+        private void chkVaganje_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkVaganje.Checked == true)
+            {
+                txtOdvaganaTezina.Enabled = true;
+                txtTaraKontejnera.Enabled = true;
+                txVGMBrodBruto.Enabled = true;
+                txtVGMBrod.Enabled = true;
+            }
+            else
+            {
+                txtOdvaganaTezina.Enabled = false;
+                txtTaraKontejnera.Enabled = false;
+                txVGMBrodBruto.Enabled = false;
+                txtVGMBrod.Enabled = false;
+                ;
+            }
         }
     }
 }

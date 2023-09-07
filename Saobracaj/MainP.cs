@@ -3243,6 +3243,17 @@ namespace Saobracaj
         {
 
         }
+
+        private void toolStripButton296_Click(object sender, EventArgs e)
+        {
+            SyncForm.frmPregledMasinovodje2 drugi = new SyncForm.frmPregledMasinovodje2();
+            drugi.Show();
+        }
+
+        private void toolStripButton271_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
     }
 

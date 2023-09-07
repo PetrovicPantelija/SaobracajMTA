@@ -750,7 +750,7 @@ namespace Saobracaj.Uvoz
             }
             catch
             {
-                MessageBox.Show("Nije uspela selekcija stavki");
+                MessageBox.Show("Unos nije uspeo.Proverite da li imate definisanu cenu u Cenovniku!!!");
             }
         }
         private void FillGVUvozKonacnaPoPlanu()
@@ -1121,7 +1121,7 @@ namespace Saobracaj.Uvoz
             cboNalogodavac3.DisplayMember = "PaNaziv";
             cboNalogodavac3.ValueMember = "PaSifra";
 
-            var partner2 = "Select PaSifra,PaNaziv From Partnerji where Brodar =1 order by PaNaziv";
+            var partner2 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
             var partAD2 = new SqlDataAdapter(partner2, conn);
             var partDS2 = new DataSet();
             partAD2.Fill(partDS2);
@@ -1282,7 +1282,7 @@ namespace Saobracaj.Uvoz
             }
             catch
             {
-                MessageBox.Show("Nije uspela selekcija stavki");
+                MessageBox.Show("Unos nije uspeo.Proverite da li imate definisanu cenu u Cenovniku!!!");
             }
         }
 
@@ -1400,7 +1400,7 @@ namespace Saobracaj.Uvoz
             }
             catch
             {
-                MessageBox.Show("Nije uspela selekcija stavki");
+                MessageBox.Show("Unos nije uspeo.Proverite da li imate definisanu cenu u Cenovniku!!!");
             }
         }
 
@@ -1532,7 +1532,7 @@ namespace Saobracaj.Uvoz
             }
             catch
             {
-                MessageBox.Show("Nije uspela selekcija stavki");
+                MessageBox.Show("Unos nije uspeo.Proverite da li imate definisanu cenu u Cenovniku!!!");
             }
         }
     }

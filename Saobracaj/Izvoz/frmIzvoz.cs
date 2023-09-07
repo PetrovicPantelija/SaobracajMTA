@@ -300,7 +300,7 @@ namespace Saobracaj.Izvoz
                   "        Izvoz.AutoDana, Izvoz.NajavaVozila, Izvoz.DodatneNapomeneDrumski, Izvoz.Vaganje, Izvoz.VGMTezina, Izvoz.Tara, Izvoz.VGMBrod, " +
                   "        Partnerji_2.PaNaziv AS Izvoznik, Partnerji_3.PaNaziv AS Klijent1, Izvoz.Napomena1REf, Izvoz.DobijenNalogKlijent1, Partnerji_4.PaNaziv AS klijent2, " +
                   "        Izvoz.Napomena2REf, Partnerji_5.PaNaziv AS Klijent3, Izvoz.Napomena3REf, Partnerji_6.PaNaziv AS SpediterRijeka, uvNacinPakovanja.Naziv AS NacinPakovanja, " +
-                  "        Izvoz.NacinPretovara " +
+                  "        Izvoz.NacinPretovara, Izvoz.VGMBrod2 " +
 "    FROM         Izvoz Left JOIN " +
                    "       TipKontenjera ON Izvoz.VrstaKontejnera = TipKontenjera.ID LEFT JOIN " +
                   "        Partnerji ON Izvoz.Brodar = Partnerji.PaSifra LEFT JOIN " +
@@ -736,7 +736,7 @@ namespace Saobracaj.Izvoz
                 Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(txtRef3.Text),
                  Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text,
                  Convert.ToInt32(txtADR.SelectedValue), txtVozilo.Text, txtVozac.Text, Convert.ToInt32(cboSpedicijaJ.SelectedValue), 
-                 Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToInt32(cboVrstaPlombe.SelectedValue), txtNapomenaZaRobu.Text);
+                 Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToInt32(cboVrstaPlombe.SelectedValue), txtNapomenaZaRobu.Text, Convert.ToDecimal(txtVGMBrod.Value));
             //Fale ostale plombe
             // Convert.ToDecimal(txtDodatneNapomene.Text -- treba staviti nvarchar
 
@@ -1094,7 +1094,7 @@ namespace Saobracaj.Izvoz
     "     ,[Vaganje],[VGMTezina],[Tara],[VGMBrod] " +
    "      ,[Izvoznik],[Klijent1],[Napomena1REf],[DodatneNapomeneDrumski] " +
    "      ,[Klijent2],[Napomena2REf],[Klijent3],[Napomena3REf] " +
-   "      ,[SpediterRijeka],[OstalePlombe],[ADR],[Vozilo],[Vozac], SpedicijaJ, PeriodSkladistenjaOd, PeriodSkladistenjaDo, VrstaBrodskePlombe, NapomenaZaRobu " +
+   "      ,[SpediterRijeka],[OstalePlombe],[ADR],[Vozilo],[Vozac], SpedicijaJ, PeriodSkladistenjaOd, PeriodSkladistenjaDo, VrstaBrodskePlombe, NapomenaZaRobu, VGMBrod2 " +
  "  FROM [Izvoz] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -1122,6 +1122,7 @@ namespace Saobracaj.Izvoz
                 txVGMBrodBruto.Value = Convert.ToDecimal(dr["VGMBrod"].ToString());
                 txtTaraKontejnera.Value = Convert.ToDecimal(dr["Tara"].ToString());
                 txtOdvaganaTezina.Value = Convert.ToDecimal(dr["VGMTezina"].ToString());
+                txtVGMBrod.Value = Convert.ToDecimal(dr["VGMBrod2"].ToString());
                 if (dr["Vaganje"].ToString() == "1")
                 {
                     chkVaganje.Checked = true;
@@ -1467,7 +1468,7 @@ namespace Saobracaj.Izvoz
 
         private void txtTaraKontejnera_Leave(object sender, EventArgs e)
         {
-            txVGMBrodBruto.Value = txtOdvaganaTezina.Value - txtTaraKontejnera.Value;
+            txVGMBrodBruto.Value = txtOdvaganaTezina.Value + txtTaraKontejnera.Value;
         }
 
         private void FillDG4()
@@ -1591,6 +1592,25 @@ namespace Saobracaj.Izvoz
                 }
             }
             catch { }
+        }
+
+        private void chkVaganje_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkVaganje.Checked == true)
+            {
+                txtOdvaganaTezina.Enabled = true;
+                txtTaraKontejnera.Enabled = true;
+                txVGMBrodBruto.Enabled = true;
+                txtVGMBrod.Enabled = true;
+            }
+            else
+            {
+                txtOdvaganaTezina.Enabled = false;
+                txtTaraKontejnera.Enabled = false;
+                txVGMBrodBruto.Enabled = false;
+                txtVGMBrod.Enabled = false;
+                ;
+            }
         }
     }
     }
