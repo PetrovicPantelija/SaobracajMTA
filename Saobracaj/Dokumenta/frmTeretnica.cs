@@ -17,6 +17,16 @@ namespace Saobracaj.Dokumenta
 {
     public partial class frmTeretnica : Form
     {
+        public static string code = "frmTeretnica";
+        public bool Pravo;
+        int idGrupe;
+        int idForme;
+        bool insert;
+        bool update;
+        bool delete;
+        string Kor = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
+        string niz = "";
+
         Boolean status = false;
         int pomPrijemna = 0;
         int pomPredajna = 0;
@@ -27,6 +37,9 @@ namespace Saobracaj.Dokumenta
         {
             InitializeComponent();
             NovaTeretnica = 1;
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
         }
 
         public frmTeretnica(string KorisnikTeretnica)
@@ -34,6 +47,9 @@ namespace Saobracaj.Dokumenta
             InitializeComponent();
             NovaTeretnica = 1;
             Korisnik = KorisnikTeretnica;
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
         }
 
         public frmTeretnica(string IdTeretnice, string KorisnikTeretnica)
@@ -44,8 +60,98 @@ namespace Saobracaj.Dokumenta
             VratiPodatke(IdTeretnice);
             RefreshDataGrid();
             NovaTeretnica = 0;
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
         }
+        public string IdGrupe()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            int count = 0;
 
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+                    if (count == 0)
+                    {
+                        niz = dr["IdGrupe"].ToString();
+                        count++;
+                    }
+                    else
+                    {
+                        niz = niz + "," + dr["IdGrupe"].ToString();
+                        count++;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Korisnik ne pripada grupi");
+                }
+
+            }
+            conn.Close();
+            return niz;
+        }
+        private int IdForme()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                idForme = Convert.ToInt32(dr["IdForme"].ToString());
+            }
+            conn.Close();
+            return idForme;
+        }
+        private void PravoPristupa()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows == false)
+            {
+                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
+                Pravo = false;
+            }
+            else
+            {
+                Pravo = true;
+                while (reader.Read())
+                {
+                    insert = Convert.ToBoolean(reader["Upis"]);
+                    if (insert == false)
+                    {
+                        tsNew.Enabled = false;
+                    }
+                    update = Convert.ToBoolean(reader["Izmena"]);
+                    if (update == false)
+                    {
+                        tsSave.Enabled = false;
+                    }
+                    delete = Convert.ToBoolean(reader["Brisanje"]);
+                    if (delete == false)
+                    {
+                        tsDelete.Enabled = false;
+                    }
+                }
+            }
+
+            conn.Close();
+        }
         private void VratiPodatke(string IdTeretnice)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
