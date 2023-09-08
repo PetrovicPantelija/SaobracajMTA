@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
-    class InsertForme
+    internal class InsertForme
     {
         public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+
         public void InsForme(string Naziv, string Code)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "InsertForme";
             cmd.CommandType = CommandType.StoredProcedure;
-
 
             SqlParameter paramNaziv = new SqlParameter();
             paramNaziv.ParameterName = "@Naziv";
@@ -64,9 +60,9 @@ namespace Saobracaj.Administracija
             }
             if (error)
             {
-
             }
         }
+
         public void UpdateForme(int IdForme, string Naziv, string Code)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -124,9 +120,9 @@ namespace Saobracaj.Administracija
             }
             if (error)
             {
-
             }
         }
+
         public void DeleteForme(int IdForme)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -168,7 +164,6 @@ namespace Saobracaj.Administracija
             }
             if (error)
             {
-
             }
         }
     }

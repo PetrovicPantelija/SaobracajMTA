@@ -111,7 +111,7 @@ namespace Saobracaj.Dokumenta
                     delete = Convert.ToBoolean(reader["Brisanje"]);
                     if (delete == false)
                     {
-                        //tsDelete.Enabled = false;
+                       // tsDelete.Enabled = false;
                     }
                 }
             }

@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
     public partial class frmPolozeneLokomotive : Form
     {
-        string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-        bool status = false;
+        private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        private bool status = false;
+
         public frmPolozeneLokomotive()
         {
             InitializeComponent();
@@ -23,19 +19,21 @@ namespace Saobracaj.Administracija
             IdForme();
             PravoPristupa();
         }
+
         public static string code = "frmPolozeneLokomotive";
         public bool Pravo;
-        int idGrupe;
-        int idForme;
-        bool insert;
-        bool update;
-        bool delete;
-        string Kor = Sifarnici.frmLogovanje.user.ToString();
-        string niz = "";
+        private int idGrupe;
+        private int idForme;
+        private bool insert;
+        private bool update;
+        private bool delete;
+        private string Kor = Sifarnici.frmLogovanje.user.ToString();
+        private string niz = "";
+
         public string IdGrupe()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
+            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();
             string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -55,11 +53,11 @@ namespace Saobracaj.Administracija
                     niz = niz + "," + dr["IdGrupe"].ToString();
                     count++;
                 }
-
             }
             conn.Close();
             return niz;
         }
+
         private int IdForme()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -115,11 +113,13 @@ namespace Saobracaj.Administracija
 
             conn.Close();
         }
+
         private void frmPolozeneLokomotive_Load(object sender, EventArgs e)
         {
             FillCombo();
             FillGV();
         }
+
         private void FillCombo()
         {
             var select = "Select DeSifra, Rtrim(DeIme) + ' ' + Rtrim(DePriimek) as Zaposleni From Delavci Order By DeIme";
@@ -139,6 +139,7 @@ namespace Saobracaj.Administracija
             combo_Lokomotiva.DisplayMember = "Oznaka";
             combo_Lokomotiva.ValueMember = "ID";
         }
+
         private void FillGV()
         {
             var select = "select PolozeneLokomotive.ID,PolozeneLokomotive.DeSifra as SifraZaposlenog, Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek) as Zaposleni," +
@@ -152,7 +153,6 @@ namespace Saobracaj.Administracija
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
-
 
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
@@ -176,11 +176,12 @@ namespace Saobracaj.Administracija
             dataGridView1.Columns[5].Width = 150;
             dataGridView1.Columns[6].Width = 80;
         }
+
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             try
             {
-                foreach(DataGridViewRow row in dataGridView1.Rows)
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (row.Selected)
                     {
@@ -191,8 +192,9 @@ namespace Saobracaj.Administracija
                 }
             }
             catch
-            {}
+            { }
         }
+
         private void btn_zapolseni_Click(object sender, EventArgs e)
         {
             var select = "select PolozeneLokomotive.ID,PolozeneLokomotive.DeSifra as SifraZaposlenog, Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek) as Zaposleni," +
@@ -200,7 +202,7 @@ namespace Saobracaj.Administracija
                 "from PolozeneLokomotive " +
                 "Inner join Delavci on Delavci.DeSifra=PolozeneLokomotive.DeSifra " +
                 "inner join LokomotivaSerija on LokomotivaSerija.ID=PolozeneLokomotive.IDLokomotive " +
-                "where Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek)='" +combo_Zaposleni.Text+ "'";
+                "where Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek)='" + combo_Zaposleni.Text + "'";
             var conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -226,7 +228,7 @@ namespace Saobracaj.Administracija
                 "from PolozeneLokomotive " +
                 "Inner join Delavci on Delavci.DeSifra=PolozeneLokomotive.DeSifra " +
                 "inner join LokomotivaSerija on LokomotivaSerija.ID=PolozeneLokomotive.IDLokomotive " +
-                "where LokomotivaSerija.Oznaka="+combo_Lokomotiva.Text;
+                "where LokomotivaSerija.Oznaka=" + combo_Lokomotiva.Text;
             var conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -270,6 +272,7 @@ namespace Saobracaj.Administracija
                 FillGV();
             }
         }
+
         private void tsDelete_Click(object sender, EventArgs e)
         {
             InsertPolozeneLokomotive lok = new InsertPolozeneLokomotive();

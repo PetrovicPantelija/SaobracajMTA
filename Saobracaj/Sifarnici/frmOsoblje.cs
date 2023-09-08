@@ -98,7 +98,7 @@ namespace Saobracaj.Sifarnici
                     insert = Convert.ToBoolean(reader["Upis"]);
                     if (insert == false)
                     {
-                       // tsNew.Enabled = false;
+                        //tsNew.Enabled = false;
                     }
                     update = Convert.ToBoolean(reader["Izmena"]);
                     if (update == false)
@@ -117,27 +117,7 @@ namespace Saobracaj.Sifarnici
         }
         private void cboPartneri_Leave(object sender, EventArgs e)
         {
-           
 
-
-
-            /*
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand command = new SqlCommand(" Select PaSifra, Rtrim(PaNaziv) as PaNaziv, Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac from Partnerji where PaNaziv=@NAZIV", conn);
-            //
-            // Add new SqlParameter to the command.
-            //
-            command.Parameters.AddWithValue("@NAZIV", cboPartneri.Text);
-            int result = (Int32)(command.ExecuteScalar());
-            SqlDataReader dr = command.ExecuteReader();
-            if (dr.Read())
-            {
-                //txtSifra.Text = dr[0].ToString();
-                // read data for first record here
-            } 
-           */
         }
 
         private void frmOsoblje_Load(object sender, EventArgs e)

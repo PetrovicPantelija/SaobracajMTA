@@ -102,7 +102,7 @@ namespace Saobracaj.SyncForm
                     update = Convert.ToBoolean(reader["Izmena"]);
                     if (update == false)
                     {
-                        //tsSave.Enabled = false;
+                       //tsSave.Enabled = false;
                     }
                     delete = Convert.ToBoolean(reader["Brisanje"]);
                     if (delete == false)

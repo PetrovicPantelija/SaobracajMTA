@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
     public partial class frmSistematizacijaPovezivanje : Form
     {
-        bool status = false;
+        private bool status = false;
+
         public frmSistematizacijaPovezivanje()
         {
             InitializeComponent();
@@ -23,19 +18,21 @@ namespace Saobracaj.Administracija
             IdForme();
             PravoPristupa();
         }
-        string niz = "";
+
+        private string niz = "";
         public static string code = "frmSistematizacijaPovezivanje";
         public bool Pravo;
-        int idGrupe;
-        int idForme;
-        bool insert;
-        bool update;
-        bool delete;
-        string Kor = Sifarnici.frmLogovanje.user.ToString();
+        private int idGrupe;
+        private int idForme;
+        private bool insert;
+        private bool update;
+        private bool delete;
+        private string Kor = Sifarnici.frmLogovanje.user.ToString();
+
         public string IdGrupe()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
+            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();
             string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -55,11 +52,11 @@ namespace Saobracaj.Administracija
                     niz = niz + "," + dr["IdGrupe"].ToString();
                     count++;
                 }
-
             }
             conn.Close();
             return niz;
         }
+
         private int IdForme()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -115,6 +112,7 @@ namespace Saobracaj.Administracija
 
             conn.Close();
         }
+
         private void frmSistematizacijaPovezivanje_Load(object sender, EventArgs e)
         {
             var select = " Select ID, (cast(ID as nvarchar(5)) + ' ' + Naziv) as Naziv from GrupaDelovnihMesta";
@@ -146,7 +144,6 @@ namespace Saobracaj.Administracija
             cboSistematizacija.ValueMember = "DmSifra";
 
             RefreshDataGrid();
-
         }
 
         private void RefreshDataGrid()
@@ -165,7 +162,6 @@ namespace Saobracaj.Administracija
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
-
 
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
@@ -203,7 +199,6 @@ namespace Saobracaj.Administracija
 
         private void tsSave_Click(object sender, EventArgs e)
         {
-
             if (status == true)
             {
                 InsertSistematizacija ins = new InsertSistematizacija();
@@ -225,6 +220,5 @@ namespace Saobracaj.Administracija
             RefreshDataGrid();
             status = false;
         }
-
     }
 }

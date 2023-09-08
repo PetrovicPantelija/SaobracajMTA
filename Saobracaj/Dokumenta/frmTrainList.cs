@@ -20,7 +20,7 @@ namespace Saobracaj.Dokumenta
     {
         private TrainListDAO _trainList = new TrainListDAO();
         private TrainListItemDAO _trainListItem = new TrainListItemDAO();
-        int ZadnjiIndex = 0;
+
         int SelectedRowIndexTekuci;
         int trainListSelectedRow;
         int trainListItemSelectedRow;
@@ -76,15 +76,12 @@ namespace Saobracaj.Dokumenta
 
         private void REfreshSve()
         {
-           
             if (OtvaranjeIzNajave == 2)
             { groupBoxAddEdit.Visible = true; }
             else
             {
                 groupBoxAddEdit.Visible = false;
-
             }
-            //Ovde je izgubio 
             //_trainList data ;
             // var data = ;
             //PANTA Get all
@@ -100,7 +97,7 @@ namespace Saobracaj.Dokumenta
                     //  trainListSelectedRow = dataGrid1.CurrentRow.Index;
                     dataGrid1.CurrentRow.Selected = true;
                     trainListSelectedRow = SelectedRowIndexTekuci;
-                    trainListSelectedRow = ZadnjiIndex;
+
                     List<TrainListItemModel> itemList = _trainListItem.GetAllBySuperiorId((int)dataGrid1.Rows[trainListSelectedRow].Cells[0].Value);
                     if (itemList.Count > 0)
                     {
@@ -462,7 +459,6 @@ namespace Saobracaj.Dokumenta
         private void btn_ImportExcel_Click(object sender, EventArgs e)
         {
             trainListSelectedRow = dataGrid1.CurrentRow.Index;
-            trainListSelectedRow = ZadnjiIndex;
             _trainListItem.ReadFromExcel((int)dataGrid1.Rows[trainListSelectedRow].Cells[0].Value);
 
 
@@ -497,54 +493,6 @@ namespace Saobracaj.Dokumenta
             foreach (string n in UN)
             {
                 txt_UN.Text += n + Environment.NewLine;
-            }
-
-            VratiNaNajavuPosleAzuriranja();
-        }
-
-        string VratiTrainNo(string IDTraina)
-        {
-            string TON = "";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(s_connection);
-
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand("Select KomOznaka from TrainList Where ID = " + Convert.ToInt32(textBoxSearch.Text)
-            , con);
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            while (dr.Read())
-            {
-                TON = dr["KomOznaka"].ToString();
-               
-
-
-            }
-            con.Close();
-            return TON;
-        }
-
-        private void VratiNaNajavuPosleAzuriranja()
-        {
-            SelectedRowIndexTekuci = ZadnjiIndex;
-            //REfreshSve();
-            SelectROWDataGRID1();
-
-            DialogResult dialogResult = MessageBox.Show("Nakon uvoza podaci na poslu bice azurirani", "Azuriranje posla", MessageBoxButtons.YesNo);
-
-            string TNO = VratiTrainNo(textBoxSearch.Text);
-            if (dialogResult == DialogResult.Yes)
-            {
-                VratiSumuTaraKola();
-                VratiSumuNetoDuzinaKola();
-                InsertTrainList upd = new InsertTrainList();
-                upd.UpdateNajave(Convert.ToDouble(sNetoKont.Text), Convert.ToDouble(sDuzinaKola.Text), Convert.ToInt32(txtBrojKola.Text), TNO, Convert.ToDouble(sBruto.Text), Convert.ToInt32(txtBrojKontejnera.Text));
-
-            }
-            else if (dialogResult == DialogResult.No)
-            {
-                //do something else
             }
 
         }
@@ -924,19 +872,7 @@ namespace Saobracaj.Dokumenta
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedIndex == 0)
-            {
-                REfreshSve();
-              //  RefreshSve();
-
-            }
-            else if (tabControl1.SelectedIndex == 3)
-            {
-                InsertTrainList del = new InsertTrainList();
-                del.ProveriTrainListTrainListaTer(Convert.ToInt32(textBoxSearch.Text));
-                del.ProveriTrainListTrainLista2Ter(Convert.ToInt32(textBoxSearch.Text));
-                RefreshDatagridDuzinaTaraPredhodni();
-            }
+      
         }
         private void SelectROWDataGRID1()
         {
@@ -956,23 +892,21 @@ namespace Saobracaj.Dokumenta
             
             if (dataGrid1.RowCount > 0)
             {
-                trainListSelectedRow = dataGrid1.SelectedRows[0].Index;
-                ZadnjiIndex = trainListSelectedRow;
+                trainListSelectedRow = dataGrid1.SelectedRows[0].Index; ;
                 List<TrainListItemModel> itemList = _trainListItem.GetAllBySuperiorId((int)dataGrid1.Rows[trainListSelectedRow].Cells[0].Value);
                 dataGrid2.DataSource = itemList;
                 dataGrid2.Columns[0].Width = 0;
                 dataGrid2.Columns[1].Visible = false;
 
-            /*
+
                 Total totalCalc = new Total(itemList, (int)dataGrid1.Rows[trainListSelectedRow].Cells[0].Value);
                 txt_TotalUnitTare.Text = totalCalc.TotalUnitTare.ToString() + " kg";
                 txt_TotalGoods.Text = totalCalc.TotalGoods.ToString() + " kg";
                 txt_TotalWagonTare.Text = totalCalc.TotalWagonTare.ToString() + " kg";
                 txt_TotalWeight.Text = totalCalc.TotalWeight.ToString() + " kg";
                 txt_TotalTrainLength.Text = totalCalc.TotalTrainLength.ToString() + " m";
-            */
             }
-           
+
         }
 
         private void dataGrid1_SelectionChanged(object sender, EventArgs e)
@@ -985,10 +919,6 @@ namespace Saobracaj.Dokumenta
             InsertTrainList del = new InsertTrainList();
             del.DelSveStavkeTrainLista(Convert.ToInt32(textBoxSearch.Text));
             dataGrid1.Refresh();
-
-            SelectedRowIndexTekuci = ZadnjiIndex;
-            SelectROWDataGRID1();
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -1010,7 +940,7 @@ namespace Saobracaj.Dokumenta
                         InsertTrainList del = new InsertTrainList();
                         del.PromeniVrednostiZaSvakaKola(row.Cells[0].Value.ToString(), Convert.ToInt32(textBoxSearch.Text));
                         // dataGrid2_Click(e.);
-                       // MessageBox.Show("Ponovo uradite refresh sa klikom na izabrani posao i digme stare vrednosti");
+                        MessageBox.Show("Ponovo uradite refresh sa klikom na izabrani posao i digme stare vrednosti");
                         // txtOpis.Text = row.Cells[1].Value.ToString();
                     }
                 }
@@ -1043,22 +973,14 @@ namespace Saobracaj.Dokumenta
 
         private void button5_Click(object sender, EventArgs e)
         {
-            VratiNaNajavuPosleAzuriranja();
-            /*
             InsertTrainList upd = new InsertTrainList();
             upd.UpdateNajave(Convert.ToDouble(sNetoKont.Text), Convert.ToDouble(sDuzinaKola.Text), Convert.ToInt32(txtBrojKola.Text), txt_trainNo.Text, Convert.ToDouble(sBruto.Text), Convert.ToInt32(txtBrojKontejnera.Text));
-        
-            */}
+        }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             frmTeretnica ter = new frmTeretnica();
             ter.Show();
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            VratiNaNajavuPosleAzuriranja();
         }
     }
 }

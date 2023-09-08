@@ -81,7 +81,6 @@ namespace Saobracaj.Dokumenta
             conn.Close();
             return idForme;
         }
-
         private void PravoPristupa()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -108,7 +107,7 @@ namespace Saobracaj.Dokumenta
                     update = Convert.ToBoolean(reader["Izmena"]);
                     if (update == false)
                     {
-                       // tsSave.Enabled = false;
+                        //tsSave.Enabled = false;
                     }
                     delete = Convert.ToBoolean(reader["Brisanje"]);
                     if (delete == false)

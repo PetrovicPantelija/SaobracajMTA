@@ -60,7 +60,7 @@ namespace Saobracaj.Sifarnici
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
+            string query = "Select IdGrupe from KorisnikGrupa Where RTrim(Korisnik) = " + "'" + Kor.ToString().Trim() + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);

@@ -1,27 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
-    class InsertAdministracije
+    internal class InsertAdministracije
     {
         public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+
         public void UpdateNull()
         {
-
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateNullVrednosti";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -34,12 +29,10 @@ namespace Saobracaj.Administracija
                 myTransaction = myConnection.BeginTransaction();
                 myCommand.Transaction = myTransaction;
             }
-
             catch (SqlException)
             {
                 throw new Exception("Neuspešan upis cena u bazu");
             }
-
             finally
             {
                 if (!error)
@@ -47,7 +40,6 @@ namespace Saobracaj.Administracija
                     myTransaction.Commit();
                     MessageBox.Show("Nije uspeo upis cena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
                 myConnection.Close();
 
@@ -55,20 +47,15 @@ namespace Saobracaj.Administracija
                 {
                     // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
                 }
-
-
             }
         }
 
-        public void InsertPravoGrupeNaForme(int IDGrupe, int IDForme, int Upis, int Izmena , int Brisanje)
+        public void InsertPravoGrupeNaForme(int IDGrupe, int IDForme, int Upis, int Izmena, int Brisanje)
         {
-
-
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "InsertPravoGrupeNaForme";
             cmd.CommandType = CommandType.StoredProcedure;
-
 
             SqlParameter paramIDGrupe = new SqlParameter();
             paramIDGrupe.ParameterName = "@IDGrupe";
@@ -83,7 +70,6 @@ namespace Saobracaj.Administracija
             paramIDForme.Direction = ParameterDirection.Input;
             paramIDForme.Value = IDForme;
             cmd.Parameters.Add(paramIDForme);
-
 
             SqlParameter paramUpis = new SqlParameter();
             paramUpis.ParameterName = "@Upis";
@@ -133,20 +119,15 @@ namespace Saobracaj.Administracija
             }
             if (error)
             {
-
             }
-
         }
 
         public void DeletePravoGrupeNaForme(int IDGrupe, int IDForme)
         {
-
-
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "DeletePravoGrupeNaForme";
             cmd.CommandType = CommandType.StoredProcedure;
-
 
             SqlParameter paramIDGrupe = new SqlParameter();
             paramIDGrupe.ParameterName = "@IDGrupe";
@@ -189,24 +170,7 @@ namespace Saobracaj.Administracija
             }
             if (error)
             {
-
             }
-
         }
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

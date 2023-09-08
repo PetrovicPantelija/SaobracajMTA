@@ -97,23 +97,24 @@ namespace Saobracaj.SyncForm
                     insert = Convert.ToBoolean(reader["Upis"]);
                     if (insert == false)
                     {
-                      //  tsNew.Enabled = false;
+                        //tsNew.Enabled = false;
                     }
                     update = Convert.ToBoolean(reader["Izmena"]);
                     if (update == false)
                     {
-                       // tsSave.Enabled = false;
+                       //tsSave.Enabled = false;
                     }
                     delete = Convert.ToBoolean(reader["Brisanje"]);
                     if (delete == false)
                     {
-                        //tsDelete.Enabled = false;
+                       //tsDelete.Enabled = false;
                     }
                 }
             }
 
             conn.Close();
         }
+
         private void frmNajavaArhivaAnaliza_Load(object sender, EventArgs e)
         {
           

@@ -41,9 +41,6 @@
             this.metroButton4 = new MetroFramework.Controls.MetroButton();
             this.BrZapisa = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.metroButton7 = new MetroFramework.Controls.MetroButton();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BrZapisa)).BeginInit();
             this.SuspendLayout();
@@ -94,7 +91,7 @@
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.dataGridView1.Location = new System.Drawing.Point(23, 137);
+            this.dataGridView1.Location = new System.Drawing.Point(23, 79);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -108,7 +105,7 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(892, 303);
+            this.dataGridView1.Size = new System.Drawing.Size(881, 361);
             this.dataGridView1.TabIndex = 5;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -197,52 +194,12 @@
             this.label1.TabIndex = 279;
             this.label1.Text = "Broj Zapisa:";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(25, 83);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 17);
-            this.label3.TabIndex = 288;
-            this.label3.Text = "Vreme od:";
-            // 
-            // metroButton7
-            // 
-            this.metroButton7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.metroButton7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.metroButton7.ForeColor = System.Drawing.Color.White;
-            this.metroButton7.Location = new System.Drawing.Point(250, 80);
-            this.metroButton7.Name = "metroButton7";
-            this.metroButton7.Size = new System.Drawing.Size(197, 23);
-            this.metroButton7.TabIndex = 287;
-            this.metroButton7.Text = "Prikazi od vremena";
-            this.metroButton7.UseCustomBackColor = true;
-            this.metroButton7.UseCustomForeColor = true;
-            this.metroButton7.UseSelectable = true;
-            this.metroButton7.Click += new System.EventHandler(this.metroButton7_Click);
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "dd.MM.yyyy";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(115, 83);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.ShowUpDown = true;
-            this.dateTimePicker1.Size = new System.Drawing.Size(121, 20);
-            this.dateTimePicker1.TabIndex = 286;
-            this.dateTimePicker1.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
             // frmPrijavaSmene
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(927, 450);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.metroButton7);
-            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BrZapisa);
             this.Controls.Add(this.metroButton4);
@@ -273,8 +230,5 @@
         private MetroFramework.Controls.MetroButton metroButton4;
         private System.Windows.Forms.NumericUpDown BrZapisa;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label3;
-        private MetroFramework.Controls.MetroButton metroButton7;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

@@ -81,7 +81,7 @@
       <HintPath>..\packages\AjaxMin.5.14.5506.26202\lib\net40\AjaxMin.dll</HintPath>
     </Reference>
     <Reference Include="Bunifu_UI_v1.52">
-      <HintPath>..\..\..\..\..\Desktop\Bunifu\Bunifu_UI_v1.52.dll</HintPath>
+      <HintPath>..\..\..\..\..\Desktop\DLL\Bunifu_UI_v1.52.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -2313,12 +2313,6 @@
     <Compile Include="SyncForm\frmPregledMasinovodje.Designer.cs">
       <DependentUpon>frmPregledMasinovodje.cs</DependentUpon>
     </Compile>
-    <Compile Include="SyncForm\frmPregledMasinovodje2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SyncForm\frmPregledMasinovodje2.Designer.cs">
-      <DependentUpon>frmPregledMasinovodje2.cs</DependentUpon>
-    </Compile>
     <Compile Include="SyncForm\frmPregledMobilni.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4007,9 +4001,6 @@
     <EmbeddedResource Include="SyncForm\frmPregledMasinovodje.resx">
       <DependentUpon>frmPregledMasinovodje.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SyncForm\frmPregledMasinovodje2.resx">
-      <DependentUpon>frmPregledMasinovodje2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="SyncForm\frmPregledMobilni.resx">
       <DependentUpon>frmPregledMobilni.cs</DependentUpon>
     </EmbeddedResource>
@@ -4893,7 +4884,6 @@
     <None Include="Resources\mtaLogo.JPG" />
     <None Include="Resources\LEGET-colorP.jpg" />
     <None Include="Resources\excel-icon-transparent-101.png" />
-    <None Include="Resources\kontejners.jpg" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

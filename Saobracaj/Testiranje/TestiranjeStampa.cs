@@ -101,7 +101,7 @@ namespace Saobracaj.Testiranje
                     insert = Convert.ToBoolean(reader["Upis"]);
                     if (insert == false)
                     {
-                        //tsNew.Enabled = false;
+                       // tsNew.Enabled = false;
                     }
                     update = Convert.ToBoolean(reader["Izmena"]);
                     if (update == false)
@@ -111,7 +111,7 @@ namespace Saobracaj.Testiranje
                     delete = Convert.ToBoolean(reader["Brisanje"]);
                     if (delete == false)
                     {
-                        //tsDelete.Enabled = false;
+                       // tsDelete.Enabled = false;
                     }
                 }
             }

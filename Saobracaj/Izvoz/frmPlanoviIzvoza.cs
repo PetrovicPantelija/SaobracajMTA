@@ -15,12 +15,13 @@ namespace Saobracaj.Izvoz
 {
     public partial class frmPlanoviIzvoza : Form
     {
+
         public frmPlanoviIzvoza()
         {
             InitializeComponent();
+
         }
-
-
+        
         private void RefreshDataGrid()
         {
             var select = "Select IzvozKonacnaZaglavlje.ID, IzvozKonacnaZaglavlje.IDVoza, Voz.BrVoza, Voz.VremePolaska, Voz.VremeDolaska, s1.Opis as StanicaOd, s2.Opis as StanicaDo, Voz.Relacija, IzvozKonacnaZaglavlje.Napomena from IzvozKonacnaZaglavlje " +

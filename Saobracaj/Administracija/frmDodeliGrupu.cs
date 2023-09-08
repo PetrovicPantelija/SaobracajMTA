@@ -1,26 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
     public partial class frmDodeliGrupu : Form
     {
-        string Kor = Sifarnici.frmLogovanje.user.ToString();
+        private string Kor = Sifarnici.frmLogovanje.user.ToString();
         public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-        bool status = false;
-        int count;
-        int idPom;
-        string nazivPom;
-        string niz = "";
+        private bool status = false;
+        private int count;
+        private int idPom;
+        private string nazivPom;
+        private string niz = "";
+
         public frmDodeliGrupu()
         {
             InitializeComponent();
@@ -30,17 +26,19 @@ namespace Saobracaj.Administracija
             IdForme();
             PravoPristupa();
         }
+
         public static string code = "frmDodeliGrupu";
         public bool Pravo;
-        int idGrupe;
-        int idForme;
-        bool insert;
-        bool update;
-        bool delete;
+        private int idGrupe;
+        private int idForme;
+        private bool insert;
+        private bool update;
+        private bool delete;
+
         public string IdGrupe()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
+            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();
             string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -60,11 +58,11 @@ namespace Saobracaj.Administracija
                     niz = niz + "," + dr["IdGrupe"].ToString();
                     count++;
                 }
-
             }
             conn.Close();
             return niz;
         }
+
         private int IdForme()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -120,6 +118,7 @@ namespace Saobracaj.Administracija
 
             conn.Close();
         }
+
         public void RefreshGV()
         {
             var query = "select k.Korisnik,Rtrim(DeIme) + ' ' +Rtrim(DePriimek)as Zaposleni,k.IdGrupe,g.Naziv as 'Naziv Grupe' " +
@@ -131,7 +130,6 @@ namespace Saobracaj.Administracija
             da.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
-
 
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
@@ -151,6 +149,7 @@ namespace Saobracaj.Administracija
             dataGridView1.Columns[2].Width = 80;
             dataGridView1.Columns[3].Width = 150;
         }
+
         public void FillCombo()
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -162,7 +161,6 @@ namespace Saobracaj.Administracija
             combo_Korisnik.DataSource = ds.Tables[0];
             combo_Korisnik.DisplayMember = "Zaposleni";
             combo_Korisnik.ValueMember = "Korisnik";
-           
 
             var query1 = "Select * From GrupeKorisnik";
             da = new SqlDataAdapter(query1, conn);
@@ -171,7 +169,6 @@ namespace Saobracaj.Administracija
             combo_Grupa.DataSource = ds1.Tables[0];
             combo_Grupa.DisplayMember = "Naziv";
             combo_Grupa.ValueMember = "IdGrupe";
-            
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -195,10 +192,8 @@ namespace Saobracaj.Administracija
             status = true;
         }
 
-
         private void tsSave_Click(object sender, EventArgs e)
         {
-
             string query = "select Count(korisnik) as Pom from KorisnikGrupa where korisnik=" + "'" + combo_Korisnik.SelectedValue.ToString().TrimEnd() + "'";
             SqlConnection conn = new SqlConnection(connect);
             conn.Open();
@@ -211,8 +206,8 @@ namespace Saobracaj.Administracija
             conn.Close();
 
             conn.Open();
-            string query2= "Select Naziv,IdGrupe from GrupeKorisnik Where IdGrupe in" +
-                "(Select IdGrupe From KorisnikGrupa Where Korisnik =" + "'" + combo_Korisnik.SelectedValue.ToString().TrimEnd() + "'"+")";
+            string query2 = "Select Naziv,IdGrupe from GrupeKorisnik Where IdGrupe in" +
+                "(Select IdGrupe From KorisnikGrupa Where Korisnik =" + "'" + combo_Korisnik.SelectedValue.ToString().TrimEnd() + "'" + ")";
             SqlCommand cmd2 = new SqlCommand(query2, conn);
             SqlDataReader dr2 = cmd2.ExecuteReader();
             while (dr2.Read())
@@ -224,11 +219,11 @@ namespace Saobracaj.Administracija
 
             if (count >= 1)
             {
-                DialogResult dialogResult = MessageBox.Show("Korsinik može biti u samo jednoj grupi.\nDa li želite da obrišete korisnika: "+combo_Korisnik.Text.TrimEnd()+" iz grupe "+ nazivPom.TrimEnd() +" i ubacite u novu grupu "+combo_Grupa.Text,"Izbor", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Korsinik može biti u samo jednoj grupi.\nDa li želite da obrišete korisnika: " + combo_Korisnik.Text.TrimEnd() + " iz grupe " + nazivPom.TrimEnd() + " i ubacite u novu grupu " + combo_Grupa.Text, "Izbor", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     Administracija.InsertKorisnikGrupa korisnikGrupa = new InsertKorisnikGrupa();
-                    korisnikGrupa.DeleteKorisnikGrupa(combo_Korisnik.SelectedValue.ToString().TrimEnd(),idPom);
+                    korisnikGrupa.DeleteKorisnikGrupa(combo_Korisnik.SelectedValue.ToString().TrimEnd(), idPom);
                     status = true;
                     korisnikGrupa.InsKorisnikGrupa(Convert.ToString(combo_Korisnik.SelectedValue.ToString().TrimEnd()), Convert.ToInt32(combo_Grupa.SelectedValue.ToString()));
                     status = false;
@@ -250,6 +245,7 @@ namespace Saobracaj.Administracija
                 }
             }
         }
+
         private void tsDelete_Click(object sender, EventArgs e)
         {
             Administracija.InsertKorisnikGrupa korisnikGrupa = new InsertKorisnikGrupa();

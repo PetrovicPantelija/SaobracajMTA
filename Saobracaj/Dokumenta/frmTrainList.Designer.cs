@@ -96,8 +96,6 @@ namespace Saobracaj.Dokumenta
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.chkAktvni = new System.Windows.Forms.CheckBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.label20 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid1)).BeginInit();
             this.groupBoxAddEdit.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -127,7 +125,7 @@ namespace Saobracaj.Dokumenta
             // 
             // btn_ImportExcel
             // 
-            this.btn_ImportExcel.Location = new System.Drawing.Point(23, 248);
+            this.btn_ImportExcel.Location = new System.Drawing.Point(19, 248);
             this.btn_ImportExcel.Margin = new System.Windows.Forms.Padding(2);
             this.btn_ImportExcel.Name = "btn_ImportExcel";
             this.btn_ImportExcel.Size = new System.Drawing.Size(128, 31);
@@ -266,7 +264,7 @@ namespace Saobracaj.Dokumenta
             this.groupBoxAddEdit.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxAddEdit.Name = "groupBoxAddEdit";
             this.groupBoxAddEdit.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBoxAddEdit.Size = new System.Drawing.Size(359, 198);
+            this.groupBoxAddEdit.Size = new System.Drawing.Size(359, 206);
             this.groupBoxAddEdit.TabIndex = 59;
             this.groupBoxAddEdit.TabStop = false;
             this.groupBoxAddEdit.Text = "Insert Train List";
@@ -762,16 +760,15 @@ namespace Saobracaj.Dokumenta
             this.button2.TabIndex = 89;
             this.button2.Text = "PredhodniPodaci";
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.GreenYellow;
-            this.button3.Location = new System.Drawing.Point(930, 254);
+            this.button3.Location = new System.Drawing.Point(979, 242);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(142, 21);
+            this.button3.Size = new System.Drawing.Size(214, 24);
             this.button3.TabIndex = 90;
             this.button3.Text = "Primeni stare vrednosti";
             this.button3.UseVisualStyleBackColor = false;
@@ -780,27 +777,25 @@ namespace Saobracaj.Dokumenta
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.GreenYellow;
-            this.button4.Location = new System.Drawing.Point(1217, 175);
+            this.button4.Location = new System.Drawing.Point(977, 214);
             this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(108, 40);
+            this.button4.Size = new System.Drawing.Size(216, 24);
             this.button4.TabIndex = 91;
             this.button4.Text = "Poslednji podaci sa Teretnica";
             this.button4.UseVisualStyleBackColor = false;
-            this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.GreenYellow;
-            this.button5.Location = new System.Drawing.Point(1217, 262);
+            this.button5.Location = new System.Drawing.Point(977, 270);
             this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(131, 43);
+            this.button5.Size = new System.Drawing.Size(216, 24);
             this.button5.TabIndex = 92;
-            this.button5.Text = " Vrati ukupne vrednosti na Posao";
+            this.button5.Text = "Vrati ukupne vrednosti na Posao";
             this.button5.UseVisualStyleBackColor = false;
-            this.button5.Visible = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // toolStrip1
@@ -843,36 +838,12 @@ namespace Saobracaj.Dokumenta
             this.chkAktvni.Text = "Tekuci poslovi";
             this.chkAktvni.UseVisualStyleBackColor = true;
             // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.Color.GreenYellow;
-            this.button6.Location = new System.Drawing.Point(1194, 147);
-            this.button6.Margin = new System.Windows.Forms.Padding(2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(131, 24);
-            this.button6.TabIndex = 95;
-            this.button6.Text = "Test";
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.Visible = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // label20
-            // 
-            this.label20.Location = new System.Drawing.Point(1214, 217);
-            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(134, 43);
-            this.label20.TabIndex = 96;
-            this.label20.Text = "POdaci ce se ucitati na Posao importom - posle testiranja ukloniti dugme";
-            // 
             // frmTrainList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1359, 760);
-            this.Controls.Add(this.label20);
-            this.Controls.Add(this.button6);
             this.Controls.Add(this.chkAktvni);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.button5);
@@ -1014,8 +985,6 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.CheckBox chkAktvni;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Label label20;
     }
 }
 

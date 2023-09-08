@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
-    class InsertGrupe
+    internal class InsertGrupe
     {
         public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+
         public void InsGrupe(string Naziv)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -39,9 +36,9 @@ namespace Saobracaj.Administracija
                 tran = conn.BeginTransaction();
                 cmd.Transaction = tran;
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
-                throw new Exception("Neuspešan upis" +ex.ToString());
+                throw new Exception("Neuspešan upis" + ex.ToString());
             }
             finally
             {
@@ -55,10 +52,10 @@ namespace Saobracaj.Administracija
             }
             if (error)
             {
-
             }
         }
-        public void UpdateGrupe(int ID,int IdGrupe,string Naziv)
+
+        public void UpdateGrupe(int ID, int IdGrupe, string Naziv)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -100,7 +97,7 @@ namespace Saobracaj.Administracija
             }
             catch (SqlException ex)
             {
-                throw new Exception("Neuspešan upis"+ex.ToString());
+                throw new Exception("Neuspešan upis" + ex.ToString());
             }
             finally
             {
@@ -114,9 +111,9 @@ namespace Saobracaj.Administracija
             }
             if (error)
             {
-
             }
         }
+
         public void DeleteGrupe(int ID)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -158,7 +155,6 @@ namespace Saobracaj.Administracija
             }
             if (error)
             {
-
             }
         }
     }

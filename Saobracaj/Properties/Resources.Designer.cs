@@ -103,16 +103,6 @@ namespace Saobracaj.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap kontejners {
-            get {
-                object obj = ResourceManager.GetObject("kontejners", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap LEGET_colorP {
             get {
                 object obj = ResourceManager.GetObject("LEGET-colorP", resourceCulture);

@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
-    class InsertKorisnici
+    internal class InsertKorisnici
     {
         public void InsKorisnici(string Korisnik, string Password, int Zakljucavanje, int DeSifra)
         {
@@ -61,12 +57,10 @@ namespace Saobracaj.Administracija
                 myTransaction = myConnection.BeginTransaction();
                 myCommand.Transaction = myTransaction;
             }
-
             catch (SqlException)
             {
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
-
             finally
             {
                 if (!error)
@@ -74,7 +68,6 @@ namespace Saobracaj.Administracija
                     myTransaction.Commit();
                     MessageBox.Show("Unos NHM broja je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
                 myConnection.Close();
 
@@ -83,8 +76,6 @@ namespace Saobracaj.Administracija
                     // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
                 }
             }
-
-
         }
 
         public void DeleteKorisnici(string Korisnik)
@@ -114,12 +105,10 @@ namespace Saobracaj.Administracija
                 myTransaction = myConnection.BeginTransaction();
                 myCommand.Transaction = myTransaction;
             }
-
             catch (SqlException)
             {
                 throw new Exception("Brisanje neuspešno");
             }
-
             finally
             {
                 if (!error)
@@ -127,7 +116,6 @@ namespace Saobracaj.Administracija
                     myTransaction.Commit();
                     MessageBox.Show("Brisanje nije uspešno", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
                 myConnection.Close();
 
@@ -139,5 +127,3 @@ namespace Saobracaj.Administracija
         }
     }
 }
-
-

@@ -1,30 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
     public partial class frmNotifikacije : Form
     {
-        string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-        string Kor = Sifarnici.frmLogovanje.user.ToString();
-        string niz = "";
-        bool status = false;
+        private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        private string Kor = Sifarnici.frmLogovanje.user.ToString();
+        private string niz = "";
+        private bool status = false;
         public static string code = "frmNotifikacije";
         public bool Pravo;
-        int idForme;
-        bool insert;
-        bool update;
-        bool delete;
-        int kreirao;
+        private int idForme;
+        private bool insert;
+        private bool update;
+        private bool delete;
+        private int kreirao;
+
         public frmNotifikacije()
         {
             InitializeComponent();
@@ -49,12 +44,12 @@ namespace Saobracaj.Administracija
                 }
             }
             conn.Close();
-
         }
+
         public string IdGrupe()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
+            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();
             string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -74,11 +69,11 @@ namespace Saobracaj.Administracija
                     niz = niz + "," + dr["IdGrupe"].ToString();
                     count++;
                 }
-
             }
             conn.Close();
             return niz;
         }
+
         private int IdForme()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -134,6 +129,7 @@ namespace Saobracaj.Administracija
 
             conn.Close();
         }
+
         private void FillGV()
         {
             var query = "Select ID,Kreirao,RTrim(Korisnici.Korisnik) as KorisnikKreirao,RTrim(Poruka) as Poruka,Notifikacije.Korisnik,(RTrim(Delavci.DeIme)+' '+RTrim(Delavci.DePriimek)) as Zaposleni," +
@@ -158,6 +154,7 @@ namespace Saobracaj.Administracija
             dataGridView1.Columns[5].Width = 120;
             dataGridView1.Columns[7].Width = 50;
         }
+
         private void FillCheck()
         {
             var query = "Select DeSifra,Korisnik From Korisnici order by Korisnik";
@@ -169,6 +166,7 @@ namespace Saobracaj.Administracija
             cbList_Korisnici.DisplayMember = "Korisnik";
             cbList_Korisnici.ValueMember = "DeSifra";
         }
+
         private void FillCombo()
         {
             var query = "select distinct DmNaziv from DelovnaMesta order by DmNaziv";
@@ -180,6 +178,7 @@ namespace Saobracaj.Administracija
             combo_RadnoMesto.DisplayMember = "DmNaziv";
             combo_RadnoMesto.ValueMember = "DmNaziv";
         }
+
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -210,10 +209,8 @@ namespace Saobracaj.Administracija
                             {
                                 cbList_Korisnici.SetItemChecked(i, true);
                             }
-
                         }
                     }
-
                 }
             }
             catch
@@ -223,12 +220,10 @@ namespace Saobracaj.Administracija
 
         private void frmNotifikacije_Load(object sender, EventArgs e)
         {
-
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -238,7 +233,6 @@ namespace Saobracaj.Administracija
 
         private void tsSave_Click(object sender, EventArgs e)
         {
-
             InsertObavestenje obavestenja = new InsertObavestenje();
             if (status == true)
             {
@@ -284,7 +278,7 @@ namespace Saobracaj.Administracija
                 "From Korisnici " +
                 "Inner join Delavci on Korisnici.DeSifra = Delavci.DeSifra " +
                 "Inner join DelovnaMesta on Delavci.DeSifDelMes = DelovnaMesta.DmSifra " +
-                "Where DmNaziv ='"+combo_RadnoMesto.SelectedValue+"' order by Korisnici.DeSifra";
+                "Where DmNaziv ='" + combo_RadnoMesto.SelectedValue + "' order by Korisnici.DeSifra";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();

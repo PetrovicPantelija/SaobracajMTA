@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
@@ -17,14 +11,15 @@ namespace Saobracaj.Administracija
     {
         public static string code = "frmKorisnici";
         public bool Pravo;
-        int idGrupe;
-        int idForme;
-        bool insert;
-        bool update;
-        bool delete;
-        string Kor = Sifarnici.frmLogovanje.user.ToString();
-        string niz = "";
-        bool status = false;
+        private int idGrupe;
+        private int idForme;
+        private bool insert;
+        private bool update;
+        private bool delete;
+        private string Kor = Sifarnici.frmLogovanje.user.ToString();
+        private string niz = "";
+        private bool status = false;
+
         public frmKorisnici()
         {
             InitializeComponent();
@@ -32,10 +27,11 @@ namespace Saobracaj.Administracija
             IdForme();
             PravoPristupa();
         }
+
         public string IdGrupe()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
+            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();
             string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -55,11 +51,11 @@ namespace Saobracaj.Administracija
                     niz = niz + "," + dr["IdGrupe"].ToString();
                     count++;
                 }
-
             }
             conn.Close();
             return niz;
         }
+
         private int IdForme()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -115,6 +111,7 @@ namespace Saobracaj.Administracija
 
             conn.Close();
         }
+
         private void RefreshDataGrid()
         {
             var select = " Select Korisnik, Password,  DeSifra from Korisnici";
@@ -129,7 +126,6 @@ namespace Saobracaj.Administracija
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
-
 
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
@@ -151,12 +147,11 @@ namespace Saobracaj.Administracija
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Largo";
             dataGridView1.Columns[1].Width = 100;
-        
         }
 
         private void frmKorisnici_Load(object sender, EventArgs e)
         {
-            var select3 = "  Select DeSifra, (Rtrim(DeIme) + ' ' +Rtrim(DePriimek)) as Naziv from Delavci where DeSifStat = 'A' order by DeIme"  ;
+            var select3 = "  Select DeSifra, (Rtrim(DeIme) + ' ' +Rtrim(DePriimek)) as Naziv from Delavci where DeSifStat = 'A' order by DeIme";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
@@ -168,8 +163,7 @@ namespace Saobracaj.Administracija
             cboLargoKorisnik.DataSource = ds3.Tables[0];
             cboLargoKorisnik.DisplayMember = "Naziv";
             cboLargoKorisnik.ValueMember = "DeSifra";
-        
-            
+
             RefreshDataGrid();
         }
 
@@ -185,11 +179,10 @@ namespace Saobracaj.Administracija
             if (status == true)
             {
                 InsertKorisnici ins = new InsertKorisnici();
-                ins.InsKorisnici(txtSifra.Text,txtOpis.Text,0, Convert.ToInt32(cboLargoKorisnik.SelectedValue));
+                ins.InsKorisnici(txtSifra.Text, txtOpis.Text, 0, Convert.ToInt32(cboLargoKorisnik.SelectedValue));
                 RefreshDataGrid();
                 status = false;
             }
-          
         }
 
         private void tsDelete_Click(object sender, EventArgs e)
@@ -206,7 +199,6 @@ namespace Saobracaj.Administracija
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-
                     if (row.Selected)
                     {
                         txtSifra.Text = row.Cells[0].Value.ToString();
@@ -214,15 +206,11 @@ namespace Saobracaj.Administracija
                         cboLargoKorisnik.SelectedValue = row.Cells[2].Value.ToString();
                     }
                 }
-
-
             }
             catch
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
         }
-
-
     }
 }

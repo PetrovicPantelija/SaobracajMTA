@@ -59,74 +59,6 @@ namespace Saobracaj.Dokumenta
             //TA\Racuni\2259\Racuni
         }
 
-        private void RefreshDataGridAktivnostiSlike()
-        {
-            var select = "";
-
-
-            select = "Select Aktivnosti.ID as Zapis,  Aktivnosti.Oznaka, " +
-                             " (RTrim(DeIme) + ' ' + RTRim(DePriimek)) as Zaposleni,  " +
-                             "  VremeOD, VremeDo,  Aktivnosti.Opis, UkupniTroskovi, RAcun, Kartica," +
-                               " Aktivnosti.DatumInserta " +
-                              " from Aktivnosti " +
-                              " inner join AktivnostiDokumenta on Aktivnosti.ID = AktivnostiDokumenta.IDAktivnosti " +
-                             " inner join Delavci on Delavci.DeSifra = Aktivnosti.Zaposleni  " +
-                               " inner join Kraji on Kraji.KrSifra = Aktivnosti.MestoUpucivanja" +
-                              " order by Aktivnosti.ID desc";
-
-
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
-
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
-            dataAdapter.Fill(ds);
-            dataGridView2.ReadOnly = true;
-            dataGridView2.DataSource = ds.Tables[0];
-
-            DataGridViewColumn column = dataGridView2.Columns[0];
-            dataGridView2.Columns[0].HeaderText = "ID";
-            dataGridView2.Columns[0].Width = 30;
-
-            DataGridViewColumn column1 = dataGridView2.Columns[1];
-            dataGridView2.Columns[1].HeaderText = "Oznaka";
-            dataGridView2.Columns[1].Width = 30;
-
-            DataGridViewColumn column2 = dataGridView2.Columns[2];
-            dataGridView2.Columns[2].HeaderText = "Zaposleni";
-            dataGridView2.Columns[2].Width = 100;
-
-            DataGridViewColumn column3 = dataGridView2.Columns[3];
-            dataGridView2.Columns[3].HeaderText = "Vreme od";
-            dataGridView2.Columns[3].Width = 100;
-
-            DataGridViewColumn column4 = dataGridView2.Columns[4];
-            dataGridView2.Columns[4].HeaderText = "Vreme do";
-            dataGridView2.Columns[4].Width = 100;
-
-
-            DataGridViewColumn column5 = dataGridView2.Columns[5];
-            dataGridView2.Columns[5].HeaderText = "Opis";
-            dataGridView2.Columns[5].Width = 120;
-
-            DataGridViewColumn column6 = dataGridView2.Columns[6];
-            dataGridView2.Columns[6].HeaderText = "Ukupni troškovi";
-            dataGridView2.Columns[6].Width = 50;
-
-
-            DataGridViewColumn column8 = dataGridView2.Columns[7];
-            dataGridView2.Columns[7].HeaderText = "Računi";
-            dataGridView2.Columns[7].Width = 50;
-
-            DataGridViewColumn column9 = dataGridView2.Columns[8];
-            dataGridView2.Columns[8].HeaderText = "Kartice";
-            dataGridView2.Columns[8].Width = 50;
-
-
-        }
-
         private void RefreshDataGridAktivnosti()
         {
             var select = "";
@@ -183,13 +115,13 @@ namespace Saobracaj.Dokumenta
             dataGridView2.Columns[6].Width = 50;
 
 
-            DataGridViewColumn column8 = dataGridView2.Columns[7];
-            dataGridView2.Columns[7].HeaderText = "Računi";
-            dataGridView2.Columns[7].Width = 50;
-
-            DataGridViewColumn column9 = dataGridView2.Columns[8];
-            dataGridView2.Columns[8].HeaderText = "Kartice";
+            DataGridViewColumn column8 = dataGridView2.Columns[8];
+            dataGridView2.Columns[8].HeaderText = "Računi";
             dataGridView2.Columns[8].Width = 50;
+
+            DataGridViewColumn column9 = dataGridView2.Columns[9];
+            dataGridView2.Columns[9].HeaderText = "Kartice";
+            dataGridView2.Columns[9].Width = 50;
 
 
         }
@@ -290,7 +222,7 @@ namespace Saobracaj.Dokumenta
 
         private void tsNew_Click(object sender, EventArgs e)
         {
-            RefreshDataGridAktivnostiSlike();
+            status = true;
         }
 
         private void frmEvidencijaRadaDokumenti_Load(object sender, EventArgs e)

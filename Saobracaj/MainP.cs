@@ -413,6 +413,7 @@ namespace Saobracaj
         }
         private void toolStripButton21_Click(object sender, EventArgs e)
         {
+            
             FormCollection fc = Application.OpenForms;
             bool bFormNameOpen = false;
             foreach (Form frm in fc)
@@ -430,9 +431,6 @@ namespace Saobracaj
                 PravoP = nbt.Pravo;
                 if (PravoP == true) { nbt.Show(); } else { return; }
             }
-
-
-           
         }
         private void toolStripButton22_Click(object sender, EventArgs e)
         {
@@ -810,17 +808,18 @@ namespace Saobracaj
         private void toolStripButton52_Click(object sender, EventArgs e)
         {
             Sifarnici.frmVrsteAktivnosti vrakt = new Sifarnici.frmVrsteAktivnosti();
-          
-                vrakt.Show();
-         
+            PravoP = vrakt.Pravo;
+            if (PravoP == true) { vrakt.Show(); } else { return; }
         }
 
         private void toolStripButton53_Click(object sender, EventArgs e)
         {
             Sifarnici.frmCenaPoRadniku cpr = new Sifarnici.frmCenaPoRadniku();
-          
+            if (Korisnik == "test")
+            {
                 cpr.Show();
-           
+            }
+            else { MessageBox.Show("Nemate prava za pristup ovoj formi"); return; }
         }
 
         private void toolStripButton54_Click(object sender, EventArgs e)
@@ -1794,52 +1793,116 @@ namespace Saobracaj
             // Testiranje.Sifarnici
            
               frmGreske greske = new frmGreske(Korisnik);
-            greske.Show();
+            PravoP = greske.Pravo;
+            if (PravoP == true)
+            {
+                greske.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton121_Click(object sender, EventArgs e)
         {
            frmDelovi snac = new frmDelovi(Korisnik);
-            snac.Show();
+            PravoP = snac.Pravo;
+            if (PravoP == true)
+            {
+                snac.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton122_Click(object sender, EventArgs e)
         {
 
             frmCene frmcen = new frmCene(Korisnik);
-            frmcen.Show();
+            PravoP = frmcen.Pravo;
+            if (PravoP == true)
+            {
+                frmcen.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton123_Click(object sender, EventArgs e)
         {
             frmTipCenovnika frmTC = new frmTipCenovnika(Korisnik);
-            frmTC.Show();
+            PravoP = frmTC.Pravo;
+            if (PravoP == true)
+            {
+                frmTC.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton124_Click(object sender, EventArgs e)
         {
             // frmKomitent komitenti = new frmKomitent(Korisnik);
             frmPartnerji komitenti = new frmPartnerji();
-            komitenti.Show();
+            PravoP = komitenti.Pravo;
+            if (PravoP == true)
+            {
+                komitenti.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton125_Click(object sender, EventArgs e)
         {
             frmNacinDolaskaOdlaska nac = new frmNacinDolaskaOdlaska(Korisnik);
-            nac.Show();
+            PravoP = nac.Pravo;
+            if (PravoP == true)
+            {
+                nac.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton126_Click(object sender, EventArgs e)
         {
             frmStatusRobe snac = new frmStatusRobe(Korisnik);
-            snac.Show();
+            PravoP = snac.Pravo;
+            if (PravoP == true)
+            {
+                snac.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton127_Click(object sender, EventArgs e)
         {
 
             frmDelavci delav = new frmDelavci();
-            delav.Show();
+            PravoP = delav.Pravo;
+            if (PravoP == true)
+            {
+                delav.Show();
+            }
+            else
+            {
+                return;
+            }
             //frmZaposleni zap = new frmZaposleni(Korisnik);
             //zap.Show();
         }
@@ -1847,13 +1910,29 @@ namespace Saobracaj
         private void toolStripButton129_Click(object sender, EventArgs e)
         {
             frmVrstaRobe vr = new frmVrstaRobe(Korisnik);
-            vr.Show();
+            PravoP = vr.Pravo;
+            if (PravoP == true)
+            {
+                vr.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton130_Click(object sender, EventArgs e)
         {
             frmTipKontejnera tkr = new frmTipKontejnera(Korisnik);
-            tkr.Show();
+            PravoP = tkr.Pravo;
+            if (PravoP == true)
+            {
+                tkr.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton131_Click(object sender, EventArgs e)
@@ -1863,7 +1942,15 @@ namespace Saobracaj
             // vozila.Show();
 
             frmSredstvoRada sr = new frmSredstvoRada();
-            sr.Show();
+            PravoP = sr.Pravo;
+            if (PravoP == true)
+            {
+                sr.Show();
+            }
+            else
+            {
+                return;
+            }
            
            // Testiranje.Dokumeta.frmVozila vozila = new Dokumeta.frmVozila(Korisnik);
           //  vozila.Show();
@@ -1881,19 +1968,43 @@ namespace Saobracaj
         private void toolStripButton133_Click(object sender, EventArgs e)
         {
             frmPozicija poz = new frmPozicija(Korisnik);
-            poz.Show();
+            PravoP = poz.Pravo;
+            if (PravoP == true)
+            {
+                poz.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton134_Click(object sender, EventArgs e)
         {
             frmSkladista sklad = new frmSkladista(Korisnik);
-            sklad.Show();
+            PravoP = sklad.Pravo;
+            if (PravoP == true)
+            {
+                sklad.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton135_Click(object sender, EventArgs e)
         {
            frmVrstaManipulacije frmvrman = new frmVrstaManipulacije(Korisnik);
-            frmvrman.Show();
+            PravoP = frmvrman.Pravo;
+            if (PravoP == true)
+            {
+                frmvrman.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton136_Click(object sender, EventArgs e)
@@ -1908,80 +2019,132 @@ namespace Saobracaj
         private void toolStripButton137_Click(object sender, EventArgs e)
         {
             frmPregledVozova pvoz = new frmPregledVozova(Korisnik);
-            pvoz.Show();
+            PravoP = pvoz.Pravo;
+            if (PravoP == true)
+            {
+                pvoz.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton138_Click(object sender, EventArgs e)
         {
             frmVoz vozovi = new frmVoz(Korisnik);
-            vozovi.Show();
+            PravoP = vozovi.Pravo;
+            if (PravoP == true)
+            {
+                vozovi.Show();
+            }
+            else { return; }
         }
 
         private void toolStripButton139_Click(object sender, EventArgs e)
         {
           
             frmPrijemKontejneraKamionPregled prkamion = new frmPrijemKontejneraKamionPregled(Korisnik);
-            prkamion.Show();
+            PravoP = prkamion.Pravo;
+            if (PravoP == true)
+            {
+                prkamion.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton140_Click(object sender, EventArgs e)
         {
             frmPrijemVozomPregled voz = new frmPrijemVozomPregled(Korisnik);
-            voz.Show();
+            PravoP = voz.Pravo;
+            if (PravoP == true)
+            {
+                voz.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton141_Click(object sender, EventArgs e)
         {
             frmBukingVoza buking = new frmBukingVoza(Korisnik);
-            buking.Show();
+            PravoP = buking.Pravo;
+            if (PravoP == true)
+            {
+                buking.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton142_Click(object sender, EventArgs e)
         {
             frmPregledOtpreme otprema = new frmPregledOtpreme(Korisnik);
-            otprema.Show();
+            PravoP = otprema.Pravo;
+            if (PravoP == true) { otprema.Show(); } else { return; }
         }
 
         private void toolStripButton143_Click(object sender, EventArgs e)
         {
             frmPregledOtpremeKamionom pkam = new frmPregledOtpremeKamionom(Korisnik);
-            pkam.Show();
+            PravoP = pkam.Pravo;
+            if (PravoP == true) { pkam.Show(); } else { return; }
         }
 
         private void toolStripButton144_Click(object sender, EventArgs e)
         {
             frmPregledNaloziZaPrevoz preg = new frmPregledNaloziZaPrevoz();
-            preg.Show();
+            PravoP = preg.Pravo;
+            if (PravoP == true) { preg.Show(); } else { return; }
         }
 
         private void toolStripButton145_Click(object sender, EventArgs e)
         {
             frmPutniNalog put = new frmPutniNalog(Korisnik);
-            put.Show();
+            PravoP = put.Pravo;
+            if (PravoP == true)
+            {
+                put.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton146_Click(object sender, EventArgs e)
         {
             frmPregledTovarnihListova ptl = new frmPregledTovarnihListova();
-            ptl.Show();
+            PravoP = ptl.Pravo;
+            if (PravoP == true) { ptl.Show(); } else { return; }
         }
 
         private void toolStripButton147_Click(object sender, EventArgs e)
         {
             frmManipulacije man = new frmManipulacije(Korisnik);
-            man.Show();
+            PravoP = man.Pravo;
+            if (PravoP == true) { man.Show(); } else { return; }
         }
 
         private void toolStripButton148_Click(object sender, EventArgs e)
         {
             frmPregledNarucenihManipulacija pnman = new frmPregledNarucenihManipulacija(Korisnik);
-            pnman.Show();
+            PravoP = pnman.Pravo;
+            if (PravoP == true) { pnman.Show(); } else { return; }
         }
 
         private void toolStripButton149_Click(object sender, EventArgs e)
         {
             frmPregledManipulacijaPoPartneru mpp = new frmPregledManipulacijaPoPartneru();
-            mpp.Show();
+            PravoP = mpp.Pravo;
+            if (PravoP == true) { mpp.Show(); } else { return; };
         }
 
         private void toolStripButton150_Click(object sender, EventArgs e)
@@ -1993,62 +2156,79 @@ namespace Saobracaj
         private void toolStripButton151_Click(object sender, EventArgs e)
         {
             frmSkladistePrijem spr = new frmSkladistePrijem(Korisnik);
-            spr.Show();
+            PravoP = spr.Pravo;
+            if (PravoP == true) { spr.Show(); } else { return; }
         }
 
         private void toolStripButton152_Click(object sender, EventArgs e)
         {
             frmPregledMedjuskladisniPrenos pprmp = new frmPregledMedjuskladisniPrenos(Korisnik);
-            pprmp.Show();
+            PravoP = pprmp.Pravo;
+            if (PravoP == true) { pprmp.Show(); } else { return; }
         }
 
         private void toolStripButton153_Click(object sender, EventArgs e)
         {
             frmMedjuskladisniPrenos mpr = new frmMedjuskladisniPrenos(Korisnik);
-            mpr.Show();
+            PravoP = mpr.Pravo;
+            if (PravoP == true) { mpr.Show(); } else { return; }
         }
 
         private void toolStripButton154_Click(object sender, EventArgs e)
         {
             frmSkladisteOtprema sklOtp = new frmSkladisteOtprema(Korisnik);
-            sklOtp.Show();
+            PravoP = sklOtp.Pravo;
+            if (PravoP == true) { sklOtp.Show(); } else { return; }
         }
 
         private void toolStripButton155_Click(object sender, EventArgs e)
         {
             frmPrometKontejnera prometkon = new frmPrometKontejnera(Korisnik);
-            prometkon.Show();
+            PravoP = prometkon.Pravo;
+            if (PravoP == true) { prometkon.Show(); } else { return; }
         }
 
         private void toolStripButton156_Click(object sender, EventArgs e)
         {
 
             frmLager lager = new frmLager(Korisnik);
-            lager.Show();
+            PravoP = lager.Pravo;
+            if (PravoP == true) { lager.Show(); } else { return; }
         }
 
         private void toolStripButton157_Click(object sender, EventArgs e)
         {
             frmPopis popis = new frmPopis(Korisnik);
-            popis.Show();
+            PravoP = popis.Pravo;
+            if (PravoP == true) { popis.Show(); } else { return; }
         }
 
         private void toolStripButton158_Click(object sender, EventArgs e)
         {
             frmPopisPregled pl = new frmPopisPregled();
-            pl.Show();
+            PravoP = pl.Pravo;
+            if (PravoP == true) { pl.Show(); } else { return; }
         }
 
         private void toolStripButton159_Click(object sender, EventArgs e)
         {
             frmLagerOperater lager = new frmLagerOperater();
-            lager.Show();
+            PravoP = lager.Pravo;
+            if (PravoP == true) { lager.Show(); } else { return; }
         }
 
         private void toolStripButton160_Click(object sender, EventArgs e)
         {
             frmPregledNaloziZaPrevoz preg = new frmPregledNaloziZaPrevoz();
-            preg.Show();
+            PravoP = preg.Pravo;
+            if (PravoP == true)
+            {
+                preg.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton161_Click(object sender, EventArgs e)
@@ -2066,7 +2246,8 @@ namespace Saobracaj
         private void toolStripButton167_Click(object sender, EventArgs e)
         {
             frmPutniNalog pn = new frmPutniNalog();
-            pn.Show();
+            PravoP = pn.Pravo;
+            if (PravoP == true) { pn.Show(); } else { return; }
         }
 
         private void toolStripButton163_Click(object sender, EventArgs e)
@@ -2196,7 +2377,15 @@ namespace Saobracaj
         private void toolStripButton176_Click(object sender, EventArgs e)
         {
             frmDelavci del = new frmDelavci();
-            del.Show();
+            PravoP = del.Pravo;
+            if (PravoP == true)
+            {
+                del.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton170_Click_1(object sender, EventArgs e)
@@ -2448,25 +2637,50 @@ namespace Saobracaj
         private void toolStripButton188_Click(object sender, EventArgs e)
         {
             frmTipKontejnera tkon = new frmTipKontejnera();
-            tkon.Show();
+            PravoP = tkon.Pravo;
+            if (PravoP == true)
+            {
+                tkon.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton189_Click(object sender, EventArgs e)
         {
             frmVrstaManipulacije vm = new frmVrstaManipulacije();
-            vm.Show();
+            PravoP = vm.Pravo;
+            if (PravoP == true)
+            {
+                vm.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton190_Click(object sender, EventArgs e)
         {
             frmVoz voz = new frmVoz();
-            voz.Show();
+            PravoP = voz.Pravo;
+            if (PravoP == true)
+            {
+                voz.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton191_Click(object sender, EventArgs e)
         {
             Uvoz.frmPregledPlanovaUtovara fppp = new Uvoz.frmPregledPlanovaUtovara();
-            fppp.Show();
+            PravoP = fppp.Pravo;
+            if (PravoP == true) { fppp.Show(); } else { return; }
         }
 
         private void toolStripButton192_Click(object sender, EventArgs e)
@@ -2503,7 +2717,15 @@ namespace Saobracaj
         private void toolStripButton197_Click(object sender, EventArgs e)
         {
             frmPregledVozova pvozo = new frmPregledVozova();
-            pvozo.Show();
+            PravoP = pvozo.Pravo;
+            if (PravoP == true)
+            {
+                pvozo.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton198_Click(object sender, EventArgs e)
@@ -2617,19 +2839,43 @@ namespace Saobracaj
         private void toolStripButton217_Click(object sender, EventArgs e)
         {
             frmTipCenovnika frmTC = new frmTipCenovnika(Korisnik);
-            frmTC.Show();
+            PravoP = frmTC.Pravo;
+            if (PravoP == true)
+            {
+                frmTC.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton216_Click(object sender, EventArgs e)
         {
             frmCene frmcen = new frmCene(Korisnik);
-            frmcen.Show();
+            PravoP = frmcen.Pravo;
+            if (PravoP == true)
+            {
+                frmcen.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton107_Click_2(object sender, EventArgs e)
         {
             frmOrganizacionaJedinica otg = new frmOrganizacionaJedinica();
-            otg.Show();
+            PravoP = otg.Pravo;
+            if (PravoP == true)
+            {
+                otg.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton218_Click(object sender, EventArgs e)
@@ -2666,7 +2912,15 @@ namespace Saobracaj
         private void toolStripButton220_Click(object sender, EventArgs e)
         {
             frmVagoniSerije frm = new frmVagoniSerije();
-            frm.Show();
+            PravoP = frm.Pravo;
+            if (PravoP == true)
+            {
+                frm.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton221_Click(object sender, EventArgs e)
@@ -2678,7 +2932,15 @@ namespace Saobracaj
         private void toolStripButton222_Click(object sender, EventArgs e)
         {
             frmVoz voz = new frmVoz();
-            voz.Show();
+            PravoP = voz.Pravo;
+            if (PravoP == true)
+            {
+                voz.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton224_Click(object sender, EventArgs e)
@@ -2753,7 +3015,15 @@ namespace Saobracaj
         private void toolStripButton232_Click(object sender, EventArgs e)
         {
             frmTipKontejnera tk = new frmTipKontejnera();
-            tk.Show();
+            PravoP = tk.Pravo;
+            if (PravoP == true)
+            {
+                tk.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton233_Click(object sender, EventArgs e)
@@ -2791,7 +3061,15 @@ namespace Saobracaj
         {
 
             frmOrganizacionaJedinica otg = new frmOrganizacionaJedinica();
-            otg.Show();
+            PravoP = otg.Pravo;
+            if (PravoP == true)
+            {
+                otg.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton240_Click(object sender, EventArgs e)
@@ -2809,14 +3087,16 @@ namespace Saobracaj
         private void toolStripButton242_Click(object sender, EventArgs e)
         {
             Mobile.frmPrijavaSmeneOld pso = new Mobile.frmPrijavaSmeneOld();
-            pso.Show();
+            PravoP = pso.Pravo;
+            if (PravoP == true) { pso.Show(); } else { return; }
         }
 
         private void toolStripButton243_Click(object sender, EventArgs e)
         {
         
                 Servis.frmPrijavaMasinovodjeOld mas = new Servis.frmPrijavaMasinovodjeOld();
-                mas.Show();
+            PravoP = mas.Pravo;
+            if (PravoP == true) { mas.Show(); } else { return; }
         }
 
         private void toolStripButton253_Click(object sender, EventArgs e)
@@ -2834,49 +3114,113 @@ namespace Saobracaj
         private void toolStripButton265_Click(object sender, EventArgs e)
         {
             frmPartnerji parn = new frmPartnerji();
-            parn.Show();
+            PravoP = parn.Pravo;
+            if (PravoP == true)
+            {
+                parn.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton244_Click(object sender, EventArgs e)
         {
             frmPartnerji parn = new frmPartnerji();
-            parn.Show();
+            PravoP = parn.Pravo;
+            if (PravoP == true)
+            {
+                parn.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton245_Click(object sender, EventArgs e)
         {
             frmTipCenovnika tc = new frmTipCenovnika();
-            tc.Show();
+            PravoP = tc.Pravo;
+            if (PravoP == true)
+            {
+                tc.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton266_Click(object sender, EventArgs e)
         {
             frmTipCenovnika tc = new frmTipCenovnika();
-            tc.Show();
+            PravoP = tc.Pravo;
+            if (PravoP == true)
+            {
+                tc.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton267_Click(object sender, EventArgs e)
         {
             frmVrstaManipulacije vm = new frmVrstaManipulacije();
-            vm.Show();
+            PravoP = vm.Pravo;
+            if (PravoP == true)
+            {
+                vm.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton246_Click(object sender, EventArgs e)
         {
             frmVrstaManipulacije vm = new frmVrstaManipulacije();
-            vm.Show();
+            PravoP = vm.Pravo;
+            if (PravoP == true)
+            {
+                vm.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton268_Click(object sender, EventArgs e)
         {
             frmCene cen = new frmCene();
-            cen.Show();
+            PravoP = cen.Pravo;
+            if (PravoP == true)
+            {
+                cen.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton247_Click(object sender, EventArgs e)
         {
             frmCene cen = new frmCene();
-            cen.Show();
+            PravoP = cen.Pravo;
+            if (PravoP == true)
+            {
+                cen.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton248_Click(object sender, EventArgs e)
@@ -2954,13 +3298,29 @@ namespace Saobracaj
         private void toolStripButton104_Click_2(object sender, EventArgs e)
         {
             frmNHM nhm = new frmNHM();
-            nhm.Show();
+            PravoP = nhm.Pravo;
+            if (PravoP == true)
+            {
+                nhm.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton34_Click_2(object sender, EventArgs e)
         {
             frmNHM nhm = new frmNHM();
-            nhm.Show();
+            PravoP = nhm.Pravo;
+            if (PravoP == true)
+            {
+                nhm.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton276_Click(object sender, EventArgs e)
@@ -3002,13 +3362,29 @@ namespace Saobracaj
         private void toolStripButton258_Click(object sender, EventArgs e)
         {
             frmTipKontejnera tk = new frmTipKontejnera();
-            tk.Show();
+            PravoP = tk.Pravo;
+            if (PravoP == true)
+            {
+                tk.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton279_Click(object sender, EventArgs e)
         {
             frmTipKontejnera tk = new frmTipKontejnera();
-            tk.Show();
+            PravoP = tk.Pravo;
+            if (PravoP == true)
+            {
+                tk.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton280_Click(object sender, EventArgs e)
@@ -3026,13 +3402,29 @@ namespace Saobracaj
         private void toolStripButton260_Click(object sender, EventArgs e)
         {
             frmPregledVozova pv = new frmPregledVozova();
-            pv.Show();
+            PravoP = pv.Pravo;
+            if (PravoP == true)
+            {
+                pv.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton281_Click(object sender, EventArgs e)
         {
             frmPregledVozova pv = new frmPregledVozova();
-            pv.Show();
+            PravoP = pv.Pravo;
+            if (PravoP == true)
+            {
+                pv.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton282_Click(object sender, EventArgs e)
@@ -3062,13 +3454,29 @@ namespace Saobracaj
         private void toolStripButton284_Click(object sender, EventArgs e)
         {
             frmOrganizacionaJedinica oj = new frmOrganizacionaJedinica();
-            oj.Show();
+            PravoP = oj.Pravo;
+            if (PravoP == true)
+            {
+                oj.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton263_Click(object sender, EventArgs e)
         {
             frmOrganizacionaJedinica oj = new frmOrganizacionaJedinica();
-            oj.Show();
+            PravoP = oj.Pravo;
+            if (PravoP == true)
+            {
+                oj.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton208_Click_1(object sender, EventArgs e)
@@ -3182,7 +3590,15 @@ namespace Saobracaj
         private void toolStripButton222_Click_1(object sender, EventArgs e)
         {
             frmVoz voz = new frmVoz();
-            voz.Show();
+            PravoP = voz.Pravo;
+            if (PravoP == true)
+            {
+                voz.Show();
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripButton214_Click_1(object sender, EventArgs e)
@@ -3239,18 +3655,7 @@ namespace Saobracaj
             drugi.Show();
         }
 
-        private void toolStripEx6_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void toolStripButton296_Click(object sender, EventArgs e)
-        {
-            SyncForm.frmPregledMasinovodje2 drugi = new SyncForm.frmPregledMasinovodje2();
-            drugi.Show();
-        }
-
-        private void toolStripButton271_Click_1(object sender, EventArgs e)
+        private void toolStripButton128_Click(object sender, EventArgs e)
         {
 
         }

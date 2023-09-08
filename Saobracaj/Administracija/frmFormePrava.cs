@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
@@ -15,16 +10,16 @@ namespace Saobracaj.Administracija
     public partial class frmFormePrava : Form
     {
         public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-        string niz = "";
+        private string niz = "";
         public static string code = "frmFormePrava";
         public bool Pravo;
-        int idGrupe;
-        int idForme;
-        bool insert;
-        bool update;
-        bool delete;
-        string Kor = Sifarnici.frmLogovanje.user.ToString();
-        bool status = false;
+        private int idGrupe;
+        private int idForme;
+        private bool insert;
+        private bool update;
+        private bool delete;
+        private string Kor = Sifarnici.frmLogovanje.user.ToString();
+        private bool status = false;
 
         public frmFormePrava()
         {
@@ -44,7 +39,6 @@ namespace Saobracaj.Administracija
             da.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
-
 
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
@@ -71,12 +65,10 @@ namespace Saobracaj.Administracija
             dataGridView1.Columns[5].Width = 50;
             dataGridView1.Columns[6].Width = 50;
             dataGridView1.Columns[7].Width = 50;
-
         }
 
         private void NapiniComboBox()
         {
-
             var select = " Select ID, ( Naziv) as Naziv From GrupeKorisnik";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -91,13 +83,10 @@ namespace Saobracaj.Administracija
             cboGrupeKorisnika.ValueMember = "ID";
 
             NapuniFormeDG2();
-
-
         }
 
         private void NapuniFormeDG2()
         {
-
             var query = "select IDForme, Naziv, Code from Forme Order by IDForme";
             SqlConnection conn = new SqlConnection(connect);
             SqlDataAdapter da = new SqlDataAdapter(query, conn);
@@ -105,7 +94,6 @@ namespace Saobracaj.Administracija
             da.Fill(ds);
             dataGridView2.ReadOnly = true;
             dataGridView2.DataSource = ds.Tables[0];
-
 
             dataGridView2.BorderStyle = BorderStyle.None;
             dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
@@ -118,8 +106,7 @@ namespace Saobracaj.Administracija
             dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-           
-            
+
             /*
             dataGridView1.Columns[0].HeaderText = "ID Grupe";
             dataGridView1.Columns[0].Width = 50;
@@ -136,15 +123,12 @@ namespace Saobracaj.Administracija
             dataGridView1.Columns[7].Width = 50;
 
             */
-
-
-
-
         }
+
         public string IdGrupe()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
+            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();
             string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -164,11 +148,11 @@ namespace Saobracaj.Administracija
                     niz = niz + "," + dr["IdGrupe"].ToString();
                     count++;
                 }
-
             }
             conn.Close();
             return niz;
         }
+
         private int IdForme()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -207,7 +191,7 @@ namespace Saobracaj.Administracija
                     insert = Convert.ToBoolean(reader["Upis"]);
                     if (insert == false)
                     {
-                       // tsNew.Enabled = false;
+                        //tsNew.Enabled = false;
                     }
                     update = Convert.ToBoolean(reader["Izmena"]);
                     if (update == false)
@@ -227,7 +211,6 @@ namespace Saobracaj.Administracija
 
         private void RefreshDataGrid1()
         {
-
             var query = "SELECT g.IdGrupe,g.Naziv,f.IdForme,f.Naziv,f.Code,a.Upis,a.Izmena,a.Brisanje " +
                    "FROM GrupeKorisnik g,Forme f,GrupeForme a " +
                    "WHERE g.IdGrupe=a.IdGrupe and f.IdForme=a.IdForme order by g.IdGrupe";
@@ -237,7 +220,6 @@ namespace Saobracaj.Administracija
             da.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
-
 
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
@@ -264,18 +246,14 @@ namespace Saobracaj.Administracija
             dataGridView1.Columns[5].Width = 50;
             dataGridView1.Columns[6].Width = 50;
             dataGridView1.Columns[7].Width = 50;
-
-
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
             try
             {
-          
                 // it.InsTeretnica("", Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboStanicaIsklj.SelectedValue), Convert.ToDateTime(dtpVremeOd.Value), Convert.ToDateTime(dtpVremeOd.Value), "", 0, 1, "sa", 0, Convert.ToInt32(cboRadniNalog.SelectedValue));
 
-                
                 // irn.InsRNTeretnica(Convert.ToInt32(cboRadniNalog.SelectedValue));
 
                 foreach (DataGridViewRow row in dataGridView2.Rows)
@@ -284,13 +262,12 @@ namespace Saobracaj.Administracija
                     {
                         Administracija.InsertAdministracije its = new Administracija.InsertAdministracije();
                         its.InsertPravoGrupeNaForme(Convert.ToInt32(cboGrupeKorisnika.SelectedValue), Convert.ToInt32(row.Cells[0].Value.ToString()), 1, 1, 1);
-                       // Dokumenta.InsertIskljuceniVagoni div = new Dokumenta.InsertIskljuceniVagoni();
-                      //  div.UpdateIskljuceniVagRSP(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(cboStanicaIsklj.SelectedValue));
-
+                        // Dokumenta.InsertIskljuceniVagoni div = new Dokumenta.InsertIskljuceniVagoni();
+                        //  div.UpdateIskljuceniVagRSP(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(cboStanicaIsklj.SelectedValue));
                     }
                 }
                 RefreshDataGrid1();
-               // MessageBox.Show("Vagoni su raspušteni sada se nalaze u stanici popisa");
+                // MessageBox.Show("Vagoni su raspušteni sada se nalaze u stanici popisa");
             }
             catch
             {
@@ -302,9 +279,7 @@ namespace Saobracaj.Administracija
         {
             try
             {
-
                 // it.InsTeretnica("", Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboStanicaIsklj.SelectedValue), Convert.ToDateTime(dtpVremeOd.Value), Convert.ToDateTime(dtpVremeOd.Value), "", 0, 1, "sa", 0, Convert.ToInt32(cboRadniNalog.SelectedValue));
-
 
                 // irn.InsRNTeretnica(Convert.ToInt32(cboRadniNalog.SelectedValue));
 
@@ -313,10 +288,9 @@ namespace Saobracaj.Administracija
                     if (row.Selected)
                     {
                         Administracija.InsertAdministracije its = new Administracija.InsertAdministracije();
-                        its.DeletePravoGrupeNaForme( Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()));
+                        its.DeletePravoGrupeNaForme(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()));
                         // Dokumenta.InsertIskljuceniVagoni div = new Dokumenta.InsertIskljuceniVagoni();
                         //  div.UpdateIskljuceniVagRSP(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(cboStanicaIsklj.SelectedValue));
-
                     }
                 }
                 RefreshDataGrid1();

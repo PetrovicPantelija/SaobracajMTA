@@ -108,7 +108,7 @@ namespace Saobracaj.SyncForm
                     delete = Convert.ToBoolean(reader["Brisanje"]);
                     if (delete == false)
                     {
-                       // tsDelete.Enabled = false;
+                        //.Enabled = false;
                     }
                 }
             }

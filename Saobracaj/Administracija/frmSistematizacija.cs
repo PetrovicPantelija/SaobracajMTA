@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
     public partial class frmSistematizacija : Form
     {
-        bool status = false;
+        private bool status = false;
+
         public frmSistematizacija()
         {
             InitializeComponent();
@@ -23,19 +18,21 @@ namespace Saobracaj.Administracija
             IdForme();
             PravoPristupa();
         }
-        string niz = "";
+
+        private string niz = "";
         public static string code = "frmSistematizacija";
         public bool Pravo;
-        int idGrupe;
-        int idForme;
-        bool insert;
-        bool update;
-        bool delete;
-        string Kor = Sifarnici.frmLogovanje.user.ToString();
+        private int idGrupe;
+        private int idForme;
+        private bool insert;
+        private bool update;
+        private bool delete;
+        private string Kor = Sifarnici.frmLogovanje.user.ToString();
+
         public string IdGrupe()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
+            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();
             string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -55,11 +52,11 @@ namespace Saobracaj.Administracija
                     niz = niz + "," + dr["IdGrupe"].ToString();
                     count++;
                 }
-
             }
             conn.Close();
             return niz;
         }
+
         private int IdForme()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -115,6 +112,7 @@ namespace Saobracaj.Administracija
 
             conn.Close();
         }
+
         private void RefreshDataGrid()
         {
             var select = " Select ID,Naziv from GrupaDelovnihMesta";
@@ -128,7 +126,6 @@ namespace Saobracaj.Administracija
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
-
 
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
@@ -150,9 +147,6 @@ namespace Saobracaj.Administracija
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Naziv";
             dataGridView1.Columns[1].Width = 350;
-
-           
-
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -167,7 +161,7 @@ namespace Saobracaj.Administracija
             else
             {
                 InsertSistematizacija upd = new InsertSistematizacija();
-                upd.UpdSistematizacija(Convert.ToInt32(txtSifra.Text),  txtNaziv.Text);
+                upd.UpdSistematizacija(Convert.ToInt32(txtSifra.Text), txtNaziv.Text);
                 status = false;
                 txtSifra.Enabled = false;
                 RefreshDataGrid();
@@ -202,7 +196,6 @@ namespace Saobracaj.Administracija
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-
                     if (row.Selected)
                     {
                         txtSifra.Text = row.Cells[0].Value.ToString();
@@ -210,7 +203,7 @@ namespace Saobracaj.Administracija
                         // cboGrupaKvarova.SelectedValue = row.Cells[2].Value.ToString();
                     }
                 }
-              }
+            }
             catch
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
