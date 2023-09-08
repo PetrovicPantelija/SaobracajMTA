@@ -750,7 +750,7 @@ namespace Saobracaj.Uvoz
             }
             catch
             {
-                MessageBox.Show("Nije uspela selekcija stavki");
+                MessageBox.Show("Unos nije uspeo.Proverite da li imate definisanu cenu u Cenovniku!!!");
             }
         }
         private void FillGVUvozKonacnaPoPlanu()
@@ -950,7 +950,7 @@ namespace Saobracaj.Uvoz
  " Carinarnice.Naziv as Carinarnica,  " +
  " p4.PaNaziv as OdredisnaSpedicija, MestaUtovara.Naziv as MestoIstovara, (partnerjiKontOsebaMU.PaKOIme + '' + partnerjiKontOsebaMU.PaKOPriimek) as KontaktOsoba, Email,        BrojPlombe1, BrojPlombe2,    PredefinisanePoruke.Naziv as NapomenaZaPozicioniranje, " +
  " NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera,  Koleta, green FROM Uvoz left join Partnerji on PaSifra = VlasnikKontejnera " +
- " left join Partnerji p1 on p1.PaSifra = Uvoznik  left join Partnerji p2 on p2.PaSifra = SpedicijaRTC  let join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
+ " left join Partnerji p1 on p1.PaSifra = Uvoznik  left join Partnerji p2 on p2.PaSifra = SpedicijaRTC  left join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
  " left join TipKontenjera on TipKontenjera.ID = Uvoz.TipKontejnera " +
  " left join Carinarnice on Carinarnice.ID = Uvoz.OdredisnaCarina  left join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = Uvoz.CarinskiPostupak " +
  " left join Predefinisaneporuke on PredefinisanePoruke.ID = Uvoz.NapomenaZaPozicioniranje   left join KontejnerskiTerminali on KontejnerskiTerminali.ID = Uvoz.RLTErminali " +
@@ -1121,7 +1121,7 @@ namespace Saobracaj.Uvoz
             cboNalogodavac3.DisplayMember = "PaNaziv";
             cboNalogodavac3.ValueMember = "PaSifra";
 
-            var partner2 = "Select PaSifra,PaNaziv From Partnerji where Brodar =1 order by PaNaziv";
+            var partner2 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
             var partAD2 = new SqlDataAdapter(partner2, conn);
             var partDS2 = new DataSet();
             partAD2.Fill(partDS2);
@@ -1282,7 +1282,7 @@ namespace Saobracaj.Uvoz
             }
             catch
             {
-                MessageBox.Show("Nije uspela selekcija stavki");
+                MessageBox.Show("Unos nije uspeo.Proverite da li imate definisanu cenu u Cenovniku!!!");
             }
         }
 
@@ -1400,7 +1400,7 @@ namespace Saobracaj.Uvoz
             }
             catch
             {
-                MessageBox.Show("Nije uspela selekcija stavki");
+                MessageBox.Show("Unos nije uspeo.Proverite da li imate definisanu cenu u Cenovniku!!!");
             }
         }
 
@@ -1532,7 +1532,7 @@ namespace Saobracaj.Uvoz
             }
             catch
             {
-                MessageBox.Show("Nije uspela selekcija stavki");
+                MessageBox.Show("Unos nije uspeo.Proverite da li imate definisanu cenu u Cenovniku!!!");
             }
         }
     }
