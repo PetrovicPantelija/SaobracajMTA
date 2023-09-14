@@ -21,6 +21,7 @@ namespace Saobracaj.Sifarnici
 {
     public partial class frmLogovanje : Syncfusion.Windows.Forms.Office2010Form
     {
+        //
         public string company;
         public static string connectionString = "";
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Saobracaj
 {
+    //
     public class CompanyConfiguration
     {
         public string Naziv { get; set; }
