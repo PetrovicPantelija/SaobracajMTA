@@ -12,9 +12,11 @@ namespace Saobracaj
         public string Naziv { get; set; }
         public string DB { get; set; }
         public string Dokumenta { get; set; }
+
+        public string ConnectionStrings  { get; set; }
     }
 
-    public static class ConfigurationManager
+    public static class ConfigManager
     {
         public static CompanyConfiguration GetCompanyConfiguration(string naziv)
         {
@@ -25,14 +27,16 @@ namespace Saobracaj
                     {
                         Naziv = "Leget",
                         DB = @"Data Source=192.168.99.10\SQLEXPRESS2019;Initial Catalog=TESTIRANJE;User ID=sa;Password=duki7990;",
-                        Dokumenta = @"\\192.168.99.10\Leget\"
+                        Dokumenta = @"\\192.168.99.10\Leget\",
+                        ConnectionStrings = ""
                     };
                 case "TA":
                     return new CompanyConfiguration
                     {
                         Naziv = "TA",
                         DB = @"Data Source=192.168.129.7\;Initial Catalog=TESTIRANJE;User ID=sa;Password=duki7990",
-                        Dokumenta= @"\\192.168.99.10\TA\"
+                        Dokumenta= @"\\192.168.99.10\TA\",
+ ConnectionStrings = ""
                     };
                 case "KP":
                     return new CompanyConfiguration

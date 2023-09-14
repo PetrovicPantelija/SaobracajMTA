@@ -41,7 +41,7 @@ namespace Saobracaj.Sifarnici
             {
                 company = Path.GetFileNameWithoutExtension(file);
             }
-            var companyConfig = ConfigurationManager.GetCompanyConfiguration(company);
+            var companyConfig = ConfigManager.GetCompanyConfiguration(company);
             connectionString = companyConfig.DB;
         }
         private void frmLogovanje_Load(object sender, EventArgs e)
