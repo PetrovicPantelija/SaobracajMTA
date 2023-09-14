@@ -510,6 +510,7 @@
     <Compile Include="Administracija\InsertPolozenePruge.cs" />
     <Compile Include="Administracija\InsertSistematizacija.cs" />
     <Compile Include="Administracija\InsertStavkePrimopredaje.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="Dokumenta\frmAutomobili.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1834,77 +1835,77 @@
     <Compile Include="PropertyGridForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadniNalozi\RN1.cs">
+    <Compile Include="RadniNalozi\RN2OtpremaVoza.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadniNalozi\RN1.Designer.cs">
-      <DependentUpon>RN1.cs</DependentUpon>
+    <Compile Include="RadniNalozi\RN2OtpremaVoza.Designer.cs">
+      <DependentUpon>RN2OtpremaVoza.cs</DependentUpon>
     </Compile>
-    <Compile Include="RadniNalozi\RN10cs.cs">
+    <Compile Include="RadniNalozi\RN1PrijemVoza.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadniNalozi\RN10cs.Designer.cs">
-      <DependentUpon>RN10cs.cs</DependentUpon>
+    <Compile Include="RadniNalozi\RN1PrijemVoza.Designer.cs">
+      <DependentUpon>RN1PrijemVoza.cs</DependentUpon>
     </Compile>
-    <Compile Include="RadniNalozi\RN11.cs">
+    <Compile Include="RadniNalozi\RN10PregledIspraznjenogKontejnera.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadniNalozi\RN11.Designer.cs">
-      <DependentUpon>RN11.cs</DependentUpon>
+    <Compile Include="RadniNalozi\RN10PregledIspraznjenogKontejnera.Designer.cs">
+      <DependentUpon>RN10PregledIspraznjenogKontejnera.cs</DependentUpon>
     </Compile>
-    <Compile Include="RadniNalozi\RN12.cs">
+    <Compile Include="RadniNalozi\RN11PreglediPostavkaKontejnera.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadniNalozi\RN12.Designer.cs">
-      <DependentUpon>RN12.cs</DependentUpon>
+    <Compile Include="RadniNalozi\RN11PreglediPostavkaKontejnera.Designer.cs">
+      <DependentUpon>RN11PreglediPostavkaKontejnera.cs</DependentUpon>
     </Compile>
-    <Compile Include="RadniNalozi\RN2.cs">
+    <Compile Include="RadniNalozi\RN12MedjuskladisniKontejnera.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadniNalozi\RN2.Designer.cs">
-      <DependentUpon>RN2.cs</DependentUpon>
+    <Compile Include="RadniNalozi\RN12MedjuskladisniKontejnera.Designer.cs">
+      <DependentUpon>RN12MedjuskladisniKontejnera.cs</DependentUpon>
     </Compile>
-    <Compile Include="RadniNalozi\RN3.cs">
+    <Compile Include="RadniNalozi\RN3PrijemVoza2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadniNalozi\RN3.Designer.cs">
-      <DependentUpon>RN3.cs</DependentUpon>
+    <Compile Include="RadniNalozi\RN3PrijemVoza2.Designer.cs">
+      <DependentUpon>RN3PrijemVoza2.cs</DependentUpon>
     </Compile>
-    <Compile Include="RadniNalozi\RN4.cs">
+    <Compile Include="RadniNalozi\RN4PrijemPlatforme.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadniNalozi\RN4.Designer.cs">
-      <DependentUpon>RN4.cs</DependentUpon>
+    <Compile Include="RadniNalozi\RN4PrijemPlatforme.Designer.cs">
+      <DependentUpon>RN4PrijemPlatforme.cs</DependentUpon>
     </Compile>
-    <Compile Include="RadniNalozi\RN5.cs">
+    <Compile Include="RadniNalozi\RN5PrijemPlatforme2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadniNalozi\RN5.Designer.cs">
-      <DependentUpon>RN5.cs</DependentUpon>
+    <Compile Include="RadniNalozi\RN5PrijemPlatforme2.Designer.cs">
+      <DependentUpon>RN5PrijemPlatforme2.cs</DependentUpon>
     </Compile>
-    <Compile Include="RadniNalozi\RN6.cs">
+    <Compile Include="RadniNalozi\RN6OtpremaPlatforme.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadniNalozi\RN6.Designer.cs">
-      <DependentUpon>RN6.cs</DependentUpon>
+    <Compile Include="RadniNalozi\RN6OtpremaPlatforme.Designer.cs">
+      <DependentUpon>RN6OtpremaPlatforme.cs</DependentUpon>
     </Compile>
-    <Compile Include="RadniNalozi\RN7.cs">
+    <Compile Include="RadniNalozi\RN7OtpremaPlatforme2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadniNalozi\RN7.Designer.cs">
-      <DependentUpon>RN7.cs</DependentUpon>
+    <Compile Include="RadniNalozi\RN7OtpremaPlatforme2.Designer.cs">
+      <DependentUpon>RN7OtpremaPlatforme2.cs</DependentUpon>
     </Compile>
-    <Compile Include="RadniNalozi\RN8.cs">
+    <Compile Include="RadniNalozi\RN8OtpremaCirade.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadniNalozi\RN8.Designer.cs">
-      <DependentUpon>RN8.cs</DependentUpon>
+    <Compile Include="RadniNalozi\RN8OtpremaCirade.Designer.cs">
+      <DependentUpon>RN8OtpremaCirade.cs</DependentUpon>
     </Compile>
-    <Compile Include="RadniNalozi\RN9.cs">
+    <Compile Include="RadniNalozi\RN9PrijemCirade.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RadniNalozi\RN9.Designer.cs">
-      <DependentUpon>RN9.cs</DependentUpon>
+    <Compile Include="RadniNalozi\RN9PrijemCirade.Designer.cs">
+      <DependentUpon>RN9PrijemCirade.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportingOperatika\PoLokomotivama.cs">
       <SubType>Form</SubType>
@@ -3782,41 +3783,41 @@
     <EmbeddedResource Include="PropertyGridForm.resx">
       <DependentUpon>PropertyGridForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RadniNalozi\RN1.resx">
-      <DependentUpon>RN1.cs</DependentUpon>
+    <EmbeddedResource Include="RadniNalozi\RN2OtpremaVoza.resx">
+      <DependentUpon>RN2OtpremaVoza.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RadniNalozi\RN10cs.resx">
-      <DependentUpon>RN10cs.cs</DependentUpon>
+    <EmbeddedResource Include="RadniNalozi\RN1PrijemVoza.resx">
+      <DependentUpon>RN1PrijemVoza.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RadniNalozi\RN11.resx">
-      <DependentUpon>RN11.cs</DependentUpon>
+    <EmbeddedResource Include="RadniNalozi\RN10PregledIspraznjenogKontejnera.resx">
+      <DependentUpon>RN10PregledIspraznjenogKontejnera.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RadniNalozi\RN12.resx">
-      <DependentUpon>RN12.cs</DependentUpon>
+    <EmbeddedResource Include="RadniNalozi\RN11PreglediPostavkaKontejnera.resx">
+      <DependentUpon>RN11PreglediPostavkaKontejnera.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RadniNalozi\RN2.resx">
-      <DependentUpon>RN2.cs</DependentUpon>
+    <EmbeddedResource Include="RadniNalozi\RN12MedjuskladisniKontejnera.resx">
+      <DependentUpon>RN12MedjuskladisniKontejnera.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RadniNalozi\RN3.resx">
-      <DependentUpon>RN3.cs</DependentUpon>
+    <EmbeddedResource Include="RadniNalozi\RN3PrijemVoza2.resx">
+      <DependentUpon>RN3PrijemVoza2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RadniNalozi\RN4.resx">
-      <DependentUpon>RN4.cs</DependentUpon>
+    <EmbeddedResource Include="RadniNalozi\RN4PrijemPlatforme.resx">
+      <DependentUpon>RN4PrijemPlatforme.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RadniNalozi\RN5.resx">
-      <DependentUpon>RN5.cs</DependentUpon>
+    <EmbeddedResource Include="RadniNalozi\RN5PrijemPlatforme2.resx">
+      <DependentUpon>RN5PrijemPlatforme2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RadniNalozi\RN6.resx">
-      <DependentUpon>RN6.cs</DependentUpon>
+    <EmbeddedResource Include="RadniNalozi\RN6OtpremaPlatforme.resx">
+      <DependentUpon>RN6OtpremaPlatforme.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RadniNalozi\RN7.resx">
-      <DependentUpon>RN7.cs</DependentUpon>
+    <EmbeddedResource Include="RadniNalozi\RN7OtpremaPlatforme2.resx">
+      <DependentUpon>RN7OtpremaPlatforme2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RadniNalozi\RN8.resx">
-      <DependentUpon>RN8.cs</DependentUpon>
+    <EmbeddedResource Include="RadniNalozi\RN8OtpremaCirade.resx">
+      <DependentUpon>RN8OtpremaCirade.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="RadniNalozi\RN9.resx">
-      <DependentUpon>RN9.cs</DependentUpon>
+    <EmbeddedResource Include="RadniNalozi\RN9PrijemCirade.resx">
+      <DependentUpon>RN9PrijemCirade.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportingOperatika\PoLokomotivama.resx">
       <DependentUpon>PoLokomotivama.cs</DependentUpon>

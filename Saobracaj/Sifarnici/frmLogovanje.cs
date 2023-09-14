@@ -15,25 +15,39 @@ using Syncfusion.Windows.Forms.Grid.Grouping;
 using Syncfusion.Windows.Forms;
 
 using MetroFramework.Forms;
+using System.IO;
 
 namespace Saobracaj.Sifarnici
 {
     public partial class frmLogovanje : Syncfusion.Windows.Forms.Office2010Form
     {
+        public string company;
+        public static string connectionString = "";
+
         public static string user = "";
         public frmLogovanje()
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             InitializeComponent();
+            Main();
         }
-
+        private void Main()
+        {
+            string basedir = AppDomain.CurrentDomain.BaseDirectory;
+            string[] txtFile = Directory.GetFiles(basedir, "*txt");
+            string company = "";
+            foreach(string file in txtFile)
+            {
+                company = Path.GetFileNameWithoutExtension(file);
+            }
+            var companyConfig = ConfigurationManager.GetCompanyConfiguration(company);
+            connectionString = companyConfig.DB;
+        }
         private void frmLogovanje_Load(object sender, EventArgs e)
         {
             var select = " Select Distinct RTrim(Korisnik) as Korisnik From Korisnici";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
+            SqlConnection myConnection = new SqlConnection(connectionString);
+            var dataAdapter = new SqlDataAdapter(select, myConnection);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
@@ -46,9 +60,7 @@ namespace Saobracaj.Sifarnici
         private void button1_Click(object sender, EventArgs e)
         {
             // var select = " Select Distinct DatumUtovara From RkShipping where Stanje = 1 and Vozilo = '" + cboVozila.Text + "'";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
+            SqlConnection myConnection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand("SELECT Korisnik FROM Korisnici where Rtrim(Password) = '" + txtPassword.Text + "' and RTRIM(Korisnik) = '"+ cboKorisnik.Text + "'", myConnection);
             myConnection.Open();
 
@@ -80,9 +92,7 @@ namespace Saobracaj.Sifarnici
         {
             user = cboKorisnik.Text.ToString();
             // var select = " Select Distinct DatumUtovara From RkShipping where Stanje = 1 and Vozilo = '" + cboVozila.Text + "'";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
+            SqlConnection myConnection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand("SELECT Korisnik FROM Korisnici where Rtrim(Password) = '" + txtPassword.Text + "' and RTRIM(Korisnik) = '" + cboKorisnik.Text + "'", myConnection);
 
             myConnection.Open();
