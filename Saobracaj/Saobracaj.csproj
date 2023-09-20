@@ -1847,6 +1847,7 @@
     <Compile Include="PropertyGridForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="RadniNalozi\InsertRN.cs" />
     <Compile Include="RadniNalozi\RN2OtpremaVoza.cs">
       <SubType>Form</SubType>
     </Compile>

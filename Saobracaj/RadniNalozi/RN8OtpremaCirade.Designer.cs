@@ -30,83 +30,85 @@ namespace Saobracaj.RadniNalozi
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RN8OtpremaCirade));
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.cboUsluga = new System.Windows.Forms.ComboBox();
+            this.cboNaSredstvo = new System.Windows.Forms.ComboBox();
+            this.cboBrodar = new System.Windows.Forms.ComboBox();
+            this.cboPostupak = new System.Windows.Forms.ComboBox();
             this.txtcarinskipostupak = new System.Windows.Forms.Label();
-            this.txtnalogrealizovao = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.lbl2 = new System.Windows.Forms.Label();
+            this.txtNalogRealizovao = new System.Windows.Forms.TextBox();
             this.txtIDinazivplaniraneusluge = new System.Windows.Forms.Label();
             this.txtSAPozicijeskladista = new System.Windows.Forms.Label();
             this.txtSASkladista = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cboVrstaRobe = new System.Windows.Forms.ComboBox();
             this.txtvrstarobe = new System.Windows.Forms.Label();
             this.txtnazivbrodara = new System.Windows.Forms.Label();
-            this.txtbrojkontejnera = new System.Windows.Forms.TextBox();
+            this.txtBrojKontejnera = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtDatumRealizacije = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
             this.txtNAvoznosredstvo = new System.Windows.Forms.Label();
-            this.txtNalogIzdao = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtDatumRasporeda = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.txtnapomena = new System.Windows.Forms.Label();
+            this.txtNapomena = new System.Windows.Forms.TextBox();
+            this.lbl1 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
+            this.cboSaSklad = new System.Windows.Forms.ComboBox();
+            this.cboSaPoz = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.txtNalogIzdao = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // cboUsluga
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.ItemHeight = 16;
-            this.comboBox1.Location = new System.Drawing.Point(192, 198);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(247, 24);
-            this.comboBox1.TabIndex = 427;
+            this.cboUsluga.FormattingEnabled = true;
+            this.cboUsluga.ItemHeight = 16;
+            this.cboUsluga.Location = new System.Drawing.Point(808, 157);
+            this.cboUsluga.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboUsluga.Name = "cboUsluga";
+            this.cboUsluga.Size = new System.Drawing.Size(164, 24);
+            this.cboUsluga.TabIndex = 427;
             // 
-            // comboBox7
+            // cboNaSredstvo
             // 
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.ItemHeight = 16;
-            this.comboBox7.Location = new System.Drawing.Point(791, 73);
-            this.comboBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(264, 24);
-            this.comboBox7.TabIndex = 424;
+            this.cboNaSredstvo.FormattingEnabled = true;
+            this.cboNaSredstvo.ItemHeight = 16;
+            this.cboNaSredstvo.Location = new System.Drawing.Point(741, 73);
+            this.cboNaSredstvo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboNaSredstvo.Name = "cboNaSredstvo";
+            this.cboNaSredstvo.Size = new System.Drawing.Size(264, 24);
+            this.cboNaSredstvo.TabIndex = 424;
             // 
-            // comboBox5
+            // cboBrodar
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.ItemHeight = 16;
-            this.comboBox5.Location = new System.Drawing.Point(745, 38);
-            this.comboBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(310, 24);
-            this.comboBox5.TabIndex = 423;
+            this.cboBrodar.FormattingEnabled = true;
+            this.cboBrodar.ItemHeight = 16;
+            this.cboBrodar.Location = new System.Drawing.Point(859, 36);
+            this.cboBrodar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboBrodar.Name = "cboBrodar";
+            this.cboBrodar.Size = new System.Drawing.Size(310, 24);
+            this.cboBrodar.TabIndex = 423;
             // 
-            // comboBox4
+            // cboPostupak
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.ItemHeight = 16;
-            this.comboBox4.Location = new System.Drawing.Point(138, 110);
-            this.comboBox4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(247, 24);
-            this.comboBox4.TabIndex = 421;
-            this.comboBox4.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
+            this.cboPostupak.FormattingEnabled = true;
+            this.cboPostupak.ItemHeight = 16;
+            this.cboPostupak.Location = new System.Drawing.Point(138, 110);
+            this.cboPostupak.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboPostupak.Name = "cboPostupak";
+            this.cboPostupak.Size = new System.Drawing.Size(247, 24);
+            this.cboPostupak.TabIndex = 421;
+            this.cboPostupak.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
             // txtcarinskipostupak
             // 
@@ -118,27 +120,27 @@ namespace Saobracaj.RadniNalozi
             this.txtcarinskipostupak.Text = "Carinski postupak";
             this.txtcarinskipostupak.Click += new System.EventHandler(this.txtcarinskipostupak_Click);
             // 
-            // txtnalogrealizovao
+            // lbl2
             // 
-            this.txtnalogrealizovao.AutoSize = true;
-            this.txtnalogrealizovao.Location = new System.Drawing.Point(455, 205);
-            this.txtnalogrealizovao.Name = "txtnalogrealizovao";
-            this.txtnalogrealizovao.Size = new System.Drawing.Size(114, 17);
-            this.txtnalogrealizovao.TabIndex = 417;
-            this.txtnalogrealizovao.Text = "Nalog realizovao";
+            this.lbl2.AutoSize = true;
+            this.lbl2.Location = new System.Drawing.Point(739, 112);
+            this.lbl2.Name = "lbl2";
+            this.lbl2.Size = new System.Drawing.Size(114, 17);
+            this.lbl2.TabIndex = 417;
+            this.lbl2.Text = "Nalog realizovao";
             // 
-            // textBox6
+            // txtNalogRealizovao
             // 
-            this.textBox6.Location = new System.Drawing.Point(575, 202);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(183, 22);
-            this.textBox6.TabIndex = 416;
+            this.txtNalogRealizovao.Location = new System.Drawing.Point(859, 109);
+            this.txtNalogRealizovao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNalogRealizovao.Name = "txtNalogRealizovao";
+            this.txtNalogRealizovao.Size = new System.Drawing.Size(113, 22);
+            this.txtNalogRealizovao.TabIndex = 416;
             // 
             // txtIDinazivplaniraneusluge
             // 
             this.txtIDinazivplaniraneusluge.AutoSize = true;
-            this.txtIDinazivplaniraneusluge.Location = new System.Drawing.Point(12, 205);
+            this.txtIDinazivplaniraneusluge.Location = new System.Drawing.Point(628, 160);
             this.txtIDinazivplaniraneusluge.Name = "txtIDinazivplaniraneusluge";
             this.txtIDinazivplaniraneusluge.Size = new System.Drawing.Size(174, 17);
             this.txtIDinazivplaniraneusluge.TabIndex = 415;
@@ -147,7 +149,7 @@ namespace Saobracaj.RadniNalozi
             // txtSAPozicijeskladista
             // 
             this.txtSAPozicijeskladista.AutoSize = true;
-            this.txtSAPozicijeskladista.Location = new System.Drawing.Point(368, 160);
+            this.txtSAPozicijeskladista.Location = new System.Drawing.Point(273, 160);
             this.txtSAPozicijeskladista.Name = "txtSAPozicijeskladista";
             this.txtSAPozicijeskladista.Size = new System.Drawing.Size(137, 17);
             this.txtSAPozicijeskladista.TabIndex = 414;
@@ -162,20 +164,20 @@ namespace Saobracaj.RadniNalozi
             this.txtSASkladista.TabIndex = 413;
             this.txtSASkladista.Text = "SA Skadista";
             // 
-            // comboBox2
+            // cboVrstaRobe
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.ItemHeight = 16;
-            this.comboBox2.Location = new System.Drawing.Point(490, 114);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(268, 24);
-            this.comboBox2.TabIndex = 412;
+            this.cboVrstaRobe.FormattingEnabled = true;
+            this.cboVrstaRobe.ItemHeight = 16;
+            this.cboVrstaRobe.Location = new System.Drawing.Point(467, 110);
+            this.cboVrstaRobe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboVrstaRobe.Name = "cboVrstaRobe";
+            this.cboVrstaRobe.Size = new System.Drawing.Size(268, 24);
+            this.cboVrstaRobe.TabIndex = 412;
             // 
             // txtvrstarobe
             // 
             this.txtvrstarobe.AutoSize = true;
-            this.txtvrstarobe.Location = new System.Drawing.Point(410, 117);
+            this.txtvrstarobe.Location = new System.Drawing.Point(391, 114);
             this.txtvrstarobe.Name = "txtvrstarobe";
             this.txtvrstarobe.Size = new System.Drawing.Size(74, 17);
             this.txtvrstarobe.TabIndex = 411;
@@ -185,24 +187,24 @@ namespace Saobracaj.RadniNalozi
             // txtnazivbrodara
             // 
             this.txtnazivbrodara.AutoSize = true;
-            this.txtnazivbrodara.Location = new System.Drawing.Point(642, 43);
+            this.txtnazivbrodara.Location = new System.Drawing.Point(756, 41);
             this.txtnazivbrodara.Name = "txtnazivbrodara";
             this.txtnazivbrodara.Size = new System.Drawing.Size(97, 17);
             this.txtnazivbrodara.TabIndex = 410;
             this.txtnazivbrodara.Text = "Naziv brodara";
             // 
-            // txtbrojkontejnera
+            // txtBrojKontejnera
             // 
-            this.txtbrojkontejnera.Location = new System.Drawing.Point(421, 40);
-            this.txtbrojkontejnera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtbrojkontejnera.Name = "txtbrojkontejnera";
-            this.txtbrojkontejnera.Size = new System.Drawing.Size(200, 22);
-            this.txtbrojkontejnera.TabIndex = 404;
+            this.txtBrojKontejnera.Location = new System.Drawing.Point(535, 38);
+            this.txtBrojKontejnera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtBrojKontejnera.Name = "txtBrojKontejnera";
+            this.txtBrojKontejnera.Size = new System.Drawing.Size(200, 22);
+            this.txtBrojKontejnera.TabIndex = 404;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(311, 43);
+            this.label3.Location = new System.Drawing.Point(425, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 17);
             this.label3.TabIndex = 403;
@@ -212,7 +214,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.txtDatumRealizacije.CustomFormat = "dd.MM.yyyy HH:mm";
             this.txtDatumRealizacije.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtDatumRealizacije.Location = new System.Drawing.Point(484, 75);
+            this.txtDatumRealizacije.Location = new System.Drawing.Point(429, 75);
             this.txtDatumRealizacije.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDatumRealizacije.Name = "txtDatumRealizacije";
             this.txtDatumRealizacije.Size = new System.Drawing.Size(161, 22);
@@ -222,7 +224,7 @@ namespace Saobracaj.RadniNalozi
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(368, 76);
+            this.label9.Location = new System.Drawing.Point(307, 80);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(116, 17);
             this.label9.TabIndex = 401;
@@ -231,21 +233,11 @@ namespace Saobracaj.RadniNalozi
             // txtNAvoznosredstvo
             // 
             this.txtNAvoznosredstvo.AutoSize = true;
-            this.txtNAvoznosredstvo.Location = new System.Drawing.Point(658, 76);
+            this.txtNAvoznosredstvo.Location = new System.Drawing.Point(608, 78);
             this.txtNAvoznosredstvo.Name = "txtNAvoznosredstvo";
             this.txtNAvoznosredstvo.Size = new System.Drawing.Size(127, 17);
             this.txtNAvoznosredstvo.TabIndex = 400;
             this.txtNAvoznosredstvo.Text = "NA vozno sredstvo";
-            // 
-            // txtNalogIzdao
-            // 
-            this.txtNalogIzdao.FormattingEnabled = true;
-            this.txtNalogIzdao.ItemHeight = 16;
-            this.txtNalogIzdao.Location = new System.Drawing.Point(101, 73);
-            this.txtNalogIzdao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtNalogIzdao.Name = "txtNalogIzdao";
-            this.txtNalogIzdao.Size = new System.Drawing.Size(247, 24);
-            this.txtNalogIzdao.TabIndex = 399;
             // 
             // label6
             // 
@@ -260,7 +252,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.txtDatumRasporeda.CustomFormat = "dd.MM.yyyy HH:mm";
             this.txtDatumRasporeda.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtDatumRasporeda.Location = new System.Drawing.Point(131, 38);
+            this.txtDatumRasporeda.Location = new System.Drawing.Point(245, 36);
             this.txtDatumRasporeda.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDatumRasporeda.Name = "txtDatumRasporeda";
             this.txtDatumRasporeda.Size = new System.Drawing.Size(161, 22);
@@ -270,7 +262,7 @@ namespace Saobracaj.RadniNalozi
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 43);
+            this.label1.Location = new System.Drawing.Point(126, 41);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(118, 17);
             this.label1.TabIndex = 396;
@@ -284,23 +276,23 @@ namespace Saobracaj.RadniNalozi
             this.label7.Size = new System.Drawing.Size(0, 17);
             this.label7.TabIndex = 395;
             // 
-            // textBox7
+            // txtNapomena
             // 
-            this.textBox7.Location = new System.Drawing.Point(791, 138);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.textBox7.Multiline = true;
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(264, 86);
-            this.textBox7.TabIndex = 433;
+            this.txtNapomena.Location = new System.Drawing.Point(978, 110);
+            this.txtNapomena.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNapomena.Multiline = true;
+            this.txtNapomena.Name = "txtNapomena";
+            this.txtNapomena.Size = new System.Drawing.Size(191, 74);
+            this.txtNapomena.TabIndex = 433;
             // 
-            // txtnapomena
+            // lbl1
             // 
-            this.txtnapomena.AutoSize = true;
-            this.txtnapomena.Location = new System.Drawing.Point(892, 117);
-            this.txtnapomena.Name = "txtnapomena";
-            this.txtnapomena.Size = new System.Drawing.Size(77, 17);
-            this.txtnapomena.TabIndex = 432;
-            this.txtnapomena.Text = "Napomena";
+            this.lbl1.AutoSize = true;
+            this.lbl1.Location = new System.Drawing.Point(1020, 91);
+            this.lbl1.Name = "lbl1";
+            this.lbl1.Size = new System.Drawing.Size(77, 17);
+            this.lbl1.TabIndex = 432;
+            this.lbl1.Text = "Napomena";
             // 
             // toolStrip1
             // 
@@ -313,7 +305,7 @@ namespace Saobracaj.RadniNalozi
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1067, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1181, 27);
             this.toolStrip1.TabIndex = 435;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -325,6 +317,7 @@ namespace Saobracaj.RadniNalozi
             this.tsNew.Name = "tsNew";
             this.tsNew.Size = new System.Drawing.Size(29, 24);
             this.tsNew.Text = "Novi";
+            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
             // tsSave
             // 
@@ -334,6 +327,7 @@ namespace Saobracaj.RadniNalozi
             this.tsSave.Name = "tsSave";
             this.tsSave.Size = new System.Drawing.Size(29, 24);
             this.tsSave.Text = "tsSave";
+            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
             // tsDelete
             // 
@@ -343,76 +337,107 @@ namespace Saobracaj.RadniNalozi
             this.tsDelete.Name = "tsDelete";
             this.tsDelete.Size = new System.Drawing.Size(29, 24);
             this.tsDelete.Text = "toolStripButton1";
+            this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
-            // comboBox3
+            // cboSaSklad
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.ItemHeight = 16;
-            this.comboBox3.Location = new System.Drawing.Point(101, 157);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(247, 24);
-            this.comboBox3.TabIndex = 421;
-            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
+            this.cboSaSklad.FormattingEnabled = true;
+            this.cboSaSklad.ItemHeight = 16;
+            this.cboSaSklad.Location = new System.Drawing.Point(101, 157);
+            this.cboSaSklad.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboSaSklad.Name = "cboSaSklad";
+            this.cboSaSklad.Size = new System.Drawing.Size(166, 24);
+            this.cboSaSklad.TabIndex = 421;
+            this.cboSaSklad.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
-            // comboBox6
+            // cboSaPoz
             // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.ItemHeight = 16;
-            this.comboBox6.Location = new System.Drawing.Point(511, 157);
-            this.comboBox6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(247, 24);
-            this.comboBox6.TabIndex = 421;
-            this.comboBox6.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
+            this.cboSaPoz.FormattingEnabled = true;
+            this.cboSaPoz.ItemHeight = 16;
+            this.cboSaPoz.Location = new System.Drawing.Point(416, 160);
+            this.cboSaPoz.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cboSaPoz.Name = "cboSaPoz";
+            this.cboSaPoz.Size = new System.Drawing.Size(206, 24);
+            this.cboSaPoz.TabIndex = 421;
+            this.cboSaPoz.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 241);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 208);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1043, 545);
+            this.dataGridView1.Size = new System.Drawing.Size(1157, 578);
             this.dataGridView1.TabIndex = 436;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(26, 21);
+            this.label2.TabIndex = 396;
+            this.label2.Text = "ID";
+            // 
+            // txtID
+            // 
+            this.txtID.Enabled = false;
+            this.txtID.Location = new System.Drawing.Point(34, 40);
+            this.txtID.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(86, 22);
+            this.txtID.TabIndex = 416;
+            // 
+            // txtNalogIzdao
+            // 
+            this.txtNalogIzdao.Enabled = false;
+            this.txtNalogIzdao.Location = new System.Drawing.Point(101, 75);
+            this.txtNalogIzdao.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtNalogIzdao.Name = "txtNalogIzdao";
+            this.txtNalogIzdao.Size = new System.Drawing.Size(191, 22);
+            this.txtNalogIzdao.TabIndex = 416;
             // 
             // RN8OtpremaCirade
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 798);
+            this.ClientSize = new System.Drawing.Size(1181, 798);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.txtnapomena);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.comboBox7);
-            this.Controls.Add(this.comboBox5);
-            this.Controls.Add(this.comboBox6);
-            this.Controls.Add(this.comboBox3);
-            this.Controls.Add(this.comboBox4);
+            this.Controls.Add(this.txtNapomena);
+            this.Controls.Add(this.lbl1);
+            this.Controls.Add(this.cboUsluga);
+            this.Controls.Add(this.cboNaSredstvo);
+            this.Controls.Add(this.cboBrodar);
+            this.Controls.Add(this.cboSaPoz);
+            this.Controls.Add(this.cboSaSklad);
+            this.Controls.Add(this.cboPostupak);
             this.Controls.Add(this.txtcarinskipostupak);
-            this.Controls.Add(this.txtnalogrealizovao);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.lbl2);
+            this.Controls.Add(this.txtNalogIzdao);
+            this.Controls.Add(this.txtID);
+            this.Controls.Add(this.txtNalogRealizovao);
             this.Controls.Add(this.txtIDinazivplaniraneusluge);
             this.Controls.Add(this.txtSAPozicijeskladista);
             this.Controls.Add(this.txtSASkladista);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cboVrstaRobe);
             this.Controls.Add(this.txtvrstarobe);
             this.Controls.Add(this.txtnazivbrodara);
-            this.Controls.Add(this.txtbrojkontejnera);
+            this.Controls.Add(this.txtBrojKontejnera);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtDatumRealizacije);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtNAvoznosredstvo);
-            this.Controls.Add(this.txtNalogIzdao);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtDatumRasporeda);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label7);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -428,38 +453,40 @@ namespace Saobracaj.RadniNalozi
         }
 
         #endregion
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox7;
-        private System.Windows.Forms.ComboBox comboBox5;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox cboUsluga;
+        private System.Windows.Forms.ComboBox cboNaSredstvo;
+        private System.Windows.Forms.ComboBox cboBrodar;
+        private System.Windows.Forms.ComboBox cboPostupak;
         private System.Windows.Forms.Label txtcarinskipostupak;
-        private System.Windows.Forms.Label txtnalogrealizovao;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Label lbl2;
+        private System.Windows.Forms.TextBox txtNalogRealizovao;
         private System.Windows.Forms.Label txtIDinazivplaniraneusluge;
         private System.Windows.Forms.Label txtSAPozicijeskladista;
         private System.Windows.Forms.Label txtSASkladista;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cboVrstaRobe;
         private System.Windows.Forms.Label txtvrstarobe;
         private System.Windows.Forms.Label txtnazivbrodara;
-        private System.Windows.Forms.TextBox txtbrojkontejnera;
+        private System.Windows.Forms.TextBox txtBrojKontejnera;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker txtDatumRealizacije;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label txtNAvoznosredstvo;
-        private System.Windows.Forms.ComboBox txtNalogIzdao;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker txtDatumRasporeda;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.Label txtnapomena;
+        private System.Windows.Forms.TextBox txtNapomena;
+        private System.Windows.Forms.Label lbl1;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsNew;
         private System.Windows.Forms.ToolStripButton tsSave;
         private System.Windows.Forms.ToolStripButton tsDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox6;
+        private System.Windows.Forms.ComboBox cboSaSklad;
+        private System.Windows.Forms.ComboBox cboSaPoz;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.TextBox txtNalogIzdao;
     }
 }
