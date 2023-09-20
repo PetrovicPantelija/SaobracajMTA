@@ -348,26 +348,6 @@ select
             con.Close();
         }
 
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
-                        txtSifra.Text = row.Cells[0].Value.ToString();
-                        VratiPodatke(txtSifra.Text);
-                    }
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
-
-        }
-
         private void metroButton2_Click(object sender, EventArgs e)
         {
             InsertPrijavaMasinovodje del = new InsertPrijavaMasinovodje();
@@ -418,7 +398,23 @@ select
 
         private void dataGridView1_SelectionChanged_1(object sender, EventArgs e)
         {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txtSifra.Text = row.Cells[0].Value.ToString();
+                        VratiPodatke(txtSifra.Text);
+                    }
+                }
 
+
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
 
-namespace TrackModal.Dokumeta
+namespace Saobracaj.Dokumenta
 {
     class InsertPromet
     {

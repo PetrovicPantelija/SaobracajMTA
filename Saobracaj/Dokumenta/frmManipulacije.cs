@@ -13,7 +13,7 @@ using System.Configuration;
 using System.Net;
 using System.Net.Mail;
 //Panta
-namespace TrackModal.Dokumeta
+namespace Saobracaj.Dokumenta
 {
     public partial class frmManipulacije : Form
     {

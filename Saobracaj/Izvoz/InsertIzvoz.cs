@@ -839,7 +839,7 @@ namespace Saobracaj.Izvoz
                             decimal VGMTezina, decimal Tara, decimal VGMBrod, int Izvoznik,
                             int Klijent1, int Napomena1REf, int DobijenNalogKlijent1, int Klijent2,
                             int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, 
-                            string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, int VrstaBrodskePlombe, string NapomenaZaRobu, decimal VGMBrod2)
+                            string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, int VrstaBrodskePlombe, string NapomenaZaRobu, decimal VGMBrod2, string KontaktSpeditera)
         {
 
             
@@ -1281,6 +1281,15 @@ namespace Saobracaj.Izvoz
             vgmbrod2.Value = VGMBrod2;
             cmd.Parameters.Add(vgmbrod2);
 
+
+            SqlParameter kontaktspeditera = new SqlParameter();
+            kontaktspeditera.ParameterName = "@KontaktSpeditera";
+            kontaktspeditera.SqlDbType = SqlDbType.NVarChar;
+            kontaktspeditera.Size = 100;
+            kontaktspeditera.Direction = ParameterDirection.Input;
+            kontaktspeditera.Value = KontaktSpeditera;
+            cmd.Parameters.Add(kontaktspeditera);
+
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -1327,7 +1336,7 @@ namespace Saobracaj.Izvoz
                            int NacinPakovanja, int NacinPretovara, string DodatneNapomeneDrumski, int Vaganje,
                            decimal VGMTezina, decimal Tara, decimal VGMBrod, int Izvoznik,
                            int Klijent1, int Napomena1REf, int DobijenNalogKlijent1, int Klijent2,
-                           int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, int IDNadredjena, string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, int VrstaBrodskePlombe, string NapomenaZaRobu, decimal VGMBrod2)
+                           int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, int IDNadredjena, string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, int VrstaBrodskePlombe, string NapomenaZaRobu, decimal VGMBrod2, string KontaktSpeditera)
         {
 
 
@@ -1775,6 +1784,14 @@ namespace Saobracaj.Izvoz
             vgmbrod2.Direction = ParameterDirection.Input;
             vgmbrod2.Value = VGMBrod2;
             cmd.Parameters.Add(vgmbrod2);
+
+            SqlParameter kontaktspeditera = new SqlParameter();
+            kontaktspeditera.ParameterName = "@KontaktSpeditera";
+            kontaktspeditera.SqlDbType = SqlDbType.NVarChar;
+            kontaktspeditera.Size = 100;
+            kontaktspeditera.Direction = ParameterDirection.Input;
+            kontaktspeditera.Value = KontaktSpeditera;
+            cmd.Parameters.Add(kontaktspeditera);
 
 
             conn.Open();

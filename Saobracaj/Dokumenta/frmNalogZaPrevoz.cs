@@ -15,7 +15,7 @@ using System.Net.Mail;
 
 using Microsoft.Reporting.WinForms;
 
-namespace TrackModal.Dokumeta
+namespace Saobracaj.Dokumenta
 {
     public partial class frmNalogZaPrevoz : Form
     {
@@ -127,7 +127,7 @@ namespace TrackModal.Dokumeta
             if (status == true)
             {
 
-                Dokumeta.InsertNalogZaPrevoz ins = new InsertNalogZaPrevoz();
+                Dokumenta.InsertNalogZaPrevoz ins = new InsertNalogZaPrevoz();
                 if (chk1.Checked == true)
                 {
                     statusurn = 1;
@@ -150,7 +150,7 @@ namespace TrackModal.Dokumeta
                 if (status == false)
                 {
 
-                    Dokumeta.InsertNalogZaPrevoz upd = new InsertNalogZaPrevoz();
+                    InsertNalogZaPrevoz upd = new InsertNalogZaPrevoz();
                     if (chk1.Checked == true)
                     {
                         statusurn = 1;

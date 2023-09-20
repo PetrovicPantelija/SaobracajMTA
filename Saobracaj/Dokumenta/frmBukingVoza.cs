@@ -885,7 +885,7 @@ group by substring(Naziv,1,3)
             {
                 if (row.Selected)
                 {
-                      InsertOtpremaKontejneraStavke ins = new InsertOtpremaKontejneraStavke();
+                    Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke ins = new Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke();
                       ins.InsertOtpremaKontejneraStavBuking(Convert.ToInt32(row.Cells[3].Value.ToString()),row.Cells[0].Value.ToString(),Convert.ToInt32(cboOtpremnica.SelectedValue) );
                 }
             }
@@ -900,7 +900,7 @@ group by substring(Naziv,1,3)
             {
                 if (row.Selected)
                 {
-                    InsertOtpremaKontejneraStavke ins = new InsertOtpremaKontejneraStavke();
+                    Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke ins = new Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke();
                     ins.InsertOtpremaKontejneraStavBuking(Convert.ToInt32(row.Cells[11].Value.ToString()), row.Cells[5].Value.ToString(), Convert.ToInt32(cboOtpremnica.SelectedValue));
                 }
             }
@@ -1075,7 +1075,7 @@ group by substring(Naziv,1,3)
                     {
                         if (row.Selected)
                         {
-                            InsertOtpremaKontejneraStavke ins = new InsertOtpremaKontejneraStavke();
+                            Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke ins = new Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke();
                             ins.DeleteOtpremaKontejneraVozStav(Convert.ToInt32(row.Cells[0].Value.ToString()));
                         }
                     }

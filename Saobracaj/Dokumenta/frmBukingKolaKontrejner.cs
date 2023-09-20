@@ -268,7 +268,7 @@ namespace TrackModal.Dokumeta
                     {
                         if (row2.Selected)
                         {
-                            InsertOtpremaKontejneraStavke ins = new InsertOtpremaKontejneraStavke();
+                            Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke ins = new Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke();
                             if (row.Cells[0].Value == null)
                             {
                                 ins.PromeniBrojVagona(Convert.ToInt32(row2.Cells[0].Value.ToString()), row.Cells[3].Value.ToString(), Convert.ToDouble(row.Cells[4].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()));

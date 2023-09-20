@@ -22,7 +22,8 @@ namespace Saobracaj.Sifarnici
     public partial class frmLogovanje : Syncfusion.Windows.Forms.Office2010Form
     {
         //
-        public string company;
+        public string company = "";
+        public static string Firma = "";
         public static string connectionString = "";
 
         public static string user = "";
@@ -36,13 +37,14 @@ namespace Saobracaj.Sifarnici
         {
             string basedir = AppDomain.CurrentDomain.BaseDirectory;
             string[] txtFile = Directory.GetFiles(basedir, "*txt");
-            string company = "";
+           // string company = "";
             foreach(string file in txtFile)
             {
                 company = Path.GetFileNameWithoutExtension(file);
             }
             var companyConfig = ConfigManager.GetCompanyConfiguration(company);
             connectionString = companyConfig.DB;
+            Firma = companyConfig.Naziv;
         }
         private void frmLogovanje_Load(object sender, EventArgs e)
         {

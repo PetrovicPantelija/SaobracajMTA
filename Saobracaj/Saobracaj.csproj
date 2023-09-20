@@ -811,6 +811,12 @@
     <Compile Include="Dokumenta\frmOtpremaKontejnera.designer.cs">
       <DependentUpon>frmOtpremaKontejnera.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dokumenta\frmOtpremaKontejneraLeget.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmOtpremaKontejneraLeget.Designer.cs">
+      <DependentUpon>frmOtpremaKontejneraLeget.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\frmParametriObracuna.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1020,6 +1026,12 @@
     </Compile>
     <Compile Include="Dokumenta\frmPrijemKontejneraKamionPregled.designer.cs">
       <DependentUpon>frmPrijemKontejneraKamionPregled.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumenta\frmPrijemKontejneraLeget.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmPrijemKontejneraLeget.Designer.cs">
+      <DependentUpon>frmPrijemKontejneraLeget.cs</DependentUpon>
     </Compile>
     <Compile Include="Dokumenta\frmPrijemKontejneraVoz.cs">
       <SubType>Form</SubType>
@@ -2314,6 +2326,12 @@
     <Compile Include="SyncForm\frmPregledMasinovodje.Designer.cs">
       <DependentUpon>frmPregledMasinovodje.cs</DependentUpon>
     </Compile>
+    <Compile Include="SyncForm\frmPregledMasinovodje2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SyncForm\frmPregledMasinovodje2.designer.cs">
+      <DependentUpon>frmPregledMasinovodje2.cs</DependentUpon>
+    </Compile>
     <Compile Include="SyncForm\frmPregledMobilni.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2393,10 +2411,10 @@
     <Compile Include="TrackModal\Dokumeta\frmDokumentaPrijemKontejneraKamion.Designer.cs">
       <DependentUpon>frmDokumentaPrijemKontejneraKamion.cs</DependentUpon>
     </Compile>
-    <Compile Include="TrackModal\Dokumeta\frmDokumentaPrijemKontejneraVoz.cs">
+    <Compile Include="Dokumenta\frmDokumentaPrijemKontejneraVoz.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TrackModal\Dokumeta\frmDokumentaPrijemKontejneraVoz.Designer.cs">
+    <Compile Include="Dokumenta\frmDokumentaPrijemKontejneraVoz.Designer.cs">
       <DependentUpon>frmDokumentaPrijemKontejneraVoz.cs</DependentUpon>
     </Compile>
     <Compile Include="TrackModal\Dokumeta\frmDokumentaVozila.cs">
@@ -2423,10 +2441,10 @@
     <Compile Include="TrackModal\Dokumeta\frmPregledVozova.Designer.cs">
       <DependentUpon>frmPregledVozova.cs</DependentUpon>
     </Compile>
-    <Compile Include="TrackModal\Dokumeta\frmTovarniList.cs">
+    <Compile Include="Testiranje\frmTovarniList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TrackModal\Dokumeta\frmTovarniList.Designer.cs">
+    <Compile Include="Testiranje\frmTovarniList.Designer.cs">
       <DependentUpon>frmTovarniList.cs</DependentUpon>
     </Compile>
     <Compile Include="TrackModal\Dokumeta\frmVoz.cs">
@@ -2446,7 +2464,7 @@
     <Compile Include="TrackModal\Dokumeta\InsertDokumentaNajava.cs" />
     <Compile Include="TrackModal\Dokumeta\InsertDokumentaOtpremaVoz.cs" />
     <Compile Include="TrackModal\Dokumeta\InsertDokumentaPrijemKontejneraKamion.cs" />
-    <Compile Include="TrackModal\Dokumeta\InsertDokumentaPrijemKontejneraVoz.cs" />
+    <Compile Include="Dokumenta\InsertDokumentaPrijemKontejneraVoz.cs" />
     <Compile Include="TrackModal\Dokumeta\InsertDokumentaVozila.cs" />
     <Compile Include="TrackModal\Dokumeta\InsertNalogZaPrevoz.cs" />
     <Compile Include="TrackModal\Dokumeta\InsertNaruceneManipulacije.cs" />
@@ -2462,7 +2480,7 @@
     <Compile Include="TrackModal\Dokumeta\InsertRadniNalogTransport.cs" />
     <Compile Include="TrackModal\Dokumeta\InsertRadniNalogTransportStavke.cs" />
     <Compile Include="TrackModal\Dokumeta\InsertRadniNalogTransportZaposleni.cs" />
-    <Compile Include="TrackModal\Dokumeta\InsertTovarniList.cs" />
+    <Compile Include="Dokumenta\TrainListItem\InsertTovarniList.cs" />
     <Compile Include="TrackModal\Dokumeta\InsertVoz.cs" />
     <Compile Include="TrackModal\Dokumeta\InsertVozila.cs" />
     <Compile Include="TrackModal\Dokumeta\InsertVozPaket.cs" />
@@ -3337,6 +3355,9 @@
     <EmbeddedResource Include="Dokumenta\frmOtpremaKontejnera.resx">
       <DependentUpon>frmOtpremaKontejnera.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmOtpremaKontejneraLeget.resx">
+      <DependentUpon>frmOtpremaKontejneraLeget.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmParametriObracuna.resx">
       <DependentUpon>frmParametriObracuna.cs</DependentUpon>
     </EmbeddedResource>
@@ -3441,6 +3462,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmPrijemKontejneraKamionPregled.resx">
       <DependentUpon>frmPrijemKontejneraKamionPregled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmPrijemKontejneraLeget.resx">
+      <DependentUpon>frmPrijemKontejneraLeget.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmPrijemKontejneraVoz.resx">
       <DependentUpon>frmPrijemKontejneraVoz.cs</DependentUpon>
@@ -4002,6 +4026,9 @@
     <EmbeddedResource Include="SyncForm\frmPregledMasinovodje.resx">
       <DependentUpon>frmPregledMasinovodje.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SyncForm\frmPregledMasinovodje2.resx">
+      <DependentUpon>frmPregledMasinovodje2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SyncForm\frmPregledMobilni.resx">
       <DependentUpon>frmPregledMobilni.cs</DependentUpon>
     </EmbeddedResource>
@@ -4045,7 +4072,7 @@
     <EmbeddedResource Include="TrackModal\Dokumeta\frmDokumentaPrijemKontejneraKamion.resx">
       <DependentUpon>frmDokumentaPrijemKontejneraKamion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TrackModal\Dokumeta\frmDokumentaPrijemKontejneraVoz.resx">
+    <EmbeddedResource Include="Dokumenta\frmDokumentaPrijemKontejneraVoz.resx">
       <DependentUpon>frmDokumentaPrijemKontejneraVoz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TrackModal\Dokumeta\frmDokumentaVozila.resx">
@@ -4060,7 +4087,7 @@
     <EmbeddedResource Include="TrackModal\Dokumeta\frmPregledVozova.resx">
       <DependentUpon>frmPregledVozova.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TrackModal\Dokumeta\frmTovarniList.resx">
+    <EmbeddedResource Include="Testiranje\frmTovarniList.resx">
       <DependentUpon>frmTovarniList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TrackModal\Dokumeta\frmVoz.resx">

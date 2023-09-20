@@ -18,8 +18,9 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Drawing.Imaging;
+using Saobracaj;
 
-namespace TrackModal.Dokumeta
+namespace Saobracaj.Dokumenta
 {
     public partial class frmDokumentaPrijemKontejneraVoz : Form
     {
@@ -178,7 +179,7 @@ namespace TrackModal.Dokumeta
         {
             if (status == true)
             {
-                Testiranje.Dokumeta.InsertDokumentaPrijemKontejneraVoz ins = new Testiranje.Dokumeta.InsertDokumentaPrijemKontejneraVoz();
+               Saobracaj.Dokumenta.InsertDokumentaPrijemKontejneraVoz ins = new Saobracaj.Dokumenta.InsertDokumentaPrijemKontejneraVoz();
                 KopirajFajlPoTipu(txtPutanja.Text, txtSifraVozila.Text, 6);
                 ins.InsPrijemDokumenta(Convert.ToInt32(txtSifraVozila.Text), txtPutanja.Text);
                 RefreshDataGrid();
@@ -223,7 +224,7 @@ namespace TrackModal.Dokumeta
 
             if (dialogResult == DialogResult.Yes)
             {
-                Testiranje.Dokumeta.InsertDokumentaPrijemKontejneraVoz del = new Testiranje.Dokumeta.InsertDokumentaPrijemKontejneraVoz();
+               Saobracaj.Dokumenta.InsertDokumentaPrijemKontejneraVoz del = new Saobracaj.Dokumenta.InsertDokumentaPrijemKontejneraVoz();
 
                 del.DelPrijemDokumenta(Convert.ToInt32(txtSifra.Text));
                 RefreshDataGrid();

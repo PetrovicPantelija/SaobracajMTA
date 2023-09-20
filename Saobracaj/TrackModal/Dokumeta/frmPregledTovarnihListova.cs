@@ -181,7 +181,7 @@ namespace Testiranje.Dokumeta
 
         private void toolStripButton4_Click_1(object sender, EventArgs e)
         {
-            frmTovarniList tl = new frmTovarniList(Convert.ToInt32(txtSifra.Text));
+            Saobracaj.Testiranje.frmTovarniList tl = new Saobracaj.Testiranje.frmTovarniList(Convert.ToInt32(txtSifra.Text));
             tl.Show();
         }
     }

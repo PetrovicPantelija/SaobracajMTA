@@ -15,7 +15,7 @@ using System.Net.Mail;
 
 using Microsoft.Reporting.WinForms;
 
-namespace TrackModal.Dokumeta
+namespace Saobracaj.Dokumenta
 {
     public partial class frmRadniNalogTransport : Form
     {
@@ -204,7 +204,7 @@ namespace TrackModal.Dokumeta
 
             if (status == true)
             {
-                Dokumeta.InsertRadniNalogTransport ins = new InsertRadniNalogTransport();
+                Saobracaj.Dokumenta.InsertRadniNalogTransport ins = new InsertRadniNalogTransport();
                 ins.InsRadniNalogZaTransport(Convert.ToInt32(txtNalogZaPrevozID.Text), Convert.ToInt32(txtPutniNalogID.Text), Convert.ToInt32(txtAutoprevozniListID.Text), Convert.ToInt32(cboVozilo.SelectedValue), Convert.ToDateTime(dtpDana.Value), Convert.ToInt32(cboTransportniDispičer.SelectedValue), txtMestoIzdavanja.Text, Convert.ToDateTime(dtpDatumPrevoza.Value), DateTime.Now, KorisnikCene, Convert.ToInt32(cboPrikljucnoVozilo.SelectedValue), txtRelacija1.Text, txtRelacija2.Text, txtBrojOtpravljanja.Text, Convert.ToDouble(txtBrojVagona.Value), Convert.ToDouble(txtNetoMasa.Value), Convert.ToDateTime(dtpDatumIstovara.Value), txtRBRVoza.Text);
                 status = false;
                 VratiPodatkeMax();
@@ -214,7 +214,7 @@ namespace TrackModal.Dokumeta
 
                 if (status == true)
                 {
-                    Dokumeta.InsertRadniNalogTransport upd = new InsertRadniNalogTransport();
+                    Saobracaj.Dokumenta.InsertRadniNalogTransport upd = new InsertRadniNalogTransport();
                     upd.UpdRadniNalogZaTransport(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtNalogZaPrevozID.Text), Convert.ToInt32(txtPutniNalogID.Text), Convert.ToInt32(txtAutoprevozniListID.Text), Convert.ToInt32(cboVozilo.SelectedValue), Convert.ToDateTime(dtpDana.Value), Convert.ToInt32(cboTransportniDispičer.SelectedValue), txtMestoIzdavanja.Text, Convert.ToDateTime(dtpDatumPrevoza.Value), DateTime.Now, KorisnikCene, Convert.ToInt32(cboPrikljucnoVozilo.SelectedValue), txtRelacija1.Text, txtRelacija2.Text, txtBrojOtpravljanja.Text, Convert.ToDouble(txtBrojVagona.Value), Convert.ToDouble(txtNetoMasa.Value), Convert.ToDateTime(dtpDatumIstovara.Value), txtRBRVoza.Text);
                     status = false;
                 }
@@ -229,7 +229,7 @@ namespace TrackModal.Dokumeta
             }
             else
             {
-                InsertRadniNalogTransportStavke ins = new InsertRadniNalogTransportStavke();
+                Saobracaj.Dokumenta.InsertRadniNalogTransportStavke ins = new InsertRadniNalogTransportStavke();
                 ins.InsRadniNalogTransportStavke(Convert.ToInt32(txtSifra.Text), txtKorisnik.Text, txtTovarniList.Text, txtRačun.Text, Convert.ToDouble(txtDencano.Value), Convert.ToDouble(txtKolsko.Value), Convert.ToDouble(txtPrihodDencano.Value), Convert.ToDouble(txtPrihodOstalo.Value), txtPrimedba.Text, txtPotpisao.Text);
                 RefreshDataGridStavke();
             }

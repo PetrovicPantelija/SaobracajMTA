@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
 
-namespace TrackModal.Sifarnici
+namespace Saobracaj.Sifarnici
 {
     class InsertCIR
     {

@@ -2107,7 +2107,7 @@ namespace Saobracaj
 
         private void toolStripButton145_Click(object sender, EventArgs e)
         {
-            frmPutniNalog put = new frmPutniNalog(Korisnik);
+            Saobracaj.Dokumenta.frmPutniNalog put = new Saobracaj.Dokumenta.frmPutniNalog(Korisnik);
             PravoP = put.Pravo;
             if (PravoP == true)
             {
@@ -2128,14 +2128,14 @@ namespace Saobracaj
 
         private void toolStripButton147_Click(object sender, EventArgs e)
         {
-            frmManipulacije man = new frmManipulacije(Korisnik);
+            Saobracaj.Dokumenta.frmManipulacije man = new Saobracaj.Dokumenta.frmManipulacije(Korisnik);
             PravoP = man.Pravo;
             if (PravoP == true) { man.Show(); } else { return; }
         }
 
         private void toolStripButton148_Click(object sender, EventArgs e)
         {
-            frmPregledNarucenihManipulacija pnman = new frmPregledNarucenihManipulacija(Korisnik);
+            Saobracaj.Dokumenta.frmPregledNarucenihManipulacija pnman = new Saobracaj.Dokumenta.frmPregledNarucenihManipulacija(Korisnik);
             PravoP = pnman.Pravo;
             if (PravoP == true) { pnman.Show(); } else { return; }
         }
@@ -2233,7 +2233,7 @@ namespace Saobracaj
 
         private void toolStripButton161_Click(object sender, EventArgs e)
         {
-            frmNalogZaPrevoz nzp = new frmNalogZaPrevoz(Korisnik);
+            Saobracaj.Dokumenta.frmNalogZaPrevoz nzp = new Saobracaj.Dokumenta.frmNalogZaPrevoz(Korisnik);
             nzp.Show();
         }
 
@@ -2245,7 +2245,7 @@ namespace Saobracaj
 
         private void toolStripButton167_Click(object sender, EventArgs e)
         {
-            frmPutniNalog pn = new frmPutniNalog();
+            Saobracaj.Dokumenta.frmPutniNalog pn = new Saobracaj.Dokumenta.frmPutniNalog();
             PravoP = pn.Pravo;
             if (PravoP == true) { pn.Show(); } else { return; }
         }
@@ -2258,13 +2258,13 @@ namespace Saobracaj
 
         private void toolStripButton164_Click(object sender, EventArgs e)
         {
-            frmRadniNalogTransport rnt = new frmRadniNalogTransport();
+            Saobracaj.Dokumenta.frmRadniNalogTransport rnt = new Saobracaj.Dokumenta.frmRadniNalogTransport();
             rnt.Show();
         }
 
         private void toolStripButton165_Click(object sender, EventArgs e)
         {
-            frmAutoprevozniList2 apl = new frmAutoprevozniList2();
+            Saobracaj.Dokumenta.frmAutoprevozniList2 apl = new Saobracaj.Dokumenta.frmAutoprevozniList2();
             apl.Show();
         }
 
@@ -3658,6 +3658,34 @@ namespace Saobracaj
         private void toolStripButton128_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripEx35_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void toolStripButton271_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton271_Click_2(object sender, EventArgs e)
+        {
+            ReportingOperatika.PoLokomotivama pLok = new ReportingOperatika.PoLokomotivama();
+            pLok.Show();
+        }
+
+        private void toolStripButton279_Click_2(object sender, EventArgs e)
+        {
+            SyncForm.frmPregledMobilni2 pm2 = new SyncForm.frmPregledMobilni2();
+            pm2.Show();
+        }
+
+        private void toolStripButton296_Click(object sender, EventArgs e)
+        {
+            SyncForm.frmPregledMasinovodje2 pm2 = new SyncForm.frmPregledMasinovodje2();
+            pm2.Show();
         }
     }
     }

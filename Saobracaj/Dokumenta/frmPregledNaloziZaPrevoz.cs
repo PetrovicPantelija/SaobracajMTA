@@ -307,8 +307,8 @@ namespace TrackModal.Dokumeta
 
         private void button2_Click(object sender, EventArgs e)
         {
-           // string KorisnikCene = " ";
-            frmNalogZaPrevoz nal = new frmNalogZaPrevoz(Convert.ToInt32(txtSifra.Text), KorisnikTekuci);
+            // string KorisnikCene = " ";
+            Saobracaj.Dokumenta.frmNalogZaPrevoz nal = new Saobracaj.Dokumenta.frmNalogZaPrevoz(Convert.ToInt32(txtSifra.Text), KorisnikTekuci);
             nal.Show();
         }
     }

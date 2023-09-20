@@ -593,7 +593,7 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            frmDokumentaPrijemKontejneraVoz frmd3 = new frmDokumentaPrijemKontejneraVoz(txtSifra.Text, KorisnikCene);
+            Saobracaj.Dokumenta.frmDokumentaPrijemKontejneraVoz frmd3 = new Saobracaj.Dokumenta.frmDokumentaPrijemKontejneraVoz(txtSifra.Text, KorisnikCene);
             frmd3.Show();
         }
 
@@ -2726,7 +2726,7 @@ namespace TrackModal.Dokumeta
                 MessageBox.Show("Niste izabrali stavku za koju radite CIR");
                 return;
             }
-            frmCIR cir = new frmCIR(KorisnikCene, Convert.ToInt32(txtStavka.Text), 0, txtBrojKontejnera.Text, txtVagon.Text, Convert.ToDouble(txtTara.Value), txtRegBrKamiona.Text, Convert.ToDouble(txtNeto.Value), Convert.ToInt32(cboTipKontejnera.SelectedValue), dtpVremeDolaska.Value, txtBrojPlombe.Text, txtBrojPlombe2.Text);
+            Saobracaj.Dokumenta.frmCIR cir = new Saobracaj.Dokumenta.frmCIR(KorisnikCene, Convert.ToInt32(txtStavka.Text), 0, txtBrojKontejnera.Text, txtVagon.Text, Convert.ToDouble(txtTara.Value), txtRegBrKamiona.Text, Convert.ToDouble(txtNeto.Value), Convert.ToInt32(cboTipKontejnera.SelectedValue), dtpVremeDolaska.Value, txtBrojPlombe.Text, txtBrojPlombe2.Text);
             cir.Show();
         }
 
@@ -2784,10 +2784,10 @@ namespace TrackModal.Dokumeta
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
-            
-            
-            
-            frmNalogZaPrevoz prevoz = new frmNalogZaPrevoz(BrojKontejnera1,BrojKontejnera2,VrstaRobe1,VrstaRobe2,ukupnaMasa, KorisnikCene, TipKontejnera, TipKontejnera2, ukupnaMasa2);
+
+
+
+            Saobracaj.Dokumenta.frmNalogZaPrevoz prevoz = new Saobracaj.Dokumenta.frmNalogZaPrevoz(BrojKontejnera1,BrojKontejnera2,VrstaRobe1,VrstaRobe2,ukupnaMasa, KorisnikCene, TipKontejnera, TipKontejnera2, ukupnaMasa2);
             prevoz.Show();
         }
 
@@ -2896,7 +2896,7 @@ namespace TrackModal.Dokumeta
 
         private void button7_Click(object sender, EventArgs e)
         {
-            frmKontejneriNaPrijemnici kon = new frmKontejneriNaPrijemnici(txtBrojKontejnera.Text.Trim());
+            Saobracaj.Dokumenta.frmKontejneriNaPrijemnici kon = new Saobracaj.Dokumenta.frmKontejneriNaPrijemnici(txtBrojKontejnera.Text.Trim());
             kon.Show();
         }
 
@@ -2934,7 +2934,7 @@ namespace TrackModal.Dokumeta
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                  MessageBox.Show("Prijem na centralno skladiste");
-                InsertPromet ins = new InsertPromet();
+                Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
                 int pom1 = 0;
                 int pom2 = 0;
                 int pom3 = 1;
@@ -2959,7 +2959,7 @@ namespace TrackModal.Dokumeta
                 int SledeciBroj = VratiPodatkeMaxPromet();
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                InsertPromet ins = new InsertPromet();
+                    Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
                 int pom1 = 0;
                 int pom2 = 0;
                 int pom3 = 1;
@@ -2974,12 +2974,12 @@ namespace TrackModal.Dokumeta
         {
             if (chkVoz.Checked == true)
             {
-                frmPregledNarucenihManipulacija pnm = new frmPregledNarucenihManipulacija(KorisnikCene, Convert.ToInt32(txtSifra.Text), 1);
+                Saobracaj.Dokumenta.frmPregledNarucenihManipulacija pnm = new Saobracaj.Dokumenta.frmPregledNarucenihManipulacija(KorisnikCene, Convert.ToInt32(txtSifra.Text), 1);
                 pnm.Show();
             }
             else
             {
-                frmPregledNarucenihManipulacija pnm = new frmPregledNarucenihManipulacija(KorisnikCene, Convert.ToInt32(txtSifra.Text), 0);
+                Saobracaj.Dokumenta.frmPregledNarucenihManipulacija pnm = new Saobracaj.Dokumenta.frmPregledNarucenihManipulacija(KorisnikCene, Convert.ToInt32(txtSifra.Text), 0);
                 pnm.Show();
             }
         }
@@ -2989,17 +2989,22 @@ namespace TrackModal.Dokumeta
 
             if (chkVoz.Checked == true)
             {
-                frmManipulacije pnm = new frmManipulacije(KorisnikCene, Convert.ToInt32(txtSifra.Text), 1,1);
+                Saobracaj.Dokumenta.frmManipulacije pnm = new Saobracaj.Dokumenta.frmManipulacije(KorisnikCene, Convert.ToInt32(txtSifra.Text), 1,1);
                 pnm.Show();
             }
             else
             {
-                frmManipulacije pnm = new frmManipulacije(KorisnikCene, Convert.ToInt32(txtSifra.Text), 0,1);
+                Saobracaj.Dokumenta.frmManipulacije pnm = new Saobracaj.Dokumenta.frmManipulacije(KorisnikCene, Convert.ToInt32(txtSifra.Text), 0,1);
                 pnm.Show();
             }
         }
 
         private void button9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
         {
 
         }

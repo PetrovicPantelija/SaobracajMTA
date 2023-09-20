@@ -23,7 +23,7 @@ namespace TrackModal.Dokumeta
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             string KorisnikCene = " ";
-            frmRadniNalogTransport nal = new frmRadniNalogTransport(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+            Saobracaj.Dokumenta.frmRadniNalogTransport nal = new Saobracaj.Dokumenta.frmRadniNalogTransport(Convert.ToInt32(txtSifra.Text), KorisnikCene);
             nal.Show();
         }
 

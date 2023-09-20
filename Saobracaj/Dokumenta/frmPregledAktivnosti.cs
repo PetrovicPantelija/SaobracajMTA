@@ -24,6 +24,14 @@ namespace Saobracaj.Dokumenta
 
         private void btnPretrazi_Click(object sender, EventArgs e)
         {
+            string dwhere = " where 1=1";
+            if (chkAutomobili.Checked == false)
+            {
+
+                dwhere = dwhere + " and AktivnostiStavke.VrstaAktivnostiID <> 57 ";
+
+
+            }
             var select = "";
             select = " SELECT     AktivnostiStavke.ID, AktivnostiStavke.IDNadredjena, AktivnostiStavke.VrstaAktivnostiID, VrstaAktivnosti.Naziv, AktivnostiStavke.DatumPocetka, " + 
                      " AktivnostiStavke.DatumZavrsetka, AktivnostiStavke.Posao, AktivnostiStavke.OznakaPosla, AktivnostiStavke.MestoIzvrsenja, AktivnostiStavke.Teretnica, " +
@@ -33,7 +41,7 @@ namespace Saobracaj.Dokumenta
                       " VrstaAktivnosti ON AktivnostiStavke.VrstaAktivnostiID = VrstaAktivnosti.ID INNER JOIN " +
                      "  Aktivnosti ON AktivnostiStavke.IDNadredjena = Aktivnosti.ID INNER JOIN " +
                      "  Delavci ON Aktivnosti.Zaposleni = Delavci.DeSifra " +
-                     " inner join Stanice on Stanice.ID = AktivnostiStavke.Stanica " +
+                     " inner join Stanice on Stanice.ID = AktivnostiStavke.Stanica " + dwhere +
                      "  order by AktivnostiStavke.DatumPocetka desc   ";
 
 
@@ -148,7 +156,14 @@ namespace Saobracaj.Dokumenta
 
         private void button1_Click(object sender, EventArgs e)
         {
-     
+            string dwhere = " ";
+            if (chkAutomobili.Checked == false)
+            {
+
+                dwhere = dwhere + " and AktivnostiStavke.VrstaAktivnostiID <> 57 ";
+
+
+            }
 
             var select = "";
             select = " SELECT     AktivnostiStavke.ID, AktivnostiStavke.IDNadredjena, AktivnostiStavke.VrstaAktivnostiID, VrstaAktivnosti.Naziv, AktivnostiStavke.DatumPocetka, " +
@@ -160,7 +175,7 @@ namespace Saobracaj.Dokumenta
                      "  Aktivnosti ON AktivnostiStavke.IDNadredjena = Aktivnosti.ID " +
                        " inner join Stanice on Stanice.ID = AktivnostiStavke.Stanica " +
                      " INNER JOIN " +
-                     "  Delavci ON Aktivnosti.Zaposleni = Delavci.DeSifra where AktivnostiStavke.OznakaPosla = '" + cboPosao.SelectedValue + "'" +
+                     "  Delavci ON Aktivnosti.Zaposleni = Delavci.DeSifra where AktivnostiStavke.OznakaPosla = '" + cboPosao.SelectedValue + "'" + dwhere + 
                      "  order by AktivnostiStavke.DatumPocetka desc   ";
 
 

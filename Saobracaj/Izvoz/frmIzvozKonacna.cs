@@ -106,7 +106,7 @@ namespace Saobracaj.Izvoz
         {
             
             var select = " SELECT     IzvozKonacnaNHM.ID, NHM.Broj, IzvozKonacnaNHM.IDNHM, NHM.Naziv FROM NHM INNER JOIN " +
-                      " IzvozKonacnaNHM ON NHM.ID = IzvozKonacnaNHM.IDNHM where IzvozKonacnanhm.idnadredjena = " + Convert.ToInt32(txtNadredjeni.Text) + " order by IzvozKonacnanhm.ID desc ";
+                      " IzvozKonacnaNHM ON NHM.ID = IzvozKonacnaNHM.IDNHM where IzvozKonacnanhm.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by IzvozKonacnanhm.ID desc ";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -537,22 +537,23 @@ namespace Saobracaj.Izvoz
 
         private void FillDG()
         {
-            var select = "      SELECT  IzvozKonacna.ID as ID,    IzvozKonacna.VrstaKontejnera, TipKontenjera.Naziv, IzvozKonacna.BrojVagona, IzvozKonacna.BrojKontejnera, IzvozKonacna.BrodskaPlomba, " +
+            var select = "      SELECT  IzvozKonacna.ID as ID,  IzvozKonacna.BrojKontejnera,  IzvozKonacna.VrstaKontejnera as VKID, TipKontenjera.Naziv as VRSTAKONTEJNERA, " +
+                " IzvozKonacna.BrojVagona,  IzvozKonacna.BrodskaPlomba, " +
  " IzvozKonacna.OstalePlombe, IzvozKonacna.BookingBrodara,      Partnerji.PaNaziv,     IzvozKonacna.CutOffPort, IzvozKonacna.NetoRobe, IzvozKonacna.BrutoRobe, " +
  "  IzvozKonacna.BrutoRobeO, IzvozKonacna.BrojKoleta, IzvozKonacna.BrojKoletaO, IzvozKonacna.CBM, IzvozKonacna.CBMO, " +
   " IzvozKonacna.VrednostRobeFaktura,   (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaManipulacije.Naziv as nvarchar(20))" +
  "  FROM IzvozVrstaManipulacije           inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozVrstaManipulacije.IDVrstaManipulacije" +
  "  where IzvozVrstaManipulacije.IDNadredjena = IzvozKonacna.ID            FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as VrsteUsluga, " +
- "  (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20))             FROM IzvozVrstaRobeHS " +
+ "  (SELECT  STUFF((SELECT distinct    '/' + Cast(RTRIM(VrstaRobeHS.HSKod) as nvarchar(20))             FROM IzvozVrstaRobeHS " +
   " inner join VrstaRobeHS on IzvozVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID" +
  "  where IzvozVrstaRobeHS.IDNadredjena = IzvozKonacna.ID              FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as HS,  " +
- "  (SELECT  STUFF((SELECT distinct    '/' + Cast(NHM.Broj as nvarchar(20))              FROM IzvozNHM  inner join NHM" +
+ "  (SELECT  STUFF((SELECT distinct    '/' + Cast(RTRIM(NHM.Broj) as nvarchar(20))              FROM IzvozNHM  inner join NHM" +
   " on IzvozNHM.IDNHM = NHM.ID  where IzvozNHM.IDNadredjena = IzvozKonacna.ID   FOR XML PATH('')), 1, 1, ''  ) As Skupljen) as NHM,   " +
  "  IzvozKonacna.Valuta, KrajnjaDestinacija.Naziv AS KrajnjaDestinacija, VrstePostupakaUvoz.Naziv AS Postupak, KontejnerskiTerminali.Naziv AS PPCNT,  " +
-  " KontejnerskiTerminali.Oznaka, IzvozKonacna.Cirada, IzvozKonacna.PlaniraniDatumUtovara, MestaUtovara.Naziv AS MestoUtovara, IzvozKonacna.KontaktOsoba, " +
- "  Carinarnice.Naziv AS Carinarnica, Carinarnice.CIOznaka, Partnerji_1.PaNaziv AS Spedicija, AdresaSlanjaStatusa AS AdresaStatusVozila,   " +
- "  NaslovSlanjaStatusa AS NaslovStatusaVozila, IzvozKonacna.EtaLeget, VrstaCarinskogPostupka.Naziv AS Reexport, InspekciskiTretman.Naziv AS InspekciskiTretman,  " +
- "  IzvozKonacna.AutoDana, IzvozKonacna.NajavaVozila, IzvozKonacna.DodatneNapomeneDrumski, IzvozKonacna.Vaganje, IzvozKonacna.VGMTezina, IzvozKonacna.Tara, " +
+  " KontejnerskiTerminali.Oznaka, IzvozKonacna.Cirada, IzvozKonacna.PlaniraniDatumUtovara, MestaUtovara.Naziv AS MestoUtovara, (Rtrim(partnerjiKontOsebaMU.PaKOIme) + ' ' + Rtrim(partnerjiKontOsebaMU.PaKoPriimek)) as KontaktOsoba , PaKOOpomba as AdresaKO, " +
+ "  Carinarnice.CIOznaka,Carinarnice.Naziv AS Carinarnica,  Partnerji_1.PaNaziv AS Spedicija, KontaktSpeditera,    VrstaRobeADR.UNKod  as ADR , AdresaSlanjaStatusa AS AdresaStatusVozila,   " +
+ "  NaslovSlanjaStatusa AS NaslovStatusaVozila, IzvozKonacna.EtaLeget, (VrstaCarinskogPostupka.Oznaka + ' ' + VrstaCarinskogPostupka.Naziv) AS Reexport, InspekciskiTretman.Naziv AS InspekciskiTretman,  " +
+ "  IzvozKonacna.AutoDana, IzvozKonacna.NajavaVozila, IzvozKonacna.Vozilo, IzvozKonacna.Vozac, IzvozKonacna.DodatneNapomeneDrumski, IzvozKonacna.Vaganje, IzvozKonacna.VGMTezina, IzvozKonacna.Tara, " +
  "  IzvozKonacna.VGMBrod,                     Partnerji_2.PaNaziv AS Izvoznik, Partnerji_3.PaNaziv AS Klijent1, IzvozKonacna.Napomena1REf,  " +
  "  IzvozKonacna.DobijenNalogKlijent1, Partnerji_4.PaNaziv AS klijent2, " +
  "  IzvozKonacna.Napomena2REf, Partnerji_5.PaNaziv AS Klijent3, IzvozKonacna.Napomena3REf, Partnerji_6.PaNaziv AS SpediterRijeka, uvNacinPakovanja.Naziv AS NacinPakovanja,  " +
@@ -570,10 +571,14 @@ namespace Saobracaj.Izvoz
   " left JOIN         Partnerji AS Partnerji_5 ON IzvozKonacna.Klijent3 = Partnerji_5.PaSifra " +
  "  LEFT JOIN          Partnerji AS Partnerji_6 ON IzvozKonacna.SpediterRijeka = Partnerji_6.PaSifra " +
   " LEFT JOIN         uvNacinPakovanja ON IzvozKonacna.NacinPakovanja = uvNacinPakovanja.ID  " +
+  " LEFT JOIN         partnerjiKontOsebaMU ON IzvozKonacna.KontaktOsoba = partnerjiKontOsebaMU.PaKoZapSt  " +
+    " LEFT JOIN         VrstaRobeADR ON IzvozKonacna.ADR = VrstaRobeADR.ID  " +
              " where IzvozKonacna.IdNadredjena = " + Convert.ToInt32(txtNadredjeni.Text) + " order by IzvozKonacna.ID desc";
 
-
-            SqlConnection conn = new SqlConnection(connection);
+            //select PaKoZapSt, (Rtrim(PaKOIme) + ' ' + Rtrim(PaKoPriimek)) as Naziv from partnerjiKontOsebaMU
+            // Select ID, (  UNKod + ' - ' + Klasa + ' - ' + Naziv  ) as Naziv From VrstaRobeADR order by UNKod
+            //Select ID, (Oznaka + ' ' + Naziv) as Naziv from VrstaCarinskogPostupka order by Naziv
+              SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
             da.Fill(ds);
@@ -598,64 +603,253 @@ namespace Saobracaj.Izvoz
             dataGridView1.Columns[0].Width = 50;
 
             DataGridViewColumn column1 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "BrojKontejnera";
+            dataGridView1.Columns[1].HeaderText = "BROJ KONTEJNERA";
             dataGridView1.Columns[1].Frozen = true;
             dataGridView1.Columns[1].Width = 100;
-            /*
+           
             DataGridViewColumn column2 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "BL";
-            dataGridView1.Columns[2].Frozen = true;
+            dataGridView1.Columns[2].HeaderText = "VKID";
             dataGridView1.Columns[2].Width = 90;
 
             DataGridViewColumn column3 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Dobijen_Nalog_Brodara";
+            dataGridView1.Columns[3].HeaderText = "VRSTA KONTEJNERA";
             // dataGridView1.Columns[1].Frozen = true;
-            dataGridView1.Columns[3].Width = 50;
+            dataGridView1.Columns[3].Width = 120;
 
             DataGridViewColumn column4 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "ATABroda";
+            dataGridView1.Columns[4].HeaderText = "BROJ VAGONA";
             dataGridView1.Columns[4].Width = 80;
 
             DataGridViewColumn column5 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Brod";
-            dataGridView1.Columns[5].Width = 100;
+            dataGridView1.Columns[5].HeaderText = "BRODSKA PLOMBA BR ";
+            dataGridView1.Columns[5].Width = 70;
 
             DataGridViewColumn column6 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Napomena";
-            dataGridView1.Columns[6].Width = 100;
+            dataGridView1.Columns[6].HeaderText = "OSTALE PLOMBE";
+            dataGridView1.Columns[6].Width = 70;
 
             DataGridViewColumn column7 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "DatumBZ";
+            dataGridView1.Columns[7].HeaderText = "BUKIN BRODAR";
             dataGridView1.Columns[7].Width = 80;
 
             DataGridViewColumn column8 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "PIN";
-            dataGridView1.Columns[8].Width = 60;
+            dataGridView1.Columns[8].HeaderText = "BRODAR";
+            dataGridView1.Columns[8].Width = 100;
 
             DataGridViewColumn column9 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "BrojKontejnera";
+            dataGridView1.Columns[9].HeaderText = "Cut off port";
             //   dataGridView1.Columns[7].Frozen = true;
             dataGridView1.Columns[9].Width = 100;
 
             DataGridViewColumn column10 = dataGridView1.Columns[10];
-            dataGridView1.Columns[10].HeaderText = "Vrsta kontejnera";
-            dataGridView1.Columns[10].Width = 120;
+            dataGridView1.Columns[10].HeaderText = "NTTO robe F";
+            dataGridView1.Columns[10].Width = 90;
 
             DataGridViewColumn column11 = dataGridView1.Columns[11];
-            dataGridView1.Columns[11].HeaderText = "R_L_SRB";
-            dataGridView1.Columns[11].Width = 120;
+            dataGridView1.Columns[11].HeaderText = "BTTO robe F";
+            dataGridView1.Columns[11].Width = 90;
 
             DataGridViewColumn column12 = dataGridView1.Columns[12];
-            dataGridView1.Columns[12].HeaderText = "Dirigacija_Kontejnera_Za";
+            dataGridView1.Columns[12].HeaderText = "BTTO robe O";
             dataGridView1.Columns[12].Width = 100;
 
             DataGridViewColumn column13 = dataGridView1.Columns[13];
-            dataGridView1.Columns[13].HeaderText = "BL";
+            dataGridView1.Columns[13].HeaderText = "BROJ KOLETA ";
             // dataGridView1.Columns[13].Frozen = true;
             dataGridView1.Columns[13].Width = 90;
 
-            RefreshDataGridColor();
-*/
+            DataGridViewColumn column14 = dataGridView1.Columns[14];
+            dataGridView1.Columns[14].HeaderText = "BROJ KOLETA O";
+            dataGridView1.Columns[14].Width = 90;
+
+            DataGridViewColumn column15 = dataGridView1.Columns[15];
+            dataGridView1.Columns[15].HeaderText = "CBM";
+            dataGridView1.Columns[15].Width = 90;
+
+            DataGridViewColumn column16 = dataGridView1.Columns[16];
+            dataGridView1.Columns[16].HeaderText = "CBMO";
+            dataGridView1.Columns[16].Width = 90;
+
+            DataGridViewColumn column17 = dataGridView1.Columns[17];
+            dataGridView1.Columns[17].HeaderText = "VREDNOST ROBE FAKTURA";
+            dataGridView1.Columns[17].Width = 90;
+
+            DataGridViewColumn column18 = dataGridView1.Columns[18];
+            dataGridView1.Columns[18].HeaderText = "VRSTA USLUGA";
+            dataGridView1.Columns[18].Width = 290;
+
+            DataGridViewColumn column19 = dataGridView1.Columns[19];
+            dataGridView1.Columns[19].HeaderText = "HS";
+            dataGridView1.Columns[19].Width = 100;
+
+            DataGridViewColumn column20 = dataGridView1.Columns[20];
+            dataGridView1.Columns[20].HeaderText = "NHM";
+            dataGridView1.Columns[20].Width = 100;
+
+            DataGridViewColumn column21 = dataGridView1.Columns[21];
+            dataGridView1.Columns[21].HeaderText = "VALUTA";
+            dataGridView1.Columns[21].Width = 80;
+
+            DataGridViewColumn column22 = dataGridView1.Columns[22];
+            dataGridView1.Columns[22].HeaderText = "KRAJNJA DESTINACIJA";
+            dataGridView1.Columns[22].Width = 120;
+
+            DataGridViewColumn column23 = dataGridView1.Columns[23];
+            dataGridView1.Columns[23].HeaderText = "POSTUPAL SA ROBOM";
+            dataGridView1.Columns[23].Width = 120;
+
+
+            DataGridViewColumn column24 = dataGridView1.Columns[24];
+            dataGridView1.Columns[24].HeaderText = "PPCNT";
+            dataGridView1.Columns[24].Width = 120;
+
+
+            DataGridViewColumn column25 = dataGridView1.Columns[25];
+            dataGridView1.Columns[25].HeaderText = "PLATFORMA";
+            dataGridView1.Columns[25].Width = 90;
+
+            DataGridViewColumn column26 = dataGridView1.Columns[26];
+            dataGridView1.Columns[26].HeaderText = "CIRADA";
+            dataGridView1.Columns[26].Width = 50;
+
+            DataGridViewColumn column27 = dataGridView1.Columns[27];
+            dataGridView1.Columns[27].HeaderText = "PL DAT UTOVARA";
+            dataGridView1.Columns[27].Width = 120;
+
+            DataGridViewColumn column28 = dataGridView1.Columns[28];
+            dataGridView1.Columns[28].HeaderText = "MESTO UTOVARA";
+            dataGridView1.Columns[28].Width = 120;
+
+
+            DataGridViewColumn column29 = dataGridView1.Columns[29];
+            dataGridView1.Columns[29].HeaderText = "KONTAKT OSOBA";
+            dataGridView1.Columns[29].Width = 90;
+
+            DataGridViewColumn column30 = dataGridView1.Columns[30];
+            dataGridView1.Columns[30].HeaderText = "ADRESA UTOVARA";
+            dataGridView1.Columns[30].Width = 90;
+
+
+            DataGridViewColumn column31 = dataGridView1.Columns[31];
+            dataGridView1.Columns[31].HeaderText = "CIO OZNAKA";
+            dataGridView1.Columns[31].Width = 90;
+
+            DataGridViewColumn column32 = dataGridView1.Columns[32];
+            dataGridView1.Columns[32].HeaderText = "CARINARNICA";
+            dataGridView1.Columns[32].Width = 90;
+
+            DataGridViewColumn column33 = dataGridView1.Columns[33];
+            dataGridView1.Columns[33].HeaderText = "SPEDITER";
+            dataGridView1.Columns[33].Width = 90;
+
+            DataGridViewColumn column34 = dataGridView1.Columns[34];
+            dataGridView1.Columns[34].HeaderText = "KONTAKT SPEDITERA";
+            dataGridView1.Columns[34].Width = 90;
+
+            DataGridViewColumn column35 = dataGridView1.Columns[35];
+            dataGridView1.Columns[35].HeaderText = "ADR";
+            dataGridView1.Columns[35].Width = 90;
+
+            DataGridViewColumn column36 = dataGridView1.Columns[36];
+            dataGridView1.Columns[36].HeaderText = "ADRESA ZA SLANJE STAT";
+            dataGridView1.Columns[36].Width = 90;
+
+            DataGridViewColumn column37 = dataGridView1.Columns[37];
+            dataGridView1.Columns[37].HeaderText = "NASLOV ZA SLANJE STATUSA VOZILA";
+            dataGridView1.Columns[37].Width = 90;
+
+            DataGridViewColumn column38 = dataGridView1.Columns[38];
+            dataGridView1.Columns[38].HeaderText = "ETA LEGET";
+            dataGridView1.Columns[38].Width = 90;
+
+            DataGridViewColumn column39 = dataGridView1.Columns[39];
+            dataGridView1.Columns[39].HeaderText = "REEXPORT";
+            dataGridView1.Columns[39].Width = 90;
+
+
+            DataGridViewColumn column40 = dataGridView1.Columns[40];
+            dataGridView1.Columns[40].HeaderText = "INPEKCISKI TRETMAN";
+            dataGridView1.Columns[40].Width = 90;
+
+            DataGridViewColumn column41 = dataGridView1.Columns[41];
+            dataGridView1.Columns[41].HeaderText = "AUTO DAN";
+            dataGridView1.Columns[41].Width = 90;
+
+
+            DataGridViewColumn column42 = dataGridView1.Columns[42];
+            dataGridView1.Columns[42].HeaderText = "NAJAVA VOZILA/CNT I VOZAČA";
+            dataGridView1.Columns[42].Width = 90;
+
+            DataGridViewColumn column43 = dataGridView1.Columns[43];
+            dataGridView1.Columns[43].HeaderText = "VOZILO";
+            dataGridView1.Columns[43].Width = 90;
+
+
+            DataGridViewColumn column44 = dataGridView1.Columns[44];
+            dataGridView1.Columns[44].HeaderText = "VOZAC";
+            dataGridView1.Columns[44].Width = 90;
+
+            DataGridViewColumn column45 = dataGridView1.Columns[45];
+            dataGridView1.Columns[45].HeaderText = "DODATNE NAPOMENE";
+            dataGridView1.Columns[45].Width = 190;
+
+
+            DataGridViewColumn column46 = dataGridView1.Columns[46];
+            dataGridView1.Columns[46].HeaderText = "VAGANJE";
+            dataGridView1.Columns[46].Width = 90;
+
+            DataGridViewColumn column47 = dataGridView1.Columns[47];
+            dataGridView1.Columns[47].HeaderText = "BTTO ROBE (ODVAGA)";
+            dataGridView1.Columns[47].Width = 90;
+
+            DataGridViewColumn column48 = dataGridView1.Columns[48];
+            dataGridView1.Columns[48].HeaderText = "TARA";
+            dataGridView1.Columns[48].Width = 90;
+
+
+
+
+            DataGridViewColumn column49 = dataGridView1.Columns[49];
+            dataGridView1.Columns[49].HeaderText = "BTTO KONTEJENRA (ODVAGA)";
+            dataGridView1.Columns[49].Width = 90;
+
+            DataGridViewColumn column50 = dataGridView1.Columns[50];
+            dataGridView1.Columns[50].HeaderText = "IZVOZNIK";
+            dataGridView1.Columns[50].Width = 130;
+
+
+            DataGridViewColumn column51 = dataGridView1.Columns[51];
+            dataGridView1.Columns[51].HeaderText = "NALOGAVAC ZA VOZ";
+            dataGridView1.Columns[51].Width = 190;
+
+            DataGridViewColumn column52 = dataGridView1.Columns[52];
+            dataGridView1.Columns[52].HeaderText = "REF1 FAK";
+            dataGridView1.Columns[52].Width = 80;
+
+            DataGridViewColumn column53 = dataGridView1.Columns[53];
+            dataGridView1.Columns[53].HeaderText = "NALOGOAVAC ZA USLUGE";
+            dataGridView1.Columns[53].Width = 190;
+
+            DataGridViewColumn column54 = dataGridView1.Columns[54];
+            dataGridView1.Columns[54].HeaderText = "REF2 FAK";
+            dataGridView1.Columns[54].Width = 90;
+
+            DataGridViewColumn column55 = dataGridView1.Columns[55];
+            dataGridView1.Columns[55].HeaderText = "NALOGODAVAC ZA DP";
+            dataGridView1.Columns[55].Width = 170;
+
+            DataGridViewColumn column56 = dataGridView1.Columns[56];
+            dataGridView1.Columns[56].HeaderText = "REF3 FAK";
+            dataGridView1.Columns[56].Width = 90;
+
+            DataGridViewColumn column57 = dataGridView1.Columns[57];
+            dataGridView1.Columns[57].HeaderText = "VGMBROD";
+            dataGridView1.Columns[57].Width = 70;
+
+
+
+            // RefreshDataGridColor();
+
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -706,7 +900,10 @@ namespace Saobracaj.Izvoz
                 Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(txtRef1.Text), pomDobijenNalog,
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(txtRef2.Text),
                 Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(txtRef3.Text),
-                 Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text, Convert.ToInt32(txtADR.SelectedValue), Convert.ToInt32(txtNadredjeni.Text), txtVozilo.Text, txtVozac.Text, Convert.ToInt32(cboSpedicijaJ.SelectedValue), Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToInt32(cboVrstaPlombe.SelectedValue), txtNapomenaZaRobu.Text, Convert.ToDecimal(txtVGMBrod.Value));
+                 Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text, Convert.ToInt32(txtADR.SelectedValue),
+                 Convert.ToInt32(txtNadredjeni.Text), txtVozilo.Text, txtVozac.Text, Convert.ToInt32(cboSpedicijaJ.SelectedValue),
+                 Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToInt32(cboVrstaPlombe.SelectedValue), 
+                 txtNapomenaZaRobu.Text, Convert.ToDecimal(txtVGMBrod.Value), txtKontaktSpeditera.Text);
             //Fale ostale plombe
             // Convert.ToDecimal(txtDodatneNapomene.Text -- treba staviti nvarchar
 
@@ -730,7 +927,7 @@ namespace Saobracaj.Izvoz
            //  FillGV();
             //  RefreshDataGridColor();
             
-            txtID.Text = "";
+          
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -757,7 +954,7 @@ namespace Saobracaj.Izvoz
         private void button2_Click(object sender, EventArgs e)
         {
             InsertIzvoz uvK = new InsertIzvoz();
-            uvK.DelIzvozKonacnaVrstaRobeHS(Convert.ToInt32(cboNHM.SelectedValue));
+            uvK.DelIzvozKonacnaVrstaRobeHS(Convert.ToInt32(txtVrstaRobeHS.Text));
             FillDG3();
         }
         private void FillDG6()
@@ -1561,6 +1758,12 @@ namespace Saobracaj.Izvoz
                 txtVGMBrod.Enabled = false;
                 ;
             }
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            frmIzvozDokumenta fid = new frmIzvozDokumenta(txtID.Text);
+            fid.Show();
         }
     }
 }

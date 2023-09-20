@@ -30,18 +30,11 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOtpremaKontejnera));
             this.btnManipulacija = new System.Windows.Forms.ToolStrip();
-            this.tsNew = new System.Windows.Forms.ToolStripButton();
-            this.tsSave = new System.Windows.Forms.ToolStripButton();
-            this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.label18 = new System.Windows.Forms.Label();
             this.dtpVremeOdlaska = new System.Windows.Forms.DateTimePicker();
             this.cboVozBuking = new System.Windows.Forms.ComboBox();
@@ -121,6 +114,14 @@
             this.txtNapomena = new System.Windows.Forms.TextBox();
             this.chkZatvoren = new System.Windows.Forms.CheckBox();
             this.chkCIRUradjen = new System.Windows.Forms.CheckBox();
+            this.tsNew = new System.Windows.Forms.ToolStripButton();
+            this.tsSave = new System.Windows.Forms.ToolStripButton();
+            this.tsDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.btnManipulacija.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -137,7 +138,7 @@
             // 
             // btnManipulacija
             // 
-            this.btnManipulacija.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnManipulacija.BackgroundImage")));
+            this.btnManipulacija.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnManipulacija.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.btnManipulacija.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.btnManipulacija.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -159,36 +160,6 @@
             this.btnManipulacija.TabIndex = 114;
             this.btnManipulacija.Text = "Manipulacije kontejnerom";
             // 
-            // tsNew
-            // 
-            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
-            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(24, 25);
-            this.tsNew.Text = "Novi";
-            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
-            // 
-            // tsSave
-            // 
-            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
-            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(24, 25);
-            this.tsSave.Text = "tsSave";
-            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
-            // 
-            // tsDelete
-            // 
-            this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
-            this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(24, 25);
-            this.tsDelete.Text = "toolStripButton1";
-            this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -199,23 +170,11 @@
             this.toolStripButton1.Enabled = false;
             this.toolStripButton1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.toolStripButton1.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(141, 25);
+            this.toolStripButton1.Size = new System.Drawing.Size(121, 25);
             this.toolStripButton1.Text = "Zatvaranje skladišta";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.toolStripButton2.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(147, 25);
-            this.toolStripButton2.Text = "Dokumenta otpreme";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripLabel2
             // 
@@ -236,30 +195,6 @@
             this.toolStripLabel1.Text = "Štampa dodatni list";
             this.toolStripLabel1.Click += new System.EventHandler(this.toolStripLabel1_Click);
             // 
-            // toolStripButton5
-            // 
-            this.toolStripButton5.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.toolStripButton5.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.MergeAction = System.Windows.Forms.MergeAction.Remove;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(55, 25);
-            this.toolStripButton5.Text = "CIR";
-            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.toolStripButton3.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.MergeAction = System.Windows.Forms.MergeAction.Remove;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(126, 25);
-            this.toolStripButton3.Text = "Nalog Za Prevoz";
-            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
-            // 
             // toolStripButton4
             // 
             this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -271,60 +206,49 @@
             this.toolStripButton4.Text = "Raspored manipulacija";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
-            // toolStripButton6
-            // 
-            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton6.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
-            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(88, 25);
-            this.toolStripButton6.Text = "Tovarni list";
-            this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
-            // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label18.ForeColor = System.Drawing.Color.Black;
-            this.label18.Location = new System.Drawing.Point(641, 84);
+            this.label18.Location = new System.Drawing.Point(534, 83);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(146, 17);
+            this.label18.Size = new System.Drawing.Size(127, 15);
             this.label18.TabIndex = 187;
             this.label18.Text = "Realizovana otprema:";
             // 
             // dtpVremeOdlaska
             // 
             this.dtpVremeOdlaska.CustomFormat = "dd.MM.yyyy HH:mm";
-            this.dtpVremeOdlaska.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.dtpVremeOdlaska.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.dtpVremeOdlaska.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremeOdlaska.Location = new System.Drawing.Point(644, 103);
+            this.dtpVremeOdlaska.Location = new System.Drawing.Point(534, 100);
             this.dtpVremeOdlaska.Name = "dtpVremeOdlaska";
-            this.dtpVremeOdlaska.Size = new System.Drawing.Size(150, 22);
+            this.dtpVremeOdlaska.Size = new System.Drawing.Size(150, 21);
             this.dtpVremeOdlaska.TabIndex = 186;
             this.dtpVremeOdlaska.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtpVremeOdlaska.ValueChanged += new System.EventHandler(this.dtpVremeDolaska_ValueChanged);
             // 
             // cboVozBuking
             // 
-            this.cboVozBuking.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.cboVozBuking.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboVozBuking.FormattingEnabled = true;
             this.cboVozBuking.Location = new System.Drawing.Point(184, 57);
             this.cboVozBuking.Name = "cboVozBuking";
-            this.cboVozBuking.Size = new System.Drawing.Size(262, 24);
+            this.cboVozBuking.Size = new System.Drawing.Size(262, 23);
             this.cboVozBuking.TabIndex = 184;
             this.cboVozBuking.SelectedValueChanged += new System.EventHandler(this.cboVozBuking_SelectedValueChanged);
             // 
             // cboStatusOtpreme
             // 
-            this.cboStatusOtpreme.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.cboStatusOtpreme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboStatusOtpreme.FormattingEnabled = true;
             this.cboStatusOtpreme.Items.AddRange(new object[] {
             "1-Najava",
             "2-Otpremljen"});
             this.cboStatusOtpreme.Location = new System.Drawing.Point(477, 57);
             this.cboStatusOtpreme.Name = "cboStatusOtpreme";
-            this.cboStatusOtpreme.Size = new System.Drawing.Size(150, 24);
+            this.cboStatusOtpreme.Size = new System.Drawing.Size(150, 23);
             this.cboStatusOtpreme.TabIndex = 182;
             this.cboStatusOtpreme.SelectedIndexChanged += new System.EventHandler(this.cboStatusOtpreme_SelectedIndexChanged);
             this.cboStatusOtpreme.SelectedValueChanged += new System.EventHandler(this.cboStatusOtpreme_SelectedValueChanged);
@@ -332,22 +256,22 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(474, 38);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 17);
+            this.label2.Size = new System.Drawing.Size(44, 15);
             this.label2.TabIndex = 183;
             this.label2.Text = "Status:";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(474, 84);
+            this.label16.Location = new System.Drawing.Point(375, 82);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(128, 17);
+            this.label16.Size = new System.Drawing.Size(112, 15);
             this.label16.TabIndex = 181;
             this.label16.Text = "Planirana otprema:";
             // 
@@ -355,72 +279,72 @@
             // 
             this.dtpDatumOtpreme.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatumOtpreme.Enabled = false;
-            this.dtpDatumOtpreme.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.dtpDatumOtpreme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.dtpDatumOtpreme.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDatumOtpreme.Location = new System.Drawing.Point(477, 103);
+            this.dtpDatumOtpreme.Location = new System.Drawing.Point(378, 100);
             this.dtpDatumOtpreme.Name = "dtpDatumOtpreme";
-            this.dtpDatumOtpreme.Size = new System.Drawing.Size(150, 22);
+            this.dtpDatumOtpreme.Size = new System.Drawing.Size(150, 21);
             this.dtpDatumOtpreme.TabIndex = 180;
             this.dtpDatumOtpreme.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtpDatumOtpreme.ValueChanged += new System.EventHandler(this.dtpDatumOtpreme_ValueChanged);
             // 
             // txtSifra
             // 
-            this.txtSifra.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtSifra.Location = new System.Drawing.Point(24, 57);
+            this.txtSifra.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtSifra.Location = new System.Drawing.Point(24, 56);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(105, 22);
+            this.txtSifra.Size = new System.Drawing.Size(105, 21);
             this.txtSifra.TabIndex = 178;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(24, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 17);
+            this.label1.Size = new System.Drawing.Size(35, 15);
             this.label1.TabIndex = 179;
             this.label1.Text = "Šifra:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // txtImeVozaca
             // 
-            this.txtImeVozaca.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtImeVozaca.Location = new System.Drawing.Point(258, 105);
+            this.txtImeVozaca.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtImeVozaca.Location = new System.Drawing.Point(184, 100);
             this.txtImeVozaca.Name = "txtImeVozaca";
-            this.txtImeVozaca.Size = new System.Drawing.Size(188, 22);
+            this.txtImeVozaca.Size = new System.Drawing.Size(188, 21);
             this.txtImeVozaca.TabIndex = 190;
             this.txtImeVozaca.TextChanged += new System.EventHandler(this.txtImeVozaca_TextChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(255, 86);
+            this.label5.Location = new System.Drawing.Point(183, 83);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(85, 17);
+            this.label5.Size = new System.Drawing.Size(74, 15);
             this.label5.TabIndex = 191;
             this.label5.Text = "Ime Vozača:";
             // 
             // txtRegBrKamiona
             // 
-            this.txtRegBrKamiona.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtRegBrKamiona.Location = new System.Drawing.Point(27, 105);
+            this.txtRegBrKamiona.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtRegBrKamiona.Location = new System.Drawing.Point(24, 100);
             this.txtRegBrKamiona.Name = "txtRegBrKamiona";
-            this.txtRegBrKamiona.Size = new System.Drawing.Size(150, 22);
+            this.txtRegBrKamiona.Size = new System.Drawing.Size(150, 21);
             this.txtRegBrKamiona.TabIndex = 188;
             this.txtRegBrKamiona.TextChanged += new System.EventHandler(this.txtRegBrKamiona_TextChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(24, 82);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(95, 17);
+            this.label4.Size = new System.Drawing.Size(81, 15);
             this.label4.TabIndex = 189;
             this.label4.Text = "Reg br vozila:";
             this.label4.Click += new System.EventHandler(this.label4_Click);
@@ -429,11 +353,11 @@
             // 
             this.chkVoz.AutoSize = true;
             this.chkVoz.Enabled = false;
-            this.chkVoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkVoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkVoz.ForeColor = System.Drawing.Color.Black;
             this.chkVoz.Location = new System.Drawing.Point(644, 56);
             this.chkVoz.Name = "chkVoz";
-            this.chkVoz.Size = new System.Drawing.Size(70, 21);
+            this.chkVoz.Size = new System.Drawing.Size(64, 19);
             this.chkVoz.TabIndex = 195;
             this.chkVoz.Text = "Vozom";
             this.chkVoz.UseVisualStyleBackColor = true;
@@ -446,11 +370,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.tabControl1.Location = new System.Drawing.Point(24, 395);
+            this.tabControl1.Location = new System.Drawing.Point(27, 442);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1293, 342);
+            this.tabControl1.Size = new System.Drawing.Size(1290, 295);
             this.tabControl1.TabIndex = 213;
             // 
             // tabPage1
@@ -459,7 +384,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1285, 313);
+            this.tabPage1.Size = new System.Drawing.Size(1282, 266);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Stavke otpreme";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -475,7 +400,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(8, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1271, 301);
+            this.dataGridView1.Size = new System.Drawing.Size(1268, 254);
             this.dataGridView1.TabIndex = 168;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -484,7 +409,7 @@
             this.tabPage2.Controls.Add(this.dataGridView2);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1285, 335);
+            this.tabPage2.Size = new System.Drawing.Size(1282, 266);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Pozicija kontejnera";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -500,7 +425,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(6, 6);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(1287, 452);
+            this.dataGridView2.Size = new System.Drawing.Size(1284, 405);
             this.dataGridView2.TabIndex = 169;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
@@ -510,9 +435,9 @@
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button9.ForeColor = System.Drawing.Color.White;
-            this.button9.Location = new System.Drawing.Point(894, 208);
+            this.button9.Location = new System.Drawing.Point(1129, 221);
             this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(147, 35);
+            this.button9.Size = new System.Drawing.Size(151, 28);
             this.button9.TabIndex = 216;
             this.button9.Text = "Promeni sve";
             this.button9.UseVisualStyleBackColor = false;
@@ -524,9 +449,9 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(894, 167);
+            this.button4.Location = new System.Drawing.Point(979, 221);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(147, 35);
+            this.button4.Size = new System.Drawing.Size(144, 28);
             this.button4.TabIndex = 215;
             this.button4.Text = "Promeni RB";
             this.button4.UseVisualStyleBackColor = false;
@@ -538,9 +463,9 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(741, 167);
+            this.button3.Location = new System.Drawing.Point(822, 221);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(147, 35);
+            this.button3.Size = new System.Drawing.Size(147, 28);
             this.button3.TabIndex = 214;
             this.button3.Text = "Izbriši";
             this.button3.UseVisualStyleBackColor = false;
@@ -552,9 +477,9 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(588, 167);
+            this.button2.Location = new System.Drawing.Point(669, 221);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(147, 35);
+            this.button2.Size = new System.Drawing.Size(147, 28);
             this.button2.TabIndex = 213;
             this.button2.Text = "Promeni";
             this.button2.UseVisualStyleBackColor = false;
@@ -566,9 +491,9 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(435, 167);
+            this.button1.Location = new System.Drawing.Point(524, 221);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(147, 35);
+            this.button1.Size = new System.Drawing.Size(139, 28);
             this.button1.TabIndex = 212;
             this.button1.Text = "Ubaci";
             this.button1.UseVisualStyleBackColor = false;
@@ -577,11 +502,11 @@
             // chkNajava
             // 
             this.chkNajava.AutoSize = true;
-            this.chkNajava.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkNajava.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkNajava.ForeColor = System.Drawing.Color.Black;
             this.chkNajava.Location = new System.Drawing.Point(799, 38);
             this.chkNajava.Name = "chkNajava";
-            this.chkNajava.Size = new System.Drawing.Size(169, 21);
+            this.chkNajava.Size = new System.Drawing.Size(151, 19);
             this.chkNajava.TabIndex = 233;
             this.chkNajava.Text = "Najava otpreme e-mail";
             this.chkNajava.UseVisualStyleBackColor = true;
@@ -589,11 +514,11 @@
             // chkOtprema
             // 
             this.chkOtprema.AutoSize = true;
-            this.chkOtprema.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkOtprema.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkOtprema.ForeColor = System.Drawing.Color.Black;
             this.chkOtprema.Location = new System.Drawing.Point(800, 65);
             this.chkOtprema.Name = "chkOtprema";
-            this.chkOtprema.Size = new System.Drawing.Size(124, 21);
+            this.chkOtprema.Size = new System.Drawing.Size(112, 19);
             this.chkOtprema.TabIndex = 234;
             this.chkOtprema.Text = "Otprema e-mail";
             this.chkOtprema.UseVisualStyleBackColor = true;
@@ -601,11 +526,11 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(181, 38);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(127, 17);
+            this.label15.Size = new System.Drawing.Size(109, 15);
             this.label15.TabIndex = 235;
             this.label15.Text = "Broj voza i relacija:";
             // 
@@ -663,9 +588,9 @@
             this.panel1.Controls.Add(this.cboTipKontejnera);
             this.panel1.Controls.Add(this.label27);
             this.panel1.Controls.Add(this.cboVrstaRobe);
-            this.panel1.Location = new System.Drawing.Point(24, 133);
+            this.panel1.Location = new System.Drawing.Point(31, 170);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1293, 256);
+            this.panel1.Size = new System.Drawing.Size(1286, 266);
             this.panel1.TabIndex = 236;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint_1);
             // 
@@ -763,9 +688,9 @@
             this.label29.ForeColor = System.Drawing.Color.Black;
             this.label29.Location = new System.Drawing.Point(473, 115);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(70, 17);
+            this.label29.Size = new System.Drawing.Size(69, 17);
             this.label29.TabIndex = 230;
-            this.label29.Text = "OPerator:";
+            this.label29.Text = "Operator:";
             // 
             // cboOrganizator
             // 
@@ -1180,17 +1105,17 @@
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label31.ForeColor = System.Drawing.Color.Black;
             this.label31.Location = new System.Drawing.Point(974, 28);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(116, 16);
+            this.label31.Size = new System.Drawing.Size(117, 15);
             this.label31.TabIndex = 238;
             this.label31.Text = "Dodatne napomene";
             // 
             // txtNapomena
             // 
-            this.txtNapomena.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txtNapomena.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtNapomena.Location = new System.Drawing.Point(977, 47);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
@@ -1201,11 +1126,11 @@
             // 
             this.chkZatvoren.AutoSize = true;
             this.chkZatvoren.Enabled = false;
-            this.chkZatvoren.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkZatvoren.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkZatvoren.ForeColor = System.Drawing.Color.Black;
             this.chkZatvoren.Location = new System.Drawing.Point(801, 89);
             this.chkZatvoren.Name = "chkZatvoren";
-            this.chkZatvoren.Size = new System.Drawing.Size(84, 21);
+            this.chkZatvoren.Size = new System.Drawing.Size(73, 19);
             this.chkZatvoren.TabIndex = 239;
             this.chkZatvoren.Text = "Zatvoren";
             this.chkZatvoren.UseVisualStyleBackColor = true;
@@ -1213,14 +1138,99 @@
             // chkCIRUradjen
             // 
             this.chkCIRUradjen.AutoSize = true;
-            this.chkCIRUradjen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkCIRUradjen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkCIRUradjen.ForeColor = System.Drawing.Color.Black;
             this.chkCIRUradjen.Location = new System.Drawing.Point(801, 115);
             this.chkCIRUradjen.Name = "chkCIRUradjen";
-            this.chkCIRUradjen.Size = new System.Drawing.Size(98, 21);
+            this.chkCIRUradjen.Size = new System.Drawing.Size(88, 19);
             this.chkCIRUradjen.TabIndex = 240;
             this.chkCIRUradjen.Text = "CIR urađen";
             this.chkCIRUradjen.UseVisualStyleBackColor = true;
+            // 
+            // tsNew
+            // 
+            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
+            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNew.Name = "tsNew";
+            this.tsNew.Size = new System.Drawing.Size(24, 25);
+            this.tsNew.Text = "Novi";
+            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
+            // 
+            // tsSave
+            // 
+            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
+            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsSave.Name = "tsSave";
+            this.tsSave.Size = new System.Drawing.Size(24, 25);
+            this.tsSave.Text = "tsSave";
+            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
+            // 
+            // tsDelete
+            // 
+            this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
+            this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsDelete.Name = "tsDelete";
+            this.tsDelete.Size = new System.Drawing.Size(24, 25);
+            this.tsDelete.Text = "toolStripButton1";
+            this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.toolStripButton2.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(147, 25);
+            this.toolStripButton2.Text = "Dokumenta otpreme";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.toolStripButton5.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.MergeAction = System.Windows.Forms.MergeAction.Remove;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(55, 25);
+            this.toolStripButton5.Text = "CIR";
+            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.toolStripButton3.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.MergeAction = System.Windows.Forms.MergeAction.Remove;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(126, 25);
+            this.toolStripButton3.Text = "Nalog Za Prevoz";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton6.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(88, 25);
+            this.toolStripButton6.Text = "Tovarni list";
+            this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1282, 266);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Pregled kontejnera iz Plana";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // frmOtpremaKontejnera
             // 
@@ -1370,5 +1380,6 @@
         private System.Windows.Forms.ComboBox cboPredefinisanePoruke;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
+        private System.Windows.Forms.TabPage tabPage3;
     }
 }

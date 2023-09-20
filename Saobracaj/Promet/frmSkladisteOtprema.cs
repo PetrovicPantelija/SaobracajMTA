@@ -612,7 +612,7 @@ namespace TrackModal.Promet
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                Dokumeta.InsertPromet ins = new Dokumeta.InsertPromet();
+                Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
                 int pom1 = 1;
                 //int pom2 = 0;
                 int pom3 = 1;
@@ -652,7 +652,7 @@ namespace TrackModal.Promet
             }
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                Dokumeta.InsertPromet ins = new Dokumeta.InsertPromet();
+                Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
                 if (row.Selected == true)
                 {
                     string poms = row.Cells[2].Value.ToString();
@@ -740,7 +740,7 @@ namespace TrackModal.Promet
 
             if (dialogResult == DialogResult.Yes)
             {
-                Dokumeta.InsertPromet ins = new Dokumeta.InsertPromet();
+                Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
                 foreach (DataGridViewRow row in dataGridView2.Rows)
                 {
                     if (row.Selected == true)
@@ -766,7 +766,7 @@ namespace TrackModal.Promet
 
             if (dialogResult == DialogResult.Yes)
             {
-                Dokumeta.InsertPromet del = new Dokumeta.InsertPromet();
+                Saobracaj.Dokumenta.InsertPromet del = new Saobracaj.Dokumenta.InsertPromet();
                 foreach (DataGridViewRow row in dataGridView4.Rows)
                 {
                     if (row.Selected == true)

@@ -14,7 +14,7 @@ using System.Net;
 using System.Net.Mail;
 using Microsoft.Reporting.WinForms;
 using Saobracaj.TrackModal;
-namespace Testiranje.Dokumeta
+namespace Saobracaj.Testiranje
 {
     public partial class frmTovarniList : Form
     {
@@ -184,17 +184,16 @@ namespace Testiranje.Dokumeta
         {
             if (status == true)
             {
-                Dokumeta.InsertTovarniList ins = new Dokumeta.InsertTovarniList();
+                Saobracaj.Dokumenta.InsertTovarniList ins = new Saobracaj.Dokumenta.InsertTovarniList();
                 ins.InsTovarniList(Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), txtKorisnickaSIfraPosiljalac.Text, txtKorisnickaSifraPrimalac.Text, txtFrankiraneTroskove.Text, txtNeFrankiraneTroskove.Text, txtIzjavePosiljaoca.Text, txtObavestenjePosiljaoca.Text, txtPrilozi.Text, Convert.ToInt32(cboMestoIzdavanja.SelectedValue), txtSifraMestaIzdavanja.Text, txtSifraStaniceMestaIzdavanja.Text, txtKomercijalniUslovi.Text, txtKorisnickiSporazum.Text, txtObavestenjePrimaocu.Text, txtPreuzimanjeNaPrevoz.Text, txtBrojKola.Text, txtFakturisanjeTranzita.Text, txtPlacanjeTroskova.Text, txtNarocitaPosiljka.Text, txtRID.Text, Convert.ToDouble(txtVrednost.Value), Convert.ToDouble(txtBrutoMasaRobe.Value), Convert.ToDouble(txtNetoRobe.Value), Convert.ToDouble(txtBrutoMasaVoza.Value), txtObezbedjenjeIsporuke.Text, txtPouzece.Text, txtMestoIspostavljanja.Text, dtpDatumIspostavljanja.Value, txtOznakaDokumenta.Text, txtCIMBroj.Text, txtVrstaRobe.Text, txtNHM.Text, txtMestoPreuzimanja.Text);
                 status = false;
                 VratiPodatkeMax();
             }
             else
             {
-                    Dokumeta.InsertTovarniList upd = new Dokumeta.InsertTovarniList();
-                    upd.UpdTovarniList(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), txtKorisnickaSIfraPosiljalac.Text, txtKorisnickaSifraPrimalac.Text, txtFrankiraneTroskove.Text, txtNeFrankiraneTroskove.Text, txtIzjavePosiljaoca.Text, txtObavestenjePosiljaoca.Text, txtPrilozi.Text, Convert.ToInt32(cboMestoIzdavanja.SelectedValue), txtSifraMestaIzdavanja.Text, txtSifraStaniceMestaIzdavanja.Text, txtKomercijalniUslovi.Text, txtKorisnickiSporazum.Text, txtObavestenjePrimaocu.Text, txtPreuzimanjeNaPrevoz.Text, txtBrojKola.Text, txtFakturisanjeTranzita.Text, txtPlacanjeTroskova.Text, txtNarocitaPosiljka.Text, txtRID.Text, Convert.ToDouble(txtVrednost.Value), Convert.ToDouble(txtBrutoMasaRobe.Value), Convert.ToDouble(txtNetoRobe.Value), Convert.ToDouble(txtBrutoMasaVoza.Value), txtObezbedjenjeIsporuke.Text, txtPouzece.Text, txtMestoIspostavljanja.Text, dtpDatumIspostavljanja.Value, txtOznakaDokumenta.Text, txtCIMBroj.Text, txtVrstaRobe.Text, txtNHM.Text, txtMestoPreuzimanja.Text);
-                    status = false;
-              
+                Saobracaj.Dokumenta.InsertTovarniList upd = new Saobracaj.Dokumenta.InsertTovarniList();
+                upd.UpdTovarniList(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), txtKorisnickaSIfraPosiljalac.Text, txtKorisnickaSifraPrimalac.Text, txtFrankiraneTroskove.Text, txtNeFrankiraneTroskove.Text, txtIzjavePosiljaoca.Text, txtObavestenjePosiljaoca.Text, txtPrilozi.Text, Convert.ToInt32(cboMestoIzdavanja.SelectedValue), txtSifraMestaIzdavanja.Text, txtSifraStaniceMestaIzdavanja.Text, txtKomercijalniUslovi.Text, txtKorisnickiSporazum.Text, txtObavestenjePrimaocu.Text, txtPreuzimanjeNaPrevoz.Text, txtBrojKola.Text, txtFakturisanjeTranzita.Text, txtPlacanjeTroskova.Text, txtNarocitaPosiljka.Text, txtRID.Text, Convert.ToDouble(txtVrednost.Value), Convert.ToDouble(txtBrutoMasaRobe.Value), Convert.ToDouble(txtNetoRobe.Value), Convert.ToDouble(txtBrutoMasaVoza.Value), txtObezbedjenjeIsporuke.Text, txtPouzece.Text, txtMestoIspostavljanja.Text, dtpDatumIspostavljanja.Value, txtOznakaDokumenta.Text, txtCIMBroj.Text, txtVrstaRobe.Text, txtNHM.Text, txtMestoPreuzimanja.Text);
+                status = false;
             }
         }
 

@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
 
-namespace Testiranje.Dokumeta
+namespace Saobracaj.Dokumenta
 {
     class InsertDokumentaPrijemKontejneraVoz
     {

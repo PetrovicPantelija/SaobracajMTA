@@ -236,7 +236,7 @@ namespace Saobracaj.Dokumenta
         }
         private void FillGV()
         {
-            var select = "  SELECT     ZaposleniPrijavaAuto.Id, AktivnostID, ZaposleniPrijavaAuto.OznakaPosla, Delavci.DeStaraSif, RTRIM(Delavci.DeIme + '  ' + RTRIM(Delavci.DePriimek)) AS Zaposleni, " +
+            var select = "  SELECT     ZaposleniPrijavaAuto.Id, AktivnostID, ZaposleniPrijavaAuto.OznakaPosla, Delavci.DeStaraSif, (RTRIM(Delavci.DeIme) + '  ' + RTRIM(Delavci.DePriimek)) AS Zaposleni, " +
                "      ZaposleniPrijavaAuto.DatumPrijave, ZaposleniPrijavaAuto.DatumOdjave, ZaposleniPrijavaAuto.AutomobilId, Automobili.RegBr, Automobili.Marka, " + 
                 "           ZaposleniPrijavaAuto.DirektnaPrimopredajaZaduzivanje, ZaposleniPrijavaAuto.DirektnaPrimopredajaRazduzivanje, ZaposleniPrijavaAuto.KilometrazaZaduzivanje, " +
                  "          ZaposleniPrijavaAuto.KilometrazaRazduzivanje, CistocaSpolja.CistocaVrsta AS CistocaSpolja, CistocaIznutra.CistocaVrsta AS CistocaIznutra,  " +

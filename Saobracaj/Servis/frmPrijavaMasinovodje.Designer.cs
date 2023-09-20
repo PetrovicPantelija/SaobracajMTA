@@ -68,6 +68,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.BrZapisa = new System.Windows.Forms.NumericUpDown();
             this.metroButton6 = new MetroFramework.Controls.MetroButton();
+            this.dtpRacunajOd = new System.Windows.Forms.DateTimePicker();
+            this.metroButton7 = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.metroGrid1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BrZapisa)).BeginInit();
@@ -296,7 +298,7 @@
             // 
             this.metroButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.metroButton1.ForeColor = System.Drawing.Color.White;
-            this.metroButton1.Location = new System.Drawing.Point(863, 57);
+            this.metroButton1.Location = new System.Drawing.Point(863, 12);
             this.metroButton1.Name = "metroButton1";
             this.metroButton1.Size = new System.Drawing.Size(197, 26);
             this.metroButton1.TabIndex = 19;
@@ -335,7 +337,7 @@
             // 
             this.metroButton2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.metroButton2.ForeColor = System.Drawing.Color.White;
-            this.metroButton2.Location = new System.Drawing.Point(1081, 94);
+            this.metroButton2.Location = new System.Drawing.Point(1066, 46);
             this.metroButton2.Name = "metroButton2";
             this.metroButton2.Size = new System.Drawing.Size(197, 26);
             this.metroButton2.TabIndex = 22;
@@ -349,7 +351,7 @@
             // 
             this.metroButton3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.metroButton3.ForeColor = System.Drawing.Color.White;
-            this.metroButton3.Location = new System.Drawing.Point(863, 125);
+            this.metroButton3.Location = new System.Drawing.Point(1066, 113);
             this.metroButton3.Name = "metroButton3";
             this.metroButton3.Size = new System.Drawing.Size(197, 26);
             this.metroButton3.TabIndex = 23;
@@ -399,7 +401,7 @@
             // 
             this.metroButton4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.metroButton4.ForeColor = System.Drawing.Color.White;
-            this.metroButton4.Location = new System.Drawing.Point(1081, 60);
+            this.metroButton4.Location = new System.Drawing.Point(1066, 12);
             this.metroButton4.Name = "metroButton4";
             this.metroButton4.Size = new System.Drawing.Size(197, 26);
             this.metroButton4.TabIndex = 27;
@@ -413,7 +415,7 @@
             // 
             this.metroButton5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.metroButton5.ForeColor = System.Drawing.Color.White;
-            this.metroButton5.Location = new System.Drawing.Point(863, 89);
+            this.metroButton5.Location = new System.Drawing.Point(1066, 80);
             this.metroButton5.Name = "metroButton5";
             this.metroButton5.Size = new System.Drawing.Size(197, 26);
             this.metroButton5.TabIndex = 28;
@@ -487,7 +489,7 @@
             // 
             this.txtDana.Lines = new string[] {
         "-2"};
-            this.txtDana.Location = new System.Drawing.Point(1196, 144);
+            this.txtDana.Location = new System.Drawing.Point(1284, 53);
             this.txtDana.MaxLength = 32767;
             this.txtDana.Name = "txtDana";
             this.txtDana.PasswordChar = '\0';
@@ -502,7 +504,7 @@
             // metroLabel11
             // 
             this.metroLabel11.AutoSize = true;
-            this.metroLabel11.Location = new System.Drawing.Point(1113, 144);
+            this.metroLabel11.Location = new System.Drawing.Point(1284, 31);
             this.metroLabel11.Name = "metroLabel11";
             this.metroLabel11.Size = new System.Drawing.Size(39, 19);
             this.metroLabel11.TabIndex = 32;
@@ -514,7 +516,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(846, 26);
+            this.label1.Location = new System.Drawing.Point(860, 41);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 17);
             this.label1.TabIndex = 282;
@@ -522,7 +524,7 @@
             // 
             // BrZapisa
             // 
-            this.BrZapisa.Location = new System.Drawing.Point(936, 26);
+            this.BrZapisa.Location = new System.Drawing.Point(863, 63);
             this.BrZapisa.Name = "BrZapisa";
             this.BrZapisa.Size = new System.Drawing.Size(120, 20);
             this.BrZapisa.TabIndex = 281;
@@ -532,7 +534,7 @@
             this.metroButton6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.metroButton6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.metroButton6.ForeColor = System.Drawing.Color.White;
-            this.metroButton6.Location = new System.Drawing.Point(1081, 23);
+            this.metroButton6.Location = new System.Drawing.Point(863, 89);
             this.metroButton6.Name = "metroButton6";
             this.metroButton6.Size = new System.Drawing.Size(197, 23);
             this.metroButton6.TabIndex = 280;
@@ -542,12 +544,40 @@
             this.metroButton6.UseSelectable = true;
             this.metroButton6.Click += new System.EventHandler(this.metroButton6_Click);
             // 
+            // dtpRacunajOd
+            // 
+            this.dtpRacunajOd.CustomFormat = "yyyy-MM-dd ";
+            this.dtpRacunajOd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpRacunajOd.Location = new System.Drawing.Point(860, 118);
+            this.dtpRacunajOd.Name = "dtpRacunajOd";
+            this.dtpRacunajOd.ShowUpDown = true;
+            this.dtpRacunajOd.Size = new System.Drawing.Size(200, 20);
+            this.dtpRacunajOd.TabIndex = 283;
+            this.dtpRacunajOd.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            // 
+            // metroButton7
+            // 
+            this.metroButton7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.metroButton7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.metroButton7.ForeColor = System.Drawing.Color.White;
+            this.metroButton7.Location = new System.Drawing.Point(860, 144);
+            this.metroButton7.Name = "metroButton7";
+            this.metroButton7.Size = new System.Drawing.Size(197, 23);
+            this.metroButton7.TabIndex = 284;
+            this.metroButton7.Text = "Prikazi zapise od datuma";
+            this.metroButton7.UseCustomBackColor = true;
+            this.metroButton7.UseCustomForeColor = true;
+            this.metroButton7.UseSelectable = true;
+            this.metroButton7.Click += new System.EventHandler(this.metroButton7_Click);
+            // 
             // frmPrijavaMasinovodje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.Controls.Add(this.metroButton7);
+            this.Controls.Add(this.dtpRacunajOd);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BrZapisa);
             this.Controls.Add(this.metroButton6);
@@ -629,5 +659,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown BrZapisa;
         private MetroFramework.Controls.MetroButton metroButton6;
+        private System.Windows.Forms.DateTimePicker dtpRacunajOd;
+        private MetroFramework.Controls.MetroButton metroButton7;
     }
 }

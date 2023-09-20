@@ -56,6 +56,7 @@ namespace Saobracaj.Dokumenta
             this.button10 = new System.Windows.Forms.Button();
             this.ofd1 = new System.Windows.Forms.OpenFileDialog();
             this.fbd1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.chkAutomobili = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -329,12 +330,25 @@ namespace Saobracaj.Dokumenta
             // 
             this.ofd1.FileName = "ofd1";
             // 
+            // chkAutomobili
+            // 
+            this.chkAutomobili.AutoSize = true;
+            this.chkAutomobili.Checked = true;
+            this.chkAutomobili.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAutomobili.Location = new System.Drawing.Point(339, 34);
+            this.chkAutomobili.Name = "chkAutomobili";
+            this.chkAutomobili.Size = new System.Drawing.Size(74, 17);
+            this.chkAutomobili.TabIndex = 241;
+            this.chkAutomobili.Text = "Automobili";
+            this.chkAutomobili.UseVisualStyleBackColor = true;
+            // 
             // frmPregledAktivnosti
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1497, 754);
+            this.Controls.Add(this.chkAutomobili);
             this.Controls.Add(this.button10);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPutanja);
@@ -400,5 +414,6 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.OpenFileDialog ofd1;
         private System.Windows.Forms.FolderBrowserDialog fbd1;
+        private System.Windows.Forms.CheckBox chkAutomobili;
     }
 }

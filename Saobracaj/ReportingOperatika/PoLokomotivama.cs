@@ -32,10 +32,14 @@ namespace Saobracaj.ReportingOperatika
 
         private void FillGV()
         {
-            var select = " select AktivnostiStavke.OznakaPosla, AktivnostiStavke.DatumPocetka as PocetakAktivnosti, AktivnostiStavke.DatumZavrsetka as ZavrsetakAktivnosti, DATEDIFF(Hour,DatumPocetka,DatumZavrsetka) as SatiRAda, AktivnostiStavke.Lokomotiva, Vuca.MotoSati, Vuca.Kilometraza, Vuca.NivoGoriva, (RTRIM(Delavci.DeIme) + '' + RTRIM(Delavci.DePriimek)) as Zaposleni, Aktivnosti.VremeOd as PocetakSmene, Aktivnosti.VremeDo as ZavrsetakSmene, DATEDIFF(Hour,VremeOd,VremeDo) as SatiSmene  From AktivnostiStavke inner join Vuca on Vuca.StavkaAktivnostiID = AktivnostiStavke.ID " +
+            var select = " select AktivnostiStavke.OznakaPosla, AktivnostiStavke.DatumPocetka as PocetakAktivnosti, AktivnostiStavke.DatumZavrsetka as ZavrsetakAktivnosti, " +
+                " DateDiff(hour, AktivnostiStavke.DatumPocetka, IsNUll(AktivnostiStavke.DatumZavrsetka, GetDate())) as SatiTrajanjaAktivnosti , AktivnostiStavke.Lokomotiva, Vuca.MotoSati, " +
+                "Vuca.Kilometraza, Vuca.NivoGoriva, (RTRIM(Delavci.DeIme) + '  ' + RTRIM(Delavci.DePriimek)) as Zaposleni, Aktivnosti.VremeOd as PocetakSmene, " +
+                "Aktivnosti.VremeDo as ZavrsetakSmene,  DateDiff(hour, Aktivnosti.VremeOd, IsNUll(Aktivnosti.VremeDo, GetDate())) as SatiTrajanjaSmene, " +
+                " DateDiff(hour,  IsNUll(Aktivnosti.VremeDo, GetDate()),GEtDAte()) as SatiOdOdjaveSmene, DateDiff(hour,  IsNUll(Aktivnosti.VremeOd, GetDate()),GEtDAte()) as SatiOdPrijaveSmene  From AktivnostiStavke inner join Vuca on Vuca.StavkaAktivnostiID = AktivnostiStavke.ID " +
  " inner join Aktivnosti on Aktivnosti.ID = AktivnostiStavke.IDNadredjena "+
   " inner join Delavci on Delavci.DeSifra = Aktivnosti.Zaposleni " +
-  " where DatumPocetka > '2023-01-20 23:02:31.083' and DatumPocetka< '2023-08-20 23:02:31.083' and VrstaAktivnostiID = 61 " +
+  " where DatumPocetka >= ' " + dtpVremeOd.Text + "' and DatumPocetka <= ' " + dtpVremeDo.Text + "' and VrstaAktivnostiID = 61 " +
   " order by  AktivnostiStavke.Lokomotiva";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);

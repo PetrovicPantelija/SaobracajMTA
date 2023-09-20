@@ -15,7 +15,7 @@ using System.Net.Mail;
 
 using Microsoft.Reporting.WinForms;
 
-namespace TrackModal.Dokumeta
+namespace Saobracaj.Dokumenta
 {
     public partial class frmAutoprevozniList2 : Form
     {
@@ -289,7 +289,7 @@ namespace TrackModal.Dokumeta
         {
             if (status == true)
             {
-                Dokumeta.InsertAutoprevozniList ins = new InsertAutoprevozniList();
+                Saobracaj.Dokumenta.InsertAutoprevozniList ins = new InsertAutoprevozniList();
                 ins.InsAutoprevozniList(Convert.ToInt32(txtPutniNalogID.Text), Convert.ToInt32(txtNalogZaPrevozID.Text), Convert.ToInt32(txtRadniNalogID.Text), Convert.ToInt32(cboPlatilac.SelectedValue), txtKontaktOsoba.Text, Convert.ToInt32(cboVozilo.SelectedValue), Convert.ToDateTime(dtpDatumPrevoza.Value), txtUtovarnoMesto.Text, txtIstovarnoMesto.Text, Convert.ToInt32(cboPrimalac.SelectedValue), txtUgovor.Text, txtPonuda.Text, txtMestoIzdavanja.Text, DateTime.Now);
                 status = false;
                  VratiPodatkeMax();
@@ -299,7 +299,7 @@ namespace TrackModal.Dokumeta
 
                 if (status == true)
                 {
-                    Dokumeta.InsertAutoprevozniList upd = new InsertAutoprevozniList();
+                    Saobracaj.Dokumenta.InsertAutoprevozniList upd = new InsertAutoprevozniList();
                     upd.UpdAutoprevozniList(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtPutniNalogID.Text), Convert.ToInt32(txtNalogZaPrevozID.Text), Convert.ToInt32(txtRadniNalogID.Text), Convert.ToInt32(cboPlatilac.SelectedValue), txtKontaktOsoba.Text, Convert.ToInt32(cboVozilo.SelectedValue), Convert.ToDateTime(dtpDatumPrevoza.Value), txtUtovarnoMesto.Text, txtIstovarnoMesto.Text, Convert.ToInt32(cboPrimalac.SelectedValue), txtUgovor.Text, txtPonuda.Text, txtMestoIzdavanja.Text, DateTime.Now);
                     status = false;
                 }
@@ -308,20 +308,20 @@ namespace TrackModal.Dokumeta
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Dokumeta.InsertAutoprevozniList ins = new InsertAutoprevozniList();
+            Saobracaj.Dokumenta.InsertAutoprevozniList ins = new InsertAutoprevozniList();
             ins.InsAutoprevozniListKameni(Convert.ToInt32(txtSifra.Text), txtRelacijaOd.Text, txtRelacijaDo.Text, txtBrojOtpravljanja.Text, Convert.ToDouble(txtBrojVagona.Value), Convert.ToDouble(txtNetoMasa.Value), dtpDatumIstovara.Value);
 
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Dokumeta.InsertAutoprevozniList ins = new InsertAutoprevozniList();
+            Saobracaj.Dokumenta.InsertAutoprevozniList ins = new InsertAutoprevozniList();
             ins.UpdAutoprevozniListKameni(Convert.ToInt32(txtStavkaKameni.Text), Convert.ToInt32(txtSifra.Text), txtRelacijaOd.Text, txtRelacijaDo.Text, txtBrojOtpravljanja.Text, Convert.ToDouble(txtBrojVagona.Value), Convert.ToDouble(txtNetoMasa.Value), dtpDatumIstovara.Value);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Dokumeta.InsertAutoprevozniList ins = new InsertAutoprevozniList();
+            Saobracaj.Dokumenta.InsertAutoprevozniList ins = new InsertAutoprevozniList();
             ins.DelAutoprevozniListGeneralni(Convert.ToInt32(txtStavkaKameni.Text));
         }
 

@@ -42,7 +42,7 @@ namespace Saobracaj.ReportingOperatika
             // 
             this.btnIzracunaj.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.btnIzracunaj.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnIzracunaj.Location = new System.Drawing.Point(382, 33);
+            this.btnIzracunaj.Location = new System.Drawing.Point(386, 33);
             this.btnIzracunaj.Name = "btnIzracunaj";
             this.btnIzracunaj.Size = new System.Drawing.Size(143, 24);
             this.btnIzracunaj.TabIndex = 286;

@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 
 using Microsoft.Reporting.WinForms;
-namespace TrackModal.Izvestaji
+namespace Saobracaj.Izvestaji
 {
     public partial class frmDodatniList : Form
     {

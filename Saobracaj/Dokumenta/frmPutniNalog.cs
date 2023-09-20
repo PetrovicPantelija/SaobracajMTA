@@ -16,7 +16,7 @@ using System.Net.Mail;
 
 using Microsoft.Reporting.WinForms;
 
-namespace TrackModal.Dokumeta
+namespace Saobracaj.Dokumenta
 {
     public partial class frmPutniNalog : Form
     {
@@ -237,7 +237,7 @@ namespace TrackModal.Dokumeta
            
             if (status == true)
             {
-                Dokumeta.InsertPutniNalog ins = new InsertPutniNalog();
+                Saobracaj.Dokumenta.InsertPutniNalog ins = new InsertPutniNalog();
                 ins.InsPutniNalog(Convert.ToInt32(txtNalogZaPrevozID.Text),txtMestoIzdavanja.Text, Convert.ToDateTime(dtpDatumPrevoza.Value), txtIstovarnoMesto.Text, txtUtovarnoMesto.Text,Convert.ToInt32(cboVozilo.SelectedValue), txtPrikljucnaVozila.Text,txtNapomena.Text, Convert.ToInt32(cboTransportniDispičer.SelectedValue), Convert.ToInt32(cboVozac.SelectedValue), Convert.ToInt32(cboTehnickaIspravnost.SelectedValue),DateTime.Now, KorisnikCene,Convert.ToInt32(cboPrikljucnoVozilo.SelectedValue), txtMarka1.Text, txtTip1.Text, Convert.ToDouble(txtTezina1.Text), txtMarka2.Text, txtTip2.Text, Convert.ToDouble(txtTezina2.Text),txtRelacija1.Text, txtRelacija2.Text);
                 status = false;
                 VratiPodatkeMax();
@@ -245,8 +245,8 @@ namespace TrackModal.Dokumeta
             else
             {
 
-                
-                    Dokumeta.InsertPutniNalog upd = new InsertPutniNalog();
+
+                Saobracaj.Dokumenta.InsertPutniNalog upd = new InsertPutniNalog();
                     upd.UpdPutniNalog(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtNalogZaPrevozID.Text), txtMestoIzdavanja.Text, Convert.ToDateTime(dtpDatumPrevoza.Value), txtIstovarnoMesto.Text, txtUtovarnoMesto.Text, Convert.ToInt32(cboVozilo.SelectedValue), txtPrikljucnaVozila.Text, txtNapomena.Text, Convert.ToInt32(cboTransportniDispičer.SelectedValue), Convert.ToInt32(cboVozac.SelectedValue), Convert.ToInt32(cboTehnickaIspravnost.SelectedValue), DateTime.Now, KorisnikCene, Convert.ToInt32(cboPrikljucnoVozilo.SelectedValue), txtMarka1.Text, txtTip1.Text, Convert.ToDouble(txtTezina1.Text), txtMarka2.Text, txtTip2.Text, Convert.ToDouble(txtTezina2.Text), txtRelacija1.Text, txtRelacija2.Text);
                     status = false;
                 
@@ -375,8 +375,8 @@ namespace TrackModal.Dokumeta
             {
                 pomVozac = 0;
             }
-            
-            Dokumeta.InsertPutniNalogZaposleni ins = new InsertPutniNalogZaposleni();
+
+            Saobracaj.Dokumenta.InsertPutniNalogZaposleni ins = new InsertPutniNalogZaposleni();
             ins.InsPutniNalogZaposleni(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(CboZaposleni.SelectedValue), pomVozac);
             RefreshDataGridOsoblje();
         
@@ -463,7 +463,7 @@ namespace TrackModal.Dokumeta
                 pomVozac = 0;
             }
 
-            Dokumeta.InsertPutniNalogZaposleni upd = new InsertPutniNalogZaposleni();
+            Saobracaj.Dokumenta.InsertPutniNalogZaposleni upd = new InsertPutniNalogZaposleni();
 
             foreach (DataGridViewRow row in dataGridView3.Rows)
             {
@@ -491,7 +491,7 @@ namespace TrackModal.Dokumeta
                     pomVozac = 0;
                 }
 
-                Dokumeta.InsertPutniNalogZaposleni upd = new InsertPutniNalogZaposleni();
+                Saobracaj.Dokumenta.InsertPutniNalogZaposleni upd = new InsertPutniNalogZaposleni();
 
                 foreach (DataGridViewRow row in dataGridView3.Rows)
                 {
@@ -512,7 +512,7 @@ namespace TrackModal.Dokumeta
         //Servis
         private void btnPretrazi_Click(object sender, EventArgs e)
         {
-            Dokumeta.InsertPutniNalogServis ins = new InsertPutniNalogServis();
+            Saobracaj.Dokumenta.InsertPutniNalogServis ins = new InsertPutniNalogServis();
             ins.InsPutniNalogServis(Convert.ToInt32(txtSifra.Text), txtServis.Text, Convert.ToDouble(txtStanjeGorivaUlaz.Value), Convert.ToDouble(txtStanjeGorivaIzlaz.Value));
             RefreshDataGridServis();
         }
@@ -555,9 +555,9 @@ namespace TrackModal.Dokumeta
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
 
-            Dokumeta.InsertPutniNalogServis upd = new InsertPutniNalogServis();
+
+            Saobracaj.Dokumenta.InsertPutniNalogServis upd = new InsertPutniNalogServis();
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
@@ -575,7 +575,7 @@ namespace TrackModal.Dokumeta
 
             if (dialogResult == DialogResult.Yes)
             {
-                Dokumeta.InsertPutniNalogServis upd = new InsertPutniNalogServis();
+                Saobracaj.Dokumenta.InsertPutniNalogServis upd = new InsertPutniNalogServis();
 
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
@@ -607,7 +607,7 @@ namespace TrackModal.Dokumeta
                 Polazak = 2;
             }
 
-            Dokumeta.InsertPutniNalogRuta ins = new InsertPutniNalogRuta();
+            Saobracaj.Dokumenta.InsertPutniNalogRuta ins = new InsertPutniNalogRuta();
             ins.InsPutniNalogRuta(Convert.ToInt32(txtSifra.Text), Polazak, Convert.ToDateTime(dtpDatumRuta.Value), Convert.ToDouble(StanjeBrojilaRuta.Value), txtServiserRuta.Text, Convert.ToInt32(cboVozacRute.SelectedValue), txtRelacijaRute.Text, txtBrojTure.Text, Convert.ToDouble(txtTezinaTure.Value));   
            
             RefreshDataGridRuta();
@@ -667,7 +667,7 @@ namespace TrackModal.Dokumeta
                 Polazak = 2;
             }
 
-            Dokumeta.InsertPutniNalogRuta upd = new InsertPutniNalogRuta();
+            Saobracaj.Dokumenta.InsertPutniNalogRuta upd = new InsertPutniNalogRuta();
 
             foreach (DataGridViewRow row in dataGridView2.Rows)
             {
@@ -681,7 +681,7 @@ namespace TrackModal.Dokumeta
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Dokumeta.InsertPutniNalogRuta upd = new InsertPutniNalogRuta();
+            Saobracaj.Dokumenta.InsertPutniNalogRuta upd = new InsertPutniNalogRuta();
 
             foreach (DataGridViewRow row in dataGridView2.Rows)
             {
@@ -695,7 +695,7 @@ namespace TrackModal.Dokumeta
 
         private void button8_Click(object sender, EventArgs e)
         {
-            Dokumeta.InsertPutniNalogGume ins = new InsertPutniNalogGume();
+            Saobracaj.Dokumenta.InsertPutniNalogGume ins = new InsertPutniNalogGume();
             ins.InsPutniNalogGume(Convert.ToInt32(txtSifra.Text),txtBrojGume.Text, Convert.ToDateTime(dtpDatumGume.Value),Convert.ToDouble(txtStanjeBrojilaGume.Value),txtNapomenaGume.Text);
 
             RefreshDataGridGume();
@@ -744,9 +744,9 @@ namespace TrackModal.Dokumeta
 
         private void button7_Click(object sender, EventArgs e)
         {
-         
 
-            Dokumeta.InsertPutniNalogGume upd = new InsertPutniNalogGume();
+
+            Saobracaj.Dokumenta.InsertPutniNalogGume upd = new InsertPutniNalogGume();
 
             foreach (DataGridViewRow row in dataGridView4.Rows)
             {
@@ -760,7 +760,7 @@ namespace TrackModal.Dokumeta
 
         private void button6_Click(object sender, EventArgs e)
         {
-            Dokumeta.InsertPutniNalogGume upd = new InsertPutniNalogGume();
+            Saobracaj.Dokumenta.InsertPutniNalogGume upd = new InsertPutniNalogGume();
 
             foreach (DataGridViewRow row in dataGridView4.Rows)
             {
@@ -774,7 +774,7 @@ namespace TrackModal.Dokumeta
 
         private void button11_Click(object sender, EventArgs e)
         {
-            Dokumeta.InsertPutniNalogGorivo ins = new InsertPutniNalogGorivo();
+            Saobracaj.Dokumenta.InsertPutniNalogGorivo ins = new InsertPutniNalogGorivo();
             ins.InsPutniNalogGorivo(Convert.ToInt32(txtSifra.Text), Convert.ToDouble(txtStanjeBrojilaGorivo.Value), Convert.ToDouble(txtGorivo.Value), txtMesto.Text, txtMestoPotpis.Text);
 
             RefreshDataGridGorivo();
@@ -823,7 +823,7 @@ namespace TrackModal.Dokumeta
 
         private void button10_Click(object sender, EventArgs e)
         {
-            Dokumeta.InsertPutniNalogGorivo upd = new InsertPutniNalogGorivo();
+            Saobracaj.Dokumenta.InsertPutniNalogGorivo upd = new InsertPutniNalogGorivo();
 
             foreach (DataGridViewRow row in dataGridView5.Rows)
             {
@@ -838,7 +838,7 @@ namespace TrackModal.Dokumeta
 
         private void button9_Click(object sender, EventArgs e)
         {
-            Dokumeta.InsertPutniNalogGorivo upd = new InsertPutniNalogGorivo();
+            Saobracaj.Dokumenta.InsertPutniNalogGorivo upd = new InsertPutniNalogGorivo();
 
             foreach (DataGridViewRow row in dataGridView5.Rows)
             {
@@ -852,7 +852,7 @@ namespace TrackModal.Dokumeta
 
         private void button14_Click(object sender, EventArgs e)
         {
-            Dokumeta.InsertPutniNalogTroskovi ins = new InsertPutniNalogTroskovi();
+            Saobracaj.Dokumenta.InsertPutniNalogTroskovi ins = new InsertPutniNalogTroskovi();
             ins.InsPutniNalogTroskovi(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumTroskovi.Value),txtSvrha.Text, Convert.ToDouble(txtKolicina.Value), Convert.ToDateTime(dtpDatumPotpisTroskovi.Value),txtPotpisaoTroskovi.Text);
 
             RefreshDataGridTroskovi();
@@ -957,7 +957,7 @@ namespace TrackModal.Dokumeta
                 pom = 1;
               
             }
-            Dokumeta.InsertPutniNalogKvarovi ins = new InsertPutniNalogKvarovi();
+            Saobracaj.Dokumenta.InsertPutniNalogKvarovi ins = new InsertPutniNalogKvarovi();
             ins.InsPutniNalogKvarovi(Convert.ToInt32(txtSifra.Text), txtKvar.Text, pom);
             RefreshDataGridKvarovi();
         }
@@ -970,13 +970,13 @@ namespace TrackModal.Dokumeta
                 pom = 1;
 
             }
-            Dokumeta.InsertPutniNalogKvarovi ins = new InsertPutniNalogKvarovi();
+            Saobracaj.Dokumenta.InsertPutniNalogKvarovi ins = new InsertPutniNalogKvarovi();
             ins.UpdPutniNalogKvarovi(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtNalogZaPrevozID.Text), txtKvar.Text, pom);
         }
 
         private void button19_Click(object sender, EventArgs e)
         {
-            Dokumeta.InsertPutniNalogKvarovi ins = new InsertPutniNalogKvarovi();
+            Saobracaj.Dokumenta.InsertPutniNalogKvarovi ins = new InsertPutniNalogKvarovi();
             ins.DeletePutniNalogKvarovi(Convert.ToInt32(txtSifra.Text));
 
         }
@@ -1061,7 +1061,7 @@ namespace TrackModal.Dokumeta
 
             int pom = 1;
 
-            Dokumeta.InsertPutniNalogKvarovi ins = new InsertPutniNalogKvarovi();
+            Saobracaj.Dokumenta.InsertPutniNalogKvarovi ins = new InsertPutniNalogKvarovi();
             ins.UpdPutniNalogKvarovi(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtNalogZaPrevozID.Text), txtKvar.Text, pom);
             RefreshDataGridKvarovi();
 
@@ -1093,7 +1093,7 @@ namespace TrackModal.Dokumeta
 
         private void toolStripLabel2_Click(object sender, EventArgs e)
         {
-            frmRadniNalogTransport rnt = new frmRadniNalogTransport(txtNalogZaPrevozID.Text, txtSifra.Text, Convert.ToInt32(cboVozilo.SelectedValue), txtMestoIzdavanja.Text, Convert.ToInt32(cboPrikljucnoVozilo.SelectedValue), Convert.ToInt32(cboTransportniDispičer.SelectedValue));
+            Saobracaj.Dokumenta.frmRadniNalogTransport rnt = new frmRadniNalogTransport(txtNalogZaPrevozID.Text, txtSifra.Text, Convert.ToInt32(cboVozilo.SelectedValue), txtMestoIzdavanja.Text, Convert.ToInt32(cboPrikljucnoVozilo.SelectedValue), Convert.ToInt32(cboTransportniDispičer.SelectedValue));
             rnt.Show();
         }
 

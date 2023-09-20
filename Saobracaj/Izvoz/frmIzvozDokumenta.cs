@@ -94,7 +94,7 @@ namespace Saobracaj.Izvoz
             string result = Path.GetFileName(fileName);
             string targetPath = "";
 
-            targetPath = @"\\192.168.129.7\TA\IZTEST\" + FolderDestinacije + @"\Izvoz";
+            targetPath = @"\\192.168.99.10\Leget\IZVOZ\" + FolderDestinacije + @"\Izvoz";
 
             string sourceFile = putanja;
             string destFile = System.IO.Path.Combine(targetPath, result);
