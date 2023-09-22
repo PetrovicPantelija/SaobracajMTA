@@ -1065,7 +1065,7 @@ namespace Saobracaj.Uvoz
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(1242, 30);
+            this.label29.Location = new System.Drawing.Point(1246, 30);
             this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(76, 13);
@@ -1997,7 +1997,7 @@ namespace Saobracaj.Uvoz
             // label62
             // 
             this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(1084, 25);
+            this.label62.Location = new System.Drawing.Point(1083, 30);
             this.label62.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(76, 13);
@@ -2030,7 +2030,7 @@ namespace Saobracaj.Uvoz
             // 
             this.txtKontaktOsoba.FormattingEnabled = true;
             this.txtKontaktOsoba.ItemHeight = 13;
-            this.txtKontaktOsoba.Location = new System.Drawing.Point(1240, 45);
+            this.txtKontaktOsoba.Location = new System.Drawing.Point(1249, 43);
             this.txtKontaktOsoba.Margin = new System.Windows.Forms.Padding(2);
             this.txtKontaktOsoba.Name = "txtKontaktOsoba";
             this.txtKontaktOsoba.Size = new System.Drawing.Size(186, 21);
@@ -2052,7 +2052,7 @@ namespace Saobracaj.Uvoz
             this.button17.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button17.Location = new System.Drawing.Point(1224, 42);
             this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(13, 25);
+            this.button17.Size = new System.Drawing.Size(20, 25);
             this.button17.TabIndex = 418;
             this.button17.Text = "K";
             this.button17.UseVisualStyleBackColor = false;
@@ -2147,6 +2147,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView4.RowTemplate.Height = 24;
             this.dataGridView4.Size = new System.Drawing.Size(325, 153);
             this.dataGridView4.TabIndex = 157;
+            this.dataGridView4.SelectionChanged += new System.EventHandler(this.dataGridView4_SelectionChanged_1);
             // 
             // tabPage2
             // 

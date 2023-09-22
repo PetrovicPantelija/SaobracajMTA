@@ -1182,6 +1182,12 @@ namespace Saobracaj.Uvoz
 
         private void button6_Click(object sender, EventArgs e)
         {
+            if (txtID.Text == "")
+            {
+
+                MessageBox.Show("Morate selektovati stavku Za koju unosite!!!");
+                return;
+            }
             InsertUvozKonacna uvK = new InsertUvozKonacna();
             uvK.InsUvozNapomenePozicioniranja(Convert.ToInt32(txtID.Text), Convert.ToInt32(cbNapomenaPoz.SelectedValue));
             FillDG4();

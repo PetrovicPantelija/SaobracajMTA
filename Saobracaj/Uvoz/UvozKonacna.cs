@@ -672,34 +672,34 @@ namespace Saobracaj.Uvoz
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
             da.Fill(ds);
-            dataGridView7.ReadOnly = true;
-            dataGridView7.DataSource = ds.Tables[0];
+            dataGridView8.ReadOnly = true;
+            dataGridView8.DataSource = ds.Tables[0];
 
 
-            dataGridView7.BorderStyle = BorderStyle.None;
-            dataGridView7.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView7.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView7.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView7.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView7.BackgroundColor = Color.White;
+            dataGridView8.BorderStyle = BorderStyle.None;
+            dataGridView8.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView8.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView8.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView8.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView8.BackgroundColor = Color.White;
 
-            dataGridView7.EnableHeadersVisualStyles = false;
-            dataGridView7.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView7.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView7.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView8.EnableHeadersVisualStyles = false;
+            dataGridView8.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView8.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView8.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
-            DataGridViewColumn column = dataGridView7.Columns[0];
-            dataGridView7.Columns[0].HeaderText = "ID";
-            dataGridView7.Columns[0].Width = 20;
+            DataGridViewColumn column = dataGridView8.Columns[0];
+            dataGridView8.Columns[0].HeaderText = "ID";
+            dataGridView8.Columns[0].Width = 20;
 
-            DataGridViewColumn column2 = dataGridView7.Columns[1];
-            dataGridView7.Columns[1].HeaderText = "Man";
-            dataGridView7.Columns[1].Width = 30;
+            DataGridViewColumn column2 = dataGridView8.Columns[1];
+            dataGridView8.Columns[1].HeaderText = "Man";
+            dataGridView8.Columns[1].Width = 30;
 
-            DataGridViewColumn column3 = dataGridView7.Columns[2];
-            dataGridView7.Columns[2].HeaderText = "Kontejner";
-            dataGridView7.Columns[2].Width = 50;
+            DataGridViewColumn column3 = dataGridView8.Columns[2];
+            dataGridView8.Columns[2].HeaderText = "Kontejner";
+            dataGridView8.Columns[2].Width = 50;
 
         }
 
@@ -2474,6 +2474,22 @@ namespace Saobracaj.Uvoz
             {
                 cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " Nalogodavac za drumski prevoz: " + cboNalogodavac3.Text;
             }
+        }
+
+        private void dataGridView4_SelectionChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView4.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txtNapomenaPoz.Text = row.Cells[0].Value.ToString();
+
+                    }
+                }
+            }
+            catch { }
         }
     }
     }
