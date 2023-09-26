@@ -36,8 +36,8 @@ namespace Saobracaj.RadniNalozi
         {
             SqlConnection conn = new SqlConnection(connect);
 
-            var tipKontejnera = "Select ID,SkNaziv from TipKontejnera order by ID";
-            var daTK = new SqlDataAdapter(tipKontejnera, conn);
+            var TipKontenjera = "Select ID,SkNaziv from TipKontenjera order by ID";
+            var daTK = new SqlDataAdapter(TipKontenjera, conn);
             var daDS = new DataSet();
             daTK.Fill(daDS);
             cboVrstaKontejnera.DataSource = daDS.Tables[0];

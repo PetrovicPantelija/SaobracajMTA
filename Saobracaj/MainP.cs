@@ -19,6 +19,9 @@ using TrackModal.Promet;
 using System.IO;
 
 using System.Diagnostics;
+using Saobracaj.eDokumenta;
+using Saobracaj.RadniNalozi;
+using Syncfusion.Windows.Forms.Diagram;
 
 namespace Saobracaj
 {
@@ -37,6 +40,11 @@ namespace Saobracaj
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             InitializeComponent();
             Korisnik = Logovan;
+            if (Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                toolStripTabItem10.Visible = true;
+                toolStripTabItem11.Visible = true;
+            }
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -3686,6 +3694,114 @@ namespace Saobracaj
         {
             SyncForm.frmPregledMasinovodje2 pm2 = new SyncForm.frmPregledMasinovodje2();
             pm2.Show();
+        }
+
+        private void toolStripButton297_Click(object sender, EventArgs e)
+        {
+            EFaktura frm = new EFaktura();
+            frm.Show();
+        }
+
+        private void toolStripButton298_Click(object sender, EventArgs e)
+        {
+            EOdobrenje frm = new EOdobrenje();
+            frm.Show();
+        }
+
+        private void toolStripButton299_Click(object sender, EventArgs e)
+        {
+            EZaduzenje frm = new EZaduzenje();
+            frm.Show();
+        }
+
+        private void toolStripButton300_Click(object sender, EventArgs e)
+        {
+            EAvansni frm = new EAvansni();
+            frm.Show();
+        }
+
+        private void toolStripButton301_Click(object sender, EventArgs e)
+        {
+            PoslataDokumenta frm = new PoslataDokumenta();
+            frm.Show();
+        }
+
+        private void toolStripButton302_Click(object sender, EventArgs e)
+        {
+            PrimljenaDokumenta frm = new PrimljenaDokumenta();
+            frm.Show();
+        }
+
+        private void toolStripButton303_Click(object sender, EventArgs e)
+        {
+            RN1PrijemVoza frm = new RN1PrijemVoza();
+            frm.Show();
+        }
+
+        private void toolStripButton304_Click(object sender, EventArgs e)
+        {
+            RN2OtpremaVoza frm = new RN2OtpremaVoza();
+            frm.Show();
+        }
+
+        private void toolStripButton305_Click(object sender, EventArgs e)
+        {
+            RN3PrijemVoza2 frm = new RN3PrijemVoza2();
+            frm.Show();
+        }
+
+        private void toolStripButton306_Click(object sender, EventArgs e)
+        {
+            RN4PrijemPlatforme frm = new RN4PrijemPlatforme();
+            frm.Show();
+        }
+
+        private void toolStripButton307_Click(object sender, EventArgs e)
+        {
+            RN5PrijemPlatforme2 frm = new RN5PrijemPlatforme2();
+            frm.Show();
+        }
+
+        private void toolStripButton308_Click(object sender, EventArgs e)
+        {
+            RN6OtpremaPlatforme frm= new RN6OtpremaPlatforme();
+            frm.Show();
+        }
+
+        private void toolStripButton309_Click(object sender, EventArgs e)
+        {
+            RN7OtpremaPlatforme2 frm = new RN7OtpremaPlatforme2();
+            frm.Show();
+        }
+
+        private void toolStripButton310_Click(object sender, EventArgs e)
+        {
+            RN8OtpremaCirade frm = new RN8OtpremaCirade();
+            frm.Show();
+        }
+
+        private void toolStripButton311_Click(object sender, EventArgs e)
+        {
+            RN9PrijemCirade frm = new RN9PrijemCirade();
+            frm.Show();
+        }
+
+        private void toolStripButton312_Click(object sender, EventArgs e)
+        {
+            RN10PregledIspraznjenogKontejnera frm = new RN10PregledIspraznjenogKontejnera();
+            frm.Show();
+        }
+
+        private void toolStripButton313_Click(object sender, EventArgs e)
+        {
+            RN11PreglediPostavkaKontejnera frm = new RN11PreglediPostavkaKontejnera();
+            frm.Show();
+        }
+
+        private void toolStripButton314_Click(object sender, EventArgs e)
+        {
+            RN12MedjuskladisniKontejnera frm = new RN12MedjuskladisniKontejnera();
+            frm.Show();
         }
     }
     }

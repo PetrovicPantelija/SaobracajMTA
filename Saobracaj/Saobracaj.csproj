@@ -1353,6 +1353,43 @@
     <Compile Include="Dokumenta\WebMapa.Designer.cs">
       <DependentUpon>WebMapa.cs</DependentUpon>
     </Compile>
+    <Compile Include="EDokumenta\Const.cs" />
+    <Compile Include="EDokumenta\EAvansni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EDokumenta\EAvansni.designer.cs">
+      <DependentUpon>EAvansni.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EDokumenta\EFaktura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EDokumenta\EFaktura.designer.cs">
+      <DependentUpon>EFaktura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EDokumenta\EOdobrenje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EDokumenta\EOdobrenje.designer.cs">
+      <DependentUpon>EOdobrenje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EDokumenta\EZaduzenje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EDokumenta\EZaduzenje.designer.cs">
+      <DependentUpon>EZaduzenje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EDokumenta\PoslataDokumenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EDokumenta\PoslataDokumenta.designer.cs">
+      <DependentUpon>PoslataDokumenta.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EDokumenta\PrimljenaDokumenta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EDokumenta\PrimljenaDokumenta.designer.cs">
+      <DependentUpon>PrimljenaDokumenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMergePDF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3598,6 +3635,24 @@
       <DependentUpon>WebMapa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\Zarada.rdlc" />
+    <EmbeddedResource Include="EDokumenta\EAvansni.resx">
+      <DependentUpon>EAvansni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EDokumenta\EFaktura.resx">
+      <DependentUpon>EFaktura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EDokumenta\EOdobrenje.resx">
+      <DependentUpon>EOdobrenje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EDokumenta\EZaduzenje.resx">
+      <DependentUpon>EZaduzenje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EDokumenta\PoslataDokumenta.resx">
+      <DependentUpon>PoslataDokumenta.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EDokumenta\PrimljenaDokumenta.resx">
+      <DependentUpon>PrimljenaDokumenta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMergePDF.resx">
       <DependentUpon>frmMergePDF.cs</DependentUpon>
     </EmbeddedResource>

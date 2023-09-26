@@ -23,8 +23,18 @@ namespace Saobracaj.Sifarnici
     {
         //
         public string company = "";
+
         public static string Firma = "";
         public static string connectionString = "";
+        public static string PIB = "";
+        public static string Naziv = "";
+        public static string Grad = "";
+        public static string Ulica = "";
+        public static string PostanskiBR = "";
+        public static string Line = "";
+        public static string CompanyID = "";
+        public static string MB = "";
+        public static string Email = "";
 
         public static string user = "";
         public frmLogovanje()
@@ -45,6 +55,15 @@ namespace Saobracaj.Sifarnici
             var companyConfig = ConfigManager.GetCompanyConfiguration(company);
             connectionString = companyConfig.DB;
             Firma = companyConfig.Naziv;
+            PIB= companyConfig.PIB;
+            Naziv = companyConfig.Name_Value;
+            Ulica = companyConfig.Ulica_Value;
+            Grad = companyConfig.Grad_Value;
+            PostanskiBR = companyConfig.PostanskiBroj_Value;
+            Line = companyConfig.Line_Value;
+            CompanyID = companyConfig.CompanyID_Value;
+            MB= companyConfig.MB_Value;
+            Email = companyConfig.EmailSender_Value;
         }
         private void frmLogovanje_Load(object sender, EventArgs e)
         {
