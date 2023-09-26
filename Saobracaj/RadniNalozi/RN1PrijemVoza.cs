@@ -109,17 +109,20 @@ namespace Saobracaj.RadniNalozi
         private void tsSave_Click(object sender, EventArgs e)
         {
             InsertRN rn = new InsertRN();
+            DateTime datumRasporeda = Convert.ToDateTime(txtDatumRasporeda.Value);
+            DateTime datumRealizacije=Convert.ToDateTime(txtDatumRealizacije.Value);
+
             if (status == true)
             {
-                rn.InsRNPPrijemVoza(Convert.ToDateTime(txtDatumRasporeda.Value.ToString()), txtbrojkontejnera.Text.ToString().TrimEnd(), Convert.ToInt32(cbovrstakontejnera.SelectedValue),
-                    txtNalogIzdao.Text.ToString().TrimEnd(), Convert.ToDateTime(txtDatumRealizacije.Value.ToString()), Convert.ToInt32(cboSaVoznog.SelectedValue),
+                rn.InsRNPPrijemVoza(Convert.ToDateTime(txtDatumRasporeda.Value), txtbrojkontejnera.Text.ToString().TrimEnd(), Convert.ToInt32(cbovrstakontejnera.SelectedValue),
+                    txtNalogIzdao.Text.ToString().TrimEnd(), Convert.ToDateTime(txtDatumRealizacije.Value), Convert.ToInt32(cboSaVoznog.SelectedValue),
                     txtBrojPlombe.Text.ToString().TrimEnd(), Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue),
                     Convert.ToInt32(cboNaSkladiste.SelectedValue), Convert.ToInt32(cboNaPoziciju.SelectedValue), Convert.ToInt32(cboUsluge.SelectedValue), "",txtNapomena.Text.ToString().TrimEnd());
             }
             else
             {
-                rn.UpdRNPPrijemVoza(Convert.ToInt32(txtID.Text.ToString().TrimEnd()), Convert.ToDateTime(txtDatumRasporeda.Value.ToString()), txtbrojkontejnera.Text.ToString().TrimEnd(), Convert.ToInt32(cbovrstakontejnera.SelectedValue),
-                    txtNalogIzdao.Text.ToString().TrimEnd(), Convert.ToDateTime(txtDatumRealizacije.Value.ToString()), Convert.ToInt32(cboSaVoznog.SelectedValue),
+                rn.UpdRNPPrijemVoza(Convert.ToInt32(txtID.Text.ToString().TrimEnd()), Convert.ToDateTime(txtDatumRasporeda.Value), txtbrojkontejnera.Text.ToString().TrimEnd(), Convert.ToInt32(cbovrstakontejnera.SelectedValue),
+                    txtNalogIzdao.Text.ToString().TrimEnd(), Convert.ToDateTime(txtDatumRealizacije.Value), Convert.ToInt32(cboSaVoznog.SelectedValue),
                     txtBrojPlombe.Text.ToString().TrimEnd(), Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue),
                     Convert.ToInt32(cboNaSkladiste.SelectedValue), Convert.ToInt32(cboNaPoziciju.SelectedValue), Convert.ToInt32(cboUsluge.SelectedValue), txtNalogRealizovao.Text.ToString().TrimEnd(),
                     txtNapomena.Text.ToString().TrimEnd());

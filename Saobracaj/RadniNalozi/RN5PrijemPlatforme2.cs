@@ -117,7 +117,7 @@ namespace Saobracaj.RadniNalozi
                     Convert.ToInt32(cboUsluga.SelectedValue),txtNalogRealizovao.Text.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd());
             }
             FillGV();
-            status = true;
+            status = false;
         }
         private void tsDelete_Click(object sender, EventArgs e)
         {
