@@ -136,6 +136,8 @@ namespace Saobracaj.RadniNalozi
                     Convert.ToInt32(cboPostupak.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue), Convert.ToInt32(cboSaSklad.SelectedValue),
                     Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text.ToString().TrimEnd());
             }
+            FillGV();
+            status = false;
         }
 
         private void tsDelete_Click(object sender, EventArgs e)
