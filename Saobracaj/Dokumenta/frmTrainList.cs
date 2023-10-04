@@ -606,6 +606,7 @@ namespace Saobracaj.Dokumenta
             }
 
             VratiNaNajavuPosleAzuriranja();
+            RefreshDatagridKontrolisano();
         }
 
         string VratiTrainNo(string IDTraina)
@@ -1033,8 +1034,17 @@ namespace Saobracaj.Dokumenta
             if (tabControl1.SelectedIndex == 0)
             {
                 REfreshSve();
-              //  RefreshSve();
+                //  RefreshSve();
 
+            }
+            else if (tabControl1.SelectedIndex == 1)
+            {
+                RefreshDatagridKontrolisano();
+            }
+
+            else if (tabControl1.SelectedIndex == 2)
+            {
+               RefreshDatagridSumarno();
             }
             else if (tabControl1.SelectedIndex == 3)
             {
@@ -1089,6 +1099,7 @@ namespace Saobracaj.Dokumenta
         private void button1_Click(object sender, EventArgs e)
         {
             InsertTrainList del = new InsertTrainList();
+            
             del.DelSveStavkeTrainLista(Convert.ToInt32(textBoxSearch.Text));
             dataGrid1.Refresh();
 
@@ -1121,7 +1132,7 @@ namespace Saobracaj.Dokumenta
                     }
                 }
                 REfreshSve();
-
+                RefreshDatagridKontrolisano();
             }
             catch
             {
@@ -1165,6 +1176,31 @@ namespace Saobracaj.Dokumenta
         private void button6_Click(object sender, EventArgs e)
         {
             VratiNaNajavuPosleAzuriranja();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGrid2.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        InsertTrainList del = new InsertTrainList();
+                        del.DelStavkuTrainLista(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                     
+                    }
+                }
+                dataGrid2.Refresh();
+
+                SelectedRowIndexTekuci = ZadnjiIndex;
+                SelectROWDataGRID1();
+
+            }
+            catch
+            {
+                // MessageBox.Show("Nije uspela selekcija stavki");
+            }
         }
     }
 }

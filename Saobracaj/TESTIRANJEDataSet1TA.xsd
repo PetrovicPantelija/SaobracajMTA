@@ -4,7 +4,7 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="TESTIRANJEConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TESTIRANJEConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.NedraConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="TESTIRANJEConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TESTIRANJEConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.WindowsFormsApplication3.Properties.Settings.GlobalReference.Default.TESTIRANJEConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SelectTrainListTableAdapter" GeneratorDataComponentClassName="SelectTrainListTableAdapter" Name="SelectTrainList" UserDataComponentName="SelectTrainListTableAdapter">
@@ -29,7 +29,6 @@
               <Mapping SourceColumn="OznakaKola" DataSetColumn="OznakaKola" />
               <Mapping SourceColumn="OtpStanicaTerminal" DataSetColumn="OtpStanicaTerminal" />
               <Mapping SourceColumn="PolStanicaTerminal" DataSetColumn="PolStanicaTerminal" />
-              <Mapping SourceColumn="CIM" DataSetColumn="CIM" />
               <Mapping SourceColumn="BrojKomada" DataSetColumn="BrojKomada" />
               <Mapping SourceColumn="KontBroj" DataSetColumn="KontBroj" />
               <Mapping SourceColumn="Proizvod" DataSetColumn="Proizvod" />
@@ -44,12 +43,18 @@
               <Mapping SourceColumn="OznakaPrefiks" DataSetColumn="OznakaPrefiks" />
               <Mapping SourceColumn="OznakaBroj" DataSetColumn="OznakaBroj" />
               <Mapping SourceColumn="Prelaz" DataSetColumn="Prelaz" />
+              <Mapping SourceColumn="VremeOd" DataSetColumn="VremeOd" />
+              <Mapping SourceColumn="VremeDo" DataSetColumn="VremeDo" />
+              <Mapping SourceColumn="BrojTeretnice" DataSetColumn="BrojTeretnice" />
+              <Mapping SourceColumn="StanicaPopisa" DataSetColumn="StanicaPopisa" />
+              <Mapping SourceColumn="Oznaka" DataSetColumn="Oznaka" />
+              <Mapping SourceColumn="CIM" DataSetColumn="CIM1" />
             </Mappings>
             <Sources />
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SelectTrainListSumeTableAdapter" GeneratorDataComponentClassName="SelectTrainListSumeTableAdapter" Name="SelectTrainListSume" UserDataComponentName="SelectTrainListSumeTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="TESTIRANJEConnectionString (Settings)" DbObjectName="TESTIRANJE.dbo.SelectTrainListSume" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="TESTIRANJEConnectionString (Settings)" DbObjectName="TESTIRANJE.dbo.SelectTrainListSume" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.SelectTrainListSume</CommandText>
@@ -78,7 +83,7 @@
   <xs:element name="TESTIRANJEDataSet1TA" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="TESTIRANJEDataSet1TA" msprop:Generator_UserDSName="TESTIRANJEDataSet1TA">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="SelectTrainList" msprop:Generator_TableClassName="SelectTrainListDataTable" msprop:Generator_TableVarName="tableSelectTrainList" msprop:Generator_TablePropName="SelectTrainList" msprop:Generator_RowDeletingName="SelectTrainListRowDeleting" msprop:Generator_RowChangingName="SelectTrainListRowChanging" msprop:Generator_RowEvHandlerName="SelectTrainListRowChangeEventHandler" msprop:Generator_RowDeletedName="SelectTrainListRowDeleted" msprop:Generator_UserTableName="SelectTrainList" msprop:Generator_RowChangedName="SelectTrainListRowChanged" msprop:Generator_RowEvArgName="SelectTrainListRowChangeEvent" msprop:Generator_RowClassName="SelectTrainListRow">
+        <xs:element name="SelectTrainList" msprop:Generator_TableClassName="SelectTrainListDataTable" msprop:Generator_TableVarName="tableSelectTrainList" msprop:Generator_RowChangedName="SelectTrainListRowChanged" msprop:Generator_TablePropName="SelectTrainList" msprop:Generator_RowDeletingName="SelectTrainListRowDeleting" msprop:Generator_RowChangingName="SelectTrainListRowChanging" msprop:Generator_RowEvHandlerName="SelectTrainListRowChangeEventHandler" msprop:Generator_RowDeletedName="SelectTrainListRowDeleted" msprop:Generator_RowClassName="SelectTrainListRow" msprop:Generator_UserTableName="SelectTrainList" msprop:Generator_RowEvArgName="SelectTrainListRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
@@ -175,10 +180,40 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="VremeOd" msprop:Generator_ColumnVarNameInTable="columnVremeOd" msprop:Generator_ColumnPropNameInRow="VremeOd" msprop:Generator_ColumnPropNameInTable="VremeOdColumn" msprop:Generator_UserColumnName="VremeOd" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="VremeDo" msprop:Generator_ColumnVarNameInTable="columnVremeDo" msprop:Generator_ColumnPropNameInRow="VremeDo" msprop:Generator_ColumnPropNameInTable="VremeDoColumn" msprop:Generator_UserColumnName="VremeDo" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="BrojTeretnice" msprop:Generator_ColumnVarNameInTable="columnBrojTeretnice" msprop:Generator_ColumnPropNameInRow="BrojTeretnice" msprop:Generator_ColumnPropNameInTable="BrojTeretniceColumn" msprop:Generator_UserColumnName="BrojTeretnice" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StanicaPopisa" msprop:Generator_ColumnVarNameInTable="columnStanicaPopisa" msprop:Generator_ColumnPropNameInRow="StanicaPopisa" msprop:Generator_ColumnPropNameInTable="StanicaPopisaColumn" msprop:Generator_UserColumnName="StanicaPopisa" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Oznaka" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnOznaka" msprop:Generator_ColumnPropNameInRow="Oznaka" msprop:Generator_ColumnPropNameInTable="OznakaColumn" msprop:Generator_UserColumnName="Oznaka" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CIM1" msdata:ReadOnly="true" msdata:Caption="CIM" msprop:Generator_ColumnVarNameInTable="columnCIM1" msprop:Generator_ColumnPropNameInRow="CIM1" msprop:Generator_ColumnPropNameInTable="CIM1Column" msprop:Generator_UserColumnName="CIM1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SelectTrainListSume" msprop:Generator_TableClassName="SelectTrainListSumeDataTable" msprop:Generator_TableVarName="tableSelectTrainListSume" msprop:Generator_TablePropName="SelectTrainListSume" msprop:Generator_RowDeletingName="SelectTrainListSumeRowDeleting" msprop:Generator_RowChangingName="SelectTrainListSumeRowChanging" msprop:Generator_RowEvHandlerName="SelectTrainListSumeRowChangeEventHandler" msprop:Generator_RowDeletedName="SelectTrainListSumeRowDeleted" msprop:Generator_UserTableName="SelectTrainListSume" msprop:Generator_RowChangedName="SelectTrainListSumeRowChanged" msprop:Generator_RowEvArgName="SelectTrainListSumeRowChangeEvent" msprop:Generator_RowClassName="SelectTrainListSumeRow">
+        <xs:element name="SelectTrainListSume" msprop:Generator_TableClassName="SelectTrainListSumeDataTable" msprop:Generator_TableVarName="tableSelectTrainListSume" msprop:Generator_RowChangedName="SelectTrainListSumeRowChanged" msprop:Generator_TablePropName="SelectTrainListSume" msprop:Generator_RowDeletingName="SelectTrainListSumeRowDeleting" msprop:Generator_RowChangingName="SelectTrainListSumeRowChanging" msprop:Generator_RowEvHandlerName="SelectTrainListSumeRowChangeEventHandler" msprop:Generator_RowDeletedName="SelectTrainListSumeRowDeleted" msprop:Generator_RowClassName="SelectTrainListSumeRow" msprop:Generator_UserTableName="SelectTrainListSume" msprop:Generator_RowEvArgName="SelectTrainListSumeRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="skONTEJNERA" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnskONTEJNERA" msprop:Generator_ColumnPropNameInRow="skONTEJNERA" msprop:Generator_ColumnPropNameInTable="skONTEJNERAColumn" msprop:Generator_UserColumnName="skONTEJNERA" type="xs:decimal" minOccurs="0" />
