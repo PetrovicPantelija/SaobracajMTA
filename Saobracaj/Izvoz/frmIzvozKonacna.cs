@@ -1765,5 +1765,11 @@ namespace Saobracaj.Izvoz
             frmIzvozDokumenta fid = new frmIzvozDokumenta(txtID.Text);
             fid.Show();
         }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            frmFormiranjePlanaIzvoz fplan = new frmFormiranjePlanaIzvoz(Convert.ToInt32(txtNadredjeni.Text));
+            fplan.Show();
+        }
     }
 }

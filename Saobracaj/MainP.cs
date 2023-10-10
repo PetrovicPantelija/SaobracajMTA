@@ -3803,6 +3803,60 @@ namespace Saobracaj
             RN12MedjuskladisniKontejnera frm = new RN12MedjuskladisniKontejnera();
             frm.Show();
         }
+
+        private void toolStripButton315_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmPregledRID prid = new Dokumenta.frmPregledRID();
+            prid.Show();
+        }
+
+        private void toolStripButton316_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmRIDPoNajavama rPNajavama = new Dokumenta.frmRIDPoNajavama();
+            rPNajavama.Show();
+        }
+
+        private void toolStripButton317_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmRIDTeretnice frter = new Dokumenta.frmRIDTeretnice();
+            frter.Show();
+        }
+
+        private void toolStripButton285_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string Putanja = @"\\192.168.99.10\Leget\Upustva\UVOZ.pdf";
+                string configvalue1 = "192.168.99.10";
+                string configvalue2 = ConfigurationManager.AppSettings["server"];
+                configvalue2 = "192.168.99.10";
+                Putanja = Putanja.Replace(configvalue1, configvalue2);
+                System.Diagnostics.Process.Start(Putanja);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private void toolStripButton318_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string Putanja = @"\\192.168.99.10\Leget\Upustva\IZVOZ.pdf";
+                string configvalue1 = "192.168.99.10";
+                string configvalue2 = ConfigurationManager.AppSettings["server"];
+                configvalue2 = "192.168.99.10";
+                Putanja = Putanja.Replace(configvalue1, configvalue2);
+                System.Diagnostics.Process.Start(Putanja);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
     }
 

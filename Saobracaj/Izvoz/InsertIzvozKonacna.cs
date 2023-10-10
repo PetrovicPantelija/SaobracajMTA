@@ -15,6 +15,72 @@ namespace Saobracaj.Izvoz
     {
         string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
 
+
+        public void PrenesiIzPlanUtovaraUPlanUtovara(int ID, int PlanIz, int PlanU)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "PrenesiIzPlanIzvozaUPlanIzvoza";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+
+            SqlParameter idnadredjena = new SqlParameter();
+            idnadredjena.ParameterName = "@PlanIz";
+            idnadredjena.SqlDbType = SqlDbType.Int;
+            idnadredjena.Direction = ParameterDirection.Input;
+            idnadredjena.Value = PlanIz;
+            cmd.Parameters.Add(idnadredjena);
+
+            SqlParameter idnadredjena2 = new SqlParameter();
+            idnadredjena2.ParameterName = "@PlanU";
+            idnadredjena2.SqlDbType = SqlDbType.Int;
+            idnadredjena2.Direction = ParameterDirection.Input;
+            idnadredjena2.Value = PlanU;
+            cmd.Parameters.Add(idnadredjena2);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+
         public void PrenesiUPlanUtovaraIzvoz(int ID, int IDNadredjena)
         {
             SqlConnection conn = new SqlConnection(connection);

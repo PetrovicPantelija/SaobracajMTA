@@ -37,6 +37,9 @@ namespace Saobracaj.Izvoz
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtBrojKontejnera = new System.Windows.Forms.TextBox();
+            this.button9 = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -51,7 +54,7 @@ namespace Saobracaj.Izvoz
             this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1258, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(944, 27);
             this.toolStrip1.TabIndex = 131;
             this.toolStrip1.Text = "Pošalji mail infrastrukturi";
             // 
@@ -62,7 +65,7 @@ namespace Saobracaj.Izvoz
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(87, 24);
+            this.toolStripButton1.Size = new System.Drawing.Size(76, 24);
             this.toolStripButton1.Text = "Refresh";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -73,7 +76,7 @@ namespace Saobracaj.Izvoz
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(77, 24);
+            this.toolStripButton2.Size = new System.Drawing.Size(68, 24);
             this.toolStripButton2.Text = "Otvori";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
@@ -84,17 +87,16 @@ namespace Saobracaj.Izvoz
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(66, 24);
+            this.toolStripButton3.Size = new System.Drawing.Size(59, 24);
             this.toolStripButton3.Text = "Novi";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // txtSifra
             // 
             this.txtSifra.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtSifra.Location = new System.Drawing.Point(76, 45);
-            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSifra.Location = new System.Drawing.Point(57, 37);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(139, 26);
+            this.txtSifra.Size = new System.Drawing.Size(105, 22);
             this.txtSifra.TabIndex = 137;
             // 
             // label1
@@ -102,10 +104,9 @@ namespace Saobracaj.Izvoz
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(12, 45);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(9, 37);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 18);
+            this.label1.Size = new System.Drawing.Size(35, 15);
             this.label1.TabIndex = 138;
             this.label1.Text = "Šifra:";
             // 
@@ -117,25 +118,59 @@ namespace Saobracaj.Izvoz
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 88);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 72);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1229, 515);
+            this.dataGridView1.Size = new System.Drawing.Size(922, 418);
             this.dataGridView1.TabIndex = 136;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(194, 37);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 15);
+            this.label2.TabIndex = 139;
+            this.label2.Text = "Broj Kontejnera:";
+            // 
+            // txtBrojKontejnera
+            // 
+            this.txtBrojKontejnera.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txtBrojKontejnera.Location = new System.Drawing.Point(295, 37);
+            this.txtBrojKontejnera.Name = "txtBrojKontejnera";
+            this.txtBrojKontejnera.Size = new System.Drawing.Size(128, 22);
+            this.txtBrojKontejnera.TabIndex = 140;
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(125)))), ((int)(((byte)(81)))));
+            this.button9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.button9.Location = new System.Drawing.Point(440, 34);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(151, 29);
+            this.button9.TabIndex = 231;
+            this.button9.Text = "Pretraži";
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
+            // 
             // frmPregledKontejneraIzvoz
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1258, 616);
+            this.ClientSize = new System.Drawing.Size(944, 500);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.txtBrojKontejnera);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmPregledKontejneraIzvoz";
             this.Text = "Pregled svih kontejnera izvoz";
             this.Load += new System.EventHandler(this.frmPregledKontejneraIzvoz_Load);
@@ -156,5 +191,8 @@ namespace Saobracaj.Izvoz
         private System.Windows.Forms.TextBox txtSifra;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtBrojKontejnera;
+        private System.Windows.Forms.Button button9;
     }
 }

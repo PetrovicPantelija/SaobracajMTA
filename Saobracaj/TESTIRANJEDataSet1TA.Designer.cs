@@ -67,7 +67,7 @@ namespace Saobracaj {
                 this.Namespace = ds.Namespace;
                 this.Locale = ds.Locale;
                 this.CaseSensitive = ds.CaseSensitive;
-                this.EnforceConstraints = ds.EnforceConstraints;
+               // this.EnforceConstraints = ds.EnforceConstraints;
                 this.Merge(ds, false, global::System.Data.MissingSchemaAction.Add);
                 this.InitVars();
             }
@@ -178,7 +178,7 @@ namespace Saobracaj {
                 this.Namespace = ds.Namespace;
                 this.Locale = ds.Locale;
                 this.CaseSensitive = ds.CaseSensitive;
-                this.EnforceConstraints = ds.EnforceConstraints;
+               // this.EnforceConstraints = ds.EnforceConstraints;
                 this.Merge(ds, false, global::System.Data.MissingSchemaAction.Add);
                 this.InitVars();
             }
@@ -226,7 +226,7 @@ namespace Saobracaj {
             this.DataSetName = "TESTIRANJEDataSet1TA";
             this.Prefix = "";
             this.Namespace = "http://tempuri.org/TESTIRANJEDataSet1TA.xsd";
-            this.EnforceConstraints = true;
+            this.EnforceConstraints = false;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableSelectTrainList = new SelectTrainListDataTable();
             base.Tables.Add(this.tableSelectTrainList);
