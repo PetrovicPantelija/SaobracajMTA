@@ -2959,7 +2959,7 @@ namespace Saobracaj
 
         private void toolStripButton225_Click(object sender, EventArgs e)
         {
-            Izvoz.frmKontaktOsobeMU koM = new Izvoz.frmKontaktOsobeMU();
+            Izvoz.frmPrebacivanjeIzPlanaUPlan koM = new Izvoz.frmPrebacivanjeIzPlanaUPlan();
             koM.Show();
         }
 
