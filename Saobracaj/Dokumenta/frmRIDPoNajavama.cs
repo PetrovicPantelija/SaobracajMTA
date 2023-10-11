@@ -119,17 +119,16 @@ namespace Saobracaj.Dokumenta
         }
         private void frmRIDPoNajavama_Load(object sender, EventArgs e)
         {
-            var select = " Select ROW_NUMBER() OVER(ORDER BY n1.ID DESC) AS Row, n1.ID as NajavaID, " + 
+            var select = " Select ROW_NUMBER() OVER(ORDER BY n1.ID DESC) AS Row, n1.ID as NajavaID, n1.Oznaka,  " + 
           " StvarnoPrimanje, so.Opis as Otpravna, su.Opis as Uputna , " +
           " n1.PrevozniPut, " +
           " n1.BrojKola, " +
           "  n1.RIDBroj as OMBroj, n1.OnBroj as RIDBroj,  pos.PaNaziv as Posiljac, pri.PaNaziv as Primalac, " +
-          " (Rtrim(NHM.Broj) + '-' + RTRIM(NHM.Naziv)) as NHM, " +
           " (  SELECT  STUFF(  (  SELECT distinct   ', ' + Cast(ts.BrojKola as nvarchar(20))  " +
          " FROM TeretnicaStavke ts where n1.ID = ts.IDNajave " +
          " FOR XML PATH('')   ), 1, 1, ''  ) As Skupljen) " +
          " as Vagoni, (Cast(n1.StvarnoPrimanje as nvarchar(20)) + ' do ' +  Cast(n1.StvarnaPredaja as nvarchar(20))) as VremeRealizacije, " +
-         " n1.StvarnaPredaja,  n1.OnBroj + '\'+ n1.DispecerRID as DispecerRID," +
+         " n1.StvarnaPredaja,  n1.OnBroj + '\'+ n1.DispecerRID as DispecerOMBroj," +
          " (select SUM(neto) from TeretnicaStavke inner join Teretnica on TeretnicaStavke.BrojTeretnice = Teretnica.ID " +
          " where TeretnicaStavke.IDNajave = n1.ID) as Neto  " +
         " from Najava n1 " +
@@ -137,12 +136,13 @@ namespace Saobracaj.Dokumenta
         " inner join stanice su on su.ID = n1.Uputna " +
         " inner join Partnerji pos on pos.PaSifra = n1.Posiljalac " +
         " inner join Partnerji pri on pri.PaSifra = n1.Primalac " +
-        " inner join NHM on NHM.ID = n1.RobaNhm " +
         "  inner join (Select Distinct IDNajave, BrojTeretnice from TeretnicaStavke ) ts on n1.ID = ts.IdNajave " +
         " inner join Teretnica ter on ts.BrojTeretnice = ter.ID " +
         " where Ter.Prijemna = 1 and n1.Rid = 1 order by n1.ID desc";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            // " (Rtrim(NHM.Broj) + '-' + RTRIM(NHM.Naziv)) as NHM, " +
+           ///" inner join NHM on NHM.ID = n1.RobaNhm " +
+           var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

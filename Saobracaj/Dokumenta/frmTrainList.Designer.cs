@@ -98,6 +98,7 @@ namespace Saobracaj.Dokumenta
             this.chkAktvni = new System.Windows.Forms.CheckBox();
             this.button6 = new System.Windows.Forms.Button();
             this.label20 = new System.Windows.Forms.Label();
+            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid1)).BeginInit();
             this.groupBoxAddEdit.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -485,10 +486,10 @@ namespace Saobracaj.Dokumenta
             // 
             this.button1.BackColor = System.Drawing.Color.IndianRed;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(814, 251);
+            this.button1.Location = new System.Drawing.Point(809, 271);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 24);
+            this.button1.Size = new System.Drawing.Size(128, 24);
             this.button1.TabIndex = 73;
             this.button1.Text = "Brisanje stavki";
             this.button1.UseVisualStyleBackColor = false;
@@ -768,7 +769,7 @@ namespace Saobracaj.Dokumenta
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.GreenYellow;
-            this.button3.Location = new System.Drawing.Point(930, 254);
+            this.button3.Location = new System.Drawing.Point(963, 253);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(142, 21);
@@ -865,12 +866,26 @@ namespace Saobracaj.Dokumenta
             this.label20.TabIndex = 96;
             this.label20.Text = "POdaci ce se ucitati na Posao importom - posle testiranja ukloniti dugme";
             // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.IndianRed;
+            this.button7.ForeColor = System.Drawing.Color.White;
+            this.button7.Location = new System.Drawing.Point(809, 248);
+            this.button7.Margin = new System.Windows.Forms.Padding(2);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(128, 24);
+            this.button7.TabIndex = 97;
+            this.button7.Text = "Brisanje selektovanog";
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // frmTrainList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1359, 760);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.chkAktvni);
@@ -1016,6 +1031,7 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.CheckBox chkAktvni;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button button7;
     }
 }
 
