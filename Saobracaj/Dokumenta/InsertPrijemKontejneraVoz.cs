@@ -15,7 +15,7 @@ namespace Saobracaj.Dokumeta
     class InsertPrijemKontejneraVoz
     {
 
-        public void InsertPrijemKontVoz( DateTime DatumPrijema,int StatusPrijema,int IdVoza, DateTime VremeDolaska,	DateTime Datum, string Korisnik,  string RegBrKamiona,   string ImeVozaca,   int Vozom, string Napomena, int PredefinisanePorukeID)
+        public void InsertPrijemKontVoz( DateTime DatumPrijema,int StatusPrijema,int IdVoza, DateTime VremeDolaska,	DateTime Datum, string Korisnik,  string RegBrKamiona,   string ImeVozaca,   int Vozom, string Napomena, int PredefinisanePorukeID, int Operater, int VrstaKamiona, int Poreklo)
         {
             /*
              @DatumPrijema [datetime] ,
@@ -114,15 +114,32 @@ namespace Saobracaj.Dokumeta
             SqlParameter parameter24 = new SqlParameter();
             parameter24.ParameterName = "@PredefinisanePorukeID";
             parameter24.SqlDbType = SqlDbType.Int;
-           // parameter24.Size = 300;
             parameter24.Direction = ParameterDirection.Input;
             parameter24.Value = PredefinisanePorukeID;
             myCommand.Parameters.Add(parameter24);
-            /*
-           @RegBrKamiona [nvarchar](20),
-  @ImeVozaca [nvarchar](50),
-  @Vozom tinyint
-*/
+
+            // int Operater, int VrstaKamiona, int Poreklo
+            SqlParameter parameter25 = new SqlParameter();
+            parameter25.ParameterName = "@Operater";
+            parameter25.SqlDbType = SqlDbType.Int;
+            parameter25.Direction = ParameterDirection.Input;
+            parameter25.Value = Operater;
+            myCommand.Parameters.Add(parameter25);
+
+            SqlParameter parameter26 = new SqlParameter();
+            parameter26.ParameterName = "@VrstaKamiona";
+            parameter26.SqlDbType = SqlDbType.Int;
+            parameter26.Direction = ParameterDirection.Input;
+            parameter26.Value = VrstaKamiona;
+            myCommand.Parameters.Add(parameter26);
+
+            SqlParameter parameter27 = new SqlParameter();
+            parameter27.ParameterName = "@Poreklo";
+            parameter27.SqlDbType = SqlDbType.Int;
+            parameter27.Direction = ParameterDirection.Input;
+            parameter27.Value = Poreklo;
+            myCommand.Parameters.Add(parameter27);
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -160,7 +177,7 @@ namespace Saobracaj.Dokumeta
             }
         }
 
-        public void UpdPrijemKontejneraVoz(int ID, DateTime DatumPrijema, int StatusPrijema, int IdVoza, DateTime VremeDolaska, DateTime Datum, string Korisnik, string RegBrKamiona, string ImeVozaca, int Vozom, string Napomena, int PredefinisanePorukeID)
+        public void UpdPrijemKontejneraVoz(int ID, DateTime DatumPrijema, int StatusPrijema, int IdVoza, DateTime VremeDolaska, DateTime Datum, string Korisnik, string RegBrKamiona, string ImeVozaca, int Vozom, string Napomena, int PredefinisanePorukeID, int Operater, int VrstaKamiona, int Poreklo)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -264,6 +281,27 @@ namespace Saobracaj.Dokumeta
             parameter24.Direction = ParameterDirection.Input;
             parameter24.Value = PredefinisanePorukeID;
             myCommand.Parameters.Add(parameter24);
+
+            SqlParameter parameter25 = new SqlParameter();
+            parameter25.ParameterName = "@Operater";
+            parameter25.SqlDbType = SqlDbType.Int;
+            parameter25.Direction = ParameterDirection.Input;
+            parameter25.Value = Operater;
+            myCommand.Parameters.Add(parameter25);
+
+            SqlParameter parameter26 = new SqlParameter();
+            parameter26.ParameterName = "@VrstaKamiona";
+            parameter26.SqlDbType = SqlDbType.Int;
+            parameter26.Direction = ParameterDirection.Input;
+            parameter26.Value = VrstaKamiona;
+            myCommand.Parameters.Add(parameter26);
+
+            SqlParameter parameter27 = new SqlParameter();
+            parameter27.ParameterName = "@Poreklo";
+            parameter27.SqlDbType = SqlDbType.Int;
+            parameter27.Direction = ParameterDirection.Input;
+            parameter27.Value = Poreklo;
+            myCommand.Parameters.Add(parameter27);
 
 
             myConnection.Open();

@@ -15,7 +15,7 @@ namespace Saobracaj.Dokumenta
     class InsertOtprema
     {
 
-        public void InsertOtp( DateTime DatumOtpreme,int StatusOtpreme,int IdVoza, string RegBrKamiona, string ImeVozaca 	 , DateTime VremeOdlaska, int NacinOtpreme,	DateTime Datum, string Korisnik, string Napomena, int PredefinisanePorukeID)
+        public void InsertOtp( DateTime DatumOtpreme,int StatusOtpreme,int IdVoza, string RegBrKamiona, string ImeVozaca 	 , DateTime VremeOdlaska, int NacinOtpreme,	DateTime Datum, string Korisnik, string Napomena, int PredefinisanePorukeID, int Operater , int VrstaKamiona , int Poreklo )
         {
             /*
             	@DatumOtpreme [datetime] ,
@@ -131,6 +131,31 @@ namespace Saobracaj.Dokumenta
 
 
 
+            //int Operater , int VrstaKamiona , int Poreklo
+            SqlParameter parameter22 = new SqlParameter();
+            parameter22.ParameterName = "@Operater";
+            parameter22.SqlDbType = SqlDbType.Int;
+            //parameter20.Size = 300;
+            parameter22.Direction = ParameterDirection.Input;
+            parameter22.Value = Operater;
+            myCommand.Parameters.Add(parameter22);
+
+            SqlParameter parameter23 = new SqlParameter();
+            parameter23.ParameterName = "@VrstaKamiona";
+            parameter23.SqlDbType = SqlDbType.Int;
+            //parameter20.Size = 300;
+            parameter23.Direction = ParameterDirection.Input;
+            parameter23.Value = VrstaKamiona;
+            myCommand.Parameters.Add(parameter23);
+
+            SqlParameter parameter24 = new SqlParameter();
+            parameter24.ParameterName = "@Poreklo";
+            parameter24.SqlDbType = SqlDbType.Int;
+            //parameter20.Size = 300;
+            parameter24.Direction = ParameterDirection.Input;
+            parameter24.Value = Poreklo;
+            myCommand.Parameters.Add(parameter24);
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -169,7 +194,7 @@ namespace Saobracaj.Dokumenta
             }
         }
 
-        public void UpdOtpremaKontejnera(int ID, DateTime DatumOtpreme, int StatusOtpreme, int IdVoza, string RegBrKamiona, string ImeVozaca, DateTime VremeOdlaska, int NacinOtpreme, DateTime Datum, string Korisnik, string Napomena, int PredefinisanePorukeID)
+        public void UpdOtpremaKontejnera(int ID, DateTime DatumOtpreme, int StatusOtpreme, int IdVoza, string RegBrKamiona, string ImeVozaca, DateTime VremeOdlaska, int NacinOtpreme, DateTime Datum, string Korisnik, string Napomena, int PredefinisanePorukeID, int Operater, int VrstaKamiona, int Poreklo)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -277,6 +302,30 @@ namespace Saobracaj.Dokumenta
             parameter21.Value = PredefinisanePorukeID;
             myCommand.Parameters.Add(parameter21);
 
+            SqlParameter parameter22 = new SqlParameter();
+            parameter22.ParameterName = "@Operater";
+            parameter22.SqlDbType = SqlDbType.Int;
+            //parameter20.Size = 300;
+            parameter22.Direction = ParameterDirection.Input;
+            parameter22.Value = Operater;
+            myCommand.Parameters.Add(parameter22);
+
+            SqlParameter parameter23 = new SqlParameter();
+            parameter23.ParameterName = "@VrstaKamiona";
+            parameter23.SqlDbType = SqlDbType.Int;
+            //parameter20.Size = 300;
+            parameter23.Direction = ParameterDirection.Input;
+            parameter23.Value = VrstaKamiona;
+            myCommand.Parameters.Add(parameter23);
+
+            SqlParameter parameter24 = new SqlParameter();
+            parameter24.ParameterName = "@Poreklo";
+            parameter24.SqlDbType = SqlDbType.Int;
+            //parameter20.Size = 300;
+            parameter24.Direction = ParameterDirection.Input;
+            parameter24.Value = Poreklo;
+            myCommand.Parameters.Add(parameter24);
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -315,7 +364,7 @@ namespace Saobracaj.Dokumenta
             }
         }
 
-          public void DeleteOtpremaKontejnera(int ID)
+        public void DeleteOtpremaKontejnera(int ID)
           {
               var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
               SqlConnection myConnection = new SqlConnection(s_connection);

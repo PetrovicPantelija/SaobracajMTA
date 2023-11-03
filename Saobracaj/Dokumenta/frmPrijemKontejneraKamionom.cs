@@ -587,7 +587,7 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton1_Click_1(object sender, EventArgs e)
         {
-            frmDokumentaPrijemKontejneraKamion dpkk = new frmDokumentaPrijemKontejneraKamion(txtSifra.Text, KorisnikCene);
+            Saobracaj.Dokumeta.frmDokumentaPrijemKontejneraKamion dpkk = new Saobracaj.Dokumeta.frmDokumentaPrijemKontejneraKamion(txtSifra.Text, KorisnikCene);
             dpkk.Show();
         }
 

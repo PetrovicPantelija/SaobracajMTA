@@ -910,8 +910,8 @@ group by substring(Naziv,1,3)
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
-            frmOtpremaKontejnera otpr = new frmOtpremaKontejnera(Convert.ToInt32(cboOtpremnica.SelectedValue), KorisnikCene);
+
+            Saobracaj.Dokumeta.frmOtpremaKontejnera otpr = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(cboOtpremnica.SelectedValue), KorisnikCene);
             otpr.Show();
         }
       

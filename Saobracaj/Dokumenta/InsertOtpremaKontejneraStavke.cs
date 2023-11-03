@@ -13,7 +13,7 @@ namespace Saobracaj.Dokumenta
     class InsertOtpremaKontejneraStavke
     {
 
-        public void InsertOtpremaKontejneraStav(int IdNadredjenog, string BrojKontejnera, String BrojVagona, double Granica, double BrojOsovina, double SopstvenaMasa, double Tara, double Neto, int Posiljalac, int Primalac, int VlasnikKontejnera, int TipKontejnera, int VrstaRobe, string Buking, int StatusKontejnera, string BrojPlombe, int PlaniraniLager, int IdVoza,  DateTime VremePripremljen, DateTime VremeOdlaska, DateTime Datum, string Korisnik, string BrojPlombe2, int Organizator, string NapomenaS)
+        public void InsertOtpremaKontejneraStav(int IdNadredjenog, string BrojKontejnera, String BrojVagona, double Granica, double BrojOsovina, double SopstvenaMasa, double Tara, double Neto, int Posiljalac, int Primalac, int VlasnikKontejnera, int TipKontejnera, int VrstaRobe, string Buking, int StatusKontejnera, string BrojPlombe, int PlaniraniLager, int IdVoza,  DateTime VremePripremljen, DateTime VremeOdlaska, DateTime Datum, string Korisnik, string BrojPlombe2, int Organizator, string NapomenaS, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, Double BTTORobe, int KontejnerID, double BTTOKOntejnera, string Napomena2, int PostupakSaRobom,  double BTTORobeFaktura, double BTTORobeOTP, double BTTORobeODVAGA, double BTTORobeKONTEJNER, string PLOMBAVLASN, string CBMOTP, string KOLETAOTP)
         {
            
 
@@ -223,6 +223,117 @@ namespace Saobracaj.Dokumenta
             parameter26.Value = NapomenaS;
             myCommand.Parameters.Add(parameter26);
 
+            SqlParameter parameter28 = new SqlParameter();
+            parameter28.ParameterName = "@PeriodSkladistenjaOd";
+            parameter28.SqlDbType = SqlDbType.DateTime;
+            parameter28.Direction = ParameterDirection.Input;
+            parameter28.Value = PeriodSkladistenjaOd;
+            myCommand.Parameters.Add(parameter28);
+
+            SqlParameter parameter29 = new SqlParameter();
+            parameter29.ParameterName = "@PeriodSkladistenjaDo";
+            parameter29.SqlDbType = SqlDbType.DateTime;
+            parameter29.Direction = ParameterDirection.Input;
+            parameter29.Value = PeriodSkladistenjaDo;
+            myCommand.Parameters.Add(parameter29);
+
+            SqlParameter parameter30 = new SqlParameter();
+            parameter30.ParameterName = "@BTTORobe";
+            parameter30.SqlDbType = SqlDbType.Decimal;
+            parameter30.Direction = ParameterDirection.Input;
+            parameter30.Value = BTTORobe;
+            myCommand.Parameters.Add(parameter30);
+
+            SqlParameter parameter31 = new SqlParameter();
+            parameter31.ParameterName = "@KontejnerID";
+            parameter31.SqlDbType = SqlDbType.Int;
+            parameter31.Direction = ParameterDirection.Input;
+            parameter31.Value = KontejnerID;
+            myCommand.Parameters.Add(parameter31);
+
+
+
+
+
+            SqlParameter parameter32 = new SqlParameter();
+            parameter32.ParameterName = "@BTTOKOntejnera";
+            parameter32.SqlDbType = SqlDbType.Decimal;
+            parameter32.Direction = ParameterDirection.Input;
+            parameter32.Value = BTTOKOntejnera;
+            myCommand.Parameters.Add(parameter32);
+
+            SqlParameter parameter33 = new SqlParameter();
+            parameter33.ParameterName = "@Napomena2";
+            parameter33.SqlDbType = SqlDbType.NVarChar;
+            parameter33.Size = 100;
+            parameter33.Direction = ParameterDirection.Input;
+            parameter33.Value = Napomena2;
+            myCommand.Parameters.Add(parameter33);
+
+            SqlParameter parameter34 = new SqlParameter();
+            parameter34.ParameterName = "@PostupakSaRobom";
+            parameter34.SqlDbType = SqlDbType.Int;
+            parameter34.Direction = ParameterDirection.Input;
+            parameter34.Value = PostupakSaRobom;
+            myCommand.Parameters.Add(parameter34);
+
+            SqlParameter parameter35 = new SqlParameter();
+            parameter35.ParameterName = "@BTTORobeFaktura";
+            parameter35.SqlDbType = SqlDbType.Decimal;
+            parameter35.Direction = ParameterDirection.Input;
+            parameter35.Value = BTTORobeFaktura;
+            myCommand.Parameters.Add(parameter35);
+
+            SqlParameter parameter36 = new SqlParameter();
+            parameter36.ParameterName = "@BTTORobeOTP";
+            parameter36.SqlDbType = SqlDbType.Decimal;
+            parameter36.Direction = ParameterDirection.Input;
+            parameter36.Value = BTTORobeOTP;
+            myCommand.Parameters.Add(parameter36);
+
+            SqlParameter parameter37 = new SqlParameter();
+            parameter37.ParameterName = "@BTTORobeODVAGA";
+            parameter37.SqlDbType = SqlDbType.Decimal;
+            parameter37.Direction = ParameterDirection.Input;
+            parameter37.Value = BTTORobeODVAGA;
+            myCommand.Parameters.Add(parameter37);
+
+            SqlParameter parameter38 = new SqlParameter();
+            parameter38.ParameterName = "@BTTORobeKONTEJNER";
+            parameter38.SqlDbType = SqlDbType.Decimal;
+            parameter38.Direction = ParameterDirection.Input;
+            parameter38.Value = BTTORobeKONTEJNER;
+            myCommand.Parameters.Add(parameter38);
+
+            SqlParameter parameter39 = new SqlParameter();
+            parameter39.ParameterName = "@PLOMBAVLASN";
+            parameter39.SqlDbType = SqlDbType.NVarChar;
+            parameter39.Size = 100;
+            parameter39.Direction = ParameterDirection.Input;
+            parameter39.Value = PLOMBAVLASN;
+            myCommand.Parameters.Add(parameter39);
+
+            SqlParameter parameter40 = new SqlParameter();
+            parameter40.ParameterName = "@CBMOTP";
+            parameter40.SqlDbType = SqlDbType.NVarChar;
+            parameter40.Size = 100;
+            parameter40.Direction = ParameterDirection.Input;
+            parameter40.Value = CBMOTP;
+            myCommand.Parameters.Add(parameter40);
+
+            SqlParameter parameter41 = new SqlParameter();
+            parameter41.ParameterName = "@KOLETAOTP";
+            parameter41.SqlDbType = SqlDbType.NVarChar;
+            parameter41.Size = 100;
+            parameter41.Direction = ParameterDirection.Input;
+            parameter41.Value = KOLETAOTP;
+            myCommand.Parameters.Add(parameter41);
+
+
+            /*
+			@KOLETAOTP nvarchar(100)
+            */
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -418,7 +529,7 @@ namespace Saobracaj.Dokumenta
             }
         }
 
-        public void UpdOtpremaKontejneraVozStav(int ID, int IdNadredjenog, string BrojKontejnera, String BrojVagona, double Granica, double BrojOsovina, double SopstvenaMasa, double Tara, double Neto, int Posiljalac, int Primalac, int VlasnikKontejnera, int TipKontejnera, int VrstaRobe, string Buking, int StatusKontejnera, string BrojPlombe, int PlaniraniLager, int IdVoza, DateTime VremePripremljen, DateTime VremeOdlaska, DateTime Datum, string Korisnik, int RB, string BrojPlombe2, int Organizator, string NapomenaS)
+        public void UpdOtpremaKontejneraVozStav(int ID, int IdNadredjenog, string BrojKontejnera, String BrojVagona, double Granica, double BrojOsovina, double SopstvenaMasa, double Tara, double Neto, int Posiljalac, int Primalac, int VlasnikKontejnera, int TipKontejnera, int VrstaRobe, string Buking, int StatusKontejnera, string BrojPlombe, int PlaniraniLager, int IdVoza, DateTime VremePripremljen, DateTime VremeOdlaska, DateTime Datum, string Korisnik, int RB, string BrojPlombe2, int Organizator, string NapomenaS, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, Double BTTORobe, int KontejnerID, double BTTOKOntejnera, string Napomena2, int PostupakSaRobom,  double BTTORobeFaktura, double BTTORobeOTP, double BTTORobeODVAGA, double BTTORobeKONTEJNER, string PLOMBAVLASN, string CBMOTP, string KOLETAOTP)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -642,6 +753,113 @@ namespace Saobracaj.Dokumenta
             parameter27.Direction = ParameterDirection.Input;
             parameter27.Value = NapomenaS;
             myCommand.Parameters.Add(parameter27);
+
+
+            SqlParameter parameter28 = new SqlParameter();
+            parameter28.ParameterName = "@PeriodSkladistenjaOd";
+            parameter28.SqlDbType = SqlDbType.DateTime;
+            parameter28.Direction = ParameterDirection.Input;
+            parameter28.Value = PeriodSkladistenjaOd;
+            myCommand.Parameters.Add(parameter28);
+
+            SqlParameter parameter29 = new SqlParameter();
+            parameter29.ParameterName = "@PeriodSkladistenjaDo";
+            parameter29.SqlDbType = SqlDbType.DateTime;
+            parameter29.Direction = ParameterDirection.Input;
+            parameter29.Value = PeriodSkladistenjaDo;
+            myCommand.Parameters.Add(parameter29);
+
+            SqlParameter parameter30 = new SqlParameter();
+            parameter30.ParameterName = "@BTTORobe";
+            parameter30.SqlDbType = SqlDbType.Decimal;
+            parameter30.Direction = ParameterDirection.Input;
+            parameter30.Value = BTTORobe;
+            myCommand.Parameters.Add(parameter30);
+
+            SqlParameter parameter31 = new SqlParameter();
+            parameter31.ParameterName = "@KontejnerID";
+            parameter31.SqlDbType = SqlDbType.Int;
+            parameter31.Direction = ParameterDirection.Input;
+            parameter31.Value = KontejnerID;
+            myCommand.Parameters.Add(parameter31);
+
+
+
+
+
+            SqlParameter parameter32 = new SqlParameter();
+            parameter32.ParameterName = "@BTTOKOntejnera";
+            parameter32.SqlDbType = SqlDbType.Decimal;
+            parameter32.Direction = ParameterDirection.Input;
+            parameter32.Value = BTTOKOntejnera;
+            myCommand.Parameters.Add(parameter32);
+
+            SqlParameter parameter33 = new SqlParameter();
+            parameter33.ParameterName = "@Napomena2";
+            parameter33.SqlDbType = SqlDbType.NVarChar;
+            parameter33.Size = 100;
+            parameter33.Direction = ParameterDirection.Input;
+            parameter33.Value = Napomena2;
+            myCommand.Parameters.Add(parameter33);
+
+            SqlParameter parameter34 = new SqlParameter();
+            parameter34.ParameterName = "@PostupakSaRobom";
+            parameter34.SqlDbType = SqlDbType.Int;
+            parameter34.Direction = ParameterDirection.Input;
+            parameter34.Value = PostupakSaRobom;
+            myCommand.Parameters.Add(parameter34);
+
+            SqlParameter parameter35 = new SqlParameter();
+            parameter35.ParameterName = "@BTTORobeFaktura";
+            parameter35.SqlDbType = SqlDbType.Decimal;
+            parameter35.Direction = ParameterDirection.Input;
+            parameter35.Value = BTTORobeFaktura;
+            myCommand.Parameters.Add(parameter35);
+
+            SqlParameter parameter36 = new SqlParameter();
+            parameter36.ParameterName = "@BTTORobeOTP";
+            parameter36.SqlDbType = SqlDbType.Decimal;
+            parameter36.Direction = ParameterDirection.Input;
+            parameter36.Value = BTTORobeOTP;
+            myCommand.Parameters.Add(parameter36);
+
+            SqlParameter parameter37 = new SqlParameter();
+            parameter37.ParameterName = "@BTTORobeODVAGA";
+            parameter37.SqlDbType = SqlDbType.Decimal;
+            parameter37.Direction = ParameterDirection.Input;
+            parameter37.Value = BTTORobeODVAGA;
+            myCommand.Parameters.Add(parameter37);
+
+            SqlParameter parameter38 = new SqlParameter();
+            parameter38.ParameterName = "@BTTORobeKONTEJNER";
+            parameter38.SqlDbType = SqlDbType.Decimal;
+            parameter38.Direction = ParameterDirection.Input;
+            parameter38.Value = BTTORobeKONTEJNER;
+            myCommand.Parameters.Add(parameter38);
+
+            SqlParameter parameter39 = new SqlParameter();
+            parameter39.ParameterName = "@PLOMBAVLASN";
+            parameter39.SqlDbType = SqlDbType.NVarChar;
+            parameter39.Size = 100;
+            parameter39.Direction = ParameterDirection.Input;
+            parameter39.Value = PLOMBAVLASN;
+            myCommand.Parameters.Add(parameter39);
+
+            SqlParameter parameter40 = new SqlParameter();
+            parameter40.ParameterName = "@CBMOTP";
+            parameter40.SqlDbType = SqlDbType.NVarChar;
+            parameter40.Size = 100;
+            parameter40.Direction = ParameterDirection.Input;
+            parameter40.Value = CBMOTP;
+            myCommand.Parameters.Add(parameter40);
+
+            SqlParameter parameter41 = new SqlParameter();
+            parameter41.ParameterName = "@KOLETAOTP";
+            parameter41.SqlDbType = SqlDbType.NVarChar;
+            parameter41.Size = 100;
+            parameter41.Direction = ParameterDirection.Input;
+            parameter41.Value = KOLETAOTP;
+            myCommand.Parameters.Add(parameter41);
 
 
             myConnection.Open();

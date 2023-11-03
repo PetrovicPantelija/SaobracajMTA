@@ -116,7 +116,7 @@ namespace Saobracaj.Dokumenta
             parameter13.SqlDbType = SqlDbType.NVarChar;
             parameter13.Size = 250;
             parameter13.Direction = ParameterDirection.Input;
-            parameter13.Value = AktivnostID;
+            parameter13.Value = Napomena;
             myCommand.Parameters.Add(parameter13);
 
 

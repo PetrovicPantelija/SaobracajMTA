@@ -1,4 +1,4 @@
-﻿namespace TrackModal.Dokumeta
+﻿namespace Saobracaj.Dokumeta
 {
     partial class frmDokumentaPrijemKontejneraKamion
     {
@@ -71,7 +71,7 @@
             this.tsPoslednja});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1763, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1322, 27);
             this.toolStrip1.TabIndex = 37;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -81,7 +81,7 @@
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
+            this.tsNew.Size = new System.Drawing.Size(24, 24);
             this.tsNew.Text = "Novi";
             // 
             // tsSave
@@ -90,7 +90,7 @@
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
             this.tsSave.Text = "tsSave";
             // 
             // tsDelete
@@ -99,7 +99,7 @@
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsDelete.Size = new System.Drawing.Size(24, 24);
             this.tsDelete.Text = "toolStripButton1";
             // 
             // toolStripSeparator1
@@ -113,7 +113,7 @@
             this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
             this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(29, 24);
+            this.tsPrvi.Size = new System.Drawing.Size(24, 24);
             this.tsPrvi.Text = "toolStripButton1";
             // 
             // tsNazad
@@ -122,7 +122,7 @@
             this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
             this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(29, 24);
+            this.tsNazad.Size = new System.Drawing.Size(24, 24);
             this.tsNazad.Text = "toolStripButton1";
             // 
             // tsNapred
@@ -131,7 +131,7 @@
             this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
             this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(29, 24);
+            this.tsNapred.Size = new System.Drawing.Size(24, 24);
             this.tsNapred.Text = "toolStripButton1";
             // 
             // tsPoslednja
@@ -140,21 +140,20 @@
             this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
             this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(29, 24);
+            this.tsPoslednja.Size = new System.Drawing.Size(24, 24);
             this.tsPoslednja.Text = "toolStripButton1";
             // 
             // dataGridView1
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 150);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 122);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1733, 565);
+            this.dataGridView1.Size = new System.Drawing.Size(1300, 459);
             this.dataGridView1.TabIndex = 73;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -164,10 +163,9 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(1123, 86);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
+            this.button4.Location = new System.Drawing.Point(842, 70);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(196, 43);
+            this.button4.Size = new System.Drawing.Size(147, 35);
             this.button4.TabIndex = 72;
             this.button4.Text = "Sačuvaj";
             this.button4.UseVisualStyleBackColor = false;
@@ -179,10 +177,9 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(904, 86);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Location = new System.Drawing.Point(678, 70);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(196, 43);
+            this.button2.Size = new System.Drawing.Size(147, 35);
             this.button2.TabIndex = 71;
             this.button2.Text = "Otvori";
             this.button2.UseVisualStyleBackColor = false;
@@ -193,20 +190,18 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(12, 106);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(9, 86);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 19);
+            this.label1.Size = new System.Drawing.Size(68, 16);
             this.label1.TabIndex = 70;
             this.label1.Text = "Ostala dok";
             // 
             // txtPutanja
             // 
             this.txtPutanja.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtPutanja.Location = new System.Drawing.Point(120, 102);
-            this.txtPutanja.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPutanja.Location = new System.Drawing.Point(90, 83);
             this.txtPutanja.Name = "txtPutanja";
-            this.txtPutanja.Size = new System.Drawing.Size(517, 26);
+            this.txtPutanja.Size = new System.Drawing.Size(389, 22);
             this.txtPutanja.TabIndex = 68;
             // 
             // button1
@@ -215,10 +210,9 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(685, 86);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(514, 70);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(196, 43);
+            this.button1.Size = new System.Drawing.Size(147, 35);
             this.button1.TabIndex = 69;
             this.button1.Text = "Pronađi";
             this.button1.UseVisualStyleBackColor = false;
@@ -228,10 +222,9 @@
             // 
             this.txtSifra.BackColor = System.Drawing.Color.White;
             this.txtSifra.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtSifra.Location = new System.Drawing.Point(120, 66);
-            this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSifra.Location = new System.Drawing.Point(90, 54);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(139, 26);
+            this.txtSifra.Size = new System.Drawing.Size(105, 22);
             this.txtSifra.TabIndex = 64;
             // 
             // label4
@@ -239,10 +232,9 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(11, 68);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(8, 55);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(42, 19);
+            this.label4.Size = new System.Drawing.Size(35, 16);
             this.label4.TabIndex = 67;
             this.label4.Text = "Šifra";
             // 
@@ -250,10 +242,9 @@
             // 
             this.txtSifraVozila.BackColor = System.Drawing.Color.White;
             this.txtSifraVozila.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtSifraVozila.Location = new System.Drawing.Point(499, 64);
-            this.txtSifraVozila.Margin = new System.Windows.Forms.Padding(4);
+            this.txtSifraVozila.Location = new System.Drawing.Point(374, 52);
             this.txtSifraVozila.Name = "txtSifraVozila";
-            this.txtSifraVozila.Size = new System.Drawing.Size(139, 26);
+            this.txtSifraVozila.Size = new System.Drawing.Size(105, 22);
             this.txtSifraVozila.TabIndex = 65;
             // 
             // label3
@@ -261,10 +252,9 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(317, 68);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(238, 55);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(120, 19);
+            this.label3.Size = new System.Drawing.Size(97, 16);
             this.label3.TabIndex = 66;
             this.label3.Text = "Šifra prijemnice";
             // 
@@ -275,19 +265,18 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(1359, 64);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox1.Location = new System.Drawing.Point(1019, 30);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(388, 128);
+            this.pictureBox1.Size = new System.Drawing.Size(291, 86);
             this.pictureBox1.TabIndex = 133;
             this.pictureBox1.TabStop = false;
             // 
             // frmDokumentaPrijemKontejneraKamion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1763, 730);
+            this.ClientSize = new System.Drawing.Size(1322, 593);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button4);
@@ -301,7 +290,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDokumentaPrijemKontejneraKamion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dokumenta prijem kontejnera kamionom";
