@@ -1695,6 +1695,43 @@
       <DependentUpon>frmVrstaNepravilnosti.cs</DependentUpon>
     </Compile>
     <Compile Include="Neispravnosti\InsertNepravilnosti.cs" />
+    <Compile Include="Pantheon Export\InsertPatheonExport.cs" />
+    <Compile Include="Pantheon Export\IzlazneFakture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantheon Export\IzlazneFakture.Designer.cs">
+      <DependentUpon>IzlazneFakture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pantheon Export\IzlazneFakturePregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantheon Export\IzlazneFakturePregled.Designer.cs">
+      <DependentUpon>IzlazneFakturePregled.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pantheon Export\NosiociTroskova.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantheon Export\NosiociTroskova.Designer.cs">
+      <DependentUpon>NosiociTroskova.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pantheon Export\Predvidjanje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantheon Export\Predvidjanje.Designer.cs">
+      <DependentUpon>Predvidjanje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pantheon Export\UlazneFakture.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantheon Export\UlazneFakture.Designer.cs">
+      <DependentUpon>UlazneFakture.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pantheon Export\UlFakPregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantheon Export\UlFakPregled.Designer.cs">
+      <DependentUpon>UlFakPregled.cs</DependentUpon>
+    </Compile>
     <Compile Include="Perftech_BeogradDataSet.cs">
       <DependentUpon>Perftech_BeogradDataSet.xsd</DependentUpon>
       <SubType>code</SubType>
@@ -3810,6 +3847,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Neispravnosti\frmVrstaNepravilnosti.resx">
       <DependentUpon>frmVrstaNepravilnosti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantheon Export\IzlazneFakture.resx">
+      <DependentUpon>IzlazneFakture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantheon Export\IzlazneFakturePregled.resx">
+      <DependentUpon>IzlazneFakturePregled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantheon Export\NosiociTroskova.resx">
+      <DependentUpon>NosiociTroskova.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantheon Export\Predvidjanje.resx">
+      <DependentUpon>Predvidjanje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantheon Export\UlazneFakture.resx">
+      <DependentUpon>UlazneFakture.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantheon Export\UlFakPregled.resx">
+      <DependentUpon>UlFakPregled.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Promet\frmLager.resx">
       <DependentUpon>frmLager.cs</DependentUpon>

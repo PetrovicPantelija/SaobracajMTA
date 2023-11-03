@@ -9,7 +9,7 @@ namespace Saobracaj.Administracija
 {
     public partial class frmFormePrava : Form
     {
-        public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        private string connect = Sifarnici.frmLogovanje.connectionString;
         private string niz = "";
         public static string code = "frmFormePrava";
         public bool Pravo;
@@ -155,9 +155,8 @@ namespace Saobracaj.Administracija
 
         private int IdForme()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
+            SqlConnection conn = new SqlConnection(connect);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -172,9 +171,8 @@ namespace Saobracaj.Administracija
 
         private void PravoPristupa()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
+            SqlConnection conn = new SqlConnection(connect);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader reader = cmd.ExecuteReader();

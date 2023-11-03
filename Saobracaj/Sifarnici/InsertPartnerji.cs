@@ -11,10 +11,11 @@ namespace Saobracaj.Sifarnici
 {
     class InsertPartnerji
     {
-        public void InsPartneri(string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB, string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar ,  int Vlasnik, int Spediter , int Platilac  , int Organizator,int Nalogodavac, int Uvoznik, string MUAdresa, string MUKontakt, string UICDrzava , string TR2, string Faks , int PomIzvoznik)
+        public string connect = Sifarnici.frmLogovanje.connectionString;
+
+        public void InsPartneri(string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB, string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar ,  int Vlasnik, int Spediter , int Platilac  , int Organizator,int Nalogodavac, int Uvoznik, string MUAdresa, string MUKontakt, string UICDrzava , string TR2, string Faks , int PomIzvoznik,int Logisticar,int Kamioner,int Agent)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertParnerji";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
@@ -268,6 +269,27 @@ namespace Saobracaj.Sifarnici
             parameter30.Value = PomIzvoznik;
             myCommand.Parameters.Add(parameter30);
 
+            SqlParameter parameter31 = new SqlParameter();
+            parameter31.ParameterName = "@Logisticar";
+            parameter31.SqlDbType = SqlDbType.Int;
+            parameter31.Direction = ParameterDirection.Input;
+            parameter31.Value = Logisticar;
+            myCommand.Parameters.Add(parameter31);
+
+            SqlParameter parameter32 = new SqlParameter();
+            parameter32.ParameterName = "@Kamioner";
+            parameter32.SqlDbType = SqlDbType.Int;
+            parameter32.Direction = ParameterDirection.Input;
+            parameter32.Value = Kamioner;   
+            myCommand.Parameters.Add(parameter32);
+
+            SqlParameter parameter33 = new SqlParameter();
+            parameter33.ParameterName = "@Agent";
+            parameter33.SqlDbType = SqlDbType.Int;
+            parameter33.Direction= ParameterDirection.Input;
+            parameter33.Value = Agent;
+            myCommand.Parameters.Add(parameter33);
+
 
 
             myConnection.Open();
@@ -305,10 +327,9 @@ namespace Saobracaj.Sifarnici
             }
         }
 
-        public void UpdPartneri(int ID, string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB,  string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar, int Vlasnik, int Spediter, int Platilac, int Organizator, int Nalogodavac, int Uvoznik, string MUAdresa, string MUKontakt, string UICDrzava, string TR2, string Faks, int PomIzvoznik)
+        public void UpdPartneri(int ID, string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB,  string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar, int Vlasnik, int Spediter, int Platilac, int Organizator, int Nalogodavac, int Uvoznik, string MUAdresa, string MUKontakt, string UICDrzava, string TR2, string Faks, int PomIzvoznik,int Logisticar,int Kamioner,int Agent)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdatePartneri";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
@@ -548,6 +569,27 @@ namespace Saobracaj.Sifarnici
             parameter30.Value = PomIzvoznik;
             myCommand.Parameters.Add(parameter30);
 
+            SqlParameter parameter31 = new SqlParameter();
+            parameter31.ParameterName = "@Logisticar";
+            parameter31.SqlDbType = SqlDbType.Int;
+            parameter31.Direction = ParameterDirection.Input;
+            parameter31.Value = Logisticar;
+            myCommand.Parameters.Add(parameter31);
+
+            SqlParameter parameter32 = new SqlParameter();
+            parameter32.ParameterName = "@Kamioner";
+            parameter32.SqlDbType = SqlDbType.Int;
+            parameter32.Direction = ParameterDirection.Input;
+            parameter32.Value = Kamioner;
+            myCommand.Parameters.Add(parameter32);
+
+            SqlParameter parameter33 = new SqlParameter();
+            parameter33.ParameterName = "@Agent";
+            parameter33.SqlDbType = SqlDbType.Int;
+            parameter33.Direction = ParameterDirection.Input;
+            parameter33.Value = Agent;
+            myCommand.Parameters.Add(parameter33);
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -587,8 +629,7 @@ namespace Saobracaj.Sifarnici
 
         public void DelPartneri(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeletePartnerji";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;

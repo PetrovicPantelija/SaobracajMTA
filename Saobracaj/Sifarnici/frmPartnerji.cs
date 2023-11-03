@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Configuration;
+using Syncfusion.Windows.Forms.Tools;
 
 namespace Saobracaj.Sifarnici
 {
@@ -32,11 +33,15 @@ namespace Saobracaj.Sifarnici
         int PomNalogodavac = 0;
         int PomUvoznik = 0;
         int PomIzvoznik = 0;
-
+        int PomLogisticar = 0;
+        int PomKamioner = 0;
+        int PomAgentBrodara = 0;
 
         bool status = false;
         string Kor = Sifarnici.frmLogovanje.user.ToString();
         string niz = "";
+        private string connect = Sifarnici.frmLogovanje.connectionString;
+
         public frmPartnerji()
         {
             InitializeComponent();
@@ -46,10 +51,9 @@ namespace Saobracaj.Sifarnici
         }
         public string IdGrupe()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
             string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
+            SqlConnection conn = new SqlConnection(connect);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -74,9 +78,8 @@ namespace Saobracaj.Sifarnici
         }
         private int IdForme()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
+            SqlConnection conn = new SqlConnection(connect);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -91,9 +94,8 @@ namespace Saobracaj.Sifarnici
 
         private void PravoPristupa()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
+            SqlConnection conn = new SqlConnection(connect);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader reader = cmd.ExecuteReader();
@@ -130,7 +132,69 @@ namespace Saobracaj.Sifarnici
         private void frmPartnerji_Load(object sender, EventArgs e)
         {
             RefreshDataGrid();
+            ChecBoxVisible(this.Controls);
 
+        }
+        private void ChecBoxVisible(Control.ControlCollection ctrlCollection)
+        {
+            foreach (Control c in ctrlCollection)
+            {
+                if(c is CheckBox)
+                {
+                    c.Visible = false;
+                }
+            }
+
+            string firma = Sifarnici.frmLogovanje.Firma;
+            switch(firma)
+            {
+                case "Leget":
+                int prviRedX = 16;
+                int prviRedY = 245;
+
+                int drugiRedX = 159;
+                int drugiRedY = 245;
+
+                chkLogisitcar.Visible = true;
+                chkLogisitcar.Location=new Point(prviRedX,prviRedY);
+
+                chkSpediter.Visible = true;
+                chkSpediter.Location = new Point(prviRedX, prviRedY+30);
+
+                chkBrodar.Visible = true;
+                chkBrodar.Location = new Point(prviRedX, prviRedY+60);
+
+                chkAgentBrodara.Visible = true;
+                chkAgentBrodara.Location = new Point(prviRedX, prviRedY+90);
+
+                chkUvoznik.Visible = true;
+                chkUvoznik.Location = new Point(drugiRedX, drugiRedY);
+
+                chkIzvoznik.Visible = true;
+                chkIzvoznik.Location = new Point(drugiRedX, drugiRedY+30);
+
+                chkKamioner.Visible = true;
+                chkKamioner.Location=new Point(drugiRedX,drugiRedY+60);
+
+                chkOrganizator.Text = "Železnički operater";
+                chkOrganizator.Visible = true;
+                chkOrganizator.Location = new Point(drugiRedX, drugiRedY + 90);
+                break;
+
+                case "TA":
+                chkPrevoznik.Visible= true;
+                chkPosiljalac.Visible= true;
+                chkPrimalac.Visible=true;
+                chkBrodar.Visible=true;
+                chkVlasnik.Visible=true;
+                chkSpediter.Visible=true;
+                chkPlatilac.Visible = true;
+                chkOrganizator.Visible = true;
+                chkNalogodavac.Visible = true;
+                chkUvoznik.Visible = true;
+                chkIzvoznik.Visible = true;
+                    break;
+            }
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -218,8 +282,9 @@ namespace Saobracaj.Sifarnici
                         {
                             chkIzvoznik.Checked = false;
                         }
-
-
+                        if (row.Cells[28].Value.ToString()== "1") { chkLogisitcar.Checked = true; } else { chkLogisitcar.Checked = false; }
+                        if (row.Cells[29].Value.ToString() == "1") { chkKamioner.Checked= true; } else { chkKamioner.Checked = false; }
+                        if (row.Cells[30].Value.ToString() == "1") { chkAgentBrodara.Checked= true; } else { chkAgentBrodara.Checked = false; }
 
                         RefreshDataGrid2(txtSifra.Text);
                     }
@@ -240,10 +305,9 @@ namespace Saobracaj.Sifarnici
         {
             var select = " Select PaSifra, Rtrim(PaNaziv) as PaNaziv, PaUlicaHisnaSt , PaKraj, PaDelDrzave, PaPostnaSt, PaSifDrzave, PaTelefon1, PaZiroRac, " +
                 " PaOpomba, PaDMatSt, PaEMail, PaEMatSt1, Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac ,  Brodar " +
-            " , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik from Partnerji";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
+            " , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik,Logisticar,Kamioner,AgentBrodara from Partnerji";
+            SqlConnection myConnection = new SqlConnection(connect);
+            var c = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, c);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
@@ -367,6 +431,13 @@ namespace Saobracaj.Sifarnici
             dataGridView1.Columns[20].HeaderText = "Izvoznik";
             dataGridView1.Columns[20].Width = 60;
 
+            if (Sifarnici.frmLogovanje.Firma == "TA")
+            {
+                dataGridView1.Columns["Logisticar"].Visible = false;
+                dataGridView1.Columns["Kamioner"].Visible = false;
+                dataGridView1.Columns["Agent brodara"].Visible = false;
+            }
+
         }
 
      
@@ -374,9 +445,8 @@ namespace Saobracaj.Sifarnici
         private void RefreshDataGrid2(string SifraPartnera)
         {
             var select = " Select PaKoSifra, (Rtrim(PaKOPriimek) + ' ' + Rtrim(PaKoIme)) as Naziv, PaKoOddelek as Odeljenje, PaKoTel as Telefon, PaKoMail as Mail, PaKOOpomba as Napomena  from PartnerjiKOntOseba   where PaKOSifra =" + SifraPartnera;
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
+            SqlConnection myConnection = new SqlConnection(connect);
+            var c = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, c);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
@@ -482,6 +552,9 @@ namespace Saobracaj.Sifarnici
             chkNalogodavac.Checked = false;
             chkUvoznik.Checked = false;
             chkIzvoznik.Checked = false;
+            chkLogisitcar.Checked = false;
+            chkKamioner.Checked = false;
+            chkAgentBrodara.Checked = false;
 
         }
 
@@ -568,16 +641,24 @@ namespace Saobracaj.Sifarnici
                 PomIzvoznik = 0;
             }
 
+            if (chkLogisitcar.Checked)
+            {
+                PomLogisticar = 1;
+            }
+            else { PomLogisticar = 0; }
+            if (chkKamioner.Checked) { PomKamioner = 1; } else { PomKamioner = 0; }
+            if (chkAgentBrodara.Checked) { PomAgentBrodara = 1; } else { PomAgentBrodara = 0; }
+
             if (status == true)
             {
               //  txtNaziv.Text,  txtUlica.Text,  txtMesto.Text,  txtOblast.Text, txtPosta.Text ,txtDrzava.Text, txtTelefon.Text, txtTR.Text ,  txtNapomena.Text,txtMaticniBroj.Text,  txtEmail.Text,  txtPIB.Text
                 InsertPartnerji ins = new InsertPartnerji();
-                ins.InsPartneri( txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtOblast.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtMaticniBroj.Text, txtEmail.Text, txtPIB.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik, txtMUAdresa.Text, txtMUKontakt.Text, txtUICDrzava.Text, txtTR2.Text, txtFaks.Text , PomIzvoznik);
+                ins.InsPartneri( txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtOblast.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtMaticniBroj.Text, txtEmail.Text, txtPIB.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik, txtMUAdresa.Text, txtMUKontakt.Text, txtUICDrzava.Text, txtTR2.Text, txtFaks.Text , PomIzvoznik,PomLogisticar,PomKamioner,PomAgentBrodara);
             }
             else
             {
                 InsertPartnerji upd = new InsertPartnerji();
-                upd.UpdPartneri(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtOblast.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtMaticniBroj.Text, txtEmail.Text, txtPIB.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik, txtMUAdresa.Text, txtMUKontakt.Text, txtUICDrzava.Text, txtTR2.Text, txtFaks.Text, PomIzvoznik);
+                upd.UpdPartneri(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtOblast.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtMaticniBroj.Text, txtEmail.Text, txtPIB.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik, txtMUAdresa.Text, txtMUKontakt.Text, txtUICDrzava.Text, txtTR2.Text, txtFaks.Text, PomIzvoznik,PomLogisticar,PomKamioner,PomAgentBrodara);
             }
             RefreshDataGrid();
         }
