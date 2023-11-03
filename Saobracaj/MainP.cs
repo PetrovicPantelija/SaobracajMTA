@@ -3857,6 +3857,42 @@ namespace Saobracaj
                 throw ex;
             }
         }
+
+        private void toolStripButton321_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmPrijemKontejneraKamionLegetUvoz uv1 = new Dokumenta.frmPrijemKontejneraKamionLegetUvoz();
+            uv1.Show();
+        }
+
+        private void toolStripButton322_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmPrijemKontejneraLegetVozUvoz uv2 = new Dokumenta.frmPrijemKontejneraLegetVozUvoz();
+            uv2.Show();
+        }
+
+        private void toolStripButton323_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmOtpremaKontejneraUvozKamion uv3 = new Dokumenta.frmOtpremaKontejneraUvozKamion();
+            uv3.Show();
+        }
+
+        private void toolStripButton324_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmPrijemKontejneraKamionLegetIzvoz iz1 = new Dokumenta.frmPrijemKontejneraKamionLegetIzvoz();
+            iz1.Show();
+        }
+
+        private void toolStripButton325_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmOtpremaKontejneraLegetIZVOZ iz2 = new Dokumenta.frmOtpremaKontejneraLegetIZVOZ();
+            iz2.Show();
+        }
+
+        private void toolStripButton326_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmOtpremaKontejneraIzvozKamion iz2 = new Dokumenta.frmOtpremaKontejneraIzvozKamion();
+            iz2.Show();
+        }
     }
     }
 
