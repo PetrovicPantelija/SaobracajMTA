@@ -713,5 +713,41 @@ namespace Saobracaj.Dokumenta
         {
 
         }
+
+        private void cboZaposleni_SelectedValueChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void cboAktivnost_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cboAktivnost_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+          
+
+        }
+
+        private void cboZaposleni_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            var select4 = "  select ID, Naziv from VrstaAktivnosti " +
+     " inner join PravoAktivnosti on VrstaAktivnosti.ID = PravoAktivnosti.VrstaAktivnostiID " +
+     " where  PravoAktivnosti.Zaposleni = " + cboZaposleni.SelectedValue;
+
+
+            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection4 = new SqlConnection(s_connection4);
+            var c4 = new SqlConnection(s_connection4);
+            var dataAdapter4 = new SqlDataAdapter(select4, c4);
+
+            var commandBuilder4 = new SqlCommandBuilder(dataAdapter4);
+            var ds4 = new DataSet();
+            dataAdapter4.Fill(ds4);
+            cboAktivnost.DataSource = ds4.Tables[0];
+            cboAktivnost.DisplayMember = "Naziv";
+            cboAktivnost.ValueMember = "ID";
+        }
     }
 }

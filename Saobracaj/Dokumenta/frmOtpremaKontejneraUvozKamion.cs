@@ -12,28 +12,28 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Net;
 using System.Net.Mail;
+using System.Diagnostics.CodeAnalysis;
+using Saobracaj;
 
-
-namespace Saobracaj.Dokumeta
+namespace Saobracaj.Dokumenta
 {
-    public partial class frmOtpremaKontejnera : Form
+    public partial class frmOtpremaKontejneraUvozKamion : Form
     {
         string KorisnikCene;
         bool status = false;
         MailMessage mailMessage;
         int usao = 0;
-        public frmOtpremaKontejnera()
+        public frmOtpremaKontejneraUvozKamion()
         {
             InitializeComponent();
         }
-
-        public frmOtpremaKontejnera(string Korisnik)
+        public frmOtpremaKontejneraUvozKamion(string Korisnik)
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
         }
 
-        public frmOtpremaKontejnera(string Korisnik, int Vozom)
+        public frmOtpremaKontejneraUvozKamion(string Korisnik, int Vozom)
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
@@ -45,7 +45,7 @@ namespace Saobracaj.Dokumeta
                 cboVozBuking.Enabled = true;
                 // toolStripButton3.Visible = false;
 
-                toolStripLabel1.Visible = true;
+               // toolStripLabel1.Visible = true;
             }
             else
             {
@@ -54,14 +54,15 @@ namespace Saobracaj.Dokumeta
                 txtImeVozaca.Enabled = true;
                 cboVozBuking.Enabled = false;
                 //   toolStripButton3.Visible = false;
-                toolStripLabel1.Visible = false;
+                //toolStripLabel1.Visible = false;
 
                 dtpDatumOtpreme.Value = DateTime.Now;
                 dtpVremeOdlaska.Value = DateTime.Now;
             }
         }
 
-        public frmOtpremaKontejnera(int sifra, string Korisnik)
+
+        public frmOtpremaKontejneraUvozKamion(int sifra, string Korisnik)
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
@@ -71,12 +72,50 @@ namespace Saobracaj.Dokumeta
             if (chkVoz.Checked == true)
             {
                 //  toolStripButton3.Visible = false;
-                toolStripLabel1.Visible = true;
+               // toolStripLabel1.Visible = true;
             }
             else
             {
                 //  toolStripButton3.Visible = true;
-                toolStripLabel1.Visible = false;
+                // toolStripLabel1.Visible = false;
+            }
+        }
+
+        private void tsSave_Click(object sender, EventArgs e)
+        {
+            int pomDirektni_indirektni = 0;
+
+            if (chkVrstaKamiona.Checked == true)
+            {
+                pomDirektni_indirektni = 1;
+            }
+            else
+            {
+                pomDirektni_indirektni = 0;
+            }
+
+
+            int otpremaVozom = 0;
+            if (chkVoz.Checked == true)
+            {
+                otpremaVozom = 1;
+            }
+            else
+            { otpremaVozom = 0; };
+            if (status == true)
+            {
+
+                Saobracaj.Dokumenta.InsertOtprema ins = new Saobracaj.Dokumenta.InsertOtprema();
+                ins.InsertOtp(Convert.ToDateTime(dtpDatumOtpreme.Text), Convert.ToInt32(cboStatusOtpreme.SelectedIndex), Convert.ToInt32(cboVozBuking.SelectedValue), txtRegBrKamiona.Text, txtImeVozaca.Text, Convert.ToDateTime(dtpVremeOdlaska.Value), otpremaVozom, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), 0, pomDirektni_indirektni, 0);
+                status = false;
+                VratiPodatkeMax();
+            }
+            else
+            {
+                //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
+                Saobracaj.Dokumenta.InsertOtprema upd = new Saobracaj.Dokumenta.InsertOtprema();
+                upd.UpdOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumOtpreme.Text), Convert.ToInt32(cboStatusOtpreme.SelectedIndex), Convert.ToInt32(cboVozBuking.SelectedValue), txtRegBrKamiona.Text, txtImeVozaca.Text, Convert.ToDateTime(dtpVremeOdlaska.Value), otpremaVozom, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), 0, pomDirektni_indirektni, 0);
+                status = false;
             }
         }
 
@@ -89,7 +128,7 @@ namespace Saobracaj.Dokumeta
             else
             {
                 Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke ins = new Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke();
-                ins.InsertOtpremaKontejneraStav(Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, txtVagon.Text, Convert.ToDouble(txtGranica.Value), Convert.ToDouble(txtBrojOsovina.Value), Convert.ToDouble(txtSopstvenaMasa.Value), Convert.ToDouble(txtTara.Value), Convert.ToDouble(txtNeto.Value), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboVlasnikKontejnera.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue), txtBukingBrodar.Text, Convert.ToInt32(cboStatusKontejnera.SelectedValue), txtBrojPlombe.Text, Convert.ToInt32(txtPlaniraniLager.Text), 0, Convert.ToDateTime(dtpVremePripremljen.Value), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtBrojPlombe2.Text, Convert.ToInt32(cboOrganizator.SelectedValue), txtNapomenaS.Text, DateTime.Now, DateTime.Now, 0, 0, 0, "", 0,0,0,0,0,"","","");
+                ins.InsertOtpremaKontejneraStav(Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, txtVagon.Text, Convert.ToDouble(txtGranica.Value), Convert.ToDouble(txtBrojOsovina.Value), Convert.ToDouble(txtSopstvenaMasa.Value), Convert.ToDouble(txtTara.Value), Convert.ToDouble(txtNeto.Value), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboVlasnikKontejnera.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue), txtBukingBrodar.Text, Convert.ToInt32(cboStatusKontejnera.SelectedValue), txtBrojPlombe.Text, Convert.ToInt32(txtPlaniraniLager.Text), 0, Convert.ToDateTime(dtpVremePripremljen.Value), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtBrojPlombe2.Text, Convert.ToInt32(cboOrganizator.SelectedValue), txtNapomenaS.Text, Convert.ToDateTime(dtpPerodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToDouble(bttoRobe.Value), Convert.ToInt32(txtKontejnerID.Text), Convert.ToDouble(bttoKontejnera.Value), txtNapomenaS2.Text, Convert.ToInt32(cbPostupak.SelectedValue),0,0,0,0,"","","");
                 RefreshDataGrid2();
             }
 
@@ -116,10 +155,9 @@ namespace Saobracaj.Dokumeta
             DataGridViewColumn column2 = dataGridView2.Columns[1];
             dataGridView2.Columns[1].HeaderText = "ID";
             dataGridView2.Columns[1].Width = 90;
-
         }
 
-        private void tsNew_Click(object sender, System.EventArgs e)
+        private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
             txtSifra.Enabled = false;
@@ -146,33 +184,7 @@ namespace Saobracaj.Dokumeta
             con.Close();
         }
 
-        private void tsSave_Click(object sender, System.EventArgs e)
-        {
-            int otpremaVozom = 0;
-            if (chkVoz.Checked == true)
-            {
-                otpremaVozom = 1;
-            }
-            else
-            { otpremaVozom = 0; };
-            if (status == true)
-            {
-
-                Saobracaj.Dokumenta.InsertOtprema ins = new Saobracaj.Dokumenta.InsertOtprema();
-                ins.InsertOtp(Convert.ToDateTime(dtpDatumOtpreme.Text), Convert.ToInt32(cboStatusOtpreme.SelectedIndex), Convert.ToInt32(cboVozBuking.SelectedValue), txtRegBrKamiona.Text, txtImeVozaca.Text, Convert.ToDateTime(dtpVremeOdlaska.Value), otpremaVozom, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue),0,0,0);
-                status = false;
-                VratiPodatkeMax();
-            }
-            else
-            {
-                //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
-                Saobracaj.Dokumenta.InsertOtprema upd = new Saobracaj.Dokumenta.InsertOtprema();
-                upd.UpdOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumOtpreme.Text), Convert.ToInt32(cboStatusOtpreme.SelectedIndex), Convert.ToInt32(cboVozBuking.SelectedValue), txtRegBrKamiona.Text, txtImeVozaca.Text, Convert.ToDateTime(dtpVremeOdlaska.Value), otpremaVozom, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue),0,0,0);
-                status = false;
-            }
-        }
-
-        private void tsDelete_Click(object sender, System.EventArgs e)
+        private void tsDelete_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da brišete?", "Izbor", MessageBoxButtons.YesNo);
 
@@ -185,8 +197,6 @@ namespace Saobracaj.Dokumeta
             {
                 //do something else
             }
-
-            
         }
 
         private void RefreshDataGrid()
@@ -372,7 +382,7 @@ namespace Saobracaj.Dokumeta
             dataGridView1.Columns[3].HeaderText = "Broj kontejnera";
             dataGridView1.Columns[3].Width = 90;
 
-       
+
 
             DataGridViewColumn column5 = dataGridView1.Columns[4];
             dataGridView1.Columns[4].HeaderText = "Vagon";
@@ -397,7 +407,7 @@ namespace Saobracaj.Dokumeta
             DataGridViewColumn column10 = dataGridView1.Columns[9];
             dataGridView1.Columns[9].HeaderText = "Neto";
             dataGridView1.Columns[9].Width = 50;
-           
+
 
 
             DataGridViewColumn column11 = dataGridView1.Columns[10];
@@ -417,7 +427,7 @@ namespace Saobracaj.Dokumeta
             dataGridView1.Columns[13].HeaderText = "Organizator";
             dataGridView1.Columns[13].Width = 40;
 
-          
+
 
             DataGridViewColumn column15 = dataGridView1.Columns[14];
             dataGridView1.Columns[14].HeaderText = "Tip kontejnera";
@@ -448,7 +458,7 @@ namespace Saobracaj.Dokumeta
             dataGridView1.Columns[20].HeaderText = "Pl lager";
             dataGridView1.Columns[20].Width = 70;
 
-           
+
 
             DataGridViewColumn column22 = dataGridView1.Columns[21];
             dataGridView1.Columns[21].HeaderText = "Datum";
@@ -477,7 +487,7 @@ namespace Saobracaj.Dokumeta
 
             con.Open();
 
-           // SqlCommand cmd = new SqlCommand("select [ID] ,[DatumOtpreme],[StatusOtpreme],[IdVoza],[VremeOdlaska], [RegBrKamiona], [ImeVozaca], NacinOtpreme, Napomena, NajavaEmail, OtpremaEmail, Zatvoren, CIRUradjen, PredefinisanePorukeID from OtpremaKontejnera where ID = " + ID, con);
+            // SqlCommand cmd = new SqlCommand("select [ID] ,[DatumOtpreme],[StatusOtpreme],[IdVoza],[VremeOdlaska], [RegBrKamiona], [ImeVozaca], NacinOtpreme, Napomena, NajavaEmail, OtpremaEmail, Zatvoren, CIRUradjen, PredefinisanePorukeID from OtpremaKontejnera where ID = " + ID, con);
 
             SqlCommand cmd = new SqlCommand("select [ID] ,[DatumOtpreme],[StatusOtpreme],[IdVoza],[VremeOdlaska], [RegBrKamiona], [ImeVozaca], NacinOtpreme, Napomena, NajavaEmail, OtpremaEmail, Zatvoren, CIRUradjen from OtpremaKontejnera where ID = " + ID, con);
 
@@ -488,7 +498,7 @@ namespace Saobracaj.Dokumeta
                 dtpDatumOtpreme.Value = Convert.ToDateTime(dr["DatumOtpreme"].ToString());
                 dtpVremeOdlaska.Value = Convert.ToDateTime(dr["VremeOdlaska"].ToString());
                 cboVozBuking.SelectedValue = Convert.ToInt32(dr["IDVoza"].ToString());
-               // cboPredefinisanePoruke.SelectedValue = Convert.ToInt32(dr["PredefinisanePorukeID"].ToString());
+                // cboPredefinisanePoruke.SelectedValue = Convert.ToInt32(dr["PredefinisanePorukeID"].ToString());
                 cboStatusOtpreme.SelectedIndex = Convert.ToInt32(dr["StatusOtpreme"].ToString());
                 txtRegBrKamiona.Text = dr["RegBrKamiona"].ToString();
                 txtImeVozaca.Text = dr["ImeVozaca"].ToString();
@@ -544,14 +554,14 @@ namespace Saobracaj.Dokumeta
 
         }
 
-        private void button2_Click(object sender, System.EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
             Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke ins = new Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke();
-            ins.UpdOtpremaKontejneraVozStav(Convert.ToInt32(txtStavka.Text), Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, txtVagon.Text, Convert.ToDouble(txtGranica.Value), Convert.ToDouble(txtBrojOsovina.Value), Convert.ToDouble(txtSopstvenaMasa.Value), Convert.ToDouble(txtTara.Value), Convert.ToDouble(txtNeto.Value), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboVlasnikKontejnera.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue), txtBukingBrodar.Text, Convert.ToInt32(cboStatusKontejnera.SelectedValue), txtBrojPlombe.Text, Convert.ToInt32(txtPlaniraniLager.Text), 0, Convert.ToDateTime(dtpVremePripremljen.Value), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(txtRB.Text), txtBrojPlombe2.Text, Convert.ToInt32(cboOrganizator.SelectedValue), txtNapomenaS.Text, DateTime.Now, DateTime.Now, 0,0,0,"",0,0,0,0,0,"","","");
+            ins.UpdOtpremaKontejneraVozStav(Convert.ToInt32(txtStavka.Text), Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, txtVagon.Text, Convert.ToDouble(txtGranica.Value), Convert.ToDouble(txtBrojOsovina.Value), Convert.ToDouble(txtSopstvenaMasa.Value), Convert.ToDouble(txtTara.Value), Convert.ToDouble(txtNeto.Value), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboVlasnikKontejnera.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue), txtBukingBrodar.Text, Convert.ToInt32(cboStatusKontejnera.SelectedValue), txtBrojPlombe.Text, Convert.ToInt32(txtPlaniraniLager.Text), 0, Convert.ToDateTime(dtpVremePripremljen.Value), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(txtRB.Text), txtBrojPlombe2.Text, Convert.ToInt32(cboOrganizator.SelectedValue), txtNapomenaS.Text, Convert.ToDateTime(dtpPerodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToDouble(bttoRobe.Value), Convert.ToInt32(txtKontejnerID.Text), Convert.ToDouble(bttoKontejnera.Value), txtNapomenaS2.Text, Convert.ToInt32(cbPostupak.SelectedValue),0,0,0,0,"","","");
             RefreshDataGrid2();
         }
 
-        private void button3_Click(object sender, System.EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da brišete?", "Izbor", MessageBoxButtons.YesNo);
 
@@ -568,11 +578,10 @@ namespace Saobracaj.Dokumeta
                 //do something else
             }
 
-           // InsertOtpremaKontejneraStavke dels = new InsertOtpremaKontejneraStavke();
-           // dels.DeleteOtpremaKontejneraVozStav(Convert.ToInt32(txtStavka.Text));
-           // RefreshDataGrid2();
+            // InsertOtpremaKontejneraStavke dels = new InsertOtpremaKontejneraStavke();
+            // dels.DeleteOtpremaKontejneraVozStav(Convert.ToInt32(txtStavka.Text));
+            // RefreshDataGrid2();
         }
-
 
         private void ProveraKontrolnogBroja()
         {
@@ -878,7 +887,7 @@ namespace Saobracaj.Dokumeta
 
         }
 
-        private void frmOtpremaKontejnera_Load(object sender, System.EventArgs e)
+        private void frmOtpremaKontejneraUvozKamion_Load(object sender, EventArgs e)
         {
             var select = " Select Distinct ID, (NKM + '-' + Naziv) as NKM  From VrstaRobe";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -1013,7 +1022,6 @@ namespace Saobracaj.Dokumeta
             cboPredefinisanePoruke.ValueMember = "ID";
 
             usao = 1;
-
         }
 
         private void VratiPodatkeStavkeKontejnerSaPrijemnice(string BrojKontejnera)
@@ -1133,7 +1141,7 @@ namespace Saobracaj.Dokumeta
             con.Close();
         }
 
-        private void toolStripButton1_Click(object sender, System.EventArgs e)
+        private void toolStripButton1_Click(object sender, EventArgs e)
         {
             //Zatvaranje kontejnera
             //
@@ -1146,66 +1154,10 @@ namespace Saobracaj.Dokumeta
             }
         }
 
-        private void toolStripButton2_Click(object sender, System.EventArgs e)
+        private void toolStripButton2_Click(object sender, EventArgs e)
         {
             Saobracaj.Dokumenta.frmDokumentaOtpremaKontejnera dokotp = new Saobracaj.Dokumenta.frmDokumentaOtpremaKontejnera(txtSifra.Text, KorisnikCene);
             dokotp.Show();
-        }
-
-        private void chkVoz_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtSopstvenaMasa_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBrojKontejnera_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtVagon_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtStavka_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void cboPosiljalac_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtRegBrKamiona_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cboVoz_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //VratiVremeVoza();
-
         }
 
         private void VratiVremeVoza()
@@ -1236,37 +1188,20 @@ namespace Saobracaj.Dokumeta
 
         }
 
-        private void dtpVremeDolaska_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void cboStatusOtpreme_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cboStatusOtpreme.Text == "2-Otpremljen" && usao == 1)
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    dtpVremeOdlaska.Value =  DateTime.Now;
+                    dtpVremeOdlaska.Value = DateTime.Now;
                     Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
                     ins.UpdateZatvorenOtprema(row.Cells[3].Value.ToString(), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToInt32(txtSifra.Text));
                 }
             }
-
         }
 
-
-        private void dtpDatumOtpreme_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtImeVozaca_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_SelectionChanged(object sender, System.EventArgs e)
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             try
             {
@@ -1285,10 +1220,6 @@ namespace Saobracaj.Dokumeta
             }
         }
 
-        private void dataGridView2_SelectionChanged(object sender, EventArgs e)
-        {
-
-        }
 
         string VratiPodatkeEmailPrimalac()
         {
@@ -2852,7 +2783,6 @@ namespace Saobracaj.Dokumeta
 
         private void toolStripLabel2_Click(object sender, EventArgs e)
         {
-
             if (cboStatusOtpreme.SelectedIndex == 0)
             {
                 if (chkNajava.Checked == true)
@@ -3001,19 +2931,6 @@ namespace Saobracaj.Dokumeta
                 }
 
             }
-
-        }
-
-        private void toolStripLabel1_Click(object sender, EventArgs e)
-        {
-            int broj = Convert.ToInt32(txtSifra.Text);
-            Saobracaj.Izvestaji.frmDodatniList dodList = new Saobracaj.Izvestaji.frmDodatniList(broj);
-            dodList.Show();
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void toolStripButton5_Click(object sender, EventArgs e)
@@ -3027,166 +2944,18 @@ namespace Saobracaj.Dokumeta
             cir.Show();
         }
 
-        private void toolStripButton3_Click(object sender, EventArgs e)
-        {
-            int PostojiPrvi = 0;
-            int PostojiDrugi = 0;
-            string BrojKontejnera1 = "";
-            string BrojKontejnera2 = "";
-            string VrstaRobe1 = "";
-            string VrstaRobe2 = "";
-            double ukupnaMasa = 0;
-            double ukupnaMasa2 = 0;
-            string TipKontejnera = "";
-            string TipKontejnera2 = "";
-            ///Panta nadji
-            try
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
-                        if (PostojiPrvi == 1)
-                        {
-                            //
-                            // BrojKontejnera1 = row.Cells[3].Value.ToString();
-
-
-                            BrojKontejnera2 = row.Cells[3].Value.ToString();
-                            PostojiDrugi = 1;
-                            VrstaRobe2 = row.Cells[15].Value.ToString();
-                            ukupnaMasa2 = ukupnaMasa2 + Convert.ToDouble(row.Cells[8].Value.ToString()) +( Convert.ToDouble(row.Cells[9].Value.ToString() ) / 1000);
-                            TipKontejnera2 = row.Cells[14].Value.ToString();
-                            //Panta
-                            //14,7,13   Tara - 7 13 - Tip kontejnera 14 - Vrsta robe 8 - Neto
-                        }
-                        if (PostojiPrvi == 0)
-                        {
-                            BrojKontejnera1 = row.Cells[3].Value.ToString();
-                            BrojKontejnera2 = "";
-                            PostojiPrvi = 1;
-                            VrstaRobe1 = row.Cells[15].Value.ToString();
-                            ukupnaMasa = ukupnaMasa + Convert.ToDouble(row.Cells[8].Value.ToString()) + (Convert.ToDouble(row.Cells[9].Value.ToString()) / 1000);
-                            TipKontejnera = row.Cells[14].Value.ToString();
-                        }
-
-
-                    }
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
-
-
-            Saobracaj.Dokumenta.frmNalogZaPrevoz prevoz = new Saobracaj.Dokumenta.frmNalogZaPrevoz(BrojKontejnera1, BrojKontejnera2, VrstaRobe1, VrstaRobe2, ukupnaMasa, KorisnikCene, TipKontejnera, TipKontejnera2, ukupnaMasa2);
-            prevoz.Show();
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            VratiPodatkeStavkeKontejnerSaPrijemnice(txtBrojKontejnera.Text);
-        }
-
-        private void cboVozBuking_SelectedValueChanged(object sender, EventArgs e)
-        {
-
-            VratiVremeVoza();
-        }
-
-        private void panel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            VratiPodatkeStavkeVagonSaPrijemnice(txtVagon.Text);
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBrojKontejnera_Leave(object sender, EventArgs e)
-        {
-            ProveraKontrolnogBroja();
-        }
-
-        private void cboTipKontejnera_Leave(object sender, EventArgs e)
-        {
-            VratiPodatkeTara();
-        }
-
-        private void VratiPodatkeTara()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(s_connection);
-
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand(" SELECT Top 1 Tara " +
-            " FROM [dbo].[TipKontenjera] " +
-            " where ID = " + Convert.ToInt32(cboTipKontejnera.SelectedValue) + " order by id desc ", con);
-
-
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            while (dr.Read())
-            {
-                txtTara.Value = Convert.ToDecimal(dr["Tara"].ToString());
-
-
-            }
-            con.Close();
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    Saobracaj.Dokumeta.InsertPrijemKontejneraVozStavke insTer = new Saobracaj.Dokumeta.InsertPrijemKontejneraVozStavke();
-                    insTer.UpdateOtpremaKontejneraVozStavkeRB(Convert.ToInt32(row.Cells[1].Value.ToString()), Convert.ToInt32(row.Cells[0].Value.ToString()));
-               //Row.CellS
-                }
-                RefreshDataGrid2();
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela promena rednog broja");
-            }
-        }
-
-        private void cboStatusOtpreme_SelectedValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
             if (chkVoz.Checked == true)
             {
-                Saobracaj.Dokumenta.frmManipulacije pnm = new Saobracaj.Dokumenta.frmManipulacije(KorisnikCene, Convert.ToInt32(txtSifra.Text), 1,0);
+                Saobracaj.Dokumenta.frmManipulacije pnm = new Saobracaj.Dokumenta.frmManipulacije(KorisnikCene, Convert.ToInt32(txtSifra.Text), 1, 0);
                 pnm.Show();
             }
             else
             {
-                Saobracaj.Dokumenta.frmManipulacije pnm = new Saobracaj.Dokumenta.frmManipulacije(KorisnikCene, Convert.ToInt32(txtSifra.Text), 0,0);
+                Saobracaj.Dokumenta.frmManipulacije pnm = new Saobracaj.Dokumenta.frmManipulacije(KorisnikCene, Convert.ToInt32(txtSifra.Text), 0, 0);
                 pnm.Show();
             }
         }
-
-        private void toolStripButton6_Click(object sender, EventArgs e)
-        {
-            Saobracaj.Testiranje.frmTovarniList tl = new Saobracaj.Testiranje.frmTovarniList();
-            tl.Show();
-        }
     }
 }
-
- 
-

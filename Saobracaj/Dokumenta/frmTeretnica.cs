@@ -1009,8 +1009,29 @@ namespace Saobracaj.Dokumenta
             Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListSumeTableAdapter ta2 = new Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListSumeTableAdapter();
             Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListDataTable dt = new Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListDataTable();
             Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListSumeDataTable dt2 = new Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListSumeDataTable();
+            try
+            {
+                ta.Fill(dt, Convert.ToInt32(cboTrainList.SelectedValue));
+            }
+            catch (ConstraintException)
+            {
+                DataRow[] rowErrors = dt.GetErrors();
+
+                System.Diagnostics.Debug.WriteLine("YourDataTable Errors:"
+                    + rowErrors.Length);
+
+                for (int i = 0; i < rowErrors.Length; i++)
+                {
+                    System.Diagnostics.Debug.WriteLine(rowErrors[i].RowError);
+
+                    foreach (DataColumn col in rowErrors[i].GetColumnsInError())
+                    {
+                        System.Diagnostics.Debug.WriteLine(col.ColumnName
+                            + ":" + rowErrors[i].GetColumnError(col));
+                    }
+                }
+            }
             
-            ta.Fill(dt, Convert.ToInt32(cboTrainList.SelectedValue));
             ReportDataSource rds = new ReportDataSource();
             rds.Name = "DataSet1TA";
             rds.Value = dt;
@@ -1037,8 +1058,29 @@ namespace Saobracaj.Dokumenta
             Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListDataTable dt = new Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListDataTable();
             Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListSumeDataTable dt2 = new Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListSumeDataTable();
             //  Saobracaj.TESTIRANJEDataSet1TA.Se.seleSelectTrainListDataTable dt = new Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListDataTable();
+            try
+            {
+                ta.Fill(dt, Convert.ToInt32(cboTrainList.SelectedValue));
+            }
+            catch (ConstraintException)
+            {
+                DataRow[] rowErrors = dt.GetErrors();
 
-            ta.Fill(dt, Convert.ToInt32(cboTrainList.SelectedValue));
+                System.Diagnostics.Debug.WriteLine("YourDataTable Errors:"
+                    + rowErrors.Length);
+
+                for (int i = 0; i < rowErrors.Length; i++)
+                {
+                    System.Diagnostics.Debug.WriteLine(rowErrors[i].RowError);
+
+                    foreach (DataColumn col in rowErrors[i].GetColumnsInError())
+                    {
+                        System.Diagnostics.Debug.WriteLine(col.ColumnName
+                            + ":" + rowErrors[i].GetColumnError(col));
+                    }
+                }
+            }
+
             ReportDataSource rds = new ReportDataSource();
             rds.Name = "DataSet1TA";
             rds.Value = dt;

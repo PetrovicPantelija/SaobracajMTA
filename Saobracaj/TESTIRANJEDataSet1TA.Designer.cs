@@ -67,7 +67,7 @@ namespace Saobracaj {
                 this.Namespace = ds.Namespace;
                 this.Locale = ds.Locale;
                 this.CaseSensitive = ds.CaseSensitive;
-               // this.EnforceConstraints = ds.EnforceConstraints;
+                this.EnforceConstraints = ds.EnforceConstraints;
                 this.Merge(ds, false, global::System.Data.MissingSchemaAction.Add);
                 this.InitVars();
             }
@@ -178,7 +178,7 @@ namespace Saobracaj {
                 this.Namespace = ds.Namespace;
                 this.Locale = ds.Locale;
                 this.CaseSensitive = ds.CaseSensitive;
-               // this.EnforceConstraints = ds.EnforceConstraints;
+                this.EnforceConstraints = ds.EnforceConstraints;
                 this.Merge(ds, false, global::System.Data.MissingSchemaAction.Add);
                 this.InitVars();
             }
@@ -322,13 +322,9 @@ namespace Saobracaj {
             
             private global::System.Data.DataColumn columnOznakaCrtica;
             
-            private global::System.Data.DataColumn columnOznakaKola;
-            
             private global::System.Data.DataColumn columnOtpStanicaTerminal;
             
             private global::System.Data.DataColumn columnPolStanicaTerminal;
-            
-            private global::System.Data.DataColumn columnCIM;
             
             private global::System.Data.DataColumn columnBrojKomada;
             
@@ -368,7 +364,7 @@ namespace Saobracaj {
             
             private global::System.Data.DataColumn columnOznaka;
             
-            private global::System.Data.DataColumn columnCIM1;
+            private global::System.Data.DataColumn columnCIM;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -437,14 +433,6 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn OznakaKolaColumn {
-                get {
-                    return this.columnOznakaKola;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn OtpStanicaTerminalColumn {
                 get {
                     return this.columnOtpStanicaTerminal;
@@ -456,14 +444,6 @@ namespace Saobracaj {
             public global::System.Data.DataColumn PolStanicaTerminalColumn {
                 get {
                     return this.columnPolStanicaTerminal;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CIMColumn {
-                get {
-                    return this.columnCIM;
                 }
             }
             
@@ -621,9 +601,9 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CIM1Column {
+            public global::System.Data.DataColumn CIMColumn {
                 get {
-                    return this.columnCIM1;
+                    return this.columnCIM;
                 }
             }
             
@@ -665,13 +645,12 @@ namespace Saobracaj {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public SelectTrainListRow AddSelectTrainListRow(
+                        int ID, 
                         string KomOznaka, 
                         int RedniBroj, 
                         string OznakaCrtica, 
-                        string OznakaKola, 
                         string OtpStanicaTerminal, 
                         string PolStanicaTerminal, 
-                        int CIM, 
                         int BrojKomada, 
                         string KontBroj, 
                         string Proizvod, 
@@ -691,17 +670,15 @@ namespace Saobracaj {
                         string BrojTeretnice, 
                         string StanicaPopisa, 
                         string Oznaka, 
-                        string CIM1) {
+                        string CIM) {
                 SelectTrainListRow rowSelectTrainListRow = ((SelectTrainListRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
+                        ID,
                         KomOznaka,
                         RedniBroj,
                         OznakaCrtica,
-                        OznakaKola,
                         OtpStanicaTerminal,
                         PolStanicaTerminal,
-                        CIM,
                         BrojKomada,
                         KontBroj,
                         Proizvod,
@@ -721,10 +698,17 @@ namespace Saobracaj {
                         BrojTeretnice,
                         StanicaPopisa,
                         Oznaka,
-                        CIM1};
+                        CIM};
                 rowSelectTrainListRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSelectTrainListRow);
                 return rowSelectTrainListRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public SelectTrainListRow FindByID(int ID) {
+                return ((SelectTrainListRow)(this.Rows.Find(new object[] {
+                            ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -748,10 +732,8 @@ namespace Saobracaj {
                 this.columnKomOznaka = base.Columns["KomOznaka"];
                 this.columnRedniBroj = base.Columns["RedniBroj"];
                 this.columnOznakaCrtica = base.Columns["OznakaCrtica"];
-                this.columnOznakaKola = base.Columns["OznakaKola"];
                 this.columnOtpStanicaTerminal = base.Columns["OtpStanicaTerminal"];
                 this.columnPolStanicaTerminal = base.Columns["PolStanicaTerminal"];
-                this.columnCIM = base.Columns["CIM"];
                 this.columnBrojKomada = base.Columns["BrojKomada"];
                 this.columnKontBroj = base.Columns["KontBroj"];
                 this.columnProizvod = base.Columns["Proizvod"];
@@ -771,7 +753,7 @@ namespace Saobracaj {
                 this.columnBrojTeretnice = base.Columns["BrojTeretnice"];
                 this.columnStanicaPopisa = base.Columns["StanicaPopisa"];
                 this.columnOznaka = base.Columns["Oznaka"];
-                this.columnCIM1 = base.Columns["CIM1"];
+                this.columnCIM = base.Columns["CIM"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -785,14 +767,10 @@ namespace Saobracaj {
                 base.Columns.Add(this.columnRedniBroj);
                 this.columnOznakaCrtica = new global::System.Data.DataColumn("OznakaCrtica", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOznakaCrtica);
-                this.columnOznakaKola = new global::System.Data.DataColumn("OznakaKola", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOznakaKola);
                 this.columnOtpStanicaTerminal = new global::System.Data.DataColumn("OtpStanicaTerminal", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOtpStanicaTerminal);
                 this.columnPolStanicaTerminal = new global::System.Data.DataColumn("PolStanicaTerminal", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnPolStanicaTerminal);
-                this.columnCIM = new global::System.Data.DataColumn("CIM", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCIM);
                 this.columnBrojKomada = new global::System.Data.DataColumn("BrojKomada", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBrojKomada);
                 this.columnKontBroj = new global::System.Data.DataColumn("KontBroj", typeof(string), null, global::System.Data.MappingType.Element);
@@ -831,15 +809,16 @@ namespace Saobracaj {
                 base.Columns.Add(this.columnStanicaPopisa);
                 this.columnOznaka = new global::System.Data.DataColumn("Oznaka", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOznaka);
-                this.columnCIM1 = new global::System.Data.DataColumn("CIM1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCIM1);
-                this.columnID.AutoIncrement = true;
+                this.columnCIM = new global::System.Data.DataColumn("CIM", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnCIM);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
                 this.columnID.AllowDBNull = false;
                 this.columnID.ReadOnly = true;
+                this.columnID.Unique = true;
                 this.columnKomOznaka.MaxLength = 20;
                 this.columnOznakaCrtica.ReadOnly = true;
                 this.columnOznakaCrtica.MaxLength = 61;
-                this.columnOznakaKola.MaxLength = 30;
                 this.columnOtpStanicaTerminal.MaxLength = 50;
                 this.columnPolStanicaTerminal.MaxLength = 50;
                 this.columnKontBroj.MaxLength = 30;
@@ -854,9 +833,8 @@ namespace Saobracaj {
                 this.columnStanicaPopisa.MaxLength = 35;
                 this.columnOznaka.ReadOnly = true;
                 this.columnOznaka.MaxLength = 30;
-                this.columnCIM1.ReadOnly = true;
-                this.columnCIM1.Caption = "CIM";
-                this.columnCIM1.MaxLength = 2147483647;
+                this.columnCIM.ReadOnly = true;
+                this.columnCIM.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1320,11 +1298,11 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string KomOznaka {
                 get {
-                    try {
-                        return ((string)(this[this.tableSelectTrainList.KomOznakaColumn]));
+                    if (this.IsKomOznakaNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'KomOznaka\' in table \'SelectTrainList\' is DBNull.", e);
+                    else {
+                        return ((string)(this[this.tableSelectTrainList.KomOznakaColumn]));
                     }
                 }
                 set {
@@ -1352,31 +1330,15 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string OznakaCrtica {
                 get {
-                    try {
-                        return ((string)(this[this.tableSelectTrainList.OznakaCrticaColumn]));
+                    if (this.IsOznakaCrticaNull()) {
+                        return string.Empty;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OznakaCrtica\' in table \'SelectTrainList\' is DBNull.", e);
+                    else {
+                        return ((string)(this[this.tableSelectTrainList.OznakaCrticaColumn]));
                     }
                 }
                 set {
                     this[this.tableSelectTrainList.OznakaCrticaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string OznakaKola {
-                get {
-                    try {
-                        return ((string)(this[this.tableSelectTrainList.OznakaKolaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OznakaKola\' in table \'SelectTrainList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSelectTrainList.OznakaKolaColumn] = value;
                 }
             }
             
@@ -1409,22 +1371,6 @@ namespace Saobracaj {
                 }
                 set {
                     this[this.tableSelectTrainList.PolStanicaTerminalColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int CIM {
-                get {
-                    try {
-                        return ((int)(this[this.tableSelectTrainList.CIMColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CIM\' in table \'SelectTrainList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSelectTrainList.CIMColumn] = value;
                 }
             }
             
@@ -1734,17 +1680,17 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CIM1 {
+            public string CIM {
                 get {
                     try {
-                        return ((string)(this[this.tableSelectTrainList.CIM1Column]));
+                        return ((string)(this[this.tableSelectTrainList.CIMColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CIM1\' in table \'SelectTrainList\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'CIM\' in table \'SelectTrainList\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectTrainList.CIM1Column] = value;
+                    this[this.tableSelectTrainList.CIMColumn] = value;
                 }
             }
             
@@ -1786,18 +1732,6 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsOznakaKolaNull() {
-                return this.IsNull(this.tableSelectTrainList.OznakaKolaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetOznakaKolaNull() {
-                this[this.tableSelectTrainList.OznakaKolaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsOtpStanicaTerminalNull() {
                 return this.IsNull(this.tableSelectTrainList.OtpStanicaTerminalColumn);
             }
@@ -1818,18 +1752,6 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetPolStanicaTerminalNull() {
                 this[this.tableSelectTrainList.PolStanicaTerminalColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCIMNull() {
-                return this.IsNull(this.tableSelectTrainList.CIMColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCIMNull() {
-                this[this.tableSelectTrainList.CIMColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2062,14 +1984,14 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCIM1Null() {
-                return this.IsNull(this.tableSelectTrainList.CIM1Column);
+            public bool IsCIMNull() {
+                return this.IsNull(this.tableSelectTrainList.CIMColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCIM1Null() {
-                this[this.tableSelectTrainList.CIM1Column] = global::System.Convert.DBNull;
+            public void SetCIMNull() {
+                this[this.tableSelectTrainList.CIMColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2425,7 +2347,6 @@ namespace Saobracaj.TESTIRANJEDataSet1TATableAdapters {
             tableMapping.ColumnMappings.Add("KomOznaka", "KomOznaka");
             tableMapping.ColumnMappings.Add("RedniBroj", "RedniBroj");
             tableMapping.ColumnMappings.Add("OznakaCrtica", "OznakaCrtica");
-            tableMapping.ColumnMappings.Add("OznakaKola", "OznakaKola");
             tableMapping.ColumnMappings.Add("OtpStanicaTerminal", "OtpStanicaTerminal");
             tableMapping.ColumnMappings.Add("PolStanicaTerminal", "PolStanicaTerminal");
             tableMapping.ColumnMappings.Add("BrojKomada", "BrojKomada");
@@ -2447,7 +2368,7 @@ namespace Saobracaj.TESTIRANJEDataSet1TATableAdapters {
             tableMapping.ColumnMappings.Add("BrojTeretnice", "BrojTeretnice");
             tableMapping.ColumnMappings.Add("StanicaPopisa", "StanicaPopisa");
             tableMapping.ColumnMappings.Add("Oznaka", "Oznaka");
-            tableMapping.ColumnMappings.Add("CIM", "CIM1");
+            tableMapping.ColumnMappings.Add("CIM", "CIM");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

@@ -278,7 +278,7 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            frmOtpremaKontejnera ter = new frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+            Saobracaj.Dokumeta.frmOtpremaKontejnera ter = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
             ter.Show();
         }
 
@@ -294,7 +294,7 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton1_Click_1(object sender, EventArgs e)
         {
-            frmOtpremaKontejnera otpr = new frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+            Saobracaj.Dokumeta.frmOtpremaKontejnera otpr = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
             otpr.Show();
         }
 
@@ -323,7 +323,7 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            frmOtpremaKontejnera otpr = new frmOtpremaKontejnera(KorisnikCene, 1);
+            Saobracaj.Dokumeta.frmOtpremaKontejnera otpr = new Saobracaj.Dokumeta.frmOtpremaKontejnera(KorisnikCene, 1);
             otpr.Show();
         }
 

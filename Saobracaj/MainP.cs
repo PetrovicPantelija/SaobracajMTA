@@ -2920,15 +2920,15 @@ namespace Saobracaj
         private void toolStripButton220_Click(object sender, EventArgs e)
         {
             frmVagoniSerije frm = new frmVagoniSerije();
-            PravoP = frm.Pravo;
-            if (PravoP == true)
-            {
+           // PravoP = frm.Pravo;
+           // if (PravoP == true)
+           // {
                 frm.Show();
-            }
-            else
-            {
-                return;
-            }
+           // }
+          //  else
+           // {
+           //     return;
+          //  }
         }
 
         private void toolStripButton221_Click(object sender, EventArgs e)

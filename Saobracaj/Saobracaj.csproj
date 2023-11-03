@@ -811,11 +811,23 @@
     <Compile Include="Dokumenta\frmOtpremaKontejnera.designer.cs">
       <DependentUpon>frmOtpremaKontejnera.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dokumenta\frmOtpremaKontejneraIzvozKamion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmOtpremaKontejneraIzvozKamion.Designer.cs">
+      <DependentUpon>frmOtpremaKontejneraIzvozKamion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\frmOtpremaKontejneraLeget.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dokumenta\frmOtpremaKontejneraLeget.Designer.cs">
       <DependentUpon>frmOtpremaKontejneraLeget.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumenta\frmOtpremaKontejneraUvozKamion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmOtpremaKontejneraUvozKamion.Designer.cs">
+      <DependentUpon>frmOtpremaKontejneraUvozKamion.cs</DependentUpon>
     </Compile>
     <Compile Include="Dokumenta\frmParametriObracuna.cs">
       <SubType>Form</SubType>
@@ -1015,6 +1027,18 @@
     <Compile Include="Dokumenta\frmPrijavaOdjava.Designer.cs">
       <DependentUpon>frmPrijavaOdjava.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dokumenta\frmPrijemKontejneraKamionLegetIzvoz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmPrijemKontejneraKamionLegetIzvoz.Designer.cs">
+      <DependentUpon>frmPrijemKontejneraKamionLegetIzvoz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumenta\frmPrijemKontejneraKamionLegetUvoz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmPrijemKontejneraKamionLegetUvoz.Designer.cs">
+      <DependentUpon>frmPrijemKontejneraKamionLegetUvoz.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\frmPrijemKontejneraKamionom.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1027,11 +1051,11 @@
     <Compile Include="Dokumenta\frmPrijemKontejneraKamionPregled.designer.cs">
       <DependentUpon>frmPrijemKontejneraKamionPregled.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dokumenta\frmPrijemKontejneraLeget.cs">
+    <Compile Include="Dokumenta\frmPrijemKontejneraLegetVozUvoz.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dokumenta\frmPrijemKontejneraLeget.Designer.cs">
-      <DependentUpon>frmPrijemKontejneraLeget.cs</DependentUpon>
+    <Compile Include="Dokumenta\frmPrijemKontejneraLegetVozUvoz.Designer.cs">
+      <DependentUpon>frmPrijemKontejneraLegetVozUvoz.cs</DependentUpon>
     </Compile>
     <Compile Include="Dokumenta\frmPrijemKontejneraVoz.cs">
       <SubType>Form</SubType>
@@ -3399,8 +3423,14 @@
     <EmbeddedResource Include="Dokumenta\frmOtpremaKontejnera.resx">
       <DependentUpon>frmOtpremaKontejnera.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmOtpremaKontejneraIzvozKamion.resx">
+      <DependentUpon>frmOtpremaKontejneraIzvozKamion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmOtpremaKontejneraLeget.resx">
       <DependentUpon>frmOtpremaKontejneraLeget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmOtpremaKontejneraUvozKamion.resx">
+      <DependentUpon>frmOtpremaKontejneraUvozKamion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmParametriObracuna.resx">
       <DependentUpon>frmParametriObracuna.cs</DependentUpon>
@@ -3501,14 +3531,20 @@
     <EmbeddedResource Include="Dokumenta\frmPrijavaOdjava.resx">
       <DependentUpon>frmPrijavaOdjava.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmPrijemKontejneraKamionLegetIzvoz.resx">
+      <DependentUpon>frmPrijemKontejneraKamionLegetIzvoz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmPrijemKontejneraKamionLegetUvoz.resx">
+      <DependentUpon>frmPrijemKontejneraKamionLegetUvoz.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmPrijemKontejneraKamionom.resx">
       <DependentUpon>frmPrijemKontejneraKamionom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmPrijemKontejneraKamionPregled.resx">
       <DependentUpon>frmPrijemKontejneraKamionPregled.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dokumenta\frmPrijemKontejneraLeget.resx">
-      <DependentUpon>frmPrijemKontejneraLeget.cs</DependentUpon>
+    <EmbeddedResource Include="Dokumenta\frmPrijemKontejneraLegetVozUvoz.resx">
+      <DependentUpon>frmPrijemKontejneraLegetVozUvoz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmPrijemKontejneraVoz.resx">
       <DependentUpon>frmPrijemKontejneraVoz.cs</DependentUpon>

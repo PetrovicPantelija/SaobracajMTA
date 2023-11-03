@@ -26,7 +26,6 @@
               <Mapping SourceColumn="KomOznaka" DataSetColumn="KomOznaka" />
               <Mapping SourceColumn="RedniBroj" DataSetColumn="RedniBroj" />
               <Mapping SourceColumn="OznakaCrtica" DataSetColumn="OznakaCrtica" />
-              <Mapping SourceColumn="OznakaKola" DataSetColumn="OznakaKola" />
               <Mapping SourceColumn="OtpStanicaTerminal" DataSetColumn="OtpStanicaTerminal" />
               <Mapping SourceColumn="PolStanicaTerminal" DataSetColumn="PolStanicaTerminal" />
               <Mapping SourceColumn="BrojKomada" DataSetColumn="BrojKomada" />
@@ -48,7 +47,7 @@
               <Mapping SourceColumn="BrojTeretnice" DataSetColumn="BrojTeretnice" />
               <Mapping SourceColumn="StanicaPopisa" DataSetColumn="StanicaPopisa" />
               <Mapping SourceColumn="Oznaka" DataSetColumn="Oznaka" />
-              <Mapping SourceColumn="CIM" DataSetColumn="CIM1" />
+              <Mapping SourceColumn="CIM" DataSetColumn="CIM" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -80,14 +79,14 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="TESTIRANJEDataSet1TA" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="TESTIRANJEDataSet1TA" msprop:Generator_UserDSName="TESTIRANJEDataSet1TA">
+  <xs:element name="TESTIRANJEDataSet1TA" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msdata:EnforceConstraints="False" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="TESTIRANJEDataSet1TA" msprop:Generator_UserDSName="TESTIRANJEDataSet1TA">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="SelectTrainList" msprop:Generator_TableClassName="SelectTrainListDataTable" msprop:Generator_TableVarName="tableSelectTrainList" msprop:Generator_RowChangedName="SelectTrainListRowChanged" msprop:Generator_TablePropName="SelectTrainList" msprop:Generator_RowDeletingName="SelectTrainListRowDeleting" msprop:Generator_RowChangingName="SelectTrainListRowChanging" msprop:Generator_RowEvHandlerName="SelectTrainListRowChangeEventHandler" msprop:Generator_RowDeletedName="SelectTrainListRowDeleted" msprop:Generator_RowClassName="SelectTrainListRow" msprop:Generator_UserTableName="SelectTrainList" msprop:Generator_RowEvArgName="SelectTrainListRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
-              <xs:element name="KomOznaka" msprop:Generator_ColumnVarNameInTable="columnKomOznaka" msprop:Generator_ColumnPropNameInRow="KomOznaka" msprop:Generator_ColumnPropNameInTable="KomOznakaColumn" msprop:Generator_UserColumnName="KomOznaka" minOccurs="0">
+              <xs:element name="ID" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="KomOznaka" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="KomOznaka" msprop:Generator_ColumnVarNameInTable="columnKomOznaka" msprop:Generator_ColumnPropNameInTable="KomOznakaColumn" msprop:Generator_UserColumnName="KomOznaka" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
@@ -95,17 +94,10 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="RedniBroj" msprop:Generator_ColumnVarNameInTable="columnRedniBroj" msprop:Generator_ColumnPropNameInRow="RedniBroj" msprop:Generator_ColumnPropNameInTable="RedniBrojColumn" msprop:Generator_UserColumnName="RedniBroj" type="xs:int" minOccurs="0" />
-              <xs:element name="OznakaCrtica" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnOznakaCrtica" msprop:Generator_ColumnPropNameInRow="OznakaCrtica" msprop:Generator_ColumnPropNameInTable="OznakaCrticaColumn" msprop:Generator_UserColumnName="OznakaCrtica" minOccurs="0">
+              <xs:element name="OznakaCrtica" msdata:ReadOnly="true" msprop:nullValue="_empty" msprop:Generator_ColumnPropNameInRow="OznakaCrtica" msprop:Generator_ColumnVarNameInTable="columnOznakaCrtica" msprop:Generator_ColumnPropNameInTable="OznakaCrticaColumn" msprop:Generator_UserColumnName="OznakaCrtica" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="61" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="OznakaKola" msprop:Generator_ColumnVarNameInTable="columnOznakaKola" msprop:Generator_ColumnPropNameInRow="OznakaKola" msprop:Generator_ColumnPropNameInTable="OznakaKolaColumn" msprop:Generator_UserColumnName="OznakaKola" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="30" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -123,7 +115,6 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="CIM" msprop:Generator_ColumnVarNameInTable="columnCIM" msprop:Generator_ColumnPropNameInRow="CIM" msprop:Generator_ColumnPropNameInTable="CIMColumn" msprop:Generator_UserColumnName="CIM" type="xs:int" minOccurs="0" />
               <xs:element name="BrojKomada" msprop:Generator_ColumnVarNameInTable="columnBrojKomada" msprop:Generator_ColumnPropNameInRow="BrojKomada" msprop:Generator_ColumnPropNameInTable="BrojKomadaColumn" msprop:Generator_UserColumnName="BrojKomada" type="xs:int" minOccurs="0" />
               <xs:element name="KontBroj" msprop:Generator_ColumnVarNameInTable="columnKontBroj" msprop:Generator_ColumnPropNameInRow="KontBroj" msprop:Generator_ColumnPropNameInTable="KontBrojColumn" msprop:Generator_UserColumnName="KontBroj" minOccurs="0">
                 <xs:simpleType>
@@ -203,7 +194,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="CIM1" msdata:ReadOnly="true" msdata:Caption="CIM" msprop:Generator_ColumnVarNameInTable="columnCIM1" msprop:Generator_ColumnPropNameInRow="CIM1" msprop:Generator_ColumnPropNameInTable="CIM1Column" msprop:Generator_UserColumnName="CIM1" minOccurs="0">
+              <xs:element name="CIM" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCIM" msprop:Generator_ColumnPropNameInRow="CIM" msprop:Generator_ColumnPropNameInTable="CIMColumn" msprop:Generator_UserColumnName="CIM" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="2147483647" />
@@ -226,5 +217,9 @@
         </xs:element>
       </xs:choice>
     </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SelectTrainList" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
   </xs:element>
 </xs:schema>

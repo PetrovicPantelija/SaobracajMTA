@@ -286,8 +286,28 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            frmOtpremaKontejnera ter = new frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
-            ter.Show();
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        Saobracaj.Dokumenta.frmOtpremaKontejneraUvozKamion ter2 = new Saobracaj.Dokumenta.frmOtpremaKontejneraUvozKamion(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+                        ter2.Show();
+                        return;
+                    }
+                default:
+                    {
+
+                        Saobracaj.Dokumeta.frmOtpremaKontejnera ter3 = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+                        ter3.Show();
+                        return;
+
+                    }
+                    break;
+            }
+
+           // Saobracaj.Dokumeta.frmOtpremaKontejnera ter = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+           // ter.Show();
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -302,7 +322,7 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton1_Click_1(object sender, EventArgs e)
         {
-            frmOtpremaKontejnera otpr = new frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+            Saobracaj.Dokumeta.frmOtpremaKontejnera otpr = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
             otpr.Show();
         }
 
@@ -331,7 +351,7 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            frmOtpremaKontejnera otpr = new frmOtpremaKontejnera(KorisnikCene, 0);
+            Saobracaj.Dokumeta.frmOtpremaKontejnera otpr = new Saobracaj.Dokumeta.frmOtpremaKontejnera(KorisnikCene, 0);
             otpr.Show();
         }
 

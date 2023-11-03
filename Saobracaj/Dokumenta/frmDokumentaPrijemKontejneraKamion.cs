@@ -20,7 +20,7 @@ using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Drawing.Imaging;
 
-namespace TrackModal.Dokumeta
+namespace Saobracaj.Dokumeta
 {
     public partial class frmDokumentaPrijemKontejneraKamion : Form
     {
@@ -166,7 +166,7 @@ namespace TrackModal.Dokumeta
         {
             if (status == true)
             {
-                InsertDokumentaPrijemKontejneraKamion ins = new InsertDokumentaPrijemKontejneraKamion();
+                Saobracaj.Dokumeta.InsertDokumentaPrijemKontejneraKamion ins = new InsertDokumentaPrijemKontejneraKamion();
                 KopirajFajlPoTipu(txtPutanja.Text, txtSifraVozila.Text, 6);
                 ins.InsPrijemDokumenta(Convert.ToInt32(txtSifraVozila.Text), txtPutanja.Text);
                 RefreshDataGrid();
