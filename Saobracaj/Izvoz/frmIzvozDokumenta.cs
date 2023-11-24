@@ -190,5 +190,10 @@ namespace Saobracaj.Izvoz
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -3893,6 +3893,49 @@ namespace Saobracaj
             Dokumenta.frmOtpremaKontejneraIzvozKamion iz2 = new Dokumenta.frmOtpremaKontejneraIzvozKamion();
             iz2.Show();
         }
+
+        private void toolStripButton327_Click(object sender, EventArgs e)
+        {
+            Pantheon_Export.NosiociTroskova nt = new Pantheon_Export.NosiociTroskova();
+            nt.Show();
+        }
+
+        private void toolStripButton328_Click(object sender, EventArgs e)
+        {
+            Pantheon_Export.Predvidjanje pv = new Pantheon_Export.Predvidjanje();
+            pv.Show();
+        }
+
+        private void toolStripButton329_Click(object sender, EventArgs e)
+        {
+            Pantheon_Export.UlFakPregled ufp = new Pantheon_Export.UlFakPregled();
+            ufp.Show();
+
+        }
+
+        private void toolStripButton330_Click(object sender, EventArgs e)
+        {
+            Pantheon_Export.UlazneFakture uf = new Pantheon_Export.UlazneFakture();
+            uf.Show();
+        }
+
+        private void toolStripButton331_Click(object sender, EventArgs e)
+        {
+            Pantheon_Export.IzlazneFakturePregled izp = new Pantheon_Export.IzlazneFakturePregled();
+            izp.Show();
+        }
+
+        private void toolStripButton332_Click(object sender, EventArgs e)
+        {
+            Pantheon_Export.IzlazneFakture izf = new Pantheon_Export.IzlazneFakture();
+            izf.Show();
+        }
+
+        private void toolStripButton333_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmVrstaCarinskogPostupka vpu = new Uvoz.frmVrstaCarinskogPostupka();
+            vpu.Show();
+        }
     }
     }
 

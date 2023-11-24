@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRadniNalog));
+            Syncfusion.Windows.Forms.MetroColorTable metroColorTable3 = new Syncfusion.Windows.Forms.MetroColorTable();
             Syncfusion.Windows.Forms.MetroColorTable metroColorTable1 = new Syncfusion.Windows.Forms.MetroColorTable();
-            Syncfusion.Windows.Forms.MetroColorTable metroColorTable2 = new Syncfusion.Windows.Forms.MetroColorTable();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
@@ -72,7 +72,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtSifraZap = new System.Windows.Forms.TextBox();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.cboPorudzbinaID = new Syncfusion.Windows.Forms.Tools.MultiColumnComboBox();
@@ -91,6 +90,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -100,7 +100,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPorudzbinaID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrojKola)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPredhodniRadniNalog)).BeginInit();
@@ -109,6 +108,7 @@
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -137,7 +137,7 @@
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(1281, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1388, 27);
             this.toolStrip1.TabIndex = 6;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -473,13 +473,13 @@
             this.dataGridView4.Location = new System.Drawing.Point(3, 5);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersWidth = 51;
-            this.dataGridView4.Size = new System.Drawing.Size(614, 330);
+            this.dataGridView4.Size = new System.Drawing.Size(682, 312);
             this.dataGridView4.TabIndex = 149;
             this.dataGridView4.DoubleClick += new System.EventHandler(this.dataGridView4_DoubleClick);
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Location = new System.Drawing.Point(12, 394);
+            this.splitContainer1.Location = new System.Drawing.Point(4, 402);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -489,8 +489,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView4);
-            this.splitContainer1.Size = new System.Drawing.Size(1257, 502);
-            this.splitContainer1.SplitterDistance = 624;
+            this.splitContainer1.Size = new System.Drawing.Size(1376, 347);
+            this.splitContainer1.SplitterDistance = 683;
             this.splitContainer1.TabIndex = 152;
             // 
             // dataGridView2
@@ -503,7 +503,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(5, 3);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(614, 332);
+            this.dataGridView2.Size = new System.Drawing.Size(673, 314);
             this.dataGridView2.TabIndex = 152;
             // 
             // groupBox1
@@ -532,7 +532,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1281, 169);
+            this.groupBox1.Size = new System.Drawing.Size(1388, 169);
             this.groupBox1.TabIndex = 153;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Zaglavlje";
@@ -552,7 +552,7 @@
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Location = new System.Drawing.Point(770, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(505, 166);
+            this.groupBox2.Size = new System.Drawing.Size(618, 166);
             this.groupBox2.TabIndex = 165;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Radni nalog formiran iz posla";
@@ -565,22 +565,6 @@
             this.txtSifraZap.Name = "txtSifraZap";
             this.txtSifraZap.Size = new System.Drawing.Size(98, 20);
             this.txtSifraZap.TabIndex = 168;
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.AllowUserToAddRows = false;
-            this.dataGridView3.AllowUserToDeleteRows = false;
-            this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView3.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.ColumnHeadersVisible = false;
-            this.dataGridView3.Location = new System.Drawing.Point(143, 41);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.Size = new System.Drawing.Size(356, 69);
-            this.dataGridView3.TabIndex = 167;
-            this.dataGridView3.SelectionChanged += new System.EventHandler(this.dataGridView3_SelectionChanged);
             // 
             // button2
             // 
@@ -619,7 +603,7 @@
             this.cboPorudzbinaID.Location = new System.Drawing.Point(9, 89);
             this.cboPorudzbinaID.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.cboPorudzbinaID.Name = "cboPorudzbinaID";
-            this.cboPorudzbinaID.ScrollMetroColorTable = metroColorTable1;
+            this.cboPorudzbinaID.ScrollMetroColorTable = metroColorTable3;
             this.cboPorudzbinaID.Size = new System.Drawing.Size(120, 21);
             this.cboPorudzbinaID.TabIndex = 160;
             // 
@@ -678,7 +662,7 @@
             this.cboPredhodniRadniNalog.Location = new System.Drawing.Point(12, 138);
             this.cboPredhodniRadniNalog.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
             this.cboPredhodniRadniNalog.Name = "cboPredhodniRadniNalog";
-            this.cboPredhodniRadniNalog.ScrollMetroColorTable = metroColorTable2;
+            this.cboPredhodniRadniNalog.ScrollMetroColorTable = metroColorTable1;
             this.cboPredhodniRadniNalog.Size = new System.Drawing.Size(210, 21);
             this.cboPredhodniRadniNalog.TabIndex = 162;
             this.cboPredhodniRadniNalog.Visible = false;
@@ -705,7 +689,7 @@
             this.toolStripButton14});
             this.toolStrip2.Location = new System.Drawing.Point(0, 722);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(1281, 27);
+            this.toolStrip2.Size = new System.Drawing.Size(1388, 27);
             this.toolStrip2.TabIndex = 155;
             this.toolStrip2.Text = "Osveži";
             // 
@@ -760,7 +744,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1261, 181);
+            this.tabControl1.Size = new System.Drawing.Size(1368, 181);
             this.tabControl1.TabIndex = 129;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -770,7 +754,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1253, 152);
+            this.tabPage1.Size = new System.Drawing.Size(1360, 152);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Trase";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -786,7 +770,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(6, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1241, 142);
+            this.dataGridView1.Size = new System.Drawing.Size(1348, 142);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -798,16 +782,31 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 196);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1281, 200);
+            this.panel1.Size = new System.Drawing.Size(1388, 200);
             this.panel1.TabIndex = 154;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.AllowUserToAddRows = false;
+            this.dataGridView3.AllowUserToDeleteRows = false;
+            this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView3.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Location = new System.Drawing.Point(161, 16);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.RowHeadersWidth = 51;
+            this.dataGridView3.Size = new System.Drawing.Size(445, 109);
+            this.dataGridView3.TabIndex = 167;
+            this.dataGridView3.SelectionChanged += new System.EventHandler(this.dataGridView3_SelectionChanged);
             // 
             // frmRadniNalog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1281, 749);
+            this.ClientSize = new System.Drawing.Size(1388, 749);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
@@ -830,7 +829,6 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPorudzbinaID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrojKola)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboPredhodniRadniNalog)).EndInit();
@@ -840,6 +838,7 @@
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -885,7 +884,6 @@
         private Syncfusion.Windows.Forms.Tools.MultiColumnComboBox cboPredhodniRadniNalog;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.NumericUpDown txtBrojKola;
@@ -907,5 +905,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.DataGridView dataGridView3;
     }
 }

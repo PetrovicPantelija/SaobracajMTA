@@ -140,5 +140,16 @@ namespace Saobracaj.SyncForm
                 column.AllowFilter = true;
             }
         }
+
+        private void gridGroupingControl1_SelectedRecordsChanged(object sender, Syncfusion.Grouping.SelectedRecordsChangedEventArgs e)
+        {
+           // foreach (SelectedRecord rec in this.gridGroupingControl1.Table.SelectedRecords) textBox1.Text =  rec.Record.ToString());
+        }
+
+        private void gridGroupingControl1_SelectedRecordsChanging(object sender, Syncfusion.Grouping.SelectedRecordsChangedEventArgs e)
+        {
+            foreach (Syncfusion.Grouping.SelectedRecord rec in this.gridGroupingControl1.Table.SelectedRecords)
+            { textBox1.Text = rec.Record.ToString();}
+        }
     }
 }

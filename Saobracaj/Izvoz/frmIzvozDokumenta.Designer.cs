@@ -88,6 +88,7 @@ namespace Saobracaj.Izvoz
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(91, 24);
             this.toolStripButton1.Text = "Dokumentacija";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // button3
             // 
@@ -213,7 +214,7 @@ namespace Saobracaj.Izvoz
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtSifraUvoza);
             this.Controls.Add(this.toolStrip1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmIzvozDokumenta";
             this.Text = "Izvoz dokumentacija";
             this.toolStrip1.ResumeLayout(false);

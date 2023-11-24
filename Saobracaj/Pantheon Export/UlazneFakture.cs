@@ -53,13 +53,13 @@ namespace Saobracaj.Pantheon_Export
         {
             SqlConnection conn = new SqlConnection(connect);
 
-            var crm = "Select PredvidjanjeID from Predvidjanje order by ID desc";
+            var crm = "Select ID, PredvidjanjeID from Predvidjanje order by ID desc";
             var crmDa = new SqlDataAdapter(crm, conn);
             var crmDS = new DataSet();
             crmDa.Fill(crmDS);
             cboCRM.DataSource = crmDS.Tables[0];
             cboCRM.DisplayMember = "PredvidjanjeID";
-            cboCRM.ValueMember = "PredvidjanjeID";
+            cboCRM.ValueMember = "ID";
 
             cboVrstaDok.Items.Add("RA-Račun");
             cboVrstaDok.Items.Add("AV-Avansni račun");
@@ -202,7 +202,7 @@ namespace Saobracaj.Pantheon_Export
             InsertPatheonExport ins = new InsertPatheonExport();
             if (status == true)
             {
-                ins.InsUlFak(Convert.ToInt32(txtID.Text), cboCRM.SelectedValue.ToString(), cboVrstaDok.SelectedValue.ToString().Substring(0, 2), txtBrFakture.Text.ToString(), Convert.ToInt32(cboDobavljac.SelectedValue), cboTip.SelectedValue.ToString().Substring(0, 1),
+                ins.InsUlFak(Convert.ToInt32(txtID.Text), cboCRM.SelectedValue.ToString(),cboVrstaDok.Text.ToString().Substring(0, 2), txtBrFakture.Text.ToString(), Convert.ToInt32(cboDobavljac.SelectedValue), cboTip.Text.ToString().Substring(0, 1),
                     Convert.ToDateTime(dtPrijem.Value.ToString()), cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Text), txtRacunDobavljaca.Text.ToString(), Convert.ToDateTime(dtIzdavanje.Value.ToString()), Convert.ToDateTime(dtPDV.Value.ToString()),
                     Convert.ToDateTime(dtValute.Value.ToString()), Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboCRM.SelectedValue), txtNapomena.Text.ToString().TrimEnd());
             }

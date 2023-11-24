@@ -111,9 +111,14 @@ namespace Saobracaj.Izvoz
                 { chkNajavaVozila.Checked = false; }
                 cbNacinPakovanja.SelectedValue = Convert.ToInt32(dr["NacinPakovanja"].ToString());
                 if (dr["NacinPretovara"].ToString() == "1")
-                { chkNacinPretovara.Checked = true; }
+                { chkNacinPretovara.Checked = true;
+                    chkIndirektno.Checked = false;
+                
+                }
                 else
-                { chkNacinPretovara.Checked = false; }
+                { chkNacinPretovara.Checked = false;
+                    chkIndirektno.Checked = true;
+                }
 
                 txtDodatneNapomene.Text = dr["DodatneNapomeneDrumski"].ToString();
 
@@ -562,6 +567,14 @@ namespace Saobracaj.Izvoz
             cboNalogodavac1.DataSource = nal1DS.Tables[0];
             cboNalogodavac1.DisplayMember = "PaNaziv";
             cboNalogodavac1.ValueMember = "PaSifra";
+
+            var sfnalogodavac1 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
+            var sfnal1AD = new SqlDataAdapter(sfnalogodavac1, conn);
+            var sfnal1DS = new DataSet();
+            sfnal1AD.Fill(sfnal1DS);
+            sfNalogodavac1.DataSource = sfnal1DS.Tables[0];
+            sfNalogodavac1.DisplayMember = "PaNaziv";
+            sfNalogodavac1.ValueMember = "PaSifra";
 
             var nalogodavac2 = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
             var nal2AD = new SqlDataAdapter(nalogodavac2, conn);
@@ -1135,10 +1148,12 @@ namespace Saobracaj.Izvoz
                 if (dr["NacinPretovara"].ToString() == "1")
                 {
                     chkNacinPretovara.Checked = true;
+                    chkIndirektno.Checked = false;
                 }
                 else
                 {
                     chkNacinPretovara.Checked = false;
+                    chkIndirektno.Checked = true;
                 }
                 cbNacinPakovanja.SelectedValue = Convert.ToInt32(dr["NacinPakovanja"].ToString());
                 if (dr["NajavaVozila"].ToString() == "1")
@@ -1390,14 +1405,16 @@ namespace Saobracaj.Izvoz
         private void button15_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(connection);
+            // PaKOOpomba
+            //Bilo  var ko = "select PaKoZapSt, (Rtrim(PaKOIme) + ' ' + Rtrim(PaKoPriimek)) as Naziv from partnerjiKontOsebaMU where PaKOSifra = '" + Convert.ToInt32(cboMestoUtovara.SelectedValue) + "'  order by PaKOIme";
+            var ko = "select PaKoZapSt, (Rtrim(PaKOOpomba)) as Naziv from partnerjiKontOsebaMU where PaKOSifra = '" + Convert.ToInt32(cboMestoUtovara.SelectedValue) + "'  order by PaKOIme";
 
-            var ko = "select PaKoZapSt, (Rtrim(PaKOIme) + ' ' + Rtrim(PaKoPriimek)) as Naziv from partnerjiKontOsebaMU where PaKOSifra = '" + Convert.ToInt32(cboMestoUtovara.SelectedValue) + "'  order by PaKOIme";
             var koAD = new SqlDataAdapter(ko, conn);
             var koDS = new DataSet();
             koAD.Fill(koDS);
-            txtKontaktOsoba.DataSource = koDS.Tables[0];
-            txtKontaktOsoba.DisplayMember = "Naziv";
-            txtKontaktOsoba.ValueMember = "PaKoZapSt";
+            txtAdresaMestaUtovara.DataSource = koDS.Tables[0];
+            txtAdresaMestaUtovara.DisplayMember = "Naziv";
+            txtAdresaMestaUtovara.ValueMember = "PaKoZapSt";
             // VratiAdresuKontaktaIzNapomene(Convert.ToInt32(cboMestoUtovara.SelectedValue));
         }
 
@@ -1406,34 +1423,39 @@ namespace Saobracaj.Izvoz
             using (var detailForm = new Dokumenta.frmKontaktOsobe(Convert.ToInt32(cboNalogodavac3.SelectedValue)))
             {
                 detailForm.ShowDialog();
-                cboAdresaStatusVozila.Text = detailForm.GetKontaktMail(Convert.ToInt32(cboNalogodavac3.SelectedValue));
+                cboAdresaStatusVozila.Text = detailForm.GetKontaktMailSVISelektovani(Convert.ToInt32(cboNalogodavac3.SelectedValue));
             }
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
+            cboNaslovStatusaVozila.Text = "";
             if (checkedListBox2.GetItemCheckState(0) == CheckState.Checked)
             {
-                cboNaslovStatusaVozila.Text = "Broj kontejnera: " + txtBrKont.Text;
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " " + cboNalogodavac3.Text;
             }
-
             if (checkedListBox2.GetItemCheckState(1) == CheckState.Checked)
             {
-                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " Buking brodara: " + txtBokingBrodara.Text;
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + "; " + cboIzvoznik.Text;
             }
 
             if (checkedListBox2.GetItemCheckState(2) == CheckState.Checked)
             {
-                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " Brodar: " + cboBrodar.Text;
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + "; " + txtBrKont.Text;
             }
             if (checkedListBox2.GetItemCheckState(3) == CheckState.Checked)
             {
-                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " Izvoznik: " + cboIzvoznik.Text;
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + ", " + cboBrodar.Text;
             }
+
             if (checkedListBox2.GetItemCheckState(4) == CheckState.Checked)
             {
-                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " Nalogodavac za drumski prevoz: " + cboNalogodavac3.Text;
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + "; " + txtBokingBrodara.Text;
             }
+
+           
+          
+          
         }
         private void VratiNHM(int Sifra)
         {
@@ -1611,6 +1633,65 @@ namespace Saobracaj.Izvoz
                 txtVGMBrod.Enabled = false;
                 ;
             }
+        }
+
+        private void chkNacinPretovara_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkNacinPretovara.Checked == true)
+                chkIndirektno.Checked = false;
+            else
+            {
+                chkIndirektno.Checked = true;
+            }
+        }
+
+        private void chkIndirektno_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkIndirektno.Checked == true)
+                chkNacinPretovara.Checked = false;
+            else
+            {
+                chkNacinPretovara.Checked = true;
+            }
+        }
+
+        private void txVGMBrodBruto_Leave(object sender, EventArgs e)
+        {
+            txtOdvaganaTezina.Value= txVGMBrodBruto.Value  - txtTaraKontejnera.Value;
+        }
+
+        private void cboNalogodavac1_KeyUp(object sender, KeyEventArgs e)
+        {
+           
+
+        }
+
+        private void cboNalogodavac1_TextChanged(object sender, EventArgs e)
+        {
+            /*
+            var nalogodavac1 = "Select PaSifra,PaNaziv From Partnerji  where PaNAziv like '%" + cboNalogodavac1.Text + "%' order by PaNaziv";
+            var nal1AD = new SqlDataAdapter(nalogodavac1, connection);
+            var nal1DS = new DataSet();
+            nal1AD.Fill(nal1DS);
+            cboNalogodavac1.DataSource = nal1DS.Tables[0];
+            cboNalogodavac1.DisplayMember = "PaNaziv";
+            cboNalogodavac1.ValueMember = "PaSifra";
+            */
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            // PaKOOpomba
+            //Bilo  var ko = "select PaKoZapSt, (Rtrim(PaKOIme) + ' ' + Rtrim(PaKoPriimek)) as Naziv from partnerjiKontOsebaMU where PaKOSifra = '" + Convert.ToInt32(cboMestoUtovara.SelectedValue) + "'  order by PaKOIme";
+            var ko = "select PaKoZapSt, (Rtrim(PaKOIme) + ' ' + Rtrim(PaKoPriimek)) as Naziv from partnerjiKontOsebaMU where PaKoZapSt = '" + Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue) + "'  order by PaKOIme";
+
+            var koAD = new SqlDataAdapter(ko, conn);
+            var koDS = new DataSet();
+            koAD.Fill(koDS);
+            txtKontaktOsoba.DataSource = koDS.Tables[0];
+            txtKontaktOsoba.DisplayMember = "Naziv";
+            txtKontaktOsoba.ValueMember = "PaKoZapSt";
         }
     }
     }

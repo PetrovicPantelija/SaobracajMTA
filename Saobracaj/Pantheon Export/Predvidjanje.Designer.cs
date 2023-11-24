@@ -237,6 +237,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1213, 450);
             this.Controls.Add(this.cboValuta);
             this.Controls.Add(this.cboNosilacTroska);
@@ -254,6 +255,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dataGridView1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Predvidjanje";
             this.Text = "Predvidjanje";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -159,7 +159,8 @@ namespace Saobracaj.Dokumenta
         {
             InitializeComponent();
             txtSifra.Text = Sifra;
-            VratiPodatke(txtSifra.Text);
+           // VratiPodatke(txtSifra.Text);
+            VratiPodatkeTA(txtSifra.Text);
             RefreshDataGrid();
             tabNajave.TabPages.Remove(tabPage3);
             tabNajave.TabPages.Remove(tabPage4);
@@ -443,6 +444,8 @@ namespace Saobracaj.Dokumenta
             txtDuzinaM.Value = 0;
             txtBrojKola.Value = 0;
             txtNetoTezinaM.Value = 0;
+            cboStatusPredaje.SelectedValue = 1;
+            txtUgovor.Text = "";
             /*
 
             cmbVoz.SelectedValue = 0;
@@ -1678,6 +1681,116 @@ namespace Saobracaj.Dokumenta
                 txtPorDodatno.Text = dr["DodatnoPorudznina"].ToString();
                 cboSerija.SelectedValue = dr["SerijaVagona"].ToString();
                 txtOznakaPrefix.Text = dr["OznakaPrefix"].ToString();
+                txtOznakaBroj.Text = dr["OznakaBroj"].ToString();
+                txtBrojKontejnera.Value = Convert.ToInt32(dr["BrojKontejnera"].ToString());
+            }
+
+            con.Close();
+        }
+
+
+        private void VratiPodatkeTA(string ID)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT [ID] ,[BrojNajave] ,[Voz] ,[Posiljalac] ,[Prevoznik],[Otpravna] ,[Uputna] ,[Primalac] ,[RobaNHM] ,[PrevozniPut] " +
+            " ,[Tezina] ,[Duzina] ,[BrojKola] ,[RID] ,[PredvidjenoPrimanje] ,[StvarnoPrimanje] ,[PredvidjenaPredaja] ,[StvarnaPredaja] " +
+            " ,[Status] ,[OnBroj] ,[Verzija] ,[Razlog] ,[DatumUnosa] ,[RIDBroj] ,[Komentar], [VozP], [Granicna], Platilac, AdHoc, PrevoznikZa, Faktura, Zadatak, CIM, DispecerRID, TipPrevoza, NetoTezinaM, PorudzbinaID, ImaPovrat, TehnologijaID, RobaNHM2, DodatnoPorudznina,SerijaVagona, OznakaPrefiks, OznakaBroj, BrojKOntejnera FROM [TESTIRANJE].[dbo].[Najava] where ID=" + txtSifra.Text, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+
+                txtOpis.Text = dr["BrojNajave"].ToString();
+                cmbVoz.SelectedValue = Convert.ToInt32(dr["Voz"].ToString());
+                cboPosiljalac.SelectedValue = Convert.ToInt32(dr["Posiljalac"].ToString());
+                cboPrevoznik.SelectedValue = Convert.ToInt32(dr["Prevoznik"].ToString());
+                cboOtpravna.SelectedValue = Convert.ToInt32(dr["Otpravna"].ToString());
+                cboUputna.SelectedValue = Convert.ToInt32(dr["Uputna"].ToString());
+                cboPrimalac.SelectedValue = Convert.ToInt32(dr["Primalac"].ToString());
+                //Obraditi checked
+                cboNHM.SelectedValue = Convert.ToInt32(dr["RobaNHM"].ToString());
+                txtRelacija.Text = dr["PrevozniPut"].ToString();
+                txtNetoTezina.Value = Convert.ToDecimal(dr["Tezina"].ToString());
+                txtDuzinaM.Value = Convert.ToDecimal(dr["Duzina"].ToString());
+                txtBrojKola.Value = Convert.ToDecimal(dr["BrojKola"].ToString());
+                txtNetoTezinaM.Value = Convert.ToDecimal(dr["NetoTezinaM"].ToString());
+
+                //Nemamo Iz Najave polje
+                /*
+                if (dr["ImaPovrat"].ToString() == "1")
+                {
+                    chkImaPovrat.Checked = true;
+                    VratiPodatkePorudzbina();
+                    chkIzNajave.Checked = false;
+                }
+                else
+                {
+                    chkImaPovrat.Checked = false;
+                    chkIzNajave.Checked = true;
+                    VratiPodatkeNajava();
+
+                }
+
+                */
+
+
+                if (dr["RID"].ToString() == "1")
+                {
+                    chkRID.Checked = true;
+                }
+                else
+                {
+                    chkRID.Checked = false;
+                    txtRID.Enabled = false;
+                    txtRIDBroj.Enabled = false;
+                }
+                dtpPredvidjenoPrimanje.Value = Convert.ToDateTime(dr["PredvidjenoPrimanje"].ToString());
+                dtpStvarnoPrimanje.Value = Convert.ToDateTime(dr["StvarnoPrimanje"].ToString());
+                dtpPredvidjenaPredaja.Value = Convert.ToDateTime(dr["PredvidjenaPredaja"].ToString());
+                dtpStvarnaPredaja.Value = Convert.ToDateTime(dr["StvarnaPredaja"].ToString());
+                //cboStatusPredaje.Text, 
+                cboStatusPredaje.SelectedValue = Convert.ToInt32(dr["Status"].ToString());
+                txtRID.Text = dr["OnBroj"].ToString().TrimEnd();
+                txtRIDBroj.Text = dr["RIDBroj"].ToString().TrimEnd();
+                txtKomentar.Text = dr["Komentar"].ToString();
+                cboVozP.SelectedValue = Convert.ToInt32(dr["VozP"].ToString());
+                cboGranicna.SelectedValue = Convert.ToInt32(dr["Granicna"].ToString());
+                if (dr["AdHoc"].ToString() == "1")
+                {
+                    chkAdHoc.Checked = true;
+                }
+                else
+                {
+                    chkAdHoc.Checked = false;
+                }
+                cboPlatilac.SelectedValue = Convert.ToInt32(dr["Platilac"].ToString());
+                cboPrevoznikZa.SelectedValue = Convert.ToInt32(dr["PrevoznikZa"].ToString());
+                txtUgovor.Text = dr["Faktura"].ToString();
+                txtZadatak.Text = dr["Zadatak"].ToString();
+
+                if (dr["CIM"].ToString() == "1")
+                {
+                    chkCIM.Checked = true;
+                }
+                else
+                {
+                    chkCIM.Checked = false;
+                }
+
+                txtDispecerRID.Text = dr["DispecerRID"].ToString();
+                cboTipPrevoza.SelectedValue = Convert.ToInt32(dr["TipPrevoza"].ToString());
+
+
+
+                cboTehnologijaID.SelectedValue = Convert.ToInt32(dr["TehnologijaID"].ToString());
+                cboNHM2.SelectedValue = Convert.ToInt32(dr["RobaNHM2"].ToString());
+                txtPorDodatno.Text = dr["DodatnoPorudznina"].ToString();
+                cboSerija.SelectedValue = dr["SerijaVagona"].ToString();
+                txtOznakaPrefix.Text = dr["OznakaPrefiks"].ToString();
                 txtOznakaBroj.Text = dr["OznakaBroj"].ToString();
                 txtBrojKontejnera.Value = Convert.ToInt32(dr["BrojKontejnera"].ToString());
             }
@@ -2979,10 +3092,47 @@ namespace Saobracaj.Dokumenta
            
         }
 
+        int ProveriPostojiRN()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Top 1 ID from RadniNalogVezaNajave where IDNajave = " + txtSifra.Text, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                return 1;
+            }
+
+            con.Close();
+
+            return 0;
+        }
+
         private void toolStripButton10_Click(object sender, EventArgs e)
         {
-            frmRadniNalog rn = new frmRadniNalog(txtSifra.Text,1);
-            rn.Show();
+            int Postoji = 0;
+            
+            Postoji = ProveriPostojiRN();
+
+            if (Postoji > 0)
+            {
+                frmRadniNalog rn = new frmRadniNalog(txtSifra.Text, 1, 1);
+                rn.Show();
+            }
+            else
+            {
+                frmRadniNalogIzNajave rnin = new frmRadniNalogIzNajave(txtSifra.Text);
+                rnin.Show();
+            }
+           
+           
+            
+            
+            
         }
 
         private void toolStripButton11_Click(object sender, EventArgs e)

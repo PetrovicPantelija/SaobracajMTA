@@ -83,7 +83,7 @@ namespace Saobracaj.Pantheon_Export
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
+        {//NEce otvoriti
             Pantheon_Export.IzlazneFakture frm = new IzlazneFakture(ID,DatumDokumenta,Primalac,Valuta,Kurs,DatumPDV,DatumValute,MestoUtovara,DatumUtovara,MestoIstovara,DatumIstovara,Referent,Izjava,Napomena);
             frm.Show();
         }

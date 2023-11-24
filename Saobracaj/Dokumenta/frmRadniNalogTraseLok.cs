@@ -542,7 +542,9 @@ namespace Saobracaj.Dokumenta
 
             con2.Open();
 
-            SqlCommand cmd2 = new SqlCommand("select Najava.Tezina, Najava.Duzina from RadniNalog inner join Najava on Najava.ID = RadniNalog.TehnologijaID where RadniNalog.ID =  " + Convert.ToInt32(txtSifraRN.Text), con2);
+            SqlCommand cmd2 = new SqlCommand("select TOP 1 Najava.Tezina, Najava.Duzina from RadniNalog inner join RadniNalogVezaNajave on RadniNalog.ID = RadniNalogVezaNajave.IDRadnogNaloga " +
+            " inner join Najava on Najava.ID = RadniNalogVezaNajave.IDNajave where RadniNalog.ID =  " + Convert.ToInt32(txtSifraRN.Text), con2);
+            
             SqlDataReader dr2 = cmd2.ExecuteReader();
 
             while (dr2.Read())

@@ -324,6 +324,7 @@
             // 
             // cboReferent
             // 
+            this.cboReferent.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
             this.cboReferent.FormattingEnabled = true;
             this.cboReferent.Location = new System.Drawing.Point(877, 103);
             this.cboReferent.Name = "cboReferent";
@@ -566,6 +567,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1190, 563);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
@@ -598,8 +600,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "IzlazneFakture";
-            this.Text = "IzlazneFakture";
+            this.Text = "Izlazne Fakture";
             this.Load += new System.EventHandler(this.IzlazneFakture_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

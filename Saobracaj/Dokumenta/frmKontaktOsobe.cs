@@ -198,6 +198,22 @@ namespace Saobracaj.Dokumenta
             return txtPaKOMail.Text.TrimEnd();
         }
 
+        public string GetKontaktMailSVISelektovani(int Partner)
+        {
+            RefreshDataGridPoPartneru();
+            string emailovi = "";
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected)
+                {
+                    emailovi = emailovi  + ";" + row.Cells[6].Value.ToString().TrimEnd();
+                   
+                }
+            }
+       
+            return emailovi;
+        }
+
         public string GetKontakt(int Partner)
         {
             

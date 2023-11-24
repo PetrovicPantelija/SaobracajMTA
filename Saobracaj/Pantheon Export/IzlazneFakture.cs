@@ -179,6 +179,10 @@ namespace Saobracaj.Pantheon_Export
                     Convert.ToDateTime(dtPDV.Value), Convert.ToDateTime(dtValuta.Value), txtMestoUtovara.Text.ToString(), Convert.ToDateTime(dtDatumUtovara.Value), txtMestoUtovara.Text.ToString().TrimEnd(),
                     Convert.ToDateTime(dtDatumIstovara.Value), referent, Convert.ToInt32(cboReferent.SelectedValue), txtIzjava.Text.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd());
             }
+            else
+            {
+                //FALI UPDATE FAKTURE
+            }
             FillGV();
         }
         string MpNaziv;

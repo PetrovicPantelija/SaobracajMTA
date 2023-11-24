@@ -36,13 +36,95 @@ namespace Saobracaj.Dokumenta
 
         }
 
-        public frmRadniNalog(string BrojOznaka, int IzNajave)
+        public frmRadniNalog(string BrojOznaka, int IzNajaveP)
         {
             InitializeComponent();
+            int RN = 0;
             OznakaBroj = BrojOznaka;
-            IzNajave = 1;
+            IzNajave = IzNajaveP;
+            if (IzNajave == 1)
+            {
+                RN =    VratiRN();
+                if (RN == 0)
+                {
+
+                    KopiranjeRNIzPOsla();
+                
+                
+                }
+                txtSifra.Text = RN.ToString();
+                VratiPodatke(RN.ToString());  
+            }
         }
 
+        public frmRadniNalog(string BrojOznaka, int IzNajaveP, int DrugiNemaUNajavi)
+        {
+            InitializeComponent();
+            int RN = 0;
+            OznakaBroj = BrojOznaka;
+            IzNajave = IzNajaveP;
+           
+            if (IzNajave == 1)
+            {
+                RN = VratiRN();
+               /*-
+                if (RN == 0)
+                {
+
+                    KopiranjeRNIzPOsla();
+
+
+                }
+               */
+                txtSifra.Text = RN.ToString();
+                VratiPodatke(RN.ToString());
+            }
+           
+        }
+
+        private void KopiranjeRNIzPOsla()
+        {
+
+            var selectedOption = MessageBox.Show("Da li želite da formirate novi Prevozni radni nalog na osnovu postojećeg?", "Kopiranje Prevoznog naloga", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            // If the no button was pressed ...
+            if (selectedOption == DialogResult.Yes)
+            {
+                frmRadniNalogIzNajave rnin = new frmRadniNalogIzNajave(OznakaBroj);
+                rnin.Show();
+                
+            }
+            else if (selectedOption == DialogResult.No)
+            {
+              //  MessageBox.Show("No is pressed!", "No Dialog", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+              //  MessageBox.Show("Cancel is pressed", "Cancel Dialog", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        
+
+    }
+        int VratiRN()
+        {
+          
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select TOP 1 IDRadnogNaloga from RadniNalogVezaNajave where IDNajave =" + OznakaBroj, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                // txtOpis.Text = dr["BrojNajave"].ToString();
+                // cboNajava.SelectedValue = Convert.ToInt32(dr["Najava"].ToString());
+                return Convert.ToInt32(dr["IDRadnogNaloga"].ToString());
+            }
+
+            con.Close();
+            return 0;
+        }
         private void VratiPodatke(string IdRadnogNaloga)
          {
              if (IdRadnogNaloga == "")
@@ -171,7 +253,7 @@ namespace Saobracaj.Dokumenta
              dataGridView1.Columns[11].Width = 50;
 
              DataGridViewColumn column13 = dataGridView1.Columns[12];
-             dataGridView1.Columns[12].HeaderText = "Masa voza";
+             dataGridView1.Columns[12].HeaderText = "Duzina voza";
              dataGridView1.Columns[12].Width = 50;
 
              DataGridViewColumn column14 = dataGridView1.Columns[13];
@@ -870,7 +952,9 @@ namespace Saobracaj.Dokumenta
         }
         private void RefreshDataGridNajave()
         {
-            var select = " select * from RadniNalogVezaNajave where IDRadnogNaloga = " + Convert.ToInt32(txtSifra.Text) ;
+            var select = " select RadniNalogVezaNajave.*, Najava.Oznaka  from RadniNalogVezaNajave " +
+            " left join Najava on RadniNalogVezaNajave.IDNajave = Najava.ID " +
+            " where IDRadnogNaloga = " + Convert.ToInt32(txtSifra.Text) ;
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -890,7 +974,7 @@ namespace Saobracaj.Dokumenta
             dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
             dataGridView3.BackgroundColor = Color.White;
 
-            dataGridView3.EnableHeadersVisualStyles = false;
+            dataGridView3.EnableHeadersVisualStyles = true;
             dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
@@ -900,16 +984,21 @@ namespace Saobracaj.Dokumenta
             dataGridView3.Columns[0].Width = 40;
 
             DataGridViewColumn column2 = dataGridView3.Columns[1];
-            dataGridView3.Columns[1].HeaderText = "IDRadnogNaloga";
+            dataGridView3.Columns[1].HeaderText = "RN_ID";
             dataGridView3.Columns[1].Width = 60;
 
             DataGridViewColumn column3 = dataGridView3.Columns[2];
-            dataGridView3.Columns[2].HeaderText = "IDNajave";
+            dataGridView3.Columns[2].HeaderText = "PREVOZ_BR";
             dataGridView3.Columns[2].Width = 60;
 
             DataGridViewColumn column4 = dataGridView3.Columns[3];
-            dataGridView3.Columns[3].HeaderText = "Broj kola";
+            dataGridView3.Columns[3].HeaderText = "BROJ KOLA";
             dataGridView3.Columns[3].Width = 60;
+
+            DataGridViewColumn column5 = dataGridView3.Columns[4];
+            dataGridView3.Columns[4].HeaderText = "Prevoz";
+            dataGridView3.Columns[4].DefaultCellStyle.ForeColor = Color.Red;
+            dataGridView3.Columns[4].Width = 120;
         }
 
         private void button2_Click(object sender, EventArgs e)

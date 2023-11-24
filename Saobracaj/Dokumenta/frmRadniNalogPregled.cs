@@ -127,7 +127,7 @@ namespace Saobracaj.Dokumenta
         private void RefreshDataGrid1()
         {
             string pom = "'1'";
-            var select = " SELECT  d1.IDRadnogNaloga, d1.RB, d1.IDTrase, " +
+            var select = " SELECT  d1.IDRadnogNaloga, d1.RB, d1.IDTrase, Najava.Oznaka, " +
 " Trase.Voz, " +
 " RN.StatusRN, " +
  "   CASE WHEN d1.Rezi > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Rezi, " +
@@ -163,7 +163,9 @@ namespace Saobracaj.Dokumenta
 " INNER JOIN  stanice AS stanice_3 ON d1.StanicaDo = stanice_3.ID " +
 " INNER JOIN  stanice AS stanice_1 ON Trase.Krajnja = stanice_1.ID " +
 " inner Join RadniNalog as RN ON d1.IDRadnogNaloga = RN.ID " +
-" inner Join Delavci as Zaposleni ON RN.Planer = Zaposleni.DeSifra ";
+" inner Join Delavci as Zaposleni ON RN.Planer = Zaposleni.DeSifra " +
+" left join RadniNalogVezaNajave on RN.ID = RadniNalogVezaNajave.IDRadnogNaloga " +
+"  inner join Najava on RadniNalogVezaNajave.IDNajave = Najava.ID ";
 
 
             if (chkLA.Checked == true)
@@ -194,7 +196,7 @@ namespace Saobracaj.Dokumenta
                 pom = pom + ",'ZA'";
             }
 
-            select = select + "where RN.StatusRN in ( " + pom + ")" + " order by IDRadnogNaloga, d1.RB ";;
+            select = select + "where RN.StatusRN in ( " + pom + ")" + " order by RN.ID, d1.RB ";;
 
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -230,78 +232,86 @@ namespace Saobracaj.Dokumenta
 
             DataGridViewColumn column3 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].Visible = false;
-          //  dataGridView1.Columns[2].HeaderText = "ID Trase";
-          //  dataGridView1.Columns[2].Width = 30;
+            //  dataGridView1.Columns[2].HeaderText = "ID Trase";
+            //  dataGridView1.Columns[2].Width = 30;
+
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Trase";
-            dataGridView1.Columns[3].Width = 50;
+            dataGridView1.Columns[3].HeaderText = "Posao";
+            dataGridView1.Columns[3].Width = 120;
 
             DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "St";
-            dataGridView1.Columns[4].Width = 30;
+            dataGridView1.Columns[4].HeaderText = "Trase";
+            dataGridView1.Columns[4].Width = 50;
+
+
+
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "St";
+            dataGridView1.Columns[5].Width = 30;
 
             //Rezi
 
-            DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Rezi";
-            dataGridView1.Columns[5].Width = 30;
-
             DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Stanica od";
-            dataGridView1.Columns[6].Width = 90;
+            dataGridView1.Columns[6].HeaderText = "Rezi";
+            dataGridView1.Columns[6].Width = 30;
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Stanica do";
+            dataGridView1.Columns[7].HeaderText = "Stanica od";
             dataGridView1.Columns[7].Width = 90;
 
             DataGridViewColumn column9 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "Planer";
-            dataGridView1.Columns[8].Width = 80;
+            dataGridView1.Columns[8].HeaderText = "Stanica do";
+            dataGridView1.Columns[8].Width = 90;
 
             DataGridViewColumn column10 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Lokomotive";
-            dataGridView1.Columns[9].Width = 120;
+            dataGridView1.Columns[9].HeaderText = "Planer";
+            dataGridView1.Columns[9].Width = 80;
 
             DataGridViewColumn column11 = dataGridView1.Columns[10];
-            dataGridView1.Columns[10].HeaderText = "Osoblje";
-            dataGridView1.Columns[10].Width = 220;
+            dataGridView1.Columns[10].HeaderText = "Lokomotive";
+            dataGridView1.Columns[10].Width = 120;
 
             DataGridViewColumn column12 = dataGridView1.Columns[11];
-            dataGridView1.Columns[11].HeaderText = "Pl polazak";
-            dataGridView1.Columns[11].Width = 90;
+            dataGridView1.Columns[11].HeaderText = "Osoblje";
+            dataGridView1.Columns[11].Width = 220;
 
             DataGridViewColumn column13 = dataGridView1.Columns[12];
-            dataGridView1.Columns[12].HeaderText = "Pl Dolazak";
+            dataGridView1.Columns[12].HeaderText = "Pl polazak";
             dataGridView1.Columns[12].Width = 90;
 
             DataGridViewColumn column14 = dataGridView1.Columns[13];
-            dataGridView1.Columns[13].HeaderText = "Pl vreme";
-            dataGridView1.Columns[13].Width = 40;
+            dataGridView1.Columns[13].HeaderText = "Pl Dolazak";
+            dataGridView1.Columns[13].Width = 90;
 
             DataGridViewColumn column15 = dataGridView1.Columns[14];
-            dataGridView1.Columns[14].HeaderText = "Rel. polazak";
-            dataGridView1.Columns[14].Width = 90;
+            dataGridView1.Columns[14].HeaderText = "Pl vreme";
+            dataGridView1.Columns[14].Width = 40;
 
             DataGridViewColumn column16 = dataGridView1.Columns[15];
-            dataGridView1.Columns[15].HeaderText = "Rel dolazak";
+            dataGridView1.Columns[15].HeaderText = "Rel. polazak";
             dataGridView1.Columns[15].Width = 90;
 
             DataGridViewColumn column17 = dataGridView1.Columns[16];
-            dataGridView1.Columns[16].HeaderText = "Real vreme";
-            dataGridView1.Columns[16].Width = 40;
+            dataGridView1.Columns[16].HeaderText = "Rel dolazak";
+            dataGridView1.Columns[16].Width = 90;
 
             DataGridViewColumn column18 = dataGridView1.Columns[17];
-            dataGridView1.Columns[17].HeaderText = "Tr Stanica od";
-            dataGridView1.Columns[17].Width = 90;
+            dataGridView1.Columns[17].HeaderText = "Real vreme";
+            dataGridView1.Columns[17].Width = 40;
 
             DataGridViewColumn column19 = dataGridView1.Columns[18];
-            dataGridView1.Columns[18].HeaderText = "Tr Stanica do";
+            dataGridView1.Columns[18].HeaderText = "Tr Stanica od";
             dataGridView1.Columns[18].Width = 90;
 
             DataGridViewColumn column20 = dataGridView1.Columns[19];
-            dataGridView1.Columns[19].HeaderText = "Trasa relacija";
-            dataGridView1.Columns[19].Width = 150;
+            dataGridView1.Columns[19].HeaderText = "Tr Stanica do";
+            dataGridView1.Columns[19].Width = 90;
+
+            DataGridViewColumn column21 = dataGridView1.Columns[20];
+            dataGridView1.Columns[20].HeaderText = "Trasa relacija";
+            dataGridView1.Columns[20].Width = 150;
 
         }
 

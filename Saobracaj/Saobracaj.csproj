@@ -1105,6 +1105,12 @@
     <Compile Include="Dokumenta\frmRadniNalog.Designer.cs">
       <DependentUpon>frmRadniNalog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dokumenta\frmRadniNalogIzNajave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmRadniNalogIzNajave.Designer.cs">
+      <DependentUpon>frmRadniNalogIzNajave.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\frmRadniNalogPodRelacije.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3606,6 +3612,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmRadniNalog.resx">
       <DependentUpon>frmRadniNalog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmRadniNalogIzNajave.resx">
+      <DependentUpon>frmRadniNalogIzNajave.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmRadniNalogPodRelacije.resx">
       <DependentUpon>frmRadniNalogPodRelacije.cs</DependentUpon>

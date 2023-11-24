@@ -494,7 +494,7 @@ namespace Saobracaj.Izvoz
                 select = "  select  IzvozVrstaManipulacije.ID as ID, IzvozVrstaManipulacije.IDNadredjena as KontejnerID, Izvoz.BrojKontejnera, " +
   " IzvozVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv,  " +
  "  IzvozVrstaManipulacije.Cena,OrganizacioneJedinice.ID as OJID, OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
- "  Partnerji.PaSifra as PlatilacID,PArtnerji.PaNaziv as Platilac " +
+ "  Partnerji.PaSifra as PlatilacID,PArtnerji.PaNaziv as Platilac, SaPDV " +
  "  from IzvozVrstaManipulacije " +
  " inner join VrstaManipulacije on VrstaManipulacije.ID = IDVrstaManipulacije " +
  " inner " +
@@ -511,7 +511,7 @@ namespace Saobracaj.Izvoz
                 select = " select IzvozKonacnaVrstaManipulacije.ID as ID, IzvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, IzvozKonacna.BrojKontejnera, " +
   " IzvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv,  " +
  "  IzvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID, OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
- "  Partnerji.PaSifra as PlatilacID,PArtnerji.PaNaziv as Platilac " +
+ "  Partnerji.PaSifra as PlatilacID,PArtnerji.PaNaziv as Platilac,SaPDV " +
  "  from IzvozKonacnaVrstaManipulacije " +
  " inner join VrstaManipulacije on VrstaManipulacije.ID = IDVrstaManipulacije " +
  " inner " +
@@ -526,7 +526,7 @@ namespace Saobracaj.Izvoz
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
             da.Fill(ds);
-            dataGridView7.ReadOnly = true;
+            dataGridView7.ReadOnly = false;
             dataGridView7.DataSource = ds.Tables[0];
 
 

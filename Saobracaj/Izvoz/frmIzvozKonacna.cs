@@ -266,9 +266,13 @@ namespace Saobracaj.Izvoz
                 { chkNajavaVozila.Checked = false; }
                 cbNacinPakovanja.SelectedValue = Convert.ToInt32(dr["NacinPakovanja"].ToString());
                 if (dr["NacinPretovara"].ToString() == "1")
-                { chkNacinPretovara.Checked = true; }
+                { chkNacinPretovara.Checked = true;
+                    chkIndirektno.Checked = false;
+                }
                 else
-                { chkNacinPretovara.Checked = false; }
+                { chkNacinPretovara.Checked = false;
+                    chkIndirektno.Checked = true;
+                }
 
                 txtDodatneNapomene.Text = dr["DodatneNapomeneDrumski"].ToString();
 
@@ -1267,10 +1271,12 @@ namespace Saobracaj.Izvoz
                 if (dr["NacinPretovara"].ToString() == "1")
                 {
                     chkNacinPretovara.Checked = true;
+                    chkIndirektno.Checked = false;
                 }
                 else
                 {
                     chkNacinPretovara.Checked = false;
+                    chkIndirektno.Checked = true;
                 }
                 cbNacinPakovanja.SelectedValue = Convert.ToInt32(dr["NacinPakovanja"].ToString());
                 if (dr["NajavaVozila"].ToString() == "1")
@@ -1551,7 +1557,7 @@ namespace Saobracaj.Izvoz
             using (var detailForm = new Dokumenta.frmKontaktOsobe(Convert.ToInt32(cboNalogodavac3.SelectedValue)))
             {
                 detailForm.ShowDialog();
-                cboAdresaStatusVozila.Text = detailForm.GetKontaktMail(Convert.ToInt32(cboNalogodavac3.SelectedValue));
+                cboAdresaStatusVozila.Text = detailForm.GetKontaktMailSVISelektovani(Convert.ToInt32(cboNalogodavac3.SelectedValue));
             } 
         }
 
@@ -1559,26 +1565,29 @@ namespace Saobracaj.Izvoz
         {
             if (checkedListBox2.GetItemCheckState(0) == CheckState.Checked)
             {
-                cboNaslovStatusaVozila.Text = "Broj kontejnera: " + txtBrKont.Text;
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " " + cboNalogodavac3.Text;
             }
-
             if (checkedListBox2.GetItemCheckState(1) == CheckState.Checked)
             {
-                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " Buking brodara: " + txtBokingBrodara.Text;
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + "; " + cboIzvoznik.Text;
             }
 
             if (checkedListBox2.GetItemCheckState(2) == CheckState.Checked)
             {
-                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " Brodar: " + cboBrodar.Text;
+                cboNaslovStatusaVozila.Text = ";" + txtBrKont.Text;
             }
             if (checkedListBox2.GetItemCheckState(3) == CheckState.Checked)
             {
-                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " Izvoznik: " + cboIzvoznik.Text;
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + "," + cboBrodar.Text;
             }
             if (checkedListBox2.GetItemCheckState(4) == CheckState.Checked)
             {
-                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " Nalogodavac za drumski prevoz: " + cboNalogodavac3.Text;
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " ;" + txtBokingBrodara.Text;
             }
+
+           
+           
+            
         }
 
         private void VratiNHM(int Sifra)
@@ -1770,6 +1779,31 @@ namespace Saobracaj.Izvoz
         {
             frmFormiranjePlanaIzvoz fplan = new frmFormiranjePlanaIzvoz(Convert.ToInt32(txtNadredjeni.Text));
             fplan.Show();
+        }
+
+        private void chkNacinPretovara_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkNacinPretovara.Checked == true)
+                chkIndirektno.Checked = false;
+            else
+            {
+                chkIndirektno.Checked = true;
+            }
+        }
+
+        private void chkIndirektno_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkIndirektno.Checked == true)
+                chkNacinPretovara.Checked = false;
+            else
+            {
+                chkNacinPretovara.Checked = true;
+            }
+        }
+
+        private void txVGMBrodBruto_Leave(object sender, EventArgs e)
+        {
+            txtOdvaganaTezina.Value = txVGMBrodBruto.Value - txtTaraKontejnera.Value;
         }
     }
 }
