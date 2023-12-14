@@ -492,13 +492,13 @@ namespace Saobracaj.Izvoz
             if (txtNadredjeni.Text != "0")
             {
                 InsertIzvoz uvK = new InsertIzvoz();
-                uvK.InsUbaciUsluguKonacna(ID, Manipulacija, Cena, Kolicina, OrgJed, Platilac);
+                uvK.InsUbaciUsluguKonacna(ID, Manipulacija, Cena, Kolicina, OrgJed, Platilac, 0);
                 FillDG8();
             }
             else
             {
                 InsertIzvoz uvK = new InsertIzvoz();
-                uvK.InsUbaciUslugu(ID, Manipulacija, Cena, Kolicina, OrgJed, Platilac);
+                uvK.InsUbaciUslugu(ID, Manipulacija, Cena, Kolicina, OrgJed, Platilac, 0);
                 FillDG8();
 
             }

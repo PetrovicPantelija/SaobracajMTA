@@ -692,17 +692,17 @@ namespace Saobracaj.Uvoz
             var select = "";
 
             select = "select  UvozKonacnaVrstaManipulacije.ID as ID, UvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, UvozKonacna.BrojKontejnera, " +
-" UvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
-" UvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
-" Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac " +
-" from UvozKonacnaVrstaManipulacije " +
-" Inner    join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
-" inner " +
-" join PArtnerji on UvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
-" inner " +
-" join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozKonacnaVrstaManipulacije.OrgJed " +
-" inner " +
-" join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID where UvozKonacna.ID = " + Convert.ToInt32(txtID.Text);
+      " UvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
+      " UvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
+      " Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, SaPDV " +
+      " from UvozKonacnaVrstaManipulacije " +
+      " Inner    join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
+      " inner " +
+      " join PArtnerji on UvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
+      " inner " +
+      " join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozKonacnaVrstaManipulacije.OrgJed " +
+      " inner " +
+      " join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID where UvozKonacna.ID = " + Convert.ToInt32(txtID.Text);
 
 
 
@@ -2766,6 +2766,13 @@ namespace Saobracaj.Uvoz
             txtMesto.SelectedValue = TtxtMesto;
             txtAdresaMestaUtovara.SelectedValue = TtxtAdresaMestaUtovara;
 
+        }
+
+        private void txtNadredjeni_TextChanged(object sender, EventArgs e)
+        {
+            FillDGUsluge();
+            FillDG2();
+            FillDG4();
         }
     }
     }
