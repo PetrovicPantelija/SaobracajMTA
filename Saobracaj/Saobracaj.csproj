@@ -1531,17 +1531,35 @@
     <Compile Include="Izvoz\frmIzvozDokumenta.Designer.cs">
       <DependentUpon>frmIzvozDokumenta.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\frmIzvozIstorija.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmIzvozIstorija.Designer.cs">
+      <DependentUpon>frmIzvozIstorija.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmIzvozKonacna.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Izvoz\frmIzvozKonacna.Designer.cs">
       <DependentUpon>frmIzvozKonacna.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\frmIzvozKonacnaTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmIzvozKonacnaTable.Designer.cs">
+      <DependentUpon>frmIzvozKonacnaTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmIzvozKonacnaZaglavlje.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Izvoz\frmIzvozKonacnaZaglavlje.Designer.cs">
       <DependentUpon>frmIzvozKonacnaZaglavlje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvoz\frmIzvozTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmIzvozTable.Designer.cs">
+      <DependentUpon>frmIzvozTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Izvoz\frmIzvozUnosManipulacije.cs">
       <SubType>Form</SubType>
@@ -1590,6 +1608,12 @@
     </Compile>
     <Compile Include="Izvoz\frmPregledKontejneraIzvoz.Designer.cs">
       <DependentUpon>frmPregledKontejneraIzvoz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvoz\frmPregledKontejneraIzvozIzUvoza.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmPregledKontejneraIzvozIzUvoza.Designer.cs">
+      <DependentUpon>frmPregledKontejneraIzvozIzUvoza.cs</DependentUpon>
     </Compile>
     <Compile Include="Izvoz\frmValute.cs">
       <SubType>Form</SubType>
@@ -3202,6 +3226,12 @@
     <Compile Include="Uvoz\frmuvKvalitetKontejnera.Designer.cs">
       <DependentUpon>frmuvKvalitetKontejnera.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\frmUvozKonacnaTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmUvozKonacnaTable.Designer.cs">
+      <DependentUpon>frmUvozKonacnaTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\frmUvozKonacnaZaglavlje.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3279,6 +3309,12 @@
     </Compile>
     <Compile Include="Uvoz\UvozKonacna.designer.cs">
       <DependentUpon>UvozKonacna.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\UvozTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\UvozTable.Designer.cs">
+      <DependentUpon>UvozTable.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Administracija\frmDodeliGrupu.resx">
       <DependentUpon>frmDodeliGrupu.cs</DependentUpon>
@@ -3809,11 +3845,20 @@
     <EmbeddedResource Include="Izvoz\frmIzvozDokumenta.resx">
       <DependentUpon>frmIzvozDokumenta.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmIzvozIstorija.resx">
+      <DependentUpon>frmIzvozIstorija.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmIzvozKonacna.resx">
       <DependentUpon>frmIzvozKonacna.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmIzvozKonacnaTable.resx">
+      <DependentUpon>frmIzvozKonacnaTable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmIzvozKonacnaZaglavlje.resx">
       <DependentUpon>frmIzvozKonacnaZaglavlje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmIzvozTable.resx">
+      <DependentUpon>frmIzvozTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmIzvozUnosManipulacije.resx">
       <DependentUpon>frmIzvozUnosManipulacije.cs</DependentUpon>
@@ -3838,6 +3883,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmPregledKontejneraIzvoz.resx">
       <DependentUpon>frmPregledKontejneraIzvoz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmPregledKontejneraIzvozIzUvoza.resx">
+      <DependentUpon>frmPregledKontejneraIzvozIzUvoza.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmValute.resx">
       <DependentUpon>frmValute.cs</DependentUpon>
@@ -4492,6 +4540,9 @@
     <EmbeddedResource Include="Uvoz\frmuvKvalitetKontejnera.resx">
       <DependentUpon>frmuvKvalitetKontejnera.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmUvozKonacnaTable.resx">
+      <DependentUpon>frmUvozKonacnaTable.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmUvozKonacnaZaglavlje.resx">
       <DependentUpon>frmUvozKonacnaZaglavlje.cs</DependentUpon>
     </EmbeddedResource>
@@ -4521,6 +4572,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\UvozKonacna.resx">
       <DependentUpon>UvozKonacna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\UvozTable.resx">
+      <DependentUpon>UvozTable.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="NedraDataSet.xsc">
       <DependentUpon>NedraDataSet.xsd</DependentUpon>

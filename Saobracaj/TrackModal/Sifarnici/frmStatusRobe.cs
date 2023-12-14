@@ -271,9 +271,7 @@ namespace Testiranje.Sifarnici
             RefreshDataGrid();
            // if (KorisnikCene != "Kecman" && KorisnikCene != "M.Jelisavčić" && KorisnikCene != "Dušan Bašanović")
            // {
-                tsNew.Enabled = false;
-                tsSave.Enabled = false;
-                tsDelete.Enabled = false;
+              
            // }
         }
 

@@ -197,7 +197,6 @@ namespace Saobracaj.Dokumenta
             RefreshDataGridPoPartneru();
             return txtPaKOMail.Text.TrimEnd();
         }
-
         public string GetKontaktMailSVISelektovani(int Partner)
         {
             RefreshDataGridPoPartneru();
@@ -206,13 +205,30 @@ namespace Saobracaj.Dokumenta
             {
                 if (row.Selected)
                 {
-                    emailovi = emailovi  + ";" + row.Cells[6].Value.ToString().TrimEnd();
-                   
+                    emailovi = emailovi + ";" + row.Cells[6].Value.ToString().TrimEnd();
+
                 }
             }
-       
+
             return emailovi;
         }
+
+        public string GetKontaktiSVISelektovani(int Partner)
+        {
+            RefreshDataGridPoPartneru();
+            string emailovi = "";
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected)
+                {
+                    emailovi = emailovi + ";" + row.Cells[6].Value.ToString().TrimEnd();
+
+                }
+            }
+
+            return emailovi;
+        }
+
 
         public string GetKontakt(int Partner)
         {

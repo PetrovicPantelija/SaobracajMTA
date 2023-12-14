@@ -34,6 +34,9 @@ namespace Testiranje.Dokumeta
             IdGrupe();
             IdForme();
             PravoPristupa();
+            ProveriFirmu();
+
+
         }
         public frmPregledVozova(string Korisnik)
         {
@@ -42,6 +45,31 @@ namespace Testiranje.Dokumeta
             IdGrupe();
             IdForme();
             PravoPristupa();
+            ProveriFirmu();
+        }
+
+        public void ProveriFirmu()
+        {
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        toolStripButton2.Text = "Vozovi uvoza";
+                        toolStripButton4.Text = "Vozovi izvoza";
+                        return;
+
+                    }
+                default:
+                    {
+
+                        
+                        return;
+
+                    }
+                    break;
+            }
+
         }
         public string IdGrupe()
         {
@@ -211,7 +239,7 @@ namespace Testiranje.Dokumeta
 
         private void PrijemVozomPregled_Load(object sender, EventArgs e)
         {
-            RefreshDataGrid();
+          //  RefreshDataGrid();
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -253,7 +281,33 @@ namespace Testiranje.Dokumeta
 
         private void toolStripButton2_Click_1(object sender, EventArgs e)
         {
-            var select = "SELECT [ID] ,[BrVoza],[Relacija], " +
+            var select = "";
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        select = " SELECT[Voz].[ID] ,UvozKonacnaZaglavlje.[ID] as PLANID,[Relacija], p1.PaNAziv as OperaterSRB, p2.PaNaziv as OperaterHR," +
+                        " PristizanjaUSid as DV_PristizanjaUSid, Sazeta as DV_SAzeta, " +
+                        " (SELECT  Count(*) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrojSpakovanihKonterjnera, " +
+                        " (SELECT  SUM(UvozKonacna.TaraKontejnera) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as TaraSpakovanihKonterjnera, " +
+                        " (SELECT  SUM(UvozKonacna.BrutoKontejnera) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrutoSpakovanihKonterjnera, " +
+                        " (SELECT  SUM(UvozKonacna.BrutoRobe) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrutoRobeSpakovanihKonterjnera, " +
+                        " [MaksimalnaBruto],[MaksimalnaDuzina] " +
+                        " ,[MaksimalanBrojKola] " +
+                        " ,[Voz].Napomena " +
+                        " ,Voz.[Datum] ,[Korisnik],[Dolazeci] " +
+                        "  FROM [dbo].[Voz] " +
+                         " Left join UvozKonacnaZaglavlje On Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
+                         " inner join Partnerji p1 on p1.PaSifra = OperaterSrbija " +
+                          " inner join Partnerji p2 on p2.PaSifra = OperaterHR " +
+                         " where Dolazeci = 1 Order by [Voz].[ID] desc";
+                        break;
+
+                    }
+                default:
+                    {
+                        select = "SELECT [ID] ,[BrVoza],[Relacija], " +
              " CONVERT(varchar,VremePolaska,104)      + ' '      + SUBSTRING(CONVERT(varchar,VremePolaska,108),1,5) as VremePolaska, " +
              " CONVERT(varchar,[VremeDolaska],104)      + ' '      + SUBSTRING(CONVERT(varchar,[VremeDolaska],108),1,5)  as VremeDolaska, " +
              " [MaksimalnaBruto],[MaksimalnaDuzina] " +
@@ -262,6 +316,16 @@ namespace Testiranje.Dokumeta
              " ,[PostNaTerminalD] as Postavka,[KontrolniPregledD] as Kontrolni ,[VremePrimopredajeD] as Primopredaja,[VremeIstovaraD] as Istovar" +
              " ,[Datum] ,[Korisnik],[Dolazeci] " +
              " FROM [dbo].[Voz] where Dolazeci = 1 ";
+
+                       break;
+
+                    }
+                   
+            }
+
+
+
+            
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -284,6 +348,18 @@ namespace Testiranje.Dokumeta
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "Voz_ID";
+            dataGridView1.Columns[0].Width = 30;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Plan_ID";
+            dataGridView1.Columns[1].Width = 30;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Relacija";
+            dataGridView1.Columns[2].Width = 230;
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
@@ -296,7 +372,7 @@ namespace Testiranje.Dokumeta
            " ,[Napomena]   " +
            " ,[PostNaTerminalO] as Postavka, [VremeUtovaraO] as Utovar, [VremeKontrolnogO] as Kontrolni " +
            " ,[VremeIzvlacenjaO] as Izvlacenje ,[Datum] ,[Korisnik],[Dolazeci] " +
-           " FROM [dbo].[Voz] where Dolazeci = 0 ";
+           " FROM [dbo].[Voz] where Dolazeci = 0 order by ID Desc";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);

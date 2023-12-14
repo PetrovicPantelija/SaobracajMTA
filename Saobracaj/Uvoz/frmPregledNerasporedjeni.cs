@@ -3,58 +3,72 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Configuration;
+using Syncfusion.Windows.Forms.Grid.Grouping;
+using Syncfusion.Data;
+using Syncfusion.Drawing;
+using Syncfusion.Windows.Forms.Grid;
+using Syncfusion.Grouping;
 
 namespace Saobracaj.Uvoz
 {
     public partial class frmPregledNerasporedjeni : Form
     {
+        int Selektovani = 0;
+        private Keys keyData;
         public frmPregledNerasporedjeni()
         {
             InitializeComponent();
+        }
+        public string GetID()
+        {
+            return txtSifra.Text;
         }
 
         private void RefreshDataGrid()
         {
 
-                        var select = "SELECT Uvoz.ID, [BrojKontejnera], BrodskaTeretnica as BL, DobijenNalogBrodara as Dobijen_Nalog_Brodara ,ATABroda, Brodovi.Naziv as Brod,Napomena1 as Napomena1, " + 
-            " DobijeBZ as DatumBZ ,PIN,  [BrojKontejnera], TipKontenjera.Naziv as Vrsta_Kontejnera,  KontejnerskiTerminali.Naziv as R_L_SRB, pp1.Naziv as Dirigacija_Kontejnera_Za,  " +
-            " BrodskaTeretnica, VrstaRobeADR.Naziv as ADR, b.PaNaziv as Brodar, n1.PaNaziv as Nalogodavac1, Ref1 as Ref1, n2.PaNaziv as Nalogodavac2, Ref2 as Ref2, " +
-            " n3.PaNaziv as Nalogodavac3, Ref3 as Ref3,       p1.PaNaziv as Uvoznik,  " +
-            " (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaManipulacije.Naziv as nvarchar(20)) " +
-            " FROM UvozVrstaManipulacije " +
-            " inner join VrstaManipulacije on VrstaManipulacije.ID = UvozVrstaManipulacije.IDVrstaManipulacije " +
-            " where UvozVrstaManipulacije.IDNadredjena = Uvoz.ID         FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as VrsteUsluga,  " +
-            " (SELECT  STUFF((SELECT distinct    '/' + Cast(VrstaRobeHS.HSKod as nvarchar(20))   FROM UvozVrstaRobeHS " +
-            " inner join VrstaRobeHS on UvozVrstaRobeHS.IDVrstaRobeHS = VrstaRobeHS.ID   where UvozVrstaRobeHS.IDNadredjena = Uvoz.ID " +
-            " FOR XML PATH('')), 1, 1, ''   ) As Skupljen) as HS,   " +
-            " (SELECT  STUFF((SELECT distinct    '/' + Cast(NHM.Broj as nvarchar(20)) " +
-            " FROM UvozNHM  inner join NHM on UvozNHM.IDNHM = NHM.ID  where UvozNHM.IDNadredjena = Uvoz.ID   FOR XML PATH('')), 1, 1, ''  ) As Skupljen) as NHM,  " +
-            " VrstaPregleda as VrstaPregleda,p2.PaNaziv as SpedicijaRTC,  p3.PaNaziv as SpedicijaGranica,       VrstaCarinskogPostupka.Naziv as CarinskiPostupak,  " +
-            " VrstePostupakaUvoz.Naziv as PostupakSaRobom,uvNacinPakovanja.Naziv as NacinPakovanja, Napomena as Napomena2, " +
-            " Carinarnice.Naziv as Carinarnica,  " +
-            " p4.PaNaziv as OdredisnaSpedicija, MestaUtovara.Naziv as MestoIstovara, (partnerjiKontOsebaMU.PaKOIme + '' + partnerjiKontOsebaMU.PaKOPriimek) as KontaktOsoba, Email,        BrojPlombe1, BrojPlombe2,    PredefinisanePoruke.Naziv as NapomenaZaPozicioniranje, " +
-            " NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera,  Koleta, green FROM Uvoz left join Partnerji on PaSifra = VlasnikKontejnera " +
-            " left join Partnerji p1 on p1.PaSifra = Uvoznik  left join Partnerji p2 on p2.PaSifra = SpedicijaRTC  left join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
-            " left join TipKontenjera on TipKontenjera.ID = Uvoz.TipKontejnera " +
-            " left join Carinarnice on Carinarnice.ID = Uvoz.OdredisnaCarina  left join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = Uvoz.CarinskiPostupak " +
-            " left join Predefinisaneporuke on PredefinisanePoruke.ID = Uvoz.NapomenaZaPozicioniranje   left join KontejnerskiTerminali on KontejnerskiTerminali.ID = Uvoz.RLTErminali " +
-            " left join Partnerji n1 on n1.PaSifra = Nalogodavac1   left join Partnerji n2 on n2.PaSifra = Nalogodavac2   left join Partnerji n3 on n3.PaSifra = Nalogodavac3 " +
-            " left join Partnerji b on b.PaSifra = Uvoz.Brodar  left join  DirigacijaKontejneraZa pp1 on pp1.ID = Uvoz.DirigacijaKontejeraZa " +
-            " left join Brodovi on Brodovi.ID = Uvoz.NazivBroda    left join VrstaRobeADR on VrstaRobeADR.ID = ADR " +
-            " left join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom " +
-            " left join MestaUtovara on Uvoz.MestoIstovara = MestaUtovara.ID " +
-            " left join partnerjiKontOsebaMU on Uvoz.KontaktOsoba = partnerjiKontOsebaMU.PaKOSifra " +
-            " left join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja  left join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija  order by Uvoz.ID desc "; 
-            
+            var select = "SELECT Uvoz.ID, " +
+                " CASE WHEN Prioritet > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Prioritet , " +
+                " CASE WHEN DobijenBZ > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as DobijenBZ , " +
+                " [BrojKontejnera],TipKontenjera.Naziv as Vrsta_Kontejnera, BrodskaTeretnica as BL,   Brodovi.Naziv as Brod, p1.PaNaziv as Uvoznik, " +
+" n1.PaNaziv as NalogodavacZaVoz, Ref1 as Ref1,n2.PaNaziv as NalogodavacZaUsluge, Ref2 as Ref2,n3.PaNaziv as NalogodavacZaDrumski,DobijenNalogBrodara as Dobijen_Nalog_Brodara ,ATABroda,  " +
+" Napomena1 as Napomena1,  DobijeBZ as DatumBZ ,PIN,    KontejnerskiTerminali.Naziv as R_L_SRB, pp1.Naziv as Dirigacija_Kontejnera_Za,   BrodskaTeretnica, " +
+" VrstaRobeADR.Naziv as ADR, b.PaNaziv as Brodar,pv.PaNaziv as VlasnikKontejnera,     Ref3 as Ref3,         VrstaPregleda as InsTret,p2.PaNaziv as SpedicijaRTC,  " +
+" p3.PaNaziv as SpedicijaGranica,       VrstaCarinskogPostupka.Naziv as CarinskiPostupak,  " +
+" VrstePostupakaUvoz.Naziv as PostupakSaRobom,uvNacinPakovanja.Naziv as NacinPakovanja, " +
+" Napomena as Napomena2, NaslovStatusaVozila as NaslovZaslanjestatusa,  Carinarnice.Naziv as Carinarnica,   " +
+" p4.PaNaziv as OdredisnaSpedicija, MestaUtovara.Naziv as MestoIstovara, (RTRIM(pkoMU.PaKOIme) + ' ' + RTRIM(pkoMU.PaKOPriimek)) as KontaktOsoba, Email, " +
+" BrojPlombe1, BrojPlombe2,    NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera,  Koleta, green FROM Uvoz Left join Partnerji on PaSifra = VlasnikKontejnera " +
+" inner join Partnerji p1 on p1.PaSifra = Uvoznik " +
+" inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC " +
+" inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
+" inner join TipKontenjera on TipKontenjera.ID = Uvoz.TipKontejnera " +
+" inner join Carinarnice on Carinarnice.ID = Uvoz.OdredisnaCarina " +
+" inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = Uvoz.CarinskiPostupak " +
+" inner join Predefinisaneporuke on PredefinisanePoruke.ID = Uvoz.NapomenaZaPozicioniranje " +
+" inner join KontejnerskiTerminali on KontejnerskiTerminali.ID = Uvoz.RLTErminali " +
+" inner join Partnerji n1 on n1.PaSifra = Nalogodavac1 " +
+" inner join Partnerji n2 on n2.PaSifra = Nalogodavac2 " +
+" inner join Partnerji n3 on n3.PaSifra = Nalogodavac3 " +
+" inner join Partnerji b on b.PaSifra = Uvoz.Brodar " +
+" inner join  DirigacijaKontejneraZa pp1 on pp1.ID = Uvoz.DirigacijaKontejeraZa " +
+" inner join Brodovi on Brodovi.ID = Uvoz.NazivBroda " +
+" inner join VrstaRobeADR on VrstaRobeADR.ID = ADR " +
+" inner join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom " +
+" inner join MestaUtovara on Uvoz.MestoIstovara = MestaUtovara.ID " +
+" inner join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja " +
+" inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija " +
+" inner join Partnerji pv on pv.PaSifra = Uvoz.VlasnikKontejnera " +
+" inner join partnerjiKontOsebaMU pkoMU on pkoMU.PaKOZapSt = Uvoz.KontaktOsoba  order by Uvoz.Prioritet desc, Uvoz.ID  ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+
+
+            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -62,83 +76,14 @@ namespace Saobracaj.Uvoz
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
-
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView1.BackgroundColor = Color.White;
-
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-           
-                        DataGridViewColumn column = dataGridView1.Columns[0];
-                        dataGridView1.Columns[0].HeaderText = "ID";
-                     
-                        dataGridView1.Columns[0].Width = 50;
-
-                        DataGridViewColumn column1 = dataGridView1.Columns[1];
-                        dataGridView1.Columns[1].HeaderText = "BrojKontejnera";
-                     
-                        dataGridView1.Columns[1].Width = 100;
-
-                        DataGridViewColumn column2 = dataGridView1.Columns[2];
-                        dataGridView1.Columns[2].HeaderText = "BL";
-                        dataGridView1.Columns[2].Frozen = true;
-                        dataGridView1.Columns[2].Width = 90;
-
-                        DataGridViewColumn column3 = dataGridView1.Columns[3];
-                        dataGridView1.Columns[3].HeaderText = "Dobijen_Nalog_Brodara";
-                       // dataGridView1.Columns[1].Frozen = true;
-                        dataGridView1.Columns[3].Width = 50;
-
-                        DataGridViewColumn column4 = dataGridView1.Columns[4];
-                        dataGridView1.Columns[4].HeaderText = "ATABroda";
-                        dataGridView1.Columns[4].Width = 80;
-
-                        DataGridViewColumn column5 = dataGridView1.Columns[5];
-                        dataGridView1.Columns[5].HeaderText = "Brod";
-                        dataGridView1.Columns[5].Width = 100;
-
-                        DataGridViewColumn column6 = dataGridView1.Columns[6];
-                        dataGridView1.Columns[6].HeaderText = "Napomena";
-                        dataGridView1.Columns[6].Width = 100;
-
-                        DataGridViewColumn column7 = dataGridView1.Columns[7];
-                        dataGridView1.Columns[7].HeaderText = "DatumBZ";
-                        dataGridView1.Columns[7].Width = 80;
-
-                        DataGridViewColumn column8 = dataGridView1.Columns[8];
-                        dataGridView1.Columns[8].HeaderText = "PIN";
-                        dataGridView1.Columns[8].Width = 60;
-
-                        DataGridViewColumn column9 = dataGridView1.Columns[9];
-                        dataGridView1.Columns[9].HeaderText = "BrojKontejnera";
-                     //   dataGridView1.Columns[7].Frozen = true;
-                        dataGridView1.Columns[9].Width = 100;
-
-                        DataGridViewColumn column10 = dataGridView1.Columns[10];
-                        dataGridView1.Columns[10].HeaderText = "Vrsta kontejnera";
-                        dataGridView1.Columns[10].Width = 120;
-
-                        DataGridViewColumn column11 = dataGridView1.Columns[11];
-                        dataGridView1.Columns[11].HeaderText = "R_L_SRB";
-                        dataGridView1.Columns[11].Width = 120;
-
-                        DataGridViewColumn column12 = dataGridView1.Columns[12];
-                        dataGridView1.Columns[12].HeaderText = "Dirigacija_Kontejnera_Za";
-                        dataGridView1.Columns[12].Width = 100;
-
-                        DataGridViewColumn column13 = dataGridView1.Columns[13];
-                        dataGridView1.Columns[13].HeaderText = "BL";
-                       // dataGridView1.Columns[13].Frozen = true;
-                        dataGridView1.Columns[13].Width = 90;
-           
+            // dataGridView1.ReadOnly = true;
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
 
         }
 
@@ -188,6 +133,33 @@ namespace Saobracaj.Uvoz
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridGroupingControl1.Table.CurrentRecord != null)
+                {
+                    txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+
+                    // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private void frmPregledNerasporedjeni_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyValue == 27)
+            {
+                Close();
+            }
         }
     }
 }

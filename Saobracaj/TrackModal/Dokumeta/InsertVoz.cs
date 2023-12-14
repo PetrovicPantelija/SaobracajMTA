@@ -13,7 +13,9 @@ namespace Testiranje.Dokumeta
     class InsertVoz
     {
 
-        public void InsVoz(int BrVoza, string Relacija, string KalendarSaobracaja, DateTime VremePolaska, DateTime VremeDolaska, double MaksimalnaBruto, double MaksimalnaDuzina, double MaksimalanBrojKola, DateTime VremeZavrsetkaUtovara, DateTime VremeZavrsetkaKP, DateTime VremePrimopredaje, string Napomena, DateTime Datum, string Korisnik , int Dolazeci, int PostNaTerminalD, int KontrolniPregledD, int VremeIstovaraD, int VremePrimopredajeD            ,int Ponedeljak, int Utorak, int Sreda, int Cetvrtak, int Petak, int Subota, int Nedelja, int PostNaTerminalO ,int VremeUtovaraO,int VremeKontrolnogO, int VremeIzvlacenjaO,DateTime VremePolaskaO, DateTime VremeDolaskaO, int StanicaOd, int StanicaDo, int Operater)
+        public void InsVoz(int BrVoza, string Relacija, string KalendarSaobracaja, DateTime VremePolaska, DateTime VremeDolaska, double MaksimalnaBruto, double MaksimalnaDuzina, double MaksimalanBrojKola,
+            DateTime VremeZavrsetkaUtovara, DateTime VremeZavrsetkaKP, DateTime VremePrimopredaje, string Napomena, DateTime Datum, string Korisnik, int Dolazeci, int PostNaTerminalD, int KontrolniPregledD, int VremeIstovaraD, int VremePrimopredajeD, int Ponedeljak, int Utorak, int Sreda, int Cetvrtak, int Petak, int Subota, int Nedelja, int PostNaTerminalO, int VremeUtovaraO, int VremeKontrolnogO, int VremeIzvlacenjaO, DateTime VremePolaskaO, DateTime VremeDolaskaO, int StanicaOd, int StanicaDo, int Operater, int Vlasnik, int OperaterSrbija, int OperaterHR,
+            DateTime PlOtpreme, DateTime PLFormiranja, DateTime IzvlacenjeSaTerminala, DateTime PreuzimanjeSM, DateTime PolazakSid, DateTime PredajaHR, DateTime PrispeceRijeka, DateTime IskrcajRijeka, DateTime PristizanjaUSid, DateTime Sazeta)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -22,23 +24,28 @@ namespace Testiranje.Dokumeta
             myCommand.CommandText = "InsertVoz";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-              /*   
-             int BrVoza  
-           ,string Relacija  nvarchar(200) 
-           ,string KalendarSaobracaja nvarchar(100)
-           ,DateTime VremePolaska datetime 
-           ,DateTime VremeDolaska  datetime 
-           ,double MaksimalnaBruto  decimal(18,2) 
-           ,double MaksimalnaDuzina  decimal(18,2) 
-           ,double MaksimalanBrojKola decimal(18,2) 
-           ,DateTime VremeZavrsetkaUtovara datetime
-           ,DateTime VremeZavrsetkaKP datetime 
-           ,DateTime VremePrimopredaje datetime 
-           ,string Napomena nvarchar(500)
-           ,DateTime Datum datetime 
-           ,string Korisnik nvarchar(20)     
+            /*   
+           int BrVoza  
+         ,string Relacija  nvarchar(200) 
+         ,string KalendarSaobracaja nvarchar(100)
+         ,DateTime VremePolaska datetime 
+         ,DateTime VremeDolaska  datetime 
+         ,double MaksimalnaBruto  decimal(18,2) 
+         ,double MaksimalnaDuzina  decimal(18,2) 
+         ,double MaksimalanBrojKola decimal(18,2) 
+         ,DateTime VremeZavrsetkaUtovara datetime
+         ,DateTime VremeZavrsetkaKP datetime 
+         ,DateTime VremePrimopredaje datetime 
+         ,string Napomena nvarchar(500)
+         ,DateTime Datum datetime 
+         ,string Korisnik nvarchar(20)     
 
-              */
+            */
+
+            /*
+             * 
+            int Vlasnik,int OperaterSrbija, int OperaterHR  ,	DateTime PlOtpreme, DateTime PLFormiranja, 	DateTime IzvlacenjeSaTerminala,DateTime PreuzimanjeSM  ,DateTime PolazakSid  ,			DateTime PredajaHR ,	DateTime PrispeceRijeka, DateTime IskrcajRijeka 
+             */
 
             SqlParameter parameter = new SqlParameter();
             parameter.ParameterName = "@BrVoza";
@@ -55,9 +62,9 @@ namespace Testiranje.Dokumeta
             parameter1.Value = Relacija;
             myCommand.Parameters.Add(parameter1);
 
-           
 
-              SqlParameter parameter2 = new SqlParameter();
+
+            SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@KalendarSaobracaja";
             parameter2.SqlDbType = SqlDbType.NVarChar;
             parameter2.Size = 100;
@@ -130,7 +137,7 @@ namespace Testiranje.Dokumeta
             parameter10.Direction = ParameterDirection.Input;
             parameter10.Value = Napomena;
             myCommand.Parameters.Add(parameter10);
-            
+
             SqlParameter parameter11 = new SqlParameter();
             parameter11.ParameterName = "@Datum";
             parameter11.SqlDbType = SqlDbType.DateTime;
@@ -187,7 +194,7 @@ namespace Testiranje.Dokumeta
             parameter18.Direction = ParameterDirection.Input;
             parameter18.Value = Ponedeljak;
             myCommand.Parameters.Add(parameter18);
-           
+
             SqlParameter parameter19 = new SqlParameter();
             parameter19.ParameterName = "@Utorak";
             parameter19.SqlDbType = SqlDbType.TinyInt;
@@ -243,7 +250,7 @@ namespace Testiranje.Dokumeta
             parameter26.Direction = ParameterDirection.Input;
             parameter26.Value = VremeUtovaraO;
             myCommand.Parameters.Add(parameter26);
-           
+
             SqlParameter parameter27 = new SqlParameter();
             parameter27.ParameterName = "@VremeKontrolnogO";
             parameter27.SqlDbType = SqlDbType.Int;
@@ -293,6 +300,104 @@ namespace Testiranje.Dokumeta
             parameter33.Direction = ParameterDirection.Input;
             parameter33.Value = Operater;
             myCommand.Parameters.Add(parameter33);
+
+            SqlParameter parameter34 = new SqlParameter();
+            parameter34.ParameterName = "@Vlasnik";
+            parameter34.SqlDbType = SqlDbType.Int;
+            parameter34.Direction = ParameterDirection.Input;
+            parameter34.Value = Vlasnik;
+            myCommand.Parameters.Add(parameter34);
+
+            SqlParameter parameter35 = new SqlParameter();
+            parameter35.ParameterName = "@OperaterSrbija";
+            parameter35.SqlDbType = SqlDbType.Int;
+            parameter35.Direction = ParameterDirection.Input;
+            parameter35.Value = OperaterSrbija;
+            myCommand.Parameters.Add(parameter35);
+
+            SqlParameter parameter36 = new SqlParameter();
+            parameter36.ParameterName = "@OperaterHR";
+            parameter36.SqlDbType = SqlDbType.Int;
+            parameter36.Direction = ParameterDirection.Input;
+            parameter36.Value = OperaterHR;
+            myCommand.Parameters.Add(parameter36);
+
+            SqlParameter parameter37 = new SqlParameter();
+            parameter37.ParameterName = "@PlOtpreme";
+            parameter37.SqlDbType = SqlDbType.DateTime;
+            parameter37.Direction = ParameterDirection.Input;
+            parameter37.Value = PlOtpreme;
+            myCommand.Parameters.Add(parameter37);
+
+            SqlParameter parameter38 = new SqlParameter();
+            parameter38.ParameterName = "@PLFormiranja";
+            parameter38.SqlDbType = SqlDbType.DateTime;
+            parameter38.Direction = ParameterDirection.Input;
+            parameter38.Value = PLFormiranja;
+            myCommand.Parameters.Add(parameter38);
+
+            SqlParameter parameter39 = new SqlParameter();
+            parameter39.ParameterName = "@IzvlacenjeSaTerminala";
+            parameter39.SqlDbType = SqlDbType.DateTime;
+            parameter39.Direction = ParameterDirection.Input;
+            parameter39.Value = IzvlacenjeSaTerminala;
+            myCommand.Parameters.Add(parameter39);
+
+            SqlParameter parameter40 = new SqlParameter();
+            parameter40.ParameterName = "@PreuzimanjeSM";
+            parameter40.SqlDbType = SqlDbType.DateTime;
+            parameter40.Direction = ParameterDirection.Input;
+            parameter40.Value = PreuzimanjeSM;
+            myCommand.Parameters.Add(parameter40);
+
+
+            SqlParameter parameter41 = new SqlParameter();
+            parameter41.ParameterName = "@PolazakSid";
+            parameter41.SqlDbType = SqlDbType.DateTime;
+            parameter41.Direction = ParameterDirection.Input;
+            parameter41.Value = PolazakSid;
+            myCommand.Parameters.Add(parameter41);
+
+            SqlParameter parameter42 = new SqlParameter();
+            parameter42.ParameterName = "@PredajaHR";
+            parameter42.SqlDbType = SqlDbType.DateTime;
+            parameter42.Direction = ParameterDirection.Input;
+            parameter42.Value = PredajaHR;
+            myCommand.Parameters.Add(parameter42);
+
+            SqlParameter parameter43 = new SqlParameter();
+            parameter43.ParameterName = "@PrispeceRijeka";
+            parameter43.SqlDbType = SqlDbType.DateTime;
+            parameter43.Direction = ParameterDirection.Input;
+            parameter43.Value = PrispeceRijeka;
+            myCommand.Parameters.Add(parameter43);
+
+            SqlParameter parameter44 = new SqlParameter();
+            parameter44.ParameterName = "@IskrcajRijeka";
+            parameter44.SqlDbType = SqlDbType.DateTime;
+            parameter44.Direction = ParameterDirection.Input;
+            parameter44.Value = IskrcajRijeka;
+            myCommand.Parameters.Add(parameter44);
+
+            SqlParameter parameter45 = new SqlParameter();
+            parameter45.ParameterName = "@PristizanjaUSid";
+            parameter45.SqlDbType = SqlDbType.DateTime;
+            parameter45.Direction = ParameterDirection.Input;
+            parameter45.Value = PristizanjaUSid;
+            myCommand.Parameters.Add(parameter45);
+
+            SqlParameter parameter46 = new SqlParameter();
+            parameter46.ParameterName = "@Sazeta";
+            parameter46.SqlDbType = SqlDbType.DateTime;
+            parameter46.Direction = ParameterDirection.Input;
+            parameter46.Value = Sazeta;
+            myCommand.Parameters.Add(parameter46);
+
+           // DateTime PristizanjaUSid, DateTime Sazeta
+
+
+
+
             /*
            , int Dolazeci, int PostNaTerminalD, int KontrolniPregledD, int VremeIstovaraD, int VremePrimopredajeD
             ,int Ponedeljak, int Utorak, int Sreda, int Cetvrtak, int Petak, int Subota, int Nedelja, int PostNaTerminalO ,int VremeUtovaraO,int VremeKontrolnogO, int VremeIzvlacenjaO
@@ -335,8 +440,16 @@ namespace Testiranje.Dokumeta
 
             }
         }
-
-        public void UpdVoz(int ID, int BrVoza, string Relacija, string KalendarSaobracaja, DateTime VremePolaska, DateTime VremeDolaska, double MaksimalnaBruto, double MaksimalnaDuzina, double MaksimalanBrojKola, DateTime VremeZavrsetkaUtovara, DateTime VremeZavrsetkaKP, DateTime VremePrimopredaje, string Napomena, DateTime Datum, string Korisnik, int Dolazeci, int PostNaTerminalD, int KontrolniPregledD, int VremeIstovaraD, int VremePrimopredajeD            ,int Ponedeljak, int Utorak, int Sreda, int Cetvrtak, int Petak, int Subota, int Nedelja, int PostNaTerminalO ,int VremeUtovaraO,int VremeKontrolnogO, int VremeIzvlacenjaO,DateTime VremePolaskaO, DateTime VremeDolaskaO, int StanicaOd, int StanicaDo, int Operater)
+    
+        public void UpdVoz(int ID, int BrVoza, string Relacija, string KalendarSaobracaja, DateTime VremePolaska, DateTime VremeDolaska,
+            double MaksimalnaBruto, double MaksimalnaDuzina, double MaksimalanBrojKola, DateTime VremeZavrsetkaUtovara,
+            DateTime VremeZavrsetkaKP, DateTime VremePrimopredaje, string Napomena, DateTime Datum, string Korisnik, int Dolazeci, 
+            int PostNaTerminalD, int KontrolniPregledD, int VremeIstovaraD, int VremePrimopredajeD           
+            ,int Ponedeljak, int Utorak, int Sreda, int Cetvrtak, int Petak, int Subota, int Nedelja, int PostNaTerminalO ,
+            int VremeUtovaraO,int VremeKontrolnogO, int VremeIzvlacenjaO,DateTime VremePolaskaO, DateTime VremeDolaskaO, 
+            int StanicaOd, int StanicaDo, int Operater, int Vlasnik, int OperaterSrbija, int OperaterHR, DateTime PlOtpreme, 
+            DateTime PLFormiranja, DateTime IzvlacenjeSaTerminala, DateTime PreuzimanjeSM, DateTime PolazakSid, DateTime PredajaHR, 
+            DateTime PrispeceRijeka, DateTime IskrcajRijeka, DateTime PristizanjaUSid, DateTime Sazeta)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -606,6 +719,99 @@ namespace Testiranje.Dokumeta
             parameter33.Direction = ParameterDirection.Input;
             parameter33.Value = Operater;
             myCommand.Parameters.Add(parameter33);
+
+
+            SqlParameter parameter34 = new SqlParameter();
+            parameter34.ParameterName = "@Vlasnik";
+            parameter34.SqlDbType = SqlDbType.Int;
+            parameter34.Direction = ParameterDirection.Input;
+            parameter34.Value = Vlasnik;
+            myCommand.Parameters.Add(parameter34);
+
+            SqlParameter parameter35 = new SqlParameter();
+            parameter35.ParameterName = "@OperaterSrbija";
+            parameter35.SqlDbType = SqlDbType.Int;
+            parameter35.Direction = ParameterDirection.Input;
+            parameter35.Value = OperaterSrbija;
+            myCommand.Parameters.Add(parameter35);
+
+            SqlParameter parameter36 = new SqlParameter();
+            parameter36.ParameterName = "@OperaterHR";
+            parameter36.SqlDbType = SqlDbType.Int;
+            parameter36.Direction = ParameterDirection.Input;
+            parameter36.Value = OperaterHR;
+            myCommand.Parameters.Add(parameter36);
+
+            SqlParameter parameter37 = new SqlParameter();
+            parameter37.ParameterName = "@PlOtpreme";
+            parameter37.SqlDbType = SqlDbType.DateTime;
+            parameter37.Direction = ParameterDirection.Input;
+            parameter37.Value = PlOtpreme;
+            myCommand.Parameters.Add(parameter37);
+
+            SqlParameter parameter38 = new SqlParameter();
+            parameter38.ParameterName = "@PLFormiranja";
+            parameter38.SqlDbType = SqlDbType.DateTime;
+            parameter38.Direction = ParameterDirection.Input;
+            parameter38.Value = PLFormiranja;
+            myCommand.Parameters.Add(parameter38);
+
+            SqlParameter parameter39 = new SqlParameter();
+            parameter39.ParameterName = "@IzvlacenjeSaTerminala";
+            parameter39.SqlDbType = SqlDbType.DateTime;
+            parameter39.Direction = ParameterDirection.Input;
+            parameter39.Value = IzvlacenjeSaTerminala;
+            myCommand.Parameters.Add(parameter39);
+
+            SqlParameter parameter40 = new SqlParameter();
+            parameter40.ParameterName = "@PreuzimanjeSM";
+            parameter40.SqlDbType = SqlDbType.DateTime;
+            parameter40.Direction = ParameterDirection.Input;
+            parameter40.Value = PreuzimanjeSM;
+            myCommand.Parameters.Add(parameter40);
+
+
+            SqlParameter parameter41 = new SqlParameter();
+            parameter41.ParameterName = "@PolazakSid";
+            parameter41.SqlDbType = SqlDbType.DateTime;
+            parameter41.Direction = ParameterDirection.Input;
+            parameter41.Value = PolazakSid;
+            myCommand.Parameters.Add(parameter41);
+
+            SqlParameter parameter42 = new SqlParameter();
+            parameter42.ParameterName = "@PredajaHR";
+            parameter42.SqlDbType = SqlDbType.DateTime;
+            parameter42.Direction = ParameterDirection.Input;
+            parameter42.Value = PredajaHR;
+            myCommand.Parameters.Add(parameter42);
+
+            SqlParameter parameter43 = new SqlParameter();
+            parameter43.ParameterName = "@PrispeceRijeka";
+            parameter43.SqlDbType = SqlDbType.DateTime;
+            parameter43.Direction = ParameterDirection.Input;
+            parameter43.Value = PrispeceRijeka;
+            myCommand.Parameters.Add(parameter43);
+
+            SqlParameter parameter44 = new SqlParameter();
+            parameter44.ParameterName = "@IskrcajRijeka";
+            parameter44.SqlDbType = SqlDbType.DateTime;
+            parameter44.Direction = ParameterDirection.Input;
+            parameter44.Value = IskrcajRijeka;
+            myCommand.Parameters.Add(parameter44);
+
+            SqlParameter parameter45 = new SqlParameter();
+            parameter45.ParameterName = "@PristizanjaUSid";
+            parameter45.SqlDbType = SqlDbType.DateTime;
+            parameter45.Direction = ParameterDirection.Input;
+            parameter45.Value = PristizanjaUSid;
+            myCommand.Parameters.Add(parameter45);
+
+            SqlParameter parameter46 = new SqlParameter();
+            parameter46.ParameterName = "@Sazeta";
+            parameter46.SqlDbType = SqlDbType.DateTime;
+            parameter46.Direction = ParameterDirection.Input;
+            parameter46.Value = Sazeta;
+            myCommand.Parameters.Add(parameter46);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

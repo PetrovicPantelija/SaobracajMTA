@@ -12,7 +12,7 @@ namespace Saobracaj.Sifarnici
 {
     class Insertnhm
     {
-        public void InsNHM(string Broj, string Naziv, int RID, int ADRID, int Uvozni)
+        public void InsNHM(string Broj, string Naziv, int RID, int ADRID, int Uvozni, int Interni)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -58,6 +58,14 @@ namespace Saobracaj.Sifarnici
             parameter5.Value = Uvozni;
             myCommand.Parameters.Add(parameter5);
 
+            SqlParameter parameter6 = new SqlParameter();
+            parameter6.ParameterName = "@Interni";
+            parameter6.SqlDbType = SqlDbType.Int;
+            parameter6.Direction = ParameterDirection.Input;
+            parameter6.Value = Interni;
+            myCommand.Parameters.Add(parameter6);
+
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -96,7 +104,7 @@ namespace Saobracaj.Sifarnici
         }
 
 
-        public void UpdNHM(int ID, string Broj, string Naziv, int RID, int ADRID, int Uvozni)
+        public void UpdNHM(int ID, string Broj, string Naziv, int RID, int ADRID, int Uvozni, int Interni)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -148,6 +156,13 @@ namespace Saobracaj.Sifarnici
             parameter6.Direction = ParameterDirection.Input;
             parameter6.Value = Uvozni;
             myCommand.Parameters.Add(parameter6);
+
+            SqlParameter parameter7 = new SqlParameter();
+            parameter7.ParameterName = "@Interni";
+            parameter7.SqlDbType = SqlDbType.Int;
+            parameter7.Direction = ParameterDirection.Input;
+            parameter7.Value = Interni;
+            myCommand.Parameters.Add(parameter7);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

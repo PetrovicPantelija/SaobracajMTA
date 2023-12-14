@@ -268,9 +268,9 @@ namespace Testiranje.Sifarnici
             RefreshDataGrid();
             // if (KorisnikCene != "Kecman" && KorisnikCene != "U.Kecman" && KorisnikCene != "Dušan Bašanović")
             //  {
-            tsNew.Enabled = false;
-            tsSave.Enabled = false;
-            tsDelete.Enabled = false;
+            //tsNew.Enabled = false;
+            // tsSave.Enabled = false;
+            // tsDelete.Enabled = false;
             // }
         }
 

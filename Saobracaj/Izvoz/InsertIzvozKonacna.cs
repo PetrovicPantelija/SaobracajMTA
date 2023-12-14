@@ -139,7 +139,61 @@ namespace Saobracaj.Izvoz
 
         }
 
-        public void InsIzvozNapomenePozicioniranja(int IDNadredjena, int IDNapomene)
+
+        public void VratiUNerasporedjene(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "VratiKontejnerNerasporedjenoSelektovanoIzvoz";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+
+          
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+
+        public void InsIzvozNapomenePozicioniranja(int IDNadredjena, int IDNapomene, string Napomena)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -159,6 +213,14 @@ namespace Saobracaj.Izvoz
             idapomene.Direction = ParameterDirection.Input;
             idapomene.Value = IDNapomene;
             cmd.Parameters.Add(idapomene);
+
+            SqlParameter stapomene = new SqlParameter();
+            stapomene.ParameterName = "@stNapomene";
+            stapomene.SqlDbType = SqlDbType.NVarChar;
+            stapomene.Size = 100;
+            stapomene.Direction = ParameterDirection.Input;
+            stapomene.Value = Napomena;
+            cmd.Parameters.Add(stapomene);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

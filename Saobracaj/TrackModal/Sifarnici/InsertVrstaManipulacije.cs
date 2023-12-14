@@ -14,7 +14,7 @@ namespace Testiranje.Sifarnici
     class InsertVrstaManipulacije
     {
 
-          public void InsVrstaManipulacije(string Naziv ,DateTime  Datum , string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID)
+          public void InsVrstaManipulacije(string Naziv ,DateTime  Datum , string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna)
         {
            // @Oznaka nvarchar(50), 
   // @Relacija nvarchar(100), 
@@ -40,14 +40,13 @@ namespace Testiranje.Sifarnici
             parameter4.Value = Datum;
             myCommand.Parameters.Add(parameter4);
 
-             SqlParameter parameter5 = new SqlParameter();
+            SqlParameter parameter5 = new SqlParameter();
             parameter5.ParameterName = "@Korisnik";
             parameter5.SqlDbType = SqlDbType.NVarChar;
             parameter5.Size = 20;
             parameter5.Direction = ParameterDirection.Input;
             parameter5.Value = Korisnik;
             myCommand.Parameters.Add(parameter5);
-
 
             SqlParameter parameter6 = new SqlParameter();
             parameter6.ParameterName = "@JM";
@@ -63,6 +62,7 @@ namespace Testiranje.Sifarnici
             parameter7.Direction = ParameterDirection.Input;
             parameter7.Value = UticeSkladisno;
             myCommand.Parameters.Add(parameter7);
+
 
             SqlParameter parameter8 = new SqlParameter();
             parameter8.ParameterName = "@JM2";
@@ -88,14 +88,16 @@ namespace Testiranje.Sifarnici
 
             SqlParameter parameter11 = new SqlParameter();
             parameter11.ParameterName = "@Oznaka";
-            parameter11.SqlDbType = SqlDbType.Int;
+            parameter11.SqlDbType = SqlDbType.NVarChar;
+            parameter11.Size = 50;
             parameter11.Direction = ParameterDirection.Input;
             parameter11.Value = Oznaka;
             myCommand.Parameters.Add(parameter11);
 
             SqlParameter parameter12 = new SqlParameter();
             parameter12.ParameterName = "@Relacija";
-            parameter12.SqlDbType = SqlDbType.Int;
+            parameter12.SqlDbType = SqlDbType.NVarChar;
+            parameter12.Size = 100;
             parameter12.Direction = ParameterDirection.Input;
             parameter12.Value = Relacija;
             myCommand.Parameters.Add(parameter12);
@@ -109,11 +111,17 @@ namespace Testiranje.Sifarnici
 
             SqlParameter parameter14 = new SqlParameter();
             parameter14.ParameterName = "@GrupaVrsteManipulacijeID";
-            parameter14.SqlDbType = SqlDbType.Decimal;
+            parameter14.SqlDbType = SqlDbType.Int;
             parameter14.Direction = ParameterDirection.Input;
             parameter14.Value = GrupaVrsteManipulacijeID;
             myCommand.Parameters.Add(parameter14);
 
+            SqlParameter parameter15 = new SqlParameter();
+            parameter15.ParameterName = "@Administrativna";
+            parameter15.SqlDbType = SqlDbType.Int;
+            parameter15.Direction = ParameterDirection.Input;
+            parameter15.Value = administrativna;
+            myCommand.Parameters.Add(parameter15);
             // @Oznaka nvarchar(50), 
             // @Relacija nvarchar(100), 
             // @Cena numeric(18,2)
@@ -155,7 +163,7 @@ namespace Testiranje.Sifarnici
             }
         }
 
-          public void UpdVrstaManipulacije(int ID, string Naziv ,DateTime  Datum , string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID)
+          public void UpdVrstaManipulacije(int ID, string Naziv ,DateTime  Datum , string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna)
             {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -234,15 +242,17 @@ namespace Testiranje.Sifarnici
 
             SqlParameter parameter11 = new SqlParameter();
             parameter11.ParameterName = "@Oznaka";
-            parameter11.SqlDbType = SqlDbType.Int;
-            parameter11.Direction = ParameterDirection.Input;
+            parameter11.SqlDbType = SqlDbType.NVarChar;
+            parameter11.Size = 50;
+           parameter11.Direction = ParameterDirection.Input;
             parameter11.Value = Oznaka;
             myCommand.Parameters.Add(parameter11);
 
             SqlParameter parameter12 = new SqlParameter();
             parameter12.ParameterName = "@Relacija";
-            parameter12.SqlDbType = SqlDbType.Int;
-            parameter12.Direction = ParameterDirection.Input;
+            parameter12.SqlDbType = SqlDbType.NVarChar;
+            parameter12.Size = 100;
+           parameter12.Direction = ParameterDirection.Input;
             parameter12.Value = Relacija;
             myCommand.Parameters.Add(parameter12);
 
@@ -255,11 +265,17 @@ namespace Testiranje.Sifarnici
            
             SqlParameter parameter14 = new SqlParameter();
             parameter14.ParameterName = "@GrupaVrsteManipulacijeID";
-            parameter14.SqlDbType = SqlDbType.Decimal;
+            parameter14.SqlDbType = SqlDbType.Int;
             parameter14.Direction = ParameterDirection.Input;
             parameter14.Value = GrupaVrsteManipulacijeID;
             myCommand.Parameters.Add(parameter14);
 
+            SqlParameter parameter15 = new SqlParameter();
+            parameter15.ParameterName = "@Administrativna";
+            parameter15.SqlDbType = SqlDbType.Int;
+            parameter15.Direction = ParameterDirection.Input;
+            parameter15.Value = administrativna;
+            myCommand.Parameters.Add(parameter15);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
