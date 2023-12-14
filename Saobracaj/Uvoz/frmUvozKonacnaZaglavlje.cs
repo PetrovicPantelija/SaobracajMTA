@@ -105,6 +105,11 @@ namespace Saobracaj.Uvoz
             }
             else
             {
+                if (txtID.Text == "")
+                {
+                    MessageBox.Show("Potrebno je da izaverete plan da bi ste menjali zaglavlje dokumenta!");
+                    return;
+                }
                 InsertUvozKonacnaZaglavlje ins = new InsertUvozKonacnaZaglavlje();
                 ins.UpdUvozKonacnaZaglavlje(Convert.ToInt32(txtID.Text),Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "");
                 RefreshDataGrid();

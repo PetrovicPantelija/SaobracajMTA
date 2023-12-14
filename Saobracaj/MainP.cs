@@ -44,7 +44,14 @@ namespace Saobracaj
             {
                 toolStripTabItem10.Visible = true;
                 toolStripTabItem11.Visible = true;
+                toolStripEx39.Visible = true;
             }
+
+            if (Sifarnici.frmLogovanje.Firma == "TA")
+            {
+                toolStripEx39.Visible = false;
+            }
+
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -3409,6 +3416,9 @@ namespace Saobracaj
 
         private void toolStripButton260_Click(object sender, EventArgs e)
         {
+            
+            
+            
             frmPregledVozova pv = new frmPregledVozova();
             PravoP = pv.Pravo;
             if (PravoP == true)
@@ -3585,7 +3595,7 @@ namespace Saobracaj
 
         private void toolStripButton207_Click_1(object sender, EventArgs e)
         {
-            Izvoz.frmIzvoz izvoz = new Izvoz.frmIzvoz();
+            Izvoz.frmIzvoz izvoz = new Izvoz.frmIzvoz(Korisnik);
             izvoz.Show();
         }
 
@@ -3935,6 +3945,28 @@ namespace Saobracaj
         {
             Uvoz.frmVrstaCarinskogPostupka vpu = new Uvoz.frmVrstaCarinskogPostupka();
             vpu.Show();
+        }
+
+        private void toolStripEx47_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void toolStripButton334_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void toolStripButton334_Click_1(object sender, EventArgs e)
+        {
+ Izvoz.frmIzvozIstorija ii = new Izvoz.frmIzvozIstorija();
+            ii.Show();
+        }
+
+        private void toolStripButton335_Click(object sender, EventArgs e)
+        {
+            Izvoz.frmPregledKontejneraIzvozIzUvoza iiu = new Izvoz.frmPregledKontejneraIzvozIzUvoza();
+            iiu.Show();
         }
     }
     }

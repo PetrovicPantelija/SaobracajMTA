@@ -18,6 +18,7 @@ namespace Saobracaj.Izvoz
         bool status = false;
         int IzPartnera = 0;
         int pomPartner = 0;
+        string pAdresa = "";
 
         public static string code = "frmKontaktOsobeMU";
         public bool Pravo;
@@ -41,6 +42,17 @@ namespace Saobracaj.Izvoz
             InitializeComponent();
             IzPartnera = 1;
             pomPartner = Partner;
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
+        }
+
+
+        public frmKontaktOsobeMU(string Adresa)
+        {
+            InitializeComponent();
+            IzPartnera = 3; //Ako je iz adrese
+            pAdresa = Adresa;
             IdGrupe();
             IdForme();
             PravoPristupa();
@@ -153,7 +165,12 @@ namespace Saobracaj.Izvoz
             {
                 txtPaKOSifra.SelectedValue = pomPartner;
                 RefreshDataGridPoPartneru();
-               
+
+            }
+            else if (IzPartnera == 3)
+            {
+                txtPaKOOpomba.Text = pAdresa;
+                RefreshDataGridPoAdresi(pAdresa);
             }
             else
             {
@@ -269,8 +286,51 @@ namespace Saobracaj.Izvoz
 
         }
 
-      
-            public string GetKontakt()
+
+        private void RefreshDataGridPoAdresi(string Adresa)
+        {
+            var select = " SELECT [PaKOZapSt]      ,[PaKOSifra]      ,[PaKOIme]      ,[PaKOPriimek]      ,[PaKOOddelek]      ,[PaKOTel] " +
+     " ,[PaKOMail]      ,[PaKOOpomba]      ,[Operatika]  FROM [TESTIRANJE].[dbo].[partnerjiKontOsebaMU] Where PaKOOpomba = '" + pAdresa + "'";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+
+
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 40;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Partner ID";
+            dataGridView1.Columns[1].Width = 150;
+
+
+
+        }
+
+
+        public string GetKontakt()
             {
                 return txtPaKOIme.Text.TrimEnd() + " " + txtPaKOPriimek.Text.TrimEnd() + " " + txtPaKOTel.Text.TrimEnd();
             }
@@ -280,6 +340,21 @@ namespace Saobracaj.Izvoz
 
             RefreshDataGridPoPartneru();
             return txtPaKOOpomba.Text.TrimEnd();
+        }
+
+        public string GetSviKontaktiPoAdresi(string Adresa)
+        {
+
+            //RefreshDataGridPoAdresi(Adresa);
+            string osobe  = "";
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected)
+                {
+                    osobe = osobe + ";" + row.Cells[2].Value.ToString().TrimEnd() + " " + row.Cells[3].Value.ToString().TrimEnd();
+                }
+            }
+            return osobe;
         }
 
 

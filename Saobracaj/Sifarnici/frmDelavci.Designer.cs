@@ -35,6 +35,7 @@ namespace Saobracaj.Sifarnici
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.txtDeKrajBivS = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtDeUlHisStBivS = new System.Windows.Forms.TextBox();
@@ -61,7 +62,6 @@ namespace Saobracaj.Sifarnici
             this.chkPomocnik = new System.Windows.Forms.CheckBox();
             this.chkMasinovodja = new System.Windows.Forms.CheckBox();
             this.txtDeSifDelMes = new System.Windows.Forms.ComboBox();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -116,6 +116,17 @@ namespace Saobracaj.Sifarnici
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(106, 24);
+            this.toolStripButton1.Text = "SACUVAJ STAROG";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // txtDeKrajBivS
             // 
@@ -252,10 +263,10 @@ namespace Saobracaj.Sifarnici
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 197);
+            this.dataGridView1.Location = new System.Drawing.Point(10, 182);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(838, 254);
+            this.dataGridView1.Size = new System.Drawing.Size(838, 259);
             this.dataGridView1.TabIndex = 216;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -348,17 +359,6 @@ namespace Saobracaj.Sifarnici
             this.txtDeSifDelMes.Name = "txtDeSifDelMes";
             this.txtDeSifDelMes.Size = new System.Drawing.Size(229, 21);
             this.txtDeSifDelMes.TabIndex = 226;
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(106, 24);
-            this.toolStripButton1.Text = "SACUVAJ STAROG";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // frmDelavci
             // 

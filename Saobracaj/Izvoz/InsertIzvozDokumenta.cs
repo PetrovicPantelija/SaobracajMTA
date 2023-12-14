@@ -13,7 +13,7 @@ namespace Saobracaj.Izvoz
     class InsertIzvozDokumenta
     {
 
-        public void InsIzvozDokumenta(int IDIzvoz, string Putanja)
+        public void InsIzvozDokumenta(int IDIzvoz, string Putanja, int TipDokumenta)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -37,6 +37,13 @@ namespace Saobracaj.Izvoz
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = Putanja;
             myCommand.Parameters.Add(parameter2);
+
+            SqlParameter parameter3 = new SqlParameter();
+            parameter3.ParameterName = "@TipDokumenta";
+            parameter3.SqlDbType = SqlDbType.Int;
+            parameter3.Direction = ParameterDirection.Input;
+            parameter3.Value = TipDokumenta;
+            myCommand.Parameters.Add(parameter3);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

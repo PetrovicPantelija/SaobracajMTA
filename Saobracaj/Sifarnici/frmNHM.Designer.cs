@@ -45,6 +45,7 @@
             this.txtADR = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.chkUvozni = new System.Windows.Forms.CheckBox();
+            this.chkInterni = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -206,12 +207,26 @@
             this.chkUvozni.Text = "Uvoz";
             this.chkUvozni.UseVisualStyleBackColor = true;
             // 
+            // chkInterni
+            // 
+            this.chkInterni.AutoSize = true;
+            this.chkInterni.Checked = true;
+            this.chkInterni.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkInterni.Location = new System.Drawing.Point(87, 251);
+            this.chkInterni.Name = "chkInterni";
+            this.chkInterni.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkInterni.Size = new System.Drawing.Size(55, 17);
+            this.chkInterni.TabIndex = 55;
+            this.chkInterni.Text = "Interni";
+            this.chkInterni.UseVisualStyleBackColor = true;
+            // 
             // frmNHM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(747, 678);
+            this.Controls.Add(this.chkInterni);
             this.Controls.Add(this.chkUvozni);
             this.Controls.Add(this.txtADR);
             this.Controls.Add(this.label13);
@@ -255,5 +270,6 @@
         private System.Windows.Forms.ComboBox txtADR;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.CheckBox chkUvozni;
+        private System.Windows.Forms.CheckBox chkInterni;
     }
 }

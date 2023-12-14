@@ -14,6 +14,8 @@ namespace Saobracaj.Izvoz
 {
     public partial class frmIzvozKonacna : Form
     {
+        float firstWidth;
+        float firstHeight;
         public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         int NHMObrni = 0;
         public frmIzvozKonacna()
@@ -31,7 +33,7 @@ namespace Saobracaj.Izvoz
 
             txtNadredjeni.Text = ID.ToString();
             FillDG();
-            
+
             FillCombo();
             VratiPodatke(ID);
             FillZaglavlje(ID);
@@ -104,7 +106,7 @@ namespace Saobracaj.Izvoz
 
         private void FillDG2()
         {
-            
+
             var select = " SELECT     IzvozKonacnaNHM.ID, NHM.Broj, IzvozKonacnaNHM.IDNHM, NHM.Naziv FROM NHM INNER JOIN " +
                       " IzvozKonacnaNHM ON NHM.ID = IzvozKonacnaNHM.IDNHM where IzvozKonacnanhm.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by IzvozKonacnanhm.ID desc ";
             SqlConnection conn = new SqlConnection(connection);
@@ -252,8 +254,8 @@ namespace Saobracaj.Izvoz
                 cboCarina.SelectedValue = Convert.ToInt32(dr["MestoCarinjenja"].ToString());
                 cboSpedicija.SelectedValue = Convert.ToInt32(dr["Spedicija"].ToString());
                 // txtKontaktSpeditera
-                cboAdresaStatusVozila.Text= dr["AdresaSlanjaStatusa"].ToString();
-                cboNaslovStatusaVozila.Text= dr["NaslovSlanjaStatusa"].ToString();
+                cboAdresaStatusVozila.Text = dr["AdresaSlanjaStatusa"].ToString();
+                cboNaslovStatusaVozila.Text = dr["NaslovSlanjaStatusa"].ToString();
                 dtpEtaLeget.Value = Convert.ToDateTime(dr["EtaLeget"].ToString());
                 cboReexport.SelectedValue = Convert.ToInt32(dr["NapomenaReexport"].ToString());
                 cboInspekciskiTretman.SelectedValue = Convert.ToInt32(dr["Inspekcija"].ToString());
@@ -266,11 +268,13 @@ namespace Saobracaj.Izvoz
                 { chkNajavaVozila.Checked = false; }
                 cbNacinPakovanja.SelectedValue = Convert.ToInt32(dr["NacinPakovanja"].ToString());
                 if (dr["NacinPretovara"].ToString() == "1")
-                { chkNacinPretovara.Checked = true;
+                {
+                    chkNacinPretovara.Checked = true;
                     chkIndirektno.Checked = false;
                 }
                 else
-                { chkNacinPretovara.Checked = false;
+                {
+                    chkNacinPretovara.Checked = false;
                     chkIndirektno.Checked = true;
                 }
 
@@ -582,7 +586,7 @@ namespace Saobracaj.Izvoz
             //select PaKoZapSt, (Rtrim(PaKOIme) + ' ' + Rtrim(PaKoPriimek)) as Naziv from partnerjiKontOsebaMU
             // Select ID, (  UNKod + ' - ' + Klasa + ' - ' + Naziv  ) as Naziv From VrstaRobeADR order by UNKod
             //Select ID, (Oznaka + ' ' + Naziv) as Naziv from VrstaCarinskogPostupka order by Naziv
-              SqlConnection conn = new SqlConnection(connection);
+            SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
             da.Fill(ds);
@@ -610,7 +614,7 @@ namespace Saobracaj.Izvoz
             dataGridView1.Columns[1].HeaderText = "BROJ KONTEJNERA";
             dataGridView1.Columns[1].Frozen = true;
             dataGridView1.Columns[1].Width = 100;
-           
+
             DataGridViewColumn column2 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "VKID";
             dataGridView1.Columns[2].Width = 90;
@@ -904,10 +908,10 @@ namespace Saobracaj.Izvoz
                 Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(txtRef1.Text), pomDobijenNalog,
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(txtRef2.Text),
                 Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(txtRef3.Text),
-                 Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text, Convert.ToInt32(txtADR.SelectedValue),
-                 Convert.ToInt32(txtNadredjeni.Text), txtVozilo.Text, txtVozac.Text, Convert.ToInt32(cboSpedicijaJ.SelectedValue),
-                 Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToInt32(cboVrstaPlombe.SelectedValue), 
-                 txtNapomenaZaRobu.Text, Convert.ToDecimal(txtVGMBrod.Value), txtKontaktSpeditera.Text);
+                Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text, Convert.ToInt32(txtADR.SelectedValue),
+                Convert.ToInt32(txtNadredjeni.Text), txtVozilo.Text, txtVozac.Text, Convert.ToInt32(cboSpedicijaJ.SelectedValue),
+                Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToInt32(cboVrstaPlombe.SelectedValue),
+                 txtNapomenaZaRobu.Text, Convert.ToDecimal(txtVGMBrod.Value), txtKontaktSpeditera.Text, txtKontaktOsobe.Text);
             //Fale ostale plombe
             // Convert.ToDecimal(txtDodatneNapomene.Text -- treba staviti nvarchar
 
@@ -928,10 +932,10 @@ namespace Saobracaj.Izvoz
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
                 Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue));
             */
-           //  FillGV();
+            //  FillGV();
             //  RefreshDataGridColor();
-            
-          
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -1062,7 +1066,7 @@ namespace Saobracaj.Izvoz
         {
             InsertIzvoz uvK = new InsertIzvoz();
             //Panta nije dobro
-           // uvK.InsUbaciUsluguKonacna(Convert.ToInt32(txtID.Text), Manipulacija, Cena,Kolicina, Org);
+            // uvK.InsUbaciUsluguKonacna(Convert.ToInt32(txtID.Text), Manipulacija, Cena,Kolicina, Org);
             FillDG8();
         }
 
@@ -1185,7 +1189,8 @@ namespace Saobracaj.Izvoz
 
         private void frmIzvozKonacna_Load(object sender, EventArgs e)
         {
-
+            firstWidth = this.Size.Width;
+            firstHeight = this.Size.Height;
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -1295,7 +1300,7 @@ namespace Saobracaj.Izvoz
                 cboReexport.SelectedValue = Convert.ToInt32(dr["NapomenaReexport"].ToString());
                 dtpEtaLeget.Value = Convert.ToDateTime(dr["EtaLeget"].ToString());
                 cboNaslovStatusaVozila.Text = dr["NaslovSlanjaStatusa"].ToString();
-                cboAdresaStatusVozila.Text= dr["AdresaSlanjaStatusa"].ToString();
+                cboAdresaStatusVozila.Text = dr["AdresaSlanjaStatusa"].ToString();
                 txtADR.SelectedValue = Convert.ToInt32(dr["ADR"].ToString());
                 cboSpedicija.SelectedValue = Convert.ToInt32(dr["Spedicija"].ToString());
                 cboCarina.SelectedValue = Convert.ToInt32(dr["MestoCarinjenja"].ToString());
@@ -1527,7 +1532,7 @@ namespace Saobracaj.Izvoz
             txtKontaktOsoba.ValueMember = "PaKoZapSt";
 
 
-           // VratiAdresuKontaktaIzNapomene(Convert.ToInt32(cboMestoUtovara.SelectedValue));
+            // VratiAdresuKontaktaIzNapomene(Convert.ToInt32(cboMestoUtovara.SelectedValue));
         }
 
         private void button13_Click(object sender, EventArgs e)
@@ -1558,11 +1563,12 @@ namespace Saobracaj.Izvoz
             {
                 detailForm.ShowDialog();
                 cboAdresaStatusVozila.Text = detailForm.GetKontaktMailSVISelektovani(Convert.ToInt32(cboNalogodavac3.SelectedValue));
-            } 
+            }
         }
 
         private void button18_Click(object sender, EventArgs e)
         {
+            cboNaslovStatusaVozila.Text = "";
             if (checkedListBox2.GetItemCheckState(0) == CheckState.Checked)
             {
                 cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " " + cboNalogodavac3.Text;
@@ -1574,20 +1580,21 @@ namespace Saobracaj.Izvoz
 
             if (checkedListBox2.GetItemCheckState(2) == CheckState.Checked)
             {
-                cboNaslovStatusaVozila.Text = ";" + txtBrKont.Text;
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + "; " + txtBrKont.Text;
             }
             if (checkedListBox2.GetItemCheckState(3) == CheckState.Checked)
             {
-                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + "," + cboBrodar.Text;
-            }
-            if (checkedListBox2.GetItemCheckState(4) == CheckState.Checked)
-            {
-                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + " ;" + txtBokingBrodara.Text;
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + ", " + cboBrodar.Text;
             }
 
-           
-           
-            
+            if (checkedListBox2.GetItemCheckState(4) == CheckState.Checked)
+            {
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + "; " + txtBokingBrodara.Text;
+            }
+
+
+
+
         }
 
         private void VratiNHM(int Sifra)
@@ -1771,7 +1778,7 @@ namespace Saobracaj.Izvoz
 
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
-            frmIzvozDokumenta fid = new frmIzvozDokumenta(txtID.Text);
+            frmIzvozDokumenta fid = new frmIzvozDokumenta(txtID.Text, txtBokingBrodara.Text, cboVoz.SelectedValue.ToString());
             fid.Show();
         }
 
@@ -1804,6 +1811,288 @@ namespace Saobracaj.Izvoz
         private void txVGMBrodBruto_Leave(object sender, EventArgs e)
         {
             txtOdvaganaTezina.Value = txVGMBrodBruto.Value - txtTaraKontejnera.Value;
+        }
+
+        private void frmIzvozKonacna_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == System.Windows.Forms.Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+            }
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            using (var detailForm = new frmKontaktOsobeMU(txtAdresaMestaUtovara.Text))
+            {
+                detailForm.ShowDialog();
+                txtKontaktOsobe.Text = detailForm.GetSviKontaktiPoAdresi(txtAdresaMestaUtovara.Text);
+            }
+
+            SqlConnection conn = new SqlConnection(connection);
+            // PaKOOpomba
+            //Bilo  var ko = "select PaKoZapSt, (Rtrim(PaKOIme) + ' ' + Rtrim(PaKoPriimek)) as Naziv from partnerjiKontOsebaMU where PaKOSifra = '" + Convert.ToInt32(cboMestoUtovara.SelectedValue) + "'  order by PaKOIme";
+            var ko = "select PaKoZapSt, (Rtrim(PaKOIme) + ' ' + Rtrim(PaKoPriimek)) as Naziv from partnerjiKontOsebaMU where PaKoZapSt = '" + Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue) + "'  order by PaKOIme";
+
+            var koAD = new SqlDataAdapter(ko, conn);
+            var koDS = new DataSet();
+            koAD.Fill(koDS);
+            txtKontaktOsoba.DataSource = koDS.Tables[0];
+            txtKontaktOsoba.DisplayMember = "Naziv";
+            txtKontaktOsoba.ValueMember = "PaKoZapSt";
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            InsertIzvozKonacna ins = new InsertIzvozKonacna();
+            ins.VratiUNerasporedjene(Convert.ToInt32(txtID.Text));
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            using (var detailForm = new frmIzvozKonacnaTable(txtNadredjeni.Text))
+            {
+                detailForm.ShowDialog();
+                txtID.Text = detailForm.GetID();
+                VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+            }
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text == "")
+            {
+
+                MessageBox.Show("Morate izabrati kontejner");
+                return;
+            }
+
+            if (txtNadredjeni.Text == "")
+            { txtNadredjeni.Text = "0"; }
+            // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
+            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue));
+            um.Show();
+        }
+
+        private void frmIzvozKonacna_SizeChanged(object sender, EventArgs e)
+        {
+            float size1 = this.Size.Width / firstWidth;
+            float size2 = this.Size.Height / firstHeight;
+
+            SizeF scale = new SizeF(size1, size2);
+            firstWidth = this.Size.Width;
+            firstHeight = this.Size.Height;
+
+            foreach (Control control in this.Controls)
+            {
+
+                control.Font = new Font(control.Font.FontFamily, control.Font.Size * ((size1 + size2) / 2));
+
+                control.Scale(scale);
+
+                string ff = control.GetType().Name;
+                if (control.GetType().Name == "ComboBox")
+                {
+                    ComboBox cb = (ComboBox)control;
+                    cb.SelectedIndex = -1;
+                }
+            }
+        }
+
+        private void txtVrednostRobeFaktura_Enter(object sender, EventArgs e)
+        {
+            txtVrednostRobeFaktura.Select(0, txtVrednostRobeFaktura.Text.Length);
+        }
+
+        private void txtNetoR_Enter(object sender, EventArgs e)
+        {
+            txtNetoR.Select(0, txtNetoR.Text.Length);
+        }
+
+        private void txtBrutoR_Enter(object sender, EventArgs e)
+        {
+            txtBrutoR.Select(0, txtBrutoR.Text.Length);
+        }
+
+        private void txtBrutoO_Enter(object sender, EventArgs e)
+        {
+            txtBrutoO.Select(0, txtBrutoO.Text.Length);
+        }
+
+        private void txtKoleta_Enter(object sender, EventArgs e)
+        {
+            txtKoleta.Select(0, txtKoleta.Text.Length);
+        }
+
+        private void txtKoletaO_Enter(object sender, EventArgs e)
+        {
+            txtKoletaO.Select(0, txtKoletaO.Text.Length);
+        }
+
+        private void txtCBM_Enter(object sender, EventArgs e)
+        {
+            txtCBM.Select(0, txtCBM.Text.Length);
+        }
+
+        private void txtCBMO_Enter(object sender, EventArgs e)
+        {
+            txtCBMO.Select(0, txtCBMO.Text.Length);
+        }
+
+        private void txtOdvaganaTezina_Enter(object sender, EventArgs e)
+        {
+            txtOdvaganaTezina.Select(0, txtOdvaganaTezina.Text.Length);
+        }
+
+        private void txtTaraKontejnera_Enter(object sender, EventArgs e)
+        {
+            txtTaraKontejnera.Select(0, txtTaraKontejnera.Text.Length);
+        }
+
+        private void txVGMBrodBruto_Enter(object sender, EventArgs e)
+        {
+            txVGMBrodBruto.Select(0, txVGMBrodBruto.Text.Length);
+        }
+
+        private void txtVGMBrod_Enter(object sender, EventArgs e)
+        {
+            txtVGMBrod.Select(0, txtVGMBrod.Text.Length);
+        }
+
+        private void txtAutoDana_Enter(object sender, EventArgs e)
+        {
+            txtAutoDana.Select(0, txtAutoDana.Text.Length);
+        }
+
+        private void txtVrednostRobeFaktura_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals('.') || e.KeyChar.Equals(','))
+            {
+                e.KeyChar = ((System.Globalization.CultureInfo)System.Globalization.CultureInfo.CurrentCulture).NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
+            }
+        }
+
+        private void txtNetoR_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals('.') || e.KeyChar.Equals(','))
+            {
+                e.KeyChar = ((System.Globalization.CultureInfo)System.Globalization.CultureInfo.CurrentCulture).NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
+            }
+        }
+
+        private void txtBrutoR_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals('.') || e.KeyChar.Equals(','))
+            {
+                e.KeyChar = ((System.Globalization.CultureInfo)System.Globalization.CultureInfo.CurrentCulture).NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
+            }
+        }
+
+        private void txtBrutoO_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals('.') || e.KeyChar.Equals(','))
+            {
+                e.KeyChar = ((System.Globalization.CultureInfo)System.Globalization.CultureInfo.CurrentCulture).NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
+            }
+        }
+
+        private void txtKoleta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals('.') || e.KeyChar.Equals(','))
+            {
+                e.KeyChar = ((System.Globalization.CultureInfo)System.Globalization.CultureInfo.CurrentCulture).NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
+            }
+        }
+
+        private void txtKoletaO_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals('.') || e.KeyChar.Equals(','))
+            {
+                e.KeyChar = ((System.Globalization.CultureInfo)System.Globalization.CultureInfo.CurrentCulture).NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
+            }
+        }
+
+        private void txtCBM_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals('.') || e.KeyChar.Equals(','))
+            {
+                e.KeyChar = ((System.Globalization.CultureInfo)System.Globalization.CultureInfo.CurrentCulture).NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
+            }
+        }
+
+        private void txtCBMO_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals('.') || e.KeyChar.Equals(','))
+            {
+                e.KeyChar = ((System.Globalization.CultureInfo)System.Globalization.CultureInfo.CurrentCulture).NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
+            }
+        }
+
+        private void txtAutoDana_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals('.') || e.KeyChar.Equals(','))
+            {
+                e.KeyChar = ((System.Globalization.CultureInfo)System.Globalization.CultureInfo.CurrentCulture).NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
+            }
+        }
+
+        private void txtOdvaganaTezina_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals('.') || e.KeyChar.Equals(','))
+            {
+                e.KeyChar = ((System.Globalization.CultureInfo)System.Globalization.CultureInfo.CurrentCulture).NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
+            }
+        }
+
+        private void txtTaraKontejnera_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals('.') || e.KeyChar.Equals(','))
+            {
+                e.KeyChar = ((System.Globalization.CultureInfo)System.Globalization.CultureInfo.CurrentCulture).NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
+            }
+        }
+
+        private void txVGMBrodBruto_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals('.') || e.KeyChar.Equals(','))
+            {
+                e.KeyChar = ((System.Globalization.CultureInfo)System.Globalization.CultureInfo.CurrentCulture).NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
+            }
+        }
+
+        private void txtVGMBrod_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar.Equals('.') || e.KeyChar.Equals(','))
+            {
+                e.KeyChar = ((System.Globalization.CultureInfo)System.Globalization.CultureInfo.CurrentCulture).NumberFormat.NumberDecimalSeparator.ToCharArray()[0];
+            }
+        }
+
+        private void frmIzvozKonacna_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.D)
+            {
+                frmIzvozDokumenta fid = new frmIzvozDokumenta(txtID.Text, txtBokingBrodara.Text, "0");
+                fid.Show();
+            }
+            else if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.T)
+            {
+                using (var detailForm = new frmIzvozKonacnaTable())
+                {
+                    detailForm.ShowDialog();
+                    txtID.Text = detailForm.GetID();
+                    VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+                }
+            }
+            else if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.U)
+            {
+                if (txtID.Text == "")
+                { txtID.Text = "0"; }
+                // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
+                frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue));
+                um.Show();
+
+            }
         }
     }
 }

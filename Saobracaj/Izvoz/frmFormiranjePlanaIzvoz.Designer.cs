@@ -36,7 +36,6 @@ namespace Saobracaj.Izvoz
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmFormiranjePlanaIzvoz));
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.txtSpakovaniUB = new System.Windows.Forms.NumericUpDown();
@@ -52,10 +51,11 @@ namespace Saobracaj.Izvoz
             this.cboPlanUtovara = new System.Windows.Forms.ComboBox();
             this.label44 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
+            this.txtSifra = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSpakovaniUB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrUkupanBrojKontejneraSS)).BeginInit();
@@ -63,42 +63,12 @@ namespace Saobracaj.Izvoz
             ((System.ComponentModel.ISupportInitialize)(this.nmrUkupanBrojKontejnera)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            // 
-            // splitContainer1.Panel1
-            // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.splitContainer1.Panel2.Controls.Add(this.label2);
-            this.splitContainer1.Panel2.Controls.Add(this.txtSpakovaniUB);
-            this.splitContainer1.Panel2.Controls.Add(this.label3);
-            this.splitContainer1.Panel2.Controls.Add(this.nmrUkupanBrojKontejneraSS);
-            this.splitContainer1.Panel2.Controls.Add(this.label1);
-            this.splitContainer1.Panel2.Controls.Add(this.nmSpakovanih);
-            this.splitContainer1.Panel2.Controls.Add(this.label29);
-            this.splitContainer1.Panel2.Controls.Add(this.nmrUkupanBrojKontejnera);
-            this.splitContainer1.Panel2.Controls.Add(this.dataGridView3);
-            this.splitContainer1.Panel2.Controls.Add(this.button2);
-            this.splitContainer1.Panel2.Controls.Add(this.button1);
-            this.splitContainer1.Panel2.Controls.Add(this.cboPlanUtovara);
-            this.splitContainer1.Panel2.Controls.Add(this.label44);
-            this.splitContainer1.Panel2.Controls.Add(this.dataGridView2);
-            this.splitContainer1.Panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel2_Paint);
-            this.splitContainer1.Size = new System.Drawing.Size(1552, 817);
-            this.splitContainer1.SplitterDistance = 586;
-            this.splitContainer1.TabIndex = 1;
             // 
             // dataGridView1
             // 
@@ -106,6 +76,7 @@ namespace Saobracaj.Izvoz
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.CausesValidation = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -123,7 +94,8 @@ namespace Saobracaj.Izvoz
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(853, 9);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
@@ -135,7 +107,7 @@ namespace Saobracaj.Izvoz
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(560, 793);
+            this.dataGridView1.Size = new System.Drawing.Size(301, 311);
             this.dataGridView1.TabIndex = 59;
             // 
             // label2
@@ -143,19 +115,19 @@ namespace Saobracaj.Izvoz
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(20, 168);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(386, 55);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(244, 18);
+            this.label2.Size = new System.Drawing.Size(203, 15);
             this.label2.TabIndex = 168;
             this.label2.Text = "Ukupan broj kontejnera spakovanih:";
             // 
             // txtSpakovaniUB
             // 
             this.txtSpakovaniUB.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.txtSpakovaniUB.Location = new System.Drawing.Point(343, 169);
+            this.txtSpakovaniUB.Location = new System.Drawing.Point(628, 56);
+            this.txtSpakovaniUB.Margin = new System.Windows.Forms.Padding(2);
             this.txtSpakovaniUB.Name = "txtSpakovaniUB";
-            this.txtSpakovaniUB.Size = new System.Drawing.Size(125, 22);
+            this.txtSpakovaniUB.Size = new System.Drawing.Size(94, 20);
             this.txtSpakovaniUB.TabIndex = 167;
             // 
             // label3
@@ -163,10 +135,9 @@ namespace Saobracaj.Izvoz
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(166, 217);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(403, 78);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(289, 18);
+            this.label3.Size = new System.Drawing.Size(239, 15);
             this.label3.TabIndex = 166;
             this.label3.Text = "Visuble -False Ukupan broj kontejnera voz:";
             this.label3.Visible = false;
@@ -174,9 +145,10 @@ namespace Saobracaj.Izvoz
             // nmrUkupanBrojKontejneraSS
             // 
             this.nmrUkupanBrojKontejneraSS.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.nmrUkupanBrojKontejneraSS.Location = new System.Drawing.Point(366, 217);
+            this.nmrUkupanBrojKontejneraSS.Location = new System.Drawing.Point(646, 80);
+            this.nmrUkupanBrojKontejneraSS.Margin = new System.Windows.Forms.Padding(2);
             this.nmrUkupanBrojKontejneraSS.Name = "nmrUkupanBrojKontejneraSS";
-            this.nmrUkupanBrojKontejneraSS.Size = new System.Drawing.Size(102, 22);
+            this.nmrUkupanBrojKontejneraSS.Size = new System.Drawing.Size(76, 20);
             this.nmrUkupanBrojKontejneraSS.TabIndex = 165;
             this.nmrUkupanBrojKontejneraSS.Visible = false;
             // 
@@ -185,19 +157,19 @@ namespace Saobracaj.Izvoz
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(20, 141);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(386, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(216, 18);
+            this.label1.Size = new System.Drawing.Size(179, 15);
             this.label1.TabIndex = 164;
             this.label1.Text = "Ukupan broj mesta spakovanih:";
             // 
             // nmSpakovanih
             // 
             this.nmSpakovanih.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.nmSpakovanih.Location = new System.Drawing.Point(343, 141);
+            this.nmSpakovanih.Location = new System.Drawing.Point(628, 34);
+            this.nmSpakovanih.Margin = new System.Windows.Forms.Padding(2);
             this.nmSpakovanih.Name = "nmSpakovanih";
-            this.nmSpakovanih.Size = new System.Drawing.Size(125, 22);
+            this.nmSpakovanih.Size = new System.Drawing.Size(94, 20);
             this.nmSpakovanih.TabIndex = 163;
             // 
             // label29
@@ -205,19 +177,19 @@ namespace Saobracaj.Izvoz
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label29.ForeColor = System.Drawing.Color.Black;
-            this.label29.Location = new System.Drawing.Point(20, 113);
-            this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label29.Location = new System.Drawing.Point(386, 11);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(165, 18);
+            this.label29.Size = new System.Drawing.Size(135, 15);
             this.label29.TabIndex = 162;
             this.label29.Text = "Ukupan broj mesta voz:";
             // 
             // nmrUkupanBrojKontejnera
             // 
             this.nmrUkupanBrojKontejnera.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.nmrUkupanBrojKontejnera.Location = new System.Drawing.Point(343, 113);
+            this.nmrUkupanBrojKontejnera.Location = new System.Drawing.Point(628, 11);
+            this.nmrUkupanBrojKontejnera.Margin = new System.Windows.Forms.Padding(2);
             this.nmrUkupanBrojKontejnera.Name = "nmrUkupanBrojKontejnera";
-            this.nmrUkupanBrojKontejnera.Size = new System.Drawing.Size(125, 22);
+            this.nmrUkupanBrojKontejnera.Size = new System.Drawing.Size(94, 20);
             this.nmrUkupanBrojKontejnera.TabIndex = 161;
             // 
             // dataGridView3
@@ -227,21 +199,19 @@ namespace Saobracaj.Izvoz
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(475, 16);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView3.Location = new System.Drawing.Point(727, 3);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.Size = new System.Drawing.Size(474, 223);
+            this.dataGridView3.Size = new System.Drawing.Size(427, 142);
             this.dataGridView3.TabIndex = 160;
             // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(394, 24);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
+            this.button2.Location = new System.Drawing.Point(302, 22);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(74, 37);
+            this.button2.Size = new System.Drawing.Size(56, 30);
             this.button2.TabIndex = 159;
             this.button2.Text = "Refresh";
             this.button2.UseVisualStyleBackColor = false;
@@ -251,30 +221,32 @@ namespace Saobracaj.Izvoz
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(14, 62);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(16, 52);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(373, 32);
+            this.button1.Size = new System.Drawing.Size(280, 26);
             this.button1.TabIndex = 158;
             this.button1.Text = "Prenesi selektovano";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // cboPlanUtovara
             // 
             this.cboPlanUtovara.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.cboPlanUtovara.FormattingEnabled = true;
-            this.cboPlanUtovara.Location = new System.Drawing.Point(14, 31);
+            this.cboPlanUtovara.Location = new System.Drawing.Point(16, 27);
+            this.cboPlanUtovara.Margin = new System.Windows.Forms.Padding(2);
             this.cboPlanUtovara.Name = "cboPlanUtovara";
-            this.cboPlanUtovara.Size = new System.Drawing.Size(373, 24);
+            this.cboPlanUtovara.Size = new System.Drawing.Size(281, 21);
             this.cboPlanUtovara.TabIndex = 157;
             // 
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(20, 11);
+            this.label44.Location = new System.Drawing.Point(21, 11);
+            this.label44.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(88, 17);
+            this.label44.Size = new System.Drawing.Size(67, 13);
             this.label44.TabIndex = 156;
             this.label44.Text = "Plan utovara";
             // 
@@ -301,7 +273,8 @@ namespace Saobracaj.Izvoz
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView2.Location = new System.Drawing.Point(14, 246);
+            this.dataGridView2.Location = new System.Drawing.Point(16, 150);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
@@ -313,24 +286,115 @@ namespace Saobracaj.Izvoz
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(936, 559);
+            this.dataGridView2.Size = new System.Drawing.Size(1139, 254);
             this.dataGridView2.TabIndex = 59;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Location = new System.Drawing.Point(-2, 2);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.gridGroupingControl1);
+            this.splitContainer2.Panel1.Controls.Add(this.dataGridView1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.txtSifra);
+            this.splitContainer2.Panel2.Controls.Add(this.button3);
+            this.splitContainer2.Panel2.Controls.Add(this.label4);
+            this.splitContainer2.Panel2.Controls.Add(this.dataGridView2);
+            this.splitContainer2.Panel2.Controls.Add(this.dataGridView3);
+            this.splitContainer2.Panel2.Controls.Add(this.nmrUkupanBrojKontejneraSS);
+            this.splitContainer2.Panel2.Controls.Add(this.label3);
+            this.splitContainer2.Panel2.Controls.Add(this.label2);
+            this.splitContainer2.Panel2.Controls.Add(this.label44);
+            this.splitContainer2.Panel2.Controls.Add(this.txtSpakovaniUB);
+            this.splitContainer2.Panel2.Controls.Add(this.cboPlanUtovara);
+            this.splitContainer2.Panel2.Controls.Add(this.button1);
+            this.splitContainer2.Panel2.Controls.Add(this.button2);
+            this.splitContainer2.Panel2.Controls.Add(this.label1);
+            this.splitContainer2.Panel2.Controls.Add(this.nmrUkupanBrojKontejnera);
+            this.splitContainer2.Panel2.Controls.Add(this.nmSpakovanih);
+            this.splitContainer2.Panel2.Controls.Add(this.label29);
+            this.splitContainer2.Size = new System.Drawing.Size(1166, 760);
+            this.splitContainer2.SplitterDistance = 335;
+            this.splitContainer2.SplitterIncrement = 2;
+            this.splitContainer2.TabIndex = 2;
+            // 
+            // gridGroupingControl1
+            // 
+            this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.gridGroupingControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridGroupingControl1.BackColor = System.Drawing.SystemColors.Window;
+            this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
+            this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2010Blue;
+            this.gridGroupingControl1.Location = new System.Drawing.Point(8, 8);
+            this.gridGroupingControl1.Name = "gridGroupingControl1";
+            this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
+            this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1147, 312);
+            this.gridGroupingControl1.TabIndex = 60;
+            this.gridGroupingControl1.TableDescriptor.AllowNew = false;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.RecordRowHeight = 28;
+            this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.SystemColors.HighlightText;
+            this.gridGroupingControl1.Text = "gridGroupingControl1";
+            this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
+            this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
+            this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
+            // 
+            // txtSifra
+            // 
+            this.txtSifra.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txtSifra.Location = new System.Drawing.Point(444, 120);
+            this.txtSifra.Name = "txtSifra";
+            this.txtSifra.Size = new System.Drawing.Size(105, 22);
+            this.txtSifra.TabIndex = 139;
+            this.txtSifra.Visible = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button3.Location = new System.Drawing.Point(16, 84);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(280, 26);
+            this.button3.TabIndex = 169;
+            this.button3.Text = "Vrati selektovano";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(403, 120);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 15);
+            this.label4.TabIndex = 140;
+            this.label4.Text = "Šifra:";
+            this.label4.Visible = false;
             // 
             // frmFormiranjePlanaIzvoz
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1552, 817);
-            this.Controls.Add(this.splitContainer1);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.ClientSize = new System.Drawing.Size(1164, 774);
+            this.Controls.Add(this.splitContainer2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmFormiranjePlanaIzvoz";
-            this.Text = "Formiranje plana izvoz";
+            this.Text = "Formiranje plana izvoz - popunjavanje kontejnerima";
             this.Load += new System.EventHandler(this.frmFormiranjePlanaIzvoz_Load);
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSpakovaniUB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrUkupanBrojKontejneraSS)).EndInit();
@@ -338,13 +402,17 @@ namespace Saobracaj.Izvoz
             ((System.ComponentModel.ISupportInitialize)(this.nmrUkupanBrojKontejnera)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown txtSpakovaniUB;
@@ -360,5 +428,10 @@ namespace Saobracaj.Izvoz
         private System.Windows.Forms.ComboBox cboPlanUtovara;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
+        private System.Windows.Forms.TextBox txtSifra;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button3;
     }
 }

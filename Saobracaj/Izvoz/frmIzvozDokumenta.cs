@@ -40,6 +40,19 @@ namespace Saobracaj.Izvoz
             RefreshDataGrid();
         }
 
+        public frmIzvozDokumenta(string sifra, string Buking, string Voz)
+        {
+            InitializeComponent();
+            txtSifraUvoza.Text = sifra;
+            txtSifraUvoza2.Text = Buking;
+            txtSifraUvoza3.Text = Voz;
+            RefreshDataGrid();
+            RefreshDataGrid2();
+            RefreshDataGrid3();
+        }
+
+
+
         private void RefreshDataGrid()
         {
             if (txtSifraUvoza.Text == "")
@@ -48,7 +61,7 @@ namespace Saobracaj.Izvoz
                 return;
             }
             int pomNaj = Convert.ToInt32(txtSifraUvoza.Text);
-            var select = "select * from IzvozDokumenta  where IzvozDokumenta.IDIzvoz =  " + pomNaj;
+            var select = "select * from IzvozDokumenta  where TipDokumenta = 1 and IzvozDokumenta.IDIzvoz =  " + pomNaj;
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -84,6 +97,100 @@ namespace Saobracaj.Izvoz
             DataGridViewColumn column3 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "Putanja";
             dataGridView1.Columns[2].Width = 550;
+        }
+
+
+        private void RefreshDataGrid2()
+        {
+            if (txtSifraUvoza2.Text == "")
+            {
+                MessageBox.Show("Odaberite stavku");
+                return;
+            }
+            int pomNaj = Convert.ToInt32(txtSifraUvoza2.Text);
+            var select = "select * from IzvozDokumenta  where TipDokumenta = 2 and IzvozDokumenta.IDIzvoz =  " + pomNaj;
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = ds.Tables[0];
+
+
+            dataGridView2.BorderStyle = BorderStyle.None;
+            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView2.BackgroundColor = Color.White;
+
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            DataGridViewColumn column = dataGridView2.Columns[0];
+            dataGridView2.Columns[0].HeaderText = "ID";
+            dataGridView2.Columns[0].Width = 30;
+
+            DataGridViewColumn column2 = dataGridView2.Columns[1];
+            dataGridView2.Columns[1].HeaderText = "Izvozni zapis";
+            dataGridView2.Columns[1].Width = 50;
+
+            DataGridViewColumn column3 = dataGridView2.Columns[2];
+            dataGridView2.Columns[2].HeaderText = "Putanja";
+            dataGridView2.Columns[2].Width = 550;
+        }
+
+
+        private void RefreshDataGrid3()
+        {
+            if (txtSifraUvoza3.Text == "")
+            {
+                MessageBox.Show("Odaberite stavku");
+                return;
+            }
+            int pomNaj = Convert.ToInt32(txtSifraUvoza3.Text);
+            var select = "select * from IzvozDokumenta  where TipDokumenta = 3 and IzvozDokumenta.IDIzvoz =  " + pomNaj;
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView3.ReadOnly = true;
+            dataGridView3.DataSource = ds.Tables[0];
+
+
+            dataGridView3.BorderStyle = BorderStyle.None;
+            dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView3.BackgroundColor = Color.White;
+
+            dataGridView3.EnableHeadersVisualStyles = false;
+            dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            DataGridViewColumn column = dataGridView3.Columns[0];
+            dataGridView3.Columns[0].HeaderText = "ID";
+            dataGridView3.Columns[0].Width = 30;
+
+            DataGridViewColumn column2 = dataGridView3.Columns[1];
+            dataGridView3.Columns[1].HeaderText = "Izvozni zapis";
+            dataGridView3.Columns[1].Width = 50;
+
+            DataGridViewColumn column3 = dataGridView3.Columns[2];
+            dataGridView3.Columns[2].HeaderText = "Putanja";
+            dataGridView3.Columns[2].Width = 550;
         }
 
         private void KopirajFajlPoTipu(string putanja, string FolderDestinacije, int Tip)
@@ -122,6 +229,79 @@ namespace Saobracaj.Izvoz
             }
         }
 
+
+        private void KopirajFajlPoTipu2(string putanja, string FolderDestinacije, int Tip)
+        {
+            string fileName = ofd1.FileName; //Ovde ce trebati promena
+            fileName = fileName.Replace(" ", "_");
+            string sourcePath = fbd1.SelectedPath.ToString();
+            string result = Path.GetFileName(fileName);
+            string targetPath = "";
+
+            targetPath = @"\\192.168.99.10\Leget\IZVOZBUKING\" + FolderDestinacije + @"\Izvoz";
+
+            string sourceFile = putanja;
+            string destFile = System.IO.Path.Combine(targetPath, result);
+
+            if (!System.IO.Directory.Exists(targetPath))
+            {
+                System.IO.Directory.CreateDirectory(targetPath);
+            }
+
+            var remote = Path.Combine(targetPath, result);
+            File.Copy(sourceFile, remote);
+            txtPutanja2.Text = remote;
+
+            if (System.IO.Directory.Exists(sourcePath))
+            {
+                string[] files = System.IO.Directory.GetFiles(sourcePath);
+                // Copy the files and overwrite destination files if they already exist.
+                foreach (string s in files)
+                {
+                    // Use static Path methods to extract only the file name from the path.
+                    fileName = System.IO.Path.GetFileName(s);
+                    destFile = System.IO.Path.Combine(targetPath, fileName);
+                    System.IO.File.Copy(s, destFile, true);
+                }
+            }
+        }
+
+        private void KopirajFajlPoTipu3(string putanja, string FolderDestinacije, int Tip)
+        {
+            string fileName = ofd1.FileName; //Ovde ce trebati promena
+            fileName = fileName.Replace(" ", "_");
+            string sourcePath = fbd1.SelectedPath.ToString();
+            string result = Path.GetFileName(fileName);
+            string targetPath = "";
+
+            targetPath = @"\\192.168.99.10\Leget\IZVOZVOZ\" + FolderDestinacije + @"\Izvoz";
+
+            string sourceFile = putanja;
+            string destFile = System.IO.Path.Combine(targetPath, result);
+
+            if (!System.IO.Directory.Exists(targetPath))
+            {
+                System.IO.Directory.CreateDirectory(targetPath);
+            }
+
+            var remote = Path.Combine(targetPath, result);
+            File.Copy(sourceFile, remote);
+            txtPutanja3.Text = remote;
+
+            if (System.IO.Directory.Exists(sourcePath))
+            {
+                string[] files = System.IO.Directory.GetFiles(sourcePath);
+                // Copy the files and overwrite destination files if they already exist.
+                foreach (string s in files)
+                {
+                    // Use static Path methods to extract only the file name from the path.
+                    fileName = System.IO.Path.GetFileName(s);
+                    destFile = System.IO.Path.Combine(targetPath, fileName);
+                    System.IO.File.Copy(s, destFile, true);
+                }
+            }
+        }
+
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
@@ -145,11 +325,15 @@ namespace Saobracaj.Izvoz
 
         private void button4_Click(object sender, EventArgs e)
         {
+            //UVodimo novo polje kod insert u tabelu
+           // 1- Point kontejneru
+            //    2- Point bukingu
+             //   3 - Point vozu
             //  if (status == true)
             // {
             InsertIzvozDokumenta ins = new InsertIzvozDokumenta();
             KopirajFajlPoTipu(txtPutanja.Text, txtSifraUvoza.Text, 6);
-            ins.InsIzvozDokumenta(Convert.ToInt32(txtSifraUvoza.Text), txtPutanja.Text);
+            ins.InsIzvozDokumenta(Convert.ToInt32(txtSifraUvoza.Text), txtPutanja.Text, 1);
             RefreshDataGrid();
 
             status = true;
@@ -192,6 +376,134 @@ namespace Saobracaj.Izvoz
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            string PictureFolder = txtPutanja2.Text;
+            ofd1.InitialDirectory = PictureFolder;
+
+            if (ofd1.ShowDialog() == DialogResult.OK)
+            {
+                txtPutanja2.Text = fbd1.SelectedPath.ToString() + ofd1.FileName;
+            }
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            string PictureFolder = txtPutanja3.Text;
+            ofd1.InitialDirectory = PictureFolder;
+
+            if (ofd1.ShowDialog() == DialogResult.OK)
+            {
+                txtPutanja3.Text = fbd1.SelectedPath.ToString() + ofd1.FileName;
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(txtPutanja2.Text);
+        }
+
+        private void button12_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(txtPutanja3.Text);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            //  if (status == true)
+            // {
+            // 2 - buking
+            InsertIzvozDokumenta ins = new InsertIzvozDokumenta();
+            KopirajFajlPoTipu2(txtPutanja2.Text, txtSifraUvoza2.Text, 6);
+            ins.InsIzvozDokumenta(Convert.ToInt32(txtSifraUvoza2.Text), txtPutanja2.Text,2);
+            RefreshDataGrid2();
+
+            status = true;
+            //  }
+            //  else
+            //  {
+
+            //  }
+        }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            //Po vozu
+            InsertIzvozDokumenta ins = new InsertIzvozDokumenta();
+            KopirajFajlPoTipu3(txtPutanja3.Text, txtSifraUvoza3.Text, 3);
+            ins.InsIzvozDokumenta(Convert.ToInt32(txtSifraUvoza3.Text), txtPutanja3.Text,3);
+            RefreshDataGrid3();
+
+            status = true;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            InsertIzvozDokumenta ins = new InsertIzvozDokumenta();
+            ins.DelIzvozDokumenta(Convert.ToInt32(txtSifra.Text));
+            RefreshDataGrid2();
+
+            status = true;
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            InsertIzvozDokumenta ins = new InsertIzvozDokumenta();
+            ins.DelIzvozDokumenta(Convert.ToInt32(txtSifra.Text));
+            RefreshDataGrid3();
+
+            status = true;
+        }
+
+        private void dataGridView2_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txtSifra2.Text = row.Cells[0].Value.ToString();
+                        txtPutanja.Text = row.Cells[2].Value.ToString();
+
+                    }
+                }
+
+
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+        }
+
+        private void dataGridView3_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView3.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txtSifra3.Text = row.Cells[0].Value.ToString();
+                        txtPutanja3.Text = row.Cells[2].Value.ToString();
+
+                    }
+                }
+
+
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+        }
+
+        private void frmIzvozDokumenta_Load(object sender, EventArgs e)
         {
 
         }

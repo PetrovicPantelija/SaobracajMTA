@@ -381,12 +381,7 @@ namespace Testiranje.Sifarnici
 
         private void frmSkladista_Load(object sender, EventArgs e)
         {
-            if (KorisnikCene != "Kecman" && KorisnikCene != "M.Jelisavčić" && KorisnikCene != "Dušan Bašanović")
-            {
-                tsNew.Enabled = false;
-                tsSave.Enabled = false;
-                tsDelete.Enabled = false;
-            }
+            RefreshDataGrid();
         }
     }
 }

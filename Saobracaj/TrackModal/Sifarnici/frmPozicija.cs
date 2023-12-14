@@ -305,11 +305,11 @@ namespace Testiranje.Sifarnici
             cboSkladiste.DataSource = ds.Tables[0];
             cboSkladiste.DisplayMember = "Naziv";
             cboSkladiste.ValueMember = "ID";
+
+            RefreshDataGrid();
           //  if (KorisnikCene != "Kecman" && KorisnikCene != "M.Jelisavčić" && KorisnikCene != "Dušan Bašanović")
           //  {
-                tsNew.Enabled = false;
-                tsSave.Enabled = false;
-                tsDelete.Enabled = false;
+              
            // }
         }
 

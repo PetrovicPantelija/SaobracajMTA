@@ -119,7 +119,7 @@ namespace Saobracaj.Sifarnici
         }
         private void RefreshDataGrid()
         {
-            var select = " Select NHM.ID,NHM.Broj, NHM.Naziv, CASE WHEN NHM.RID > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as RID, ADRID, Uvozni " +
+            var select = " Select NHM.ID,NHM.Broj, NHM.Naziv, CASE WHEN NHM.RID > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as RID, ADRID, Uvozni, Interni " +
 " , VrstaRobeADR.NAziv, VrstaRobeADR.Klasa, VrstaRobeADR.Grupa from NHM " +
 "  left join VrstaRobeADR on NHM.ADRID = VrstaRobeADR.ID";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -174,7 +174,9 @@ namespace Saobracaj.Sifarnici
         private void tsSave_Click(object sender, EventArgs e)
         {
             int tmpUvozni = 0;
-            
+
+            int tmpInterni = 0;
+
             if (chkRid.Checked == true)
             {
                 chekiran = 1;
@@ -194,17 +196,26 @@ namespace Saobracaj.Sifarnici
                 tmpUvozni = 0;
             }
 
+            if (chkInterni.Checked == true)
+            {
+                tmpInterni = 1;
+            }
+            else
+            {
+                tmpInterni = 0;
+            }
+
             if (status == true)
             {
                 Insertnhm ins = new Insertnhm();
-                ins.InsNHM(txtBroj.Text,  txtNaziv.Text, chekiran, Convert.ToInt32(txtADR.Text), tmpUvozni);
+                ins.InsNHM(txtBroj.Text,  txtNaziv.Text, chekiran, Convert.ToInt32(txtADR.Text), tmpUvozni,tmpInterni);
                 RefreshDataGrid();
                 status = false;
             }
             else
             {
                 Insertnhm upd = new Insertnhm();
-                upd.UpdNHM(Convert.ToInt32(txtSifra.Text), txtBroj.Text, txtNaziv.Text, chekiran, Convert.ToInt32(txtADR.SelectedValue), tmpUvozni);
+                upd.UpdNHM(Convert.ToInt32(txtSifra.Text), txtBroj.Text, txtNaziv.Text, chekiran, Convert.ToInt32(txtADR.SelectedValue), tmpUvozni, tmpInterni);
                 status = false;
                 txtSifra.Enabled = false;
                 RefreshDataGrid();
@@ -256,6 +267,15 @@ namespace Saobracaj.Sifarnici
                         else
                         {
                             chkUvozni.Checked = false;
+                        }
+
+                        if (row.Cells[6].Value.ToString() == "1")
+                        {
+                            chkInterni.Checked = true;
+                        }
+                        else
+                        {
+                            chkInterni.Checked = false;
                         }
                     }
                 }
