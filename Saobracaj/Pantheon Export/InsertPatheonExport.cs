@@ -16,7 +16,7 @@ namespace Saobracaj.Pantheon_Export
         public string connect = Sifarnici.frmLogovanje.connectionString;
 
         public void InsUlFak(int ID, string CRMDocID, string VrstaDokumenta, string FakturaBr, int IDDobavljaca, string Tip, DateTime DatumPrijema, string Valuta, decimal Kurs, string RacunDobavljaca, DateTime DatumIzdavanja,
-            DateTime DatumPDVa, DateTime DatumValute, int Referent, int Predvidjanje, string Napomena)
+            DateTime DatumPDVa, DateTime DatumValute, int Referent, int Predvidjanje, string Napomena,int CrmID)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -47,6 +47,7 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@Referent", SqlDbType.Int) { Value = Referent });
                             cmd.Parameters.Add(new SqlParameter("@Predvidjanje", SqlDbType.Int) { Value = Predvidjanje });
                             cmd.Parameters.Add(new SqlParameter("@Napomena", SqlDbType.NVarChar, 255) { Value = Napomena });
+                            cmd.Parameters.Add(new SqlParameter("@CRMID",SqlDbType.Int) { Value = CrmID });
 
                             cmd.ExecuteNonQuery();
                         }
@@ -144,7 +145,7 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
-        public void InsNosiociTroskova(string NosilacTroska, string NazivNosiocaTroska, string Grupa, int Kupac, string Odeljenje)
+        public void InsNosiociTroskova(string NosilacTroska, string NazivNosiocaTroska, string Grupa, int Kupac, int Odeljenje)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -163,7 +164,7 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@NazivNosiocaTroska", SqlDbType.Char, 100) { Value = NazivNosiocaTroska });
                             cmd.Parameters.Add(new SqlParameter("@Grupa", SqlDbType.Char, 16) { Value = Grupa });
                             cmd.Parameters.Add(new SqlParameter("@Kupac", SqlDbType.Int) { Value = Kupac });
-                            cmd.Parameters.Add(new SqlParameter("@Odeljenje", SqlDbType.Char, 30) { Value = Odeljenje });
+                            cmd.Parameters.Add(new SqlParameter("@Odeljenje", SqlDbType.Int) { Value = Odeljenje });
 
                             cmd.ExecuteNonQuery();
                         }
@@ -178,7 +179,7 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
-        public void UpdNosiociTroskova(int ID, string NosilacTroska, string NazivNosiocaTroska, string Grupa, int Kupac, string Odeljenje)
+        public void UpdNosiociTroskova(int ID, string NosilacTroska, string NazivNosiocaTroska, string Grupa, int Kupac, int Odeljenje)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -198,7 +199,7 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@NazivNosiocaTroska", SqlDbType.Char, 100) { Value = NazivNosiocaTroska });
                             cmd.Parameters.Add(new SqlParameter("@Grupa", SqlDbType.Char, 16) { Value = Grupa });
                             cmd.Parameters.Add(new SqlParameter("@Kupac", SqlDbType.Int) { Value = Kupac });
-                            cmd.Parameters.Add(new SqlParameter("@Odeljenje", SqlDbType.Char, 30) { Value = Odeljenje });
+                            cmd.Parameters.Add(new SqlParameter("@Odeljenje", SqlDbType.Int) { Value = Odeljenje });
 
                             cmd.ExecuteNonQuery();
                         }
@@ -243,7 +244,7 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
-        public void InsPredvidjanje(string PredvidjanjeID, int PredvidjanjePoz, DateTime Datum, int Subjekat, int NosilacTroska, string Odeljenje, decimal Iznos, string Valuta, int Status)
+        public void InsPredvidjanje(int IdP,string PredvidjanjeID, int PredvidjanjePoz, DateTime Datum, int Subjekat, int NosilacTroska, int Odeljenje, decimal Iznos, string Valuta, int Status,int Najava)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -258,15 +259,17 @@ namespace Saobracaj.Pantheon_Export
                             cmd.CommandText = "InsertPredvidjanje";
                             cmd.CommandType = CommandType.StoredProcedure;
 
+                            cmd.Parameters.Add(new SqlParameter("@IdP",SqlDbType.Int) { Value = IdP });
                             cmd.Parameters.Add(new SqlParameter("@PredividjanjeId", SqlDbType.Char, 30) { Value = PredvidjanjeID });
                             cmd.Parameters.Add(new SqlParameter("@PredvidjanjePoz", SqlDbType.Int) { Value = PredvidjanjePoz });
                             cmd.Parameters.Add(new SqlParameter("@Datum", SqlDbType.DateTime) { Value = Datum });
                             cmd.Parameters.Add(new SqlParameter("@Subjekt", SqlDbType.Int) { Value = Subjekat });
                             cmd.Parameters.Add(new SqlParameter("@NosilacTroska", SqlDbType.Int) { Value = NosilacTroska });
-                            cmd.Parameters.Add(new SqlParameter("@Odeljenje", SqlDbType.Char, 30) { Value = Odeljenje });
+                            cmd.Parameters.Add(new SqlParameter("@Odeljenje", SqlDbType.Int) { Value = Odeljenje });
                             cmd.Parameters.Add(new SqlParameter("@Iznos", SqlDbType.Decimal) { Value = Iznos });
                             cmd.Parameters.Add(new SqlParameter("@Valuta", SqlDbType.Char, 3) { Value = Valuta });
                             cmd.Parameters.Add(new SqlParameter("@Status", SqlDbType.Int) { Value = Status });
+                            cmd.Parameters.Add(new SqlParameter("@Najava", SqlDbType.Int){ Value=Najava});
 
                             cmd.ExecuteNonQuery();
                         }
@@ -281,7 +284,7 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
-        public void UpdPredvidjanje(int ID, string PredvidjanjeID, int PredvidjanjePoz, DateTime Datum, int Subjekat, int NosilacTroska, string Odeljenje, decimal Iznos, string Valuta, int Status)
+        public void UpdPredvidjanje(int ID, string PredvidjanjeID, int PredvidjanjePoz, DateTime Datum, int Subjekat, int NosilacTroska, int Odeljenje, decimal Iznos, string Valuta, int Status)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -302,7 +305,7 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@Datum", SqlDbType.DateTime) { Value = Datum });
                             cmd.Parameters.Add(new SqlParameter("@Subjekt", SqlDbType.Int) { Value = Subjekat });
                             cmd.Parameters.Add(new SqlParameter("@NosilacTroska", SqlDbType.Int) { Value = NosilacTroska });
-                            cmd.Parameters.Add(new SqlParameter("@Odeljenje", SqlDbType.Char, 30) { Value = Odeljenje });
+                            cmd.Parameters.Add(new SqlParameter("@Odeljenje", SqlDbType.Int) { Value = Odeljenje });
                             cmd.Parameters.Add(new SqlParameter("@Iznos", SqlDbType.Decimal) { Value = Iznos });
                             cmd.Parameters.Add(new SqlParameter("@Valuta", SqlDbType.Char, 3) { Value = Valuta });
                             cmd.Parameters.Add(new SqlParameter("@Status", SqlDbType.Int) { Value = Status });
@@ -351,7 +354,7 @@ namespace Saobracaj.Pantheon_Export
             }
         }
         public void InstFaktura(int ID, DateTime DatumDok, int Primalac, string Ulica, string Naziv, string Mesto, string MB, string Valuta, decimal Kurs, DateTime DatumPDV, DateTime DatumValute, string MestoUtovara, DateTime DatumUtovara,
-            string MestoIstovara, DateTime DatumIstovara, string Referent, int ReferentID, string Izjava, string Napomena)
+            string MestoIstovara, DateTime DatumIstovara, string Referent, int ReferentID, int Izjava, string Napomena,int CrmID)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -383,8 +386,9 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@DatumIstovara", SqlDbType.DateTime) { Value = DatumIstovara });
                             cmd.Parameters.Add(new SqlParameter("@Referent", SqlDbType.NVarChar, 35) { Value = Referent });
                             cmd.Parameters.Add(new SqlParameter("@ReferentID", SqlDbType.Int) { Value = ReferentID });
-                            cmd.Parameters.Add(new SqlParameter("@Izjava", SqlDbType.NVarChar, 500) { Value = Izjava });
+                            cmd.Parameters.Add(new SqlParameter("@Izjava", SqlDbType.Int) { Value = Izjava });
                             cmd.Parameters.Add(new SqlParameter("@Napomena", SqlDbType.NVarChar, 500) { Value = Napomena });
+                            cmd.Parameters.Add(new SqlParameter("@CRMID",SqlDbType.Int) { Value = CrmID});
 
                             cmd.ExecuteNonQuery();
                         }

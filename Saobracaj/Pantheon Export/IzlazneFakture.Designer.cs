@@ -59,7 +59,6 @@
             this.cboReferent = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.txtIzjava = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtNapomena = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -75,13 +74,14 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.txtJM = new System.Windows.Forms.TextBox();
             this.txtCena = new System.Windows.Forms.TextBox();
             this.txtKolicina = new System.Windows.Forms.TextBox();
             this.txtRB = new System.Windows.Forms.TextBox();
             this.cboNosilac = new System.Windows.Forms.ComboBox();
             this.cboMP = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.cboIzjava = new System.Windows.Forms.ComboBox();
+            this.cboJM = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -221,7 +221,7 @@
             // 
             this.txtID.Location = new System.Drawing.Point(12, 50);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(52, 20);
+            this.txtID.Size = new System.Drawing.Size(85, 20);
             this.txtID.TabIndex = 201;
             // 
             // dtDatum
@@ -351,14 +351,6 @@
             this.label12.TabIndex = 200;
             this.label12.Text = "Izjava";
             // 
-            // txtIzjava
-            // 
-            this.txtIzjava.Location = new System.Drawing.Point(12, 147);
-            this.txtIzjava.Multiline = true;
-            this.txtIzjava.Name = "txtIzjava";
-            this.txtIzjava.Size = new System.Drawing.Size(342, 67);
-            this.txtIzjava.TabIndex = 201;
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -378,7 +370,10 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.cboJM);
             this.panel1.Controls.Add(this.cboNajava);
             this.panel1.Controls.Add(this.label15);
             this.panel1.Controls.Add(this.button1);
@@ -391,7 +386,6 @@
             this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.txtJM);
             this.panel1.Controls.Add(this.txtCena);
             this.panel1.Controls.Add(this.txtKolicina);
             this.panel1.Controls.Add(this.txtRB);
@@ -450,7 +444,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(785, 23);
+            this.label22.Location = new System.Drawing.Point(785, 25);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(21, 13);
             this.label22.TabIndex = 197;
@@ -508,13 +502,6 @@
             this.textBox1.Size = new System.Drawing.Size(167, 20);
             this.textBox1.TabIndex = 198;
             // 
-            // txtJM
-            // 
-            this.txtJM.Location = new System.Drawing.Point(753, 41);
-            this.txtJM.Name = "txtJM";
-            this.txtJM.Size = new System.Drawing.Size(90, 20);
-            this.txtJM.TabIndex = 198;
-            // 
             // txtCena
             // 
             this.txtCena.Location = new System.Drawing.Point(434, 40);
@@ -557,11 +544,30 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 344);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1166, 207);
             this.dataGridView1.TabIndex = 207;
+            // 
+            // cboIzjava
+            // 
+            this.cboIzjava.FormattingEnabled = true;
+            this.cboIzjava.Location = new System.Drawing.Point(12, 147);
+            this.cboIzjava.Name = "cboIzjava";
+            this.cboIzjava.Size = new System.Drawing.Size(403, 21);
+            this.cboIzjava.TabIndex = 208;
+            // 
+            // cboJM
+            // 
+            this.cboJM.FormattingEnabled = true;
+            this.cboJM.Location = new System.Drawing.Point(742, 39);
+            this.cboJM.Name = "cboJM";
+            this.cboJM.Size = new System.Drawing.Size(121, 21);
+            this.cboJM.TabIndex = 208;
             // 
             // IzlazneFakture
             // 
@@ -569,6 +575,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1190, 563);
+            this.Controls.Add(this.cboIzjava);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.cboReferent);
@@ -581,7 +588,6 @@
             this.Controls.Add(this.dtPDV);
             this.Controls.Add(this.dtDatum);
             this.Controls.Add(this.txtNapomena);
-            this.Controls.Add(this.txtIzjava);
             this.Controls.Add(this.txtKurs);
             this.Controls.Add(this.txtMestoIstovara);
             this.Controls.Add(this.txtMestoUtovara);
@@ -646,7 +652,6 @@
         private System.Windows.Forms.ComboBox cboReferent;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtIzjava;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtNapomena;
         private System.Windows.Forms.Panel panel1;
@@ -659,7 +664,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox txtJM;
         private System.Windows.Forms.TextBox txtCena;
         private System.Windows.Forms.TextBox txtKolicina;
         private System.Windows.Forms.TextBox txtRB;
@@ -669,5 +673,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox cboNajava;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox cboIzjava;
+        private System.Windows.Forms.ComboBox cboJM;
     }
 }

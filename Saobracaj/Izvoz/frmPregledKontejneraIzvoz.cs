@@ -16,6 +16,8 @@ namespace Saobracaj.Izvoz
 {
     public partial class frmPregledKontejneraIzvoz : Form
     {
+        private string connect = Sifarnici.frmLogovanje.connectionString;
+
         public frmPregledKontejneraIzvoz()
         {
             InitializeComponent();
@@ -62,9 +64,9 @@ namespace Saobracaj.Izvoz
                    "        uvNacinPakovanja ON Izvoz.NacinPakovanja = uvNacinPakovanja.ID order by Izvoz.ID desc ";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
+          // var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+          //  SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, c);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
@@ -165,9 +167,9 @@ namespace Saobracaj.Izvoz
                    " order by Izvoz.ID desc ";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
+           // var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+          //  SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, c);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
@@ -289,9 +291,9 @@ namespace Saobracaj.Izvoz
                   "         Partnerji AS Partnerji_6 ON Izvoz.SpediterRijeka = Partnerji_6.PaSifra LEFT JOIN " +
                    "        uvNacinPakovanja ON Izvoz.NacinPakovanja = uvNacinPakovanja.ID order by Izvoz.ID desc ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
+         //   var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+         //   SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, c);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);

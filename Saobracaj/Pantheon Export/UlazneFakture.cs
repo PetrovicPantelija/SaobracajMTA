@@ -111,6 +111,14 @@ namespace Saobracaj.Pantheon_Export
             cboNosilac.DataSource = nosilacDS.Tables[0];
             cboNosilac.DisplayMember = "NazivNosiocaTroska";
             cboNosilac.ValueMember = "ID";
+
+            var jm = "Select MeNaziv from MerskeEnote order by MeSifra";
+            var jmDa = new SqlDataAdapter(jm, conn);
+            var jmDS = new DataSet();
+            jmDa.Fill(jmDS);
+            cboJM.DataSource= jmDS.Tables[0];
+            cboJM.DisplayMember = "MeNaziv";
+            cboJM.ValueMember = "MeNaziv";
         }
         private void FillGV()
         {
@@ -154,6 +162,7 @@ namespace Saobracaj.Pantheon_Export
         {
 
         }
+        string crmID;
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
@@ -175,6 +184,15 @@ namespace Saobracaj.Pantheon_Export
             }
             conn.Close();
             txtID.Text = ID.ToString();
+            string query2 = "SELECT MAX(crmID)+1 AS CrmID FROM (SELECT crmID FROM faktura UNION ALL SELECT crmID FROM ulfak) AS CRMID";
+            conn.Open();
+            SqlCommand cmd2 = new SqlCommand(query2, conn);
+            SqlDataReader dr2 = cmd2.ExecuteReader();
+            while (dr2.Read())
+            {
+                crmID = dr2[0].ToString();
+            }
+            conn.Close();
 
         }
 
@@ -188,7 +206,7 @@ namespace Saobracaj.Pantheon_Export
         {
             if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count+1; }
             InsertPatheonExport ins = new InsertPatheonExport();
-            ins.InsUlFakPostav(Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), txtJM.Text.ToString().TrimEnd(), textBox1.Text.ToString());
+            ins.InsUlFakPostav(Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), cboJM.SelectedValue.ToString().TrimEnd(), textBox1.Text.ToString());
             FillGV();
         }
 
@@ -204,7 +222,7 @@ namespace Saobracaj.Pantheon_Export
             {
                 ins.InsUlFak(Convert.ToInt32(txtID.Text), cboCRM.SelectedValue.ToString(),cboVrstaDok.Text.ToString().Substring(0, 2), txtBrFakture.Text.ToString(), Convert.ToInt32(cboDobavljac.SelectedValue), cboTip.Text.ToString().Substring(0, 1),
                     Convert.ToDateTime(dtPrijem.Value.ToString()), cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Text), txtRacunDobavljaca.Text.ToString(), Convert.ToDateTime(dtIzdavanje.Value.ToString()), Convert.ToDateTime(dtPDV.Value.ToString()),
-                    Convert.ToDateTime(dtValute.Value.ToString()), Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboCRM.SelectedValue), txtNapomena.Text.ToString().TrimEnd());
+                    Convert.ToDateTime(dtValute.Value.ToString()), Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboCRM.SelectedValue), txtNapomena.Text.ToString().TrimEnd(),Convert.ToInt32(crmID));
             }
             else
             {
@@ -217,19 +235,15 @@ namespace Saobracaj.Pantheon_Export
 
         private void cboMP_Leave(object sender, EventArgs e)
         {
-            string query = "Select MpSifENoteMere1 From MaticniPodatki Where MPSifra=" + Convert.ToString(cboMP.SelectedValue);
-            SqlConnection conn = new SqlConnection(connect);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                txtJM.Text = dr[0].ToString();
-            }
-            conn.Close();
+
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UlazneFakture_Load(object sender, EventArgs e)
         {
 
         }
