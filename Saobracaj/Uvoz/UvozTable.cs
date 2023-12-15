@@ -112,7 +112,7 @@ namespace Saobracaj.Uvoz
         }
         private void UpdateVrednostiPolja(int IdZaPromenu)
         {
-            
+            /*
             
             ---- Datumska  Datum BZ, ATA broda u Luku Rijeka
              --- CHECK DobijenBZ, Prioritet
@@ -139,6 +139,7 @@ BTTO kontejnera
 BTTO robe
 Koleta
 
+*/
 
 
 
@@ -148,159 +149,160 @@ Koleta
 
 
 
- 
 
 
 
 
+            /*
+
+                        string updatestring = "";
+                        switch (cboPolje.Text)
+                        {
+                            case "Naziv broda":
+                                updatestring = " Update uvoz set NazivBroda = " + cbBrod.SelectedValue;
+                                break;
+                            case "Napomena 1":
+                                updatestring = " Update uvoz set Napomena1 = '" + txtNapomena1.Text + "'";
+                                break;
+                            case "Datum BZ":
+                                updatestring = " Update uvoz set DobijeBZ = '" + txtBZ.Text.ToString().TrimEnd() + "'";
+                                break;
+                            case "PIN":
+                                updatestring = " Update uvoz set PIN = '" + txtPIN.Text + "'";
+                                break;
+                            case "Vrsta kontejnera":
+                                updatestring = " Update uvoz set TaraKontejnera = " + Convert.ToInt32(txtTipKont.SelectedValue);
+                                break;
+                            case "Relacija R\\L\\SRB":
+                                updatestring = " Update uvoz set RLTerminali = " + Convert.ToInt32(cboRLTerminal.SelectedValue);
+                                break;
+                            case "BL":
+                                updatestring = " Update uvoz set BrodskaTeretnica = '" + txtTeretnica.Text + "'";
+                                break;
+                            case "ADR":
+                                updatestring = " Update uvoz set ADR = " + Convert.ToInt32(txtADR.SelectedValue);
+                                break;
+                            case "Brodar":
+                                updatestring = " Update uvoz set Brodar = " + Convert.ToInt32(cboBrodar.SelectedValue);
+                                break;
+                            case "Vlasnik":
+                                updatestring = " Update uvoz set Vlasnik = " + Convert.ToInt32(cbVlasnikKont.SelectedValue);
+                                break;
+                            case "Uvoznik":
+                                updatestring = " Update uvoz set Uvoznik = " + Convert.ToInt32(cboUvoznik.SelectedValue);
+                                break;
+                            case "Nalogodavac 1":
+                                updatestring = " Update uvoz set Nalogodavac1 = " + Convert.ToInt32(cboNalogodavac1.SelectedValue);
+                                break;
+                            case "Ref1":
+                                updatestring = " Update uvoz set Ref1 = '" + txtRef1.Text + "'";
+                                break;
+                            case "Nalogodavac 2":
+                                updatestring = " Update uvoz set Nalogodavac2 = " + Convert.ToInt32(cboNalogodavac2.SelectedValue);
+                                break;
+                            case "Ref2":
+                                updatestring = " Update uvoz set Ref2 = '" + txtOpsti.Text + "'";
+                                break;
+                            case "Nalogodavac3":
+                                updatestring = " Update uvoz set Nalogodavac3 = " + Convert.ToInt32(cboNalogodavac3.SelectedValue);
+                                break;
+                            case "Ref3":
+                                updatestring = " Update uvoz set Ref3 = '" + txtRef3.Text + "'";
+                                break;
+                            case "VrstaPregleda":
+                                updatestring = " Update uvoz set VrstaPregleda = '" + Convert.ToInt32(txtVrstaPregleda.SelectedValue) + "'";
+                                break;
+                            case "Špedicija - RTCLeget":
+                                updatestring = " Update uvoz set SpedicijaRTC = " + Convert.ToInt32(cboSpedicijaRTC.SelectedValue);
+                                break;
+                            case "Špedicija granica":
+                                updatestring = " Update uvoz set SpedicijaGranica = " + Convert.ToInt32(cboSpedicijaG.SelectedValue);
+                                break;
+                            case "Carinski postupak":
+                                updatestring = " Update uvoz set CarinskiPostupak = " + Convert.ToInt32(cboCarinskiPostupak.SelectedValue);
+                                break;
+                            case "Postupak sa robom":
+                                updatestring = " Update uvoz set PostupakSaRobom = " + Convert.ToInt32(cbPostupak.SelectedValue);
+                                break;
+                            case "Način pakovanja":
+                                updatestring = " Update uvoz set NacinPakovanja = " + Convert.ToInt32(cbNacinPakovanja.SelectedValue);
+                                break;
+                            case "Napomena 2":
+                                updatestring = " Update uvoz set Napomena2 = " + txtNapomena.Text;
+                                break;
+                            case "Odredišna špedicija":
+                                updatestring = " Update uvoz set OdredisnaSpedicija = " + Convert.ToInt32(cbOspedicija.SelectedValue);
+                                break;
+                            case "Carinarnica":
+                                updatestring = " Update uvoz set OdredisnaCarina = " + Convert.ToInt32(cbOcarina.SelectedValue);
+                                break;
+                            case "Mesto istovara":
+                                updatestring = " Update uvoz set MestoIstovara = '" + Convert.ToInt32(txtMesto.SelectedValue) + "'";
+                                break;
+                            case "Kontakt osoba":
+                                updatestring = " Update uvoz set KontaktOsoba = '" + Convert.ToInt32(txtKontaktOsoba.SelectedValue) + "'";
+                                break;
+                            case "EMail":
+                                updatestring = " Update uvoz set Email = '" + txtMail.Text.ToString() + "'";
+                                break;
+                            default:
+                                Console.WriteLine("Nema podatka");
+                                break;
+
+                        }
 
 
-            string updatestring = "";
-            switch (cboPolje.Text)
-            {
-                case "Naziv broda":
-                    updatestring = " Update uvoz set NazivBroda = " + cbBrod.SelectedValue;
-                    break;
-                case "Napomena 1":
-                    updatestring = " Update uvoz set Napomena1 = '" + txtNapomena1.Text + "'";
-                    break;
-                case "Datum BZ":
-                    updatestring = " Update uvoz set DobijeBZ = '" + txtBZ.Text.ToString().TrimEnd() + "'";
-                    break;
-                case "PIN":
-                    updatestring = " Update uvoz set PIN = '" + txtPIN.Text + "'";
-                    break;
-                case "Vrsta kontejnera":
-                    updatestring = " Update uvoz set TaraKontejnera = " + Convert.ToInt32(txtTipKont.SelectedValue);
-                    break;
-                case "Relacija R\\L\\SRB":
-                    updatestring = " Update uvoz set RLTerminali = " + Convert.ToInt32(cboRLTerminal.SelectedValue);
-                    break;
-                case "BL":
-                    updatestring = " Update uvoz set BrodskaTeretnica = '" + txtTeretnica.Text + "'";
-                    break;
-                case "ADR":
-                    updatestring = " Update uvoz set ADR = " + Convert.ToInt32(txtADR.SelectedValue);
-                    break;
-                case "Brodar":
-                    updatestring = " Update uvoz set Brodar = " + Convert.ToInt32(cboBrodar.SelectedValue);
-                    break;
-                case "Vlasnik":
-                    updatestring = " Update uvoz set Vlasnik = " + Convert.ToInt32(cbVlasnikKont.SelectedValue);
-                    break;
-                case "Uvoznik":
-                    updatestring = " Update uvoz set Uvoznik = " + Convert.ToInt32(cboUvoznik.SelectedValue);
-                    break;
-                case "Nalogodavac 1":
-                    updatestring = " Update uvoz set Nalogodavac1 = " + Convert.ToInt32(cboNalogodavac1.SelectedValue);
-                    break;
-                case "Ref1":
-                    updatestring = " Update uvoz set Ref1 = '" + txtRef1.Text + "'";
-                    break;
-                case "Nalogodavac 2":
-                    updatestring = " Update uvoz set Nalogodavac2 = " + Convert.ToInt32(cboNalogodavac2.SelectedValue);
-                    break;
-                case "Ref2":
-                    updatestring = " Update uvoz set Ref2 = '" + txtOpsti.Text + "'";
-                    break;
-                case "Nalogodavac3":
-                    updatestring = " Update uvoz set Nalogodavac3 = " + Convert.ToInt32(cboNalogodavac3.SelectedValue);
-                    break;
-                case "Ref3":
-                    updatestring = " Update uvoz set Ref3 = '" + txtRef3.Text + "'";
-                    break;
-                case "VrstaPregleda":
-                    updatestring = " Update uvoz set VrstaPregleda = '" + Convert.ToInt32(txtVrstaPregleda.SelectedValue) + "'";
-                    break;
-                case "Špedicija - RTCLeget":
-                    updatestring = " Update uvoz set SpedicijaRTC = " + Convert.ToInt32(cboSpedicijaRTC.SelectedValue);
-                    break;
-                case "Špedicija granica":
-                    updatestring = " Update uvoz set SpedicijaGranica = " + Convert.ToInt32(cboSpedicijaG.SelectedValue);
-                    break;
-                case "Carinski postupak":
-                    updatestring = " Update uvoz set CarinskiPostupak = " + Convert.ToInt32(cboCarinskiPostupak.SelectedValue);
-                    break;
-                case "Postupak sa robom":
-                    updatestring = " Update uvoz set PostupakSaRobom = " + Convert.ToInt32(cbPostupak.SelectedValue);
-                    break;
-                case "Način pakovanja":
-                    updatestring = " Update uvoz set NacinPakovanja = " + Convert.ToInt32(cbNacinPakovanja.SelectedValue);
-                    break;
-                case "Napomena 2":
-                    updatestring = " Update uvoz set Napomena2 = " + txtNapomena.Text;
-                    break;
-                case "Odredišna špedicija":
-                    updatestring = " Update uvoz set OdredisnaSpedicija = " + Convert.ToInt32(cbOspedicija.SelectedValue);
-                    break;
-                case "Carinarnica":
-                    updatestring = " Update uvoz set OdredisnaCarina = " + Convert.ToInt32(cbOcarina.SelectedValue);
-                    break;
-                case "Mesto istovara":
-                    updatestring = " Update uvoz set MestoIstovara = '" + Convert.ToInt32(txtMesto.SelectedValue) + "'";
-                    break;
-                case "Kontakt osoba":
-                    updatestring = " Update uvoz set KontaktOsoba = '" + Convert.ToInt32(txtKontaktOsoba.SelectedValue) + "'";
-                    break;
-                case "EMail":
-                    updatestring = " Update uvoz set Email = '" + txtMail.Text.ToString() + "'";
-                    break;
-                default:
-                    Console.WriteLine("Nema podatka");
-                    break;
+                        try
+                        {
+                            // 1. Create Command
+                            // Sql Update Statement
+                            string updateSql = updatestring + " where ID = " + IdZaPromenu;
 
-            }
+                            SqlConnection conn = new SqlConnection(connection);
+                            SqlCommand cmd = new SqlCommand(updateSql, conn);
+                            conn.Open();
+                            var q = cmd.ExecuteNonQuery();
+                            conn.Close();
 
 
-            try
-            {
-                // 1. Create Command
-                // Sql Update Statement
-                string updateSql = updatestring + " where ID = " + IdZaPromenu;
+                        }
 
-                SqlConnection conn = new SqlConnection(connection);
-                SqlCommand cmd = new SqlCommand(updateSql, conn);
-                conn.Open();
-                var q = cmd.ExecuteNonQuery();
-                conn.Close();
-
-
-            }
-
-            catch (SqlException ex)
-            {
-                // Display error
-                Console.WriteLine("Error: " + ex.ToString());
-            }
+                        catch (SqlException ex)
+                        {
+                            // Display error
+                            Console.WriteLine("Error: " + ex.ToString());
+                        }
 
 
 
-            //FillGV();
-        }
-        private void button7_Click(object sender, EventArgs e)
-        {
-            int IDZaPromenu = 0;
-            try
-            {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
-                        IDZaPromenu = Convert.ToInt32(row.Cells[0].Value.ToString());
-                        UpdateVrednostiPolja(IDZaPromenu);
+                        //FillGV();
                     }
-                }
-                // FillGV();
+                    private void button7_Click(object sender, EventArgs e)
+                    {
+                        int IDZaPromenu = 0;
+                        try
+                        {
+                            foreach (DataGridViewRow row in dataGridView1.Rows)
+                            {
+                                if (row.Selected)
+                                {
+                                    IDZaPromenu = Convert.ToInt32(row.Cells[0].Value.ToString());
+                                    UpdateVrednostiPolja(IDZaPromenu);
+                                }
+                            }
+                            // FillGV();
 
-            }
-            catch
-            {
-                MessageBox.Show("Nije uspela selekcija stavki");
-            }
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Nije uspela selekcija stavki");
+                        }
+            */
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            /*
             string updatestring = "";
             switch (cboPolje.Text)
             {
@@ -395,11 +397,14 @@ Koleta
                 default:
                     Console.WriteLine("Nema podatka");
                     break;
+            
             }
-    }
+            */
+        }
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
 
         }
     }
+}

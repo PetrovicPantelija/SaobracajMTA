@@ -123,15 +123,7 @@ namespace Saobracaj.Uvoz
             // 
             // button7
             // 
-            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.button7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button7.Location = new System.Drawing.Point(858, 31);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(83, 24);
-            this.button7.TabIndex = 58;
-            this.button7.Text = "Promeni";
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+      
             // 
             // cboPolje
             // 
