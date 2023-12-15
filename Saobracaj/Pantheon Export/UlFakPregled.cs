@@ -30,7 +30,13 @@ namespace Saobracaj.Pantheon_Export
         }
         private void FillGV()
         {
-            var select = "select ID,Predvidjanje,VrstaDokumenta,Tip,DatumPrijema,Valuta,Kurs,FakturaBr,IDDobavljaca,RacunDobavljaca,DatumIzdavanja,DatumPDVa,DatumValute,Referent,Napomena from UlFak order by ID desc";
+            var select = "select UlFak.ID,PredvidjanjeID,VrstaDokumenta,Tip,DatumPrijema,UlFak.Valuta,Kurs,FakturaBr,RTrim(PaNaziv) as Dobavljac,RacunDobavljaca,DatumIzdavanja,DatumPDVa,DatumValute," +
+                "(RTrim(DeIme)+' '+RTrim(DePriimek)) as Referent,Napomena,UlFak.Predvidjanje,IDDobavljaca,UlFak.Referent " +
+                "from UlFak " +
+                "inner join Predvidjanje on UlFak.Predvidjanje=Predvidjanje.ID " +
+                "inner join Partnerji on UlFak.IDDobavljaca=Partnerji.PaSifra " +
+                "inner join Delavci on UlFak.Referent=Delavci.DeSifra " +
+                "order by UlFak.ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new System.Data.DataSet();
@@ -50,6 +56,19 @@ namespace Saobracaj.Pantheon_Export
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+
+            dataGridView1.Columns[0].Width = 50;
+            dataGridView1.Columns[1].Width = 100;
+            dataGridView1.Columns[2].Width = 80;
+            dataGridView1.Columns[3].Width = 50;
+            dataGridView1.Columns[5].Width = 60;
+            dataGridView1.Columns[6].Width = 60;
+            dataGridView1.Columns[8].Width = 180;
+
+            dataGridView1.Columns[15].Visible = false;
+            dataGridView1.Columns[16].Visible = false;
+            dataGridView1.Columns[17].Visible = false;
 
 
         }
@@ -144,10 +163,10 @@ namespace Saobracaj.Pantheon_Export
                     MessageBox.Show(response.ToString());
 
 
-                    if (response.Contains("Error") == true || response.Contains("Greška")==true)
+                    if (response.Contains("Error") == true || response.Contains("Greška")==true || response.Contains("ERROR")==true)
                     {
                         MessageBox.Show("Slanje nije uspelo");
-                        MessageBox.Show(response.ToString());
+                        //MessageBox.Show(response.ToString());
                         return;
                     }
                     else
@@ -163,6 +182,7 @@ namespace Saobracaj.Pantheon_Export
                                 conn.Close();
                             }
                         }
+                        MessageBox.Show("Uspešan prenos");
                     }
                 }
             }
@@ -179,19 +199,19 @@ namespace Saobracaj.Pantheon_Export
                     if (row.Selected)
                     {
                         ID = Convert.ToInt32(row.Cells[0].Value);
-                        Predvidjanje = Convert.ToInt32(row.Cells[1].Value);
+                        Predvidjanje = Convert.ToInt32(row.Cells[15].Value);
                         VrstaDokumenta = row.Cells[2].Value.ToString();
                         TipDokumenta = row.Cells[3].Value.ToString();
                         DatumPrijema = Convert.ToDateTime(row.Cells[4].Value);
                         Valuta = row.Cells[5].Value.ToString();
                         Kurs = Convert.ToDecimal(row.Cells[6].Value);
                         FakturaBr = row.Cells[7].Value.ToString();
-                        Dobavljac = Convert.ToInt32(row.Cells[8].Value);
+                        Dobavljac = Convert.ToInt32(row.Cells[16].Value);
                         RacunDobavljaca = row.Cells[9].Value.ToString();
                         DatumIzdavanja = Convert.ToDateTime(row.Cells[10].Value);
                         DatumPDVa = Convert.ToDateTime(row.Cells[11].Value);
                         DatumValute = Convert.ToDateTime(row.Cells[12].Value);
-                        Referent = Convert.ToInt32(row.Cells[13].Value);
+                        Referent = Convert.ToInt32(row.Cells[17].Value);
                         Napomena = row.Cells[14].Value.ToString();
                     }
                 }

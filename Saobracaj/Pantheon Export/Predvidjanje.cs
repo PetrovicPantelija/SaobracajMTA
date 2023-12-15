@@ -255,7 +255,7 @@ namespace Saobracaj.Pantheon_Export
                         var result = streamReader.ReadToEnd();
                         response = result.ToString();
                         MessageBox.Show(response.ToString());
-                        if (response.Contains("Error") == true || response.Contains("Greška")==true)
+                        if (response.Contains("Error") == true || response.Contains("Greška")==true || response.Contains("ERROR")==true)
                         {
                             MessageBox.Show("Slanje nije uspelo \n" + response.ToString());
                             return;
@@ -272,6 +272,7 @@ namespace Saobracaj.Pantheon_Export
                                     conn.Close();
                                 }
                             }
+                            MessageBox.Show("Uspešan prenos");
                         }
                     }
 

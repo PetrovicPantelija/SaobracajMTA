@@ -79,7 +79,7 @@ namespace Saobracaj.Pantheon_Export
             cboValuta.DisplayMember = "VaNaziv";
             cboValuta.ValueMember = "VaSifra";
 
-            var dobavljac = "Select PaSifra,PaNaziv from Partnerji order by PaSifra";
+            var dobavljac = "Select PaSifra,PaNaziv from Partnerji Where Supplier='T' order by PaSifra";
             var dobavljacDa = new SqlDataAdapter(dobavljac, conn);
             var dobavljacDS = new DataSet();
             dobavljacDa.Fill(dobavljacDS);

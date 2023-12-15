@@ -46,12 +46,12 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.txtNosilacTroska = new System.Windows.Forms.TextBox();
             this.txtNazivNosioca = new System.Windows.Forms.TextBox();
-            this.txtGrupa = new System.Windows.Forms.TextBox();
             this.cboKupac = new System.Windows.Forms.ComboBox();
             this.cboOdeljenje = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
+            this.cboGrupa = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -144,7 +144,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(108, 37);
+            this.label2.Location = new System.Drawing.Point(86, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(74, 13);
             this.label2.TabIndex = 198;
@@ -153,7 +153,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(277, 37);
+            this.label3.Location = new System.Drawing.Point(246, 37);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(106, 13);
             this.label3.TabIndex = 198;
@@ -162,7 +162,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(483, 37);
+            this.label4.Location = new System.Drawing.Point(488, 37);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 13);
             this.label4.TabIndex = 198;
@@ -171,7 +171,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(683, 37);
+            this.label5.Location = new System.Drawing.Point(732, 37);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 13);
             this.label5.TabIndex = 198;
@@ -180,7 +180,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(893, 37);
+            this.label6.Location = new System.Drawing.Point(975, 37);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(51, 13);
             this.label6.TabIndex = 198;
@@ -207,29 +207,22 @@
             // 
             // txtNosilacTroska
             // 
-            this.txtNosilacTroska.Location = new System.Drawing.Point(92, 53);
+            this.txtNosilacTroska.Location = new System.Drawing.Point(72, 53);
             this.txtNosilacTroska.Name = "txtNosilacTroska";
             this.txtNosilacTroska.Size = new System.Drawing.Size(110, 20);
             this.txtNosilacTroska.TabIndex = 200;
             // 
             // txtNazivNosioca
             // 
-            this.txtNazivNosioca.Location = new System.Drawing.Point(227, 53);
+            this.txtNazivNosioca.Location = new System.Drawing.Point(197, 53);
             this.txtNazivNosioca.Name = "txtNazivNosioca";
             this.txtNazivNosioca.Size = new System.Drawing.Size(200, 20);
             this.txtNazivNosioca.TabIndex = 200;
             // 
-            // txtGrupa
-            // 
-            this.txtGrupa.Location = new System.Drawing.Point(451, 53);
-            this.txtGrupa.Name = "txtGrupa";
-            this.txtGrupa.Size = new System.Drawing.Size(104, 20);
-            this.txtGrupa.TabIndex = 200;
-            // 
             // cboKupac
             // 
             this.cboKupac.FormattingEnabled = true;
-            this.cboKupac.Location = new System.Drawing.Point(572, 53);
+            this.cboKupac.Location = new System.Drawing.Point(622, 53);
             this.cboKupac.Name = "cboKupac";
             this.cboKupac.Size = new System.Drawing.Size(265, 21);
             this.cboKupac.TabIndex = 201;
@@ -237,7 +230,7 @@
             // cboOdeljenje
             // 
             this.cboOdeljenje.FormattingEnabled = true;
-            this.cboOdeljenje.Location = new System.Drawing.Point(896, 52);
+            this.cboOdeljenje.Location = new System.Drawing.Point(896, 53);
             this.cboOdeljenje.Name = "cboOdeljenje";
             this.cboOdeljenje.Size = new System.Drawing.Size(231, 21);
             this.cboOdeljenje.TabIndex = 202;
@@ -277,18 +270,33 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // cboGrupa
+            // 
+            this.cboGrupa.FormattingEnabled = true;
+            this.cboGrupa.Items.AddRange(new object[] {
+            "AUTOMOBIL",
+            "KARTICA",
+            "MASINA",
+            "OPERACIJE",
+            "PO",
+            "ZAPOSLENI"});
+            this.cboGrupa.Location = new System.Drawing.Point(403, 53);
+            this.cboGrupa.Name = "cboGrupa";
+            this.cboGrupa.Size = new System.Drawing.Size(213, 21);
+            this.cboGrupa.TabIndex = 204;
+            // 
             // NosiociTroskova
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1164, 549);
+            this.Controls.Add(this.cboGrupa);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.cboOdeljenje);
             this.Controls.Add(this.cboKupac);
             this.Controls.Add(this.txtNazivNosioca);
             this.Controls.Add(this.txtNosilacTroska);
-            this.Controls.Add(this.txtGrupa);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label6);
@@ -328,7 +336,6 @@
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.TextBox txtNosilacTroska;
         private System.Windows.Forms.TextBox txtNazivNosioca;
-        private System.Windows.Forms.TextBox txtGrupa;
         private System.Windows.Forms.ComboBox cboKupac;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ComboBox cboOdeljenje;
@@ -336,5 +343,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.ComboBox cboGrupa;
     }
 }

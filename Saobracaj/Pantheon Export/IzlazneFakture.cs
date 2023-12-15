@@ -111,7 +111,7 @@ namespace Saobracaj.Pantheon_Export
             cboReferent.DisplayMember = "Opis";
             cboReferent.ValueMember = "DeSifra";
 
-            var dobavljac = "Select PaSifra,PaNaziv from Partnerji order by PaSifra";
+            var dobavljac = "Select PaSifra,PaNaziv from Partnerji Where Buyer='T' order by PaSifra";
             var dobavljacDa = new SqlDataAdapter(dobavljac, conn);
             var dobavljacDS = new DataSet();
             dobavljacDa.Fill(dobavljacDS);

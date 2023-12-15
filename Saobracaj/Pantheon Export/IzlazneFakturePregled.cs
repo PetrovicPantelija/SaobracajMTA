@@ -12,9 +12,11 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.Xml;
 using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 
 namespace Saobracaj.Pantheon_Export
@@ -30,16 +32,32 @@ namespace Saobracaj.Pantheon_Export
         }
         private void FillGV()
         {
-            var select = "Select FaStFak,FaDatFak,FaPartPlac,FaDatVal,Kurs,FaObdobje,FaValutaCene,MestoUtovara,DatumUtovara,FaDostMesto,DatumIstovara,FaRefer,FaOpomba1,FaOpomba2,PaNaziv " +
-                "From Faktura inner join Partnerji on Faktura.FaPartPlac=Partnerji.PaSifra order by FaStFak desc";
+            var select = "Select FaStFak, FaDatFak as Datum,RTrim(PaNaziv) as Kupac,FaDatVal as DatumValute,Kurs,FaObdobje as DatumPDV,FaValutaCene as Valuta,MestoUtovara,DatumUtovara,FaDostMesto," +
+                "DatumIstovara,(Rtrim(deIme) + ' ' + RTrim(DePriimek)) as Referent ,Izjave.Naziv as Izjava,FaOpomba2 as Napomena,FaPartPlac,FaRefer " +
+                "From Faktura " +
+                "inner join Partnerji on Faktura.FaPartPlac = Partnerji.PaSifra " +
+                "Inner join Delavci on Faktura.FaRefer = Delavci.DeSifra " +
+                "inner join Izjave on Faktura.FaOpomba1 = Izjave.ID order by FaStFak desc";
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new System.Data.DataSet();
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
-           
-            dataGridView1.Columns[2].Visible = false;
+
+            dataGridView1.BorderStyle = BorderStyle.FixedSingle;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            /*dataGridView1.Columns[2].Visible = false;
             dataGridView1.Columns[3].Visible = false;
             dataGridView1.Columns[4].Visible = false;
             dataGridView1.Columns[5].Visible = false;
@@ -49,7 +67,7 @@ namespace Saobracaj.Pantheon_Export
             dataGridView1.Columns[9].Visible = false;
             dataGridView1.Columns[10].Visible = false;
             dataGridView1.Columns[11].Visible = false;
-            dataGridView1.Columns[12].Visible = false;
+            dataGridView1.Columns[12].Visible = false;*/
         }
         public string Valuta,MestoUtovara,MestoIstovara,Izjava,Napomena;
         public int ID,Primalac,Referent;
@@ -144,10 +162,10 @@ namespace Saobracaj.Pantheon_Export
                     MessageBox.Show(response.ToString());
 
 
-                    if (response.Contains("ERROR") == true || response.Contains("Greška")==true)
+                    if (response.Contains("ERROR") == true || response.Contains("Greška")==true || response.Contains("Error")==true)
                     {
                         MessageBox.Show("Slanje nije uspelo");
-                        MessageBox.Show(response.ToString());
+                        //MessageBox.Show(response.ToString());
                         return;
                     }
                     else
@@ -162,6 +180,7 @@ namespace Saobracaj.Pantheon_Export
                                 conn.Close();
                             }
                         }
+                        MessageBox.Show("Uspešan prenos");
                     }
                 }
             }
@@ -176,20 +195,20 @@ namespace Saobracaj.Pantheon_Export
                 {
                     if (row.Selected)
                     {
-                        ID = Convert.ToInt32(row.Cells["FaStFak"].Value);
-                        DatumDokumenta = Convert.ToDateTime(row.Cells["FaDatFak"].Value);
-                        Primalac = Convert.ToInt32(row.Cells["FaPartPlac"].Value);
-                        Valuta = row.Cells["FaValutaCene"].Value.ToString().TrimEnd();
-                        Kurs = Convert.ToDecimal(row.Cells["Kurs"].Value.ToString());
-                        DatumPDV = Convert.ToDateTime(row.Cells["FaObdobje"].Value);
-                        DatumValute = Convert.ToDateTime(row.Cells["FaDatVal"].Value);
-                        MestoUtovara = row.Cells["MestoUtovara"].Value.ToString();
-                        DatumUtovara = Convert.ToDateTime(row.Cells["DatumUtovara"].Value);
-                        MestoIstovara = row.Cells["FaDostMesto"].Value.ToString();
-                        DatumIstovara = Convert.ToDateTime(row.Cells["DatumIstovara"].Value);
-                        Referent = Convert.ToInt32(row.Cells["FaRefer"].Value);
-                        Izjava = row.Cells["FaOpomba1"].Value.ToString();
-                        Napomena = row.Cells["FaOpomba2"].Value.ToString();
+                        ID = Convert.ToInt32(row.Cells[0].Value);
+                        DatumDokumenta = Convert.ToDateTime(row.Cells[1].Value);
+                        Primalac = Convert.ToInt32(row.Cells[14].Value);
+                        Valuta = row.Cells[6].Value.ToString().TrimEnd();
+                        Kurs = Convert.ToDecimal(row.Cells[4].Value.ToString());
+                        DatumPDV = Convert.ToDateTime(row.Cells[5].Value);
+                        DatumValute = Convert.ToDateTime(row.Cells[3].Value);
+                        MestoUtovara = row.Cells[7].Value.ToString();
+                        DatumUtovara = Convert.ToDateTime(row.Cells[8].Value);
+                        MestoIstovara = row.Cells[9].Value.ToString();
+                        DatumIstovara = Convert.ToDateTime(row.Cells[10].Value);
+                        Referent = Convert.ToInt32(row.Cells[15].Value);
+                        Izjava = row.Cells[12].Value.ToString();
+                        Napomena = row.Cells[13].Value.ToString();
                     }
                 }
             }

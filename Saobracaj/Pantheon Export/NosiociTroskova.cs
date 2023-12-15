@@ -32,8 +32,8 @@ namespace Saobracaj.Pantheon_Export
         }
         private void FillGV()
         {
-            var select = "Select NosiociTroskova.ID,NosilacTroska,NazivNosiocaTroska,Grupa,RTrim(PaNaziv) as Kupac,RTrim(SifraSubjekta) as Odeljenje,Status From NosiociTroskova inner join Partnerji on NosiociTroskova.Kupac=Partnerji.PaSifra " +
-                "inner join Odeljenja on NosiociTroskova.Odeljenje=Odeljenja.ID WHere Status=0 order by ID desc";
+            var select = "Select NosiociTroskova.ID,NosilacTroska,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska,Grupa,RTrim(PaNaziv) as Kupac,RTrim(SifraSubjekta) as Odeljenje,NosiociTroskova.Status From NosiociTroskova inner join Partnerji on NosiociTroskova.Kupac=Partnerji.PaSifra " +
+                "inner join Odeljenja on NosiociTroskova.Odeljenje=Odeljenja.ID WHere NosiociTroskova.Status=0 order by ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -115,11 +115,11 @@ namespace Saobracaj.Pantheon_Export
             InsertPatheonExport ins = new InsertPatheonExport();
             if (status == true)
             {
-                ins.InsNosiociTroskova(txtNosilacTroska.Text.ToString().TrimEnd(), txtNazivNosioca.Text.ToString().TrimEnd(), txtGrupa.Text.ToString().TrimEnd(), Convert.ToInt32(cboKupac.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue));
+                ins.InsNosiociTroskova(txtNosilacTroska.Text.ToString().TrimEnd(), txtNazivNosioca.Text.ToString().TrimEnd(), cboGrupa.Text.ToString().TrimEnd(), Convert.ToInt32(cboKupac.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue));
             }
             else
             {
-                ins.UpdNosiociTroskova(Convert.ToInt32(txtID.Text), txtNosilacTroska.Text.ToString().TrimEnd(), txtNazivNosioca.Text.ToString().TrimEnd(), txtGrupa.Text.ToString().TrimEnd(), Convert.ToInt32(cboKupac.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue));
+                ins.UpdNosiociTroskova(Convert.ToInt32(txtID.Text), txtNosilacTroska.Text.ToString().TrimEnd(), txtNazivNosioca.Text.ToString().TrimEnd(), cboGrupa.Text.ToString().TrimEnd(), Convert.ToInt32(cboKupac.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue));
             }
             FillGV();
             status = false;
@@ -143,7 +143,7 @@ namespace Saobracaj.Pantheon_Export
                         txtID.Text = row.Cells[0].Value.ToString().TrimEnd();
                         txtNosilacTroska.Text = row.Cells[1].Value.ToString().TrimEnd();
                         txtNazivNosioca.Text = row.Cells[2].Value.ToString().TrimEnd();
-                        txtGrupa.Text = row.Cells[3].Value.ToString().TrimEnd();
+                        //txtGrupa.Text = row.Cells[3].Value.ToString().TrimEnd();
                         //cboKupac.SelectedValue = row.Cells[4].Value.ToString();
                         //txtOdeljenje.Text = row.Cells[5].Value.ToString().TrimEnd();
                     }
@@ -187,10 +187,10 @@ namespace Saobracaj.Pantheon_Export
                         var result = streamReader.ReadToEnd();
                         response = result.ToString();
                         MessageBox.Show(response.ToString());
-                        if (response.Contains("Error") == true || response.Contains("Greška")==true)
+                        if (response.Contains("Error") == true || response.Contains("Greška")==true || response.Contains("ERROR")==true)
                         {
                             MessageBox.Show("Slanje nije uspelo");
-                            MessageBox.Show(response.ToString());
+                            //MessageBox.Show(response.ToString());
                             return;
                         }
                         else
@@ -205,6 +205,7 @@ namespace Saobracaj.Pantheon_Export
                                     conn.Close();
                                 }
                             }
+                            MessageBox.Show("Uspešan prenos");
                         }
                     }
 
