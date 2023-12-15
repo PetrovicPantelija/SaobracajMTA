@@ -2205,5 +2205,10 @@ namespace Saobracaj.Uvoz
             FillDG2();
             FillDG4();
         }
+
+        private void txtTipKont_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
