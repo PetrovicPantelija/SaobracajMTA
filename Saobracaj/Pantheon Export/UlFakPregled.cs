@@ -80,7 +80,7 @@ namespace Saobracaj.Pantheon_Export
             string ID = "";
             string query1 = "Select CRMID as CRMDocumentId,1000 as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,PaNaziv as Issuer,Kurs as FXRate,RacunDobavljaca as Doc1, " +
                 "CONVERT(VARCHAR, DatumIzdavanja, 23) as DateDoc1,CONVERT(VARCHAR, DatumPDVa, 23) as DateVAT,CONVERT(VARCHAR, DatumValute, 23) as DateDue,PredvidjanjeID as PredvidjanjeId, " +
-                "Referent as UserId,Napomena as Napomena,UlFak.ID as ID " +
+                "UlFak.Referent as UserId,Napomena as Napomena,UlFak.ID as ID " +
                 "from UlFak " +
                 "Inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
                 "inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID Where UlFak.Status=0";

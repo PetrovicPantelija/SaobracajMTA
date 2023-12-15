@@ -62,6 +62,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtNapomena = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cboJM = new System.Windows.Forms.ComboBox();
             this.cboNajava = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -81,7 +82,7 @@
             this.cboMP = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cboIzjava = new System.Windows.Forms.ComboBox();
-            this.cboJM = new System.Windows.Forms.ComboBox();
+            this.btnObrisi = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -373,6 +374,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btnObrisi);
             this.panel1.Controls.Add(this.cboJM);
             this.panel1.Controls.Add(this.cboNajava);
             this.panel1.Controls.Add(this.label15);
@@ -396,6 +398,14 @@
             this.panel1.Size = new System.Drawing.Size(1166, 95);
             this.panel1.TabIndex = 206;
             // 
+            // cboJM
+            // 
+            this.cboJM.FormattingEnabled = true;
+            this.cboJM.Location = new System.Drawing.Point(742, 39);
+            this.cboJM.Name = "cboJM";
+            this.cboJM.Size = new System.Drawing.Size(121, 21);
+            this.cboJM.TabIndex = 208;
+            // 
             // cboNajava
             // 
             this.cboNajava.FormattingEnabled = true;
@@ -415,7 +425,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1078, 68);
+            this.button1.Location = new System.Drawing.Point(997, 67);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 201;
@@ -552,6 +562,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(1166, 207);
             this.dataGridView1.TabIndex = 207;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // cboIzjava
             // 
@@ -561,13 +572,15 @@
             this.cboIzjava.Size = new System.Drawing.Size(403, 21);
             this.cboIzjava.TabIndex = 208;
             // 
-            // cboJM
+            // btnObrisi
             // 
-            this.cboJM.FormattingEnabled = true;
-            this.cboJM.Location = new System.Drawing.Point(742, 39);
-            this.cboJM.Name = "cboJM";
-            this.cboJM.Size = new System.Drawing.Size(121, 21);
-            this.cboJM.TabIndex = 208;
+            this.btnObrisi.Location = new System.Drawing.Point(1078, 67);
+            this.btnObrisi.Name = "btnObrisi";
+            this.btnObrisi.Size = new System.Drawing.Size(75, 23);
+            this.btnObrisi.TabIndex = 209;
+            this.btnObrisi.Text = "Obrisi";
+            this.btnObrisi.UseVisualStyleBackColor = true;
+            this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
             // 
             // IzlazneFakture
             // 
@@ -675,5 +688,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox cboIzjava;
         private System.Windows.Forms.ComboBox cboJM;
+        private System.Windows.Forms.Button btnObrisi;
     }
 }
