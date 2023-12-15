@@ -3075,7 +3075,7 @@ namespace Saobracaj
         private void toolStripButton239_Click(object sender, EventArgs e)
         {
 
-            frmOrganizacionaJedinica otg = new frmOrganizacionaJedinica();
+            frmOrganizacionaJedinica otg = new frmOrganizacionaJedinica(Korisnik);
             PravoP = otg.Pravo;
             if (PravoP == true)
             {

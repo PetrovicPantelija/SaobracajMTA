@@ -89,6 +89,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label17 = new System.Windows.Forms.Label();
             this.txtDuzinaVoza = new System.Windows.Forms.NumericUpDown();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -367,7 +369,7 @@
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(947, 194);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Trase";
@@ -687,6 +689,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button7);
+            this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.label17);
             this.groupBox1.Controls.Add(this.txtDuzinaVoza);
             this.groupBox1.Controls.Add(this.cboTrase);
@@ -761,6 +765,30 @@
             this.txtDuzinaVoza.Size = new System.Drawing.Size(69, 20);
             this.txtDuzinaVoza.TabIndex = 123;
             this.txtDuzinaVoza.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(855, 162);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(81, 31);
+            this.button3.TabIndex = 125;
+            this.button3.Text = "Stare trase";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(138)))), ((int)(((byte)(204)))));
+            this.button7.ForeColor = System.Drawing.Color.White;
+            this.button7.Location = new System.Drawing.Point(768, 162);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(81, 31);
+            this.button7.TabIndex = 126;
+            this.button7.Text = "Nove Trase";
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // frmRadniNalogTraseLok
             // 
@@ -857,5 +885,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.NumericUpDown txtDuzinaVoza;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button7;
     }
 }

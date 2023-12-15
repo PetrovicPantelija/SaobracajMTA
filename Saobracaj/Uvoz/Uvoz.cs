@@ -847,7 +847,7 @@ namespace Saobracaj.Uvoz
                 select = "select  UvozVrstaManipulacije.ID as ID, UvozVrstaManipulacije.IDNadredjena as KontejnerID, Uvoz.BrojKontejnera, " +
 " UvozVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
 " UvozVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
-" Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac " +
+" Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, SaPDV " +
 " from UvozVrstaManipulacije " +
 " Inner    join VrstaManipulacije on VrstaManipulacije.ID = UvozVrstaManipulacije.IDVrstaManipulacije " +
 " inner " +
@@ -2197,6 +2197,13 @@ namespace Saobracaj.Uvoz
             txtMesto.SelectedValue =  TtxtMesto ;
             txtAdresaMestaUtovara.SelectedValue =  TtxtAdresaMestaUtovara ;
 
+        }
+
+        private void txtID_TextChanged(object sender, EventArgs e)
+        {
+            FillDGUsluge();
+            FillDG2();
+            FillDG4();
         }
     }
 }

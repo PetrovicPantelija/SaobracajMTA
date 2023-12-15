@@ -188,11 +188,11 @@ namespace Saobracaj.Dokumenta
   " INNER JOIN Partnerji as Partnerji_3 ON Najava.PrevoznikZa = Partnerji_3.PaSifra ";
             if (Arhiv == 0)
             {
-                select = select + " WHERE (Status <> 7 ) or (Status = 7 and Faktura ='') order by Najava.ID desc";
+                select = select + " WHERE (Najava.Status <> 7 ) or (Najava.Status = 7 and Faktura ='') order by Najava.ID desc";
             }
             else
             {
-                select = select + " WHERE (Status = 7 ) or Status = 8 order by Najava.ID desc";
+                select = select + " WHERE (Najava.Status = 7 ) or Najava.Status = 8 order by Najava.ID desc";
             }
           
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -1984,7 +1984,7 @@ namespace Saobracaj.Dokumenta
             {
 
                 var select = "   Select PorudzbinaID, ID as NajavaID, StvarnaPredaja, PrevozniPut, RobaNHM, RobaNHM2 from Najava " +
-                "  where Faktura = '' and ImaPovrat = 1 and Status = 9 and Platilac = " + Convert.ToInt32(cboPlatilac.SelectedValue);
+                "  where Faktura = '' and ImaPovrat = 1 and Najava.Status = 9 and Platilac = " + Convert.ToInt32(cboPlatilac.SelectedValue);
                 var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
@@ -2546,7 +2546,7 @@ namespace Saobracaj.Dokumenta
             var select = "   Select PorudzbinaID, Najava.ID as NajavaID, StvarnaPredaja, PrevozniPut, RobaNHM, NHM.Broj, RobaNHM2, N2.Broj from Najava " +
               "  left join NHM on NHM.ID = RobaNHM " +
                " left join NHM as n2 on n2.ID = RobaNHM2" +
-           "  where Faktura = '' and ImaPovrat = 1 and Status = 9 and Platilac = " + Convert.ToInt32(cboPlatilac.SelectedValue);
+           "  where Faktura = '' and ImaPovrat = 1 and Najava.Status = 9 and Platilac = " + Convert.ToInt32(cboPlatilac.SelectedValue);
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -2905,7 +2905,7 @@ namespace Saobracaj.Dokumenta
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
             var select = "Select Najava.Oznaka,stanice.Opis as Granicna,partnerji.PaNaziv as Posiljalac,partnerji1.PaNaziv as Primalac,stanice1.Opis as Uputna," +
-                "stanice2.Opis as Otpravna,PredvidjenoPrimanje,StvarnoPrimanje,PredvidjenaPredaja,StvarnaPredaja,Status,Tezina,BrojKola,partnerji2.PaNaziv as Platilac," +
+                "stanice2.Opis as Otpravna,PredvidjenoPrimanje,StvarnoPrimanje,PredvidjenaPredaja,StvarnaPredaja,Najava.Status,Tezina,BrojKola,partnerji2.PaNaziv as Platilac," +
                 "(Select(Cast(datediff(SECOND, StvarnoPrimanje, GETDATE()) / 86400 as nvarchar) + ':' + " +
                 "Cast(datediff(SECOND, StvarnoPrimanje, GETDATE()) / 3600 % 24 as nvarchar) + ':' + " +
                 "Cast(datediff(SECOND, StvarnoPrimanje, GETDATE()) / 60 % 60 as nvarchar))) as [Kasnjenje(dani: sati:minuti)] " +
@@ -2916,7 +2916,7 @@ namespace Saobracaj.Dokumenta
                 "inner join partnerji on Najava.Posiljalac = Partnerji.PaSifra " +
                 "inner join partnerji as partnerji1 on Najava.Primalac = partnerji1.PaSifra " +
                 "inner join partnerji as partnerji2 on Najava.Platilac = partnerji2.PaSifra " +
-                "Where(Status=2 or Status = 3 or status = 4 or status=5) and StvarnoPrimanje<>'1900-01-01 00:00:00.000'";
+                "Where(Najava.Status=2 or Najava.Status = 3 or Najava.status = 4 or sNajava.tatus=5) and StvarnoPrimanje<>'1900-01-01 00:00:00.000'";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -3159,7 +3159,7 @@ namespace Saobracaj.Dokumenta
   " inner JOIN  stanice AS stanice_4 ON Najava.Granicna = stanice_4.ID  " +
   " INNER JOIN Partnerji as Partnerji_3 ON Najava.PrevoznikZa = Partnerji_3.PaSifra ";
           
-                select = select + " WHERE (Status = 7 ) or Status = 8 order by Najava.ID desc";
+                select = select + " WHERE (Najava.Status = 7 ) or Najava.Status = 8 order by Najava.ID desc";
            
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;

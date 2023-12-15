@@ -269,9 +269,7 @@ namespace Testiranje.Sifarnici
         {
             RefreshDataGrid();
          
-                tsNew.Enabled = false;
-                tsSave.Enabled = false;
-                tsDelete.Enabled = false;
+               
            
         }
 

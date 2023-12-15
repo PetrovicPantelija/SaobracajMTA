@@ -1228,7 +1228,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
 
 
 
-        public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac)
+        public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV)
         {
           //  @IdNadredjena int,
 //@IDVrstaManipulacije int,
@@ -1282,6 +1282,13 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             platilac.Value = Platilac;
             cmd.Parameters.Add(platilac);
 
+            SqlParameter sapdv = new SqlParameter();
+            sapdv.ParameterName = "@SaPDV";
+            sapdv.SqlDbType = SqlDbType.Int;
+            sapdv.Direction = ParameterDirection.Input;
+            sapdv.Value = SaPDV;
+            cmd.Parameters.Add(sapdv);
+
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -1317,7 +1324,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             }
         }
 
-        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac)
+        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV)
         {
             //  @IdNadredjena int,
             //@IDVrstaManipulacije int,
@@ -1372,6 +1379,13 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             platilac.Direction = ParameterDirection.Input;
             platilac.Value = Platilac;
             cmd.Parameters.Add(platilac);
+
+            SqlParameter sapdv = new SqlParameter();
+            sapdv.ParameterName = "@SaPDV";
+            sapdv.SqlDbType = SqlDbType.Int;
+            sapdv.Direction = ParameterDirection.Input;
+            sapdv.Value = SaPDV;
+            cmd.Parameters.Add(sapdv);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
