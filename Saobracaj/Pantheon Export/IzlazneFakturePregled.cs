@@ -85,10 +85,11 @@ namespace Saobracaj.Pantheon_Export
 
             string query2 = "SELECT FakturaPostav.FaPStFak, FakturaPostav.FapStPos AS No, RTrim(MaticniPodatki.MpStaraSif) AS Ident," +
                 "CAST(FakturaPostav.FaPkolOdpr AS DECIMAL(10, 2)) AS Qty," +
-                "CAST(FakturaPostav.FaPCenaEM AS DECIMAL(10, 2)) AS Price, RTrim(NosiociTroskova.NosilacTroska), RTrim(FakturaPostav.FaPEM) AS JNT, '' AS Product " +
+                "CAST(FakturaPostav.FaPCenaEM AS DECIMAL(10, 2)) AS Price, RTrim(NosiociTroskova.NosilacTroska), RTrim(MeNaziv) AS JNT, '' AS Product" +
                 "FROM FakturaPostav " +
                 "INNER JOIN MaticniPodatki ON FakturaPostav.FaPSifra = MaticniPodatki.MpSifra " +
                 "INNER JOIN NosiociTroskova ON FakturaPostav.NosilacTroska = NosiociTroskova.ID " +
+                "Inner join MerskeEnote on FakturaPostav.FaPEM = MerskeEnote.MeSifra " +
                 "ORDER BY FakturaPostav.FapStPos ASC";
 
             List<object> combinedData = new List<object>();

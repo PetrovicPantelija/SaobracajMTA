@@ -19,7 +19,7 @@ namespace Saobracaj.Pantheon_Export
         int ID;
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
-        private string korisnik = frmLogovanje.user;
+        private string korisnik = frmLogovanje.user.ToString().TrimEnd();
         public IzlazneFakture()
         {
             InitializeComponent();
@@ -53,7 +53,7 @@ namespace Saobracaj.Pantheon_Export
         {
             if (txtID.Text != "")
             {
-                var select = "select FaPStFak as Faktura,FaPstPos as RB,FaPSifra as MP,FaPNaziv,FaPEM as JM,FaPKolOdpr as Kolicna,FapCenaEM as Cena,NosilacTroska,NajavaID From FakturaPostav Where FaPStFak=" + ID;
+                var select = "select FaPStFak as Faktura,FaPstPos as RB,FaPSifra as MP,FaPNaziv,FaPEM as JM,FaPKolOdpr as Kolicna,FapCenaEM as Cena,NosilacTroska,NajavaID,FapFakZap From FakturaPostav Where FaPStFak=" + ID;
                 SqlConnection conn = new SqlConnection(connect);
                 var dataAdapter = new SqlDataAdapter(select, conn);
                 var ds = new DataSet();
@@ -80,6 +80,7 @@ namespace Saobracaj.Pantheon_Export
                 dataGridView1.Columns[3].Width = 80;
                 dataGridView1.Columns[4].Width = 100;
                 dataGridView1.Columns[5].Width = 100;
+                dataGridView1.Columns[9].Visible = false;
 
                 if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count + 1; }
                 txtRB.Text = rb.ToString();
@@ -127,7 +128,7 @@ namespace Saobracaj.Pantheon_Export
             cboMP.DisplayMember = "MpNaziv";
             cboMP.ValueMember = "MpSifra";
 
-            var nosilac = "Select ID,NazivNosiocaTroska from NosiociTroskova order by ID";
+            var nosilac = "Select ID,NazivNosiocaTroska from NosiociTroskova order by ID desc";
             var nosilacDA = new SqlDataAdapter(nosilac, conn);
             var nosilacDS = new DataSet();
             nosilacDA.Fill(nosilacDS);
@@ -151,13 +152,13 @@ namespace Saobracaj.Pantheon_Export
             cboIzjava.DisplayMember = "Naziv";
             cboIzjava.ValueMember = "ID";
 
-            var jm = "Select MeNaziv from MerskeEnote order by MeSifra";
+            var jm = "Select MeSifra,MeNaziv from MerskeEnote order by MeSifra";
             var jmDa = new SqlDataAdapter(jm, conn);
             var jmDS = new DataSet();
             jmDa.Fill(jmDS);
             cboJM.DataSource = jmDS.Tables[0];
             cboJM.DisplayMember = "MeNaziv";
-            cboJM.ValueMember = "MeNaziv";
+            cboJM.ValueMember = "MeSifra";
         }
         
         private void cboReferent_SelectedValueChanged(object sender, EventArgs e)
@@ -255,6 +256,28 @@ namespace Saobracaj.Pantheon_Export
                 staraSif = dr[2].ToString().TrimEnd();
             }
             conn.Close();
+        }
+        int FaPFakZap;
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach(DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        FaPFakZap = Convert.ToInt32(row.Cells[9].Value);
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void btnObrisi_Click(object sender, EventArgs e)
+        {
+            InsertPatheonExport ins = new InsertPatheonExport();
+            ins.DelFakturaPostav(FaPFakZap);
+            FillGV();
         }
 
         int rb;

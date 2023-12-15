@@ -30,8 +30,7 @@ namespace Saobracaj.Pantheon_Export
         {
             InitializeComponent();
             ID = id;
-            FillCombo();
-            FillGV();
+
             txtID.Text = ID.ToString();
             cboCRM.SelectedValue = predvidjanje;
             cboVrstaDok.Text = vrstaDokumenta;
@@ -47,13 +46,14 @@ namespace Saobracaj.Pantheon_Export
             cboReferent.SelectedValue = referent;
             txtNapomena.Text = napomena.ToString();
             dtPrijem.Value = datumPrijema;
-
+            FillCombo();
+            FillGV();
         }
         private void FillCombo()
         {
             SqlConnection conn = new SqlConnection(connect);
 
-            var crm = "Select ID, PredvidjanjeID from Predvidjanje order by ID desc";
+            var crm = "Select ID, (RTrim(PredvidjanjeID) + '/Poz-'+ convert(nvarchar(255), PredvodjanjePoz)) as PredvidjanjeID from Predvidjanje order by ID desc";
             var crmDa = new SqlDataAdapter(crm, conn);
             var crmDS = new DataSet();
             crmDa.Fill(crmDS);
@@ -104,7 +104,7 @@ namespace Saobracaj.Pantheon_Export
             cboMP.DisplayMember = "MpNaziv";
             cboMP.ValueMember = "MpSifra";
 
-            var nosilac = "Select ID,NazivNosiocaTroska from NosiociTroskova order by ID";
+            var nosilac = "Select ID,NazivNosiocaTroska from NosiociTroskova order by ID desc";
             var nosilacDA = new SqlDataAdapter(nosilac, conn);
             var nosilacDS = new DataSet();
             nosilacDA.Fill(nosilacDS);
@@ -112,19 +112,27 @@ namespace Saobracaj.Pantheon_Export
             cboNosilac.DisplayMember = "NazivNosiocaTroska";
             cboNosilac.ValueMember = "ID";
 
-            var jm = "Select MeNaziv from MerskeEnote order by MeSifra";
+            var jm = "Select RTrim(MeNaziv) as MeNaziv from MerskeEnote order by MeSifra";
             var jmDa = new SqlDataAdapter(jm, conn);
             var jmDS = new DataSet();
             jmDa.Fill(jmDS);
             cboJM.DataSource= jmDS.Tables[0];
             cboJM.DisplayMember = "MeNaziv";
             cboJM.ValueMember = "MeNaziv";
+
+            var najava = "Select ID,Oznaka from Najava Where Status <>7 or status <>9 order by ID desc";
+            var najavaDA = new SqlDataAdapter(najava, conn);
+            var najavaDS = new DataSet();
+            najavaDA.Fill(najavaDS);
+            cboNajava.DataSource = najavaDS.Tables[0];
+            cboNajava.DisplayMember = "Oznaka";
+            cboNajava.ValueMember = "ID";
         }
         private void FillGV()
         {
             if (txtID.Text != "")
             {
-                var select = "select UlFakPostav.* from UlFakPostav inner join UlFak on UlFakPostav.IDFak=UlFak.ID Where IDFak=" + txtID.Text;
+                var select = "select UlFakPostav.ID,IDFak,RB,MpNaziv,Kolicina,Cena,NazivNosiocaTroska,JM,Proizvod,Oznaka from UlFakPostav inner join UlFak on UlFakPostav.IDFak=UlFak.ID inner join MaticniPodatki on UlFakPostav.Mp=MaticniPodatki.MpSifra inner join NosiociTroskova on UlFakPostav.NosilacTroska=NosiociTroskova.ID inner join Najava on UlFakPostav.NajavaID=Najava.ID Where IDFak=" + txtID.Text;
                 SqlConnection conn = new SqlConnection(connect);
                 var dataAdapter = new SqlDataAdapter(select, conn);
                 var ds = new DataSet();
@@ -145,12 +153,14 @@ namespace Saobracaj.Pantheon_Export
                 dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
                 dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
-                dataGridView1.Columns[0].Width = 60;
-                dataGridView1.Columns[1].Width = 120;
-                dataGridView1.Columns[2].Width = 80;
-                dataGridView1.Columns[3].Width = 80;
+                dataGridView1.Columns[0].Width = 50;
+                dataGridView1.Columns[1].Width = 50;
+                dataGridView1.Columns[2].Width = 50;
+                dataGridView1.Columns[3].Width = 250;
                 dataGridView1.Columns[4].Width = 100;
                 dataGridView1.Columns[5].Width = 100;
+                dataGridView1.Columns[6].Width = 200;
+
 
                 if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count + 1; }
                 txtRB.Text = rb.ToString();
@@ -206,7 +216,7 @@ namespace Saobracaj.Pantheon_Export
         {
             if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count+1; }
             InsertPatheonExport ins = new InsertPatheonExport();
-            ins.InsUlFakPostav(Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), cboJM.SelectedValue.ToString().TrimEnd(), textBox1.Text.ToString());
+            ins.InsUlFakPostav(Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), cboJM.SelectedValue.ToString().TrimEnd()," ",Convert.ToInt32(cboNajava.SelectedValue));
             FillGV();
         }
 
@@ -237,15 +247,32 @@ namespace Saobracaj.Pantheon_Export
         {
 
         }
-
+        int IDPostav;
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                foreach(DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        IDPostav = Convert.ToInt32(row.Cells[0].Value.ToString());
+                    }
+                }
+            }
+            catch { }
         }
 
         private void UlazneFakture_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnObrisi_Click(object sender, EventArgs e)
+        {
+            InsertPatheonExport ins = new InsertPatheonExport();
+            ins.DelUlFakPostav(IDPostav);
+            FillGV();
         }
     }
 }
