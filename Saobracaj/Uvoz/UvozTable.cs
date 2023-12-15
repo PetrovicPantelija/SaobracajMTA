@@ -1456,12 +1456,12 @@ Koleta
                 int IDZaPromenu = 0;
                 foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
                 {
-                    IDZaPromenu = Convert.ToInt32(row.Cells[0].Value.ToString());
+                    IDZaPromenu = Convert.ToInt32(SelectedRecord.Record.GetValue("ID").ToString());
                     UpdateVrednostiPolja(IDZaPromenu);
 
 
 
-                    Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+                   // Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()), Convert.ToInt32(cboPlanUtovara.SelectedValue));
                     //To get the cell value of particular column of selected records   
                     //  string cellValue = selectedRecord.Record.GetValue("ID").ToString();
                     // MessageBox.Show(cellValue);
