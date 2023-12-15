@@ -27,7 +27,7 @@ namespace Saobracaj
 {
     public partial class MainP : Syncfusion.Windows.Forms.Tools.RibbonForm
     {
-        string Korisnik = "";
+        public string Korisnik = "";
         public bool PravoP;
         public MainP()
         {

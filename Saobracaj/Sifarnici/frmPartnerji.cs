@@ -11,6 +11,13 @@ using System.Data.OleDb;
 using System.Data.SqlClient;
 using System.Configuration;
 using Syncfusion.Windows.Forms.Tools;
+using Saobracaj.RadniNalozi;
+using System.IO;
+using System.Net;
+using Syncfusion.XlsIO.Parser.Biff_Records;
+using System.Security.Cryptography.Xml;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using Newtonsoft.Json;
 
 namespace Saobracaj.Sifarnici
 {
@@ -41,6 +48,9 @@ namespace Saobracaj.Sifarnici
         string Kor = Sifarnici.frmLogovanje.user.ToString();
         string niz = "";
         private string connect = Sifarnici.frmLogovanje.connectionString;
+        string Dobavljac = "";
+        string Kupac = "";
+        string Obveznik = "";
 
         public frmPartnerji()
         {
@@ -133,6 +143,16 @@ namespace Saobracaj.Sifarnici
         {
             RefreshDataGrid();
             ChecBoxVisible(this.Controls);
+            panel1.Visible = false;
+
+            SqlConnection conn = new SqlConnection(connect);
+            var valuta = "Select VaSifra,VaNaziv From Valute";
+            var valutaDa = new SqlDataAdapter(valuta, conn);
+            var valutaDS = new DataSet();
+            valutaDa.Fill(valutaDS);
+            cboValuta.DataSource = valutaDS.Tables[0];
+            cboValuta.DisplayMember = "VaNaziv";
+            cboValuta.ValueMember = "VaSifra";
 
         }
         private void ChecBoxVisible(Control.ControlCollection ctrlCollection)
@@ -149,6 +169,12 @@ namespace Saobracaj.Sifarnici
             switch(firma)
             {
                 case "Leget":
+                    btnDrzava.Visible = false;
+                    //btnPosta.Visible = false;
+                    cbDobavljac.Visible = false;
+                    cbObveznik.Visible = false;
+                    cboValuta.Visible = false;
+
                 int prviRedX = 16;
                 int prviRedY = 245;
 
@@ -193,6 +219,11 @@ namespace Saobracaj.Sifarnici
                 chkNalogodavac.Visible = true;
                 chkUvoznik.Visible = true;
                 chkIzvoznik.Visible = true;
+                    //btnDrzava.Visible = false;
+                    //btnPosta.Visible = false;
+                    cbDobavljac.Visible = true;
+                    cbObveznik.Visible = true;
+                    //cboValuta.Visible = false;
                     break;
             }
         }
@@ -435,7 +466,7 @@ namespace Saobracaj.Sifarnici
             {
                 dataGridView1.Columns["Logisticar"].Visible = false;
                 dataGridView1.Columns["Kamioner"].Visible = false;
-                dataGridView1.Columns["Agent brodara"].Visible = false;
+                dataGridView1.Columns["AgentBrodara"].Visible = false;
             }
 
         }
@@ -557,9 +588,27 @@ namespace Saobracaj.Sifarnici
             chkAgentBrodara.Checked = false;
 
         }
-
+        int referent;
         private void tsSave_Click_1(object sender, EventArgs e)
         {
+            var query = "Select DeSifra From Korisnici Where Korisnik='" + Kor.ToString().TrimEnd()+"'";
+           SqlConnection conn = new SqlConnection(connect);
+           conn.Open();
+           SqlCommand cmd = new SqlCommand(query, conn);
+           SqlDataReader dr = cmd.ExecuteReader();
+           while (dr.Read())
+           {
+               referent = Convert.ToInt32(dr[0].ToString());
+           }
+           conn.Close();
+
+            string firma = Sifarnici.frmLogovanje.Firma;
+            switch (firma)
+            {
+                case "TA":
+                    txtDrzava.Text = SifDrzave.ToString();
+                    break;
+            }
 
             if (chkBrodar.Checked)
             {
@@ -649,16 +698,22 @@ namespace Saobracaj.Sifarnici
             if (chkKamioner.Checked) { PomKamioner = 1; } else { PomKamioner = 0; }
             if (chkAgentBrodara.Checked) { PomAgentBrodara = 1; } else { PomAgentBrodara = 0; }
 
-            if (status == true)
+            if (cbDobavljac.Checked) { Dobavljac = "T";Kupac = "F"; } else { Dobavljac = "F";Kupac = "T"; }
+            if (cbObveznik.Checked) { Obveznik = "Z"; } else { Obveznik = "I"; }
+
+
+
+
+                    if (status == true)
             {
               //  txtNaziv.Text,  txtUlica.Text,  txtMesto.Text,  txtOblast.Text, txtPosta.Text ,txtDrzava.Text, txtTelefon.Text, txtTR.Text ,  txtNapomena.Text,txtMaticniBroj.Text,  txtEmail.Text,  txtPIB.Text
                 InsertPartnerji ins = new InsertPartnerji();
-                ins.InsPartneri( txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtOblast.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtMaticniBroj.Text, txtEmail.Text, txtPIB.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik, txtMUAdresa.Text, txtMUKontakt.Text, txtUICDrzava.Text, txtTR2.Text, txtFaks.Text , PomIzvoznik,PomLogisticar,PomKamioner,PomAgentBrodara);
+                ins.InsPartneri( txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtPIB.Text, txtEmail.Text, txtMaticniBroj.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik, txtMUAdresa.Text, txtMUKontakt.Text, txtUICDrzava.Text, txtTR2.Text, txtFaks.Text , PomIzvoznik,PomLogisticar,PomKamioner,PomAgentBrodara,Kupac,Obveznik,cboValuta.SelectedValue.ToString(),Dobavljac,referent);
             }
             else
             {
                 InsertPartnerji upd = new InsertPartnerji();
-                upd.UpdPartneri(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtOblast.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtMaticniBroj.Text, txtEmail.Text, txtPIB.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik, txtMUAdresa.Text, txtMUKontakt.Text, txtUICDrzava.Text, txtTR2.Text, txtFaks.Text, PomIzvoznik,PomLogisticar,PomKamioner,PomAgentBrodara);
+                upd.UpdPartneri(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtOblast.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtPIB.Text, txtEmail.Text, txtMaticniBroj.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik, txtMUAdresa.Text, txtMUKontakt.Text, txtUICDrzava.Text, txtTR2.Text, txtFaks.Text, PomIzvoznik,PomLogisticar,PomKamioner,PomAgentBrodara);
             }
             RefreshDataGrid();
         }
@@ -675,6 +730,264 @@ namespace Saobracaj.Sifarnici
 
              Dokumenta.frmKontaktOsobe pko = new Dokumenta.frmKontaktOsobe(Convert.ToInt32(txtSifra.Text));
             pko.Show();
+        }
+
+        private void btnMin_Click(object sender, EventArgs e)
+        {
+            //dataGridView3.DataSource = null;
+            panel1.Visible = false;
+
+        }
+        
+        int SifDrzave;
+        string Drzava = "";
+        private void btnDrzava_Click(object sender, EventArgs e)
+        {
+            panel1.Visible = true;
+            var select = "Select DrSifra,DrNaziv From Drzave order by DrSifra";
+            SqlConnection conn = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, conn);
+            var ds = new System.Data.DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView3.ReadOnly = true;
+            dataGridView3.DataSource = ds.Tables[0];
+
+
+            dataGridView3.BorderStyle = BorderStyle.None;
+            dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView3.BackgroundColor = Color.White;
+
+            dataGridView3.EnableHeadersVisualStyles = false;
+            dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            var select2 = "select RTrim(PttNaziv)as Naziv,(RTrim(PttDrzava)+'-'+PttSifra) as Posta from Poste order by PttNaziv asc";
+
+            var dataAdapter2 = new SqlDataAdapter(select2, conn);
+            var ds2 = new System.Data.DataSet();
+            dataAdapter2.Fill(ds2);
+            dataGridView4.ReadOnly = true;
+            dataGridView4.DataSource = ds2.Tables[0];
+
+
+            dataGridView4.BorderStyle = BorderStyle.None;
+            dataGridView4.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView4.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView4.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView4.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView4.BackgroundColor = Color.White;
+
+            dataGridView4.EnableHeadersVisualStyles = false;
+            dataGridView4.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView4.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView4.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+        }
+        string postaNaziv = "";
+        string Posta="";
+        private void btnPosta_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.Selected)
+                {
+                    SifDrzave = Convert.ToInt32(row.Cells[0].Value.ToString());
+                    Drzava = row.Cells[1].Value.ToString();
+                }
+            }
+            foreach (DataGridViewRow row in dataGridView4.Rows)
+            {
+                if (row.Selected)
+                {
+                    postaNaziv = row.Cells[0].Value.ToString();
+                    Posta = row.Cells[1].Value.ToString();
+                }
+            }
+            txtDrzava.Text = Drzava;
+            txtPosta.Text = Posta;
+            panel1.Visible = false;
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            string PaSifra="";
+            var query = "Select RTRim(PaNaziv) as Subject,RTrim(PaNaziv) as Name2,RTrim(PaUlicaHisnaSt) as Address,RTrim(PaPostnaSt) as Post,RTrim(DrNaziv) as Country,(SUBSTRING(paPostnaSt,0,CHARINDEX('-',PaPostnaSt,0)))as CountryPIB,RTrim(PaDMatSt) as Code," +
+                     "RTrim(PaEMatSt1) as RegNo,'Papirno i elektronski' as WayOfTransaction,Buyer,WayOfSale,Currency,Supplier,'' as SuppSaleMet,'' as SuppCurr,Referent as Clerk,Referent as SuppClerk,PaSifra " +
+                     "From Partnerji " +
+                     "inner join Drzave on Partnerji.PaSifDrzave = Drzave.DrSifra " +
+                     "Where Status = 0";
+
+
+            List<object> combinedData = new List<object>();
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                SqlCommand cmd1 = new SqlCommand(query, conn);
+
+                conn.Open();
+
+                SqlDataReader dr1 = cmd1.ExecuteReader();
+                DataTable table1 = new DataTable();
+                table1.Load(dr1);
+
+                foreach (DataRow row1 in table1.Rows)
+                {
+                    Dictionary<string, object> obj = new Dictionary<string, object>();
+                    foreach (DataColumn column in table1.Columns)
+                    {
+                        PaSifra = row1["PaSifra"].ToString();
+
+                        if (column.ColumnName != "PaSifra") // Exclude the field FaStFak from the JSON object
+                        {
+                            obj.Add(column.ColumnName, row1[column]);
+                        }
+                    }
+                    combinedData.Add(obj);
+                }
+
+                conn.Close();
+            }
+            foreach (var item in combinedData)
+            {
+                string jsonOutput = JsonConvert.SerializeObject(item, Formatting.Indented);
+                MessageBox.Show(jsonOutput.ToString());
+                //Console.WriteLine(jsonOutput);
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/Subjekt/SubjektPost");
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "POST";
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    streamWriter.Write(jsonOutput);
+                }
+                string response = "";
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var result = streamReader.ReadToEnd();
+                    response = result.ToString();
+                    MessageBox.Show(response.ToString());
+
+
+                    if (response.Contains("Error") == true || response.Contains("Greška") == true)
+                    {
+                        MessageBox.Show("Slanje nije uspelo");
+                        MessageBox.Show(response.ToString());
+                        return;
+                    }
+                    else
+                    {
+                        using (SqlConnection conn = new SqlConnection(connect))
+                        {
+                            using (SqlCommand cmd = conn.CreateCommand())
+                            {
+                                cmd.CommandText = "UPDATE Partnerji SET Status = 1  WHERE PaSifra = " + PaSifra;
+                                conn.Open();
+                                cmd.ExecuteNonQuery();
+                                conn.Close();
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            /*
+            string Subject, Name2, Adress, Post, Country, CountryPIB, Code, RegNo, WayOfTransaction, Buyer, WayOfSale, Currency, Supplier, SuppSaleMet, SuppCurr, Clerk, SuppClerk;
+            
+            try
+            {
+                var query = " Select PaNaziv as Subject,PaNaziv as Name2,PaUlicaHisnaSt as Address,PaPostnaSt as Post,DrNaziv as Country,(SUBSTRING(paPostnaSt,0,CHARINDEX('-',PaPostnaSt,0)))as CountryPIB,PaDMatSt as Code," +
+                    "PaEMatSt1 as RegNo,'Papirno i elektronski' as WayOfTransaction,Buyer,WayOfSale,Currency,Supplier,SuppSaleMet,SuppCurr,Referent as Clerk,0 as SuppClerk,PaSifra " +
+                    "From Partnerji " +
+                    "inner join Drzave on Partnerji.PaSifDrzave = Drzave.DrSifra " +
+                    "Where Status = 0";
+                SqlConnection conn = new SqlConnection(connect);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    Subject = dr[0].ToString();
+                    Name2 = dr[1].ToString();
+                    Adress = dr[2].ToString();
+                    Post = dr[3].ToString();
+                    Country = dr[4].ToString();
+                    CountryPIB = dr[5].ToString();
+                    Code = dr[6].ToString();
+                    RegNo = dr[7].ToString();
+                    WayOfTransaction = dr[8].ToString();
+                    Buyer = dr[9].ToString();
+                    WayOfSale = dr[10].ToString();
+                    Currency = dr[11].ToString();
+                    Supplier = dr[12].ToString();
+                    SuppSaleMet = dr[13].ToString();
+                    SuppCurr = dr[14].ToString();
+                    Clerk = dr[15].ToString();
+                    SuppClerk = dr[16].ToString();
+                    PaSifra = Convert.ToInt32(dr[17].ToString());
+
+             
+
+                    var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/Subjekt/SubjektPost");
+                    httpWebRequest.ContentType = "application/json";
+                    httpWebRequest.Method = "POST";
+                    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                    {
+                        string json = "{" +
+                                       "\n\"Subject\":\"" + Subject + "\"," +
+                                       "\n\"Name2\":\"" + Name2 + "\"," +
+                                       "\n\"Address\":\"" + Adress + "\"," +
+                                       "\n\"Post\":\"" + Post + "\"," +
+                                       "\n\"Country\":\"" + Country + "\"," +
+                                       "\n\"CountryPIB\":\"" + CountryPIB + "\"," +
+                                       "\n\"Code\":\"" + Code + "\"," +
+                                       "\n\"RegNo\":\"" + RegNo + "\"," +
+                                       "\n\"WayOfTransaction\":\"" + WayOfTransaction + "\"," +
+                                       "\n\"Buyer\":\"" + Buyer + "\"," +
+                                       "\n\"WayOfSale\":\"" + WayOfSale + "\"," +
+                                       "\n\"Currency\":\"" + Currency + "\"," +
+                                       "\n\"Supplier\":\"" + Supplier + "\"," +
+                                       "\n\"SuppSaleMet\":\"" + SuppSaleMet + "\"," +
+                                       "\n\"SuppCurr\":\"" + SuppCurr + "\"," +
+                                       "\n\"Clerk\":\"" + Clerk + "\"," +
+                                       "\n\"SuppClerk\":\"" + SuppClerk + "\"\n}";
+                        streamWriter.Write(json);
+                    }
+                    string response = "";
+                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        var result = streamReader.ReadToEnd();
+                        response = result.ToString();
+                        MessageBox.Show(response.ToString());
+                        if (response.Contains("Error") == true || response.Contains("Greška") == true)
+                        {
+                            MessageBox.Show("Slanje nije uspelo");
+                            MessageBox.Show(response.ToString());
+                            return;
+                        }
+                        else
+                        {
+                            using (SqlCommand cmd2 = conn.CreateCommand())
+                            {
+                                cmd2.CommandText = "UPDATE Partnerji SET Status = 1  WHERE PaSifra = " + PaSifra;
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
+                    }
+                }
+                conn.Close();
+
+            }
+            catch { }*/
         }
     }
 }

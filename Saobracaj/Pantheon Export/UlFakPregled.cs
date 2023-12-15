@@ -1,13 +1,20 @@
-﻿using Syncfusion.XlsIO.Parser.Biff_Records;
+﻿using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using Newtonsoft.Json;
+using Org.BouncyCastle.Crypto;
+using Syncfusion.Windows.Forms.HTMLUI;
+using Syncfusion.XlsIO.Parser.Biff_Records;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace Saobracaj.Pantheon_Export
@@ -26,7 +33,7 @@ namespace Saobracaj.Pantheon_Export
             var select = "select ID,Predvidjanje,VrstaDokumenta,Tip,DatumPrijema,Valuta,Kurs,FakturaBr,IDDobavljaca,RacunDobavljaca,DatumIzdavanja,DatumPDVa,DatumValute,Referent,Napomena from UlFak order by ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
-            var ds = new DataSet();
+            var ds = new System.Data.DataSet();
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
@@ -48,6 +55,119 @@ namespace Saobracaj.Pantheon_Export
         }
         public int Predvidjanje, Dobavljac, Referent;
         public string Valuta, VrstaDokumenta, TipDokumenta, FakturaBr, RacunDobavljaca, Napomena;
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            string ID = "";
+            string query1 = "Select CRMID as CRMDocumentId,1000 as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,PaNaziv as Issuer,Kurs as FXRate,RacunDobavljaca as Doc1, " +
+                "CONVERT(VARCHAR, DatumIzdavanja, 23) as DateDoc1,CONVERT(VARCHAR, DatumPDVa, 23) as DateVAT,CONVERT(VARCHAR, DatumValute, 23) as DateDue,PredvidjanjeID as PredvidjanjeId, " +
+                "Referent as UserId,Napomena as Napomena,UlFak.ID as ID " +
+                "from UlFak " +
+                "Inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
+                "inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID Where UlFak.Status=0";
+
+            string query2 = "select RB as NO,MpStaraSif as Ident,Kolicina as Qty,Cena as Price,NosiociTroskova.NosilacTroska as CostDrv,JM as JNT,'' as Proizvod,IDFak " +
+                "From UlFakPostav " +
+                "inner join MaticniPodatki on UlFakPostav.Mp = MaticniPodatki.MpSifra " +
+                "inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID " +
+                "order by IDFak asc";
+
+            List<object> combinedData = new List<object>();
+
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                SqlCommand cmd1 = new SqlCommand(query1, conn);
+                SqlCommand cmd2 = new SqlCommand(query2, conn);
+
+                conn.Open();
+
+                SqlDataReader dr1 = cmd1.ExecuteReader();
+                DataTable table1 = new DataTable();
+                table1.Load(dr1);
+
+                SqlDataReader dr2 = cmd2.ExecuteReader();
+                DataTable table2 = new DataTable();
+                table2.Load(dr2);
+
+                foreach (DataRow row1 in table1.Rows)
+                {
+                    Dictionary<string, object> obj = new Dictionary<string, object>();
+                    foreach (DataColumn column in table1.Columns)
+                    {
+
+                        ID = row1["ID"].ToString();
+                        if (column.ColumnName != "ID") // Exclude the field FapStFak from the JSON object
+                        {
+                            obj.Add(column.ColumnName, row1[column]);
+                        }
+                    }
+
+                    List<object> fakturaPoz = new List<object>();
+
+                    DataRow[] relatedRows = table2.Select($"IDFak = '{row1["ID"]}'");
+                    foreach (DataRow row2 in relatedRows)
+                    {
+                        Dictionary<string, object> fakturaPozObj = new Dictionary<string, object>();
+                        foreach (DataColumn column in table2.Columns)
+                        {
+                            if (column.ColumnName != "IDFak") // Exclude the field FapStFak from the JSON object
+                            {
+                                fakturaPozObj.Add(column.ColumnName, row2[column]);
+                            }
+                        }
+                        fakturaPoz.Add(fakturaPozObj);
+                    }
+
+                    obj.Add("FakturaPoz", fakturaPoz);
+                    combinedData.Add(obj);
+                }
+
+                conn.Close();
+            }
+
+            foreach (var item in combinedData)
+            {
+                string jsonOutput = JsonConvert.SerializeObject(item, Formatting.Indented);
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/RacunDobavljaca/RacunDobavljacaPost");
+                httpWebRequest.ContentType = "application/json";
+                httpWebRequest.Method = "POST";
+                using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                {
+                    streamWriter.Write(jsonOutput);
+                }
+                string response = "";
+                var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    var result = streamReader.ReadToEnd();
+                    response = result.ToString();
+                    MessageBox.Show(response.ToString());
+
+
+                    if (response.Contains("Error") == true || response.Contains("Greška")==true)
+                    {
+                        MessageBox.Show("Slanje nije uspelo");
+                        MessageBox.Show(response.ToString());
+                        return;
+                    }
+                    else
+                    {
+                        
+                        using (SqlConnection conn = new SqlConnection(connect))
+                        {
+                            using (SqlCommand cmd = conn.CreateCommand())
+                            {
+                                cmd.CommandText = "UPDATE UlFak SET Status = 1  WHERE ID = " + ID;
+                                conn.Open();
+                                cmd.ExecuteNonQuery();
+                                conn.Close();
+                            }
+                        }
+                    }
+                }
+            }
+    }
+
         public DateTime DatumPrijema, DatumIzdavanja, DatumPDVa, DatumValute;
         public decimal Kurs;
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)

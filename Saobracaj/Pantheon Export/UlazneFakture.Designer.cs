@@ -74,7 +74,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.txtJM = new System.Windows.Forms.TextBox();
             this.txtCena = new System.Windows.Forms.TextBox();
             this.txtKolicina = new System.Windows.Forms.TextBox();
             this.txtRB = new System.Windows.Forms.TextBox();
@@ -82,6 +81,7 @@
             this.cboMP = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.cboJM = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -389,6 +389,7 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.cboJM);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label23);
             this.panel1.Controls.Add(this.label22);
@@ -398,7 +399,6 @@
             this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.txtJM);
             this.panel1.Controls.Add(this.txtCena);
             this.panel1.Controls.Add(this.txtKolicina);
             this.panel1.Controls.Add(this.txtRB);
@@ -431,7 +431,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(865, 23);
+            this.label22.Location = new System.Drawing.Point(864, 23);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(21, 13);
             this.label22.TabIndex = 197;
@@ -488,13 +488,6 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(188, 20);
             this.textBox1.TabIndex = 198;
-            // 
-            // txtJM
-            // 
-            this.txtJM.Location = new System.Drawing.Point(830, 39);
-            this.txtJM.Name = "txtJM";
-            this.txtJM.Size = new System.Drawing.Size(90, 20);
-            this.txtJM.TabIndex = 198;
             // 
             // txtCena
             // 
@@ -557,6 +550,14 @@
             this.dataGridView1.TabIndex = 206;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
+            // cboJM
+            // 
+            this.cboJM.FormattingEnabled = true;
+            this.cboJM.Location = new System.Drawing.Point(810, 38);
+            this.cboJM.Name = "cboJM";
+            this.cboJM.Size = new System.Drawing.Size(121, 21);
+            this.cboJM.TabIndex = 202;
+            // 
             // UlazneFakture
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -600,6 +601,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UlazneFakture";
             this.Text = "Ulazne fakture";
+            this.Load += new System.EventHandler(this.UlazneFakture_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -661,9 +663,9 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox txtJM;
         private System.Windows.Forms.ComboBox cboNosilac;
         private System.Windows.Forms.ComboBox cboMP;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.ComboBox cboJM;
     }
 }

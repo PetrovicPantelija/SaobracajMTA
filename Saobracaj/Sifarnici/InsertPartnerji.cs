@@ -13,7 +13,7 @@ namespace Saobracaj.Sifarnici
     {
         public string connect = Sifarnici.frmLogovanje.connectionString;
 
-        public void InsPartneri(string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB, string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar ,  int Vlasnik, int Spediter , int Platilac  , int Organizator,int Nalogodavac, int Uvoznik, string MUAdresa, string MUKontakt, string UICDrzava , string TR2, string Faks , int PomIzvoznik,int Logisticar,int Kamioner,int Agent)
+        public void InsPartneri(string Naziv, string Ulica, string Mesto,  string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB, string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar ,  int Vlasnik, int Spediter , int Platilac  , int Organizator,int Nalogodavac, int Uvoznik, string MUAdresa, string MUKontakt, string UICDrzava , string TR2, string Faks , int PomIzvoznik,int Logisticar,int Kamioner,int Agent,string Kupac,string Obveznik,string Valuta,string Dobavljac,int Referent)
         {
             SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -44,13 +44,13 @@ namespace Saobracaj.Sifarnici
             parameter3.Value = Mesto;
             myCommand.Parameters.Add(parameter3);
 
-            SqlParameter parameter4 = new SqlParameter();
+            /*SqlParameter parameter4 = new SqlParameter();
             parameter4.ParameterName = "@PaDelDrzave";
             parameter4.SqlDbType = SqlDbType.Char;
             parameter4.Size = 9;
             parameter4.Direction = ParameterDirection.Input;
             parameter4.Value = Oblast;
-            myCommand.Parameters.Add(parameter4);
+            myCommand.Parameters.Add(parameter4);*/
 
             SqlParameter parameter5 = new SqlParameter();
             parameter5.ParameterName = "@PaPostnaSt";
@@ -116,6 +116,38 @@ namespace Saobracaj.Sifarnici
             parameter12.Direction = ParameterDirection.Input;
             parameter12.Value = PIB;
             myCommand.Parameters.Add(parameter12);
+
+            SqlParameter sqlParameter = new SqlParameter();
+            sqlParameter.ParameterName = "@Kupac";
+            sqlParameter.SqlDbType = SqlDbType.Char;
+            sqlParameter.Size = 1;
+            sqlParameter.Direction = ParameterDirection.Input;
+            sqlParameter.Value = Kupac;
+            myCommand.Parameters.Add(sqlParameter);
+
+            SqlParameter sqlParameter2 = new SqlParameter();
+            sqlParameter2.ParameterName = "@Obveznik";
+            sqlParameter2.SqlDbType= SqlDbType.Char;
+            sqlParameter2.Size = 1;
+            sqlParameter2.Direction = ParameterDirection.Input;
+            sqlParameter2.Value = Obveznik;
+            myCommand.Parameters.Add(sqlParameter2);
+
+            SqlParameter sqlParameter3 = new SqlParameter();
+            sqlParameter3.ParameterName = "@Valuta";
+            sqlParameter3.SqlDbType = SqlDbType.Char;
+            sqlParameter3.Size = 3;
+            sqlParameter3.Direction = ParameterDirection.Input;
+            sqlParameter3.Value = Valuta;
+            myCommand.Parameters.Add(sqlParameter3);
+
+            SqlParameter sqlParameter1 = new SqlParameter();
+            sqlParameter1.ParameterName = "@Dobavljac";
+            sqlParameter1.SqlDbType = SqlDbType.Char;
+            sqlParameter1.Size = 1;
+            sqlParameter1.Direction = ParameterDirection.Input;
+            sqlParameter1.Value = Dobavljac;
+            myCommand.Parameters.Add(sqlParameter1);
 /*
          ,< PaNaziv, char(35),>
          ,< PaUlicaHisnaSt, char(35),>
@@ -290,6 +322,12 @@ namespace Saobracaj.Sifarnici
             parameter33.Value = Agent;
             myCommand.Parameters.Add(parameter33);
 
+            SqlParameter sqlParameter4 = new SqlParameter();
+            sqlParameter4.ParameterName = "@Referent";
+            sqlParameter4.SqlDbType = SqlDbType.Int;
+            sqlParameter4.Direction = ParameterDirection.Input;
+            sqlParameter4.Value = Referent;
+            myCommand.Parameters.Add(sqlParameter4);
 
 
             myConnection.Open();
@@ -304,8 +342,10 @@ namespace Saobracaj.Sifarnici
                 myCommand.Transaction = myTransaction;
             }
 
-            catch (SqlException)
+            catch (SqlException ex)
             {
+                MessageBox.Show(ex.ToString());
+
                 throw new Exception("Neuspešna promena podataka");
             }
 
