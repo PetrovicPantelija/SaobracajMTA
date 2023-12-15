@@ -842,6 +842,10 @@ namespace Saobracaj.Uvoz
 
         private void FillDGUsluge()
         {
+            if (txtID.Text == "")
+            { 
+                return; 
+            }
             var select = "";
            
                 select = "select  UvozVrstaManipulacije.ID as ID, UvozVrstaManipulacije.IDNadredjena as KontejnerID, Uvoz.BrojKontejnera, " +

@@ -32,9 +32,12 @@ namespace Saobracaj.Uvoz
             return textBox1.Text;
         }
 
-        private void UvozTable_Load(object sender, EventArgs e)
+        private void RefreshGV()
         {
-            var select = "SELECT Uvoz.ID, [BrojKontejnera],TipKontenjera.Naziv as Vrsta_Kontejnera, BrodskaTeretnica as BL,  DobijenBZ, Brodovi.Naziv as Brod, p1.PaNaziv as Uvoznik, " +
+            var select = "SELECT Uvoz.ID, " +
+                " CASE WHEN Prioritet > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Prioritet , " +
+                " CASE WHEN DobijenBZ > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as DobijenBZ , " +
+                " [BrojKontejnera],TipKontenjera.Naziv as Vrsta_Kontejnera, BrodskaTeretnica as BL,   Brodovi.Naziv as Brod, p1.PaNaziv as Uvoznik, " +
 " n1.PaNaziv as NalogodavacZaVoz, Ref1 as Ref1,n2.PaNaziv as NalogodavacZaUsluge, Ref2 as Ref2,n3.PaNaziv as NalogodavacZaDrumski,DobijenNalogBrodara as Dobijen_Nalog_Brodara ,ATABroda,  " +
 " Napomena1 as Napomena1,  DobijeBZ as DatumBZ ,PIN,    KontejnerskiTerminali.Naziv as R_L_SRB, pp1.Naziv as Dirigacija_Kontejnera_Za,   BrodskaTeretnica, " +
 " VrstaRobeADR.Naziv as ADR, b.PaNaziv as Brodar,pv.PaNaziv as VlasnikKontejnera,     Ref3 as Ref3,         VrstaPregleda as InsTret,p2.PaNaziv as SpedicijaRTC,  " +
@@ -42,7 +45,7 @@ namespace Saobracaj.Uvoz
 " VrstePostupakaUvoz.Naziv as PostupakSaRobom,uvNacinPakovanja.Naziv as NacinPakovanja, " +
 " Napomena as Napomena2, NaslovStatusaVozila as NaslovZaslanjestatusa,  Carinarnice.Naziv as Carinarnica,   " +
 " p4.PaNaziv as OdredisnaSpedicija, MestaUtovara.Naziv as MestoIstovara, KontaktOsobe, Email, " +
-" BrojPlombe1, BrojPlombe2,    NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera,  Koleta, green FROM Uvoz Left join Partnerji on PaSifra = VlasnikKontejnera " +
+" BrojPlombe1, BrojPlombe2,    NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera,  Koleta, green FROM Uvoz inner join Partnerji on PaSifra = VlasnikKontejnera " +
 " inner join Partnerji p1 on p1.PaSifra = Uvoznik " +
 " inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC " +
 " inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
@@ -63,7 +66,7 @@ namespace Saobracaj.Uvoz
 " inner join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja " +
 " inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija " +
 " inner join Partnerji pv on pv.PaSifra = Uvoz.VlasnikKontejnera " +
-" order by Uvoz.ID desc ";
+"  order by Uvoz.Prioritet desc, Uvoz.ID  ";
 
 
 
@@ -83,6 +86,12 @@ namespace Saobracaj.Uvoz
             {
                 column.AllowFilter = true;
             }
+
+        }
+
+        private void UvozTable_Load(object sender, EventArgs e)
+        {
+            RefreshGV();
         }
 
         private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
@@ -768,35 +777,35 @@ Koleta
                     break;
                 case "PIN":
                    
-                    updatestring = " Update uvoz set PIN = " + txtOpsti.Text + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvoz set PIN = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "Broj kontejnera":
-                    updatestring = " Update uvoz set BrojKontejnera = " + txtOpsti.Text + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvoz set BrojKontejnera = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "BL":
-                    updatestring = " Update uvoz set BrodskaTeretnica = " + txtOpsti.Text + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvoz set BrodskaTeretnica = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     
                     break;
                 case "Ref za fakturisanje 1":
-                    updatestring = " Update uvoz set Ref1 = " + txtOpsti.Text + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvoz set Ref1 = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "Ref za fakturisanje 2":
-                    updatestring = " Update uvoz set Ref2 = " + txtOpsti.Text + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvoz set Ref2 = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "Ref za fakturisanje 3":
-                    updatestring = " Update uvoz set Ref2 = " + txtOpsti.Text + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvoz set Ref2 = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "Kontakt osobe":
-                    updatestring = " Update uvoz set KontaktOsobe = " + txtOpsti.Text + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvoz set KontaktOsobe = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "Naslov za slanje statusa vozila":
-                    updatestring = " Update uvoz set NaslovStatusaVozila  = " + txtOpsti.Text + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvoz set NaslovStatusaVozila  = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "Napomena 2":
-                    updatestring = " Update uvoz set Napomena  = " + txtOpsti.Text + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvoz set Napomena  = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "E - mail za slanje statusa":
-                    updatestring = " Update uvoz set Email  = " + txtOpsti.Text + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvoz set Email  = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "Vrsta kontejnera":
                     updatestring = " Update uvoz set TipKontejnera  = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
@@ -1076,6 +1085,8 @@ Koleta
                     UpdateVrednostiPolja(IDZaPromenu);
                 }
             }
+
+            RefreshGV();
         }
     }
 }
