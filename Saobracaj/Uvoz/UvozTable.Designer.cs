@@ -69,8 +69,8 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
             this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
             this.gridGroupingControl1.TableDescriptor.TableOptions.RecordRowHeight = 28;
-            this.gridGroupingControl1.TableOptions.AllowSelection = ((Syncfusion.Windows.Forms.Grid.GridSelectionFlags)((Syncfusion.Windows.Forms.Grid.GridSelectionFlags.Row | Syncfusion.Windows.Forms.Grid.GridSelectionFlags.Table)));
-            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.One;
+            this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
+            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.SystemColors.HighlightText;
             this.gridGroupingControl1.Text = "gridGroupingControl1";

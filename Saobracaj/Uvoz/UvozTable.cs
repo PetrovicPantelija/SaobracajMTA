@@ -1456,7 +1456,7 @@ Koleta
                 int IDZaPromenu = 0;
                 foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
                 {
-                    IDZaPromenu = Convert.ToInt32(SelectedRecord.Record.GetValue("ID").ToString());
+                    IDZaPromenu = Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString());
                     UpdateVrednostiPolja(IDZaPromenu);
 
 
