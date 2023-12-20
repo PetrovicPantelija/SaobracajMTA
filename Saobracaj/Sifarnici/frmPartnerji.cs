@@ -821,7 +821,7 @@ namespace Saobracaj.Sifarnici
         {
             string PaSifra="";
             var query = "Select RTRim(PaNaziv) as Subject,RTrim(PaNaziv) as Name2,RTrim(PaUlicaHisnaSt) as Address,RTrim(PaPostnaSt) as Post,RTrim(DrNaziv) as Country,(SUBSTRING(paPostnaSt,0,CHARINDEX('-',PaPostnaSt,0)))as CountryPIB,RTrim(PaDMatSt) as Code," +
-                     "RTrim(PaEMatSt1) as RegNo,'Papirno i elektronski' as WayOfTransaction,Buyer,WayOfSale,Currency,Supplier,'' as SuppSaleMet,'' as SuppCurr,Referent as Clerk,Referent as SuppClerk,PaSifra " +
+                     "RTrim(PaEMatSt1) as RegNo,'Papirno i elektronski' as WayOfTransaction,Buyer,WayOfSale,Currency,Supplier,'' as SuppSaleMet,'' as SuppCurr,'30' as Clerk,Referent as SuppClerk,PaSifra " +
                      "From Partnerji " +
                      "inner join Drzave on Partnerji.PaSifDrzave = Drzave.DrSifra " +
                      "Where Status = 0";

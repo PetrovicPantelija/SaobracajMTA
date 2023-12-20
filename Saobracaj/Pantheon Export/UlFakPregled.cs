@@ -78,14 +78,14 @@ namespace Saobracaj.Pantheon_Export
         private void btnExport_Click(object sender, EventArgs e)
         {
             string ID = "";
-            string query1 = "Select CRMID as CRMDocumentId,1000 as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,PaNaziv as Issuer,Kurs as FXRate,RacunDobavljaca as Doc1, " +
-                "CONVERT(VARCHAR, DatumIzdavanja, 23) as DateDoc1,CONVERT(VARCHAR, DatumPDVa, 23) as DateVAT,CONVERT(VARCHAR, DatumValute, 23) as DateDue,PredvidjanjeID as PredvidjanjeId, " +
+            string query1 = "Select RTrim(CRMID) as CRMDocumentId,1000 as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,RTrim(UlFak.Valuta) as Currency,Kurs as FXRate,RTrim(RacunDobavljaca) as Doc1, " +
+                "CONVERT(VARCHAR, DatumIzdavanja, 23) as DateDoc1,CONVERT(VARCHAR, DatumPDVa, 23) as DateVAT,CONVERT(VARCHAR, DatumValute, 23) as DateDue,Rtrim(PredvidjanjeID) as PredvidjanjeId, " +
                 "UlFak.Referent as UserId,Napomena as Napomena,UlFak.ID as ID " +
                 "from UlFak " +
                 "Inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
                 "inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID Where UlFak.Status=0";
 
-            string query2 = "select RB as NO,MpStaraSif as Ident,Kolicina as Qty,Cena as Price,NosiociTroskova.NosilacTroska as CostDrv,JM as JNT,'' as Proizvod,IDFak " +
+            string query2 = "select RB as No,Rtrim(MpStaraSif) as Ident,Kolicina as Qty,Cena as Price,Rtrim(NosiociTroskova.NosilacTroska) as CostDrv,RTrim(JM) as JNT,'' as Proizvod,IDFak " +
                 "From UlFakPostav " +
                 "inner join MaticniPodatki on UlFakPostav.Mp = MaticniPodatki.MpSifra " +
                 "inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID " +
@@ -147,7 +147,8 @@ namespace Saobracaj.Pantheon_Export
             foreach (var item in combinedData)
             {
                 string jsonOutput = JsonConvert.SerializeObject(item, Formatting.Indented);
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/RacunDobavljaca/RacunDobavljacaPost");
+                MessageBox.Show(jsonOutput.ToString());
+                /*var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/RacunDobavljaca/RacunDobavljacaPost");
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
@@ -184,7 +185,7 @@ namespace Saobracaj.Pantheon_Export
                         }
                         MessageBox.Show("Uspešan prenos");
                     }
-                }
+                }*/
             }
     }
 

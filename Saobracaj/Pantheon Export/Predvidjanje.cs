@@ -218,61 +218,63 @@ namespace Saobracaj.Pantheon_Export
             DateTime datumPom;
             try
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    ID = Convert.ToInt32(row.Cells[0].Value.ToString());
-                    PredvidjanjeID = row.Cells[2].Value.ToString().TrimEnd();
-                    Poz = row.Cells[3].Value.ToString().TrimEnd();
-                    datumPom = Convert.ToDateTime(row.Cells[4].Value.ToString());
-                    Datum = datumPom.ToString("yyyy-MM-dd");
-                    Kupac = row.Cells[5].Value.ToString().TrimEnd();
-                    NTNaziv = row.Cells[10].Value.ToString().TrimEnd();
-                    Odeljenje = row.Cells[7].Value.ToString().TrimEnd();
-                    Iznos = row.Cells[8].Value.ToString();
-                    Valuta = row.Cells[9].Value.ToString();
+                if(dataGridView1.Rows.Count > 0 ) {
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        ID = Convert.ToInt32(row.Cells[0].Value.ToString());
+                        PredvidjanjeID = row.Cells[2].Value.ToString().TrimEnd();
+                        Poz = row.Cells[3].Value.ToString().TrimEnd();
+                        datumPom = Convert.ToDateTime(row.Cells[4].Value.ToString());
+                        Datum = datumPom.ToString("yyyy-MM-dd");
+                        Kupac = row.Cells[5].Value.ToString().TrimEnd();
+                        NTNaziv = row.Cells[10].Value.ToString().TrimEnd();
+                        Odeljenje = row.Cells[7].Value.ToString().TrimEnd();
+                        Iznos = row.Cells[8].Value.ToString();
+                        Valuta = row.Cells[9].Value.ToString();
 
-                    var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/Predvidjanje/PredvidjanjePost");
-                    httpWebRequest.ContentType = "application/json";
-                    httpWebRequest.Method = "POST";
-                    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                    {
-                        string json = "{" +
-                                       "\n\"PredvidjanjeID\":\"" + PredvidjanjeID + "\"," +
-                                       "\n\"PredvidjanjePoz\":\"" + Poz + "\"," +
-                                       "\n\"Datum\":\"" + Datum + "\"," +
-                                       "\n\"Subject\":\"" + Kupac + "\"," +
-                                      "\n\"Strn\":\"" + NTNaziv + "\"," +
-                                      "\n\"Odeljenje\":\"" + Odeljenje + "\"," +
-                                      "\n\"Iznos\":\"" + Iznos + "\"," +
-                                       "\n\"Valuta\":\"" + Valuta + "\"\n}";
-                        streamWriter.Write(json);
-                        MessageBox.Show(json.ToString());
-                    }
-                    string response = "";
-                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                    {
-                        var result = streamReader.ReadToEnd();
-                        response = result.ToString();
-                        MessageBox.Show(response.ToString());
-                        if (response.Contains("Error") == true || response.Contains("Greška")==true || response.Contains("ERROR")==true)
+                        var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/Predvidjanje/PredvidjanjePost");
+                        httpWebRequest.ContentType = "application/json";
+                        httpWebRequest.Method = "POST";
+                        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                         {
-                            MessageBox.Show("Slanje nije uspelo \n" + response.ToString());
-                            return;
+                            string json = "{" +
+                                           "\n\"PredvidjanjeID\":\"" + PredvidjanjeID + "\"," +
+                                           "\n\"PredvidjanjePoz\":\"" + Poz + "\"," +
+                                           "\n\"Datum\":\"" + Datum + "\"," +
+                                           "\n\"Subject\":\"" + Kupac + "\"," +
+                                          "\n\"Strn\":\"" + NTNaziv + "\"," +
+                                          "\n\"Odeljenje\":\"" + Odeljenje + "\"," +
+                                          "\n\"Iznos\":\"" + Iznos + "\"," +
+                                           "\n\"Valuta\":\"" + Valuta + "\"\n}";
+                            streamWriter.Write(json);
+                            //MessageBox.Show(json.ToString());
                         }
-                        else
+                        string response = "";
+                        var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                        using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                         {
-                            using (SqlConnection conn = new SqlConnection(connect))
+                            var result = streamReader.ReadToEnd();
+                            response = result.ToString();
+                            MessageBox.Show(response.ToString());
+                            if (response.Contains("Error") == true || response.Contains("Greška") == true || response.Contains("ERROR") == true)
                             {
-                                using (SqlCommand cmd = conn.CreateCommand())
-                                {
-                                    cmd.CommandText = "UPDATE Predvidjanje SET Status = 1  WHERE ID = " + ID;
-                                    conn.Open();
-                                    cmd.ExecuteNonQuery();
-                                    conn.Close();
-                                }
+                                MessageBox.Show("Slanje nije uspelo \n" + response.ToString());
+                                return;
                             }
-                            MessageBox.Show("Uspešan prenos");
+                            else
+                            {
+                                using (SqlConnection conn = new SqlConnection(connect))
+                                {
+                                    using (SqlCommand cmd = conn.CreateCommand())
+                                    {
+                                        cmd.CommandText = "UPDATE Predvidjanje SET Status = 1  WHERE ID = " + ID;
+                                        conn.Open();
+                                        cmd.ExecuteNonQuery();
+                                        conn.Close();
+                                    }
+                                }
+                                MessageBox.Show("Uspešan prenos");
+                            }
                         }
                     }
 
