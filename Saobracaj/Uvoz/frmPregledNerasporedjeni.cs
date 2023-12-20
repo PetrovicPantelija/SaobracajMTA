@@ -42,8 +42,8 @@ namespace Saobracaj.Uvoz
 " p3.PaNaziv as SpedicijaGranica,       VrstaCarinskogPostupka.Naziv as CarinskiPostupak,  " +
 " VrstePostupakaUvoz.Naziv as PostupakSaRobom,uvNacinPakovanja.Naziv as NacinPakovanja, " +
 " Napomena as Napomena2, NaslovStatusaVozila as NaslovZaslanjestatusa,  Carinarnice.Naziv as Carinarnica,   " +
-" p4.PaNaziv as OdredisnaSpedicija, MestaUtovara.Naziv as MestoIstovara, (RTRIM(pkoMU.PaKOIme) + ' ' + RTRIM(pkoMU.PaKOPriimek)) as KontaktOsoba, Email, " +
-" BrojPlombe1, BrojPlombe2,    NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera,  Koleta, green FROM Uvoz Left join Partnerji on PaSifra = VlasnikKontejnera " +
+" p4.PaNaziv as OdredisnaSpedicija, MestaUtovara.Naziv as MestoIstovara, KontaktOsobe, Email, " +
+" BrojPlombe1, BrojPlombe2,    NetoRobe, BrutoRobe, TaraKontejnera, BrutoKontejnera,  Koleta, green FROM Uvoz inner join Partnerji on PaSifra = VlasnikKontejnera " +
 " inner join Partnerji p1 on p1.PaSifra = Uvoznik " +
 " inner join Partnerji p2 on p2.PaSifra = SpedicijaRTC " +
 " inner join Partnerji p3 on p3.PaSifra = SpedicijaGranica " +
@@ -64,7 +64,7 @@ namespace Saobracaj.Uvoz
 " inner join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja " +
 " inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija " +
 " inner join Partnerji pv on pv.PaSifra = Uvoz.VlasnikKontejnera " +
-" inner join partnerjiKontOsebaMU pkoMU on pkoMU.PaKOZapSt = Uvoz.KontaktOsoba  order by Uvoz.Prioritet desc, Uvoz.ID  ";
+"  order by Uvoz.Prioritet desc, Uvoz.ID  ";
 
 
 

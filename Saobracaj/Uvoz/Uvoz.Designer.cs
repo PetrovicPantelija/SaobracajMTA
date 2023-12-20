@@ -1209,7 +1209,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(120, 0);
+            this.dataGridView1.Size = new System.Drawing.Size(120, 82);
             this.dataGridView1.TabIndex = 52;
             this.dataGridView1.Visible = false;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -1237,6 +1237,7 @@ namespace Saobracaj.Uvoz
             this.txtTipKont.Name = "txtTipKont";
             this.txtTipKont.Size = new System.Drawing.Size(186, 21);
             this.txtTipKont.TabIndex = 9;
+            this.txtTipKont.SelectedIndexChanged += new System.EventHandler(this.txtTipKont_SelectedIndexChanged);
             // 
             // dataGridView2
             // 
@@ -2281,7 +2282,7 @@ namespace Saobracaj.Uvoz
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1274, 467);
+            this.ClientSize = new System.Drawing.Size(1274, 549);
             this.Controls.Add(this.label62);
             this.Controls.Add(this.txtKontaktOsobe);
             this.Controls.Add(this.button18);
