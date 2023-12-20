@@ -284,7 +284,7 @@ namespace TrackModal.Dokumeta
             cboSkladiste.ValueMember = "ID";
 
 
-            var select4 = " Select Distinct ID, (Naziv + ' RB:' +  RegistarskaOznaka + ' IB:' + IndividualniBroj) as Naziv   From Vozila";
+            var select4 = " Select Distinct ID, (Naziv ) as Naziv   From Vozila";
             var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
@@ -298,7 +298,7 @@ namespace TrackModal.Dokumeta
             cboSredstvoRada.ValueMember = "ID";
 
 
-            var select5 = " Select Distinct ID, (Cast(ID as nvarchar(5)) + ' ' + Rtrim(Prezime) + ' ' + Rtrim(Ime)) as Naziv   From Zaposleni";
+            var select5 = " Select Distinct DeSifra as ID, (Cast(DeSifra as nvarchar(5)) + ' ' + Rtrim(DePriimek) + ' ' + Rtrim(DeIme)) as Naziv   From Delavci";
             var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection5);
@@ -318,10 +318,11 @@ namespace TrackModal.Dokumeta
         private void btnPretrazi_Click(object sender, EventArgs e)
         {
             chkVoz.Checked = true;
-            var select = "   Select BrojKontejnera, IDNAdredjenog as Dokument, PrijemKontejneraVozStavke.ID as RB, TipKontenjera.Naziv, VrstaRobe.Nkm as NHM, VrstaRobe.Naziv as BrojStavka, PrijemKontejneraVozStavke.SopstvenaMasa, PrijemKontejneraVozStavke.Tara, PrijemKontejneraVozStavke.Neto, (PrijemKontejneraVozStavke.Tara + PrijemKontejneraVozStavke.Neto) as Bruto   From PrijemKontejneraVozStavke " +
+            var select = "   Select BrojKontejnera, IDNAdredjenog as Dokument, PrijemKontejneraVozStavke.ID as RB, TipKontenjera.Naziv,  PrijemKontejneraVozStavke.SopstvenaMasa, PrijemKontejneraVozStavke.Tara, PrijemKontejneraVozStavke.Neto, (PrijemKontejneraVozStavke.Tara + PrijemKontejneraVozStavke.Neto) as Bruto   From PrijemKontejneraVozStavke " +
  " inner join TipKontenjera on TipKontenjera.Id = PrijemKontejneraVozStavke.TipKontejnera " +
  " inner join PrijemKontejneraVoz on PrijemKontejneraVoz.Id = PrijemKontejneraVozStavke.IDNadredjenog " +
- " inner join VrstaRobe on VrstaRobe.Id = PrijemKontejneraVozStavke.VrstaRobe where PrijemKontejneraVoz.Vozom = 1 and IDNadredjenog = " + Convert.ToInt32(cboPrijemVozom.SelectedValue);
+ "  where PrijemKontejneraVoz.Vozom = 1 and IDNadredjenog = " + Convert.ToInt32(cboPrijemVozom.SelectedValue);
+          
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -350,29 +351,23 @@ namespace TrackModal.Dokumeta
             dataGridView1.Columns[3].HeaderText = "Tip kont";
             dataGridView1.Columns[3].Width = 70;
 
+        
+
             DataGridViewColumn column4 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "NHM";
+            dataGridView1.Columns[4].HeaderText = "Sopstv masa";
             dataGridView1.Columns[4].Width = 70;
 
             DataGridViewColumn column5 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Naziv robe";
+            dataGridView1.Columns[5].HeaderText = "Tara";
             dataGridView1.Columns[5].Width = 70;
 
-            DataGridViewColumn column6 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Sopstv masa";
+            DataGridViewColumn column8 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Neto";
             dataGridView1.Columns[6].Width = 70;
 
-            DataGridViewColumn column7 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Tara";
+            DataGridViewColumn column9 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Bruto";
             dataGridView1.Columns[7].Width = 70;
-
-            DataGridViewColumn column8 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "Neto";
-            dataGridView1.Columns[8].Width = 70;
-
-            DataGridViewColumn column9 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Bruto";
-            dataGridView1.Columns[9].Width = 70;
 
             PostaviDatumPrijemaVoz();
             VratiPodatkeMase();
@@ -650,9 +645,9 @@ namespace TrackModal.Dokumeta
                 if (row.Selected)
                 {
                     //Panta1
-                    txtTara.Text = (Convert.ToDecimal(txtTara.Text) + Convert.ToDecimal(row.Cells[7].Value.ToString())).ToString();
-                    txtNeto.Text = (Convert.ToDecimal(txtNeto.Text) + Convert.ToDecimal(row.Cells[8].Value.ToString())).ToString();
-                    txtBruto.Text = (Convert.ToDecimal(txtBruto.Text) + Convert.ToDecimal(row.Cells[9].Value.ToString())).ToString();
+                    txtTara.Text = (Convert.ToDecimal(txtTara.Text) + Convert.ToDecimal(row.Cells[5].Value.ToString())).ToString();
+                    txtNeto.Text = (Convert.ToDecimal(txtNeto.Text) + Convert.ToDecimal(row.Cells[6].Value.ToString())).ToString();
+                    txtBruto.Text = (Convert.ToDecimal(txtBruto.Text) + Convert.ToDecimal(row.Cells[7].Value.ToString())).ToString();
                 }
             }
         }

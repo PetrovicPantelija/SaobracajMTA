@@ -284,7 +284,7 @@ namespace Testiranje.Dokumeta
         private void RefreshDataGrid()
         {
 
-            var select = "  SELECT [ID],[BrVoza],[Relacija],[KalendarSaobracaja],[VremePolaska],[VremeDolaska],[MaksimalnaBruto],[MaksimalnaDuzina],[MaksimalanBrojKola],[VremeZavrsetkaUtovara],[VremeZavrsetkaKP],[VremePrimopredaje],[Napomena],[Datum],[Korisnik] ,Dolazeci,PostNaTerminalD ,KontrolniPregledD,VremeIstovaraD ,VremePrimopredajeD,Ponedeljak ,Utorak	,Sreda,Cetvrtak,Petak	,Subota ,Nedelja,PostNaTerminalO,VremeUtovaraO ,VremeKontrolnogO ,VremeIzvlacenjaO	,VremePolaskaO ,VremeDolaskaO, StanicaOd,StanicaDo,Operater  FROM [dbo].[Voz] order by ID desc";
+            var select = "  SELECT [ID],[BrVoza],[Relacija],[MaksimalnaBruto],[MaksimalnaDuzina],[MaksimalanBrojKola],[Napomena],[Datum],[Korisnik] ,Dolazeci ,VremeDolaskaO, StanicaOd,StanicaDo,Operater  FROM [dbo].[Voz] order by ID desc";
            
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -323,53 +323,29 @@ namespace Testiranje.Dokumeta
             dataGridView1.Columns[2].Width = 150;
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Kalendar saobracaja";
-            dataGridView1.Columns[3].Width = 50;
+            dataGridView1.Columns[3].HeaderText = "Maksimalna bruto";
+            dataGridView1.Columns[3].Width = 100;
 
             DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Vreme polaska";
-            dataGridView1.Columns[4].Width = 50;
-
+            dataGridView1.Columns[4].HeaderText = "Maksimalna dužina";
+            dataGridView1.Columns[4].Width = 100;
 
             DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Vreme dolaska";
+            dataGridView1.Columns[5].HeaderText = "Maksimalni broj kola";
             dataGridView1.Columns[5].Width = 100;
 
+
             DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Maksimalna bruto";
+            dataGridView1.Columns[6].HeaderText = "Napomena";
             dataGridView1.Columns[6].Width = 100;
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Maksimalna dužina";
+            dataGridView1.Columns[7].HeaderText = "Datum unosa";
             dataGridView1.Columns[7].Width = 100;
 
             DataGridViewColumn column9 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "Maksimalni broj kola";
+            dataGridView1.Columns[8].HeaderText = "Korisnik";
             dataGridView1.Columns[8].Width = 100;
-
-            DataGridViewColumn column10 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Vreme Zavrsetka Utovara";
-            dataGridView1.Columns[9].Width = 100;
-
-            DataGridViewColumn column11 = dataGridView1.Columns[10];
-            dataGridView1.Columns[10].HeaderText = "Vreme Zavrsetka KP";
-            dataGridView1.Columns[10].Width = 100;
-
-            DataGridViewColumn column12 = dataGridView1.Columns[11];
-            dataGridView1.Columns[11].HeaderText = "Vreme primopredaje";
-            dataGridView1.Columns[11].Width = 100;
-
-            DataGridViewColumn column13 = dataGridView1.Columns[12];
-            dataGridView1.Columns[12].HeaderText = "Napomena";
-            dataGridView1.Columns[12].Width = 100;
-
-            DataGridViewColumn column14 = dataGridView1.Columns[13];
-            dataGridView1.Columns[13].HeaderText = "Datum unosa";
-            dataGridView1.Columns[13].Width = 100;
-
-            DataGridViewColumn column15 = dataGridView1.Columns[14];
-            dataGridView1.Columns[14].HeaderText = "Korisnik";
-            dataGridView1.Columns[14].Width = 100;
 
             VratiPodatke(txtSifra.Text);
         }
@@ -709,6 +685,11 @@ namespace Testiranje.Dokumeta
 
         private void button5_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                MessageBox.Show("Prvo oformite voz");
+            
+            }
             InsertVoz ins = new InsertVoz();
             ins.InsSerijeKola(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboSerijaKola.SelectedValue),  Convert.ToInt32(nmBrojSerija.Value));
             RefreshDataGrid2();

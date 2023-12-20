@@ -232,8 +232,8 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(137, 24);
-            this.toolStripButton1.Text = "Otvaranje plana utovara";
+            this.toolStripButton1.Size = new System.Drawing.Size(214, 24);
+            this.toolStripButton1.Text = "Formiranje novog plana utovara UVOZ";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButton2
@@ -1736,9 +1736,9 @@
             this.panel1.Controls.Add(this.txtKontrolniPregledD);
             this.panel1.Controls.Add(this.txtVremeIstovaraD);
             this.panel1.Controls.Add(this.label10);
-            this.panel1.Location = new System.Drawing.Point(359, 25);
+            this.panel1.Location = new System.Drawing.Point(359, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(838, 255);
+            this.panel1.Size = new System.Drawing.Size(838, 250);
             this.panel1.TabIndex = 276;
             // 
             // frmVoz

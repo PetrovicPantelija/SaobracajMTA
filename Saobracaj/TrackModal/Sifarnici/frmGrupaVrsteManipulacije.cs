@@ -250,5 +250,10 @@ namespace Saobracaj.TrackModal.Sifarnici
 
             con.Close();
         }
+
+        private void frmGrupaVrsteManipulacije_Load(object sender, EventArgs e)
+        {
+            RefreshDataGrid();
+        }
     }
 }

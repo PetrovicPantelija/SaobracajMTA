@@ -13,7 +13,7 @@ using System.Configuration;
 using System.Net;
 using System.Net.Mail;
 
-namespace TrackModal.Promet
+namespace Saobracaj.Promet
 {
     public partial class frmLagerOperater : Form
     {

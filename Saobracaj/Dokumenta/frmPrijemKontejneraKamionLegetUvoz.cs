@@ -305,7 +305,7 @@ namespace Saobracaj.Dokumenta
                 int pom3 = 1;
                 string s1 = "PRI";
                 string s2 = "PRV";
-                ins.InsProm(Convert.ToDateTime(dtpVremeDolaska.Value), s1, SledeciBroj, row.Cells[3].Value.ToString(), s2, pom3, pom2, 11, 1366, pom2, pom1, row.Cells[0].Value.ToString(), Convert.ToDateTime(DateTime.Now), KorisnikCene, 0, 0, Convert.ToDateTime(DateTime.Now));
+                ins.InsProm(Convert.ToDateTime(dtpVremeDolaska.Value), s1, SledeciBroj, row.Cells[3].Value.ToString(), s2, pom3, pom2, 1, 2, pom2, pom1, row.Cells[0].Value.ToString(), Convert.ToDateTime(DateTime.Now), KorisnikCene, 0, 0, Convert.ToDateTime(DateTime.Now));
 
 
 
@@ -870,6 +870,7 @@ namespace Saobracaj.Dokumenta
 
         private void VratiPodatkeStavke(string IdNadredjenog, int RB)
         {
+            int KontejnerID = 0;
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
@@ -892,6 +893,8 @@ namespace Saobracaj.Dokumenta
             while (dr.Read())
             {
 
+
+                txtKontejnerID.Text = dr["[KontejnerID]"].ToString();
                 txtStavka.Text = dr["ID"].ToString();
                 txtRB.Text = dr["RB"].ToString();
                 txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
@@ -921,11 +924,15 @@ namespace Saobracaj.Dokumenta
                 bttoRobe.Value = Convert.ToDecimal(dr["BTTORobe"].ToString());
                 bttoKontejnera.Value = Convert.ToDecimal(dr["BTTOKOntejnera"].ToString());
                 txtNapomenaS2.Text = dr["Napomena2"].ToString();
-                cbPostupak.SelectedValue = Convert.ToInt32(dr["PostupakSaRobom"].ToString());  // PostupakSaRobom
+                cbPostupak.SelectedValue = Convert.ToInt32(dr["PostupakSaRobom"].ToString());
+               // KontejnerID = Convert.ToInt32(dr["KontejnerID"].ToString()); // PostupakSaRobom
+                
             }
 
             con.Close();
+           // VratiPodatkeKontejnerID(KontejnerID);
         }
+
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {

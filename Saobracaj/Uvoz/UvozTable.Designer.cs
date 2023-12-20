@@ -33,6 +33,7 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.chkOpsti = new System.Windows.Forms.CheckBox();
             this.nmrOpsti = new System.Windows.Forms.NumericUpDown();
             this.dtpOpsti = new System.Windows.Forms.DateTimePicker();
@@ -41,9 +42,8 @@ namespace Saobracaj.Uvoz
             this.txtOpsti = new System.Windows.Forms.TextBox();
             this.cboOpsti = new System.Windows.Forms.ComboBox();
             this.label54 = new System.Windows.Forms.Label();
-            this.button7 = new System.Windows.Forms.Button();
             this.cboPolje = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrOpsti)).BeginInit();
@@ -110,6 +110,18 @@ namespace Saobracaj.Uvoz
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Promena vrednosti na više selektovanih stavki";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button2.Location = new System.Drawing.Point(860, 31);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(83, 24);
+            this.button2.TabIndex = 203;
+            this.button2.Text = "Primeni izmenu";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // chkOpsti
             // 
@@ -234,14 +246,6 @@ namespace Saobracaj.Uvoz
             this.label54.Text = "Polje";
             this.label54.Visible = false;
             // 
-            // button7
-            // 
-            this.button7.Location = new System.Drawing.Point(9, 35);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 203;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
             // cboPolje
             // 
             this.cboPolje.FormattingEnabled = true;
@@ -294,17 +298,13 @@ namespace Saobracaj.Uvoz
             this.cboPolje.Size = new System.Drawing.Size(260, 21);
             this.cboPolje.TabIndex = 57;
             // 
-            // button2
+            // button7
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(860, 31);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(83, 24);
-            this.button2.TabIndex = 203;
-            this.button2.Text = "Primeni izmenu";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button7.Location = new System.Drawing.Point(9, 35);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 203;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // UvozTable
             // 

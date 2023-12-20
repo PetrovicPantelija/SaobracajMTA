@@ -1092,7 +1092,7 @@ namespace Saobracaj.Izvoz
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(380, 385);
+            this.label52.Location = new System.Drawing.Point(380, 387);
             this.label52.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(84, 13);
@@ -1586,7 +1586,7 @@ namespace Saobracaj.Izvoz
             this.cboSpediterURijeci.CausesValidation = false;
             this.cboSpediterURijeci.FormattingEnabled = true;
             this.cboSpediterURijeci.ItemHeight = 13;
-            this.cboSpediterURijeci.Location = new System.Drawing.Point(1081, 582);
+            this.cboSpediterURijeci.Location = new System.Drawing.Point(1082, 582);
             this.cboSpediterURijeci.Margin = new System.Windows.Forms.Padding(2);
             this.cboSpediterURijeci.Name = "cboSpediterURijeci";
             this.cboSpediterURijeci.Size = new System.Drawing.Size(193, 21);
@@ -1791,7 +1791,7 @@ namespace Saobracaj.Izvoz
             this.txtValuta.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txtValuta.FormattingEnabled = true;
             this.txtValuta.ItemHeight = 13;
-            this.txtValuta.Location = new System.Drawing.Point(8, 441);
+            this.txtValuta.Location = new System.Drawing.Point(6, 441);
             this.txtValuta.Margin = new System.Windows.Forms.Padding(2);
             this.txtValuta.Name = "txtValuta";
             this.txtValuta.Size = new System.Drawing.Size(184, 21);
@@ -1998,7 +1998,7 @@ namespace Saobracaj.Izvoz
             // 
             // txtNapomenaZaRobu
             // 
-            this.txtNapomenaZaRobu.Location = new System.Drawing.Point(1079, 167);
+            this.txtNapomenaZaRobu.Location = new System.Drawing.Point(1081, 168);
             this.txtNapomenaZaRobu.Margin = new System.Windows.Forms.Padding(2);
             this.txtNapomenaZaRobu.Multiline = true;
             this.txtNapomenaZaRobu.Name = "txtNapomenaZaRobu";
