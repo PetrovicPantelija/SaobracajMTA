@@ -81,11 +81,11 @@ namespace Saobracaj.Pantheon_Export
                 "FROM Faktura " +
                 "INNER JOIN Partnerji ON Faktura.FaPartPlac = Partnerji.PaSifra " +
                 "INNER JOIN Izjave ON Faktura.FaOpomba1 = Izjave.ID " +
-                "WHERE Status = 0";
+                "WHERE Faktura.Status = 0";
 
             string query2 = "SELECT FakturaPostav.FaPStFak, FakturaPostav.FapStPos AS No, RTrim(MaticniPodatki.MpStaraSif) AS Ident," +
                 "CAST(FakturaPostav.FaPkolOdpr AS DECIMAL(10, 2)) AS Qty," +
-                "CAST(FakturaPostav.FaPCenaEM AS DECIMAL(10, 2)) AS Price, RTrim(NosiociTroskova.NosilacTroska), RTrim(MeNaziv) AS JNT, '' AS Product" +
+                "CAST(FakturaPostav.FaPCenaEM AS DECIMAL(10, 2)) AS Price, RTrim(NosiociTroskova.NosilacTroska), RTrim(MeNaziv) AS JNT, '' AS Product " +
                 "FROM FakturaPostav " +
                 "INNER JOIN MaticniPodatki ON FakturaPostav.FaPSifra = MaticniPodatki.MpSifra " +
                 "INNER JOIN NosiociTroskova ON FakturaPostav.NosilacTroska = NosiociTroskova.ID " +
@@ -146,8 +146,9 @@ namespace Saobracaj.Pantheon_Export
             foreach (var item in combinedData)
             {
                 string jsonOutput = JsonConvert.SerializeObject(item, Formatting.Indented);
+                //MessageBox.Show(jsonOutput.ToString());
                 //Console.WriteLine(jsonOutput);
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/Faktura/FakturaPost");
+               var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/Faktura/FakturaPost");
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
