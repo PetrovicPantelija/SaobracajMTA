@@ -1768,6 +1768,12 @@
     <Compile Include="Pantheon Export\NosiociTroskova.Designer.cs">
       <DependentUpon>NosiociTroskova.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pantheon Export\Opportunity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantheon Export\Opportunity.Designer.cs">
+      <DependentUpon>Opportunity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pantheon Export\Predvidjanje.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3949,6 +3955,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pantheon Export\NosiociTroskova.resx">
       <DependentUpon>NosiociTroskova.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantheon Export\Opportunity.resx">
+      <DependentUpon>Opportunity.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantheon Export\Predvidjanje.resx">
       <DependentUpon>Predvidjanje.cs</DependentUpon>

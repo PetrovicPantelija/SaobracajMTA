@@ -188,6 +188,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -291,10 +292,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1164, 549);
-            this.Controls.Add(this.cboGrupa);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.cboOdeljenje);
-            this.Controls.Add(this.cboKupac);
             this.Controls.Add(this.txtNazivNosioca);
             this.Controls.Add(this.txtNosilacTroska);
             this.Controls.Add(this.txtID);
@@ -306,6 +304,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.cboKupac);
+            this.Controls.Add(this.cboGrupa);
+            this.Controls.Add(this.cboOdeljenje);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NosiociTroskova";
             this.Text = "NosiociTroskova";

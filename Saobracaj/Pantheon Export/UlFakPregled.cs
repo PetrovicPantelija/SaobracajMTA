@@ -78,7 +78,7 @@ namespace Saobracaj.Pantheon_Export
         private void btnExport_Click(object sender, EventArgs e)
         {
             string ID = "";
-            string query1 = "Select RTrim(CRMID) as CRMDocumentId,1000 as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,RTrim(UlFak.Valuta) as Currency,Kurs as FXRate,RTrim(RacunDobavljaca) as Doc1, " +
+            string query1 = "Select RTrim(CRMID) as CRMDocumentId,RTrim(Tip) as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,RTrim(UlFak.Valuta) as Currency,Kurs as FXRate,RTrim(RacunDobavljaca) as Doc1, " +
                 "CONVERT(VARCHAR, DatumIzdavanja, 23) as DateDoc1,CONVERT(VARCHAR, DatumPDVa, 23) as DateVAT,CONVERT(VARCHAR, DatumValute, 23) as DateDue,Rtrim(PredvidjanjeID) as PredvidjanjeId, " +
                 "UlFak.Referent as UserId,Napomena as Napomena,UlFak.ID as ID " +
                 "from UlFak " +
@@ -147,12 +147,15 @@ namespace Saobracaj.Pantheon_Export
             foreach (var item in combinedData)
             {
                 string jsonOutput = JsonConvert.SerializeObject(item, Formatting.Indented);
-                MessageBox.Show(jsonOutput.ToString());
-                /*var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/RacunDobavljaca/RacunDobavljacaPost");
+                //MessageBox.Show(jsonOutput.ToString());
+                
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/RacunDobavljaca/RacunDobavljacaPost");
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
+                    MessageBox.Show(jsonOutput.ToString());
+
                     streamWriter.Write(jsonOutput);
                 }
                 string response = "";
@@ -162,8 +165,6 @@ namespace Saobracaj.Pantheon_Export
                     var result = streamReader.ReadToEnd();
                     response = result.ToString();
                     MessageBox.Show(response.ToString());
-
-
                     if (response.Contains("Error") == true || response.Contains("Greška")==true || response.Contains("ERROR")==true)
                     {
                         MessageBox.Show("Slanje nije uspelo");
@@ -185,7 +186,7 @@ namespace Saobracaj.Pantheon_Export
                         }
                         MessageBox.Show("Uspešan prenos");
                     }
-                }*/
+                }
             }
     }
 
