@@ -73,8 +73,9 @@ namespace Saobracaj.Pantheon_Export
         public int ID,Primalac,Referent;
         private void btnExport_Click(object sender, EventArgs e)
         {
+            //
             string FaStFak = "";
-            string query1 = "SELECT CRMID AS CRMDocumentID, 3100 AS DocType, CONVERT(VARCHAR, FaVpisalDat, 23) AS Date, RTrim(PaNaziv) AS Receiver," +
+            string query1 = "SELECT CRMID AS CRMDocumentID, RTrim(FaModul) AS DocType, CONVERT(VARCHAR, FaVpisalDat, 23) AS Date, RTrim(PaNaziv) AS Receiver," +
                 "RTrim(FaValutaCene) AS Currency, RTrim(Kurs) AS FXRate, '' AS Doc1, '' AS DateDoc1, '' AS Doc2, '' AS DateDoc2," +
                 "CONVERT(VARCHAR, FaObdobje, 23) AS DateVAT, CONVERT(VARCHAR, FaDatVal, 23) AS DateDue, RTrim(IDPantheon) AS Statement," +
                 "RTrim(FaRefer) AS UserId, RTrim(FaOpomba2) AS Napomena,FaStFak " +
@@ -85,7 +86,7 @@ namespace Saobracaj.Pantheon_Export
 
             string query2 = "SELECT FakturaPostav.FaPStFak, FakturaPostav.FapStPos AS No, RTrim(MaticniPodatki.MpStaraSif) AS Ident," +
                 "CAST(FakturaPostav.FaPkolOdpr AS DECIMAL(10, 2)) AS Qty," +
-                "CAST(FakturaPostav.FaPCenaEM AS DECIMAL(10, 2)) AS Price, RTrim(NosiociTroskova.NosilacTroska), RTrim(MeNaziv) AS JNT, '' AS Product " +
+                "CAST(FakturaPostav.FaPCenaEM AS DECIMAL(10, 2)) AS Price, RTrim(NosiociTroskova.NosilacTroska) as CostDrv, RTrim(MeNaziv) AS JNT, '' AS Product " +
                 "FROM FakturaPostav " +
                 "INNER JOIN MaticniPodatki ON FakturaPostav.FaPSifra = MaticniPodatki.MpSifra " +
                 "INNER JOIN NosiociTroskova ON FakturaPostav.NosilacTroska = NosiociTroskova.ID " +
@@ -146,13 +147,15 @@ namespace Saobracaj.Pantheon_Export
             foreach (var item in combinedData)
             {
                 string jsonOutput = JsonConvert.SerializeObject(item, Formatting.Indented);
-                //MessageBox.Show(jsonOutput.ToString());
+                MessageBox.Show(jsonOutput.ToString());
                 //Console.WriteLine(jsonOutput);
-               var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/Faktura/FakturaPost");
+              
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/Faktura/FakturaPost");
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
+                    MessageBox.Show(jsonOutput.ToString());
                     streamWriter.Write(jsonOutput);
                 }
                 string response = "";

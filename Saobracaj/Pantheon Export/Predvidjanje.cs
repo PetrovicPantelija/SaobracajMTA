@@ -246,8 +246,8 @@ namespace Saobracaj.Pantheon_Export
                                           "\n\"Odeljenje\":\"" + Odeljenje + "\"," +
                                           "\n\"Iznos\":\"" + Iznos + "\"," +
                                            "\n\"Valuta\":\"" + Valuta + "\"\n}";
-                            streamWriter.Write(json);
-                            //MessageBox.Show(json.ToString());
+                           streamWriter.Write(json);
+                         //  MessageBox.Show(json.ToString());
                         }
                         string response = "";
                         var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();

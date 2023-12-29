@@ -62,6 +62,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtNapomena = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnObrisi = new System.Windows.Forms.Button();
             this.cboJM = new System.Windows.Forms.ComboBox();
             this.cboNajava = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -82,7 +83,8 @@
             this.cboMP = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cboIzjava = new System.Windows.Forms.ComboBox();
-            this.btnObrisi = new System.Windows.Forms.Button();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -158,7 +160,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(388, 35);
+            this.label3.Location = new System.Drawing.Point(515, 35);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 200;
@@ -167,7 +169,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(687, 35);
+            this.label4.Location = new System.Drawing.Point(752, 35);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 13);
             this.label4.TabIndex = 200;
@@ -176,7 +178,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(839, 35);
+            this.label5.Location = new System.Drawing.Point(866, 35);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(28, 13);
             this.label5.TabIndex = 200;
@@ -194,7 +196,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(249, 87);
+            this.label7.Location = new System.Drawing.Point(263, 88);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(77, 13);
             this.label7.TabIndex = 200;
@@ -236,9 +238,9 @@
             // cboPrimalac
             // 
             this.cboPrimalac.FormattingEnabled = true;
-            this.cboPrimalac.Location = new System.Drawing.Point(232, 50);
+            this.cboPrimalac.Location = new System.Drawing.Point(374, 51);
             this.cboPrimalac.Name = "cboPrimalac";
-            this.cboPrimalac.Size = new System.Drawing.Size(388, 21);
+            this.cboPrimalac.Size = new System.Drawing.Size(322, 21);
             this.cboPrimalac.TabIndex = 203;
             this.cboPrimalac.SelectionChangeCommitted += new System.EventHandler(this.cboPrimalac_SelectionChangeCommitted);
             this.cboPrimalac.SelectedValueChanged += new System.EventHandler(this.cboPrimalac_SelectedValueChanged);
@@ -246,14 +248,14 @@
             // cboValuta
             // 
             this.cboValuta.FormattingEnabled = true;
-            this.cboValuta.Location = new System.Drawing.Point(626, 50);
+            this.cboValuta.Location = new System.Drawing.Point(702, 51);
             this.cboValuta.Name = "cboValuta";
-            this.cboValuta.Size = new System.Drawing.Size(169, 21);
+            this.cboValuta.Size = new System.Drawing.Size(132, 21);
             this.cboValuta.TabIndex = 203;
             // 
             // txtKurs
             // 
-            this.txtKurs.Location = new System.Drawing.Point(813, 51);
+            this.txtKurs.Location = new System.Drawing.Point(840, 51);
             this.txtKurs.Name = "txtKurs";
             this.txtKurs.Size = new System.Drawing.Size(78, 20);
             this.txtKurs.TabIndex = 201;
@@ -269,7 +271,7 @@
             // dtDatumUtovara
             // 
             this.dtDatumUtovara.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtDatumUtovara.Location = new System.Drawing.Point(217, 103);
+            this.dtDatumUtovara.Location = new System.Drawing.Point(231, 104);
             this.dtDatumUtovara.Name = "dtDatumUtovara";
             this.dtDatumUtovara.Size = new System.Drawing.Size(137, 20);
             this.dtDatumUtovara.TabIndex = 202;
@@ -292,7 +294,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(927, 35);
+            this.label10.Location = new System.Drawing.Point(950, 35);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(69, 13);
             this.label10.TabIndex = 200;
@@ -301,7 +303,7 @@
             // dtPDV
             // 
             this.dtPDV.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtPDV.Location = new System.Drawing.Point(909, 51);
+            this.dtPDV.Location = new System.Drawing.Point(924, 51);
             this.dtPDV.Name = "dtPDV";
             this.dtPDV.Size = new System.Drawing.Size(107, 20);
             this.dtPDV.TabIndex = 202;
@@ -397,6 +399,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1166, 95);
             this.panel1.TabIndex = 206;
+            // 
+            // btnObrisi
+            // 
+            this.btnObrisi.Location = new System.Drawing.Point(1078, 67);
+            this.btnObrisi.Name = "btnObrisi";
+            this.btnObrisi.Size = new System.Drawing.Size(75, 23);
+            this.btnObrisi.TabIndex = 209;
+            this.btnObrisi.Text = "Obrisi";
+            this.btnObrisi.UseVisualStyleBackColor = true;
+            this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
             // 
             // cboJM
             // 
@@ -572,15 +584,22 @@
             this.cboIzjava.Size = new System.Drawing.Size(403, 21);
             this.cboIzjava.TabIndex = 208;
             // 
-            // btnObrisi
+            // comboBox1
             // 
-            this.btnObrisi.Location = new System.Drawing.Point(1078, 67);
-            this.btnObrisi.Name = "btnObrisi";
-            this.btnObrisi.Size = new System.Drawing.Size(75, 23);
-            this.btnObrisi.TabIndex = 209;
-            this.btnObrisi.Text = "Obrisi";
-            this.btnObrisi.UseVisualStyleBackColor = true;
-            this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(216, 50);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(152, 21);
+            this.comboBox1.TabIndex = 209;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(253, 35);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(87, 13);
+            this.label24.TabIndex = 210;
+            this.label24.Text = "Vrsta dokumenta";
             // 
             // IzlazneFakture
             // 
@@ -588,6 +607,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1190, 563);
+            this.Controls.Add(this.label24);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.cboIzjava);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
@@ -689,5 +710,7 @@
         private System.Windows.Forms.ComboBox cboIzjava;
         private System.Windows.Forms.ComboBox cboJM;
         private System.Windows.Forms.Button btnObrisi;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label24;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Saobracaj.Sifarnici;
+﻿using Saobracaj.eDokumenta;
+using Saobracaj.Sifarnici;
 using Syncfusion.Windows.Forms.Diagram;
 using System;
 using System.Collections.Generic;
@@ -90,7 +91,11 @@ namespace Saobracaj.Pantheon_Export
         }
         private void IzlazneFakture_Load(object sender, EventArgs e)
         {
-            
+            comboBox1.Items.Add("3010 - Domaci železnicki transport");
+            comboBox1.Items.Add("3100 - Domaci rečni transport");
+            comboBox1.Items.Add("3110 - Medj.transport - ŽELEZNIČKI");
+            comboBox1.Items.Add("3X00 - Odobrenje inostranstvo");
+            comboBox1.Items.Add("3X20 - Finansijsko odobrenje");
         }
         private void FillCombo()
         {
@@ -206,7 +211,7 @@ namespace Saobracaj.Pantheon_Export
             {
                 ins.InstFaktura(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtDatum.Value), Convert.ToInt32(cboPrimalac.SelectedValue), ulica, naziv, mesto, mb, cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Text),
                     Convert.ToDateTime(dtPDV.Value), Convert.ToDateTime(dtValuta.Value), txtMestoUtovara.Text.ToString(), Convert.ToDateTime(dtDatumUtovara.Value), txtMestoUtovara.Text.ToString().TrimEnd(),
-                    Convert.ToDateTime(dtDatumIstovara.Value), korisnik, Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboIzjava.SelectedValue), txtNapomena.Text.ToString().TrimEnd(),Convert.ToInt32(crmID));
+                    Convert.ToDateTime(dtDatumIstovara.Value), korisnik, Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboIzjava.SelectedValue), txtNapomena.Text.ToString().TrimEnd(),Convert.ToInt32(crmID), comboBox1.Text.ToString().Substring(0, 3));
             }
             else
             {

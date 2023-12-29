@@ -181,8 +181,10 @@ namespace Saobracaj.Pantheon_Export
                                            "\n\"Classif\":\"" + Grupa + "\"," +
                                           "\n\"Consignee\":\"" + Kupac + "\"," +
                                            "\n\"Dept\":\"" + Odeljenje + "\"\n}";
+                            //MessageBox.Show(json.ToString());
                             streamWriter.Write(json);
                         }
+                        
                         string response = "";
                         var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                         using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
@@ -211,7 +213,6 @@ namespace Saobracaj.Pantheon_Export
                                 MessageBox.Show("Uspešan prenos");
                             }
                         }
-
                     }
                 }
             }

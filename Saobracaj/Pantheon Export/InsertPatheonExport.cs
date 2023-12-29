@@ -38,7 +38,7 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@VrstaDokumenta", SqlDbType.Char, 4) { Value = VrstaDokumenta });
                             cmd.Parameters.Add(new SqlParameter("@FakturaBr", SqlDbType.Char, 20) { Value = FakturaBr });
                             cmd.Parameters.Add(new SqlParameter("@IDDobavljaca", SqlDbType.Int) { Value = IDDobavljaca });
-                            cmd.Parameters.Add(new SqlParameter("@Tip", SqlDbType.Char, 1) { Value = Tip });
+                            cmd.Parameters.Add(new SqlParameter("@Tip", SqlDbType.NVarChar, 4) { Value = Tip });
                             cmd.Parameters.Add(new SqlParameter("@DatumPrijema", SqlDbType.DateTime) { Value = DatumPrijema });
                             cmd.Parameters.Add(new SqlParameter("@Valuta", SqlDbType.Char, 30) { Value = Valuta });
                             cmd.Parameters.Add(new SqlParameter("@Kurs", SqlDbType.Decimal) { Value = Kurs });
@@ -85,7 +85,7 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@VrstaDokumenta", SqlDbType.Char, 4) { Value = VrstaDokumenta });
                             cmd.Parameters.Add(new SqlParameter("@FakturaBr", SqlDbType.Char, 20) { Value = FakturaBr });
                             cmd.Parameters.Add(new SqlParameter("@IDDobavljaca", SqlDbType.Int) { Value = IDDobavljaca });
-                            cmd.Parameters.Add(new SqlParameter("@Tip", SqlDbType.Char, 1) { Value = Tip });
+                            cmd.Parameters.Add(new SqlParameter("@Tip", SqlDbType.Char, 4) { Value = Tip });
                             cmd.Parameters.Add(new SqlParameter("@DatumPrijema", SqlDbType.DateTime) { Value = DatumPrijema });
                             cmd.Parameters.Add(new SqlParameter("@Valuta", SqlDbType.Char, 30) { Value = Valuta });
                             cmd.Parameters.Add(new SqlParameter("@Kurs", SqlDbType.Decimal) { Value = Kurs });
@@ -110,7 +110,7 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
-        public void InsUlFakPostav(int IDFak, int RB, int MP, decimal Kolicina, decimal Cena, int NosilacTroska, string JM, string Proizvod,int Najava)
+        public void InsUlFakPostav(int IDFak, int RB, int MP, decimal Kolicina, decimal Cena, int NosilacTroska, string JM, string Proizvod, int Najava)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -133,7 +133,7 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@NosilacTroska", SqlDbType.Int) { Value = NosilacTroska });
                             cmd.Parameters.Add(new SqlParameter("@JM", SqlDbType.Char, 30) { Value = JM });
                             cmd.Parameters.Add(new SqlParameter("@Proizvod", SqlDbType.NVarChar) { Value = Proizvod });
-                            cmd.Parameters.Add(new SqlParameter("@Najava",SqlDbType.Int) { Value = Najava });
+                            cmd.Parameters.Add(new SqlParameter("@Najava", SqlDbType.Int) { Value = Najava });
 
                             cmd.ExecuteNonQuery();
                         }
@@ -358,7 +358,7 @@ namespace Saobracaj.Pantheon_Export
             }
         }
         public void InstFaktura(int ID, DateTime DatumDok, int Primalac, string Ulica, string Naziv, string Mesto, string MB, string Valuta, decimal Kurs, DateTime DatumPDV, DateTime DatumValute, string MestoUtovara, DateTime DatumUtovara,
-            string MestoIstovara, DateTime DatumIstovara, string Referent, int ReferentID, int Izjava, string Napomena, int CrmID)
+            string MestoIstovara, DateTime DatumIstovara, string Referent, int ReferentID, int Izjava, string Napomena, int CrmID, string Tip)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -393,6 +393,7 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@Izjava", SqlDbType.Int) { Value = Izjava });
                             cmd.Parameters.Add(new SqlParameter("@Napomena", SqlDbType.NVarChar, 500) { Value = Napomena });
                             cmd.Parameters.Add(new SqlParameter("@CRMID", SqlDbType.Int) { Value = CrmID });
+                            cmd.Parameters.Add(new SqlParameter("@Tip", SqlDbType.NVarChar, 4) { Value = Tip });
 
                             cmd.ExecuteNonQuery();
                         }
@@ -502,6 +503,135 @@ namespace Saobracaj.Pantheon_Export
                     {
                         transaction.Rollback();
                         MessageBox.Show("Neuspesan upis", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                conn.Close();
+            }
+        }
+        /*
+         * OppID nvarchar(20),NazivPosla nvarchar(200),Odeljenje int,Product nvarchar(100),ProductFor nvarchar(100),Klijent int,KontaktOsoba nvarchar(100),
+OppType nvarchar(50),JobType nvarchar(50),Budzet decimal(18,2),Valuta nvarchar(3),EstimatedRevenue decimal(18,2),Opis nvarchar(500),PocetnaStanica int,KrajnjaStanica int,Won int
+        */
+        public void InsOpportunity(string OppID, string NazivPosla, int Odeljenje, string Product, string ProductFor, int Klijent, string KontaktOsoba, string OppType, string JobType, decimal Budzet, string Valuta,
+            decimal EstimatedRevenue, string Opis, int PocetnaStanica, int KrajnjaStanica, int Won)
+        {
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "InsertOpportunity";
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.Add(new SqlParameter("@OppID", SqlDbType.NVarChar, 20) { Value = OppID });
+                            cmd.Parameters.Add(new SqlParameter("@NazivPosla", SqlDbType.NVarChar, 200) { Value = NazivPosla });
+                            cmd.Parameters.Add(new SqlParameter("@Odeljenje", SqlDbType.Int) { Value = Odeljenje });
+                            cmd.Parameters.Add(new SqlParameter("@Product", SqlDbType.NVarChar, 100) { Value = Product });
+                            cmd.Parameters.Add(new SqlParameter("@ProductFor", SqlDbType.NVarChar, 100) { Value = ProductFor });
+                            cmd.Parameters.Add(new SqlParameter("@Klijent", SqlDbType.Int) { Value = Klijent });
+                            cmd.Parameters.Add(new SqlParameter("@KontaktOsoba", SqlDbType.NVarChar, 100) { Value = KontaktOsoba });
+                            cmd.Parameters.Add(new SqlParameter("@OppType", SqlDbType.NVarChar, 50) { Value = OppType });
+                            cmd.Parameters.Add(new SqlParameter("@JobType", SqlDbType.NVarChar, 50) { Value = JobType });
+                            cmd.Parameters.Add(new SqlParameter("@Budzet", SqlDbType.Decimal) { Value = Budzet });
+                            cmd.Parameters.Add(new SqlParameter("@Valuta", SqlDbType.NVarChar, 3) { Value = Valuta });
+                            cmd.Parameters.Add(new SqlParameter("@EstimatedRevenue", SqlDbType.Decimal) { Value = EstimatedRevenue });
+                            cmd.Parameters.Add(new SqlParameter("@Opis", SqlDbType.NVarChar, 500) { Value = Opis });
+                            cmd.Parameters.Add(new SqlParameter("@PocetnaStanica", SqlDbType.Int) { Value = PocetnaStanica });
+                            cmd.Parameters.Add(new SqlParameter("@KrajnjaStanica", SqlDbType.Int) { Value = KrajnjaStanica });
+                            cmd.Parameters.Add(new SqlParameter("@Won", SqlDbType.Int) { Value = Won });
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (SqlException ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Neuspešan upis cena u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                conn.Close();
+            }
+        }
+        public void UpdOpportunity(int ID, string NazivPosla, int Odeljenje, string Product, string ProductFor, int Klijent, string KontaktOsoba, string OppType, string JobType, decimal Budzet, string Valuta,
+            decimal EstimatedRevenue, string Opis, int PocetnaStanica, int KrajnjaStanica, int Won)
+        {
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "UpdateOpportunity";
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = ID });
+                            cmd.Parameters.Add(new SqlParameter("@NazivPosla", SqlDbType.NVarChar, 200) { Value = NazivPosla });
+                            cmd.Parameters.Add(new SqlParameter("@Odeljenje", SqlDbType.Int) { Value = Odeljenje });
+                            cmd.Parameters.Add(new SqlParameter("@Product", SqlDbType.NVarChar, 100) { Value = Product });
+                            cmd.Parameters.Add(new SqlParameter("@ProductFor", SqlDbType.NVarChar, 100) { Value = ProductFor });
+                            cmd.Parameters.Add(new SqlParameter("@Klijent", SqlDbType.Int) { Value = Klijent });
+                            cmd.Parameters.Add(new SqlParameter("@KontaktOsoba", SqlDbType.NVarChar, 100) { Value = KontaktOsoba });
+                            cmd.Parameters.Add(new SqlParameter("@OppType", SqlDbType.NVarChar, 50) { Value = OppType });
+                            cmd.Parameters.Add(new SqlParameter("@JobType", SqlDbType.NVarChar, 50) { Value = JobType });
+                            cmd.Parameters.Add(new SqlParameter("@Budzet", SqlDbType.Decimal) { Value = Budzet });
+                            cmd.Parameters.Add(new SqlParameter("@Valuta", SqlDbType.NVarChar, 3) { Value = Valuta });
+                            cmd.Parameters.Add(new SqlParameter("@EstimatedRevenue", SqlDbType.Decimal) { Value = EstimatedRevenue });
+                            cmd.Parameters.Add(new SqlParameter("@Opis", SqlDbType.NVarChar, 500) { Value = Opis });
+                            cmd.Parameters.Add(new SqlParameter("@PocetnaStanica", SqlDbType.Int) { Value = PocetnaStanica });
+                            cmd.Parameters.Add(new SqlParameter("@KrajnjaStanica", SqlDbType.Int) { Value = KrajnjaStanica });
+                            cmd.Parameters.Add(new SqlParameter("@Won", SqlDbType.Int) { Value = Won });
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (SqlException ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Neuspešan upis cena u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                conn.Close();
+            }
+        }
+        public void DelOpportunity(int ID)
+        {
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "DeleteOpportunity";
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = ID });
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (SqlException ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Neuspešan upis cena u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ex.ToString());
                     }
                 }
                 conn.Close();
