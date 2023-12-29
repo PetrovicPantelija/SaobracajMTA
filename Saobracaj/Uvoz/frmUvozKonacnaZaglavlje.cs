@@ -39,12 +39,9 @@ namespace Saobracaj.Uvoz
         private void VratiVoz()
         {
             var select = "SELECT [ID] ,[BrVoza],[Relacija], " +
-                " CONVERT(varchar,VremePolaska,104)      + ' '      + SUBSTRING(CONVERT(varchar,VremePolaska,108),1,5) as VremePolaska, " +
-                " CONVERT(varchar,[VremeDolaska],104)      + ' '      + SUBSTRING(CONVERT(varchar,[VremeDolaska],108),1,5)  as VremeDolaska, " +
                 " [MaksimalnaBruto],[MaksimalnaDuzina] " +
                 " ,[MaksimalanBrojKola] " +
                 " ,[Napomena]" +
-                " ,[PostNaTerminalD] as Postavka,[KontrolniPregledD] as Kontrolni ,[VremePrimopredajeD] as Primopredaja,[VremeIstovaraD] as Istovar" +
                 " ,[Datum] ,[Korisnik],[Dolazeci] " +
                 " FROM [dbo].[Voz] where ID =  " + Convert.ToInt32(cboVoz.SelectedValue);
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -127,11 +124,11 @@ namespace Saobracaj.Uvoz
 
         private void RefreshDataGrid()
         {
-            var select = " Select UvozKonacnaZaglavlje.ID, UvozKonacnaZaglavlje.IDVoza, Voz.BrVoza, Voz.VremePolaska, Voz.VremeDolaska, s1.Opis as StanicaOd, s2.Opis as StanicaDo, Voz.Relacija as Relacija from UvozKonacnaZaglavlje " +
+            var select = " Select UvozKonacnaZaglavlje.ID, UvozKonacnaZaglavlje.IDVoza, Voz.BrVoza,  s1.Opis as StanicaOd, s2.Opis as StanicaDo, Voz.Relacija as Relacija from UvozKonacnaZaglavlje " +
             " inner join Voz on Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
             " inner join stanice s1 on s1.ID = Voz.StanicaOd " +
             " inner join stanice s2 on s2.ID = Voz.StanicaDo " +
-            " order by UvozKonacnaZaglavlje.ID desc";
+            " where Dolazeci = 1 order by UvozKonacnaZaglavlje.ID desc";
             // var select = "SELECT RkShippingItemPak.ShippingItemPakId as ID, RkShipping.ShippingNo as BarkodUtovara, RkShipping.BrojIstovara as BrojUtovara, RkShipping.DatumIstovara as DatumUtovara, RkShipping.BrojUtovara as BrojIstovara,  RkShipping.DatumUtovara as DatumIstovara , Saloni.MestoIsporuke, RkShippingItemPak.PaketName, RkShippingItemPak.LargoPakId, RkShippingItemPak.LargoNaziv, RkShippingItemPak.Paleta, RkShippingItemPak.Tezina,  RkShippingItemPak.LargoDimenzija  FROM [dbo].RkShippingItemPak inner join RkShipping on [dbo].RkShippingItemPak.ShipingIDz = RkShipping.[ShippingID] inner join SysKomitenti on RkShipping.KupacIDz = SysKomitenti.KomintentID inner join Saloni on RkShipping.SalonIDz = Saloni.SifraKomintentaMestoIsporuke where RkShipping.Vozilo  = '" + cboVozila.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "' and RkShipping.DatumUtovara = '" + cboDatumUtovara.Text + "'";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -172,7 +169,7 @@ namespace Saobracaj.Uvoz
         {
             SqlConnection conn = new SqlConnection(connection);
 
-            var voz = "select ID, (Cast(ID as NVarChar(10)) + '-'+Cast(BrVoza as NVarchar(15)) + '-' + Relacija + '-' + Cast(VremePolaska as nvarchar(20))) as Naziv   from Voz ";
+            var voz = "select ID, (Cast(ID as NVarChar(10)) + '-'+Cast(BrVoza as NVarchar(15)) + '-' + Relacija) as Naziv   from Voz ";
             var vozSAD = new SqlDataAdapter(voz, conn);
             var vozSDS = new DataSet();
             vozSAD.Fill(vozSDS);

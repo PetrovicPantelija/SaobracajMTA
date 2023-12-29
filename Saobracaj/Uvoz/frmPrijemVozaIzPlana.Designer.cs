@@ -361,7 +361,7 @@ namespace Saobracaj.Uvoz
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(450, 136);
+            this.button1.Location = new System.Drawing.Point(451, 137);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(129, 26);
             this.button1.TabIndex = 247;
@@ -450,7 +450,7 @@ namespace Saobracaj.Uvoz
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(299, 136);
+            this.button2.Location = new System.Drawing.Point(300, 138);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(145, 26);
             this.button2.TabIndex = 251;
@@ -491,7 +491,7 @@ namespace Saobracaj.Uvoz
             this.cboOperater.FormattingEnabled = true;
             this.cboOperater.Location = new System.Drawing.Point(599, 151);
             this.cboOperater.Name = "cboOperater";
-            this.cboOperater.Size = new System.Drawing.Size(180, 24);
+            this.cboOperater.Size = new System.Drawing.Size(195, 24);
             this.cboOperater.TabIndex = 255;
             // 
             // frmPrijemVozaIzPlana

@@ -2227,7 +2227,7 @@ namespace Saobracaj
 
         private void toolStripButton159_Click(object sender, EventArgs e)
         {
-            frmLagerOperater lager = new frmLagerOperater();
+            Saobracaj.Promet.frmLagerOperater lager = new Saobracaj.Promet.frmLagerOperater();
             PravoP = lager.Pravo;
             if (PravoP == true) { lager.Show(); } else { return; }
         }
@@ -3967,6 +3967,19 @@ namespace Saobracaj
         {
             Izvoz.frmPregledKontejneraIzvozIzUvoza iiu = new Izvoz.frmPregledKontejneraIzvozIzUvoza();
             iiu.Show();
+        }
+
+        private void toolStripButton336_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmRadniNalogInterniPregled RNIP = new Uvoz.frmRadniNalogInterniPregled();
+            RNIP.Show();
+        }
+
+        private void toolStripButton338_Click(object sender, EventArgs e)
+        {
+           
+             Saobracaj.Dokumenta.frmOtpremaKontejneraUvozKamion pkam = new Saobracaj.Dokumenta.frmOtpremaKontejneraUvozKamion(Korisnik,0);
+          pkam.Show(); 
         }
     }
     }

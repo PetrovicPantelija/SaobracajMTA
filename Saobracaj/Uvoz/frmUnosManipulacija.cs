@@ -56,13 +56,12 @@ namespace Saobracaj.Uvoz
         private void FillDG6(int TipUsluge)
         {
             if (TipUsluge == 1)
-            //= Opsti cenovnik pozivanje
             {
             var select = "SELECT VrstaManipulacije.[ID]      ,VrstaManipulacije.[Naziv]    " + 
   " , VrstaManipulacije.[JM]           ,VrstaManipulacije.[JM2] " +
  " ,VrstaManipulacije.[TipManipulacije]      ,VrstaManipulacije.[OrgJed]      ,[Oznaka]      ,[Relacija],OrganizacioneJedinice.Naziv as OJ " +
 " ,VrstaManipulacije.[Cena] ,VrstaManipulacije.[Datum] ,VrstaManipulacije.[Korisnik] FROM [VrstaManipulacije] " +
-" inner join OrganizacioneJedinice on VrstaManipulacije.OrgJed = OrganizacioneJedinice.ID where Administrativna = 1 ";
+" inner join OrganizacioneJedinice on VrstaManipulacije.OrgJed = OrganizacioneJedinice.ID where Administrativna = 0 ";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -132,7 +131,7 @@ namespace Saobracaj.Uvoz
                  " , VrstaManipulacije.[JM]           ,VrstaManipulacije.[JM2] " +
                 " ,VrstaManipulacije.[TipManipulacije]      ,VrstaManipulacije.[OrgJed]      ,[Oznaka]      ,[Relacija],OrganizacioneJedinice.Naziv as OJ " +
                " ,VrstaManipulacije.[Cena] ,VrstaManipulacije.[Datum] ,VrstaManipulacije.[Korisnik] FROM[VrstaManipulacije] " +
-               " inner join OrganizacioneJedinice on VrstaManipulacije.OrgJed = OrganizacioneJedinice.ID where Administrativna = 0 ";
+               " inner join OrganizacioneJedinice on VrstaManipulacije.OrgJed = OrganizacioneJedinice.ID where Administrativna = 1 ";
                 SqlConnection conn = new SqlConnection(connection);
                 var da = new SqlDataAdapter(select, conn);
                 var ds = new DataSet();
@@ -853,7 +852,7 @@ namespace Saobracaj.Uvoz
           "  inner join MestaUtovara on UvozKOnacna.MestoIstovara = MestaUtovara.ID  " +
           " inner join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja  inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija " +
           " inner join Partnerji pv on pv.PaSifra = UvozKonacna.VlasnikKontejnera " +
-            " where IzvozKonacna.ID = " + pID +  "  order by UvozKonacna.ID desc ";
+            " where UvozKonacna.ID = " + pID +  "  order by UvozKonacna.ID desc ";
 
 
 

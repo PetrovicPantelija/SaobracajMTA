@@ -2147,14 +2147,14 @@ namespace Saobracaj.Uvoz
 
             if (dialogResult == DialogResult.Yes)
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    if (row.Selected)
-                    {
+               // foreach (DataGridViewRow row in dataGridView1.Rows)
+               // {
+                //    if (row.Selected)
+                //    {
                         InsertRadniNalogInterni ins = new InsertRadniNalogInterni();
-                        ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(5), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(row.Cells[0].Value.ToString()), "sa", "sa");
-                    }
-                }
+                        ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), "sa", "sa");
+               //     }
+               // }
             }
             else
             {
@@ -2652,7 +2652,7 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton3_Click_1(object sender, EventArgs e)
         {
-            using (var detailForm = new frmUvozKonacnaTable())
+            using (var detailForm = new frmUvozKonacnaTable(txtNadredjeni.Text))
             {
                 detailForm.ShowDialog();
                 txtID.Text = detailForm.GetID();
@@ -2769,6 +2769,19 @@ namespace Saobracaj.Uvoz
         }
 
         private void txtNadredjeni_TextChanged(object sender, EventArgs e)
+        {
+            FillDGUsluge();
+            FillDG2();
+            FillDG4();
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            Saobracaj.Uvoz.frmPrijemVozaIzPlana pvizp = new Saobracaj.Uvoz.frmPrijemVozaIzPlana();
+            pvizp.Show();
+        }
+
+        private void txtID_TextChanged(object sender, EventArgs e)
         {
             FillDGUsluge();
             FillDG2();

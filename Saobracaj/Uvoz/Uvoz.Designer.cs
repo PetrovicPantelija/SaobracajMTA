@@ -374,7 +374,7 @@ namespace Saobracaj.Uvoz
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(127, 13);
             this.label2.TabIndex = 51;
-            this.label2.Text = "ATA broda u Luku Rijeka";
+            this.label2.Text = "ETA broda u Luku Rijeka";
             // 
             // label3
             // 

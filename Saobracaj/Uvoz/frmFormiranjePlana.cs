@@ -475,7 +475,7 @@ namespace Saobracaj.Uvoz
 
         private void button3_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            foreach (DataGridViewRow row in dataGridView2.Rows)
             {
                 if (row.Selected)
                 {

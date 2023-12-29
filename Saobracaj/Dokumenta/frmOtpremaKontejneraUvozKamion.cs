@@ -2957,5 +2957,11 @@ namespace Saobracaj.Dokumenta
                 pnm.Show();
             }
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            Saobracaj.Promet.frmLagerOperater lager = new Saobracaj.Promet.frmLagerOperater();
+          lager.Show(); 
+        }
     }
 }

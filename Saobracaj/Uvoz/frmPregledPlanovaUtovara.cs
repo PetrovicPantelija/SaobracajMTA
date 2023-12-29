@@ -122,13 +122,49 @@ namespace Saobracaj.Uvoz
         }
         private void RefreshDataGrid()
         {
-            var select = "Select UvozKonacnaZaglavlje.ID, UvozKonacnaZaglavlje.IDVoza, Voz.BrVoza, Voz.VremePolaska, Voz.VremeDolaska, s1.Opis as StanicaOd, s2.Opis as StanicaDo, Voz.Relacija, UvozKonacnaZaglavlje.Napomena from UvozKonacnaZaglavlje " +
-                " inner join Voz on Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
-                " inner join stanice s1 on s1.ID = Voz.StanicaOd " +
-                " inner join stanice s2 on s2.ID = Voz.StanicaDo " +
-                " where UvozKonacnaZaglavlje.Vozom = 1" +
-                " order by UvozKonacnaZaglavlje.ID desc";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+           
+
+            var select = "";
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        select = " SELECT UvozKonacnaZaglavlje.[ID] as PLANID,[Voz].[ID] ,[Relacija], p1.PaNAziv as OperaterSRB, p2.PaNaziv as OperaterHR," +
+                        " PristizanjaUSid as DV_PristizanjaUSid, Sazeta as DV_SAzeta, " +
+                        " (SELECT  Count(*) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrojSpakovanihKonterjnera, " +
+                        " (SELECT  SUM(UvozKonacna.TaraKontejnera) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as TaraSpakovanihKonterjnera, " +
+                        " (SELECT  SUM(UvozKonacna.BrutoKontejnera) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrutoSpakovanihKonterjnera, " +
+                        " (SELECT  SUM(UvozKonacna.BrutoRobe) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrutoRobeSpakovanihKonterjnera, " +
+                        " [MaksimalnaBruto],[MaksimalnaDuzina] " +
+                        " ,[MaksimalanBrojKola] " +
+                        " ,[Voz].Napomena " +
+                        " ,Voz.[Datum] ,[Korisnik],[Dolazeci] " +
+                        "  FROM [dbo].[Voz] " +
+                         " Left join UvozKonacnaZaglavlje On Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
+                         " inner join Partnerji p1 on p1.PaSifra = OperaterSrbija " +
+                          " inner join Partnerji p2 on p2.PaSifra = OperaterHR " +
+                         " where Dolazeci = 1 Order by [Voz].[ID] desc";
+                        break;
+
+                    }
+                default:
+                    {
+                        select = "SELECT [ID] ,[BrVoza],[Relacija], " +
+             " CONVERT(varchar,VremePolaska,104)      + ' '      + SUBSTRING(CONVERT(varchar,VremePolaska,108),1,5) as VremePolaska, " +
+             " CONVERT(varchar,[VremeDolaska],104)      + ' '      + SUBSTRING(CONVERT(varchar,[VremeDolaska],108),1,5)  as VremeDolaska, " +
+             " [MaksimalnaBruto],[MaksimalnaDuzina] " +
+             " ,[MaksimalanBrojKola] " +
+             " ,[Napomena]" +
+             " ,[PostNaTerminalD] as Postavka,[KontrolniPregledD] as Kontrolni ,[VremePrimopredajeD] as Primopredaja,[VremeIstovaraD] as Istovar" +
+             " ,[Datum] ,[Korisnik],[Dolazeci] " +
+             " FROM [dbo].[Voz] where Dolazeci = 1 ";
+
+                        break;
+
+                    }
+            }
+                    var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -150,43 +186,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            /*
-                        DataGridViewColumn column = dataGridView1.Columns[0];
-                        dataGridView1.Columns[0].HeaderText = "ID";
-                        dataGridView1.Columns[0].Width = 50;
-
-                        DataGridViewColumn column2 = dataGridView1.Columns[1];
-                        dataGridView1.Columns[1].HeaderText = "Br voza";
-                        dataGridView1.Columns[1].Width = 50;
-
-                        DataGridViewColumn column3 = dataGridView1.Columns[2];
-                        dataGridView1.Columns[2].HeaderText = "Relacija";
-                        dataGridView1.Columns[2].Width = 150;
-
-                        DataGridViewColumn column4 = dataGridView1.Columns[3];
-                        dataGridView1.Columns[3].HeaderText = "Vr polaska";
-                        dataGridView1.Columns[3].Width = 70;
-
-                        DataGridViewColumn column5 = dataGridView1.Columns[4];
-                        dataGridView1.Columns[4].HeaderText = "Vr dolaska";
-                        dataGridView1.Columns[4].Width = 70;
-
-                        DataGridViewColumn column6 = dataGridView1.Columns[5];
-                        dataGridView1.Columns[5].HeaderText = "Max bruto";
-                        dataGridView1.Columns[5].Width = 70;
-
-                        DataGridViewColumn column7 = dataGridView1.Columns[6];
-                        dataGridView1.Columns[6].HeaderText = "Max duž";
-                        dataGridView1.Columns[6].Width = 70;
-
-                        DataGridViewColumn column8 = dataGridView1.Columns[7];
-                        dataGridView1.Columns[7].HeaderText = "Max br kola";
-                        dataGridView1.Columns[7].Width = 70;
-
-                        DataGridViewColumn column9 = dataGridView1.Columns[8];
-                        dataGridView1.Columns[8].HeaderText = "Napomena";
-                        dataGridView1.Columns[8].Width = 100;
-            */
+           
 
         }
 
@@ -202,8 +202,6 @@ namespace Saobracaj.Uvoz
 
                     }
                 }
-
-
             }
             catch
             {

@@ -19,6 +19,7 @@ namespace Saobracaj.Dokumenta
 {
     public partial class frmPrijemKontejneraLegetVozUvoz : Form
     {
+        public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
 
         MailMessage mailMessage;
         string KorisnikCene;
@@ -239,7 +240,7 @@ namespace Saobracaj.Dokumenta
                 int pom3 = 1;
                 string s1 = "PRI";
                 string s2 = "PRV";
-                ins.InsProm(Convert.ToDateTime(dtpVremeDolaska.Value), s1, SledeciBroj, row.Cells[3].Value.ToString(), s2, pom3, pom2, 11, 1366, pom2, pom1, row.Cells[0].Value.ToString(), Convert.ToDateTime(DateTime.Now), KorisnikCene, 0, 0, Convert.ToDateTime(DateTime.Now));
+                ins.InsProm(Convert.ToDateTime(dtpVremeDolaska.Value), s1, SledeciBroj, row.Cells[4].Value.ToString(), s2, pom3, pom2, 1, 2, pom2, pom1, row.Cells[0].Value.ToString(), Convert.ToDateTime(DateTime.Now), KorisnikCene, 0, 0, Convert.ToDateTime(DateTime.Now));
 
 
 
@@ -934,6 +935,153 @@ namespace Saobracaj.Dokumenta
 
             frmNalogZaPrevoz prevoz = new frmNalogZaPrevoz(BrojKontejnera1, BrojKontejnera2, VrstaRobe1, VrstaRobe2, ukupnaMasa, KorisnikCene, TipKontejnera, TipKontejnera2, ukupnaMasa2);
             prevoz.Show();
+        }
+        private void FillDG2()
+        {
+           
+            var select = "  SELECT     UvozKonacnaNHM.ID, NHM.Broj, UvozKonacnaNHM.IDNHM, NHM.Naziv FROM NHM INNER JOIN " +
+                      " UvozKonacnaNHM ON NHM.ID = UvozKonacnaNHM.IDNHM where UvozKonacnanhm.idnadredjena = " + Convert.ToInt32(txtKontejnerID.Text) + " order by UvozKonacnanhm.ID desc";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView3.ReadOnly = true;
+            dataGridView3.DataSource = ds.Tables[0];
+
+            dataGridView3.BorderStyle = BorderStyle.None;
+            dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView3.BackgroundColor = Color.White;
+
+            dataGridView3.EnableHeadersVisualStyles = false;
+            dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView3.Columns[0];
+            dataGridView3.Columns[0].HeaderText = "ID";
+            dataGridView3.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView3.Columns[1];
+            dataGridView3.Columns[1].HeaderText = "NHM Broj";
+            dataGridView3.Columns[1].Width = 70;
+
+            DataGridViewColumn column3 = dataGridView3.Columns[2];
+            dataGridView3.Columns[2].HeaderText = "ID";
+            dataGridView3.Columns[2].Width = 50;
+
+            DataGridViewColumn column4 = dataGridView3.Columns[3];
+            dataGridView3.Columns[3].HeaderText = "NHM";
+            dataGridView3.Columns[3].Width = 150;
+
+
+        }
+
+        private void FillDG4()
+        {
+        
+            var select = "select UvozKonacnaNapomenePozicioniranja.ID, IDNapomene, PredefinisanePoruke.Naziv from UvozKonacnaNapomenePozicioniranja " +
+" inner join  PredefinisanePoruke on PredefinisanePoruke.ID = UvozKonacnaNapomenePozicioniranja.IDNapomene where UvozKonacnaNapomenePozicioniranja.IdNadredjena  = " + Convert.ToInt32(txtKontejnerID.Text) + " order by UvozKonacnaNapomenePozicioniranja.ID desc ";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView4.ReadOnly = true;
+            dataGridView4.DataSource = ds.Tables[0];
+
+            dataGridView4.BorderStyle = BorderStyle.None;
+            dataGridView4.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView4.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView4.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView4.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView4.BackgroundColor = Color.White;
+
+            dataGridView4.EnableHeadersVisualStyles = false;
+            dataGridView4.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView4.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView4.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView4.Columns[0];
+            dataGridView4.Columns[0].HeaderText = "ID";
+            dataGridView4.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView4.Columns[1];
+            dataGridView4.Columns[1].HeaderText = "NapomenaID";
+            dataGridView4.Columns[1].Width = 20;
+
+            DataGridViewColumn column3 = dataGridView4.Columns[2];
+            dataGridView4.Columns[2].HeaderText = "Napomena";
+            dataGridView4.Columns[2].Width = 100;
+
+        }
+        private void FillDGUsluge()
+        {
+          
+            if (txtKontejnerID.Text == "")
+            {
+                return;
+            }
+            var select = "";
+
+            select = "select  UvozKonacnaVrstaManipulacije.ID as ID, UvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, UvozKonacna.BrojKontejnera, " +
+" UvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
+" OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
+" Partnerji.PaSifra as NalogodavacID" +
+" from UvozKonacnaVrstaManipulacije " +
+" Inner    join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
+" inner " +
+" join PArtnerji on UvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
+" inner " +
+" join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozKonacnaVrstaManipulacije.OrgJed " +
+" inner " +
+" join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID where UvozKonacna.ID = " + Convert.ToInt32(txtKontejnerID.Text);
+
+
+
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView8.ReadOnly = true;
+            dataGridView8.DataSource = ds.Tables[0];
+
+
+            dataGridView8.BorderStyle = BorderStyle.None;
+            dataGridView8.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView8.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView8.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView8.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView8.BackgroundColor = Color.White;
+
+            dataGridView8.EnableHeadersVisualStyles = false;
+            dataGridView8.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView8.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView8.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView8.Columns[0];
+            dataGridView8.Columns[0].HeaderText = "ID";
+            dataGridView8.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView8.Columns[1];
+            dataGridView8.Columns[1].HeaderText = "IDU";
+            dataGridView8.Columns[1].Width = 30;
+
+            DataGridViewColumn column3 = dataGridView8.Columns[2];
+            dataGridView8.Columns[2].HeaderText = "Kontejner";
+            dataGridView8.Columns[2].Width = 50;
+
+        }
+
+        private void txtKontejnerID_TextChanged(object sender, EventArgs e)
+        {
+            FillDGUsluge();
+            FillDG2();
+            FillDG4();
         }
     }
 }
