@@ -20,6 +20,7 @@ namespace Saobracaj.Pantheon_Export
             InitializeComponent();
             FillCombo();
             panel1.Visible = false;
+            
         }
 
         private void label1_Click(object sender, EventArgs e)

@@ -52,6 +52,10 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.cboGrupa = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.cboOpportunity = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.cboPosao = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -71,7 +75,7 @@
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1164, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1462, 27);
             this.toolStrip1.TabIndex = 197;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -153,7 +157,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(246, 37);
+            this.label3.Location = new System.Drawing.Point(244, 37);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(106, 13);
             this.label3.TabIndex = 198;
@@ -162,7 +166,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(488, 37);
+            this.label4.Location = new System.Drawing.Point(663, 36);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 13);
             this.label4.TabIndex = 198;
@@ -171,7 +175,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(732, 37);
+            this.label5.Location = new System.Drawing.Point(891, 36);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(38, 13);
             this.label5.TabIndex = 198;
@@ -180,7 +184,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(975, 37);
+            this.label6.Location = new System.Drawing.Point(1141, 37);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(51, 13);
             this.label6.TabIndex = 198;
@@ -195,7 +199,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 96);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1140, 441);
+            this.dataGridView1.Size = new System.Drawing.Size(1438, 441);
             this.dataGridView1.TabIndex = 199;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -215,7 +219,7 @@
             // 
             // txtNazivNosioca
             // 
-            this.txtNazivNosioca.Location = new System.Drawing.Point(197, 53);
+            this.txtNazivNosioca.Location = new System.Drawing.Point(188, 53);
             this.txtNazivNosioca.Name = "txtNazivNosioca";
             this.txtNazivNosioca.Size = new System.Drawing.Size(200, 20);
             this.txtNazivNosioca.TabIndex = 200;
@@ -223,7 +227,7 @@
             // cboKupac
             // 
             this.cboKupac.FormattingEnabled = true;
-            this.cboKupac.Location = new System.Drawing.Point(622, 53);
+            this.cboKupac.Location = new System.Drawing.Point(781, 52);
             this.cboKupac.Name = "cboKupac";
             this.cboKupac.Size = new System.Drawing.Size(265, 21);
             this.cboKupac.TabIndex = 201;
@@ -231,7 +235,7 @@
             // cboOdeljenje
             // 
             this.cboOdeljenje.FormattingEnabled = true;
-            this.cboOdeljenje.Location = new System.Drawing.Point(896, 53);
+            this.cboOdeljenje.Location = new System.Drawing.Point(1052, 53);
             this.cboOdeljenje.Name = "cboOdeljenje";
             this.cboOdeljenje.Size = new System.Drawing.Size(231, 21);
             this.cboOdeljenje.TabIndex = 202;
@@ -245,7 +249,7 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Location = new System.Drawing.Point(451, 243);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(259, 93);
+            this.panel1.Size = new System.Drawing.Size(557, 93);
             this.panel1.TabIndex = 203;
             // 
             // dataGridView2
@@ -256,7 +260,7 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(3, 24);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(253, 66);
+            this.dataGridView2.Size = new System.Drawing.Size(551, 66);
             this.dataGridView2.TabIndex = 1;
             // 
             // button1
@@ -264,7 +268,7 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.NavajoWhite;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(216, 3);
+            this.button1.Location = new System.Drawing.Point(514, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(39, 16);
             this.button1.TabIndex = 0;
@@ -281,22 +285,61 @@
             "OPERACIJE",
             "PO",
             "ZAPOSLENI"});
-            this.cboGrupa.Location = new System.Drawing.Point(403, 53);
+            this.cboGrupa.Location = new System.Drawing.Point(580, 52);
             this.cboGrupa.Name = "cboGrupa";
-            this.cboGrupa.Size = new System.Drawing.Size(213, 21);
+            this.cboGrupa.Size = new System.Drawing.Size(195, 21);
             this.cboGrupa.TabIndex = 204;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(451, 36);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(61, 13);
+            this.label7.TabIndex = 205;
+            this.label7.Text = "Opportunity";
+            // 
+            // cboOpportunity
+            // 
+            this.cboOpportunity.FormattingEnabled = true;
+            this.cboOpportunity.Location = new System.Drawing.Point(394, 53);
+            this.cboOpportunity.Name = "cboOpportunity";
+            this.cboOpportunity.Size = new System.Drawing.Size(180, 21);
+            this.cboOpportunity.TabIndex = 206;
+            this.cboOpportunity.SelectionChangeCommitted += new System.EventHandler(this.cboOpportunity_SelectionChangeCommitted);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(1351, 37);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(37, 13);
+            this.label8.TabIndex = 198;
+            this.label8.Text = "Posao";
+            // 
+            // cboPosao
+            // 
+            this.cboPosao.FormattingEnabled = true;
+            this.cboPosao.Location = new System.Drawing.Point(1289, 53);
+            this.cboPosao.Name = "cboPosao";
+            this.cboPosao.Size = new System.Drawing.Size(160, 21);
+            this.cboPosao.TabIndex = 207;
             // 
             // NosiociTroskova
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1164, 549);
+            this.ClientSize = new System.Drawing.Size(1462, 549);
+            this.Controls.Add(this.cboPosao);
+            this.Controls.Add(this.cboOpportunity);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtNazivNosioca);
             this.Controls.Add(this.txtNosilacTroska);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -345,5 +388,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.ComboBox cboGrupa;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox cboOpportunity;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox cboPosao;
     }
 }

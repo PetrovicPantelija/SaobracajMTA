@@ -65,6 +65,9 @@
             this.cboReferent = new System.Windows.Forms.ComboBox();
             this.txtNapomena = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtCena = new System.Windows.Forms.NumericUpDown();
+            this.txtKolicina = new System.Windows.Forms.NumericUpDown();
+            this.btnObrisi = new System.Windows.Forms.Button();
             this.cboJM = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
@@ -75,18 +78,15 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.txtCena = new System.Windows.Forms.TextBox();
-            this.txtKolicina = new System.Windows.Forms.TextBox();
             this.txtRB = new System.Windows.Forms.TextBox();
             this.cboNosilac = new System.Windows.Forms.ComboBox();
             this.cboMP = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnObrisi = new System.Windows.Forms.Button();
-            this.label24 = new System.Windows.Forms.Label();
-            this.cboNajava = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCena)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtKolicina)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,7 +101,7 @@
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1305, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1187, 27);
             this.toolStrip1.TabIndex = 196;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -391,13 +391,15 @@
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.cboNajava);
+            this.panel1.Controls.Add(this.txtCena);
+            this.panel1.Controls.Add(this.txtKolicina);
             this.panel1.Controls.Add(this.btnObrisi);
             this.panel1.Controls.Add(this.cboJM);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label23);
-            this.panel1.Controls.Add(this.label24);
             this.panel1.Controls.Add(this.label22);
             this.panel1.Controls.Add(this.label21);
             this.panel1.Controls.Add(this.label20);
@@ -405,15 +407,49 @@
             this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.txtCena);
-            this.panel1.Controls.Add(this.txtKolicina);
             this.panel1.Controls.Add(this.txtRB);
             this.panel1.Controls.Add(this.cboNosilac);
             this.panel1.Controls.Add(this.cboMP);
             this.panel1.Location = new System.Drawing.Point(12, 213);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1281, 95);
+            this.panel1.Size = new System.Drawing.Size(1163, 95);
             this.panel1.TabIndex = 205;
+            // 
+            // txtCena
+            // 
+            this.txtCena.DecimalPlaces = 2;
+            this.txtCena.Location = new System.Drawing.Point(485, 38);
+            this.txtCena.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.txtCena.Name = "txtCena";
+            this.txtCena.Size = new System.Drawing.Size(90, 20);
+            this.txtCena.TabIndex = 204;
+            // 
+            // txtKolicina
+            // 
+            this.txtKolicina.DecimalPlaces = 2;
+            this.txtKolicina.Location = new System.Drawing.Point(374, 39);
+            this.txtKolicina.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.txtKolicina.Name = "txtKolicina";
+            this.txtKolicina.Size = new System.Drawing.Size(90, 20);
+            this.txtKolicina.TabIndex = 204;
+            // 
+            // btnObrisi
+            // 
+            this.btnObrisi.Location = new System.Drawing.Point(1050, 65);
+            this.btnObrisi.Name = "btnObrisi";
+            this.btnObrisi.Size = new System.Drawing.Size(75, 23);
+            this.btnObrisi.TabIndex = 203;
+            this.btnObrisi.Text = "Obriši";
+            this.btnObrisi.UseVisualStyleBackColor = true;
+            this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
             // 
             // cboJM
             // 
@@ -425,7 +461,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1088, 65);
+            this.button1.Location = new System.Drawing.Point(962, 65);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 201;
@@ -436,7 +472,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(989, 23);
+            this.label23.Location = new System.Drawing.Point(1024, 23);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(48, 13);
             this.label23.TabIndex = 197;
@@ -463,7 +499,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(505, 23);
+            this.label20.Location = new System.Drawing.Point(509, 23);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(32, 13);
             this.label20.TabIndex = 197;
@@ -503,20 +539,6 @@
             this.textBox1.Size = new System.Drawing.Size(188, 20);
             this.textBox1.TabIndex = 198;
             // 
-            // txtCena
-            // 
-            this.txtCena.Location = new System.Drawing.Point(475, 40);
-            this.txtCena.Name = "txtCena";
-            this.txtCena.Size = new System.Drawing.Size(90, 20);
-            this.txtCena.TabIndex = 198;
-            // 
-            // txtKolicina
-            // 
-            this.txtKolicina.Location = new System.Drawing.Point(360, 40);
-            this.txtKolicina.Name = "txtKolicina";
-            this.txtKolicina.Size = new System.Drawing.Size(90, 20);
-            this.txtKolicina.TabIndex = 198;
-            // 
             // txtRB
             // 
             this.txtRB.Location = new System.Drawing.Point(6, 39);
@@ -531,6 +553,7 @@
             this.cboNosilac.Name = "cboNosilac";
             this.cboNosilac.Size = new System.Drawing.Size(203, 21);
             this.cboNosilac.TabIndex = 200;
+            this.cboNosilac.SelectionChangeCommitted += new System.EventHandler(this.cboNosilac_SelectionChangeCommitted);
             // 
             // cboMP
             // 
@@ -560,43 +583,16 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 341);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1281, 300);
+            this.dataGridView1.Size = new System.Drawing.Size(1163, 300);
             this.dataGridView1.TabIndex = 206;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
-            // 
-            // btnObrisi
-            // 
-            this.btnObrisi.Location = new System.Drawing.Point(1169, 65);
-            this.btnObrisi.Name = "btnObrisi";
-            this.btnObrisi.Size = new System.Drawing.Size(75, 23);
-            this.btnObrisi.TabIndex = 203;
-            this.btnObrisi.Text = "Obriši";
-            this.btnObrisi.UseVisualStyleBackColor = true;
-            this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(1174, 22);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(37, 13);
-            this.label24.TabIndex = 197;
-            this.label24.Text = "Posao";
-            // 
-            // cboNajava
-            // 
-            this.cboNajava.FormattingEnabled = true;
-            this.cboNajava.Location = new System.Drawing.Point(1131, 38);
-            this.cboNajava.Name = "cboNajava";
-            this.cboNajava.Size = new System.Drawing.Size(121, 21);
-            this.cboNajava.TabIndex = 204;
             // 
             // UlazneFakture
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1305, 653);
+            this.ClientSize = new System.Drawing.Size(1187, 653);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.panel1);
@@ -639,6 +635,8 @@
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCena)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtKolicina)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -690,8 +688,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txtCena;
-        private System.Windows.Forms.TextBox txtKolicina;
         private System.Windows.Forms.TextBox txtRB;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button button1;
@@ -701,7 +697,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox cboJM;
         private System.Windows.Forms.Button btnObrisi;
-        private System.Windows.Forms.ComboBox cboNajava;
-        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.NumericUpDown txtCena;
+        private System.Windows.Forms.NumericUpDown txtKolicina;
     }
 }

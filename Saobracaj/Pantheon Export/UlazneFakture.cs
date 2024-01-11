@@ -122,14 +122,6 @@ namespace Saobracaj.Pantheon_Export
             cboJM.DataSource= jmDS.Tables[0];
             cboJM.DisplayMember = "MeNaziv";
             cboJM.ValueMember = "MeNaziv";
-
-            var najava = "Select ID,Oznaka from Najava Where Status <>7 or status <>9 order by ID desc";
-            var najavaDA = new SqlDataAdapter(najava, conn);
-            var najavaDS = new DataSet();
-            najavaDA.Fill(najavaDS);
-            cboNajava.DataSource = najavaDS.Tables[0];
-            cboNajava.DisplayMember = "Oznaka";
-            cboNajava.ValueMember = "ID";
         }
         private void FillGV()
         {
@@ -214,12 +206,14 @@ namespace Saobracaj.Pantheon_Export
             
             
         }
-
+        int posao;
         private void button1_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count+1; }
+            
+
             InsertPatheonExport ins = new InsertPatheonExport();
-            ins.InsUlFakPostav(Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), cboJM.SelectedValue.ToString().TrimEnd()," ",Convert.ToInt32(cboNajava.SelectedValue));
+            ins.InsUlFakPostav(Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), cboJM.SelectedValue.ToString().TrimEnd()," ",posao);
             FillGV();
         }
 
@@ -276,6 +270,20 @@ namespace Saobracaj.Pantheon_Export
             InsertPatheonExport ins = new InsertPatheonExport();
             ins.DelUlFakPostav(IDPostav);
             FillGV();
+        }
+
+        private void cboNosilac_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            string query2 = "SELECT Posao From NosiociTroskova Where ID=" + Convert.ToInt32(cboNosilac.SelectedValue);
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            SqlCommand cmd2 = new SqlCommand(query2, conn);
+            SqlDataReader dr2 = cmd2.ExecuteReader();
+            while (dr2.Read())
+            {
+                posao = Convert.ToInt32(dr2[0].ToString());
+            }
+            conn.Close();
         }
     }
 }

@@ -86,7 +86,10 @@ namespace Saobracaj.Pantheon_Export
                 if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count + 1; }
                 txtRB.Text = rb.ToString();
             }
-            else { /*MessageBox.Show("nema");*/ }
+            else {
+                if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count + 1; }
+                txtRB.Text = rb.ToString();
+            }
             
         }
         private void IzlazneFakture_Load(object sender, EventArgs e)
@@ -141,13 +144,6 @@ namespace Saobracaj.Pantheon_Export
             cboNosilac.DisplayMember = "NazivNosiocaTroska";
             cboNosilac.ValueMember = "ID";
 
-            var najava = "Select ID,Oznaka from Najava Where Status <>7 or status <>9 order by ID desc";
-            var najavaDA = new SqlDataAdapter(najava, conn);
-            var najavaDS = new DataSet();   
-            najavaDA.Fill(najavaDS);
-            cboNajava.DataSource = najavaDS.Tables[0];
-            cboNajava.DisplayMember = "Oznaka";
-            cboNajava.ValueMember= "ID";
 
             var query3 = "Select ID, Naziv from Izjave";
             var da3 = new SqlDataAdapter(query3, conn);
@@ -202,6 +198,7 @@ namespace Saobracaj.Pantheon_Export
                 crmID = dr2[0].ToString();
             }
             conn.Close();
+            rb = 1;
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -284,6 +281,20 @@ namespace Saobracaj.Pantheon_Export
             ins.DelFakturaPostav(FaPFakZap);
             FillGV();
         }
+        int posao;
+        private void cboNosilac_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            string query2 = "SELECT Posao From NosiociTroskova Where ID=" + Convert.ToInt32(cboNosilac.SelectedValue);
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            SqlCommand cmd2 = new SqlCommand(query2, conn);
+            SqlDataReader dr2 = cmd2.ExecuteReader();
+            while (dr2.Read())
+            {
+                posao = Convert.ToInt32(dr2[0].ToString());
+            }
+            conn.Close();
+        }
 
         int rb;
 
@@ -299,8 +310,10 @@ namespace Saobracaj.Pantheon_Export
                 referent = dr[0].ToString();
             }
             conn.Close();*/
+
             InsertPatheonExport ins = new InsertPatheonExport();
-            ins.InsFakturaPostav(korisnik.ToString().TrimEnd(), Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), MpNaziv, cboJM.SelectedValue.ToString().TrimEnd(), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), Convert.ToInt32(cboNajava.SelectedValue));
+            ins.InsFakturaPostav(korisnik.ToString().TrimEnd(), Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), MpNaziv, cboJM.SelectedValue.ToString().TrimEnd(), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), posao);
+
             FillGV();
         }
 
