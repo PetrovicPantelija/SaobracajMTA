@@ -3987,6 +3987,12 @@ namespace Saobracaj
             Pantheon_Export.Opportunity op = new Pantheon_Export.Opportunity();
             op.Show();
         }
+
+        private void toolStripButton340_Click(object sender, EventArgs e)
+        {
+            Pantheon_Export.PrihodiPosla pp = new Pantheon_Export.PrihodiPosla();
+            pp.Show();
+        }
     }
     }
 
