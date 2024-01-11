@@ -468,6 +468,7 @@
             this.Controls.Add(this.cboStartPoint);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label14);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Opportunity";
             this.Text = "Opportunity";
             this.Load += new System.EventHandler(this.Opportunity_Load);

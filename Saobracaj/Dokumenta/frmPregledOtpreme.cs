@@ -294,8 +294,29 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton1_Click_1(object sender, EventArgs e)
         {
-            Saobracaj.Dokumeta.frmOtpremaKontejnera otpr = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
-            otpr.Show();
+            // Saobracaj.Dokumeta.frmOtpremaKontejnera otpr = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+            // otpr.Show();
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        Saobracaj.Dokumenta.frmOtpremaKontejneraLegetIZVOZ otpr = new Saobracaj.Dokumenta.frmOtpremaKontejneraLegetIZVOZ(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+                        otpr.Show();
+                        return;
+
+                    }
+                default:
+                    {
+                        Saobracaj.Dokumeta.frmOtpremaKontejnera otpr = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+                        otpr.Show();
+                        return;
+
+                    }
+                    break;
+            }
+
+
         }
 
         private void dataGridView1_SelectionChanged_1(object sender, EventArgs e)
@@ -323,8 +344,30 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            Saobracaj.Dokumeta.frmOtpremaKontejnera otpr = new Saobracaj.Dokumeta.frmOtpremaKontejnera(KorisnikCene, 1);
-            otpr.Show();
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        Saobracaj.Dokumenta.frmOtpremaKontejneraLegetIZVOZ otpr = new Saobracaj.Dokumenta.frmOtpremaKontejneraLegetIZVOZ(1, KorisnikCene);
+                        otpr.Show();
+                        return;
+
+                    }
+                default:
+                    {
+                        Saobracaj.Dokumeta.frmOtpremaKontejnera otpr = new Saobracaj.Dokumeta.frmOtpremaKontejnera(KorisnikCene, 1);
+                        otpr.Show();
+                        return;
+
+                    }
+                    break;
+            }
+
+
+
+           // Saobracaj.Dokumeta.frmOtpremaKontejnera otpr = new Saobracaj.Dokumeta.frmOtpremaKontejnera(KorisnikCene, 1);
+           // otpr.Show();
         }
 
         private void toolStripButton5_Click(object sender, EventArgs e)

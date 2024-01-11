@@ -31,7 +31,8 @@ namespace Saobracaj.Dokumenta
             parameter1.Value = IdNadredjenog;
             myCommand.Parameters.Add(parameter1);
 
-           
+          
+		  
 
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@BrojKontejnera";
@@ -48,7 +49,8 @@ namespace Saobracaj.Dokumenta
             parameter3.Direction = ParameterDirection.Input;
             parameter3.Value = BrojVagona;
             myCommand.Parameters.Add(parameter3);
-
+             
+           
 
             SqlParameter parameter4 = new SqlParameter();
             parameter4.ParameterName = "@Granica";
@@ -256,7 +258,7 @@ namespace Saobracaj.Dokumenta
 
 
             SqlParameter parameter32 = new SqlParameter();
-            parameter32.ParameterName = "@BTTOKOntejnera";
+            parameter32.ParameterName = "@BTTOKontejnera";
             parameter32.SqlDbType = SqlDbType.Decimal;
             parameter32.Direction = ParameterDirection.Input;
             parameter32.Value = BTTOKOntejnera;
@@ -269,14 +271,14 @@ namespace Saobracaj.Dokumenta
             parameter33.Direction = ParameterDirection.Input;
             parameter33.Value = Napomena2;
             myCommand.Parameters.Add(parameter33);
-
+            /*
             SqlParameter parameter34 = new SqlParameter();
             parameter34.ParameterName = "@PostupakSaRobom";
             parameter34.SqlDbType = SqlDbType.Int;
             parameter34.Direction = ParameterDirection.Input;
             parameter34.Value = PostupakSaRobom;
             myCommand.Parameters.Add(parameter34);
-
+            */
             SqlParameter parameter35 = new SqlParameter();
             parameter35.ParameterName = "@BTTORobeFaktura";
             parameter35.SqlDbType = SqlDbType.Decimal;

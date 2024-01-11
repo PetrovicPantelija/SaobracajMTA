@@ -22,6 +22,8 @@ namespace Saobracaj.Dokumenta
         bool status = false;
         MailMessage mailMessage;
         int usao = 0;
+
+        public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         public frmOtpremaKontejneraLegetIZVOZ()
         {
             InitializeComponent();
@@ -313,21 +315,19 @@ Convert.ToDouble(bttoRobeOtpremnica.Value),Convert.ToDouble(bttoRobeOdvaga.Value
         private void RefreshDataGrid2()
         {
 
-            var select = "  SELECT OtpremaKontejneraVozStavke.ID, OtpremaKontejneraVozStavke.RB, OtpremaKontejneraVozStavke.IDNadredjenog,  OtpremaKontejneraVozStavke.BrojKontejnera, OtpremaKontejneraVozStavke.BrojVagona, OtpremaKontejneraVozStavke.Granica, "
-              + " OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, Komitenti.Naziv AS Posiljalac, Komitenti_1.Naziv AS primalac, "
-              + " Komitenti_2.Naziv AS Vlasnikkontejnera, " +
-                " Komitenti_3.Naziv AS Organizator, " +
-              "  TipKontenjera.Naziv AS TipKontejnera, VrstaRobe.Naziv AS VrstaRobe, OtpremaKontejneraVozStavke.Buking , OtpremaKontejneraVozStavke.StatusKontejnera, "
-              + " OtpremaKontejneraVozStavke.BrojPlombe, OtpremaKontejneraVozStavke.BrojPlombe2, OtpremaKontejneraVozStavke.PlaniraniLager,"
-              + " OtpremaKontejneraVozStavke.Datum, OtpremaKontejneraVozStavke.Korisnik, OtpremaKontejneraVozStavke.NapomenaS "
-             + "FROM  Komitenti INNER JOIN "
-                      + " OtpremaKontejneraVozStavke ON Komitenti.ID = OtpremaKontejneraVozStavke.Posiljalac INNER JOIN "
-                      + " Komitenti AS Komitenti_1 ON OtpremaKontejneraVozStavke.Primalac = Komitenti_1.ID INNER JOIN "
-                      + " Komitenti AS Komitenti_2 ON OtpremaKontejneraVozStavke.VlasnikKontejnera = Komitenti_2.ID INNER JOIN "
-                        + " Komitenti AS Komitenti_3 ON OtpremaKontejneraVozStavke.Organizator = Komitenti_3.ID INNER JOIN "
-                       + "TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID INNER JOIN "
-                      + " VrstaRobe ON OtpremaKontejneraVozStavke.VrstaRobe = VrstaRobe.ID "
-                        + " where IdNadredjenog = " + txtSifra.Text + " order by RB";
+            var select = " SELECT OtpremaKontejneraVozStavke.ID, OtpremaKontejneraVozStavke.RB, OtpremaKontejneraVozStavke.IDNadredjenog, " +
+ " OtpremaKontejneraVozStavke.BrojKontejnera, OtpremaKontejneraVozStavke.BrojVagona, OtpremaKontejneraVozStavke.Granica,  " +
+ " OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, " +
+ " Partnerji.PaNaziv AS Posiljalac, Komitenti_1.PaNaziv AS primalac,  Komitenti_2.PaNaziv AS Vlasnikkontejnera,  Komitenti_3.PaNaziv AS Organizator, " +
+ " TipKontenjera.Naziv AS TipKontejnera, VrstaRobe.Naziv AS VrstaRobe, OtpremaKontejneraVozStavke.Buking , " +
+ " OtpremaKontejneraVozStavke.StatusKontejnera,  OtpremaKontejneraVozStavke.BrojPlombe, OtpremaKontejneraVozStavke.BrojPlombe2, " +
+ " OtpremaKontejneraVozStavke.PlaniraniLager, OtpremaKontejneraVozStavke.Datum, OtpremaKontejneraVozStavke.Korisnik, OtpremaKontejneraVozStavke.NapomenaS FROM  Partnerji " +
+ " INNER JOIN OtpremaKontejneraVozStavke ON Partnerji.Pasifra = OtpremaKontejneraVozStavke.Posiljalac " +
+ " INNER JOIN  Partnerji AS Komitenti_1 ON OtpremaKontejneraVozStavke.Primalac = Komitenti_1.PaSifra INNER JOIN  Partnerji AS Komitenti_2 ON OtpremaKontejneraVozStavke.VlasnikKontejnera = Komitenti_2.PaSifra INNER JOIN  Partnerji AS Komitenti_3 ON OtpremaKontejneraVozStavke.Organizator = Komitenti_3.PaSifra " +
+ " INNER JOIN TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
+ " INNER JOIN  VrstaRobe ON OtpremaKontejneraVozStavke.VrstaRobe = VrstaRobe.ID  " +
+                        " where IdNadredjenog = " + txtSifra.Text + " order by RB";
+
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -989,7 +989,7 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
              " ,[TipKontejnera],[VrstaRobe],[Buking],[StatusKontejnera] " +
              " ,[BrojPlombe],[PlaniraniLager],[IdVoza] " +
              " ,[VremePripremljen],[VremeOdlaska],[Datum],[Korisnik] " +
-             " ,[RB],[BrojPlombe2],[Organizator], NapomenaS " +
+             " ,[RB],[BrojPlombe2],[Organizator], NapomenaS, KontejnerID " +
              " FROM [dbo].[OtpremaKontejneraVozStavke] " +
              " where IdNadredjenog = " + txtSifra.Text + " and RB = " + RB, con);
 
@@ -1022,6 +1022,7 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
                 txtBrojPlombe.Text = dr["BrojPlombe"].ToString();
                 txtBrojPlombe2.Text = dr["BrojPlombe2"].ToString();
                 txtNapomenaS.Text = dr["NapomenaS"].ToString();
+                txtKOntejnerID.Text = dr["KontejnerID"].ToString();
             }
 
             con.Close();
@@ -1191,6 +1192,297 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
         private void cboTipKontejnera_Leave(object sender, EventArgs e)
         {
             VratiPodatkeTara();
+        }
+
+        private void frmOtpremaKontejneraLegetIZVOZ_Load(object sender, EventArgs e)
+        {
+            var select4 = " Select Distinct ID, Naziv From TipKontenjera order by Naziv";
+            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection4 = new SqlConnection(s_connection4);
+            var c4 = new SqlConnection(s_connection4);
+            var dataAdapter4 = new SqlDataAdapter(select4, c4);
+
+            var commandBuilder4 = new SqlCommandBuilder(dataAdapter4);
+            var ds4 = new DataSet();
+            dataAdapter4.Fill(ds4);
+            cboTipKontejnera.DataSource = ds4.Tables[0];
+            cboTipKontejnera.DisplayMember = "Naziv";
+            cboTipKontejnera.ValueMember = "ID";
+
+            var select5 = " Select Distinct ID, (Cast(id as nvarchar(5)) + '-' + Cast(BrVoza as nvarchar(6)) + '-' + Cast(Relacija as nvarchar(100)) + '- '  + Cast(Convert(nvarchar(10),VremeDolaskaO,105) as Nvarchar(10))) as Naziv  From Voz where dolazeci = 0 ";
+            var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection5 = new SqlConnection(s_connection5);
+            var c5 = new SqlConnection(s_connection5);
+            var dataAdapter5 = new SqlDataAdapter(select5, c5);
+
+            var commandBuilder5 = new SqlCommandBuilder(dataAdapter5);
+            var ds5 = new DataSet();
+            dataAdapter5.Fill(ds5);
+            cboVozBuking.DataSource = ds5.Tables[0];
+            cboVozBuking.DisplayMember = "Naziv";
+            cboVozBuking.ValueMember = "ID";
+
+            var select9 = " Select Distinct PaSifra as ID, PaNaziv as Naziv From Partnerji  order by PaNaziv";
+            var s_connection9 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection9 = new SqlConnection(s_connection9);
+            var c9 = new SqlConnection(s_connection9);
+            var dataAdapter9 = new SqlDataAdapter(select9, c9);
+
+            var commandBuilder9 = new SqlCommandBuilder(dataAdapter9);
+            var ds9 = new DataSet();
+            dataAdapter9.Fill(ds9);
+            cboOperater.DataSource = ds9.Tables[0];
+            cboOperater.DisplayMember = "Naziv";
+            cboOperater.ValueMember = "ID";
+
+
+            var select3 = " Select Distinct PaSifra as ID, PaNaziv as Naziv From Partnerji  order by PaNaziv";
+            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection3 = new SqlConnection(s_connection3);
+            var c3 = new SqlConnection(s_connection3);
+            var dataAdapter3 = new SqlDataAdapter(select3, c3);
+
+            var commandBuilder3 = new SqlCommandBuilder(dataAdapter3);
+            var ds3 = new DataSet();
+            dataAdapter3.Fill(ds3);
+            cboVlasnikKontejnera.DataSource = ds3.Tables[0];
+            cboVlasnikKontejnera.DisplayMember = "Naziv";
+            cboVlasnikKontejnera.ValueMember = "ID";
+
+
+            var select6 = " Select ID,Naziv from DirigacijaKontejneraZa order by ID ";
+            var s_connection6 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection6 = new SqlConnection(s_connection6);
+            var c6 = new SqlConnection(s_connection6);
+            var dataAdapter6 = new SqlDataAdapter(select6, c6);
+
+            var commandBuilder6 = new SqlCommandBuilder(dataAdapter6);
+            var ds6 = new DataSet();
+            dataAdapter6.Fill(ds6);
+            cboStatusKontejnera.DataSource = ds6.Tables[0];
+            cboStatusKontejnera.DisplayMember = "Naziv";
+            cboStatusKontejnera.ValueMember = "ID";
+
+
+            var select7 = " Select ID,Naziv from VrstePostupakaUvoz order by ID ";
+            var s_connection7 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection7 = new SqlConnection(s_connection7);
+            var c7 = new SqlConnection(s_connection7);
+            var dataAdapter7 = new SqlDataAdapter(select7, c7);
+
+            var commandBuilder37 = new SqlCommandBuilder(dataAdapter7);
+            var ds7 = new DataSet();
+            dataAdapter7.Fill(ds7);
+            cboPostupak.DataSource = ds7.Tables[0];
+            cboPostupak.DisplayMember = "Naziv";
+            cboPostupak.ValueMember = "ID";
+
+
+           
+        }
+
+        private void VratiPodatkeSaIzvozKonacna()
+        {
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" Select BookingBrodara,BrodskaPlomba,  Brodar, PeriodSkladistenjaOd, PeriodSkladistenjaDo, NetoRobe,BrutoRobe,BrutoRobeO, CBMO, BrojKoletaO, OstalePlombe, Tara, VGMBrod2 from IzvozKonacna Where ID =  " + txtKOntejnerID.Text , con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtBukingBrodar.Text = dr["BookingBrodara"].ToString();
+                txtPLOMBAVLASN.Text = dr["BrodskaPlomba"].ToString();
+                cboVlasnikKontejnera.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
+                dtpPerodSkladistenjaOd.Value = Convert.ToDateTime(dr["PeriodSkladistenjaOd"].ToString());
+                dtpPeriodSkladistenjaDo.Value = Convert.ToDateTime(dr["PeriodSkladistenjaDo"].ToString());
+                txtNeto.Value = Convert.ToDecimal(dr["NetoRobe"].ToString());
+                bttoRobeFaktura.Value  = Convert.ToDecimal(dr["BrutoRobe"].ToString());
+                bttoRobeOtpremnica.Value = Convert.ToDecimal(dr["BrutoRobeO"].ToString());
+                txtCBMOTP.Text = dr["CBMO"].ToString();
+                txtKOLETAOTP.Text = dr["BrojKoletaO"].ToString();
+                txtBrojPlombe2.Text = dr["OstalePlombe"].ToString();
+                txtBrojPlombe.Text = dr["BrodskaPlomba"].ToString();
+                txtTara.Value = Convert.ToDecimal(dr["Tara"].ToString());
+                bttoRobeOdvaga.Value= Convert.ToDecimal(dr["VGMBrod2"].ToString());
+            }
+
+            con.Close();
+
+        }
+
+        private void FillDGUsluge()
+        {
+            if (txtKOntejnerID.Text == "")
+            { return; }
+            var select = "";
+
+            select = "select  IzvozKonacnaVrstaManipulacije.ID as ID, IzvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID," +
+                " IzvozKonacna.BrojKontejnera," +
+" IzvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
+" IzvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
+ "  Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac" +
+" from IzvozKonacnaVrstaManipulacije Inner    join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije" +
+" inner" +
+" join PArtnerji on IzvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra  inner " +
+" join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozKonacnaVrstaManipulacije.OrgJed " +
+" inner " +
+" join IzvozKonacna on IzvozKonacnaVrstaManipulacije.IDNadredjena = IzvozKonacna.ID where IzvozKonacna.ID = " + Convert.ToInt32(txtKOntejnerID.Text);
+
+
+
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView8.ReadOnly = true;
+            dataGridView8.DataSource = ds.Tables[0];
+
+
+            dataGridView8.BorderStyle = BorderStyle.None;
+            dataGridView8.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView8.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView8.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView8.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView8.BackgroundColor = Color.White;
+
+            dataGridView8.EnableHeadersVisualStyles = false;
+            dataGridView8.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView8.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView8.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView8.Columns[0];
+            dataGridView8.Columns[0].HeaderText = "ID";
+            dataGridView8.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView8.Columns[1];
+            dataGridView8.Columns[1].HeaderText = "IDU";
+            dataGridView8.Columns[1].Width = 30;
+
+            DataGridViewColumn column3 = dataGridView8.Columns[2];
+            dataGridView8.Columns[2].HeaderText = "Kontejner";
+            dataGridView8.Columns[2].Width = 50;
+
+        }
+
+        private void FillDGIK()
+        {
+            var select = "select IzvozKonacnaNapomenePozicioniranja.ID, IzvozKonacnaNapomenePozicioniranja.IDNapomene, PredefinisanePoruke.Naziv " +
+" from IzvozKonacnaNapomenePozicioniranja inner join PredefinisanePoruke on PredefinisanePoruke.ID = IzvozKonacnaNapomenePozicioniranja.IDNapomene " +
+" where IzvozKonacnaNapomenePozicioniranja.IdNadredjena = " + Convert.ToInt32(txtKOntejnerID.Text) + " order by IzvozKOnacnaNapomenePozicioniranja.ID desc ";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView4.ReadOnly = true;
+            dataGridView4.DataSource = ds.Tables[0];
+
+            dataGridView4.BorderStyle = BorderStyle.None;
+            dataGridView4.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView4.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView4.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView4.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView4.BackgroundColor = Color.White;
+
+            dataGridView4.EnableHeadersVisualStyles = false;
+            dataGridView4.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView4.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView4.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView4.Columns[0];
+            dataGridView4.Columns[0].HeaderText = "ID";
+            dataGridView4.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView4.Columns[1];
+            dataGridView4.Columns[1].HeaderText = "NapomenaID";
+            dataGridView4.Columns[1].Width = 20;
+
+            DataGridViewColumn column3 = dataGridView4.Columns[2];
+            dataGridView4.Columns[2].HeaderText = "Napomena";
+            dataGridView4.Columns[2].Width = 160;
+
+        }
+
+        private void FillDG2()
+        {
+
+            var select = " SELECT     IzvozKonacnaNHM.ID, NHM.Broj, IzvozKonacnaNHM.IDNHM, NHM.Naziv FROM NHM INNER JOIN " +
+                      " IzvozKonacnaNHM ON NHM.ID = IzvozKonacnaNHM.IDNHM where IzvozKonacnanhm.idnadredjena = " + Convert.ToInt32(txtKOntejnerID.Text) + " order by IzvozKonacnanhm.ID desc ";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView3.ReadOnly = true;
+            dataGridView3.DataSource = ds.Tables[0];
+
+
+            dataGridView3.BorderStyle = BorderStyle.None;
+            dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView3.BackgroundColor = Color.White;
+
+            dataGridView3.EnableHeadersVisualStyles = false;
+            dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView3.Columns[0];
+            dataGridView3.Columns[0].HeaderText = "ID";
+            dataGridView3.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView3.Columns[1];
+            dataGridView3.Columns[1].HeaderText = "Broj";
+            dataGridView3.Columns[1].Width = 80;
+
+            DataGridViewColumn column3 = dataGridView3.Columns[2];
+            dataGridView3.Columns[2].HeaderText = "ID";
+            dataGridView3.Columns[2].Width = 50;
+
+            DataGridViewColumn column4 = dataGridView3.Columns[3];
+            dataGridView3.Columns[3].HeaderText = "NHM";
+            dataGridView3.Columns[3].Width = 150;
+
+
+
+        }
+
+        private void txtKOntejnerID_TextChanged(object sender, EventArgs e)
+        {
+            VratiPodatkeSaIzvozKonacna();
+            FillDGUsluge();
+            FillDG2();
+        }
+
+        private void toolStripDropDownButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rasdniNalogOtpremaVozaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string IDUsluge = "0";
+            foreach (DataGridViewRow row in dataGridView8.Rows)
+            {
+
+                if (row.Selected == true)
+                {
+                    IDUsluge = row.Cells[4].Value.ToString();
+
+                }
+
+
+            }
+            RadniNalozi.RN2OtpremaVoza otp = new RadniNalozi.RN2OtpremaVoza(KorisnikCene, cboVozBuking.SelectedValue.ToString(), IDUsluge, txtSifra.Text);
+            otp.Show();
         }
     }
 }

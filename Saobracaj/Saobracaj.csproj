@@ -1591,6 +1591,12 @@
     <Compile Include="Izvoz\frmNaslovStatusaVozila.Designer.cs">
       <DependentUpon>frmNaslovStatusaVozila.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\frmOtpremaVozaIzPlana.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmOtpremaVozaIzPlana.Designer.cs">
+      <DependentUpon>frmOtpremaVozaIzPlana.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmPlanoviIzvoza.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3880,6 +3886,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmNaslovStatusaVozila.resx">
       <DependentUpon>frmNaslovStatusaVozila.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmOtpremaVozaIzPlana.resx">
+      <DependentUpon>frmOtpremaVozaIzPlana.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmPlanoviIzvoza.resx">
       <DependentUpon>frmPlanoviIzvoza.cs</DependentUpon>

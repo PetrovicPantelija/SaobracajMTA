@@ -14,105 +14,29 @@ using System.Net;
 using System.Net.Mail;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Saobracaj.Uvoz
+namespace Saobracaj.Izvoz
 {
-    public partial class frmPrijemVozaIzPlana : Form
+    public partial class frmOtpremaVozaIzPlana : Form
     {
         bool status = false;
         string KorisnikCene = "Panta";
         public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-
-        public frmPrijemVozaIzPlana()
+        public frmOtpremaVozaIzPlana()
         {
             InitializeComponent();
         }
 
-        private void tsNew_Click(object sender, EventArgs e)
+        private void frmOtpremaVozaIzPlana_Load(object sender, EventArgs e)
         {
-            status = true;
-            txtSifra.Enabled = false;
-          
-            dtpDatumPrijema.Value = DateTime.Now;
-            dtpDatumPrijema.Enabled = true;
-        }
-
-        private void tsSave_Click(object sender, EventArgs e)
-        {
-            if (status == true)
-            {
-                /// ,  string RegBrKamiona,   string ImeVozaca,   int Vozom
-                Dokumeta.InsertPrijemKontejneraVoz ins = new Dokumeta.InsertPrijemKontejneraVoz();
-                ins.InsertPrijemKontVoz(Convert.ToDateTime(dtpDatumPrijema.Text), Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, "", "", 1, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), Convert.ToInt32(cboOperater.SelectedValue), 0, 0);
-                status = false;
-                VratiPodatkeMax();
-            }
-            else
-            {
-                //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
-                Dokumeta.InsertPrijemKontejneraVoz upd = new Dokumeta.InsertPrijemKontejneraVoz();
-                upd.UpdPrijemKontejneraVoz(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumPrijema.Text), Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, "", "", 1, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue),  Convert.ToInt32(cboOperater.SelectedValue), 0, 0);
-                status = false;
-            }
-        }
-
-        private void VratiPodatkeMax()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(s_connection);
-
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand("select Max([ID]) as ID from PrijemKontejneraVoz", con);
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            while (dr.Read())
-            {
-                txtSifra.Text = dr["ID"].ToString();
-            }
-
-            con.Close();
-        }
-
-        private void VratiVozIzPlana()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(s_connection);
-
-            con.Open();
-
-
-
-         
-
-            SqlCommand cmd = new SqlCommand("Select Top 1 IDVoza from UvozKonacnaZaglavlje where ID = " + Convert.ToInt32(cboPlanUtovara.SelectedValue));
-            cmd.Connection = con;
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            while (dr.Read())
-            {
-                cboBukingPrijema.SelectedValue = Convert.ToInt32(dr["IDVoza"].ToString());
-            }
-
-            con.Close();
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            VratiVozIzPlana();
-            
-        }
-
-        private void frmPrijemVozaIzPlana_Load(object sender, EventArgs e)
-        {
-            var planutovara = "select UvozKonacnaZaglavlje.ID,(Cast(UvozKonacnaZaglavlje.ID as nvarchar(5)) + '-' + Cast(BrVoza as nvarchar(15)) + ' '  + Relacija) as Naziv from UvozKonacnaZaglavlje " +
-          " inner join Voz on Voz.Id = UvozKonacnaZaglavlje.IdVoza order by UvozKonacnaZaglavlje.ID desc";
+            var planutovara = "select IzvozKonacnaZaglavlje.ID,(Cast(IzvozKonacnaZaglavlje.ID as nvarchar(5)) + '-' + Cast(BrVoza as nvarchar(15)) + ' '  + Relacija) as Naziv from IzvozKonacnaZaglavlje " +
+        " inner join Voz on Voz.Id = IzvozKonacnaZaglavlje.IdVoza order by IzvozKonacnaZaglavlje.ID desc";
             var planutovaraSAD = new SqlDataAdapter(planutovara, connection);
             var planutovaraSDS = new DataSet();
             planutovaraSAD.Fill(planutovaraSDS);
             cboPlanUtovara.DataSource = planutovaraSDS.Tables[0];
             cboPlanUtovara.DisplayMember = "Naziv";
             cboPlanUtovara.ValueMember = "ID";
+
 
             var select8 = "  Select Distinct ID, (Cast(BrVoza as nvarchar(6)) + '-' + Relacija) as IdVoza   From Voz ";
             var s_connection8 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -123,9 +47,9 @@ namespace Saobracaj.Uvoz
             var commandBuilder8 = new SqlCommandBuilder(dataAdapter8);
             var ds8 = new DataSet();
             dataAdapter8.Fill(ds8);
-            cboBukingPrijema.DataSource = ds8.Tables[0];
-            cboBukingPrijema.DisplayMember = "IdVoza";
-            cboBukingPrijema.ValueMember = "ID";
+            cboVozBuking.DataSource = ds8.Tables[0];
+            cboVozBuking.DisplayMember = "IdVoza";
+            cboVozBuking.ValueMember = "ID";
 
 
             var select4 = "  select PaSifra, PaNaziv from Partnerji order by PaNaziv";
@@ -142,34 +66,108 @@ namespace Saobracaj.Uvoz
             cboOperater.ValueMember = "PaSifra";
         }
 
+        private void tsNew_Click(object sender, EventArgs e)
+        {
+
+            status = true;
+            txtSifra.Enabled = false;
+
+            dtpDatumOtpreme.Value = DateTime.Now;
+            dtpDatumOtpreme.Enabled = true;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            VratiVozIzPlana();
+        }
+
+        private void VratiVozIzPlana()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+
+
+
+
+            SqlCommand cmd = new SqlCommand("Select Top 1 IDVoza from IzvozKonacnaZaglavlje where ID = " + Convert.ToInt32(cboPlanUtovara.SelectedValue));
+            cmd.Connection = con;
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                cboVozBuking.SelectedValue = Convert.ToInt32(dr["IDVoza"].ToString());
+            }
+
+            con.Close();
+
+        }
+
+        private void VratiPodatkeMax()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Max([ID]) as ID from OtpremaKontejnera", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtSifra.Text = dr["ID"].ToString();
+            }
+
+            con.Close();
+        }
+
+        private void tsSave_Click(object sender, EventArgs e)
+        {
+            if (status == true)
+            {
+                /// ,  string RegBrKamiona,   string ImeVozaca,   int Vozom
+                Dokumenta.InsertOtprema ins = new Dokumenta.InsertOtprema();
+                ins.InsertOtp(Convert.ToDateTime(dtpDatumOtpreme.Text), Convert.ToInt32(cboStatusOtpreme.SelectedIndex), Convert.ToInt32(cboVozBuking.SelectedValue), txtRegBrKamiona.Text, txtImeVozaca.Text, Convert.ToDateTime(dtpVremeOdlaska.Value), 1, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtNapomena.Text, 0, 0, 0, 0);
+                status = false;
+                VratiPodatkeMax();
+            }
+            else
+            {
+                //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
+                Dokumenta.InsertOtprema upd = new Dokumenta.InsertOtprema();
+                upd.UpdOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumOtpreme.Text), Convert.ToInt32(cboStatusOtpreme.SelectedIndex), Convert.ToInt32(cboVozBuking.SelectedValue), txtRegBrKamiona.Text, txtImeVozaca.Text, Convert.ToDateTime(dtpVremeOdlaska.Value), 1, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtNapomena.Text, 0, 0, 0, 0);
+                status = false;
+            }
+        }
+
+        private void tsDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            InsertUvozKonacna ins = new InsertUvozKonacna();
-            ins.PrenesiPlanUtovaraUPrijemVoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+            InsertIzvozKonacna ins = new InsertIzvozKonacna();
+            ins.PrenesiIzPlanUtovaraUOtpremaVoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
             RefreshDataGrid();
         }
 
         private void RefreshDataGrid()
         {
-            var select = "  SELECT         PrijemKontejneraVozStavke.ID, PrijemKontejneraVozStavke.RB, PrijemKontejneraVozStavke.IDNadredjenog, "+
- " PrijemKontejneraVozStavke.BrojKontejnera, PrijemKontejneraVozStavke.BrojVagona, PrijemKontejneraVozStavke.Granica, "+
-  "  PrijemKontejneraVozStavke.BrojOsovina, PrijemKontejneraVozStavke.SopstvenaMasa, PrijemKontejneraVozStavke.Tara," +
-  "   PrijemKontejneraVozStavke.Neto, Partnerji.PaNaziv AS Posiljalac, Partnerji_1.PaNaziv AS primalac, " +
-   "   Partnerji_2.PaNaziv AS Vlasnikkontejnera, TipKontenjera.Naziv AS TipKontejnera, NHM.Naziv AS VrstaRobe," +
-  "     PrijemKontejneraVozStavke.BukingBrodar AS BukingBrodar, PrijemKontejneraVozStavke.StatusKontejnera," +
-   "      PrijemKontejneraVozStavke.BrojPlombe, PrijemKontejneraVozStavke.BrojPlombe2,PrijemKontejneraVozStavke.PlaniraniLager, " +
-   "       PrijemKontejneraVozStavke.VremeDolaska, PrijemKontejneraVozStavke.VremePripremljen,  PrijemKontejneraVozStavke.VremeOdlaska," +
-   "        PrijemKontejneraVozStavke.Datum, PrijemKontejneraVozStavke.Korisnik, PrijemKontejneraVozStavke.NapomenaS" +
-   "         FROM            Partnerji INNER JOIN PrijemKontejneraVozStavke" +
-    "        ON Partnerji.PaSifra = PrijemKontejneraVozStavke.Posiljalac INNER JOIN" +
-    "         Partnerji AS Partnerji_1 ON PrijemKontejneraVozStavke.Primalac = " +
-    "         Partnerji_1.PaSifra" +
-     "        INNER JOIN  Partnerji AS Partnerji_2" +
-       "      ON PrijemKontejneraVozStavke.VlasnikKontejnera = Partnerji_2.PaSifra INNER JOIN TipKontenjera" +
-       "       ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID" +
-      "        INNER JOIN  NHM ON PrijemKontejneraVozStavke.VrstaRobe = NHM.ID" +
-       "       INNER JOIN  Voz ON PrijemKontejneraVozStavke.IdVoza = Voz.ID " + 
-                           " where IdNadredjenog = " + txtSifra.Text + " order by RB";
+            var select = " SELECT OtpremaKontejneraVozStavke.ID, OtpremaKontejneraVozStavke.RB, OtpremaKontejneraVozStavke.IDNadredjenog, " +
+" OtpremaKontejneraVozStavke.BrojKontejnera, OtpremaKontejneraVozStavke.BrojVagona, OtpremaKontejneraVozStavke.Granica,  " +
+" OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, " +
+" Partnerji.PaNaziv AS Posiljalac, Komitenti_1.PaNaziv AS primalac,  Komitenti_2.PaNaziv AS Vlasnikkontejnera,  Komitenti_3.PaNaziv AS Organizator, " +
+" TipKontenjera.Naziv AS TipKontejnera, VrstaRobe.Naziv AS VrstaRobe, OtpremaKontejneraVozStavke.Buking , " +
+" OtpremaKontejneraVozStavke.StatusKontejnera,  OtpremaKontejneraVozStavke.BrojPlombe, OtpremaKontejneraVozStavke.BrojPlombe2, " +
+" OtpremaKontejneraVozStavke.PlaniraniLager, OtpremaKontejneraVozStavke.Datum, OtpremaKontejneraVozStavke.Korisnik, OtpremaKontejneraVozStavke.NapomenaS FROM  Partnerji " +
+" INNER JOIN OtpremaKontejneraVozStavke ON Partnerji.Pasifra = OtpremaKontejneraVozStavke.Posiljalac " +
+" INNER JOIN  Partnerji AS Komitenti_1 ON OtpremaKontejneraVozStavke.Primalac = Komitenti_1.PaSifra INNER JOIN  Partnerji AS Komitenti_2 ON OtpremaKontejneraVozStavke.VlasnikKontejnera = Komitenti_2.PaSifra INNER JOIN  Partnerji AS Komitenti_3 ON OtpremaKontejneraVozStavke.Organizator = Komitenti_3.PaSifra " +
+" INNER JOIN TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
+" INNER JOIN  VrstaRobe ON OtpremaKontejneraVozStavke.VrstaRobe = VrstaRobe.ID  " + 
+                       " where IdNadredjenog = " + txtSifra.Text + " order by RB";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -282,7 +280,7 @@ namespace Saobracaj.Uvoz
             DataGridViewColumn column24 = dataGridView1.Columns[23];
             dataGridView1.Columns[23].HeaderText = "Datum";
             dataGridView1.Columns[23].Width = 70;
-
+            /*
             DataGridViewColumn column25 = dataGridView1.Columns[24];
             dataGridView1.Columns[24].HeaderText = "Korisnik";
             dataGridView1.Columns[24].Width = 70;
@@ -290,13 +288,9 @@ namespace Saobracaj.Uvoz
             DataGridViewColumn column26 = dataGridView1.Columns[25];
             dataGridView1.Columns[25].HeaderText = "Napomena stav";
             dataGridView1.Columns[25].Width = 70;
-
-
-        }
-
-        private void tsDelete_Click(object sender, EventArgs e)
-        {
+            */
 
         }
+
     }
 }

@@ -30,15 +30,15 @@ namespace Saobracaj.Dokumenta
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOtpremaKontejneraLegetIZVOZ));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnManipulacija = new System.Windows.Forms.ToolStrip();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
@@ -49,17 +49,34 @@ namespace Saobracaj.Dokumenta
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.rasdniNalogOtpremaVozaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.formirajRadneNalogeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pregledRadnihNalogaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chkCIRUradjen = new System.Windows.Forms.CheckBox();
             this.chkZatvoren = new System.Windows.Forms.CheckBox();
             this.label31 = new System.Windows.Forms.Label();
             this.txtNapomena = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtGranica = new System.Windows.Forms.NumericUpDown();
+            this.cboPostupak = new System.Windows.Forms.ComboBox();
             this.label43 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.cboOrganizator = new System.Windows.Forms.ComboBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.txtPLOMBAVLASN = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cboStatusKontejnera = new System.Windows.Forms.ComboBox();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.dataGridView8 = new System.Windows.Forms.DataGridView();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.label42 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.txtKOLETAOTP = new System.Windows.Forms.TextBox();
@@ -70,8 +87,6 @@ namespace Saobracaj.Dokumenta
             this.dtpPeriodSkladistenjaDo = new System.Windows.Forms.DateTimePicker();
             this.dtpPerodSkladistenjaOd = new System.Windows.Forms.DateTimePicker();
             this.label39 = new System.Windows.Forms.Label();
-            this.txtPLOMBAVLASN = new System.Windows.Forms.TextBox();
-            this.label37 = new System.Windows.Forms.Label();
             this.label36 = new System.Windows.Forms.Label();
             this.bttoRobeKontejner = new System.Windows.Forms.NumericUpDown();
             this.label34 = new System.Windows.Forms.Label();
@@ -90,8 +105,6 @@ namespace Saobracaj.Dokumenta
             this.button5 = new System.Windows.Forms.Button();
             this.dtpVremePripremljen = new System.Windows.Forms.DateTimePicker();
             this.txtBukingBrodar = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.cboOrganizator = new System.Windows.Forms.ComboBox();
             this.txtBrojPlombe2 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.button9 = new System.Windows.Forms.Button();
@@ -103,16 +116,12 @@ namespace Saobracaj.Dokumenta
             this.txtSopstvenaMasa = new System.Windows.Forms.NumericUpDown();
             this.button2 = new System.Windows.Forms.Button();
             this.label23 = new System.Windows.Forms.Label();
-            this.txtGranica = new System.Windows.Forms.NumericUpDown();
             this.txtBrojOsovina = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
             this.txtNeto = new System.Windows.Forms.NumericUpDown();
             this.label28 = new System.Windows.Forms.Label();
             this.txtTara = new System.Windows.Forms.NumericUpDown();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.cboStatusKontejnera = new System.Windows.Forms.ComboBox();
             this.txtRB = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtStavka = new System.Windows.Forms.TextBox();
@@ -161,20 +170,21 @@ namespace Saobracaj.Dokumenta
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label35 = new System.Windows.Forms.Label();
             this.cboOperater = new System.Windows.Forms.ComboBox();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.dataGridView8 = new System.Windows.Forms.DataGridView();
             this.btnManipulacija.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGranica)).BeginInit();
+            this.tabControl2.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).BeginInit();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttoRobeKontejner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttoRobeOdvaga)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttoRobeOtpremnica)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttoRobeFaktura)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSopstvenaMasa)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGranica)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrojOsovina)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNeto)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTara)).BeginInit();
@@ -187,11 +197,6 @@ namespace Saobracaj.Dokumenta
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.tabControl2.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
-            this.tabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).BeginInit();
             this.SuspendLayout();
             // 
             // btnManipulacija
@@ -209,10 +214,10 @@ namespace Saobracaj.Dokumenta
             this.toolStripLabel2,
             this.toolStripButton7,
             this.toolStripLabel1,
-            this.toolStripButton8,
             this.toolStripButton5,
             this.toolStripButton4,
-            this.toolStripButton3});
+            this.toolStripButton3,
+            this.toolStripDropDownButton1});
             this.btnManipulacija.Location = new System.Drawing.Point(0, 0);
             this.btnManipulacija.Name = "btnManipulacija";
             this.btnManipulacija.Size = new System.Drawing.Size(1415, 27);
@@ -305,16 +310,6 @@ namespace Saobracaj.Dokumenta
             this.toolStripLabel1.Text = "ŠTAPMA DODATNI LIST";
             this.toolStripLabel1.Click += new System.EventHandler(this.toolStripLabel1_Click);
             // 
-            // toolStripButton8
-            // 
-            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.toolStripButton8.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(197, 24);
-            this.toolStripButton8.Text = "RN ZA UTOVAR KONTEJNERA";
-            // 
             // toolStripButton5
             // 
             this.toolStripButton5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
@@ -348,6 +343,41 @@ namespace Saobracaj.Dokumenta
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(131, 24);
             this.toolStripButton3.Text = "PREGLED USLUGA";
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rasdniNalogOtpremaVozaToolStripMenuItem,
+            this.formirajRadneNalogeToolStripMenuItem,
+            this.pregledRadnihNalogaToolStripMenuItem});
+            this.toolStripDropDownButton1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(112, 24);
+            this.toolStripDropDownButton1.Text = "RADNI NALOZI";
+            this.toolStripDropDownButton1.Click += new System.EventHandler(this.toolStripDropDownButton1_Click);
+            // 
+            // rasdniNalogOtpremaVozaToolStripMenuItem
+            // 
+            this.rasdniNalogOtpremaVozaToolStripMenuItem.Name = "rasdniNalogOtpremaVozaToolStripMenuItem";
+            this.rasdniNalogOtpremaVozaToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
+            this.rasdniNalogOtpremaVozaToolStripMenuItem.Text = "Radni nalog otprema voza";
+            this.rasdniNalogOtpremaVozaToolStripMenuItem.Click += new System.EventHandler(this.rasdniNalogOtpremaVozaToolStripMenuItem_Click);
+            // 
+            // formirajRadneNalogeToolStripMenuItem
+            // 
+            this.formirajRadneNalogeToolStripMenuItem.Name = "formirajRadneNalogeToolStripMenuItem";
+            this.formirajRadneNalogeToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
+            this.formirajRadneNalogeToolStripMenuItem.Text = "Formiraj radne naloge - OTPREMA VOZA";
+            // 
+            // pregledRadnihNalogaToolStripMenuItem
+            // 
+            this.pregledRadnihNalogaToolStripMenuItem.Name = "pregledRadnihNalogaToolStripMenuItem";
+            this.pregledRadnihNalogaToolStripMenuItem.Size = new System.Drawing.Size(334, 22);
+            this.pregledRadnihNalogaToolStripMenuItem.Text = "Pregled radnih naloga - Otprema voza";
             // 
             // chkCIRUradjen
             // 
@@ -397,9 +427,8 @@ namespace Saobracaj.Dokumenta
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.tabControl2);
-            this.panel1.Controls.Add(this.label43);
-            this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.label42);
             this.panel1.Controls.Add(this.dataGridView3);
             this.panel1.Controls.Add(this.txtKOLETAOTP);
@@ -410,8 +439,6 @@ namespace Saobracaj.Dokumenta
             this.panel1.Controls.Add(this.dtpPeriodSkladistenjaDo);
             this.panel1.Controls.Add(this.dtpPerodSkladistenjaOd);
             this.panel1.Controls.Add(this.label39);
-            this.panel1.Controls.Add(this.txtPLOMBAVLASN);
-            this.panel1.Controls.Add(this.label37);
             this.panel1.Controls.Add(this.label36);
             this.panel1.Controls.Add(this.bttoRobeKontejner);
             this.panel1.Controls.Add(this.label34);
@@ -430,8 +457,6 @@ namespace Saobracaj.Dokumenta
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.dtpVremePripremljen);
             this.panel1.Controls.Add(this.txtBukingBrodar);
-            this.panel1.Controls.Add(this.label29);
-            this.panel1.Controls.Add(this.cboOrganizator);
             this.panel1.Controls.Add(this.txtBrojPlombe2);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.button9);
@@ -443,16 +468,12 @@ namespace Saobracaj.Dokumenta
             this.panel1.Controls.Add(this.txtSopstvenaMasa);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.label23);
-            this.panel1.Controls.Add(this.txtGranica);
             this.panel1.Controls.Add(this.txtBrojOsovina);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.txtNeto);
             this.panel1.Controls.Add(this.label28);
             this.panel1.Controls.Add(this.txtTara);
-            this.panel1.Controls.Add(this.label22);
-            this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.label20);
-            this.panel1.Controls.Add(this.cboStatusKontejnera);
             this.panel1.Controls.Add(this.txtRB);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.txtStavka);
@@ -479,26 +500,237 @@ namespace Saobracaj.Dokumenta
             this.panel1.Size = new System.Drawing.Size(1397, 337);
             this.panel1.TabIndex = 259;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label22);
+            this.panel2.Controls.Add(this.txtGranica);
+            this.panel2.Controls.Add(this.cboPostupak);
+            this.panel2.Controls.Add(this.label43);
+            this.panel2.Controls.Add(this.label29);
+            this.panel2.Controls.Add(this.cboOrganizator);
+            this.panel2.Controls.Add(this.label37);
+            this.panel2.Controls.Add(this.txtPLOMBAVLASN);
+            this.panel2.Controls.Add(this.label12);
+            this.panel2.Controls.Add(this.cboStatusKontejnera);
+            this.panel2.Location = new System.Drawing.Point(625, 66);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(366, 171);
+            this.panel2.TabIndex = 434;
+            // 
+            // label22
+            // 
+            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label22.ForeColor = System.Drawing.Color.Black;
+            this.label22.Location = new System.Drawing.Point(10, 10);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(115, 36);
+            this.label22.TabIndex = 211;
+            this.label22.Text = "Granica tovarenja: - Nema smisla";
+            // 
+            // txtGranica
+            // 
+            this.txtGranica.DecimalPlaces = 2;
+            this.txtGranica.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtGranica.InterceptArrowKeys = false;
+            this.txtGranica.Location = new System.Drawing.Point(13, 55);
+            this.txtGranica.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.txtGranica.Name = "txtGranica";
+            this.txtGranica.Size = new System.Drawing.Size(100, 21);
+            this.txtGranica.TabIndex = 215;
+            this.txtGranica.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // cboPostupak
+            // 
+            this.cboPostupak.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cboPostupak.FormattingEnabled = true;
+            this.cboPostupak.Location = new System.Drawing.Point(206, 145);
+            this.cboPostupak.Name = "cboPostupak";
+            this.cboPostupak.Size = new System.Drawing.Size(157, 23);
+            this.cboPostupak.TabIndex = 430;
+            // 
             // label43
             // 
-            this.label43.AutoSize = true;
             this.label43.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label43.ForeColor = System.Drawing.Color.Black;
-            this.label43.Location = new System.Drawing.Point(268, 146);
+            this.label43.Location = new System.Drawing.Point(212, 101);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(225, 15);
+            this.label43.Size = new System.Drawing.Size(151, 41);
             this.label43.TabIndex = 431;
             this.label43.Text = "POSTUPAK SA ROBOM/KONTEJEROM";
             // 
-            // comboBox1
+            // label29
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(271, 162);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(275, 23);
-            this.comboBox1.TabIndex = 430;
+            this.label29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label29.ForeColor = System.Drawing.Color.Black;
+            this.label29.Location = new System.Drawing.Point(131, 6);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(118, 64);
+            this.label29.TabIndex = 230;
+            this.label29.Text = "Operator - KAZE BROJ OSOVINA - IMA I U ZAGLAVLJU";
+            // 
+            // cboOrganizator
+            // 
+            this.cboOrganizator.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cboOrganizator.FormattingEnabled = true;
+            this.cboOrganizator.Location = new System.Drawing.Point(119, 75);
+            this.cboOrganizator.Name = "cboOrganizator";
+            this.cboOrganizator.Size = new System.Drawing.Size(135, 23);
+            this.cboOrganizator.TabIndex = 229;
+            // 
+            // label37
+            // 
+            this.label37.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label37.ForeColor = System.Drawing.Color.Black;
+            this.label37.Location = new System.Drawing.Point(255, 3);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(108, 74);
+            this.label37.TabIndex = 255;
+            this.label37.Text = "BRODSKA PLOMBA-VLASNIŠTVO:- Nejasno";
+            // 
+            // txtPLOMBAVLASN
+            // 
+            this.txtPLOMBAVLASN.BackColor = System.Drawing.SystemColors.Info;
+            this.txtPLOMBAVLASN.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtPLOMBAVLASN.Location = new System.Drawing.Point(255, 75);
+            this.txtPLOMBAVLASN.Name = "txtPLOMBAVLASN";
+            this.txtPLOMBAVLASN.Size = new System.Drawing.Size(108, 21);
+            this.txtPLOMBAVLASN.TabIndex = 254;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label12.ForeColor = System.Drawing.Color.Black;
+            this.label12.Location = new System.Drawing.Point(3, 101);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(174, 15);
+            this.label12.TabIndex = 197;
+            this.label12.Text = "DIRIGACIJA KONTEJNERA ZA:";
+            // 
+            // cboStatusKontejnera
+            // 
+            this.cboStatusKontejnera.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.cboStatusKontejnera.FormattingEnabled = true;
+            this.cboStatusKontejnera.Location = new System.Drawing.Point(3, 119);
+            this.cboStatusKontejnera.Name = "cboStatusKontejnera";
+            this.cboStatusKontejnera.Size = new System.Drawing.Size(181, 23);
+            this.cboStatusKontejnera.TabIndex = 196;
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tabPage5);
+            this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Location = new System.Drawing.Point(997, 60);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(379, 202);
+            this.tabControl2.TabIndex = 433;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.dataGridView8);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(371, 176);
+            this.tabPage5.TabIndex = 1;
+            this.tabPage5.Text = "Usluge";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView8
+            // 
+            this.dataGridView8.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView8.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView8.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView8.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView8.Location = new System.Drawing.Point(5, 5);
+            this.dataGridView8.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView8.Name = "dataGridView8";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView8.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView8.RowHeadersWidth = 11;
+            this.dataGridView8.RowTemplate.Height = 24;
+            this.dataGridView8.Size = new System.Drawing.Size(440, 173);
+            this.dataGridView8.TabIndex = 158;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.dataGridView4);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(371, 176);
+            this.tabPage4.TabIndex = 0;
+            this.tabPage4.Text = "Napomene za pozicioniranje";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.AllowUserToAddRows = false;
+            this.dataGridView4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView4.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView4.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridView4.Location = new System.Drawing.Point(5, 5);
+            this.dataGridView4.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView4.Name = "dataGridView4";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView4.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridView4.RowHeadersWidth = 11;
+            this.dataGridView4.RowTemplate.Height = 24;
+            this.dataGridView4.Size = new System.Drawing.Size(361, 166);
+            this.dataGridView4.TabIndex = 157;
             // 
             // label42
             // 
@@ -506,7 +738,7 @@ namespace Saobracaj.Dokumenta
             this.label42.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label42.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label42.ForeColor = System.Drawing.Color.Black;
-            this.label42.Location = new System.Drawing.Point(21, 167);
+            this.label42.Location = new System.Drawing.Point(3, 201);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(110, 14);
             this.label42.TabIndex = 429;
@@ -532,7 +764,7 @@ namespace Saobracaj.Dokumenta
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridView3.Location = new System.Drawing.Point(24, 188);
+            this.dataGridView3.Location = new System.Drawing.Point(4, 223);
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView3.Name = "dataGridView3";
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -545,13 +777,13 @@ namespace Saobracaj.Dokumenta
             this.dataGridView3.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView3.RowHeadersWidth = 11;
             this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(341, 112);
+            this.dataGridView3.Size = new System.Drawing.Size(289, 109);
             this.dataGridView3.TabIndex = 428;
             // 
             // txtKOLETAOTP
             // 
             this.txtKOLETAOTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtKOLETAOTP.Location = new System.Drawing.Point(465, 122);
+            this.txtKOLETAOTP.Location = new System.Drawing.Point(301, 90);
             this.txtKOLETAOTP.Name = "txtKOLETAOTP";
             this.txtKOLETAOTP.Size = new System.Drawing.Size(125, 21);
             this.txtKOLETAOTP.TabIndex = 262;
@@ -562,7 +794,7 @@ namespace Saobracaj.Dokumenta
             this.label41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label41.ForeColor = System.Drawing.Color.Black;
-            this.label41.Location = new System.Drawing.Point(462, 104);
+            this.label41.Location = new System.Drawing.Point(304, 73);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(139, 15);
             this.label41.TabIndex = 263;
@@ -571,7 +803,7 @@ namespace Saobracaj.Dokumenta
             // txtCBMOTP
             // 
             this.txtCBMOTP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtCBMOTP.Location = new System.Drawing.Point(465, 80);
+            this.txtCBMOTP.Location = new System.Drawing.Point(172, 171);
             this.txtCBMOTP.Name = "txtCBMOTP";
             this.txtCBMOTP.Size = new System.Drawing.Size(125, 21);
             this.txtCBMOTP.TabIndex = 260;
@@ -582,7 +814,7 @@ namespace Saobracaj.Dokumenta
             this.label40.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label40.ForeColor = System.Drawing.Color.Black;
-            this.label40.Location = new System.Drawing.Point(462, 60);
+            this.label40.Location = new System.Drawing.Point(177, 152);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(120, 15);
             this.label40.TabIndex = 261;
@@ -594,7 +826,7 @@ namespace Saobracaj.Dokumenta
             this.label38.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label38.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label38.ForeColor = System.Drawing.Color.Black;
-            this.label38.Location = new System.Drawing.Point(811, 59);
+            this.label38.Location = new System.Drawing.Point(298, 240);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(166, 15);
             this.label38.TabIndex = 259;
@@ -605,7 +837,7 @@ namespace Saobracaj.Dokumenta
             this.dtpPeriodSkladistenjaDo.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPeriodSkladistenjaDo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpPeriodSkladistenjaDo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPeriodSkladistenjaDo.Location = new System.Drawing.Point(812, 124);
+            this.dtpPeriodSkladistenjaDo.Location = new System.Drawing.Point(299, 305);
             this.dtpPeriodSkladistenjaDo.Name = "dtpPeriodSkladistenjaDo";
             this.dtpPeriodSkladistenjaDo.Size = new System.Drawing.Size(150, 22);
             this.dtpPeriodSkladistenjaDo.TabIndex = 257;
@@ -616,7 +848,7 @@ namespace Saobracaj.Dokumenta
             this.dtpPerodSkladistenjaOd.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPerodSkladistenjaOd.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpPerodSkladistenjaOd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPerodSkladistenjaOd.Location = new System.Drawing.Point(812, 80);
+            this.dtpPerodSkladistenjaOd.Location = new System.Drawing.Point(299, 261);
             this.dtpPerodSkladistenjaOd.Name = "dtpPerodSkladistenjaOd";
             this.dtpPerodSkladistenjaOd.Size = new System.Drawing.Size(150, 22);
             this.dtpPerodSkladistenjaOd.TabIndex = 256;
@@ -628,31 +860,11 @@ namespace Saobracaj.Dokumenta
             this.label39.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label39.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label39.ForeColor = System.Drawing.Color.Black;
-            this.label39.Location = new System.Drawing.Point(811, 105);
+            this.label39.Location = new System.Drawing.Point(298, 286);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(166, 15);
             this.label39.TabIndex = 258;
             this.label39.Text = "PERIOD SKLADIŠTANJA DO:";
-            // 
-            // txtPLOMBAVLASN
-            // 
-            this.txtPLOMBAVLASN.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtPLOMBAVLASN.Location = new System.Drawing.Point(271, 120);
-            this.txtPLOMBAVLASN.Name = "txtPLOMBAVLASN";
-            this.txtPLOMBAVLASN.Size = new System.Drawing.Size(156, 21);
-            this.txtPLOMBAVLASN.TabIndex = 254;
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label37.ForeColor = System.Drawing.Color.Black;
-            this.label37.Location = new System.Drawing.Point(268, 102);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(197, 15);
-            this.label37.TabIndex = 255;
-            this.label37.Text = "BRODSKA PLOMBA-VLASNIŠTVO:";
             // 
             // label36
             // 
@@ -660,7 +872,7 @@ namespace Saobracaj.Dokumenta
             this.label36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label36.ForeColor = System.Drawing.Color.Black;
-            this.label36.Location = new System.Drawing.Point(268, 58);
+            this.label36.Location = new System.Drawing.Point(9, 150);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(159, 15);
             this.label36.TabIndex = 253;
@@ -670,7 +882,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.bttoRobeKontejner.DecimalPlaces = 2;
             this.bttoRobeKontejner.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bttoRobeKontejner.Location = new System.Drawing.Point(271, 78);
+            this.bttoRobeKontejner.Location = new System.Drawing.Point(7, 171);
             this.bttoRobeKontejner.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -741,7 +953,7 @@ namespace Saobracaj.Dokumenta
             this.label30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label30.ForeColor = System.Drawing.Color.Black;
-            this.label30.Location = new System.Drawing.Point(960, 11);
+            this.label30.Location = new System.Drawing.Point(1060, 11);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(140, 15);
             this.label30.TabIndex = 247;
@@ -751,7 +963,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.bttoRobeFaktura.DecimalPlaces = 2;
             this.bttoRobeFaktura.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.bttoRobeFaktura.Location = new System.Drawing.Point(963, 29);
+            this.bttoRobeFaktura.Location = new System.Drawing.Point(1062, 29);
             this.bttoRobeFaktura.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -769,6 +981,7 @@ namespace Saobracaj.Dokumenta
             this.txtKOntejnerID.Name = "txtKOntejnerID";
             this.txtKOntejnerID.Size = new System.Drawing.Size(63, 21);
             this.txtKOntejnerID.TabIndex = 244;
+            this.txtKOntejnerID.TextChanged += new System.EventHandler(this.txtKOntejnerID_TextChanged);
             // 
             // label19
             // 
@@ -818,7 +1031,7 @@ namespace Saobracaj.Dokumenta
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label17.ForeColor = System.Drawing.Color.Black;
-            this.label17.Location = new System.Drawing.Point(465, 320);
+            this.label17.Location = new System.Drawing.Point(334, 318);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(109, 15);
             this.label17.TabIndex = 235;
@@ -831,9 +1044,9 @@ namespace Saobracaj.Dokumenta
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(408, 29);
+            this.button6.Location = new System.Drawing.Point(408, 33);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(21, 26);
+            this.button6.Size = new System.Drawing.Size(18, 19);
             this.button6.TabIndex = 234;
             this.button6.Text = "?";
             this.button6.UseVisualStyleBackColor = false;
@@ -845,9 +1058,9 @@ namespace Saobracaj.Dokumenta
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(253, 29);
+            this.button5.Location = new System.Drawing.Point(253, 31);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(21, 26);
+            this.button5.Size = new System.Drawing.Size(21, 22);
             this.button5.TabIndex = 233;
             this.button5.Text = "?";
             this.button5.UseVisualStyleBackColor = false;
@@ -858,7 +1071,7 @@ namespace Saobracaj.Dokumenta
             this.dtpVremePripremljen.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpVremePripremljen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.dtpVremePripremljen.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremePripremljen.Location = new System.Drawing.Point(1320, 12);
+            this.dtpVremePripremljen.Location = new System.Drawing.Point(12, 300);
             this.dtpVremePripremljen.Name = "dtpVremePripremljen";
             this.dtpVremePripremljen.Size = new System.Drawing.Size(67, 21);
             this.dtpVremePripremljen.TabIndex = 232;
@@ -867,37 +1080,17 @@ namespace Saobracaj.Dokumenta
             // 
             // txtBukingBrodar
             // 
+            this.txtBukingBrodar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.txtBukingBrodar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtBukingBrodar.Location = new System.Drawing.Point(616, 123);
+            this.txtBukingBrodar.Location = new System.Drawing.Point(301, 174);
             this.txtBukingBrodar.Name = "txtBukingBrodar";
             this.txtBukingBrodar.Size = new System.Drawing.Size(192, 21);
             this.txtBukingBrodar.TabIndex = 231;
             // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label29.ForeColor = System.Drawing.Color.Black;
-            this.label29.Location = new System.Drawing.Point(372, 232);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(303, 15);
-            this.label29.TabIndex = 230;
-            this.label29.Text = "Operator - KAZE BROJ OSOVINA - IMA I U ZAGLAVLJU";
-            // 
-            // cboOrganizator
-            // 
-            this.cboOrganizator.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.cboOrganizator.FormattingEnabled = true;
-            this.cboOrganizator.Location = new System.Drawing.Point(370, 254);
-            this.cboOrganizator.Name = "cboOrganizator";
-            this.cboOrganizator.Size = new System.Drawing.Size(135, 23);
-            this.cboOrganizator.TabIndex = 229;
-            // 
             // txtBrojPlombe2
             // 
             this.txtBrojPlombe2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtBrojPlombe2.Location = new System.Drawing.Point(814, 206);
+            this.txtBrojPlombe2.Location = new System.Drawing.Point(494, 131);
             this.txtBrojPlombe2.Name = "txtBrojPlombe2";
             this.txtBrojPlombe2.Size = new System.Drawing.Size(125, 21);
             this.txtBrojPlombe2.TabIndex = 221;
@@ -908,7 +1101,7 @@ namespace Saobracaj.Dokumenta
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(815, 188);
+            this.label7.Location = new System.Drawing.Point(491, 113);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(110, 15);
             this.label7.TabIndex = 222;
@@ -933,7 +1126,7 @@ namespace Saobracaj.Dokumenta
             this.label26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label26.ForeColor = System.Drawing.Color.Black;
-            this.label26.Location = new System.Drawing.Point(809, 11);
+            this.label26.Location = new System.Drawing.Point(909, 11);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(145, 15);
             this.label26.TabIndex = 220;
@@ -959,7 +1152,7 @@ namespace Saobracaj.Dokumenta
             this.label25.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label25.ForeColor = System.Drawing.Color.Black;
-            this.label25.Location = new System.Drawing.Point(680, 12);
+            this.label25.Location = new System.Drawing.Point(810, 12);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(96, 15);
             this.label25.TabIndex = 219;
@@ -970,7 +1163,7 @@ namespace Saobracaj.Dokumenta
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label24.ForeColor = System.Drawing.Color.Black;
-            this.label24.Location = new System.Drawing.Point(161, 311);
+            this.label24.Location = new System.Drawing.Point(30, 309);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(77, 15);
             this.label24.TabIndex = 218;
@@ -996,7 +1189,7 @@ namespace Saobracaj.Dokumenta
             this.txtSopstvenaMasa.DecimalPlaces = 2;
             this.txtSopstvenaMasa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtSopstvenaMasa.InterceptArrowKeys = false;
-            this.txtSopstvenaMasa.Location = new System.Drawing.Point(566, 33);
+            this.txtSopstvenaMasa.Location = new System.Drawing.Point(650, 30);
             this.txtSopstvenaMasa.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -1027,34 +1220,18 @@ namespace Saobracaj.Dokumenta
             this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label23.ForeColor = System.Drawing.Color.Black;
-            this.label23.Location = new System.Drawing.Point(563, 11);
+            this.label23.Location = new System.Drawing.Point(647, 12);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(91, 15);
+            this.label23.Size = new System.Drawing.Size(157, 15);
             this.label23.TabIndex = 216;
-            this.label23.Text = "TARA VAGONA:";
-            // 
-            // txtGranica
-            // 
-            this.txtGranica.DecimalPlaces = 2;
-            this.txtGranica.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtGranica.InterceptArrowKeys = false;
-            this.txtGranica.Location = new System.Drawing.Point(447, 31);
-            this.txtGranica.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.txtGranica.Name = "txtGranica";
-            this.txtGranica.Size = new System.Drawing.Size(100, 21);
-            this.txtGranica.TabIndex = 215;
-            this.txtGranica.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.label23.Text = "TARA VAGONA - NEJASNO:";
             // 
             // txtBrojOsovina
             // 
             this.txtBrojOsovina.DecimalPlaces = 2;
             this.txtBrojOsovina.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtBrojOsovina.InterceptArrowKeys = false;
-            this.txtBrojOsovina.Location = new System.Drawing.Point(253, 305);
+            this.txtBrojOsovina.Location = new System.Drawing.Point(122, 303);
             this.txtBrojOsovina.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -1084,7 +1261,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.txtNeto.DecimalPlaces = 2;
             this.txtNeto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtNeto.Location = new System.Drawing.Point(812, 31);
+            this.txtNeto.Location = new System.Drawing.Point(912, 29);
             this.txtNeto.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -1101,7 +1278,7 @@ namespace Saobracaj.Dokumenta
             this.label28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label28.ForeColor = System.Drawing.Color.Black;
-            this.label28.Location = new System.Drawing.Point(613, 104);
+            this.label28.Location = new System.Drawing.Point(304, 156);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(94, 15);
             this.label28.TabIndex = 195;
@@ -1111,7 +1288,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.txtTara.DecimalPlaces = 3;
             this.txtTara.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtTara.Location = new System.Drawing.Point(683, 34);
+            this.txtTara.Location = new System.Drawing.Point(806, 30);
             this.txtTara.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -1121,30 +1298,6 @@ namespace Saobracaj.Dokumenta
             this.txtTara.Size = new System.Drawing.Size(100, 21);
             this.txtTara.TabIndex = 212;
             this.txtTara.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label22.ForeColor = System.Drawing.Color.Black;
-            this.label22.Location = new System.Drawing.Point(441, 12);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(106, 15);
-            this.label22.TabIndex = 211;
-            this.label22.Text = "Granica tovarenja:";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(372, 188);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(174, 15);
-            this.label12.TabIndex = 197;
-            this.label12.Text = "DIRIGACIJA KONTEJNERA ZA:";
             // 
             // label20
             // 
@@ -1157,15 +1310,6 @@ namespace Saobracaj.Dokumenta
             this.label20.Size = new System.Drawing.Size(46, 15);
             this.label20.TabIndex = 179;
             this.label20.Text = "Stavka:";
-            // 
-            // cboStatusKontejnera
-            // 
-            this.cboStatusKontejnera.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.cboStatusKontejnera.FormattingEnabled = true;
-            this.cboStatusKontejnera.Location = new System.Drawing.Point(370, 206);
-            this.cboStatusKontejnera.Name = "cboStatusKontejnera";
-            this.cboStatusKontejnera.Size = new System.Drawing.Size(181, 23);
-            this.cboStatusKontejnera.TabIndex = 196;
             // 
             // txtRB
             // 
@@ -1180,7 +1324,7 @@ namespace Saobracaj.Dokumenta
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(361, 302);
+            this.label9.Location = new System.Drawing.Point(12, 285);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(82, 15);
             this.label9.TabIndex = 187;
@@ -1199,7 +1343,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.cboPrimalac.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboPrimalac.FormattingEnabled = true;
-            this.cboPrimalac.Location = new System.Drawing.Point(364, 319);
+            this.cboPrimalac.Location = new System.Drawing.Point(244, 300);
             this.cboPrimalac.Name = "cboPrimalac";
             this.cboPrimalac.Size = new System.Drawing.Size(79, 23);
             this.cboPrimalac.TabIndex = 186;
@@ -1283,9 +1427,9 @@ namespace Saobracaj.Dokumenta
             // txtPlaniraniLager
             // 
             this.txtPlaniraniLager.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtPlaniraniLager.Location = new System.Drawing.Point(616, 164);
+            this.txtPlaniraniLager.Location = new System.Drawing.Point(301, 216);
             this.txtPlaniraniLager.Name = "txtPlaniraniLager";
-            this.txtPlaniraniLager.Size = new System.Drawing.Size(100, 21);
+            this.txtPlaniraniLager.Size = new System.Drawing.Size(29, 21);
             this.txtPlaniraniLager.TabIndex = 200;
             this.txtPlaniraniLager.Text = "0";
             // 
@@ -1295,7 +1439,7 @@ namespace Saobracaj.Dokumenta
             this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(613, 148);
+            this.label14.Location = new System.Drawing.Point(298, 198);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(140, 15);
             this.label14.TabIndex = 201;
@@ -1307,7 +1451,7 @@ namespace Saobracaj.Dokumenta
             this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(611, 59);
+            this.label10.Location = new System.Drawing.Point(304, 112);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(61, 15);
             this.label10.TabIndex = 189;
@@ -1316,16 +1460,17 @@ namespace Saobracaj.Dokumenta
             // txtBrojPlombe
             // 
             this.txtBrojPlombe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtBrojPlombe.Location = new System.Drawing.Point(814, 164);
+            this.txtBrojPlombe.Location = new System.Drawing.Point(473, 90);
             this.txtBrojPlombe.Name = "txtBrojPlombe";
             this.txtBrojPlombe.Size = new System.Drawing.Size(125, 21);
             this.txtBrojPlombe.TabIndex = 198;
             // 
             // cboVlasnikKontejnera
             // 
+            this.cboVlasnikKontejnera.BackColor = System.Drawing.SystemColors.Info;
             this.cboVlasnikKontejnera.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboVlasnikKontejnera.FormattingEnabled = true;
-            this.cboVlasnikKontejnera.Location = new System.Drawing.Point(616, 78);
+            this.cboVlasnikKontejnera.Location = new System.Drawing.Point(301, 130);
             this.cboVlasnikKontejnera.Name = "cboVlasnikKontejnera";
             this.cboVlasnikKontejnera.Size = new System.Drawing.Size(187, 23);
             this.cboVlasnikKontejnera.TabIndex = 188;
@@ -1336,7 +1481,7 @@ namespace Saobracaj.Dokumenta
             this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(811, 149);
+            this.label13.Location = new System.Drawing.Point(470, 72);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(157, 15);
             this.label13.TabIndex = 199;
@@ -1348,7 +1493,7 @@ namespace Saobracaj.Dokumenta
             this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(1106, 12);
+            this.label11.Location = new System.Drawing.Point(429, 12);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(131, 15);
             this.label11.TabIndex = 191;
@@ -1358,9 +1503,9 @@ namespace Saobracaj.Dokumenta
             // 
             this.cboTipKontejnera.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboTipKontejnera.FormattingEnabled = true;
-            this.cboTipKontejnera.Location = new System.Drawing.Point(1109, 30);
+            this.cboTipKontejnera.Location = new System.Drawing.Point(432, 30);
             this.cboTipKontejnera.Name = "cboTipKontejnera";
-            this.cboTipKontejnera.Size = new System.Drawing.Size(193, 23);
+            this.cboTipKontejnera.Size = new System.Drawing.Size(210, 23);
             this.cboTipKontejnera.TabIndex = 190;
             this.cboTipKontejnera.Leave += new System.EventHandler(this.cboTipKontejnera_Leave);
             // 
@@ -1369,7 +1514,7 @@ namespace Saobracaj.Dokumenta
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label27.ForeColor = System.Drawing.Color.Black;
-            this.label27.Location = new System.Drawing.Point(474, 302);
+            this.label27.Location = new System.Drawing.Point(275, 302);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(65, 15);
             this.label27.TabIndex = 193;
@@ -1380,7 +1525,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.cboVrstaRobe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboVrstaRobe.FormattingEnabled = true;
-            this.cboVrstaRobe.Location = new System.Drawing.Point(465, 311);
+            this.cboVrstaRobe.Location = new System.Drawing.Point(334, 309);
             this.cboVrstaRobe.Name = "cboVrstaRobe";
             this.cboVrstaRobe.Size = new System.Drawing.Size(74, 23);
             this.cboVrstaRobe.TabIndex = 192;
@@ -1469,7 +1614,7 @@ namespace Saobracaj.Dokumenta
             this.tabPage2.Controls.Add(this.dataGridView2);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1389, 119);
+            this.tabPage2.Size = new System.Drawing.Size(1389, 169);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Pozicija kontejnera";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1492,7 +1637,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1389, 119);
+            this.tabPage3.Size = new System.Drawing.Size(1389, 169);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Pregled kontejnera iz plana";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1723,113 +1868,6 @@ namespace Saobracaj.Dokumenta
             this.cboOperater.Size = new System.Drawing.Size(180, 24);
             this.cboOperater.TabIndex = 264;
             // 
-            // tabControl2
-            // 
-            this.tabControl2.Controls.Add(this.tabPage4);
-            this.tabControl2.Controls.Add(this.tabPage5);
-            this.tabControl2.Location = new System.Drawing.Point(994, 60);
-            this.tabControl2.Name = "tabControl2";
-            this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(382, 202);
-            this.tabControl2.TabIndex = 433;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.dataGridView4);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(374, 176);
-            this.tabPage4.TabIndex = 0;
-            this.tabPage4.Text = "Napomene za pozicioniranje";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView4
-            // 
-            this.dataGridView4.AllowUserToAddRows = false;
-            this.dataGridView4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView4.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView4.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView4.Location = new System.Drawing.Point(5, 5);
-            this.dataGridView4.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView4.Name = "dataGridView4";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView4.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView4.RowHeadersWidth = 11;
-            this.dataGridView4.RowTemplate.Height = 24;
-            this.dataGridView4.Size = new System.Drawing.Size(364, 166);
-            this.dataGridView4.TabIndex = 157;
-            // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.dataGridView8);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(353, 154);
-            this.tabPage5.TabIndex = 1;
-            this.tabPage5.Text = "Usluge";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView8
-            // 
-            this.dataGridView8.AllowUserToAddRows = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView8.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView8.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView8.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView8.Location = new System.Drawing.Point(5, 5);
-            this.dataGridView8.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView8.Name = "dataGridView8";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView8.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridView8.RowHeadersWidth = 11;
-            this.dataGridView8.RowTemplate.Height = 24;
-            this.dataGridView8.Size = new System.Drawing.Size(440, 173);
-            this.dataGridView8.TabIndex = 158;
-            // 
             // frmOtpremaKontejneraLegetIZVOZ
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1843,17 +1881,25 @@ namespace Saobracaj.Dokumenta
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmOtpremaKontejneraLegetIZVOZ";
             this.Text = "Otprema kontejnera voz - IZVOZ";
+            this.Load += new System.EventHandler(this.frmOtpremaKontejneraLegetIZVOZ_Load);
             this.btnManipulacija.ResumeLayout(false);
             this.btnManipulacija.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGranica)).EndInit();
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).EndInit();
+            this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttoRobeKontejner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttoRobeOdvaga)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttoRobeOtpremnica)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bttoRobeFaktura)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSopstvenaMasa)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGranica)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrojOsovina)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNeto)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTara)).EndInit();
@@ -1868,11 +1914,6 @@ namespace Saobracaj.Dokumenta
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.tabControl2.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
-            this.tabPage5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView8)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1973,7 +2014,6 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.ToolStripButton toolStripButton8;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Label label35;
@@ -1999,7 +2039,7 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.DateTimePicker dtpPerodSkladistenjaOd;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboPostupak;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.TabControl tabControl2;
@@ -2007,5 +2047,10 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.DataGridView dataGridView8;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem rasdniNalogOtpremaVozaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem formirajRadneNalogeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pregledRadnihNalogaToolStripMenuItem;
+        private System.Windows.Forms.Panel panel2;
     }
 }

@@ -3981,6 +3981,12 @@ namespace Saobracaj
              Saobracaj.Dokumenta.frmOtpremaKontejneraUvozKamion pkam = new Saobracaj.Dokumenta.frmOtpremaKontejneraUvozKamion(Korisnik,0);
           pkam.Show(); 
         }
+
+        private void toolStripButton339_Click(object sender, EventArgs e)
+        {
+            Pantheon_Export.Opportunity op = new Pantheon_Export.Opportunity();
+            op.Show();
+        }
     }
     }
 

@@ -2094,5 +2094,11 @@ namespace Saobracaj.Izvoz
 
             }
         }
+
+        private void toolStripButton8_Click(object sender, EventArgs e)
+        {
+            frmOtpremaVozaIzPlana ovizpl = new frmOtpremaVozaIzPlana();
+            ovizpl.Show();
+        }
     }
 }

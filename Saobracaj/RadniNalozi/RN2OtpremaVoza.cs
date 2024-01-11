@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
+using System.Configuration;
+using System.Net;
+using System.Net.Mail;
+using System.Diagnostics.CodeAnalysis;
+using Saobracaj;
 //
 namespace Saobracaj.RadniNalozi
 {
@@ -21,6 +21,57 @@ namespace Saobracaj.RadniNalozi
             FillGV();
             FillCombo();
         }
+
+        public RN2OtpremaVoza(string Korisnik, string IDVOza, string IDUsluge, string OtpremaID)
+        {
+            InitializeComponent();
+            FillGV();
+            FillCombo();
+            txtNalogIzdao.Text = Korisnik;
+            cboNaSredstvo.SelectedValue = Convert.ToInt32(IDVOza);
+            cboUsluga.SelectedValue = Convert.ToInt32(IDUsluge);
+            txtOtpremaID.Text =OtpremaID;
+            RefreshStavkeVoza(OtpremaID);
+
+        }
+
+        private void RefreshStavkeVoza(string OtpremaID)
+        {
+            /*
+            Select BookingBrodara, BrodskaPlomba, Brodar, PeriodSkladistenjaOd, PeriodSkladistenjaDo, NetoRobe, BrutoRobe, BrutoRobeO, CBMO, BrojKoletaO, OstalePlombe, Tara, VGMBrod2 from IzvozKonacna Where ID = " + txtKOntejnerID.Text , con);
+                                                                                                                                                                                       select IzvozKonacnaVrstaManipulacije.ID as ID, IzvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID," +
+                " IzvozKonacna.BrojKontejnera," +
+" IzvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
+" IzvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
+ "  Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac" +
+" from IzvozKonacnaVrstaManipulacije Inner    join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije" +
+" inner" +
+" join PArtnerji on IzvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra  inner " +
+" join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozKonacnaVrstaManipulacije.OrgJed " +
+" inner " +
+" join IzvozKonacna on IzvozKonacnaVrstaManipulacije.IDNadredjena = IzvozKonacna.ID where IzvozKonacna.ID = " + Convert.ToInt32(txtKOntejnerID.Text);
+            */
+            var select = "  SELECT OtpremaKontejneraVozStavke.[ID],[IDNadredjenog]       ,[BrojKontejnera],[BrojVagona], " +
+             "  KontejnerID " +
+             " FROM [dbo].[OtpremaKontejneraVozStavke] " +
+     " inner join IzvozKonacnaVrstaManipulacije on IzvozKonacnaVrstaManipulacije.IDNAdredjena = OtpremaKontejneraVozStavke.KontejnerID " +
+     " where IdNadredjenog = " + OtpremaID + " and  IZvozKonacnaVrstaManipulacije.IDVrstaManipulacije = " + cboUsluga.SelectedValue + " order by RB";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView2.ReadOnly = false;
+            dataGridView2.DataSource = ds.Tables[0];
+
+
+        }
+
+
         private void FillGV()
         {
             var select = "Select * From RNOtpremaVoza order by ID desc";
@@ -172,6 +223,17 @@ namespace Saobracaj.RadniNalozi
 
         }
 
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            RadniNalozi.InsertRN ir = new InsertRN();
+            //PANTA
+            ir.InsRNOtpremaVozaCeoVoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboNaSredstvo.SelectedValue), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtOtpremaID.Text));
+            FillGV();
+        }
 
+        private void RN2OtpremaVoza_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
