@@ -1780,6 +1780,12 @@
     <Compile Include="Pantheon Export\Predvidjanje.Designer.cs">
       <DependentUpon>Predvidjanje.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pantheon Export\PrihodiPosla.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantheon Export\PrihodiPosla.Designer.cs">
+      <DependentUpon>PrihodiPosla.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pantheon Export\UlazneFakture.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3961,6 +3967,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pantheon Export\Predvidjanje.resx">
       <DependentUpon>Predvidjanje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantheon Export\PrihodiPosla.resx">
+      <DependentUpon>PrihodiPosla.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantheon Export\UlazneFakture.resx">
       <DependentUpon>UlazneFakture.cs</DependentUpon>

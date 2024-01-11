@@ -52,9 +52,9 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.button1.Location = new System.Drawing.Point(1092, 12);
+            this.button1.Location = new System.Drawing.Point(1081, 12);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 29);
+            this.button1.Size = new System.Drawing.Size(86, 29);
             this.button1.TabIndex = 1;
             this.button1.Text = "Nova";
             this.button1.UseVisualStyleBackColor = false;
@@ -64,9 +64,9 @@
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.button2.Location = new System.Drawing.Point(1092, 47);
+            this.button2.Location = new System.Drawing.Point(1081, 47);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 29);
+            this.button2.Size = new System.Drawing.Size(86, 29);
             this.button2.TabIndex = 1;
             this.button2.Text = "Otvori";
             this.button2.UseVisualStyleBackColor = false;
@@ -76,9 +76,9 @@
             // 
             this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExport.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnExport.Location = new System.Drawing.Point(1092, 96);
+            this.btnExport.Location = new System.Drawing.Point(1081, 166);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(75, 43);
+            this.btnExport.Size = new System.Drawing.Size(86, 43);
             this.btnExport.TabIndex = 2;
             this.btnExport.Text = "Export Pantheon";
             this.btnExport.UseVisualStyleBackColor = false;

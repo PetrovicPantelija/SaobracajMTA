@@ -48,7 +48,6 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.cboSubjekt = new System.Windows.Forms.ComboBox();
             this.cboNosilacTroska = new System.Windows.Forms.ComboBox();
-            this.txtIznos = new System.Windows.Forms.TextBox();
             this.cboValuta = new System.Windows.Forms.ComboBox();
             this.cboOdeljenje = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -57,12 +56,12 @@
             this.txtPredvidjanje = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.cboNajava = new System.Windows.Forms.ComboBox();
+            this.txtIznos = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIznos)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -74,7 +73,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 112);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1402, 464);
+            this.dataGridView1.Size = new System.Drawing.Size(1239, 464);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -91,7 +90,7 @@
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1426, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1263, 27);
             this.toolStrip1.TabIndex = 198;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -246,13 +245,6 @@
             this.cboNosilacTroska.Size = new System.Drawing.Size(167, 21);
             this.cboNosilacTroska.TabIndex = 202;
             // 
-            // txtIznos
-            // 
-            this.txtIznos.Location = new System.Drawing.Point(994, 51);
-            this.txtIznos.Name = "txtIznos";
-            this.txtIznos.Size = new System.Drawing.Size(119, 20);
-            this.txtIznos.TabIndex = 200;
-            // 
             // cboValuta
             // 
             this.cboValuta.FormattingEnabled = true;
@@ -278,14 +270,14 @@
             this.panel1.Controls.Add(this.dataGridView2);
             this.panel1.Location = new System.Drawing.Point(424, 245);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(553, 144);
+            this.panel1.Size = new System.Drawing.Size(390, 144);
             this.panel1.TabIndex = 204;
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.NavajoWhite;
-            this.button1.Location = new System.Drawing.Point(515, 3);
+            this.button1.Location = new System.Drawing.Point(352, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(35, 14);
             this.button1.TabIndex = 1;
@@ -300,7 +292,7 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(3, 23);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(547, 118);
+            this.dataGridView2.Size = new System.Drawing.Size(384, 118);
             this.dataGridView2.TabIndex = 0;
             // 
             // txtPredvidjanje
@@ -313,7 +305,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(113, 36);
+            this.label6.Location = new System.Drawing.Point(104, 36);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(95, 13);
             this.label6.TabIndex = 199;
@@ -329,41 +321,35 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // label9
+            // txtIznos
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(1308, 36);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(37, 13);
-            this.label9.TabIndex = 199;
-            this.label9.Text = "Posao";
-            // 
-            // cboNajava
-            // 
-            this.cboNajava.FormattingEnabled = true;
-            this.cboNajava.Location = new System.Drawing.Point(1266, 51);
-            this.cboNajava.Name = "cboNajava";
-            this.cboNajava.Size = new System.Drawing.Size(119, 21);
-            this.cboNajava.TabIndex = 202;
+            this.txtIznos.DecimalPlaces = 2;
+            this.txtIznos.Location = new System.Drawing.Point(1007, 52);
+            this.txtIznos.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.txtIznos.Name = "txtIznos";
+            this.txtIznos.Size = new System.Drawing.Size(90, 20);
+            this.txtIznos.TabIndex = 211;
             // 
             // Predvidjanje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1426, 588);
+            this.ClientSize = new System.Drawing.Size(1263, 588);
+            this.Controls.Add(this.txtIznos);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.cboOdeljenje);
-            this.Controls.Add(this.cboNajava);
             this.Controls.Add(this.cboValuta);
             this.Controls.Add(this.cboNosilacTroska);
             this.Controls.Add(this.cboSubjekt);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.txtIznos);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -382,6 +368,7 @@
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIznos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -406,7 +393,6 @@
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ComboBox cboSubjekt;
         private System.Windows.Forms.ComboBox cboNosilacTroska;
-        private System.Windows.Forms.TextBox txtIznos;
         private System.Windows.Forms.ComboBox cboValuta;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ComboBox cboOdeljenje;
@@ -417,7 +403,6 @@
         private System.Windows.Forms.TextBox txtPredvidjanje;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox cboNajava;
+        private System.Windows.Forms.NumericUpDown txtIznos;
     }
 }

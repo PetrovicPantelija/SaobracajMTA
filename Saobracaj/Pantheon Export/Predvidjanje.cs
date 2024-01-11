@@ -129,14 +129,6 @@ namespace Saobracaj.Pantheon_Export
             cboOdeljenje.DataSource = ds2.Tables[0];
             cboOdeljenje.DisplayMember = "SifraSubjekta";
             cboOdeljenje.ValueMember = "ID";
-
-            var najava = "Select ID,Oznaka from Najava Where Status <>7 or status <>9 order by ID desc";
-            var najavaDA = new SqlDataAdapter(najava, conn);
-            var najavaDS = new DataSet();
-            najavaDA.Fill(najavaDS);
-            cboNajava.DataSource = najavaDS.Tables[0];
-            cboNajava.DisplayMember = "Oznaka";
-            cboNajava.ValueMember = "ID";
         }
         int RB;
         string predvidjanjeID;
@@ -194,7 +186,17 @@ namespace Saobracaj.Pantheon_Export
             InsertPatheonExport ins = new InsertPatheonExport();
             if (status == true)
             {
-                ins.InsPredvidjanje(Convert.ToInt32(idP),txtPredvidjanje.Text.ToString().TrimEnd(), poz, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Text.ToString()), cboValuta.SelectedValue.ToString(), 0,Convert.ToInt32(cboNajava.SelectedValue));
+                int posao=0;
+                var query = "Select Posao From NosiociTroskova Where ID="+Convert.ToInt32(cboNosilacTroska.SelectedValue);
+                SqlConnection conn = new SqlConnection(connect);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    posao = Convert.ToInt32(dr[0].ToString());
+                }
+                    ins.InsPredvidjanje(Convert.ToInt32(idP),txtPredvidjanje.Text.ToString().TrimEnd(), poz, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Text.ToString()), cboValuta.SelectedValue.ToString(), 0,posao);
             }
             else
             {
@@ -246,8 +248,9 @@ namespace Saobracaj.Pantheon_Export
                                           "\n\"Odeljenje\":\"" + Odeljenje + "\"," +
                                           "\n\"Iznos\":\"" + Iznos + "\"," +
                                            "\n\"Valuta\":\"" + Valuta + "\"\n}";
-                           streamWriter.Write(json);
-                         //  MessageBox.Show(json.ToString());
+                            MessageBox.Show(json.ToString());
+                            streamWriter.Write(json);
+                         
                         }
                         string response = "";
                         var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
@@ -306,12 +309,21 @@ namespace Saobracaj.Pantheon_Export
             SqlDataReader dr = cmd.ExecuteReader();
             while (dr.Read())
             {
-                poz= Convert.ToInt32(dr[0]);
-                poz++;
+                poz= Convert.ToInt32(dr[0])+1;
+            }
+            conn.Close();
+            int posao = 0;
+            var select = "Select Posao from NosiociTroskova Where ID=" + Convert.ToInt32(cboNosilacTroska.SelectedValue);
+            conn.Open();
+            SqlCommand cmd2 = new SqlCommand(select, conn);
+            SqlDataReader dr2 = cmd2.ExecuteReader();
+            while (dr2.Read())
+            {
+                posao = Convert.ToInt32(dr2[0].ToString());
             }
             conn.Close();
             InsertPatheonExport ins = new InsertPatheonExport();
-            ins.InsPredvidjanje(Convert.ToInt32(idP),txtPredvidjanje.Text.ToString().TrimEnd(), poz, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Text.ToString()), cboValuta.SelectedValue.ToString(), 0,Convert.ToInt32(cboNajava.SelectedValue));
+            ins.InsPredvidjanje(Convert.ToInt32(idP),txtPredvidjanje.Text.ToString().TrimEnd(), poz, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Text.ToString()), cboValuta.SelectedValue.ToString(), 0,posao);
             FillGV();
         }
     }

@@ -149,7 +149,7 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
-        public void InsNosiociTroskova(string NosilacTroska, string NazivNosiocaTroska, string Grupa, int Kupac, int Odeljenje)
+        public void InsNosiociTroskova(string NosilacTroska, string NazivNosiocaTroska, string Grupa, int Kupac, int Odeljenje,int OppID,int Posao)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -169,6 +169,8 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@Grupa", SqlDbType.Char, 16) { Value = Grupa });
                             cmd.Parameters.Add(new SqlParameter("@Kupac", SqlDbType.Int) { Value = Kupac });
                             cmd.Parameters.Add(new SqlParameter("@Odeljenje", SqlDbType.Int) { Value = Odeljenje });
+                            cmd.Parameters.Add(new SqlParameter("@OppID",SqlDbType.Int) { Value = OppID });
+                            cmd.Parameters.Add(new SqlParameter("@Posao", SqlDbType.Int) { Value = Posao });
 
                             cmd.ExecuteNonQuery();
                         }
@@ -183,7 +185,7 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
-        public void UpdNosiociTroskova(int ID, string NosilacTroska, string NazivNosiocaTroska, string Grupa, int Kupac, int Odeljenje)
+        public void UpdNosiociTroskova(int ID, string NosilacTroska, string NazivNosiocaTroska, string Grupa, int Kupac, int Odeljenje, int OppID,int Posao)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -204,6 +206,9 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@Grupa", SqlDbType.Char, 16) { Value = Grupa });
                             cmd.Parameters.Add(new SqlParameter("@Kupac", SqlDbType.Int) { Value = Kupac });
                             cmd.Parameters.Add(new SqlParameter("@Odeljenje", SqlDbType.Int) { Value = Odeljenje });
+                            cmd.Parameters.Add(new SqlParameter("@OppID", SqlDbType.Int) { Value=OppID });
+                            cmd.Parameters.Add(new SqlParameter("@Posao",SqlDbType.Int) { Value = Posao });
+
 
                             cmd.ExecuteNonQuery();
                         }

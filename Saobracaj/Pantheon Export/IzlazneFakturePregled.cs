@@ -1,6 +1,7 @@
 ﻿using Microsoft.Ajax.Utilities;
 using Microsoft.ReportingServices.Diagnostics.Internal;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Saobracaj.Sifarnici;
 using Syncfusion.Windows.Forms.Tools;
 using System;
@@ -16,6 +17,7 @@ using System.Security.Cryptography.Xml;
 using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 
@@ -71,7 +73,12 @@ namespace Saobracaj.Pantheon_Export
         }
         public string Valuta,MestoUtovara,MestoIstovara,Izjava,Napomena;
         public int ID,Primalac,Referent;
-        private void btnExport_Click(object sender, EventArgs e)
+
+        public int CRMID;
+        public decimal Iznos;
+        public string ValutaResponse;
+
+            private void btnExport_Click(object sender, EventArgs e)
         {
             //
             string FaStFak = "";
