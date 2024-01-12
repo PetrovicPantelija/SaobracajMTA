@@ -33,7 +33,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
+            this.btnGetUplate = new System.Windows.Forms.Button();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -84,12 +87,34 @@
             this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
+            // btnGetUplate
+            // 
+            this.btnGetUplate.BackColor = System.Drawing.Color.MediumBlue;
+            this.btnGetUplate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnGetUplate.Location = new System.Drawing.Point(1081, 119);
+            this.btnGetUplate.Name = "btnGetUplate";
+            this.btnGetUplate.Size = new System.Drawing.Size(86, 41);
+            this.btnGetUplate.TabIndex = 3;
+            this.btnGetUplate.Text = "Get Uplate";
+            this.btnGetUplate.UseVisualStyleBackColor = false;
+            this.btnGetUplate.Click += new System.EventHandler(this.btnGetUplate_Click);
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(272, 359);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(895, 118);
+            this.dataGridView2.TabIndex = 4;
+            // 
             // IzlazneFakturePregled
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1179, 524);
+            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.btnGetUplate);
             this.Controls.Add(this.btnExport);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -97,7 +122,9 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "IzlazneFakturePregled";
             this.Text = "Pregled Izlaznih faktura";
+            this.Load += new System.EventHandler(this.IzlazneFakturePregled_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -108,5 +135,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnGetUplate;
+        private System.Windows.Forms.DataGridView dataGridView2;
     }
 }
