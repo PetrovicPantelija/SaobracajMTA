@@ -31,7 +31,7 @@ namespace Saobracaj.Pantheon_Export
         private void FillGV()
         {
             var select = "select UlFak.ID,PredvidjanjeID,VrstaDokumenta,Tip,DatumPrijema,UlFak.Valuta,Kurs,FakturaBr,RTrim(PaNaziv) as Dobavljac,RacunDobavljaca,DatumIzdavanja,DatumPDVa,DatumValute," +
-                "(RTrim(DeIme)+' '+RTrim(DePriimek)) as Referent,Napomena,UlFak.Predvidjanje,IDDobavljaca,UlFak.Referent " +
+                "(RTrim(DeIme)+' '+RTrim(DePriimek)) as Referent,Napomena,UlFak.Predvidjanje,IDDobavljaca,UlFak.Referent,UlFak.DatumPlacanja " +
                 "from UlFak " +
                 "inner join Predvidjanje on UlFak.Predvidjanje=Predvidjanje.ID " +
                 "inner join Partnerji on UlFak.IDDobavljaca=Partnerji.PaSifra " +
@@ -74,6 +74,77 @@ namespace Saobracaj.Pantheon_Export
         }
         public int Predvidjanje, Dobavljac, Referent;
         public string Valuta, VrstaDokumenta, TipDokumenta, FakturaBr, RacunDobavljaca, Napomena;
+
+        public class Placanja
+        {
+            public int SetType { get; set; }
+            public string FakturaBr { get; set; }
+            public string KlijentId { get; set; }
+            public DateTime DatumIzdavanja { get; set; }
+            public DateTime DatumPlacanja { get; set; }
+            public int TipFakture {  get; set; }
+            public string Valuta { get; set; }
+            public decimal Iznos { get; set; }
+        }
+        public class JsonResponse
+        {
+            public string Status { get; set; }
+            public string Id { get; set; }
+            public string Poruka { get; set; }
+            public List<Placanja> Uplate { get; set; }
+        }
+        int CRMID;
+        decimal Iznos;
+        string ValutaResponse;
+        DateTime DatumPlacanja;
+
+        private void UlFakPregled_Load(object sender, EventArgs e)
+        {
+            dataGridView2.Visible = false;
+        }
+
+        private void btnGetPlacanja_Click(object sender, EventArgs e)
+        {
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/UplateKupaca/GetUplateKupaca");
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "GET";
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = streamReader.ReadToEnd();
+                try
+                {
+                    JsonResponse response = JsonConvert.DeserializeObject<JsonResponse>(result);
+
+                    if (response.Uplate != null && response.Uplate.Count > 0)
+                    {
+                        dataGridView2.DataSource = response.Uplate;
+                    }
+                    foreach (DataGridViewRow row in dataGridView2.Rows)
+                    {
+                        CRMID = Convert.ToInt32(row.Cells["FakturaBr"].Value.ToString());
+                        Iznos = Convert.ToDecimal(row.Cells["Iznos"].Value.ToString());
+                        ValutaResponse = row.Cells["Valuta"].Value.ToString().TrimEnd();
+                        DatumPlacanja = Convert.ToDateTime(row.Cells["DatumPlacanja"].Value.ToString());
+
+                        using (SqlConnection conn = new SqlConnection(connect))
+                        {
+                            using (SqlCommand cmd = conn.CreateCommand())
+                            {
+                                cmd.CommandText = "UPDATE UlFak SET Valuta='" + ValutaResponse + "', Iznos=" + Iznos + " DatumPlacanja='"+DatumPlacanja+"' WHERE CRMID = " + CRMID;
+                                conn.Open();
+                                cmd.ExecuteNonQuery();
+                                conn.Close();
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Nema novih uplata");
+                }
+            }
+        }
 
         private void btnExport_Click(object sender, EventArgs e)
         {

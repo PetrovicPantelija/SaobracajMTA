@@ -25,35 +25,43 @@ namespace Saobracaj.Pantheon_Export
         {
             InitializeComponent();
             FillCombo();
-            FillGV();
         }
+
+        DateTime dokPom, pdvPom, valutaPom, utovarPom, istovarPom;
         public IzlazneFakture(int id,DateTime datumDokumenta,int primalac,string valuta,decimal kurs,DateTime datumPDV,DateTime datumValute,string mestoUtovara,DateTime datumUtovara,string mestoIstovara,DateTime datumIstovara,int referent,string izjava,string napomena)
         {
             InitializeComponent();
 
+            dokPom = Convert.ToDateTime(datumDokumenta.ToShortDateString());
+            pdvPom = Convert.ToDateTime(datumPDV.ToShortDateString());
+            valutaPom = Convert.ToDateTime(datumValute.ToShortDateString());
+            utovarPom = Convert.ToDateTime(datumUtovara.ToShortDateString());
+            istovarPom=Convert.ToDateTime(datumIstovara.ToShortDateString());
+
             ID = id;
             txtID.Text = ID.ToString();
-            dtDatum.Value=datumDokumenta;
+            dtDatum.Value = dokPom;
             cboPrimalac.SelectedValue = primalac;
             cboValuta.SelectedValue= valuta;
             txtKurs.Text = kurs.ToString();
-            dtPDV.Value = datumPDV;
-            dtValuta.Value = datumValute;
+            dtPDV.Value = pdvPom;
+            dtValuta.Value = valutaPom;
             txtMestoUtovara.Text= mestoUtovara.ToString();
-            dtDatumUtovara.Value = datumUtovara;
+            dtDatumUtovara.Value = utovarPom;
             txtMestoIstovara.Text = mestoIstovara.ToString();
-            dtDatumIstovara.Value= datumIstovara;
+            dtDatumIstovara.Value= istovarPom;
             cboReferent.SelectedValue = referent;
             //txtIzjava.Text = izjava.ToString();
             txtNapomena.Text=napomena.ToString();
+
+
 
             FillCombo();
             FillGV();
         }
         private void FillGV()
         {
-            if (txtID.Text != "")
-            {
+            ID = Convert.ToInt32(txtID.Text);
                 var select = "select FaPStFak as Faktura,FaPstPos as RB,FaPSifra as MP,FaPNaziv,FaPEM as JM,FaPKolOdpr as Kolicna,FapCenaEM as Cena,NosilacTroska,NajavaID,FapFakZap From FakturaPostav Where FaPStFak=" + ID;
                 SqlConnection conn = new SqlConnection(connect);
                 var dataAdapter = new SqlDataAdapter(select, conn);
@@ -85,12 +93,7 @@ namespace Saobracaj.Pantheon_Export
 
                 if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count + 1; }
                 txtRB.Text = rb.ToString();
-            }
-            else {
-                if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count + 1; }
-                txtRB.Text = rb.ToString();
-            }
-            
+        
         }
         private void IzlazneFakture_Load(object sender, EventArgs e)
         {
@@ -208,12 +211,13 @@ namespace Saobracaj.Pantheon_Export
             {
                 ins.InstFaktura(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtDatum.Value), Convert.ToInt32(cboPrimalac.SelectedValue), ulica, naziv, mesto, mb, cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Text),
                     Convert.ToDateTime(dtPDV.Value), Convert.ToDateTime(dtValuta.Value), txtMestoUtovara.Text.ToString(), Convert.ToDateTime(dtDatumUtovara.Value), txtMestoUtovara.Text.ToString().TrimEnd(),
-                    Convert.ToDateTime(dtDatumIstovara.Value), korisnik, Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboIzjava.SelectedValue), txtNapomena.Text.ToString().TrimEnd(),Convert.ToInt32(crmID), comboBox1.Text.ToString().Substring(0, 3));
+                    Convert.ToDateTime(dtDatumIstovara.Value), korisnik, Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboIzjava.SelectedValue), txtNapomena.Text.ToString().TrimEnd(),Convert.ToInt32(crmID), comboBox1.Text.ToString().Substring(0, 4));
             }
             else
             {
                 //FALI UPDATE FAKTURE
             }
+            txtID.Text = FaStFak.ToString();
             FillGV();
         }
         string MpNaziv;
@@ -300,17 +304,6 @@ namespace Saobracaj.Pantheon_Export
 
         private void button1_Click(object sender, EventArgs e)
         {
-            /*var query = "Select korisnik From Korisnici Where DeSifra=" + Convert.ToInt32(cboReferent.SelectedValue);
-            SqlConnection conn = new SqlConnection(connect);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                referent = dr[0].ToString();
-            }
-            conn.Close();*/
-
             InsertPatheonExport ins = new InsertPatheonExport();
             ins.InsFakturaPostav(korisnik.ToString().TrimEnd(), Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), MpNaziv, cboJM.SelectedValue.ToString().TrimEnd(), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), posao);
 

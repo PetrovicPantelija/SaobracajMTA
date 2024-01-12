@@ -1,4 +1,5 @@
-﻿using Saobracaj.TrackModal.TestiranjeDataSet19TableAdapters;
+﻿using Microsoft.IdentityModel.Tokens;
+using Saobracaj.TrackModal.TestiranjeDataSet19TableAdapters;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -176,8 +177,31 @@ namespace Saobracaj.Pantheon_Export
             FillGV();
             Prihodi();
         }
+        private void GetBudzet()
+        {
+            string budzet="";
+            string revenue="";
+            string query2 = "select Budzet,EstimatedRevenue " +
+                "from Opportunity " +
+                "inner join NosiociTroskova on NosiociTroskova.OppID = Opportunity.ID " +
+                "inner join Najava on NosiociTroskova.Posao = Najava.ID " +
+                "Where Najava.ID =" + comboBox1.SelectedValue;
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            SqlCommand cmd2 = new SqlCommand(query2, conn);
+            SqlDataReader dr2 = cmd2.ExecuteReader();
+            while (dr2.Read())
+            {
+                budzet = dr2[0].ToString();
+                revenue = dr2[1].ToString();
+            }
+            if (budzet.IsNullOrEmpty()) { txtBudzet.Text = "0"; } else { txtBudzet.Text = budzet; }
+            if(revenue.IsNullOrEmpty()) { txtRevenue.Text = "0"; } else { txtRevenue.Text= revenue; }
+            conn.Close();
+        }
         private void Prihodi()
         {
+            GetBudzet();
             decimal trase = dataGridView1.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDecimal(t.Cells[8].Value));
             decimal predvidjanje = dataGridView2.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDecimal(t.Cells[6].Value.ToString()));
             decimal aktivnosti = dataGridView3.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDecimal(t.Cells[5].Value.ToString()));
@@ -192,21 +216,6 @@ namespace Saobracaj.Pantheon_Export
             txtUrsd.Text = ukupnoRSD.ToString();
             txtUeur.Text = ukupnoEur.ToString();
 
-            string query2 = "select Budzet,EstimatedRevenue " +
-                "from Opportunity " +
-                "inner join NosiociTroskova on NosiociTroskova.OppID = Opportunity.ID " +
-                "inner join Najava on NosiociTroskova.Posao = Najava.ID " +
-                "Where Najava.ID =" + comboBox1.SelectedValue;
-            SqlConnection conn = new SqlConnection(connect);
-            conn.Open();
-            SqlCommand cmd2 = new SqlCommand(query2, conn);
-            SqlDataReader dr2 = cmd2.ExecuteReader();
-            while (dr2.Read())
-            {
-                txtBudzet.Text = dr2[0].ToString();
-                txtRevenue.Text= dr2[1].ToString();
-            }
-            conn.Close();
 
             decimal kolicina = dataGridView4.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDecimal(t.Cells["FaPKolOdpr"].Value.ToString()));
             decimal cena= dataGridView4.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDecimal(t.Cells["FaPCenaEM"].Value.ToString()));

@@ -25,7 +25,7 @@ namespace Saobracaj.Pantheon_Export
         {
             InitializeComponent();
             FillCombo();
-            FillGV();
+            //FillGV();
         }
         public UlazneFakture(int id,int predvidjanje,string vrstaDokumenta, string tipDokumenta,DateTime datumPrijema,string valuta,decimal kurs,string fakturaBr,int dobavljac,string racunDobavljaca,DateTime datumIzdavanja,
             DateTime datumPDVa,DateTime datumValute,int referent,string napomena)
@@ -125,8 +125,7 @@ namespace Saobracaj.Pantheon_Export
         }
         private void FillGV()
         {
-            if (txtID.Text != "")
-            {
+            ID = Convert.ToInt32(txtID.Text);
                 var select = "select UlFakPostav.ID,IDFak,RB,MpNaziv,Kolicina,Cena,NazivNosiocaTroska,JM,Proizvod,Oznaka from UlFakPostav inner join UlFak on UlFakPostav.IDFak=UlFak.ID inner join MaticniPodatki on UlFakPostav.Mp=MaticniPodatki.MpSifra inner join NosiociTroskova on UlFakPostav.NosilacTroska=NosiociTroskova.ID inner join Najava on UlFakPostav.NajavaID=Najava.ID Where IDFak=" + txtID.Text;
                 SqlConnection conn = new SqlConnection(connect);
                 var dataAdapter = new SqlDataAdapter(select, conn);
@@ -159,8 +158,7 @@ namespace Saobracaj.Pantheon_Export
 
                 if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count + 1; }
                 txtRB.Text = rb.ToString();
-            }
-            else { return; }
+
         }
 
         private void dataGridView1_AllowUserToAddRowsChanged(object sender, EventArgs e)
