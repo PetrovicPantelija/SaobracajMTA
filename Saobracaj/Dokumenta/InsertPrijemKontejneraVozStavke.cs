@@ -13,7 +13,8 @@ namespace Saobracaj.Dokumeta
     class InsertPrijemKontejneraVozStavke
     {
 
-        public void InsertPrijemKontVozStavke( int IdNadredjenog, string BrojKontejnera, String BrojVagona, double Granica, double BrojOsovina, double SopstvenaMasa , double Tara, double Neto, int Posiljalac,int Primalac,int VlasnikKontejnera, int TipKontejnera, 	int VrstaRobe,int Buking, int StatusKontejnera,string BrojPlombe,int PlaniraniLager, int IdVoza, DateTime VremeDolaska, 	DateTime VremePripremljen, 	DateTime VremeOdlaska,	DateTime Datum, string Korisnik, string BrojPlombe2, int Organizator, string BukingBrodar, string NapomenaS, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, Double BTTORobe, int KontejnerID, double BTTOKOntejnera, string Napomena2, int PostupakSaRobom)
+        public void InsertPrijemKontVozStavke( int IdNadredjenog, string BrojKontejnera, String BrojVagona, double Granica, double BrojOsovina, double SopstvenaMasa , double Tara, double Neto, int Posiljalac,int Primalac,int VlasnikKontejnera, int TipKontejnera, 	int VrstaRobe,int Buking, int StatusKontejnera,string BrojPlombe,int PlaniraniLager, int IdVoza, DateTime VremeDolaska, 	DateTime VremePripremljen, 	DateTime VremeOdlaska,	DateTime Datum, string Korisnik, string BrojPlombe2, int Organizator, string BukingBrodar, string NapomenaS, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, Double BTTORobe, int KontejnerID, double BTTOKOntejnera, string Napomena2, int PostupakSaRobom
+              , double BTTORobeOTP, double BTTORobeODVAGA, string PLOMBAVLASN, string CBMOTP, string KOLETAOTP)
         {
             
               
@@ -318,9 +319,53 @@ namespace Saobracaj.Dokumeta
             parameter34.Value = PostupakSaRobom;
             myCommand.Parameters.Add(parameter34);
 
+            SqlParameter parameter35 = new SqlParameter();
+            parameter35.ParameterName = "@BTTORobeOTP";
+            parameter35.SqlDbType = SqlDbType.Decimal;
+            parameter35.Direction = ParameterDirection.Input;
+            parameter35.Value = BTTORobeOTP;
+            myCommand.Parameters.Add(parameter35);
 
+            SqlParameter parameter36 = new SqlParameter();
+            parameter36.ParameterName = "@BTTORobeODVAGA";
+            parameter36.SqlDbType = SqlDbType.Decimal;
+            parameter36.Direction = ParameterDirection.Input;
+            parameter36.Value = BTTORobeODVAGA;
+            myCommand.Parameters.Add(parameter36);
 
+            SqlParameter parameter37 = new SqlParameter();
+            parameter37.ParameterName = "@PLOMBAVLASN";
+            parameter37.SqlDbType = SqlDbType.NVarChar;
+            parameter37.Size = 100;
+           parameter37.Direction = ParameterDirection.Input;
+            parameter37.Value = PLOMBAVLASN;
+            myCommand.Parameters.Add(parameter37);
 
+            SqlParameter parameter38 = new SqlParameter();
+            parameter38.ParameterName = "@CBMOTP";
+            parameter38.SqlDbType = SqlDbType.NVarChar;
+                parameter38.Size = 100;
+            parameter38.Direction = ParameterDirection.Input;
+            parameter38.Value = CBMOTP;
+            myCommand.Parameters.Add(parameter38);
+
+            SqlParameter parameter39 = new SqlParameter();
+            parameter39.ParameterName = "@KOLETAOTP";
+            parameter39.SqlDbType = SqlDbType.NVarChar;
+            parameter39.Size = 100;
+            parameter39.Direction = ParameterDirection.Input;
+            parameter39.Value = KOLETAOTP;
+            myCommand.Parameters.Add(parameter39);
+            /*
+           
+
+            , @BTTORobeOTP numeric(18, 3)
+			 ,@BTTORobeODVAGA numeric(18,3) 
+			,@PLOMBAVLASN nvarchar(100) 
+			,@CBMOTP nvarchar(100)
+			 ,@KOLETAOTP nvarchar(100)
+
+            */
 
 
             myConnection.Open();
