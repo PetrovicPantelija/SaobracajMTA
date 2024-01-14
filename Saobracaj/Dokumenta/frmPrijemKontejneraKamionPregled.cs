@@ -401,8 +401,34 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            frmPrijemKontejneraVoz ter = new frmPrijemKontejneraVoz(KorisnikCene, 0);
-            ter.Show();
+
+
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz ter2 = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(0, KorisnikCene, 0);
+                        ter2.Show();
+                        return;
+
+                    }
+                default:
+                    {
+
+                        frmPrijemKontejneraVoz ter3 = new frmPrijemKontejneraVoz(Convert.ToInt32(txtSifra.Text), KorisnikCene, 1);
+                        ter3.Show();
+                        return;
+
+                    }
+                    break;
+            }
+            ///PANTA
+
+
+
+
+
         }
 
         private void toolStripButton6_Click(object sender, EventArgs e)

@@ -40,6 +40,9 @@ namespace Saobracaj.Uvoz
             this.label1 = new System.Windows.Forms.Label();
             this.cboIzdatOd = new System.Windows.Forms.ComboBox();
             this.label43 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -96,13 +99,13 @@ namespace Saobracaj.Uvoz
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridGroupingControl1.BackColor = System.Drawing.SystemColors.Window;
-            this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2010;
+            this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2010Blue;
             this.gridGroupingControl1.Location = new System.Drawing.Point(0, 0);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(984, 649);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(985, 649);
             this.gridGroupingControl1.TabIndex = 9;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -113,6 +116,7 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1.Text = "gridGroupingControl1";
             this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
+            this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
             // 
             // splitContainer1
             // 
@@ -120,11 +124,14 @@ namespace Saobracaj.Uvoz
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.Location = new System.Drawing.Point(0, 24);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.textBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.button2);
+            this.splitContainer1.Panel1.Controls.Add(this.button1);
             this.splitContainer1.Panel1.Controls.Add(this.cboIzdatZa);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.cboIzdatOd);
@@ -142,7 +149,7 @@ namespace Saobracaj.Uvoz
             // 
             this.cboIzdatZa.FormattingEnabled = true;
             this.cboIzdatZa.Location = new System.Drawing.Point(9, 80);
-            this.cboIzdatZa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboIzdatZa.Margin = new System.Windows.Forms.Padding(2);
             this.cboIzdatZa.Name = "cboIzdatZa";
             this.cboIzdatZa.Size = new System.Drawing.Size(143, 21);
             this.cboIzdatZa.TabIndex = 219;
@@ -161,7 +168,7 @@ namespace Saobracaj.Uvoz
             // 
             this.cboIzdatOd.FormattingEnabled = true;
             this.cboIzdatOd.Location = new System.Drawing.Point(9, 35);
-            this.cboIzdatOd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboIzdatOd.Margin = new System.Windows.Forms.Padding(2);
             this.cboIzdatOd.Name = "cboIzdatOd";
             this.cboIzdatOd.Size = new System.Drawing.Size(143, 21);
             this.cboIzdatOd.TabIndex = 217;
@@ -176,6 +183,32 @@ namespace Saobracaj.Uvoz
             this.label43.TabIndex = 216;
             this.label43.Text = "Izdat od";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(12, 125);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(160, 35);
+            this.button1.TabIndex = 220;
+            this.button1.Text = "Formiraj prijem kamionom";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(14, 204);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(158, 35);
+            this.button2.TabIndex = 221;
+            this.button2.Text = "Formiraj otpremu kamionom";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(14, 167);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 222;
+            // 
             // frmRadniNalogInterniPregled
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -185,7 +218,7 @@ namespace Saobracaj.Uvoz
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmRadniNalogInterniPregled";
             this.Text = "Pregled internih radnih naloga";
             this.Load += new System.EventHandler(this.frmRadniNalogInterniPregled_Load);
@@ -214,5 +247,8 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboIzdatOd;
         private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

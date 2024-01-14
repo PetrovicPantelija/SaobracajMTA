@@ -156,5 +156,31 @@ namespace Saobracaj.Uvoz
             cboIzdatZa.DisplayMember = "Naziv";
             cboIzdatZa.ValueMember = "ID";
         }
+
+        private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridGroupingControl1.Table.CurrentRecord != null)
+                {
+                    textBox1.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+
+                    // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            InsertUvozKonacna ins = new InsertUvozKonacna();
+            ins.PrenesiKontejnerIzPlanaNaPrijemnicu(Convert.ToInt32(textBox1.Text));
+            
+        }
     }
 }
