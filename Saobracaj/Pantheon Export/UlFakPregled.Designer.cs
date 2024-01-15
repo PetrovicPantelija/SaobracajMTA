@@ -122,7 +122,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UlFakPregled";
-            this.Text = "Pgled ulaznih faktura";
+            this.Text = "Pregled ulaznih faktura";
             this.Load += new System.EventHandler(this.UlFakPregled_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
