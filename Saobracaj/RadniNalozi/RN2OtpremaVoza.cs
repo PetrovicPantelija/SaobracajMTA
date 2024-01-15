@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Diagnostics.CodeAnalysis;
 using Saobracaj;
+using System.Drawing;
 //
 namespace Saobracaj.RadniNalozi
 {
@@ -37,6 +38,11 @@ namespace Saobracaj.RadniNalozi
 
         private void RefreshStavkeVoza(string OtpremaID)
         {
+            if (cboUsluga.SelectedValue is null)
+            {
+                MessageBox.Show("Izaberite uslugu");
+                return;
+            }
             /*
             Select BookingBrodara, BrodskaPlomba, Brodar, PeriodSkladistenjaOd, PeriodSkladistenjaDo, NetoRobe, BrutoRobe, BrutoRobeO, CBMO, BrojKoletaO, OstalePlombe, Tara, VGMBrod2 from IzvozKonacna Where ID = " + txtKOntejnerID.Text , con);
                                                                                                                                                                                        select IzvozKonacnaVrstaManipulacije.ID as ID, IzvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID," +
@@ -68,6 +74,17 @@ namespace Saobracaj.RadniNalozi
             dataGridView2.ReadOnly = false;
             dataGridView2.DataSource = ds.Tables[0];
 
+            dataGridView2.BorderStyle = BorderStyle.None;
+            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView2.BackgroundColor = Color.White;
+
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
         }
 
@@ -81,6 +98,18 @@ namespace Saobracaj.RadniNalozi
             da.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
+
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
         }
         private void FillCombo()
         {
@@ -129,20 +158,20 @@ namespace Saobracaj.RadniNalozi
             cboUsluga.DisplayMember = "Naziv";
             cboUsluga.ValueMember = "ID";
 
-            var sklad = "Select SkSifra,SkNaziv From Sklad order by SkSifra";
+            var sklad = "select ID,naziv from Skladista";
             var daSklad = new SqlDataAdapter(sklad, conn);
             var dsSklad = new DataSet();
             daSklad.Fill(dsSklad);
             cboSaSklad.DataSource = dsSklad.Tables[0];
-            cboSaSklad.DisplayMember = "SkNaziv";
-            cboSaSklad.ValueMember = "SkSifra";
+            cboSaSklad.DisplayMember = "Naziv";
+            cboSaSklad.ValueMember = "ID";
 
-            var pozicija = "Select Id,Oznaka from Pozicija";
+            var pozicija = "Select Id,Opis from Pozicija";
             var daPoz = new SqlDataAdapter(pozicija, conn);
             var dsPoz = new DataSet();
             daPoz.Fill(dsPoz);
             cboSaPoz.DataSource = dsPoz.Tables[0];
-            cboSaPoz.DisplayMember = "Oznaka";
+            cboSaPoz.DisplayMember = "Opis";
             cboSaPoz.ValueMember = "ID";
         }
         private void tsNew_Click(object sender, EventArgs e)

@@ -1591,6 +1591,12 @@
     <Compile Include="Izvoz\frmNaslovStatusaVozila.Designer.cs">
       <DependentUpon>frmNaslovStatusaVozila.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\frmOtpremaKontejneraKamionomIzKontejnera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmOtpremaKontejneraKamionomIzKontejnera.Designer.cs">
+      <DependentUpon>frmOtpremaKontejneraKamionomIzKontejnera.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmOtpremaVozaIzPlana.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1998,6 +2004,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyGridForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalozi\frmAnalizaRadnihNaloga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalozi\frmAnalizaRadnihNaloga.Designer.cs">
+      <DependentUpon>frmAnalizaRadnihNaloga.cs</DependentUpon>
     </Compile>
     <Compile Include="RadniNalozi\InsertRN.cs" />
     <Compile Include="RadniNalozi\RN2OtpremaVoza.cs">
@@ -3208,6 +3220,18 @@
     <Compile Include="Uvoz\frmPregledRadnihNalogaInterni.Designer.cs">
       <DependentUpon>frmPregledRadnihNalogaInterni.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\frmPrijemKamionaIzPlana.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmPrijemKamionaIzPlana.Designer.cs">
+      <DependentUpon>frmPrijemKamionaIzPlana.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\frmPrijemKamionaPlatforma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmPrijemKamionaPlatforma.Designer.cs">
+      <DependentUpon>frmPrijemKamionaPlatforma.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\frmPrijemVozaIzPlana.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3893,6 +3917,9 @@
     <EmbeddedResource Include="Izvoz\frmNaslovStatusaVozila.resx">
       <DependentUpon>frmNaslovStatusaVozila.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmOtpremaKontejneraKamionomIzKontejnera.resx">
+      <DependentUpon>frmOtpremaKontejneraKamionomIzKontejnera.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmOtpremaVozaIzPlana.resx">
       <DependentUpon>frmOtpremaVozaIzPlana.cs</DependentUpon>
     </EmbeddedResource>
@@ -4046,6 +4073,9 @@
     </Compile>
     <EmbeddedResource Include="PropertyGridForm.resx">
       <DependentUpon>PropertyGridForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalozi\frmAnalizaRadnihNaloga.resx">
+      <DependentUpon>frmAnalizaRadnihNaloga.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\RN2OtpremaVoza.resx">
       <DependentUpon>RN2OtpremaVoza.cs</DependentUpon>
@@ -4548,6 +4578,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmPregledRadnihNalogaInterni.resx">
       <DependentUpon>frmPregledRadnihNalogaInterni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmPrijemKamionaIzPlana.resx">
+      <DependentUpon>frmPrijemKamionaIzPlana.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmPrijemKamionaPlatforma.resx">
+      <DependentUpon>frmPrijemKamionaPlatforma.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmPrijemVozaIzPlana.resx">
       <DependentUpon>frmPrijemVozaIzPlana.cs</DependentUpon>

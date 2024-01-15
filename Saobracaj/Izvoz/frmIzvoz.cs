@@ -2064,6 +2064,12 @@ namespace Saobracaj.Izvoz
 
             }
         }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            Saobracaj.Uvoz.frmPrijemKamionaPlatforma pkp = new Uvoz.frmPrijemKamionaPlatforma(txtID.Text);
+            pkp.Show();
+        }
     }
     }
  

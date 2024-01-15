@@ -3993,6 +3993,12 @@ namespace Saobracaj
             Pantheon_Export.PrihodiPosla pp = new Pantheon_Export.PrihodiPosla();
             pp.Show();
         }
+
+        private void toolStripButton341_Click(object sender, EventArgs e)
+        {
+            RadniNalozi.frmAnalizaRadnihNaloga arn = new frmAnalizaRadnihNaloga();
+            arn.Show();
+        }
     }
     }
 
