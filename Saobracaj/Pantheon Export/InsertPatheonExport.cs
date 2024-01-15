@@ -10,6 +10,7 @@ using System.Configuration;
 using Syncfusion.Styles;
 using Saobracaj.eDokumenta;
 using System.Security.Cryptography.Xml;
+using Syncfusion.Presentation;
 
 namespace Saobracaj.Pantheon_Export
 {
@@ -209,7 +210,6 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@OppID", SqlDbType.Int) { Value=OppID });
                             cmd.Parameters.Add(new SqlParameter("@Posao",SqlDbType.Int) { Value = Posao });
 
-
                             cmd.ExecuteNonQuery();
                         }
                         transaction.Commit();
@@ -293,7 +293,7 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
-        public void UpdPredvidjanje(int ID, string PredvidjanjeID, int PredvidjanjePoz, DateTime Datum, int Subjekat, int NosilacTroska, int Odeljenje, decimal Iznos, string Valuta, int Status)
+        public void UpdPredvidjanje(int ID, string PredvidjanjeID, int PredvidjanjePoz, DateTime Datum, int Subjekat, int NosilacTroska, int Odeljenje, decimal Iznos, string Valuta, int NajavaID,int IDp)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -317,7 +317,8 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@Odeljenje", SqlDbType.Int) { Value = Odeljenje });
                             cmd.Parameters.Add(new SqlParameter("@Iznos", SqlDbType.Decimal) { Value = Iznos });
                             cmd.Parameters.Add(new SqlParameter("@Valuta", SqlDbType.Char, 3) { Value = Valuta });
-                            cmd.Parameters.Add(new SqlParameter("@Status", SqlDbType.Int) { Value = Status });
+                            cmd.Parameters.Add(new SqlParameter("@NajavaID", SqlDbType.Int) { Value = NajavaID });
+                            cmd.Parameters.Add(new SqlParameter("@IDP", SqlDbType.Int) { Value = IDp });
 
                             cmd.ExecuteNonQuery();
                         }

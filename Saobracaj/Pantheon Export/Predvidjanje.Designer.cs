@@ -294,6 +294,7 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(384, 118);
             this.dataGridView2.TabIndex = 0;
+            this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
             // txtPredvidjanje
             // 
@@ -340,8 +341,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1263, 588);
-            this.Controls.Add(this.txtIznos);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.cboOdeljenje);
             this.Controls.Add(this.cboValuta);
@@ -360,6 +359,8 @@
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtPredvidjanje);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.txtIznos);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Predvidjanje";
             this.Text = "Predvidjanje";
