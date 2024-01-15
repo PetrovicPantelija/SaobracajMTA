@@ -267,13 +267,13 @@ namespace Saobracaj.Pantheon_Export
                             }
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show("Faktura CRMID:" + crm + " je već poslata sinhornizacijom!");
+                        return;
+                    }
+                }
 
-                }
-                else
-                {
-                    MessageBox.Show("Faktura CRMID:" + crm + " je već poslata sinhornizacijom!");
-                    return;
-                }
             }
         }
         public DateTime DatumDokumenta,DatumPDV,DatumValute, DatumUtovara,DatumIstovara,datumDokPom,pdvPom,valutaPom,utovarPom,istovarPom;
