@@ -74,7 +74,7 @@ namespace Saobracaj.Pantheon_Export
                         dataGridView1.Columns["Iznos"].Width = 150;
                         dataGridView1.Columns["Valuta"].Width = 50;*/
 
-            var select2 = "Select * from Predvidjanje";
+            var select2 = "Select * from Predvidjanje order by ID desc";
             var da = new SqlDataAdapter(select2, conn);
             var ds2 = new DataSet();
             da.Fill(ds2);
@@ -200,7 +200,15 @@ namespace Saobracaj.Pantheon_Export
             }
             else
             {
-                //ins.UpdPredvidjanje(Convert.ToInt32(txtID.Text), predvidjanjeID, RB, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue), txtOdeljenje.Text.ToString(), Convert.ToDecimal(txtIznos.Text.ToString()), cboValuta.SelectedValue.ToString(), 1);
+                if (statusUpd == 0)
+                {
+                    ins.UpdPredvidjanje(idNas, txtPredvidjanje.Text.ToString().TrimEnd(), pozUpd, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue),
+                        Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Value), cboValuta.SelectedValue.ToString(), najava, Convert.ToInt32(txtID.Text));
+                }
+                else
+                {
+                    MessageBox.Show("Nije moguće izmeniti zapis koji je poslat sinhronizacijom!");
+                }
             }
             FillGV();
             status = false;
@@ -220,63 +228,67 @@ namespace Saobracaj.Pantheon_Export
             DateTime datumPom;
             try
             {
-                if(dataGridView1.Rows.Count > 0 ) {
+                if(dataGridView1.Rows.Count > 0 ) 
+                {
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
-                        ID = Convert.ToInt32(row.Cells[0].Value.ToString());
-                        PredvidjanjeID = row.Cells[2].Value.ToString().TrimEnd();
-                        Poz = row.Cells[3].Value.ToString().TrimEnd();
-                        datumPom = Convert.ToDateTime(row.Cells[4].Value.ToString());
-                        Datum = datumPom.ToString("yyyy-MM-dd");
-                        Kupac = row.Cells[5].Value.ToString().TrimEnd();
-                        NTNaziv = row.Cells[10].Value.ToString().TrimEnd();
-                        Odeljenje = row.Cells[7].Value.ToString().TrimEnd();
-                        Iznos = row.Cells[8].Value.ToString();
-                        Valuta = row.Cells[9].Value.ToString();
+                        if (row.Selected)
+                        {
+                            ID = Convert.ToInt32(row.Cells[0].Value.ToString());
+                            PredvidjanjeID = row.Cells[2].Value.ToString().TrimEnd();
+                            Poz = row.Cells[3].Value.ToString().TrimEnd();
+                            datumPom = Convert.ToDateTime(row.Cells[4].Value.ToString());
+                            Datum = datumPom.ToString("yyyy-MM-dd");
+                            Kupac = row.Cells[5].Value.ToString().TrimEnd();
+                            NTNaziv = row.Cells[10].Value.ToString().TrimEnd();
+                            Odeljenje = row.Cells[7].Value.ToString().TrimEnd();
+                            Iznos = row.Cells[8].Value.ToString();
+                            Valuta = row.Cells[9].Value.ToString();
 
-                        var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/Predvidjanje/PredvidjanjePost");
-                        httpWebRequest.ContentType = "application/json";
-                        httpWebRequest.Method = "POST";
-                        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                        {
-                            string json = "{" +
-                                           "\n\"PredvidjanjeID\":\"" + PredvidjanjeID + "\"," +
-                                           "\n\"PredvidjanjePoz\":\"" + Poz + "\"," +
-                                           "\n\"Datum\":\"" + Datum + "\"," +
-                                           "\n\"Subject\":\"" + Kupac + "\"," +
-                                          "\n\"Strn\":\"" + NTNaziv + "\"," +
-                                          "\n\"Odeljenje\":\"" + Odeljenje + "\"," +
-                                          "\n\"Iznos\":\"" + Iznos + "\"," +
-                                           "\n\"Valuta\":\"" + Valuta + "\"\n}";
-                            MessageBox.Show(json.ToString());
-                            streamWriter.Write(json);
-                         
-                        }
-                        string response = "";
-                        var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                        using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                        {
-                            var result = streamReader.ReadToEnd();
-                            response = result.ToString();
-                            MessageBox.Show(response.ToString());
-                            if (response.Contains("Error") == true || response.Contains("Greška") == true || response.Contains("ERROR") == true)
+                            var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/Predvidjanje/PredvidjanjePost");
+                            httpWebRequest.ContentType = "application/json";
+                            httpWebRequest.Method = "POST";
+                            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                             {
-                                MessageBox.Show("Slanje nije uspelo \n" + response.ToString());
-                                return;
+                                string json = "{" +
+                                               "\n\"PredvidjanjeID\":\"" + PredvidjanjeID + "\"," +
+                                               "\n\"PredvidjanjePoz\":\"" + Poz + "\"," +
+                                               "\n\"Datum\":\"" + Datum + "\"," +
+                                               "\n\"Subject\":\"" + Kupac + "\"," +
+                                              "\n\"Strn\":\"" + NTNaziv + "\"," +
+                                              "\n\"Odeljenje\":\"" + Odeljenje + "\"," +
+                                              "\n\"Iznos\":\"" + Iznos + "\"," +
+                                               "\n\"Valuta\":\"" + Valuta + "\"\n}";
+                                MessageBox.Show(json.ToString());
+                                streamWriter.Write(json);
+
                             }
-                            else
+                            string response = "";
+                            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                             {
-                                using (SqlConnection conn = new SqlConnection(connect))
+                                var result = streamReader.ReadToEnd();
+                                response = result.ToString();
+                                MessageBox.Show(response.ToString());
+                                if (response.Contains("Error") == true || response.Contains("Greška") == true || response.Contains("ERROR") == true)
                                 {
-                                    using (SqlCommand cmd = conn.CreateCommand())
-                                    {
-                                        cmd.CommandText = "UPDATE Predvidjanje SET Status = 1  WHERE ID = " + ID;
-                                        conn.Open();
-                                        cmd.ExecuteNonQuery();
-                                        conn.Close();
-                                    }
+                                    MessageBox.Show("Slanje nije uspelo \n" + response.ToString());
+                                    return;
                                 }
-                                MessageBox.Show("Uspešan prenos");
+                                else
+                                {
+                                    using (SqlConnection conn = new SqlConnection(connect))
+                                    {
+                                        using (SqlCommand cmd = conn.CreateCommand())
+                                        {
+                                            cmd.CommandText = "UPDATE Predvidjanje SET Status = 1  WHERE ID = " + ID;
+                                            conn.Open();
+                                            cmd.ExecuteNonQuery();
+                                            conn.Close();
+                                        }
+                                    }
+                                    MessageBox.Show("Uspešan prenos");
+                                }
                             }
                         }
                     }
@@ -325,6 +337,32 @@ namespace Saobracaj.Pantheon_Export
             InsertPatheonExport ins = new InsertPatheonExport();
             ins.InsPredvidjanje(Convert.ToInt32(idP),txtPredvidjanje.Text.ToString().TrimEnd(), poz, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Text.ToString()), cboValuta.SelectedValue.ToString(), 0,posao);
             FillGV();
+        }
+        int idNas;
+        int pozUpd;
+        int statusUpd;
+        int najava;
+        private void dataGridView2_SelectionChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                if (row.Selected)
+                {
+                    idNas = Convert.ToInt32(row.Cells[0].Value.ToString());
+                    txtPredvidjanje.Text = row.Cells[1].Value.ToString();
+                    pozUpd = Convert.ToInt32(row.Cells[2].Value.ToString());
+                    dateTimePicker1.Value = Convert.ToDateTime(row.Cells[3].Value.ToString());
+                    cboSubjekt.SelectedValue = Convert.ToInt32(row.Cells[4].Value.ToString());
+                    cboNosilacTroska.SelectedValue = Convert.ToInt32(row.Cells[5].Value.ToString());
+                    cboOdeljenje.SelectedValue = Convert.ToString(row.Cells[6].Value.ToString());
+                    txtIznos.Value = Convert.ToDecimal(row.Cells[7].Value.ToString());
+                    cboValuta.SelectedValue = row.Cells[8].Value.ToString();
+                    statusUpd = Convert.ToInt32(row.Cells[9].Value.ToString());
+                    najava = Convert.ToInt32(row.Cells[10].Value.ToString());
+                    txtID.Text = row.Cells[11].Value.ToString();
+
+                }
+            }
         }
     }
 }

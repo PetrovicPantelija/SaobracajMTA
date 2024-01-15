@@ -61,10 +61,6 @@ namespace Saobracaj.Pantheon_Export
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-
-
-
-            //dataGridView1.Columns[6].Visible = false;
         }
         private void FillCombo()
         {
@@ -124,7 +120,7 @@ namespace Saobracaj.Pantheon_Export
             string g = DateTime.Now.ToString("yyyy");
             txtNosilacTroska.Text = ID.ToString() + "/" + g;
         }
-
+        int statusNT;
         private void tsSave_Click(object sender, EventArgs e)
         {
             InsertPatheonExport ins = new InsertPatheonExport();
@@ -134,7 +130,15 @@ namespace Saobracaj.Pantheon_Export
             }
             else
             {
-                ins.UpdNosiociTroskova(Convert.ToInt32(txtID.Text), txtNosilacTroska.Text.ToString().TrimEnd(), txtNazivNosioca.Text.ToString().TrimEnd(), cboGrupa.Text.ToString().TrimEnd(), Convert.ToInt32(cboKupac.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToInt32(cboOpportunity.SelectedValue),Convert.ToInt32(cboPosao.SelectedValue));
+                if (statusNT == 0)
+                {
+                    ins.UpdNosiociTroskova(Convert.ToInt32(txtID.Text), txtNosilacTroska.Text.ToString().TrimEnd(), txtNazivNosioca.Text.ToString().TrimEnd(), cboGrupa.Text.ToString().TrimEnd(), Convert.ToInt32(cboKupac.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToInt32(cboOpportunity.SelectedValue), Convert.ToInt32(cboPosao.SelectedValue));
+                }
+                else
+                {
+                    MessageBox.Show("Nije moguće izmeniti zapis koji je već sinhronizovan!");
+                    return;
+                }
             }
             FillGV();
             status = false;
@@ -239,7 +243,7 @@ namespace Saobracaj.Pantheon_Export
             panel1.Visible = true;
             panel1.Location = new System.Drawing.Point(12,30);
             panel1.Size = new Size(1140, 507);
-            var select = "Select * from NosiociTroskova order by ID asc";
+            var select = "Select * from NosiociTroskova order by ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -287,6 +291,25 @@ namespace Saobracaj.Pantheon_Export
                 cboKupac.SelectedValue= Convert.ToInt32(dr[1].ToString());
             }
             conn.Close();
+        }
+
+        private void dataGridView2_SelectionChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                if (row.Selected)
+                {
+                    txtID.Text = row.Cells[0].Value.ToString();
+                    txtNosilacTroska.Text = row.Cells[1].Value.ToString();
+                    txtNazivNosioca.Text = row.Cells[2].Value.ToString();
+                    cboGrupa.Text = row.Cells[3].Value.ToString();
+                    cboKupac.SelectedValue = Convert.ToInt32(row.Cells[4].Value.ToString());
+                    cboOdeljenje.SelectedValue = Convert.ToInt32(row.Cells[5].Value.ToString());
+                    statusNT = Convert.ToInt32(row.Cells[6].Value.ToString());
+                    cboOpportunity.SelectedValue = Convert.ToInt32(row.Cells[7].Value.ToString());
+                    cboPosao.SelectedValue = Convert.ToInt32(row.Cells[8].Value.ToString());
+                }
+            }
         }
     }
 }

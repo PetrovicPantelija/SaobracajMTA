@@ -262,6 +262,7 @@
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.Size = new System.Drawing.Size(551, 66);
             this.dataGridView2.TabIndex = 1;
+            this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
             // button1
             // 
@@ -332,8 +333,6 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1462, 549);
             this.Controls.Add(this.cboPosao);
-            this.Controls.Add(this.cboOpportunity);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtNazivNosioca);
             this.Controls.Add(this.txtNosilacTroska);
@@ -350,6 +349,8 @@
             this.Controls.Add(this.cboKupac);
             this.Controls.Add(this.cboGrupa);
             this.Controls.Add(this.cboOdeljenje);
+            this.Controls.Add(this.cboOpportunity);
+            this.Controls.Add(this.label7);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NosiociTroskova";
             this.Text = "NosiociTroskova";
