@@ -1106,5 +1106,11 @@ namespace TrackModal.Promet
             dataGridView1.Columns[16].Width = 80;
 
         }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            Saobracaj.RadniNalozi.RN12MedjuskladisniKontejnera msp = new Saobracaj.RadniNalozi.RN12MedjuskladisniKontejnera();
+            msp.Show();
+        }
     }
 }

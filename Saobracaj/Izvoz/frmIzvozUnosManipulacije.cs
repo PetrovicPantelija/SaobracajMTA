@@ -743,7 +743,7 @@ namespace Saobracaj.Izvoz
                             pomPlatilac = Convert.ToInt32(cboNalogodavac1.SelectedValue);;
 
                         }
-
+                        pomOrgJed = VratiOrgJed(pomManupulacija);
                         //  pomCena = Convert.ToDouble(row.Cells[2].Value.ToString());
                         // pomkolicina= Convert.ToDouble(row.Cells[4].Value.ToString());
                         //   pomOrgJed = Convert.ToInt32(row.Cells[5].Value.ToString());
@@ -1317,7 +1317,7 @@ namespace Saobracaj.Izvoz
                             pomPlatilac = Convert.ToInt32(cboNalogodavac2.SelectedValue);
 
                         }
-
+                        pomOrgJed = VratiOrgJed(pomManupulacija);
                         //  pomCena = Convert.ToDouble(row.Cells[2].Value.ToString());
                         // pomkolicina= Convert.ToDouble(row.Cells[4].Value.ToString());
                         //   pomOrgJed = Convert.ToInt32(row.Cells[5].Value.ToString());
@@ -1435,7 +1435,7 @@ namespace Saobracaj.Izvoz
                             pomPlatilac = Convert.ToInt32(cboNalogodavac3.SelectedValue);
 
                         }
-
+                        pomOrgJed = VratiOrgJed(pomManupulacija);
                         //  pomCena = Convert.ToDouble(row.Cells[2].Value.ToString());
                         // pomkolicina= Convert.ToDouble(row.Cells[4].Value.ToString());
                         //   pomOrgJed = Convert.ToInt32(row.Cells[5].Value.ToString());
@@ -1523,6 +1523,27 @@ namespace Saobracaj.Izvoz
                 MessageBox.Show("Nije uspelo brisanje");
             }
         }
+        int VratiOrgJed(int Manipulacija)
+        {
+            int pomOJ = 0;
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select OrgJed from VrstaManipulacije  where ID= " + Manipulacija, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                pomOJ = Convert.ToInt32(dr["OrgJed"].ToString());
+            }
+            con.Close();
+            return pomOJ;
+
+        }
 
         private void button10_Click(object sender, EventArgs e)
         {
@@ -1567,8 +1588,8 @@ namespace Saobracaj.Izvoz
                             
                             con.Close();
                             pomPlatilac = Convert.ToInt32(cboUvoznik.SelectedValue);
+                        pomOrgJed = VratiOrgJed(pomManupulacija);
 
-                        
 
                         //  pomCena = Convert.ToDouble(row.Cells[2].Value.ToString());
                         // pomkolicina= Convert.ToDouble(row.Cells[4].Value.ToString());

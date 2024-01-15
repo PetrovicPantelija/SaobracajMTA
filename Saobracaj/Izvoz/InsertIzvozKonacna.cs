@@ -198,6 +198,56 @@ namespace Saobracaj.Izvoz
 
         }
 
+        public void PrenesiKontejnerUOtpremuKamionomUvoz(int KontejnerID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "spPrenesiKontejnerUOtpremuKamionom";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter otpremaid = new SqlParameter();
+            otpremaid.ParameterName = "@KontejnerID";
+            otpremaid.SqlDbType = SqlDbType.Int;
+            otpremaid.Direction = ParameterDirection.Input;
+            otpremaid.Value = KontejnerID;
+            cmd.Parameters.Add(otpremaid);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+
 
         public void VratiUNerasporedjene(int ID)
         {

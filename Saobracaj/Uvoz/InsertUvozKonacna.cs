@@ -501,6 +501,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             id.Direction = ParameterDirection.Input;
             id.Value = ID;
             cmd.Parameters.Add(id);
+            
 
             SqlParameter idnadredjeni = new SqlParameter();
             idnadredjeni.ParameterName = "@IDNadredjeni";

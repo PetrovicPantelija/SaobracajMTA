@@ -1484,5 +1484,11 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
             RadniNalozi.RN2OtpremaVoza otp = new RadniNalozi.RN2OtpremaVoza(KorisnikCene, cboVozBuking.SelectedValue.ToString(), IDUsluge, txtSifra.Text);
             otp.Show();
         }
+
+        private void pREGLEDIIPOSTAVKAKONTEJNERAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RadniNalozi.RN11PreglediPostavkaKontejnera pik = new RadniNalozi.RN11PreglediPostavkaKontejnera();
+            pik.Show();
+        }
     }
 }

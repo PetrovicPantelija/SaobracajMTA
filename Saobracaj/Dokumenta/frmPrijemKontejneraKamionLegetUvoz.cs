@@ -23,6 +23,7 @@ namespace Saobracaj.Dokumenta
         string KorisnikCene;
         bool status = false;
         int usao = 0;
+        public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         public frmPrijemKontejneraKamionLegetUvoz()
         {
             InitializeComponent();
@@ -510,7 +511,6 @@ namespace Saobracaj.Dokumenta
 " INNER JOIN  Partnerji AS Partnerji_3 ON PrijemKontejneraVozStavke.Organizator = Partnerji_3.PaSifra " +
 " INNER JOIN TipKontenjera ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
 " LEFT join DirigacijaKontejneraZa on DirigacijaKontejneraZa.ID = PrijemKontejneraVozStavke.StatusKontejnera " +
-" INNER JOIN  Voz ON PrijemKontejneraVozStavke.IdVoza = Voz.ID " +
 " INNER JOIN VrstePostupakaUvoz ON VrstePostupakaUvoz.id = PrijemKontejneraVozStavke.PostupakSaRobom where IdNadredjenog = " + txtSifra.Text + " order by RB";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -894,7 +894,7 @@ namespace Saobracaj.Dokumenta
             {
 
 
-                txtKontejnerID.Text = dr["[KontejnerID]"].ToString();
+                txtKontejnerID.Text = dr["KontejnerID"].ToString();
                 txtStavka.Text = dr["ID"].ToString();
                 txtRB.Text = dr["RB"].ToString();
                 txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
@@ -956,6 +956,128 @@ namespace Saobracaj.Dokumenta
         private void button9_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void prijemKontejneraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string IDUsluge = "0";
+            foreach (DataGridViewRow row in dataGridView5.Rows)
+            {
+
+                if (row.Selected == true)
+                {
+                    IDUsluge = row.Cells[4].Value.ToString();
+
+                }
+
+
+            }
+
+
+
+            RadniNalozi.RN4PrijemPlatforme ppl = new RadniNalozi.RN4PrijemPlatforme(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene, IDUsluge);
+            ppl.Show();
+        }
+
+        private void pRIJEMCIRADEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RadniNalozi.RN9PrijemCirade pc = new RadniNalozi.RN9PrijemCirade();
+            pc.Show();
+        }
+
+        private void pREGLEDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RadniNalozi.RN10PregledIspraznjenogKontejnera rni = new RadniNalozi.RN10PregledIspraznjenogKontejnera();
+            rni.Show();
+        }
+
+        private void toolStripDropDownButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void FillDGUslugeIzIzVozaNeraspoeredjeni()
+        {
+
+            if (txtKontejnerID.Text == "")
+            {
+                return;
+            }
+            var select = "";
+
+            select = "select  IzvozVrstaManipulacije.ID as ID, IzvozVrstaManipulacije.IDNadredjena as KontejnerID, Izvoz.BrojKontejnera, " +
+" IzvozVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
+" IzvozVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
+" Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac " +
+" from IzvozVrstaManipulacije " +
+" Inner    join VrstaManipulacije on VrstaManipulacije.ID = IzvozVrstaManipulacije.IDVrstaManipulacije " +
+" inner " +
+" join PArtnerji on IzvozVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
+" inner " +
+" join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozVrstaManipulacije.OrgJed " +
+" inner " +
+" join Izvoz on IzvozVrstaManipulacije.IDNadredjena = Izvoz.ID where Izvoz.ID = " + Convert.ToInt32(txtKontejnerID.Text);
+
+
+
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView5.ReadOnly = true;
+            dataGridView5.DataSource = ds.Tables[0];
+
+
+            dataGridView5.BorderStyle = BorderStyle.None;
+            dataGridView5.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView5.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView5.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView5.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView5.BackgroundColor = Color.White;
+
+            dataGridView5.EnableHeadersVisualStyles = false;
+            dataGridView5.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView5.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView5.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView5.Columns[0];
+            dataGridView5.Columns[0].HeaderText = "ID";
+            dataGridView5.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView5.Columns[1];
+            dataGridView5.Columns[1].HeaderText = "IDU";
+            dataGridView5.Columns[1].Width = 30;
+
+            DataGridViewColumn column3 = dataGridView5.Columns[2];
+            dataGridView5.Columns[2].HeaderText = "Kontejner";
+            dataGridView5.Columns[2].Width = 50;
+
+        }
+        private void txtKontejnerID_TextChanged(object sender, EventArgs e)
+        {
+            FillDGUslugeIzIzVozaNeraspoeredjeni();
+        }
+
+        private void pRIJEMPLATFORMEBRODARToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            /*
+            string IDUsluge = "0";
+            foreach (DataGridViewRow row in dataGridView8.Rows)
+            {
+
+                if (row.Selected == true)
+                {
+                    IDUsluge = row.Cells[4].Value.ToString();
+
+                }
+
+
+            }
+            */
+
+
+            RadniNalozi.RN5PrijemPlatforme2 ppl = new RadniNalozi.RN5PrijemPlatforme2(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene);
+            ppl.Show();
         }
     }
 }

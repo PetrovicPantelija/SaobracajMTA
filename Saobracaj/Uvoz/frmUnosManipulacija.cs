@@ -36,6 +36,7 @@ namespace Saobracaj.Uvoz
             InitializeComponent();
             pIDPlana = IDPlana;
             pID = ID;
+            txtID.Text = pID.ToString();
             pNalogodavac1 = Nalogodavac1;
             pNalogodavac2 = Nalogodavac2;
             pNalogodavac3 = Nalogodavac3;
@@ -43,6 +44,7 @@ namespace Saobracaj.Uvoz
             txtNadredjeni.Text = pIDPlana.ToString();
             FillDG6(1);
             FillDG8();
+            
             Usao = 0;
 
           

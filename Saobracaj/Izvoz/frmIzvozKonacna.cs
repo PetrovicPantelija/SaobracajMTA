@@ -1428,11 +1428,10 @@ namespace Saobracaj.Izvoz
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    if (row.Selected)
-                    {
+                   
                         Uvoz.InsertRadniNalogInterni ins = new Uvoz.InsertRadniNalogInterni();
                         ins.InsRadniNalogInterniIzvoz(Convert.ToInt32(2), Convert.ToInt32(5), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanIzvoz", Convert.ToInt32(row.Cells[0].Value.ToString()), "sa", "sa");
-                    }
+                   
                 }
             }
             else

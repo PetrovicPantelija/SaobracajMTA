@@ -201,22 +201,18 @@ namespace Saobracaj.Dokumenta
 
         private void RefreshDataGrid()
         {
-            var select = "  SELECT OtpremaKontejneraVozStavke.ID, OtpremaKontejneraVozStavke.RB, OtpremaKontejneraVozStavke.IDNadredjenog,  OtpremaKontejneraVozStavke.BrojKontejnera, OtpremaKontejneraVozStavke.Granica, "
-                        + " OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, Komitenti.Naziv AS Posiljalac, Komitenti_1.Naziv AS primalac, "
-                        + " Komitenti_2.Naziv AS Vlasnikkontejnera, " +
-                          " Komitenti_3.Naziv AS Organizator, " +
-                        "  TipKontenjera.Naziv AS TipKontejnera, VrstaRobe.Naziv AS VrstaRobe, OtpremaKontejneraVozStavke.Buking , OtpremaKontejneraVozStavke.StatusKontejnera, "
-                        + " OtpremaKontejneraVozStavke.BrojPlombe, OtpremaKontejneraVozStavke.BrojPlombe2, OtpremaKontejneraVozStavke.PlaniraniLager,"
-                         + " OtpremaKontejneraVozStavke.BrojVagona, "
-                        + " OtpremaKontejneraVozStavke.Datum, OtpremaKontejneraVozStavke.Korisnik, OtpremaKontejneraVozStavke.NapomenaS "
-                        + "FROM  Komitenti INNER JOIN "
-                        + " OtpremaKontejneraVozStavke ON Komitenti.ID = OtpremaKontejneraVozStavke.Posiljalac INNER JOIN "
-                        + " Komitenti AS Komitenti_1 ON OtpremaKontejneraVozStavke.Primalac = Komitenti_1.ID INNER JOIN "
-                        + " Komitenti AS Komitenti_2 ON OtpremaKontejneraVozStavke.VlasnikKontejnera = Komitenti_2.ID INNER JOIN "
-                          + " Komitenti AS Komitenti_3 ON OtpremaKontejneraVozStavke.Organizator = Komitenti_3.ID INNER JOIN "
-                         + "TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID INNER JOIN "
-                        + " VrstaRobe ON OtpremaKontejneraVozStavke.VrstaRobe = VrstaRobe.ID "
-                          + " where IdNadredjenog = " + txtSifra.Text + " order by RB";
+            var select = "  SELECT OtpremaKontejneraVozStavke.ID, OtpremaKontejneraVozStavke.RB, OtpremaKontejneraVozStavke.IDNadredjenog,  OtpremaKontejneraVozStavke.BrojKontejnera, OtpremaKontejneraVozStavke.BrojVagona, " +
+   " OtpremaKontejneraVozStavke.Granica,  OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, " +
+   " Partnerji.PaNaziv AS Posiljalac, Komitenti_1.PaNaziv AS primalac,  Komitenti_2.PaNaziv AS Vlasnikkontejnera,  Komitenti_3.PaNaziv AS Organizator,   " +
+   " TipKontenjera.Naziv AS TipKontejnera, VrstaRobe.Naziv AS VrstaRobe, OtpremaKontejneraVozStavke.Buking , OtpremaKontejneraVozStavke.StatusKontejnera,  " +
+   " OtpremaKontejneraVozStavke.BrojPlombe, OtpremaKontejneraVozStavke.BrojPlombe2, OtpremaKontejneraVozStavke.PlaniraniLager, OtpremaKontejneraVozStavke.Datum, " +
+   " OtpremaKontejneraVozStavke.Korisnik, OtpremaKontejneraVozStavke.NapomenaS FROM  Partnerji INNER JOIN OtpremaKontejneraVozStavke ON Partnerji.PaSifra = OtpremaKontejneraVozStavke.Posiljalac " +
+   " INNER JOIN  Partnerji AS Komitenti_1 ON OtpremaKontejneraVozStavke.Primalac = Komitenti_1.PaSifra " +
+   " INNER JOIN  Partnerji AS Komitenti_2 ON OtpremaKontejneraVozStavke.VlasnikKontejnera = Komitenti_2.PaSifra " +
+   " INNER JOIN  Partnerji AS Komitenti_3 ON OtpremaKontejneraVozStavke.Organizator = Komitenti_3.PaSifra " +
+   " INNER JOIN TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
+   " Left JOIN  VrstaRobe ON OtpremaKontejneraVozStavke.VrstaRobe = VrstaRobe.ID " +
+   " where IdNadredjenog = " + txtSifra.Text + " order by RB";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -337,21 +333,18 @@ namespace Saobracaj.Dokumenta
         private void RefreshDataGrid2()
         {
 
-            var select = "  SELECT OtpremaKontejneraVozStavke.ID, OtpremaKontejneraVozStavke.RB, OtpremaKontejneraVozStavke.IDNadredjenog,  OtpremaKontejneraVozStavke.BrojKontejnera, OtpremaKontejneraVozStavke.BrojVagona, OtpremaKontejneraVozStavke.Granica, "
-              + " OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, Komitenti.Naziv AS Posiljalac, Komitenti_1.Naziv AS primalac, "
-              + " Komitenti_2.Naziv AS Vlasnikkontejnera, " +
-                " Komitenti_3.Naziv AS Organizator, " +
-              "  TipKontenjera.Naziv AS TipKontejnera, VrstaRobe.Naziv AS VrstaRobe, OtpremaKontejneraVozStavke.Buking , OtpremaKontejneraVozStavke.StatusKontejnera, "
-              + " OtpremaKontejneraVozStavke.BrojPlombe, OtpremaKontejneraVozStavke.BrojPlombe2, OtpremaKontejneraVozStavke.PlaniraniLager,"
-              + " OtpremaKontejneraVozStavke.Datum, OtpremaKontejneraVozStavke.Korisnik, OtpremaKontejneraVozStavke.NapomenaS "
-             + "FROM  Komitenti INNER JOIN "
-                      + " OtpremaKontejneraVozStavke ON Komitenti.ID = OtpremaKontejneraVozStavke.Posiljalac INNER JOIN "
-                      + " Komitenti AS Komitenti_1 ON OtpremaKontejneraVozStavke.Primalac = Komitenti_1.ID INNER JOIN "
-                      + " Komitenti AS Komitenti_2 ON OtpremaKontejneraVozStavke.VlasnikKontejnera = Komitenti_2.ID INNER JOIN "
-                        + " Komitenti AS Komitenti_3 ON OtpremaKontejneraVozStavke.Organizator = Komitenti_3.ID INNER JOIN "
-                       + "TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID INNER JOIN "
-                      + " VrstaRobe ON OtpremaKontejneraVozStavke.VrstaRobe = VrstaRobe.ID "
-                        + " where IdNadredjenog = " + txtSifra.Text + " order by RB";
+            var select = "  SELECT OtpremaKontejneraVozStavke.ID, OtpremaKontejneraVozStavke.RB, OtpremaKontejneraVozStavke.IDNadredjenog,  OtpremaKontejneraVozStavke.BrojKontejnera, OtpremaKontejneraVozStavke.BrojVagona, " +
+" OtpremaKontejneraVozStavke.Granica,  OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, " +
+" Partnerji.PaNaziv AS Posiljalac, Komitenti_1.PaNaziv AS primalac,  Komitenti_2.PaNaziv AS Vlasnikkontejnera,  Komitenti_3.PaNaziv AS Organizator,   " +
+" TipKontenjera.Naziv AS TipKontejnera, VrstaRobe.Naziv AS VrstaRobe, OtpremaKontejneraVozStavke.Buking , OtpremaKontejneraVozStavke.StatusKontejnera,  " +
+" OtpremaKontejneraVozStavke.BrojPlombe, OtpremaKontejneraVozStavke.BrojPlombe2, OtpremaKontejneraVozStavke.PlaniraniLager, OtpremaKontejneraVozStavke.Datum, " +
+" OtpremaKontejneraVozStavke.Korisnik, OtpremaKontejneraVozStavke.NapomenaS FROM  Partnerji INNER JOIN OtpremaKontejneraVozStavke ON Partnerji.PaSifra = OtpremaKontejneraVozStavke.Posiljalac " +
+" INNER JOIN  Partnerji AS Komitenti_1 ON OtpremaKontejneraVozStavke.Primalac = Komitenti_1.PaSifra " +
+" INNER JOIN  Partnerji AS Komitenti_2 ON OtpremaKontejneraVozStavke.VlasnikKontejnera = Komitenti_2.PaSifra " +
+" INNER JOIN  Partnerji AS Komitenti_3 ON OtpremaKontejneraVozStavke.Organizator = Komitenti_3.PaSifra " +
+" INNER JOIN TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
+" Left JOIN  VrstaRobe ON OtpremaKontejneraVozStavke.VrstaRobe = VrstaRobe.ID " +
+" where IdNadredjenog = " + txtSifra.Text + " order by RB";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -2962,6 +2955,43 @@ namespace Saobracaj.Dokumenta
         {
             Saobracaj.Promet.frmLagerOperater lager = new Saobracaj.Promet.frmLagerOperater();
           lager.Show(); 
+        }
+
+        private void oTPREMAPLATFORMEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string IDUsluge = "0";
+            foreach (DataGridViewRow row in dataGridView8.Rows)
+            {
+
+                if (row.Selected == true)
+                {
+                    IDUsluge = row.Cells[4].Value.ToString();
+
+                }
+
+
+            }
+
+
+            RadniNalozi.RN6OtpremaPlatforme rnop = new RadniNalozi.RN6OtpremaPlatforme(txtSifra.Text, KorisnikCene, IDUsluge, txtRegBrKamiona.Text);
+            rnop.Show();
+        }
+
+        private void oTPREMAPLATFORMEToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            RadniNalozi.RN7OtpremaPlatforme2 rv = new RadniNalozi.RN7OtpremaPlatforme2(txtSifra.Text, KorisnikCene, txtRegBrKamiona.Text);
+            rv.Show();
+        }
+
+        private void oTPREMACIRADEToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            RadniNalozi.RN8OtpremaCirade oc = new RadniNalozi.RN8OtpremaCirade();
+            oc.Show();
+        }
+
+        private void toolStripDropDownButton1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

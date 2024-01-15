@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Diagnostics.CodeAnalysis;
 using Saobracaj;
+using System.Drawing;
 //
 namespace Saobracaj.RadniNalozi
 {
@@ -37,6 +38,11 @@ namespace Saobracaj.RadniNalozi
 
         private void RefreshStavkeVoza(string IDVOza)
         {
+            if (cboUsluga.SelectedValue is null)
+            {
+                MessageBox.Show("Izaberite uslugu pretovara");
+                return;
+            }
    var select = "  SELECT         PrijemKontejneraVozStavke.ID, PrijemKontejneraVozStavke.RB, PrijemKontejneraVozStavke.IDNadredjenog,  " +
    " PrijemKontejneraVozStavke.KontejnerID, " +
    " PrijemKontejneraVozStavke.BrojKontejnera, " +
@@ -94,6 +100,18 @@ namespace Saobracaj.RadniNalozi
             da.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
+
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
         }
         private void FillCombo()
         {
@@ -150,20 +168,20 @@ namespace Saobracaj.RadniNalozi
             cboUsluga.DisplayMember = "Naziv";
             cboUsluga.ValueMember = "ID";
 
-            var sklad = "Select SkSifra,SkNaziv From Sklad order by SkSifra";
+            var sklad = "select ID,naziv from Skladista";
             var daSklad = new SqlDataAdapter(sklad, conn);
             var dsSklad = new DataSet();
             daSklad.Fill(dsSklad);
             cboNaSklad.DataSource = dsSklad.Tables[0];
-            cboNaSklad.DisplayMember = "SkNaziv";
-            cboNaSklad.ValueMember = "SkSifra";
+            cboNaSklad.DisplayMember = "Naziv";
+            cboNaSklad.ValueMember = "ID";
 
-            var pozicija = "Select Id,Oznaka from Pozicija";
+            var pozicija = "Select Id,Opis from Pozicija";
             var daPoz = new SqlDataAdapter(pozicija, conn);
             var dsPoz = new DataSet();
             daPoz.Fill(dsPoz);
             cboNaPoz.DataSource = dsPoz.Tables[0];
-            cboNaPoz.DisplayMember = "Oznaka";
+            cboNaPoz.DisplayMember = "Opis";
             cboNaPoz.ValueMember = "ID";
 
 
