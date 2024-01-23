@@ -249,7 +249,7 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Location = new System.Drawing.Point(451, 243);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(557, 93);
+            this.panel1.Size = new System.Drawing.Size(557, 186);
             this.panel1.TabIndex = 203;
             // 
             // dataGridView2
@@ -258,9 +258,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 24);
+            this.dataGridView2.Location = new System.Drawing.Point(3, 35);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(551, 66);
+            this.dataGridView2.Size = new System.Drawing.Size(551, 148);
             this.dataGridView2.TabIndex = 1;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
@@ -268,11 +268,12 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.NavajoWhite;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(514, 3);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(496, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(39, 16);
+            this.button1.Size = new System.Drawing.Size(57, 26);
             this.button1.TabIndex = 0;
+            this.button1.Text = "Nazad";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

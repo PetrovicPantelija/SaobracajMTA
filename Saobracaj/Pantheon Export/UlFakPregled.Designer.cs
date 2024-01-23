@@ -90,6 +90,7 @@
             // 
             // btnGetPlacanja
             // 
+            this.btnGetPlacanja.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGetPlacanja.BackColor = System.Drawing.Color.MediumBlue;
             this.btnGetPlacanja.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnGetPlacanja.Location = new System.Drawing.Point(1042, 114);
@@ -122,7 +123,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UlFakPregled";
-            this.Text = "Pgled ulaznih faktura";
+            this.Text = "Pregled ulaznih faktura";
             this.Load += new System.EventHandler(this.UlFakPregled_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();

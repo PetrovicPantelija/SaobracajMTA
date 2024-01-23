@@ -105,7 +105,8 @@ namespace Saobracaj.Pantheon_Export
 
         private void btnGetPlacanja_Click(object sender, EventArgs e)
         {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/UplateKupaca/GetUplateKupaca");
+            //dataGridView2.Visible = true;
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/PlacanjaDobavljacima/GetPlacanjaDobavljacima");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "GET";
             var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
@@ -125,13 +126,15 @@ namespace Saobracaj.Pantheon_Export
                         CRMID = Convert.ToInt32(row.Cells["FakturaBr"].Value.ToString());
                         Iznos = Convert.ToDecimal(row.Cells["Iznos"].Value.ToString());
                         ValutaResponse = row.Cells["Valuta"].Value.ToString().TrimEnd();
-                        DatumPlacanja = Convert.ToDateTime(row.Cells["DatumPlacanja"].Value.ToString());
+                        DateTime datumPom = Convert.ToDateTime(row.Cells["DatumPlacanja"].Value.ToString());
+                        DatumPlacanja = Convert.ToDateTime(datumPom.ToString("yyyy-MM-dd"));
+                        //.ToString("yyyy-MM-dd")
 
                         using (SqlConnection conn = new SqlConnection(connect))
                         {
                             using (SqlCommand cmd = conn.CreateCommand())
                             {
-                                cmd.CommandText = "UPDATE UlFak SET Valuta='" + ValutaResponse + "', Iznos=" + Iznos + " DatumPlacanja='"+DatumPlacanja+"' WHERE CRMID = " + CRMID;
+                                cmd.CommandText = "UPDATE UlFak SET Valuta='" + ValutaResponse + "', Iznos='" + Iznos.ToString().Replace(",",".") + "', DatumPlacanja='"+ DatumPlacanja.ToString("yyyy-MM-dd") + "' WHERE CRMID = " + CRMID;
                                 conn.Open();
                                 cmd.ExecuteNonQuery();
                                 conn.Close();
@@ -141,9 +144,10 @@ namespace Saobracaj.Pantheon_Export
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Nema novih uplata");
+                    MessageBox.Show("Nema novih uplata\n" + ex.ToString());
                 }
             }
+            FillGV();
         }
         int crm;
         int status;

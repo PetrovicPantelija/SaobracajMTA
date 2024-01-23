@@ -85,6 +85,7 @@ namespace Saobracaj.Pantheon_Export
         public string ValutaResponse;
         private void btnGetUplate_Click(object sender, EventArgs e)
         {
+            //dataGridView2.Visible = true;
             var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/UplateKupaca/GetUplateKupaca");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "GET";
@@ -103,14 +104,15 @@ namespace Saobracaj.Pantheon_Export
                     foreach (DataGridViewRow row in dataGridView2.Rows)
                     {
                         CRMID = Convert.ToInt32(row.Cells["FakturaBr"].Value.ToString());
-                        Iznos = Convert.ToDecimal(row.Cells["Iznos"].Value.ToString());
+                        Iznos = Convert.ToDecimal(row.Cells["Iznos"].Value.ToString().Replace(",","."));
+                        //Iznos= decimal.Round(Iznos, 2, MidpointRounding.AwayFromZero);
                         ValutaResponse = row.Cells["Valuta"].Value.ToString().TrimEnd();
 
                         using (SqlConnection conn = new SqlConnection(connect))
                         {
                             using (SqlCommand cmd = conn.CreateCommand())
                             {
-                                cmd.CommandText = "UPDATE Faktura SET FaStatus='ZA',FaValutaCene='"+ValutaResponse+"', FaZnesFak="+Iznos+" WHERE CRMID = " + CRMID;
+                                cmd.CommandText = "UPDATE Faktura SET FaStatus='ZA',FaValutaCene='"+ValutaResponse+"', FaZnesFak='"+Iznos+"' WHERE CRMID =" + CRMID;
                                 conn.Open();
                                 cmd.ExecuteNonQuery();
                                 conn.Close();
@@ -123,6 +125,7 @@ namespace Saobracaj.Pantheon_Export
                     MessageBox.Show("Nema novih uplata");
                 }
             }
+            FillGV();
         }
 
         private void IzlazneFakturePregled_Load(object sender, EventArgs e)
