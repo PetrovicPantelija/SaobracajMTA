@@ -90,6 +90,7 @@
             // 
             // btnGetPlacanja
             // 
+            this.btnGetPlacanja.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGetPlacanja.BackColor = System.Drawing.Color.MediumBlue;
             this.btnGetPlacanja.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnGetPlacanja.Location = new System.Drawing.Point(1042, 114);

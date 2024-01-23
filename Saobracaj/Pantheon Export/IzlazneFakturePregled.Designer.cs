@@ -89,6 +89,7 @@
             // 
             // btnGetUplate
             // 
+            this.btnGetUplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGetUplate.BackColor = System.Drawing.Color.MediumBlue;
             this.btnGetUplate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.btnGetUplate.Location = new System.Drawing.Point(1081, 119);
