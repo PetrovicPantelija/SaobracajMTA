@@ -32,6 +32,8 @@ namespace Saobracaj.Uvoz
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRadniNalogInterniPregled));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -41,8 +43,9 @@ namespace Saobracaj.Uvoz
             this.label1 = new System.Windows.Forms.Label();
             this.cboIzdatOd = new System.Windows.Forms.ComboBox();
             this.label43 = new System.Windows.Forms.Label();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -58,7 +61,10 @@ namespace Saobracaj.Uvoz
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator1,
             this.toolStripButton1,
-            this.toolStripButton2});
+            this.toolStripSeparator2,
+            this.toolStripButton2,
+            this.toolStripSeparator3,
+            this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1175, 25);
@@ -70,6 +76,28 @@ namespace Saobracaj.Uvoz
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(62, 22);
+            this.toolStripButton1.Text = "IZDAO OJ";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(76, 22);
+            this.toolStripButton2.Text = "IZDAT ZA OJ";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
             // gridGroupingControl1
             // 
             this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -79,18 +107,20 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1.BackColor = System.Drawing.SystemColors.Window;
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2010Blue;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(0, 0);
+            this.gridGroupingControl1.Location = new System.Drawing.Point(3, 0);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(986, 649);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(984, 649);
             this.gridGroupingControl1.TabIndex = 9;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
             this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
             this.gridGroupingControl1.TableDescriptor.TableOptions.RecordRowHeight = 28;
-            this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.SystemColors.HighlightText;
+            this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
+            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.SystemColors.Desktop;
             this.gridGroupingControl1.Text = "gridGroupingControl1";
             this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
@@ -125,14 +155,14 @@ namespace Saobracaj.Uvoz
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(14, 137);
+            this.textBox1.Location = new System.Drawing.Point(12, 271);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 222;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(14, 204);
+            this.button2.Location = new System.Drawing.Point(12, 338);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(158, 35);
             this.button2.TabIndex = 221;
@@ -142,7 +172,7 @@ namespace Saobracaj.Uvoz
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(14, 163);
+            this.button1.Location = new System.Drawing.Point(12, 297);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(160, 35);
             this.button1.TabIndex = 220;
@@ -156,7 +186,7 @@ namespace Saobracaj.Uvoz
             this.cboIzdatZa.Location = new System.Drawing.Point(9, 80);
             this.cboIzdatZa.Margin = new System.Windows.Forms.Padding(2);
             this.cboIzdatZa.Name = "cboIzdatZa";
-            this.cboIzdatZa.Size = new System.Drawing.Size(143, 21);
+            this.cboIzdatZa.Size = new System.Drawing.Size(161, 21);
             this.cboIzdatZa.TabIndex = 219;
             // 
             // label1
@@ -175,7 +205,7 @@ namespace Saobracaj.Uvoz
             this.cboIzdatOd.Location = new System.Drawing.Point(9, 35);
             this.cboIzdatOd.Margin = new System.Windows.Forms.Padding(2);
             this.cboIzdatOd.Name = "cboIzdatOd";
-            this.cboIzdatOd.Size = new System.Drawing.Size(143, 21);
+            this.cboIzdatOd.Size = new System.Drawing.Size(161, 21);
             this.cboIzdatOd.TabIndex = 217;
             // 
             // label43
@@ -188,27 +218,26 @@ namespace Saobracaj.Uvoz
             this.label43.TabIndex = 216;
             this.label43.Text = "Izdat od";
             // 
-            // toolStripButton1
+            // toolStripButton3
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(39, 22);
-            this.toolStripButton1.Text = "Izdao";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton3.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(147, 22);
+            this.toolStripButton3.Text = "STORNIRAJ SELEKTOVANE";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
-            // toolStripButton2
+            // toolStripSeparator2
             // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(50, 22);
-            this.toolStripButton2.Text = "Izdat za";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // frmRadniNalogInterniPregled
             // 
@@ -251,5 +280,8 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
     }
 }

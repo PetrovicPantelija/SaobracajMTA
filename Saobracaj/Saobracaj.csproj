@@ -2225,6 +2225,18 @@
     <Compile Include="Sifarnici\frmDodelaLokomotive.Designer.cs">
       <DependentUpon>frmDodelaLokomotive.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sifarnici\frmKontejnerStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnici\frmKontejnerStatus.Designer.cs">
+      <DependentUpon>frmKontejnerStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Sifarnici\frmScenario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnici\frmScenario.Designer.cs">
+      <DependentUpon>frmScenario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sifarnici\frmStatusUsluge.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2426,6 +2438,7 @@
     <Compile Include="Sifarnici\InsertEvidencijaSatiPoRadniku.cs" />
     <Compile Include="Sifarnici\InsertKontaktOsobe.cs" />
     <Compile Include="Sifarnici\InsertKontaktOsobeMU.cs" />
+    <Compile Include="Sifarnici\InsertKontejnerStatus.cs" />
     <Compile Include="Sifarnici\InsertKontrolneGreske.cs" />
     <Compile Include="Sifarnici\InsertKontrolneGreskeTipDokumenta.cs" />
     <Compile Include="Sifarnici\InsertLokomotivaSerija.cs" />
@@ -2441,6 +2454,7 @@
     <Compile Include="Sifarnici\InsertPrugaStavke.cs" />
     <Compile Include="Sifarnici\InsertRadnikLokomotiva.cs" />
     <Compile Include="Sifarnici\InsertRazlozi.cs" />
+    <Compile Include="Sifarnici\InsertScenario.cs" />
     <Compile Include="Sifarnici\InsertStanice.cs" />
     <Compile Include="Sifarnici\InsertStatusVoza.cs" />
     <Compile Include="Sifarnici\InsertStausiUsluga.cs" />
@@ -3165,6 +3179,12 @@
     </Compile>
     <Compile Include="Uvoz\frmFormiranjePlana.Designer.cs">
       <DependentUpon>frmFormiranjePlana.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Uvoz\frmFormiranjeRobnihDokumenata.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmFormiranjeRobnihDokumenata.Designer.cs">
+      <DependentUpon>frmFormiranjeRobnihDokumenata.cs</DependentUpon>
     </Compile>
     <Compile Include="Uvoz\frmForrmiranjePlanaDrumski.cs">
       <SubType>Form</SubType>
@@ -4179,6 +4199,12 @@
     <EmbeddedResource Include="Sifarnici\frmDodelaLokomotive.resx">
       <DependentUpon>frmDodelaLokomotive.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Sifarnici\frmKontejnerStatus.resx">
+      <DependentUpon>frmKontejnerStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sifarnici\frmScenario.resx">
+      <DependentUpon>frmScenario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmStatusUsluge.resx">
       <DependentUpon>frmStatusUsluge.cs</DependentUpon>
     </EmbeddedResource>
@@ -4551,6 +4577,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmFormiranjePlana.resx">
       <DependentUpon>frmFormiranjePlana.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmFormiranjeRobnihDokumenata.resx">
+      <DependentUpon>frmFormiranjeRobnihDokumenata.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmForrmiranjePlanaDrumski.resx">
       <DependentUpon>frmForrmiranjePlanaDrumski.cs</DependentUpon>

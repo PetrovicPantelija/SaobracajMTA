@@ -169,5 +169,13 @@ namespace Saobracaj.RadniNalozi
             }
             catch { }
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+
+            RadniNalozi.InsertRN ir = new InsertRN();
+            ir.InsRN12Medjuskladisni(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, txtBrojKontejnera.Text, Convert.ToInt32(cboVrstaKontejnera.SelectedValue), Convert.ToInt32(cboBrodar.SelectedValue));
+            FillGV();
+        }
     }
 }

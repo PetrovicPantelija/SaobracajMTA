@@ -1229,7 +1229,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
 
 
 
-        public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV)
+        public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV, string Pokret, int StatusKontejnera, string Korisnik)
         {
           //  @IdNadredjena int,
 //@IDVrstaManipulacije int,
@@ -1290,6 +1290,21 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             sapdv.Value = SaPDV;
             cmd.Parameters.Add(sapdv);
 
+            SqlParameter pokret = new SqlParameter();
+            pokret.ParameterName = "@Pokret";
+            pokret.SqlDbType = SqlDbType.NVarChar;
+            pokret.Size = 50;
+            pokret.Direction = ParameterDirection.Input;
+            pokret.Value = Pokret;
+            cmd.Parameters.Add(pokret);
+
+            SqlParameter statuskontejnera = new SqlParameter();
+            statuskontejnera.ParameterName = "@StatusKontejnera";
+            statuskontejnera.SqlDbType = SqlDbType.Int;
+            statuskontejnera.Direction = ParameterDirection.Input;
+            statuskontejnera.Value = StatusKontejnera;
+            cmd.Parameters.Add(statuskontejnera);
+
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -1325,7 +1340,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             }
         }
 
-        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV)
+        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV, string Pokret, int StatusKontejnera, string Korisnik)
         {
             //  @IdNadredjena int,
             //@IDVrstaManipulacije int,
@@ -1388,6 +1403,29 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             sapdv.Value = SaPDV;
             cmd.Parameters.Add(sapdv);
 
+            SqlParameter pokret = new SqlParameter();
+            pokret.ParameterName = "@Pokret";
+            pokret.SqlDbType = SqlDbType.NVarChar;
+            pokret.Size = 50;
+            pokret.Direction = ParameterDirection.Input;
+            pokret.Value = Pokret;
+            cmd.Parameters.Add(pokret);
+
+            SqlParameter statuskontejnera = new SqlParameter();
+            statuskontejnera.ParameterName = "@StatusKontejnera";
+            statuskontejnera.SqlDbType = SqlDbType.Int;
+            statuskontejnera.Direction = ParameterDirection.Input;
+            statuskontejnera.Value = StatusKontejnera;
+            cmd.Parameters.Add(statuskontejnera);
+            /*
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName = "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Size = 50;
+            korisnik.Direction = ParameterDirection.Input;
+            korisnik.Value = Korisnik;
+            cmd.Parameters.Add(korisnik);
+            */
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;

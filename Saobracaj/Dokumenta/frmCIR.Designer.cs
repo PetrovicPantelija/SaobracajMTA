@@ -303,7 +303,7 @@
             // 
             // cboTipKontejnera
             // 
-            this.cboTipKontejnera.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.cboTipKontejnera.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(196)))), ((int)(((byte)(193)))));
             this.cboTipKontejnera.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboTipKontejnera.FormattingEnabled = true;
             this.cboTipKontejnera.Location = new System.Drawing.Point(12, 109);
@@ -366,7 +366,7 @@
             // 
             // txtTara
             // 
-            this.txtTara.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtTara.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(224)))), ((int)(((byte)(215)))));
             this.txtTara.DecimalPlaces = 3;
             this.txtTara.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtTara.Location = new System.Drawing.Point(11, 411);
@@ -393,7 +393,7 @@
             // 
             // txtBrojKontejnera
             // 
-            this.txtBrojKontejnera.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtBrojKontejnera.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(224)))), ((int)(((byte)(215)))));
             this.txtBrojKontejnera.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtBrojKontejnera.Location = new System.Drawing.Point(12, 513);
             this.txtBrojKontejnera.Name = "txtBrojKontejnera";
@@ -439,7 +439,7 @@
             // 
             // txtVagon
             // 
-            this.txtVagon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtVagon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(224)))), ((int)(((byte)(215)))));
             this.txtVagon.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtVagon.Location = new System.Drawing.Point(175, 173);
             this.txtVagon.Name = "txtVagon";
@@ -459,7 +459,7 @@
             // 
             // txtTruckIn
             // 
-            this.txtTruckIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtTruckIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(224)))), ((int)(((byte)(215)))));
             this.txtTruckIn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtTruckIn.Location = new System.Drawing.Point(175, 227);
             this.txtTruckIn.Name = "txtTruckIn";
@@ -626,7 +626,7 @@
             // 
             // txtDokument
             // 
-            this.txtDokument.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtDokument.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(196)))), ((int)(((byte)(193)))));
             this.txtDokument.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtDokument.Location = new System.Drawing.Point(222, 60);
             this.txtDokument.Name = "txtDokument";
@@ -747,7 +747,7 @@
             // 
             // txtSirina
             // 
-            this.txtSirina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtSirina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(196)))), ((int)(((byte)(193)))));
             this.txtSirina.DecimalPlaces = 2;
             this.txtSirina.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtSirina.Location = new System.Drawing.Point(74, 178);
@@ -774,7 +774,7 @@
             // 
             // txtDuzina
             // 
-            this.txtDuzina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtDuzina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(196)))), ((int)(((byte)(193)))));
             this.txtDuzina.DecimalPlaces = 2;
             this.txtDuzina.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.txtDuzina.Location = new System.Drawing.Point(74, 148);
@@ -801,7 +801,7 @@
             // 
             // txtVisina
             // 
-            this.txtVisina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.txtVisina.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(196)))), ((int)(((byte)(193)))));
             this.txtVisina.DecimalPlaces = 2;
             this.txtVisina.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtVisina.Location = new System.Drawing.Point(74, 206);
@@ -873,7 +873,7 @@
             // 
             // txtNeto
             // 
-            this.txtNeto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtNeto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(224)))), ((int)(((byte)(215)))));
             this.txtNeto.DecimalPlaces = 3;
             this.txtNeto.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtNeto.Location = new System.Drawing.Point(11, 366);
@@ -900,7 +900,7 @@
             // 
             // txtBruto
             // 
-            this.txtBruto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtBruto.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(224)))), ((int)(((byte)(215)))));
             this.txtBruto.DecimalPlaces = 3;
             this.txtBruto.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtBruto.Location = new System.Drawing.Point(11, 465);
@@ -916,7 +916,7 @@
             // 
             // txtPlomba
             // 
-            this.txtPlomba.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtPlomba.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(224)))), ((int)(((byte)(215)))));
             this.txtPlomba.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtPlomba.Location = new System.Drawing.Point(75, 573);
             this.txtPlomba.Name = "txtPlomba";
@@ -926,7 +926,7 @@
             // 
             // txtPlomba2
             // 
-            this.txtPlomba2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtPlomba2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(224)))), ((int)(((byte)(215)))));
             this.txtPlomba2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtPlomba2.Location = new System.Drawing.Point(75, 627);
             this.txtPlomba2.Name = "txtPlomba2";

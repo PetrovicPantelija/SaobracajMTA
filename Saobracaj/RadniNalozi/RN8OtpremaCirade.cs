@@ -23,6 +23,16 @@ namespace Saobracaj.RadniNalozi
             FillGV();
             FillCombo();
         }
+
+        public RN8OtpremaCirade(string OtpremaID, string Korisnik, string Kamion)
+        {
+            InitializeComponent();
+            FillGV();
+            FillCombo();
+            txtNalogIzdao.Text = Korisnik;
+            txtOtpremaID.Text = OtpremaID;
+            txtKamion.Text = Kamion;
+        }
         private void FillGV()
         {
             var select = "Select * from RNOtpremaCirade order by ID desc";
@@ -181,6 +191,14 @@ namespace Saobracaj.RadniNalozi
                 }
             }
             catch { }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            RadniNalozi.InsertRN ir = new InsertRN();
+            //PANTA
+            ir.InsRN8OtpremaCiradeKam(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboNaSredstvo.SelectedValue), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtOtpremaID.Text), txtKamion.Text, Convert.ToInt32(cboPostupak.SelectedValue));
+            FillGV();
         }
     }
 }

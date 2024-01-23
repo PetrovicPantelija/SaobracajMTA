@@ -28,6 +28,7 @@ namespace Testiranje.Dokumeta
         bool delete;
         string Kor = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
         string niz = "";
+        string BrojPlanaUvoza = "";
 
         string KorisnikCene = "Panta";
         bool status = false;
@@ -806,10 +807,37 @@ namespace Testiranje.Dokumeta
 
         }
 
+        private void VratiZadnjiBrojPlanaUvoza()
+        {
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Max([ID]) as ID from UvozKonacnaZaglavlje", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+               
+                BrojPlanaUvoza = dr["ID"].ToString();
+            }
+
+            con.Close();
+        }
+
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            Saobracaj.Uvoz.frmUvozKonacnaZaglavlje fukz = new Saobracaj.Uvoz.frmUvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text));
-            fukz.Show();
+
+            Saobracaj.Uvoz.InsertUvozKonacnaZaglavlje ins = new Saobracaj.Uvoz.InsertUvozKonacnaZaglavlje();
+            ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text), txtNapomena.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "");
+           
+            VratiZadnjiBrojPlanaUvoza();
+            MessageBox.Show("Uspesno ste formirirali novi Plan: " + BrojPlanaUvoza + " potrebno je da dodelite kontejnere planu, koristite opciju Popunjavanje Plana kontejnerima");
+
+            Saobracaj.Uvoz.frmFormiranjePlana fplan = new Saobracaj.Uvoz.frmFormiranjePlana(Convert.ToInt32(BrojPlanaUvoza));
+            fplan.Show();
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)

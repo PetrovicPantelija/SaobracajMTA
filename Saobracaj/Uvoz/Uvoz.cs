@@ -23,6 +23,7 @@ namespace Saobracaj.Uvoz
 
         float firstWidth;
         float firstHeight;
+        string KorisnikTekuci = "";
         public Uvoz()
         {
             InitializeComponent();
@@ -34,7 +35,7 @@ namespace Saobracaj.Uvoz
            
         }
 
-        public Uvoz(int sifra)
+        public Uvoz(int sifra, string Korisnik)
         {
             InitializeComponent();
           //  FillGV();
@@ -46,7 +47,7 @@ namespace Saobracaj.Uvoz
             FillDG2();
             FillDG3();
             FillDG4();
-            
+            KorisnikTekuci = Korisnik;
           //  RefreshDataGridColor();
         }
 
@@ -1970,7 +1971,7 @@ namespace Saobracaj.Uvoz
             if (txtID.Text == "")
             { txtID.Text = "0"; }
             // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-            frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
+            frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue),KorisnikTekuci);
             um.Show();
         }
 
@@ -2105,7 +2106,7 @@ namespace Saobracaj.Uvoz
                 if (txtID.Text == "")
                 { txtID.Text = "0"; }
                 // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-                frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
+                frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci);
                 um.Show();
 
             }

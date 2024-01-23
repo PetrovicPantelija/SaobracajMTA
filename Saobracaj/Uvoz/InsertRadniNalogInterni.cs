@@ -16,7 +16,7 @@ namespace Saobracaj.Uvoz
 
         public void InsRadniNalogInterni(int OJIzdavanja, int OJRealizacije, DateTime DatumIzdavanja, DateTime DatumRealizacije, string Napomena, int Uradjen, string Osnov, int BrojOsnov, string KorisnikIzdao, string KorisnikZavrsio)
         {
-
+            //, int IDManipulacijaJED, int PlanID, string StatusIzdavanja, int KonkretanIDUsluge
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "InsertRadniNalogInterni";
@@ -96,8 +96,38 @@ namespace Saobracaj.Uvoz
             korisnikzavrsio.Direction = ParameterDirection.Input;
             korisnikzavrsio.Value = KorisnikZavrsio;
             cmd.Parameters.Add(korisnikzavrsio);
+/*
+            SqlParameter idmanipulacijaJED = new SqlParameter();
+            idmanipulacijaJED.ParameterName = "@IDManipulacijaJED";
+            idmanipulacijaJED.SqlDbType = SqlDbType.Int;
+            idmanipulacijaJED.Direction = ParameterDirection.Input;
+            idmanipulacijaJED.Value = IDManipulacijaJED;
+            cmd.Parameters.Add(idmanipulacijaJED);
 
+            SqlParameter planid = new SqlParameter();
+            planid.ParameterName = "@PlanID";
+            planid.SqlDbType = SqlDbType.Int;
+            planid.Direction = ParameterDirection.Input;
+            planid.Value = PlanID;
+            cmd.Parameters.Add(planid);
+            
+            SqlParameter statusizdavanja = new SqlParameter();
+            statusizdavanja.ParameterName = "@StatusIzdavanja";
+            statusizdavanja.SqlDbType = SqlDbType.NVarChar;
+            statusizdavanja.Size = 50;
+            statusizdavanja.Direction = ParameterDirection.Input;
+            statusizdavanja.Value = StatusIzdavanja;
+            cmd.Parameters.Add(statusizdavanja);
 
+            SqlParameter konkretaIDUsluge = new SqlParameter();
+            konkretaIDUsluge.ParameterName = "@KonkretaIDUsluge";
+            konkretaIDUsluge.SqlDbType = SqlDbType.Int;
+            konkretaIDUsluge.Direction = ParameterDirection.Input;
+            konkretaIDUsluge.Value = konkretaIDUsluge;
+            cmd.Parameters.Add(konkretaIDUsluge);
+
+           
+            */
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -221,7 +251,36 @@ namespace Saobracaj.Uvoz
             korisnikzavrsio.Direction = ParameterDirection.Input;
             korisnikzavrsio.Value = KorisnikZavrsio;
             cmd.Parameters.Add(korisnikzavrsio);
+            /*
+            SqlParameter idmanipulacijaJED = new SqlParameter();
+            idmanipulacijaJED.ParameterName = "@IDManipulacijaJED";
+            idmanipulacijaJED.SqlDbType = SqlDbType.Int;
+            idmanipulacijaJED.Direction = ParameterDirection.Input;
+            idmanipulacijaJED.Value = IDManipulacijaJED;
+            cmd.Parameters.Add(idmanipulacijaJED);
 
+            SqlParameter planid = new SqlParameter();
+            planid.ParameterName = "@PlanID";
+            planid.SqlDbType = SqlDbType.Int;
+            planid.Direction = ParameterDirection.Input;
+            planid.Value = PlanID;
+            cmd.Parameters.Add(planid);
+
+            SqlParameter statusizdavanja = new SqlParameter();
+            statusizdavanja.ParameterName = "@StatusIzdavanja";
+            statusizdavanja.SqlDbType = SqlDbType.NVarChar;
+            statusizdavanja.Size = 50;
+            statusizdavanja.Direction = ParameterDirection.Input;
+            statusizdavanja.Value = StatusIzdavanja;
+            cmd.Parameters.Add(statusizdavanja);
+
+            SqlParameter konkretaIDUsluge = new SqlParameter();
+            konkretaIDUsluge.ParameterName = "@KonkretaIDUsluge";
+            konkretaIDUsluge.SqlDbType = SqlDbType.Int;
+            konkretaIDUsluge.Direction = ParameterDirection.Input;
+            konkretaIDUsluge.Value = konkretaIDUsluge;
+            cmd.Parameters.Add(konkretaIDUsluge);
+            */
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -259,6 +318,55 @@ namespace Saobracaj.Uvoz
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "DeleteRadniNalogInterni";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void PromeniStatusStorno(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertRadniNalogInterniStorno";
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter id = new SqlParameter();

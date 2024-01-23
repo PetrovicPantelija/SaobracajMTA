@@ -23,17 +23,35 @@ namespace Saobracaj.RadniNalozi
             FillCombo();
         }
 
-        public RN10PregledIspraznjenogKontejnera(string Korisnik, string IDVOza, string IDUsluge, string PrijemID)
+        public RN10PregledIspraznjenogKontejnera(string Korisnik, int IDVOza, string IDUsluge, string PrijemID, string Kamion)
         {
             InitializeComponent();
             FillGV();
             FillCombo();
             txtNalogIzdao.Text = Korisnik;
-            // cboSaVoznog.SelectedValue = Convert.ToInt32(IDVOza);
-            cboUsluga.SelectedValue = Convert.ToInt32(IDUsluge);
+            cboSaVoznog.SelectedValue = Convert.ToInt32(IDVOza);
+            NapuniVrstuUsluge(IDUsluge);
+           // cboUsluga.SelectedValue = Convert.ToInt32(IDUsluge);
             txtPrijemID.Text = PrijemID;
+            txtKamion.Text = Kamion;
+
             RefreshStavkeVoza(PrijemID);
 
+        }
+
+        private void NapuniVrstuUsluge(string IDUsluga)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            var usluge = "Select VrstaManipulacije.ID,VrstaManipulacije.Naziv from RadniNalogInterni inner join " +
+   " VrstaManipulacije on RadniNalogInterni.IDManipulacijaJed = VrstaManipulacije.ID where RadniNalogInterni.ID = " + IDUsluga;
+            var daUsluge = new SqlDataAdapter(usluge, conn);
+            var dsUsluge = new DataSet();
+            daUsluge.Fill(dsUsluge);
+            cboUsluga.DataSource = dsUsluge.Tables[0];
+            cboUsluga.DisplayMember = "Naziv";
+            cboUsluga.ValueMember = "ID";
+
+            cboUsluga.SelectedValue = Convert.ToInt32(IDUsluga);
         }
         private void RefreshStavkeVoza(string IDVOza)
         {
@@ -243,9 +261,19 @@ namespace Saobracaj.RadniNalozi
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            RadniNalozi.InsertRN ir = new InsertRN();
-            ir.InsRN10PregledCeoVoz(Convert.ToDateTime(dtpDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(dtpDatumRealizacije.Text),  Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text));
-            FillGV();
+            DialogResult dialogResult = MessageBox.Show("Formirace se RN za sve Interne Naloge po Vrsti usluge ", "PREGLED KONTEJNERA", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                RadniNalozi.InsertRN ir = new InsertRN();
+                ir.InsRN10PregledCeoVoz(Convert.ToDateTime(dtpDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(dtpDatumRealizacije.Text), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text);
+                FillGV();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+
+            
         }
     }
 }

@@ -1487,7 +1487,7 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
 
         private void pREGLEDIIPOSTAVKAKONTEJNERAToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RadniNalozi.RN11PreglediPostavkaKontejnera pik = new RadniNalozi.RN11PreglediPostavkaKontejnera();
+            RadniNalozi.RN11PreglediPostavkaKontejnera pik = new RadniNalozi.RN11PreglediPostavkaKontejnera(KorisnikCene, Convert.ToInt32(cboVozBuking.SelectedValue), "0", txtSifra.Text);
             pik.Show();
         }
     }
