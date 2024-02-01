@@ -15,7 +15,7 @@ namespace Saobracaj.Dokumeta
     class InsertPrijemKontejneraVoz
     {
 
-        public void InsertPrijemKontVoz( DateTime DatumPrijema,int StatusPrijema,int IdVoza, DateTime VremeDolaska,	DateTime Datum, string Korisnik,  string RegBrKamiona,   string ImeVozaca,   int Vozom, string Napomena, int PredefinisanePorukeID, int Operater, int VrstaKamiona, int Poreklo)
+        public void InsertPrijemKontVoz( DateTime DatumPrijema,int StatusPrijema,int IdVoza, DateTime VremeDolaska,	DateTime Datum, string Korisnik,  string RegBrKamiona,   string ImeVozaca,   int Vozom, string Napomena, int PredefinisanePorukeID, int Operater, int VrstaKamiona, int Poreklo, int OperaterHR, int Modul)
         {
             /*
              @DatumPrijema [datetime] ,
@@ -140,6 +140,21 @@ namespace Saobracaj.Dokumeta
             parameter27.Value = Poreklo;
             myCommand.Parameters.Add(parameter27);
 
+
+            SqlParameter parameter28 = new SqlParameter();
+            parameter28.ParameterName = "@OperaterHR";
+            parameter28.SqlDbType = SqlDbType.Int;
+            parameter28.Direction = ParameterDirection.Input;
+            parameter28.Value = OperaterHR;
+            myCommand.Parameters.Add(parameter28);
+
+            SqlParameter parameter29 = new SqlParameter();
+            parameter29.ParameterName = "@Modul";
+            parameter29.SqlDbType = SqlDbType.Int;
+            parameter29.Direction = ParameterDirection.Input;
+            parameter29.Value = Modul;
+            myCommand.Parameters.Add(parameter29);
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -177,7 +192,7 @@ namespace Saobracaj.Dokumeta
             }
         }
 
-        public void UpdPrijemKontejneraVoz(int ID, DateTime DatumPrijema, int StatusPrijema, int IdVoza, DateTime VremeDolaska, DateTime Datum, string Korisnik, string RegBrKamiona, string ImeVozaca, int Vozom, string Napomena, int PredefinisanePorukeID, int Operater, int VrstaKamiona, int Poreklo)
+        public void UpdPrijemKontejneraVoz(int ID, DateTime DatumPrijema, int StatusPrijema, int IdVoza, DateTime VremeDolaska, DateTime Datum, string Korisnik, string RegBrKamiona, string ImeVozaca, int Vozom, string Napomena, int PredefinisanePorukeID, int Operater, int VrstaKamiona, int Poreklo, int OperaterHR, int Modul)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -302,6 +317,20 @@ namespace Saobracaj.Dokumeta
             parameter27.Direction = ParameterDirection.Input;
             parameter27.Value = Poreklo;
             myCommand.Parameters.Add(parameter27);
+
+            SqlParameter parameter28 = new SqlParameter();
+            parameter28.ParameterName = "@OperaterHR";
+            parameter28.SqlDbType = SqlDbType.Int;
+            parameter28.Direction = ParameterDirection.Input;
+            parameter28.Value = OperaterHR;
+            myCommand.Parameters.Add(parameter28);
+
+            SqlParameter parameter29 = new SqlParameter();
+            parameter29.ParameterName = "@Modul";
+            parameter29.SqlDbType = SqlDbType.Int;
+            parameter29.Direction = ParameterDirection.Input;
+            parameter29.Value = Modul;
+            myCommand.Parameters.Add(parameter29);
 
 
             myConnection.Open();

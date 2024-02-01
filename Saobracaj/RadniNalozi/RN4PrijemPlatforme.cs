@@ -23,15 +23,35 @@ namespace Saobracaj.RadniNalozi
             FillCombo();
         }
 
-        public RN4PrijemPlatforme(string PrijemID, string RegBr, string KorisnikCene, string Usluga)
+        public RN4PrijemPlatforme(string PrijemID, string RegBr, string KorisnikCene, string Usluga, int Uvoz)
         {
             InitializeComponent();
             txtNalogIzdao.Text = KorisnikCene;
             txtPrijemID.Text = PrijemID;
             txtKamion.Text = RegBr;
-            cboUsluga.SelectedValue = Usluga;
-                FillGV();
+            NapuniVrstuUsluge(Usluga);
+            txtNalogID.Text = Usluga;
+            if (Uvoz == 0)
+            {
+                chkUvoz.Checked = true;
+            }
+           // cboUsluga.SelectedValue = Usluga;
+              //  FillGV();
             FillCombo();
+        }
+
+        private void NapuniVrstuUsluge(string IDUsluga)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            var usluge = "Select VrstaManipulacije.ID,VrstaManipulacije.Naziv from RadniNalogInterni inner join " +
+   " VrstaManipulacije on RadniNalogInterni.IDManipulacijaJed = VrstaManipulacije.ID where RadniNalogInterni.ID = " + IDUsluga;
+            var daUsluge = new SqlDataAdapter(usluge, conn);
+            var dsUsluge = new DataSet();
+            daUsluge.Fill(dsUsluge);
+            cboUsluga.DataSource = dsUsluge.Tables[0];
+            cboUsluga.DisplayMember = "Naziv";
+            cboUsluga.ValueMember = "ID";
+            cboUsluga.SelectedValue = Convert.ToInt32(IDUsluga);
         }
         private void FillGV()
         {
@@ -217,9 +237,21 @@ namespace Saobracaj.RadniNalozi
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            RadniNalozi.InsertRN ir = new InsertRN();
-            ir.InsRNPrijemPlatformeKamIzvoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text);
-            FillGV();
+            if (chkUvoz.Checked == true)
+            {
+                //
+                RadniNalozi.InsertRN ir = new InsertRN();
+                ir.InsRNPrijemPlatformeKamUvoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text);
+                FillGV();
+
+            }
+            else
+            {
+                RadniNalozi.InsertRN ir = new InsertRN();
+                ir.InsRNPrijemPlatformeKamIzvoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text);
+                FillGV();
+            }
+           
         }
     }
 }

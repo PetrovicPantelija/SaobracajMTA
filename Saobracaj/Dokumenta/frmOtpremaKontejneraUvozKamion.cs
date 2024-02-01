@@ -2985,7 +2985,7 @@ namespace Saobracaj.Dokumenta
 
         private void oTPREMACIRADEToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RadniNalozi.RN8OtpremaCirade oc = new RadniNalozi.RN8OtpremaCirade();
+            RadniNalozi.RN8OtpremaCirade oc = new RadniNalozi.RN8OtpremaCirade(txtSifra.Text, KorisnikCene, txtRegBrKamiona.Text);
             oc.Show();
         }
 

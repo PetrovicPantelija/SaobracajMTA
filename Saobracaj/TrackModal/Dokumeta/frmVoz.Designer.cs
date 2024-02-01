@@ -232,8 +232,8 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(214, 24);
-            this.toolStripButton1.Text = "Formiranje novog plana utovara UVOZ";
+            this.toolStripButton1.Size = new System.Drawing.Size(158, 24);
+            this.toolStripButton1.Text = "UVOZ-FORMIRANJE PLANA";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButton2
@@ -1780,7 +1780,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmVoz";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Voz";
+            this.Text = "Vozovi";
             this.Load += new System.EventHandler(this.frmVoz_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

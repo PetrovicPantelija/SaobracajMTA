@@ -30,10 +30,26 @@ namespace Saobracaj.RadniNalozi
             FillCombo();
             txtNalogIzdao.Text = Korisnik;
             cboSaSredstva.SelectedValue = Convert.ToInt32(IDVOza);
-            cboUsluga.SelectedValue = Convert.ToInt32(IDUsluge);
+            NapuniVrstuUsluge(IDUsluge);
+            txtNalogID.Text = IDUsluge;
             txtPrijemID.Text = PrijemID;
             RefreshStavkeVoza(PrijemID);
 
+        }
+
+        private void NapuniVrstuUsluge(string IDUsluga)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            var usluge = "Select VrstaManipulacije.ID,VrstaManipulacije.Naziv from RadniNalogInterni inner join " +
+   " VrstaManipulacije on RadniNalogInterni.IDManipulacijaJed = VrstaManipulacije.ID where RadniNalogInterni.ID = " + IDUsluga;
+            var daUsluge = new SqlDataAdapter(usluge, conn);
+            var dsUsluge = new DataSet();
+            daUsluge.Fill(dsUsluge);
+            cboUsluga.DataSource = dsUsluge.Tables[0];
+            cboUsluga.DisplayMember = "Naziv";
+            cboUsluga.ValueMember = "ID";
+
+            cboUsluga.SelectedValue = Convert.ToInt32(IDUsluga);
         }
 
         private void RefreshStavkeVoza(string IDVOza)
@@ -261,9 +277,20 @@ namespace Saobracaj.RadniNalozi
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            RadniNalozi.InsertRN ir = new InsertRN();
-            ir.InsRNPPrijemVozaCeoVozPretovar(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboSaSredstva.SelectedValue), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text));
-            FillGV();
+            DialogResult dialogResult = MessageBox.Show("Formirace se RN za sve Interne Naloge po Vrsti usluge ", "PRETOVAR", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                RadniNalozi.InsertRN ir = new InsertRN();
+                ir.InsRNPPrijemVozaCeoVozPretovar(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboSaSredstva.SelectedValue), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text));
+                FillGV();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+
+
+           
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -280,6 +307,11 @@ namespace Saobracaj.RadniNalozi
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
+        }
+
+        private void RN3PrijemVoza2_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

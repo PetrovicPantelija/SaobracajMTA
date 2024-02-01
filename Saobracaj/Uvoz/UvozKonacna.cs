@@ -24,6 +24,7 @@ namespace Saobracaj.Uvoz
        
         float firstWidth;
         float firstHeight;
+        string KorisnikTekuci = "";
         public frmUvozKonacna()
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace Saobracaj.Uvoz
             // FillGV();
         }
 
-        public frmUvozKonacna(int Sifra)
+        public frmUvozKonacna(int Sifra, string Korisnik)
         {
             InitializeComponent();
             UcitajNHMoveCombo();
@@ -44,6 +45,7 @@ namespace Saobracaj.Uvoz
             FillCheck();
            
             FillGV();
+            KorisnikTekuci = Korisnik;
            // FillDG2(); jos nemam ID
            // FillDG3();
         }
@@ -2140,21 +2142,22 @@ namespace Saobracaj.Uvoz
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
         }
+        int VratiPostojeceRN()
+        {
+            return 0;
+        }
 
         private void toolStripButton10_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Da li pravite Opšte naloge za selektovane zapise Da/Ne", "Radni nalog", MessageBoxButtons.YesNo);
-
+            DialogResult dialogResult = MessageBox.Show("Pokrenuli ste proceduru pravljenja naloga za službu terminal", "Radni nalog", MessageBoxButtons.YesNo);
+            int PostojeRn = 0;
+            PostojeRn = VratiPostojeceRN();
             if (dialogResult == DialogResult.Yes)
             {
-               // foreach (DataGridViewRow row in dataGridView1.Rows)
-               // {
-                //    if (row.Selected)
-                //    {
+              
                         InsertRadniNalogInterni ins = new InsertRadniNalogInterni();
-                        ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), "sa", "sa");
-               //     }
-               // }
+                        ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text),KorisnikTekuci, "");
+               
             }
             else
             {
@@ -2646,7 +2649,7 @@ namespace Saobracaj.Uvoz
             if (txtID.Text == "")
             { txtID.Text = "0"; }
             // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-            frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
+            frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci);
             um.Show();
         }
 
@@ -2688,7 +2691,7 @@ namespace Saobracaj.Uvoz
                 if (txtID.Text == "")
                 { txtID.Text = "0"; }
                 // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-                frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
+                frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci);
                 um.Show();
 
             }

@@ -20,9 +20,11 @@ namespace Saobracaj.Uvoz
     {
         int Selektovani = 0;
         private Keys keyData;
-        public frmPregledNerasporedjeni()
+        string KorisnikTekuci = "";
+        public frmPregledNerasporedjeni(string Kor)
         {
             InitializeComponent();
+            KorisnikTekuci = Kor;
         }
         public string GetID()
         {
@@ -121,7 +123,7 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            Uvoz pUvoz = new Uvoz(Convert.ToInt32(txtSifra.Text));
+            Uvoz pUvoz = new Uvoz(Convert.ToInt32(txtSifra.Text), KorisnikTekuci);
             pUvoz.Show();
         }
 

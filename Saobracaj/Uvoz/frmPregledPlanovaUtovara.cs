@@ -24,12 +24,14 @@ namespace Saobracaj.Uvoz
         bool delete;
         string Kor = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
         string niz = "";
-        public frmPregledPlanovaUtovara()
+        string KorisnikF = "";
+        public frmPregledPlanovaUtovara(string Korisnik)
         {
             InitializeComponent();
             IdGrupe();
             IdForme();
             PravoPristupa();
+            KorisnikF = Korisnik;
         }
         public string IdGrupe()
         {
@@ -221,7 +223,7 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            frmUvozKonacna pUvoz = new frmUvozKonacna(Convert.ToInt32(txtSifra.Text));
+            frmUvozKonacna pUvoz = new frmUvozKonacna(Convert.ToInt32(txtSifra.Text), KorisnikF);
             pUvoz.Show();
         }
 

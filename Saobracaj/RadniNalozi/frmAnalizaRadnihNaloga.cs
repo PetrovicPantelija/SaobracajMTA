@@ -313,5 +313,154 @@ namespace Saobracaj.RadniNalozi
                 column.AllowFilter = true;
             }
         }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            gridGroupingControl2.DataSource = null;
+            gridGroupingControl2.ResetTableDescriptor();
+            gridGroupingControl2.Refresh();
+            var select = "";
+            select = "select TerminalRadniNalozi.BrojKontejnera, TipKontenjera.Naziv as TipKontejnera, Skladista.Naziv, Pozicija.Opis, Pozicija.Opis as Pozicija , "+
+" RNOtpremaCirade.Kamion, RNOtpremaCirade.IDUsluge, VrstaManipulacije.Naziv as NAzivUSluge, " +
+" RNOtpremaCirade.DatumRasporeda, RNOtpremaCirade.NalogIzdao, " +
+" RNOtpremaCirade.DatumRealizacije, RNOtpremaCirade.NalogRealizovao,  Uradjen " +
+" from TerminalRadniNalozi " +
+" inner join RNOtpremaCirade on RNOtpremaCirade.ID = TerminalRadniNalozi.IDRadnogNaloga " +
+" inner join Skladista on Skladista.ID = RNOtpremaCirade.SaSkladista " +
+" inner join Pozicija on Pozicija.ID = RNOtpremaCirade.SaPozicijeSklad " +
+" inner join VrstaManipulacije on VrstaManipulacije.ID = TerminalRadniNalozi.IDUsluge " +
+" inner join OtpremaKontejnera on RNOtpremaCirade.OtpremaID = OtpremaKontejnera.ID " +
+" inner join OtpremaKontejneraVozStavke on OtpremaKontejneraVozStavke.BrojKontejnera = TerminalRadniNalozi.BrojKontejnera " +
+" left JOIN TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
+" where TerminalRadniNalozi.TIPRN = '8-Otprema Cirade'";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            gridGroupingControl2.DataSource = ds.Tables[0];
+            gridGroupingControl2.ShowGroupDropArea = true;
+            this.gridGroupingControl2.TopLevelGroupOptions.ShowFilterBar = true;
+            foreach (GridColumnDescriptor column in this.gridGroupingControl2.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            gridGroupingControl2.DataSource = null;
+            gridGroupingControl2.ResetTableDescriptor();
+            gridGroupingControl2.Refresh();
+            var select = "";
+            select = "select TerminalRadniNalozi.BrojKontejnera, TipKontenjera.Naziv as TipKontejnera, Skladista.Naziv, Pozicija.Opis, Pozicija.Opis as Pozicija , " +
+" RNPrijemCirade.Kamion, RNPrijemCirade.IDUsluge, VrstaManipulacije.Naziv as NAzivUSluge, " +
+" RNPrijemCirade.DatumRasporeda, RNPrijemCirade.NalogIzdao, " +
+" RNPrijemCirade.DatumRealizacije, RNPrijemCirade.NalogRealizovao,  Uradjen " +
+" from TerminalRadniNalozi " +
+" inner join RNPrijemCirade on RNPrijemCirade.ID = TerminalRadniNalozi.IDRadnogNaloga " +
+" inner join Skladista on Skladista.ID = RNPrijemCirade.SaSkladista " +
+" inner join Pozicija on Pozicija.ID = RNPrijemCirade.SaPozicijeSklad " +
+" inner join VrstaManipulacije on VrstaManipulacije.ID = TerminalRadniNalozi.IDUsluge " +
+" inner join PrijemKontejneraVoz on RNPrijemCirade.PrijemID = PrijemKontejneraVoz.ID " +
+" inner join PrijemKontejneraVozStavke on PrijemKontejneraVozStavke.IDNadredjenog = PrijemKontejneraVoz.ID " +
+" Inner JOIN TipKontenjera ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
+" where TerminalRadniNalozi.TIPRN = '9-Prijem Cirade'";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            gridGroupingControl2.DataSource = ds.Tables[0];
+            gridGroupingControl2.ShowGroupDropArea = true;
+            this.gridGroupingControl2.TopLevelGroupOptions.ShowFilterBar = true;
+            foreach (GridColumnDescriptor column in this.gridGroupingControl2.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+
+            gridGroupingControl2.DataSource = null;
+            gridGroupingControl2.ResetTableDescriptor();
+            gridGroupingControl2.Refresh();
+            var select = "";
+            select = "select TerminalRadniNalozi.BrojKontejnera, TipKontenjera.Naziv as TipKontejnera, Skladista.Naziv, Pozicija.Opis, Pozicija.Opis as Pozicija , " +
+" RNPregledIspraznjenogKontejnera.Kamion, RNPregledIspraznjenogKontejnera.IDUsluge, VrstaManipulacije.Naziv as NAzivUSluge, " +
+" RNPregledIspraznjenogKontejnera.DatumRasporeda, RNPregledIspraznjenogKontejnera.NalogIzdao, " +
+" RNPregledIspraznjenogKontejnera.DatumRealizacije, RNPregledIspraznjenogKontejnera.NalogRealizovao,  Uradjen " +
+" from TerminalRadniNalozi " +
+" inner join RNPregledIspraznjenogKontejnera on RNPregledIspraznjenogKontejnera.ID = TerminalRadniNalozi.IDRadnogNaloga " +
+" inner join Skladista on Skladista.ID = RNPregledIspraznjenogKontejnera.SaSkladista " +
+" inner join Pozicija on Pozicija.ID = RNPregledIspraznjenogKontejnera.SaPozicijeSklad " +
+" inner join VrstaManipulacije on VrstaManipulacije.ID = TerminalRadniNalozi.IDUsluge " +
+" inner join PrijemKontejneraVoz on RNPrijemCirade.PrijemID = PrijemKontejneraVoz.ID " +
+" inner join PrijemKontejneraVozStavke on PrijemKontejneraVozStavke.IDNadredjenog = PrijemKontejneraVoz.ID " +
+" Inner JOIN TipKontenjera ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
+" where TerminalRadniNalozi.TIPRN = '10-PREGLED ISPRAŽNJENOG KONTEJNERA'";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            gridGroupingControl2.DataSource = ds.Tables[0];
+            gridGroupingControl2.ShowGroupDropArea = true;
+            this.gridGroupingControl2.TopLevelGroupOptions.ShowFilterBar = true;
+            foreach (GridColumnDescriptor column in this.gridGroupingControl2.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            gridGroupingControl2.DataSource = null;
+            gridGroupingControl2.ResetTableDescriptor();
+            gridGroupingControl2.Refresh();
+            var select = "";
+            select = " select TerminalRadniNalozi.BrojKontejnera, TipKontenjera.Naziv as TipKontejnera, Skladista.Naziv, Pozicija.Opis, Pozicija.Opis as Pozicija , " +
+" RNPregledIpostavkaKontejnera.Kamion, RNPregledIpostavkaKontejnera.IDUsluge, VrstaManipulacije.Naziv as NAzivUSluge, " +
+" RNPregledIpostavkaKontejnera.DatumRasporeda, RNPregledIpostavkaKontejnera.NalogIzdao, " +
+" RNPregledIpostavkaKontejnera.DatumRealizacije, RNPregledIpostavkaKontejnera.NalogRealizovao,  Uradjen " +
+" from TerminalRadniNalozi " +
+" inner join RNPregledIpostavkaKontejnera on RNPregledIpostavkaKontejnera.ID = TerminalRadniNalozi.IDRadnogNaloga " +
+" inner join Skladista on Skladista.ID = RNPregledIpostavkaKontejnera.SaSkladista " +
+" inner join Pozicija on Pozicija.ID = RNPregledIpostavkaKontejnera.SaPozicijeSklad " +
+" inner join VrstaManipulacije on VrstaManipulacije.ID = TerminalRadniNalozi.IDUsluge " +
+" inner join OtpremaKOntejnera on RNPregledIpostavkaKontejnera.PrijemID = OtpremaKontejnera.ID " +
+" inner join OtpremaKontejneraVozStavke on OtpremaKontejneraVozStavke.IDNadredjenog = OtpremaKontejneraVoz.ID " +
+" Inner JOIN TipKontenjera ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
+" where TerminalRadniNalozi.TIPRN = '11-PREGLED I POSTAVKA  KONTEJNERA  ' ";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            gridGroupingControl2.DataSource = ds.Tables[0];
+            gridGroupingControl2.ShowGroupDropArea = true;
+            this.gridGroupingControl2.TopLevelGroupOptions.ShowFilterBar = true;
+            foreach (GridColumnDescriptor column in this.gridGroupingControl2.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+        }
     }
 }

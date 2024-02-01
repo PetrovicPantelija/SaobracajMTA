@@ -45,11 +45,27 @@ namespace Saobracaj
                 toolStripTabItem10.Visible = true;
                 toolStripTabItem11.Visible = true;
                 toolStripEx39.Visible = true;
+                toolStripButton343.Visible = true;
+                toolStripButton338.Visible = true;
+                toolStripButton336.Visible = true;
+                toolStripButton337.Visible = true;
+                toolStripButton341.Visible = true;
+                toolStripButton342.Visible = true;
+                toolStripEx39.Visible = true;
+                toolStripButton344.Visible = true;
             }
 
             if (Sifarnici.frmLogovanje.Firma == "TA")
             {
                 toolStripEx39.Visible = false;
+                toolStripButton343.Visible = false;
+                toolStripButton338.Visible = false;
+                toolStripButton336.Visible = false;
+                toolStripButton337.Visible = false;
+                toolStripButton341.Visible = false;
+                toolStripButton342.Visible = false;
+                toolStripEx39.Visible = false;
+                toolStripButton344.Visible = false;
             }
 
         }
@@ -2645,7 +2661,7 @@ namespace Saobracaj
 
         private void toolStripButton187_Click(object sender, EventArgs e)
         {
-            Uvoz.frmPregledNerasporedjeni pner = new Uvoz.frmPregledNerasporedjeni();
+            Uvoz.frmPregledNerasporedjeni pner = new Uvoz.frmPregledNerasporedjeni(Korisnik);
             pner.Show();
         }
 
@@ -2693,7 +2709,7 @@ namespace Saobracaj
 
         private void toolStripButton191_Click(object sender, EventArgs e)
         {
-            Uvoz.frmPregledPlanovaUtovara fppp = new Uvoz.frmPregledPlanovaUtovara();
+            Uvoz.frmPregledPlanovaUtovara fppp = new Uvoz.frmPregledPlanovaUtovara(Korisnik);
             PravoP = fppp.Pravo;
             if (PravoP == true) { fppp.Show(); } else { return; }
         }
@@ -3062,7 +3078,7 @@ namespace Saobracaj
         private void toolStripButton237_Click(object sender, EventArgs e)
         {
 
-            Uvoz.frmPregledPlanovaUtovara fppp = new Uvoz.frmPregledPlanovaUtovara();
+            Uvoz.frmPregledPlanovaUtovara fppp = new Uvoz.frmPregledPlanovaUtovara(Korisnik);
             fppp.Show();
         }
 
@@ -3998,6 +4014,24 @@ namespace Saobracaj
         {
             RadniNalozi.frmAnalizaRadnihNaloga arn = new frmAnalizaRadnihNaloga();
             arn.Show();
+        }
+
+        private void toolStripButton342_Click(object sender, EventArgs e)
+        {
+            Saobracaj.Uvoz.frmFormiranjeRobnihDokumenata rd = new Uvoz.frmFormiranjeRobnihDokumenata();
+            rd.Show();
+        }
+
+        private void toolStripButton343_Click(object sender, EventArgs e)
+        {
+            Saobracaj.Sifarnici.frmKontejnerStatus ks = new frmKontejnerStatus();
+            ks.Show();
+        }
+
+        private void toolStripEx34_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            frmScenario SCEN = new frmScenario();
+            SCEN.Show();
         }
     }
     }

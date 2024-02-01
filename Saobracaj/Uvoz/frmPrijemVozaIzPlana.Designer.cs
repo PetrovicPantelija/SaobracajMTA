@@ -52,6 +52,9 @@ namespace Saobracaj.Uvoz
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsNew = new System.Windows.Forms.ToolStripButton();
+            this.tsSave = new System.Windows.Forms.ToolStripButton();
+            this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.button1 = new System.Windows.Forms.Button();
             this.cboPlanUtovara = new System.Windows.Forms.ComboBox();
@@ -65,9 +68,8 @@ namespace Saobracaj.Uvoz
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label35 = new System.Windows.Forms.Label();
             this.cboOperater = new System.Windows.Forms.ComboBox();
-            this.tsNew = new System.Windows.Forms.ToolStripButton();
-            this.tsSave = new System.Windows.Forms.ToolStripButton();
-            this.tsDelete = new System.Windows.Forms.ToolStripButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cboOperaterHR = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -79,7 +81,7 @@ namespace Saobracaj.Uvoz
             this.chkCIRUradjen.AutoSize = true;
             this.chkCIRUradjen.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkCIRUradjen.ForeColor = System.Drawing.Color.Black;
-            this.chkCIRUradjen.Location = new System.Drawing.Point(292, 106);
+            this.chkCIRUradjen.Location = new System.Drawing.Point(12, 222);
             this.chkCIRUradjen.Name = "chkCIRUradjen";
             this.chkCIRUradjen.Size = new System.Drawing.Size(92, 20);
             this.chkCIRUradjen.TabIndex = 243;
@@ -93,9 +95,9 @@ namespace Saobracaj.Uvoz
             this.label31.ForeColor = System.Drawing.Color.Black;
             this.label31.Location = new System.Drawing.Point(932, 30);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(116, 16);
+            this.label31.Size = new System.Drawing.Size(126, 16);
             this.label31.TabIndex = 242;
-            this.label31.Text = "Dodatne napomene";
+            this.label31.Text = "Napomena za prevoz";
             // 
             // txtNapomena
             // 
@@ -111,7 +113,7 @@ namespace Saobracaj.Uvoz
             this.chkPoslatEmailPrijem.AutoSize = true;
             this.chkPoslatEmailPrijem.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPoslatEmailPrijem.ForeColor = System.Drawing.Color.Black;
-            this.chkPoslatEmailPrijem.Location = new System.Drawing.Point(434, 82);
+            this.chkPoslatEmailPrijem.Location = new System.Drawing.Point(150, 176);
             this.chkPoslatEmailPrijem.Name = "chkPoslatEmailPrijem";
             this.chkPoslatEmailPrijem.Size = new System.Drawing.Size(101, 20);
             this.chkPoslatEmailPrijem.TabIndex = 240;
@@ -123,7 +125,7 @@ namespace Saobracaj.Uvoz
             this.chkPoslatEmailNajava.AutoSize = true;
             this.chkPoslatEmailNajava.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPoslatEmailNajava.ForeColor = System.Drawing.Color.Black;
-            this.chkPoslatEmailNajava.Location = new System.Drawing.Point(292, 81);
+            this.chkPoslatEmailNajava.Location = new System.Drawing.Point(12, 198);
             this.chkPoslatEmailNajava.Name = "chkPoslatEmailNajava";
             this.chkPoslatEmailNajava.Size = new System.Drawing.Size(105, 20);
             this.chkPoslatEmailNajava.TabIndex = 239;
@@ -135,7 +137,7 @@ namespace Saobracaj.Uvoz
             this.chkTransport.AutoSize = true;
             this.chkTransport.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkTransport.ForeColor = System.Drawing.Color.Black;
-            this.chkTransport.Location = new System.Drawing.Point(104, 89);
+            this.chkTransport.Location = new System.Drawing.Point(12, 178);
             this.chkTransport.Name = "chkTransport";
             this.chkTransport.Size = new System.Drawing.Size(132, 20);
             this.chkTransport.TabIndex = 238;
@@ -161,7 +163,7 @@ namespace Saobracaj.Uvoz
             // txtImeVozaca
             // 
             this.txtImeVozaca.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtImeVozaca.Location = new System.Drawing.Point(707, 106);
+            this.txtImeVozaca.Location = new System.Drawing.Point(707, 113);
             this.txtImeVozaca.Name = "txtImeVozaca";
             this.txtImeVozaca.Size = new System.Drawing.Size(210, 23);
             this.txtImeVozaca.TabIndex = 235;
@@ -172,7 +174,7 @@ namespace Saobracaj.Uvoz
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label29.ForeColor = System.Drawing.Color.Black;
-            this.label29.Location = new System.Drawing.Point(605, 106);
+            this.label29.Location = new System.Drawing.Point(605, 113);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(76, 16);
             this.label29.TabIndex = 236;
@@ -182,7 +184,7 @@ namespace Saobracaj.Uvoz
             // txtRegBrKamiona
             // 
             this.txtRegBrKamiona.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtRegBrKamiona.Location = new System.Drawing.Point(707, 80);
+            this.txtRegBrKamiona.Location = new System.Drawing.Point(707, 87);
             this.txtRegBrKamiona.Name = "txtRegBrKamiona";
             this.txtRegBrKamiona.Size = new System.Drawing.Size(210, 23);
             this.txtRegBrKamiona.TabIndex = 233;
@@ -193,7 +195,7 @@ namespace Saobracaj.Uvoz
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label30.ForeColor = System.Drawing.Color.Black;
-            this.label30.Location = new System.Drawing.Point(605, 82);
+            this.label30.Location = new System.Drawing.Point(605, 89);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(85, 16);
             this.label30.TabIndex = 234;
@@ -323,6 +325,36 @@ namespace Saobracaj.Uvoz
             this.toolStrip1.TabIndex = 244;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // tsNew
+            // 
+            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
+            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNew.Name = "tsNew";
+            this.tsNew.Size = new System.Drawing.Size(24, 24);
+            this.tsNew.Text = "Novi";
+            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
+            // 
+            // tsSave
+            // 
+            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
+            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsSave.Name = "tsSave";
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
+            this.tsSave.Text = "tsSave";
+            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
+            // 
+            // tsDelete
+            // 
+            this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
+            this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsDelete.Name = "tsDelete";
+            this.tsDelete.Size = new System.Drawing.Size(24, 24);
+            this.tsDelete.Text = "toolStripButton1";
+            this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -332,9 +364,9 @@ namespace Saobracaj.Uvoz
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(451, 137);
+            this.button1.Location = new System.Drawing.Point(451, 141);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(129, 26);
+            this.button1.Size = new System.Drawing.Size(145, 72);
             this.button1.TabIndex = 247;
             this.button1.Text = "Prenesi stavke iz plana";
             this.button1.UseVisualStyleBackColor = false;
@@ -367,10 +399,10 @@ namespace Saobracaj.Uvoz
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.tabControl1.Location = new System.Drawing.Point(14, 169);
+            this.tabControl1.Location = new System.Drawing.Point(14, 248);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1274, 269);
+            this.tabControl1.Size = new System.Drawing.Size(1274, 190);
             this.tabControl1.TabIndex = 248;
             // 
             // tabPage1
@@ -379,7 +411,7 @@ namespace Saobracaj.Uvoz
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1266, 240);
+            this.tabPage1.Size = new System.Drawing.Size(1266, 161);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Stavke";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -394,7 +426,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView1.Location = new System.Drawing.Point(4, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1256, 228);
+            this.dataGridView1.Size = new System.Drawing.Size(1256, 149);
             this.dataGridView1.TabIndex = 168;
             // 
             // label33
@@ -402,20 +434,22 @@ namespace Saobracaj.Uvoz
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label33.ForeColor = System.Drawing.Color.Black;
-            this.label33.Location = new System.Drawing.Point(800, 141);
+            this.label33.Location = new System.Drawing.Point(932, 143);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(129, 16);
             this.label33.TabIndex = 250;
             this.label33.Text = "Predefinisane poruke:";
+            this.label33.Visible = false;
             // 
             // cboPredefinisanePoruke
             // 
             this.cboPredefinisanePoruke.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.cboPredefinisanePoruke.FormattingEnabled = true;
-            this.cboPredefinisanePoruke.Location = new System.Drawing.Point(935, 138);
+            this.cboPredefinisanePoruke.Location = new System.Drawing.Point(935, 162);
             this.cboPredefinisanePoruke.Name = "cboPredefinisanePoruke";
             this.cboPredefinisanePoruke.Size = new System.Drawing.Size(248, 24);
             this.cboPredefinisanePoruke.TabIndex = 249;
+            this.cboPredefinisanePoruke.Visible = false;
             // 
             // button2
             // 
@@ -423,21 +457,21 @@ namespace Saobracaj.Uvoz
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button2.Location = new System.Drawing.Point(300, 138);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(145, 26);
+            this.button2.Size = new System.Drawing.Size(145, 75);
             this.button2.TabIndex = 251;
-            this.button2.Text = "Voz iz plana";
+            this.button2.Text = "Voz iz plana podaci";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.checkBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(171)))), ((int)(((byte)(79)))));
             this.checkBox2.Checked = true;
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.checkBox2.ForeColor = System.Drawing.Color.Black;
-            this.checkBox2.Location = new System.Drawing.Point(1201, 33);
+            this.checkBox2.Location = new System.Drawing.Point(707, 145);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(51, 17);
             this.checkBox2.TabIndex = 257;
@@ -450,50 +484,41 @@ namespace Saobracaj.Uvoz
             this.label35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.label35.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label35.ForeColor = System.Drawing.Color.Black;
-            this.label35.Location = new System.Drawing.Point(596, 133);
+            this.label35.Location = new System.Drawing.Point(115, 84);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(54, 15);
+            this.label35.Size = new System.Drawing.Size(79, 15);
             this.label35.TabIndex = 256;
-            this.label35.Text = "Operator:";
+            this.label35.Text = "Operator SRB:";
             // 
             // cboOperater
             // 
             this.cboOperater.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboOperater.FormattingEnabled = true;
-            this.cboOperater.Location = new System.Drawing.Point(599, 151);
+            this.cboOperater.Location = new System.Drawing.Point(118, 102);
             this.cboOperater.Name = "cboOperater";
             this.cboOperater.Size = new System.Drawing.Size(195, 24);
             this.cboOperater.TabIndex = 255;
             // 
-            // tsNew
+            // label3
             // 
-            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
-            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(24, 24);
-            this.tsNew.Text = "Novi";
-            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.Location = new System.Drawing.Point(327, 84);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 15);
+            this.label3.TabIndex = 259;
+            this.label3.Text = "Operator HR:";
             // 
-            // tsSave
+            // cboOperaterHR
             // 
-            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
-            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(24, 24);
-            this.tsSave.Text = "tsSave";
-            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
-            // 
-            // tsDelete
-            // 
-            this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
-            this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(24, 24);
-            this.tsDelete.Text = "toolStripButton1";
-            this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
+            this.cboOperaterHR.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.cboOperaterHR.FormattingEnabled = true;
+            this.cboOperaterHR.Location = new System.Drawing.Point(330, 102);
+            this.cboOperaterHR.Name = "cboOperaterHR";
+            this.cboOperaterHR.Size = new System.Drawing.Size(195, 24);
+            this.cboOperaterHR.TabIndex = 258;
             // 
             // frmPrijemVozaIzPlana
             // 
@@ -501,6 +526,8 @@ namespace Saobracaj.Uvoz
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1298, 448);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.cboOperaterHR);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.label35);
             this.Controls.Add(this.cboOperater);
@@ -588,5 +615,7 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.ComboBox cboOperater;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cboOperaterHR;
     }
 }

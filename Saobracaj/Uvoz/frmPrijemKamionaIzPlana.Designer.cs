@@ -207,7 +207,7 @@ namespace Saobracaj.Uvoz
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(13, 136);
+            this.label44.Location = new System.Drawing.Point(9, 128);
             this.label44.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(66, 13);
@@ -484,7 +484,7 @@ namespace Saobracaj.Uvoz
             // txtKontejnerID
             // 
             this.txtKontejnerID.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtKontejnerID.Location = new System.Drawing.Point(15, 153);
+            this.txtKontejnerID.Location = new System.Drawing.Point(15, 146);
             this.txtKontejnerID.Name = "txtKontejnerID";
             this.txtKontejnerID.Size = new System.Drawing.Size(210, 23);
             this.txtKontejnerID.TabIndex = 289;

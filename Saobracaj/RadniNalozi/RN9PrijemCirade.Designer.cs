@@ -74,6 +74,10 @@ namespace Saobracaj.RadniNalozi
             this.label2 = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.cboInspekcijski = new System.Windows.Forms.ComboBox();
+            this.txtPrijemID = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtKamion = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -262,7 +266,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // txtBrojKontejnera
             // 
-            this.txtBrojKontejnera.Location = new System.Drawing.Point(230, 57);
+            this.txtBrojKontejnera.Location = new System.Drawing.Point(230, 52);
             this.txtBrojKontejnera.Margin = new System.Windows.Forms.Padding(2);
             this.txtBrojKontejnera.Name = "txtBrojKontejnera";
             this.txtBrojKontejnera.Size = new System.Drawing.Size(151, 20);
@@ -401,6 +405,7 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(262, 24);
             this.toolStripButton1.Text = "FORMIRAJ RADNE NALOGE  ZA PRIJEM CIRADE";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButton2
             // 
@@ -516,12 +521,52 @@ namespace Saobracaj.RadniNalozi
             this.cboInspekcijski.Size = new System.Drawing.Size(197, 21);
             this.cboInspekcijski.TabIndex = 471;
             // 
+            // txtPrijemID
+            // 
+            this.txtPrijemID.Location = new System.Drawing.Point(17, 230);
+            this.txtPrijemID.Margin = new System.Windows.Forms.Padding(2);
+            this.txtPrijemID.Name = "txtPrijemID";
+            this.txtPrijemID.Size = new System.Drawing.Size(119, 20);
+            this.txtPrijemID.TabIndex = 474;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(14, 215);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(46, 13);
+            this.label5.TabIndex = 473;
+            this.label5.Text = "PrijemID";
+            // 
+            // txtKamion
+            // 
+            this.txtKamion.Location = new System.Drawing.Point(148, 230);
+            this.txtKamion.Margin = new System.Windows.Forms.Padding(2);
+            this.txtKamion.Name = "txtKamion";
+            this.txtKamion.Size = new System.Drawing.Size(134, 20);
+            this.txtKamion.TabIndex = 476;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(145, 215);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(42, 13);
+            this.label7.TabIndex = 475;
+            this.label7.Text = "Kamion";
+            // 
             // RN9PrijemCirade
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(889, 644);
+            this.Controls.Add(this.txtKamion);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtPrijemID);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.txtSpedicijaRTCLEGET);
             this.Controls.Add(this.cboInspekcijski);
             this.Controls.Add(this.cboSpedicija);
@@ -563,6 +608,7 @@ namespace Saobracaj.RadniNalozi
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RN9PrijemCirade";
             this.Text = "RN9 - PRIJEM CIRADE";
+            this.Load += new System.EventHandler(this.RN9PrijemCirade_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -617,5 +663,9 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.ComboBox cboInspekcijski;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.TextBox txtPrijemID;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtKamion;
+        private System.Windows.Forms.Label label7;
     }
 }

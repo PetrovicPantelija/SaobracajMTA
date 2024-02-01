@@ -52,7 +52,7 @@ namespace Saobracaj.Uvoz
             {
                 /// ,  string RegBrKamiona,   string ImeVozaca,   int Vozom
                 Dokumeta.InsertPrijemKontejneraVoz ins = new Dokumeta.InsertPrijemKontejneraVoz();
-                ins.InsertPrijemKontVoz(Convert.ToDateTime(dtpDatumPrijema.Text),Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtRegBrKamiona.Text, txtImeVozaca.Text, 0, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), Convert.ToInt32(cboOperater.SelectedValue), 0, 0);
+                ins.InsertPrijemKontVoz(Convert.ToDateTime(dtpDatumPrijema.Text),Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtRegBrKamiona.Text, txtImeVozaca.Text, 0, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), Convert.ToInt32(cboOperater.SelectedValue), 0, 0,0,0);
                 status = false;
                 VratiPodatkeMax();
             }
@@ -80,6 +80,11 @@ namespace Saobracaj.Uvoz
         {
             Izvoz.InsertIzvoz ins = new Izvoz.InsertIzvoz();
             ins.PrenesiKontejnerIzNerasporedjenihKamion(Convert.ToInt32(txtKontejnerID.Text));
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

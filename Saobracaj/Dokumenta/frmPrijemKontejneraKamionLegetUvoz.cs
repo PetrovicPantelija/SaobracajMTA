@@ -146,7 +146,7 @@ namespace Saobracaj.Dokumenta
                 {
                     /// ,  string RegBrKamiona,   string ImeVozaca,   int Vozom
                     Saobracaj.Dokumeta.InsertPrijemKontejneraVoz ins = new Saobracaj.Dokumeta.InsertPrijemKontejneraVoz();
-                    ins.InsertPrijemKontVoz(Convert.ToDateTime(dtpDatumPrijema.Text), Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, "", "", 1, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), 0, pomDirektni_indirektni, 0);
+                    ins.InsertPrijemKontVoz(Convert.ToDateTime(dtpDatumPrijema.Text), Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, "", "", 1, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), 0, pomDirektni_indirektni, 0,0,0);
                     status = false;
                     VratiPodatkeMax();
                 }
@@ -154,7 +154,7 @@ namespace Saobracaj.Dokumenta
                 {
                     //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                     Saobracaj.Dokumeta.InsertPrijemKontejneraVoz upd = new Saobracaj.Dokumeta.InsertPrijemKontejneraVoz();
-                    upd.UpdPrijemKontejneraVoz(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumPrijema.Text), Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, "", "", 1, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), 0, pomDirektni_indirektni, 0);
+                    upd.UpdPrijemKontejneraVoz(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumPrijema.Text), Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, "", "", 1, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), 0, pomDirektni_indirektni, 0, 0, 0);
                     status = false;
                 }
             }
@@ -164,7 +164,7 @@ namespace Saobracaj.Dokumenta
                 {
                     /// ,  string RegBrKamiona,   string ImeVozaca,   int Vozom
                     Saobracaj.Dokumeta.InsertPrijemKontejneraVoz ins = new Saobracaj.Dokumeta.InsertPrijemKontejneraVoz();
-                    ins.InsertPrijemKontVoz(Convert.ToDateTime(dtpDatumPrijema.Text), Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtRegBrKamiona.Text, txtImeVozaca.Text, 0, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), 0, pomDirektni_indirektni, 0);
+                    ins.InsertPrijemKontVoz(Convert.ToDateTime(dtpDatumPrijema.Text), Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtRegBrKamiona.Text, txtImeVozaca.Text, 0, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), 0, pomDirektni_indirektni, 0, 0, 0);
                     status = false;
                     VratiPodatkeMax();
                 }
@@ -172,7 +172,7 @@ namespace Saobracaj.Dokumenta
                 {
                     //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                     Saobracaj.Dokumeta.InsertPrijemKontejneraVoz upd = new Saobracaj.Dokumeta.InsertPrijemKontejneraVoz();
-                    upd.UpdPrijemKontejneraVoz(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumPrijema.Text), Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtRegBrKamiona.Text, txtImeVozaca.Text, 0, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue),0, pomDirektni_indirektni, 0);
+                    upd.UpdPrijemKontejneraVoz(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumPrijema.Text), Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtRegBrKamiona.Text, txtImeVozaca.Text, 0, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue),0, pomDirektni_indirektni, 0, 0, 0);
                     status = false;
                 }
 
@@ -930,6 +930,7 @@ namespace Saobracaj.Dokumenta
             }
 
             con.Close();
+
            // VratiPodatkeKontejnerID(KontejnerID);
         }
 
@@ -961,33 +962,47 @@ namespace Saobracaj.Dokumenta
         private void prijemKontejneraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string IDUsluge = "0";
-            foreach (DataGridViewRow row in dataGridView5.Rows)
+            foreach (DataGridViewRow row in dataGridView8.Rows)
             {
 
                 if (row.Selected == true)
                 {
-                    IDUsluge = row.Cells[4].Value.ToString();
+                    IDUsluge = row.Cells[0].Value.ToString();
 
                 }
-
-
             }
 
+            if (IDUsluge == "0")
 
+            {
+                DialogResult dialogResult = MessageBox.Show("Niste obeležili ni jednu uslugu, da li nastavljate dalje", "Usluga?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    RadniNalozi.RN4PrijemPlatforme ppl = new RadniNalozi.RN4PrijemPlatforme(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene, IDUsluge, 0);
+                    ppl.Show();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
 
-            RadniNalozi.RN4PrijemPlatforme ppl = new RadniNalozi.RN4PrijemPlatforme(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene, IDUsluge);
-            ppl.Show();
+            }
+            else
+            {
+                RadniNalozi.RN4PrijemPlatforme ppl = new RadniNalozi.RN4PrijemPlatforme(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene, IDUsluge,0);
+                ppl.Show();
+            }
         }
 
         private void pRIJEMCIRADEToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RadniNalozi.RN9PrijemCirade pc = new RadniNalozi.RN9PrijemCirade();
+            RadniNalozi.RN9PrijemCirade pc = new RadniNalozi.RN9PrijemCirade(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene);
             pc.Show();
         }
 
         private void pREGLEDToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RadniNalozi.RN10PregledIspraznjenogKontejnera rni = new RadniNalozi.RN10PregledIspraznjenogKontejnera();
+            RadniNalozi.RN10PregledIspraznjenogKontejnera rni = new RadniNalozi.RN10PregledIspraznjenogKontejnera(txtSifra.Text, Convert.ToInt32(cboBukingPrijema.SelectedValue), KorisnikCene, txtSifra.Text, txtRegBrKamiona.Text);
             rni.Show();
         }
 
@@ -1055,7 +1070,99 @@ namespace Saobracaj.Dokumenta
         }
         private void txtKontejnerID_TextChanged(object sender, EventArgs e)
         {
+            if (chkUvoz.Checked == true)
+            {
+                FillDGUsluge();
+            }
+            else
+            {
             FillDGUslugeIzIzVozaNeraspoeredjeni();
+            }
+            
+        }
+
+        private void FillDGUsluge()
+        {
+
+            if (txtKontejnerID.Text == "")
+            {
+                return;
+            }
+            var select = "";
+
+            select = "select  RadniNalogInterni.ID as RNID, RadniNalogInterni.StatusIzdavanja, UvozKonacnaVrstaManipulacije.ID as ID, " +
+                " UvozKOnacna.BrojKontejnera, UvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, " +
+" UvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
+" OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica, " +
+" RadniNalogInterni.DatumIzdavanja, RadniNalogInterni.Uradjen, Partnerji.PaNaziv as NalogodavacID " +
+" from RadniNalogInterni " +
+" inner join UvozKonacnaVrstaManipulacije on UvozKonacnaVrstaManipulacije.ID = RadniNalogInterni.IDManipulacijaJED " +
+" inner " +
+" join UvozKonacna on UvozKonacna.ID = UvozKonacnaVrstaManipulacije.IdNadredjena " +
+" Inner " +
+" join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
+" inner " +
+" join PArtnerji on UvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
+" inner " +
+" join OrganizacioneJedinice on OrganizacioneJedinice.ID = RadniNalogInterni.OjIzdavanja " +
+" where RadniNalogInterni.BrojOsnov = " + Convert.ToInt32(txtKontejnerID.Text);
+
+
+
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView8.ReadOnly = true;
+            dataGridView8.DataSource = ds.Tables[0];
+
+
+            dataGridView8.BorderStyle = BorderStyle.None;
+            dataGridView8.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView8.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView8.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView8.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView8.BackgroundColor = Color.White;
+
+            dataGridView8.EnableHeadersVisualStyles = false;
+            dataGridView8.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView8.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView8.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView8.Columns[0];
+            dataGridView8.Columns[0].HeaderText = "RNID";
+            dataGridView8.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView8.Columns[1];
+            dataGridView8.Columns[1].HeaderText = "STATUS";
+            dataGridView8.Columns[1].Width = 70;
+
+            DataGridViewColumn column3 = dataGridView8.Columns[2];
+            dataGridView8.Columns[2].HeaderText = "VID";
+            dataGridView8.Columns[2].Visible = false;
+            dataGridView8.Columns[2].Width = 70;
+
+            DataGridViewColumn column4 = dataGridView8.Columns[3];
+            dataGridView8.Columns[3].HeaderText = "MID";
+            dataGridView8.Columns[3].Width = 50;
+
+            DataGridViewColumn column5 = dataGridView8.Columns[4];
+            dataGridView8.Columns[4].HeaderText = "V";
+            dataGridView8.Columns[4].Width = 30;
+
+            DataGridViewColumn column6 = dataGridView8.Columns[5];
+            dataGridView8.Columns[5].HeaderText = "KOL";
+            dataGridView8.Columns[5].Width = 30;
+
+            DataGridViewColumn column7 = dataGridView8.Columns[6];
+            dataGridView8.Columns[6].HeaderText = "VUID";
+            dataGridView8.Columns[6].Width = 30;
+
+            DataGridViewColumn column8 = dataGridView8.Columns[7];
+            dataGridView8.Columns[7].HeaderText = "USLUGA";
+            dataGridView8.Columns[7].Width = 170;
+
         }
 
         private void pRIJEMPLATFORMEBRODARToolStripMenuItem_Click(object sender, EventArgs e)

@@ -60,13 +60,13 @@ namespace Saobracaj.Dokumenta
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.prijemKontejneraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pRIJEMPLATFORMEBRODARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pRIJEMCIRADEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pREGLEDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pRIJEMPLATFORMEBRODARToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.chkCIRUradjen = new System.Windows.Forms.CheckBox();
             this.label31 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.chkUvoz = new System.Windows.Forms.CheckBox();
             this.txtNapomena = new System.Windows.Forms.TextBox();
             this.chkPoslatEmailPrijem = new System.Windows.Forms.CheckBox();
             this.chkPoslatEmailNajava = new System.Windows.Forms.CheckBox();
@@ -370,8 +370,15 @@ namespace Saobracaj.Dokumenta
             // 
             this.prijemKontejneraToolStripMenuItem.Name = "prijemKontejneraToolStripMenuItem";
             this.prijemKontejneraToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
-            this.prijemKontejneraToolStripMenuItem.Text = "PRIJEM PLATFORME IZVOZ";
+            this.prijemKontejneraToolStripMenuItem.Text = "PRIJEM PLATFORME - UVOZ";
             this.prijemKontejneraToolStripMenuItem.Click += new System.EventHandler(this.prijemKontejneraToolStripMenuItem_Click);
+            // 
+            // pRIJEMPLATFORMEBRODARToolStripMenuItem
+            // 
+            this.pRIJEMPLATFORMEBRODARToolStripMenuItem.Name = "pRIJEMPLATFORMEBRODARToolStripMenuItem";
+            this.pRIJEMPLATFORMEBRODARToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
+            this.pRIJEMPLATFORMEBRODARToolStripMenuItem.Text = "PRIJEM PLATFORME BRODAR";
+            this.pRIJEMPLATFORMEBRODARToolStripMenuItem.Click += new System.EventHandler(this.pRIJEMPLATFORMEBRODARToolStripMenuItem_Click);
             // 
             // pRIJEMCIRADEToolStripMenuItem
             // 
@@ -386,13 +393,6 @@ namespace Saobracaj.Dokumenta
             this.pREGLEDToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
             this.pREGLEDToolStripMenuItem.Text = "PREGLED ISPRAZNJENJOG KONTEJNERA";
             this.pREGLEDToolStripMenuItem.Click += new System.EventHandler(this.pREGLEDToolStripMenuItem_Click);
-            // 
-            // pRIJEMPLATFORMEBRODARToolStripMenuItem
-            // 
-            this.pRIJEMPLATFORMEBRODARToolStripMenuItem.Name = "pRIJEMPLATFORMEBRODARToolStripMenuItem";
-            this.pRIJEMPLATFORMEBRODARToolStripMenuItem.Size = new System.Drawing.Size(285, 22);
-            this.pRIJEMPLATFORMEBRODARToolStripMenuItem.Text = "PRIJEM PLATFORME BRODAR";
-            this.pRIJEMPLATFORMEBRODARToolStripMenuItem.Click += new System.EventHandler(this.pRIJEMPLATFORMEBRODARToolStripMenuItem_Click);
             // 
             // toolStripButton9
             // 
@@ -431,20 +431,20 @@ namespace Saobracaj.Dokumenta
             this.label31.TabIndex = 276;
             this.label31.Text = "NAPOMENA ZA PREVOZ";
             // 
-            // checkBox2
+            // chkUvoz
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.checkBox2.Checked = true;
-            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.checkBox2.ForeColor = System.Drawing.Color.Black;
-            this.checkBox2.Location = new System.Drawing.Point(923, 86);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(81, 17);
-            this.checkBox2.TabIndex = 278;
-            this.checkBox2.Text = "Uvoz/Izvoz";
-            this.checkBox2.UseVisualStyleBackColor = false;
+            this.chkUvoz.AutoSize = true;
+            this.chkUvoz.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.chkUvoz.Checked = true;
+            this.chkUvoz.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkUvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkUvoz.ForeColor = System.Drawing.Color.Black;
+            this.chkUvoz.Location = new System.Drawing.Point(923, 86);
+            this.chkUvoz.Name = "chkUvoz";
+            this.chkUvoz.Size = new System.Drawing.Size(81, 17);
+            this.chkUvoz.TabIndex = 278;
+            this.chkUvoz.Text = "Uvoz/Izvoz";
+            this.chkUvoz.UseVisualStyleBackColor = false;
             // 
             // txtNapomena
             // 
@@ -748,7 +748,7 @@ namespace Saobracaj.Dokumenta
             this.tabControl2.Location = new System.Drawing.Point(927, 64);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(525, 209);
+            this.tabControl2.Size = new System.Drawing.Size(475, 209);
             this.tabControl2.TabIndex = 425;
             // 
             // tabPage4
@@ -757,7 +757,7 @@ namespace Saobracaj.Dokumenta
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(517, 183);
+            this.tabPage4.Size = new System.Drawing.Size(467, 183);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Usluge Uvoz";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -795,7 +795,7 @@ namespace Saobracaj.Dokumenta
             this.dataGridView8.RowHeadersDefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridView8.RowHeadersWidth = 11;
             this.dataGridView8.RowTemplate.Height = 24;
-            this.dataGridView8.Size = new System.Drawing.Size(496, 173);
+            this.dataGridView8.Size = new System.Drawing.Size(457, 173);
             this.dataGridView8.TabIndex = 158;
             // 
             // tabPage3
@@ -1907,7 +1907,7 @@ namespace Saobracaj.Dokumenta
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.chkCIRUradjen);
             this.Controls.Add(this.label31);
-            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.chkUvoz);
             this.Controls.Add(this.txtNapomena);
             this.Controls.Add(this.chkPoslatEmailPrijem);
             this.Controls.Add(this.chkPoslatEmailNajava);
@@ -1981,7 +1981,7 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.ToolStripButton toolStripButton9;
         private System.Windows.Forms.CheckBox chkCIRUradjen;
         private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox chkUvoz;
         private System.Windows.Forms.TextBox txtNapomena;
         private System.Windows.Forms.CheckBox chkPoslatEmailPrijem;
         private System.Windows.Forms.CheckBox chkPoslatEmailNajava;

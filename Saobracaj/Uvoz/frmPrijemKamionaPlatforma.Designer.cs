@@ -39,7 +39,6 @@ namespace Saobracaj.Uvoz
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label35 = new System.Windows.Forms.Label();
             this.cboOperater = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.label33 = new System.Windows.Forms.Label();
             this.cboPredefinisanePoruke = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -65,6 +64,8 @@ namespace Saobracaj.Uvoz
             this.dtpDatumPrijema = new System.Windows.Forms.DateTimePicker();
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.cboOperaterHR = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -148,9 +149,9 @@ namespace Saobracaj.Uvoz
             this.label35.ForeColor = System.Drawing.Color.Black;
             this.label35.Location = new System.Drawing.Point(594, 143);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(54, 15);
+            this.label35.Size = new System.Drawing.Size(79, 15);
             this.label35.TabIndex = 317;
-            this.label35.Text = "Operator:";
+            this.label35.Text = "Operator SRB:";
             // 
             // cboOperater
             // 
@@ -160,17 +161,6 @@ namespace Saobracaj.Uvoz
             this.cboOperater.Name = "cboOperater";
             this.cboOperater.Size = new System.Drawing.Size(195, 24);
             this.cboOperater.TabIndex = 316;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(298, 148);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(145, 26);
-            this.button2.TabIndex = 315;
-            this.button2.Text = "Kontejene ID";
-            this.button2.UseVisualStyleBackColor = false;
             // 
             // label33
             // 
@@ -198,7 +188,7 @@ namespace Saobracaj.Uvoz
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(449, 147);
+            this.button1.Location = new System.Drawing.Point(231, 148);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(129, 26);
             this.button1.TabIndex = 312;
@@ -446,17 +436,40 @@ namespace Saobracaj.Uvoz
             this.label1.TabIndex = 291;
             this.label1.Text = "Šifra:";
             // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label39.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label39.ForeColor = System.Drawing.Color.Black;
+            this.label39.Location = new System.Drawing.Point(599, 188);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(74, 15);
+            this.label39.TabIndex = 321;
+            this.label39.Text = "Operator HR:";
+            // 
+            // cboOperaterHR
+            // 
+            this.cboOperaterHR.Enabled = false;
+            this.cboOperaterHR.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.cboOperaterHR.FormattingEnabled = true;
+            this.cboOperaterHR.Location = new System.Drawing.Point(597, 206);
+            this.cboOperaterHR.Name = "cboOperaterHR";
+            this.cboOperaterHR.Size = new System.Drawing.Size(195, 24);
+            this.cboOperaterHR.TabIndex = 320;
+            // 
             // frmPrijemKamionaPlatforma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1247, 322);
+            this.Controls.Add(this.label39);
+            this.Controls.Add(this.cboOperaterHR);
             this.Controls.Add(this.txtKontejnerID);
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.label35);
             this.Controls.Add(this.cboOperater);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.label33);
             this.Controls.Add(this.cboPredefinisanePoruke);
             this.Controls.Add(this.button1);
@@ -504,7 +517,6 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.ComboBox cboOperater;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.ComboBox cboPredefinisanePoruke;
         private System.Windows.Forms.Button button1;
@@ -530,5 +542,7 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.DateTimePicker dtpDatumPrijema;
         private System.Windows.Forms.TextBox txtSifra;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.ComboBox cboOperaterHR;
     }
 }

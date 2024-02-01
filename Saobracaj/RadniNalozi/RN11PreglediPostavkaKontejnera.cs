@@ -16,11 +16,22 @@ namespace Saobracaj.RadniNalozi
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
+
         public RN11PreglediPostavkaKontejnera()
         {
             InitializeComponent();
             FillGV();
             FillCombo();
+        }
+        public RN11PreglediPostavkaKontejnera(string Korisnik, int IDVOza, string IDUsluge, string OtpremaID)
+        {
+            InitializeComponent();
+            FillGV();
+            FillCombo();
+            txtNalogIzdao.Text = Korisnik;
+            cboSaVoznog.SelectedValue = IDVOza;
+            cboUsluga.SelectedValue = IDUsluge;
+            txtOtpremaID.Text = OtpremaID;
         }
         private void FillGV()
         {
@@ -175,6 +186,13 @@ namespace Saobracaj.RadniNalozi
         private void RN11PreglediPostavkaKontejnera_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            RadniNalozi.InsertRN ir = new InsertRN();
+            ir.InsRN10PregledCeoVoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtOtpremaID.Text), "");
+            FillGV();
         }
     }
 }

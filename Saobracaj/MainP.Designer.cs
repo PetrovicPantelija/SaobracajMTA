@@ -273,6 +273,8 @@ namespace Saobracaj
             this.toolStripButton134 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton136 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton181 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton343 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton344 = new System.Windows.Forms.ToolStripButton();
             this.toolStripEx35 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.toolStripButton137 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton138 = new System.Windows.Forms.ToolStripButton();
@@ -295,6 +297,7 @@ namespace Saobracaj
             this.toolStripButton336 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton337 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton341 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton342 = new System.Windows.Forms.ToolStripButton();
             this.toolStripEx37 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.toolStripButton150 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton151 = new System.Windows.Forms.ToolStripButton();
@@ -615,7 +618,7 @@ namespace Saobracaj
             this.toolStripEx1.Office12Mode = false;
             this.toolStripEx1.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx1.Size = new System.Drawing.Size(210, 727);
+            this.toolStripEx1.Size = new System.Drawing.Size(46, 727);
             this.toolStripEx1.TabIndex = 0;
             this.toolStripEx1.Text = "Prevozni šifarnici";
             this.toolStripEx1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripEx1_ItemClicked);
@@ -742,7 +745,7 @@ namespace Saobracaj
             this.toolStripEx2.Office12Mode = false;
             this.toolStripEx2.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx2.Size = new System.Drawing.Size(217, 727);
+            this.toolStripEx2.Size = new System.Drawing.Size(46, 727);
             this.toolStripEx2.TabIndex = 1;
             this.toolStripEx2.Text = "Prevozi";
             // 
@@ -831,7 +834,7 @@ namespace Saobracaj
             this.toolStripEx3.Office12Mode = false;
             this.toolStripEx3.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx3.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx3.Size = new System.Drawing.Size(200, 727);
+            this.toolStripEx3.Size = new System.Drawing.Size(46, 727);
             this.toolStripEx3.TabIndex = 2;
             this.toolStripEx3.Text = "Partneri";
             // 
@@ -905,7 +908,7 @@ namespace Saobracaj
             this.toolStripEx51.Office12Mode = false;
             this.toolStripEx51.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx51.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx51.Size = new System.Drawing.Size(166, 718);
+            this.toolStripEx51.Size = new System.Drawing.Size(43, 718);
             this.toolStripEx51.TabIndex = 5;
             this.toolStripEx51.Text = "eDokumenta";
             // 
@@ -1003,7 +1006,7 @@ namespace Saobracaj
             this.toolStripEx5.Office12Mode = false;
             this.toolStripEx5.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx5.Size = new System.Drawing.Size(198, 718);
+            this.toolStripEx5.Size = new System.Drawing.Size(43, 718);
             this.toolStripEx5.TabIndex = 0;
             this.toolStripEx5.Text = "Ugovori";
             // 
@@ -1152,7 +1155,7 @@ namespace Saobracaj
             this.toolStripEx6.Office12Mode = false;
             this.toolStripEx6.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx6.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx6.Size = new System.Drawing.Size(175, 718);
+            this.toolStripEx6.Size = new System.Drawing.Size(43, 718);
             this.toolStripEx6.TabIndex = 1;
             this.toolStripEx6.Text = "Najave";
             // 
@@ -1252,7 +1255,7 @@ namespace Saobracaj
             this.toolStripEx7.Office12Mode = false;
             this.toolStripEx7.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx7.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx7.Size = new System.Drawing.Size(162, 718);
+            this.toolStripEx7.Size = new System.Drawing.Size(43, 718);
             this.toolStripEx7.TabIndex = 2;
             this.toolStripEx7.Text = "Teretnice";
             // 
@@ -1384,7 +1387,7 @@ namespace Saobracaj
             this.toolStripEx40.Name = "toolStripEx40";
             this.toolStripEx40.Office12Mode = false;
             this.toolStripEx40.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx40.Size = new System.Drawing.Size(117, 718);
+            this.toolStripEx40.Size = new System.Drawing.Size(37, 718);
             this.toolStripEx40.TabIndex = 6;
             this.toolStripEx40.Text = "RID";
             // 
@@ -1440,7 +1443,7 @@ namespace Saobracaj
             this.toolStripEx52.Name = "toolStripEx52";
             this.toolStripEx52.Office12Mode = false;
             this.toolStripEx52.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx52.Size = new System.Drawing.Size(220, 718);
+            this.toolStripEx52.Size = new System.Drawing.Size(37, 718);
             this.toolStripEx52.TabIndex = 7;
             this.toolStripEx52.Text = "CRM";
             // 
@@ -1617,7 +1620,7 @@ namespace Saobracaj
             this.toolStripEx11.Office12Mode = false;
             this.toolStripEx11.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx11.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx11.Size = new System.Drawing.Size(261, 718);
+            this.toolStripEx11.Size = new System.Drawing.Size(43, 718);
             this.toolStripEx11.TabIndex = 1;
             this.toolStripEx11.Text = "Prevozni nalozi";
             // 
@@ -1692,7 +1695,7 @@ namespace Saobracaj
             this.toolStripEx26.Office12Mode = false;
             this.toolStripEx26.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx26.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx26.Size = new System.Drawing.Size(228, 718);
+            this.toolStripEx26.Size = new System.Drawing.Size(43, 718);
             this.toolStripEx26.TabIndex = 2;
             this.toolStripEx26.Text = "Kontrola dokumentacije";
             // 
@@ -1758,7 +1761,7 @@ namespace Saobracaj
             this.toolStripEx43.Office12Mode = false;
             this.toolStripEx43.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx43.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx43.Size = new System.Drawing.Size(212, 718);
+            this.toolStripEx43.Size = new System.Drawing.Size(43, 718);
             this.toolStripEx43.TabIndex = 3;
             this.toolStripEx43.Text = "Komunikacija";
             // 
@@ -1845,7 +1848,7 @@ namespace Saobracaj
             this.toolStripEx19.Office12Mode = false;
             this.toolStripEx19.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx19.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx19.Size = new System.Drawing.Size(251, 727);
+            this.toolStripEx19.Size = new System.Drawing.Size(43, 727);
             this.toolStripEx19.TabIndex = 1;
             this.toolStripEx19.Text = "Vrste aktivnosti";
             // 
@@ -2006,7 +2009,7 @@ namespace Saobracaj
             this.toolStripEx21.Office12Mode = false;
             this.toolStripEx21.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx21.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx21.Size = new System.Drawing.Size(282, 727);
+            this.toolStripEx21.Size = new System.Drawing.Size(43, 727);
             this.toolStripEx21.TabIndex = 3;
             this.toolStripEx21.Text = "Prijave i odjave";
             // 
@@ -2171,7 +2174,7 @@ namespace Saobracaj
             this.toolStripEx23.Office12Mode = false;
             this.toolStripEx23.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx23.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx23.Size = new System.Drawing.Size(205, 727);
+            this.toolStripEx23.Size = new System.Drawing.Size(43, 727);
             this.toolStripEx23.TabIndex = 5;
             this.toolStripEx23.Text = "Evidencija aktivnosti";
             // 
@@ -2306,7 +2309,7 @@ namespace Saobracaj
             this.toolStripEx4.Name = "toolStripEx4";
             this.toolStripEx4.Office12Mode = false;
             this.toolStripEx4.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx4.Size = new System.Drawing.Size(181, 727);
+            this.toolStripEx4.Size = new System.Drawing.Size(41, 727);
             this.toolStripEx4.TabIndex = 7;
             this.toolStripEx4.Text = "Pregledi";
             // 
@@ -2365,7 +2368,7 @@ namespace Saobracaj
             this.toolStripEx50.Name = "toolStripEx50";
             this.toolStripEx50.Office12Mode = false;
             this.toolStripEx50.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx50.Size = new System.Drawing.Size(106, 727);
+            this.toolStripEx50.Size = new System.Drawing.Size(41, 727);
             this.toolStripEx50.TabIndex = 8;
             // 
             // toolStripTabItem5
@@ -2411,7 +2414,7 @@ namespace Saobracaj
             this.toolStripEx15.Office12Mode = false;
             this.toolStripEx15.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx15.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx15.Size = new System.Drawing.Size(178, 727);
+            this.toolStripEx15.Size = new System.Drawing.Size(43, 727);
             this.toolStripEx15.TabIndex = 0;
             this.toolStripEx15.Text = "Lokomotive osnovno";
             // 
@@ -2480,7 +2483,7 @@ namespace Saobracaj
             this.toolStripEx16.Office12Mode = false;
             this.toolStripEx16.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx16.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx16.Size = new System.Drawing.Size(163, 727);
+            this.toolStripEx16.Size = new System.Drawing.Size(43, 727);
             this.toolStripEx16.TabIndex = 1;
             this.toolStripEx16.Text = "Obrada kvarova";
             // 
@@ -2548,7 +2551,7 @@ namespace Saobracaj
             this.toolStripEx17.Office12Mode = false;
             this.toolStripEx17.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx17.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx17.Size = new System.Drawing.Size(133, 727);
+            this.toolStripEx17.Size = new System.Drawing.Size(43, 727);
             this.toolStripEx17.TabIndex = 2;
             this.toolStripEx17.Text = "Namirenja";
             // 
@@ -2593,7 +2596,7 @@ namespace Saobracaj
             this.toolStripEx28.Office12Mode = false;
             this.toolStripEx28.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx28.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx28.Size = new System.Drawing.Size(155, 727);
+            this.toolStripEx28.Size = new System.Drawing.Size(43, 727);
             this.toolStripEx28.TabIndex = 3;
             this.toolStripEx28.Text = "Popis lokomotiva";
             // 
@@ -2642,7 +2645,7 @@ namespace Saobracaj
             this.toolStripEx29.Office12Mode = false;
             this.toolStripEx29.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx29.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx29.Size = new System.Drawing.Size(216, 727);
+            this.toolStripEx29.Size = new System.Drawing.Size(43, 727);
             this.toolStripEx29.TabIndex = 4;
             this.toolStripEx29.Text = "Automobili";
             // 
@@ -2762,7 +2765,7 @@ namespace Saobracaj
             this.toolStripEx14.Office12Mode = false;
             this.toolStripEx14.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx14.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx14.Size = new System.Drawing.Size(340, 727);
+            this.toolStripEx14.Size = new System.Drawing.Size(43, 727);
             this.toolStripEx14.TabIndex = 0;
             this.toolStripEx14.Text = "Delovodna knjiga";
             // 
@@ -2802,7 +2805,7 @@ namespace Saobracaj
             this.toolStripEx31.Office12Mode = false;
             this.toolStripEx31.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx31.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx31.Size = new System.Drawing.Size(7, 727);
+            this.toolStripEx31.Size = new System.Drawing.Size(43, 727);
             this.toolStripEx31.TabIndex = 1;
             this.toolStripEx31.Text = "Testiranje";
             // 
@@ -2848,7 +2851,7 @@ namespace Saobracaj
             this.toolStripEx32.Office12Mode = false;
             this.toolStripEx32.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx32.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx32.Size = new System.Drawing.Size(250, 727);
+            this.toolStripEx32.Size = new System.Drawing.Size(43, 727);
             this.toolStripEx32.TabIndex = 2;
             this.toolStripEx32.Text = "Dodela prava";
             // 
@@ -2911,7 +2914,7 @@ namespace Saobracaj
             this.toolStripEx12.Office12Mode = false;
             this.toolStripEx12.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx12.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx12.Size = new System.Drawing.Size(186, 727);
+            this.toolStripEx12.Size = new System.Drawing.Size(43, 727);
             this.toolStripEx12.TabIndex = 0;
             this.toolStripEx12.Text = "Admin";
             // 
@@ -2945,7 +2948,7 @@ namespace Saobracaj
             this.toolStripEx13.Office12Mode = false;
             this.toolStripEx13.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx13.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx13.Size = new System.Drawing.Size(276, 727);
+            this.toolStripEx13.Size = new System.Drawing.Size(43, 727);
             this.toolStripEx13.TabIndex = 1;
             this.toolStripEx13.Text = "Dozvole KOVID";
             // 
@@ -2989,7 +2992,7 @@ namespace Saobracaj
             this.toolStripEx33.Office12Mode = false;
             this.toolStripEx33.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx33.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx33.Size = new System.Drawing.Size(266, 727);
+            this.toolStripEx33.Size = new System.Drawing.Size(43, 727);
             this.toolStripEx33.TabIndex = 3;
             this.toolStripEx33.Text = "Dozvole mašinovođe";
             // 
@@ -3219,7 +3222,7 @@ namespace Saobracaj
             this.toolStripEx41.Office12Mode = false;
             this.toolStripEx41.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx41.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx41.Size = new System.Drawing.Size(268, 727);
+            this.toolStripEx41.Size = new System.Drawing.Size(43, 727);
             this.toolStripEx41.TabIndex = 2;
             this.toolStripEx41.Text = "Osnovni podaci";
             // 
@@ -3289,7 +3292,7 @@ namespace Saobracaj
             this.toolStripEx18.Office12Mode = false;
             this.toolStripEx18.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx18.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx18.Size = new System.Drawing.Size(198, 727);
+            this.toolStripEx18.Size = new System.Drawing.Size(43, 727);
             this.toolStripEx18.TabIndex = 3;
             this.toolStripEx18.Text = "Godisnji odmori";
             // 
@@ -3375,7 +3378,7 @@ namespace Saobracaj
             this.toolStripEx42.Office12Mode = false;
             this.toolStripEx42.Padding = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.toolStripEx42.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx42.Size = new System.Drawing.Size(256, 727);
+            this.toolStripEx42.Size = new System.Drawing.Size(43, 727);
             this.toolStripEx42.TabIndex = 4;
             this.toolStripEx42.Text = "Testiranje radnika";
             // 
@@ -3502,7 +3505,9 @@ namespace Saobracaj
             this.toolStripButton133,
             this.toolStripButton134,
             this.toolStripButton136,
-            this.toolStripButton181});
+            this.toolStripButton181,
+            this.toolStripButton343,
+            this.toolStripButton344});
             this.toolStripEx34.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
             this.toolStripEx34.Location = new System.Drawing.Point(0, 1);
             this.toolStripEx34.Name = "toolStripEx34";
@@ -3512,6 +3517,7 @@ namespace Saobracaj
             this.toolStripEx34.Size = new System.Drawing.Size(374, 727);
             this.toolStripEx34.TabIndex = 0;
             this.toolStripEx34.Text = "Šifarnici";
+            this.toolStripEx34.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripEx34_ItemClicked);
             // 
             // toolStripButton121
             // 
@@ -3888,6 +3894,27 @@ namespace Saobracaj
             this.toolStripButton181.Text = "Grupe usluga";
             this.toolStripButton181.Click += new System.EventHandler(this.toolStripButton181_Click_1);
             // 
+            // toolStripButton343
+            // 
+            this.toolStripButton343.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton343.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton343.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton343.Image")));
+            this.toolStripButton343.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton343.Name = "toolStripButton343";
+            this.toolStripButton343.Size = new System.Drawing.Size(113, 23);
+            this.toolStripButton343.Text = "Kontejner status";
+            this.toolStripButton343.Click += new System.EventHandler(this.toolStripButton343_Click);
+            // 
+            // toolStripButton344
+            // 
+            this.toolStripButton344.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton344.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.toolStripButton344.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton344.Image")));
+            this.toolStripButton344.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton344.Name = "toolStripButton344";
+            this.toolStripButton344.Size = new System.Drawing.Size(62, 21);
+            this.toolStripButton344.Text = "Scenario";
+            // 
             // toolStripEx35
             // 
             this.toolStripEx35.AutoSize = false;
@@ -4085,7 +4112,8 @@ namespace Saobracaj
             this.toolStripSeparator6,
             this.toolStripButton336,
             this.toolStripButton337,
-            this.toolStripButton341});
+            this.toolStripButton341,
+            this.toolStripButton342});
             this.toolStripEx36.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.toolStripEx36.Location = new System.Drawing.Point(621, 1);
             this.toolStripEx36.Name = "toolStripEx36";
@@ -4167,6 +4195,17 @@ namespace Saobracaj
             this.toolStripButton341.Size = new System.Drawing.Size(202, 23);
             this.toolStripButton341.Text = "Pregled radnih naloga Terminal";
             this.toolStripButton341.Click += new System.EventHandler(this.toolStripButton341_Click);
+            // 
+            // toolStripButton342
+            // 
+            this.toolStripButton342.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton342.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton342.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton342.Image")));
+            this.toolStripButton342.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton342.Name = "toolStripButton342";
+            this.toolStripButton342.Size = new System.Drawing.Size(203, 23);
+            this.toolStripButton342.Text = "Formiranje robnih dokumenata";
+            this.toolStripButton342.Click += new System.EventHandler(this.toolStripButton342_Click);
             // 
             // toolStripEx37
             // 
@@ -5192,7 +5231,7 @@ namespace Saobracaj
             this.toolStripButton204,
             this.toolStripButton285});
             this.toolStripEx44.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx44.Location = new System.Drawing.Point(43, 1);
+            this.toolStripEx44.Location = new System.Drawing.Point(299, 1);
             this.toolStripEx44.Name = "toolStripEx44";
             this.toolStripEx44.Office12Mode = false;
             this.toolStripEx44.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -5368,7 +5407,7 @@ namespace Saobracaj
             this.toolStripButton203,
             this.toolStripButton206});
             this.toolStripEx45.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx45.Location = new System.Drawing.Point(86, 1);
+            this.toolStripEx45.Location = new System.Drawing.Point(612, 1);
             this.toolStripEx45.Name = "toolStripEx45";
             this.toolStripEx45.Office12Mode = false;
             this.toolStripEx45.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -5473,7 +5512,7 @@ namespace Saobracaj
             this.toolStripEx48.Name = "toolStripEx48";
             this.toolStripEx48.Office12Mode = false;
             this.toolStripEx48.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx48.Size = new System.Drawing.Size(314, 727);
+            this.toolStripEx48.Size = new System.Drawing.Size(41, 727);
             this.toolStripEx48.TabIndex = 7;
             this.toolStripEx48.Text = "Šifarnici ";
             // 
@@ -5819,11 +5858,11 @@ namespace Saobracaj
             this.toolStripButton334,
             this.toolStripButton335});
             this.toolStripEx47.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx47.Location = new System.Drawing.Point(316, 1);
+            this.toolStripEx47.Location = new System.Drawing.Point(43, 1);
             this.toolStripEx47.Name = "toolStripEx47";
             this.toolStripEx47.Office12Mode = false;
             this.toolStripEx47.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx47.Size = new System.Drawing.Size(349, 727);
+            this.toolStripEx47.Size = new System.Drawing.Size(41, 727);
             this.toolStripEx47.TabIndex = 5;
             this.toolStripEx47.Text = "Izvoz";
             this.toolStripEx47.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripEx47_ItemClicked);
@@ -5951,11 +5990,11 @@ namespace Saobracaj
             this.toolStripButton105,
             this.toolStripButton318});
             this.toolStripEx49.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
-            this.toolStripEx49.Location = new System.Drawing.Point(667, 1);
+            this.toolStripEx49.Location = new System.Drawing.Point(86, 1);
             this.toolStripEx49.Name = "toolStripEx49";
             this.toolStripEx49.Office12Mode = false;
             this.toolStripEx49.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.toolStripEx49.Size = new System.Drawing.Size(213, 727);
+            this.toolStripEx49.Size = new System.Drawing.Size(41, 727);
             this.toolStripEx49.TabIndex = 10;
             this.toolStripEx49.Text = "Zadaci";
             // 
@@ -6597,5 +6636,8 @@ namespace Saobracaj
         private System.Windows.Forms.ToolStripButton toolStripButton339;
         private System.Windows.Forms.ToolStripButton toolStripButton340;
         private System.Windows.Forms.ToolStripButton toolStripButton341;
+        private System.Windows.Forms.ToolStripButton toolStripButton342;
+        private System.Windows.Forms.ToolStripButton toolStripButton343;
+        private System.Windows.Forms.ToolStripButton toolStripButton344;
     }
 }

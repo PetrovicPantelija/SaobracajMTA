@@ -16,11 +16,24 @@ namespace Saobracaj.RadniNalozi
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
+
+
         public RN9PrijemCirade()
         {
             InitializeComponent();
             FillGV();
             FillCombo();
+        }
+
+        public RN9PrijemCirade(string PrijemID, string Kamion, string Korisnik)
+        {
+            InitializeComponent();
+            FillGV();
+            FillCombo();
+            txtPrijemID.Text = PrijemID;
+            txtKamion.Text = Kamion;
+            txtNalogIzdao.Text = Korisnik;
+            
         }
         private void FillGV()
         {
@@ -188,6 +201,18 @@ namespace Saobracaj.RadniNalozi
                 }
             }
             catch { }
+        }
+
+        private void RN9PrijemCirade_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            RadniNalozi.InsertRN ir = new InsertRN();
+            ir.InsRN9PrijmCiradeKam(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboSaSredstva.SelectedValue), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text, Convert.ToInt32(cboPostupak.SelectedValue), Convert.ToInt32(cboInspekcijski.SelectedValue), Convert.ToInt32(cboSpedicija.SelectedValue), Convert.ToInt32(cboBrodar.SelectedValue), txtBrojPlombe.Text);
+            FillGV();
         }
     }
 }
