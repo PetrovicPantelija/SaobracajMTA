@@ -517,7 +517,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(153, 23);
+            this.label18.Location = new System.Drawing.Point(206, 23);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(31, 13);
             this.label18.TabIndex = 197;
@@ -560,7 +560,7 @@
             this.cboMP.FormattingEnabled = true;
             this.cboMP.Location = new System.Drawing.Point(88, 39);
             this.cboMP.Name = "cboMP";
-            this.cboMP.Size = new System.Drawing.Size(244, 21);
+            this.cboMP.Size = new System.Drawing.Size(280, 21);
             this.cboMP.TabIndex = 200;
             this.cboMP.SelectedValueChanged += new System.EventHandler(this.cboMP_SelectedValueChanged);
             this.cboMP.Leave += new System.EventHandler(this.cboMP_Leave);

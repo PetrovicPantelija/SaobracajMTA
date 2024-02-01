@@ -414,7 +414,7 @@
             // txtKolicina
             // 
             this.txtKolicina.DecimalPlaces = 2;
-            this.txtKolicina.Location = new System.Drawing.Point(338, 39);
+            this.txtKolicina.Location = new System.Drawing.Point(361, 38);
             this.txtKolicina.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -500,7 +500,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(358, 23);
+            this.label19.Location = new System.Drawing.Point(377, 24);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(44, 13);
             this.label19.TabIndex = 197;
@@ -509,7 +509,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(153, 22);
+            this.label18.Location = new System.Drawing.Point(179, 23);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(31, 13);
             this.label18.TabIndex = 197;
@@ -552,7 +552,7 @@
             this.cboMP.FormattingEnabled = true;
             this.cboMP.Location = new System.Drawing.Point(71, 39);
             this.cboMP.Name = "cboMP";
-            this.cboMP.Size = new System.Drawing.Size(244, 21);
+            this.cboMP.Size = new System.Drawing.Size(275, 21);
             this.cboMP.TabIndex = 200;
             this.cboMP.SelectionChangeCommitted += new System.EventHandler(this.cboMP_SelectionChangeCommitted);
             this.cboMP.Move += new System.EventHandler(this.cboMP_Move);

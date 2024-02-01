@@ -1,5 +1,7 @@
-﻿using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+﻿using Microsoft.Ajax.Utilities;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using Newtonsoft.Json;
+using Org.BouncyCastle.Asn1.Ocsp;
 using Org.BouncyCastle.Crypto;
 using Syncfusion.Windows.Forms.HTMLUI;
 using Syncfusion.XlsIO.Parser.Biff_Records;
@@ -12,6 +14,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Security.Cryptography.Xml;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
@@ -30,13 +33,14 @@ namespace Saobracaj.Pantheon_Export
         }
         private void FillGV()
         {
-            var select = "select UlFak.ID,PredvidjanjeID,VrstaDokumenta,Tip,DatumPrijema,UlFak.Valuta,Kurs,FakturaBr,RTrim(PaNaziv) as Dobavljac,RacunDobavljaca,DatumIzdavanja,DatumPDVa,DatumValute," +
-                "(RTrim(DeIme)+' '+RTrim(DePriimek)) as Referent,Napomena,UlFak.Predvidjanje,IDDobavljaca,UlFak.Referent,UlFak.DatumPlacanja,UlFak.Status,CRMID " +
-                "from UlFak " +
-                "inner join Predvidjanje on UlFak.Predvidjanje=Predvidjanje.ID " +
-                "inner join Partnerji on UlFak.IDDobavljaca=Partnerji.PaSifra " +
-                "inner join Delavci on UlFak.Referent=Delavci.DeSifra " +
-                "order by UlFak.ID desc";
+            var select = "Select UlFak.ID,RTrim(Predvidjanje.PredvidjanjeId) as PredvidjanjeID,VrstaDokumenta,Tip,DatumPrijema,RTrim(UlFak.Valuta) as Valuta,Kurs,FakturaBr,RTrim(PaNaziv) as Dobavljac,RTrim(RacunDobavljaca) as RacunDobavljaca,DatumIzdavanja,DatumPDVa,DatumValute, " +
+                "(RTrim(DeIMe) + ' ' + RTrim(DePriimek)) as Referent, Napomena, UlFak.Status,UlFak.CRMID,Predvidjanje,IDDobavljaca,UlFak.Referent " +
+                "From UlFak " +
+                "Inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID " +
+                "inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
+                "inner join Delavci on UlFak.Referent = Delavci.DeSifra " +
+                "Order by UlFak.ID desc";
+
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new System.Data.DataSet();
@@ -64,11 +68,13 @@ namespace Saobracaj.Pantheon_Export
             dataGridView1.Columns[3].Width = 50;
             dataGridView1.Columns[5].Width = 60;
             dataGridView1.Columns[6].Width = 60;
-            dataGridView1.Columns[8].Width = 180;
-
-            dataGridView1.Columns[15].Visible = false;
-            dataGridView1.Columns[16].Visible = false;
-            dataGridView1.Columns[17].Visible = false;
+            dataGridView1.Columns[8].Width = 230;
+            dataGridView1.Columns[12].Width = 180;
+            /*
+            dataGridView1.Columns[17].Visible=false;//Predvidnjanje
+            dataGridView1.Columns[18].Visible=false;//Dobavljac
+            dataGridView1.Columns[19].Visible = false; // referent
+            */
 
 
         }
@@ -157,22 +163,13 @@ namespace Saobracaj.Pantheon_Export
             {
                 if (row.Selected)
                 {
-                    crm = Convert.ToInt32(row.Cells[20].Value);
-                    var query = "Select Status from UlFak Where CRMID=" + crm;
-                    SqlConnection conn1 = new SqlConnection(connect);
-                    conn1.Open();
-                    SqlCommand cmd = new SqlCommand(query, conn1);
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        status = Convert.ToInt32(dr["Status"].ToString());
-                    }
-                    conn1.Close();
+                    crm = Convert.ToInt32(row.Cells[16].Value);
+                    status=Convert.ToInt32(row.Cells[15].Value);
 
                     if (status == 0)
                     {
                         string ID = "";
-                        string query1 = "Select RTrim(CRMID) as CRMDocumentId,RTrim(Tip) as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,RTrim(UlFak.Valuta) as Currency,Kurs as FXRate,RTrim(RacunDobavljaca) as Doc1, " +
+                        string query1 = "Select RTrim(CRMID) as CRMDocumentId,RTrim(Tip) as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,RTrim(UlFak.Valuta) as Currency,Kurs as FXRate,RTrim(FakturaBr) as Doc1, " +
                             "CONVERT(VARCHAR, DatumIzdavanja, 23) as DateDoc1,CONVERT(VARCHAR, DatumPDVa, 23) as DateVAT,CONVERT(VARCHAR, DatumValute, 23) as DateDue,Rtrim(PredvidjanjeID) as PredvidjanjeId, " +
                             "UlFak.Referent as UserId,Napomena as Napomena,UlFak.ID as ID " +
                             "from UlFak " +
@@ -258,11 +255,11 @@ namespace Saobracaj.Pantheon_Export
                             {
                                 var result = streamReader.ReadToEnd();
                                 response = result.ToString();
-                                MessageBox.Show(response.ToString());
-                                if (response.Contains("Error") == true || response.Contains("Greška") == true || response.Contains("ERROR") == true)
+                                if (response.Contains("Error") == true || response.Contains("Greška") == true || response.Contains("ERROR") == true || response.Contains("Duplikat") == true)
                                 {
                                     MessageBox.Show("Slanje nije uspelo");
-                                    //MessageBox.Show(response.ToString());
+                                    ApiLogovi.Log("UlFak", ID, jsonOutput, response);
+                                    ApiLogovi.Save();
                                     return;
                                 }
                                 else
@@ -280,14 +277,20 @@ namespace Saobracaj.Pantheon_Export
                                     }
                                     MessageBox.Show("Uspešan prenos");
                                 }
+
                             }
+                            ApiLogovi.Log("Predvidjanje",ID, jsonOutput, response);
+                            ApiLogovi.Save();
                         }
+                        
                     }
                     else
                     {
                         MessageBox.Show("Faktura CRMID:" + crm + " je već poslata singronizacijom!");
                     }
-                }   
+                }
+                
+
             }
         }
 
@@ -302,20 +305,25 @@ namespace Saobracaj.Pantheon_Export
                     if (row.Selected)
                     {
                         ID = Convert.ToInt32(row.Cells[0].Value);
-                        Predvidjanje = Convert.ToInt32(row.Cells[15].Value);
+                        
                         VrstaDokumenta = row.Cells[2].Value.ToString();
                         TipDokumenta = row.Cells[3].Value.ToString();
                         DatumPrijema = Convert.ToDateTime(row.Cells[4].Value);
                         Valuta = row.Cells[5].Value.ToString();
                         Kurs = Convert.ToDecimal(row.Cells[6].Value);
                         FakturaBr = row.Cells[7].Value.ToString();
-                        Dobavljac = Convert.ToInt32(row.Cells[16].Value);
+                        
                         RacunDobavljaca = row.Cells[9].Value.ToString();
                         DatumIzdavanja = Convert.ToDateTime(row.Cells[10].Value);
                         DatumPDVa = Convert.ToDateTime(row.Cells[11].Value);
                         DatumValute = Convert.ToDateTime(row.Cells[12].Value);
-                        Referent = Convert.ToInt32(row.Cells[17].Value);
+                        
                         Napomena = row.Cells[14].Value.ToString();
+
+
+                        Predvidjanje = Convert.ToInt32(row.Cells[17].Value);
+                        Dobavljac = Convert.ToInt32(row.Cells[18].Value);
+                        Referent = Convert.ToInt32(row.Cells[19].Value);
                     }
                 }
             }
@@ -324,6 +332,8 @@ namespace Saobracaj.Pantheon_Export
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //int id,int predvidjanje,string vrstaDokumenta, string tipDokumenta, DateTime datumPrijema,string valuta,decimal kurs,string fakturaBr,int dobavljac,string racunDobavljaca, DateTime datumIzdavanja,
+            //DateTime datumPDVa, DateTime datumValute,int referent,string napomena
             UlazneFakture frm = new UlazneFakture(ID,Predvidjanje,VrstaDokumenta,TipDokumenta,DatumPrijema,Valuta,Kurs,FakturaBr,Dobavljac,RacunDobavljaca,DatumIzdavanja,DatumPDVa,DatumValute,Referent,Napomena);
             frm.Show();
         }

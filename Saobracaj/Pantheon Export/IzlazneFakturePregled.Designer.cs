@@ -47,7 +47,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1063, 500);
+            this.dataGridView1.Size = new System.Drawing.Size(1449, 924);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -55,7 +55,7 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.button1.Location = new System.Drawing.Point(1081, 12);
+            this.button1.Location = new System.Drawing.Point(1467, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(86, 29);
             this.button1.TabIndex = 1;
@@ -67,7 +67,7 @@
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.button2.Location = new System.Drawing.Point(1081, 47);
+            this.button2.Location = new System.Drawing.Point(1467, 47);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(86, 29);
             this.button2.TabIndex = 1;
@@ -79,7 +79,7 @@
             // 
             this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExport.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnExport.Location = new System.Drawing.Point(1081, 166);
+            this.btnExport.Location = new System.Drawing.Point(1467, 166);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(86, 43);
             this.btnExport.TabIndex = 2;
@@ -92,7 +92,7 @@
             this.btnGetUplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGetUplate.BackColor = System.Drawing.Color.MediumBlue;
             this.btnGetUplate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnGetUplate.Location = new System.Drawing.Point(1081, 119);
+            this.btnGetUplate.Location = new System.Drawing.Point(1467, 119);
             this.btnGetUplate.Name = "btnGetUplate";
             this.btnGetUplate.Size = new System.Drawing.Size(86, 41);
             this.btnGetUplate.TabIndex = 3;
@@ -113,7 +113,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1179, 524);
+            this.ClientSize = new System.Drawing.Size(1565, 948);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.btnGetUplate);
             this.Controls.Add(this.btnExport);

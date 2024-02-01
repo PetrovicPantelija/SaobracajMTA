@@ -1,5 +1,6 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using Newtonsoft.Json.Linq;
+using Org.BouncyCastle.Asn1.Ocsp;
 using Syncfusion.Windows.Forms.Tools;
 using System;
 using System.Collections.Generic;
@@ -32,8 +33,14 @@ namespace Saobracaj.Pantheon_Export
         }
         private void FillGV()
         {
-            var select = "Select NosiociTroskova.ID,NosilacTroska,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska,Grupa,RTrim(PaNaziv) as Kupac,RTrim(SifraSubjekta) as Odeljenje,NosiociTroskova.Status From NosiociTroskova inner join Partnerji on NosiociTroskova.Kupac=Partnerji.PaSifra " +
-                "inner join Odeljenja on NosiociTroskova.Odeljenje=Odeljenja.ID WHere NosiociTroskova.Status=0 order by ID desc";
+            var select = "Select NosiociTroskova.ID,NosilacTroska,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska,Grupa,RTrim(PaNaziv) as Kupac,RTrim(SifraSubjekta) as Odeljenje, " +
+                "(RTrim(Opportunity.OppID) + ' - ' + RTrim(Opportunity.NazivPosla)) as Opportunity, Kupac, NosiociTroskova.Odeljenje,NosiociTroskova.OppID,Posao,NosiociTroskova.Status " +
+                "From NosiociTroskova " +
+                "inner join Partnerji on NosiociTroskova.Kupac = Partnerji.PaSifra " +
+                "inner join Odeljenja on NosiociTroskova.Odeljenje = Odeljenja.ID " +
+                "Inner join Opportunity on NosiociTroskova.OppID = Opportunity.ID " +
+                "WHere NosiociTroskova.Status = 0 order by ID desc";
+
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -47,7 +54,12 @@ namespace Saobracaj.Pantheon_Export
             dataGridView1.Columns[3].Width = 150;
             dataGridView1.Columns[4].Width = 300;
             dataGridView1.Columns[5].Width = 150;
-            dataGridView1.Columns[6].Width = 60;
+            dataGridView1.Columns[6].Width = 300;
+            dataGridView1.Columns[7].Visible = false;
+            dataGridView1.Columns[8].Visible=false;
+            dataGridView1.Columns[9].Visible=false;
+            dataGridView1.Columns[10].Width = 80;
+            dataGridView1.Columns[11].Width = 60;
 
 
             dataGridView1.BorderStyle = BorderStyle.FixedSingle;
@@ -162,9 +174,11 @@ namespace Saobracaj.Pantheon_Export
                         txtID.Text = row.Cells[0].Value.ToString().TrimEnd();
                         txtNosilacTroska.Text = row.Cells[1].Value.ToString().TrimEnd();
                         txtNazivNosioca.Text = row.Cells[2].Value.ToString().TrimEnd();
-                        //txtGrupa.Text = row.Cells[3].Value.ToString().TrimEnd();
-                        //cboKupac.SelectedValue = row.Cells[4].Value.ToString();
-                        //txtOdeljenje.Text = row.Cells[5].Value.ToString().TrimEnd();
+                        cboGrupa.Text = row.Cells[3].Value.ToString();
+                        cboOpportunity.SelectedValue = Convert.ToInt32(row.Cells[9].Value.ToString());
+                        cboPosao.SelectedValue = Convert.ToInt32(row.Cells[10].Value.ToString());
+                        cboKupac.SelectedValue = Convert.ToInt32(row.Cells[7].Value.ToString());
+                        cboOdeljenje.SelectedValue = Convert.ToInt32(row.Cells[8].Value.ToString());
                     }
                 }
             }
@@ -175,13 +189,13 @@ namespace Saobracaj.Pantheon_Export
         {
             int ID;
             string NT, NTNaziv, Grupa, Kupac, Odeljenje;
+            string json;
             try
             {
                 if (dataGridView1.Rows.Count > 0)
                 {
                     foreach (DataGridViewRow row in dataGridView1.Rows)
                     {
-
                         ID = Convert.ToInt32(row.Cells[0].Value.ToString());
                         NT = row.Cells[1].Value.ToString().TrimEnd();
                         NTNaziv = row.Cells[2].Value.ToString().TrimEnd();
@@ -192,29 +206,32 @@ namespace Saobracaj.Pantheon_Export
                         var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/Strn/StrnPost");
                         httpWebRequest.ContentType = "application/json";
                         httpWebRequest.Method = "POST";
+
                         using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                         {
-                            string json = "{" +
-                                           "\n\"CostDrv\":\"" + NT + "\"," +
-                                           "\n\"CostName\":\"" + NTNaziv + "\"," +
-                                           "\n\"Classif\":\"" + Grupa + "\"," +
-                                          "\n\"Consignee\":\"" + Kupac + "\"," +
-                                           "\n\"Dept\":\"" + Odeljenje + "\"\n}";
-                            MessageBox.Show(json.ToString());
+                            json = "{" +
+                                   "\n\"CostDrv\":\"" + NT + "\"," +
+                                   "\n\"CostName\":\"" + NTNaziv + "\"," +
+                                   "\n\"Classif\":\"" + Grupa + "\"," +
+                                   "\n\"Consignee\":\"" + Kupac + "\"," +
+                                   "\n\"Dept\":\"" + Odeljenje + "\"\n}";
                             streamWriter.Write(json);
                         }
-                        
+
                         string response = "";
+
                         var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+
                         using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
                         {
                             var result = streamReader.ReadToEnd();
                             response = result.ToString();
-                            MessageBox.Show(response.ToString());
-                            if (response.Contains("Error") == true || response.Contains("Greška") == true || response.Contains("ERROR") == true)
+
+                            if (response.Contains("Error")==true || response.Contains("Greška")==true || response.Contains("ERROR")==true || response.Contains("Duplikat") == true)
                             {
                                 MessageBox.Show("Slanje nije uspelo");
-                                //MessageBox.Show(response.ToString());
+                                ApiLogovi.Log("NT", ID.ToString(), json, response);
+                                ApiLogovi.Save();
                                 return;
                             }
                             else
@@ -223,7 +240,7 @@ namespace Saobracaj.Pantheon_Export
                                 {
                                     using (SqlCommand cmd = conn.CreateCommand())
                                     {
-                                        cmd.CommandText = "UPDATE NosiociTroskova SET Status = 1  WHERE ID = " + ID;
+                                        cmd.CommandText = "UPDATE NosiociTroskova SET Status = 1 WHERE ID = " + ID;
                                         conn.Open();
                                         cmd.ExecuteNonQuery();
                                         conn.Close();
@@ -232,33 +249,37 @@ namespace Saobracaj.Pantheon_Export
                                 MessageBox.Show("Uspešan prenos");
                             }
                         }
+                        ApiLogovi.Log("NT", ID.ToString(), json, response);
+                        ApiLogovi.Save();
                     }
+
                 }
             }
-            catch { }
-        }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
 
+            FillGV();
+        }
+        
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             panel1.Visible = true;
-            panel1.Location = new System.Drawing.Point(12,30);
-            panel1.Size = new Size(1140, 507);
-            var select = "Select * from NosiociTroskova order by ID desc";
+
+            var select = "Select NosiociTroskova.ID,NosilacTroska,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska,Grupa,RTrim(PaNaziv) as Kupac,RTrim(SifraSubjekta) as Odeljenje, " +
+                "(RTrim(Opportunity.OppID) + ' - ' + RTrim(Opportunity.NazivPosla)) as Opportunity, Kupac, NosiociTroskova.Odeljenje,NosiociTroskova.OppID,Posao,NosiociTroskova.Status " +
+                "From NosiociTroskova " +
+                "inner join Partnerji on NosiociTroskova.Kupac = Partnerji.PaSifra " +
+                "inner join Odeljenja on NosiociTroskova.Odeljenje = Odeljenja.ID " +
+                "Inner join Opportunity on NosiociTroskova.OppID = Opportunity.ID " +
+                "order by ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
             dataGridView2.ReadOnly = true;
             dataGridView2.DataSource = ds.Tables[0];
-            /*
-            dataGridView1.Columns[0].Width = 50;
-            dataGridView1.Columns[1].Width = 150;
-            dataGridView1.Columns[2].Width = 220;
-            dataGridView1.Columns[3].Width = 150;
-            dataGridView1.Columns[4].Width = 300;
-            dataGridView1.Columns[5].Width = 150;
-            dataGridView1.Columns[6].Width = 60;
-            */
 
             dataGridView2.BorderStyle = BorderStyle.FixedSingle;
             dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
@@ -271,6 +292,20 @@ namespace Saobracaj.Pantheon_Export
             dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+
+            dataGridView2.Columns[0].Width = 50;
+            dataGridView2.Columns[1].Width = 150;
+            dataGridView2.Columns[2].Width = 220;
+            dataGridView2.Columns[3].Width = 150;
+            dataGridView2.Columns[4].Width = 300;
+            dataGridView2.Columns[5].Width = 150;
+            dataGridView2.Columns[6].Width = 300;
+            dataGridView2.Columns[7].Visible = false;
+            dataGridView2.Columns[8].Visible = false;
+            dataGridView2.Columns[9].Visible = false;
+            dataGridView2.Columns[10].Width = 80;
+            dataGridView2.Columns[11].Width = 60;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -299,15 +334,15 @@ namespace Saobracaj.Pantheon_Export
             {
                 if (row.Selected)
                 {
-                    txtID.Text = row.Cells[0].Value.ToString();
-                    txtNosilacTroska.Text = row.Cells[1].Value.ToString();
-                    txtNazivNosioca.Text = row.Cells[2].Value.ToString();
+                    txtID.Text = row.Cells[0].Value.ToString().TrimEnd();
+                    txtNosilacTroska.Text = row.Cells[1].Value.ToString().TrimEnd();
+                    txtNazivNosioca.Text = row.Cells[2].Value.ToString().TrimEnd();
                     cboGrupa.Text = row.Cells[3].Value.ToString();
-                    cboKupac.SelectedValue = Convert.ToInt32(row.Cells[4].Value.ToString());
-                    cboOdeljenje.SelectedValue = Convert.ToInt32(row.Cells[5].Value.ToString());
-                    statusNT = Convert.ToInt32(row.Cells[6].Value.ToString());
-                    cboOpportunity.SelectedValue = Convert.ToInt32(row.Cells[7].Value.ToString());
-                    cboPosao.SelectedValue = Convert.ToInt32(row.Cells[8].Value.ToString());
+                    cboOpportunity.SelectedValue = Convert.ToInt32(row.Cells[9].Value.ToString());
+                    cboPosao.SelectedValue = Convert.ToInt32(row.Cells[10].Value.ToString());
+                    cboKupac.SelectedValue = Convert.ToInt32(row.Cells[7].Value.ToString());
+                    cboOdeljenje.SelectedValue = Convert.ToInt32(row.Cells[8].Value.ToString());
+                    statusNT = Convert.ToInt32(row.Cells[11].Value.ToString());
                 }
             }
         }
