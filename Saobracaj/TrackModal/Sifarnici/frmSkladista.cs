@@ -147,14 +147,14 @@ namespace Testiranje.Sifarnici
             if (status == true)
             {
                 InsertSkladista ins = new InsertSkladista();
-                ins.InsSkladista(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene);
+                ins.InsSkladista(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtKapacitet.Text);
                 status = false;
             }
             else
             {
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertSkladista upd = new InsertSkladista();
-                upd.UpdSkladista(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene);
+                upd.UpdSkladista(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtKapacitet.Text);
             }
             RefreshDataGrid();
         }
@@ -179,7 +179,7 @@ namespace Testiranje.Sifarnici
 
         private void RefreshDataGrid()
         {
-            var select = " SELECT [ID] ,Naziv,[Datum],[Korisnik] FROM [dbo].[Skladista] order by ID";
+            var select = " SELECT [ID] ,Naziv,Kapacitet, [Datum],[Korisnik] FROM [dbo].[Skladista] order by ID";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -212,14 +212,18 @@ namespace Testiranje.Sifarnici
             dataGridView1.Columns[1].HeaderText = "Naziv";
             dataGridView1.Columns[1].Width = 150;
 
-
             DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Datum";
+            dataGridView1.Columns[2].HeaderText = "Kapacitet";
             dataGridView1.Columns[2].Width = 100;
 
+
             DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Korisnik";
+            dataGridView1.Columns[3].HeaderText = "Datum";
             dataGridView1.Columns[3].Width = 100;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Korisnik";
+            dataGridView1.Columns[4].Width = 100;
         }
 
         private void VratiPodatke(string ID)
@@ -229,13 +233,14 @@ namespace Testiranje.Sifarnici
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT ID , Naziv from Skladista where ID=" + txtSifra.Text, con);
+            SqlCommand cmd = new SqlCommand("SELECT ID , Naziv,Kapacitet from Skladista where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
                 // Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene
                 txtNaziv.Text = dr["Naziv"].ToString();
+                txtKapacitet.Text = dr["Kapacitet"].ToString();
             }
 
             con.Close();

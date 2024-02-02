@@ -104,6 +104,7 @@
             this.label20 = new System.Windows.Forms.Label();
             this.txtIDGreske = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.btnManipulacija.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTara)).BeginInit();
@@ -129,7 +130,8 @@
             this.tsNapred,
             this.tsPoslednja,
             this.toolStripLabel1,
-            this.toolStripLabel2});
+            this.toolStripLabel2,
+            this.toolStripButton1});
             this.btnManipulacija.Location = new System.Drawing.Point(0, 0);
             this.btnManipulacija.Name = "btnManipulacija";
             this.btnManipulacija.Size = new System.Drawing.Size(1075, 27);
@@ -978,6 +980,16 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(190, 24);
+            this.toolStripButton1.Text = "AŽURIRAJ TEKUCI KONTEJNER";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // frmCIR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1144,5 +1156,6 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox txtIDGreske;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

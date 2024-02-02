@@ -57,9 +57,9 @@ namespace Saobracaj.RadniNalozi
             gridGroupingControl2.ResetTableDescriptor();
             gridGroupingControl2.Refresh();
             var select = "";
-            select = "select TerminalRadniNalozi.BrojKontejnera, TipKontenjera.Naziv as TipKontejnera, Skladista.Naziv, Pozicija.Opis, RNPrijemVoza.NaPozicijuSklad ,p1.PaNaziv as Brodar, UvozKonacna.BukingBrodara,  Voz.BrVoza,Voz.Relacija, TerminalRadniNalozi.IDUsluge, VrstaManipulacije.Naziv as NAzivUSluge, " +
+            select = "select TerminalRadniNalozi.BrojKontejnera, RNPrijemVoza.Zavrsen , TipKontenjera.Naziv as TipKontejnera, Skladista.Naziv, Pozicija.Opis, RNPrijemVoza.NaPozicijuSklad ,p1.PaNaziv as Brodar, UvozKonacna.BukingBrodara,  Voz.BrVoza,Voz.Relacija, TerminalRadniNalozi.IDUsluge, VrstaManipulacije.Naziv as NAzivUSluge, " +
 " PArtnerji.PaNaziv as Uvoznik, RNPrijemVoza.DatumRasporeda, RNPrijemVoza.NalogIzdao, " +
-" RNPrijemVoza.DatumRealizacije, RNPrijemVoza.NalogRealizovao, RNPrijemVoza.Napomena as RNNapomena, Uradjen " +
+" RNPrijemVoza.DatumRealizacije, RNPrijemVoza.NalogRealizovao, RNPrijemVoza.Napomena as RNNapomena, Zavrsen " +
 " , p2.PaNaziv as NalogodavacZaVoz, p3.PaNaziv as NalogavacUsluge,  p4.PaNaziv as NalogavacDrumski, UvozKonacna.BrojPlombe1, UvozKonacna.BrojPlombe2, UvozKonacna.Napomena, UvozKonacna.Napomena1 " +
 " from TerminalRadniNalozi " +
 " inner join RNPrijemVoza on RNPrijemVoza.ID = TerminalRadniNalozi.IDRadnogNaloga " +
@@ -458,6 +458,55 @@ namespace Saobracaj.RadniNalozi
             gridGroupingControl2.ShowGroupDropArea = true;
             this.gridGroupingControl2.TopLevelGroupOptions.ShowFilterBar = true;
             foreach (GridColumnDescriptor column in this.gridGroupingControl2.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            gridGroupingControl1.DataSource = null;
+            gridGroupingControl1.ResetTableDescriptor();
+            gridGroupingControl1.Refresh();
+            var select = "";
+            select = "   select TerminalRadniNalozi.BrojKontejnera, KontejnerTekuce.Pokret, KontejnerStatus.Naziv as TrenutniStatus, s1.Naziv as TrenutnoSkladiste, " +
+" KontejnerTekuce.Ostecenja as Ispravnost,   TipKontenjera.Naziv as TipKontejnera, Skladista.Naziv as SkladisteRN, Pozicija.Opis as PozicijaRN,  " +
+" RNPrijemVoza.NaPozicijuSklad ,PrijemKontejneraVoz.VremeDolaska as ETADolaska, PrijemKontejneraVoz.VremeDolaska as ATADolaska,  " +
+" UvozKonacna.Prioritet, UvozKonacna.AtaOtpreme, KontejnerskiTerminali.Naziv as RL_SRBTERMINAL, p1.PaNaziv as Brodar, " +
+" UvozKonacna.BukingBrodara,  Voz.BrVoza,Voz.Relacija, TerminalRadniNalozi.IDUsluge, VrstaManipulacije.Naziv as NAzivUSluge, " +
+" PArtnerji.PaNaziv as Uvoznik,   p2.PaNaziv as NalogodavacZaVoz, p3.PaNaziv as NalogavacUsluge,  p4.PaNaziv as NalogavacDrumski, " +
+" UvozKonacna.BrojPlombe1, UvozKonacna.BrojPlombe2, UvozKonacna.Napomena,  UvozKonacna.Napomena1 from TerminalRadniNalozi " +
+" inner join RNPrijemVoza on RNPrijemVoza.ID = TerminalRadniNalozi.IDRadnogNaloga " +
+" inner join Skladista on Skladista.ID = RNPrijemVoza.NaSkladiste " +
+" inner join Pozicija on Pozicija.ID = RNPrijemVoza.NaPozicijuSklad " +
+" inner join VrstaManipulacije on VrstaManipulacije.ID = TerminalRadniNalozi.IDUsluge " +
+" inner join PrijemKontejneraVoz on RNPrijemVoza.PrijemID = PrijemKontejneraVoz.ID " +
+" inner join Voz on PrijemKontejneraVoz.IdVoza = Voz.ID " +
+" inner join UvozKonacna on UvozKonacna.BrojKontejnera = RNPrijemVoza.BrojKontejnera " +
+" inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
+" inner join PArtnerji On PArtnerji.PaSifra = UvozKonacna.Uvoznik " +
+" inner join PArtnerji as P1 On P1.PaSifra = UvozKonacna.Brodar " +
+" inner join PArtnerji as P2 On P2.PaSifra = UvozKonacna.Nalogodavac1 " +
+" inner join PArtnerji as P3 On P3.PaSifra = UvozKonacna.Nalogodavac2 " +
+" inner join PArtnerji as P4 On P4.PaSifra = UvozKonacna.Nalogodavac2 " +
+" inner join KontejnerskiTerminali on KontejnerskiTerminali.id = UvozKonacna.RLTerminali " +
+" inner join KontejnerTekuce on KontejnerTekuce.Kontejner = UvozKonacna.BrojKontejnera " +
+" inner join KontejnerStatus on KontejnerStatus.ID = KontejnerTekuce.StatusKontejnera " +
+" inner join Skladista s1 on s1.Id = KontejnerTekuce.Skladiste  inner join Pozicija po1 on po1.Id = KontejnerTekuce.Pozicija " +
+" where TerminalRadniNalozi.TIPRN = '1-Prijem kontejnera VOZ' and PrijemKontejneraVoz.Vozom = 1";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
             {
                 column.AllowFilter = true;
             }

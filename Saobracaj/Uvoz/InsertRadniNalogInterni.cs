@@ -410,7 +410,7 @@ namespace Saobracaj.Uvoz
                 }
             }
         }
-        public void UpdRadniNalogInterniZavrsen(int ID)
+        public void UpdRadniNalogInterniZavrsen(int ID, string Korisnik)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -424,7 +424,16 @@ namespace Saobracaj.Uvoz
             id.Value = ID;
             cmd.Parameters.Add(id);
 
-           
+
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName = "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Size = 50;
+            korisnik.Direction = ParameterDirection.Input;
+            korisnik.Value = Korisnik;
+            cmd.Parameters.Add(korisnik);
+
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

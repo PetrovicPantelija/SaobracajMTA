@@ -34,9 +34,9 @@ namespace Saobracaj.Uvoz
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(296, 24);
+            this.button1.Location = new System.Drawing.Point(12, 23);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(343, 23);
+            this.button1.Size = new System.Drawing.Size(349, 42);
             this.button1.TabIndex = 0;
             this.button1.Text = "Formiranje prijemnice voza na osnovu plana Uvoza";
             this.button1.UseVisualStyleBackColor = true;

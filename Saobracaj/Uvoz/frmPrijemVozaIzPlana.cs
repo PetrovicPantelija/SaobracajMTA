@@ -16,22 +16,23 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmPrijemVozaIzPlana : Form
+    public partial class frmPrijemVozaIzPlana : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
-        string KorisnikCene = "Panta";
+        string KorisnikCene = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
         public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
 
         public frmPrijemVozaIzPlana()
         {
             InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+
         }
 
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
             txtSifra.Enabled = false;
-          
             dtpDatumPrijema.Value = DateTime.Now;
             dtpDatumPrijema.Enabled = true;
         }
@@ -154,18 +155,24 @@ namespace Saobracaj.Uvoz
 
             var commandBuilder5 = new SqlCommandBuilder(dataAdapter5);
             var ds5 = new DataSet();
-            dataAdapter4.Fill(ds5);
-            cboOperaterHR.DataSource = ds4.Tables[0];
+            dataAdapter5.Fill(ds5);
+            cboOperaterHR.DataSource = ds5.Tables[0];
             cboOperaterHR.DisplayMember = "PaNaziv";
             cboOperaterHR.ValueMember = "PaSifra";
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            InsertUvozKonacna ins = new InsertUvozKonacna();
-            ins.PrenesiPlanUtovaraUPrijemVoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
-            VratiPodatkeMax();
-            RefreshDataGrid();
+            if (txtSifra.Text == "")
+            { return; }
+            else
+            {
+                InsertUvozKonacna ins = new InsertUvozKonacna();
+                ins.PrenesiPlanUtovaraUPrijemVoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+                VratiPodatkeMax();
+                RefreshDataGrid();
+            }
+            
         }
 
         private void RefreshDataGrid()
@@ -214,7 +221,7 @@ namespace Saobracaj.Uvoz
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "RB";
             dataGridView1.Columns[1].Width = 30;
-
+            /*
             DataGridViewColumn column3 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "Br Dok";
             dataGridView1.Columns[2].Width = 30;
@@ -312,7 +319,7 @@ namespace Saobracaj.Uvoz
             DataGridViewColumn column26 = dataGridView1.Columns[25];
             dataGridView1.Columns[25].HeaderText = "Napomena stav";
             dataGridView1.Columns[25].Width = 70;
-
+            */
 
         }
 

@@ -31,10 +31,10 @@ namespace Saobracaj.Sifarnici
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmScenario));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -64,14 +64,9 @@ namespace Saobracaj.Sifarnici
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(627, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(990, 27);
             this.toolStrip1.TabIndex = 201;
             this.toolStrip1.Text = "Osveži";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tsNew
             // 
@@ -102,6 +97,11 @@ namespace Saobracaj.Sifarnici
             this.tsDelete.Size = new System.Drawing.Size(24, 24);
             this.tsDelete.Text = "toolStripButton1";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -109,10 +109,10 @@ namespace Saobracaj.Sifarnici
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(20, 265);
+            this.dataGridView1.Location = new System.Drawing.Point(20, 242);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(587, 196);
+            this.dataGridView1.Size = new System.Drawing.Size(950, 219);
             this.dataGridView1.TabIndex = 238;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -143,7 +143,7 @@ namespace Saobracaj.Sifarnici
             // lblNaziv
             // 
             this.lblNaziv.AutoSize = true;
-            this.lblNaziv.Location = new System.Drawing.Point(313, 39);
+            this.lblNaziv.Location = new System.Drawing.Point(329, 39);
             this.lblNaziv.Name = "lblNaziv";
             this.lblNaziv.Size = new System.Drawing.Size(34, 13);
             this.lblNaziv.TabIndex = 234;
@@ -227,7 +227,7 @@ namespace Saobracaj.Sifarnici
             this.btnRacun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRacun.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRacun.ForeColor = System.Drawing.Color.White;
-            this.btnRacun.Location = new System.Drawing.Point(20, 232);
+            this.btnRacun.Location = new System.Drawing.Point(20, 196);
             this.btnRacun.Name = "btnRacun";
             this.btnRacun.Size = new System.Drawing.Size(187, 27);
             this.btnRacun.TabIndex = 247;
@@ -240,7 +240,7 @@ namespace Saobracaj.Sifarnici
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(627, 473);
+            this.ClientSize = new System.Drawing.Size(990, 473);
             this.Controls.Add(this.btnRacun);
             this.Controls.Add(this.cboStatus);
             this.Controls.Add(this.label5);

@@ -16,7 +16,7 @@ using System.Configuration;
 
 namespace Testiranje.Dokumeta
 {
-    public partial class frmPregledVozova : Form
+    public partial class frmPregledVozova : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmPregledVozova";
         public bool Pravo;
@@ -27,9 +27,11 @@ namespace Testiranje.Dokumeta
         bool delete;
         string Kor = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
         string niz = "";
-        string KorisnikCene = "Panta";
+        string KorisnikCene = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
         public frmPregledVozova()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+
             InitializeComponent();
             IdGrupe();
             IdForme();
@@ -40,6 +42,8 @@ namespace Testiranje.Dokumeta
         }
         public frmPregledVozova(string Korisnik)
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+
             InitializeComponent();
             KorisnikCene = Korisnik;
             IdGrupe();

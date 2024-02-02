@@ -2012,7 +2012,19 @@
     <Compile Include="RadniNalozi\frmAnalizaRadnihNaloga.Designer.cs">
       <DependentUpon>frmAnalizaRadnihNaloga.cs</DependentUpon>
     </Compile>
+    <Compile Include="RadniNalozi\frmDodelaSkladista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalozi\frmDodelaSkladista.Designer.cs">
+      <DependentUpon>frmDodelaSkladista.cs</DependentUpon>
+    </Compile>
     <Compile Include="RadniNalozi\InsertRN.cs" />
+    <Compile Include="RadniNalozi\frmPregledSkladista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalozi\frmPregledSkladista.designer.cs">
+      <DependentUpon>frmPregledSkladista.cs</DependentUpon>
+    </Compile>
     <Compile Include="RadniNalozi\RN2OtpremaVoza.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3199,6 +3211,12 @@
     <Compile Include="Uvoz\frmKontejnerskiTerminali.Designer.cs">
       <DependentUpon>frmKontejnerskiTerminali.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\frmKontejnerTekuce.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmKontejnerTekuce.Designer.cs">
+      <DependentUpon>frmKontejnerTekuce.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\frmNapomenaZaPozicioniranje.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3857,6 +3875,7 @@
     <EmbeddedResource Include="GMap.resx">
       <DependentUpon>GMap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Izvestaji\frmCIRGreske.rdlc" />
     <EmbeddedResource Include="Izvestaji\frmDodatniList.resx">
       <DependentUpon>frmDodatniList.cs</DependentUpon>
     </EmbeddedResource>
@@ -3887,6 +3906,8 @@
     <EmbeddedResource Include="Izvestaji\Kol65.rdlc" />
     <EmbeddedResource Include="Izvestaji\Najava.rdlc" />
     <EmbeddedResource Include="Izvestaji\NajavaPrim.rdlc" />
+    <EmbeddedResource Include="Izvestaji\rptCIR.rdlc" />
+    <EmbeddedResource Include="Izvestaji\rptCIRGreske.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptEvidencijaKvarova.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptMUPDozvola.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptUkupnoZaPeriod.rdlc" />
@@ -4097,6 +4118,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\frmAnalizaRadnihNaloga.resx">
       <DependentUpon>frmAnalizaRadnihNaloga.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalozi\frmDodelaSkladista.resx">
+      <DependentUpon>frmDodelaSkladista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalozi\frmPregledSkladista.resx">
+      <DependentUpon>frmPregledSkladista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\RN2OtpremaVoza.resx">
       <DependentUpon>RN2OtpremaVoza.cs</DependentUpon>
@@ -4587,6 +4614,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmKontejnerskiTerminali.resx">
       <DependentUpon>frmKontejnerskiTerminali.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmKontejnerTekuce.resx">
+      <DependentUpon>frmKontejnerTekuce.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmNapomenaZaPozicioniranje.resx">
       <DependentUpon>frmNapomenaZaPozicioniranje.cs</DependentUpon>

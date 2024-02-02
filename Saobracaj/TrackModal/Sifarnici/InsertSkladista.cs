@@ -14,7 +14,7 @@ namespace Testiranje.Sifarnici
     class InsertSkladista
     {
 
-        public void InsSkladista(string Naziv, DateTime Datum, string Korisnik)
+        public void InsSkladista(string Naziv, DateTime Datum, string Korisnik, string Kapacitet)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -45,6 +45,14 @@ namespace Testiranje.Sifarnici
             parameter5.Direction = ParameterDirection.Input;
             parameter5.Value = Korisnik;
             myCommand.Parameters.Add(parameter5);
+
+            SqlParameter parameter6 = new SqlParameter();
+            parameter6.ParameterName = "@Kapacitet";
+            parameter6.SqlDbType = SqlDbType.NVarChar;
+            parameter6.Size = 40;
+            parameter6.Direction = ParameterDirection.Input;
+            parameter6.Value = Korisnik;
+            myCommand.Parameters.Add(parameter6);
 
 
 
@@ -85,7 +93,7 @@ namespace Testiranje.Sifarnici
             }
         }
 
-        public void UpdSkladista(int ID, string Naziv, DateTime Datum, string Korisnik)
+        public void UpdSkladista(int ID, string Naziv, DateTime Datum, string Korisnik, string Kapacitet)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -124,6 +132,14 @@ namespace Testiranje.Sifarnici
             parameter5.Direction = ParameterDirection.Input;
             parameter5.Value = Korisnik;
             myCommand.Parameters.Add(parameter5);
+
+            SqlParameter parameter6 = new SqlParameter();
+            parameter6.ParameterName = "@Kapacitet";
+            parameter6.SqlDbType = SqlDbType.NVarChar;
+            parameter6.Size = 40;
+            parameter6.Direction = ParameterDirection.Input;
+            parameter6.Value = Korisnik;
+            myCommand.Parameters.Add(parameter6);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

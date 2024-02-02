@@ -439,7 +439,7 @@ namespace Saobracaj.Uvoz
                 {
                     if (row.Selected)
                     {
-                        ins.UpdRadniNalogInterniZavrsen(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                        ins.UpdRadniNalogInterniZavrsen(Convert.ToInt32(row.Cells[0].Value.ToString()), "");
                     }
                 }
             }

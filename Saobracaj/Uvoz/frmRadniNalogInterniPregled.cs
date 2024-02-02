@@ -18,10 +18,12 @@ namespace Saobracaj.Uvoz
 {
     public partial class frmRadniNalogInterniPregled : Syncfusion.Windows.Forms.Office2010Form
     {
-        public frmRadniNalogInterniPregled()
+        string Korisnik = "";
+        public frmRadniNalogInterniPregled(string KorisnikTekuci)
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             InitializeComponent();
+            Korisnik = KorisnikTekuci;
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -79,7 +81,7 @@ namespace Saobracaj.Uvoz
             }
 
             GridConditionalFormatDescriptor gcfd = new GridConditionalFormatDescriptor();
-            gcfd.Appearance.AnyRecordFieldCell.BackColor = Color.Green;
+            gcfd.Appearance.AnyRecordFieldCell.BackColor = Color.BlueViolet;
             gcfd.Appearance.AnyRecordFieldCell.TextColor = Color.White;
           
             gcfd.Expression = "[StatusIzdavanja] =  'DOPUNA'";
@@ -92,9 +94,17 @@ namespace Saobracaj.Uvoz
             gcfd2.Appearance.AnyRecordFieldCell.TextColor = Color.White;
 
             gcfd2.Expression = "[StatusIzdavanja] =  'STORNO'";
-
-            //To add the conditional format instances to the ConditionalFormats collection. 
             this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd2);
+            
+            GridConditionalFormatDescriptor gcfd3 = new GridConditionalFormatDescriptor();
+            gcfd3.Appearance.AnyRecordFieldCell.BackColor = Color.Green;
+            gcfd3.Appearance.AnyRecordFieldCell.TextColor = Color.Yellow;
+
+            gcfd3.Expression = "[Uradjen] =  '1'";
+             this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd3);
+            //To add the conditional format instances to the ConditionalFormats collection. 
+           
+      
             this.gridGroupingControl1.TableDescriptor.Columns[0].Width = 30;
             this.gridGroupingControl1.TableDescriptor.Columns[1].Width = 70;
 
@@ -250,6 +260,21 @@ namespace Saobracaj.Uvoz
                     InsertRadniNalogInterni ins = new InsertRadniNalogInterni();
                     ins.PromeniStatusStorno(Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()));
                   
+                }
+            }
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            if (this.gridGroupingControl1.Table.SelectedRecords.Count > 0)
+            {
+                foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
+                {
+                    Saobracaj.Uvoz.InsertRadniNalogInterni ins = new Saobracaj.Uvoz.InsertRadniNalogInterni();
+                    ins.UpdRadniNalogInterniZavrsen(Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()), Korisnik);
+                    //To get the cell value of particular column of selected records   
+                    //  string cellValue = selectedRecord.Record.GetValue("ID").ToString();
+                    // MessageBox.Show(cellValue);
                 }
             }
         }
