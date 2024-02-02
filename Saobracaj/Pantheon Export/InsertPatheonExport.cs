@@ -327,7 +327,7 @@ namespace Saobracaj.Pantheon_Export
                     catch (SqlException ex)
                     {
                         transaction.Rollback();
-                        MessageBox.Show("Neuspesan upis predvidjanja", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Neuspesan upis predvidjanja\n"+ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 conn.Close();

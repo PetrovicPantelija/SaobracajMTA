@@ -1761,6 +1761,7 @@
       <DependentUpon>frmVrstaNepravilnosti.cs</DependentUpon>
     </Compile>
     <Compile Include="Neispravnosti\InsertNepravilnosti.cs" />
+    <Compile Include="Pantheon Export\ApiLogovi.cs" />
     <Compile Include="Pantheon Export\InsertPatheonExport.cs" />
     <Compile Include="Pantheon Export\IzlazneFakture.cs">
       <SubType>Form</SubType>

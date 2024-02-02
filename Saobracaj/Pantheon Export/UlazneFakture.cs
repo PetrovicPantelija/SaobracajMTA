@@ -18,44 +18,54 @@ namespace Saobracaj.Pantheon_Export
     public partial class UlazneFakture : Form
     {
         int rb;
-        int ID;
+        int ID,Predvidjanje,Dobavljac,Referent;
+        string VrstaDokumenta, TipDokumenta, Valuta, FakturaBr, RacunDobavljaca, Napomena;
+        DateTime DatumPrijema, DatumIzdavanja, DatumPDVa, DatumValute;
+        decimal Kurs;
+
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
         public UlazneFakture()
         {
             InitializeComponent();
             FillCombo();
-            //FillGV();
         }
+
         public UlazneFakture(int id,int predvidjanje,string vrstaDokumenta, string tipDokumenta,DateTime datumPrijema,string valuta,decimal kurs,string fakturaBr,int dobavljac,string racunDobavljaca,DateTime datumIzdavanja,
             DateTime datumPDVa,DateTime datumValute,int referent,string napomena)
         {
             InitializeComponent();
             ID = id;
-
             txtID.Text = ID.ToString();
-            cboCRM.SelectedValue = predvidjanje;
-            cboVrstaDok.Text = vrstaDokumenta;
-            cboTip.Text= tipDokumenta;
-            cboValuta.SelectedValue= valuta;
-            txtKurs.Text = kurs.ToString();
-            txtBrFakture.Text = fakturaBr.ToString();
-            cboDobavljac.SelectedValue = dobavljac;
-            txtRacunDobavljaca.Text = racunDobavljaca.ToString();
-            dtIzdavanje.Value = datumIzdavanja;
-            dtPDV.Value= datumPDVa;
-            dtValute.Value= datumValute;
-            cboReferent.SelectedValue = referent;
-            txtNapomena.Text = napomena.ToString();
-            dtPrijem.Value = datumPrijema;
             FillCombo();
             FillGV();
+
+            cboCRM.SelectedValue = Convert.ToInt32(predvidjanje.ToString());
+            cboVrstaDok.Text = vrstaDokumenta.ToString();
+            cboTip.Text = tipDokumenta.ToString();
+            dtPrijem.Value = Convert.ToDateTime(datumPrijema.ToShortDateString());
+            cboValuta.SelectedValue = valuta.ToString();
+            txtKurs.Text = kurs.ToString();
+            txtBrFakture.Text = fakturaBr.ToString();
+            cboDobavljac.SelectedValue = Convert.ToInt32(dobavljac.ToString());
+            txtRacunDobavljaca.Text = racunDobavljaca.ToString();
+            dtIzdavanje.Value = Convert.ToDateTime(datumIzdavanja.ToShortDateString());
+            dtPDV.Value = Convert.ToDateTime(datumPDVa.ToShortDateString());
+            dtValute.Value = Convert.ToDateTime(datumValute.ToShortDateString());
+            cboReferent.SelectedValue = Convert.ToInt32(referent.ToString());
+            txtNapomena.Text = napomena.ToString();
+
         }
+        private void UlazneFakture_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void FillCombo()
         {
             SqlConnection conn = new SqlConnection(connect);
 
-            var crm = "Select ID, (RTrim(PredvidjanjeID) + '/Poz-'+ convert(nvarchar(255), PredvodjanjePoz)) as PredvidjanjeID from Predvidjanje order by ID desc";
+            var crm = "SELECT MIN(id) AS ID, PredvidjanjeId FROM predvidjanje GROUP BY PredvidjanjeId ORDER BY id DESC";
             var crmDa = new SqlDataAdapter(crm, conn);
             var crmDS = new DataSet();
             crmDa.Fill(crmDS);
@@ -99,7 +109,7 @@ namespace Saobracaj.Pantheon_Export
             cboReferent.ValueMember = "DeSifra";
 
 
-            var Mp = "Select MpSifra,MpNaziv from MaticniPodatki";
+            var Mp = "Select MpSifra,(RTrim(MpStaraSif)+'-'+RTrim(MpNaziv)) as MpNaziv from MaticniPodatki";
             var MpDa = new SqlDataAdapter(Mp, conn);
             var MpDS = new DataSet();
             MpDa.Fill(MpDS);
@@ -258,10 +268,7 @@ namespace Saobracaj.Pantheon_Export
             catch { }
         }
 
-        private void UlazneFakture_Load(object sender, EventArgs e)
-        {
 
-        }
 
         private void btnObrisi_Click(object sender, EventArgs e)
         {

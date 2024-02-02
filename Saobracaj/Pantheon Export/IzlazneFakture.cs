@@ -26,38 +26,28 @@ namespace Saobracaj.Pantheon_Export
             InitializeComponent();
             FillCombo();
         }
-
-        DateTime dokPom, pdvPom, valutaPom, utovarPom, istovarPom;
-        public IzlazneFakture(int id,DateTime datumDokumenta,int primalac,string valuta,decimal kurs,DateTime datumPDV,DateTime datumValute,string mestoUtovara,DateTime datumUtovara,string mestoIstovara,DateTime datumIstovara,int referent,string izjava,string napomena)
+        public IzlazneFakture(int id,DateTime datumDokumenta,string vrsta,int primalac,string valuta,decimal kurs,DateTime datumPDV,DateTime datumValute,string mestoUtovara,DateTime datumUtovara,string mestoIstovara,DateTime datumIstovara,int referent,int izjava,string napomena)
         {
             InitializeComponent();
-
-            dokPom = Convert.ToDateTime(datumDokumenta.ToShortDateString());
-            pdvPom = Convert.ToDateTime(datumPDV.ToShortDateString());
-            valutaPom = Convert.ToDateTime(datumValute.ToShortDateString());
-            utovarPom = Convert.ToDateTime(datumUtovara.ToShortDateString());
-            istovarPom=Convert.ToDateTime(datumIstovara.ToShortDateString());
-
             ID = id;
             txtID.Text = ID.ToString();
-            dtDatum.Value = dokPom;
+            FillCombo();
+            FillGV();
+
+            dtDatum.Value = Convert.ToDateTime(datumDokumenta.ToShortDateString());
+            comboBox1.Text = vrsta;
             cboPrimalac.SelectedValue = primalac;
             cboValuta.SelectedValue= valuta;
             txtKurs.Text = kurs.ToString();
-            dtPDV.Value = pdvPom;
-            dtValuta.Value = valutaPom;
+            dtPDV.Value = Convert.ToDateTime(datumPDV.ToShortDateString());
             txtMestoUtovara.Text= mestoUtovara.ToString();
-            dtDatumUtovara.Value = utovarPom;
+            dtDatumUtovara.Value = Convert.ToDateTime(datumUtovara.ToShortDateString());
             txtMestoIstovara.Text = mestoIstovara.ToString();
-            dtDatumIstovara.Value= istovarPom;
-            cboReferent.SelectedValue = referent;
-            //txtIzjava.Text = izjava.ToString();
-            txtNapomena.Text=napomena.ToString();
-
-
-
-            FillCombo();
-            FillGV();
+            dtDatumIstovara.Value = Convert.ToDateTime(datumIstovara.ToShortDateString());
+            cboReferent.SelectedValue= referent;
+            cboIzjava.SelectedValue = izjava;
+            txtNapomena.Text = napomena.ToString();
+            
         }
         private void FillGV()
         {
@@ -131,7 +121,7 @@ namespace Saobracaj.Pantheon_Export
             cboPrimalac.DisplayMember = "PaNAziv";
             cboPrimalac.ValueMember = "PaSifra";
 
-            var Mp = "Select MpSifra,MpNaziv from MaticniPodatki";
+            var Mp = "Select MpSifra,(RTrim(MpStaraSif)+'-'+RTrim(MpNaziv)) as MpNaziv from MaticniPodatki";
             var MpDa = new SqlDataAdapter(Mp, conn);
             var MpDS = new DataSet();
             MpDa.Fill(MpDS);

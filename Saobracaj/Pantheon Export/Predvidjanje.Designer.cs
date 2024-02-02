@@ -44,7 +44,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtID = new System.Windows.Forms.TextBox();
+            this.txtIDPredvidjanja = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.cboSubjekt = new System.Windows.Forms.ComboBox();
             this.cboNosilacTroska = new System.Windows.Forms.ComboBox();
@@ -57,6 +57,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.txtIznos = new System.Windows.Forms.NumericUpDown();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtID = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -71,9 +73,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 112);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 79);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1239, 464);
+            this.dataGridView1.Size = new System.Drawing.Size(1614, 627);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -90,7 +92,7 @@
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1263, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1638, 27);
             this.toolStrip1.TabIndex = 198;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -136,8 +138,8 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(110, 24);
-            this.toolStripButton2.Text = "Prikaz Predvidjanje";
+            this.toolStripButton2.Size = new System.Drawing.Size(97, 24);
+            this.toolStripButton2.Text = "Sva predvidjanja";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripButton1
@@ -154,7 +156,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(242, 35);
+            this.label1.Location = new System.Drawing.Point(337, 37);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 199;
@@ -163,7 +165,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 36);
+            this.label2.Location = new System.Drawing.Point(79, 37);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 13);
             this.label2.TabIndex = 199;
@@ -172,7 +174,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(458, 37);
+            this.label3.Location = new System.Drawing.Point(560, 36);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 199;
@@ -181,7 +183,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(667, 37);
+            this.label4.Location = new System.Drawing.Point(787, 35);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(74, 13);
             this.label4.TabIndex = 199;
@@ -190,7 +192,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(859, 36);
+            this.label5.Location = new System.Drawing.Point(990, 36);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 13);
             this.label5.TabIndex = 199;
@@ -199,7 +201,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(1035, 36);
+            this.label7.Location = new System.Drawing.Point(1162, 36);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(32, 13);
             this.label7.TabIndex = 199;
@@ -208,23 +210,23 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(1172, 35);
+            this.label8.Location = new System.Drawing.Point(1303, 35);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(37, 13);
             this.label8.TabIndex = 199;
             this.label8.Text = "Valuta";
             // 
-            // txtID
+            // txtIDPredvidjanja
             // 
-            this.txtID.Location = new System.Drawing.Point(12, 52);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(79, 20);
-            this.txtID.TabIndex = 200;
+            this.txtIDPredvidjanja.Location = new System.Drawing.Point(97, 53);
+            this.txtIDPredvidjanja.Name = "txtIDPredvidjanja";
+            this.txtIDPredvidjanja.Size = new System.Drawing.Size(46, 20);
+            this.txtIDPredvidjanja.TabIndex = 200;
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(214, 51);
+            this.dateTimePicker1.Location = new System.Drawing.Point(306, 51);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(114, 20);
             this.dateTimePicker1.TabIndex = 201;
@@ -232,7 +234,7 @@
             // cboSubjekt
             // 
             this.cboSubjekt.FormattingEnabled = true;
-            this.cboSubjekt.Location = new System.Drawing.Point(334, 52);
+            this.cboSubjekt.Location = new System.Drawing.Point(442, 50);
             this.cboSubjekt.Name = "cboSubjekt";
             this.cboSubjekt.Size = new System.Drawing.Size(285, 21);
             this.cboSubjekt.TabIndex = 202;
@@ -240,7 +242,7 @@
             // cboNosilacTroska
             // 
             this.cboNosilacTroska.FormattingEnabled = true;
-            this.cboNosilacTroska.Location = new System.Drawing.Point(625, 52);
+            this.cboNosilacTroska.Location = new System.Drawing.Point(743, 50);
             this.cboNosilacTroska.Name = "cboNosilacTroska";
             this.cboNosilacTroska.Size = new System.Drawing.Size(167, 21);
             this.cboNosilacTroska.TabIndex = 202;
@@ -248,7 +250,7 @@
             // cboValuta
             // 
             this.cboValuta.FormattingEnabled = true;
-            this.cboValuta.Location = new System.Drawing.Point(1130, 50);
+            this.cboValuta.Location = new System.Drawing.Point(1261, 50);
             this.cboValuta.Name = "cboValuta";
             this.cboValuta.Size = new System.Drawing.Size(119, 21);
             this.cboValuta.TabIndex = 202;
@@ -256,7 +258,7 @@
             // cboOdeljenje
             // 
             this.cboOdeljenje.FormattingEnabled = true;
-            this.cboOdeljenje.Location = new System.Drawing.Point(798, 52);
+            this.cboOdeljenje.Location = new System.Drawing.Point(925, 50);
             this.cboOdeljenje.Name = "cboOdeljenje";
             this.cboOdeljenje.Size = new System.Drawing.Size(181, 21);
             this.cboOdeljenje.TabIndex = 203;
@@ -266,20 +268,21 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.dataGridView2);
-            this.panel1.Location = new System.Drawing.Point(424, 245);
+            this.panel1.Location = new System.Drawing.Point(12, 64);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(461, 242);
+            this.panel1.Size = new System.Drawing.Size(1614, 599);
             this.panel1.TabIndex = 204;
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.NavajoWhite;
-            this.button1.Location = new System.Drawing.Point(403, 3);
+            this.button1.Location = new System.Drawing.Point(1528, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(55, 29);
+            this.button1.Size = new System.Drawing.Size(83, 29);
             this.button1.TabIndex = 1;
             this.button1.Text = "Nazad";
             this.button1.UseVisualStyleBackColor = false;
@@ -293,13 +296,13 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(3, 38);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(455, 201);
+            this.dataGridView2.Size = new System.Drawing.Size(1608, 558);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
             // txtPredvidjanje
             // 
-            this.txtPredvidjanje.Location = new System.Drawing.Point(97, 52);
+            this.txtPredvidjanje.Location = new System.Drawing.Point(180, 53);
             this.txtPredvidjanje.Name = "txtPredvidjanje";
             this.txtPredvidjanje.Size = new System.Drawing.Size(111, 20);
             this.txtPredvidjanje.TabIndex = 205;
@@ -307,7 +310,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(104, 36);
+            this.label6.Location = new System.Drawing.Point(187, 36);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(95, 13);
             this.label6.TabIndex = 199;
@@ -315,18 +318,20 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 78);
+            this.button2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button2.Location = new System.Drawing.Point(1413, 37);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(74, 28);
+            this.button2.Size = new System.Drawing.Size(112, 34);
             this.button2.TabIndex = 206;
-            this.button2.Text = "Nova Poz";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Text = "Dodaj novu poziciju";
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // txtIznos
             // 
             this.txtIznos.DecimalPlaces = 2;
-            this.txtIznos.Location = new System.Drawing.Point(1007, 52);
+            this.txtIznos.Location = new System.Drawing.Point(1137, 51);
             this.txtIznos.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -336,19 +341,36 @@
             this.txtIznos.Size = new System.Drawing.Size(90, 20);
             this.txtIznos.TabIndex = 211;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(28, 37);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(18, 13);
+            this.label9.TabIndex = 212;
+            this.label9.Text = "ID";
+            // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(12, 53);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(57, 20);
+            this.txtID.TabIndex = 213;
+            // 
             // Predvidjanje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1263, 588);
+            this.ClientSize = new System.Drawing.Size(1638, 718);
+            this.Controls.Add(this.label9);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.cboOdeljenje);
             this.Controls.Add(this.cboValuta);
             this.Controls.Add(this.cboNosilacTroska);
             this.Controls.Add(this.cboSubjekt);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.txtID);
+            this.Controls.Add(this.txtIDPredvidjanja);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label8);
@@ -362,8 +384,10 @@
             this.Controls.Add(this.txtPredvidjanje);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.txtIznos);
+            this.Controls.Add(this.txtID);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Predvidjanje";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Predvidjanje";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.toolStrip1.ResumeLayout(false);
@@ -391,7 +415,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.TextBox txtIDPredvidjanja;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ComboBox cboSubjekt;
         private System.Windows.Forms.ComboBox cboNosilacTroska;
@@ -406,5 +430,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.NumericUpDown txtIznos;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox txtID;
     }
 }

@@ -75,7 +75,7 @@
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1462, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1555, 27);
             this.toolStrip1.TabIndex = 197;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -199,7 +199,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 96);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1438, 441);
+            this.dataGridView1.Size = new System.Drawing.Size(1531, 649);
             this.dataGridView1.TabIndex = 199;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -245,11 +245,12 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel1.Controls.Add(this.dataGridView2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(451, 243);
+            this.panel1.Location = new System.Drawing.Point(12, 64);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(557, 186);
+            this.panel1.Size = new System.Drawing.Size(1530, 681);
             this.panel1.TabIndex = 203;
             // 
             // dataGridView2
@@ -260,7 +261,7 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(3, 35);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(551, 148);
+            this.dataGridView2.Size = new System.Drawing.Size(1523, 643);
             this.dataGridView2.TabIndex = 1;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
@@ -269,9 +270,9 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.NavajoWhite;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(496, 3);
+            this.button1.Location = new System.Drawing.Point(1416, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(57, 26);
+            this.button1.Size = new System.Drawing.Size(110, 26);
             this.button1.TabIndex = 0;
             this.button1.Text = "Nazad";
             this.button1.UseVisualStyleBackColor = false;
@@ -332,8 +333,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1462, 549);
-            this.Controls.Add(this.cboPosao);
+            this.ClientSize = new System.Drawing.Size(1555, 757);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtNazivNosioca);
             this.Controls.Add(this.txtNosilacTroska);
@@ -352,8 +352,10 @@
             this.Controls.Add(this.cboOdeljenje);
             this.Controls.Add(this.cboOpportunity);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.cboPosao);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NosiociTroskova";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NosiociTroskova";
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
