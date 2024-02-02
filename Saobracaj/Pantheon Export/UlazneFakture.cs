@@ -292,3 +292,8 @@ namespace Saobracaj.Pantheon_Export
         }
     }
 }
+//trimovi za combo
+//odeljenje cartering 
+//stavke faktura, naziv samo zop
+//proveriti zasto nekad za stavku fakture upisuje 0
+//predvidjanje neka napomana

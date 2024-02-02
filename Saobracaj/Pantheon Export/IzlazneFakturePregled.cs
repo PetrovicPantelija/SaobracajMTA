@@ -147,17 +147,8 @@ namespace Saobracaj.Pantheon_Export
             {
                 if (row.Selected)
                 {
-                    crm = Convert.ToInt32(row.Cells[18].Value);
-                    var query = "Select Status from Faktura Where CRMID=" + crm;
-                    SqlConnection conn1 = new SqlConnection(connect);
-                    conn1.Open();
-                    SqlCommand cmd = new SqlCommand(query, conn1);
-                    SqlDataReader dr = cmd.ExecuteReader();
-                    while (dr.Read())
-                    {
-                        status = Convert.ToInt32(dr["Status"].ToString());
-                    }
-                    conn1.Close();
+                    status = Convert.ToInt32(row.Cells[18].Value);
+                    crm = Convert.ToInt32(row.Cells[19].Value);
 
                     if (status == 0)
                     {
