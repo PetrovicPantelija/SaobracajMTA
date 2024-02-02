@@ -2791,7 +2791,7 @@ namespace Saobracaj
 
         private void toolStripButton203_Click(object sender, EventArgs e)
         {
-            Uvoz.frmRadniNalogInterniPregled RNIP = new Uvoz.frmRadniNalogInterniPregled();
+            Uvoz.frmRadniNalogInterniPregled RNIP = new Uvoz.frmRadniNalogInterniPregled(Korisnik);
             RNIP.Show();
         }
 
@@ -3987,7 +3987,7 @@ namespace Saobracaj
 
         private void toolStripButton336_Click(object sender, EventArgs e)
         {
-            Uvoz.frmRadniNalogInterniPregled RNIP = new Uvoz.frmRadniNalogInterniPregled();
+            Uvoz.frmRadniNalogInterniPregled RNIP = new Uvoz.frmRadniNalogInterniPregled(Korisnik);
             RNIP.Show();
         }
 
@@ -4030,8 +4030,25 @@ namespace Saobracaj
 
         private void toolStripEx34_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
+            
+        }
+
+        private void toolStripButton345_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmKontejnerTekuce kt = new Uvoz.frmKontejnerTekuce();
+            kt.Show();
+        }
+
+        private void toolStripButton344_Click(object sender, EventArgs e)
+        {
             frmScenario SCEN = new frmScenario();
             SCEN.Show();
+        }
+
+        private void toolStripButton347_Click(object sender, EventArgs e)
+        {
+            Saobracaj.Proba pr = new Proba();
+                pr.Show();
         }
     }
     }

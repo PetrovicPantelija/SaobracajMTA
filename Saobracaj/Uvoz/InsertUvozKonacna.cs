@@ -2568,5 +2568,102 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
 
         }
 
+        public void PromeniSaPrijemnice(int KontejnerID, string Plomba1, string Plomba2, string BrojKontejnera, string BrojVagona, double TaraKontejnera, int VrstaKontejnera)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "PromeniSaPrijemniceUK";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@KontejnerID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = KontejnerID;
+            cmd.Parameters.Add(id);
+
+            SqlParameter plomba1 = new SqlParameter();
+            plomba1.ParameterName = "@Plomba1";
+            plomba1.SqlDbType = SqlDbType.NVarChar;
+            plomba1.Size = 50;
+            plomba1.Direction = ParameterDirection.Input;
+            plomba1.Value = Plomba1;
+            cmd.Parameters.Add(plomba1);
+
+            SqlParameter plomba2 = new SqlParameter();
+            plomba2.ParameterName = "@Plomba2";
+            plomba2.SqlDbType = SqlDbType.NVarChar;
+            plomba2.Size = 50;
+            plomba2.Direction = ParameterDirection.Input;
+            plomba2.Value = Plomba2;
+            cmd.Parameters.Add(plomba2);
+
+            SqlParameter brojkontejnera = new SqlParameter();
+            brojkontejnera.ParameterName = "@BrojKontejnera";
+            brojkontejnera.SqlDbType = SqlDbType.NVarChar;
+            brojkontejnera.Size = 50;
+            brojkontejnera.Direction = ParameterDirection.Input;
+            brojkontejnera.Value = BrojKontejnera;
+            cmd.Parameters.Add(brojkontejnera);
+
+            SqlParameter brojvagona = new SqlParameter();
+            brojvagona.ParameterName = "@BrojVagona";
+            brojvagona.SqlDbType = SqlDbType.NVarChar;
+            brojvagona.Size = 50;
+            brojvagona.Direction = ParameterDirection.Input;
+            brojvagona.Value = BrojVagona;
+            cmd.Parameters.Add(brojvagona);
+
+            SqlParameter tarakontejnera = new SqlParameter();
+            tarakontejnera.ParameterName = "@TaraKontejnera";
+            tarakontejnera.SqlDbType = SqlDbType.Decimal;
+            tarakontejnera.Direction = ParameterDirection.Input;
+            tarakontejnera.Value = TaraKontejnera;
+            cmd.Parameters.Add(tarakontejnera);
+
+            SqlParameter vrstakontejnera = new SqlParameter();
+            vrstakontejnera.ParameterName = "@VrstaKontejnera";
+            vrstakontejnera.SqlDbType = SqlDbType.Int;
+            vrstakontejnera.Direction = ParameterDirection.Input;
+            vrstakontejnera.Value = VrstaKontejnera;
+            cmd.Parameters.Add(vrstakontejnera);
+
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+
     }
 }

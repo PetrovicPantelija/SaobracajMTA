@@ -803,14 +803,14 @@ namespace Saobracaj.Dokumenta
             parameter33.Direction = ParameterDirection.Input;
             parameter33.Value = Napomena2;
             myCommand.Parameters.Add(parameter33);
-
+            /*
             SqlParameter parameter34 = new SqlParameter();
             parameter34.ParameterName = "@PostupakSaRobom";
             parameter34.SqlDbType = SqlDbType.Int;
             parameter34.Direction = ParameterDirection.Input;
             parameter34.Value = PostupakSaRobom;
             myCommand.Parameters.Add(parameter34);
-
+            */
             SqlParameter parameter35 = new SqlParameter();
             parameter35.ParameterName = "@BTTORobeFaktura";
             parameter35.SqlDbType = SqlDbType.Decimal;

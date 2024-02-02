@@ -968,7 +968,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.Columns[1].HeaderText = "BrojKontejnera";
             dataGridView1.Columns[1].Frozen = true;
             dataGridView1.Columns[1].Width = 100;
-
+            /*
             DataGridViewColumn column2 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "BL";
             dataGridView1.Columns[2].Frozen = true;
@@ -1020,7 +1020,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.Columns[13].HeaderText = "BL";
             // dataGridView1.Columns[13].Frozen = true;
             dataGridView1.Columns[13].Width = 90;
-
+            */
             RefreshDataGridColor();
 
         }
@@ -1076,7 +1076,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.Columns[1].HeaderText = "BrojKontejnera";
             dataGridView1.Columns[1].Frozen = true;
             dataGridView1.Columns[1].Width = 100;
-
+            /*
             DataGridViewColumn column2 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "BL";
             dataGridView1.Columns[2].Frozen = true;
@@ -1128,7 +1128,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.Columns[13].HeaderText = "BL";
             // dataGridView1.Columns[13].Frozen = true;
             dataGridView1.Columns[13].Width = 90;
-
+            */
             RefreshDataGridColor();
 
         }
@@ -1237,7 +1237,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.Columns[1].HeaderText = "BrojKontejnera";
             dataGridView1.Columns[1].Frozen = true;
             dataGridView1.Columns[1].Width = 100;
-
+            /*
             DataGridViewColumn column2 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "BL";
             dataGridView1.Columns[2].Frozen = true;
@@ -1289,7 +1289,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.Columns[13].HeaderText = "BL";
             // dataGridView1.Columns[13].Frozen = true;
             dataGridView1.Columns[13].Width = 90;
-
+            */
             RefreshDataGridColor();
 
 
@@ -1399,7 +1399,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.Columns[1].HeaderText = "BrojKontejnera";
             dataGridView1.Columns[1].Frozen = true;
             dataGridView1.Columns[1].Width = 100;
-
+            /*
             DataGridViewColumn column2 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "BL";
             dataGridView1.Columns[2].Frozen = true;
@@ -1451,7 +1451,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.Columns[13].HeaderText = "BL";
             // dataGridView1.Columns[13].Frozen = true;
             dataGridView1.Columns[13].Width = 90;
-
+            */
             RefreshDataGridColor();
 
 

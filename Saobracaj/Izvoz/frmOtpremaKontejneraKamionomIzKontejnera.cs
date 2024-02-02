@@ -32,6 +32,14 @@ namespace Saobracaj.Izvoz
             txtKontejnerID.Text = KontejnerID;
         }
 
+        public frmOtpremaKontejneraKamionomIzKontejnera(string KontejnerID, string NalogID, string Korisnik)
+        {
+            InitializeComponent();
+            txtKontejnerID.Text = KontejnerID;
+            txtNalogID.Text = NalogID;
+            KorisnikCene = Korisnik;
+        }
+
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
@@ -72,9 +80,15 @@ namespace Saobracaj.Izvoz
 
         private void button1_Click(object sender, EventArgs e)
         {
-            InsertIzvozKonacna ins = new InsertIzvozKonacna();
-            ins.PrenesiKontejnerUOtpremuKamionomUvoz(Convert.ToInt32(txtKontejnerID.Text));
-            // RefreshDataGrid();
+            if (txtKontejnerID.Text != "" && txtNalogID.Text != "")
+            {
+                InsertIzvozKonacna ins = new InsertIzvozKonacna();
+                ins.PrenesiKontejnerUOtpremuKamionomUvoz(Convert.ToInt32(txtKontejnerID.Text), Convert.ToInt32(txtNalogID.Text));
+                // RefreshDataGrid();
+
+            }
+
+
         }
     }
 }

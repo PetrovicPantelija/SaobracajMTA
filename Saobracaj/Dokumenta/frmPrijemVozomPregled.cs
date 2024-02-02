@@ -15,7 +15,7 @@ using System.Configuration;
 
 namespace TrackModal.Dokumeta
 {
-    public partial class frmPrijemVozomPregled : Form
+    public partial class frmPrijemVozomPregled : Syncfusion.Windows.Forms.Office2010Form
     {
         string KorisnikCene;
         public static string code = "frmPrijemVozomPregled";
@@ -30,6 +30,8 @@ namespace TrackModal.Dokumeta
 
         public frmPrijemVozomPregled()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+
             InitializeComponent();
             IdGrupe();
             IdForme();
@@ -38,6 +40,8 @@ namespace TrackModal.Dokumeta
 
         public frmPrijemVozomPregled(string Korisnik)
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+
             InitializeComponent();
             KorisnikCene = Korisnik;
             IdGrupe();
@@ -192,6 +196,64 @@ namespace TrackModal.Dokumeta
         
         }
 
+        private void RefreshDataGridLeget()
+        {
+            var select = "SELECT PrijemKontejneraVoz.[ID],Voz.BrVoza, Voz.Relacija,  " +
+" CONVERT(varchar, PrijemKontejneraVoz.[DatumPrijema], 104) + ' ' + SUBSTRING(CONVERT(varchar, PrijemKontejneraVoz.[DatumPrijema], 108), 1, 5) as ETA, " +
+"  CASE WHEN PrijemKontejneraVoz.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status, " +
+"  CONVERT(varchar, PrijemKontejneraVoz.VremeDolaska, 104) + ' ' + SUBSTRING(CONVERT(varchar, PrijemKontejneraVoz.VremeDolaska, 108), 1, 5) as ATA, " +
+" p1.PaNAziv as OperaterSRB, p2.PaNaziv as OperaterHR, PristizanjaUSid as DV_PristizanjaUSid, Sazeta as DV_SAzeta, " +
+" (SELECT  Count(*) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrojSpakovanihKonterjnera,  " +
+" (SELECT  SUM(UvozKonacna.TaraKontejnera) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as TaraSpakovanihKonterjnera,  " +
+" (SELECT  SUM(UvozKonacna.BrutoKontejnera) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrutoSpakovanihKonterjnera, " +
+" (SELECT  SUM(UvozKonacna.BrutoRobe) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrutoRobeSpakovanihKonterjnera, " +
+"  [MaksimalnaBruto],[MaksimalnaDuzina] " +
+" ,[MaksimalanBrojKola] " +
+  "           FROM[dbo].[PrijemKontejneraVoz] " +
+" inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza " +
+" inner join UvozKonacnaZaglavlje On Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
+" inner join Partnerji p1 on p1.PaSifra = Voz.OperaterSrbija " +
+" inner join Partnerji p2 on p2.PaSifra = Voz.OperaterHR " +
+" where PrijemKontejneraVoz.Vozom = 1 order by PrijemKontejneraVoz.[ID] desc";
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Br Voza";
+            dataGridView1.Columns[1].Width = 80;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Relacija";
+            dataGridView1.Columns[2].Width = 100;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "ETA";
+            dataGridView1.Columns[3].Width = 150;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Status";
+            dataGridView1.Columns[4].Width = 100;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "ATA";
+            dataGridView1.Columns[5].Width = 150;
+
+           
+
+        }
+
+
         private void RefreshDataGridNajave()
         {
             var select = "SELECT PrijemKontejneraVoz.[ID],Voz.BrVoza, Voz.Relacija, " +
@@ -243,6 +305,63 @@ namespace TrackModal.Dokumeta
             DataGridViewColumn column8 = dataGridView1.Columns[7];
             dataGridView1.Columns[7].HeaderText = "Datum";
             dataGridView1.Columns[7].Width = 100;
+
+        }
+
+        private void RefreshDataGridNajaveLeget()
+        {
+            var select = "SELECT PrijemKontejneraVoz.[ID],Voz.BrVoza, Voz.Relacija,  " +
+" CONVERT(varchar, PrijemKontejneraVoz.[DatumPrijema], 104) + ' ' + SUBSTRING(CONVERT(varchar, PrijemKontejneraVoz.[DatumPrijema], 108), 1, 5) as ETA, " +
+"  CASE WHEN PrijemKontejneraVoz.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status, " +
+"  CONVERT(varchar, PrijemKontejneraVoz.VremeDolaska, 104) + ' ' + SUBSTRING(CONVERT(varchar, PrijemKontejneraVoz.VremeDolaska, 108), 1, 5) as ATA, " +
+" p1.PaNAziv as OperaterSRB, p2.PaNaziv as OperaterHR, PristizanjaUSid as DV_PristizanjaUSid, Sazeta as DV_SAzeta, " +
+" (SELECT  Count(*) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrojSpakovanihKonterjnera,  " +
+" (SELECT  SUM(UvozKonacna.TaraKontejnera) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as TaraSpakovanihKonterjnera,  " +
+" (SELECT  SUM(UvozKonacna.BrutoKontejnera) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrutoSpakovanihKonterjnera, " +
+" (SELECT  SUM(UvozKonacna.BrutoRobe) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrutoRobeSpakovanihKonterjnera, " +
+"  [MaksimalnaBruto],[MaksimalnaDuzina] " +
+" ,[MaksimalanBrojKola] " +
+  "           FROM[dbo].[PrijemKontejneraVoz] " +
+" inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza " +
+" inner join UvozKonacnaZaglavlje On Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
+" inner join Partnerji p1 on p1.PaSifra = Voz.OperaterSrbija " +
+" inner join Partnerji p2 on p2.PaSifra = Voz.OperaterHR " +
+           " where PrijemKontejneraVoz.StatusPrijema = 0  and PrijemKontejneraVoz.Vozom = 1 order by PrijemKontejneraVoz.[ID] desc";
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Br Voza";
+            dataGridView1.Columns[1].Width = 80;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Relacija";
+            dataGridView1.Columns[2].Width = 100;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "ETA";
+            dataGridView1.Columns[3].Width = 150;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Status";
+            dataGridView1.Columns[4].Width = 100;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "ATA";
+            dataGridView1.Columns[5].Width = 150;
+
+           
 
         }
 
@@ -316,9 +435,98 @@ namespace TrackModal.Dokumeta
 
         }
 
+        private void RefreshDataGridPrijemiLeget()
+        {
+            /*
+            var select = "SELECT PrijemKontejneraVoz.[ID],Voz.BrVoza, Voz.Relacija, " +
+             " CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],104)      + ' '      + SUBSTRING(CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],108),1,5) as ETA, " +
+          " CASE WHEN PrijemKontejneraVoz.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status, " +
+         " CONVERT(varchar,PrijemKontejneraVoz.VremeDolaska,104)      + ' '      + SUBSTRING(CONVERT(varchar,PrijemKontejneraVoz.VremeDolaska,108),1,5) as ATA, " +
+          "  [PrijemKontejneraVoz].Korisnik,[PrijemKontejneraVoz].Datum  " +
+            " FROM [dbo].[PrijemKontejneraVoz] " +
+           " inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza " +
+           " where PrijemKontejneraVoz.StatusPrijema = 1 and PrijemKontejneraVoz.Vozom = 1  order by PrijemKontejneraVoz.[ID] desc ";
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+            */
+
+
+            var select = "SELECT PrijemKontejneraVoz.[ID],Voz.BrVoza, Voz.Relacija,  " +
+" CONVERT(varchar, PrijemKontejneraVoz.[DatumPrijema], 104) + ' ' + SUBSTRING(CONVERT(varchar, PrijemKontejneraVoz.[DatumPrijema], 108), 1, 5) as ETA, " +
+"  CASE WHEN PrijemKontejneraVoz.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status, " +
+"  CONVERT(varchar, PrijemKontejneraVoz.VremeDolaska, 104) + ' ' + SUBSTRING(CONVERT(varchar, PrijemKontejneraVoz.VremeDolaska, 108), 1, 5) as ATA, " +
+" p1.PaNAziv as OperaterSRB, p2.PaNaziv as OperaterHR, PristizanjaUSid as DV_PristizanjaUSid, Sazeta as DV_SAzeta, " +
+" (SELECT  Count(*) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrojSpakovanihKonterjnera,  " +
+" (SELECT  SUM(UvozKonacna.TaraKontejnera) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as TaraSpakovanihKonterjnera,  " +
+" (SELECT  SUM(UvozKonacna.BrutoKontejnera) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrutoSpakovanihKonterjnera, " +
+" (SELECT  SUM(UvozKonacna.BrutoRobe) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrutoRobeSpakovanihKonterjnera, " +
+"  [MaksimalnaBruto],[MaksimalnaDuzina] " +
+" ,[MaksimalanBrojKola] " +
+  "           FROM[dbo].[PrijemKontejneraVoz] " +
+" inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza " +
+" inner join UvozKonacnaZaglavlje On Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
+" inner join Partnerji p1 on p1.PaSifra = Voz.OperaterSrbija " +
+" inner join Partnerji p2 on p2.PaSifra = Voz.OperaterHR " +
+          " where PrijemKontejneraVoz.StatusPrijema = 1 and PrijemKontejneraVoz.Vozom = 1  order by PrijemKontejneraVoz.[ID] desc ";
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Br Voza";
+            dataGridView1.Columns[1].Width = 80;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Relacija";
+            dataGridView1.Columns[2].Width = 100;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "ETA";
+            dataGridView1.Columns[3].Width = 150;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Status";
+            dataGridView1.Columns[4].Width = 100;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "ATA";
+            dataGridView1.Columns[5].Width = 150;
+
+           
+
+        }
+
         private void PrijemVozomPregled_Load(object sender, EventArgs e)
         {
-            RefreshDataGrid();
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        RefreshDataGridLeget();
+                        return;
+
+                    }
+                default:
+                    {
+                        RefreshDataGrid();
+                    }
+                    break;
+            }
+            
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -370,7 +578,25 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            RefreshDataGrid();
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        RefreshDataGridLeget();
+                        return;
+
+                    }
+                default:
+                    {
+                        RefreshDataGrid(); ;
+                        return;
+
+                    }
+                    break;
+            }
+
+           
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
@@ -402,22 +628,86 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            RefreshDataGridNajave();
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        RefreshDataGridNajaveLeget();
+                        return;
+
+                    }
+                default:
+                    {
+                        RefreshDataGridNajave();
+                    }
+                    break;
+            }
+
+          //  RefreshDataGridNajave();
         }
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
-            RefreshDataGridPrijemi();
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        RefreshDataGridPrijemiLeget(); 
+                        return;
+
+                    }
+                default:
+                    {
+                        RefreshDataGridPrijemi(); 
+                    }
+                    break;
+            }
+
+
+
+           // RefreshDataGridPrijemi();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            RefreshDataGridPoBukinguBrodara();
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        RefreshDataGridPoBukinguBrodaraLeget();
+                        return;
+
+                    }
+                default:
+                    {
+                        RefreshDataGridPoBukinguBrodara();
+                    }
+                    break;
+            }
+           // RefreshDataGridPoBukinguBrodara();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            RefreshDataGridPoKontejneru();
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        RefreshDataGridPoKontejneruLeget();
+                        return;
+
+                    }
+                default:
+                    {
+                        RefreshDataGridPoKontejneru();
+                    }
+                    break;
+            }
+            
         }
 
         private void RefreshDataGridPoKontejneru()
@@ -474,6 +764,61 @@ namespace TrackModal.Dokumeta
             dataGridView1.Columns[7].Width = 100;
         }
 
+        private void RefreshDataGridPoKontejneruLeget()
+        {
+            var select = "SELECT PrijemKontejneraVoz.[ID],Voz.BrVoza, Voz.Relacija,  " +
+    " CONVERT(varchar, PrijemKontejneraVoz.[DatumPrijema], 104) + ' ' + SUBSTRING(CONVERT(varchar, PrijemKontejneraVoz.[DatumPrijema], 108), 1, 5) as ETA, " +
+    "  CASE WHEN PrijemKontejneraVoz.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status, " +
+    "  CONVERT(varchar, PrijemKontejneraVoz.VremeDolaska, 104) + ' ' + SUBSTRING(CONVERT(varchar, PrijemKontejneraVoz.VremeDolaska, 108), 1, 5) as ATA, " +
+    " p1.PaNAziv as OperaterSRB, p2.PaNaziv as OperaterHR, PristizanjaUSid as DV_PristizanjaUSid, Sazeta as DV_SAzeta, " +
+    " (SELECT  Count(*) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrojSpakovanihKonterjnera,  " +
+    " (SELECT  SUM(UvozKonacna.TaraKontejnera) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as TaraSpakovanihKonterjnera,  " +
+    " (SELECT  SUM(UvozKonacna.BrutoKontejnera) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrutoSpakovanihKonterjnera, " +
+    " (SELECT  SUM(UvozKonacna.BrutoRobe) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrutoRobeSpakovanihKonterjnera, " +
+    "  [MaksimalnaBruto],[MaksimalnaDuzina] " +
+    " ,[MaksimalanBrojKola] " +
+      "           FROM[dbo].[PrijemKontejneraVoz] " +
+    " inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza " +
+    " inner join UvozKonacnaZaglavlje On Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
+    " inner join Partnerji p1 on p1.PaSifra = Voz.OperaterSrbija " +
+    " inner join Partnerji p2 on p2.PaSifra = Voz.OperaterHR " +
+                  " where PrijemKontejneraVoz.Vozom = 1 and PrijemKontejneraVozStavke.BrojKontejnera = '" + txtBrojKontejnera.Text + " 'order by PrijemKontejneraVoz.[ID] desc ";
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Br Voza";
+            dataGridView1.Columns[1].Width = 80;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Relacija";
+            dataGridView1.Columns[2].Width = 100;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "ETA";
+            dataGridView1.Columns[3].Width = 150;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Status";
+            dataGridView1.Columns[4].Width = 100;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "ATA";
+            dataGridView1.Columns[5].Width = 150;
+
+        }
+
         private void RefreshDataGridPoBukinguBrodara()
         {
             var select = "SELECT PrijemKontejneraVoz.[ID],Voz.BrVoza, Voz.Relacija, " +
@@ -526,6 +871,62 @@ namespace TrackModal.Dokumeta
             DataGridViewColumn column8 = dataGridView1.Columns[7];
             dataGridView1.Columns[7].HeaderText = "Datum";
             dataGridView1.Columns[7].Width = 100;
+        }
+
+        private void RefreshDataGridPoBukinguBrodaraLeget()
+        {
+            
+                var select = "SELECT PrijemKontejneraVoz.[ID],Voz.BrVoza, Voz.Relacija,  " +
+        " CONVERT(varchar, PrijemKontejneraVoz.[DatumPrijema], 104) + ' ' + SUBSTRING(CONVERT(varchar, PrijemKontejneraVoz.[DatumPrijema], 108), 1, 5) as ETA, " +
+        "  CASE WHEN PrijemKontejneraVoz.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status, " +
+        "  CONVERT(varchar, PrijemKontejneraVoz.VremeDolaska, 104) + ' ' + SUBSTRING(CONVERT(varchar, PrijemKontejneraVoz.VremeDolaska, 108), 1, 5) as ATA, " +
+        " p1.PaNAziv as OperaterSRB, p2.PaNaziv as OperaterHR, PristizanjaUSid as DV_PristizanjaUSid, Sazeta as DV_SAzeta, " +
+        " (SELECT  Count(*) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrojSpakovanihKonterjnera,  " +
+        " (SELECT  SUM(UvozKonacna.TaraKontejnera) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as TaraSpakovanihKonterjnera,  " +
+        " (SELECT  SUM(UvozKonacna.BrutoKontejnera) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrutoSpakovanihKonterjnera, " +
+        " (SELECT  SUM(UvozKonacna.BrutoRobe) from UvozKonacna where UvozKonacna.IDNadredjeni = UvozKonacnaZaglavlje.ID and IDNadredjeni = UvozKonacnaZaglavlje.[ID]  ) as BrutoRobeSpakovanihKonterjnera, " +
+        "  [MaksimalnaBruto],[MaksimalnaDuzina] " +
+        " ,[MaksimalanBrojKola] " +
+          "           FROM[dbo].[PrijemKontejneraVoz] " +
+        " inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza " +
+        " inner join UvozKonacnaZaglavlje On Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
+        " inner join Partnerji p1 on p1.PaSifra = Voz.OperaterSrbija " +
+        " inner join Partnerji p2 on p2.PaSifra = Voz.OperaterHR " +
+                  " where PrijemKontejneraVoz.Vozom = 1 and PrijemKontejneraVozStavke.BukingBrodar = '" + txtBukingBrodar.Text + "' order by PrijemKontejneraVoz.[ID] desc ";
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Br Voza";
+            dataGridView1.Columns[1].Width = 80;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Relacija";
+            dataGridView1.Columns[2].Width = 100;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "ETA";
+            dataGridView1.Columns[3].Width = 150;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Status";
+            dataGridView1.Columns[4].Width = 100;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "ATA";
+            dataGridView1.Columns[5].Width = 150;
+
         }
     }
 }

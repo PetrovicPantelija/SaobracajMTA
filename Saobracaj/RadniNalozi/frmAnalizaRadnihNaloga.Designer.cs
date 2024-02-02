@@ -29,8 +29,10 @@ namespace Saobracaj.RadniNalozi
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAnalizaRadnihNaloga));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button18 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
             this.button16 = new System.Windows.Forms.Button();
@@ -52,6 +54,7 @@ namespace Saobracaj.RadniNalozi
             this.button1 = new System.Windows.Forms.Button();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.gridGroupingControl2 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -69,6 +72,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button18);
             this.splitContainer1.Panel1.Controls.Add(this.button21);
             this.splitContainer1.Panel1.Controls.Add(this.button19);
             this.splitContainer1.Panel1.Controls.Add(this.button16);
@@ -98,6 +102,17 @@ namespace Saobracaj.RadniNalozi
             this.splitContainer1.SplitterDistance = 367;
             this.splitContainer1.TabIndex = 0;
             // 
+            // button18
+            // 
+            this.button18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(230)))), ((int)(((byte)(90)))));
+            this.button18.Location = new System.Drawing.Point(12, 40);
+            this.button18.Name = "button18";
+            this.button18.Size = new System.Drawing.Size(152, 23);
+            this.button18.TabIndex = 26;
+            this.button18.Text = "ПО ТРЕНУТНОМ STATUSU";
+            this.button18.UseVisualStyleBackColor = false;
+            this.button18.Click += new System.EventHandler(this.button18_Click);
+            // 
             // button21
             // 
             this.button21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
@@ -122,7 +137,7 @@ namespace Saobracaj.RadniNalozi
             // button16
             // 
             this.button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button16.Location = new System.Drawing.Point(712, 41);
+            this.button16.Location = new System.Drawing.Point(743, 40);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(266, 23);
             this.button16.TabIndex = 21;
@@ -133,7 +148,7 @@ namespace Saobracaj.RadniNalozi
             // button17
             // 
             this.button17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button17.Location = new System.Drawing.Point(517, 41);
+            this.button17.Location = new System.Drawing.Point(548, 40);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(176, 23);
             this.button17.TabIndex = 20;
@@ -144,7 +159,7 @@ namespace Saobracaj.RadniNalozi
             // button15
             // 
             this.button15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button15.Location = new System.Drawing.Point(331, 41);
+            this.button15.Location = new System.Drawing.Point(362, 40);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(176, 23);
             this.button15.TabIndex = 19;
@@ -177,22 +192,22 @@ namespace Saobracaj.RadniNalozi
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button6.Location = new System.Drawing.Point(712, 13);
+            this.button6.Location = new System.Drawing.Point(743, 12);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(266, 23);
             this.button6.TabIndex = 16;
-            this.button6.Text = "BS - Prijem platforma Brodar";
+            this.button6.Text = "BS - PRIJEM PLATFORMA BRODAR";
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button4.Location = new System.Drawing.Point(517, 12);
+            this.button4.Location = new System.Drawing.Point(548, 11);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(176, 23);
             this.button4.TabIndex = 15;
-            this.button4.Text = "IZ - Prijem platforma";
+            this.button4.Text = "IZ/U -PRIJEM PLATFORMA";
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -226,11 +241,11 @@ namespace Saobracaj.RadniNalozi
             // button5
             // 
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button5.Location = new System.Drawing.Point(139, 42);
+            this.button5.Location = new System.Drawing.Point(170, 41);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(176, 23);
             this.button5.TabIndex = 14;
-            this.button5.Text = "IZ - Otprema voza";
+            this.button5.Text = "IZ - OTPREMA VOZA";
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -264,22 +279,22 @@ namespace Saobracaj.RadniNalozi
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button3.Location = new System.Drawing.Point(331, 12);
+            this.button3.Location = new System.Drawing.Point(362, 11);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(176, 23);
             this.button3.TabIndex = 13;
-            this.button3.Text = "U - Pretovar prijem voza";
+            this.button3.Text = "U - PRETOVAR PRIJEM VOZA";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button2.Location = new System.Drawing.Point(139, 12);
+            this.button2.Location = new System.Drawing.Point(170, 11);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(176, 23);
             this.button2.TabIndex = 12;
-            this.button2.Text = "U - Pregled RN prijem voza";
+            this.button2.Text = "U - PRIJEM VOZA";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -288,7 +303,7 @@ namespace Saobracaj.RadniNalozi
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(230)))), ((int)(((byte)(90)))));
             this.button1.Location = new System.Drawing.Point(13, 11);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 23);
+            this.button1.Size = new System.Drawing.Size(151, 23);
             this.button1.TabIndex = 11;
             this.button1.Text = "SVI RN";
             this.button1.UseVisualStyleBackColor = false;
@@ -344,6 +359,10 @@ namespace Saobracaj.RadniNalozi
             this.gridGroupingControl2.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl2.VersionInfo = "18.4460.0.34";
             // 
+            // toolTip1
+            // 
+            this.toolTip1.Tag = "Prikazuje posle prijema kontejnera";
+            // 
             // frmAnalizaRadnihNaloga
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -387,5 +406,7 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.Button button17;
         private System.Windows.Forms.Button button15;
         private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button button18;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

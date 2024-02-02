@@ -468,7 +468,7 @@ namespace Saobracaj.Dokumenta
             reportViewer1.LocalReport.SetParameters(par);
             reportViewer1.LocalReport.DataSources.Add(rds);
             reportViewer1.LocalReport.SubreportProcessing += new
-                       SubreportProcessingEventHandler(SetSubDataSource);
+            SubreportProcessingEventHandler(SetSubDataSource);
             reportViewer1.RefreshReport();
         }
 
@@ -1134,5 +1134,31 @@ namespace Saobracaj.Dokumenta
         {
             //za dodavanje
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            string tmpStanje;
+            string tmpOstecenja;
+            if (chkPun.Checked == true)
+                tmpStanje = "PUN";
+            else
+            {
+                tmpStanje = "PRAZAN";
+            }
+            if (chkIspravan.Checked == true)
+            {
+                tmpOstecenja = "ISPRAVAN" + " "  + txtSifra.Text + " - CIR" ;
+            }
+            else
+            {
+                tmpOstecenja = "OSTECEN" + " " + txtSifra.Text + " - CIR";
+            }
+            Saobracaj.RadniNalozi.InsertRN up = new Saobracaj.RadniNalozi.InsertRN();
+          
+                    up.UpdateKontejnerIzCira(txtBrojKontejnera.Text, tmpStanje, tmpOstecenja);
+            
+
+            }
+        }
     }
-}
+

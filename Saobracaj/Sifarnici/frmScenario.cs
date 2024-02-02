@@ -16,11 +16,12 @@ using Syncfusion.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmScenario : Form
+    public partial class frmScenario :  Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         public frmScenario()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             InitializeComponent();
         }
 
@@ -49,7 +50,8 @@ namespace Saobracaj.Sifarnici
             select = "Select Scenario.ID,Scenario.RB, Scenario.Naziv, Scenario.Usluga, VrstaManipulacije.Naziv as UslugaN,  Scenario.Pokret, Scenario.StatusKontejnera, " +
 " KontejnerStatus.Naziv as StatusN from Scenario " +
 " inner join VrstaManipulacije on VrstaManipulacije.ID = Usluga " +
-" inner join KontejnerStatus on KontejnerStatus.ID = Scenario.StatusKOntejnera  ";
+" inner join KontejnerStatus on KontejnerStatus.ID = Scenario.StatusKOntejnera " +
+" order by  Scenario.ID,Scenario.RB ";
 
             //  "  where  Aktivnosti.Masinovodja = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) + " order by Aktivnosti.ID desc";
 
@@ -79,32 +81,36 @@ namespace Saobracaj.Sifarnici
 
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "Šifra";
-            dataGridView1.Columns[0].Width = 80;
-            /*
+            dataGridView1.Columns[0].Width = 50;
+            
             DataGridViewColumn column1 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Lok naz";
-            dataGridView1.Columns[1].Width = 100;
+            dataGridView1.Columns[1].HeaderText = "RB";
+            dataGridView1.Columns[1].Width = 30;
 
             DataGridViewColumn column2 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Lozinka";
-            dataGridView1.Columns[2].Width = 150;
+            dataGridView1.Columns[2].HeaderText = "Naziv";
+            dataGridView1.Columns[2].Width = 130;
 
             DataGridViewColumn column3 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Aktivna";
-            dataGridView1.Columns[3].Width = 60;
+            dataGridView1.Columns[3].HeaderText = "USL";
+            dataGridView1.Columns[3].Width = 30;
 
             DataGridViewColumn column4 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Dizel";
-            dataGridView1.Columns[4].Width = 80;
+            dataGridView1.Columns[4].HeaderText = "Usluga";
+            dataGridView1.Columns[4].Width =230;
 
             DataGridViewColumn column5 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Masa";
-            dataGridView1.Columns[5].Width = 80;
+            dataGridView1.Columns[5].HeaderText = "Pokret";
+            dataGridView1.Columns[5].Width = 130;
 
             DataGridViewColumn column6 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Serija ID";
-            dataGridView1.Columns[6].Width = 80;
-            */
+            dataGridView1.Columns[6].HeaderText = "StID";
+            dataGridView1.Columns[6].Width = 40;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Status";
+            dataGridView1.Columns[7].Width = 140;
+
         }
 
         private void frmScenario_Load(object sender, EventArgs e)
@@ -136,6 +142,8 @@ namespace Saobracaj.Sifarnici
             cboStatus.DataSource = ds3.Tables[0];
             cboStatus.DisplayMember = "Naziv";
             cboStatus.ValueMember = "ID";
+
+            RefreshDataGrid();
         }
 
         private void btnRacun_Click(object sender, EventArgs e)
@@ -146,21 +154,21 @@ namespace Saobracaj.Sifarnici
             ins.InsScenario(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue));
                      RefreshDataGrid();
 }
-        private void VratiPodatkeSelect(string ID)
+        private void VratiPodatkeSelect(string ID, string RB)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("Scenario.ID,Scenario.RB, Scenario.Naziv, Scenario.Usluga, Scenario.Pokret, Scenario.StatusKontejnera where ID=" + txtSifra.Text + " AND RB =" + txtRB.Text, con);
+            SqlCommand cmd = new SqlCommand("Select Scenario.ID,Scenario.RB, Scenario.Naziv, Scenario.Usluga, Scenario.Pokret, Scenario.StatusKontejnera from Scenario where ID=" + ID + " AND RB =" + RB, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
                 txtNaziv.Text = dr["Naziv"].ToString();
                 cboUsluga.SelectedValue = Convert.ToInt32(dr["Usluga"].ToString());
-                cboPokret.Text = dr["Usluga"].ToString();
+                cboPokret.Text = dr["Pokret"].ToString();
                 cboStatus.SelectedValue = dr["StatusKontejnera"].ToString();
 
             }
@@ -178,8 +186,8 @@ namespace Saobracaj.Sifarnici
                     if (row.Selected)
                     {
                         txtSifra.Text = row.Cells[0].Value.ToString();
-                        txtRB.Text = row.Cells[0].Value.ToString();
-                        VratiPodatkeSelect(txtSifra.Text);
+                        txtRB.Text = row.Cells[1].Value.ToString();
+                        VratiPodatkeSelect(txtSifra.Text, txtRB.Text);
                         // txtOznaka.Enabled = false;
                         // txtOpis.Text = row.Cells[1].Value.ToString();
                     }

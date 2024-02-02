@@ -198,7 +198,7 @@ namespace Saobracaj.Izvoz
 
         }
 
-        public void PrenesiKontejnerUOtpremuKamionomUvoz(int KontejnerID)
+        public void PrenesiKontejnerUOtpremuKamionomUvoz(int KontejnerID, int NalogID)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -211,6 +211,13 @@ namespace Saobracaj.Izvoz
             otpremaid.Direction = ParameterDirection.Input;
             otpremaid.Value = KontejnerID;
             cmd.Parameters.Add(otpremaid);
+
+            SqlParameter nalogid = new SqlParameter();
+            nalogid.ParameterName = "@NalogID";
+            nalogid.SqlDbType = SqlDbType.Int;
+            nalogid.Direction = ParameterDirection.Input;
+            nalogid.Value = NalogID;
+            cmd.Parameters.Add(nalogid);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
