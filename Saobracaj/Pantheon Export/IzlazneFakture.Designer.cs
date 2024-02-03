@@ -47,7 +47,6 @@
             this.dtDatum = new System.Windows.Forms.DateTimePicker();
             this.cboPrimalac = new System.Windows.Forms.ComboBox();
             this.cboValuta = new System.Windows.Forms.ComboBox();
-            this.txtKurs = new System.Windows.Forms.TextBox();
             this.txtMestoUtovara = new System.Windows.Forms.TextBox();
             this.dtDatumUtovara = new System.Windows.Forms.DateTimePicker();
             this.txtMestoIstovara = new System.Windows.Forms.TextBox();
@@ -83,11 +82,13 @@
             this.cboIzjava = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
+            this.txtKurs = new System.Windows.Forms.NumericUpDown();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCena)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKolicina)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtKurs)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -252,14 +253,6 @@
             this.cboValuta.Name = "cboValuta";
             this.cboValuta.Size = new System.Drawing.Size(132, 21);
             this.cboValuta.TabIndex = 203;
-            // 
-            // txtKurs
-            // 
-            this.txtKurs.Location = new System.Drawing.Point(840, 51);
-            this.txtKurs.Name = "txtKurs";
-            this.txtKurs.Size = new System.Drawing.Size(78, 20);
-            this.txtKurs.TabIndex = 201;
-            this.txtKurs.Text = "1";
             // 
             // txtMestoUtovara
             // 
@@ -595,6 +588,24 @@
             this.label24.TabIndex = 210;
             this.label24.Text = "Vrsta dokumenta";
             // 
+            // txtKurs
+            // 
+            this.txtKurs.DecimalPlaces = 2;
+            this.txtKurs.Location = new System.Drawing.Point(840, 51);
+            this.txtKurs.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.txtKurs.Name = "txtKurs";
+            this.txtKurs.Size = new System.Drawing.Size(78, 20);
+            this.txtKurs.TabIndex = 210;
+            this.txtKurs.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // IzlazneFakture
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -602,6 +613,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1190, 563);
             this.Controls.Add(this.label24);
+            this.Controls.Add(this.txtKurs);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.cboIzjava);
             this.Controls.Add(this.dataGridView1);
@@ -616,7 +628,6 @@
             this.Controls.Add(this.dtPDV);
             this.Controls.Add(this.dtDatum);
             this.Controls.Add(this.txtNapomena);
-            this.Controls.Add(this.txtKurs);
             this.Controls.Add(this.txtMestoIstovara);
             this.Controls.Add(this.txtMestoUtovara);
             this.Controls.Add(this.txtID);
@@ -645,6 +656,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtCena)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKolicina)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtKurs)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -670,7 +682,6 @@
         private System.Windows.Forms.DateTimePicker dtDatum;
         private System.Windows.Forms.ComboBox cboPrimalac;
         private System.Windows.Forms.ComboBox cboValuta;
-        private System.Windows.Forms.TextBox txtKurs;
         private System.Windows.Forms.TextBox txtMestoUtovara;
         private System.Windows.Forms.DateTimePicker dtDatumUtovara;
         private System.Windows.Forms.TextBox txtMestoIstovara;
@@ -706,5 +717,6 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.NumericUpDown txtCena;
         private System.Windows.Forms.NumericUpDown txtKolicina;
+        private System.Windows.Forms.NumericUpDown txtKurs;
     }
 }

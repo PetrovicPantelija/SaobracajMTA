@@ -38,7 +38,7 @@ namespace Saobracaj.Pantheon_Export
             comboBox1.Text = vrsta;
             cboPrimalac.SelectedValue = primalac;
             cboValuta.SelectedValue= valuta;
-            txtKurs.Text = kurs.ToString();
+            txtKurs.Value = Convert.ToDecimal(kurs);
             dtPDV.Value = Convert.ToDateTime(datumPDV.ToShortDateString());
             txtMestoUtovara.Text= mestoUtovara.ToString();
             dtDatumUtovara.Value = Convert.ToDateTime(datumUtovara.ToShortDateString());
@@ -97,7 +97,7 @@ namespace Saobracaj.Pantheon_Export
         {
             SqlConnection conn = new SqlConnection(connect);
 
-            var valuta = "Select RTrim(VaSifra) as VaSifra,VaNaziv From Valute";
+            var valuta = "Select RTrim(VaSifra) as VaSifra,RTrim(VaNaziv) as VaNaziv From Valute";
             var valutaDa = new SqlDataAdapter(valuta, conn);
             var valutaDS = new DataSet();
             valutaDa.Fill(valutaDS);
@@ -105,7 +105,7 @@ namespace Saobracaj.Pantheon_Export
             cboValuta.DisplayMember = "VaNaziv";
             cboValuta.ValueMember = "VaSifra";
 
-            var referent = "Select Korisnici.DeSifra as DeSifra, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis From Korisnici inner join Delavci on Korisnici.DeSifra=Delavci.DeSifra order by Korisnici.DeSifra";
+            var referent = "Select Korisnici.DeSifra as DeSifra, RTrim((RTrim(DeIme) + ' ' + Rtrim(DePriimek))) as Opis From Korisnici inner join Delavci on Korisnici.DeSifra=Delavci.DeSifra order by Korisnici.DeSifra";
             var referentDa = new SqlDataAdapter(referent, conn);
             var referentDS = new DataSet();
             referentDa.Fill(referentDS);
@@ -113,7 +113,7 @@ namespace Saobracaj.Pantheon_Export
             cboReferent.DisplayMember = "Opis";
             cboReferent.ValueMember = "DeSifra";
 
-            var dobavljac = "Select PaSifra,PaNaziv from Partnerji Where Buyer='T' order by PaSifra";
+            var dobavljac = "Select PaSifra,RTrim(PaNaziv) as PaNaziv from Partnerji Where Buyer='T' order by PaSifra";
             var dobavljacDa = new SqlDataAdapter(dobavljac, conn);
             var dobavljacDS = new DataSet();
             dobavljacDa.Fill(dobavljacDS);
@@ -129,7 +129,7 @@ namespace Saobracaj.Pantheon_Export
             cboMP.DisplayMember = "MpNaziv";
             cboMP.ValueMember = "MpSifra";
 
-            var nosilac = "Select ID,NazivNosiocaTroska from NosiociTroskova order by ID desc";
+            var nosilac = "Select ID,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska from NosiociTroskova order by ID desc";
             var nosilacDA = new SqlDataAdapter(nosilac, conn);
             var nosilacDS = new DataSet();
             nosilacDA.Fill(nosilacDS);
@@ -138,7 +138,7 @@ namespace Saobracaj.Pantheon_Export
             cboNosilac.ValueMember = "ID";
 
 
-            var query3 = "Select ID, Naziv from Izjave";
+            var query3 = "Select ID, RTrim(Naziv) as Naziv from Izjave";
             var da3 = new SqlDataAdapter(query3, conn);
             var ds3 = new DataSet();
             da3.Fill(ds3);
@@ -146,7 +146,7 @@ namespace Saobracaj.Pantheon_Export
             cboIzjava.DisplayMember = "Naziv";
             cboIzjava.ValueMember = "ID";
 
-            var jm = "Select MeSifra,MeNaziv from MerskeEnote order by MeSifra";
+            var jm = "Select MeSifra,RTrim(MeNaziv) as MeNaziv from MerskeEnote order by MeSifra";
             var jmDa = new SqlDataAdapter(jm, conn);
             var jmDS = new DataSet();
             jmDa.Fill(jmDS);
@@ -240,18 +240,7 @@ namespace Saobracaj.Pantheon_Export
         string staraSif;
         private void cboMP_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            string query = "Select MpSifENoteMere1,MpNaziv,MpStaraSif From MaticniPodatki Where MPSifra=" + Convert.ToString(cboMP.SelectedValue);
-            SqlConnection conn = new SqlConnection(connect);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                //txtJM.Text = dr[0].ToString();
-                MpNaziv = dr[1].ToString().TrimEnd();
-                staraSif = dr[2].ToString().TrimEnd();
-            }
-            conn.Close();
+
         }
         int FaPFakZap;
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -278,6 +267,25 @@ namespace Saobracaj.Pantheon_Export
         int posao;
         private void cboNosilac_SelectionChangeCommitted(object sender, EventArgs e)
         {
+
+        }
+        private void GetMPInfo()
+        {
+            string query = "Select MpSifENoteMere1,MpNaziv,MpStaraSif From MaticniPodatki Where MPSifra=" + Convert.ToString(cboMP.SelectedValue);
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                //txtJM.Text = dr[0].ToString();
+                MpNaziv = dr[1].ToString().TrimEnd();
+                staraSif = dr[2].ToString().TrimEnd();
+            }
+            conn.Close();
+        }
+        private void GetNosilacInfo()
+        {
             string query2 = "SELECT Posao From NosiociTroskova Where ID=" + Convert.ToInt32(cboNosilac.SelectedValue);
             SqlConnection conn = new SqlConnection(connect);
             conn.Open();
@@ -289,11 +297,13 @@ namespace Saobracaj.Pantheon_Export
             }
             conn.Close();
         }
-
         int rb;
 
         private void button1_Click(object sender, EventArgs e)
         {
+            GetMPInfo();
+            GetNosilacInfo();
+
             InsertPatheonExport ins = new InsertPatheonExport();
             ins.InsFakturaPostav(korisnik.ToString().TrimEnd(), Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), MpNaziv, cboJM.SelectedValue.ToString().TrimEnd(), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), posao);
 

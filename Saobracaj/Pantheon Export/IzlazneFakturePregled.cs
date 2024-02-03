@@ -65,6 +65,18 @@ namespace Saobracaj.Pantheon_Export
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            dataGridView1.Columns[16].Visible = false;
+            dataGridView1.Columns[17].Visible = false;
+            dataGridView1.Columns[22].Visible = false;
+
+            dataGridView1.Columns[2].Width = 60;
+            dataGridView1.Columns[3].Width= 60;
+            dataGridView1.Columns[6].Width = 60;
+            dataGridView1.Columns[8].Width = 60;
+            dataGridView1.Columns[9].Width = 70;
+            dataGridView1.Columns[11].Width = 70;
+
         }
         public string Valuta,MestoUtovara,MestoIstovara,Napomena;
         public int ID,Primalac,Referent, Izjava;
@@ -154,7 +166,7 @@ namespace Saobracaj.Pantheon_Export
                     {
                         string FaStFak = "";
                         string query1 = "SELECT CRMID AS CRMDocumentID, RTrim(FaModul) AS DocType, CONVERT(VARCHAR, FaVpisalDat, 23) AS Date, RTrim(PaNaziv) AS Receiver," +
-                            "RTrim(FaValutaCene) AS Currency, RTrim(Kurs) AS FXRate, '' AS Doc1, '' AS DateDoc1, '' AS Doc2, '' AS DateDoc2," +
+                            "RTrim(FaValutaCene) AS Currency, Cast(Kurs as DECIMAL(10,2)) AS FXRate, '' AS Doc1, '' AS DateDoc1, '' AS Doc2, '' AS DateDoc2," +
                             "CONVERT(VARCHAR, FaObdobje, 23) AS DateVAT, CONVERT(VARCHAR, FaDatVal, 23) AS DateDue, RTrim(IDPantheon) AS Statement," +
                             "RTrim(FaRefer) AS UserId, RTrim(FaOpomba2) AS Napomena,FaStFak " +
                             "FROM Faktura " +
@@ -225,15 +237,11 @@ namespace Saobracaj.Pantheon_Export
                         foreach (var item in combinedData)
                         {
                             string jsonOutput = JsonConvert.SerializeObject(item, Formatting.Indented);
-                            MessageBox.Show(jsonOutput.ToString());
-                            //Console.WriteLine(jsonOutput);
-
                             var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/Faktura/FakturaPost");
                             httpWebRequest.ContentType = "application/json";
                             httpWebRequest.Method = "POST";
                             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                             {
-                                //MessageBox.Show(jsonOutput.ToString());
                                 streamWriter.Write(jsonOutput);
                             }
                             string response = "";
@@ -242,12 +250,10 @@ namespace Saobracaj.Pantheon_Export
                             {
                                 var result = streamReader.ReadToEnd();
                                 response = result.ToString();
-                                MessageBox.Show(response.ToString());
-
 
                                 if (response.Contains("ERROR") == true || response.Contains("Greška") == true || response.Contains("Error") == true || response.Contains("Duplikat") == true)
                                 {
-                                    MessageBox.Show("Slanje nije uspelo");
+                                    MessageBox.Show("Slanje nije uspelo\n"+response.ToString());
                                     ApiLogovi.Log("IzlFak", ID.ToString(), jsonOutput, response);
                                     ApiLogovi.Save();
                                     return;
@@ -264,7 +270,6 @@ namespace Saobracaj.Pantheon_Export
                                             conn.Close();
                                         }
                                     }
-                                    MessageBox.Show("Uspešan prenos");
                                 }
                             }
                             ApiLogovi.Log("IzlFak", ID.ToString(), jsonOutput, response);
@@ -278,8 +283,8 @@ namespace Saobracaj.Pantheon_Export
                         return;
                     }
                 }
-
             }
+            FillGV();
         }
         public DateTime DatumDokumenta,DatumPDV,DatumValute, DatumUtovara,DatumIstovara,datumDokPom,pdvPom,valutaPom,utovarPom,istovarPom;
         public decimal Kurs;

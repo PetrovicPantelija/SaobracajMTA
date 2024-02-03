@@ -229,7 +229,7 @@ namespace Saobracaj.Pantheon_Export
 
                             if (response.Contains("Error")==true || response.Contains("Greška")==true || response.Contains("ERROR")==true || response.Contains("Duplikat") == true)
                             {
-                                MessageBox.Show("Slanje nije uspelo");
+                                MessageBox.Show("Slanje nije uspelo\n"+response.ToString());
                                 ApiLogovi.Log("NT", ID.ToString(), json, response);
                                 ApiLogovi.Save();
                                 return;
@@ -246,7 +246,6 @@ namespace Saobracaj.Pantheon_Export
                                         conn.Close();
                                     }
                                 }
-                                MessageBox.Show("Uspešan prenos");
                             }
                         }
                         ApiLogovi.Log("NT", ID.ToString(), json, response);

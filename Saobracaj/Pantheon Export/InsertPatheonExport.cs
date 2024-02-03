@@ -111,6 +111,39 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
+
+        public void PoveziPredvidjanje(int IDFak, int Predvidjanje)
+        {
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "PoveziPredvidjanjeFaktura";
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.Add(new SqlParameter("@IDFak", SqlDbType.Int) { Value = IDFak });
+                            cmd.Parameters.Add(new SqlParameter("@IdPredvidjanja", SqlDbType.Int) { Value=Predvidjanje });
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (SqlException ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Neuspešan upis cena u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                conn.Close();
+            }
+        }
         public void InsUlFakPostav(int IDFak, int RB, int MP, decimal Kolicina, decimal Cena, int NosilacTroska, string JM, string Proizvod, int Najava)
         {
             using (SqlConnection conn = new SqlConnection(connect))
@@ -253,7 +286,8 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
-        public void InsPredvidjanje(int IdP, string PredvidjanjeID, int PredvidjanjePoz, DateTime Datum, int Subjekat, int NosilacTroska, int Odeljenje, decimal Iznos, string Valuta, int Status, int Najava)
+        public void InsPredvidjanje(int IdP, string PredvidjanjeID, int PredvidjanjePoz, DateTime Datum, int Subjekat, int NosilacTroska, int Odeljenje, decimal Iznos, string Valuta, int Status, int Najava,int Ident,
+            decimal Kolicina,string JM,string Napomena)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -279,6 +313,10 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@Valuta", SqlDbType.Char, 3) { Value = Valuta });
                             cmd.Parameters.Add(new SqlParameter("@Status", SqlDbType.Int) { Value = Status });
                             cmd.Parameters.Add(new SqlParameter("@Najava", SqlDbType.Int) { Value = Najava });
+                            cmd.Parameters.Add(new SqlParameter("@Ident",SqlDbType.Int) { Value = Ident });
+                            cmd.Parameters.Add(new SqlParameter("@Kolicina", SqlDbType.Decimal) { Value = Kolicina });
+                            cmd.Parameters.Add(new SqlParameter("@JM", SqlDbType.NVarChar, 10) { Value = JM });
+                            cmd.Parameters.Add(new SqlParameter("@Napomena", SqlDbType.NVarChar, 500) { Value = Napomena });
 
                             cmd.ExecuteNonQuery();
                         }
@@ -293,7 +331,8 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
-        public void UpdPredvidjanje(int ID, string PredvidjanjeID, int PredvidjanjePoz, DateTime Datum, int Subjekat, int NosilacTroska, int Odeljenje, decimal Iznos, string Valuta, int NajavaID,int IDp)
+        public void UpdPredvidjanje(int ID, string PredvidjanjeID, int PredvidjanjePoz, DateTime Datum, int Subjekat, int NosilacTroska, int Odeljenje, decimal Iznos, string Valuta, int NajavaID, int IDp,
+            int Ident, decimal Kolicina, string JM, string Napomena)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -319,6 +358,10 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@Valuta", SqlDbType.Char, 3) { Value = Valuta });
                             cmd.Parameters.Add(new SqlParameter("@NajavaID", SqlDbType.Int) { Value = NajavaID });
                             cmd.Parameters.Add(new SqlParameter("@IDP", SqlDbType.Int) { Value = IDp });
+                            cmd.Parameters.Add(new SqlParameter("@Ident", SqlDbType.Int) { Value = Ident });
+                            cmd.Parameters.Add(new SqlParameter("@Kolicina", SqlDbType.Decimal) { Value = Kolicina });
+                            cmd.Parameters.Add(new SqlParameter("@JM", SqlDbType.NVarChar, 10) { Value = JM });
+                            cmd.Parameters.Add(new SqlParameter("@Napomena", SqlDbType.NVarChar, 500) { Value = Napomena });
 
                             cmd.ExecuteNonQuery();
                         }
@@ -514,10 +557,6 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
-        /*
-         * OppID nvarchar(20),NazivPosla nvarchar(200),Odeljenje int,Product nvarchar(100),ProductFor nvarchar(100),Klijent int,KontaktOsoba nvarchar(100),
-OppType nvarchar(50),JobType nvarchar(50),Budzet decimal(18,2),Valuta nvarchar(3),EstimatedRevenue decimal(18,2),Opis nvarchar(500),PocetnaStanica int,KrajnjaStanica int,Won int
-        */
         public void InsOpportunity(string OppID, string NazivPosla, int Odeljenje, string Product, string ProductFor, int Klijent, string KontaktOsoba, string OppType, string JobType, decimal Budzet, string Valuta,
             decimal EstimatedRevenue, string Opis, int PocetnaStanica, int KrajnjaStanica, int Won)
         {
