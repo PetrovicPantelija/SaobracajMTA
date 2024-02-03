@@ -1,4 +1,5 @@
-﻿using Saobracaj.eDokumenta;
+﻿using Org.BouncyCastle.Crypto;
+using Saobracaj.eDokumenta;
 using Syncfusion.Windows.Forms.Chart;
 using Syncfusion.XPS;
 using System;
@@ -45,7 +46,7 @@ namespace Saobracaj.Pantheon_Export
             cboTip.Text = tipDokumenta.ToString();
             dtPrijem.Value = Convert.ToDateTime(datumPrijema.ToShortDateString());
             cboValuta.SelectedValue = valuta.ToString();
-            txtKurs.Text = kurs.ToString();
+            txtKurs.Value = kurs;
             txtBrFakture.Text = fakturaBr.ToString();
             cboDobavljac.SelectedValue = Convert.ToInt32(dobavljac.ToString());
             txtRacunDobavljaca.Text = racunDobavljaca.ToString();
@@ -117,7 +118,7 @@ namespace Saobracaj.Pantheon_Export
             cboMP.DisplayMember = "MpNaziv";
             cboMP.ValueMember = "MpSifra";
 
-            var nosilac = "Select ID,NazivNosiocaTroska from NosiociTroskova order by ID desc";
+            var nosilac = "Select ID,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska from NosiociTroskova order by ID desc";
             var nosilacDA = new SqlDataAdapter(nosilac, conn);
             var nosilacDS = new DataSet();
             nosilacDA.Fill(nosilacDS);
@@ -136,7 +137,7 @@ namespace Saobracaj.Pantheon_Export
         private void FillGV()
         {
             ID = Convert.ToInt32(txtID.Text);
-                var select = "select UlFakPostav.ID,IDFak,RB,MpNaziv,Kolicina,Cena,NazivNosiocaTroska,JM,Proizvod,Oznaka from UlFakPostav inner join UlFak on UlFakPostav.IDFak=UlFak.ID inner join MaticniPodatki on UlFakPostav.Mp=MaticniPodatki.MpSifra inner join NosiociTroskova on UlFakPostav.NosilacTroska=NosiociTroskova.ID inner join Najava on UlFakPostav.NajavaID=Najava.ID Where IDFak=" + txtID.Text;
+                var select = "select UlFakPostav.ID,IDFak,RB,MP,Rtrim(MpStaraSif) as Ident,Kolicina,Cena,UlFakPostav.NosilacTroska as NT,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska,JM,Proizvod,Oznaka from UlFakPostav inner join UlFak on UlFakPostav.IDFak=UlFak.ID inner join MaticniPodatki on UlFakPostav.Mp=MaticniPodatki.MpSifra inner join NosiociTroskova on UlFakPostav.NosilacTroska=NosiociTroskova.ID inner join Najava on UlFakPostav.NajavaID=Najava.ID Where IDFak=" + txtID.Text;
                 SqlConnection conn = new SqlConnection(connect);
                 var dataAdapter = new SqlDataAdapter(select, conn);
                 var ds = new DataSet();
@@ -158,15 +159,15 @@ namespace Saobracaj.Pantheon_Export
                 dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
                 dataGridView1.Columns[0].Width = 50;
-                dataGridView1.Columns[1].Width = 50;
+                dataGridView1.Columns[1].Visible = false;
                 dataGridView1.Columns[2].Width = 50;
-                dataGridView1.Columns[3].Width = 250;
+                dataGridView1.Columns[3].Visible = false;
                 dataGridView1.Columns[4].Width = 100;
                 dataGridView1.Columns[5].Width = 100;
-                dataGridView1.Columns[6].Width = 200;
+                dataGridView1.Columns[8].Width = 200;
+            dataGridView1.Columns[7].Visible = false;
 
-
-                if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count + 1; }
+            if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count + 1; }
                 txtRB.Text = rb.ToString();
 
         }
@@ -208,6 +209,38 @@ namespace Saobracaj.Pantheon_Export
             conn.Close();
 
         }
+        int IDVeza;
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string query = "Select ID from UlFak Where ID=" + Convert.ToInt32(txtID.Text);
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            if (dr.HasRows == false)
+            {
+                MessageBox.Show("Mora se prvo sačuvati zaglavlje fakture!"); return;
+            }
+            conn.Close();
+
+            
+
+            string query2 = "Select IDP From Predvidjanje Where ID=" + Convert.ToInt32(cboCRM.SelectedValue);
+            conn.Open();
+            SqlCommand cmd2 = new SqlCommand(query2, conn);
+            SqlDataReader dr2 = cmd2.ExecuteReader();
+            while (dr2.Read())
+            {
+                IDVeza = Convert.ToInt32(dr2[0].ToString());
+            }
+            conn.Close();
+
+            InsertPatheonExport ins = new InsertPatheonExport();
+            
+            ins.PoveziPredvidjanje(Convert.ToInt32(txtID.Text), IDVeza);
+            FillGV();
+            
+        }
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
@@ -218,6 +251,8 @@ namespace Saobracaj.Pantheon_Export
         private void button1_Click(object sender, EventArgs e)
         {
             if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count+1; }
+
+            GetNosilacInfo();
             
 
             InsertPatheonExport ins = new InsertPatheonExport();
@@ -261,7 +296,13 @@ namespace Saobracaj.Pantheon_Export
                 {
                     if (row.Selected)
                     {
+                        
                         IDPostav = Convert.ToInt32(row.Cells[0].Value.ToString());
+                        txtRB.Text = row.Cells["RB"].Value.ToString();
+                        cboMP.SelectedValue = Convert.ToInt32(row.Cells["MP"].Value);
+                        txtKolicina.Value = Convert.ToDecimal(row.Cells["Kolicina"].Value);
+                        txtCena.Value = Convert.ToDecimal(row.Cells["Cena"].Value);
+                        cboNosilac.SelectedValue = Convert.ToInt32(row.Cells["NosilacTroska"].Value);
                     }
                 }
             }
@@ -276,8 +317,7 @@ namespace Saobracaj.Pantheon_Export
             ins.DelUlFakPostav(IDPostav);
             FillGV();
         }
-
-        private void cboNosilac_SelectionChangeCommitted(object sender, EventArgs e)
+        private void GetNosilacInfo()
         {
             string query2 = "SELECT Posao From NosiociTroskova Where ID=" + Convert.ToInt32(cboNosilac.SelectedValue);
             SqlConnection conn = new SqlConnection(connect);
@@ -290,10 +330,12 @@ namespace Saobracaj.Pantheon_Export
             }
             conn.Close();
         }
+        private void cboNosilac_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 //trimovi za combo
-//odeljenje cartering 
 //stavke faktura, naziv samo zop
-//proveriti zasto nekad za stavku fakture upisuje 0
 //predvidjanje neka napomana

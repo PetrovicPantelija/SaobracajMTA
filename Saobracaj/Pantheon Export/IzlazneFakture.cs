@@ -38,7 +38,7 @@ namespace Saobracaj.Pantheon_Export
             comboBox1.Text = vrsta;
             cboPrimalac.SelectedValue = primalac;
             cboValuta.SelectedValue= valuta;
-            txtKurs.Text = kurs.ToString();
+            txtKurs.Value = Convert.ToDecimal(kurs);
             dtPDV.Value = Convert.ToDateTime(datumPDV.ToShortDateString());
             txtMestoUtovara.Text= mestoUtovara.ToString();
             dtDatumUtovara.Value = Convert.ToDateTime(datumUtovara.ToShortDateString());
@@ -240,18 +240,7 @@ namespace Saobracaj.Pantheon_Export
         string staraSif;
         private void cboMP_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            string query = "Select MpSifENoteMere1,MpNaziv,MpStaraSif From MaticniPodatki Where MPSifra=" + Convert.ToString(cboMP.SelectedValue);
-            SqlConnection conn = new SqlConnection(connect);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                //txtJM.Text = dr[0].ToString();
-                MpNaziv = dr[1].ToString().TrimEnd();
-                staraSif = dr[2].ToString().TrimEnd();
-            }
-            conn.Close();
+
         }
         int FaPFakZap;
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -278,6 +267,25 @@ namespace Saobracaj.Pantheon_Export
         int posao;
         private void cboNosilac_SelectionChangeCommitted(object sender, EventArgs e)
         {
+
+        }
+        private void GetMPInfo()
+        {
+            string query = "Select MpSifENoteMere1,MpNaziv,MpStaraSif From MaticniPodatki Where MPSifra=" + Convert.ToString(cboMP.SelectedValue);
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                //txtJM.Text = dr[0].ToString();
+                MpNaziv = dr[1].ToString().TrimEnd();
+                staraSif = dr[2].ToString().TrimEnd();
+            }
+            conn.Close();
+        }
+        private void GetNosilacInfo()
+        {
             string query2 = "SELECT Posao From NosiociTroskova Where ID=" + Convert.ToInt32(cboNosilac.SelectedValue);
             SqlConnection conn = new SqlConnection(connect);
             conn.Open();
@@ -289,11 +297,13 @@ namespace Saobracaj.Pantheon_Export
             }
             conn.Close();
         }
-
         int rb;
 
         private void button1_Click(object sender, EventArgs e)
         {
+            GetMPInfo();
+            GetNosilacInfo();
+
             InsertPatheonExport ins = new InsertPatheonExport();
             ins.InsFakturaPostav(korisnik.ToString().TrimEnd(), Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), MpNaziv, cboJM.SelectedValue.ToString().TrimEnd(), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), posao);
 
