@@ -423,7 +423,7 @@ namespace Saobracaj.Uvoz
 
         private void frmFormiranjePlana_Load(object sender, EventArgs e)
         {
-            RefreshDataGrid1();
+           // RefreshDataGrid1();
             RefreshSync();
             RefreshDataGrid2();
             FillCombo();
@@ -494,6 +494,11 @@ namespace Saobracaj.Uvoz
             VratiTrenutnaTezina();
             VratiMAXTezina();
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            RefreshSync();
         }
     }
 }
