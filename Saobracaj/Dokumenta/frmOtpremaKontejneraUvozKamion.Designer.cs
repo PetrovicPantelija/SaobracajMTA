@@ -75,6 +75,7 @@ namespace Saobracaj.Dokumenta
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button8 = new System.Windows.Forms.Button();
             this.chkVrstaKamiona = new System.Windows.Forms.CheckBox();
             this.txtNalogID = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
@@ -158,7 +159,6 @@ namespace Saobracaj.Dokumenta
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.button8 = new System.Windows.Forms.Button();
             this.btnManipulacija.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -568,7 +568,6 @@ namespace Saobracaj.Dokumenta
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.button8);
-            this.panel1.Controls.Add(this.chkVrstaKamiona);
             this.panel1.Controls.Add(this.txtNalogID);
             this.panel1.Controls.Add(this.label39);
             this.panel1.Controls.Add(this.button7);
@@ -647,6 +646,20 @@ namespace Saobracaj.Dokumenta
             this.panel1.TabIndex = 262;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button8.ForeColor = System.Drawing.Color.White;
+            this.button8.Location = new System.Drawing.Point(672, 328);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(215, 25);
+            this.button8.TabIndex = 431;
+            this.button8.Text = "Promeni";
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
             // chkVrstaKamiona
             // 
             this.chkVrstaKamiona.AutoSize = true;
@@ -654,11 +667,11 @@ namespace Saobracaj.Dokumenta
             this.chkVrstaKamiona.Enabled = false;
             this.chkVrstaKamiona.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkVrstaKamiona.ForeColor = System.Drawing.Color.Black;
-            this.chkVrstaKamiona.Location = new System.Drawing.Point(385, 215);
+            this.chkVrstaKamiona.Location = new System.Drawing.Point(554, 86);
             this.chkVrstaKamiona.Name = "chkVrstaKamiona";
-            this.chkVrstaKamiona.Size = new System.Drawing.Size(270, 17);
+            this.chkVrstaKamiona.Size = new System.Drawing.Size(136, 17);
             this.chkVrstaKamiona.TabIndex = 283;
-            this.chkVrstaKamiona.Text = "VRSTA KAMIONA(PLATFORMA/CIRADA) - NEMA";
+            this.chkVrstaKamiona.Text = "PLATFORMA/CIRADA";
             this.chkVrstaKamiona.UseVisualStyleBackColor = false;
             // 
             // txtNalogID
@@ -813,7 +826,7 @@ namespace Saobracaj.Dokumenta
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(395, 183);
+            this.tabPage4.Size = new System.Drawing.Size(757, 182);
             this.tabPage4.TabIndex = 0;
             this.tabPage4.Text = "Napomene za pozicioniranje";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1716,20 +1729,6 @@ namespace Saobracaj.Dokumenta
             this.tabControl1.Size = new System.Drawing.Size(1454, 180);
             this.tabControl1.TabIndex = 263;
             // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
-            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button8.ForeColor = System.Drawing.Color.White;
-            this.button8.Location = new System.Drawing.Point(672, 328);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(215, 25);
-            this.button8.TabIndex = 431;
-            this.button8.Text = "Promeni";
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
             // frmOtpremaKontejneraUvozKamion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1737,6 +1736,7 @@ namespace Saobracaj.Dokumenta
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1500, 707);
             this.Controls.Add(this.chkUvoz);
+            this.Controls.Add(this.chkVrstaKamiona);
             this.Controls.Add(this.label41);
             this.Controls.Add(this.cboOperater);
             this.Controls.Add(this.tabControl1);

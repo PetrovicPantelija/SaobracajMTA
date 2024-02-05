@@ -30,7 +30,9 @@ namespace Saobracaj.RadniNalozi
             FillCombo();
             txtNalogIzdao.Text = Korisnik;
             cboSaSredstva.SelectedValue = Convert.ToInt32(IDVOza);
-            NapuniVrstuUsluge(IDUsluge);
+            VratiPodatkeVrstaMan(IDUsluge.ToString());
+          //  NapuniVrstuUsluge(IDUsluge);
+            
             txtNalogID.Text = IDUsluge;
             txtPrijemID.Text = PrijemID;
             RefreshStavkeVoza(PrijemID);
@@ -49,9 +51,29 @@ namespace Saobracaj.RadniNalozi
             cboUsluga.DisplayMember = "Naziv";
             cboUsluga.ValueMember = "ID";
 
-            cboUsluga.SelectedValue = Convert.ToInt32(IDUsluga);
+            
         }
+        private void VratiPodatkeVrstaMan(string IDUsluge)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
 
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" Select VrstaManipulacije.ID from RadniNalogInterni inner join " +
+   " VrstaManipulacije on RadniNalogInterni.IDManipulacijaJed = VrstaManipulacije.ID where RadniNalogInterni.ID = " + IDUsluge, con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+
+                cboUsluga.SelectedValue = Convert.ToInt32(dr["ID"].ToString());
+
+            }
+
+            con.Close();
+        }
         private void RefreshStavkeVoza(string IDVOza)
         {
             if (cboUsluga.SelectedValue is null)
@@ -109,7 +131,18 @@ namespace Saobracaj.RadniNalozi
 
         private void FillGV()
         {
-            var select = "Select * from RNPrijemVoza2 order by ID desc";
+            var select = "SELECT         RNPrijemVoza2.ID, RNPrijemVoza2.BrojKontejnera,   TipKontenjera.Naziv as VrstaKontejnera, RNPrijemVoza2.DatumRasporeda, RNPrijemVoza2.BrojKontejnera, RNPrijemVoza2.NalogIzdao, RNPrijemVoza2.DatumRealizacije, " +
+"  Voz.BrVoza,RNPrijemVoza2.BrojPlombe, Partnerji_2.PaNaziv as UVoznik, CarinskiPostupak.NAziv, InspekciskiTretman.NAziv as Inspekciskitretman, " +
+"  Partnerji_1.PaNAziv as Brodar, RNPrijemVoza2.VrstaRobe, " +
+"  RNPrijemVoza2.USkladiste, RNPrijemVoza2.UPozicijuSklad, RNPrijemVoza2.IdUsluge, RNPrijemVoza2.NalogRealizovao, " +
+"  RNPrijemVoza2.Napomena, RNPrijemVoza2.PrijemID, RNPrijemVoza2.NalogID " +
+"  FROM RNPrijemVoza2 INNER JOIN " +
+"  TipKontenjera ON RNPrijemVoza2.VrstaKontejnera = TipKontenjera.ID " +
+ "                          INNER JOIN  Partnerji AS Partnerji_1 ON RNPrijemVoza2.NazivBrodara = Partnerji_1.PaSifra " +
+"  INNER JOIN  Partnerji AS Partnerji_2 ON RNPrijemVoza2.Uvoznik = Partnerji_2.PaSifra " +
+"  INNER JOIN  VrstaCarinskogPostupka AS CarinskiPostupak ON RNPrijemVoza2.CarinskiPostupak = CarinskiPostupak.id " +
+"  INNER JOIN  Voz ON RNPrijemVoza2.SaVoznogSredstva = Voz.ID " +
+"  inner join InspekciskiTretman on RNPrijemVoza2.InspekcijskiPregled = InspekciskiTretman.ID order by RNPrijemVoza2.ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(select, conn);
             DataSet ds = new DataSet();
@@ -152,7 +185,7 @@ namespace Saobracaj.RadniNalozi
             cboSaSredstva.DisplayMember = "IdVoza";
             cboSaSredstva.ValueMember = "ID";
 
-            var partner2 = "Select PaSifra,PaNaziv From Partnerji where UvoznikCH = 1 order by PaSifra";
+            var partner2 = "Select PaSifra,PaNaziv From Partnerji order by PaSifra";
             var partAD2 = new SqlDataAdapter(partner2, conn);
             var partDS2 = new DataSet();
             partAD2.Fill(partDS2);
@@ -160,14 +193,14 @@ namespace Saobracaj.RadniNalozi
             cboUvoznik.DisplayMember = "PaNaziv";
             cboUvoznik.ValueMember = "PaSifra";
 
-            var partner7 = "Select PaSifra,PaNaziv From Partnerji where Brodar = 1 order by PaSifra";
+            var partner7 = "Select PaSifra,PaNaziv From Partnerji  order by PaSifra";
             var partAD7 = new SqlDataAdapter(partner7, conn);
             var partDS7 = new DataSet();
             partAD7.Fill(partDS7);
             cboBrodar.DataSource = partDS7.Tables[0];
             cboBrodar.DisplayMember = "PaNaziv";
             cboBrodar.ValueMember = "PaSifra";
-
+            /*
             var roba = "Select ID,Naziv From NHM order by ID";
             var daRoba = new SqlDataAdapter(roba, conn);
             var dsRoba = new DataSet();
@@ -175,7 +208,7 @@ namespace Saobracaj.RadniNalozi
             cboVrstaRobe.DataSource = dsRoba.Tables[0];
             cboVrstaRobe.DisplayMember = "Naziv";
             cboVrstaRobe.ValueMember = "ID";
-
+            */
             var usluge = "Select ID,Naziv from VrstaManipulacije order by ID";
             var daUsluge = new SqlDataAdapter(usluge, conn);
             var dsUsluge = new DataSet();
@@ -281,7 +314,7 @@ namespace Saobracaj.RadniNalozi
             if (dialogResult == DialogResult.Yes)
             {
                 RadniNalozi.InsertRN ir = new InsertRN();
-                ir.InsRNPPrijemVozaCeoVozPretovar(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboSaSredstva.SelectedValue), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text));
+                ir.InsRNPPrijemVozaCeoVozPretovar(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboSaSredstva.SelectedValue), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text),  Convert.ToInt32(txtNalogID.Text));
                 FillGV();
             }
             else if (dialogResult == DialogResult.No)
@@ -312,6 +345,134 @@ namespace Saobracaj.RadniNalozi
         private void RN3PrijemVoza2_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView1_SelectionChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txtID.Text = row.Cells[0].Value.ToString();
+                        VratiPodatkeStavke(txtID.Text);
+                        FillDG2();
+                    }
+                }
+            }
+            catch { }
+        }
+
+        private void FillDG2()
+        {
+
+            var select = "  SELECT     UvozKonacnaNHM.ID, NHM.Broj, UvozKonacnaNHM.IDNHM, NHM.Naziv FROM NHM INNER JOIN " +
+" UvozKonacnaNHM ON NHM.ID = UvozKonacnaNHM.IDNHM " +
+" inner join RadniNalogInterni on UvozKonacnanhm.idnadredjena = RadniNalogInterni.BrojOsnov " +
+" where RadniNalogInterni.ID = " + Convert.ToInt32(txtNalogID.Text) + " order by UvozKonacnanhm.ID desc";
+
+
+            SqlConnection conn = new SqlConnection(connect);
+
+            var dataAdapter = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView3.ReadOnly = true;
+            dataGridView3.DataSource = ds.Tables[0];
+
+            dataGridView3.BorderStyle = BorderStyle.None;
+            dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView3.BackgroundColor = Color.White;
+
+            dataGridView3.EnableHeadersVisualStyles = false;
+            dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView3.Columns[0];
+            dataGridView3.Columns[0].HeaderText = "ID";
+            dataGridView3.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView3.Columns[1];
+            dataGridView3.Columns[1].HeaderText = "NHM Broj";
+            dataGridView3.Columns[1].Width = 70;
+
+            DataGridViewColumn column3 = dataGridView3.Columns[2];
+            dataGridView3.Columns[2].HeaderText = "ID";
+            dataGridView3.Columns[2].Width = 50;
+
+            DataGridViewColumn column4 = dataGridView3.Columns[3];
+            dataGridView3.Columns[3].HeaderText = "NHM";
+            dataGridView3.Columns[3].Width = 150;
+
+
+        }
+
+        private void VratiPodatkeStavke(string ID)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" SELECT [ID]       ,[DatumRasporeda] " +
+     " ,[BrojKontejnera]      ,[VrstaKontejnera]      ,[NalogIzdao]      ,[DatumRealizacije] " +
+     "  ,[SaVoznogSredstva]      ,[BrojPlombe]      ,[Uvoznik]      ,[CarinskiPostupak] " +
+     "  ,[InspekcijskiPregled]      ,[NazivBrodara]      ,[VrstaRobe]      ,[USkladiste] " +
+     "  ,[UPozicijuSklad]      ,[IdUsluge]      ,[NalogRealizovao]      ,[Napomena] " +
+     "  ,[PrijemID]      ,[NalogID],Zavrsen  FROM [dbo].[RNPrijemVoza2] " +
+             " where ID = " + txtID.Text, con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtDatumRasporeda.Value = Convert.ToDateTime(dr["DatumRasporeda"].ToString());
+                txtbrojkontejnera.Text = dr["BrojKontejnera"].ToString();
+                cboVrstaKontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString()); 
+                txtNalogIzdao.Text = dr["NalogIzdao"].ToString();
+                txtDatumRealizacije.Value = Convert.ToDateTime(dr["DatumRealizacije"].ToString());
+                cboSaSredstva.SelectedValue = Convert.ToInt32(dr["SaVoznogSredstva"].ToString());
+                cboUvoznik.SelectedValue = Convert.ToInt32(dr["Uvoznik"].ToString());
+                cboPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
+                txtBrPlombe.Text = dr["BrojPlombe"].ToString();
+                cboInspekcijski.SelectedValue = Convert.ToInt32(dr["InspekcijskiPregled"].ToString());
+                cboBrodar.SelectedValue = Convert.ToInt32(dr["NazivBrodara"].ToString());
+                cboVrstaRobe.SelectedValue = Convert.ToInt32(dr["VrstaRobe"].ToString());
+                cboUsluga.SelectedValue = Convert.ToInt32(dr["IdUsluge"].ToString());
+                txtNalogRealizovao.Text = dr["NalogRealizovao"].ToString();
+                txtNalogID.Text = dr["NalogID"].ToString();
+                txtPrijemID.Text = dr["PrijemID"].ToString();
+                cboNaSklad.SelectedValue = Convert.ToInt32(dr["USkladiste"].ToString());
+                cboNaPoz.SelectedValue = Convert.ToInt32(dr["UPozicijuSklad"].ToString());
+                txtNapomena.Text = dr["Napomena"].ToString();
+                if (dr["Zavrsen"].ToString() == "1")
+                { chkZavrsen.Checked = true; }
+                else
+                {
+                    chkZavrsen.Checked = false;
+                }
+            }
+
+            con.Close();
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            InsertRN up = new InsertRN();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    up.PotvrdiUradjenRN3(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                }
+
+            }
         }
     }
 }
