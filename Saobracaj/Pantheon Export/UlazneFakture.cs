@@ -236,7 +236,17 @@ namespace Saobracaj.Pantheon_Export
             conn.Close();
 
             InsertPatheonExport ins = new InsertPatheonExport();
-            
+
+            using (SqlConnection conn3 = new SqlConnection(connect))
+            {
+                using (SqlCommand cmd3 = conn3.CreateCommand())
+                {
+                    cmd3.CommandText = "delete from UlFakPostav Where IDFak=" + Convert.ToInt32(txtID.Text);
+                    conn3.Open();
+                    cmd3.ExecuteNonQuery();
+                    conn3.Close();
+                }
+            }
             ins.PoveziPredvidjanje(Convert.ToInt32(txtID.Text), IDVeza);
             FillGV();
             

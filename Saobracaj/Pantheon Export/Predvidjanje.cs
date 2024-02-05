@@ -27,7 +27,7 @@ namespace Saobracaj.Pantheon_Export
         }
         private void FillGV()
         {
-            var select = "select p.ID,p.IDp,PredvidjanjeID,p.PredvodjanjePoz,p.Datum,RTrim(PaNaziv) as Subjekt,RTrim(NosiociTroskova.NazivNosiocaTroska) as NT,RTrim(SifraSubjekta) as Odeljenje,Iznos,Valuta,NosiociTroskova.NosilacTroska,p.Subjekt,p.NosilacTroska,p.Odeljenje,p.NajavaID " +
+            var select = "select p.ID,p.IDp,PredvidjanjeID,p.PredvodjanjePoz,p.Datum,RTrim(PaNaziv) as Subjekt,RTrim(NosiociTroskova.NazivNosiocaTroska) as NT,RTrim(SifraSubjekta) as Odeljenje,Iznos,Valuta,NosiociTroskova.NosilacTroska,p.Subjekt,p.NosilacTroska,p.Odeljenje,p.NajavaID,p.Napomena as Napomena " +
                 "From Predvidjanje p  " +
                 "inner join Partnerji on p.Subjekt = Partnerji.PaSifra " +
                 "inner join NosiociTroskova on p.NosilacTroska = NosiociTroskova.ID " +
@@ -65,7 +65,7 @@ namespace Saobracaj.Pantheon_Export
             dataGridView1.Columns[13].Visible = false;
             dataGridView1.Columns[14].Visible = false;
 
-            var select2 ="select p.ID,p.IDp,PredvidjanjeID,p.PredvodjanjePoz,p.Datum,RTrim(PaNaziv) as PaNaziv,RTrim(NosiociTroskova.NazivNosiocaTroska) as NT,RTrim(SifraSubjekta) as Odeljenje,Iznos,Valuta,NosiociTroskova.NosilacTroska,p.Subjekt,p.NosilacTroska,p.Odeljenje,p.NajavaID,p.Status as Status " +
+            var select2 ="select p.ID,p.IDp,PredvidjanjeID,p.PredvodjanjePoz,p.Datum,RTrim(PaNaziv) as PaNaziv,RTrim(NosiociTroskova.NazivNosiocaTroska) as NT,RTrim(SifraSubjekta) as Odeljenje,Iznos,Valuta,NosiociTroskova.NosilacTroska,p.Subjekt,p.NosilacTroska,p.Odeljenje,p.NajavaID,p.Status as Status,p.Napomena as Napomena " +
                 "From Predvidjanje p  " +
                 "inner join Partnerji on p.Subjekt = Partnerji.PaSifra " +
                 "inner join NosiociTroskova on p.NosilacTroska = NosiociTroskova.ID " +
@@ -177,6 +177,7 @@ namespace Saobracaj.Pantheon_Export
                         txtIznos.Value = Convert.ToDecimal(row.Cells[8].Value.ToString());
                         cboValuta.SelectedValue = row.Cells[9].Value.ToString();
                         Najava = Convert.ToInt32(row.Cells[14].Value.ToString());
+                        txtNapomena.Text = row.Cells[15].Value.ToString().TrimEnd();
                     }
                 }
             }
@@ -201,6 +202,7 @@ namespace Saobracaj.Pantheon_Export
                     cboValuta.SelectedValue = row.Cells[9].Value.ToString();
                     Najava = Convert.ToInt32(row.Cells[14].Value.ToString());
                     StatusSelektovanog = Convert.ToInt32(row.Cells[15].Value.ToString());
+                    txtNapomena.Text = row.Cells[16].Value.ToString().TrimEnd();
                 }
             }
         }
