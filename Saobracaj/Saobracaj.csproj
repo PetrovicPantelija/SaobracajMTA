@@ -1501,6 +1501,12 @@
     <Compile Include="Izvestaji\frmSelectTransport6.designer.cs">
       <DependentUpon>frmSelectTransport6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\DogovoreniPosloviIzvoza.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\DogovoreniPosloviIzvoza.Designer.cs">
+      <DependentUpon>DogovoreniPosloviIzvoza.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmAdresaStatusVozila.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1640,6 +1646,7 @@
       <DependentUpon>frmVrstePlombi.cs</DependentUpon>
     </Compile>
     <Compile Include="Izvoz\InsertAdresaStatusVozila.cs" />
+    <Compile Include="Izvoz\InsertDogovorenoIzvoz.cs" />
     <Compile Include="Izvoz\InsertInspekciskiTretman.cs" />
     <Compile Include="Izvoz\InsertIzvoz.cs" />
     <Compile Include="Izvoz\InsertIzvozDokumenta.cs" />
@@ -3914,6 +3921,9 @@
     <EmbeddedResource Include="Izvestaji\Teretnica2.rdlc" />
     <EmbeddedResource Include="Izvestaji\TeretnicaProba.rdlc" />
     <EmbeddedResource Include="Izvestaji\ZaradeStavkePoZaposlenom.rdlc" />
+    <EmbeddedResource Include="Izvoz\DogovoreniPosloviIzvoza.resx">
+      <DependentUpon>DogovoreniPosloviIzvoza.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmAdresaStatusVozila.resx">
       <DependentUpon>frmAdresaStatusVozila.cs</DependentUpon>
     </EmbeddedResource>

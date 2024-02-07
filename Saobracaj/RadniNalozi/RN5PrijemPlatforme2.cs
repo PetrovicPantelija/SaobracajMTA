@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing;
+using System.Configuration;
 //
 namespace Saobracaj.RadniNalozi
 {
@@ -23,20 +23,67 @@ namespace Saobracaj.RadniNalozi
             FillCombo();
         }
 
-        public RN5PrijemPlatforme2(string PrijemID, string RegBr, string Korisnik)
+        public RN5PrijemPlatforme2(string PrijemID, string RegBr, string KorisnikCene, string Usluga, int Uvoz)
         {
             InitializeComponent();
-            FillGV();
-            FillCombo();
-            txtKamion.Text = RegBr;
-            txtNalogIzdao.Text = Korisnik;
+            txtNalogIzdao.Text = KorisnikCene;
             txtPrijemID.Text = PrijemID;
+            txtKamion.Text = RegBr;
+            NapuniVrstuUsluge(Usluga);
+
+            txtNalogID.Text = Usluga;
+            FillCombo();
+            VratiPodatkeVrstaMan(Usluga.ToString());
+           
 
 
         }
+
+        private void VratiPodatkeVrstaMan(string IDUsluge)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" Select VrstaManipulacije.ID from RadniNalogInterni inner join " +
+   " VrstaManipulacije on RadniNalogInterni.IDManipulacijaJed = VrstaManipulacije.ID where RadniNalogInterni.ID = " + IDUsluge, con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+
+                cboUsluga.SelectedValue = Convert.ToInt32(dr["ID"].ToString());
+
+            }
+
+            con.Close();
+        }
+        private void NapuniVrstuUsluge(string IDUsluga)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            var usluge = "Select VrstaManipulacije.ID,VrstaManipulacije.Naziv from RadniNalogInterni inner join " +
+   " VrstaManipulacije on RadniNalogInterni.IDManipulacijaJed = VrstaManipulacije.ID where RadniNalogInterni.ID = " + IDUsluga;
+            var daUsluge = new SqlDataAdapter(usluge, conn);
+            var dsUsluge = new DataSet();
+            daUsluge.Fill(dsUsluge);
+            cboUsluga.DataSource = dsUsluge.Tables[0];
+            cboUsluga.DisplayMember = "Naziv";
+            cboUsluga.ValueMember = "ID";
+            cboUsluga.SelectedValue = Convert.ToInt32(IDUsluga);
+        }
         private void FillGV()
         {
-            var select = "Select * from RNPrijemPlatforme2 order by ID desc";
+            var select = " SELECT [RNPrijemPlatforme2].[ID] as ID      ,[DatumRasporeda] " +
+    " ,[NalogIzdao]      ,[DatumRealizacije]      ,[SaVoznogSredstva]      ,[BrojKontejnera] " +
+    "   ,TipKontenjera.Naziv as VrstaKontejnera      ,Partnerji_3.PaNaziv as Brodar " +
+     "  ,[VrstaRobe]      ,[USkladiste]      ,[UPozicijaSklad]      ,[IdUsluge]      ,[NalogRealizovao] " +
+     "  ,[Napomena]      ,[PrijemID]      ,[Kamion]      ,[Zavrsen] " +
+     "  ,[NalogID]           FROM [dbo].[RNPrijemPlatforme2] " +
+  " INNER JOIN  Partnerji AS Partnerji_3 ON[RNPrijemPlatforme2].NazivBrodara = Partnerji_3.PaSifra " +
+" INNER JOIN TipKontenjera ON[RNPrijemPlatforme2].VrstaKontejnera = TipKontenjera.ID " +
+" inner join Skladista on Skladista.ID = [USkladiste]";
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -166,11 +213,60 @@ namespace Saobracaj.RadniNalozi
                     if (row.Selected)
                     {
                         txtID.Text = row.Cells[0].Value.ToString();
+                        VratiPodatkeStavka();
                     }
                 }
             }
             catch { }
         }
+        private void VratiPodatkeStavka()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" SELECT[ID]      ,[DatumRasporeda]      ,[NalogIzdao]     " +
+                " ,[DatumRealizacije]      ,[SaVoznogSredstva] " +
+    "  ,[BrojKontejnera]      ,[VrstaKontejnera]      ,[NazivBrodara]      ,[VrstaRobe] " +
+    "    ,[USkladiste]      ,[UPozicijaSklad]      ,[IdUsluge]      ,[NalogRealizovao] " +
+    "    ,[Napomena]      ,[PrijemID]      ,[Kamion]      ,[Zavrsen]      ,[NalogID] " +
+  "  FROM [dbo].[RNPrijemPlatforme2] " +
+             " where ID = " + txtID.Text, con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtDatumRasporeda.Value = Convert.ToDateTime(dr["DatumRasporeda"].ToString());
+                txtbrojkontejnera.Text = dr["BrojKontejnera"].ToString();
+                cboVrstaKontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
+                cboUsluga.SelectedValue = Convert.ToInt32(dr["IdUsluge"].ToString());
+                txtNalogRealizovao.Text = dr["NalogRealizovao"].ToString();
+                txtNalogIzdao.Text = dr["NalogIzdao"].ToString();
+                txtDatumRealizacije.Value = Convert.ToDateTime(dr["DatumRealizacije"].ToString());
+                txtPrijemID.Text = dr["PrijemID"].ToString();
+                txtNalogID.Text = dr["NalogID"].ToString();
+                cboBrodar.SelectedValue = Convert.ToInt32(dr["NazivBrodara"].ToString());
+                cboVrstaRobe.SelectedValue = Convert.ToInt32(dr["VrstaRobe"].ToString());
+                cboNaPoz.SelectedValue = Convert.ToInt32(dr["UPozicijaSklad"].ToString());
+                cboNaSklad.SelectedValue = Convert.ToInt32(dr["USkladiste"].ToString());
+                txtKamion.Text = dr["Kamion"].ToString();
+                //NIJE DOBRO null   cboPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
+                txtNapomena.Text = dr["Napomena"].ToString();
+              
+
+                if (dr["Zavrsen"].ToString() == "1")
+                { chkZavrsen.Checked = true; }
+                else
+                {
+                    chkZavrsen.Checked = false;
+                }
+            }
+
+            con.Close();
+        }
+
         private void RN5_Load(object sender, EventArgs e)
         {
 
@@ -184,8 +280,22 @@ namespace Saobracaj.RadniNalozi
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             RadniNalozi.InsertRN ir = new InsertRN();
-            ir.InsRN5PrijemPlatformeKam(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text);
+            ir.InsRN5PrijemPlatformeKam(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text, Convert.ToInt32(txtNalogID.Text));
             FillGV();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            //Uradjeno je za prijem platforme za modul Uvoza
+            InsertRN up = new InsertRN();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    up.PotvrdiUradjenRN4(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                }
+
+            }
         }
     }
 }

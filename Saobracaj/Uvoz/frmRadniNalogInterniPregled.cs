@@ -63,8 +63,26 @@ namespace Saobracaj.Uvoz
               " where OJIzdavanja = " + Convert.ToInt32(cboIzdatOd.SelectedValue) +
               " order by RadniNalogInterni.ID desc";
 
-            }    
-                var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            }
+
+           else if (cboIzdatOd.Text == "Terminal")
+            {
+                select = "  SELECT RadniNalogInterni.[ID]  ,RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]     " +
+  "  ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena]  , UvozKonacnaVrstaManipulacije.IDVrstaManipulacije, " +
+   " VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov]  ,[BrojOsnov]  ,[KorisnikIzdao]      ,[KorisnikZavrsio]  ,UvozKonacna.BrojKontejnera      , uv.PaNaziv as Platilac  , " +
+   " TipKontenjera.Naziv as Tipkontejnera, PlanID as PlanUtovara, RadniNalogInterni.Pokret, KontejnerStatus.Naziv  FROM[RadniNalogInterni] " +
+   " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
+   " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
+   " inner join UvozKonacna on UvozKonacna.ID = BrojOsnov " +
+   " inner join UvozKonacnaVrstaManipulacije on UvozKonacnaVrstaManipulacije.ID = RadniNalogInterni.KonkretaIDUsluge " +
+   " inner join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
+   " inner join Partnerji uv on uv.PaSifra = UvozKonacnaVrstaManipulacije.Platilac " +
+   " Inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
+   " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera " +
+           " where OJIzdavanja = " + Convert.ToInt32(cboIzdatOd.SelectedValue) +
+           " order by RadniNalogInterni.ID desc";
+            }
+            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

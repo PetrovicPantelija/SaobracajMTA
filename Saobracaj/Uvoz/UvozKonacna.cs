@@ -829,7 +829,7 @@ namespace Saobracaj.Uvoz
         private void button1_Click(object sender, EventArgs e)
         {
             InsertUvozKonacnaZaglavlje ins = new InsertUvozKonacnaZaglavlje();
-            ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text,1,"",Convert.ToDateTime("1.1.1900"),"","");
+            ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text,1,"",Convert.ToDateTime("1.1.1900"),"","",0);
             //refreshStavke(); - Dodati
         }
 

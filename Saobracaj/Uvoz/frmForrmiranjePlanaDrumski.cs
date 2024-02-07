@@ -90,7 +90,7 @@ namespace Saobracaj.Uvoz
             InsertUvozKonacnaZaglavlje ins = new InsertUvozKonacnaZaglavlje();
             if (status == true)
             {
-                ins.InsUvozKonacnaZaglavlje(0,txtNapomena.Text,0,txtVozilo.Text, Convert.ToDateTime(dtpDatum.Value), txtVozac.Text, txtBrojTelefona.Text);
+                ins.InsUvozKonacnaZaglavlje(0,txtNapomena.Text,0,txtVozilo.Text, Convert.ToDateTime(dtpDatum.Value), txtVozac.Text, txtBrojTelefona.Text,0);
             }
             else
             {

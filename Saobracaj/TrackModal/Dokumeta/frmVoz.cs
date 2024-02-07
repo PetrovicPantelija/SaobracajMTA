@@ -831,7 +831,7 @@ namespace Testiranje.Dokumeta
         {
 
             Saobracaj.Uvoz.InsertUvozKonacnaZaglavlje ins = new Saobracaj.Uvoz.InsertUvozKonacnaZaglavlje();
-            ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text), txtNapomena.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "");
+            ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text), txtNapomena.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "",0);
            
             VratiZadnjiBrojPlanaUvoza();
             MessageBox.Show("Uspesno ste formirirali novi Plan: " + BrojPlanaUvoza + " potrebno je da dodelite kontejnere planu, koristite opciju Popunjavanje Plana kontejnerima");
