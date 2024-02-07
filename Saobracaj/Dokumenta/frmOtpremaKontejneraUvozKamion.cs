@@ -3027,13 +3027,22 @@ namespace Saobracaj.Dokumenta
 
         private void oTPREMAPLATFORMEToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            RadniNalozi.RN7OtpremaPlatforme2 rv = new RadniNalozi.RN7OtpremaPlatforme2(txtSifra.Text, KorisnikCene, txtRegBrKamiona.Text);
+            RadniNalozi.RN7OtpremaPlatforme2 rv = new RadniNalozi.RN7OtpremaPlatforme2(txtSifra.Text, KorisnikCene,  txtRegBrKamiona.Text);
             rv.Show();
         }
 
         private void oTPREMACIRADEToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            RadniNalozi.RN8OtpremaCirade oc = new RadniNalozi.RN8OtpremaCirade(txtSifra.Text, KorisnikCene, txtRegBrKamiona.Text);
+            string IDUsluge = "0";
+            foreach (DataGridViewRow row in dataGridView8.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    IDUsluge = row.Cells[0].Value.ToString();
+                }
+            }
+
+            RadniNalozi.RN8OtpremaCirade oc = new RadniNalozi.RN8OtpremaCirade(txtSifra.Text, KorisnikCene, IDUsluge, txtRegBrKamiona.Text);
             oc.Show();
         }
 
