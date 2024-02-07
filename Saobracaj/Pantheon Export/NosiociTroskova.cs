@@ -234,7 +234,7 @@ namespace Saobracaj.Pantheon_Export
                                 ApiLogovi.Save();
                                 return;
                             }
-                            else
+                           /* else
                             {
                                 using (SqlConnection conn = new SqlConnection(connect))
                                 {
@@ -246,7 +246,7 @@ namespace Saobracaj.Pantheon_Export
                                         conn.Close();
                                     }
                                 }
-                            }
+                            }*/
                         }
                         ApiLogovi.Log("NT", ID.ToString(), json, response);
                         ApiLogovi.Save();
@@ -344,6 +344,83 @@ namespace Saobracaj.Pantheon_Export
                     statusNT = Convert.ToInt32(row.Cells[11].Value.ToString());
                 }
             }
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            int ID;
+            string NT, NTNaziv, Grupa, Kupac, Odeljenje;
+            string json;
+            try
+            {
+                if (dataGridView1.Rows.Count > 0)
+                {
+                    foreach (DataGridViewRow row in dataGridView1.Rows)
+                    {
+                        ID = Convert.ToInt32(row.Cells[0].Value.ToString());
+                        NT = row.Cells[1].Value.ToString().TrimEnd();
+                        NTNaziv = row.Cells[2].Value.ToString().TrimEnd();
+                        Grupa = row.Cells[3].Value.ToString().TrimEnd();
+                        Kupac = row.Cells[4].Value.ToString().TrimEnd();
+                        Odeljenje = row.Cells[5].Value.ToString().TrimEnd();
+
+                        var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:3333/api/Strn/StrnPost");
+                        httpWebRequest.ContentType = "application/json";
+                        httpWebRequest.Method = "POST";
+
+                        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                        {
+                            json = "{" +
+                                   "\n\"CostDrv\":\"" + NT + "\"," +
+                                   "\n\"CostName\":\"" + NTNaziv + "\"," +
+                                   "\n\"Classif\":\"" + Grupa + "\"," +
+                                   "\n\"Consignee\":\"" + Kupac + "\"," +
+                                   "\n\"Dept\":\"" + Odeljenje + "\"\n}";
+                            streamWriter.Write(json);
+                        }
+
+                        string response = "";
+
+                        var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+
+                        using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                        {
+                            var result = streamReader.ReadToEnd();
+                            response = result.ToString();
+
+                            if (response.Contains("Error") == true || response.Contains("Greška") == true || response.Contains("ERROR") == true || response.Contains("Duplikat") == true)
+                            {
+                                MessageBox.Show("Slanje nije uspelo\n" + response.ToString());
+                                ApiLogovi.Log("NT", ID.ToString(), json, response);
+                                ApiLogovi.Save();
+                                return;
+                            }
+                            else
+                            {
+                                using (SqlConnection conn = new SqlConnection(connect))
+                                {
+                                    using (SqlCommand cmd = conn.CreateCommand())
+                                    {
+                                        cmd.CommandText = "UPDATE NosiociTroskova SET Status = 1 WHERE ID = " + ID;
+                                        conn.Open();
+                                        cmd.ExecuteNonQuery();
+                                        conn.Close();
+                                    }
+                                }
+                            }
+                        }
+                        ApiLogovi.Log("NT", ID.ToString(), json, response);
+                        ApiLogovi.Save();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+
+            FillGV();
         }
     }
 }
