@@ -105,7 +105,7 @@ namespace Saobracaj.Pantheon_Export
         private void btnGetUplate_Click(object sender, EventArgs e)
         {
             //dataGridView2.Visible = true;
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/UplateKupaca/GetUplateKupaca");
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:3333/api/UplateKupaca/GetUplateKupaca");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "GET";
             var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
@@ -258,6 +258,141 @@ namespace Saobracaj.Pantheon_Export
                                     ApiLogovi.Save();
                                     return;
                                 }
+                                /*else
+                                {
+                                    using (SqlConnection conn = new SqlConnection(connect))
+                                    {
+                                        using (SqlCommand cmd2 = conn.CreateCommand())
+                                        {
+                                            cmd2.CommandText = "UPDATE Faktura SET Status = 1  WHERE FaStFak = " + FaStFak;
+                                            conn.Open();
+                                            cmd2.ExecuteNonQuery();
+                                            conn.Close();
+                                        }
+                                    }
+                                }*/
+                            }
+                            ApiLogovi.Log("IzlFak", ID.ToString(), jsonOutput, response);
+                            ApiLogovi.Save();
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Faktura CRMID:" + crm + " je već poslata sinhornizacijom!");
+                        return;
+                    }
+                }
+            }
+            FillGV();
+        }
+
+        private void btnExportProd_Click(object sender, EventArgs e)
+        {
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected)
+                {
+                    status = Convert.ToInt32(row.Cells[18].Value);
+                    crm = Convert.ToInt32(row.Cells[19].Value);
+
+                    if (status == 0)
+                    {
+                        string FaStFak = "";
+                        string query1 = "SELECT CRMID AS CRMDocumentID, RTrim(FaModul) AS DocType, CONVERT(VARCHAR, FaVpisalDat, 23) AS Date, RTrim(PaNaziv) AS Receiver," +
+                            "RTrim(FaValutaCene) AS Currency, Cast(Kurs as DECIMAL(10,2)) AS FXRate, '' AS Doc1, '' AS DateDoc1, '' AS Doc2, '' AS DateDoc2," +
+                            "CONVERT(VARCHAR, FaObdobje, 23) AS DateVAT, CONVERT(VARCHAR, FaDatVal, 23) AS DateDue, RTrim(IDPantheon) AS Statement," +
+                            "RTrim(FaRefer) AS UserId, RTrim(FaOpomba2) AS Napomena,FaStFak " +
+                            "FROM Faktura " +
+                            "INNER JOIN Partnerji ON Faktura.FaPartPlac = Partnerji.PaSifra " +
+                            "INNER JOIN Izjave ON Faktura.FaOpomba1 = Izjave.ID " +
+                            "WHERE Faktura.Status = 0 and CRMID=" + crm;
+
+                        string query2 = "SELECT FakturaPostav.FaPStFak, FakturaPostav.FapStPos AS No, RTrim(MaticniPodatki.MpStaraSif) AS Ident," +
+                            "CAST(FakturaPostav.FaPkolOdpr AS DECIMAL(10, 2)) AS Qty," +
+                            "CAST(FakturaPostav.FaPCenaEM AS DECIMAL(10, 2)) AS Price, RTrim(NosiociTroskova.NosilacTroska) as CostDrv, RTrim(MeNaziv) AS JNT, '' AS Product " +
+                            "FROM FakturaPostav " +
+                            "INNER JOIN MaticniPodatki ON FakturaPostav.FaPSifra = MaticniPodatki.MpSifra " +
+                            "INNER JOIN NosiociTroskova ON FakturaPostav.NosilacTroska = NosiociTroskova.ID " +
+                            "Inner join MerskeEnote on FakturaPostav.FaPEM = MerskeEnote.MeSifra " +
+                            "ORDER BY FakturaPostav.FapStPos ASC";
+
+                        List<object> combinedData = new List<object>();
+                        using (SqlConnection conn = new SqlConnection(connect))
+                        {
+                            SqlCommand cmd1 = new SqlCommand(query1, conn);
+                            SqlCommand cmd2 = new SqlCommand(query2, conn);
+
+                            conn.Open();
+
+                            SqlDataReader dr1 = cmd1.ExecuteReader();
+                            DataTable table1 = new DataTable();
+                            table1.Load(dr1);
+
+                            SqlDataReader dr2 = cmd2.ExecuteReader();
+                            DataTable table2 = new DataTable();
+                            table2.Load(dr2);
+
+                            foreach (DataRow row1 in table1.Rows)
+                            {
+                                Dictionary<string, object> obj = new Dictionary<string, object>();
+                                foreach (DataColumn column in table1.Columns)
+                                {
+                                    FaStFak = row1["FaStFak"].ToString();
+
+                                    if (column.ColumnName != "FaStFak") // Exclude the field FaStFak from the JSON object
+                                    {
+                                        obj.Add(column.ColumnName, row1[column]);
+                                    }
+                                }
+
+                                List<object> fakturaPoz = new List<object>();
+
+                                DataRow[] relatedRows = table2.Select($"FaPStFak = '{row1["FaStFak"]}'");
+                                foreach (DataRow row2 in relatedRows)
+                                {
+                                    Dictionary<string, object> fakturaPozObj = new Dictionary<string, object>();
+                                    foreach (DataColumn column in table2.Columns)
+                                    {
+                                        if (column.ColumnName != "FaPStFak") // Exclude the field FapStFak from the JSON object
+                                        {
+                                            fakturaPozObj.Add(column.ColumnName, row2[column]);
+                                        }
+                                    }
+                                    fakturaPoz.Add(fakturaPozObj);
+                                }
+
+                                obj.Add("FakturaPoz", fakturaPoz);
+                                combinedData.Add(obj);
+                            }
+
+                            conn.Close();
+                        }
+                        foreach (var item in combinedData)
+                        {
+                            string jsonOutput = JsonConvert.SerializeObject(item, Formatting.Indented);
+                            var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:3333/api/Faktura/FakturaPost");
+                            httpWebRequest.ContentType = "application/json";
+                            httpWebRequest.Method = "POST";
+                            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                            {
+                                streamWriter.Write(jsonOutput);
+                            }
+                            string response = "";
+                            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                            {
+                                var result = streamReader.ReadToEnd();
+                                response = result.ToString();
+
+                                if (response.Contains("ERROR") == true || response.Contains("Greška") == true || response.Contains("Error") == true || response.Contains("Duplikat") == true)
+                                {
+                                    MessageBox.Show("Slanje nije uspelo\n" + response.ToString());
+                                    ApiLogovi.Log("IzlFak", ID.ToString(), jsonOutput, response);
+                                    ApiLogovi.Save();
+                                    return;
+                                }
                                 else
                                 {
                                     using (SqlConnection conn = new SqlConnection(connect))
@@ -286,6 +421,7 @@ namespace Saobracaj.Pantheon_Export
             }
             FillGV();
         }
+
         public DateTime DatumDokumenta,DatumPDV,DatumValute, DatumUtovara,DatumIstovara,datumDokPom,pdvPom,valutaPom,utovarPom,istovarPom;
         public decimal Kurs;
         string Vrsta;
