@@ -353,7 +353,54 @@ namespace Saobracaj.RadniNalozi
             }
         }
 
-        public void UpdateKontejnerIzCira(string BrojKontejnera, string Stanje, string Ostecenja)
+        public void PotvrdiUradjenRN5(int RN)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRN5Uradjene";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter rn = new SqlParameter();
+            rn.ParameterName = "@RN";
+            rn.SqlDbType = SqlDbType.Int;
+            rn.Direction = ParameterDirection.Input;
+            rn.Value = RN;
+            cmd.Parameters.Add(rn);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis cena u bazu");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Nije uspeo upis cena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                { }
+            }
+        }
+
+        public void UpdateKontejnerIzCira(string BrojKontejnera,string Stanje, string Ostecenje, int Kvalitet, int CIR)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -378,12 +425,26 @@ namespace Saobracaj.RadniNalozi
             cmd.Parameters.Add(stanje);
 
             SqlParameter ostecenja = new SqlParameter();
-            ostecenja.ParameterName = "@Ostecenja";
+            ostecenja.ParameterName = "@Ostecenje";
             ostecenja.SqlDbType = SqlDbType.NVarChar;
             ostecenja.Size = 50;
             ostecenja.Direction = ParameterDirection.Input;
-            ostecenja.Value = Ostecenja;
+            ostecenja.Value = Ostecenje;
             cmd.Parameters.Add(ostecenja);
+
+            SqlParameter kvalitet = new SqlParameter();
+            kvalitet.ParameterName = "@Kvalitet";
+            kvalitet.SqlDbType = SqlDbType.Int;
+            kvalitet.Direction = ParameterDirection.Input;
+            kvalitet.Value = Kvalitet;
+            cmd.Parameters.Add(kvalitet);
+
+            SqlParameter cir = new SqlParameter();
+            cir.ParameterName = "@CIR";
+            cir.SqlDbType = SqlDbType.Int;
+            cir.Direction = ParameterDirection.Input;
+            cir.Value = CIR;
+            cmd.Parameters.Add(cir);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -955,7 +1016,7 @@ namespace Saobracaj.RadniNalozi
             }
         }
 
-        public void InsRN5PrijemPlatformeKam(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaVoznogSredstva, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, int PrijemID, string Kamion)
+        public void InsRN5PrijemPlatformeKam(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaVoznogSredstva, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, int PrijemID, string Kamion, int NalogID)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -1047,6 +1108,13 @@ namespace Saobracaj.RadniNalozi
             kamion.Direction = ParameterDirection.Input;
             kamion.Value = Kamion;
             cmd.Parameters.Add(kamion);
+
+            SqlParameter nalogid = new SqlParameter();
+            nalogid.ParameterName = "@NalogID";
+            nalogid.SqlDbType = SqlDbType.NVarChar;
+            nalogid.Direction = ParameterDirection.Input;
+            nalogid.Value = NalogID;
+            cmd.Parameters.Add(nalogid);
 
 
 

@@ -4050,6 +4050,25 @@ namespace Saobracaj
             Saobracaj.Proba pr = new Proba();
                 pr.Show();
         }
+
+        private void toolStripButton348_Click(object sender, EventArgs e)
+        {
+            Saobracaj.Uvoz.frmUvozKonacnaZaglavlje fukz = new Saobracaj.Uvoz.frmUvozKonacnaZaglavlje();
+            fukz.Show();
+        }
+
+        private void toolStripButton349_Click(object sender, EventArgs e)
+        {
+            Izvoz.DogovoreniPosloviIzvoza dp = new Izvoz.DogovoreniPosloviIzvoza();
+            dp.Show();
+        }
+
+        private void toolStripButton350_Click(object sender, EventArgs e)
+        {
+
+            Izvoz.DogovoreniPosloviIzvoza dp = new Izvoz.DogovoreniPosloviIzvoza();
+            dp.Show();
+        }
     }
     }
 

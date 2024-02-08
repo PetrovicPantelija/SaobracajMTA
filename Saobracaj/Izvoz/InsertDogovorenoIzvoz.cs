@@ -1,87 +1,79 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
-using System.Data.SqlClient;
 using System.Windows.Forms;
 
-namespace Saobracaj.Uvoz
+namespace Saobracaj.Izvoz
 {
-    class InsertUvozKonacnaZaglavlje
+   
+    class InsertDogovorenoIzvoz
     {
         string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
-        public void InsUvozKonacnaZaglavlje(int Voz, string Napomena, int Vozom, string VoziloOznaka, DateTime VoziloDatum, string VoziloVozac, string BrojTelefona, int Terminal)
+        public void InsDogovorenoIzvoz(int Partner, DateTime PeriodOd, DateTime PeriodDo, int BrojUgovorenih, int BrojUradjenih,  string Napomena, int Zatvoren)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "InsertUvozKonacnaZaglavlje";
+            cmd.CommandText = "InsertDogovorenoIzvoz";
             cmd.CommandType = CommandType.StoredProcedure;
 
-            SqlParameter voz = new SqlParameter();
-            voz.ParameterName = "@IDVoza";
-            voz.SqlDbType = SqlDbType.Int;
-            voz.Direction = ParameterDirection.Input;
-            voz.Value = Voz;
-            cmd.Parameters.Add(voz);
+            SqlParameter partner = new SqlParameter();
+            partner.ParameterName = "@Partner";
+            partner.SqlDbType = SqlDbType.Int;
+            //  naziv.Size = 50;
+            partner.Direction = ParameterDirection.Input;
+            partner.Value = Partner;
+            cmd.Parameters.Add(partner);
+
+            SqlParameter periodOd = new SqlParameter();
+            periodOd.ParameterName = "@PeriodOd";
+            periodOd.SqlDbType = SqlDbType.DateTime;
+            //  naziv.Size = 50;
+            periodOd.Direction = ParameterDirection.Input;
+            periodOd.Value = PeriodOd;
+            cmd.Parameters.Add(periodOd);
+
+            SqlParameter perioddo = new SqlParameter();
+            perioddo.ParameterName = "@PeriodDo";
+            perioddo.SqlDbType = SqlDbType.DateTime;
+            //  naziv.Size = 50;
+            perioddo.Direction = ParameterDirection.Input;
+            perioddo.Value = PeriodDo;
+            cmd.Parameters.Add(perioddo);
+
+            SqlParameter brojuUgovorenih = new SqlParameter();
+            brojuUgovorenih.ParameterName = "@BrojUgovorenih";
+            brojuUgovorenih.SqlDbType = SqlDbType.Int;
+            brojuUgovorenih.Direction = ParameterDirection.Input;
+            brojuUgovorenih.Value = BrojUgovorenih;
+            cmd.Parameters.Add(brojuUgovorenih);
+
+            SqlParameter brojUradjenih = new SqlParameter();
+            brojUradjenih.ParameterName = "@BrojUradjenih";
+            brojUradjenih.SqlDbType = SqlDbType.Int;
+            brojUradjenih.Direction = ParameterDirection.Input;
+            brojUradjenih.Value = BrojUradjenih;
+            cmd.Parameters.Add(brojUradjenih);
+
 
             SqlParameter napomena = new SqlParameter();
             napomena.ParameterName = "@Napomena";
             napomena.SqlDbType = SqlDbType.NVarChar;
-            napomena.Size = 250;
+            napomena.Size = 500;
             napomena.Direction = ParameterDirection.Input;
             napomena.Value = Napomena;
             cmd.Parameters.Add(napomena);
 
-            SqlParameter vozom = new SqlParameter();
-            vozom.ParameterName = "@Vozom";
-            vozom.SqlDbType = SqlDbType.Int;
-          //  vozom.Size = 250;
-            vozom.Direction = ParameterDirection.Input;
-            vozom.Value = Vozom;
-            cmd.Parameters.Add(vozom);
-
-            SqlParameter vozilooznaka = new SqlParameter();
-            vozilooznaka.ParameterName = "@VoziloOznaka";
-            vozilooznaka.SqlDbType = SqlDbType.NVarChar;
-            vozilooznaka.Size = 100;
-            vozilooznaka.Direction = ParameterDirection.Input;
-            vozilooznaka.Value = VoziloOznaka;
-            cmd.Parameters.Add(vozilooznaka);
-
-            SqlParameter vozilodatum = new SqlParameter();
-            vozilodatum.ParameterName = "@VoziloDatum";
-            vozilodatum.SqlDbType = SqlDbType.DateTime;
-            //   vozilooznaka.Size = 100;
-            vozilodatum.Direction = ParameterDirection.Input;
-            vozilodatum.Value = VoziloDatum;
-            cmd.Parameters.Add(vozilodatum);
-
-            SqlParameter vozilovozac = new SqlParameter();
-            vozilovozac.ParameterName = "@VoziloVozac";
-            vozilovozac.SqlDbType = SqlDbType.NVarChar;
-            vozilovozac.Size = 100;
-            vozilovozac.Direction = ParameterDirection.Input;
-            vozilovozac.Value = VoziloVozac;
-            cmd.Parameters.Add(vozilovozac);
-
-            SqlParameter brojtelefona = new SqlParameter();
-            brojtelefona.ParameterName = "@BrojTelefona";
-            brojtelefona.SqlDbType = SqlDbType.NVarChar;
-            brojtelefona.Size = 100;
-            brojtelefona.Direction = ParameterDirection.Input;
-            brojtelefona.Value = BrojTelefona;
-            cmd.Parameters.Add(brojtelefona);
-
-            SqlParameter terminal= new SqlParameter();
-            terminal.ParameterName = "@Terminal";
-            terminal.SqlDbType = SqlDbType.Int;
-            //  vozom.Size = 250;
-            terminal.Direction = ParameterDirection.Input;
-            terminal.Value = Terminal;
-            cmd.Parameters.Add(terminal);
+            SqlParameter zatvoren = new SqlParameter();
+            zatvoren.ParameterName = "@Zatvoren";
+            zatvoren.SqlDbType = SqlDbType.Int;
+            zatvoren.Direction = ParameterDirection.Input;
+            zatvoren.Value = Zatvoren;
+            cmd.Parameters.Add(zatvoren);
 
 
             conn.Open();
@@ -118,11 +110,11 @@ namespace Saobracaj.Uvoz
                 }
             }
         }
-        public void UpdUvozKonacnaZaglavlje(int ID, int Voz, string Napomena, int Vozom, string VoziloOznaka, DateTime VoziloDatum, string VoziloVozac, string BrojTelefona)
+        public void UpdDogovorenoIzvoz(int ID, int Partner, DateTime PeriodOd, DateTime PeriodDo, int BrojUgovorenih, int BrojUradjenih, string Napomena, int Zatvoren)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "UpdateUvozKonacnaZaglavlje";
+            cmd.CommandText = "UpdateDogovorenoIzvoz";
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter id = new SqlParameter();
@@ -132,60 +124,60 @@ namespace Saobracaj.Uvoz
             id.Value = ID;
             cmd.Parameters.Add(id);
 
-            SqlParameter voz = new SqlParameter();
-            voz.ParameterName = "@Voz";
-            voz.SqlDbType = SqlDbType.Int;
-            voz.Direction = ParameterDirection.Input;
-            voz.Value = Voz;
-            cmd.Parameters.Add(voz);
+            SqlParameter partner = new SqlParameter();
+            partner.ParameterName = "@Partner";
+            partner.SqlDbType = SqlDbType.Int;
+            //  naziv.Size = 50;
+            partner.Direction = ParameterDirection.Input;
+            partner.Value = Partner;
+            cmd.Parameters.Add(partner);
+
+            SqlParameter periodOd = new SqlParameter();
+            periodOd.ParameterName = "@PeriodOd";
+            periodOd.SqlDbType = SqlDbType.DateTime;
+            //  naziv.Size = 50;
+            periodOd.Direction = ParameterDirection.Input;
+            periodOd.Value = PeriodOd;
+            cmd.Parameters.Add(periodOd);
+
+            SqlParameter perioddo = new SqlParameter();
+            perioddo.ParameterName = "@PeriodDo";
+            perioddo.SqlDbType = SqlDbType.DateTime;
+            //  naziv.Size = 50;
+            perioddo.Direction = ParameterDirection.Input;
+            perioddo.Value = PeriodDo;
+            cmd.Parameters.Add(perioddo);
+
+            SqlParameter brojuUgovorenih = new SqlParameter();
+            brojuUgovorenih.ParameterName = "@BrojUgovorenih";
+            brojuUgovorenih.SqlDbType = SqlDbType.Int;
+            brojuUgovorenih.Direction = ParameterDirection.Input;
+            brojuUgovorenih.Value = BrojUgovorenih;
+            cmd.Parameters.Add(brojuUgovorenih);
+
+            SqlParameter brojUradjenih = new SqlParameter();
+            brojUradjenih.ParameterName = "@BrojUradjenih";
+            brojUradjenih.SqlDbType = SqlDbType.Int;
+            brojUradjenih.Direction = ParameterDirection.Input;
+            brojUradjenih.Value = BrojUradjenih;
+            cmd.Parameters.Add(brojUradjenih);
+
 
             SqlParameter napomena = new SqlParameter();
             napomena.ParameterName = "@Napomena";
             napomena.SqlDbType = SqlDbType.NVarChar;
-            napomena.Size = 250;
+            napomena.Size = 500;
             napomena.Direction = ParameterDirection.Input;
             napomena.Value = Napomena;
             cmd.Parameters.Add(napomena);
 
-            SqlParameter vozom = new SqlParameter();
-            vozom.ParameterName = "@Vozom";
-            vozom.SqlDbType = SqlDbType.Int;
-            //  vozom.Size = 250;
-            vozom.Direction = ParameterDirection.Input;
-            vozom.Value = Vozom;
-            cmd.Parameters.Add(vozom);
+            SqlParameter zatvoren = new SqlParameter();
+            zatvoren.ParameterName = "@Zatvoren";
+            zatvoren.SqlDbType = SqlDbType.Int;
+            zatvoren.Direction = ParameterDirection.Input;
+            zatvoren.Value = Zatvoren;
+            cmd.Parameters.Add(zatvoren);
 
-            SqlParameter vozilooznaka = new SqlParameter();
-            vozilooznaka.ParameterName = "@VoziloOznaka";
-            vozilooznaka.SqlDbType = SqlDbType.NVarChar;
-            vozilooznaka.Size = 100;
-            vozilooznaka.Direction = ParameterDirection.Input;
-            vozilooznaka.Value = VoziloOznaka;
-            cmd.Parameters.Add(vozilooznaka);
-
-            SqlParameter vozilodatum = new SqlParameter();
-            vozilodatum.ParameterName = "@VoziloDatum";
-            vozilodatum.SqlDbType = SqlDbType.DateTime;
-            //   vozilooznaka.Size = 100;
-            vozilodatum.Direction = ParameterDirection.Input;
-            vozilodatum.Value = VoziloDatum;
-            cmd.Parameters.Add(vozilodatum);
-
-            SqlParameter vozilovozac = new SqlParameter();
-            vozilovozac.ParameterName = "@VoziloVozac";
-            vozilovozac.SqlDbType = SqlDbType.NVarChar;
-            vozilovozac.Size = 100;
-            vozilovozac.Direction = ParameterDirection.Input;
-            vozilovozac.Value = VoziloVozac;
-            cmd.Parameters.Add(vozilovozac);
-
-            SqlParameter brojtelefona = new SqlParameter();
-            brojtelefona.ParameterName = "@BrojTelefona";
-            brojtelefona.SqlDbType = SqlDbType.NVarChar;
-            brojtelefona.Size = 100;
-            brojtelefona.Direction = ParameterDirection.Input;
-            brojtelefona.Value = BrojTelefona;
-            cmd.Parameters.Add(brojtelefona);
 
 
             conn.Open();
@@ -223,11 +215,11 @@ namespace Saobracaj.Uvoz
             }
 
         }
-        public void DelUvozKonacnaZaglavlje(int ID)
+        public void DelDogovorenoIzvoz(int ID)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "DeleteUvozKonacnaZaglavlje";
+            cmd.CommandText = "DeleteDogovorenoIzvoz";
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter id = new SqlParameter();

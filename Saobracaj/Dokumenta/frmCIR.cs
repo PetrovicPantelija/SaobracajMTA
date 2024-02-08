@@ -1155,7 +1155,7 @@ namespace Saobracaj.Dokumenta
             }
             Saobracaj.RadniNalozi.InsertRN up = new Saobracaj.RadniNalozi.InsertRN();
           
-                    up.UpdateKontejnerIzCira(txtBrojKontejnera.Text, tmpStanje, tmpOstecenja);
+                    up.UpdateKontejnerIzCira(txtBrojKontejnera.Text,tmpStanje, txtOstecenje.Text, Convert.ToInt32(cboKvalitet.Text), Convert.ToInt32(txtSifra.Text));
             
 
             }

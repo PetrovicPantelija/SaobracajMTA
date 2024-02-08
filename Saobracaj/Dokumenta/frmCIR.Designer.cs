@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCIR));
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.btnManipulacija = new System.Windows.Forms.ToolStrip();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
@@ -41,6 +41,7 @@
             this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSize = new System.Windows.Forms.NumericUpDown();
@@ -104,7 +105,10 @@
             this.label20 = new System.Windows.Forms.Label();
             this.txtIDGreske = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.label21 = new System.Windows.Forms.Label();
+            this.cboKvalitet = new System.Windows.Forms.ComboBox();
+            this.txtOstecenje = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.btnManipulacija.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTara)).BeginInit();
@@ -228,6 +232,16 @@
             this.toolStripLabel2.Size = new System.Drawing.Size(112, 24);
             this.toolStripLabel2.Text = "Pozovi postojeći";
             this.toolStripLabel2.Click += new System.EventHandler(this.toolStripLabel2_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(190, 24);
+            this.toolStripButton1.Text = "AŽURIRAJ TEKUCI KONTEJNER";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // txtSifra
             // 
@@ -453,7 +467,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(172, 206);
+            this.label2.Location = new System.Drawing.Point(175, 198);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 16);
             this.label2.TabIndex = 255;
@@ -463,7 +477,7 @@
             // 
             this.txtTruckIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(224)))), ((int)(((byte)(215)))));
             this.txtTruckIn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtTruckIn.Location = new System.Drawing.Point(175, 227);
+            this.txtTruckIn.Location = new System.Drawing.Point(173, 217);
             this.txtTruckIn.Name = "txtTruckIn";
             this.txtTruckIn.Size = new System.Drawing.Size(172, 22);
             this.txtTruckIn.TabIndex = 254;
@@ -473,7 +487,7 @@
             this.chkDemaged.AutoSize = true;
             this.chkDemaged.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkDemaged.ForeColor = System.Drawing.Color.Black;
-            this.chkDemaged.Location = new System.Drawing.Point(220, 274);
+            this.chkDemaged.Location = new System.Drawing.Point(330, 278);
             this.chkDemaged.Name = "chkDemaged";
             this.chkDemaged.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkDemaged.Size = new System.Drawing.Size(72, 20);
@@ -489,7 +503,7 @@
             this.chkIspravan.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkIspravan.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkIspravan.ForeColor = System.Drawing.Color.Black;
-            this.chkIspravan.Location = new System.Drawing.Point(220, 300);
+            this.chkIspravan.Location = new System.Drawing.Point(330, 304);
             this.chkIspravan.Name = "chkIspravan";
             this.chkIspravan.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkIspravan.Size = new System.Drawing.Size(76, 20);
@@ -503,7 +517,7 @@
             this.chkPrevoz.AutoSize = true;
             this.chkPrevoz.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPrevoz.ForeColor = System.Drawing.Color.Black;
-            this.chkPrevoz.Location = new System.Drawing.Point(220, 343);
+            this.chkPrevoz.Location = new System.Drawing.Point(239, 356);
             this.chkPrevoz.Name = "chkPrevoz";
             this.chkPrevoz.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkPrevoz.Size = new System.Drawing.Size(167, 20);
@@ -738,9 +752,9 @@
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource1.Name = "DataSet1";
-            reportDataSource1.Value = null;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            reportDataSource2.Name = "DataSet1";
+            reportDataSource2.Value = null;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(411, 262);
             this.reportViewer1.Name = "reportViewer1";
@@ -972,23 +986,60 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(282, 369);
+            this.button2.Location = new System.Drawing.Point(282, 382);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(123, 41);
+            this.button2.Size = new System.Drawing.Size(123, 28);
             this.button2.TabIndex = 297;
             this.button2.Text = "Povuci Manipulacije";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // toolStripButton1
+            // label21
             // 
-            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(190, 24);
-            this.toolStripButton1.Text = "AŽURIRAJ TEKUCI KONTEJNER";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label21.ForeColor = System.Drawing.Color.Black;
+            this.label21.Location = new System.Drawing.Point(172, 252);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(53, 16);
+            this.label21.TabIndex = 299;
+            this.label21.Text = "Kvalitet:";
+            // 
+            // cboKvalitet
+            // 
+            this.cboKvalitet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(196)))), ((int)(((byte)(193)))));
+            this.cboKvalitet.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.cboKvalitet.FormattingEnabled = true;
+            this.cboKvalitet.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.cboKvalitet.Location = new System.Drawing.Point(175, 271);
+            this.cboKvalitet.Name = "cboKvalitet";
+            this.cboKvalitet.Size = new System.Drawing.Size(110, 24);
+            this.cboKvalitet.TabIndex = 298;
+            // 
+            // txtOstecenje
+            // 
+            this.txtOstecenje.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txtOstecenje.Location = new System.Drawing.Point(175, 317);
+            this.txtOstecenje.Multiline = true;
+            this.txtOstecenje.Name = "txtOstecenje";
+            this.txtOstecenje.Size = new System.Drawing.Size(149, 33);
+            this.txtOstecenje.TabIndex = 300;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label23.ForeColor = System.Drawing.Color.Black;
+            this.label23.Location = new System.Drawing.Point(175, 298);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(68, 16);
+            this.label23.TabIndex = 301;
+            this.label23.Text = "Oštećenje::";
             // 
             // frmCIR
             // 
@@ -996,6 +1047,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1075, 665);
+            this.Controls.Add(this.label23);
+            this.Controls.Add(this.txtOstecenje);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.cboKvalitet);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.txtIDGreske);
             this.Controls.Add(this.label20);
@@ -1157,5 +1212,9 @@
         private System.Windows.Forms.TextBox txtIDGreske;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ComboBox cboKvalitet;
+        private System.Windows.Forms.TextBox txtOstecenje;
+        private System.Windows.Forms.Label label23;
     }
 }
