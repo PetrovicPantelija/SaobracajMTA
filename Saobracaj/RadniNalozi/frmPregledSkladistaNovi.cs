@@ -11,6 +11,8 @@ using System.Windows.Forms;
 
 namespace Saobracaj.RadniNalozi
 {
+
+
     public partial class frmPregledSkladistaNovi : Form
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
