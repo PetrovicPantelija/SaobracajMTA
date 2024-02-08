@@ -46,6 +46,7 @@ namespace Saobracaj.Uvoz
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataGridView5 = new System.Windows.Forms.DataGridView();
+            this.chkTerminal = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -55,6 +56,7 @@ namespace Saobracaj.Uvoz
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.groupBox1.Controls.Add(this.chkTerminal);
             this.groupBox1.Controls.Add(this.button7);
             this.groupBox1.Controls.Add(this.cboVoz);
             this.groupBox1.Controls.Add(this.label43);
@@ -224,12 +226,25 @@ namespace Saobracaj.Uvoz
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView5.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView5.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView5.Location = new System.Drawing.Point(14, 161);
+            this.dataGridView5.Location = new System.Drawing.Point(14, 147);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.RowHeadersWidth = 51;
-            this.dataGridView5.Size = new System.Drawing.Size(682, 83);
+            this.dataGridView5.Size = new System.Drawing.Size(682, 97);
             this.dataGridView5.TabIndex = 161;
             this.dataGridView5.SelectionChanged += new System.EventHandler(this.dataGridView5_SelectionChanged);
+            // 
+            // chkTerminal
+            // 
+            this.chkTerminal.AutoSize = true;
+            this.chkTerminal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.chkTerminal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkTerminal.ForeColor = System.Drawing.Color.Transparent;
+            this.chkTerminal.Location = new System.Drawing.Point(99, 47);
+            this.chkTerminal.Name = "chkTerminal";
+            this.chkTerminal.Size = new System.Drawing.Size(66, 17);
+            this.chkTerminal.TabIndex = 283;
+            this.chkTerminal.Text = "Terminal";
+            this.chkTerminal.UseVisualStyleBackColor = false;
             // 
             // frmUvozKonacnaZaglavlje
             // 
@@ -275,5 +290,6 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.DataGridView dataGridView5;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.CheckBox chkTerminal;
     }
 }

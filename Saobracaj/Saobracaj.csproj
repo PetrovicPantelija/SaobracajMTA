@@ -1501,6 +1501,12 @@
     <Compile Include="Izvestaji\frmSelectTransport6.designer.cs">
       <DependentUpon>frmSelectTransport6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\DogovoreniPosloviIzvoza.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\DogovoreniPosloviIzvoza.Designer.cs">
+      <DependentUpon>DogovoreniPosloviIzvoza.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmAdresaStatusVozila.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1640,6 +1646,7 @@
       <DependentUpon>frmVrstePlombi.cs</DependentUpon>
     </Compile>
     <Compile Include="Izvoz\InsertAdresaStatusVozila.cs" />
+    <Compile Include="Izvoz\InsertDogovorenoIzvoz.cs" />
     <Compile Include="Izvoz\InsertInspekciskiTretman.cs" />
     <Compile Include="Izvoz\InsertIzvoz.cs" />
     <Compile Include="Izvoz\InsertIzvozDokumenta.cs" />
@@ -1650,6 +1657,18 @@
     <Compile Include="Izvoz\InsertNaslovStatusaVozila.cs" />
     <Compile Include="Izvoz\InsertValute.cs" />
     <Compile Include="Izvoz\InsertVrstePlombi.cs" />
+    <Compile Include="Izvoz\IzvozOpredeljenje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\IzvozOpredeljenje.Designer.cs">
+      <DependentUpon>IzvozOpredeljenje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvoz\TerminalOpredeljenje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\TerminalOpredeljenje.Designer.cs">
+      <DependentUpon>TerminalOpredeljenje.cs</DependentUpon>
+    </Compile>
     <Compile Include="MailRepository.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -2017,12 +2036,6 @@
     </Compile>
     <Compile Include="RadniNalozi\frmDodelaSkladista.Designer.cs">
       <DependentUpon>frmDodelaSkladista.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RadniNalozi\frmPregledSkladistaNovi.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RadniNalozi\frmPregledSkladistaNovi.Designer.cs">
-      <DependentUpon>frmPregledSkladistaNovi.cs</DependentUpon>
     </Compile>
     <Compile Include="RadniNalozi\InsertRN.cs" />
     <Compile Include="RadniNalozi\frmPregledSkladista.cs">
@@ -3920,6 +3933,9 @@
     <EmbeddedResource Include="Izvestaji\Teretnica2.rdlc" />
     <EmbeddedResource Include="Izvestaji\TeretnicaProba.rdlc" />
     <EmbeddedResource Include="Izvestaji\ZaradeStavkePoZaposlenom.rdlc" />
+    <EmbeddedResource Include="Izvoz\DogovoreniPosloviIzvoza.resx">
+      <DependentUpon>DogovoreniPosloviIzvoza.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmAdresaStatusVozila.resx">
       <DependentUpon>frmAdresaStatusVozila.cs</DependentUpon>
     </EmbeddedResource>
@@ -3988,6 +4004,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmVrstePlombi.resx">
       <DependentUpon>frmVrstePlombi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\IzvozOpredeljenje.resx">
+      <DependentUpon>IzvozOpredeljenje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\TerminalOpredeljenje.resx">
+      <DependentUpon>TerminalOpredeljenje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
@@ -4130,9 +4152,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\frmPregledSkladista.resx">
       <DependentUpon>frmPregledSkladista.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RadniNalozi\frmPregledSkladistaNovi.resx">
-      <DependentUpon>frmPregledSkladistaNovi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\RN2OtpremaVoza.resx">
       <DependentUpon>RN2OtpremaVoza.cs</DependentUpon>

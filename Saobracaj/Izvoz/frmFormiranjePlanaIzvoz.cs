@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
+using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 
 
@@ -24,7 +25,6 @@ namespace Saobracaj.Izvoz
         public frmFormiranjePlanaIzvoz()
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
-
             InitializeComponent();
         }
 
@@ -366,17 +366,21 @@ namespace Saobracaj.Izvoz
         private void button1_Click(object sender, EventArgs e)
         {
 
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            if (this.gridGroupingControl1.Table.SelectedRecords.Count > 0)
             {
-                if (row.Selected)
+                foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
                 {
-                    //Panta
                     InsertIzvozKonacna ins = new InsertIzvozKonacna();
-                    ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+                    ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()), Convert.ToInt32(cboPlanUtovara.SelectedValue));
 
+                    //To get the cell value of particular column of selected records   
+                    //  string cellValue = selectedRecord.Record.GetValue("ID").ToString();
+                    // MessageBox.Show(cellValue);
                 }
             }
-            RefreshDataGrid1();
+
+            RefreshSync();
+           // RefreshDataGrid1();
             RefreshDataGrid2();
             VratiUkupanBrojKontejnera();
             VratiUkupanBrojKontejneraPrenetih();
@@ -409,7 +413,7 @@ namespace Saobracaj.Izvoz
 
         private void frmFormiranjePlanaIzvoz_Load(object sender, EventArgs e)
         {
-            RefreshDataGrid1();
+           // RefreshDataGrid1();
             RefreshSync();
             RefreshDataGrid2();
             FillCombo();
@@ -446,14 +450,23 @@ namespace Saobracaj.Izvoz
 
         private void button3_Click(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                if (row.Selected)
+                {
 
-            
-                    //Panta
                     InsertIzvozKonacna ins = new InsertIzvozKonacna();
-                    ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+                    ins.VratiUNerasporedjene(Convert.ToInt32(row.Cells[0].Value.ToString()));
 
-             
-            RefreshDataGrid1();
+                }
+            }
+
+            //Panta
+           // InsertIzvozKonacna ins = new InsertIzvozKonacna();
+                //    ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+
+            RefreshSync();
+            //RefreshDataGrid1();
             RefreshDataGrid2();
             VratiUkupanBrojKontejnera();
             VratiUkupanBrojKontejneraPrenetih();

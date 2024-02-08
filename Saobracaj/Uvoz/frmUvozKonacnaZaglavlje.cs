@@ -92,10 +92,17 @@ namespace Saobracaj.Uvoz
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            int tmpTerminalski = 0;
+            if (chkTerminal.Checked == true)
+            {
+                tmpTerminalski = 1;
+
+            }
             if (status == true)
             {
+                
                 InsertUvozKonacnaZaglavlje ins = new InsertUvozKonacnaZaglavlje();
-                ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text,1, "", Convert.ToDateTime("1.1.1900"), "","");
+                ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text,1, "", Convert.ToDateTime("1.1.1900"), "","", tmpTerminalski);
                 RefreshDataGrid();
                 VratiZadnjiBroj();
                 status = false;
