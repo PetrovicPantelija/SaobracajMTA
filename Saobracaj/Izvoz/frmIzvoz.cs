@@ -2070,6 +2070,19 @@ namespace Saobracaj.Izvoz
             Saobracaj.Uvoz.frmPrijemKamionaPlatforma pkp = new Uvoz.frmPrijemKamionaPlatforma(txtID.Text);
             pkp.Show();
         }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            using (var detailForm = new IzvozOpredeljenje())
+            {
+                detailForm.ShowDialog();
+                txtBrKont.Text = detailForm.GetBrojKontejnera();
+                InsertIzvoz ins = new InsertIzvoz();
+                ins.IzvozOpredelio(txtBrKont.Text);
+                MessageBox.Show("Kontejner je opredeljen");
+                // VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+            }
+        }
     }
     }
  

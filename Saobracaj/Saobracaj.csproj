@@ -1657,6 +1657,18 @@
     <Compile Include="Izvoz\InsertNaslovStatusaVozila.cs" />
     <Compile Include="Izvoz\InsertValute.cs" />
     <Compile Include="Izvoz\InsertVrstePlombi.cs" />
+    <Compile Include="Izvoz\IzvozOpredeljenje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\IzvozOpredeljenje.Designer.cs">
+      <DependentUpon>IzvozOpredeljenje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvoz\TerminalOpredeljenje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\TerminalOpredeljenje.Designer.cs">
+      <DependentUpon>TerminalOpredeljenje.cs</DependentUpon>
+    </Compile>
     <Compile Include="MailRepository.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -2024,12 +2036,6 @@
     </Compile>
     <Compile Include="RadniNalozi\frmDodelaSkladista.Designer.cs">
       <DependentUpon>frmDodelaSkladista.cs</DependentUpon>
-    </Compile>
-    <Compile Include="RadniNalozi\frmPregledSkladistaNovi.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RadniNalozi\frmPregledSkladistaNovi.Designer.cs">
-      <DependentUpon>frmPregledSkladistaNovi.cs</DependentUpon>
     </Compile>
     <Compile Include="RadniNalozi\InsertRN.cs" />
     <Compile Include="RadniNalozi\frmPregledSkladista.cs">
@@ -3999,6 +4005,12 @@
     <EmbeddedResource Include="Izvoz\frmVrstePlombi.resx">
       <DependentUpon>frmVrstePlombi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\IzvozOpredeljenje.resx">
+      <DependentUpon>IzvozOpredeljenje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\TerminalOpredeljenje.resx">
+      <DependentUpon>TerminalOpredeljenje.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -4140,9 +4152,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\frmPregledSkladista.resx">
       <DependentUpon>frmPregledSkladista.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RadniNalozi\frmPregledSkladistaNovi.resx">
-      <DependentUpon>frmPregledSkladistaNovi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\RN2OtpremaVoza.resx">
       <DependentUpon>RN2OtpremaVoza.cs</DependentUpon>

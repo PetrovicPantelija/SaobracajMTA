@@ -4069,6 +4069,12 @@ namespace Saobracaj
             Izvoz.DogovoreniPosloviIzvoza dp = new Izvoz.DogovoreniPosloviIzvoza();
             dp.Show();
         }
+
+        private void toolStripButton351_Click(object sender, EventArgs e)
+        {
+            Izvoz.TerminalOpredeljenje to = new Izvoz.TerminalOpredeljenje();
+            to.Show();
+        }
     }
     }
 

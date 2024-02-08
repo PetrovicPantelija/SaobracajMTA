@@ -85,7 +85,7 @@ namespace Saobracaj.Sifarnici
             // var select = " Select Distinct DatumUtovara From RkShipping where Stanje = 1 and Vozilo = '" + cboVozila.Text + "'";
             SqlConnection myConnection = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand("SELECT Korisnik FROM Korisnici where Rtrim(Password) = '" + txtPassword.Text + "' and RTRIM(Korisnik) = '"+ cboKorisnik.Text + "'", myConnection);
-            myConnection.Open();
+            //myConnection.Open();
 
             SqlDataReader reader = command.ExecuteReader();
             if (reader.HasRows == false)
