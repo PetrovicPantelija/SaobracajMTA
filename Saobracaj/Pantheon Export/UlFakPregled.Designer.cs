@@ -47,11 +47,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 15);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(2272, 826);
+            this.dataGridView1.Size = new System.Drawing.Size(1704, 671);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -59,10 +58,9 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.button1.Location = new System.Drawing.Point(2296, 59);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(1722, 48);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 36);
+            this.button1.Size = new System.Drawing.Size(92, 29);
             this.button1.TabIndex = 1;
             this.button1.Text = "Otvori";
             this.button1.UseVisualStyleBackColor = false;
@@ -72,10 +70,9 @@
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.button2.Location = new System.Drawing.Point(2296, 18);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Location = new System.Drawing.Point(1722, 15);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(123, 33);
+            this.button2.Size = new System.Drawing.Size(92, 27);
             this.button2.TabIndex = 1;
             this.button2.Text = "Nova";
             this.button2.UseVisualStyleBackColor = false;
@@ -85,12 +82,11 @@
             // 
             this.btnExport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExport.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnExport.Location = new System.Drawing.Point(2296, 197);
-            this.btnExport.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnExport.Location = new System.Drawing.Point(1722, 160);
             this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(123, 56);
+            this.btnExport.Size = new System.Drawing.Size(92, 60);
             this.btnExport.TabIndex = 3;
-            this.btnExport.Text = "Export Pantheon-DEMO";
+            this.btnExport.Text = "Export Pantheon-Demo";
             this.btnExport.UseVisualStyleBackColor = false;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
@@ -99,10 +95,9 @@
             this.btnGetPlacanja.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGetPlacanja.BackColor = System.Drawing.Color.MediumBlue;
             this.btnGetPlacanja.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnGetPlacanja.Location = new System.Drawing.Point(2296, 140);
-            this.btnGetPlacanja.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGetPlacanja.Location = new System.Drawing.Point(1722, 114);
             this.btnGetPlacanja.Name = "btnGetPlacanja";
-            this.btnGetPlacanja.Size = new System.Drawing.Size(123, 49);
+            this.btnGetPlacanja.Size = new System.Drawing.Size(92, 40);
             this.btnGetPlacanja.TabIndex = 4;
             this.btnGetPlacanja.Text = "Get placanja";
             this.btnGetPlacanja.UseVisualStyleBackColor = false;
@@ -111,21 +106,19 @@
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(596, 431);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridView2.Location = new System.Drawing.Point(447, 350);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(888, 185);
+            this.dataGridView2.Size = new System.Drawing.Size(666, 150);
             this.dataGridView2.TabIndex = 5;
             // 
             // btnExportProd
             // 
             this.btnExportProd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExportProd.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnExportProd.Location = new System.Drawing.Point(2296, 261);
-            this.btnExportProd.Margin = new System.Windows.Forms.Padding(4);
+            this.btnExportProd.Location = new System.Drawing.Point(1722, 226);
             this.btnExportProd.Name = "btnExportProd";
-            this.btnExportProd.Size = new System.Drawing.Size(123, 56);
+            this.btnExportProd.Size = new System.Drawing.Size(92, 46);
             this.btnExportProd.TabIndex = 3;
             this.btnExportProd.Text = "Export Pantheon";
             this.btnExportProd.UseVisualStyleBackColor = false;
@@ -133,10 +126,10 @@
             // 
             // UlFakPregled
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(2424, 855);
+            this.ClientSize = new System.Drawing.Size(1818, 695);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.btnGetPlacanja);
             this.Controls.Add(this.btnExportProd);
@@ -145,7 +138,6 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "UlFakPregled";
             this.Text = "Pregled ulaznih faktura";
             this.Load += new System.EventHandler(this.UlFakPregled_Load);
