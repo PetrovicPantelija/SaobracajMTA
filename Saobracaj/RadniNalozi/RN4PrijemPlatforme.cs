@@ -159,7 +159,7 @@ namespace Saobracaj.RadniNalozi
             cboBrodar.DataSource = partDS7.Tables[0];
             cboBrodar.DisplayMember = "PaNaziv";
             cboBrodar.ValueMember = "PaSifra";
-
+            /*
             var roba = "Select ID,Naziv From NHM order by ID";
             var daRoba = new SqlDataAdapter(roba, conn);
             var dsRoba = new DataSet();
@@ -167,7 +167,7 @@ namespace Saobracaj.RadniNalozi
             cboVrstaRobe.DataSource = dsRoba.Tables[0];
             cboVrstaRobe.DisplayMember = "Naziv";
             cboVrstaRobe.ValueMember = "ID";
-
+            */
             var usluge = "Select ID,Naziv from VrstaManipulacije order by ID";
             var daUsluge = new SqlDataAdapter(usluge, conn);
             var dsUsluge = new DataSet();

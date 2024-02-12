@@ -368,5 +368,11 @@ namespace Saobracaj.Uvoz
 
             }
         }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana();
+            rd1.Show();
+        }
     }
 }

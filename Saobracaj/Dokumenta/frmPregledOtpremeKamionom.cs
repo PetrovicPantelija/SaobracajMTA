@@ -203,7 +203,11 @@ namespace TrackModal.Dokumeta
             }
             else
             {
-                var select = "SELECT top 500 [ID],[DatumOtpreme],[StatusOtpreme],[IdVoza],[RegBrKamiona],[ImeVozaca],[VremeOdlaska] ,[NacinOtpreme] ,[Datum] ,[Korisnik]  FROM [dbo].[OtpremaKontejnera] where NacinOtpreme = 0 order by ID desc";
+                var select = "SELECT top 500 [ID],[DatumOtpreme],[StatusOtpreme]," +                   
+                    " [IdVoza],[RegBrKamiona],[ImeVozaca],[VremeOdlaska] ,[NacinOtpreme] ," +
+                    " [Datum] ,[Korisnik],  " +
+                     " CASE WHEN Poreklo = 0 THEN 'Uvoz' ELSE 'Izvoz' END " +
+                    " FROM [dbo].[OtpremaKontejnera] where NacinOtpreme = 0 order by ID desc";
                 var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);

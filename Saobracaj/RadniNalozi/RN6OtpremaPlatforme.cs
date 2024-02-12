@@ -44,6 +44,7 @@ namespace Saobracaj.RadniNalozi
                 VratiPodatkeVrstaMan(Usluga.ToString());
                 chkUvoz.Checked = true;
                 chkIzvoz.Checked = false;
+                
             }
             else
             {
@@ -109,8 +110,8 @@ namespace Saobracaj.RadniNalozi
 " INNER JOIN  Partnerji AS Komitenti_3 ON[RNOtpremaPlatforme].Uvoznik = Komitenti_3.PaSifra " +
 " inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.id = [RNOtpremaPlatforme].CarinskiPostupak " +
 " inner join  Skladista on[RNOtpremaPlatforme].[SaSkladista] = Skladista.ID " +
-" inner join TipKontenjera on TipKontenjera.ID = [RNOtpremaPlatforme].[VrstaKontejnera]" +
-" where Uvoz = 0 ";
+" inner join TipKontenjera on TipKontenjera.ID = [RNOtpremaPlatforme].[VrstaKontejnera] " +
+" where Uvoz = 0 order by [RNOtpremaPlatforme].ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -147,7 +148,7 @@ namespace Saobracaj.RadniNalozi
 " INNER JOIN  Partnerji AS Komitenti_1 ON[RNOtpremaPlatforme].NazivBrodara = Komitenti_1.PaSifra " +
 " INNER JOIN  Partnerji AS Komitenti_2 ON[RNOtpremaPlatforme].Izvoznik = Komitenti_2.PaSifra " +
 " inner join  Skladista on[RNOtpremaPlatforme].[SaSkladista] = Skladista.ID " +
-" inner join TipKontenjera on TipKontenjera.ID = [RNOtpremaPlatforme].[VrstaKontejnera] " +
+" inner join TipKontenjera on TipKontenjera.ID = [RNOtpremaPlatforme].[VrstaKontejnera] order by [RNOtpremaPlatforme].ID desc" +
 " where Uvoz = 1";
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
@@ -362,11 +363,37 @@ namespace Saobracaj.RadniNalozi
                         txtID.Text = row.Cells[0].Value.ToString();
                         VratiPodatkeStavke(txtID.Text);
                         FillDG2();
+                        VratiSkladisteIzTekuceg(txtbrojkontejnera.Text);
                     }
                 }
             }
             catch { }
         }
+
+        private void VratiSkladisteIzTekuceg(string ID)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" SELECT       Skladiste " +
+  "  FROM  KontejnerTekuce " +
+             " where Kontejner = " + ID, con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                cboSaSklad.SelectedValue = Convert.ToInt32(dr["Skladiste"].ToString());
+               
+
+               
+            }
+
+            con.Close();
+        }
+
 
         private void FillDG2()
         {
