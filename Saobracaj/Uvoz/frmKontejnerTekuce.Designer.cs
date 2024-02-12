@@ -42,6 +42,7 @@ namespace Saobracaj.Uvoz
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridGroupingControl1.BackColor = System.Drawing.SystemColors.Window;
+            this.gridGroupingControl1.EnableAutoSize = true;
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2010Blue;
             this.gridGroupingControl1.Location = new System.Drawing.Point(12, 71);
@@ -64,12 +65,14 @@ namespace Saobracaj.Uvoz
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(13, 13);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(165, 52);
             this.button1.TabIndex = 11;
-            this.button1.Text = "Tekuce stanje kontejnera";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Text = "TEKUCE STANJE - REFRESH";
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmKontejnerTekuce

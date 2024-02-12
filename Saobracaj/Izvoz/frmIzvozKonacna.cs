@@ -18,6 +18,7 @@ namespace Saobracaj.Izvoz
         float firstHeight;
         public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         int NHMObrni = 0;
+        string KorisnikTekuci = Sifarnici.frmLogovanje.user.ToString();
         public frmIzvozKonacna()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace Saobracaj.Izvoz
             InitializeComponent();
 
             txtNadredjeni.Text = ID.ToString();
-            FillDG();
+          //  FillDG();
 
             FillCombo();
             VratiPodatke(ID);
@@ -509,7 +510,16 @@ namespace Saobracaj.Izvoz
             cboNazivRobe.ValueMember = "ID";
 
 
-            var nhm = "Select ID,(Rtrim(Naziv) + '-' + Rtrim(Broj)) as Naziv from NHM order by NHM.Naziv";
+            var nhm = "";
+            if (chkInterni.Checked == true)
+            {
+                nhm = "Select ID,(RTRIM(Naziv) + '-' + Rtrim(Broj)) as Naziv from NHM where Interni = 1 order by Naziv ";
+            }
+            else
+            {
+                nhm = "Select ID,(RTRIM(Naziv) + '-' + Rtrim(Broj)) as Naziv from NHM order by Naziv";
+            }
+
             var nhmSAD = new SqlDataAdapter(nhm, conn);
             var nhmSDS = new DataSet();
             nhmSAD.Fill(nhmSDS);
@@ -1422,22 +1432,27 @@ namespace Saobracaj.Izvoz
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Da li pravite Opšte naloge za selektovane zapise Da/Ne", "Radni nalog", MessageBoxButtons.YesNo);
-
+            DialogResult dialogResult = MessageBox.Show("Pokrenuli ste proceduru pravljenja naloga za službu terminal", "Radni nalog", MessageBoxButtons.YesNo);
+            int PostojeRn = 0;
+            PostojeRn = VratiPostojeceRN();
             if (dialogResult == DialogResult.Yes)
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                   
-                        Uvoz.InsertRadniNalogInterni ins = new Uvoz.InsertRadniNalogInterni();
-                        ins.InsRadniNalogInterniIzvoz(Convert.ToInt32(2), Convert.ToInt32(5), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanIzvoz", Convert.ToInt32(row.Cells[0].Value.ToString()), "sa", "sa");
-                   
-                }
+
+                Uvoz.InsertRadniNalogInterni ins = new Uvoz.InsertRadniNalogInterni();
+                //ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
+                ins.InsRadniNalogInterniIzvoz(Convert.ToInt32(2), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovaraIZ", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
             }
             else
             {
                 // FormirajOpstiExcel();
             }
+
+
+        }
+
+        int VratiPostojeceRN()
+        {
+            return 0;
         }
 
         private void button14_Click(object sender, EventArgs e)
@@ -1465,35 +1480,71 @@ namespace Saobracaj.Izvoz
         private void button15_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(connection);
-            switch (NHMObrni)
+            if (chkInterni.Checked == true)
             {
-                case 1:
-                    {
-                        var nhm = "Select ID,Rtrim(Broj) + '-' + (Rtrim(Naziv)) as Naziv from NHM order by NHM.Broj";
-                        var nhmSAD = new SqlDataAdapter(nhm, conn);
-                        var nhmSDS = new DataSet();
-                        nhmSAD.Fill(nhmSDS);
-                        cboNHM.DataSource = nhmSDS.Tables[0];
-                        cboNHM.DisplayMember = "Naziv";
-                        cboNHM.ValueMember = "ID";
-                        NHMObrni = 0;
-                        break;
+                switch (NHMObrni)
+                {
+                    case 1:
+                        {
+                            var nhm = "Select ID,Rtrim(Broj) + '-' + (Rtrim(Naziv)) as Naziv from NHM where Interni = 1 order by NHM.Broj";
+                            var nhmSAD = new SqlDataAdapter(nhm, conn);
+                            var nhmSDS = new DataSet();
+                            nhmSAD.Fill(nhmSDS);
+                            cboNHM.DataSource = nhmSDS.Tables[0];
+                            cboNHM.DisplayMember = "Naziv";
+                            cboNHM.ValueMember = "ID";
+                            NHMObrni = 0;
+                            break;
 
-                    }
-                case 0:
-                    {
-                        var nhm = "Select ID,Rtrim(Naziv) + '-' + (Rtrim(Broj)) as Naziv from NHM order by NHM.Naziv";
-                        var nhmSAD = new SqlDataAdapter(nhm, conn);
-                        var nhmSDS = new DataSet();
-                        nhmSAD.Fill(nhmSDS);
-                        cboNHM.DataSource = nhmSDS.Tables[0];
-                        cboNHM.DisplayMember = "Naziv";
-                        cboNHM.ValueMember = "ID";
-                        NHMObrni = 1;
+                        }
+                    case 0:
+                        {
+                            var nhm = "Select ID,Rtrim(Naziv) + '-' + (Rtrim(Broj)) as Naziv from NHM where Interni = 1 order by NHM.Naziv";
+                            var nhmSAD = new SqlDataAdapter(nhm, conn);
+                            var nhmSDS = new DataSet();
+                            nhmSAD.Fill(nhmSDS);
+                            cboNHM.DataSource = nhmSDS.Tables[0];
+                            cboNHM.DisplayMember = "Naziv";
+                            cboNHM.ValueMember = "ID";
+                            NHMObrni = 1;
+                            break;
+                        }
+                    default:
                         break;
-                    }
-                default:
-                    break;
+                }
+            }
+            else
+            {
+                switch (NHMObrni)
+                {
+                    case 1:
+                        {
+                            var nhm = "Select ID,Rtrim(Broj) + '-' + (Rtrim(Naziv)) as Naziv from NHM order by NHM.Broj";
+                            var nhmSAD = new SqlDataAdapter(nhm, conn);
+                            var nhmSDS = new DataSet();
+                            nhmSAD.Fill(nhmSDS);
+                            cboNHM.DataSource = nhmSDS.Tables[0];
+                            cboNHM.DisplayMember = "Naziv";
+                            cboNHM.ValueMember = "ID";
+                            NHMObrni = 0;
+                            break;
+
+                        }
+                    case 0:
+                        {
+                            var nhm = "Select ID,Rtrim(Naziv) + '-' + (Rtrim(Broj)) as Naziv from NHM order by NHM.Naziv";
+                            var nhmSAD = new SqlDataAdapter(nhm, conn);
+                            var nhmSDS = new DataSet();
+                            nhmSAD.Fill(nhmSDS);
+                            cboNHM.DataSource = nhmSDS.Tables[0];
+                            cboNHM.DisplayMember = "Naziv";
+                            cboNHM.ValueMember = "ID";
+                            NHMObrni = 1;
+                            break;
+                        }
+                    default:
+                        break;
+                }
             }
 
         }
@@ -1849,10 +1900,12 @@ namespace Saobracaj.Izvoz
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
+           
             using (var detailForm = new frmIzvozKonacnaTable(txtNadredjeni.Text))
             {
                 detailForm.ShowDialog();
                 txtID.Text = detailForm.GetID();
+           
                 VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
             }
         }
@@ -2098,6 +2151,11 @@ namespace Saobracaj.Izvoz
         {
             frmOtpremaVozaIzPlana ovizpl = new frmOtpremaVozaIzPlana();
             ovizpl.Show();
+        }
+
+        private void txtID_TextChanged(object sender, EventArgs e)
+        {
+            FillDGUsluge();
         }
     }
 }

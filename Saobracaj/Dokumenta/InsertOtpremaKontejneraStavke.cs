@@ -13,7 +13,7 @@ namespace Saobracaj.Dokumenta
     class InsertOtpremaKontejneraStavke
     {
 
-        public void InsertOtpremaKontejneraStav(int IdNadredjenog, string BrojKontejnera, String BrojVagona, double Granica, double BrojOsovina, double SopstvenaMasa, double Tara, double Neto, int Posiljalac, int Primalac, int VlasnikKontejnera, int TipKontejnera, int VrstaRobe, string Buking, int StatusKontejnera, string BrojPlombe, int PlaniraniLager, int IdVoza,  DateTime VremePripremljen, DateTime VremeOdlaska, DateTime Datum, string Korisnik, string BrojPlombe2, int Organizator, string NapomenaS, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, Double BTTORobe, int KontejnerID, double BTTOKOntejnera, string Napomena2, int PostupakSaRobom,  double BTTORobeFaktura, double BTTORobeOTP, double BTTORobeODVAGA, double BTTORobeKONTEJNER, string PLOMBAVLASN, string CBMOTP, string KOLETAOTP)
+        public void InsertOtpremaKontejneraStav(int IdNadredjenog, string BrojKontejnera, String BrojVagona, double Granica, double BrojOsovina, double SopstvenaMasa, double Tara, double Neto, int Posiljalac, int Primalac, int VlasnikKontejnera, int TipKontejnera, int VrstaRobe, string Buking, int StatusKontejnera, string BrojPlombe, int PlaniraniLager, int IdVoza,  DateTime VremePripremljen, DateTime VremeOdlaska, DateTime Datum, string Korisnik, string BrojPlombe2, int Organizator, string NapomenaS, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, Double BTTORobe, int KontejnerID, double BTTOKOntejnera, string Napomena2, int PostupakSaRobom,  double BTTORobeFaktura, double BTTORobeOTP, double BTTORobeODVAGA, double BTTORobeKONTEJNER, string PLOMBAVLASN, string CBMOTP, string KOLETAOTP, int NalogID)
         {
            
 
@@ -330,6 +330,14 @@ namespace Saobracaj.Dokumenta
             parameter41.Direction = ParameterDirection.Input;
             parameter41.Value = KOLETAOTP;
             myCommand.Parameters.Add(parameter41);
+
+            SqlParameter parameter42 = new SqlParameter();
+            parameter42.ParameterName = "@NalogID";
+            parameter42.SqlDbType = SqlDbType.Int;
+
+            parameter42.Direction = ParameterDirection.Input;
+            parameter42.Value = NalogID;
+            myCommand.Parameters.Add(parameter42);
 
 
             /*

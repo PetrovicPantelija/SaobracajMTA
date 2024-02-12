@@ -84,6 +84,7 @@ namespace Saobracaj.RadniNalozi
             this.chkUvoz = new System.Windows.Forms.CheckBox();
             this.chkZavrsen = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.chkIzvoz = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -634,12 +635,23 @@ namespace Saobracaj.RadniNalozi
             this.button2.Text = "Dodela skladista i pozicija";
             this.button2.UseVisualStyleBackColor = false;
             // 
+            // chkIzvoz
+            // 
+            this.chkIzvoz.AutoSize = true;
+            this.chkIzvoz.Location = new System.Drawing.Point(89, 208);
+            this.chkIzvoz.Name = "chkIzvoz";
+            this.chkIzvoz.Size = new System.Drawing.Size(68, 17);
+            this.chkIzvoz.TabIndex = 330;
+            this.chkIzvoz.Text = "Iz Izvoza";
+            this.chkIzvoz.UseVisualStyleBackColor = true;
+            // 
             // RN4PrijemPlatforme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1060, 647);
+            this.Controls.Add(this.chkIzvoz);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.chkZavrsen);
             this.Controls.Add(this.chkUvoz);
@@ -756,5 +768,6 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.CheckBox chkZavrsen;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.CheckBox chkIzvoz;
     }
 }

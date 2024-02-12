@@ -38,10 +38,16 @@ namespace Saobracaj.RadniNalozi
             if (Uvoz == 0)
             {
                 chkUvoz.Checked = true;
+                chkIzvoz.Checked = false;
             }
-           // cboUsluga.SelectedValue = Usluga;
-              //  FillGV();
-            
+            if (Uvoz == 1)
+            {
+                chkUvoz.Checked = false;
+                chkIzvoz.Checked = true;
+            }
+            // cboUsluga.SelectedValue = Usluga;
+            //  FillGV();
+
         }
         private void VratiPodatkeVrstaMan(string IDUsluge)
         {

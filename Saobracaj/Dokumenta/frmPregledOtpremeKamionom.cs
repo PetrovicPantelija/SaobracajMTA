@@ -291,7 +291,7 @@ namespace TrackModal.Dokumeta
             {
                 case "Leget":
                     {
-                        Saobracaj.Dokumenta.frmOtpremaKontejneraUvozKamion ter2 = new Saobracaj.Dokumenta.frmOtpremaKontejneraUvozKamion(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+                        Saobracaj.Dokumenta.frmOtpremaKontejneraIzvozKamion ter2 = new Saobracaj.Dokumenta.frmOtpremaKontejneraIzvozKamion(Convert.ToInt32(txtSifra.Text), KorisnikCene);
                         ter2.Show();
                         return;
                     }
@@ -306,8 +306,8 @@ namespace TrackModal.Dokumeta
                     break;
             }
 
-           // Saobracaj.Dokumeta.frmOtpremaKontejnera ter = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
-           // ter.Show();
+            // Saobracaj.Dokumeta.frmOtpremaKontejnera ter = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+            // ter.Show();
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -762,6 +762,29 @@ namespace TrackModal.Dokumeta
         private void button3_Click(object sender, EventArgs e)
         {
             RefreshDataGridPoKontejneru();
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        Saobracaj.Dokumenta.frmOtpremaKontejneraUvozKamion ter2 = new Saobracaj.Dokumenta.frmOtpremaKontejneraUvozKamion(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+                        ter2.Show();
+                        return;
+                    }
+                default:
+                    {
+
+                        Saobracaj.Dokumeta.frmOtpremaKontejnera ter3 = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+                        ter3.Show();
+                        return;
+
+                    }
+                    break;
+            }
         }
     }
 }

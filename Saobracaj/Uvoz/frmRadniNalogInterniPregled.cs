@@ -48,14 +48,16 @@ namespace Saobracaj.Uvoz
             }
             else if (cboIzdatOd.Text == "Izvoz")
             {
-                select = "   SELECT RadniNalogInterni.[ID]  ,RadniNalogInterni.[StatusIzdavanja], [OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]      ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena] " +
+                select = "   SELECT RadniNalogInterni.[ID]  ,RadniNalogInterni.[StatusIzdavanja], [OJIzdavanja]      " +
+                    ", o1.Naziv as Izdao  ,[OJRealizacije]      ,o2.Naziv as Realizuje  ,[DatumIzdavanja]   " +
+                    "   ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena] " +
       " , IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije, VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov] " +
       " ,[BrojOsnov]  ,[KorisnikIzdao]      ,[KorisnikZavrsio]  ,IzvozKonacna.BrojKontejnera      , uv.PaNaziv as Platilac " +
       " , TipKontenjera.Naziv as Tipkontejnera, PlanID as PlanUtovara, RadniNalogInterni.Pokret, KontejnerStatus.Naziv   FROM [RadniNalogInterni] " +
       " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
       " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
       " inner join IzvozKonacna on IzvozKonacna.ID = BrojOsnov " +
-      " inner join IzvozKonacnaVrstaManipulacije on IzvozKonacnaVrstaManipulacije.ID = RadniNalogInterni.IDManipulacijaJED " +
+      " inner join IzvozKonacnaVrstaManipulacije on IzvozKonacnaVrstaManipulacije.ID = RadniNalogInterni.KonkretaIDUsluge" +
       " inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
       " inner join Partnerji uv on uv.PaSifra = IzvozKonacnaVrstaManipulacije.Platilac " +
          " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera " +
@@ -93,10 +95,7 @@ namespace Saobracaj.Uvoz
             gridGroupingControl1.DataSource = ds.Tables[0];
             gridGroupingControl1.ShowGroupDropArea = true;
             this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
-            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
-            {
-                column.AllowFilter = true;
-            }
+            
 
             GridConditionalFormatDescriptor gcfd = new GridConditionalFormatDescriptor();
             gcfd.Appearance.AnyRecordFieldCell.BackColor = Color.BlueViolet;
@@ -129,8 +128,24 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("OJIzdavanja");
             this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("OJRealizacije");
             this.gridGroupingControl1.TableDescriptor.VisibleColumns.Remove("IDVrstaManipulacije");
-            
 
+            /*
+            this.gridGroupingControl1.TableDescriptor.Columns["Uradjen"].Appearance.AnyRecordFieldCell.CellType = "CheckBox";
+            GridConditionalFormatDescriptor format1 = new GridConditionalFormatDescriptor();
+            format1.Appearance.AnyRecordFieldCell.Interior = new BrushInfo(Color.FromArgb(255, 191, 52));
+            format1.Appearance.AnyRecordFieldCell.TextColor = Color.White;
+            format1.Expression = "[Uradjen]  =  '1'";
+            format1.Name = "ConditionalFormat 1";
+
+            // Add the descriptor to the TableDescriptor.ConditionalFormats property.
+            this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(format1);
+            */
+            this.gridGroupingControl1.TableDescriptor.Columns["Uradjen"].Appearance.AnyRecordFieldCell.CellType = "CheckBox";
+
+            //To set '1' and '0' instead of "True" and "False" 
+            this.gridGroupingControl1.TableDescriptor.Columns["Uradjen"].Appearance.AnyRecordFieldCell.CheckBoxOptions = new GridCheckBoxCellInfo("1", "0", "", true);
+            this.gridGroupingControl1.TableDescriptor.Columns["Uradjen"].Appearance.AnyRecordFieldCell.ReadOnly = false;
+            this.gridGroupingControl1.TableDescriptor.Columns["Uradjen"].Appearance.AnyRecordFieldCell.Enabled = true;
             /*
             GridSummaryColumnDescriptor summaryColumnDescriptor = new GridSummaryColumnDescriptor();
             summaryColumnDescriptor.Appearance.AnySummaryCell.Interior = new BrushInfo(Color.FromArgb(192, 255, 162));
@@ -145,6 +160,11 @@ namespace Saobracaj.Uvoz
 
             this.gridGroupingControl1.TableDescriptor.SummaryRows.Add(summaryRowDescriptor);
             */
+
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -238,6 +258,7 @@ namespace Saobracaj.Uvoz
                 if (gridGroupingControl1.Table.CurrentRecord != null)
                 {
                     textBox1.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojOsnov").ToString();
+                    txtNALOGID.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
 
                     // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
                 }
@@ -294,6 +315,57 @@ namespace Saobracaj.Uvoz
                     //  string cellValue = selectedRecord.Record.GetValue("ID").ToString();
                     // MessageBox.Show(cellValue);
                 }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+          
+          
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+
+
+            if (textBox1.Text != "")
+
+            {
+                DialogResult dialogResult = MessageBox.Show("Formirate otpremu platforme Kamionom", "Usluga?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Saobracaj.Dokumenta.frmOtpremaKontejneraIzvozKamion okk = new Saobracaj.Dokumenta.frmOtpremaKontejneraIzvozKamion(Korisnik, txtNALOGID.Text);
+                    okk.Show();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+
+            }
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text != "")
+
+            {
+                DialogResult dialogResult = MessageBox.Show("Formirate prijem platforme Kamionom", "Usluga?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz okk = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz(Korisnik, 0, txtNALOGID.Text);
+                    okk.Show();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    return;
+                }
+
             }
         }
     }

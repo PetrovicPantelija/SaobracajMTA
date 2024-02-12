@@ -266,7 +266,7 @@ namespace Saobracaj.Dokumenta
         {
            
             InsertLokomotiveNaTrasi del = new InsertLokomotiveNaTrasi();
-            del.delRNTL(Convert.ToInt32(txtSifraRN.Text), Convert.ToInt32(cboTrase.SelectedValue), cboLokomotiva.Text);
+            del.delRNTL(Convert.ToInt32(txtSifraRN.Text), Convert.ToInt32(cboTrase.SelectedValue), cboLokomotiva.Text.TrimEnd());
             RefreshDataGrid();
         }
 
