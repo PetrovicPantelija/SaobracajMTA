@@ -2047,6 +2047,12 @@
     <Compile Include="RadniNalozi\frmDodelaSkladista.Designer.cs">
       <DependentUpon>frmDodelaSkladista.cs</DependentUpon>
     </Compile>
+    <Compile Include="RadniNalozi\frmPregledSkladistaNovi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalozi\frmPregledSkladistaNovi.Designer.cs">
+      <DependentUpon>frmPregledSkladistaNovi.cs</DependentUpon>
+    </Compile>
     <Compile Include="RadniNalozi\InsertIsporuka.cs" />
     <Compile Include="RadniNalozi\InsertRN.cs" />
     <Compile Include="RadniNalozi\frmPregledSkladista.cs">
@@ -4187,6 +4193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\frmPregledSkladista.resx">
       <DependentUpon>frmPregledSkladista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalozi\frmPregledSkladistaNovi.resx">
+      <DependentUpon>frmPregledSkladistaNovi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\Otpremnica.resx">
       <DependentUpon>Otpremnica.cs</DependentUpon>

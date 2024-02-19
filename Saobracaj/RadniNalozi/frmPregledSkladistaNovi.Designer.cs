@@ -249,6 +249,7 @@
             this.button155 = new System.Windows.Forms.Button();
             this.button156 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -2855,12 +2856,22 @@
             this.panel3.Size = new System.Drawing.Size(466, 230);
             this.panel3.TabIndex = 4;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(220, 135);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(10, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = ".";
+            // 
             // frmPregledSkladistaNovi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(1903, 898);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.button16);
             this.Controls.Add(this.button15);
             this.Controls.Add(this.button14);
@@ -3081,6 +3092,7 @@
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -3306,5 +3318,6 @@
         private System.Windows.Forms.Button button155;
         private System.Windows.Forms.Button button156;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label5;
     }
 }
