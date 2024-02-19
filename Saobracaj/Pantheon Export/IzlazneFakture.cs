@@ -1,4 +1,5 @@
-﻿using Saobracaj.eDokumenta;
+﻿using Microsoft.Ajax.Utilities;
+using Saobracaj.eDokumenta;
 using Saobracaj.Sifarnici;
 using Syncfusion.Windows.Forms.Diagram;
 using System;
@@ -17,7 +18,7 @@ namespace Saobracaj.Pantheon_Export
 {
     public partial class IzlazneFakture : Form
     {
-        int ID;
+        int ID,StatusFak;
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
         private string korisnik = frmLogovanje.user.ToString().TrimEnd();
@@ -26,7 +27,7 @@ namespace Saobracaj.Pantheon_Export
             InitializeComponent();
             FillCombo();
         }
-        public IzlazneFakture(int id,DateTime datumDokumenta,string vrsta,int primalac,string valuta,decimal kurs,DateTime datumPDV,DateTime datumValute,string mestoUtovara,DateTime datumUtovara,string mestoIstovara,DateTime datumIstovara,int referent,int izjava,string napomena)
+        public IzlazneFakture(int id,DateTime datumDokumenta,string vrsta,int primalac,string valuta,decimal kurs,DateTime datumPDV,DateTime datumValute,string mestoUtovara,DateTime datumUtovara,string mestoIstovara,DateTime datumIstovara,int referent,int izjava,string napomena,int statusFak)
         {
             InitializeComponent();
             ID = id;
@@ -34,6 +35,26 @@ namespace Saobracaj.Pantheon_Export
             FillCombo();
             FillGV();
 
+            if (vrsta.ToString().TrimEnd().Equals("3010"))
+            {
+                vrsta = "3010 - Domaci železnicki transport";
+            }
+            else if (vrsta.ToString().TrimEnd().Equals("3100"))
+            {
+                vrsta = "3100 - Domaci rečni transport";
+            }
+            else if (vrsta.ToString().TrimEnd().Equals("3110"))
+            {
+                vrsta = "3110 - Medj.transport - ŽELEZNIČKI";
+            }
+            else if (vrsta.ToString().TrimEnd().Equals("3X00"))
+            {
+                vrsta = "3X00 - Odobrenje inostranstvo";
+            }
+            else if (vrsta.ToString().TrimEnd().Equals("3X20"))
+            {
+                vrsta = "3X20 - Finansijsko odobrenje";
+            }
             dtDatum.Value = Convert.ToDateTime(datumDokumenta.ToShortDateString());
             comboBox1.Text = vrsta;
             cboPrimalac.SelectedValue = primalac;
@@ -47,7 +68,9 @@ namespace Saobracaj.Pantheon_Export
             cboReferent.SelectedValue= referent;
             cboIzjava.SelectedValue = izjava;
             txtNapomena.Text = napomena.ToString();
-            
+            StatusFak=statusFak;
+
+
         }
         private void FillGV()
         {
@@ -196,18 +219,43 @@ namespace Saobracaj.Pantheon_Export
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            var query = "Select PaNaziv,PaUlicaHisnaSt,PaKraj,PaDMatSt From Partnerji Where PaSifra=" + Convert.ToInt32(cboPrimalac.SelectedValue);
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                naziv = dr[0].ToString().TrimEnd();
+                ulica = dr[1].ToString().TrimEnd();
+                mesto = dr[2].ToString().TrimEnd();
+                mb = dr[3].ToString().TrimEnd();
+            }
+            conn.Close();
+
             InsertPatheonExport ins = new InsertPatheonExport();
             if (status == true)
             {
-                ins.InstFaktura(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtDatum.Value), Convert.ToInt32(cboPrimalac.SelectedValue), ulica, naziv, mesto, mb, cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Text),
+                txtID.Text = FaStFak.ToString();
+                ins.InstFaktura(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtDatum.Value), Convert.ToInt32(cboPrimalac.SelectedValue), ulica, naziv, mesto, mb, cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Value),
                     Convert.ToDateTime(dtPDV.Value), Convert.ToDateTime(dtValuta.Value), txtMestoUtovara.Text.ToString(), Convert.ToDateTime(dtDatumUtovara.Value), txtMestoUtovara.Text.ToString().TrimEnd(),
                     Convert.ToDateTime(dtDatumIstovara.Value), korisnik, Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboIzjava.SelectedValue), txtNapomena.Text.ToString().TrimEnd(),Convert.ToInt32(crmID), comboBox1.Text.ToString().Substring(0, 4));
             }
             else
             {
-                //FALI UPDATE FAKTURE
+                if (StatusFak == 0)
+                {
+                    ins.UpdFaktura(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtDatum.Value), Convert.ToInt32(cboPrimalac.SelectedValue), ulica, naziv, mesto, mb, cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Value),
+                    Convert.ToDateTime(dtPDV.Value), Convert.ToDateTime(dtValuta.Value), txtMestoUtovara.Text.ToString(), Convert.ToDateTime(dtDatumUtovara.Value), txtMestoUtovara.Text.ToString().TrimEnd(),
+                    Convert.ToDateTime(dtDatumIstovara.Value), korisnik, Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboIzjava.SelectedValue), txtNapomena.Text.ToString().TrimEnd(), Convert.ToInt32(crmID), comboBox1.Text.ToString().Substring(0, 4));
+                }
+                else
+                {
+                    MessageBox.Show("Faktura je već sinhronizovana. Nije moguća izmena dokumenta nakon sinhrronizacije!");
+                    return;
+                }
             }
-            txtID.Text = FaStFak.ToString();
+            
             FillGV();
         }
         string MpNaziv;
@@ -223,19 +271,7 @@ namespace Saobracaj.Pantheon_Export
 
         private void cboPrimalac_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            var query = "Select PaNaziv,PaUlicaHisnaSt,PaKraj,PaDMatSt From Partnerji Where PaSifra=" + Convert.ToInt32(cboPrimalac.SelectedValue);
-            SqlConnection conn = new SqlConnection(connect);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                naziv = dr[0].ToString().TrimEnd();
-                ulica = dr[1].ToString().TrimEnd();
-                mesto = dr[2].ToString().TrimEnd();
-                mb = dr[3].ToString().TrimEnd();
-            }
-            conn.Close();
+
         }
         string staraSif;
         private void cboMP_SelectionChangeCommitted(object sender, EventArgs e)

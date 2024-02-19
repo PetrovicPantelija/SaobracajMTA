@@ -1780,6 +1780,11 @@
       <DependentUpon>frmVrstaNepravilnosti.cs</DependentUpon>
     </Compile>
     <Compile Include="Neispravnosti\InsertNepravilnosti.cs" />
+    <Compile Include="OtpremnicaDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OtpremnicaDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Pantheon Export\ApiLogovi.cs" />
     <Compile Include="Pantheon Export\InsertPatheonExport.cs" />
     <Compile Include="Pantheon Export\IzlazneFakture.cs">
@@ -1922,6 +1927,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Perftech_BeogradDataSet9.xsd</DependentUpon>
     </Compile>
+    <Compile Include="PrijemnicaDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrijemnicaDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Promet\frmLager.cs">
       <SubType>Form</SubType>
@@ -2037,12 +2047,37 @@
     <Compile Include="RadniNalozi\frmDodelaSkladista.Designer.cs">
       <DependentUpon>frmDodelaSkladista.cs</DependentUpon>
     </Compile>
+    <Compile Include="RadniNalozi\InsertIsporuka.cs" />
     <Compile Include="RadniNalozi\InsertRN.cs" />
     <Compile Include="RadniNalozi\frmPregledSkladista.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RadniNalozi\frmPregledSkladista.designer.cs">
       <DependentUpon>frmPregledSkladista.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadniNalozi\Otpremnica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalozi\Otpremnica.designer.cs">
+      <DependentUpon>Otpremnica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadniNalozi\OtpremnicaPregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalozi\OtpremnicaPregled.designer.cs">
+      <DependentUpon>OtpremnicaPregled.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadniNalozi\Prijemnica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalozi\Prijemnica.designer.cs">
+      <DependentUpon>Prijemnica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadniNalozi\PrijemnicaPregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalozi\PrijemnicaPregled.designer.cs">
+      <DependentUpon>PrijemnicaPregled.cs</DependentUpon>
     </Compile>
     <Compile Include="RadniNalozi\RN2OtpremaVoza.cs">
       <SubType>Form</SubType>
@@ -4153,6 +4188,18 @@
     <EmbeddedResource Include="RadniNalozi\frmPregledSkladista.resx">
       <DependentUpon>frmPregledSkladista.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalozi\Otpremnica.resx">
+      <DependentUpon>Otpremnica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalozi\OtpremnicaPregled.resx">
+      <DependentUpon>OtpremnicaPregled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalozi\Prijemnica.resx">
+      <DependentUpon>Prijemnica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalozi\PrijemnicaPregled.resx">
+      <DependentUpon>PrijemnicaPregled.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\RN2OtpremaVoza.resx">
       <DependentUpon>RN2OtpremaVoza.cs</DependentUpon>
     </EmbeddedResource>
@@ -4189,6 +4236,8 @@
     <EmbeddedResource Include="RadniNalozi\RN9PrijemCirade.resx">
       <DependentUpon>RN9PrijemCirade.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalozi\rptOtpremnica.rdlc" />
+    <EmbeddedResource Include="RadniNalozi\rptPrijemnica.rdlc" />
     <EmbeddedResource Include="ReportingOperatika\PoLokomotivama.resx">
       <DependentUpon>PoLokomotivama.cs</DependentUpon>
     </EmbeddedResource>
@@ -4749,6 +4798,17 @@
     <None Include="NedraDataSet2.xss">
       <DependentUpon>NedraDataSet2.xsd</DependentUpon>
     </None>
+    <None Include="OtpremnicaDataSet.xsc">
+      <DependentUpon>OtpremnicaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="OtpremnicaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OtpremnicaDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="OtpremnicaDataSet.xss">
+      <DependentUpon>OtpremnicaDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Perftech_BeogradDataSet.xsc">
       <DependentUpon>Perftech_BeogradDataSet.xsd</DependentUpon>
@@ -4936,6 +4996,17 @@
     </None>
     <None Include="Perftech_BeogradDataSet9.xss">
       <DependentUpon>Perftech_BeogradDataSet9.xsd</DependentUpon>
+    </None>
+    <None Include="PrijemnicaDataSet.xsc">
+      <DependentUpon>PrijemnicaDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PrijemnicaDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PrijemnicaDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PrijemnicaDataSet.xss">
+      <DependentUpon>PrijemnicaDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

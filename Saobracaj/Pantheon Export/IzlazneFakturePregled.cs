@@ -36,7 +36,7 @@ namespace Saobracaj.Pantheon_Export
         private void FillGV()
         {
             var select = "Select FaStFak, FaDatFak as Datum,FaStatus,FaModul,RTrim(PaNaziv) as Kupac,FaDatVal as DatumValute,Kurs,FaObdobje as DatumPDV,FaValutaCene as Valuta,MestoUtovara,DatumUtovara,FaDostMesto, " +
-                "DatumIstovara,(Rtrim(deIme) + ' ' + RTrim(DePriimek)) as Referent ,Izjave.Naziv as Izjava,FaOpomba2 as Napomena,FaPartPlac,FaRefer,Faktura.Status,CRMID ," +
+                "DatumIstovara,(Rtrim(deIme) + ' ' + RTrim(DePriimek)) as Referent ,Izjave.Naziv as Izjava,FaOpomba2 as Napomena,FaPartPlac,FaRefer,Faktura.Status as Status,CRMID ," +
                 "(Select MAX(NosiociTroskova.NosilacTroska) " +
                 "from FakturaPostav " +
                 "inner join NosiociTroskova on FakturaPostav.NosilacTroska = NosiociTroskova.ID " +
@@ -243,6 +243,7 @@ namespace Saobracaj.Pantheon_Export
                             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                             {
                                 streamWriter.Write(jsonOutput);
+                                MessageBox.Show(jsonOutput.ToString());
                             }
                             string response = "";
                             var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
@@ -425,6 +426,7 @@ namespace Saobracaj.Pantheon_Export
         public DateTime DatumDokumenta,DatumPDV,DatumValute, DatumUtovara,DatumIstovara,datumDokPom,pdvPom,valutaPom,utovarPom,istovarPom;
         public decimal Kurs;
         string Vrsta;
+        int StatusFak;
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -448,6 +450,7 @@ namespace Saobracaj.Pantheon_Export
                         Referent = Convert.ToInt32(row.Cells[17].Value);
                         Izjava = Convert.ToInt32(row.Cells[22].Value.ToString());
                         Napomena = row.Cells[15].Value.ToString();
+                        StatusFak = Convert.ToInt32(row.Cells["Status"].Value.ToString());
                     }
                 }
             }
@@ -462,7 +465,7 @@ namespace Saobracaj.Pantheon_Export
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Pantheon_Export.IzlazneFakture frm = new IzlazneFakture(ID,DatumDokumenta,Vrsta,Primalac,Valuta,Kurs,DatumPDV,DatumValute,MestoUtovara,DatumUtovara,MestoIstovara,DatumIstovara,Referent,Izjava,Napomena);
+            Pantheon_Export.IzlazneFakture frm = new IzlazneFakture(ID,DatumDokumenta,Vrsta,Primalac,Valuta,Kurs,DatumPDV,DatumValute,MestoUtovara,DatumUtovara,MestoIstovara,DatumIstovara,Referent,Izjava,Napomena,StatusFak);
             frm.Show();
         }
     }

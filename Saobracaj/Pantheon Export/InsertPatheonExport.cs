@@ -458,6 +458,58 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
+        public void UpdFaktura(int ID, DateTime DatumDok, int Primalac, string Ulica, string Naziv, string Mesto, string MB, string Valuta, decimal Kurs, DateTime DatumPDV, DateTime DatumValute, string MestoUtovara, DateTime DatumUtovara,
+            string MestoIstovara, DateTime DatumIstovara, string Referent, int ReferentID, int Izjava, string Napomena, int CrmID, string Tip)
+        {
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlTransaction tran = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction = tran;
+                            cmd.CommandText = "UpdateFaktura";
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = ID });
+                            cmd.Parameters.Add(new SqlParameter("@DatumDok", SqlDbType.DateTime) { Value = DatumDok });
+                            cmd.Parameters.Add(new SqlParameter("@Primalac", SqlDbType.Int) { Value = Primalac });
+                            cmd.Parameters.Add(new SqlParameter("@Ulica", SqlDbType.NVarChar, 100) { Value = Ulica });
+                            cmd.Parameters.Add(new SqlParameter("@Naziv", SqlDbType.NVarChar, 100) { Value = Naziv });
+                            cmd.Parameters.Add(new SqlParameter("@Mesto", SqlDbType.NVarChar, 100) { Value = Mesto });
+                            cmd.Parameters.Add(new SqlParameter("@MB", SqlDbType.NVarChar, 35) { Value = MB });
+                            cmd.Parameters.Add(new SqlParameter("@Valuta", SqlDbType.Char, 3) { Value = Valuta });
+                            cmd.Parameters.Add(new SqlParameter("@Kurs", SqlDbType.Decimal) { Value = Kurs });
+                            cmd.Parameters.Add(new SqlParameter("@DatumPDV", SqlDbType.DateTime) { Value = DatumPDV });
+                            cmd.Parameters.Add(new SqlParameter("@DatumValute", SqlDbType.DateTime) { Value = DatumValute });
+                            cmd.Parameters.Add(new SqlParameter("@MestoUtovara", SqlDbType.NVarChar, 35) { Value = MestoUtovara });
+                            cmd.Parameters.Add(new SqlParameter("@DatumUtovara", SqlDbType.DateTime) { Value = DatumUtovara });
+                            cmd.Parameters.Add(new SqlParameter("@MestoIstovara", SqlDbType.NVarChar, 35) { Value = MestoIstovara });
+                            cmd.Parameters.Add(new SqlParameter("@DatumIstovara", SqlDbType.DateTime) { Value = DatumIstovara });
+                            cmd.Parameters.Add(new SqlParameter("@Referent", SqlDbType.NVarChar, 35) { Value = Referent });
+                            cmd.Parameters.Add(new SqlParameter("@ReferentID", SqlDbType.Int) { Value = ReferentID });
+                            cmd.Parameters.Add(new SqlParameter("@Izjava", SqlDbType.Int) { Value = Izjava });
+                            cmd.Parameters.Add(new SqlParameter("@Napomena", SqlDbType.NVarChar, 500) { Value = Napomena });
+                            cmd.Parameters.Add(new SqlParameter("@CRMID", SqlDbType.Int) { Value = CrmID });
+                            cmd.Parameters.Add(new SqlParameter("@Tip", SqlDbType.NVarChar, 4) { Value = Tip });
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        tran.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        tran.Rollback();
+                        MessageBox.Show("Neuspesan upis\n"+ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                }
+                conn.Close();
+            }
+        }
         public void InsFakturaPostav(string Referent, int Faktura, int RB, int MP, string MPNaziv, string JM, decimal Kolicina, decimal Cena, int NosilacTroska, int Najava)
         {
             using (SqlConnection conn = new SqlConnection(connect))
