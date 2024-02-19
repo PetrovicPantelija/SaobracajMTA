@@ -86,6 +86,7 @@ namespace Saobracaj.Uvoz
             this.chkCIRUradjen.TabIndex = 243;
             this.chkCIRUradjen.Text = "CIR urađen";
             this.chkCIRUradjen.UseVisualStyleBackColor = true;
+            this.chkCIRUradjen.Visible = false;
             // 
             // label31
             // 
@@ -119,6 +120,7 @@ namespace Saobracaj.Uvoz
             this.chkPoslatEmailPrijem.TabIndex = 240;
             this.chkPoslatEmailPrijem.Text = "Prijem e-mail";
             this.chkPoslatEmailPrijem.UseVisualStyleBackColor = true;
+            this.chkPoslatEmailPrijem.Visible = false;
             // 
             // chkPoslatEmailNajava
             // 
@@ -131,6 +133,7 @@ namespace Saobracaj.Uvoz
             this.chkPoslatEmailNajava.TabIndex = 239;
             this.chkPoslatEmailNajava.Text = "Najava E-mail";
             this.chkPoslatEmailNajava.UseVisualStyleBackColor = true;
+            this.chkPoslatEmailNajava.Visible = false;
             // 
             // chkTransport
             // 
@@ -456,9 +459,9 @@ namespace Saobracaj.Uvoz
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(335, 138);
+            this.button2.Location = new System.Drawing.Point(335, 141);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(125, 75);
+            this.button2.Size = new System.Drawing.Size(125, 72);
             this.button2.TabIndex = 251;
             this.button2.Text = "Voz iz plana podaci";
             this.button2.UseVisualStyleBackColor = false;
@@ -472,7 +475,7 @@ namespace Saobracaj.Uvoz
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.checkBox2.ForeColor = System.Drawing.Color.Black;
-            this.checkBox2.Location = new System.Drawing.Point(612, 196);
+            this.checkBox2.Location = new System.Drawing.Point(612, 188);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(51, 17);
             this.checkBox2.TabIndex = 257;
@@ -514,11 +517,11 @@ namespace Saobracaj.Uvoz
             // 
             // cboOperaterHR
             // 
-            this.cboOperaterHR.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.cboOperaterHR.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.cboOperaterHR.FormattingEnabled = true;
             this.cboOperaterHR.Location = new System.Drawing.Point(366, 106);
             this.cboOperaterHR.Name = "cboOperaterHR";
-            this.cboOperaterHR.Size = new System.Drawing.Size(230, 24);
+            this.cboOperaterHR.Size = new System.Drawing.Size(230, 21);
             this.cboOperaterHR.TabIndex = 258;
             // 
             // frmPrijemVozaIzPlana

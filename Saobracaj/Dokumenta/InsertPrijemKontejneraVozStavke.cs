@@ -14,7 +14,7 @@ namespace Saobracaj.Dokumeta
     {
 
         public void InsertPrijemKontVozStavke( int IdNadredjenog, string BrojKontejnera, String BrojVagona, double Granica, double BrojOsovina, double SopstvenaMasa , double Tara, double Neto, int Posiljalac,int Primalac,int VlasnikKontejnera, int TipKontejnera, 	int VrstaRobe,int Buking, int StatusKontejnera,string BrojPlombe,int PlaniraniLager, int IdVoza, DateTime VremeDolaska, 	DateTime VremePripremljen, 	DateTime VremeOdlaska,	DateTime Datum, string Korisnik, string BrojPlombe2, int Organizator, string BukingBrodar, string NapomenaS, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, Double BTTORobe, int KontejnerID, double BTTOKOntejnera, string Napomena2, int PostupakSaRobom
-              , double BTTORobeOTP, double BTTORobeODVAGA, string PLOMBAVLASN, string CBMOTP, string KOLETAOTP)
+              , double BTTORobeOTP, double BTTORobeODVAGA, string PLOMBAVLASN, string CBMOTP, string KOLETAOTP, int NajavaID)
         {
             
               
@@ -356,6 +356,14 @@ namespace Saobracaj.Dokumeta
             parameter39.Direction = ParameterDirection.Input;
             parameter39.Value = KOLETAOTP;
             myCommand.Parameters.Add(parameter39);
+
+            SqlParameter parameter40 = new SqlParameter();
+            parameter40.ParameterName = "@NajavaID";
+            parameter40.SqlDbType = SqlDbType.NVarChar;
+            //parameter39.Size = 100;
+            parameter40.Direction = ParameterDirection.Input;
+            parameter40.Value = NajavaID;
+            myCommand.Parameters.Add(parameter40);
             /*
            
 

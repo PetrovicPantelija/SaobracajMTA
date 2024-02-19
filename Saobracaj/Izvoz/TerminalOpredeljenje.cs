@@ -150,6 +150,8 @@ namespace Saobracaj.Izvoz
         {
             InsertIzvoz io = new InsertIzvoz();
             io.IzvozOpredelioTerminal(Convert.ToInt32(txtID.Text), txtBrojKontejnera.Text);
+            RefreshGV();
+            RefreshGV2();
             MessageBox.Show("Kontejner je opredeljen");
         }
 

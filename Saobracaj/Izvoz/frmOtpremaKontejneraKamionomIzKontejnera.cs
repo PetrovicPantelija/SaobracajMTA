@@ -85,6 +85,7 @@ namespace Saobracaj.Izvoz
                 InsertIzvozKonacna ins = new InsertIzvozKonacna();
                 ins.PrenesiKontejnerUOtpremuKamionomUvoz(Convert.ToInt32(txtKontejnerID.Text), Convert.ToInt32(txtNalogID.Text));
                 // RefreshDataGrid();
+                MessageBox.Show("Uspešno ste formirali Otpremu kamionom");
 
             }
 

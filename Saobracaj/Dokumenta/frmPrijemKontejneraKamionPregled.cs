@@ -371,7 +371,7 @@ namespace TrackModal.Dokumeta
             {
                 case "Leget":
                     {
-                        Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz ter2 = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Convert.ToInt32(txtSifra.Text), KorisnikCene, 0);
+                        Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz ter2 = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz(txtSifra.Text,0);
                         ter2.Show();
                         return;
 
@@ -640,6 +640,31 @@ namespace TrackModal.Dokumeta
         private void button2_Click(object sender, EventArgs e)
         {
             RefreshDataGridPoBukinguBrodara();
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz ter2 = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Convert.ToInt32(txtSifra.Text), KorisnikCene, 0);
+                        ter2.Show();
+                        return;
+
+                    }
+                default:
+                    {
+
+                        frmPrijemKontejneraVoz ter3 = new frmPrijemKontejneraVoz(Convert.ToInt32(txtSifra.Text), KorisnikCene, 0);
+                        ter3.Show();
+                        return;
+
+                    }
+                    break;
+            }
         }
     }
 }

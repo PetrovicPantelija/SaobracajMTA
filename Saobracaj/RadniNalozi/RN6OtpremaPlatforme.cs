@@ -26,16 +26,35 @@ namespace Saobracaj.RadniNalozi
             FillCombo();
         }
 
-        public RN6OtpremaPlatforme(string OtpremaID, string Korisnik, string Usluga, string Kamion)
+        public RN6OtpremaPlatforme(string OtpremaID, string Korisnik, string Usluga, string Kamion, int Uvoz)
         {
+            //Uvoz = 0
+            //Izvoz = 1
             InitializeComponent();
-            FillGV();
+            
+           
             FillCombo();
             txtOtpremaID.Text = OtpremaID;
             txtNalogIzdao.Text = Korisnik;
             //cboUsluga.SelectedValue = Usluga;
-            NapuniVrstuUsluge(Usluga);
-            VratiPodatkeVrstaMan(Usluga.ToString());
+            if (Uvoz == 0)
+            {
+                FillGV();
+                NapuniVrstuUsluge(Usluga);
+                VratiPodatkeVrstaMan(Usluga.ToString());
+                chkUvoz.Checked = true;
+                chkIzvoz.Checked = false;
+                
+            }
+            else
+            {
+                FillGVIzvozni();
+                NapuniVrstuUsluge(Usluga);
+                VratiPodatkeVrstaMan(Usluga.ToString());
+                chkUvoz.Checked = false;
+                chkIzvoz.Checked = true;
+            }
+           
             txtRegBr.Text = Kamion;
             KorisnikTekuci = Korisnik;
             txtNalogID.Text = Usluga;
@@ -79,6 +98,7 @@ namespace Saobracaj.RadniNalozi
         }
         private void FillGV()
         {
+           
             var select = " SELECT       [RNOtpremaPlatforme].ID, [Kamion] ,[Zavrsen] ,[DatumRasporeda]   " +
                 "   ,[BrojKontejnera]  ,TipKontenjera.NAziv as [VrstaKontejnera]      ,[NalogIzdao]   " +
 " ,[DatumRealizacije], Komitenti_3.PaNaziv as [Uvoznik]    ,VrstaCarinskogPostupka.[Naziv] as CarinskiPostupak        , Komitenti_2.PaNaziv as [SpedicijaRTC] " +
@@ -90,7 +110,46 @@ namespace Saobracaj.RadniNalozi
 " INNER JOIN  Partnerji AS Komitenti_3 ON[RNOtpremaPlatforme].Uvoznik = Komitenti_3.PaSifra " +
 " inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.id = [RNOtpremaPlatforme].CarinskiPostupak " +
 " inner join  Skladista on[RNOtpremaPlatforme].[SaSkladista] = Skladista.ID " +
-" inner join TipKontenjera on TipKontenjera.ID = [RNOtpremaPlatforme].[VrstaKontejnera] ";
+" inner join TipKontenjera on TipKontenjera.ID = [RNOtpremaPlatforme].[VrstaKontejnera] " +
+" where Uvoz = 0 order by [RNOtpremaPlatforme].ID desc";
+            SqlConnection conn = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 20;
+        }
+
+        private void FillGVIzvozni()
+        {
+
+            var select = "  SELECT  [RNOtpremaPlatforme].ID, [Kamion] ,[Zavrsen] ,[DatumRasporeda]  " + 
+" ,[BrojKontejnera], TipKontenjera.NAziv as [VrstaKontejnera]      ,[NalogIzdao] " +
+" ,[DatumRealizacije], Komitenti_2.PaNaziv as Izvoznik    ,    " +
+" Komitenti_1.PaNaziv as [NazivBrodara]      ,[VrstaRobe]    ,[SaSkladista]      ,[SaPozicijeSklad] " +
+"  ,[IdUsluge]      ,[NalogRealizovao]    ,[OtpremaID] " +
+" ,[NalogID]   FROM[dbo].[RNOtpremaPlatforme] " +
+" INNER JOIN  Partnerji AS Komitenti_1 ON[RNOtpremaPlatforme].NazivBrodara = Komitenti_1.PaSifra " +
+" INNER JOIN  Partnerji AS Komitenti_2 ON[RNOtpremaPlatforme].Izvoznik = Komitenti_2.PaSifra " +
+" inner join  Skladista on[RNOtpremaPlatforme].[SaSkladista] = Skladista.ID " +
+" inner join TipKontenjera on TipKontenjera.ID = [RNOtpremaPlatforme].[VrstaKontejnera] order by [RNOtpremaPlatforme].ID desc" +
+" where Uvoz = 1";
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -217,6 +276,14 @@ namespace Saobracaj.RadniNalozi
             cboSaPoz.DataSource = dsPoz.Tables[0];
             cboSaPoz.DisplayMember = "Opis";
             cboSaPoz.ValueMember = "ID";
+
+            var partner5 = "Select PaSifra,PaNaziv From Partnerji  order by PaSifra";
+            var partAD5 = new SqlDataAdapter(partner5, conn);
+            var partDS5 = new DataSet();
+            partAD5.Fill(partDS5);
+            cboIzvoznik.DataSource = partDS5.Tables[0];
+            cboIzvoznik.DisplayMember = "PaNaziv";
+            cboIzvoznik.ValueMember = "PaSifra";
         }
         private void txtIDinazivplaniraneusluge_Click(object sender, EventArgs e)
         {
@@ -296,11 +363,37 @@ namespace Saobracaj.RadniNalozi
                         txtID.Text = row.Cells[0].Value.ToString();
                         VratiPodatkeStavke(txtID.Text);
                         FillDG2();
+                        VratiSkladisteIzTekuceg(txtbrojkontejnera.Text);
                     }
                 }
             }
             catch { }
         }
+
+        private void VratiSkladisteIzTekuceg(string ID)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" SELECT       Skladiste " +
+  "  FROM  KontejnerTekuce " +
+             " where Kontejner = " + ID, con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                cboSaSklad.SelectedValue = Convert.ToInt32(dr["Skladiste"].ToString());
+               
+
+               
+            }
+
+            con.Close();
+        }
+
 
         private void FillDG2()
         {
@@ -362,7 +455,7 @@ namespace Saobracaj.RadniNalozi
     " ,[VrstaKontejnera]      ,[NalogIzdao]      ,[DatumRealizacije]      ,[Uvoznik] " +
     "   ,[CarinskiPostupak]        ,[SpedicijaRTC]        ,[NazivBrodara]      ,[VrstaRobe] " +
     "   ,[SaSkladista]      ,[SaPozicijeSklad]      ,[IdUsluge]      ,[NalogRealizovao] " +
-    "   ,[OtpremaID]      ,[Kamion]      ,[Zavrsen]      ,[NalogID] " +
+    "   ,[OtpremaID]      ,[Kamion]      ,[Zavrsen]      ,[NalogID], Uvoz, Izvoznik " +
   "  FROM [dbo].[RNOtpremaPlatforme] " +
              " where ID = " + txtID.Text, con);
 
@@ -370,6 +463,17 @@ namespace Saobracaj.RadniNalozi
 
             while (dr.Read())
             {
+                if (dr["Uvoz"].ToString() == "0")
+                {
+                    chkUvoz.Checked = true;
+                    chkIzvoz.Checked = false;
+                }
+
+                if (dr["Uvoz"].ToString() == "1")
+                {
+                    chkUvoz.Checked = false;
+                    chkIzvoz.Checked = true;
+                }
                 txtDatumRasporeda.Value = Convert.ToDateTime(dr["DatumRasporeda"].ToString());
                 txtbrojkontejnera.Text = dr["BrojKontejnera"].ToString();
                 cboVrstaKontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
@@ -390,6 +494,7 @@ namespace Saobracaj.RadniNalozi
                 txtOtpremaID.Text = dr["OtpremaID"].ToString();
                 txtRegBr.Text = dr["Kamion"].ToString();
                 txtNalogID.Text = dr["NalogID"].ToString();
+                cboIzvoznik.SelectedValue = Convert.ToInt32(dr["Izvoznik"].ToString());
                 if (dr["Zavrsen"].ToString() == "1")
                     { chkZavrsen.Checked = true; }
                 else
@@ -403,9 +508,20 @@ namespace Saobracaj.RadniNalozi
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            RadniNalozi.InsertRN ir = new InsertRN();
-            ir.InsRN6OtpremaPlatformeKam(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", "", Convert.ToInt32(txtOtpremaID.Text), txtRegBr.Text, Convert.ToInt32(txtNalogID.Text));
-            FillGV();
+            if (chkUvoz.Checked == true)
+            {
+                RadniNalozi.InsertRN ir = new InsertRN();
+                ir.InsRN6OtpremaPlatformeKam(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", "", Convert.ToInt32(txtOtpremaID.Text), txtRegBr.Text, Convert.ToInt32(txtNalogID.Text),0,0);
+                FillGV();
+            }
+            if (chkIzvoz.Checked == true)
+            {
+                RadniNalozi.InsertRN ir = new InsertRN();
+                ir.InsRN6OtpremaPlatformeKam(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", "", Convert.ToInt32(txtOtpremaID.Text), txtRegBr.Text, Convert.ToInt32(txtNalogID.Text), 1, 0);
+                FillGVIzvozni();
+            }
+           
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -425,6 +541,22 @@ namespace Saobracaj.RadniNalozi
                 }
 
             }
+        }
+
+        private void chkUvoz_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkUvoz.Checked == true)
+            {
+                FillGV();
+                chkIzvoz.Checked = false;
+            
+            }
+            else
+            {
+                FillGVIzvozni();
+                chkIzvoz.Checked = true;
+            }
+
         }
     }
 }

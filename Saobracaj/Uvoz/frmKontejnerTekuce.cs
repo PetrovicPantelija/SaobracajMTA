@@ -29,10 +29,22 @@ namespace Saobracaj.Uvoz
         {
             var select = "";
            
-                select = "  Select KontejnerTekuce.Kontejner, KontejnerStatus.Naziv as Status, KontejnerTekuce.Pokret as Pokret, Skladista.Naziv as Skladiste, Skladista.Kapacitet, Pozicija.Opis as Pozicija,  Ostecenja as Ispravnost from KontejnerTekuce " +
+                select = "  Select KontejnerTekuce.Kontejner, KontejnerStatus.Naziv as Status, KontejnerTekuce.Pokret as Pokret, Skladista.Naziv as Skladiste, " +
+" Skladista.Kapacitet, Pozicija.Opis as Pozicija, " +
+" Ostecenja as Ispravnost, KontejnerskiTerminali.Naziv as RLSRB, Kvalitet, CIR, STATUSIzvoz , " +
+" PArtnerji.PaNaziv as Brodar, puv.PaNAziv as Uvoznik, UlazniBroj as KontejnerID_UVoz, DatumGIN as DATUM_GATEIN, DatumOtpremaPlat  as DATUM_OTP_PLAT " +
+" from KontejnerTekuce " +
 " inner join KontejnerStatus on KontejnerStatus.ID = KontejnerTekuce.StatusKontejnera " +
-" inner join Skladista on Skladista.Id = KontejnerTekuce.Skladiste " +
-" inner join Pozicija on Pozicija.Id = KontejnerTekuce.Pozicija";
+" inner " +
+" join Skladista on Skladista.Id = KontejnerTekuce.Skladiste " +
+" inner " +
+" join Pozicija on Pozicija.Id = KontejnerTekuce.Pozicija " +
+" inner " +
+" join PArtnerji on KontejnerTekuce.Brodar = Partnerji.PaSifra " +
+" inner " +
+" join PArtnerji as PUV on KontejnerTekuce.Uvoznik = PUV.PASifra " +
+" left " +
+" join KontejnerskiTerminali on KontejnerskiTerminali.ID = KOntejnerTekuce.RLSRB";
           
             var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

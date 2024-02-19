@@ -85,7 +85,7 @@ namespace Saobracaj.Uvoz
 
          
 
-            SqlCommand cmd = new SqlCommand("Select Top 1 IDVoza, OperaterSrbija, OperaterHR from UvozKonacnaZaglavlje " +
+            SqlCommand cmd = new SqlCommand("Select Top 1 IDVoza, OperaterSrbija, OperaterHR, Voz.Napomena from UvozKonacnaZaglavlje " +
 " inner join Voz on UvozKonacnaZaglavlje.IDVoza = Voz.ID " +
 " where UvozKonacnaZaglavlje.ID = " + Convert.ToInt32(cboPlanUtovara.SelectedValue));
             cmd.Connection = con;
@@ -96,6 +96,7 @@ namespace Saobracaj.Uvoz
                 cboBukingPrijema.SelectedValue = Convert.ToInt32(dr["IDVoza"].ToString());
                 cboOperater.SelectedValue = Convert.ToInt32(dr["OperaterSrbija"].ToString());
                 cboOperaterHR.SelectedValue = Convert.ToInt32(dr["OperaterHR"].ToString());
+                txtNapomena.Text = dr["Napomena"].ToString();
             }
 
             con.Close();
@@ -172,6 +173,7 @@ namespace Saobracaj.Uvoz
                 VratiPodatkeMax();
                 RefreshDataGrid();
             }
+            MessageBox.Show("Uspešno ste formirali prijemnicu za Plan");
             
         }
 

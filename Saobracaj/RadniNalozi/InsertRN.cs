@@ -306,6 +306,53 @@ namespace Saobracaj.RadniNalozi
             }
         }
 
+        public void PotvrdiUradjenRN1S(int RN)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRN1UradjeneS";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter rn = new SqlParameter();
+            rn.ParameterName = "@RN";
+            rn.SqlDbType = SqlDbType.Int;
+            rn.Direction = ParameterDirection.Input;
+            rn.Value = RN;
+            cmd.Parameters.Add(rn);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis cena u bazu");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Nije uspeo upis cena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                { }
+            }
+        }
+
         public void PotvrdiUradjenRN4(int RN)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -1153,7 +1200,7 @@ namespace Saobracaj.RadniNalozi
             }
         }
 
-        public void InsRN6OtpremaPlatformeKam(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaVoznogSredstva, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, int PrijemID, string Kamion, int NalogID)
+        public void InsRN6OtpremaPlatformeKam(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaVoznogSredstva, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, int PrijemID, string Kamion, int NalogID, int Uvoz, int Izvoznik)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -1251,6 +1298,14 @@ namespace Saobracaj.RadniNalozi
             nalogid.Direction = ParameterDirection.Input;
             nalogid.Value = NalogID;
             cmd.Parameters.Add(nalogid);
+
+
+            SqlParameter uvoz = new SqlParameter();
+            uvoz.ParameterName = "@Uvoz";
+            uvoz.SqlDbType = SqlDbType.Int;
+            uvoz.Direction = ParameterDirection.Input;
+            uvoz.Value = Uvoz;
+            cmd.Parameters.Add(uvoz);
 
 
 
@@ -1423,7 +1478,6 @@ namespace Saobracaj.RadniNalozi
                 }
             }
         }
-
 
         public void InsRN12Medjuskladisni(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaSkladiste, int SaPozicijuSklad, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, string BrojKontejnera ,int VrstaKontejnera , int Brodar )
         {
@@ -2387,8 +2441,6 @@ namespace Saobracaj.RadniNalozi
                 }
             }
         }
-
-
 
         public void UpdRNPPrijemVoza(int ID, DateTime DatumRasporeda, string BrojKontejnera, int VrstaKontejnera, string NalogIzdao, DateTime DatumRealizacije, int SaVoznogSredstva, string BrojPlombe,
             int Uvoznik, int NazivBrodara, int VrstaRobe, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena)

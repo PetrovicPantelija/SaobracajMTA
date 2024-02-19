@@ -820,7 +820,7 @@ namespace Saobracaj.Izvoz
                 }
             }
         }
-        public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV)
+        public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV, string Pokret, int StatusKontejnera)
         {
             //  @IdNadredjena int,
             //@IDVrstaManipulacije int,
@@ -881,6 +881,21 @@ namespace Saobracaj.Izvoz
             sapdv.Value = SaPDV;
             cmd.Parameters.Add(sapdv);
 
+            SqlParameter pokret = new SqlParameter();
+            pokret.ParameterName = "@Pokret";
+            pokret.SqlDbType = SqlDbType.NVarChar;
+            pokret.Size = 50;
+            pokret.Direction = ParameterDirection.Input;
+            pokret.Value = Pokret;
+            cmd.Parameters.Add(pokret);
+
+            SqlParameter statuskontejnera = new SqlParameter();
+            statuskontejnera.ParameterName = "@StatusKontejnera";
+            statuskontejnera.SqlDbType = SqlDbType.Int;
+            statuskontejnera.Direction = ParameterDirection.Input;
+            statuskontejnera.Value = StatusKontejnera;
+            cmd.Parameters.Add(statuskontejnera);
+
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -916,7 +931,7 @@ namespace Saobracaj.Izvoz
             }
         }
 
-        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV)
+        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV, string Pokret, int StatusKontejnera)
         {
             //  @IdNadredjena int,
             //@IDVrstaManipulacije int,
@@ -976,6 +991,22 @@ namespace Saobracaj.Izvoz
             sapdv.Direction = ParameterDirection.Input;
             sapdv.Value = SaPDV;
             cmd.Parameters.Add(sapdv);
+
+
+            SqlParameter pokret = new SqlParameter();
+            pokret.ParameterName = "@Pokret";
+            pokret.SqlDbType = SqlDbType.NVarChar;
+            pokret.Size = 50;
+            pokret.Direction = ParameterDirection.Input;
+            pokret.Value = Pokret;
+            cmd.Parameters.Add(pokret);
+
+            SqlParameter statuskontejnera = new SqlParameter();
+            statuskontejnera.ParameterName = "@StatusKontejnera";
+            statuskontejnera.SqlDbType = SqlDbType.Int;
+            statuskontejnera.Direction = ParameterDirection.Input;
+            statuskontejnera.Value = StatusKontejnera;
+            cmd.Parameters.Add(statuskontejnera);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

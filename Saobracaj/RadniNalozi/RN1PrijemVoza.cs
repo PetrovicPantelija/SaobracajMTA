@@ -73,6 +73,7 @@ namespace Saobracaj.RadniNalozi
         }
         private void RefreshStavkeVoza(string IDVOza)
         {
+            /*
             var select =
         " SELECT PrijemKontejneraVozStavke.ID, PrijemKontejneraVozStavke.RB, PrijemKontejneraVozStavke.IDNadredjenog,   PrijemKontejneraVozStavke.KontejnerID, " +
         " PrijemKontejneraVozStavke.BrojKontejnera,  TipKontenjera.Naziv AS TipKontejnera,PrijemKontejneraVozStavke.BrojVagona,  PrijemKontejneraVozStavke.Granica as GranicaTovarenja, " +
@@ -105,7 +106,7 @@ namespace Saobracaj.RadniNalozi
             dataAdapter.Fill(ds);
             dataGridView2.ReadOnly = false;
             dataGridView2.DataSource = ds.Tables[0];
-
+            */
 
 
         }
@@ -118,7 +119,7 @@ namespace Saobracaj.RadniNalozi
 " inner join Skladista on Skladista.ID = NaSkladiste " +
 " inner join Partnerji on Partnerji.PaSifra = RNPrijemVoza.Uvoznik " +
 " inner join Partnerji p2 on p2.PaSifra = RNPrijemVoza.NazivBrodara " +
-" inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge";
+" inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge order by RNPrijemVoza.ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -487,6 +488,19 @@ namespace Saobracaj.RadniNalozi
         private void txtNalogID_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            InsertRN up = new InsertRN();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    up.PotvrdiUradjenRN1S(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                }
+
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ using Microsoft.Office.Interop.Excel;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmUvozKonacna : Form
+    public partial class frmUvozKonacna : Syncfusion.Windows.Forms.Office2010Form
     {
         public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         string nalogodavci = "";
@@ -24,10 +24,11 @@ namespace Saobracaj.Uvoz
        
         float firstWidth;
         float firstHeight;
-        string KorisnikTekuci = "";
+        string KorisnikTekuci = Sifarnici.frmLogovanje.user.ToString();
         public frmUvozKonacna()
         {
             InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             FillCheck();
             UcitajNHMoveCombo();
             FillCombo();
@@ -37,14 +38,15 @@ namespace Saobracaj.Uvoz
         public frmUvozKonacna(int Sifra, string Korisnik)
         {
             InitializeComponent();
-            UcitajNHMoveCombo();
+            //UcitajNHMoveCombo();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             FillCombo();
            
             FillZaglavlje(Sifra);
             txtNadredjeni.Text = Sifra.ToString();
             FillCheck();
            
-            FillGV();
+           // FillGV();
             KorisnikTekuci = Korisnik;
            // FillDG2(); jos nemam ID
            // FillDG3();
@@ -60,14 +62,14 @@ namespace Saobracaj.Uvoz
 
         {
             SqlConnection conn = new SqlConnection(connection);
-            var nhm = "Select ID,(Rtrim(Naziv) + '-' + Rtrim(Broj)) as Naziv2, (Rtrim(Broj) + '-' + Rtrim(Naziv)) as Naziv1 from NHM order by Naziv";
+            var nhm = "Select ID,(Rtrim(Naziv) + '-' + Rtrim(Broj)) as Naziv2, (Rtrim(Broj) + '-' + Rtrim(Naziv)) as Naziv1 from NHM where Interni = 1 order by Naziv ";
             var nhmSAD = new SqlDataAdapter(nhm, conn);
             nhmSDSA = new DataSet();
             nhmSAD.Fill(nhmSDSA);
 
 
 
-            var nhm2 = "Select ID,(Rtrim(Broj) + '-' + Rtrim(NAziv)) as Naziv2, (Rtrim(Broj) + '-' + Rtrim(Naziv)) as Naziv1 from NHM order by Broj";
+            var nhm2 = "Select ID,(Rtrim(Broj) + '-' + Rtrim(NAziv)) as Naziv2, (Rtrim(Broj) + '-' + Rtrim(Naziv)) as Naziv1 from NHM where Interni = 1 order by Broj";
             var nhmSAD2 = new SqlDataAdapter(nhm2, conn);
             nhmSDS2A = new DataSet();
             nhmSAD2.Fill(nhmSDS2A);
@@ -359,7 +361,7 @@ namespace Saobracaj.Uvoz
             cbOcarina.DisplayMember = "Naziv";
             cbOcarina.ValueMember = "ID";
 
-            var partner = "Select PaSifra,PaNaziv From Partnerji where Vlasnik = 1 order by PaSifra";
+            var partner = "Select PaSifra,PaNaziv From Partnerji  order by PaSifra";
             var partAD = new SqlDataAdapter(partner, conn);
             var partDS = new DataSet();
             partAD.Fill(partDS);
@@ -367,7 +369,7 @@ namespace Saobracaj.Uvoz
             cbVlasnikKont.DisplayMember = "PaNaziv";
             cbVlasnikKont.ValueMember = "PaSifra";
             //uvoznik
-            var partner2 = "Select PaSifra,PaNaziv From Partnerji where UvoznikCH = 1 order by PaSifra";
+            var partner2 = "Select PaSifra,PaNaziv From Partnerji  order by PaSifra";
             var partAD2 = new SqlDataAdapter(partner2, conn);
             var partDS2 = new DataSet();
             partAD2.Fill(partDS2);
@@ -376,7 +378,7 @@ namespace Saobracaj.Uvoz
             cboUvoznik.ValueMember = "PaSifra";
             //spedicija na granici
            
-            var partner3 = "Select PaSifra,PaNaziv From Partnerji where Spediter = 1 order by PaSifra";
+            var partner3 = "Select PaSifra,PaNaziv From Partnerji  order by PaSifra";
             var partAD3 = new SqlDataAdapter(partner3, conn);
             var partDS3 = new DataSet();
             partAD3.Fill(partDS3);
@@ -385,7 +387,7 @@ namespace Saobracaj.Uvoz
             cboSpedicijaG.ValueMember = "PaSifra";
             //spedicija rtc luka leget
            
-            var partner4 = "Select PaSifra,PaNaziv From Partnerji where Spediter = 1 order by PaSifra";
+            var partner4 = "Select PaSifra,PaNaziv From Partnerji  order by PaSifra";
             var partAD4 = new SqlDataAdapter(partner4, conn);
             var partDS4 = new DataSet();
             partAD4.Fill(partDS4);
@@ -393,7 +395,7 @@ namespace Saobracaj.Uvoz
             cboSpedicijaRTC.DisplayMember = "PaNaziv";
             cboSpedicijaRTC.ValueMember = "PaSifra";
             //odredisna spedicija
-            var partner5 = "Select PaSifra,PaNaziv From Partnerji where Spediter = 1 order by PaSifra";
+            var partner5 = "Select PaSifra,PaNaziv From Partnerji  order by PaSifra";
             var partAD5 = new SqlDataAdapter(partner5, conn);
             var partDS5 = new DataSet();
             partAD5.Fill(partDS5);
@@ -452,7 +454,7 @@ namespace Saobracaj.Uvoz
             cboRLTerminal.DisplayMember = "Naziv";
             cboRLTerminal.ValueMember = "ID";
 
-            var partner7 = "Select PaSifra,PaNaziv From Partnerji where Brodar = 1 order by PaSifra";
+            var partner7 = "Select PaSifra,PaNaziv From Partnerji  order by PaSifra";
             var partAD7 = new SqlDataAdapter(partner7, conn);
             var partDS7 = new DataSet();
             partAD7.Fill(partDS7);
@@ -460,7 +462,7 @@ namespace Saobracaj.Uvoz
             cboBrodar.DisplayMember = "PaNaziv";
             cboBrodar.ValueMember = "PaSifra";
 
-            var partner8 = "Select PaSifra,PaNaziv From Partnerji where NalogodavacCH = 1 order by PaSifra";
+            var partner8 = "Select PaSifra,PaNaziv From Partnerji  order by PaSifra";
             var partAD8 = new SqlDataAdapter(partner8, conn);
             var partDS8 = new DataSet();
             partAD8.Fill(partDS8);
@@ -468,7 +470,7 @@ namespace Saobracaj.Uvoz
             cboNalogodavac1.DisplayMember = "PaNaziv";
             cboNalogodavac1.ValueMember = "PaSifra";
 
-            var partner9 = "Select PaSifra,PaNaziv From Partnerji where NalogodavacCH = 1 order by PaSifra";
+            var partner9 = "Select PaSifra,PaNaziv From Partnerji  order by PaSifra";
             var partAD9 = new SqlDataAdapter(partner9, conn);
             var partDS9 = new DataSet();
             partAD9.Fill(partDS9);
@@ -476,7 +478,7 @@ namespace Saobracaj.Uvoz
             cboNalogodavac2.DisplayMember = "PaNaziv";
             cboNalogodavac2.ValueMember = "PaSifra";
 
-            var partner10 = "Select PaSifra,PaNaziv From Partnerji where NalogodavacCH = 1 order by PaSifra";
+            var partner10 = "Select PaSifra,PaNaziv From Partnerji  order by PaSifra";
             var partAD10 = new SqlDataAdapter(partner10, conn);
             var partDS10 = new DataSet();
             partAD9.Fill(partDS10);
@@ -485,7 +487,7 @@ namespace Saobracaj.Uvoz
             cboNalogodavac3.ValueMember = "PaSifra";
 
 
-            var bro = "Select PaSifra,PaNaziv From Partnerji where Brodar = 1 order by PaNaziv";
+            var bro = "Select PaSifra,PaNaziv From Partnerji  order by PaNaziv";
             var broAD = new SqlDataAdapter(bro, conn);
             var broDS = new DataSet();
             broAD.Fill(broDS);
@@ -694,17 +696,15 @@ namespace Saobracaj.Uvoz
             var select = "";
 
             select = "select  UvozKonacnaVrstaManipulacije.ID as ID, UvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, UvozKonacna.BrojKontejnera, " +
-      " UvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
-      " UvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
-      " Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, SaPDV " +
-      " from UvozKonacnaVrstaManipulacije " +
-      " Inner    join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
-      " inner " +
-      " join PArtnerji on UvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
-      " inner " +
-      " join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozKonacnaVrstaManipulacije.OrgJed " +
-      " inner " +
-      " join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID where UvozKonacna.ID = " + Convert.ToInt32(txtID.Text);
+" UvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
+"  UvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,   " +
+"  Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, SaPDV,UvozKonacnaVrstaManipulacije.Pokret, KontejnerStatus.Naziv " +
+"  from UvozKonacnaVrstaManipulacije " +
+"  Inner    join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
+"   inner join PArtnerji on UvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
+"  inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozKonacnaVrstaManipulacije.OrgJed " +
+"  inner join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID " +
+"  left join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera where UvozKonacna.ID  = " + Convert.ToInt32(txtID.Text) + " Order by UvozKonacnaVrstaManipulacije.ID";
 
 
 
@@ -731,15 +731,73 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView8.Columns[0];
             dataGridView8.Columns[0].HeaderText = "ID";
-            dataGridView8.Columns[0].Width = 20;
+            dataGridView8.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView8.Columns[1];
-            dataGridView8.Columns[1].HeaderText = "Man";
-            dataGridView8.Columns[1].Width = 30;
+            dataGridView8.Columns[1].HeaderText = "KID";
+            dataGridView8.Columns[1].Width = 50;
 
             DataGridViewColumn column3 = dataGridView8.Columns[2];
             dataGridView8.Columns[2].HeaderText = "Kontejner";
-            dataGridView8.Columns[2].Width = 50;
+            dataGridView8.Columns[2].Width = 120;
+
+            DataGridViewColumn column4 = dataGridView8.Columns[3];
+            dataGridView8.Columns[3].HeaderText = "KOL";
+            dataGridView8.Columns[3].Visible = false;
+            dataGridView8.Columns[3].Width = 70;
+
+            DataGridViewColumn column5 = dataGridView8.Columns[4];
+            dataGridView8.Columns[4].HeaderText = "MID";
+           // dataGridView8.Columns[4].Visible = false;
+            dataGridView8.Columns[4].Width = 30;
+
+
+            DataGridViewColumn column6 = dataGridView8.Columns[5];
+            dataGridView8.Columns[5].HeaderText = "MAN";
+            dataGridView8.Columns[5].Width = 300;
+
+
+            DataGridViewColumn column7 = dataGridView8.Columns[6];
+            dataGridView8.Columns[6].HeaderText = "Cena";
+            dataGridView8.Columns[6].Visible = false;
+            dataGridView8.Columns[6].Width = 30;
+
+
+            DataGridViewColumn column8 = dataGridView8.Columns[7];
+            dataGridView8.Columns[7].HeaderText = "OJ";
+            dataGridView8.Columns[7].Visible = false;
+            dataGridView8.Columns[7].Width = 30;
+
+
+            DataGridViewColumn column9 = dataGridView8.Columns[8];
+            dataGridView8.Columns[8].HeaderText = "OJN";
+            dataGridView8.Columns[8].Visible = false;
+            dataGridView8.Columns[8].Width = 30;
+
+            DataGridViewColumn column10 = dataGridView8.Columns[9];
+            dataGridView8.Columns[9].HeaderText = "PID";
+            dataGridView8.Columns[9].Visible = false;
+            dataGridView8.Columns[9].Width = 130;
+
+            DataGridViewColumn column11 = dataGridView8.Columns[10];
+            dataGridView8.Columns[10].HeaderText = "PLATILAC";
+            // dataGridView8.Columns[9].Visible = false;
+            dataGridView8.Columns[10].Width = 330;
+
+            DataGridViewColumn column12 = dataGridView8.Columns[11];
+            dataGridView8.Columns[11].HeaderText = "SAPDV";
+            // dataGridView8.Columns[9].Visible = false;
+            dataGridView8.Columns[11].Width = 60;
+
+            DataGridViewColumn column13 = dataGridView8.Columns[12];
+            dataGridView8.Columns[12].HeaderText = "POKRET";
+            // dataGridView8.Columns[9].Visible = false;
+            dataGridView8.Columns[12].Width = 160;
+
+            DataGridViewColumn column14 = dataGridView8.Columns[13];
+            dataGridView8.Columns[12].HeaderText = "STATUS";
+            // dataGridView8.Columns[9].Visible = false;
+            dataGridView8.Columns[12].Width = 160;
 
         }
 
@@ -754,7 +812,7 @@ namespace Saobracaj.Uvoz
                     FillDG2();
                     FillDG3();
                     FillDG4();
-                    FillDG8();
+                   // FillDG8();
                     FillDGUsluge();
                 }
             }
@@ -1063,7 +1121,7 @@ namespace Saobracaj.Uvoz
 
             DataGridViewColumn column4 = dataGridView2.Columns[3];
             dataGridView2.Columns[3].HeaderText = "NHM";
-            dataGridView2.Columns[3].Width = 150;
+            dataGridView2.Columns[3].Width = 250;
 
 
         }
@@ -1146,7 +1204,7 @@ namespace Saobracaj.Uvoz
 
         private void UvozKonacna_Load(object sender, EventArgs e)
         {
-            RefreshDataGridColor();
+            //RefreshDataGridColor();
             firstWidth = this.Size.Width;
             firstHeight = this.Size.Height;
         }
@@ -1758,7 +1816,7 @@ namespace Saobracaj.Uvoz
         {
             InsertUvozKonacna uvK = new InsertUvozKonacna();
          //   uvK.InsUbaciUsluguKonacna(Convert.ToInt32(txtID.Text), Manipulacija, Cena);
-            FillDG8();
+           // FillDG8();
         }
 
         private void FillDG8()

@@ -4047,7 +4047,7 @@ namespace Saobracaj
 
         private void toolStripButton347_Click(object sender, EventArgs e)
         {
-            Saobracaj.Proba pr = new Proba();
+            Saobracaj.RadniNalozi.frmPregledSkladistaNovi pr = new Saobracaj.RadniNalozi.frmPregledSkladistaNovi();
                 pr.Show();
         }
 

@@ -1714,7 +1714,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             stnapomene.Size = 500;
             stnapomene.Direction = ParameterDirection.Input;
             stnapomene.Value = stNapomene;
-            cmd.Parameters.Add(idapomene);
+            cmd.Parameters.Add(stnapomene);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

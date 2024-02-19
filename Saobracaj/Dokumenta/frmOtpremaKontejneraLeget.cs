@@ -95,33 +95,11 @@ namespace Saobracaj.Dokumenta
 
                 //Insert izvoz 
                 ins.InsertOtpremaKontejneraStav(Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, txtVagon.Text, Convert.ToDouble(txtGranica.Value), Convert.ToDouble(txtBrojOsovina.Value), Convert.ToDouble(txtSopstvenaMasa.Value), Convert.ToDouble(txtTara.Value), Convert.ToDouble(txtNeto.Value), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboVlasnikKontejnera.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue), txtBukingBrodar.Text, Convert.ToInt32(cboStatusKontejnera.SelectedValue), txtBrojPlombe.Text, Convert.ToInt32(txtPlaniraniLager.Text), 0, Convert.ToDateTime(dtpVremePripremljen.Value), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtBrojPlombe2.Text, Convert.ToInt32(cboOrganizator.SelectedValue), txtNapomenaS.Text, DateTime.Now, DateTime.Now, 0,0,0,"",0, Convert.ToDouble(bttoRobeFaktura.Value),
-Convert.ToDouble(bttoRobeOtpremnica.Value),Convert.ToDouble(bttoRobeOdvaga.Value),Convert.ToDouble(bttoRobeKontejner.Value),txtPLOMBAVLASN.Text,txtCBMOTP.Text,txtKOLETAOTP.Text);
+Convert.ToDouble(bttoRobeOtpremnica.Value),Convert.ToDouble(bttoRobeOdvaga.Value),Convert.ToDouble(bttoRobeKontejner.Value),txtPLOMBAVLASN.Text,txtCBMOTP.Text,txtKOLETAOTP.Text, 0);
                 RefreshDataGrid2();
             }
 
-            var select = "  SELECT  OtpremaKontejneraVozStavke.BrojKontejnera, Promet.ID from " +
-              " OtpremaKontejneraVozStavke inner join Promet On OtpremaKontejneraVozStavke.BrojKontejnera = Promet.BrojKontejnera " +
-              " where Promet.Zatvoren = 0 and IdNadredjenog = " + txtSifra.Text + " order by RB";
-
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
-
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
-            dataAdapter.Fill(ds);
-            dataGridView2.ReadOnly = false;
-            dataGridView2.DataSource = ds.Tables[0];
-
-            DataGridViewColumn column = dataGridView2.Columns[0];
-            dataGridView2.Columns[0].HeaderText = "Broj kontejnera";
-            dataGridView2.Columns[0].Width = 90;
-            // dataGridView2.Columns[0].Visible = false;
-
-            DataGridViewColumn column2 = dataGridView2.Columns[1];
-            dataGridView2.Columns[1].HeaderText = "ID";
-            dataGridView2.Columns[1].Width = 90;
+           
         }
 
         private void tsNew_Click(object sender, EventArgs e)

@@ -203,7 +203,11 @@ namespace TrackModal.Dokumeta
             }
             else
             {
-                var select = "SELECT top 500 [ID],[DatumOtpreme],[StatusOtpreme],[IdVoza],[RegBrKamiona],[ImeVozaca],[VremeOdlaska] ,[NacinOtpreme] ,[Datum] ,[Korisnik]  FROM [dbo].[OtpremaKontejnera] where NacinOtpreme = 0 order by ID desc";
+                var select = "SELECT top 500 [ID],[DatumOtpreme],[StatusOtpreme]," +                   
+                    " [IdVoza],[RegBrKamiona],[ImeVozaca],[VremeOdlaska] ,[NacinOtpreme] ," +
+                    " [Datum] ,[Korisnik],  " +
+                     " CASE WHEN Poreklo = 0 THEN 'Uvoz' ELSE 'Izvoz' END " +
+                    " FROM [dbo].[OtpremaKontejnera] where NacinOtpreme = 0 order by ID desc";
                 var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
@@ -291,7 +295,7 @@ namespace TrackModal.Dokumeta
             {
                 case "Leget":
                     {
-                        Saobracaj.Dokumenta.frmOtpremaKontejneraUvozKamion ter2 = new Saobracaj.Dokumenta.frmOtpremaKontejneraUvozKamion(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+                        Saobracaj.Dokumenta.frmOtpremaKontejneraIzvozKamion ter2 = new Saobracaj.Dokumenta.frmOtpremaKontejneraIzvozKamion(Convert.ToInt32(txtSifra.Text), KorisnikCene);
                         ter2.Show();
                         return;
                     }
@@ -306,8 +310,8 @@ namespace TrackModal.Dokumeta
                     break;
             }
 
-           // Saobracaj.Dokumeta.frmOtpremaKontejnera ter = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
-           // ter.Show();
+            // Saobracaj.Dokumeta.frmOtpremaKontejnera ter = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+            // ter.Show();
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -762,6 +766,29 @@ namespace TrackModal.Dokumeta
         private void button3_Click(object sender, EventArgs e)
         {
             RefreshDataGridPoKontejneru();
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        Saobracaj.Dokumenta.frmOtpremaKontejneraUvozKamion ter2 = new Saobracaj.Dokumenta.frmOtpremaKontejneraUvozKamion(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+                        ter2.Show();
+                        return;
+                    }
+                default:
+                    {
+
+                        Saobracaj.Dokumeta.frmOtpremaKontejnera ter3 = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+                        ter3.Show();
+                        return;
+
+                    }
+                    break;
+            }
         }
     }
 }
