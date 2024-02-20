@@ -7,15 +7,16 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 
 namespace Saobracaj.Sifarnici
 {
     class Insertnhm
     {
+        string connect = frmLogovanje.connectionString;
         public void InsNHM(string Broj, string Naziv, int RID, int ADRID, int Uvozni, int Interni)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertNhm";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
@@ -106,8 +107,7 @@ namespace Saobracaj.Sifarnici
 
         public void UpdNHM(int ID, string Broj, string Naziv, int RID, int ADRID, int Uvozni, int Interni)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateNHM";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
@@ -204,8 +204,8 @@ namespace Saobracaj.Sifarnici
 
         public void DeleteNHM(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
+            
+            SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteNHM";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;

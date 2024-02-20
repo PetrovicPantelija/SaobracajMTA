@@ -320,7 +320,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(3, 38);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(1608, 499);
+            this.dataGridView2.Size = new System.Drawing.Size(1608, 498);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
@@ -357,7 +357,7 @@
             this.txtIznos.DecimalPlaces = 2;
             this.txtIznos.Location = new System.Drawing.Point(887, 102);
             this.txtIznos.Maximum = new decimal(new int[] {
-            1000000,
+            1000000000,
             0,
             0,
             0});
