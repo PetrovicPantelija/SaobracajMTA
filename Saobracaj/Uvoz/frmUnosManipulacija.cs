@@ -835,8 +835,8 @@ namespace Saobracaj.Uvoz
                                
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina =1;
-                                pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
-                             
+                                pomOrgJed = VratiOrgJed(pomManupulacija);
+
                             }
 
                             con.Close();
@@ -860,7 +860,7 @@ namespace Saobracaj.Uvoz
                                 // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina = 1;
-                                pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+                                pomOrgJed = VratiOrgJed(pomManupulacija);
 
                             }
 
@@ -885,7 +885,7 @@ namespace Saobracaj.Uvoz
                                 // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina = 1;
-                                pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+                                pomOrgJed = VratiOrgJed(pomManupulacija);
 
                             }
 
@@ -1622,7 +1622,7 @@ namespace Saobracaj.Uvoz
 
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina = 1;
-                                pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+                                pomOrgJed = VratiOrgJed(pomManupulacija);
 
                             }
 
@@ -1647,7 +1647,7 @@ namespace Saobracaj.Uvoz
                                 // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina = 1;
-                                pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+                                pomOrgJed = VratiOrgJed(pomManupulacija);
 
                             }
 
@@ -1672,7 +1672,7 @@ namespace Saobracaj.Uvoz
                                 // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina = 1;
-                                pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+                                pomOrgJed = VratiOrgJed(pomManupulacija);
 
                             }
 
@@ -1743,7 +1743,7 @@ namespace Saobracaj.Uvoz
 
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina = 1;
-                                pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+                                pomOrgJed = VratiOrgJed(pomManupulacija);
 
                             }
 
@@ -1768,7 +1768,7 @@ namespace Saobracaj.Uvoz
                                 // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina = 1;
-                                pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+                                pomOrgJed = VratiOrgJed(pomManupulacija);
 
                             }
 
@@ -1793,7 +1793,7 @@ namespace Saobracaj.Uvoz
                                 // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina = 1;
-                                pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+                                pomOrgJed = VratiOrgJed(pomManupulacija);
 
                             }
 

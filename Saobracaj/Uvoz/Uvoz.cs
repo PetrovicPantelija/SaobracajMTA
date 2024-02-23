@@ -1952,7 +1952,7 @@ namespace Saobracaj.Uvoz
 
             if (checkedListBox2.GetItemCheckState(1) == CheckState.Checked)
             {
-                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + "  "  + txtADR.Text;
+                cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + "  "  + txtTeretnica.Text;
             }
 
            
