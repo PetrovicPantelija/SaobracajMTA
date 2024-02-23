@@ -7,14 +7,16 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using Saobracaj.Dokumenta;
+using Saobracaj.Sifarnici;
 
 namespace Saobracaj.Izvoz
 {
     class InsertKrajnjaDestinacija
     {
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
+        string connection = frmLogovanje.connectionString;
 
-        public void InsKrajnjaDestinacija(string Naziv)
+        public void InsKrajnjaDestinacija(string Naziv,int SifDr)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -28,6 +30,13 @@ namespace Saobracaj.Izvoz
             naziv.Direction = ParameterDirection.Input;
             naziv.Value = Naziv;
             cmd.Parameters.Add(naziv);
+
+            SqlParameter drzava = new SqlParameter();
+            drzava.ParameterName = "@SifDr";
+            drzava.SqlDbType = SqlDbType.Int;
+            drzava.Direction = ParameterDirection.Input;
+            drzava.Value = SifDr;
+            cmd.Parameters.Add(drzava);
 
 
             conn.Open();
@@ -64,7 +73,7 @@ namespace Saobracaj.Izvoz
                 }
             }
         }
-        public void UpdKrajnjaDestinacija(int ID, string Naziv)
+        public void UpdKrajnjaDestinacija(int ID, string Naziv,int SifDr)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -86,7 +95,14 @@ namespace Saobracaj.Izvoz
             naziv.Value = Naziv;
             cmd.Parameters.Add(naziv);
 
-         
+            SqlParameter drzava = new SqlParameter();
+            drzava.ParameterName = "@SifDr";
+            drzava.SqlDbType = SqlDbType.Int;
+            drzava.Direction = ParameterDirection.Input;
+            drzava.Value = SifDr;
+            cmd.Parameters.Add(drzava);
+
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

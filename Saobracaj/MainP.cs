@@ -22,6 +22,7 @@ using System.Diagnostics;
 using Saobracaj.eDokumenta;
 using Saobracaj.RadniNalozi;
 using Syncfusion.Windows.Forms.Diagram;
+using Saobracaj.Izvoz;
 
 namespace Saobracaj
 {
@@ -66,6 +67,19 @@ namespace Saobracaj
                 toolStripButton342.Visible = false;
                 toolStripEx39.Visible = false;
                 toolStripButton344.Visible = false;
+
+
+
+                toolStripButton184.Visible = false;
+                toolStripButton186.Visible = false;
+                toolStripButton188.Visible = false;
+                toolStripButton189.Visible = false;
+                toolStripButton198.Visible = false;
+                toolStripButton217.Visible = false;
+                toolStripButton129.Visible = false;
+                toolStripButton264.Visible = false;
+                toolStripButton128.Visible = false;
+                toolStripButton194.Text = "Mesto utovara/istovara";
             }
 
         }
@@ -2821,7 +2835,7 @@ namespace Saobracaj
 
         private void toolStripButton208_Click(object sender, EventArgs e)
         {
-            Izvoz.frmKrajnjaDestinacija KraDes = new Izvoz.frmKrajnjaDestinacija();
+            KrajnjeDestinacije KraDes = new KrajnjeDestinacije();
             KraDes.Show();
         }
 
@@ -3515,13 +3529,13 @@ namespace Saobracaj
 
         private void toolStripButton208_Click_1(object sender, EventArgs e)
         {
-            Izvoz.frmKrajnjaDestinacija ikd = new Izvoz.frmKrajnjaDestinacija();
+            KrajnjeDestinacije ikd = new KrajnjeDestinacije();
             ikd.Show();
         }
 
         private void toolStripButton286_Click(object sender, EventArgs e)
         {
-            Izvoz.frmKrajnjaDestinacija ikd = new Izvoz.frmKrajnjaDestinacija();
+            KrajnjeDestinacije ikd = new KrajnjeDestinacije();
             ikd.Show();
         }
 

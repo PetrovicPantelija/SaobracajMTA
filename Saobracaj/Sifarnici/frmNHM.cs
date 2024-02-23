@@ -36,8 +36,7 @@ namespace Saobracaj.Sifarnici
         }
         public string IdGrupe()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
+            var s_connection = frmLogovanje.connectionString;
             string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -64,7 +63,7 @@ namespace Saobracaj.Sifarnici
         }
         private int IdForme()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = frmLogovanje.connectionString;
             string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -81,7 +80,7 @@ namespace Saobracaj.Sifarnici
 
         private void PravoPristupa()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = frmLogovanje.connectionString;
             string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -122,7 +121,7 @@ namespace Saobracaj.Sifarnici
             var select = " Select NHM.ID,NHM.Broj, NHM.Naziv, CASE WHEN NHM.RID > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as RID, ADRID, Uvozni, Interni " +
 " , VrstaRobeADR.NAziv, VrstaRobeADR.Klasa, VrstaRobeADR.Grupa from NHM " +
 "  left join VrstaRobeADR on NHM.ADRID = VrstaRobeADR.ID";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -208,7 +207,7 @@ namespace Saobracaj.Sifarnici
             if (status == true)
             {
                 Insertnhm ins = new Insertnhm();
-                ins.InsNHM(txtBroj.Text,  txtNaziv.Text, chekiran, Convert.ToInt32(txtADR.Text), tmpUvozni,tmpInterni);
+                ins.InsNHM(txtBroj.Text,  txtNaziv.Text, chekiran, Convert.ToInt32(txtADR.SelectedValue), tmpUvozni,tmpInterni);
                 RefreshDataGrid();
                 status = false;
             }
@@ -289,9 +288,9 @@ namespace Saobracaj.Sifarnici
         private void frmNHM_Load(object sender, EventArgs e)
         {
             RefreshDataGrid();
-            var conn = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-           
-            
+            var connect = frmLogovanje.connectionString;
+
+            var conn = new SqlConnection(connect);
             var adr = "Select ID, (Naziv + ' - ' + UNKod) as Naziv From VrstaRobeADR order by (UNKod + ' ' + Naziv)";
             var adrSAD = new SqlDataAdapter(adr, conn);
             var adrSDS = new DataSet();

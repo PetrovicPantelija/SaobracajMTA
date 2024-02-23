@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -25,7 +26,7 @@ namespace Saobracaj.Uvoz
         string niz = "";
 
         bool status = false;
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        string connection = frmLogovanje.connectionString;
         public Carinarnice()
         {
             InitializeComponent();
@@ -38,7 +39,7 @@ namespace Saobracaj.Uvoz
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
+            SqlConnection conn = new SqlConnection(connection);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -72,7 +73,7 @@ namespace Saobracaj.Uvoz
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
+            SqlConnection conn = new SqlConnection(connection);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
 
@@ -89,7 +90,7 @@ namespace Saobracaj.Uvoz
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
+            SqlConnection conn = new SqlConnection(connection);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader reader = cmd.ExecuteReader();

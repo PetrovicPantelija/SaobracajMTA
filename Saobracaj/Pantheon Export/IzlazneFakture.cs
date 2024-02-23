@@ -13,6 +13,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Syncfusion.WinForms.Core.NativeScroll;
 
 namespace Saobracaj.Pantheon_Export
 {
@@ -216,10 +217,10 @@ namespace Saobracaj.Pantheon_Export
             conn.Close();
             rb = 1;
         }
-
+        int sifDr;
         private void tsSave_Click(object sender, EventArgs e)
         {
-            var query = "Select PaNaziv,PaUlicaHisnaSt,PaKraj,PaDMatSt From Partnerji Where PaSifra=" + Convert.ToInt32(cboPrimalac.SelectedValue);
+            var query = "Select PaNaziv,PaUlicaHisnaSt,PaKraj,PaDMatSt,PaSifDrzave From Partnerji Where PaSifra=" + Convert.ToInt32(cboPrimalac.SelectedValue);
             SqlConnection conn = new SqlConnection(connect);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
@@ -230,33 +231,71 @@ namespace Saobracaj.Pantheon_Export
                 ulica = dr[1].ToString().TrimEnd();
                 mesto = dr[2].ToString().TrimEnd();
                 mb = dr[3].ToString().TrimEnd();
+                sifDr = Convert.ToInt32(dr[4].ToString());
             }
             conn.Close();
-
+            string valuta = cboValuta.SelectedValue.ToString();
             InsertPatheonExport ins = new InsertPatheonExport();
-            if (status == true)
+            if (sifDr == 82 && valuta != "RSD")
             {
-                txtID.Text = FaStFak.ToString();
-                ins.InstFaktura(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtDatum.Value), Convert.ToInt32(cboPrimalac.SelectedValue), ulica, naziv, mesto, mb, cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Value),
-                    Convert.ToDateTime(dtPDV.Value), Convert.ToDateTime(dtValuta.Value), txtMestoUtovara.Text.ToString(), Convert.ToDateTime(dtDatumUtovara.Value), txtMestoUtovara.Text.ToString().TrimEnd(),
-                    Convert.ToDateTime(dtDatumIstovara.Value), korisnik, Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboIzjava.SelectedValue), txtNapomena.Text.ToString().TrimEnd(),Convert.ToInt32(crmID), comboBox1.Text.ToString().Substring(0, 4));
-            }
-            else
-            {
-                if (StatusFak == 0)
+                DialogResult result = MessageBox.Show("Za domaćeg dobavljača dokument treba biti u dinarima\nDa li želite da potvrdite dokument u valuti " + valuta, "Potvrda valute", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
                 {
-                    ins.UpdFaktura(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtDatum.Value), Convert.ToInt32(cboPrimalac.SelectedValue), ulica, naziv, mesto, mb, cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Value),
-                    Convert.ToDateTime(dtPDV.Value), Convert.ToDateTime(dtValuta.Value), txtMestoUtovara.Text.ToString(), Convert.ToDateTime(dtDatumUtovara.Value), txtMestoUtovara.Text.ToString().TrimEnd(),
-                    Convert.ToDateTime(dtDatumIstovara.Value), korisnik, Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboIzjava.SelectedValue), txtNapomena.Text.ToString().TrimEnd(), Convert.ToInt32(crmID), comboBox1.Text.ToString().Substring(0, 4));
+                    if (status == true)
+                    {
+                        txtID.Text = FaStFak.ToString();
+                        ins.InstFaktura(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtDatum.Value), Convert.ToInt32(cboPrimalac.SelectedValue), ulica, naziv, mesto, mb, cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Value),
+                            Convert.ToDateTime(dtPDV.Value), Convert.ToDateTime(dtValuta.Value), txtMestoUtovara.Text.ToString(), Convert.ToDateTime(dtDatumUtovara.Value), txtMestoUtovara.Text.ToString().TrimEnd(),
+                            Convert.ToDateTime(dtDatumIstovara.Value), korisnik, Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboIzjava.SelectedValue), txtNapomena.Text.ToString().TrimEnd(), Convert.ToInt32(crmID), comboBox1.Text.ToString().Substring(0, 4));
+                    }
+                    else
+                    {
+                        if (StatusFak == 0)
+                        {
+                            ins.UpdFaktura(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtDatum.Value), Convert.ToInt32(cboPrimalac.SelectedValue), ulica, naziv, mesto, mb, cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Value),
+                            Convert.ToDateTime(dtPDV.Value), Convert.ToDateTime(dtValuta.Value), txtMestoUtovara.Text.ToString(), Convert.ToDateTime(dtDatumUtovara.Value), txtMestoUtovara.Text.ToString().TrimEnd(),
+                            Convert.ToDateTime(dtDatumIstovara.Value), korisnik, Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboIzjava.SelectedValue), txtNapomena.Text.ToString().TrimEnd(), Convert.ToInt32(crmID), comboBox1.Text.ToString().Substring(0, 4));
+                        }
+                        else
+                        {
+                            MessageBox.Show("Faktura je već sinhronizovana. Nije moguća izmena dokumenta nakon sinhrronizacije!");
+                            return;
+                        }
+                    }
+                    FillGV();
                 }
-                else
+                else if (result == DialogResult.No)
                 {
-                    MessageBox.Show("Faktura je već sinhronizovana. Nije moguća izmena dokumenta nakon sinhrronizacije!");
                     return;
                 }
             }
+            else
+            {
+                if (status == true)
+                {
+                    txtID.Text = FaStFak.ToString();
+                    ins.InstFaktura(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtDatum.Value), Convert.ToInt32(cboPrimalac.SelectedValue), ulica, naziv, mesto, mb, cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Value),
+                        Convert.ToDateTime(dtPDV.Value), Convert.ToDateTime(dtValuta.Value), txtMestoUtovara.Text.ToString(), Convert.ToDateTime(dtDatumUtovara.Value), txtMestoUtovara.Text.ToString().TrimEnd(),
+                        Convert.ToDateTime(dtDatumIstovara.Value), korisnik, Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboIzjava.SelectedValue), txtNapomena.Text.ToString().TrimEnd(), Convert.ToInt32(crmID), comboBox1.Text.ToString().Substring(0, 4));
+                }
+                else
+                {
+                    if (StatusFak == 0)
+                    {
+                        ins.UpdFaktura(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtDatum.Value), Convert.ToInt32(cboPrimalac.SelectedValue), ulica, naziv, mesto, mb, cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Value),
+                        Convert.ToDateTime(dtPDV.Value), Convert.ToDateTime(dtValuta.Value), txtMestoUtovara.Text.ToString(), Convert.ToDateTime(dtDatumUtovara.Value), txtMestoUtovara.Text.ToString().TrimEnd(),
+                        Convert.ToDateTime(dtDatumIstovara.Value), korisnik, Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboIzjava.SelectedValue), txtNapomena.Text.ToString().TrimEnd(), Convert.ToInt32(crmID), comboBox1.Text.ToString().Substring(0, 4));
+                    }
+                    else
+                    {
+                        MessageBox.Show("Faktura je već sinhronizovana. Nije moguća izmena dokumenta nakon sinhrronizacije!");
+                        return;
+                    }
+                }
+                FillGV();
+            }
             
-            FillGV();
+            status = false;
         }
         string MpNaziv;
         private void cboMP_Move(object sender, EventArgs e)

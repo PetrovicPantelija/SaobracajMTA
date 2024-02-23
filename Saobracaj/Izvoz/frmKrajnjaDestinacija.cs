@@ -82,12 +82,12 @@ namespace Saobracaj.Izvoz
             if (status == true)
             {
                 InsertKrajnjaDestinacija ins = new InsertKrajnjaDestinacija();
-                ins.InsKrajnjaDestinacija(txtNaziv.Text);
+               // ins.InsKrajnjaDestinacija(txtNaziv.Text);
             }
             else
             {
                 InsertKrajnjaDestinacija upd = new InsertKrajnjaDestinacija();
-                upd.UpdKrajnjaDestinacija(Convert.ToInt32(txtID.Text), txtNaziv.Text);
+               // upd.UpdKrajnjaDestinacija(Convert.ToInt32(txtID.Text), txtNaziv.Text);
             }
             RefreshDataGrid();
         }

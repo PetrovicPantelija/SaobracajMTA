@@ -231,35 +231,85 @@ namespace Saobracaj.Pantheon_Export
 
             RB = 1;
         }
+        int sifDr;
         private void tsSave_Click(object sender, EventArgs e)
         {
             InsertPatheonExport ins = new InsertPatheonExport();
-            if (status == true)
+            SqlConnection conn = new SqlConnection(connect);
+            string query2 = "Select PaSifDrzave from Partnerji Where PaSifra=" + Convert.ToInt32(cboSubjekt.SelectedValue);
+            conn.Open();
+            SqlCommand cmd2 = new SqlCommand(query2, conn);
+            SqlDataReader dr2 = cmd2.ExecuteReader();
+            while (dr2.Read())
             {
-                var query = "Select Posao From NosiociTroskova Where ID="+Convert.ToInt32(cboNosilacTroska.SelectedValue);
-                SqlConnection conn = new SqlConnection(connect);
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(query, conn);
-                SqlDataReader dr = cmd.ExecuteReader();
-                while (dr.Read())
+                sifDr = Convert.ToInt32(dr2[0].ToString());
+            }
+            conn.Close();
+            string valuta = cboValuta.SelectedValue.ToString();
+            if (sifDr == 82 && valuta != "RSD")
+            {
+                DialogResult result = MessageBox.Show("Za domaćeg dobavljača dokument treba biti u dinarima\nDa li želite da potvrdite dokument u valuti " + valuta, "Potvrda valute", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
                 {
-                    Najava = Convert.ToInt32(dr[0].ToString());
+                    if (status == true)
+                    {
+                        var query = "Select Posao From NosiociTroskova Where ID=" + Convert.ToInt32(cboNosilacTroska.SelectedValue);
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand(query, conn);
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            Najava = Convert.ToInt32(dr[0].ToString());
+                        }
+                        ins.InsPredvidjanje(IDp, txtPredvidjanje.Text.ToString().TrimEnd(), RB, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Text.ToString()), cboValuta.SelectedValue.ToString(), 0, Najava, Convert.ToInt32(cboIdent.SelectedValue), Convert.ToDecimal(txtKolicina.Value), cboJM.SelectedValue.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd());
+                    }
+                    else
+                    {
+                        if (StatusSelektovanog == 0)
+                        {
+                            ins.UpdPredvidjanje(Convert.ToInt32(txtID.Text), txtPredvidjanje.Text.ToString().TrimEnd(), RB, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue),
+                                Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Value), cboValuta.SelectedValue.ToString(), Najava, Convert.ToInt32(txtIDPredvidjanja.Text), Convert.ToInt32(cboIdent.SelectedValue), Convert.ToDecimal(txtKolicina.Value), cboJM.SelectedValue.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd());
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nije moguće izmeniti zapis koji je poslat sinhronizacijom!");
+                        }
+                    }
+                    FillGV();
                 }
-                ins.InsPredvidjanje(IDp,txtPredvidjanje.Text.ToString().TrimEnd(), RB, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Text.ToString()), cboValuta.SelectedValue.ToString(), 0,Najava,Convert.ToInt32(cboIdent.SelectedValue),Convert.ToDecimal(txtKolicina.Value),cboJM.SelectedValue.ToString().TrimEnd(),txtNapomena.Text.ToString().TrimEnd());
+                else if (result == DialogResult.No)
+                {
+                    return;
+                }
             }
             else
             {
-                if (StatusSelektovanog == 0)
+                if (status == true)
                 {
-                    ins.UpdPredvidjanje(Convert.ToInt32(txtID.Text), txtPredvidjanje.Text.ToString().TrimEnd(), RB, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue),
-                        Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Value), cboValuta.SelectedValue.ToString(), Najava, Convert.ToInt32(txtIDPredvidjanja.Text),Convert.ToInt32(cboIdent.SelectedValue),Convert.ToDecimal(txtKolicina.Value),cboJM.SelectedValue.ToString().TrimEnd(),txtNapomena.Text.ToString().TrimEnd());
+                    var query = "Select Posao From NosiociTroskova Where ID=" + Convert.ToInt32(cboNosilacTroska.SelectedValue);
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        Najava = Convert.ToInt32(dr[0].ToString());
+                    }
+                    ins.InsPredvidjanje(IDp, txtPredvidjanje.Text.ToString().TrimEnd(), RB, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Text.ToString()), cboValuta.SelectedValue.ToString(), 0, Najava, Convert.ToInt32(cboIdent.SelectedValue), Convert.ToDecimal(txtKolicina.Value), cboJM.SelectedValue.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd());
                 }
                 else
                 {
-                    MessageBox.Show("Nije moguće izmeniti zapis koji je poslat sinhronizacijom!");
+                    if (StatusSelektovanog == 0)
+                    {
+                        ins.UpdPredvidjanje(Convert.ToInt32(txtID.Text), txtPredvidjanje.Text.ToString().TrimEnd(), RB, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue),
+                            Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Value), cboValuta.SelectedValue.ToString(), Najava, Convert.ToInt32(txtIDPredvidjanja.Text), Convert.ToInt32(cboIdent.SelectedValue), Convert.ToDecimal(txtKolicina.Value), cboJM.SelectedValue.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd());
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nije moguće izmeniti zapis koji je poslat sinhronizacijom!");
+                    }
                 }
+                FillGV();
             }
-            FillGV();
             status = false;
         }
 
