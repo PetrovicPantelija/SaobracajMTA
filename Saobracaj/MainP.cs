@@ -4089,6 +4089,12 @@ namespace Saobracaj
             Izvoz.TerminalOpredeljenje to = new Izvoz.TerminalOpredeljenje();
             to.Show();
         }
+
+        private void toolStripButton352_Click(object sender, EventArgs e)
+        {
+            KrajnjeDestinacije ikd = new KrajnjeDestinacije();
+            ikd.Show();
+        }
     }
     }
 

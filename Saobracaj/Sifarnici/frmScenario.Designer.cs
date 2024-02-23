@@ -51,6 +51,8 @@ namespace Saobracaj.Sifarnici
             this.cboStatus = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btnRacun = new System.Windows.Forms.Button();
+            this.cboForma = new System.Windows.Forms.ComboBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -253,12 +255,38 @@ namespace Saobracaj.Sifarnici
             this.btnRacun.UseVisualStyleBackColor = false;
             this.btnRacun.Click += new System.EventHandler(this.btnRacun_Click);
             // 
+            // cboForma
+            // 
+            this.cboForma.FormattingEnabled = true;
+            this.cboForma.Items.AddRange(new object[] {
+            "GATE IN VOZ",
+            "GATE OUT KAMION",
+            "GATE IN KAMION",
+            "GATE OUT PRETOVAR",
+            "GATE IN PRETOVAR",
+            "GATE OUT VOZ"});
+            this.cboForma.Location = new System.Drawing.Point(470, 104);
+            this.cboForma.Name = "cboForma";
+            this.cboForma.Size = new System.Drawing.Size(264, 21);
+            this.cboForma.TabIndex = 249;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(372, 107);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(92, 13);
+            this.label6.TabIndex = 248;
+            this.label6.Text = "Forma koju otvara";
+            // 
             // frmScenario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(990, 473);
+            this.Controls.Add(this.cboForma);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnRacun);
             this.Controls.Add(this.cboStatus);
             this.Controls.Add(this.label5);
@@ -307,5 +335,7 @@ namespace Saobracaj.Sifarnici
         private System.Windows.Forms.ComboBox cboStatus;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnRacun;
+        private System.Windows.Forms.ComboBox cboForma;
+        private System.Windows.Forms.Label label6;
     }
 }

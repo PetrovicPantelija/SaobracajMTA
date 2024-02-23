@@ -1229,7 +1229,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
 
 
 
-        public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV, string Pokret, int StatusKontejnera, string Korisnik)
+        public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV, string Pokret, int StatusKontejnera, string Korisnik, string pomForma)
         {
           //  @IdNadredjena int,
 //@IDVrstaManipulacije int,
@@ -1305,6 +1305,14 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             statuskontejnera.Value = StatusKontejnera;
             cmd.Parameters.Add(statuskontejnera);
 
+            SqlParameter pomforma = new SqlParameter();
+            pomforma.ParameterName = "@Forma";
+            pomforma.SqlDbType = SqlDbType.NVarChar;
+            pomforma.Size = 50;
+            pomforma.Direction = ParameterDirection.Input;
+            pomforma.Value = pomForma;
+            cmd.Parameters.Add(pomforma);
+
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -1340,7 +1348,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             }
         }
 
-        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV, string Pokret, int StatusKontejnera, string Korisnik)
+        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV, string Pokret, int StatusKontejnera, string Korisnik, string pomForma)
         {
             //  @IdNadredjena int,
             //@IDVrstaManipulacije int,
@@ -1417,6 +1425,14 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             statuskontejnera.Direction = ParameterDirection.Input;
             statuskontejnera.Value = StatusKontejnera;
             cmd.Parameters.Add(statuskontejnera);
+
+            SqlParameter pomforma = new SqlParameter();
+            pomforma.ParameterName = "@Forma";
+            pomforma.SqlDbType = SqlDbType.NVarChar;
+            pomforma.Size = 50;
+            pomforma.Direction = ParameterDirection.Input;
+            pomforma.Value = pomForma;
+            cmd.Parameters.Add(pomforma);
             /*
             SqlParameter korisnik = new SqlParameter();
             korisnik.ParameterName = "@Korisnik";

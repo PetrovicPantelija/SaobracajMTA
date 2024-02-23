@@ -14,7 +14,7 @@ namespace Saobracaj.Sifarnici
     class InsertScenario
     {
 
-        public void InsScenario(int PotpunoNovi, string Naziv, int Usluga, string Pokret, int StatusKontejnera)
+        public void InsScenario(int PotpunoNovi, string Naziv, int Usluga, string Pokret, int StatusKontejnera, string Forma)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -61,6 +61,14 @@ namespace Saobracaj.Sifarnici
             parameter4.Value = StatusKontejnera;
             myCommand.Parameters.Add(parameter4);
 
+            SqlParameter parameter5 = new SqlParameter();
+            parameter5.ParameterName = "@Forma";
+            parameter5.SqlDbType = SqlDbType.NVarChar;
+            parameter5.Size = 50;
+            parameter5.Direction = ParameterDirection.Input;
+            parameter5.Value = Forma;
+            myCommand.Parameters.Add(parameter5);
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -97,7 +105,7 @@ namespace Saobracaj.Sifarnici
             }
         }
 
-        public void UpdScenario(int ScenarioID, int RB, string Naziv, int Usluga, string Pokret, int StatusKontejnera)
+        public void UpdScenario(int ScenarioID, int RB, string Naziv, int Usluga, string Pokret, int StatusKontejnera, string Forma)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -151,7 +159,13 @@ namespace Saobracaj.Sifarnici
             parameter4.Value = StatusKontejnera;
             myCommand.Parameters.Add(parameter4);
 
-
+            SqlParameter parameter5 = new SqlParameter();
+            parameter5.ParameterName = "@Forma";
+            parameter5.SqlDbType = SqlDbType.NVarChar;
+            parameter5.Size = 50;
+            parameter5.Direction = ParameterDirection.Input;
+            parameter5.Value = Forma;
+            myCommand.Parameters.Add(parameter5);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

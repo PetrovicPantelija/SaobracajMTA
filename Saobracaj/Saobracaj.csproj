@@ -1453,6 +1453,7 @@
     <Compile Include="IMailRepository.cs" />
     <Compile Include="InsertLokomotiveNaTrasi.cs" />
     <Compile Include="InsertTeretnicaStavke.cs" />
+    <Compile Include="InsertVoziloUsluga.cs" />
     <Compile Include="Izvestaji\frmDodatniList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3385,6 +3386,12 @@
     <Compile Include="Uvoz\frmUvozKonacnaZaglavlje.Designer.cs">
       <DependentUpon>frmUvozKonacnaZaglavlje.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\frmVoziloUsluga.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmVoziloUsluga.Designer.cs">
+      <DependentUpon>frmVoziloUsluga.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\frmVrstaCarinskogPostupka.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4763,6 +4770,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmUvozKonacnaZaglavlje.resx">
       <DependentUpon>frmUvozKonacnaZaglavlje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmVoziloUsluga.resx">
+      <DependentUpon>frmVoziloUsluga.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmVrstaCarinskogPostupka.resx">
       <DependentUpon>frmVrstaCarinskogPostupka.cs</DependentUpon>

@@ -188,11 +188,11 @@ namespace Saobracaj.Dokumenta
   " INNER JOIN Partnerji as Partnerji_3 ON Najava.PrevoznikZa = Partnerji_3.PaSifra ";
             if (Arhiv == 0)
             {
-                select = select + " WHERE (Najava.Status <> 7 ) or (Najava.Status = 7 and Faktura ='') order by Najava.ID desc";
+                select = select + " WHERE  Faktura ='' order by Najava.ID desc";
             }
             else
             {
-                select = select + " WHERE (Najava.Status = 7 ) or Najava.Status = 8 order by Najava.ID desc";
+                select = select + " WHERE Faktura <> ''  order by Najava.ID desc";
             }
           
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -3159,7 +3159,7 @@ namespace Saobracaj.Dokumenta
   " inner JOIN  stanice AS stanice_4 ON Najava.Granicna = stanice_4.ID  " +
   " INNER JOIN Partnerji as Partnerji_3 ON Najava.PrevoznikZa = Partnerji_3.PaSifra ";
           
-                select = select + " WHERE (Najava.Status = 7 ) or Najava.Status = 8 order by Najava.ID desc";
+                select = select + " WHERE Faktura<> '' order by Najava.ID desc";
            
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;

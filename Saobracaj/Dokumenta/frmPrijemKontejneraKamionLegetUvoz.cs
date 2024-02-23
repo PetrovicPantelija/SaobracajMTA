@@ -593,7 +593,7 @@ namespace Saobracaj.Dokumenta
         private void UbaciUsluguKontejnera()
         {
             Saobracaj.Uvoz.InsertUvozKonacna uvK = new Saobracaj.Uvoz.InsertUvozKonacna();
-            uvK.InsUbaciUsluguKonacna(Convert.ToInt32(txtKontejnerID.Text), 69, 0, 1, 4, Convert.ToInt32(cboVlasnikKontejnera.SelectedValue), 0, "GATE IN EMPTY", 6, KorisnikCene);
+            uvK.InsUbaciUsluguKonacna(Convert.ToInt32(txtKontejnerID.Text), 69, 0, 1, 4, Convert.ToInt32(cboVlasnikKontejnera.SelectedValue), 0, "GATE IN EMPTY", 6, KorisnikCene, "NIJE DEFINISANO");
 
         }
 

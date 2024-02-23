@@ -33,13 +33,13 @@ namespace Saobracaj.Sifarnici
                 InsertScenario ins = new InsertScenario();
                 //0-Ako je novi scenario
                 //1-Ako je dodavanje stavke
-                ins.InsScenario(0, txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue));
+                ins.InsScenario(0, txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.SelectedText);
                 status = false;
             }
             else
             {
                 InsertScenario upd = new InsertScenario();
-                upd.UpdScenario(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtRB.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue) );
+                upd.UpdScenario(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtRB.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.SelectedText );
             
             }
             RefreshDataGrid();
@@ -48,7 +48,7 @@ namespace Saobracaj.Sifarnici
         {
             var select = "";
             select = "Select Scenario.ID,Scenario.RB, Scenario.Naziv, Scenario.Usluga, VrstaManipulacije.Naziv as UslugaN,  Scenario.Pokret, Scenario.StatusKontejnera, " +
-" KontejnerStatus.Naziv as StatusN from Scenario " +
+" KontejnerStatus.Naziv as StatusN, Forma from Scenario " +
 " inner join VrstaManipulacije on VrstaManipulacije.ID = Usluga " +
 " inner join KontejnerStatus on KontejnerStatus.ID = Scenario.StatusKOntejnera " +
 " order by  Scenario.ID,Scenario.RB ";
@@ -151,8 +151,8 @@ namespace Saobracaj.Sifarnici
             InsertScenario ins = new InsertScenario();
             //0-Ako je novi scenario
             //1-Je broj tekuceg scaniraj
-            ins.InsScenario(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue));
-                     RefreshDataGrid();
+            ins.InsScenario(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue),cboForma.Text);
+            RefreshDataGrid();
 }
         private void VratiPodatkeSelect(string ID, string RB)
         {
@@ -161,7 +161,7 @@ namespace Saobracaj.Sifarnici
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("Select Scenario.ID,Scenario.RB, Scenario.Naziv, Scenario.Usluga, Scenario.Pokret, Scenario.StatusKontejnera from Scenario where ID=" + ID + " AND RB =" + RB, con);
+            SqlCommand cmd = new SqlCommand("Select Scenario.ID,Scenario.RB, Scenario.Naziv, Scenario.Usluga, Scenario.Pokret, Scenario.StatusKontejnera, Forma from Scenario where ID=" + ID + " AND RB =" + RB, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -170,7 +170,7 @@ namespace Saobracaj.Sifarnici
                 cboUsluga.SelectedValue = Convert.ToInt32(dr["Usluga"].ToString());
                 cboPokret.Text = dr["Pokret"].ToString();
                 cboStatus.SelectedValue = dr["StatusKontejnera"].ToString();
-
+                cboForma.Text = dr["Forma"].ToString();
             }
 
             con.Close();
