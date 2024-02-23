@@ -334,6 +334,10 @@ namespace Testiranje.Sifarnici
 
         private void frmVrstaManipulacije_Load(object sender, EventArgs e)
         {
+            txtCena.Visible = false;
+            label13.Visible = false;
+            label9.Visible = false;
+
             RefreshDataGrid();
 
             var select = " Select ID, Naziv From TipManipulacije";

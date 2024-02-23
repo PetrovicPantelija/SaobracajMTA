@@ -12,14 +12,14 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Net;
 using System.Net.Mail;
-
+using Saobracaj.Sifarnici;
 using Microsoft.Reporting.WinForms;
 
 namespace Testiranje.Dokumeta
 {
     public partial class frmVozila : Form
     {
-        
+        string connect = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string KorisnikCene;
         bool status = false;
         public frmVozila()
@@ -103,9 +103,9 @@ namespace Testiranje.Dokumeta
        " CASE WHEN UradjenServis > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as UradjenServis,  " +
      " [DatumUradjenTromesecni],[DatumUradjenSetomesecni],[DatumUradjenGodisnji],[DatumUradjenServis] " +   
      "   FROM [dbo].[Vozila]";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
+            
+            SqlConnection myConnection = new SqlConnection(connect);
+            var c = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, c);
 // [ID],[Naziv],[IndividualniBroj] ,[LicencaBroj],[LicencaVaziDo],[Namena]
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
@@ -270,7 +270,7 @@ namespace Testiranje.Dokumeta
 
         private void VratiPodatke(string ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = connect;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -391,7 +391,7 @@ namespace Testiranje.Dokumeta
 
         private void VratiPodatkeMax()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = connect;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
