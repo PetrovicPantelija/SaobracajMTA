@@ -23,6 +23,8 @@ using Saobracaj.eDokumenta;
 using Saobracaj.RadniNalozi;
 using Syncfusion.Windows.Forms.Diagram;
 using Saobracaj.Izvoz;
+using Testiranje.Dokumeta;
+using frmVozila = Testiranje.Dokumeta.frmVozila;
 
 namespace Saobracaj
 {
@@ -74,7 +76,7 @@ namespace Saobracaj
                 toolStripButton186.Visible = false;
                 toolStripButton188.Visible = false;
                 toolStripButton189.Visible = false;
-                toolStripButton198.Visible = false;
+                toolStripButton197.Visible = false;
                 toolStripButton217.Visible = false;
                 toolStripButton129.Visible = false;
                 toolStripButton264.Visible = false;
@@ -1983,10 +1985,12 @@ namespace Saobracaj
         private void toolStripButton131_Click(object sender, EventArgs e)
         {
             //Ovde mi trebaju Vozila iz Track modal
-            // frmVozila vozila = new frmVozila(Korisnik);
-            // vozila.Show();
 
-            frmSredstvoRada sr = new frmSredstvoRada();
+            frmVozila f = new frmVozila(Korisnik);
+            f.Show();
+
+
+            /*frmSredstvoRada sr = new frmSredstvoRada();
             PravoP = sr.Pravo;
             if (PravoP == true)
             {
@@ -1995,10 +1999,10 @@ namespace Saobracaj
             else
             {
                 return;
-            }
-           
-           // Testiranje.Dokumeta.frmVozila vozila = new Dokumeta.frmVozila(Korisnik);
-          //  vozila.Show();
+            }*/
+
+            // Testiranje.Dokumeta.frmVozila vozila = new Dokumeta.frmVozila(Korisnik);
+            //  vozila.Show();
         }
 
         private void toolStripButton132_Click(object sender, EventArgs e)
