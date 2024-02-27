@@ -3975,6 +3975,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Izvestaji\K200.rdlc" />
     <EmbeddedResource Include="Izvestaji\K200Bosna.rdlc" />
+    <EmbeddedResource Include="Izvestaji\K200TA3.rdlc" />
     <EmbeddedResource Include="Izvestaji\k65Bosna.rdlc" />
     <EmbeddedResource Include="Izvestaji\Kol65.rdlc" />
     <EmbeddedResource Include="Izvestaji\Najava.rdlc" />

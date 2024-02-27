@@ -1099,5 +1099,111 @@ namespace Saobracaj.Dokumenta
             reportViewer7.LocalReport.DataSources.Add(rd2s);
             reportViewer7.RefreshReport();
         }
+
+        private void toolStripButton11_Click(object sender, EventArgs e)
+        {
+            Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListTableAdapter ta = new Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListTableAdapter();
+            Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListSumeTableAdapter ta2 = new Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListSumeTableAdapter();
+            Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListDataTable dt = new Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListDataTable();
+            Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListSumeDataTable dt2 = new Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListSumeDataTable();
+            try
+            {
+                ta.Fill(dt, Convert.ToInt32(cboTrainList.SelectedValue));
+            }
+            catch (ConstraintException)
+            {
+                DataRow[] rowErrors = dt.GetErrors();
+
+                System.Diagnostics.Debug.WriteLine("YourDataTable Errors:"
+                    + rowErrors.Length);
+
+                for (int i = 0; i < rowErrors.Length; i++)
+                {
+                    System.Diagnostics.Debug.WriteLine(rowErrors[i].RowError);
+
+                    foreach (DataColumn col in rowErrors[i].GetColumnsInError())
+                    {
+                        System.Diagnostics.Debug.WriteLine(col.ColumnName
+                            + ":" + rowErrors[i].GetColumnError(col));
+                    }
+                }
+            }
+
+            ReportDataSource rds = new ReportDataSource();
+            rds.Name = "DataSet1TA";
+            rds.Value = dt;
+
+            ta2.Fill(dt2, Convert.ToInt32(cboTrainList.SelectedValue));
+            ReportDataSource rd2s = new ReportDataSource();
+            rd2s.Name = "DataSet1";
+            rd2s.Value = dt2;
+
+            ReportParameter[] par = new ReportParameter[1];
+            par[0] = new ReportParameter("BR", cboTrainList.SelectedValue.ToString());
+            reportViewer8.LocalReport.DataSources.Clear();
+            reportViewer8.LocalReport.ReportPath = "K200TA3.rdlc";
+            reportViewer8.LocalReport.SetParameters(par);
+            reportViewer8.LocalReport.DataSources.Add(rds);
+            reportViewer8.LocalReport.DataSources.Add(rd2s);
+            reportViewer8.RefreshReport();
+        }
+
+        private void toolStripButton12_Click(object sender, EventArgs e)
+        {
+            Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListTableAdapter ta = new Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListTableAdapter();
+            Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListSumeTableAdapter ta2 = new Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListSumeTableAdapter();
+            Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListSume4TableAdapter ta3 = new Saobracaj.TESTIRANJEDataSet1TATableAdapters.SelectTrainListSume4TableAdapter();
+            Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListDataTable dt = new Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListDataTable();
+            Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListSumeDataTable dt2 = new Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListSumeDataTable();
+            Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListSume4DataTable dt3 = new Saobracaj.TESTIRANJEDataSet1TA.SelectTrainListSume4DataTable();
+            try
+            {
+                ta.Fill(dt, Convert.ToInt32(cboTrainList.SelectedValue));
+            }
+            catch (ConstraintException)
+            {
+                DataRow[] rowErrors = dt.GetErrors();
+
+                System.Diagnostics.Debug.WriteLine("YourDataTable Errors:"
+                    + rowErrors.Length);
+
+                for (int i = 0; i < rowErrors.Length; i++)
+                {
+                    System.Diagnostics.Debug.WriteLine(rowErrors[i].RowError);
+
+                    foreach (DataColumn col in rowErrors[i].GetColumnsInError())
+                    {
+                        System.Diagnostics.Debug.WriteLine(col.ColumnName
+                            + ":" + rowErrors[i].GetColumnError(col));
+                    }
+                }
+            }
+
+            ReportDataSource rds = new ReportDataSource();
+            rds.Name = "DataSet1TA";
+            rds.Value = dt;
+
+            ta2.Fill(dt2, Convert.ToInt32(cboTrainList.SelectedValue));
+            ReportDataSource rd2s = new ReportDataSource();
+            rd2s.Name = "DataSet1";
+            rd2s.Value = dt2;
+
+
+            ta3.Fill(dt3, Convert.ToInt32(cboTrainList.SelectedValue));
+            ReportDataSource rd3s = new ReportDataSource();
+            rd3s.Name = "DataSet2";
+            rd3s.Value = dt3;
+            //komentar
+            ReportParameter[] par = new ReportParameter[1];
+            par[0] = new ReportParameter("BR", cboTrainList.SelectedValue.ToString());
+            reportViewer9.LocalReport.DataSources.Clear();
+            reportViewer9.LocalReport.ReportPath = "K200TA4.rdlc";
+            reportViewer9.LocalReport.SetParameters(par);
+            reportViewer9.LocalReport.DataSources.Add(rds);
+            reportViewer9.LocalReport.DataSources.Add(rd2s);
+            reportViewer9.LocalReport.DataSources.Add(rd3s);
+            reportViewer9.RefreshReport();
+        }
     }
-}
+    }
+

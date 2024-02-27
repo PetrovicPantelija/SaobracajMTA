@@ -60,7 +60,19 @@ namespace TrackModal.Dokumeta
                 txtGranica.Enabled = false;
                 dtpVremePripremljen.Enabled = false;
                 dtpVremeOdlaska.Enabled = false;
-               // toolStripButton6.Visible = false;
+                // toolStripButton6.Visible = false;
+                chkVoz.Visible = false;
+                label15.Visible = false;
+                cboBukingPrijema.Visible = false;
+                label4.Visible = false;
+                txtVagon.Visible = false;
+                button6.Visible = false;
+                label22.Visible = false;
+                txtGranica.Visible = false;
+                label24.Visible = false;
+                txtBrojOsovina.Visible = false;
+                label23.Visible = false;
+                txtSopstvenaMasa.Visible = false;
             }
         }
 
@@ -86,7 +98,20 @@ namespace TrackModal.Dokumeta
                 txtGranica.Enabled = false;
                 dtpVremePripremljen.Enabled = false;
                 dtpVremeOdlaska.Enabled = false;
-              //  toolStripButton6.Visible = false;
+
+                chkVoz.Visible = false;
+                label15.Visible = false;
+                cboBukingPrijema.Visible = false;
+                label4.Visible = false;
+                txtVagon.Visible = false;
+                button6.Visible = false;
+                label22.Visible = false;
+                txtGranica.Visible = false;
+                label24.Visible = false;
+                txtBrojOsovina.Visible = false;
+                label23.Visible = false;
+                txtSopstvenaMasa.Visible = false;
+                //  toolStripButton6.Visible = false;
             }
             txtSifra.Text = sifra.ToString();
             VratiPodatke(sifra);
@@ -339,7 +364,7 @@ namespace TrackModal.Dokumeta
 
             //VR SqlCommand cmd = new SqlCommand("select [ID] ,[DatumPrijema],[StatusPrijema],[IdVoza],[VremeDolaska],RegBrKamiona, ImeVozaca, NajavaEmail, PrijemEmail, Napomena, CIRUradjen, PredefinisanaPorukaID from PrijemKontejneraVoz where ID=" + ID, con);
 
-            SqlCommand cmd = new SqlCommand("select [ID] ,[DatumPrijema],[StatusPrijema],[IdVoza],[VremeDolaska],RegBrKamiona, ImeVozaca, NajavaEmail, PrijemEmail, Napomena, CIRUradjen, Operater, OperaterHR, Modul from PrijemKontejneraVoz where ID=" + ID, con);
+            SqlCommand cmd = new SqlCommand("select [ID] ,[DatumPrijema],[StatusPrijema],[IdVoza],[VremeDolaska],RegBrKamiona, ImeVozaca, NajavaEmail, PrijemEmail, Napomena, CIRUradjen, Operater, OperaterHR, Modul, PredefinisanePorukeID from PrijemKontejneraVoz where ID=" + ID, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -350,7 +375,7 @@ namespace TrackModal.Dokumeta
                 cboBukingPrijema.SelectedValue = Convert.ToInt32(dr["IDVoza"].ToString());
                 cboStatusPrijema.SelectedIndex = Convert.ToInt32(dr["StatusPrijema"].ToString());
                 txtRegBrKamiona.Text = dr["RegBrKamiona"].ToString();
-               //VR cboPredefinisanePoruke.SelectedValue = Convert.ToInt32(dr["PredefinisanePorukeID"].ToString());
+                cboPredefinisanePoruke.SelectedValue = Convert.ToInt32(dr["PredefinisanePorukeID"].ToString());
                 //Napomena
                 txtNapomena.Text = dr["Napomena"].ToString();
                 
@@ -575,7 +600,7 @@ namespace TrackModal.Dokumeta
             cboOrganizator.ValueMember = "ID";
 
 
-            var select10 = " Select Distinct ID, Naziv  From PredefinisanePoruke order by ID";
+            var select10 = " Select Distinct ID, Naziv  From VrstePostupakaUvoz order by ID";
             var s_connection10 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection10 = new SqlConnection(s_connection10);
             var c10 = new SqlConnection(s_connection10);

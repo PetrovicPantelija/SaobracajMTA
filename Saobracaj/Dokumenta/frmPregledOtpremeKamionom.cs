@@ -35,6 +35,24 @@ namespace TrackModal.Dokumeta
             IdGrupe();
             IdForme();
             PravoPristupa();
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        toolStripButton7.Visible = false;
+                        toolStripButton1.Visible = true;
+                        toolStripButton4.Visible = true;
+                        break;
+                    }
+                default:
+                    {
+
+                        break;
+
+                    }
+                    break;
+            }
         }
 
         public frmPregledOtpremeKamionom(string Korisnik)
@@ -789,6 +807,12 @@ namespace TrackModal.Dokumeta
                     }
                     break;
             }
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            Saobracaj.Dokumeta.frmOtpremaKontejnera ter3 = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+            ter3.Show();
         }
     }
 }

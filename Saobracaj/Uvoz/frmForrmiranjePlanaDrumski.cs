@@ -241,5 +241,10 @@ namespace Saobracaj.Uvoz
             }
 
         }
+
+        private void tsDelete_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

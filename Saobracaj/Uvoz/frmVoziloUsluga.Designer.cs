@@ -47,6 +47,9 @@ namespace Saobracaj.Uvoz
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtUsluge = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.chkUvoz = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,7 +64,7 @@ namespace Saobracaj.Uvoz
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(682, 27);
             this.toolStrip1.TabIndex = 161;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -93,6 +96,7 @@ namespace Saobracaj.Uvoz
             this.tsDelete.Name = "tsDelete";
             this.tsDelete.Size = new System.Drawing.Size(24, 24);
             this.tsDelete.Text = "toolStripButton1";
+            this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // toolStripSeparator1
             // 
@@ -220,12 +224,46 @@ namespace Saobracaj.Uvoz
             this.label1.TabIndex = 164;
             this.label1.Text = "ID:";
             // 
+            // txtUsluge
+            // 
+            this.txtUsluge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txtUsluge.Location = new System.Drawing.Point(481, 67);
+            this.txtUsluge.Margin = new System.Windows.Forms.Padding(2);
+            this.txtUsluge.Name = "txtUsluge";
+            this.txtUsluge.Size = new System.Drawing.Size(51, 20);
+            this.txtUsluge.TabIndex = 178;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.Location = new System.Drawing.Point(478, 50);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(75, 15);
+            this.label6.TabIndex = 177;
+            this.label6.Text = "ID USLUGE:";
+            // 
+            // chkUvoz
+            // 
+            this.chkUvoz.AutoSize = true;
+            this.chkUvoz.BackColor = System.Drawing.Color.Silver;
+            this.chkUvoz.Location = new System.Drawing.Point(481, 102);
+            this.chkUvoz.Name = "chkUvoz";
+            this.chkUvoz.Size = new System.Drawing.Size(56, 17);
+            this.chkUvoz.TabIndex = 179;
+            this.chkUvoz.Text = "UVOZ";
+            this.chkUvoz.UseVisualStyleBackColor = false;
+            // 
             // frmVoziloUsluga
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(682, 323);
+            this.Controls.Add(this.chkUvoz);
+            this.Controls.Add(this.txtUsluge);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtBrojTelefona);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label5);
@@ -269,5 +307,8 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtUsluge;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox chkUvoz;
     }
 }

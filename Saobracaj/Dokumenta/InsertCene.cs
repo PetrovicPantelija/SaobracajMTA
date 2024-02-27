@@ -315,7 +315,7 @@ namespace Projekat
             }
         }
 
-        public void KopirajCeneTip(int TipCenovnika1, int TipCenovnika2)
+        public void KopirajCeneTip(int TipCenovnika1, int TipCenovnika2, int Partner1, int Partner2, string Naziv)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -336,6 +336,29 @@ namespace Projekat
             parameter1.Direction = ParameterDirection.Input;
             parameter1.Value = TipCenovnika2;
             myCommand.Parameters.Add(parameter1);
+
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@Partner1";
+            parameter2.SqlDbType = SqlDbType.Int;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = Partner1;
+            myCommand.Parameters.Add(parameter2);
+
+            SqlParameter parameter3 = new SqlParameter();
+            parameter3.ParameterName = "@Partner2";
+            parameter3.SqlDbType = SqlDbType.Int;
+            parameter3.Direction = ParameterDirection.Input;
+            parameter3.Value = Partner2;
+            myCommand.Parameters.Add(parameter3);
+
+
+            SqlParameter parameter4 = new SqlParameter();
+            parameter4.ParameterName = "@Naziv";
+            parameter4.SqlDbType = SqlDbType.NVarChar;
+            parameter4.Size = 50;
+            parameter4.Direction = ParameterDirection.Input;
+            parameter4.Value = Naziv;
+            myCommand.Parameters.Add(parameter4);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

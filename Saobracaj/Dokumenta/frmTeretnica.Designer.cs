@@ -35,7 +35,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsPrvi = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
@@ -45,6 +44,7 @@
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtNapomena = new System.Windows.Forms.TextBox();
             this.button10 = new System.Windows.Forms.Button();
@@ -150,6 +150,12 @@
             this.button5 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
+            this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.reportViewer8 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.toolStripButton12 = new System.Windows.Forms.ToolStripButton();
+            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.reportViewer9 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -172,6 +178,8 @@
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage8.SuspendLayout();
+            this.tabPage9.SuspendLayout();
+            this.tabPage10.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -192,6 +200,8 @@
             this.toolStripButton6,
             this.toolStripButton7,
             this.toolStripButton9,
+            this.toolStripButton11,
+            this.toolStripButton12,
             this.toolStripButton10,
             this.toolStripButton8});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -244,16 +254,6 @@
             this.tsPrvi.Size = new System.Drawing.Size(65, 24);
             this.tsPrvi.Text = "Osveži";
             this.tsPrvi.Click += new System.EventHandler(this.tsPrvi_Click);
-            // 
-            // toolStripButton8
-            // 
-            this.toolStripButton8.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton8.Image = global::Saobracaj.Properties.Resources.kontejners;
-            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(168, 24);
-            this.toolStripButton8.Text = "Uvoz teretnice iz train lista";
-            this.toolStripButton8.Click += new System.EventHandler(this.toolStripButton8_Click);
             // 
             // toolStripButton3
             // 
@@ -327,8 +327,9 @@
             // 
             // toolStripButton9
             // 
+            this.toolStripButton9.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton9.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton9.ForeColor = System.Drawing.Color.Yellow;
             this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
             this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton9.Name = "toolStripButton9";
@@ -338,14 +339,25 @@
             // 
             // toolStripButton10
             // 
+            this.toolStripButton10.BackColor = System.Drawing.Color.DodgerBlue;
             this.toolStripButton10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton10.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton10.ForeColor = System.Drawing.Color.Yellow;
             this.toolStripButton10.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton10.Image")));
             this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton10.Name = "toolStripButton10";
             this.toolStripButton10.Size = new System.Drawing.Size(56, 24);
             this.toolStripButton10.Text = "Kol-65-2";
             this.toolStripButton10.Click += new System.EventHandler(this.toolStripButton10_Click);
+            // 
+            // toolStripButton8
+            // 
+            this.toolStripButton8.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton8.Image = global::Saobracaj.Properties.Resources.kontejners;
+            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton8.Name = "toolStripButton8";
+            this.toolStripButton8.Size = new System.Drawing.Size(168, 24);
+            this.toolStripButton8.Text = "Uvoz teretnice iz train lista";
+            this.toolStripButton8.Click += new System.EventHandler(this.toolStripButton8_Click);
             // 
             // panel1
             // 
@@ -1264,6 +1276,8 @@
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage8);
+            this.tabControl1.Controls.Add(this.tabPage9);
+            this.tabControl1.Controls.Add(this.tabPage10);
             this.tabControl1.Location = new System.Drawing.Point(28, 208);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -1491,6 +1505,72 @@
             this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
+            // toolStripButton11
+            // 
+            this.toolStripButton11.BackColor = System.Drawing.Color.DodgerBlue;
+            this.toolStripButton11.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton11.ForeColor = System.Drawing.Color.Yellow;
+            this.toolStripButton11.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton11.Image")));
+            this.toolStripButton11.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton11.Name = "toolStripButton11";
+            this.toolStripButton11.Size = new System.Drawing.Size(58, 24);
+            this.toolStripButton11.Text = "K-200 - 3";
+            this.toolStripButton11.Click += new System.EventHandler(this.toolStripButton11_Click);
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Controls.Add(this.reportViewer8);
+            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Size = new System.Drawing.Size(1336, 254);
+            this.tabPage9.TabIndex = 8;
+            this.tabPage9.Text = "K200TA3";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // reportViewer8
+            // 
+            this.reportViewer8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.reportViewer8.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Teretnica.rdlc";
+            this.reportViewer8.Location = new System.Drawing.Point(18, 5);
+            this.reportViewer8.Name = "reportViewer8";
+            this.reportViewer8.Size = new System.Drawing.Size(1300, 244);
+            this.reportViewer8.TabIndex = 4;
+            // 
+            // toolStripButton12
+            // 
+            this.toolStripButton12.BackColor = System.Drawing.Color.DodgerBlue;
+            this.toolStripButton12.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton12.ForeColor = System.Drawing.Color.Yellow;
+            this.toolStripButton12.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton12.Image")));
+            this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton12.Name = "toolStripButton12";
+            this.toolStripButton12.Size = new System.Drawing.Size(58, 24);
+            this.toolStripButton12.Text = "K-200 - 4";
+            this.toolStripButton12.Click += new System.EventHandler(this.toolStripButton12_Click);
+            // 
+            // tabPage10
+            // 
+            this.tabPage10.Controls.Add(this.reportViewer9);
+            this.tabPage10.Location = new System.Drawing.Point(4, 22);
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.Size = new System.Drawing.Size(1336, 254);
+            this.tabPage10.TabIndex = 9;
+            this.tabPage10.Text = "K200TA-4";
+            this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // reportViewer9
+            // 
+            this.reportViewer9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.reportViewer9.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Teretnica.rdlc";
+            this.reportViewer9.Location = new System.Drawing.Point(3, 3);
+            this.reportViewer9.Name = "reportViewer9";
+            this.reportViewer9.Size = new System.Drawing.Size(1330, 244);
+            this.reportViewer9.TabIndex = 5;
+            // 
             // frmTeretnica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1535,6 +1615,8 @@
             this.tabPage6.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
             this.tabPage8.ResumeLayout(false);
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage10.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1663,5 +1745,11 @@
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer6;
         private System.Windows.Forms.TabPage tabPage8;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer7;
+        private System.Windows.Forms.ToolStripButton toolStripButton11;
+        private System.Windows.Forms.TabPage tabPage9;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer8;
+        private System.Windows.Forms.ToolStripButton toolStripButton12;
+        private System.Windows.Forms.TabPage tabPage10;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer9;
     }
 }

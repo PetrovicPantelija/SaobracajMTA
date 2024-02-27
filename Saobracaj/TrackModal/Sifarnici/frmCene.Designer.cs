@@ -48,6 +48,7 @@
             this.tsNapred = new System.Windows.Forms.ToolStripButton();
             this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.cboVrstaManipulacije = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -71,7 +72,6 @@
             this.txtOznakaManipulacije = new System.Windows.Forms.TextBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.txtCena)).BeginInit();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -197,7 +197,7 @@
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(911, 33);
+            this.toolStrip1.Size = new System.Drawing.Size(878, 33);
             this.toolStrip1.TabIndex = 106;
             this.toolStrip1.Text = "Štampaj izveštaj";
             // 
@@ -286,6 +286,17 @@
             this.toolStripButton2.Text = "Kopiranje cenovnika forma";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(123, 30);
+            this.toolStripButton1.Text = "Kopiraj po komitentu";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // cboVrstaManipulacije
             // 
             this.cboVrstaManipulacije.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
@@ -315,10 +326,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 243);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 254);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(889, 440);
+            this.dataGridView1.Size = new System.Drawing.Size(851, 429);
             this.dataGridView1.TabIndex = 109;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -370,7 +381,7 @@
             this.label5.ForeColor = System.Drawing.Color.Maroon;
             this.label5.Location = new System.Drawing.Point(676, 140);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 16);
+            this.label5.Size = new System.Drawing.Size(34, 16);
             this.label5.TabIndex = 113;
             this.label5.Text = "EUR";
             // 
@@ -381,7 +392,7 @@
             this.label7.ForeColor = System.Drawing.Color.Maroon;
             this.label7.Location = new System.Drawing.Point(676, 170);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(33, 16);
+            this.label7.Size = new System.Drawing.Size(34, 16);
             this.label7.TabIndex = 114;
             this.label7.Text = "EUR";
             // 
@@ -411,7 +422,7 @@
             this.cboPostupakSaRobom.FormattingEnabled = true;
             this.cboPostupakSaRobom.Location = new System.Drawing.Point(136, 213);
             this.cboPostupakSaRobom.Name = "cboPostupakSaRobom";
-            this.cboPostupakSaRobom.Size = new System.Drawing.Size(210, 24);
+            this.cboPostupakSaRobom.Size = new System.Drawing.Size(209, 24);
             this.cboPostupakSaRobom.TabIndex = 117;
             this.cboPostupakSaRobom.Visible = false;
             // 
@@ -557,29 +568,18 @@
             this.button5.ForeColor = System.Drawing.Color.White;
             this.button5.Location = new System.Drawing.Point(350, 171);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(34, 25);
+            this.button5.Size = new System.Drawing.Size(34, 23);
             this.button5.TabIndex = 130;
             this.button5.Text = "*";
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(123, 30);
-            this.toolStripButton1.Text = "Kopiraj po komitentu";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // frmCene
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(911, 695);
+            this.ClientSize = new System.Drawing.Size(878, 695);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.txtOznakaManipulacije);

@@ -219,15 +219,15 @@ namespace Testiranje.Sifarnici
 
         private void RefreshDataGridPoCenovniku()
         {
-            var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik] , VrstePostupakaUvoz.Naziv, p2.PaNaziv as UvoznikNazivCenovnika " +
-      " , Razred      , OznakaManipulacije      , OrgJed FROM [dbo].[Cene] " +
+            var select = " SELECT Cene.[ID] as ID ,[TipCenovnika].Naziv as TipCenovnika,[Partnerji].PaNaziv as Partner,Cene.[Cena],Cena2,[VrstaManipulacije].Naziv as VrstaManipulacije,Cene.[Datum],Cene.[Korisnik] , VrstePostupakaUvoz.Naziv, p2.PaNaziv as UvoznikNazivCenovnika " +
+      " , Razred      , OznakaManipulacije      , Cene.OrgJed FROM [dbo].[Cene] " +
             " inner join TipCenovnika on TipCenovnika.ID = Cene.TipCenovnika " +
             " inner join Partnerji on Partnerji.PaSifra = Cene.Komitent " +
             " inner join Partnerji p2 on p2.PaSifra = Cene.Uvoznik " +
              " inner join VrstePostupakaUvoz  on VrstePostupakaUvoz.ID = Cene.PostupakSaRobom " +
             " inner join VrstaManipulacije on VrstaManipulacije.Id = Cene.VrstaManipulacije " +
             " where Cene.TipCenovnika = " + cboTipCenovnika.SelectedValue + 
-            " And Komitent = 0 and Uvoznik = 0 order by ID desc";
+            " order by ID desc";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -303,7 +303,7 @@ namespace Testiranje.Sifarnici
             " inner join Partnerji on Partnerji.PaSifra = Cene.Komitent " +
              " inner join Partnerji p2 on p2.PaSifra = Cene.Uvoznik " +
              " inner join VrstePostupakaUvoz  on VrstePostupakaUvoz.ID = Cene.PostupakSaRobom " +
-            " inner join VrstaManipulacije on VrstaManipulacije.Id = Cene.VrstaManipulacije where Cene.Uvoznik = 0 and Cene.Komitent = " + Convert.ToInt32(cboKomitent.SelectedValue) +
+            " inner join VrstaManipulacije on VrstaManipulacije.Id = Cene.VrstaManipulacije where  Cene.Komitent = " + Convert.ToInt32(cboKomitent.SelectedValue) +
             "order by Cene.ID desc";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -746,7 +746,9 @@ namespace Testiranje.Sifarnici
 
         private void button2_Click(object sender, EventArgs e)
         {
-            RefreshDataGridPoCenovniku();
+            RefreshDataGrid();
+
+           // RefreshDataGridPoCenovniku();
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)

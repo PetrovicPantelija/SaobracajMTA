@@ -58,7 +58,7 @@ namespace Saobracaj.Dokumenta
             {
                 string configvalue1 = ConfigurationManager.AppSettings["ip"];
                 string configvalue2 = ConfigurationManager.AppSettings["server"];
-                configvalue2 = "192.168.100.2";
+                configvalue2 = configvalue1;
                 txtPutanja.Text = txtPutanja.Text.Replace(configvalue1, configvalue2);
                 System.Diagnostics.Process.Start(txtPutanja.Text);
             }
@@ -129,7 +129,7 @@ namespace Saobracaj.Dokumenta
             {
              * */
             string configvalue1 = ConfigurationManager.AppSettings["ip"];
-            targetPath = @"\\" + configvalue1 + "\\Otprema\\" + FolderDestinacije;
+            targetPath = @"\\" + configvalue1 + "\\OtpremaDok\\" + FolderDestinacije;
             // }
 
             string sourceFile = putanja;

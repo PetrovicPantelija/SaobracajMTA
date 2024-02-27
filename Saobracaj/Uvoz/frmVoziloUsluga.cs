@@ -37,19 +37,26 @@ namespace Saobracaj.Uvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT  ID, VoziloOznaka, VoziloDatum, VoziloVozac, BrojTelefona, Napomena from UvozKonacnaZaglavlje " +
+            SqlCommand cmd = new SqlCommand("SELECT [ID]      ,[RegBr]      ,[Datum]      ,[Vozac] " +
+     " ,[BrojTelefona]      ,[Napomena]      ,[Modul]      ,[IDUsluge] " +
+ " FROM [dbo].[VoziloUsluga]  " +
             "  where ID=" + txtID.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
                 txtID.Text = dr["ID"].ToString();
-                txtVozilo.Text = dr["VoziloOznaka"].ToString();
-                dtpDatum.Value = Convert.ToDateTime(dr["VoziloDatum"].ToString());
-                txtNapomena.Text = dr["VoziloOznaka"].ToString();
-                txtVozac.Text = dr["VoziloOznaka"].ToString();
-                txtBrojTelefona.Text = dr["VoziloOznaka"].ToString();
+                txtVozilo.Text = dr["RegBr"].ToString();
+                dtpDatum.Value = Convert.ToDateTime(dr["Datum"].ToString());
+                txtNapomena.Text = dr["Napomena"].ToString();
+                txtVozac.Text = dr["Vozac"].ToString();
+                txtBrojTelefona.Text = dr["BrojTelefona"].ToString();
 
+                if (dr["ID"].ToString() == "0")
+                {
+                    chkUvoz.Checked = true;
+                }
+                txtUsluge.Text = dr["IDUsluge"].ToString();
             }
             con.Close();
            
@@ -70,18 +77,37 @@ namespace Saobracaj.Uvoz
 
         private void tsSave_Click(object sender, EventArgs e)
         {
-            InsertUvozKonacnaZaglavlje ins = new InsertUvozKonacnaZaglavlje();
+            int Modultmp = 0;
+            if (chkUvoz.Checked == true)
+                Modultmp = 0;
+            else
+            {
+                Modultmp = 1;
+            }
+            InsertVoziloUsluga ins = new InsertVoziloUsluga();
             if (status == true)
             {
-                ins.InsUvozKonacnaZaglavlje(0, txtNapomena.Text, 0, txtVozilo.Text, Convert.ToDateTime(dtpDatum.Value), txtVozac.Text, txtBrojTelefona.Text, 0);
+                ins.InsVoziloUsluga(txtVozilo.Text,Convert.ToDateTime(dtpDatum.Value), txtVozac.Text,txtBrojTelefona.Text,txtNapomena.Text, Modultmp, Convert.ToInt32(txtUsluge.Text));
             }
             else
             {
-                ins.UpdUvozKonacnaZaglavlje(Convert.ToInt32(txtID.Text.ToString()), 0, txtNapomena.Text, 0, txtVozilo.Text, Convert.ToDateTime(dtpDatum.Value), txtVozac.Text, txtBrojTelefona.Text);
+                ins.UpdVoziloUsliga(Convert.ToInt32(txtID.Text.ToString()), txtVozilo.Text, Convert.ToDateTime(dtpDatum.Value), txtVozac.Text, txtBrojTelefona.Text, txtNapomena.Text, Modultmp,  Convert.ToInt32(txtUsluge.Text));
             }
             //  FillGV();
             tsNew.Enabled = true;
             status = false;
+        }
+
+        private void tsDelete_Click(object sender, EventArgs e)
+        {
+            InsertVoziloUsluga del = new InsertVoziloUsluga();
+            del.DelVoziloUsluga(Convert.ToInt32(txtID.Text));
+            txtID.Text = "";
+            txtVozilo.Text = "";
+            txtVozac.Text = "";
+            txtBrojTelefona.Text = "";
+            txtNapomena.Text = "";
+            txtUsluge.Text = "";
         }
     }
 }

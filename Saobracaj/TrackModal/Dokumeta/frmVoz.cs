@@ -17,7 +17,7 @@ using System.Net.Mail;
 
 namespace Testiranje.Dokumeta
 {
-    public partial class frmVoz : Form
+    public partial class frmVoz : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmVoz";
         public bool Pravo;
@@ -36,6 +36,9 @@ namespace Testiranje.Dokumeta
         public frmVoz()
         {
             InitializeComponent();
+
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+
             KorisnikCene = "Panta";
             IdGrupe();
             IdForme();
@@ -46,6 +49,8 @@ namespace Testiranje.Dokumeta
         public frmVoz(string Korisnik)
         {
             InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+
             KorisnikCene = Korisnik;
             KorisnikCene = "Panta";
             RefreshDataGrid();
@@ -71,6 +76,8 @@ namespace Testiranje.Dokumeta
                     }
                 default:
                     {
+                        toolStripButton1.Visible = false;
+                        toolStripButton2.Visible = false;
                         panelLeget.Visible = false;
                         panelLegetOperater.Visible = false;
                         panel1.Visible = true;

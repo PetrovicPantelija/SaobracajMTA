@@ -59,7 +59,7 @@ namespace Saobracaj.Dokumenta
             {
                 string configvalue1 = ConfigurationManager.AppSettings["ip"];
                 string configvalue2 = ConfigurationManager.AppSettings["server"];
-                configvalue2 = "192.168.100.2";
+                configvalue2 = configvalue1;
                 txtPutanja.Text = txtPutanja.Text.Replace(configvalue1, configvalue2);
                 System.Diagnostics.Process.Start(txtPutanja.Text);
             }
@@ -142,7 +142,7 @@ namespace Saobracaj.Dokumenta
             {
              * */
             string configvalue1 = ConfigurationManager.AppSettings["ip"];
-            targetPath = @"\\" + configvalue1 + "\\Prijem\\" + FolderDestinacije;
+            targetPath = @"\\" + configvalue1 + "\\PrijemnaDok\\" + FolderDestinacije;
            // }
 
             string sourceFile = putanja;
@@ -237,6 +237,11 @@ namespace Saobracaj.Dokumenta
         }
 
         private void frmDokumentaPrijemKontejneraVoz_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsSave_Click(object sender, EventArgs e)
         {
 
         }

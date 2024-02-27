@@ -192,18 +192,18 @@ namespace Saobracaj.Dokumeta
         private void RefreshDataGrid()
         {
             var select = "  SELECT OtpremaKontejneraVozStavke.ID, OtpremaKontejneraVozStavke.RB, OtpremaKontejneraVozStavke.IDNadredjenog,  OtpremaKontejneraVozStavke.BrojKontejnera, OtpremaKontejneraVozStavke.Granica, "
-                        + " OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, Komitenti.Naziv AS Posiljalac, Komitenti_1.Naziv AS primalac, "
+                        + " OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, Partnerji.Naziv AS Posiljalac, Komitenti_1.Naziv AS primalac, "
                         + " Komitenti_2.Naziv AS Vlasnikkontejnera, " +
                           " Komitenti_3.Naziv AS Organizator, " +
                         "  TipKontenjera.Naziv AS TipKontejnera, VrstaRobe.Naziv AS VrstaRobe, OtpremaKontejneraVozStavke.Buking , OtpremaKontejneraVozStavke.StatusKontejnera, "
                         + " OtpremaKontejneraVozStavke.BrojPlombe, OtpremaKontejneraVozStavke.BrojPlombe2, OtpremaKontejneraVozStavke.PlaniraniLager,"
                          + " OtpremaKontejneraVozStavke.BrojVagona, "
                         + " OtpremaKontejneraVozStavke.Datum, OtpremaKontejneraVozStavke.Korisnik, OtpremaKontejneraVozStavke.NapomenaS "
-                        + "FROM  Komitenti INNER JOIN "
-                        + " OtpremaKontejneraVozStavke ON Komitenti.ID = OtpremaKontejneraVozStavke.Posiljalac INNER JOIN "
-                        + " Komitenti AS Komitenti_1 ON OtpremaKontejneraVozStavke.Primalac = Komitenti_1.ID INNER JOIN "
-                        + " Komitenti AS Komitenti_2 ON OtpremaKontejneraVozStavke.VlasnikKontejnera = Komitenti_2.ID INNER JOIN "
-                          + " Komitenti AS Komitenti_3 ON OtpremaKontejneraVozStavke.Organizator = Komitenti_3.ID INNER JOIN "
+                        + "FROM  Partnerji INNER JOIN "
+                        + " OtpremaKontejneraVozStavke ON Partnerji.PaSifra = OtpremaKontejneraVozStavke.Posiljalac INNER JOIN "
+                        + " Partnerji AS Komitenti_1 ON OtpremaKontejneraVozStavke.Primalac = Komitenti_1.PaSifra INNER JOIN "
+                        + " PArtnerji AS Komitenti_2 ON OtpremaKontejneraVozStavke.VlasnikKontejnera = Komitenti_2.PaSifra INNER JOIN "
+                          + " PArtnerji AS Komitenti_3 ON OtpremaKontejneraVozStavke.Organizator = Komitenti_3.PaSifra INNER JOIN "
                          + "TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID INNER JOIN "
                         + " VrstaRobe ON OtpremaKontejneraVozStavke.VrstaRobe = VrstaRobe.ID "
                           + " where IdNadredjenog = " + txtSifra.Text + " order by RB";
@@ -328,19 +328,19 @@ namespace Saobracaj.Dokumeta
         {
 
             var select = "  SELECT OtpremaKontejneraVozStavke.ID, OtpremaKontejneraVozStavke.RB, OtpremaKontejneraVozStavke.IDNadredjenog,  OtpremaKontejneraVozStavke.BrojKontejnera, OtpremaKontejneraVozStavke.BrojVagona, OtpremaKontejneraVozStavke.Granica, "
-              + " OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, Komitenti.Naziv AS Posiljalac, Komitenti_1.Naziv AS primalac, "
-              + " Komitenti_2.Naziv AS Vlasnikkontejnera, " +
-                " Komitenti_3.Naziv AS Organizator, " +
-              "  TipKontenjera.Naziv AS TipKontejnera, VrstaRobe.Naziv AS VrstaRobe, OtpremaKontejneraVozStavke.Buking , OtpremaKontejneraVozStavke.StatusKontejnera, "
+              + " OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, PArtnerji.PaNaziv AS Posiljalac, Komitenti_1.PaNaziv AS primalac, "
+              + " Komitenti_2.PaNaziv AS Vlasnikkontejnera, " +
+                " Komitenti_3.PANaziv AS Organizator, " +
+              "  TipKontenjera.Naziv AS TipKontejnera, NHM.Naziv AS VrstaRobe, OtpremaKontejneraVozStavke.Buking , OtpremaKontejneraVozStavke.StatusKontejnera, "
               + " OtpremaKontejneraVozStavke.BrojPlombe, OtpremaKontejneraVozStavke.BrojPlombe2, OtpremaKontejneraVozStavke.PlaniraniLager,"
               + " OtpremaKontejneraVozStavke.Datum, OtpremaKontejneraVozStavke.Korisnik, OtpremaKontejneraVozStavke.NapomenaS "
-             + "FROM  Komitenti INNER JOIN "
-                      + " OtpremaKontejneraVozStavke ON Komitenti.ID = OtpremaKontejneraVozStavke.Posiljalac INNER JOIN "
-                      + " Komitenti AS Komitenti_1 ON OtpremaKontejneraVozStavke.Primalac = Komitenti_1.ID INNER JOIN "
-                      + " Komitenti AS Komitenti_2 ON OtpremaKontejneraVozStavke.VlasnikKontejnera = Komitenti_2.ID INNER JOIN "
-                        + " Komitenti AS Komitenti_3 ON OtpremaKontejneraVozStavke.Organizator = Komitenti_3.ID INNER JOIN "
+             + "FROM  PArtnerji INNER JOIN "
+                      + " OtpremaKontejneraVozStavke ON PArtnerji.PaSifra = OtpremaKontejneraVozStavke.Posiljalac INNER JOIN "
+                      + " PArtnerji AS Komitenti_1 ON OtpremaKontejneraVozStavke.Primalac = Komitenti_1.PaSifra INNER JOIN "
+                      + " Partnerji AS Komitenti_2 ON OtpremaKontejneraVozStavke.VlasnikKontejnera = Komitenti_2.PaSifra INNER JOIN "
+                        + " Partnerji AS Komitenti_3 ON OtpremaKontejneraVozStavke.Organizator = Komitenti_3.PaSifra INNER JOIN "
                        + "TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID INNER JOIN "
-                      + " VrstaRobe ON OtpremaKontejneraVozStavke.VrstaRobe = VrstaRobe.ID "
+                      + " NHM ON OtpremaKontejneraVozStavke.VrstaRobe = NHM.ID "
                         + " where IdNadredjenog = " + txtSifra.Text + " order by RB";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -880,7 +880,7 @@ namespace Saobracaj.Dokumeta
 
         private void frmOtpremaKontejnera_Load(object sender, System.EventArgs e)
         {
-            var select = " Select Distinct ID, (NKM + '-' + Naziv) as NKM  From VrstaRobe";
+            var select = " Select Distinct ID, (Broj + '-' + Naziv) as NHM  From NHM";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -890,11 +890,11 @@ namespace Saobracaj.Dokumeta
             var ds = new DataSet();
             dataAdapter.Fill(ds);
             cboVrstaRobe.DataSource = ds.Tables[0];
-            cboVrstaRobe.DisplayMember = "NKM";
+            cboVrstaRobe.DisplayMember = "NHM";
             cboVrstaRobe.ValueMember = "ID";
 
 
-            var select1 = " Select Distinct ID, Naziv From Komitenti where Posiljalac = 1 order by Naziv";
+            var select1 = " Select Distinct PaSifra, PaNaziv From Partnerji where Posiljalac = 1 order by PaNaziv";
             var s_connection1 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection1 = new SqlConnection(s_connection1);
             var c1 = new SqlConnection(s_connection1);
@@ -904,10 +904,10 @@ namespace Saobracaj.Dokumeta
             var ds1 = new DataSet();
             dataAdapter1.Fill(ds1);
             cboPosiljalac.DataSource = ds1.Tables[0];
-            cboPosiljalac.DisplayMember = "Naziv";
-            cboPosiljalac.ValueMember = "ID";
+            cboPosiljalac.DisplayMember = "PaNaziv";
+            cboPosiljalac.ValueMember = "PaSifra";
 
-            var select2 = " Select Distinct ID, Naziv From Komitenti where Primalac = 1 order by Naziv";
+            var select2 = " Select Distinct PaSifra, PaNaziv From Partnerji where Primalac = 1 order by PaNaziv";
             var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
@@ -917,10 +917,10 @@ namespace Saobracaj.Dokumeta
             var ds2 = new DataSet();
             dataAdapter2.Fill(ds2);
             cboPrimalac.DataSource = ds2.Tables[0];
-            cboPrimalac.DisplayMember = "Naziv";
-            cboPrimalac.ValueMember = "ID";
+            cboPrimalac.DisplayMember = "PaNaziv";
+            cboPrimalac.ValueMember = "PaSifra";
 
-            var select3 = " Select Distinct ID, Naziv From Komitenti  where Vlasnik = 1 order by Naziv";
+            var select3 = " Select Distinct PaSifra, PaNaziv From Partnerji where Vlasnik = 1 order by PaNaziv";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
@@ -930,8 +930,8 @@ namespace Saobracaj.Dokumeta
             var ds3 = new DataSet();
             dataAdapter3.Fill(ds3);
             cboVlasnikKontejnera.DataSource = ds3.Tables[0];
-            cboVlasnikKontejnera.DisplayMember = "Naziv";
-            cboVlasnikKontejnera.ValueMember = "ID";
+            cboVlasnikKontejnera.DisplayMember = "PaNaziv";
+            cboVlasnikKontejnera.ValueMember = "PaSifra";
 
 
             var select4 = " Select Distinct ID, Naziv From TipKontenjera order by Naziv";
@@ -986,7 +986,7 @@ namespace Saobracaj.Dokumeta
             cboBukingOtpreme.DisplayMember = "IdVoza";
             cboBukingOtpreme.ValueMember = "ID";
             */
-            var select9 = " Select Distinct ID, Naziv From Komitenti where Organizator = 1 order by Naziv";
+            var select9 = " Select Distinct PaSifra, PaNaziv From Partnerji where Organizator = 1 order by PaNaziv";
             var s_connection9 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection9 = new SqlConnection(s_connection9);
             var c9 = new SqlConnection(s_connection9);
@@ -996,8 +996,8 @@ namespace Saobracaj.Dokumeta
             var ds9 = new DataSet();
             dataAdapter9.Fill(ds9);
             cboOrganizator.DataSource = ds9.Tables[0];
-            cboOrganizator.DisplayMember = "Naziv";
-            cboOrganizator.ValueMember = "ID";
+            cboOrganizator.DisplayMember = "PaNaziv";
+            cboOrganizator.ValueMember = "PaSifra";
 
             var select10 = " Select Distinct ID, Naziv  From PredefinisanePoruke";
             var s_connection10 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -1298,7 +1298,7 @@ namespace Saobracaj.Dokumeta
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand(" SELECT email from Komitenti " +
+            SqlCommand cmd = new SqlCommand(" SELECT email from PArtnerji " +
              " where Id = " + Convert.ToInt32(cboPrimalac.SelectedValue), con);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -1321,7 +1321,7 @@ namespace Saobracaj.Dokumeta
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand(" SELECT email from Komitenti " +
+            SqlCommand cmd = new SqlCommand(" SELECT email from Partnerji " +
              " where Id = " + Convert.ToInt32(cboPosiljalac.SelectedValue), con);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -1344,7 +1344,7 @@ namespace Saobracaj.Dokumeta
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand(" SELECT email from Komitenti " +
+            SqlCommand cmd = new SqlCommand(" SELECT email from Partnerji " +
              " where Id = " + Convert.ToInt32(cboOrganizator.SelectedValue), con);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -1367,7 +1367,7 @@ namespace Saobracaj.Dokumeta
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand(" SELECT email from Komitenti " +
+            SqlCommand cmd = new SqlCommand(" SELECT email from Partnerji " +
              " where Id = " + Convert.ToInt32(cboVlasnikKontejnera.SelectedValue), con);
 
             SqlDataReader dr = cmd.ExecuteReader();

@@ -217,7 +217,7 @@ namespace Saobracaj.Dokumenta
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(s_connection);
             con.Open();
-            SqlCommand cmd = new SqlCommand("select IDRadnogNaloga, IDTrase, SMSifra, Komentar, Vucna, StanicaOd, StanicaDo, Vreme from RadniNalogLokNaTrasi where IDRadnogNaloga=" + txtSifraRN.Text + " and IDTrase = " + Convert.ToInt32(cboTrase.SelectedValue) + "and SmSifra = "  + lokomotiva, con);
+            SqlCommand cmd = new SqlCommand("select IDRadnogNaloga, IDTrase, SMSifra, Komentar, Vucna, StanicaOd, StanicaDo, Vreme from RadniNalogLokNaTrasi where IDRadnogNaloga=" + txtSifraRN.Text + " and IDTrase = " + Convert.ToInt32(cboTrase.SelectedValue) + "and SmSifra = '"  + lokomotiva.Trim() + "'", con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())

@@ -82,6 +82,18 @@ namespace Saobracaj
                 toolStripButton264.Visible = false;
                 toolStripButton128.Visible = false;
                 toolStripButton194.Text = "Mesto utovara/istovara";
+
+                toolStripButton350.Visible = false;
+                toolStripButton350.Visible = false;
+                toolStripButton348.Visible = false;
+                toolStripButton347.Visible = false;
+                toolStripButton345.Visible = false;
+                toolStripButton342.Visible = false;
+                toolStripButton341.Visible = false;
+                toolStripButton346.Visible = false;
+                toolStripButton336.Visible = false;
+                toolStripButton337.Visible = false;
+                toolStripButton351.Visible = false;
             }
 
         }

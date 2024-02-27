@@ -243,8 +243,8 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(129, 24);
-            this.toolStripButton2.Text = "Otvaranje plana izvoza";
+            this.toolStripButton2.Size = new System.Drawing.Size(158, 24);
+            this.toolStripButton2.Text = "OTVARANJE PLANA IZVOZA";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // txtBrVoza
@@ -386,7 +386,7 @@
             // txtMaksBrojKola
             // 
             this.txtMaksBrojKola.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtMaksBrojKola.Location = new System.Drawing.Point(137, 326);
+            this.txtMaksBrojKola.Location = new System.Drawing.Point(134, 298);
             this.txtMaksBrojKola.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaksBrojKola.Maximum = new decimal(new int[] {
             1000000,
@@ -401,7 +401,7 @@
             // txtDuzina
             // 
             this.txtDuzina.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtDuzina.Location = new System.Drawing.Point(137, 294);
+            this.txtDuzina.Location = new System.Drawing.Point(134, 266);
             this.txtDuzina.Margin = new System.Windows.Forms.Padding(4);
             this.txtDuzina.Maximum = new decimal(new int[] {
             1000000,
@@ -417,7 +417,7 @@
             // 
             this.txtMaksBruto.DecimalPlaces = 2;
             this.txtMaksBruto.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtMaksBruto.Location = new System.Drawing.Point(137, 263);
+            this.txtMaksBruto.Location = new System.Drawing.Point(134, 235);
             this.txtMaksBruto.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaksBruto.Maximum = new decimal(new int[] {
             1000000,
@@ -434,7 +434,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(22, 328);
+            this.label14.Location = new System.Drawing.Point(19, 300);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(66, 15);
@@ -446,7 +446,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(23, 296);
+            this.label11.Location = new System.Drawing.Point(20, 268);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(82, 15);
@@ -458,7 +458,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(22, 265);
+            this.label13.Location = new System.Drawing.Point(19, 237);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(108, 15);
@@ -555,11 +555,11 @@
             // txtNapomena
             // 
             this.txtNapomena.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtNapomena.Location = new System.Drawing.Point(268, 367);
+            this.txtNapomena.Location = new System.Drawing.Point(268, 347);
             this.txtNapomena.Margin = new System.Windows.Forms.Padding(4);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
-            this.txtNapomena.Size = new System.Drawing.Size(244, 154);
+            this.txtNapomena.Size = new System.Drawing.Size(244, 136);
             this.txtNapomena.TabIndex = 110;
             // 
             // label28
@@ -567,7 +567,7 @@
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label28.ForeColor = System.Drawing.Color.Black;
-            this.label28.Location = new System.Drawing.Point(265, 347);
+            this.label28.Location = new System.Drawing.Point(265, 327);
             this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(71, 16);
@@ -582,11 +582,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.LightGray;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 7);
+            this.dataGridView1.Location = new System.Drawing.Point(13, 7);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1159, 160);
+            this.dataGridView1.Size = new System.Drawing.Size(1146, 160);
             this.dataGridView1.TabIndex = 137;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged_1);
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -655,7 +655,7 @@
             this.chkDolazeci.AutoSize = true;
             this.chkDolazeci.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.chkDolazeci.ForeColor = System.Drawing.Color.Black;
-            this.chkDolazeci.Location = new System.Drawing.Point(15, 236);
+            this.chkDolazeci.Location = new System.Drawing.Point(255, 236);
             this.chkDolazeci.Margin = new System.Windows.Forms.Padding(4);
             this.chkDolazeci.Name = "chkDolazeci";
             this.chkDolazeci.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -1120,7 +1120,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(11, 552);
+            this.tabControl1.Location = new System.Drawing.Point(5, 501);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1174, 202);
@@ -1210,7 +1210,7 @@
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(773, 156);
+            this.dataGridView2.Size = new System.Drawing.Size(757, 156);
             this.dataGridView2.TabIndex = 138;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
@@ -1292,7 +1292,7 @@
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label31.ForeColor = System.Drawing.Color.Black;
-            this.label31.Location = new System.Drawing.Point(265, 296);
+            this.label31.Location = new System.Drawing.Point(265, 270);
             this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(58, 15);
@@ -1303,7 +1303,7 @@
             // 
             this.cboOperater.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboOperater.FormattingEnabled = true;
-            this.cboOperater.Location = new System.Drawing.Point(265, 319);
+            this.cboOperater.Location = new System.Drawing.Point(265, 293);
             this.cboOperater.Margin = new System.Windows.Forms.Padding(4);
             this.cboOperater.Name = "cboOperater";
             this.cboOperater.Size = new System.Drawing.Size(247, 24);
@@ -1405,7 +1405,7 @@
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label36.ForeColor = System.Drawing.Color.Black;
-            this.label36.Location = new System.Drawing.Point(199, 23);
+            this.label36.Location = new System.Drawing.Point(196, 5);
             this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(218, 15);
@@ -1417,7 +1417,7 @@
             this.dtpPLFormiranja.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPLFormiranja.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpPLFormiranja.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPLFormiranja.Location = new System.Drawing.Point(202, 43);
+            this.dtpPLFormiranja.Location = new System.Drawing.Point(199, 25);
             this.dtpPLFormiranja.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPLFormiranja.Name = "dtpPLFormiranja";
             this.dtpPLFormiranja.ShowUpDown = true;
@@ -1429,7 +1429,7 @@
             // 
             this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label37.ForeColor = System.Drawing.Color.Black;
-            this.label37.Location = new System.Drawing.Point(203, 66);
+            this.label37.Location = new System.Drawing.Point(200, 48);
             this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(152, 38);
@@ -1441,7 +1441,7 @@
             this.dtpIzvlacenjeSaTerminala.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpIzvlacenjeSaTerminala.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpIzvlacenjeSaTerminala.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpIzvlacenjeSaTerminala.Location = new System.Drawing.Point(206, 103);
+            this.dtpIzvlacenjeSaTerminala.Location = new System.Drawing.Point(203, 85);
             this.dtpIzvlacenjeSaTerminala.Margin = new System.Windows.Forms.Padding(4);
             this.dtpIzvlacenjeSaTerminala.Name = "dtpIzvlacenjeSaTerminala";
             this.dtpIzvlacenjeSaTerminala.ShowUpDown = true;
@@ -1454,7 +1454,7 @@
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label38.ForeColor = System.Drawing.Color.Black;
-            this.label38.Location = new System.Drawing.Point(205, 129);
+            this.label38.Location = new System.Drawing.Point(202, 111);
             this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(191, 15);
@@ -1466,7 +1466,7 @@
             this.dtpPreuzimanjeSM.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPreuzimanjeSM.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpPreuzimanjeSM.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPreuzimanjeSM.Location = new System.Drawing.Point(206, 148);
+            this.dtpPreuzimanjeSM.Location = new System.Drawing.Point(203, 130);
             this.dtpPreuzimanjeSM.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPreuzimanjeSM.Name = "dtpPreuzimanjeSM";
             this.dtpPreuzimanjeSM.ShowUpDown = true;
@@ -1479,7 +1479,7 @@
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label39.ForeColor = System.Drawing.Color.Black;
-            this.label39.Location = new System.Drawing.Point(425, 23);
+            this.label39.Location = new System.Drawing.Point(422, 5);
             this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(164, 15);
@@ -1491,7 +1491,7 @@
             this.dtpPolazakSid.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPolazakSid.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpPolazakSid.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPolazakSid.Location = new System.Drawing.Point(427, 42);
+            this.dtpPolazakSid.Location = new System.Drawing.Point(424, 24);
             this.dtpPolazakSid.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPolazakSid.Name = "dtpPolazakSid";
             this.dtpPolazakSid.ShowUpDown = true;
@@ -1503,10 +1503,10 @@
             // 
             this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label40.ForeColor = System.Drawing.Color.Black;
-            this.label40.Location = new System.Drawing.Point(426, 70);
+            this.label40.Location = new System.Drawing.Point(423, 52);
             this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(130, 48);
+            this.label40.Size = new System.Drawing.Size(184, 34);
             this.label40.TabIndex = 268;
             this.label40.Text = "Datum i vreme dolaska predaje voza operateru Hr";
             // 
@@ -1515,7 +1515,7 @@
             this.dtpPredajaHR.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPredajaHR.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpPredajaHR.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPredajaHR.Location = new System.Drawing.Point(429, 122);
+            this.dtpPredajaHR.Location = new System.Drawing.Point(424, 85);
             this.dtpPredajaHR.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPredajaHR.Name = "dtpPredajaHR";
             this.dtpPredajaHR.ShowUpDown = true;
@@ -1528,7 +1528,7 @@
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label41.ForeColor = System.Drawing.Color.Black;
-            this.label41.Location = new System.Drawing.Point(425, 149);
+            this.label41.Location = new System.Drawing.Point(420, 112);
             this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(185, 15);
@@ -1540,7 +1540,7 @@
             this.dtpPrispeceRijeka.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPrispeceRijeka.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpPrispeceRijeka.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPrispeceRijeka.Location = new System.Drawing.Point(429, 168);
+            this.dtpPrispeceRijeka.Location = new System.Drawing.Point(424, 131);
             this.dtpPrispeceRijeka.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPrispeceRijeka.Name = "dtpPrispeceRijeka";
             this.dtpPrispeceRijeka.ShowUpDown = true;
@@ -1553,7 +1553,7 @@
             this.label42.AutoSize = true;
             this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label42.ForeColor = System.Drawing.Color.Black;
-            this.label42.Location = new System.Drawing.Point(425, 194);
+            this.label42.Location = new System.Drawing.Point(420, 157);
             this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(176, 15);
@@ -1565,7 +1565,7 @@
             this.dtpIskrcajRijeka.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpIskrcajRijeka.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpIskrcajRijeka.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpIskrcajRijeka.Location = new System.Drawing.Point(428, 213);
+            this.dtpIskrcajRijeka.Location = new System.Drawing.Point(425, 172);
             this.dtpIskrcajRijeka.Margin = new System.Windows.Forms.Padding(4);
             this.dtpIskrcajRijeka.Name = "dtpIskrcajRijeka";
             this.dtpIskrcajRijeka.ShowUpDown = true;
@@ -1599,7 +1599,7 @@
             this.panelLeget.Controls.Add(this.dtpIzvlacenjeSaTerminala);
             this.panelLeget.Location = new System.Drawing.Point(532, 296);
             this.panelLeget.Name = "panelLeget";
-            this.panelLeget.Size = new System.Drawing.Size(653, 250);
+            this.panelLeget.Size = new System.Drawing.Size(653, 199);
             this.panelLeget.TabIndex = 273;
             // 
             // label45
@@ -1607,7 +1607,7 @@
             this.label45.AutoSize = true;
             this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label45.ForeColor = System.Drawing.Color.Red;
-            this.label45.Location = new System.Drawing.Point(11, 124);
+            this.label45.Location = new System.Drawing.Point(11, 78);
             this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(78, 15);
@@ -1631,7 +1631,7 @@
             this.dtpSazeta.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpSazeta.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpSazeta.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpSazeta.Location = new System.Drawing.Point(12, 214);
+            this.dtpSazeta.Location = new System.Drawing.Point(12, 168);
             this.dtpSazeta.Margin = new System.Windows.Forms.Padding(4);
             this.dtpSazeta.Name = "dtpSazeta";
             this.dtpSazeta.ShowUpDown = true;
@@ -1644,7 +1644,7 @@
             this.label44.AutoSize = true;
             this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label44.ForeColor = System.Drawing.Color.Red;
-            this.label44.Location = new System.Drawing.Point(11, 192);
+            this.label44.Location = new System.Drawing.Point(11, 146);
             this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(172, 15);
@@ -1656,7 +1656,7 @@
             this.dtpPristizanjaUSid.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPristizanjaUSid.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpPristizanjaUSid.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPristizanjaUSid.Location = new System.Drawing.Point(14, 166);
+            this.dtpPristizanjaUSid.Location = new System.Drawing.Point(14, 120);
             this.dtpPristizanjaUSid.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPristizanjaUSid.Name = "dtpPristizanjaUSid";
             this.dtpPristizanjaUSid.ShowUpDown = true;
@@ -1669,7 +1669,7 @@
             this.label43.AutoSize = true;
             this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label43.ForeColor = System.Drawing.Color.Red;
-            this.label43.Location = new System.Drawing.Point(11, 145);
+            this.label43.Location = new System.Drawing.Point(11, 99);
             this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(177, 15);
@@ -1684,7 +1684,7 @@
             this.panelLegetOperater.Controls.Add(this.cboOperaterSrbija);
             this.panelLegetOperater.Controls.Add(this.label34);
             this.panelLegetOperater.Controls.Add(this.cboOperaterHR);
-            this.panelLegetOperater.Location = new System.Drawing.Point(15, 366);
+            this.panelLegetOperater.Location = new System.Drawing.Point(15, 328);
             this.panelLegetOperater.Name = "panelLegetOperater";
             this.panelLegetOperater.Size = new System.Drawing.Size(246, 155);
             this.panelLegetOperater.TabIndex = 274;
@@ -1780,7 +1780,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmVoz";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Vozovi";
+            this.Text = "VOZOVI";
             this.Load += new System.EventHandler(this.frmVoz_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();

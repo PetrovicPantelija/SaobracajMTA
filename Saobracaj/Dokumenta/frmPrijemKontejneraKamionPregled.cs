@@ -33,10 +33,51 @@ namespace TrackModal.Dokumeta
             IdGrupe();
             IdForme();
             PravoPristupa();
+
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+
+                        toolStripButton5.Visible = true;
+                        toolStripButton3.Visible = true;
+                        toolStripButton7.Visible = false;
+                        break;
+                    }
+                default:
+                    {
+
+                        break;
+
+                    }
+                    break;
+            }
         }
         public frmPrijemKontejneraKamionPregled(string Korisnik)
         {
             InitializeComponent();
+
+
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+
+                        toolStripButton5.Visible = true;
+                        toolStripButton3.Visible = true;
+                        toolStripButton7.Visible = false;
+                        break;
+                    }
+                default:
+                    {
+
+                        break;
+
+                    }
+                    break;
+            }
             KorisnikCene = Korisnik;
             IdGrupe();
             IdForme();
@@ -665,6 +706,12 @@ namespace TrackModal.Dokumeta
                     }
                     break;
             }
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            frmPrijemKontejneraVoz ter3 = new frmPrijemKontejneraVoz(Convert.ToInt32(txtSifra.Text), KorisnikCene, 0);
+            ter3.Show();
         }
     }
 }
