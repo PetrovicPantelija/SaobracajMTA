@@ -187,6 +187,7 @@ namespace Saobracaj.Pantheon_Export
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+            InsertPatheonExport ins = new InsertPatheonExport();
             int ID;
             string NT, NTNaziv, Grupa, Kupac, Odeljenje;
             string json;
@@ -229,27 +230,14 @@ namespace Saobracaj.Pantheon_Export
 
                             if (response.Contains("Error")==true || response.Contains("Greška")==true || response.Contains("ERROR")==true || response.Contains("Duplikat") == true)
                             {
+                                
                                 MessageBox.Show("Slanje nije uspelo\n"+response.ToString());
-                                ApiLogovi.Log("NT", ID.ToString(), json, response);
-                                ApiLogovi.Save();
+                                ins.InsApiLog("NT-" + ID.ToString()+"/DEMO", json, response);
                                 return;
                             }
-                           /* else
-                            {
-                                using (SqlConnection conn = new SqlConnection(connect))
-                                {
-                                    using (SqlCommand cmd = conn.CreateCommand())
-                                    {
-                                        cmd.CommandText = "UPDATE NosiociTroskova SET Status = 1 WHERE ID = " + ID;
-                                        conn.Open();
-                                        cmd.ExecuteNonQuery();
-                                        conn.Close();
-                                    }
-                                }
-                            }*/
                         }
-                        ApiLogovi.Log("NT", ID.ToString(), json, response);
-                        ApiLogovi.Save();
+                        ins.InsApiLog("NT-"+ID.ToString(),json, response);
+
                     }
 
                 }
@@ -348,6 +336,7 @@ namespace Saobracaj.Pantheon_Export
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
+            InsertPatheonExport ins = new InsertPatheonExport();
             int ID;
             string NT, NTNaziv, Grupa, Kupac, Odeljenje;
             string json;
@@ -391,8 +380,7 @@ namespace Saobracaj.Pantheon_Export
                             if (response.Contains("Error") == true || response.Contains("Greška") == true || response.Contains("ERROR") == true || response.Contains("Duplikat") == true)
                             {
                                 MessageBox.Show("Slanje nije uspelo\n" + response.ToString());
-                                ApiLogovi.Log("NT", ID.ToString(), json, response);
-                                ApiLogovi.Save();
+                                ins.InsApiLog("NT-"+ID.ToString(),json,response);
                                 return;
                             }
                             else
@@ -409,8 +397,7 @@ namespace Saobracaj.Pantheon_Export
                                 }
                             }
                         }
-                        ApiLogovi.Log("NT", ID.ToString(), json, response);
-                        ApiLogovi.Save();
+                        ins.InsApiLog("NT-"+ID.ToString(), json,response);
                     }
 
                 }

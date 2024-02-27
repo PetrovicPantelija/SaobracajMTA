@@ -1787,6 +1787,12 @@
       <DependentUpon>OtpremnicaDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Pantheon Export\ApiLogovi.cs" />
+    <Compile Include="Pantheon Export\ApiPregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantheon Export\ApiPregled.Designer.cs">
+      <DependentUpon>ApiPregled.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pantheon Export\InsertPatheonExport.cs" />
     <Compile Include="Pantheon Export\IzlazneFakture.cs">
       <SubType>Form</SubType>
@@ -4112,6 +4118,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Neispravnosti\frmVrstaNepravilnosti.resx">
       <DependentUpon>frmVrstaNepravilnosti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantheon Export\ApiPregled.resx">
+      <DependentUpon>ApiPregled.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantheon Export\IzlazneFakture.resx">
       <DependentUpon>IzlazneFakture.cs</DependentUpon>

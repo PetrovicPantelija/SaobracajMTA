@@ -41,7 +41,7 @@ namespace Saobracaj.Pantheon_Export
                 "from FakturaPostav " +
                 "inner join NosiociTroskova on FakturaPostav.NosilacTroska = NosiociTroskova.ID " +
                 "where FakturaPostav.FaPStFak = Faktura.FaStFak) as NosioID, " +
-                "(Select Sum(FaPZnesSk) from FakturaPostav where FakturaPostav.FaPStFak = Faktura.FaStFak ) as Iznos,FaOpomba1 " +
+                "(Select Sum(FaPZnesSk) from FakturaPostav where FakturaPostav.FaPStFak = Faktura.FaStFak ) as Iznos,FaOpomba1,(Select SUM(IznosRSD) From FakturaPostav Where FakturaPostav.FaPStFak=Faktura.FaStFak) as IznosRSD " +
                 "From Faktura " +
                 "inner join Partnerji on Faktura.FaPartPlac = Partnerji.PaSifra " +
                 "Inner join Delavci on Faktura.FaRefer = Delavci.DeSifra " +
@@ -104,7 +104,6 @@ namespace Saobracaj.Pantheon_Export
         public string ValutaResponse;
         private void btnGetUplate_Click(object sender, EventArgs e)
         {
-            //dataGridView2.Visible = true;
             var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:3333/api/UplateKupaca/GetUplateKupaca");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "GET";
@@ -124,7 +123,6 @@ namespace Saobracaj.Pantheon_Export
                     {
                         CRMID = Convert.ToInt32(row.Cells["FakturaBr"].Value.ToString());
                         Iznos = Convert.ToDecimal(row.Cells["Iznos"].Value.ToString().Replace(",","."));
-                        //Iznos= decimal.Round(Iznos, 2, MidpointRounding.AwayFromZero);
                         ValutaResponse = row.Cells["Valuta"].Value.ToString().TrimEnd();
 
                         using (SqlConnection conn = new SqlConnection(connect))
@@ -155,33 +153,59 @@ namespace Saobracaj.Pantheon_Export
         int crm;
         private void btnExport_Click(object sender, EventArgs e)
         {
+            InsertPatheonExport ins = new InsertPatheonExport();
             foreach(DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Selected)
                 {
                     status = Convert.ToInt32(row.Cells[18].Value);
                     crm = Convert.ToInt32(row.Cells[19].Value);
-
                     if (status == 0)
                     {
-                        string FaStFak = "";
-                        string query1 = "SELECT CRMID AS CRMDocumentID, RTrim(FaModul) AS DocType, CONVERT(VARCHAR, FaVpisalDat, 23) AS Date, RTrim(PaNaziv) AS Receiver," +
-                            "RTrim(FaValutaCene) AS Currency, Cast(Kurs as DECIMAL(10,2)) AS FXRate, '' AS Doc1, '' AS DateDoc1, '' AS Doc2, '' AS DateDoc2," +
-                            "CONVERT(VARCHAR, FaObdobje, 23) AS DateVAT, CONVERT(VARCHAR, FaDatVal, 23) AS DateDue, RTrim(IDPantheon) AS Statement," +
-                            "RTrim(FaRefer) AS UserId, RTrim(FaOpomba2) AS Napomena,FaStFak " +
-                            "FROM Faktura " +
-                            "INNER JOIN Partnerji ON Faktura.FaPartPlac = Partnerji.PaSifra " +
-                            "INNER JOIN Izjave ON Faktura.FaOpomba1 = Izjave.ID " +
-                            "WHERE Faktura.Status = 0 and CRMID=" + crm;
+                        string query1 = "";
+                        string query2 = "";
+                        if (Convert.ToDecimal(row.Cells[23].Value) > Convert.ToDecimal(row.Cells[21].Value))
+                        {
+                            query1 = "SELECT CRMID AS CRMDocumentID, RTrim(FaModul) AS DocType, CONVERT(VARCHAR, FaVpisalDat, 23) AS Date, RTrim(PaNaziv) AS Receiver," +
+                                "RTrim(FaValutaCene) AS Currency, 'RSD' AS FXRate, '' AS Doc1, '' AS DateDoc1, '' AS Doc2, '' AS DateDoc2," +
+                                "CONVERT(VARCHAR, FaObdobje, 23) AS DateVAT, CONVERT(VARCHAR, FaDatVal, 23) AS DateDue, RTrim(IDPantheon) AS Statement," +
+                                "RTrim(FaRefer) AS UserId, RTrim(FaOpomba2) AS Napomena,FaStFak " +
+                                "FROM Faktura " +
+                                "INNER JOIN Partnerji ON Faktura.FaPartPlac = Partnerji.PaSifra " +
+                                "INNER JOIN Izjave ON Faktura.FaOpomba1 = Izjave.ID " +
+                                "WHERE Faktura.Status = 0 and CRMID=" + crm;
 
-                        string query2 = "SELECT FakturaPostav.FaPStFak, FakturaPostav.FapStPos AS No, RTrim(MaticniPodatki.MpStaraSif) AS Ident," +
-                            "CAST(FakturaPostav.FaPkolOdpr AS DECIMAL(10, 2)) AS Qty," +
-                            "CAST(FakturaPostav.FaPCenaEM AS DECIMAL(10, 2)) AS Price, RTrim(NosiociTroskova.NosilacTroska) as CostDrv, RTrim(MeNaziv) AS JNT, '' AS Product " +
-                            "FROM FakturaPostav " +
-                            "INNER JOIN MaticniPodatki ON FakturaPostav.FaPSifra = MaticniPodatki.MpSifra " +
-                            "INNER JOIN NosiociTroskova ON FakturaPostav.NosilacTroska = NosiociTroskova.ID " +
-                            "Inner join MerskeEnote on FakturaPostav.FaPEM = MerskeEnote.MeSifra " +
-                            "ORDER BY FakturaPostav.FapStPos ASC";
+                            query2 = "SELECT FakturaPostav.FaPStFak, FakturaPostav.FapStPos AS No, RTrim(MaticniPodatki.MpStaraSif) AS Ident," +
+                               "CAST(FakturaPostav.FaPkolOdpr AS DECIMAL(10, 2)) AS Qty," +
+                               "CAST(FakturaPostav.IznosRSD AS DECIMAL(10, 2)) AS Price, RTrim(NosiociTroskova.NosilacTroska) as CostDrv, RTrim(MeNaziv) AS JNT, '' AS Product " +
+                               "FROM FakturaPostav " +
+                               "INNER JOIN MaticniPodatki ON FakturaPostav.FaPSifra = MaticniPodatki.MpSifra " +
+                               "INNER JOIN NosiociTroskova ON FakturaPostav.NosilacTroska = NosiociTroskova.ID " +
+                               "Inner join MerskeEnote on FakturaPostav.FaPEM = MerskeEnote.MeSifra " +
+                               "ORDER BY FakturaPostav.FapStPos ASC";
+                        }
+                        else
+                        {
+                             query1 = "SELECT CRMID AS CRMDocumentID, RTrim(FaModul) AS DocType, CONVERT(VARCHAR, FaVpisalDat, 23) AS Date, RTrim(PaNaziv) AS Receiver," +
+                                "RTrim(FaValutaCene) AS Currency, Cast(Kurs as DECIMAL(10,2)) AS FXRate, '' AS Doc1, '' AS DateDoc1, '' AS Doc2, '' AS DateDoc2," +
+                                "CONVERT(VARCHAR, FaObdobje, 23) AS DateVAT, CONVERT(VARCHAR, FaDatVal, 23) AS DateDue, RTrim(IDPantheon) AS Statement," +
+                                "RTrim(FaRefer) AS UserId, RTrim(FaOpomba2) AS Napomena,FaStFak " +
+                                "FROM Faktura " +
+                                "INNER JOIN Partnerji ON Faktura.FaPartPlac = Partnerji.PaSifra " +
+                                "INNER JOIN Izjave ON Faktura.FaOpomba1 = Izjave.ID " +
+                                "WHERE Faktura.Status = 0 and CRMID=" + crm;
+
+                             query2 = "SELECT FakturaPostav.FaPStFak, FakturaPostav.FapStPos AS No, RTrim(MaticniPodatki.MpStaraSif) AS Ident," +
+                                "CAST(FakturaPostav.FaPkolOdpr AS DECIMAL(10, 2)) AS Qty," +
+                                "CAST(FakturaPostav.FaPCenaEM AS DECIMAL(10, 2)) AS Price, RTrim(NosiociTroskova.NosilacTroska) as CostDrv, RTrim(MeNaziv) AS JNT, '' AS Product " +
+                                "FROM FakturaPostav " +
+                                "INNER JOIN MaticniPodatki ON FakturaPostav.FaPSifra = MaticniPodatki.MpSifra " +
+                                "INNER JOIN NosiociTroskova ON FakturaPostav.NosilacTroska = NosiociTroskova.ID " +
+                                "Inner join MerskeEnote on FakturaPostav.FaPEM = MerskeEnote.MeSifra " +
+                                "ORDER BY FakturaPostav.FapStPos ASC";
+                        }
+                        string FaStFak = "";
+
 
                         List<object> combinedData = new List<object>();
                         using (SqlConnection conn = new SqlConnection(connect))
@@ -243,7 +267,6 @@ namespace Saobracaj.Pantheon_Export
                             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                             {
                                 streamWriter.Write(jsonOutput);
-                                MessageBox.Show(jsonOutput.ToString());
                             }
                             string response = "";
                             var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
@@ -255,26 +278,11 @@ namespace Saobracaj.Pantheon_Export
                                 if (response.Contains("ERROR") == true || response.Contains("Greška") == true || response.Contains("Error") == true || response.Contains("Duplikat") == true)
                                 {
                                     MessageBox.Show("Slanje nije uspelo\n"+response.ToString());
-                                    ApiLogovi.Log("IzlFak", ID.ToString(), jsonOutput, response);
-                                    ApiLogovi.Save();
+                                    ins.InsApiLog("IzlFak-" + ID.ToString()+"/DEMO", jsonOutput, response);
                                     return;
                                 }
-                                /*else
-                                {
-                                    using (SqlConnection conn = new SqlConnection(connect))
-                                    {
-                                        using (SqlCommand cmd2 = conn.CreateCommand())
-                                        {
-                                            cmd2.CommandText = "UPDATE Faktura SET Status = 1  WHERE FaStFak = " + FaStFak;
-                                            conn.Open();
-                                            cmd2.ExecuteNonQuery();
-                                            conn.Close();
-                                        }
-                                    }
-                                }*/
                             }
-                            ApiLogovi.Log("IzlFak", ID.ToString(), jsonOutput, response);
-                            ApiLogovi.Save();
+                            ins.InsApiLog("IzlFak-"+ID.ToString()+"/Demo", jsonOutput, response);
                         }
 
                     }
@@ -290,7 +298,7 @@ namespace Saobracaj.Pantheon_Export
 
         private void btnExportProd_Click(object sender, EventArgs e)
         {
-
+            InsertPatheonExport ins = new InsertPatheonExport();
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Selected)
@@ -300,24 +308,49 @@ namespace Saobracaj.Pantheon_Export
 
                     if (status == 0)
                     {
-                        string FaStFak = "";
-                        string query1 = "SELECT CRMID AS CRMDocumentID, RTrim(FaModul) AS DocType, CONVERT(VARCHAR, FaVpisalDat, 23) AS Date, RTrim(PaNaziv) AS Receiver," +
-                            "RTrim(FaValutaCene) AS Currency, Cast(Kurs as DECIMAL(10,2)) AS FXRate, '' AS Doc1, '' AS DateDoc1, '' AS Doc2, '' AS DateDoc2," +
-                            "CONVERT(VARCHAR, FaObdobje, 23) AS DateVAT, CONVERT(VARCHAR, FaDatVal, 23) AS DateDue, RTrim(IDPantheon) AS Statement," +
-                            "RTrim(FaRefer) AS UserId, RTrim(FaOpomba2) AS Napomena,FaStFak " +
-                            "FROM Faktura " +
-                            "INNER JOIN Partnerji ON Faktura.FaPartPlac = Partnerji.PaSifra " +
-                            "INNER JOIN Izjave ON Faktura.FaOpomba1 = Izjave.ID " +
-                            "WHERE Faktura.Status = 0 and CRMID=" + crm;
+                        string query1 = "";
+                        string query2 = "";
+                        if (Convert.ToDecimal(row.Cells[23].Value) > Convert.ToDecimal(row.Cells[21].Value))
+                        {
+                            query1 = "SELECT CRMID AS CRMDocumentID, RTrim(FaModul) AS DocType, CONVERT(VARCHAR, FaVpisalDat, 23) AS Date, RTrim(PaNaziv) AS Receiver," +
+                                "RTrim(FaValutaCene) AS Currency, 'RSD' AS FXRate, '' AS Doc1, '' AS DateDoc1, '' AS Doc2, '' AS DateDoc2," +
+                                "CONVERT(VARCHAR, FaObdobje, 23) AS DateVAT, CONVERT(VARCHAR, FaDatVal, 23) AS DateDue, RTrim(IDPantheon) AS Statement," +
+                                "RTrim(FaRefer) AS UserId, RTrim(FaOpomba2) AS Napomena,FaStFak " +
+                                "FROM Faktura " +
+                                "INNER JOIN Partnerji ON Faktura.FaPartPlac = Partnerji.PaSifra " +
+                                "INNER JOIN Izjave ON Faktura.FaOpomba1 = Izjave.ID " +
+                                "WHERE Faktura.Status = 0 and CRMID=" + crm;
 
-                        string query2 = "SELECT FakturaPostav.FaPStFak, FakturaPostav.FapStPos AS No, RTrim(MaticniPodatki.MpStaraSif) AS Ident," +
-                            "CAST(FakturaPostav.FaPkolOdpr AS DECIMAL(10, 2)) AS Qty," +
-                            "CAST(FakturaPostav.FaPCenaEM AS DECIMAL(10, 2)) AS Price, RTrim(NosiociTroskova.NosilacTroska) as CostDrv, RTrim(MeNaziv) AS JNT, '' AS Product " +
-                            "FROM FakturaPostav " +
-                            "INNER JOIN MaticniPodatki ON FakturaPostav.FaPSifra = MaticniPodatki.MpSifra " +
-                            "INNER JOIN NosiociTroskova ON FakturaPostav.NosilacTroska = NosiociTroskova.ID " +
-                            "Inner join MerskeEnote on FakturaPostav.FaPEM = MerskeEnote.MeSifra " +
-                            "ORDER BY FakturaPostav.FapStPos ASC";
+                            query2 = "SELECT FakturaPostav.FaPStFak, FakturaPostav.FapStPos AS No, RTrim(MaticniPodatki.MpStaraSif) AS Ident," +
+                               "CAST(FakturaPostav.FaPkolOdpr AS DECIMAL(10, 2)) AS Qty," +
+                               "CAST(FakturaPostav.IznosRSD AS DECIMAL(10, 2)) AS Price, RTrim(NosiociTroskova.NosilacTroska) as CostDrv, RTrim(MeNaziv) AS JNT, '' AS Product " +
+                               "FROM FakturaPostav " +
+                               "INNER JOIN MaticniPodatki ON FakturaPostav.FaPSifra = MaticniPodatki.MpSifra " +
+                               "INNER JOIN NosiociTroskova ON FakturaPostav.NosilacTroska = NosiociTroskova.ID " +
+                               "Inner join MerskeEnote on FakturaPostav.FaPEM = MerskeEnote.MeSifra " +
+                               "ORDER BY FakturaPostav.FapStPos ASC";
+                        }
+                        else
+                        {
+                            query1 = "SELECT CRMID AS CRMDocumentID, RTrim(FaModul) AS DocType, CONVERT(VARCHAR, FaVpisalDat, 23) AS Date, RTrim(PaNaziv) AS Receiver," +
+                               "RTrim(FaValutaCene) AS Currency, Cast(Kurs as DECIMAL(10,2)) AS FXRate, '' AS Doc1, '' AS DateDoc1, '' AS Doc2, '' AS DateDoc2," +
+                               "CONVERT(VARCHAR, FaObdobje, 23) AS DateVAT, CONVERT(VARCHAR, FaDatVal, 23) AS DateDue, RTrim(IDPantheon) AS Statement," +
+                               "RTrim(FaRefer) AS UserId, RTrim(FaOpomba2) AS Napomena,FaStFak " +
+                               "FROM Faktura " +
+                               "INNER JOIN Partnerji ON Faktura.FaPartPlac = Partnerji.PaSifra " +
+                               "INNER JOIN Izjave ON Faktura.FaOpomba1 = Izjave.ID " +
+                               "WHERE Faktura.Status = 0 and CRMID=" + crm;
+
+                            query2 = "SELECT FakturaPostav.FaPStFak, FakturaPostav.FapStPos AS No, RTrim(MaticniPodatki.MpStaraSif) AS Ident," +
+                               "CAST(FakturaPostav.FaPkolOdpr AS DECIMAL(10, 2)) AS Qty," +
+                               "CAST(FakturaPostav.FaPCenaEM AS DECIMAL(10, 2)) AS Price, RTrim(NosiociTroskova.NosilacTroska) as CostDrv, RTrim(MeNaziv) AS JNT, '' AS Product " +
+                               "FROM FakturaPostav " +
+                               "INNER JOIN MaticniPodatki ON FakturaPostav.FaPSifra = MaticniPodatki.MpSifra " +
+                               "INNER JOIN NosiociTroskova ON FakturaPostav.NosilacTroska = NosiociTroskova.ID " +
+                               "Inner join MerskeEnote on FakturaPostav.FaPEM = MerskeEnote.MeSifra " +
+                               "ORDER BY FakturaPostav.FapStPos ASC";
+                        }
+                        string FaStFak = "";
 
                         List<object> combinedData = new List<object>();
                         using (SqlConnection conn = new SqlConnection(connect))
@@ -390,8 +423,7 @@ namespace Saobracaj.Pantheon_Export
                                 if (response.Contains("ERROR") == true || response.Contains("Greška") == true || response.Contains("Error") == true || response.Contains("Duplikat") == true)
                                 {
                                     MessageBox.Show("Slanje nije uspelo\n" + response.ToString());
-                                    ApiLogovi.Log("IzlFak", ID.ToString(), jsonOutput, response);
-                                    ApiLogovi.Save();
+                                    ins.InsApiLog("IzlFak-" + ID.ToString(), jsonOutput, response);
                                     return;
                                 }
                                 else
@@ -408,8 +440,7 @@ namespace Saobracaj.Pantheon_Export
                                     }
                                 }
                             }
-                            ApiLogovi.Log("IzlFak", ID.ToString(), jsonOutput, response);
-                            ApiLogovi.Save();
+                            ins.InsApiLog("IzlFak-"+ID.ToString(),jsonOutput, response);
                         }
 
                     }

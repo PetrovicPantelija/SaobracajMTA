@@ -76,7 +76,7 @@ namespace Saobracaj.Pantheon_Export
         private void FillGV()
         {
             ID = Convert.ToInt32(txtID.Text);
-                var select = "select FaPStFak as Faktura,FaPstPos as RB,FaPSifra as MP,FaPNaziv,FaPEM as JM,FaPKolOdpr as Kolicna,FapCenaEM as Cena,NosilacTroska,NajavaID,FapFakZap From FakturaPostav Where FaPStFak=" + ID;
+                var select = "select FaPStFak as Faktura,FaPstPos as RB,FaPSifra as MP,RTrim(MpStaraSif)+'-'+FaPNaziv as Naziv,FaPEM as JM,FaPKolOdpr as Kolicna,FapCenaEM as Cena,NosilacTroska,NajavaID,FapFakZap From FakturaPostav inner join MaticniPodatki on FakturaPostav.FaPsifra=MaticniPodatki.MpSifra Where FaPStFak=" + ID;
                 SqlConnection conn = new SqlConnection(connect);
                 var dataAdapter = new SqlDataAdapter(select, conn);
                 var ds = new DataSet();
@@ -98,9 +98,9 @@ namespace Saobracaj.Pantheon_Export
                 dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
                 dataGridView1.Columns[0].Width = 60;
-                dataGridView1.Columns[1].Width = 120;
-                dataGridView1.Columns[2].Width = 80;
-                dataGridView1.Columns[3].Width = 80;
+                dataGridView1.Columns[1].Width = 60;
+                dataGridView1.Columns[2].Width = 60;
+                dataGridView1.Columns[3].Width = 280;
                 dataGridView1.Columns[4].Width = 100;
                 dataGridView1.Columns[5].Width = 100;
                 dataGridView1.Columns[9].Visible = false;
@@ -378,9 +378,17 @@ namespace Saobracaj.Pantheon_Export
         {
             GetMPInfo();
             GetNosilacInfo();
-
+            decimal iznosRSD;
+            if (sifDr == 82)
+            {
+                iznosRSD=Convert.ToDecimal(txtKurs.Value)*Convert.ToDecimal(txtCena.Value);
+            }
+            else
+            {
+                iznosRSD = Convert.ToDecimal(txtCena.Value);
+            }
             InsertPatheonExport ins = new InsertPatheonExport();
-            ins.InsFakturaPostav(korisnik.ToString().TrimEnd(), Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), MpNaziv, cboJM.SelectedValue.ToString().TrimEnd(), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), posao);
+            ins.InsFakturaPostav(korisnik.ToString().TrimEnd(), Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), MpNaziv, cboJM.SelectedValue.ToString().TrimEnd(), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), posao,iznosRSD);
 
             FillGV();
         }

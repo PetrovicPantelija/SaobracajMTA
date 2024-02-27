@@ -263,10 +263,19 @@ namespace Saobracaj.Pantheon_Export
             if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count+1; }
 
             GetNosilacInfo();
-            
+
+            decimal iznosRSD;
+            if (sifDr == 82)
+            {
+                iznosRSD = Convert.ToDecimal(txtKurs.Value) * Convert.ToDecimal(txtCena.Value);
+            }
+            else
+            {
+                iznosRSD = Convert.ToDecimal(txtCena.Value);
+            }
 
             InsertPatheonExport ins = new InsertPatheonExport();
-            ins.InsUlFakPostav(Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), cboJM.SelectedValue.ToString().TrimEnd()," ",posao);
+            ins.InsUlFakPostav(Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), cboJM.SelectedValue.ToString().TrimEnd()," ",posao, iznosRSD);
             FillGV();
         }
 
