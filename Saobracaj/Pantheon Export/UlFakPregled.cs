@@ -34,8 +34,10 @@ namespace Saobracaj.Pantheon_Export
         }
         private void FillGV()
         {
-            var select = "Select UlFak.ID,RTrim(Predvidjanje.PredvidjanjeId) as PredvidjanjeID,VrstaDokumenta,Tip,DatumPrijema,RTrim(UlFak.Valuta) as Valuta,Kurs,FakturaBr,RTrim(PaNaziv) as Dobavljac,RTrim(RacunDobavljaca) as RacunDobavljaca,DatumIzdavanja,DatumPDVa,DatumValute, " +
-                "(RTrim(DeIMe) + ' ' + RTrim(DePriimek)) as Referent, UlFak.Napomena, UlFak.Status,UlFak.CRMID,Predvidjanje,IDDobavljaca,UlFak.Referent " +
+            var select = "Select UlFak.ID,RTrim(Predvidjanje.PredvidjanjeId) as PredvidjanjeID,VrstaDokumenta,Tip,DatumPrijema,RTrim(UlFak.Valuta) as Valuta,UlFak.Kurs,FakturaBr,RTrim(PaNaziv) as Dobavljac," +
+                "RTrim(RacunDobavljaca) as RacunDobavljaca,DatumIzdavanja,DatumPDVa,DatumValute, (RTrim(DeIMe) + ' ' + RTrim(DePriimek)) as Referent, UlFak.Napomena, UlFak.Status,UlFak.CRMID,Predvidjanje,IDDobavljaca," +
+                "UlFak.Referent,(Select Sum(Cena) from UlFakPostav Where UlFakPostav.IDFak = UlFak.ID) as Iznos," +
+                "(Select Sum(IznosRSD) from UlFakPostav Where UlFakPostav.IDFak = UlFak.ID) as IznosRSD " +
                 "From UlFak " +
                 "Inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID " +
                 "inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
@@ -71,11 +73,11 @@ namespace Saobracaj.Pantheon_Export
             dataGridView1.Columns[6].Width = 60;
             dataGridView1.Columns[8].Width = 230;
             dataGridView1.Columns[12].Width = 180;
-            
-            dataGridView1.Columns[17].Visible=false;//Predvidnjanje
-            dataGridView1.Columns[18].Visible=false;//Dobavljac
+
+            dataGridView1.Columns[17].Visible = false;//Predvidnjanje
+            dataGridView1.Columns[18].Visible = false;//Dobavljac
             dataGridView1.Columns[19].Visible = false; // referent
-            
+
 
 
         }
@@ -89,7 +91,7 @@ namespace Saobracaj.Pantheon_Export
             public string KlijentId { get; set; }
             public DateTime DatumIzdavanja { get; set; }
             public DateTime DatumPlacanja { get; set; }
-            public int TipFakture {  get; set; }
+            public int TipFakture { get; set; }
             public string Valuta { get; set; }
             public decimal Iznos { get; set; }
         }
@@ -135,13 +137,12 @@ namespace Saobracaj.Pantheon_Export
                         ValutaResponse = row.Cells["Valuta"].Value.ToString().TrimEnd();
                         DateTime datumPom = Convert.ToDateTime(row.Cells["DatumPlacanja"].Value.ToString());
                         DatumPlacanja = Convert.ToDateTime(datumPom.ToString("yyyy-MM-dd"));
-                        //.ToString("yyyy-MM-dd")
 
                         using (SqlConnection conn = new SqlConnection(connect))
                         {
                             using (SqlCommand cmd = conn.CreateCommand())
                             {
-                                cmd.CommandText = "UPDATE UlFak SET Valuta='" + ValutaResponse + "', Iznos='" + Iznos.ToString().Replace(",",".") + "', DatumPlacanja='"+ DatumPlacanja.ToString("yyyy-MM-dd") + "' WHERE CRMID = " + CRMID;
+                                cmd.CommandText = "UPDATE UlFak SET Valuta='" + ValutaResponse + "', Iznos='" + Iznos.ToString().Replace(",", ".") + "', DatumPlacanja='" + DatumPlacanja.ToString("yyyy-MM-dd") + "' WHERE CRMID = " + CRMID;
                                 conn.Open();
                                 cmd.ExecuteNonQuery();
                                 conn.Close();
@@ -160,6 +161,7 @@ namespace Saobracaj.Pantheon_Export
 
         private void btnExportProd_Click(object sender, EventArgs e)
         {
+            InsertPatheonExport ins = new InsertPatheonExport();
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Selected)
@@ -169,19 +171,40 @@ namespace Saobracaj.Pantheon_Export
 
                     if (status == 0)
                     {
-                        string ID = "";
-                        string query1 = "Select RTrim(CRMID) as CRMDocumentId,RTrim(Tip) as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,RTrim(UlFak.Valuta) as Currency,Kurs as FXRate,RTrim(FakturaBr) as Doc1, " +
+                        string query1 = "";
+                        string query2 = "";
+                        if (Convert.ToDecimal(row.Cells[21].Value) > Convert.ToInt32(row.Cells[20].Value))
+                        {
+                            query1 = "Select RTrim(CRMID) as CRMDocumentId,RTrim(Tip) as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,RTrim(UlFak.Valuta) as Currency,'RSD' as FXRate,RTrim(FakturaBr) as Doc1, " +
+                                    "CONVERT(VARCHAR, DatumIzdavanja, 23) as DateDoc1,CONVERT(VARCHAR, DatumPDVa, 23) as DateVAT,CONVERT(VARCHAR, DatumValute, 23) as DateDue,Rtrim(PredvidjanjeID) as PredvidjanjeId, " +
+                                    "UlFak.Referent as UserId,UlFak.Napomena as Napomena,UlFak.ID as ID " +
+                                    "from UlFak " +
+                                    "Inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
+                                    "inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID Where UlFak.Status=0 and CRMID=" + crm;
+
+                            query2 = "select RB as No,Rtrim(MpStaraSif) as Ident,CAST(Kolicina AS DECIMAL(10, 2)) as Qty,CAST(IznosRSD AS DECIMAL(10, 2)) as Price,Rtrim(NosiociTroskova.NosilacTroska) as CostDrv,RTrim(JM) as JNT,'' as Proizvod,IDFak " +
+                                "From UlFakPostav " +
+                                "inner join MaticniPodatki on UlFakPostav.Mp = MaticniPodatki.MpSifra " +
+                                "inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID " +
+                                "order by IDFak asc";
+                        }
+                        else
+                        {
+                            query1 = "Select RTrim(CRMID) as CRMDocumentId,RTrim(Tip) as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,RTrim(UlFak.Valuta) as Currency,UlFak.Kurs as FXRate,RTrim(FakturaBr) as Doc1, " +
                             "CONVERT(VARCHAR, DatumIzdavanja, 23) as DateDoc1,CONVERT(VARCHAR, DatumPDVa, 23) as DateVAT,CONVERT(VARCHAR, DatumValute, 23) as DateDue,Rtrim(PredvidjanjeID) as PredvidjanjeId, " +
                             "UlFak.Referent as UserId,UlFak.Napomena as Napomena,UlFak.ID as ID " +
                             "from UlFak " +
                             "Inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
                             "inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID Where UlFak.Status=0 and CRMID=" + crm;
 
-                        string query2 = "select RB as No,Rtrim(MpStaraSif) as Ident,CAST(Kolicina AS DECIMAL(10, 2)) as Qty,CAST(Cena AS DECIMAL(10, 2)) as Price,Rtrim(NosiociTroskova.NosilacTroska) as CostDrv,RTrim(JM) as JNT,'' as Proizvod,IDFak " +
-                            "From UlFakPostav " +
-                            "inner join MaticniPodatki on UlFakPostav.Mp = MaticniPodatki.MpSifra " +
-                            "inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID " +
-                            "order by IDFak asc";
+                            query2 = "select RB as No,Rtrim(MpStaraSif) as Ident,CAST(Kolicina AS DECIMAL(10, 2)) as Qty,CAST(Cena AS DECIMAL(10, 2)) as Price,Rtrim(NosiociTroskova.NosilacTroska) as CostDrv,RTrim(JM) as JNT,'' as Proizvod,IDFak " +
+                                "From UlFakPostav " +
+                                "inner join MaticniPodatki on UlFakPostav.Mp = MaticniPodatki.MpSifra " +
+                                "inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID " +
+                                "order by IDFak asc";
+                        }
+                        string ID = "";
+
 
                         List<object> combinedData = new List<object>();
 
@@ -256,8 +279,7 @@ namespace Saobracaj.Pantheon_Export
                                 if (response.Contains("Error") == true || response.Contains("Greška") == true || response.Contains("ERROR") == true || response.Contains("Duplikat") == true)
                                 {
                                     MessageBox.Show("Slanje nije uspelo\n" + response.ToString());
-                                    ApiLogovi.Log("UlFak", ID, jsonOutput, response);
-                                    ApiLogovi.Save();
+                                    ins.InsApiLog("UlFak-" + ID.ToString(), jsonOutput, response);
                                     return;
                                 }
                                 else
@@ -276,8 +298,7 @@ namespace Saobracaj.Pantheon_Export
                                 }
 
                             }
-                            ApiLogovi.Log("Predvidjanje", ID, jsonOutput, response);
-                            ApiLogovi.Save();
+                            ins.InsApiLog("UlFak-" + ID.ToString(), jsonOutput, response);
                         }
 
                     }
@@ -291,30 +312,52 @@ namespace Saobracaj.Pantheon_Export
         }
 
         int status;
+
         private void btnExport_Click(object sender, EventArgs e)
         {
+            InsertPatheonExport ins = new InsertPatheonExport();
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Selected)
                 {
                     crm = Convert.ToInt32(row.Cells[16].Value);
-                    status=Convert.ToInt32(row.Cells[15].Value);
+                    status = Convert.ToInt32(row.Cells[15].Value);
 
                     if (status == 0)
                     {
-                        string ID = "";
-                        string query1 = "Select RTrim(CRMID) as CRMDocumentId,RTrim(Tip) as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,RTrim(UlFak.Valuta) as Currency,Kurs as FXRate,RTrim(FakturaBr) as Doc1, " +
+                        string query1 = "";
+                        string query2 = "";
+                        if (Convert.ToDecimal(row.Cells[21].Value) > Convert.ToInt32(row.Cells[20].Value))
+                        {
+                            query1 = "Select RTrim(CRMID) as CRMDocumentId,RTrim(Tip) as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,RTrim(UlFak.Valuta) as Currency,'RSD' as FXRate,RTrim(FakturaBr) as Doc1, " +
+                                    "CONVERT(VARCHAR, DatumIzdavanja, 23) as DateDoc1,CONVERT(VARCHAR, DatumPDVa, 23) as DateVAT,CONVERT(VARCHAR, DatumValute, 23) as DateDue,Rtrim(PredvidjanjeID) as PredvidjanjeId, " +
+                                    "UlFak.Referent as UserId,UlFak.Napomena as Napomena,UlFak.ID as ID " +
+                                    "from UlFak " +
+                                    "Inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
+                                    "inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID Where UlFak.Status=0 and CRMID=" + crm;
+
+                            query2 = "select RB as No,Rtrim(MpStaraSif) as Ident,CAST(Kolicina AS DECIMAL(10, 2)) as Qty,CAST(IznosRSD AS DECIMAL(10, 2)) as Price,Rtrim(NosiociTroskova.NosilacTroska) as CostDrv,RTrim(JM) as JNT,'' as Proizvod,IDFak " +
+                                "From UlFakPostav " +
+                                "inner join MaticniPodatki on UlFakPostav.Mp = MaticniPodatki.MpSifra " +
+                                "inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID " +
+                                "order by IDFak asc";
+                        }
+                        else
+                        {
+                            query1 = "Select RTrim(CRMID) as CRMDocumentId,RTrim(Tip) as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,RTrim(UlFak.Valuta) as Currency,UlFak.Kurs as FXRate,RTrim(FakturaBr) as Doc1, " +
                             "CONVERT(VARCHAR, DatumIzdavanja, 23) as DateDoc1,CONVERT(VARCHAR, DatumPDVa, 23) as DateVAT,CONVERT(VARCHAR, DatumValute, 23) as DateDue,Rtrim(PredvidjanjeID) as PredvidjanjeId, " +
                             "UlFak.Referent as UserId,UlFak.Napomena as Napomena,UlFak.ID as ID " +
                             "from UlFak " +
                             "Inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
                             "inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID Where UlFak.Status=0 and CRMID=" + crm;
 
-                        string query2 = "select RB as No,Rtrim(MpStaraSif) as Ident,CAST(Kolicina AS DECIMAL(10, 2)) as Qty,CAST(Cena AS DECIMAL(10, 2)) as Price,Rtrim(NosiociTroskova.NosilacTroska) as CostDrv,RTrim(JM) as JNT,'' as Proizvod,IDFak " +
-                            "From UlFakPostav " +
-                            "inner join MaticniPodatki on UlFakPostav.Mp = MaticniPodatki.MpSifra " +
-                            "inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID " +
-                            "order by IDFak asc";
+                            query2 = "select RB as No,Rtrim(MpStaraSif) as Ident,CAST(Kolicina AS DECIMAL(10, 2)) as Qty,CAST(Cena AS DECIMAL(10, 2)) as Price,Rtrim(NosiociTroskova.NosilacTroska) as CostDrv,RTrim(JM) as JNT,'' as Proizvod,IDFak " +
+                                "From UlFakPostav " +
+                                "inner join MaticniPodatki on UlFakPostav.Mp = MaticniPodatki.MpSifra " +
+                                "inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID " +
+                                "order by IDFak asc";
+                        }
+                        string ID = "";
 
                         List<object> combinedData = new List<object>();
 
@@ -388,31 +431,16 @@ namespace Saobracaj.Pantheon_Export
                                 response = result.ToString();
                                 if (response.Contains("Error") == true || response.Contains("Greška") == true || response.Contains("ERROR") == true || response.Contains("Duplikat") == true)
                                 {
-                                    MessageBox.Show("Slanje nije uspelo\n"+response.ToString());
-                                    ApiLogovi.Log("UlFak", ID, jsonOutput, response);
-                                    ApiLogovi.Save();
+                                    MessageBox.Show("Slanje nije uspelo\n" + response.ToString());
+                                    ins.InsApiLog("UlFak-" + ID.ToString() + "/DEMO", jsonOutput, response);
                                     return;
                                 }
-                                /*else
-                                {
 
-                                    using (SqlConnection conn = new SqlConnection(connect))
-                                    {
-                                        using (SqlCommand cmd1 = conn.CreateCommand())
-                                        {
-                                            cmd1.CommandText = "UPDATE UlFak SET Status = 1  WHERE ID = " + ID;
-                                            conn.Open();
-                                            cmd1.ExecuteNonQuery();
-                                            conn.Close();
-                                        }
-                                    }
-                                }*/
 
                             }
-                            ApiLogovi.Log("Predvidjanje",ID, jsonOutput, response);
-                            ApiLogovi.Save();
+                            ins.InsApiLog("UlFak-" + ID.ToString()+"/DEMO", jsonOutput, response);
                         }
-                        
+
                     }
                     else
                     {
@@ -430,24 +458,24 @@ namespace Saobracaj.Pantheon_Export
         {
             try
             {
-                foreach(DataGridViewRow row in dataGridView1.Rows)
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (row.Selected)
                     {
                         ID = Convert.ToInt32(row.Cells[0].Value);
-                        
+
                         VrstaDokumenta = row.Cells[2].Value.ToString();
                         TipDokumenta = row.Cells[3].Value.ToString();
                         DatumPrijema = Convert.ToDateTime(row.Cells[4].Value);
                         Valuta = row.Cells[5].Value.ToString();
                         Kurs = Convert.ToDecimal(row.Cells[6].Value);
                         FakturaBr = row.Cells[7].Value.ToString();
-                        
+
                         RacunDobavljaca = row.Cells[9].Value.ToString();
                         DatumIzdavanja = Convert.ToDateTime(row.Cells[10].Value);
                         DatumPDVa = Convert.ToDateTime(row.Cells[11].Value);
                         DatumValute = Convert.ToDateTime(row.Cells[12].Value);
-                        
+
                         Napomena = row.Cells[14].Value.ToString();
 
 
@@ -462,9 +490,7 @@ namespace Saobracaj.Pantheon_Export
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //int id,int predvidjanje,string vrstaDokumenta, string tipDokumenta, DateTime datumPrijema,string valuta,decimal kurs,string fakturaBr,int dobavljac,string racunDobavljaca, DateTime datumIzdavanja,
-            //DateTime datumPDVa, DateTime datumValute,int referent,string napomena
-            UlazneFakture frm = new UlazneFakture(ID,Predvidjanje,VrstaDokumenta,TipDokumenta,DatumPrijema,Valuta,Kurs,FakturaBr,Dobavljac,RacunDobavljaca,DatumIzdavanja,DatumPDVa,DatumValute,Referent,Napomena);
+            UlazneFakture frm = new UlazneFakture(ID, Predvidjanje, VrstaDokumenta, TipDokumenta, DatumPrijema, Valuta, Kurs, FakturaBr, Dobavljac, RacunDobavljaca, DatumIzdavanja, DatumPDVa, DatumValute, Referent, Napomena);
             frm.Show();
         }
 

@@ -18,6 +18,7 @@ using Syncfusion.XlsIO.Parser.Biff_Records;
 using System.Security.Cryptography.Xml;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using Newtonsoft.Json;
+using Saobracaj.Pantheon_Export;
 
 namespace Saobracaj.Sifarnici
 {
@@ -819,6 +820,7 @@ namespace Saobracaj.Sifarnici
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
+            InsertPatheonExport ins = new InsertPatheonExport();
             string PaSifra="";
             var query = "Select RTRim(PaNaziv) as Subject,RTrim(PaNaziv) as Name2,RTrim(PaUlicaHisnaSt) as Address,RTrim(PaPostnaSt) as Post,RTrim(DrNaziv) as Country,(SUBSTRING(paPostnaSt,0,CHARINDEX('-',PaPostnaSt,0)))as CountryPIB,RTrim(PaDMatSt) as Code," +
                      "RTrim(PaEMatSt1) as RegNo,'Papirno i elektronski' as WayOfTransaction,Buyer,WayOfSale,Currency,Supplier,'' as SuppSaleMet,'' as SuppCurr,'30' as Clerk,Referent as SuppClerk,PaSifra " +
@@ -858,8 +860,6 @@ namespace Saobracaj.Sifarnici
             foreach (var item in combinedData)
             {
                 string jsonOutput = JsonConvert.SerializeObject(item, Formatting.Indented);
-                MessageBox.Show(jsonOutput.ToString());
-                //Console.WriteLine(jsonOutput);
                 var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/Subjekt/SubjektPost");
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
@@ -873,13 +873,10 @@ namespace Saobracaj.Sifarnici
                 {
                     var result = streamReader.ReadToEnd();
                     response = result.ToString();
-                    MessageBox.Show(response.ToString());
-
-
                     if (response.Contains("Error") == true || response.Contains("Greška") == true)
                     {
                         MessageBox.Show("Slanje nije uspelo");
-                        MessageBox.Show(response.ToString());
+                        ins.InsApiLog("Partner-" + PaSifra.ToString(), jsonOutput, response);
                         return;
                     }
                     else
@@ -895,99 +892,9 @@ namespace Saobracaj.Sifarnici
                             }
                         }
                     }
+                    ins.InsApiLog("Partner-"+PaSifra.ToString(),jsonOutput, response);
                 }
             }
-
-
-            /*
-            string Subject, Name2, Adress, Post, Country, CountryPIB, Code, RegNo, WayOfTransaction, Buyer, WayOfSale, Currency, Supplier, SuppSaleMet, SuppCurr, Clerk, SuppClerk;
-            
-            try
-            {
-                var query = " Select PaNaziv as Subject,PaNaziv as Name2,PaUlicaHisnaSt as Address,PaPostnaSt as Post,DrNaziv as Country,(SUBSTRING(paPostnaSt,0,CHARINDEX('-',PaPostnaSt,0)))as CountryPIB,PaDMatSt as Code," +
-                    "PaEMatSt1 as RegNo,'Papirno i elektronski' as WayOfTransaction,Buyer,WayOfSale,Currency,Supplier,SuppSaleMet,SuppCurr,Referent as Clerk,0 as SuppClerk,PaSifra " +
-                    "From Partnerji " +
-                    "inner join Drzave on Partnerji.PaSifDrzave = Drzave.DrSifra " +
-                    "Where Status = 0";
-                SqlConnection conn = new SqlConnection(connect);
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(query, conn);
-                SqlDataReader dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    Subject = dr[0].ToString();
-                    Name2 = dr[1].ToString();
-                    Adress = dr[2].ToString();
-                    Post = dr[3].ToString();
-                    Country = dr[4].ToString();
-                    CountryPIB = dr[5].ToString();
-                    Code = dr[6].ToString();
-                    RegNo = dr[7].ToString();
-                    WayOfTransaction = dr[8].ToString();
-                    Buyer = dr[9].ToString();
-                    WayOfSale = dr[10].ToString();
-                    Currency = dr[11].ToString();
-                    Supplier = dr[12].ToString();
-                    SuppSaleMet = dr[13].ToString();
-                    SuppCurr = dr[14].ToString();
-                    Clerk = dr[15].ToString();
-                    SuppClerk = dr[16].ToString();
-                    PaSifra = Convert.ToInt32(dr[17].ToString());
-
-             
-
-                    var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/Subjekt/SubjektPost");
-                    httpWebRequest.ContentType = "application/json";
-                    httpWebRequest.Method = "POST";
-                    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                    {
-                        string json = "{" +
-                                       "\n\"Subject\":\"" + Subject + "\"," +
-                                       "\n\"Name2\":\"" + Name2 + "\"," +
-                                       "\n\"Address\":\"" + Adress + "\"," +
-                                       "\n\"Post\":\"" + Post + "\"," +
-                                       "\n\"Country\":\"" + Country + "\"," +
-                                       "\n\"CountryPIB\":\"" + CountryPIB + "\"," +
-                                       "\n\"Code\":\"" + Code + "\"," +
-                                       "\n\"RegNo\":\"" + RegNo + "\"," +
-                                       "\n\"WayOfTransaction\":\"" + WayOfTransaction + "\"," +
-                                       "\n\"Buyer\":\"" + Buyer + "\"," +
-                                       "\n\"WayOfSale\":\"" + WayOfSale + "\"," +
-                                       "\n\"Currency\":\"" + Currency + "\"," +
-                                       "\n\"Supplier\":\"" + Supplier + "\"," +
-                                       "\n\"SuppSaleMet\":\"" + SuppSaleMet + "\"," +
-                                       "\n\"SuppCurr\":\"" + SuppCurr + "\"," +
-                                       "\n\"Clerk\":\"" + Clerk + "\"," +
-                                       "\n\"SuppClerk\":\"" + SuppClerk + "\"\n}";
-                        streamWriter.Write(json);
-                    }
-                    string response = "";
-                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                    {
-                        var result = streamReader.ReadToEnd();
-                        response = result.ToString();
-                        MessageBox.Show(response.ToString());
-                        if (response.Contains("Error") == true || response.Contains("Greška") == true)
-                        {
-                            MessageBox.Show("Slanje nije uspelo");
-                            MessageBox.Show(response.ToString());
-                            return;
-                        }
-                        else
-                        {
-                            using (SqlCommand cmd2 = conn.CreateCommand())
-                            {
-                                cmd2.CommandText = "UPDATE Partnerji SET Status = 1  WHERE PaSifra = " + PaSifra;
-                                cmd.ExecuteNonQuery();
-                            }
-                        }
-                    }
-                }
-                conn.Close();
-
-            }
-            catch { }*/
         }
     }
 }

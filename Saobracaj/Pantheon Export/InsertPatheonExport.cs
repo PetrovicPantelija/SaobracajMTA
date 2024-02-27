@@ -144,7 +144,7 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
-        public void InsUlFakPostav(int IDFak, int RB, int MP, decimal Kolicina, decimal Cena, int NosilacTroska, string JM, string Proizvod, int Najava)
+        public void InsUlFakPostav(int IDFak, int RB, int MP, decimal Kolicina, decimal Cena, int NosilacTroska, string JM, string Proizvod, int Najava,decimal IznosRSD)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -168,6 +168,7 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@JM", SqlDbType.Char, 30) { Value = JM });
                             cmd.Parameters.Add(new SqlParameter("@Proizvod", SqlDbType.NVarChar) { Value = Proizvod });
                             cmd.Parameters.Add(new SqlParameter("@Najava", SqlDbType.Int) { Value = Najava });
+                            cmd.Parameters.Add(new SqlParameter("@IznosRSD",SqlDbType.Decimal) { Value = Kolicina });
 
                             cmd.ExecuteNonQuery();
                         }
@@ -287,7 +288,7 @@ namespace Saobracaj.Pantheon_Export
             }
         }
         public void InsPredvidjanje(int IdP, string PredvidjanjeID, int PredvidjanjePoz, DateTime Datum, int Subjekat, int NosilacTroska, int Odeljenje, decimal Iznos, string Valuta, int Status, int Najava,int Ident,
-            decimal Kolicina,string JM,string Napomena)
+            decimal Kolicina,string JM,string Napomena,decimal Kurs,decimal IznosRSD)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -317,6 +318,8 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@Kolicina", SqlDbType.Decimal) { Value = Kolicina });
                             cmd.Parameters.Add(new SqlParameter("@JM", SqlDbType.NVarChar, 10) { Value = JM });
                             cmd.Parameters.Add(new SqlParameter("@Napomena", SqlDbType.NVarChar, 500) { Value = Napomena });
+                            cmd.Parameters.Add(new SqlParameter("@Kurs", SqlDbType.Decimal) { Value = Kurs });
+                            cmd.Parameters.Add(new SqlParameter("IznosRSD", SqlDbType.Decimal) { Value = IznosRSD });
 
                             cmd.ExecuteNonQuery();
                         }
@@ -332,7 +335,7 @@ namespace Saobracaj.Pantheon_Export
             }
         }
         public void UpdPredvidjanje(int ID, string PredvidjanjeID, int PredvidjanjePoz, DateTime Datum, int Subjekat, int NosilacTroska, int Odeljenje, decimal Iznos, string Valuta, int NajavaID, int IDp,
-            int Ident, decimal Kolicina, string JM, string Napomena)
+            int Ident, decimal Kolicina, string JM, string Napomena,decimal Kurs,decimal IznosRSD)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -362,6 +365,8 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@Kolicina", SqlDbType.Decimal) { Value = Kolicina });
                             cmd.Parameters.Add(new SqlParameter("@JM", SqlDbType.NVarChar, 10) { Value = JM });
                             cmd.Parameters.Add(new SqlParameter("@Napomena", SqlDbType.NVarChar, 500) { Value = Napomena });
+                            cmd.Parameters.Add(new SqlParameter("@Kurs", SqlDbType.Decimal) { Value = Kurs });
+                            cmd.Parameters.Add(new SqlParameter("@IznosRSD",SqlDbType.Decimal) { Value = IznosRSD });
 
                             cmd.ExecuteNonQuery();
                         }
@@ -510,7 +515,7 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
-        public void InsFakturaPostav(string Referent, int Faktura, int RB, int MP, string MPNaziv, string JM, decimal Kolicina, decimal Cena, int NosilacTroska, int Najava)
+        public void InsFakturaPostav(string Referent, int Faktura, int RB, int MP, string MPNaziv, string JM, decimal Kolicina, decimal Cena, int NosilacTroska, int Najava,decimal IznosRSD)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -534,7 +539,7 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@Cena", SqlDbType.Decimal) { Value = Cena });
                             cmd.Parameters.Add(new SqlParameter("@NosilacTroska", SqlDbType.Int) { Value = NosilacTroska });
                             cmd.Parameters.Add(new SqlParameter("@NajavaID", SqlDbType.Int) { Value = Najava });
-
+                            cmd.Parameters.Add(new SqlParameter("@IznosRSD", SqlDbType.Decimal) { Value = IznosRSD });
                             cmd.ExecuteNonQuery();
                         }
                         transaction.Commit();
@@ -719,6 +724,40 @@ namespace Saobracaj.Pantheon_Export
                             cmd.CommandType = CommandType.StoredProcedure;
 
                             cmd.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = ID });
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (SqlException ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Neuspešan upis cena u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+                conn.Close();
+            }
+        }
+
+        public void InsApiLog(string Dokument,string Poziv,string Response)
+        {
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "InsertApiLogovi";
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.Add(new SqlParameter("@Dokument", SqlDbType.NVarChar,50) { Value = Dokument });
+                            cmd.Parameters.Add(new SqlParameter("@Poziv", SqlDbType.NVarChar) { Value = Poziv });
+                            cmd.Parameters.Add(new SqlParameter("@Response",SqlDbType.NVarChar) { Value = Response });
 
                             cmd.ExecuteNonQuery();
                         }
