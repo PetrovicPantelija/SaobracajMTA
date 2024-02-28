@@ -175,7 +175,7 @@ namespace Saobracaj.Pantheon_Export
                         string query2 = "";
                         if (Convert.ToDecimal(row.Cells[21].Value) > Convert.ToInt32(row.Cells[20].Value))
                         {
-                            query1 = "Select RTrim(CRMID) as CRMDocumentId,RTrim(Tip) as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,RTrim(UlFak.Valuta) as Currency,'RSD' as FXRate,RTrim(FakturaBr) as Doc1, " +
+                            query1 = "Select RTrim(CRMID) as CRMDocumentId,RTrim(Tip) as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,'RSD' as Currency,'1' as FXRate,RTrim(FakturaBr) as Doc1, " +
                                     "CONVERT(VARCHAR, DatumIzdavanja, 23) as DateDoc1,CONVERT(VARCHAR, DatumPDVa, 23) as DateVAT,CONVERT(VARCHAR, DatumValute, 23) as DateDue,Rtrim(PredvidjanjeID) as PredvidjanjeId, " +
                                     "UlFak.Referent as UserId,UlFak.Napomena as Napomena,UlFak.ID as ID " +
                                     "from UlFak " +
@@ -329,7 +329,7 @@ namespace Saobracaj.Pantheon_Export
                         string query2 = "";
                         if (Convert.ToDecimal(row.Cells[21].Value) > Convert.ToInt32(row.Cells[20].Value))
                         {
-                            query1 = "Select RTrim(CRMID) as CRMDocumentId,RTrim(Tip) as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,RTrim(UlFak.Valuta) as Currency,'RSD' as FXRate,RTrim(FakturaBr) as Doc1, " +
+                            query1 = "Select RTrim(CRMID) as CRMDocumentId,RTrim(Tip) as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,'RSD' as Currency,'1' as FXRate,RTrim(FakturaBr) as Doc1, " +
                                     "CONVERT(VARCHAR, DatumIzdavanja, 23) as DateDoc1,CONVERT(VARCHAR, DatumPDVa, 23) as DateVAT,CONVERT(VARCHAR, DatumValute, 23) as DateDue,Rtrim(PredvidjanjeID) as PredvidjanjeId, " +
                                     "UlFak.Referent as UserId,UlFak.Napomena as Napomena,UlFak.ID as ID " +
                                     "from UlFak " +

@@ -167,7 +167,7 @@ namespace Saobracaj.Pantheon_Export
                         if (Convert.ToDecimal(row.Cells[23].Value) > Convert.ToDecimal(row.Cells[21].Value))
                         {
                             query1 = "SELECT CRMID AS CRMDocumentID, RTrim(FaModul) AS DocType, CONVERT(VARCHAR, FaVpisalDat, 23) AS Date, RTrim(PaNaziv) AS Receiver," +
-                                "RTrim(FaValutaCene) AS Currency, 'RSD' AS FXRate, '' AS Doc1, '' AS DateDoc1, '' AS Doc2, '' AS DateDoc2," +
+                                "'RSD' AS Currency, '1' AS FXRate, '' AS Doc1, '' AS DateDoc1, '' AS Doc2, '' AS DateDoc2," +
                                 "CONVERT(VARCHAR, FaObdobje, 23) AS DateVAT, CONVERT(VARCHAR, FaDatVal, 23) AS DateDue, RTrim(IDPantheon) AS Statement," +
                                 "RTrim(FaRefer) AS UserId, RTrim(FaOpomba2) AS Napomena,FaStFak " +
                                 "FROM Faktura " +
@@ -313,7 +313,7 @@ namespace Saobracaj.Pantheon_Export
                         if (Convert.ToDecimal(row.Cells[23].Value) > Convert.ToDecimal(row.Cells[21].Value))
                         {
                             query1 = "SELECT CRMID AS CRMDocumentID, RTrim(FaModul) AS DocType, CONVERT(VARCHAR, FaVpisalDat, 23) AS Date, RTrim(PaNaziv) AS Receiver," +
-                                "RTrim(FaValutaCene) AS Currency, 'RSD' AS FXRate, '' AS Doc1, '' AS DateDoc1, '' AS Doc2, '' AS DateDoc2," +
+                                "'RSD' AS Currency, '1' AS FXRate, '' AS Doc1, '' AS DateDoc1, '' AS Doc2, '' AS DateDoc2," +
                                 "CONVERT(VARCHAR, FaObdobje, 23) AS DateVAT, CONVERT(VARCHAR, FaDatVal, 23) AS DateDue, RTrim(IDPantheon) AS Statement," +
                                 "RTrim(FaRefer) AS UserId, RTrim(FaOpomba2) AS Napomena,FaStFak " +
                                 "FROM Faktura " +

@@ -357,7 +357,7 @@
             // 
             // txtIznos
             // 
-            this.txtIznos.DecimalPlaces = 2;
+            this.txtIznos.DecimalPlaces = 4;
             this.txtIznos.Location = new System.Drawing.Point(852, 101);
             this.txtIznos.Maximum = new decimal(new int[] {
             1000000000,
@@ -367,6 +367,11 @@
             this.txtIznos.Name = "txtIznos";
             this.txtIznos.Size = new System.Drawing.Size(90, 20);
             this.txtIznos.TabIndex = 211;
+            this.txtIznos.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label9
             // 
@@ -459,7 +464,7 @@
             // 
             // txtKurs
             // 
-            this.txtKurs.DecimalPlaces = 2;
+            this.txtKurs.DecimalPlaces = 4;
             this.txtKurs.Location = new System.Drawing.Point(1101, 101);
             this.txtKurs.Maximum = new decimal(new int[] {
             1000000000,
