@@ -294,8 +294,6 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton1_Click_1(object sender, EventArgs e)
         {
-            // Saobracaj.Dokumeta.frmOtpremaKontejnera otpr = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
-            // otpr.Show();
             string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
             switch (Company)
             {

@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Net;
 using System.Net.Mail;
-
+using Saobracaj.Sifarnici;
 
 namespace Saobracaj.Dokumeta
 {
@@ -22,6 +22,7 @@ namespace Saobracaj.Dokumeta
         bool status = false;
         MailMessage mailMessage;
         int usao = 0;
+        string connect = frmLogovanje.connectionString;
         public frmOtpremaKontejnera()
         {
             InitializeComponent();
@@ -1012,6 +1013,16 @@ namespace Saobracaj.Dokumeta
             cboPredefinisanePoruke.DisplayMember = "Naziv";
             cboPredefinisanePoruke.ValueMember = "ID";
 
+
+            var select11 = "select ID,RTrim(Naziv) as Naziv from VrstePostupakaUvoz";
+            SqlConnection conn = new SqlConnection(connect);
+            var da11 = new SqlDataAdapter(select11, conn);
+            var ds11 = new DataSet();
+            da11.Fill(ds11);
+            cboPostupak.DataSource = ds11.Tables[0];
+            cboPostupak.DisplayMember = "Naziv";
+            cboPostupak.ValueMember = "ID";
+
             usao = 1;
 
         }
@@ -1276,6 +1287,8 @@ namespace Saobracaj.Dokumeta
                     {
                         txtSifra.Text = row.Cells[2].Value.ToString();
                         VratiPodatkeStavke(txtSifra.Text, Convert.ToInt32(row.Cells[1].Value.ToString()));
+                        PostupakRefresh(Convert.ToInt32(txtStavka.Text));
+
                     }
                 }
             }
@@ -3184,6 +3197,48 @@ namespace Saobracaj.Dokumeta
         {
             Saobracaj.Testiranje.frmTovarniList tl = new Saobracaj.Testiranje.frmTovarniList();
             tl.Show();
+        }
+        private void PostupakRefresh(int stavka)
+        {
+            var query = "Select PostupakStavkeOtpremaVeza.ID,IdStavke,RTrim(Naziv) as Naziv From PostupakStavkeOtpremaVeza inner join VrstePostupakaUvoz on PostupakStavkeOtpremaVeza.IDPostupka=VrstePostupakaUvoz.ID Where IDStavke=" + stavka;
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView3.ReadOnly = false;
+            dataGridView3.DataSource = ds.Tables[0];
+
+            dataGridView3.Columns[0].Width = 40;
+            dataGridView3.Columns[1].Width = 50;
+            dataGridView3.Columns[1].HeaderText = "Stavka";
+            dataGridView3.Columns[2].Width = 100;
+        }
+        private void btnDodajPostupak_Click(object sender, EventArgs e)
+        {
+            if (txtStavka.Text == "")
+            {
+                MessageBox.Show("Mora se izabrati stavka!");
+                return;
+            }
+            else
+            {
+                InsertPrijemKontejneraVoz ins = new InsertPrijemKontejneraVoz();
+                ins.InsertPostupakStavkeOtprema(Convert.ToInt32(txtStavka.Text), Convert.ToInt32(cboPostupak.SelectedValue));
+                PostupakRefresh(Convert.ToInt32(txtStavka.Text));
+            }
+        }
+
+        private void btnObrisiPostupak_Click(object sender, EventArgs e)
+        {
+            InsertPrijemKontejneraVoz ins = new InsertPrijemKontejneraVoz();
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+                if (row.Selected)
+                {
+                    ins.DeletePostupakStavkeOtprema(Convert.ToInt32(row.Cells[0].Value));
+                    PostupakRefresh(Convert.ToInt32(txtStavka.Text));
+                }
+            }
         }
     }
 }
