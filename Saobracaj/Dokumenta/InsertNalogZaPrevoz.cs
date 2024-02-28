@@ -262,7 +262,7 @@ namespace Saobracaj.Dokumenta
             }
         }
 
-        public void UpdNaloziZaPrevoz(int ID, string BrojKontejnera1, string BrojKontejnera2, double UkupnaMasa, string Relacija1, string Relacija2, DateTime DatumPrevoza, string VrstaRobe, double UkupnaMasa2, int Platilac, int OrganizacionaJedinica, string UtovarnoMesto, string IstovarnoMesto, string KontaktOsoba, string Napomena, DateTime Datum, string Korisnik, int Primalac, int statusrn,  DateTime DatumUtovara, DateTime PredvidjenoDatumUtovara, string TipKontejnera1, string TipKontejnera2, int VrstaRobeID, double NetoMasaRobe)
+        public void UpdNaloziZaPrevoz(int ID, string BrojKontejnera1, string BrojKontejnera2, double UkupnaMasa, string Relacija1, string Relacija2, DateTime DatumPrevoza, string VrstaRobe, double UkupnaMasa2, int Platilac, int OrganizacionaJedinica, int UtovarnoMesto, int IstovarnoMesto, string KontaktOsoba, string Napomena, DateTime Datum, string Korisnik, int Primalac, int statusrn,  DateTime DatumUtovara, DateTime PredvidjenoDatumUtovara, string TipKontejnera1, string TipKontejnera2, int VrstaRobeID, double NetoMasaRobe)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -357,16 +357,16 @@ namespace Saobracaj.Dokumenta
 
             SqlParameter parameter11 = new SqlParameter();
             parameter11.ParameterName = "@UtovarnoMesto";
-            parameter11.SqlDbType = SqlDbType.NVarChar;
-            parameter11.Size = 70;
+            parameter11.SqlDbType = SqlDbType.Int;
+           // parameter11.Size = 70;
             parameter11.Direction = ParameterDirection.Input;
             parameter11.Value = UtovarnoMesto;
             myCommand.Parameters.Add(parameter11);
 
             SqlParameter parameter12 = new SqlParameter();
             parameter12.ParameterName = "@IstovarnoMesto";
-            parameter12.SqlDbType = SqlDbType.NVarChar;
-            parameter12.Size = 70;
+            parameter12.SqlDbType = SqlDbType.Int;
+          //  parameter12.Size = 70;
             parameter12.Direction = ParameterDirection.Input;
             parameter12.Value = IstovarnoMesto;
             myCommand.Parameters.Add(parameter12);

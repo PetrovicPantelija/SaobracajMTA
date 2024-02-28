@@ -139,7 +139,7 @@ namespace Saobracaj.Dokumenta
                     statusurn = 3;
                 }
 
-                ins.InsNalogZaPrevoz(txtBrojKontejnera1.Text, txtBrojKontejnera2.Text, Convert.ToDouble(txtUkupnaMasa.Value), txtRelacija1.Text, txtRelacija2.Text, Convert.ToDateTime(dtpDatumPrevoza.Value), cboVrstaRobe.Text, Convert.ToDouble(txtUkupnaMasa2.Text), Convert.ToInt32(cboPlatilac.SelectedValue), Convert.ToInt32(cboOrganizacionaJedinica.SelectedValue), txtUtovarnoMesto.Text, txtIstovarnoMesto.Text, txtKontaktOsoba.Text, txtNapomena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(statusurn), Convert.ToDateTime(dtpDatumUtovara.Value), Convert.ToDateTime(dtpPredvidjenDatumUtovara.Value), txtTipKontejnera.Text, txtTipKontejnera2.Text, 0, Convert.ToDouble(txtNetoMasaRobe.Value));
+                ins.InsNalogZaPrevoz(txtBrojKontejnera1.Text, txtBrojKontejnera2.Text, Convert.ToDouble(txtUkupnaMasa.Value), txtRelacija1.Text, txtRelacija2.Text, Convert.ToDateTime(dtpDatumPrevoza.Value), cboVrstaRobe.Text, Convert.ToDouble(txtUkupnaMasa2.Text), Convert.ToInt32(cboPlatilac.SelectedValue), Convert.ToInt32(cboOrganizacionaJedinica.SelectedValue), Convert.ToInt32(txtUtovarnoMesto.SelectedValue), Convert.ToInt32(txtIstovarnoMesto.SelectedValue), txtKontaktOsoba.Text, txtNapomena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(statusurn), Convert.ToDateTime(dtpDatumUtovara.Value), Convert.ToDateTime(dtpPredvidjenDatumUtovara.Value), txtTipKontejnera.Text, txtTipKontejnera2.Text, 0, Convert.ToDouble(txtNetoMasaRobe.Value));
 
                 status = false;
                 VratiPodatkeMax();
@@ -162,7 +162,7 @@ namespace Saobracaj.Dokumenta
                         statusurn = 3;
                     }
 
-                    upd.UpdNaloziZaPrevoz(Convert.ToInt32(txtSifra.Text), txtBrojKontejnera1.Text, txtBrojKontejnera2.Text, Convert.ToDouble(txtUkupnaMasa.Value), txtRelacija1.Text, txtRelacija2.Text, Convert.ToDateTime(dtpDatumPrevoza.Value), cboVrstaRobe.Text, Convert.ToDouble(txtUkupnaMasa2.Text), Convert.ToInt32(cboPlatilac.SelectedValue), Convert.ToInt32(cboOrganizacionaJedinica.SelectedValue), txtUtovarnoMesto.Text, txtIstovarnoMesto.Text, txtKontaktOsoba.Text, txtNapomena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(statusurn),  Convert.ToDateTime(dtpDatumUtovara.Value), Convert.ToDateTime(dtpPredvidjenDatumUtovara.Value), txtTipKontejnera.Text, txtTipKontejnera2.Text, 0,  Convert.ToDouble(txtNetoMasaRobe.Value));
+                    upd.UpdNaloziZaPrevoz(Convert.ToInt32(txtSifra.Text), txtBrojKontejnera1.Text, txtBrojKontejnera2.Text, Convert.ToDouble(txtUkupnaMasa.Value), txtRelacija1.Text, txtRelacija2.Text, Convert.ToDateTime(dtpDatumPrevoza.Value), cboVrstaRobe.Text, Convert.ToDouble(txtUkupnaMasa2.Text), Convert.ToInt32(cboPlatilac.SelectedValue), Convert.ToInt32(cboOrganizacionaJedinica.SelectedValue), Convert.ToInt32(txtUtovarnoMesto.SelectedValue), Convert.ToInt32(txtIstovarnoMesto.SelectedValue), txtKontaktOsoba.Text, txtNapomena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(statusurn),  Convert.ToDateTime(dtpDatumUtovara.Value), Convert.ToDateTime(dtpPredvidjenDatumUtovara.Value), txtTipKontejnera.Text, txtTipKontejnera2.Text, 0,  Convert.ToDouble(txtNetoMasaRobe.Value));
 
                     status = false;
                 }
@@ -260,7 +260,7 @@ namespace Saobracaj.Dokumenta
             cboPrimalac.DisplayMember = "Naziv";
             cboPrimalac.ValueMember = "ID";
 
-            var select6 = " Select Distinct ID, (NKM + '-' + Naziv) as NKM  From VrstaRobe";
+            var select6 = " Select Distinct ID, (UNKod + '-' + Naziv) as ADR  From VrstaRobeADR";
             var s_connection6 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection6 = new SqlConnection(s_connection6);
             var c6 = new SqlConnection(s_connection6);
@@ -270,8 +270,36 @@ namespace Saobracaj.Dokumenta
             var ds6 = new DataSet();
             dataAdapter.Fill(ds6);
             cboVrstaRobeKomerijala.DataSource = ds6.Tables[0];
-            cboVrstaRobeKomerijala.DisplayMember = "NKM";
+            cboVrstaRobeKomerijala.DisplayMember = "ADR";
             cboVrstaRobeKomerijala.ValueMember = "ID";
+
+
+            var select7 = " Select Distinct ID, Naziv  From MestaUtovara";
+            var s_connection7 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection7 = new SqlConnection(s_connection7);
+            var c7 = new SqlConnection(s_connection7);
+            var dataAdapter7 = new SqlDataAdapter(select7, c7);
+
+            var commandBuilder7 = new SqlCommandBuilder(dataAdapter7);
+            var ds7 = new DataSet();
+            dataAdapter.Fill(ds7);
+            txtUtovarnoMesto.DataSource = ds7.Tables[0];
+            txtUtovarnoMesto.DisplayMember = "Naziv";
+            txtUtovarnoMesto.ValueMember = "ID";
+
+
+            var select8 = " Select Distinct ID, Naziv  From MestaUtovara";
+            var s_connection8 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection8 = new SqlConnection(s_connection8);
+            var c8 = new SqlConnection(s_connection8);
+            var dataAdapter8 = new SqlDataAdapter(select8, c8);
+
+            var commandBuilder8 = new SqlCommandBuilder(dataAdapter8);
+            var ds8 = new DataSet();
+            dataAdapter.Fill(ds8);
+            txtIstovarnoMesto.DataSource = ds7.Tables[0];
+            txtIstovarnoMesto.DisplayMember = "Naziv";
+            txtIstovarnoMesto.ValueMember = "ID";
 
             if (txtSifra.Text != "")
             {
@@ -472,5 +500,14 @@ namespace Saobracaj.Dokumenta
 
 
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            using (var detailForm = new Saobracaj.Dokumenta.frmKontaktOsobe(Convert.ToInt32(cboPrimalac.SelectedValue)))
+            {
+                detailForm.ShowDialog();
+                txtKontaktOsoba.Text = detailForm.GetKontakt(Convert.ToInt32(cboPrimalac.SelectedValue));
+            }
+        }
     }
-}
+

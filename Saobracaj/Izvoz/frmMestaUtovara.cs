@@ -13,7 +13,7 @@ using System.Configuration;
 
 namespace Saobracaj.Izvoz
 {
-    public partial class frmMestaUtovara : Form
+    public partial class frmMestaUtovara : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         public static string code = "frmMestaUtovara";
@@ -28,6 +28,7 @@ namespace Saobracaj.Izvoz
         public frmMestaUtovara()
         {
             InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             IdGrupe();
             IdForme();
             PravoPristupa();

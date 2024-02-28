@@ -68,6 +68,7 @@
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.chkVlasnik = new System.Windows.Forms.CheckBox();
             this.chkOrganizator = new System.Windows.Forms.CheckBox();
             this.chkPlatilac = new System.Windows.Forms.CheckBox();
@@ -91,23 +92,22 @@
             this.chkKamioner = new System.Windows.Forms.CheckBox();
             this.btnDrzava = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnMin = new System.Windows.Forms.Button();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.cbDobavljac = new System.Windows.Forms.CheckBox();
             this.cbObveznik = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label19 = new System.Windows.Forms.Label();
-            this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.cboValuta = new System.Windows.Forms.ComboBox();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNaziv
@@ -459,6 +459,17 @@
             this.toolStripButton1.Text = "Kontakl osobe";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(99, 24);
+            this.toolStripButton2.Text = "Export Pantheon";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
             // chkVlasnik
             // 
             this.chkVlasnik.AutoSize = true;
@@ -707,6 +718,34 @@
             this.panel1.Size = new System.Drawing.Size(574, 599);
             this.panel1.TabIndex = 217;
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(294, 42);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(34, 13);
+            this.label20.TabIndex = 3;
+            this.label20.Text = "Pošta";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(3, 42);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(41, 13);
+            this.label19.TabIndex = 3;
+            this.label19.Text = "Država";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(71, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Potvrdi";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // btnMin
             // 
             this.btnMin.BackColor = System.Drawing.Color.Linen;
@@ -718,6 +757,16 @@
             this.btnMin.Text = "--";
             this.btnMin.UseVisualStyleBackColor = false;
             this.btnMin.Click += new System.EventHandler(this.btnMin_Click);
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Location = new System.Drawing.Point(297, 59);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.Size = new System.Drawing.Size(274, 537);
+            this.dataGridView4.TabIndex = 0;
             // 
             // dataGridView3
             // 
@@ -749,44 +798,6 @@
             this.cbObveznik.Text = "Poreski obveznik";
             this.cbObveznik.UseVisualStyleBackColor = true;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(71, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Potvrdi";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(3, 42);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(41, 13);
-            this.label19.TabIndex = 3;
-            this.label19.Text = "Država";
-            // 
-            // dataGridView4
-            // 
-            this.dataGridView4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(297, 59);
-            this.dataGridView4.Name = "dataGridView4";
-            this.dataGridView4.Size = new System.Drawing.Size(274, 537);
-            this.dataGridView4.TabIndex = 0;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(294, 42);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(34, 13);
-            this.label20.TabIndex = 3;
-            this.label20.Text = "Pošta";
-            // 
             // label21
             // 
             this.label21.AutoSize = true;
@@ -803,17 +814,6 @@
             this.cboValuta.Name = "cboValuta";
             this.cboValuta.Size = new System.Drawing.Size(169, 21);
             this.cboValuta.TabIndex = 220;
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(99, 24);
-            this.toolStripButton2.Text = "Export Pantheon";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // frmPartnerji
             // 
@@ -884,7 +884,7 @@
             this.Controls.Add(this.lblNaziv);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPartnerji";
-            this.Text = " ";
+            this.Text = " PARTNERI";
             this.Load += new System.EventHandler(this.frmPartnerji_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
@@ -892,8 +892,8 @@
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
