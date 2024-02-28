@@ -9,12 +9,13 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+using Saobracaj.Sifarnici;
 
 namespace Saobracaj.Dokumeta
 {
     class InsertPrijemKontejneraVoz
     {
-
+        string connection = frmLogovanje.connectionString;
         public void InsertPrijemKontVoz( DateTime DatumPrijema,int StatusPrijema,int IdVoza, DateTime VremeDolaska,	DateTime Datum, string Korisnik,  string RegBrKamiona,   string ImeVozaca,   int Vozom, string Napomena, int PredefinisanePorukeID, int Operater, int VrstaKamiona, int Poreklo, int OperaterHR, int Modul)
         {
             /*
@@ -519,7 +520,212 @@ namespace Saobracaj.Dokumeta
                   }
               }
           }
-    
+        public void InsertPostupakStavke(int IdStavke,int IdPostupka)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertPostupakStavke";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter stavka = new SqlParameter();
+            stavka.ParameterName = "@IDStavke";
+            stavka.SqlDbType = SqlDbType.Int;
+            stavka.Direction = ParameterDirection.Input;
+            stavka.Value = IdStavke;
+            cmd.Parameters.Add(stavka);
+
+            SqlParameter postupak = new SqlParameter();
+            postupak.ParameterName = "@IdPostupka";
+            postupak.SqlDbType = SqlDbType.Int;
+            postupak.Direction = ParameterDirection.Input;
+            postupak.Value = IdPostupka;
+            cmd.Parameters.Add(postupak);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Upis neuspešno");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Upis uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+        public void DeletePostupakStavke(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DeletePostupakStavke";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter stavka = new SqlParameter();
+            stavka.ParameterName = "@ID";
+            stavka.SqlDbType = SqlDbType.Int;
+            stavka.Direction = ParameterDirection.Input;
+            stavka.Value = ID;
+            cmd.Parameters.Add(stavka);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Brisanje neuspešno");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Brisanje uspešno završeno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+        public void InsertPostupakStavkeOtprema(int IdStavke, int IdPostupka)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertPostupakStavkeOtprema";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter stavka = new SqlParameter();
+            stavka.ParameterName = "@IDStavke";
+            stavka.SqlDbType = SqlDbType.Int;
+            stavka.Direction = ParameterDirection.Input;
+            stavka.Value = IdStavke;
+            cmd.Parameters.Add(stavka);
+
+            SqlParameter postupak = new SqlParameter();
+            postupak.ParameterName = "@IdPostupka";
+            postupak.SqlDbType = SqlDbType.Int;
+            postupak.Direction = ParameterDirection.Input;
+            postupak.Value = IdPostupka;
+            cmd.Parameters.Add(postupak);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Upis neuspešno");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Upis uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+        public void DeletePostupakStavkeOtprema(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DeletePostupakStavkeOtprema";
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter stavka = new SqlParameter();
+            stavka.ParameterName = "@ID";
+            stavka.SqlDbType = SqlDbType.Int;
+            stavka.Direction = ParameterDirection.Input;
+            stavka.Value = ID;
+            cmd.Parameters.Add(stavka);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Brisanje neuspešno");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Brisanje uspešno završeno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
     }
 }
 

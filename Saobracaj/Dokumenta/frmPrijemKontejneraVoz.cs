@@ -14,6 +14,8 @@ using System.Net;
 using System.Net.Mail;
 using System.Diagnostics.CodeAnalysis;
 using Saobracaj;
+using Saobracaj.Sifarnici;
+using Saobracaj.Dokumeta;
 
 namespace TrackModal.Dokumeta
 {
@@ -24,6 +26,7 @@ namespace TrackModal.Dokumeta
         string KorisnikCene;
         bool status = false;
         int usao = 0;
+        string connect = frmLogovanje.connectionString;
 
         public frmPrijemKontejneraVoz()
         {
@@ -614,6 +617,15 @@ namespace TrackModal.Dokumeta
             cboPredefinisanePoruke.ValueMember = "ID";
 
             usao = 1;
+
+            var select11 = "select ID,RTrim(Naziv) as Naziv from VrstePostupakaUvoz";
+            SqlConnection conn = new SqlConnection(connect);
+            var da11=new SqlDataAdapter(select11, conn);
+            var ds11 = new DataSet();
+            da11.Fill(ds11);
+            cboPostupak.DataSource = ds11.Tables[0];
+            cboPostupak.DisplayMember = "Naziv";
+            cboPostupak.ValueMember = "ID";
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
@@ -2677,13 +2689,18 @@ namespace TrackModal.Dokumeta
                     {
                         txtSifra.Text = row.Cells[2].Value.ToString();
                         VratiPodatkeStavke(txtSifra.Text, Convert.ToInt32(row.Cells[1].Value.ToString()));
+                        PostupakRefresh(Convert.ToInt32(txtStavka.Text));
+
+
                     }
                 }
+                
             }
             catch
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
+           
         }
 
         private void cboBukingPrijema_SelectedIndexChanged(object sender, EventArgs e)
@@ -3032,6 +3049,48 @@ namespace TrackModal.Dokumeta
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
 
+        }
+        private void PostupakRefresh(int stavka)
+        {
+            var query = "Select PostupakStavkeVeza.ID,IdStavke,RTrim(Naziv) as Naziv From PostupakStavkeVeza inner join VrstePostupakaUvoz on PostupakStavkeVeza.IDPostupka=VrstePostupakaUvoz.ID Where IDStavke=" + stavka;
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(query, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView2.ReadOnly = false;
+            dataGridView2.DataSource = ds.Tables[0];
+
+            dataGridView2.Columns[0].Width = 40;
+            dataGridView2.Columns[1].Width = 50;
+            dataGridView2.Columns[1].HeaderText = "Stavka";
+            dataGridView2.Columns[2].Width = 100;
+        }
+        private void btnDodajPostupak_Click(object sender, EventArgs e)
+        {
+            if (txtStavka.Text == "")
+            {
+                MessageBox.Show("Mora se izabrati stavka!");
+                return;
+            }
+            else
+            {
+                InsertPrijemKontejneraVoz ins = new InsertPrijemKontejneraVoz();
+                ins.InsertPostupakStavke(Convert.ToInt32(txtStavka.Text), Convert.ToInt32(cboPostupak.SelectedValue));
+                PostupakRefresh(Convert.ToInt32(txtStavka.Text));
+            }
+        }
+
+        private void btnObrisiPostupak_Click(object sender, EventArgs e)
+        {
+            InsertPrijemKontejneraVoz ins = new InsertPrijemKontejneraVoz();
+            foreach(DataGridViewRow row in dataGridView2.Rows)
+            {
+                if (row.Selected)
+                {
+                    ins.DeletePostupakStavke(Convert.ToInt32(row.Cells[0].Value));
+                    PostupakRefresh(Convert.ToInt32(txtStavka.Text));
+                }
+            }
         }
     }
 
