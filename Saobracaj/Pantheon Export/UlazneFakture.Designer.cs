@@ -412,7 +412,7 @@
             // 
             // txtCena
             // 
-            this.txtCena.DecimalPlaces = 2;
+            this.txtCena.DecimalPlaces = 4;
             this.txtCena.Location = new System.Drawing.Point(522, 27);
             this.txtCena.Maximum = new decimal(new int[] {
             1000000000,
@@ -595,7 +595,7 @@
             // 
             // txtKurs
             // 
-            this.txtKurs.DecimalPlaces = 2;
+            this.txtKurs.DecimalPlaces = 4;
             this.txtKurs.Location = new System.Drawing.Point(1089, 61);
             this.txtKurs.Maximum = new decimal(new int[] {
             1000000,
