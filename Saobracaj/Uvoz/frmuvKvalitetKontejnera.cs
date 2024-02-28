@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmuvKvalitetKontejnera : Form
+    public partial class frmuvKvalitetKontejnera : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmuvKvalitetKontejnera";
         public bool Pravo;
@@ -29,6 +29,7 @@ namespace Saobracaj.Uvoz
         public frmuvKvalitetKontejnera()
         {
             InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             IdGrupe();
             IdForme();
             PravoPristupa();

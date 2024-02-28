@@ -23,9 +23,8 @@ using Saobracaj.eDokumenta;
 using Saobracaj.RadniNalozi;
 using Syncfusion.Windows.Forms.Diagram;
 using Saobracaj.Izvoz;
-using Testiranje.Dokumeta;
 using frmVozila = Testiranje.Dokumeta.frmVozila;
-
+using frmCIRPregled = Testiranje.Dokumeta.frmCIRPregled;
 namespace Saobracaj
 {
     public partial class MainP : Syncfusion.Windows.Forms.Tools.RibbonForm
@@ -4110,6 +4109,18 @@ namespace Saobracaj
         {
             KrajnjeDestinacije ikd = new KrajnjeDestinacije();
             ikd.Show();
+        }
+
+        private void toolStripButton353_Click(object sender, EventArgs e)
+        {
+            Pantheon_Export.ApiPregled ap = new Pantheon_Export.ApiPregled();
+            ap.Show();
+        }
+
+        private void toolStripButton354_Click(object sender, EventArgs e)
+        {
+            frmCIRPregled pc = new frmCIRPregled();
+            pc.Show();
         }
     }
     }

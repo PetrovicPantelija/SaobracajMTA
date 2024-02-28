@@ -17,7 +17,7 @@ using Microsoft.Reporting.WinForms;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmCIR : Form
+    public partial class frmCIR : Syncfusion.Windows.Forms.Office2010Form
     {
         string KorisnikCene;
         bool status = false;
@@ -29,17 +29,31 @@ namespace Saobracaj.Dokumenta
         public frmCIR()
         {
             InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+
+        }
+
+        public frmCIR(int Dokument)
+        {
+            InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+
+            txtSifra.Text = Dokument.ToString();
+            VratiPodatkeCIR(Dokument);
         }
 
         public frmCIR(string Korisnik)
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+
         }
 
         public frmCIR(string Korisnik, int dDokument, int dPrijem, string Kontejner, string Vagon, double Tara, string BrojKamiona, double Neto, int TipKon, DateTime DatumUlaza, string sPlomba, string sPlomba2)
         {
             InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             dtpDatumIn.Value = DatumUlaza;
             tk = TipKon;
             KorisnikCene = Korisnik;
@@ -237,6 +251,19 @@ namespace Saobracaj.Dokumenta
             cboDeo.DisplayMember = "Naziv";
             cboDeo.ValueMember = "ID";
 
+            var select6 = " Select Distinct ID, Naziv   From uvKvalitetKontejnera order by ID";
+            var s_connection6 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection6 = new SqlConnection(s_connection6);
+            var c6 = new SqlConnection(s_connection6);
+            var dataAdapter6 = new SqlDataAdapter(select6, c6);
+
+            var commandBuilder6 = new SqlCommandBuilder(dataAdapter6);
+            var ds6 = new DataSet();
+            dataAdapter6.Fill(ds6);
+            cboKvalitet.DataSource = ds6.Tables[0];
+            cboKvalitet.DisplayMember = "Naziv";
+            cboKvalitet.ValueMember = "ID";
+
             VratiPodatkeTipKontejnera();
         }
 
@@ -268,6 +295,7 @@ namespace Saobracaj.Dokumenta
                 int Ispravan = 0;
                 int Prevoz = 0;
                 int Prijem = 0;
+                int Interni = 0;
 
                 if (chkMaterijalCelik.Checked == true)
                 {
@@ -310,10 +338,16 @@ namespace Saobracaj.Dokumenta
                 {
                     Prijem = 1;
                 }
+
+                if (chkInterni.Checked == true)
+                {
+                    Interni = 1;
+                }
+
                 double TezinaPom = 0;
                 TezinaPom = Convert.ToDouble(txtBruto.Text);
 
-                ins.InsCIR(Convert.ToInt32(txtSize.Value), Convert.ToInt32(cboTipKontejnera.SelectedValue), MaterijalCelik, MaterijalAlumni, incoming, Pun, Convert.ToDouble(txtBruto.Text), txtBrojKontejnera.Text, Plomba1, Plomba2, Convert.ToDateTime(dtpDatumIn.Value), txtVagon.Text, txtTruckIn.Text, Damaged, Ispravan, Prevoz, txtContainerresponsible.Text, txtprimedbe.Text, txtReceived.Text, txtInspected.Text, txtDelivery.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Prijem, Convert.ToInt32(txtDokument.Text), Convert.ToDouble(txtDuzina.Value), Convert.ToDouble(txtSirina.Value), Convert.ToDouble(txtDuzina.Value), txtPlomba.Text, txtPlomba2.Text);
+                ins.InsCIR(Convert.ToInt32(txtSize.Value), Convert.ToInt32(cboTipKontejnera.SelectedValue), MaterijalCelik, MaterijalAlumni, incoming, Pun, Convert.ToDouble(txtBruto.Text), txtBrojKontejnera.Text, Plomba1, Plomba2, Convert.ToDateTime(dtpDatumIn.Value), txtVagon.Text, txtTruckIn.Text, Damaged, Ispravan, Prevoz, txtContainerresponsible.Text, txtprimedbe.Text, txtReceived.Text, txtInspected.Text, txtDelivery.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Prijem, Convert.ToInt32(txtDokument.Text), Convert.ToDouble(txtDuzina.Value), Convert.ToDouble(txtSirina.Value), Convert.ToDouble(txtDuzina.Value), txtPlomba.Text, txtPlomba2.Text, Interni, Convert.ToDouble(txtNosivost.Value));
                 if (Prijem == 1)
                 {
                     ins.UpdateCIRPrijem(Convert.ToInt32(txtDokument.Text));
@@ -338,6 +372,7 @@ namespace Saobracaj.Dokumenta
                 int Ispravan = 0;
                 int Prevoz = 0;
                 int Prijem = 0;
+                int Interni = 0;
 
                 if (chkMaterijalCelik.Checked == true)
                 {
@@ -380,10 +415,15 @@ namespace Saobracaj.Dokumenta
                 {
                     Prijem = 1;
                 }
+
+                if (chkInterni.Checked == true)
+                {
+                    Interni = 1;
+                }
                 double TezinaPom = 0;
                 TezinaPom = Convert.ToDouble(txtBruto.Text);
 
-                upd.UpdCIR(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtSize.Value), Convert.ToInt32(cboTipKontejnera.SelectedValue), MaterijalCelik, MaterijalAlumni, incoming, Pun, Convert.ToDouble(txtBruto.Text), txtBrojKontejnera.Text, Plomba1, Plomba2, Convert.ToDateTime(dtpDatumIn.Value), txtVagon.Text, txtTruckIn.Text, Damaged, Ispravan, Prevoz, txtContainerresponsible.Text, txtprimedbe.Text, txtReceived.Text, txtInspected.Text, txtDelivery.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Prijem, Convert.ToInt32(txtDokument.Text), Convert.ToDouble(txtDuzina.Value), Convert.ToDouble(txtSirina.Value), Convert.ToDouble(txtDuzina.Value), txtPlomba.Text, txtPlomba2.Text);
+                upd.UpdCIR(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtSize.Value), Convert.ToInt32(cboTipKontejnera.SelectedValue), MaterijalCelik, MaterijalAlumni, incoming, Pun, Convert.ToDouble(txtBruto.Text), txtBrojKontejnera.Text, Plomba1, Plomba2, Convert.ToDateTime(dtpDatumIn.Value), txtVagon.Text, txtTruckIn.Text, Damaged, Ispravan, Prevoz, txtContainerresponsible.Text, txtprimedbe.Text, txtReceived.Text, txtInspected.Text, txtDelivery.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Prijem, Convert.ToInt32(txtDokument.Text), Convert.ToDouble(txtDuzina.Value), Convert.ToDouble(txtSirina.Value), Convert.ToDouble(txtDuzina.Value), txtPlomba.Text, txtPlomba2.Text,Interni, Convert.ToDouble(txtNosivost.Value));
 
                 status = false;
             }
@@ -464,7 +504,14 @@ namespace Saobracaj.Dokumenta
             par[0] = new ReportParameter("ID", txtSifra.Text);
 
             reportViewer1.LocalReport.DataSources.Clear();
-            reportViewer1.LocalReport.ReportPath = "rptCIR.rdlc";
+            if (Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                reportViewer1.LocalReport.ReportPath = "rptCIR.rdlc";
+            }
+            else if (Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                reportViewer1.LocalReport.ReportPath = "rptCIRTA.rdlc";
+            }
             reportViewer1.LocalReport.SetParameters(par);
             reportViewer1.LocalReport.DataSources.Add(rds);
             reportViewer1.LocalReport.SubreportProcessing += new
@@ -629,7 +676,7 @@ namespace Saobracaj.Dokumenta
              " ,CIR.[primedbe]      ,CIR.[Received]      ,CIR.[Inspected] " +
              " ,CIR.[Delivery]      ,CIR.[Datum]      ,CIR.[Korisnik] " +
              " ,CIR.[Prijem]      ,CIR.[Dokument]	  ,CIR.Duzina " +
-             " ,CIR.Sirina	  ,CIR.Visina, CIR.sPlomba, CIR.sPlomba2      from CIR " +
+             " ,CIR.Sirina	  ,CIR.Visina, CIR.sPlomba, CIR.sPlomba2 , CIR.Interni     from CIR " +
              " where CIR.[Dokument] = " + dokument + "and Prijem = 1 Order by ID desc";
             }
             else
@@ -643,7 +690,7 @@ namespace Saobracaj.Dokumenta
            " ,CIR.[primedbe]      ,CIR.[Received]      ,CIR.[Inspected] " +
            " ,CIR.[Delivery]      ,CIR.[Datum]      ,CIR.[Korisnik] " +
            " ,CIR.[Prijem]      ,CIR.[Dokument]	  ,CIR.Duzina " +
-           " ,CIR.Sirina	  ,CIR.Visina, CIR.sPlomba, CIR.sPlomba2      from CIR " +
+           " ,CIR.Sirina	  ,CIR.Visina, CIR.sPlomba, CIR.sPlomba2, CIR.Interni      from CIR " +
            " where CIR.[Dokument] = " + dokument + "and Prijem = 0 Order by ID desc";
             }
 
@@ -679,6 +726,15 @@ namespace Saobracaj.Dokumenta
                     else
                     {
                         chkPlomba2.Checked = false;
+                    }
+
+                    if (Convert.ToInt32(dr["Interni"].ToString()) == 1)
+                    {
+                        chkInterni.Checked = true;
+                    }
+                    else
+                    {
+                        chkInterni.Checked = false;
                     }
 
                     if (Convert.ToInt32(dr["Plomba1"].ToString()) == 1)
@@ -1159,6 +1215,11 @@ namespace Saobracaj.Dokumenta
             
 
             }
+
+        private void tsPrvi_Click(object sender, EventArgs e)
+        {
+
         }
+    }
     }
 
