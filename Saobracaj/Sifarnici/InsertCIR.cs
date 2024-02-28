@@ -14,7 +14,7 @@ namespace Saobracaj.Sifarnici
     class InsertCIR
     {
 
-        public void InsCIR(int Size , int TiKontejnera , int MaterijalCelik ,int MaterijalAlumini ,int incoming ,int Pun ,double Tezina , string BrKontejnera ,int Plomba1 , int Plomba2 , DateTime DatumIn , string Vagon ,string TruckNo , int Damaged ,int Ispravan ,int Prevoz ,string Containerresponsible , string primedbe ,string Received ,string Inspected, string Delivery , DateTime Datum,  string Korisnik, int Prijem, int Dokumenta, double Duzina, double Sirina, double Visina, string sPlomba, string sPlomba2)
+        public void InsCIR(int Size , int TiKontejnera , int MaterijalCelik ,int MaterijalAlumini ,int incoming ,int Pun ,double Tezina , string BrKontejnera ,int Plomba1 , int Plomba2 , DateTime DatumIn , string Vagon ,string TruckNo , int Damaged ,int Ispravan ,int Prevoz ,string Containerresponsible , string primedbe ,string Received ,string Inspected, string Delivery , DateTime Datum,  string Korisnik, int Prijem, int Dokumenta, double Duzina, double Sirina, double Visina, string sPlomba, string sPlomba2, int Interni, double Nosivost)
         {
       
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -247,6 +247,20 @@ namespace Saobracaj.Sifarnici
             parameter29.Value = sPlomba2;
             myCommand.Parameters.Add(parameter29);
 
+            SqlParameter parameter30 = new SqlParameter();
+            parameter30.ParameterName = "@Interni";
+            parameter30.SqlDbType = SqlDbType.Int;
+            parameter30.Direction = ParameterDirection.Input;
+            parameter30.Value = Interni;
+            myCommand.Parameters.Add(parameter30);
+
+            SqlParameter parameter31 = new SqlParameter();
+            parameter31.ParameterName = "@Nosivost";
+            parameter31.SqlDbType = SqlDbType.Decimal;
+            parameter31.Direction = ParameterDirection.Input;
+            parameter31.Value = Nosivost;
+            myCommand.Parameters.Add(parameter31);
+
             /*   
 
     
@@ -403,7 +417,7 @@ namespace Saobracaj.Sifarnici
             }
         }
 
-        public void UpdCIR(int Id, int Size, int TiKontejnera, int MaterijalCelik, int MaterijalAlumini, int incoming, int Pun, double Tezina, string BrKontejnera, int Plomba1, int Plomba2, DateTime DatumIn, string Vagon, string TruckNo, int Damaged, int Ispravan, int Prevoz, string Containerresponsible, string primedbe, string Received, string Inspected, string Delivery, DateTime Datum, string Korisnik, int Prijem, int Dokumenta, double Duzina, double Sirina, double Visina, string sPlomba, string sPlomba2)
+        public void UpdCIR(int Id, int Size, int TiKontejnera, int MaterijalCelik, int MaterijalAlumini, int incoming, int Pun, double Tezina, string BrKontejnera, int Plomba1, int Plomba2, DateTime DatumIn, string Vagon, string TruckNo, int Damaged, int Ispravan, int Prevoz, string Containerresponsible, string primedbe, string Received, string Inspected, string Delivery, DateTime Datum, string Korisnik, int Prijem, int Dokumenta, double Duzina, double Sirina, double Visina, string sPlomba, string sPlomba2, int Interni, double Nosivost)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -643,7 +657,19 @@ namespace Saobracaj.Sifarnici
             parameter29.Value = sPlomba2;
             myCommand.Parameters.Add(parameter29);
 
+            SqlParameter parameter30 = new SqlParameter();
+            parameter30.ParameterName = "@Interni";
+            parameter30.SqlDbType = SqlDbType.Int;
+            parameter30.Direction = ParameterDirection.Input;
+            parameter30.Value = Interni;
+            myCommand.Parameters.Add(parameter30);
 
+            SqlParameter parameter31 = new SqlParameter();
+            parameter31.ParameterName = "@Nosivost";
+            parameter31.SqlDbType = SqlDbType.Decimal;
+            parameter31.Direction = ParameterDirection.Input;
+            parameter31.Value = Nosivost;
+            myCommand.Parameters.Add(parameter31);
             /*   
 
     

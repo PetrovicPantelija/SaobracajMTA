@@ -17,7 +17,7 @@ using Microsoft.Reporting.WinForms;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmNalogZaPrevoz : Form
+    public partial class frmNalogZaPrevoz : Syncfusion.Windows.Forms.Office2010Form
     {
         string KorisnikCene;
         bool status = false;
