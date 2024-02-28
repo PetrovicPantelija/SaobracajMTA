@@ -622,8 +622,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label33);
-            this.panel1.Controls.Add(this.cboPredefinisanePoruke);
             this.panel1.Controls.Add(this.txtNapomenaS);
             this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.button6);
@@ -685,7 +683,7 @@
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label33.ForeColor = System.Drawing.Color.Black;
-            this.label33.Location = new System.Drawing.Point(1053, 167);
+            this.label33.Location = new System.Drawing.Point(456, 137);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(129, 16);
             this.label33.TabIndex = 243;
@@ -695,7 +693,7 @@
             // 
             this.cboPredefinisanePoruke.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboPredefinisanePoruke.FormattingEnabled = true;
-            this.cboPredefinisanePoruke.Location = new System.Drawing.Point(1053, 186);
+            this.cboPredefinisanePoruke.Location = new System.Drawing.Point(591, 140);
             this.cboPredefinisanePoruke.Name = "cboPredefinisanePoruke";
             this.cboPredefinisanePoruke.Size = new System.Drawing.Size(230, 24);
             this.cboPredefinisanePoruke.TabIndex = 242;
@@ -776,7 +774,7 @@
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(69, 17);
             this.label29.TabIndex = 230;
-            this.label29.Text = "Operator:";
+            this.label29.Text = "Operater:";
             // 
             // cboOrganizator
             // 
@@ -996,9 +994,9 @@
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(473, 62);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(95, 17);
+            this.label9.Size = new System.Drawing.Size(66, 17);
             this.label9.TabIndex = 187;
-            this.label9.Text = "Nalogodavac:";
+            this.label9.Text = "Primalac:";
             // 
             // txtStavka
             // 
@@ -1074,9 +1072,9 @@
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(473, 13);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(92, 17);
+            this.label8.Size = new System.Drawing.Size(65, 17);
             this.label8.TabIndex = 185;
-            this.label8.Text = "Naogodavac:";
+            this.label8.Text = "Špediter:";
             // 
             // cboPosiljalac
             // 
@@ -1239,6 +1237,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1337, 749);
+            this.Controls.Add(this.cboPredefinisanePoruke);
+            this.Controls.Add(this.label33);
             this.Controls.Add(this.chkCIRUradjen);
             this.Controls.Add(this.chkZatvoren);
             this.Controls.Add(this.label31);
