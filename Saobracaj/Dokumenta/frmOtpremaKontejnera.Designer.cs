@@ -628,8 +628,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label33);
-            this.panel1.Controls.Add(this.cboPredefinisanePoruke);
             this.panel1.Controls.Add(this.txtNapomenaS);
             this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.button6);
@@ -782,7 +780,7 @@
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(69, 17);
             this.label29.TabIndex = 230;
-            this.label29.Text = "Operator:";
+            this.label29.Text = "Operater:";
             // 
             // cboOrganizator
             // 
@@ -1002,9 +1000,9 @@
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(353, 62);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(95, 17);
+            this.label9.Size = new System.Drawing.Size(66, 17);
             this.label9.TabIndex = 187;
-            this.label9.Text = "Nalogodavac:";
+            this.label9.Text = "Primalac:";
             // 
             // txtStavka
             // 
@@ -1080,9 +1078,9 @@
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(473, 12);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(92, 17);
+            this.label8.Size = new System.Drawing.Size(65, 17);
             this.label8.TabIndex = 185;
-            this.label8.Text = "Naogodavac:";
+            this.label8.Text = "Špediter:";
             // 
             // cboPosiljalac
             // 
