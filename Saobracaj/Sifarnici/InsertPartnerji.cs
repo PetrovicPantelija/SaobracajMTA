@@ -642,9 +642,9 @@ namespace Saobracaj.Sifarnici
                 myCommand.Transaction = myTransaction;
             }
 
-            catch (SqlException)
+            catch (SqlException ex)
             {
-                throw new Exception("Neuspešna promena podataka");
+                throw new Exception("Neuspešna promena podataka\n"+ex.ToString());
             }
 
             finally
