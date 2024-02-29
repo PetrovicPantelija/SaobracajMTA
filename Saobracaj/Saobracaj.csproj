@@ -1369,6 +1369,12 @@
     <Compile Include="Dokumenta\frmTeretnicaTerenIzmena.Designer.cs">
       <DependentUpon>frmTeretnicaTerenIzmena.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dokumenta\PrijemNaSkladiste.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\PrijemNaSkladiste.Designer.cs">
+      <DependentUpon>PrijemNaSkladiste.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\TrainListItem\MRNModel.cs" />
     <Compile Include="Dokumenta\TrainListItem\NHMModel.cs" />
     <Compile Include="Dokumenta\TrainListItem\SealsModel.cs" />
@@ -3907,6 +3913,9 @@
       <DependentUpon>frmZarade.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmZaradeMasinovodje.rdlc" />
+    <EmbeddedResource Include="Dokumenta\PrijemNaSkladiste.resx">
+      <DependentUpon>PrijemNaSkladiste.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\rptGodisnjiOdmor.rdlc" />
     <EmbeddedResource Include="Dokumenta\rptPlacenoNeplaceno.rdlc" />
     <EmbeddedResource Include="Dokumenta\rptPlacenoTrue.rdlc" />

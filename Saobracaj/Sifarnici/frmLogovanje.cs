@@ -17,6 +17,7 @@ using Syncfusion.Windows.Forms;
 using MetroFramework.Forms;
 using System.IO;
 using Saobracaj.Pantheon_Export;
+using Microsoft.Identity.Client;
 
 namespace Saobracaj.Sifarnici
 {
@@ -36,7 +37,8 @@ namespace Saobracaj.Sifarnici
         public static string CompanyID = "";
         public static string MB = "";
         public static string Email = "";
-
+        public static string Skladiste = "";
+        public static string Lokacija = "";
         public static string user = "";
         public frmLogovanje()
         {
@@ -65,6 +67,8 @@ namespace Saobracaj.Sifarnici
             CompanyID = companyConfig.CompanyID_Value;
             MB= companyConfig.MB_Value;
             Email = companyConfig.EmailSender_Value;
+            Skladiste = companyConfig.OsnovnoSkladiste;
+            Lokacija = companyConfig.OsnovnaLokacija;
         }
         private void frmLogovanje_Load(object sender, EventArgs e)
         {

@@ -20,6 +20,8 @@ namespace Saobracaj
         public string CompanyID_Value { get; set; } 
         public string MB_Value { get; set; }    
         public string EmailSender_Value { get; set; }
+        public string OsnovnoSkladiste { get; set; }
+        public string OsnovnaLokacija { get; set; }
     }
 
     public static class ConfigManager
@@ -34,15 +36,18 @@ namespace Saobracaj
                         Naziv = "Leget",
                         DB = @"Data Source=192.168.99.10\SQLEXPRESS2019;Initial Catalog=TESTIRANJE;User ID=sa;Password=duki7990;",
                         Dokumenta = @"\\192.168.99.10\Leget\",
-                        PIB= "100791711",
-                        Name_Value= "RTC LUKA LEGET AD SREMSKA MITROVICA",
-                        Ulica_Value= "Jarački put 10",
-                        Grad_Value="Sremska Mitrovica",
-                        PostanskiBroj_Value="22000",
-                        Line_Value="Jarački put 10,22000 Sremska Mitrovica",
-                        CompanyID_Value= "RS100791711",
-                        MB_Value= "08039534",
-                        EmailSender_Value= "office@leget.rs"
+                        PIB = "100791711",
+                        Name_Value = "RTC LUKA LEGET AD SREMSKA MITROVICA",
+                        Ulica_Value = "Jarački put 10",
+                        Grad_Value = "Sremska Mitrovica",
+                        PostanskiBroj_Value = "22000",
+                        Line_Value = "Jarački put 10,22000 Sremska Mitrovica",
+                        CompanyID_Value = "RS100791711",
+                        MB_Value = "08039534",
+                        EmailSender_Value = "office@leget.rs",
+                        OsnovnoSkladiste = "1",
+                        OsnovnaLokacija="1"
+
                     };
                 case "TA":
                     return new CompanyConfiguration
@@ -58,7 +63,10 @@ namespace Saobracaj
                         Line_Value = "Uzun Mirkova 3,11000 Beograd",
                         CompanyID_Value = "RS108430447",
                         MB_Value = "20997923",
-                        EmailSender_Value = "office@transagent.rs"
+                        EmailSender_Value = "office@transagent.rs",
+                        OsnovnoSkladiste= "1",
+                        OsnovnaLokacija= "1"
+                        
                     };
                 case "KP":
                     return new CompanyConfiguration
