@@ -16,7 +16,7 @@ using Saobracaj.Sifarnici;
 
 namespace Saobracaj.Dokumeta
 {
-    public partial class frmOtpremaKontejnera : Form
+    public partial class frmOtpremaKontejnera : Syncfusion.Windows.Forms.Office2010Form
     {
         string KorisnikCene;
         bool status = false;
@@ -3238,6 +3238,20 @@ namespace Saobracaj.Dokumeta
                     ins.DeletePostupakStavkeOtprema(Convert.ToInt32(row.Cells[0].Value));
                     PostupakRefresh(Convert.ToInt32(txtStavka.Text));
                 }
+            }
+        }
+
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+            if (chkVoz.Checked == true)
+            {
+                Saobracaj.Dokumenta.frmPregledNarucenihManipulacija pnm = new Saobracaj.Dokumenta.frmPregledNarucenihManipulacija(KorisnikCene, Convert.ToInt32(txtSifra.Text), 1);
+                pnm.Show();
+            }
+            else
+            {
+                Saobracaj.Dokumenta.frmPregledNarucenihManipulacija pnm = new Saobracaj.Dokumenta.frmPregledNarucenihManipulacija(KorisnikCene, Convert.ToInt32(txtSifra.Text), 0);
+                pnm.Show();
             }
         }
     }

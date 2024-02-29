@@ -12,7 +12,7 @@ namespace Saobracaj.Dokumenta
 {
     class InsertNalogZaPrevoz
     {
-        public void InsNalogZaPrevoz(string BrojKontejnera1, string BrojKontejnera2, double UkupnaMasa, string Relacija1, string Relacija2, DateTime DatumPrevoza, string VrstaRobe, double UkupnaMasa2, int Platilac, int OrganizacionaJedinica, string UtovarnoMesto, string IstovarnoMesto, string KontaktOsoba, string Napomena, DateTime Datum, string Korisnik, int Primalac, int statusrn, DateTime DatumUtovara, DateTime PredvidjenoDatumUtovara, string TipKontejnera1, string TipKontejnera2, int VrstaRobeID, double NetoMasaRobe)
+        public void InsNalogZaPrevoz(string BrojKontejnera1, string BrojKontejnera2, double UkupnaMasa, string Relacija1, string Relacija2, DateTime DatumPrevoza, string VrstaRobe, double UkupnaMasa2, int Platilac, int OrganizacionaJedinica, int UtovarnoMesto, int IstovarnoMesto, string KontaktOsoba, string Napomena, DateTime Datum, string Korisnik, int Primalac, int statusrn, DateTime DatumUtovara, DateTime PredvidjenoDatumUtovara, string TipKontejnera1, string TipKontejnera2, int VrstaRobeID, double NetoMasaRobe)
         {
 
 
@@ -366,7 +366,6 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter12 = new SqlParameter();
             parameter12.ParameterName = "@IstovarnoMesto";
             parameter12.SqlDbType = SqlDbType.Int;
-          //  parameter12.Size = 70;
             parameter12.Direction = ParameterDirection.Input;
             parameter12.Value = IstovarnoMesto;
             myCommand.Parameters.Add(parameter12);

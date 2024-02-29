@@ -4040,7 +4040,6 @@ namespace Saobracaj
             this.toolStripButton141.Name = "toolStripButton141";
             this.toolStripButton141.Size = new System.Drawing.Size(95, 23);
             this.toolStripButton141.Text = "Booking voza";
-            this.toolStripButton141.Visible = false;
             this.toolStripButton141.Click += new System.EventHandler(this.toolStripButton141_Click);
             // 
             // toolStripButton142

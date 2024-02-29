@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class Uvoz : Form
+    public partial class Uvoz :  Syncfusion.Windows.Forms.Office2010Form
     {
         public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         string nalogodavci = "";

@@ -19,7 +19,7 @@ using Saobracaj.Dokumeta;
 
 namespace TrackModal.Dokumeta
 {
-    public partial class frmPrijemKontejneraVoz : Form
+    public partial class frmPrijemKontejneraVoz : Syncfusion.Windows.Forms.Office2010Form
     {
 
         MailMessage mailMessage;
@@ -31,11 +31,13 @@ namespace TrackModal.Dokumeta
         public frmPrijemKontejneraVoz()
         {
             InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
         }
 
         public frmPrijemKontejneraVoz(string Korisnik, int Vozom)
         {
             InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             KorisnikCene = Korisnik;
             if (Vozom == 1)
             {
@@ -2975,7 +2977,7 @@ namespace TrackModal.Dokumeta
             int SledeciBroj = VratiPodatkeMaxPromet();
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                 MessageBox.Show("Prijem na centralno skladiste");
+                MessageBox.Show("Prijem na centralno skladiste");
                 Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
                 int pom1 = 0;
                 int pom2 = 0;
@@ -2984,8 +2986,6 @@ namespace TrackModal.Dokumeta
                 string s2 = "PRV";
                 ins.InsProm(Convert.ToDateTime(dtpVremeDolaska.Value), s1, SledeciBroj, row.Cells[3].Value.ToString(), s2, pom3, pom2, 11, 1366, pom2, pom1, row.Cells[0].Value.ToString(), Convert.ToDateTime(DateTime.Now), KorisnikCene, 0, 0, Convert.ToDateTime(DateTime.Now));
 
-            
-           
             }
         }
 
@@ -3001,14 +3001,14 @@ namespace TrackModal.Dokumeta
                 int SledeciBroj = VratiPodatkeMaxPromet();
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                    Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
+                Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
                 int pom1 = 0;
                 int pom2 = 0;
                 int pom3 = 1;
                 string s1 = "PRI";
                 string s2 = "PRV";
                 ins.InsProm(Convert.ToDateTime(dtpVremeDolaska.Value), s1, SledeciBroj, row.Cells[3].Value.ToString(), s2, pom3, pom2, 11, 1366, pom2, pom1, row.Cells[0].Value.ToString(), Convert.ToDateTime(DateTime.Now), KorisnikCene, 0, 0, Convert.ToDateTime(DateTime.Now));
-            }
+              }
             }
         }
 

@@ -15,7 +15,7 @@ using System.Net.Mail;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmPregledNarucenihManipulacija : Form
+    public partial class frmPregledNarucenihManipulacija : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmPregledNarucenihManipulacija";
         public bool Pravo;
