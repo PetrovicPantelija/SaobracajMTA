@@ -190,7 +190,7 @@ namespace Saobracaj.Uvoz
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView7.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridView7.RowHeadersWidth = 11;
+            this.dataGridView7.RowHeadersWidth = 18;
             this.dataGridView7.RowTemplate.Height = 24;
             this.dataGridView7.Size = new System.Drawing.Size(766, 331);
             this.dataGridView7.TabIndex = 204;

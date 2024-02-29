@@ -17,7 +17,7 @@ using System.Net.Mail;
 
 namespace TrackModal.Dokumeta
 {
-    public partial class frmBukingVoza : Form
+    public partial class frmBukingVoza :  Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmBukingVoza";
         public bool Pravo;
@@ -36,6 +36,7 @@ namespace TrackModal.Dokumeta
         public frmBukingVoza()
         {
             InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             IdGrupe();
             IdForme();
             PravoPristupa();
@@ -44,6 +45,7 @@ namespace TrackModal.Dokumeta
         public frmBukingVoza(string Korisnik)
         {
             InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             KorisnikCene = Korisnik;
             IdGrupe();
             IdForme();

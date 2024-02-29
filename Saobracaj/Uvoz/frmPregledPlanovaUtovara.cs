@@ -13,7 +13,7 @@ using System.Configuration;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmPregledPlanovaUtovara : Form
+    public partial class frmPregledPlanovaUtovara :Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmPregledPlanovaUtovara";
         public bool Pravo;
@@ -28,6 +28,7 @@ namespace Saobracaj.Uvoz
         public frmPregledPlanovaUtovara(string Korisnik)
         {
             InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             IdGrupe();
             IdForme();
             PravoPristupa();

@@ -635,6 +635,8 @@ namespace Saobracaj.Uvoz
         private void FillDG8()
         {
             var select ="";
+
+          
             if (txtNadredjeni.Text == "0")
             {
                 select = "select  UvozVrstaManipulacije.ID as ID, UvozVrstaManipulacije.IDNadredjena as KontejnerID, Uvoz.BrojKontejnera, " +
@@ -738,11 +740,14 @@ namespace Saobracaj.Uvoz
             DataGridViewColumn column11 = dataGridView7.Columns[10];
             dataGridView7.Columns[10].HeaderText = "Platilac";
             dataGridView7.Columns[10].Width = 140;
-/*
-            DataGridViewColumn column12 = dataGridView7.Columns[11];
-            dataGridView7.Columns[11].HeaderText = "SaPDV";
-            dataGridView7.Columns[11].Width = 140;
-*/
+
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.SelectAll();
+            /*
+                        DataGridViewColumn column12 = dataGridView7.Columns[11];
+                        dataGridView7.Columns[11].HeaderText = "SaPDV";
+                        dataGridView7.Columns[11].Width = 140;
+            */
         }
         
         int PretraziPoNalogodavciIIzvozniku(int PomManipulacija, int Nalogodavac, int Uvoznik)
@@ -843,12 +848,12 @@ namespace Saobracaj.Uvoz
                                
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina =1;
-                                pomOrgJed = VratiOrgJed(pomManupulacija);
+                                
 
                             }
 
                             con.Close();
-
+                            pomOrgJed = VratiOrgJed(pomManupulacija);
                             pomPlatilac = Convert.ToInt32(cboNalogodavac1.SelectedValue);
                         }
 
@@ -868,13 +873,13 @@ namespace Saobracaj.Uvoz
                                 // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina = 1;
-                                pomOrgJed = VratiOrgJed(pomManupulacija);
+                               
 
                             }
 
                             con.Close();
                             pomPlatilac = Convert.ToInt32(cboNalogodavac1.SelectedValue);
-
+                            pomOrgJed = VratiOrgJed(pomManupulacija);
                         }
 
                         if (CenaNadjenaTip2 == 0 && CenaNadjenaTip2 == 0)
@@ -893,13 +898,13 @@ namespace Saobracaj.Uvoz
                                 // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina = 1;
-                                pomOrgJed = VratiOrgJed(pomManupulacija);
+                                
 
                             }
 
                             con.Close();
                             pomPlatilac = Convert.ToInt32(cboNalogodavac1.SelectedValue);
-
+                            pomOrgJed = VratiOrgJed(pomManupulacija);
                         }
 
                         //  pomCena = Convert.ToDouble(row.Cells[2].Value.ToString());
@@ -1631,13 +1636,13 @@ namespace Saobracaj.Uvoz
 
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina = 1;
-                                pomOrgJed = VratiOrgJed(pomManupulacija);
+                                
 
                             }
 
                             con.Close();
                             pomPlatilac = Convert.ToInt32(cboNalogodavac2.SelectedValue);
-
+                            pomOrgJed = VratiOrgJed(pomManupulacija);
                         }
 
                         if (CenaNadjenaTip2 == 1 && CenaNadjenaTip2 == 0)
@@ -1656,13 +1661,13 @@ namespace Saobracaj.Uvoz
                                 // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina = 1;
-                                pomOrgJed = VratiOrgJed(pomManupulacija);
+                                
 
                             }
 
                             con.Close();
                             pomPlatilac = Convert.ToInt32(cboNalogodavac2.SelectedValue);
-
+                            pomOrgJed = VratiOrgJed(pomManupulacija);
                         }
 
                         if (CenaNadjenaTip2 == 0 && CenaNadjenaTip2 == 0)
@@ -1681,13 +1686,13 @@ namespace Saobracaj.Uvoz
                                 // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina = 1;
-                                pomOrgJed = VratiOrgJed(pomManupulacija);
+                                
 
                             }
 
                             con.Close();
                             pomPlatilac = Convert.ToInt32(cboNalogodavac2.SelectedValue);
-
+                            pomOrgJed = VratiOrgJed(pomManupulacija);
                         }
 
                         //  pomCena = Convert.ToDouble(row.Cells[2].Value.ToString());
@@ -1753,13 +1758,13 @@ namespace Saobracaj.Uvoz
 
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina = 1;
-                                pomOrgJed = VratiOrgJed(pomManupulacija);
+                                
 
                             }
 
                             con.Close();
                             pomPlatilac = Convert.ToInt32(cboNalogodavac3.SelectedValue);
-
+                            pomOrgJed = VratiOrgJed(pomManupulacija);
                         }
 
                         if (CenaNadjenaTip2 == 1 && CenaNadjenaTip2 == 0)
@@ -1778,13 +1783,13 @@ namespace Saobracaj.Uvoz
                                 // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina = 1;
-                                pomOrgJed = VratiOrgJed(pomManupulacija);
+                                
 
                             }
 
                             con.Close();
                             pomPlatilac = Convert.ToInt32(cboNalogodavac3.SelectedValue);
-
+                            pomOrgJed = VratiOrgJed(pomManupulacija);
                         }
 
                         if (CenaNadjenaTip2 == 0 && CenaNadjenaTip2 == 0)
@@ -1803,13 +1808,13 @@ namespace Saobracaj.Uvoz
                                 // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
                                 pomCena = Convert.ToDouble(dr["Cena"].ToString());
                                 pomkolicina = 1;
-                                pomOrgJed = VratiOrgJed(pomManupulacija);
+                                
 
                             }
 
                             con.Close();
                             pomPlatilac = Convert.ToInt32(cboNalogodavac3.SelectedValue);
-
+                            pomOrgJed = VratiOrgJed(pomManupulacija);
                         }
 
                         //  pomCena = Convert.ToDouble(row.Cells[2].Value.ToString());
@@ -1944,6 +1949,7 @@ namespace Saobracaj.Uvoz
                         }
                            
                             con.Close();
+
                         pomOrgJed = VratiOrgJed(pomManupulacija);
                         pomPlatilac = Convert.ToInt32(cboUvoznik.SelectedValue);
 
