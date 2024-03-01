@@ -41,6 +41,7 @@ namespace Saobracaj.Uvoz
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gradientPanel1 = new Syncfusion.Windows.Forms.Tools.GradientPanel();
@@ -54,7 +55,11 @@ namespace Saobracaj.Uvoz
             this.label1 = new System.Windows.Forms.Label();
             this.cboIzdatOd = new System.Windows.Forms.ComboBox();
             this.label43 = new System.Windows.Forms.Label();
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
+            this.gradientPanel2 = new Syncfusion.Windows.Forms.Tools.GradientPanel();
+            this.chkVOZ = new System.Windows.Forms.CheckBox();
+            this.chkKamion = new System.Windows.Forms.CheckBox();
+            this.chkAdministrativna = new System.Windows.Forms.CheckBox();
+            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -63,6 +68,8 @@ namespace Saobracaj.Uvoz
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gradientPanel1)).BeginInit();
             this.gradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gradientPanel2)).BeginInit();
+            this.gradientPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -80,7 +87,8 @@ namespace Saobracaj.Uvoz
             this.toolStripButton4,
             this.toolStripButton5,
             this.toolStripButton6,
-            this.toolStripButton7});
+            this.toolStripButton7,
+            this.toolStripButton8});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1374, 25);
@@ -176,6 +184,17 @@ namespace Saobracaj.Uvoz
             this.toolStripButton6.Text = "IZVOZ PRIJEM KAMIONOM";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.BackColor = System.Drawing.Color.Gold;
+            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(125, 22);
+            this.toolStripButton7.Text = "UVOZ - PRIJEM VOZA";
+            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
+            // 
             // gridGroupingControl1
             // 
             this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
@@ -189,7 +208,7 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1157, 649);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1158, 649);
             this.gridGroupingControl1.TabIndex = 9;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -215,6 +234,7 @@ namespace Saobracaj.Uvoz
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.gradientPanel2);
             this.splitContainer1.Panel1.Controls.Add(this.gradientPanel1);
             this.splitContainer1.Panel1.Controls.Add(this.button2);
             this.splitContainer1.Panel1.Controls.Add(this.button1);
@@ -336,16 +356,56 @@ namespace Saobracaj.Uvoz
             this.label43.TabIndex = 216;
             this.label43.Text = "IZDALA ORG JED";
             // 
-            // toolStripButton7
+            // gradientPanel2
             // 
-            this.toolStripButton7.BackColor = System.Drawing.Color.Gold;
-            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
-            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(125, 22);
-            this.toolStripButton7.Text = "UVOZ - PRIJEM VOZA";
-            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
+            this.gradientPanel2.Controls.Add(this.chkAdministrativna);
+            this.gradientPanel2.Controls.Add(this.chkKamion);
+            this.gradientPanel2.Controls.Add(this.chkVOZ);
+            this.gradientPanel2.Location = new System.Drawing.Point(10, 197);
+            this.gradientPanel2.Name = "gradientPanel2";
+            this.gradientPanel2.Size = new System.Drawing.Size(161, 127);
+            this.gradientPanel2.TabIndex = 228;
+            // 
+            // chkVOZ
+            // 
+            this.chkVOZ.AutoSize = true;
+            this.chkVOZ.Location = new System.Drawing.Point(11, 21);
+            this.chkVOZ.Name = "chkVOZ";
+            this.chkVOZ.Size = new System.Drawing.Size(48, 17);
+            this.chkVOZ.TabIndex = 0;
+            this.chkVOZ.Text = "VOZ";
+            this.chkVOZ.UseVisualStyleBackColor = true;
+            // 
+            // chkKamion
+            // 
+            this.chkKamion.AutoSize = true;
+            this.chkKamion.Location = new System.Drawing.Point(11, 57);
+            this.chkKamion.Name = "chkKamion";
+            this.chkKamion.Size = new System.Drawing.Size(71, 17);
+            this.chkKamion.TabIndex = 1;
+            this.chkKamion.Text = "KAMIONI";
+            this.chkKamion.UseVisualStyleBackColor = true;
+            // 
+            // chkAdministrativna
+            // 
+            this.chkAdministrativna.AutoSize = true;
+            this.chkAdministrativna.Location = new System.Drawing.Point(11, 90);
+            this.chkAdministrativna.Name = "chkAdministrativna";
+            this.chkAdministrativna.Size = new System.Drawing.Size(125, 17);
+            this.chkAdministrativna.TabIndex = 2;
+            this.chkAdministrativna.Text = "ADMINISTRATIVNA";
+            this.chkAdministrativna.UseVisualStyleBackColor = true;
+            // 
+            // toolStripButton8
+            // 
+            this.toolStripButton8.BackColor = System.Drawing.Color.YellowGreen;
+            this.toolStripButton8.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
+            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton8.Name = "toolStripButton8";
+            this.toolStripButton8.Size = new System.Drawing.Size(134, 22);
+            this.toolStripButton8.Text = "FORMIRAJ DOKUMENT";
+            this.toolStripButton8.Click += new System.EventHandler(this.toolStripButton8_Click);
             // 
             // frmRadniNalogInterniPregled
             // 
@@ -371,6 +431,9 @@ namespace Saobracaj.Uvoz
             ((System.ComponentModel.ISupportInitialize)(this.gradientPanel1)).EndInit();
             this.gradientPanel1.ResumeLayout(false);
             this.gradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gradientPanel2)).EndInit();
+            this.gradientPanel2.ResumeLayout(false);
+            this.gradientPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -403,5 +466,10 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private Syncfusion.Windows.Forms.Tools.GradientPanel gradientPanel1;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
+        private Syncfusion.Windows.Forms.Tools.GradientPanel gradientPanel2;
+        private System.Windows.Forms.CheckBox chkAdministrativna;
+        private System.Windows.Forms.CheckBox chkKamion;
+        private System.Windows.Forms.CheckBox chkVOZ;
+        private System.Windows.Forms.ToolStripButton toolStripButton8;
     }
 }

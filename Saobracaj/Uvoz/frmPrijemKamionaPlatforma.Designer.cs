@@ -496,6 +496,7 @@ namespace Saobracaj.Uvoz
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPrijemKamionaPlatforma";
             this.Text = "PRIJEM KAMIONA IZ PLATFORME";
             this.Load += new System.EventHandler(this.frmPrijemKamionaPlatforma_Load);

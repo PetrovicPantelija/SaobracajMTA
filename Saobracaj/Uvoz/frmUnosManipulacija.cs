@@ -13,7 +13,7 @@ using Microsoft.Office.Interop.Excel;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmUnosManipulacija : Form
+    public partial class frmUnosManipulacija :  Syncfusion.Windows.Forms.Office2010Form
     {
         public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         int pIDPlana = 0; 
@@ -2128,7 +2128,27 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
+            int UslugaKamion = 0; 
+            try
+            {
 
+                foreach (DataGridViewRow row2 in dataGridView7.Rows)
+                {
+                    if (row2.Selected)
+                    {
+                            UslugaKamion = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                           
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspelo brisanje");
+            }
+
+
+            frmVoziloUsluga vu = new frmVoziloUsluga(UslugaKamion, 0);
+            vu.Show();
         }
     }
 }

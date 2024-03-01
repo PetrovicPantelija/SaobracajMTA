@@ -13,7 +13,7 @@ using Microsoft.Office.Interop.Excel;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmVoziloUsluga : Form
+    public partial class frmVoziloUsluga : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -28,6 +28,52 @@ namespace Saobracaj.Uvoz
 
             txtID.Text = ID.ToString();
             VratiOstalePodatke();
+        }
+
+        public frmVoziloUsluga(int ID, int Modul)
+        {
+            InitializeComponent();
+
+           // txtID.Text = ID.ToString();
+            if (Modul == 0)
+            {
+                chkUvoz.Checked = true;
+                txtUsluge.Text = ID.ToString();
+                VratiOstalePodatkeIzUsluge(ID, Modul);
+            }
+            
+        }
+
+        private void VratiOstalePodatkeIzUsluge(int ID, int Modul)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT [ID]      ,[RegBr]      ,[Datum]      ,[Vozac] " +
+     " ,[BrojTelefona]      ,[Napomena]      ,[Modul]      ,[IDUsluge] " +
+ " FROM [dbo].[VoziloUsluga]  " +
+            "  where IDUsluge=" + ID + " and Modul = " + Modul, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtID.Text = dr["ID"].ToString();
+                txtVozilo.Text = dr["RegBr"].ToString();
+                dtpDatum.Value = Convert.ToDateTime(dr["Datum"].ToString());
+                txtNapomena.Text = dr["Napomena"].ToString();
+                txtVozac.Text = dr["Vozac"].ToString();
+                txtBrojTelefona.Text = dr["BrojTelefona"].ToString();
+
+                if (dr["ID"].ToString() == "0")
+                {
+                    chkUvoz.Checked = true;
+                }
+                txtUsluge.Text = dr["IDUsluge"].ToString();
+            }
+            con.Close();
+
         }
 
         private void VratiOstalePodatke()

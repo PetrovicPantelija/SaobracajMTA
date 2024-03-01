@@ -67,6 +67,8 @@ namespace Saobracaj.Dokumenta
 
         public frmPrijemKontejneraKamionLegetUvoz(string Korisnik, int Vozom, string NalogID)
         {
+           //Automatski prenos iz naloga
+            
             InitializeComponent();
             KorisnikCene = Korisnik;
             txtNalogID.Text = NalogID;
@@ -100,8 +102,83 @@ namespace Saobracaj.Dokumenta
                 dtpPeriodSkladistenjaDo.Enabled = false;
                 // toolStripButton6.Visible = false;
             }
+            cboStatusPrijema.SelectedIndex = 0;
             FillCombo();
             VratiKontejnerID();
+            VratiPodatkeTEXTChangedKontejnerID();
+            SelektujDG8();
+
+            int KOnkretnaUsluga = 0;
+            KOnkretnaUsluga = VratiKonkretanIDUsluge();
+            if (chkUvoz.Checked == true)
+            { 
+                VratiOstalePodatkeIzUsluge(KOnkretnaUsluga, 0);
+            
+            }
+
+        }
+
+        private void VratiOstalePodatkeIzUsluge(int ID, int Modul)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT [ID]      ,[RegBr]      ,[Datum]      ,[Vozac] " +
+            " ,[BrojTelefona]      ,[Napomena]      ,[Modul]      ,[IDUsluge] " +
+            " FROM [dbo].[VoziloUsluga]  " +
+            "  where IDUsluge=" + ID + " and Modul = " + Modul, con);
+           
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtRegBrKamiona.Text = dr["RegBr"].ToString();
+                txtImeVozaca.Text = dr["Vozac"].ToString();
+                dtpDatumPrijema.Value = Convert.ToDateTime(dr["Datum"].ToString());
+                txtNapomena.Text = txtNapomena.Text + "BR TELEFONA:" + dr["BrojTelefona"].ToString() + " Napomena: " + dr["Napomena"].ToString();
+
+            }
+            con.Close();
+
+        }
+        int VratiKonkretanIDUsluge()
+        {
+            int Konkretan = 0;
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select KonkretaIDUsluge from RadniNalogInterni where ID = " + txtNalogID.Text, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Konkretan = Convert.ToInt32(dr["KonkretaIDUsluge"].ToString().TrimEnd());
+
+
+
+            }
+            con.Close();
+            return Konkretan;
+
+        }
+        private void SelektujDG8()
+        {
+            dataGridView8.ClearSelection();
+            foreach (DataGridViewRow row in dataGridView8.Rows)
+            {
+                if (row.Cells[0].Value.ToString() == txtNalogID.Text)
+                { 
+                    row.Selected = true;
+                    dataGridView8.Rows[row.Index].Selected = true;
+                    break;
+                } 
+
+            }
+
 
         }
         private void VratiKontejnerID()
@@ -1032,7 +1109,7 @@ namespace Saobracaj.Dokumenta
             cboTipKontejnera.DisplayMember = "Naziv";
             cboTipKontejnera.ValueMember = "ID";
 
-            var select5 = " Select Distinct ID, (Cast(BrVoza as nvarchar(6)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12))) as IDVoza From Voz where dolazeci = 0";
+            var select5 = " Select Distinct ID, (Cast(BrVoza as nvarchar(10)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12))) as IDVoza From Voz where dolazeci = 0";
             var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection5);
@@ -1082,7 +1159,7 @@ namespace Saobracaj.Dokumenta
             cboBukingOtpreme.DisplayMember = "IdVoza";
             cboBukingOtpreme.ValueMember = "ID";
             */
-            var select8 = "  Select Distinct ID, (Cast(BrVoza as nvarchar(6)) + '-' + Relacija) as IdVoza   From Voz ";
+            var select8 = "  Select Distinct ID, (Cast(BrVoza as nvarchar(10)) + '-' + Relacija) as IdVoza   From Voz ";
             var s_connection8 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection8 = new SqlConnection(s_connection8);
             var c8 = new SqlConnection(s_connection8);
@@ -1265,6 +1342,29 @@ namespace Saobracaj.Dokumenta
             DataGridViewColumn column3 = dataGridView5.Columns[2];
             dataGridView5.Columns[2].HeaderText = "Kontejner";
             dataGridView5.Columns[2].Width = 50;
+
+        }
+
+        private void VratiPodatkeTEXTChangedKontejnerID()
+        {
+            if (chkUvoz.Checked == true)
+            {
+                FillDGUsluge();
+                PopuniPolja();
+                FillDG3();
+
+            }
+            else if (chkTerminal.Checked == true)
+            {
+                FillDGUsluge();
+                PopuniPolja();
+                FillDG3();
+
+            }
+            else
+            {
+                FillDGUslugeIzIzVozaNeraspoeredjeni();
+            }
 
         }
         private void txtKontejnerID_TextChanged(object sender, EventArgs e)

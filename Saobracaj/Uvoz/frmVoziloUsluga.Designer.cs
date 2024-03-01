@@ -64,7 +64,7 @@ namespace Saobracaj.Uvoz
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(682, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(478, 27);
             this.toolStrip1.TabIndex = 161;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -117,7 +117,7 @@ namespace Saobracaj.Uvoz
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(17, 208);
+            this.label7.Location = new System.Drawing.Point(15, 208);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(79, 15);
             this.label7.TabIndex = 175;
@@ -227,7 +227,7 @@ namespace Saobracaj.Uvoz
             // txtUsluge
             // 
             this.txtUsluge.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.txtUsluge.Location = new System.Drawing.Point(481, 67);
+            this.txtUsluge.Location = new System.Drawing.Point(348, 62);
             this.txtUsluge.Margin = new System.Windows.Forms.Padding(2);
             this.txtUsluge.Name = "txtUsluge";
             this.txtUsluge.Size = new System.Drawing.Size(51, 20);
@@ -238,7 +238,7 @@ namespace Saobracaj.Uvoz
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(478, 50);
+            this.label6.Location = new System.Drawing.Point(345, 45);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(75, 15);
             this.label6.TabIndex = 177;
@@ -248,11 +248,11 @@ namespace Saobracaj.Uvoz
             // 
             this.chkUvoz.AutoSize = true;
             this.chkUvoz.BackColor = System.Drawing.Color.Silver;
-            this.chkUvoz.Location = new System.Drawing.Point(481, 102);
+            this.chkUvoz.Location = new System.Drawing.Point(348, 97);
             this.chkUvoz.Name = "chkUvoz";
-            this.chkUvoz.Size = new System.Drawing.Size(56, 17);
+            this.chkUvoz.Size = new System.Drawing.Size(76, 17);
             this.chkUvoz.TabIndex = 179;
-            this.chkUvoz.Text = "UVOZ";
+            this.chkUvoz.Text = "IZ UVOZA";
             this.chkUvoz.UseVisualStyleBackColor = false;
             // 
             // frmVoziloUsluga
@@ -260,7 +260,7 @@ namespace Saobracaj.Uvoz
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(682, 323);
+            this.ClientSize = new System.Drawing.Size(478, 291);
             this.Controls.Add(this.chkUvoz);
             this.Controls.Add(this.txtUsluge);
             this.Controls.Add(this.label6);

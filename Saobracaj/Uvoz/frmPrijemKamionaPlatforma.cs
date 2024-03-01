@@ -16,7 +16,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmPrijemKamionaPlatforma : Form
+    public partial class frmPrijemKamionaPlatforma :  Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         string KorisnikCene = "Panta";

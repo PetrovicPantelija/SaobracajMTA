@@ -51,7 +51,7 @@ namespace TrackModal.Dokumeta
             cboPrijemnica.ValueMember = "ID";
 
 
-            var select5 = " Select Distinct OtpremaKontejnera.ID as ID, (Cast(OtpremaKontejnera.id as nvarchar(5))+ '-' + Cast(BrVoza as nvarchar(5)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12))) as BrVoza From OtpremaKontejnera inner join Voz on Voz.ID = OtpremaKontejnera.IdVoza where StatusOtpreme = 0";
+            var select5 = " Select Distinct OtpremaKontejnera.ID as ID, (Cast(OtpremaKontejnera.id as nvarchar(5))+ '-' + Cast(BrVoza as nvarchar(10)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12))) as BrVoza From OtpremaKontejnera inner join Voz on Voz.ID = OtpremaKontejnera.IdVoza where StatusOtpreme = 0";
             var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection5);

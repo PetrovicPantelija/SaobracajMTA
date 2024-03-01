@@ -28,6 +28,24 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+         
+            string DodatniAND = " AND 1=1 ";
+            if (chkVOZ.Checked == true)
+            {
+                DodatniAND = DodatniAND + " AND VrstaManipulacije.Vozna = 1 ";
+            }
+
+            if (chkKamion.Checked == true)
+            {
+                DodatniAND = DodatniAND + " AND VrstaManipulacije.Kamionska = 1 ";
+
+            }
+            if (chkAdministrativna.Checked == true)
+            {
+                DodatniAND = DodatniAND + " AND VrstaManipulacije.Administrativna = 1 ";
+            }
+
+          
             var select = "";
             if (cboIzdatOd.Text == "Uvoz")
             {
@@ -43,7 +61,7 @@ namespace Saobracaj.Uvoz
    " inner join Partnerji uv on uv.PaSifra = UvozKonacnaVrstaManipulacije.Platilac " +
    " Inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
    " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera " +
-           " where OJIzdavanja = " + Convert.ToInt32(cboIzdatOd.SelectedValue) +
+           " where OJIzdavanja = " + Convert.ToInt32(cboIzdatOd.SelectedValue) + DodatniAND + 
            " order by RadniNalogInterni.ID desc";
             }
             else if (cboIzdatOd.Text == "Izvoz")
@@ -62,7 +80,7 @@ namespace Saobracaj.Uvoz
       " inner join Partnerji uv on uv.PaSifra = IzvozKonacnaVrstaManipulacije.Platilac " +
          " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera " +
       " inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera" +
-              " where OJIzdavanja = " + Convert.ToInt32(cboIzdatOd.SelectedValue) +
+              " where OJIzdavanja = " + Convert.ToInt32(cboIzdatOd.SelectedValue) + DodatniAND + 
               " order by RadniNalogInterni.ID desc";
 
             }
@@ -373,6 +391,79 @@ namespace Saobracaj.Uvoz
         {
             frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana();
             rd1.Show();
+        }
+        int  VratiKonkretanIDUsluge()
+        {
+            int Konkretan = 0;
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select KonkretaIDUsluge from RadniNalogInterni where ID = " + txtNALOGID.Text, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Konkretan = Convert.ToInt32(dr["KonkretaIDUsluge"].ToString().TrimEnd());
+
+
+
+            }
+            con.Close();
+            return Konkretan;
+
+        }
+
+        private void toolStripButton8_Click(object sender, EventArgs e)
+        {
+            string Forma = VratiFormu();
+            int KISUsl = 0;
+            if (Forma == "GATE IN VOZ")
+            {
+                MessageBox.Show("Formirate Prijem vozom");
+                frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text));
+                rd1.Show();
+            }
+            if (Forma == "GATE OUT KAMION")
+            {
+                MessageBox.Show("Formirate Otpremu kamionom Platforma");
+                KISUsl = VratiKonkretanIDUsluge();
+                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik);
+                okk.Show();
+
+            }
+
+            if (Forma == "GATE IN KAMION")
+            {
+                MessageBox.Show("Formirate Prijem kamionom Platforma");
+                Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text);
+                prijemplat.Show();
+
+            }
+
+        }
+        string VratiFormu()
+        {
+            string formica = "";
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Forma from RadniNalogInterni where ID = " + txtNALOGID.Text, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                formica =  dr["Forma"].ToString().TrimEnd();
+
+
+                
+            }
+            con.Close();
+            return formica;
+           
         }
     }
 }

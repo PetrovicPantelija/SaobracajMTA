@@ -20,12 +20,23 @@ namespace Saobracaj.Uvoz
     {
         bool status = false;
         string KorisnikCene = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
+        int IzRNI = 0;
+        int trnI = 0;
         public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
 
         public frmPrijemVozaIzPlana()
         {
             InitializeComponent();
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+            
+        }
+
+        public frmPrijemVozaIzPlana(int RNI)
+        {
+            InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+            IzRNI = 1;
+            trnI = RNI;
 
         }
 
@@ -109,6 +120,27 @@ namespace Saobracaj.Uvoz
             
         }
 
+        int VratiPlan()
+        {
+            int PlanID = 0;
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select PlanID from RadniNalogInterni where ID = " + trnI, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                PlanID = Convert.ToInt32(dr["PlanID"].ToString());
+            }
+            con.Close();
+            return PlanID;
+            
+
+        }
+
         private void frmPrijemVozaIzPlana_Load(object sender, EventArgs e)
         {
             var planutovara = "select UvozKonacnaZaglavlje.ID,(Cast(UvozKonacnaZaglavlje.ID as nvarchar(5)) + '-' + Cast(BrVoza as nvarchar(15)) + ' '  + Relacija) as Naziv from UvozKonacnaZaglavlje " +
@@ -120,7 +152,7 @@ namespace Saobracaj.Uvoz
             cboPlanUtovara.DisplayMember = "Naziv";
             cboPlanUtovara.ValueMember = "ID";
 
-            var select8 = "  Select Distinct ID, (Cast(BrVoza as nvarchar(6)) + '-' + Relacija) as IdVoza   From Voz ";
+            var select8 = "  Select Distinct ID, (Cast(BrVoza as nvarchar(10)) + '-' + Relacija) as IdVoza   From Voz ";
             var s_connection8 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection8 = new SqlConnection(s_connection8);
             var c8 = new SqlConnection(s_connection8);
@@ -160,6 +192,15 @@ namespace Saobracaj.Uvoz
             cboOperaterHR.DataSource = ds5.Tables[0];
             cboOperaterHR.DisplayMember = "PaNaziv";
             cboOperaterHR.ValueMember = "PaSifra";
+
+            if (IzRNI == 1)
+            {
+                int voz = VratiPlan();
+                cboPlanUtovara.SelectedValue = voz;
+                VratiVozIzPlana();
+            
+            }
+           
         }
 
         private void button1_Click(object sender, EventArgs e)

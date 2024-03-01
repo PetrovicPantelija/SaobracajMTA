@@ -415,7 +415,7 @@ namespace TrackModal.Dokumeta
 
         private void frmBukingVoza_Load(object sender, EventArgs e)
        {
-           var select = "Select Distinct ID, (Cast(id as nvarchar(6))+ '-' + Cast(BrVoza as nvarchar(6)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12))) as BrVoza From Voz where dolazeci = 0 ";
+           var select = "Select Distinct ID, (Cast(id as nvarchar(6))+ '-' + Cast(BrVoza as nvarchar(10)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12))) as BrVoza From Voz where dolazeci = 0 ";
            // var select = " Select Distinct ID, (Cast(id as nvarchar(5))+ '-' + Cast(BrVoza as nvarchar(5)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12)) ) as BrVoza From Voz where dolazeci = 1";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -442,7 +442,7 @@ namespace TrackModal.Dokumeta
             cboSkladiste.DisplayMember = "Naziv";
             cboSkladiste.ValueMember = "ID";
 
-            var select4 = " Select Distinct OtpremaKontejnera.ID as ID, (Cast(OtpremaKontejnera.id as nvarchar(5))+ '-' + Cast(BrVoza as nvarchar(5)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12))) as BrVoza From OtpremaKontejnera inner join Voz on Voz.ID = OtpremaKontejnera.IdVoza where StatusOtpreme = 0";
+            var select4 = " Select Distinct OtpremaKontejnera.ID as ID, (Cast(OtpremaKontejnera.id as nvarchar(5))+ '-' + Cast(BrVoza as nvarchar(10)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12))) as BrVoza From OtpremaKontejnera inner join Voz on Voz.ID = OtpremaKontejnera.IdVoza where StatusOtpreme = 0";
             var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
