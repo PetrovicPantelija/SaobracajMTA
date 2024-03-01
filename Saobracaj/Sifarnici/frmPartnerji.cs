@@ -860,7 +860,7 @@ namespace Saobracaj.Sifarnici
             foreach (var item in combinedData)
             {
                 string jsonOutput = JsonConvert.SerializeObject(item, Formatting.Indented);
-                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/Subjekt/SubjektPost");
+                var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:3333/api/Subjekt/SubjektPost");
                 httpWebRequest.ContentType = "application/json";
                 httpWebRequest.Method = "POST";
                 using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
