@@ -317,6 +317,8 @@ namespace Saobracaj.Sifarnici
                         if (row.Cells[28].Value.ToString()== "1") { chkLogisitcar.Checked = true; } else { chkLogisitcar.Checked = false; }
                         if (row.Cells[29].Value.ToString() == "1") { chkKamioner.Checked= true; } else { chkKamioner.Checked = false; }
                         if (row.Cells[30].Value.ToString() == "1") { chkAgentBrodara.Checked= true; } else { chkAgentBrodara.Checked = false; }
+                        if (row.Cells["Supplier"].Value.ToString() == "T") { cbDobavljac.Checked = true; } else { cbDobavljac.Checked = false; }
+                        if (row.Cells["WayOfSale"].Value.ToString() == "Z") { cbObveznik.Checked= true; } else { cbObveznik.Checked = false; }
 
                         RefreshDataGrid2(txtSifra.Text);
                     }
@@ -337,7 +339,7 @@ namespace Saobracaj.Sifarnici
         {
             var select = " Select PaSifra, Rtrim(PaNaziv) as PaNaziv, PaUlicaHisnaSt , PaKraj, PaDelDrzave, PaPostnaSt, PaSifDrzave, PaTelefon1, PaZiroRac, " +
                 " PaOpomba, PaDMatSt, PaEMail, PaEMatSt1, Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac ,  Brodar " +
-            " , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik,Logisticar,Kamioner,AgentBrodara from Partnerji";
+            " , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik,Logisticar,Kamioner,AgentBrodara,Buyer,Supplier,WayOfSale from Partnerji";
             SqlConnection myConnection = new SqlConnection(connect);
             var c = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -714,7 +716,7 @@ namespace Saobracaj.Sifarnici
             else
             {
                 InsertPartnerji upd = new InsertPartnerji();
-                upd.UpdPartneri(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtOblast.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtPIB.Text, txtEmail.Text, txtMaticniBroj.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik, txtMUAdresa.Text, txtMUKontakt.Text, txtUICDrzava.Text, txtTR2.Text, txtFaks.Text, PomIzvoznik,PomLogisticar,PomKamioner,PomAgentBrodara);
+                upd.UpdPartneri(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtOblast.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtPIB.Text, txtEmail.Text, txtMaticniBroj.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik, txtMUAdresa.Text, txtMUKontakt.Text, txtUICDrzava.Text, txtTR2.Text, txtFaks.Text, PomIzvoznik,PomLogisticar,PomKamioner,PomAgentBrodara,Kupac,Obveznik,Dobavljac);
             }
             RefreshDataGrid();
         }

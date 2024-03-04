@@ -367,7 +367,7 @@ namespace Saobracaj.Sifarnici
             }
         }
 
-        public void UpdPartneri(int ID, string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB,  string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar, int Vlasnik, int Spediter, int Platilac, int Organizator, int Nalogodavac, int Uvoznik, string MUAdresa, string MUKontakt, string UICDrzava, string TR2, string Faks, int PomIzvoznik,int Logisticar,int Kamioner,int Agent)
+        public void UpdPartneri(int ID, string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB,  string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar, int Vlasnik, int Spediter, int Platilac, int Organizator, int Nalogodavac, int Uvoznik, string MUAdresa, string MUKontakt, string UICDrzava, string TR2, string Faks, int PomIzvoznik,int Logisticar,int Kamioner,int Agent,string Kupac, string Obveznik, string Dobavljac)
         {
             SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -629,6 +629,30 @@ namespace Saobracaj.Sifarnici
             parameter33.Direction = ParameterDirection.Input;
             parameter33.Value = Agent;
             myCommand.Parameters.Add(parameter33);
+
+            SqlParameter sqlParameter = new SqlParameter();
+            sqlParameter.ParameterName = "@Kupac";
+            sqlParameter.SqlDbType = SqlDbType.Char;
+            sqlParameter.Size = 1;
+            sqlParameter.Direction = ParameterDirection.Input;
+            sqlParameter.Value = Kupac;
+            myCommand.Parameters.Add(sqlParameter);
+
+            SqlParameter sqlParameter2 = new SqlParameter();
+            sqlParameter2.ParameterName = "@Obveznik";
+            sqlParameter2.SqlDbType = SqlDbType.Char;
+            sqlParameter2.Size = 1;
+            sqlParameter2.Direction = ParameterDirection.Input;
+            sqlParameter2.Value = Obveznik;
+            myCommand.Parameters.Add(sqlParameter2);
+
+            SqlParameter sqlParameter1 = new SqlParameter();
+            sqlParameter1.ParameterName = "@Dobavljac";
+            sqlParameter1.SqlDbType = SqlDbType.Char;
+            sqlParameter1.Size = 1;
+            sqlParameter1.Direction = ParameterDirection.Input;
+            sqlParameter1.Value = Dobavljac;
+            myCommand.Parameters.Add(sqlParameter1);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
