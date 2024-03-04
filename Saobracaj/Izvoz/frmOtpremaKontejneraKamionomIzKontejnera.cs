@@ -55,7 +55,7 @@ namespace Saobracaj.Izvoz
 
         }
 
-        public frmOtpremaKontejneraKamionomIzKontejnera(string KontejnerID, string NalogID, string Korisnik)
+        public frmOtpremaKontejneraKamionomIzKontejnera(string KontejnerID, string NalogID, string Korisnik, int Cirada)
         {
             InitializeComponent();
             txtKontejnerID.Text = KontejnerID;
@@ -63,6 +63,14 @@ namespace Saobracaj.Izvoz
             KorisnikCene = Korisnik;
             KonkretnaUsluga = VratiKonkretanIDUsluge();
             cboStatusOtpreme.SelectedIndex = 0;
+            if (Cirada == 1)
+            {
+                chkCirada.Checked = true;
+            }
+            else
+            {
+                chkCirada.Checked = false;
+            }
 
 
         }
@@ -101,15 +109,28 @@ namespace Saobracaj.Izvoz
             dtpDatumOtpreme.Enabled = true;
         }
 
+        private void ProglasiFormiranomTerminal(int NalogID)
+        {
+            Saobracaj.Uvoz.InsertRadniNalogInterni iri = new Uvoz.InsertRadniNalogInterni();
+            iri.UpdRadniNalogInterniFormiran(NalogID);
+
+
+        }
+
         private void tsSave_Click(object sender, EventArgs e)
         {
+            int Ciradatmp = 0;
+            if (chkCirada.Checked == true)
+                Ciradatmp = 1;
+
             if (status == true)
             {
                 /// ,  string RegBrKamiona,   string ImeVozaca,   int Vozom
                 Dokumenta.InsertOtprema ins = new Dokumenta.InsertOtprema();
-                ins.InsertOtp(Convert.ToDateTime(dtpDatumOtpreme.Text), Convert.ToInt32(cboStatusOtpreme.SelectedIndex), Convert.ToInt32(cboVozBuking.SelectedValue), txtRegBrKamiona.Text, txtImeVozaca.Text, Convert.ToDateTime(dtpVremeOdlaska.Value), 0, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtNapomena.Text, 0, 0, 0, 0);
+                ins.InsertOtp(Convert.ToDateTime(dtpDatumOtpreme.Text), Convert.ToInt32(cboStatusOtpreme.SelectedIndex), Convert.ToInt32(cboVozBuking.SelectedValue), txtRegBrKamiona.Text, txtImeVozaca.Text, Convert.ToDateTime(dtpVremeOdlaska.Value), 0, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtNapomena.Text, 0, 0, Ciradatmp, 0);
                 status = false;
                 VratiPodatkeMax();
+                ProglasiFormiranomTerminal(Convert.ToInt32(txtNalogID.Text));
             }
 
             if (txtKontejnerID.Text != "" && txtNalogID.Text != "")

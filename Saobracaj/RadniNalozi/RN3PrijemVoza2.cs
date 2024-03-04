@@ -177,7 +177,7 @@ namespace Saobracaj.RadniNalozi
             txtNalogIzdao.Text = Sifarnici.frmLogovanje.user.ToString().TrimEnd();
             //usluge->Manipulacije
 
-            var vSredstvo = "Select Distinct ID, (Cast(BrVoza as nvarchar(6)) + '-' + Relacija) as IdVoza   From Voz";
+            var vSredstvo = "Select Distinct ID, (Cast(BrVoza as nvarchar(10)) + '-' + Relacija) as IdVoza   From Voz";
             var daVS = new SqlDataAdapter(vSredstvo, conn);
             var dsVS = new DataSet();
             daVS.Fill(dsVS);

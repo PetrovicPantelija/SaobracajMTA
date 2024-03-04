@@ -70,6 +70,7 @@ namespace Saobracaj.RadniNalozi
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.label10 = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
@@ -87,7 +88,9 @@ namespace Saobracaj.RadniNalozi
             this.label41 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.button3 = new System.Windows.Forms.Button();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.label20 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -281,7 +284,7 @@ namespace Saobracaj.RadniNalozi
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(11, 5);
+            this.label8.Location = new System.Drawing.Point(9, 39);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(84, 13);
@@ -292,7 +295,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cboNaSkladiste.FormattingEnabled = true;
             this.cboNaSkladiste.ItemHeight = 13;
-            this.cboNaSkladiste.Location = new System.Drawing.Point(14, 22);
+            this.cboNaSkladiste.Location = new System.Drawing.Point(12, 56);
             this.cboNaSkladiste.Margin = new System.Windows.Forms.Padding(2);
             this.cboNaSkladiste.Name = "cboNaSkladiste";
             this.cboNaSkladiste.Size = new System.Drawing.Size(193, 21);
@@ -301,7 +304,7 @@ namespace Saobracaj.RadniNalozi
             // txtNAPozicijaskladista
             // 
             this.txtNAPozicijaskladista.AutoSize = true;
-            this.txtNAPozicijaskladista.Location = new System.Drawing.Point(11, 48);
+            this.txtNAPozicijaskladista.Location = new System.Drawing.Point(9, 82);
             this.txtNAPozicijaskladista.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtNAPozicijaskladista.Name = "txtNAPozicijaskladista";
             this.txtNAPozicijaskladista.Size = new System.Drawing.Size(76, 13);
@@ -323,7 +326,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cboNaPoziciju.FormattingEnabled = true;
             this.cboNaPoziciju.ItemHeight = 13;
-            this.cboNaPoziciju.Location = new System.Drawing.Point(14, 65);
+            this.cboNaPoziciju.Location = new System.Drawing.Point(12, 99);
             this.cboNaPoziciju.Margin = new System.Windows.Forms.Padding(2);
             this.cboNaPoziciju.Name = "cboNaPoziciju";
             this.cboNaPoziciju.Size = new System.Drawing.Size(193, 21);
@@ -419,10 +422,11 @@ namespace Saobracaj.RadniNalozi
             this.toolStripSeparator1,
             this.toolStripButton1,
             this.toolStripButton3,
-            this.toolStripButton2});
+            this.toolStripButton2,
+            this.toolStripButton4});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1121, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1179, 27);
             this.toolStrip1.TabIndex = 212;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -473,6 +477,17 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton1.Text = "Formiraj radne naloge prijema voza";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.BackColor = System.Drawing.Color.Gold;
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(89, 24);
+            this.toolStripButton3.Text = "Ubaci u tekuce";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
             // toolStripButton2
             // 
             this.toolStripButton2.BackColor = System.Drawing.Color.SeaGreen;
@@ -521,7 +536,7 @@ namespace Saobracaj.RadniNalozi
             this.tabControl1.Location = new System.Drawing.Point(11, 378);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1090, 365);
+            this.tabControl1.Size = new System.Drawing.Size(1148, 365);
             this.tabControl1.TabIndex = 214;
             // 
             // tabPage2
@@ -530,7 +545,7 @@ namespace Saobracaj.RadniNalozi
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1082, 339);
+            this.tabPage2.Size = new System.Drawing.Size(1140, 339);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Generisani radni nalozi";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -547,18 +562,20 @@ namespace Saobracaj.RadniNalozi
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1072, 329);
+            this.dataGridView1.Size = new System.Drawing.Size(1130, 329);
             this.dataGridView1.TabIndex = 214;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged_1);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(511, 301);
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(511, 304);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(26, 22);
+            this.button1.Size = new System.Drawing.Size(31, 27);
             this.button1.TabIndex = 215;
             this.button1.Text = "?";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // txtPrijemID
@@ -604,7 +621,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(231, 11);
+            this.button2.Location = new System.Drawing.Point(229, 45);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(88, 82);
             this.button2.TabIndex = 220;
@@ -628,7 +645,7 @@ namespace Saobracaj.RadniNalozi
             this.label41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
             this.label41.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label41.ForeColor = System.Drawing.Color.Black;
-            this.label41.Location = new System.Drawing.Point(690, 199);
+            this.label41.Location = new System.Drawing.Point(713, 222);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(36, 14);
             this.label41.TabIndex = 261;
@@ -654,7 +671,7 @@ namespace Saobracaj.RadniNalozi
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridView3.Location = new System.Drawing.Point(693, 215);
+            this.dataGridView3.Location = new System.Drawing.Point(712, 251);
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView3.Name = "dataGridView3";
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -672,6 +689,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label20);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.cboNaSkladiste);
             this.panel1.Controls.Add(this.txtNAPozicijaskladista);
@@ -679,26 +697,50 @@ namespace Saobracaj.RadniNalozi
             this.panel1.Controls.Add(this.button2);
             this.panel1.Location = new System.Drawing.Point(11, 195);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(332, 106);
+            this.panel1.Size = new System.Drawing.Size(329, 166);
             this.panel1.TabIndex = 262;
             // 
-            // toolStripButton3
+            // button3
             // 
-            this.toolStripButton3.BackColor = System.Drawing.Color.Gold;
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(89, 24);
-            this.toolStripButton3.Text = "Ubaci u tekuce";
-            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(634, 248);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(38, 40);
+            this.button3.TabIndex = 263;
+            this.button3.Text = "?";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(168, 24);
+            this.toolStripButton4.Text = "Pregled radnih naloga Central";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.ForeColor = System.Drawing.Color.Maroon;
+            this.label20.Location = new System.Drawing.Point(9, 20);
+            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(153, 13);
+            this.label20.TabIndex = 221;
+            this.label20.Text = "Određivanje skladišta za prijem";
             // 
             // RN1PrijemVoza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1121, 755);
+            this.ClientSize = new System.Drawing.Size(1179, 755);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label41);
             this.Controls.Add(this.dataGridView3);
@@ -742,7 +784,7 @@ namespace Saobracaj.RadniNalozi
             this.Controls.Add(this.label7);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RN1PrijemVoza";
-            this.Text = "RADNI NALOZI - PRIJEM VOZA";
+            this.Text = "RADNI NALOZI - PRIJEM VOZA - RN ZA KALMARISTU";
             this.Load += new System.EventHandler(this.RN1PrijemVoza_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -814,5 +856,8 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Button button3;
     }
 }

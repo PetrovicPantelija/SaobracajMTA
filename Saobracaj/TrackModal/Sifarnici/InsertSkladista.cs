@@ -51,7 +51,7 @@ namespace Testiranje.Sifarnici
             parameter6.SqlDbType = SqlDbType.NVarChar;
             parameter6.Size = 40;
             parameter6.Direction = ParameterDirection.Input;
-            parameter6.Value = Korisnik;
+            parameter6.Value = Kapacitet;
             myCommand.Parameters.Add(parameter6);
 
 
@@ -138,7 +138,7 @@ namespace Testiranje.Sifarnici
             parameter6.SqlDbType = SqlDbType.NVarChar;
             parameter6.Size = 40;
             parameter6.Direction = ParameterDirection.Input;
-            parameter6.Value = Korisnik;
+            parameter6.Value = Kapacitet;
             myCommand.Parameters.Add(parameter6);
 
             myConnection.Open();

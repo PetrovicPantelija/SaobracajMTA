@@ -693,6 +693,11 @@ namespace Saobracaj.Uvoz
 
         private void FillDGUsluge()
         {
+            if (txtID.Text == "")
+            {
+                return;
+            
+            }
             var select = "";
 
             select = "select  UvozKonacnaVrstaManipulacije.ID as ID, UvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, UvozKonacna.BrojKontejnera, " +
@@ -1085,6 +1090,8 @@ namespace Saobracaj.Uvoz
 
         private void FillDG2()
         {
+            if (txtID.Text == "")
+                return;
             var select = "  SELECT     UvozKonacnaNHM.ID, NHM.Broj, UvozKonacnaNHM.IDNHM, NHM.Naziv FROM NHM INNER JOIN " +
                       " UvozKonacnaNHM ON NHM.ID = UvozKonacnaNHM.IDNHM where UvozKonacnanhm.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by UvozKonacnanhm.ID desc"; 
             SqlConnection conn = new SqlConnection(connection);
@@ -1626,6 +1633,10 @@ namespace Saobracaj.Uvoz
         }
         private void FillDG4()
         {
+            if (txtID.Text == "")
+            {
+                return;
+            }
             var select = "select UvozKonacnaNapomenePozicioniranja.ID, IDNapomene, PredefinisanePoruke.Naziv from UvozKonacnaNapomenePozicioniranja " +
 " inner join  PredefinisanePoruke on PredefinisanePoruke.ID = UvozKonacnaNapomenePozicioniranja.IDNapomene where UvozKonacnaNapomenePozicioniranja.IdNadredjena  = " + Convert.ToInt32(txtID.Text) + " order by UvozKonacnaNapomenePozicioniranja.ID desc ";
             SqlConnection conn = new SqlConnection(connection);

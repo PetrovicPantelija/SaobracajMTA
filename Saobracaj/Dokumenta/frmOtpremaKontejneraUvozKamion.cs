@@ -17,7 +17,7 @@ using Saobracaj;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmOtpremaKontejneraUvozKamion : Form
+    public partial class frmOtpremaKontejneraUvozKamion : Syncfusion.Windows.Forms.Office2010Form
     {
         string KorisnikCene;
         bool status = false;
@@ -87,7 +87,7 @@ namespace Saobracaj.Dokumenta
         {
             int pomDirektni_indirektni = 0;
 
-            if (chkVrstaKamiona.Checked == true)
+            if (chkUvoz.Checked == true)
             {
                 pomDirektni_indirektni = 1;
             }
@@ -509,7 +509,7 @@ namespace Saobracaj.Dokumenta
 
             // SqlCommand cmd = new SqlCommand("select [ID] ,[DatumOtpreme],[StatusOtpreme],[IdVoza],[VremeOdlaska], [RegBrKamiona], [ImeVozaca], NacinOtpreme, Napomena, NajavaEmail, OtpremaEmail, Zatvoren, CIRUradjen, PredefinisanePorukeID from OtpremaKontejnera where ID = " + ID, con);
 
-            SqlCommand cmd = new SqlCommand("select [ID] ,[DatumOtpreme],[StatusOtpreme],[IdVoza],[VremeOdlaska], [RegBrKamiona], [ImeVozaca], NacinOtpreme, Napomena, NajavaEmail, OtpremaEmail, Zatvoren, CIRUradjen from OtpremaKontejnera where ID = " + ID, con);
+            SqlCommand cmd = new SqlCommand("select [ID] ,[DatumOtpreme],[StatusOtpreme],[IdVoza],[VremeOdlaska], [RegBrKamiona], [ImeVozaca], NacinOtpreme, Napomena, NajavaEmail, OtpremaEmail, Zatvoren, CIRUradjen, VrstaKamiona, Poreklo from OtpremaKontejnera where ID = " + ID, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -566,6 +566,39 @@ namespace Saobracaj.Dokumenta
                 else
                 {
                     chkCIRUradjen.Checked = true;
+                }
+
+                if (Convert.ToInt32(dr["VrstaKamiona"].ToString()) == 0)
+                {
+                    chkPlatforma.Checked = true;
+                    chkCirada.Checked = false;
+
+                }
+                else
+                {
+                    chkPlatforma.Checked = false;
+                    chkCirada.Checked = true;
+                }
+
+                if (Convert.ToInt32(dr["Poreklo"].ToString()) == 0)
+                {
+                    chkUvoz.Checked = true;
+                    chkIzvoz.Checked = false;
+                    chkTerminal.Checked = false;
+
+                }
+                else if (Convert.ToInt32(dr["Poreklo"].ToString()) == 1)
+                {
+                    chkUvoz.Checked = false;
+                    chkIzvoz.Checked = true;
+                    chkTerminal.Checked = false;
+                }
+
+                else if (Convert.ToInt32(dr["Poreklo"].ToString()) == 2)
+                {
+                    chkUvoz.Checked = false;
+                    chkIzvoz.Checked = false;
+                    chkTerminal.Checked = true;
                 }
 
             }
@@ -3263,6 +3296,33 @@ namespace Saobracaj.Dokumenta
             Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke ins = new Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke();
             ins.UpdOtpremaKontejneraVozStav(Convert.ToInt32(txtStavka.Text), Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, txtVagon.Text, Convert.ToDouble(txtGranica.Value), Convert.ToDouble(txtBrojOsovina.Value), Convert.ToDouble(txtSopstvenaMasa.Value), Convert.ToDouble(txtTara.Value), Convert.ToDouble(txtNeto.Value), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboVlasnikKontejnera.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue), txtBukingBrodar.Text, Convert.ToInt32(cboStatusKontejnera.SelectedValue), txtBrojPlombe.Text, Convert.ToInt32(txtPlaniraniLager.Text), 0, Convert.ToDateTime(dtpVremePripremljen.Value), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(txtRB.Text), txtBrojPlombe2.Text, Convert.ToInt32(cboOrganizator.SelectedValue), txtNapomenaS.Text, Convert.ToDateTime(dtpPerodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToDouble(bttoRobe.Value), Convert.ToInt32(txtKontejnerID.Text), Convert.ToDouble(bttoKontejnera.Value), txtNapomenaS2.Text, Convert.ToInt32(cbPostupak.SelectedValue), 0, 0, 0, 0, "", "", "");
             RefreshDataGrid2();
+        }
+
+        private void chkPlatforma_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkPlatforma.Checked == true)
+                chkCirada.Checked = false;
+            else
+            {
+                chkCirada.Checked = true;
+            }
+        }
+
+        private void chkCirada_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (chkCirada.Checked == true)
+                chkPlatforma.Checked = false;
+            else
+            {
+                chkPlatforma.Checked = true;
+            }
+        }
+
+        private void chkTerminal_CheckedChanged(object sender, EventArgs e)
+        {
+            chkUvoz.Checked = false;
+            chkIzvoz.Checked = false;
         }
     }
 }

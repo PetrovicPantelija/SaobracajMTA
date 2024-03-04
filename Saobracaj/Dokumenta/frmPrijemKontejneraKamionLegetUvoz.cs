@@ -17,9 +17,9 @@ using Saobracaj;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmPrijemKontejneraKamionLegetUvoz : Form
+    public partial class frmPrijemKontejneraKamionLegetUvoz :  Syncfusion.Windows.Forms.Office2010Form
     {
-        MailMessage mailMessage;
+       MailMessage mailMessage;
         string KorisnikCene;
         bool status = false;
         int usao = 0;
@@ -65,7 +65,7 @@ namespace Saobracaj.Dokumenta
 
         }
 
-        public frmPrijemKontejneraKamionLegetUvoz(string Korisnik, int Vozom, string NalogID)
+        public frmPrijemKontejneraKamionLegetUvoz(string Korisnik, int Vozom, string NalogID, int Cirada)
         {
            //Automatski prenos iz naloga
             
@@ -73,6 +73,19 @@ namespace Saobracaj.Dokumenta
             KorisnikCene = Korisnik;
             txtNalogID.Text = NalogID;
             chkUvoz.Checked = true;
+            chkIzvoz.Checked = false;
+            chkTerminal.Checked = false;
+
+            if (Cirada == 1)
+            {
+                chkCirada.Checked = true;
+                chkPlatforma.Checked = false;
+            }
+            else
+            {
+                chkCirada.Checked = false;
+                chkPlatforma.Checked = true;
+            }
 
             if (Vozom == 1)
             {
@@ -305,8 +318,9 @@ namespace Saobracaj.Dokumenta
         {
 
             int pomDirektni_indirektni = 0;
+            int pomCiradaPlatforma = 0;
             
-            if (chkVrstaKamiona.Checked == true)
+            if (chkPlatforma.Checked == true)
             { 
                 pomDirektni_indirektni = 1; 
             }
@@ -318,6 +332,14 @@ namespace Saobracaj.Dokumenta
             string sp = cboStatusPrijema.Text;
             int ini = cboStatusPrijema.SelectedIndex;
             int ini2 = Convert.ToInt32(cboStatusPrijema.SelectedValue);
+            if (chkCirada.Checked == true)
+            {
+                pomCiradaPlatforma = 1;
+            }
+            else
+            {
+                pomCiradaPlatforma = 0;
+            }
             if (chkVoz.Checked == true)
             {
                 //Promene ako je voz
@@ -686,6 +708,11 @@ namespace Saobracaj.Dokumenta
             ins.InsRadniNalogInterni2(Convert.ToInt32(4), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovaraT", Convert.ToInt32(txtKontejnerID.Text), KorisnikCene, "");
 
         }
+        private void PostaviFormiranRadniNalogInterni(int NalogID)
+        {
+            Saobracaj.Uvoz.InsertRadniNalogInterni irn = new Uvoz.InsertRadniNalogInterni();
+            irn.UpdRadniNalogInterniFormiran(NalogID);
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -711,6 +738,7 @@ namespace Saobracaj.Dokumenta
                 ins.InsertPrijemKontVozStavke(Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, txtVagon.Text, Convert.ToDouble(txtGranica.Value), Convert.ToDouble(txtBrojOsovina.Value), Convert.ToDouble(txtSopstvenaMasa.Value), Convert.ToDouble(txtTara.Value), Convert.ToDouble(txtNeto.Value), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboVlasnikKontejnera.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue), Convert.ToInt32(cboBukingOtpreme.SelectedValue), Convert.ToInt32(cboStatusKontejnera.SelectedValue), txtBrojPlombe.Text, Convert.ToInt32(txtPlaniraniLager.Text), Convert.ToInt32(cboBukingOtpreme.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(dtpDatumPrijema.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtBrojPlombe2.Text, Convert.ToInt32(cboOrganizator.SelectedValue), txtBukingBrodar.Text, txtNapomenaS.Text, Convert.ToDateTime(dtpPerodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToDouble(bttoRobe.Value), Convert.ToInt32(txtKontejnerID.Text), Convert.ToDouble(bttoKontejnera.Value), txtNapomenaS2.Text, Convert.ToInt32(cbPostupak.SelectedValue), 0, 0, "", "", "", Convert.ToInt32(txtNalogID.Text));
                 RefreshDataGrid();
             }
+            PostaviFormiranRadniNalogInterni(Convert.ToInt32(txtNalogID.Text));
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -1606,6 +1634,7 @@ namespace Saobracaj.Dokumenta
             if (chkTerminal.Checked == true)
             {
                 chkUvoz.Checked = false;
+                chkIzvoz.Checked = false;
                 cboVlasnikKontejnera.Enabled = true;
                 panel2.Visible = true;//Brodar
             }
@@ -1623,6 +1652,40 @@ namespace Saobracaj.Dokumenta
             //Napravi uslugu
             //Napravi RadniNalogInterni Terminal - Terminalu
 
+        }
+
+        private void chkUvoz_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkUvoz.Checked == true)
+            {
+                chkIzvoz.Checked = false;
+                chkTerminal.Checked = false;
+            }
+            else
+            {
+                chkIzvoz.Checked = true;
+                chkTerminal.Checked = false;
+            }
+        }
+
+        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (chkCirada.Checked == true)
+                chkPlatforma.Checked = false;
+            else
+            {
+                chkPlatforma.Checked = true;
+            }
+        }
+
+        private void chkPlatforma_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkPlatforma.Checked == true)
+                chkCirada.Checked = false;
+            else
+            {
+                chkCirada.Checked = true;
+            }
         }
     }
 }

@@ -457,12 +457,12 @@ namespace TrackModal.Dokumeta
                 default:
                     {
 
-                        frmPrijemKontejneraVoz ter3 = new frmPrijemKontejneraVoz(Convert.ToInt32(txtSifra.Text), KorisnikCene, 1);
+                        frmPrijemKontejneraVoz ter3 = new frmPrijemKontejneraVoz(0, KorisnikCene, 0);
                         ter3.Show();
                         return;
 
                     }
-                    break;
+                  
             }
             ///PANTA
 

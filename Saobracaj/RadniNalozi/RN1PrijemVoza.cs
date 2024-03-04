@@ -111,6 +111,37 @@ namespace Saobracaj.RadniNalozi
 
         }
 
+        private void FillGVPoVozu()
+        {
+            var select = "select RNPrijemVoza.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, DatumRasporeda, NalogIzdao, Voz.BrVoza, NaSkladiste,Skladista.Naziv as Sklad,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, VrstaManipulacije.Naziv as Usliga, BrojPlombe, RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID,RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, Zavrsen  from RNPrijemVoza " +
+" inner join TipKontenjera on TipKontenjera.ID = RNPrijemVoza.VrstaKontejnera " +
+" inner join Voz on RNPrijemVoza.SaVoznogSredstva = Voz.ID " +
+" inner join Skladista on Skladista.ID = NaSkladiste " +
+" inner join Partnerji on Partnerji.PaSifra = RNPrijemVoza.Uvoznik " +
+" inner join Partnerji p2 on p2.PaSifra = RNPrijemVoza.NazivBrodara " +
+" inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge " +
+" where Voz.ID = " + Convert.ToInt32(cboSaVoznog.SelectedValue) + 
+" order by RNPrijemVoza.ID desc";
+            SqlConnection conn = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+        }
+
         private void FillGV()
         {
             var select = "select RNPrijemVoza.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, DatumRasporeda, NalogIzdao, Voz.BrVoza, NaSkladiste,Skladista.Naziv as Sklad,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, VrstaManipulacije.Naziv as Usliga, BrojPlombe, RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID,RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, Zavrsen  from RNPrijemVoza " +
@@ -183,7 +214,7 @@ namespace Saobracaj.RadniNalozi
             txtNalogIzdao.Text = Sifarnici.frmLogovanje.user.ToString().TrimEnd();
             //usluge->Manipulacije
 
-            var vSredstvo = "Select Distinct ID, (Cast(BrVoza as nvarchar(6)) + '-' + Relacija) as IdVoza   From Voz";
+            var vSredstvo = "Select Distinct ID, (Cast(BrVoza as nvarchar(10)) + '-' + Relacija) as IdVoza   From Voz";
             var daVS = new SqlDataAdapter(vSredstvo, conn);
             var dsVS = new DataSet();
             daVS.Fill(dsVS);
@@ -501,6 +532,17 @@ namespace Saobracaj.RadniNalozi
                 }
 
             }
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            RadniNalozi.frmAnalizaRadnihNaloga arn = new frmAnalizaRadnihNaloga();
+            arn.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            FillGVPoVozu();
         }
     }
 }

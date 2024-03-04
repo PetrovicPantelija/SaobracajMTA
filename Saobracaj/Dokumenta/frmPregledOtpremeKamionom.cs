@@ -51,7 +51,7 @@ namespace TrackModal.Dokumeta
                         break;
 
                     }
-                    break;
+              
             }
         }
 
@@ -62,6 +62,24 @@ namespace TrackModal.Dokumeta
             IdGrupe();
             IdForme();
             PravoPristupa();
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        toolStripButton7.Visible = false;
+                        toolStripButton1.Visible = true;
+                        toolStripButton4.Visible = true;
+                        break;
+                    }
+                default:
+                    {
+
+                        break;
+
+                    }
+
+            }
         }
         public string IdGrupe()
         {

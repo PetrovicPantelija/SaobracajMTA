@@ -608,7 +608,12 @@ namespace Saobracaj.Dokumenta
 
             //VR SqlCommand cmd = new SqlCommand("select [ID] ,[DatumPrijema],[StatusPrijema],[IdVoza],[VremeDolaska],RegBrKamiona, ImeVozaca, NajavaEmail, PrijemEmail, Napomena, CIRUradjen, PredefinisanaPorukaID from PrijemKontejneraVoz where ID=" + ID, con);
 
-            SqlCommand cmd = new SqlCommand("select [ID] ,[DatumPrijema],[StatusPrijema],[IdVoza],[VremeDolaska],RegBrKamiona, ImeVozaca, NajavaEmail, PrijemEmail, Napomena, CIRUradjen, Operater, OperaterHR, Modul,Poreklo from PrijemKontejneraVoz where ID=" + ID, con);
+            SqlCommand cmd = new SqlCommand("select PrijemKontejneraVoz.[ID] ,PrijemKontejneraVoz.[DatumPrijema],PrijemKontejneraVoz.[StatusPrijema], " +
+" PrijemKontejneraVoz.[IdVoza], PrijemKontejneraVoz.[VremeDolaska], PrijemKontejneraVoz.RegBrKamiona, PrijemKontejneraVoz.ImeVozaca, PrijemKontejneraVoz.NajavaEmail, " +
+" PrijemKontejneraVoz.PrijemEmail, PrijemKontejneraVoz.Napomena, PrijemKontejneraVoz.CIRUradjen, PrijemKontejneraVoz.Operater, PrijemKontejneraVoz.OperaterHR, " +
+" PrijemKontejneraVoz.Modul, PrijemKontejneraVoz.Poreklo, Voz.Sazeta " +
+" from PrijemKontejneraVoz " +
+" inner join Voz on PrijemKontejneraVoz.IDVoza = Voz.ID where PrijemKontejneraVoz.ID = " + ID, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -659,12 +664,10 @@ namespace Saobracaj.Dokumenta
                 {
                     chkUvoz.Checked = false;
                 }
-
-
                 txtImeVozaca.Text = dr["ImeVozaca"].ToString();
                 cboOperater.SelectedValue = Convert.ToInt32(dr["Operater"].ToString());
                 cboOperaterHR.SelectedValue = Convert.ToInt32(dr["OperaterHR"].ToString());
-
+                dtpSazetaPrijava.Value = Convert.ToDateTime(dr["Sazeta"].ToString());
             }
 
             con.Close();
@@ -689,6 +692,24 @@ namespace Saobracaj.Dokumenta
             cboVrstaRobe.ValueMember = "ID";
             */
             //where Posiljalac = 1
+            var it = "select ID, Naziv from InspekciskiTretman order by Naziv";
+            var itAD = new SqlDataAdapter(it, s_connection);
+            var itDS = new DataSet();
+            itAD.Fill(itDS);
+            txtVrstaPregleda.DataSource = itDS.Tables[0];
+            txtVrstaPregleda.DisplayMember = "Naziv";
+            txtVrstaPregleda.ValueMember = "ID";
+
+            var adr = "Select ID, (Naziv + ' - ' + UNKod) as Naziv From VrstaRobeADR order by (UNKod + ' ' + Naziv)";
+            var adrSAD = new SqlDataAdapter(adr, s_connection);
+            var adrSDS = new DataSet();
+            adrSAD.Fill(adrSDS);
+            txtADR.DataSource = adrSDS.Tables[0];
+            txtADR.DisplayMember = "Naziv";
+            txtADR.ValueMember = "ID";
+
+
+
             var select1 = " Select Distinct PaSifra as ID, PaNaziv as Naziv From Partnerji  order by PaNaziv";
             var s_connection1 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection1 = new SqlConnection(s_connection1);
@@ -779,6 +800,30 @@ namespace Saobracaj.Dokumenta
             cboStatusKontejnera.DataSource = ds6.Tables[0];
             cboStatusKontejnera.DisplayMember = "Naziv";
             cboStatusKontejnera.ValueMember = "ID";
+
+            var partner2 = "Select PaSifra,PaNaziv From Partnerji where UvoznikCH = 1 order by PaNaziv";
+            var partAD2 = new SqlDataAdapter(partner2, s_connection);
+            var partDS2 = new DataSet();
+            partAD2.Fill(partDS2);
+            cboUvoznik.DataSource = partDS2.Tables[0];
+            cboUvoznik.DisplayMember = "PaNaziv";
+            cboUvoznik.ValueMember = "PaSifra";
+
+            var partner4 = "Select PaSifra,PaNaziv From Partnerji  where Spediter = 1 order by PaNaziv";
+            var partAD4 = new SqlDataAdapter(partner4, s_connection);
+            var partDS4 = new DataSet();
+            partAD4.Fill(partDS4);
+            cboSpedicijaRTC.DataSource = partDS4.Tables[0];
+            cboSpedicijaRTC.DisplayMember = "PaNaziv";
+            cboSpedicijaRTC.ValueMember = "PaSifra";
+
+            var dir2 = "Select ID, (Oznaka + ' ' + Naziv) as Naziv from VrstaCarinskogPostupka order by Naziv";
+            var dirAD2 = new SqlDataAdapter(dir2, s_connection);
+            var dirDS2 = new DataSet();
+            dirAD2.Fill(dirDS2);
+            cboCarinskiPostupak.DataSource = dirDS2.Tables[0];
+            cboCarinskiPostupak.DisplayMember = "Naziv";
+            cboCarinskiPostupak.ValueMember = "ID";
             /*
             var select7 = " Select Distinct ID, IdVoza From BukingVoza ";
             var s_connection7 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -897,28 +942,31 @@ namespace Saobracaj.Dokumenta
             con.Open();
 
             SqlCommand cmd = new SqlCommand(" SELECT PrijemKontejneraVozStavke.ID, PrijemKontejneraVozStavke.RB, PrijemKontejneraVozStavke.BrojVagona,  PrijemKontejneraVozStavke.KontejnerID, " +
-" PrijemKontejneraVozStavke.BrojKontejnera,  TipKontenjera.ID AS TipKontejnera, PrijemKontejneraVozStavke.Granica as GranicaTovarenja, " +
-" PrijemKontejneraVozStavke.BrojOsovina,  PrijemKontejneraVozStavke.SopstvenaMasa as TaraVagona,  UvozKonacna.TaraKontejnera as Tara,  " +
-" UvozKonacna.NetoRobe as Neto, " +
-" UvozKonacna.BrutoRobe as BTTORobe, UvozKonacna.BrutoKontejnera as BTTOKontejnera, Partnerji_1.PaSifra as Nalogodavac_ZA_VOZ, " +
-" Partnerji_4.PaSifra as Brodar, UvozKonacna.BukingBrodara AS BukingBrodar,UvozKonacna.BrojPlombe1 as BrojPlombe, " +
-" UvozKonacna.BrojPlombe2 as BrojPlombe2, PrijemKontejneraVozStavke.PeriodSkladistenjaOd, " +
-" PrijemKontejneraVozStavke.PeriodSkladistenjaDo, DirigacijaKOntejneraZa.ID as DirigacijaKOntejneraZa, VrstePostupakaUvoz.ID as PostupakSaRobom," +
-" Partnerji_3.PaSifra AS Nalogodavac_Za_DrumskiPrevoz, Partnerji_2.PaSifra AS Nalogodavac_Za_Usluge," +
- "  PrijemKontejneraVozStavke.PlaniraniLager as DIREKTNI_INDIREKTNI,    UvozKonacna.Napomena1 as NapomenaS, UvozKonacna.Napomena as Napomena2, " +
-" PrijemKontejneraVozStavke.Datum, PrijemKontejneraVozStavke.Korisnik , KontejnerskiTerminali.ID as RLTerminal" +
+" PrijemKontejneraVozStavke.BrojKontejnera, TipKontenjera.ID AS TipKontejnera, PrijemKontejneraVozStavke.Granica as GranicaTovarenja, PrijemKontejneraVozStavke.BrojOsovina, " +
+" PrijemKontejneraVozStavke.SopstvenaMasa as TaraVagona, UvozKonacna.TaraKontejnera as Tara, UvozKonacna.NetoRobe as Neto, UvozKonacna.BrutoRobe as BTTORobe, " +
+" UvozKonacna.BrutoKontejnera as BTTOKontejnera, Partnerji_1.PaSifra as Nalogodavac_ZA_VOZ, Partnerji_4.PaSifra as Brodar, " +
+" UvozKonacna.BrodskaTeretnica AS BukingBrodar, UvozKonacna.BrojPlombe1 as BrojPlombe, UvozKonacna.BrojPlombe2 as BrojPlombe2, " +
+" PrijemKontejneraVozStavke.PeriodSkladistenjaOd, PrijemKontejneraVozStavke.PeriodSkladistenjaDo, " +
+" DirigacijaKOntejneraZa.ID as DirigacijaKOntejneraZa, VrstePostupakaUvoz.ID as PostupakSaRobom, " +
+" Partnerji_3.PaSifra AS Nalogodavac_Za_DrumskiPrevoz, Partnerji_2.PaSifra AS Nalogodavac_Za_Usluge, " +
+" PrijemKontejneraVozStavke.PlaniraniLager as DIREKTNI_INDIREKTNI, UvozKonacna.Napomena1 as NapomenaS, UvozKonacna.Napomena as Napomena2, PrijemKontejneraVozStavke.Datum, " +
+" PrijemKontejneraVozStavke.Korisnik, KontejnerskiTerminali.ID as RLTerminal, " +
+" InspekciskiTretman.ID as InspekciskiTretman, VrstaRobeADR.ID AS ADR, Partnerji_5.PaSifra as Uvoznik, VrstaCarinskogPostupka.ID as CarinskiPostupak, " +
+" Partnerji_6.PaSifra as SpedicijaRTC, UvozKonacna.KontaktOsobe " +
 " FROM  PrijemKontejneraVozStavke " +
-" inner join PrijemKontejneraVoz on PrijemKontejneraVoz.ID = PrijemKontejneraVozStavke.IdNadredjenog" +
+" inner join PrijemKontejneraVoz on PrijemKontejneraVoz.ID = PrijemKontejneraVozStavke.IdNadredjenog " +
 " inner join UvozKonacna on UvozKonacna.ID = PrijemKontejneraVozStavke.KontejnerID " +
 " INNER JOIN  Partnerji AS Partnerji_1 ON UvozKonacna.Nalogodavac1 = Partnerji_1.PaSifra " +
-" INNER JOIN  Partnerji AS Partnerji_2 ON UvozKonacna.Nalogodavac2 = Partnerji_2.PaSifra " +
-" INNER JOIN  Partnerji AS Partnerji_3 ON UvozKonacna.Nalogodavac3 = Partnerji_3.PaSifra " +
-" INNER JOIN  Partnerji AS Partnerji_4 ON UvozKonacna.Brodar = Partnerji_4.PaSifra " +
-" INNER JOIN TipKontenjera ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
+" INNER JOIN  Partnerji AS Partnerji_2 ON UvozKonacna.Nalogodavac2 = Partnerji_2.PaSifra  INNER JOIN  Partnerji AS Partnerji_3 ON UvozKonacna.Nalogodavac3 = Partnerji_3.PaSifra " +
+" INNER JOIN  Partnerji AS Partnerji_4 ON UvozKonacna.Brodar = Partnerji_4.PaSifra  INNER JOIN TipKontenjera ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
 " INNER join DirigacijaKontejneraZa on DirigacijaKontejneraZa.ID = PrijemKontejneraVozStavke.StatusKontejnera " +
 " INNER JOIN  Voz ON PrijemKontejneraVozStavke.IdVoza = Voz.ID " +
-" INNER JOIN VrstePostupakaUvoz ON VrstePostupakaUvoz.id = UvozKonacna.PostupakSaRobom" +
-" INNER JOIN KontejnerskiTerminali on KontejnerskiTerminali.ID = UvozKonacna.RlTerminali " +
+" INNER JOIN VrstePostupakaUvoz ON VrstePostupakaUvoz.id = UvozKonacna.PostupakSaRobom INNER JOIN KontejnerskiTerminali on KontejnerskiTerminali.ID = UvozKonacna.RlTerminali " +
+" inner join InspekciskiTretman on UvozKOnacna.VrstaPregleda = InspekciskiTretman.ID " +
+" inner join VrstaRobeADR on VrstaRobeADR.ID = UvozKonacna.ADR " +
+" INNER JOIN  Partnerji AS Partnerji_5 ON UvozKonacna.Uvoznik = Partnerji_5.PaSifra " +
+" inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = UvozKonacna.CarinskiPostupak " +
+" INNER JOIN  Partnerji AS Partnerji_6 ON UvozKonacna.SpedicijaRTC = Partnerji_6.PaSifra " +
             " where IdNadredjenog = " + txtSifra.Text + " and RB = " + RB, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -958,7 +1006,16 @@ namespace Saobracaj.Dokumenta
                 bttoKontejnera.Value = Convert.ToDecimal(dr["BTTOKOntejnera"].ToString());
                 txtNapomenaS2.Text = dr["Napomena2"].ToString();
                 cbPostupak.SelectedValue = Convert.ToInt32(dr["PostupakSaRobom"].ToString());
-                 txtKontejnerID.Text = dr["KontejnerID"].ToString(); ;// PostupakSaRobom
+                txtKontejnerID.Text = dr["KontejnerID"].ToString(); ;// PostupakSaRobom
+                txtVrstaPregleda.SelectedValue  = Convert.ToInt32(dr["InspekciskiTretman"].ToString());
+                cboUvoznik.SelectedValue = Convert.ToInt32(dr["Uvoznik"].ToString());
+                txtADR.SelectedValue = Convert.ToInt32(dr["ADR"].ToString());
+                cboSpedicijaRTC.SelectedValue = Convert.ToInt32(dr["SpedicijaRTC"].ToString());
+                cboCarinskiPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
+                txtKontaktOsobe.Text = dr["KontaktOsobe"].ToString();
+
+
+
             }
 
             con.Close();
@@ -1496,7 +1553,9 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton6_Click_1(object sender, EventArgs e)
         {
-            string IDUsluge = "0";
+          
+            
+                    string IDUsluge = "0";
             foreach (DataGridViewRow row in dataGridView8.Rows)
             {
 
@@ -1507,13 +1566,15 @@ namespace Saobracaj.Dokumenta
                 }
             }
 
+            //Zadnja nula oznacava platformu
+
             if (IDUsluge == "0")
 
             {
                 DialogResult dialogResult = MessageBox.Show("Niste obeležili ni jednu uslugu", "Usluga?", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(txtKontejnerID.Text, IDUsluge, KorisnikCene);
+                    Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(txtKontejnerID.Text, IDUsluge, KorisnikCene, 0);
                     okk.Show();
                 }
                 else if (dialogResult == DialogResult.No)
@@ -1524,7 +1585,7 @@ namespace Saobracaj.Dokumenta
             }
             else
             {
-                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(txtKontejnerID.Text, IDUsluge, KorisnikCene);
+                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(txtKontejnerID.Text, IDUsluge, KorisnikCene,0);
                 okk.Show();
             }
            
@@ -1546,8 +1607,14 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton9_Click_1(object sender, EventArgs e)
         {
-            frmPrijemKontejneraKamionLegetUvoz prijemplat = new frmPrijemKontejneraKamionLegetUvoz(KorisnikCene, 0, txtNalogID.Text);
+            //Proveriti da li je OK zadnji parametar Cirada
+            frmPrijemKontejneraKamionLegetUvoz prijemplat = new frmPrijemKontejneraKamionLegetUvoz(KorisnikCene, 0, txtNalogID.Text, 0);
             prijemplat.Show();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

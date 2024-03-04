@@ -45,7 +45,15 @@ namespace Saobracaj.Uvoz
                 DodatniAND = DodatniAND + " AND VrstaManipulacije.Administrativna = 1 ";
             }
 
-          
+            if (chkFormiranTerminal.Checked == true)
+            {
+                DodatniAND = DodatniAND + " And FormiranTerminal = 1";
+
+
+            }
+
+
+
             var select = "";
             if (cboIzdatOd.Text == "Uvoz")
             {
@@ -429,7 +437,7 @@ namespace Saobracaj.Uvoz
             {
                 MessageBox.Show("Formirate Otpremu kamionom Platforma");
                 KISUsl = VratiKonkretanIDUsluge();
-                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik);
+                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 0);
                 okk.Show();
 
             }
@@ -437,32 +445,57 @@ namespace Saobracaj.Uvoz
             if (Forma == "GATE IN KAMION")
             {
                 MessageBox.Show("Formirate Prijem kamionom Platforma");
-                Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text);
+                Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 0);
                 prijemplat.Show();
 
+            }
+
+            if (Forma == "GATE OUT PRETOVAR")
+            {
+                MessageBox.Show("Formirate Prijem kamionom Cirada");
+                Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 1);
+                prijemplat.Show();
+
+            }
+
+            if (Forma == "GATE IN PRETOVAR")
+            {
+                MessageBox.Show("Formirate Otprema kamionom Cirada");
+                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik,1);
+                okk.Show();
             }
 
         }
         string VratiFormu()
         {
-            string formica = "";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(s_connection);
-
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand("select Forma from RadniNalogInterni where ID = " + txtNALOGID.Text, con);
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            while (dr.Read())
+            if (txtNALOGID.Text == "")
             {
-                formica =  dr["Forma"].ToString().TrimEnd();
 
-
-                
+                MessageBox.Show("Obelezite bar jednu stavku voza");
+                return "";
             }
-            con.Close();
-            return formica;
+            else
+            {
+                string formica = "";
+                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection con = new SqlConnection(s_connection);
+
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("select Forma from RadniNalogInterni where ID = " + txtNALOGID.Text, con);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    formica = dr["Forma"].ToString().TrimEnd();
+
+
+
+                }
+                con.Close();
+                return formica;
+            }
+           
            
         }
     }

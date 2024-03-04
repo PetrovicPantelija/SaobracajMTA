@@ -69,6 +69,7 @@ namespace Saobracaj.Uvoz
             this.cboOperater = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cboOperaterHR = new System.Windows.Forms.ComboBox();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -328,7 +329,8 @@ namespace Saobracaj.Uvoz
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
             this.tsSave,
-            this.toolStripSeparator1});
+            this.toolStripSeparator1,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1145, 27);
@@ -524,6 +526,17 @@ namespace Saobracaj.Uvoz
             this.cboOperaterHR.Size = new System.Drawing.Size(230, 21);
             this.cboOperaterHR.TabIndex = 258;
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(130, 24);
+            this.toolStripButton1.Text = "OTVORI - GATE IN VOZ";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // frmPrijemVozaIzPlana
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -620,5 +633,6 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.ComboBox cboOperater;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cboOperaterHR;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

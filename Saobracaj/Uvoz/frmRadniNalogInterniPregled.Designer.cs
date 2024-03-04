@@ -60,6 +60,8 @@ namespace Saobracaj.Uvoz
             this.chkKamion = new System.Windows.Forms.CheckBox();
             this.chkAdministrativna = new System.Windows.Forms.CheckBox();
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
+            this.gradientPanel3 = new Syncfusion.Windows.Forms.Tools.GradientPanel();
+            this.chkFormiranTerminal = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -70,6 +72,8 @@ namespace Saobracaj.Uvoz
             this.gradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gradientPanel2)).BeginInit();
             this.gradientPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gradientPanel3)).BeginInit();
+            this.gradientPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -85,10 +89,10 @@ namespace Saobracaj.Uvoz
             this.toolStripButton3,
             this.toolStripSeparator4,
             this.toolStripButton4,
+            this.toolStripButton8,
             this.toolStripButton5,
-            this.toolStripButton6,
             this.toolStripButton7,
-            this.toolStripButton8});
+            this.toolStripButton6});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1374, 25);
@@ -234,6 +238,7 @@ namespace Saobracaj.Uvoz
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.gradientPanel3);
             this.splitContainer1.Panel1.Controls.Add(this.gradientPanel2);
             this.splitContainer1.Panel1.Controls.Add(this.gradientPanel1);
             this.splitContainer1.Panel1.Controls.Add(this.button2);
@@ -300,7 +305,7 @@ namespace Saobracaj.Uvoz
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(9, 410);
+            this.button2.Location = new System.Drawing.Point(13, 532);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(158, 35);
             this.button2.TabIndex = 221;
@@ -310,7 +315,7 @@ namespace Saobracaj.Uvoz
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(10, 369);
+            this.button1.Location = new System.Drawing.Point(14, 491);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(160, 35);
             this.button1.TabIndex = 220;
@@ -321,7 +326,7 @@ namespace Saobracaj.Uvoz
             // cboIzdatZa
             // 
             this.cboIzdatZa.FormattingEnabled = true;
-            this.cboIzdatZa.Location = new System.Drawing.Point(9, 487);
+            this.cboIzdatZa.Location = new System.Drawing.Point(13, 609);
             this.cboIzdatZa.Margin = new System.Windows.Forms.Padding(2);
             this.cboIzdatZa.Name = "cboIzdatZa";
             this.cboIzdatZa.Size = new System.Drawing.Size(161, 21);
@@ -330,7 +335,7 @@ namespace Saobracaj.Uvoz
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 472);
+            this.label1.Location = new System.Drawing.Point(16, 594);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 13);
@@ -407,6 +412,24 @@ namespace Saobracaj.Uvoz
             this.toolStripButton8.Text = "FORMIRAJ DOKUMENT";
             this.toolStripButton8.Click += new System.EventHandler(this.toolStripButton8_Click);
             // 
+            // gradientPanel3
+            // 
+            this.gradientPanel3.Controls.Add(this.chkFormiranTerminal);
+            this.gradientPanel3.Location = new System.Drawing.Point(13, 330);
+            this.gradientPanel3.Name = "gradientPanel3";
+            this.gradientPanel3.Size = new System.Drawing.Size(161, 127);
+            this.gradientPanel3.TabIndex = 229;
+            // 
+            // chkFormiranTerminal
+            // 
+            this.chkFormiranTerminal.AutoSize = true;
+            this.chkFormiranTerminal.Location = new System.Drawing.Point(11, 21);
+            this.chkFormiranTerminal.Name = "chkFormiranTerminal";
+            this.chkFormiranTerminal.Size = new System.Drawing.Size(141, 17);
+            this.chkFormiranTerminal.TabIndex = 0;
+            this.chkFormiranTerminal.Text = "FORMIRAN TERMINAL";
+            this.chkFormiranTerminal.UseVisualStyleBackColor = true;
+            // 
             // frmRadniNalogInterniPregled
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -434,6 +457,9 @@ namespace Saobracaj.Uvoz
             ((System.ComponentModel.ISupportInitialize)(this.gradientPanel2)).EndInit();
             this.gradientPanel2.ResumeLayout(false);
             this.gradientPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gradientPanel3)).EndInit();
+            this.gradientPanel3.ResumeLayout(false);
+            this.gradientPanel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -471,5 +497,7 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.CheckBox chkKamion;
         private System.Windows.Forms.CheckBox chkVOZ;
         private System.Windows.Forms.ToolStripButton toolStripButton8;
+        private Syncfusion.Windows.Forms.Tools.GradientPanel gradientPanel3;
+        private System.Windows.Forms.CheckBox chkFormiranTerminal;
     }
 }

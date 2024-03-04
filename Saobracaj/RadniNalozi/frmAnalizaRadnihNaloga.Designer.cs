@@ -55,6 +55,7 @@ namespace Saobracaj.RadniNalozi
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.gridGroupingControl2 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.button20 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -72,6 +73,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.button20);
             this.splitContainer1.Panel1.Controls.Add(this.button18);
             this.splitContainer1.Panel1.Controls.Add(this.button21);
             this.splitContainer1.Panel1.Controls.Add(this.button19);
@@ -116,7 +118,7 @@ namespace Saobracaj.RadniNalozi
             // button21
             // 
             this.button21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button21.Location = new System.Drawing.Point(1209, 41);
+            this.button21.Location = new System.Drawing.Point(818, 70);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(175, 24);
             this.button21.TabIndex = 25;
@@ -126,7 +128,7 @@ namespace Saobracaj.RadniNalozi
             // button19
             // 
             this.button19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button19.Location = new System.Drawing.Point(1015, 41);
+            this.button19.Location = new System.Drawing.Point(817, 11);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(176, 24);
             this.button19.TabIndex = 24;
@@ -137,7 +139,7 @@ namespace Saobracaj.RadniNalozi
             // button16
             // 
             this.button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button16.Location = new System.Drawing.Point(743, 40);
+            this.button16.Location = new System.Drawing.Point(534, 40);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(266, 23);
             this.button16.TabIndex = 21;
@@ -148,7 +150,7 @@ namespace Saobracaj.RadniNalozi
             // button17
             // 
             this.button17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button17.Location = new System.Drawing.Point(548, 40);
+            this.button17.Location = new System.Drawing.Point(352, 71);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(176, 23);
             this.button17.TabIndex = 20;
@@ -159,7 +161,7 @@ namespace Saobracaj.RadniNalozi
             // button15
             // 
             this.button15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button15.Location = new System.Drawing.Point(362, 40);
+            this.button15.Location = new System.Drawing.Point(352, 12);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(176, 23);
             this.button15.TabIndex = 19;
@@ -170,7 +172,7 @@ namespace Saobracaj.RadniNalozi
             // button11
             // 
             this.button11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button11.Location = new System.Drawing.Point(1209, 12);
+            this.button11.Location = new System.Drawing.Point(817, 42);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(176, 23);
             this.button11.TabIndex = 18;
@@ -181,9 +183,9 @@ namespace Saobracaj.RadniNalozi
             // button8
             // 
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button8.Location = new System.Drawing.Point(1015, 11);
+            this.button8.Location = new System.Drawing.Point(534, 69);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(176, 23);
+            this.button8.Size = new System.Drawing.Size(266, 23);
             this.button8.TabIndex = 17;
             this.button8.Text = "UV - OTPREMA PLATFORMA";
             this.button8.UseVisualStyleBackColor = false;
@@ -192,7 +194,7 @@ namespace Saobracaj.RadniNalozi
             // button6
             // 
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button6.Location = new System.Drawing.Point(743, 12);
+            this.button6.Location = new System.Drawing.Point(534, 12);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(266, 23);
             this.button6.TabIndex = 16;
@@ -203,7 +205,7 @@ namespace Saobracaj.RadniNalozi
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button4.Location = new System.Drawing.Point(548, 11);
+            this.button4.Location = new System.Drawing.Point(352, 42);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(176, 23);
             this.button4.TabIndex = 15;
@@ -279,7 +281,7 @@ namespace Saobracaj.RadniNalozi
             // button3
             // 
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button3.Location = new System.Drawing.Point(362, 11);
+            this.button3.Location = new System.Drawing.Point(170, 70);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(176, 23);
             this.button3.TabIndex = 13;
@@ -294,7 +296,7 @@ namespace Saobracaj.RadniNalozi
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(176, 23);
             this.button2.TabIndex = 12;
-            this.button2.Text = "U - PRIJEM VOZA";
+            this.button2.Text = "1: UV - PRIJEM VOZA";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -318,11 +320,11 @@ namespace Saobracaj.RadniNalozi
             this.gridGroupingControl1.BackColor = System.Drawing.SystemColors.Window;
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2010Blue;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(13, 71);
+            this.gridGroupingControl1.Location = new System.Drawing.Point(13, 108);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1372, 293);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1372, 256);
             this.gridGroupingControl1.TabIndex = 10;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -362,6 +364,17 @@ namespace Saobracaj.RadniNalozi
             // toolTip1
             // 
             this.toolTip1.Tag = "Prikazuje posle prijema kontejnera";
+            // 
+            // button20
+            // 
+            this.button20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(230)))), ((int)(((byte)(90)))));
+            this.button20.Location = new System.Drawing.Point(13, 69);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(152, 23);
+            this.button20.TabIndex = 27;
+            this.button20.Text = "OTVORI RN";
+            this.button20.UseVisualStyleBackColor = false;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
             // frmAnalizaRadnihNaloga
             // 
@@ -408,5 +421,6 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button18;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button button20;
     }
 }

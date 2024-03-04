@@ -17,7 +17,7 @@ using Microsoft.Reporting.WinForms;
 
 namespace Testiranje.Sifarnici
 {
-    public partial class frmSkladista : Form
+    public partial class frmSkladista : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmSkladista";
         public bool Pravo;

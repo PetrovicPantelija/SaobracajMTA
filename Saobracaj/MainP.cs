@@ -55,6 +55,7 @@ namespace Saobracaj
                 toolStripButton342.Visible = true;
                 toolStripEx39.Visible = true;
                 toolStripButton344.Visible = true;
+                toolStripButton141.Visible = false;
             }
 
             if (Sifarnici.frmLogovanje.Firma == "TA")
@@ -119,7 +120,7 @@ namespace Saobracaj
 
 
 
-           
+
         }
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
@@ -142,7 +143,7 @@ namespace Saobracaj
             }
 
 
-           
+
         }
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
@@ -196,7 +197,7 @@ namespace Saobracaj
 
 
 
-          
+
         }
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
@@ -240,7 +241,7 @@ namespace Saobracaj
             }
 
 
-          
+
         }
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
@@ -263,16 +264,16 @@ namespace Saobracaj
             }
 
 
-         
+
         }
 
         private void toolStripButton9_Click(object sender, EventArgs e)
         {
-        
+
         }
         private void toolStripButton10_Click(object sender, EventArgs e)
         {
-           
+
         }
         private void toolStripButton11_Click(object sender, EventArgs e)
         {
@@ -296,15 +297,15 @@ namespace Saobracaj
 
 
 
-           
+
         }
         private void toolStripButton12_Click(object sender, EventArgs e)
         {
-         
+
         }
         private void toolStripButton13_Click(object sender, EventArgs e)
         {
-          
+
         }
         //Priprema
         private void toolStripButton15_Click(object sender, EventArgs e)
@@ -328,7 +329,7 @@ namespace Saobracaj
             }
 
 
-           
+
         }
         private void toolStripButton16_Click(object sender, EventArgs e)
         {
@@ -351,7 +352,7 @@ namespace Saobracaj
             }
 
 
-           
+
         }
         private void toolStripButton17_Click(object sender, EventArgs e)
         {
@@ -375,7 +376,7 @@ namespace Saobracaj
 
 
 
-           
+
         }
         private void toolStripButton18_Click(object sender, EventArgs e)
         {
@@ -399,7 +400,7 @@ namespace Saobracaj
 
 
 
-          
+
         }
         private void toolStripButton14_Click(object sender, EventArgs e)
         {
@@ -422,7 +423,7 @@ namespace Saobracaj
             }
 
 
-          
+
         }
         private void toolStripButton19_Click(object sender, EventArgs e)
         {
@@ -444,7 +445,7 @@ namespace Saobracaj
                 if (PravoP == true) { frmTer.Show(); } else { return; }
             }
 
-           
+
         }
         private void toolStripButton20_Click(object sender, EventArgs e)
         {
@@ -467,11 +468,11 @@ namespace Saobracaj
             }
 
 
-            
+
         }
         private void toolStripButton21_Click(object sender, EventArgs e)
         {
-            
+
             FormCollection fc = Application.OpenForms;
             bool bFormNameOpen = false;
             foreach (Form frm in fc)
@@ -510,7 +511,7 @@ namespace Saobracaj
         }
         private void toolStripButton25_Click(object sender, EventArgs e)
         {
-          
+
         }
         private void toolStripButton27_Click(object sender, EventArgs e)
         {
@@ -539,7 +540,7 @@ namespace Saobracaj
             }
 
 
-          
+
         }
         private void toolStripButton29_Click(object sender, EventArgs e)
         {
@@ -563,8 +564,8 @@ namespace Saobracaj
 
 
 
-          
-          
+
+
         }
         private void toolStripButton30_Click(object sender, EventArgs e)
         {
@@ -588,7 +589,7 @@ namespace Saobracaj
 
 
 
-          
+
         }
         private void toolStripButton31_Click(object sender, EventArgs e)
         {
@@ -604,7 +605,7 @@ namespace Saobracaj
         }
         private void toolStripButton34_Click(object sender, EventArgs e)
         {
-         
+
         }
         private void toolStripButton38_Click(object sender, EventArgs e)
         {
@@ -648,7 +649,7 @@ namespace Saobracaj
             }
 
 
-          
+
         }
 
         private void toolStripButton39_Click(object sender, EventArgs e)
@@ -673,7 +674,7 @@ namespace Saobracaj
 
 
 
-           
+
         }
 
         private void toolStripButton40_Click(object sender, EventArgs e)
@@ -697,7 +698,7 @@ namespace Saobracaj
             }
 
 
-          
+
         }
 
         private void toolStripButton41_Click(object sender, EventArgs e)
@@ -722,7 +723,7 @@ namespace Saobracaj
 
 
 
-           
+
         }
 
         private void toolStripButton42_Click(object sender, EventArgs e)
@@ -747,7 +748,7 @@ namespace Saobracaj
 
 
 
-          
+
         }
 
         private void toolStripButton43_Click(object sender, EventArgs e)
@@ -772,7 +773,7 @@ namespace Saobracaj
 
 
 
-          
+
         }
 
         private void toolStripButton44_Click(object sender, EventArgs e)
@@ -797,7 +798,7 @@ namespace Saobracaj
 
 
 
-          
+
         }
 
         private void toolStripButton45_Click(object sender, EventArgs e)
@@ -822,7 +823,7 @@ namespace Saobracaj
 
 
 
-          
+
         }
 
         private void toolStripButton46_Click(object sender, EventArgs e)
@@ -902,7 +903,7 @@ namespace Saobracaj
 
 
 
-         
+
         }
 
         private void toolStripButton55_Click(object sender, EventArgs e)
@@ -995,7 +996,7 @@ namespace Saobracaj
 
 
 
-           
+
         }
 
         private void toolStripButton62_Click(object sender, EventArgs e)
@@ -1019,7 +1020,7 @@ namespace Saobracaj
             }
 
 
-          
+
         }
 
         private void toolStripButton63_Click(object sender, EventArgs e)
@@ -1044,7 +1045,7 @@ namespace Saobracaj
 
 
 
-           
+
         }
 
         private void toolStripButton48_Click(object sender, EventArgs e)
@@ -1069,7 +1070,7 @@ namespace Saobracaj
 
 
 
-          
+
         }
 
         private void toolStripButton49_Click(object sender, EventArgs e)
@@ -1093,17 +1094,17 @@ namespace Saobracaj
             }
 
 
-           
+
         }
 
         private void toolStripButton58_Click(object sender, EventArgs e)
         {
-        
+
         }
 
         private void toolStripButton59_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void toolStripButton56_Click(object sender, EventArgs e)
@@ -1128,7 +1129,7 @@ namespace Saobracaj
 
 
 
-          
+
         }
 
         private void toolStripButton77_Click(object sender, EventArgs e)
@@ -1214,7 +1215,7 @@ namespace Saobracaj
 
 
 
-          
+
         }
         private void toolStripButton75_Click(object sender, EventArgs e)
         {
@@ -1253,7 +1254,7 @@ namespace Saobracaj
 
 
 
-           
+
         }
         private void toolStripButton82_Click(object sender, EventArgs e)
         {
@@ -1276,7 +1277,7 @@ namespace Saobracaj
             }
 
 
-          
+
         }
         private void toolStripButton83_Click(object sender, EventArgs e)
         {
@@ -1324,7 +1325,7 @@ namespace Saobracaj
 
 
 
-           
+
         }
         private void RibbonPanel_Click(object sender, EventArgs e)
         {
@@ -1353,7 +1354,7 @@ namespace Saobracaj
 
 
 
-          
+
         }
         private void toolStripButton86_Click(object sender, EventArgs e)
         {
@@ -1400,7 +1401,7 @@ namespace Saobracaj
             }
 
 
-         
+
         }
         private void toolStripButton88_Click(object sender, EventArgs e)
         {
@@ -1429,7 +1430,7 @@ namespace Saobracaj
             }
 
 
-          
+
         }
         private void toolStripButton92_Click(object sender, EventArgs e)
         {
@@ -1454,7 +1455,7 @@ namespace Saobracaj
 
 
 
-          
+
         }
 
         private void toolStripButton93_Click(object sender, EventArgs e)
@@ -1478,7 +1479,7 @@ namespace Saobracaj
             }
 
 
-         
+
         }
 
         private void toolStripButton94_Click(object sender, EventArgs e)
@@ -1534,7 +1535,7 @@ namespace Saobracaj
 
 
 
-           
+
         }
 
         private void toolStripButton99_Click(object sender, EventArgs e)
@@ -1546,12 +1547,12 @@ namespace Saobracaj
 
         private void toolStripButton100_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void toolStripButton101_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void toolStripButton103_Click(object sender, EventArgs e)
@@ -1612,7 +1613,7 @@ namespace Saobracaj
 
 
 
-          
+
         }
 
         private void toolStripButton109_Click(object sender, EventArgs e)
@@ -1637,7 +1638,7 @@ namespace Saobracaj
 
 
 
-          
+
         }
 
         private void toolStripButton97_Click(object sender, EventArgs e)
@@ -1662,7 +1663,7 @@ namespace Saobracaj
 
 
 
-         
+
         }
 
         private void toolStripButton110_Click(object sender, EventArgs e)
@@ -1686,12 +1687,12 @@ namespace Saobracaj
             }
 
 
-           
+
         }
 
         private void toolStripButton111_Click(object sender, EventArgs e)
         {
-          
+
 
         }
 
@@ -1757,7 +1758,7 @@ namespace Saobracaj
                 Mobile.frmTokoviDokumentacije td = new Mobile.frmTokoviDokumentacije();
                 td.Show();
             }
-          
+
         }
 
         private void toolStripButton66_Click(object sender, EventArgs e)
@@ -1801,7 +1802,7 @@ namespace Saobracaj
 
 
 
-          
+
         }
         private void toolStripButton117_Click(object sender, EventArgs e)
         {
@@ -1849,8 +1850,8 @@ namespace Saobracaj
         {
             // Saobracaj.Testiranje.Sifarnici.Testiranje
             // Testiranje.Sifarnici
-           
-              frmGreske greske = new frmGreske(Korisnik);
+
+            frmGreske greske = new frmGreske(Korisnik);
             PravoP = greske.Pravo;
             if (PravoP == true)
             {
@@ -1864,7 +1865,7 @@ namespace Saobracaj
 
         private void toolStripButton121_Click(object sender, EventArgs e)
         {
-           frmDelovi snac = new frmDelovi(Korisnik);
+            frmDelovi snac = new frmDelovi(Korisnik);
             PravoP = snac.Pravo;
             if (PravoP == true)
             {
@@ -2020,7 +2021,7 @@ namespace Saobracaj
         {
 
             Sifarnici.frmStanice stan = new Sifarnici.frmStanice();
-            stan.Show(); 
+            stan.Show();
             // frmStanice stanice = new frmStanice(Korisnik);
             // stanice.Show();
         }
@@ -2055,7 +2056,7 @@ namespace Saobracaj
 
         private void toolStripButton135_Click(object sender, EventArgs e)
         {
-           frmVrstaManipulacije frmvrman = new frmVrstaManipulacije(Korisnik);
+            frmVrstaManipulacije frmvrman = new frmVrstaManipulacije(Korisnik);
             PravoP = frmvrman.Pravo;
             if (PravoP == true)
             {
@@ -2103,7 +2104,7 @@ namespace Saobracaj
 
         private void toolStripButton139_Click(object sender, EventArgs e)
         {
-          
+
             frmPrijemKontejneraKamionPregled prkamion = new frmPrijemKontejneraKamionPregled(Korisnik);
             PravoP = prkamion.Pravo;
             if (PravoP == true)
@@ -2378,7 +2379,7 @@ namespace Saobracaj
 
         private void prodajnegrupe_Click(object sender, EventArgs e)
         {
-            frmProdajnaGrupa pg = new             frmProdajnaGrupa();
+            frmProdajnaGrupa pg = new frmProdajnaGrupa();
             pg.Show();
         }
 
@@ -2420,7 +2421,7 @@ namespace Saobracaj
 
         private void toolStripButton169_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void toolStripButton169_Click_1(object sender, EventArgs e)
@@ -2791,7 +2792,7 @@ namespace Saobracaj
         private void toolStripButton198_Click(object sender, EventArgs e)
         {
             Sifarnici.frmPartnerji part = new Sifarnici.frmPartnerji();
-            part.Show(); 
+            part.Show();
         }
 
         private void toolStripButton199_Click(object sender, EventArgs e)
@@ -2959,9 +2960,9 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Dokumenta.frmTrainList tl = new Dokumenta.frmTrainList();
-                tl.Show(); 
-            }    
-            
+                tl.Show();
+            }
+
         }
 
         private void toolStripEx1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -2972,15 +2973,15 @@ namespace Saobracaj
         private void toolStripButton220_Click(object sender, EventArgs e)
         {
             frmVagoniSerije frm = new frmVagoniSerije();
-           // PravoP = frm.Pravo;
-           // if (PravoP == true)
-           // {
-                frm.Show();
-           // }
-          //  else
-           // {
-           //     return;
-          //  }
+            // PravoP = frm.Pravo;
+            // if (PravoP == true)
+            // {
+            frm.Show();
+            // }
+            //  else
+            // {
+            //     return;
+            //  }
         }
 
         private void toolStripButton221_Click(object sender, EventArgs e)
@@ -3153,8 +3154,8 @@ namespace Saobracaj
 
         private void toolStripButton243_Click(object sender, EventArgs e)
         {
-        
-                Servis.frmPrijavaMasinovodjeOld mas = new Servis.frmPrijavaMasinovodjeOld();
+
+            Servis.frmPrijavaMasinovodjeOld mas = new Servis.frmPrijavaMasinovodjeOld();
             PravoP = mas.Pravo;
             if (PravoP == true) { mas.Show(); } else { return; }
         }
@@ -3461,9 +3462,9 @@ namespace Saobracaj
 
         private void toolStripButton260_Click(object sender, EventArgs e)
         {
-            
-            
-            
+
+
+
             frmPregledVozova pv = new frmPregledVozova();
             PravoP = pv.Pravo;
             if (PravoP == true)
@@ -3819,7 +3820,7 @@ namespace Saobracaj
 
         private void toolStripButton308_Click(object sender, EventArgs e)
         {
-            RN6OtpremaPlatforme frm= new RN6OtpremaPlatforme();
+            RN6OtpremaPlatforme frm = new RN6OtpremaPlatforme();
             frm.Show();
         }
 
@@ -3999,12 +4000,11 @@ namespace Saobracaj
 
         private void toolStripButton334_Click(object sender, EventArgs e)
         {
-           
         }
 
         private void toolStripButton334_Click_1(object sender, EventArgs e)
         {
- Izvoz.frmIzvozIstorija ii = new Izvoz.frmIzvozIstorija();
+            Izvoz.frmIzvozIstorija ii = new Izvoz.frmIzvozIstorija();
             ii.Show();
         }
 

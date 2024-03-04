@@ -68,6 +68,7 @@ namespace Saobracaj.Izvoz
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.chkCirada = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -125,6 +126,7 @@ namespace Saobracaj.Izvoz
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.chkCirada);
             this.splitContainer1.Panel1.Controls.Add(this.label7);
             this.splitContainer1.Panel1.Controls.Add(this.label8);
             this.splitContainer1.Panel1.Controls.Add(this.txtNalogID);
@@ -533,12 +535,28 @@ namespace Saobracaj.Izvoz
             // 
             // toolStripButton1
             // 
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(74, 24);
             this.toolStripButton1.Text = "OTVORI ";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // chkCirada
+            // 
+            this.chkCirada.AutoSize = true;
+            this.chkCirada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.chkCirada.Checked = true;
+            this.chkCirada.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkCirada.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkCirada.ForeColor = System.Drawing.Color.Transparent;
+            this.chkCirada.Location = new System.Drawing.Point(234, 173);
+            this.chkCirada.Name = "chkCirada";
+            this.chkCirada.Size = new System.Drawing.Size(56, 17);
+            this.chkCirada.TabIndex = 296;
+            this.chkCirada.Text = "Cirada";
+            this.chkCirada.UseVisualStyleBackColor = false;
             // 
             // frmOtpremaKontejneraKamionomIzKontejnera
             // 
@@ -609,5 +627,6 @@ namespace Saobracaj.Izvoz
         private System.Windows.Forms.TextBox txtNalogID;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.CheckBox chkCirada;
     }
 }

@@ -18,6 +18,7 @@ namespace Saobracaj.RadniNalozi
 {
     public partial class frmAnalizaRadnihNaloga :  Syncfusion.Windows.Forms.Office2010Form
     {
+        int TIPRN = 0;
         public frmAnalizaRadnihNaloga()
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
@@ -93,6 +94,8 @@ namespace Saobracaj.RadniNalozi
             {
                 column.AllowFilter = true;
             }
+
+            TIPRN = 1;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -509,6 +512,24 @@ namespace Saobracaj.RadniNalozi
             foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
             {
                 column.AllowFilter = true;
+            }
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            switch (TIPRN)
+            {
+                case 1:
+                    Saobracaj.RadniNalozi.RN1PrijemVoza pv = new RN1PrijemVoza();
+                    pv.Show();
+                    break;
+                case 2:
+                    Console.WriteLine("Two");
+                    Console.WriteLine("Two");
+                    break;
+                default:
+                    Console.WriteLine("Other");
+                    break;
             }
         }
     }
