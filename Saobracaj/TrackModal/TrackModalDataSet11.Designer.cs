@@ -20,9 +20,9 @@ namespace Saobracaj.TrackModal {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("TestiranjeDataSet11")]
+    [global::System.Xml.Serialization.XmlRootAttribute("TrackModalDataSet11")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class TestiranjeDataSet11 : global::System.Data.DataSet {
+    public partial class TrackModalDataSet11 : global::System.Data.DataSet {
         
         private SelectNajavaPrevozaDataTable tableSelectNajavaPrevoza;
         
@@ -30,7 +30,7 @@ namespace Saobracaj.TrackModal {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public TestiranjeDataSet11() {
+        public TrackModalDataSet11() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace Saobracaj.TrackModal {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        protected TestiranjeDataSet11(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected TrackModalDataSet11(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -127,7 +127,7 @@ namespace Saobracaj.TrackModal {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            TestiranjeDataSet11 cln = ((TestiranjeDataSet11)(base.Clone()));
+            TrackModalDataSet11 cln = ((TrackModalDataSet11)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -199,9 +199,9 @@ namespace Saobracaj.TrackModal {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "TestiranjeDataSet11";
+            this.DataSetName = "TrackModalDataSet11";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/TestiranjeDataSet11.xsd";
+            this.Namespace = "http://tempuri.org/TrackModalDataSet11.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableSelectNajavaPrevoza = new SelectNajavaPrevozaDataTable();
@@ -225,7 +225,7 @@ namespace Saobracaj.TrackModal {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            TestiranjeDataSet11 ds = new TestiranjeDataSet11();
+            TrackModalDataSet11 ds = new TrackModalDataSet11();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -340,6 +340,12 @@ namespace Saobracaj.TrackModal {
             private global::System.Data.DataColumn columnKontaktOsoba1;
             
             private global::System.Data.DataColumn columnNaziv1;
+            
+            private global::System.Data.DataColumn columnUtovarnoMesto1;
+            
+            private global::System.Data.DataColumn columnIstovarnoMesto1;
+            
+            private global::System.Data.DataColumn columnNAziv;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -624,6 +630,30 @@ namespace Saobracaj.TrackModal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn UtovarnoMesto1Column {
+                get {
+                    return this.columnUtovarnoMesto1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn IstovarnoMesto1Column {
+                get {
+                    return this.columnIstovarnoMesto1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn NAzivColumn {
+                get {
+                    return this.columnNAziv;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -690,7 +720,10 @@ namespace Saobracaj.TrackModal {
                         string email, 
                         string PIB, 
                         string KontaktOsoba1, 
-                        string Naziv1) {
+                        string Naziv1, 
+                        int UtovarnoMesto1, 
+                        int IstovarnoMesto1, 
+                        string NAziv2) {
                 SelectNajavaPrevozaRow rowSelectNajavaPrevozaRow = ((SelectNajavaPrevozaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -723,7 +756,10 @@ namespace Saobracaj.TrackModal {
                         email,
                         PIB,
                         KontaktOsoba1,
-                        Naziv1};
+                        Naziv1,
+                        UtovarnoMesto1,
+                        IstovarnoMesto1,
+                        NAziv2};
                 rowSelectNajavaPrevozaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSelectNajavaPrevozaRow);
                 return rowSelectNajavaPrevozaRow;
@@ -777,6 +813,9 @@ namespace Saobracaj.TrackModal {
                 this.columnPIB = base.Columns["PIB"];
                 this.columnKontaktOsoba1 = base.Columns["KontaktOsoba1"];
                 this.columnNaziv1 = base.Columns["Naziv1"];
+                this.columnUtovarnoMesto1 = base.Columns["UtovarnoMesto1"];
+                this.columnIstovarnoMesto1 = base.Columns["IstovarnoMesto1"];
+                this.columnNAziv = base.Columns["NAziv"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -844,6 +883,12 @@ namespace Saobracaj.TrackModal {
                 base.Columns.Add(this.columnKontaktOsoba1);
                 this.columnNaziv1 = new global::System.Data.DataColumn("Naziv1", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNaziv1);
+                this.columnUtovarnoMesto1 = new global::System.Data.DataColumn("UtovarnoMesto1", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUtovarnoMesto1);
+                this.columnIstovarnoMesto1 = new global::System.Data.DataColumn("IstovarnoMesto1", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnIstovarnoMesto1);
+                this.columnNAziv = new global::System.Data.DataColumn("NAziv", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNAziv);
                 this.columnBrojKontejnera1.MaxLength = 20;
                 this.columnBrojKontejnera2.MaxLength = 20;
                 this.columnRelacija1.MaxLength = 30;
@@ -862,6 +907,9 @@ namespace Saobracaj.TrackModal {
                 this.columnPIB.MaxLength = 20;
                 this.columnKontaktOsoba1.MaxLength = 100;
                 this.columnNaziv1.MaxLength = 100;
+                this.columnUtovarnoMesto1.Caption = "UtovarnoMesto";
+                this.columnIstovarnoMesto1.Caption = "IstovarnoMesto";
+                this.columnNAziv.MaxLength = 200;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -929,7 +977,7 @@ namespace Saobracaj.TrackModal {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                TestiranjeDataSet11 ds = new TestiranjeDataSet11();
+                TrackModalDataSet11 ds = new TrackModalDataSet11();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -1502,6 +1550,54 @@ namespace Saobracaj.TrackModal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int UtovarnoMesto1 {
+                get {
+                    try {
+                        return ((int)(this[this.tableSelectNajavaPrevoza.UtovarnoMesto1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'UtovarnoMesto1\' in table \'SelectNajavaPrevoza\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSelectNajavaPrevoza.UtovarnoMesto1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int IstovarnoMesto1 {
+                get {
+                    try {
+                        return ((int)(this[this.tableSelectNajavaPrevoza.IstovarnoMesto1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'IstovarnoMesto1\' in table \'SelectNajavaPrevoza\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSelectNajavaPrevoza.IstovarnoMesto1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string NAziv {
+                get {
+                    try {
+                        return ((string)(this[this.tableSelectNajavaPrevoza.NAzivColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NAziv\' in table \'SelectNajavaPrevoza\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSelectNajavaPrevoza.NAzivColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsIDNull() {
                 return this.IsNull(this.tableSelectNajavaPrevoza.IDColumn);
             }
@@ -1871,6 +1967,42 @@ namespace Saobracaj.TrackModal {
             public void SetNaziv1Null() {
                 this[this.tableSelectNajavaPrevoza.Naziv1Column] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsUtovarnoMesto1Null() {
+                return this.IsNull(this.tableSelectNajavaPrevoza.UtovarnoMesto1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetUtovarnoMesto1Null() {
+                this[this.tableSelectNajavaPrevoza.UtovarnoMesto1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsIstovarnoMesto1Null() {
+                return this.IsNull(this.tableSelectNajavaPrevoza.IstovarnoMesto1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetIstovarnoMesto1Null() {
+                this[this.tableSelectNajavaPrevoza.IstovarnoMesto1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsNAzivNull() {
+                return this.IsNull(this.tableSelectNajavaPrevoza.NAzivColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetNAzivNull() {
+                this[this.tableSelectNajavaPrevoza.NAzivColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -1908,7 +2040,7 @@ namespace Saobracaj.TrackModal {
         }
     }
 }
-namespace Saobracaj.TrackModal.TestiranjeDataSet11TableAdapters {
+namespace Saobracaj.TrackModal.TrackModalDataSet11TableAdapters {
     
     
     /// <summary>
@@ -2043,8 +2175,6 @@ namespace Saobracaj.TrackModal.TestiranjeDataSet11TableAdapters {
             tableMapping.ColumnMappings.Add("UkupnaMasa2", "UkupnaMasa2");
             tableMapping.ColumnMappings.Add("Platilac", "Platilac");
             tableMapping.ColumnMappings.Add("OrganizacionaJedinica", "OrganizacionaJedinica");
-            tableMapping.ColumnMappings.Add("UtovarnoMesto", "UtovarnoMesto");
-            tableMapping.ColumnMappings.Add("IstovarnoMesto", "IstovarnoMesto");
             tableMapping.ColumnMappings.Add("KontaktOsoba", "KontaktOsoba");
             tableMapping.ColumnMappings.Add("Napomena", "Napomena");
             tableMapping.ColumnMappings.Add("DatumKreiranja", "DatumKreiranja");
@@ -2063,6 +2193,9 @@ namespace Saobracaj.TrackModal.TestiranjeDataSet11TableAdapters {
             tableMapping.ColumnMappings.Add("PIB", "PIB");
             tableMapping.ColumnMappings.Add("KontaktOsoba1", "KontaktOsoba1");
             tableMapping.ColumnMappings.Add("Naziv1", "Naziv1");
+            tableMapping.ColumnMappings.Add("UtovarnoMesto", "UtovarnoMesto1");
+            tableMapping.ColumnMappings.Add("IstovarnoMesto", "IstovarnoMesto1");
+            tableMapping.ColumnMappings.Add("NAziv", "NAziv");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -2070,7 +2203,7 @@ namespace Saobracaj.TrackModal.TestiranjeDataSet11TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::Saobracaj.Properties.Settings.Default.TESTIRANJEConnectionString;
+            this._connection.ConnectionString = global::Saobracaj.Properties.Settings.Default.NedraConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2089,7 +2222,7 @@ namespace Saobracaj.TrackModal.TestiranjeDataSet11TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(TestiranjeDataSet11.SelectNajavaPrevozaDataTable dataTable, global::System.Nullable<int> ID) {
+        public virtual int Fill(TrackModalDataSet11.SelectNajavaPrevozaDataTable dataTable, global::System.Nullable<int> ID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((ID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(ID.Value));
@@ -2108,7 +2241,7 @@ namespace Saobracaj.TrackModal.TestiranjeDataSet11TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual TestiranjeDataSet11.SelectNajavaPrevozaDataTable GetData(global::System.Nullable<int> ID) {
+        public virtual TrackModalDataSet11.SelectNajavaPrevozaDataTable GetData(global::System.Nullable<int> ID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((ID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(ID.Value));
@@ -2116,7 +2249,7 @@ namespace Saobracaj.TrackModal.TestiranjeDataSet11TableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            TestiranjeDataSet11.SelectNajavaPrevozaDataTable dataTable = new TestiranjeDataSet11.SelectNajavaPrevozaDataTable();
+            TrackModalDataSet11.SelectNajavaPrevozaDataTable dataTable = new TrackModalDataSet11.SelectNajavaPrevozaDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -2190,7 +2323,7 @@ namespace Saobracaj.TrackModal.TestiranjeDataSet11TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private int UpdateUpdatedRows(TestiranjeDataSet11 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(TrackModalDataSet11 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -2200,7 +2333,7 @@ namespace Saobracaj.TrackModal.TestiranjeDataSet11TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private int UpdateInsertedRows(TestiranjeDataSet11 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(TrackModalDataSet11 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -2210,7 +2343,7 @@ namespace Saobracaj.TrackModal.TestiranjeDataSet11TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private int UpdateDeletedRows(TestiranjeDataSet11 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(TrackModalDataSet11 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             return result;
         }
@@ -2244,7 +2377,7 @@ namespace Saobracaj.TrackModal.TestiranjeDataSet11TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public virtual int UpdateAll(TestiranjeDataSet11 dataSet) {
+        public virtual int UpdateAll(TrackModalDataSet11 dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

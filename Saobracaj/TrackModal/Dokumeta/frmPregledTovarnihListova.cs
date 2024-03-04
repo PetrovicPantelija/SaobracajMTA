@@ -13,7 +13,7 @@ using System.Configuration;
 
 namespace Testiranje.Dokumeta
 {
-    public partial class frmPregledTovarnihListova : Form
+    public partial class frmPregledTovarnihListova : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmPregledTovarnihListova";
         public bool Pravo;

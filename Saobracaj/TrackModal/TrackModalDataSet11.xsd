@@ -2,15 +2,16 @@
 <xs:schema id="TestiranjeDataSet11" targetNamespace="http://tempuri.org/TestiranjeDataSet11.xsd" xmlns:mstns="http://tempuri.org/TestiranjeDataSet11.xsd" xmlns="http://tempuri.org/TestiranjeDataSet11.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="2" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="TestiranjeConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="TestiranjeConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.TestiranjeConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="TESTIRANJEConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TESTIRANJEConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.TESTIRANJEConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="NedraConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="NedraConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.NedraConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SelectNajavaPrevozaTableAdapter" GeneratorDataComponentClassName="SelectNajavaPrevozaTableAdapter" Name="SelectNajavaPrevoza" UserDataComponentName="SelectNajavaPrevozaTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="TESTIRANJEConnectionString (Settings)" DbObjectName="TESTIRANJE.dbo.SelectNajavaPrevoza" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="NedraConnectionString (Settings)" DbObjectName="TESTIRANJE.dbo.SelectNajavaPrevoza" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.SelectNajavaPrevoza</CommandText>
@@ -34,8 +35,6 @@
               <Mapping SourceColumn="UkupnaMasa2" DataSetColumn="UkupnaMasa2" />
               <Mapping SourceColumn="Platilac" DataSetColumn="Platilac" />
               <Mapping SourceColumn="OrganizacionaJedinica" DataSetColumn="OrganizacionaJedinica" />
-              <Mapping SourceColumn="UtovarnoMesto" DataSetColumn="UtovarnoMesto" />
-              <Mapping SourceColumn="IstovarnoMesto" DataSetColumn="IstovarnoMesto" />
               <Mapping SourceColumn="KontaktOsoba" DataSetColumn="KontaktOsoba" />
               <Mapping SourceColumn="Napomena" DataSetColumn="Napomena" />
               <Mapping SourceColumn="DatumKreiranja" DataSetColumn="DatumKreiranja" />
@@ -54,6 +53,9 @@
               <Mapping SourceColumn="PIB" DataSetColumn="PIB" />
               <Mapping SourceColumn="KontaktOsoba1" DataSetColumn="KontaktOsoba1" />
               <Mapping SourceColumn="Naziv1" DataSetColumn="Naziv1" />
+              <Mapping SourceColumn="UtovarnoMesto" DataSetColumn="UtovarnoMesto1" />
+              <Mapping SourceColumn="IstovarnoMesto" DataSetColumn="IstovarnoMesto1" />
+              <Mapping SourceColumn="NAziv" DataSetColumn="NAziv" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -65,7 +67,7 @@
   <xs:element name="TestiranjeDataSet11" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="TestiranjeDataSet11" msprop:Generator_UserDSName="TestiranjeDataSet11">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="SelectNajavaPrevoza" msprop:Generator_TableClassName="SelectNajavaPrevozaDataTable" msprop:Generator_TableVarName="tableSelectNajavaPrevoza" msprop:Generator_RowChangedName="SelectNajavaPrevozaRowChanged" msprop:Generator_TablePropName="SelectNajavaPrevoza" msprop:Generator_RowDeletingName="SelectNajavaPrevozaRowDeleting" msprop:Generator_RowChangingName="SelectNajavaPrevozaRowChanging" msprop:Generator_RowEvHandlerName="SelectNajavaPrevozaRowChangeEventHandler" msprop:Generator_RowDeletedName="SelectNajavaPrevozaRowDeleted" msprop:Generator_RowClassName="SelectNajavaPrevozaRow" msprop:Generator_UserTableName="SelectNajavaPrevoza" msprop:Generator_RowEvArgName="SelectNajavaPrevozaRowChangeEvent">
+        <xs:element name="SelectNajavaPrevoza" msprop:Generator_TableClassName="SelectNajavaPrevozaDataTable" msprop:Generator_TableVarName="tableSelectNajavaPrevoza" msprop:Generator_TablePropName="SelectNajavaPrevoza" msprop:Generator_RowDeletingName="SelectNajavaPrevozaRowDeleting" msprop:Generator_RowChangingName="SelectNajavaPrevozaRowChanging" msprop:Generator_RowEvHandlerName="SelectNajavaPrevozaRowChangeEventHandler" msprop:Generator_RowDeletedName="SelectNajavaPrevozaRowDeleted" msprop:Generator_UserTableName="SelectNajavaPrevoza" msprop:Generator_RowChangedName="SelectNajavaPrevozaRowChanged" msprop:Generator_RowEvArgName="SelectNajavaPrevozaRowChangeEvent" msprop:Generator_RowClassName="SelectNajavaPrevozaRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:int" minOccurs="0" />
@@ -204,6 +206,15 @@
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UtovarnoMesto1" msdata:Caption="UtovarnoMesto" msprop:Generator_ColumnVarNameInTable="columnUtovarnoMesto1" msprop:Generator_ColumnPropNameInRow="UtovarnoMesto1" msprop:Generator_ColumnPropNameInTable="UtovarnoMesto1Column" msprop:Generator_UserColumnName="UtovarnoMesto1" type="xs:int" minOccurs="0" />
+              <xs:element name="IstovarnoMesto1" msdata:Caption="IstovarnoMesto" msprop:Generator_ColumnVarNameInTable="columnIstovarnoMesto1" msprop:Generator_ColumnPropNameInRow="IstovarnoMesto1" msprop:Generator_ColumnPropNameInTable="IstovarnoMesto1Column" msprop:Generator_UserColumnName="IstovarnoMesto1" type="xs:int" minOccurs="0" />
+              <xs:element name="NAziv" msprop:Generator_ColumnVarNameInTable="columnNAziv" msprop:Generator_ColumnPropNameInRow="NAziv" msprop:Generator_ColumnPropNameInTable="NAzivColumn" msprop:Generator_UserColumnName="NAziv" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
