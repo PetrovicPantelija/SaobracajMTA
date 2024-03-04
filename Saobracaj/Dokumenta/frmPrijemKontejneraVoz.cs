@@ -607,7 +607,7 @@ namespace TrackModal.Dokumeta
             cboOrganizator.ValueMember = "ID";
 
 
-            var select10 = " Select Distinct ID, Naziv  From VrstePostupakaUvoz order by ID";
+            var select10 = " Select Distinct ID, Naziv  From PredefinisanePoruke order by ID";
             var s_connection10 = frmLogovanje.connectionString;
             SqlConnection myConnection10 = new SqlConnection(s_connection10);
             var c10 = new SqlConnection(s_connection10);
