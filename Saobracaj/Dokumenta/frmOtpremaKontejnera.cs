@@ -47,9 +47,14 @@ namespace Saobracaj.Dokumeta
                 // toolStripButton3.Visible = false;
 
                 toolStripLabel1.Visible = true;
+                this.Text = "Otprema kontejnera vozom";
+                toolStripButton6.Visible = true;
+                tabControl1.TabPages.Remove(tabPage2);
+                tabControl1.TabPages.Remove(tabPage3);
             }
             else
             {
+                this.Text = "Otprema kontejnera kamionom";
                 chkVoz.Checked = false;
                 txtRegBrKamiona.Enabled = true;
                 txtImeVozaca.Enabled = true;
@@ -59,6 +64,9 @@ namespace Saobracaj.Dokumeta
 
                 dtpDatumOtpreme.Value = DateTime.Now;
                 dtpVremeOdlaska.Value = DateTime.Now;
+                tabControl1.TabPages.Remove(tabPage2);
+                tabControl1.TabPages.Remove(tabPage3);
+                
             }
         }
 
@@ -71,13 +79,32 @@ namespace Saobracaj.Dokumeta
             RefreshDataGrid2();
             if (chkVoz.Checked == true)
             {
-                //  toolStripButton3.Visible = false;
+                chkVoz.Checked = true;
+                txtRegBrKamiona.Enabled = false;
+                txtImeVozaca.Enabled = false;
+                cboVozBuking.Enabled = true;
+                // toolStripButton3.Visible = false;
+
                 toolStripLabel1.Visible = true;
+                this.Text = "Otprema kontejnera vozom";
+                toolStripButton6.Visible = true;
+                tabControl1.TabPages.Remove(tabPage2);
+                tabControl1.TabPages.Remove(tabPage3);
             }
             else
             {
-                //  toolStripButton3.Visible = true;
+                this.Text = "Otprema kontejnera kamionom";
+                chkVoz.Checked = false;
+                txtRegBrKamiona.Enabled = true;
+                txtImeVozaca.Enabled = true;
+                cboVozBuking.Enabled = false;
+                //   toolStripButton3.Visible = false;
                 toolStripLabel1.Visible = false;
+
+                dtpDatumOtpreme.Value = DateTime.Now;
+                dtpVremeOdlaska.Value = DateTime.Now;
+                tabControl1.TabPages.Remove(tabPage2);
+                tabControl1.TabPages.Remove(tabPage3);
             }
         }
 
@@ -1000,8 +1027,8 @@ namespace Saobracaj.Dokumeta
             cboOrganizator.DisplayMember = "PaNaziv";
             cboOrganizator.ValueMember = "PaSifra";
 
-            var select10 = " Select Distinct ID, Naziv  From PredefinisanePoruke";
-            var s_connection10 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var select10 = " Select Distinct ID, Naziv  From PredefinisanePoruke order by ID";
+            var s_connection10 = frmLogovanje.connectionString;
             SqlConnection myConnection10 = new SqlConnection(s_connection10);
             var c10 = new SqlConnection(s_connection10);
             var dataAdapter10 = new SqlDataAdapter(select10, c10);
@@ -1009,9 +1036,9 @@ namespace Saobracaj.Dokumeta
             var commandBuilder10 = new SqlCommandBuilder(dataAdapter10);
             var ds10 = new DataSet();
             dataAdapter10.Fill(ds10);
-            cboPredefinisanePoruke.DataSource = ds10.Tables[0];
-            cboPredefinisanePoruke.DisplayMember = "Naziv";
-            cboPredefinisanePoruke.ValueMember = "ID";
+            cboPredefinisanaPoruka.DataSource = ds10.Tables[0];
+            cboPredefinisanaPoruka.DisplayMember = "Naziv";
+            cboPredefinisanaPoruka.ValueMember = "ID";
 
 
             var select11 = "select ID,RTrim(Naziv) as Naziv from VrstePostupakaUvoz";
@@ -1024,6 +1051,8 @@ namespace Saobracaj.Dokumeta
             cboPostupak.ValueMember = "ID";
 
             usao = 1;
+
+
 
         }
 
@@ -1151,8 +1180,6 @@ namespace Saobracaj.Dokumeta
             foreach (DataGridViewRow row in dataGridView2.Rows)
             {
                 Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
-
-
                 ins.UpdateZatvorenOtprema(row.Cells[1].Value.ToString(), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToInt32(txtSifra.Text));
             }
         }

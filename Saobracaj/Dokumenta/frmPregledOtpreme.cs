@@ -311,7 +311,6 @@ namespace TrackModal.Dokumeta
                         return;
 
                     }
-                    break;
             }
 
 
