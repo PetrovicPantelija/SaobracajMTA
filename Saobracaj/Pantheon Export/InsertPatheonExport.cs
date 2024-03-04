@@ -63,6 +63,7 @@ namespace Saobracaj.Pantheon_Export
                     }
                 }
                 conn.Close();
+
             }
         }
         public void UpdUlFak(int ID, string CRMDocID, string VrstaDokumenta, string FakturaBr, int IDDobavljaca, string Tip, DateTime DatumPrijema, string Valuta, decimal Kurs, string RacunDobavljaca, DateTime DatumIzdavanja,
@@ -456,7 +457,7 @@ namespace Saobracaj.Pantheon_Export
                     catch (Exception ex)
                     {
                         tran.Rollback();
-                        MessageBox.Show("Neuspesan upis", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Neuspesan upis\n"+ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     }
                 }
