@@ -12,7 +12,7 @@ using System.Drawing;
 //
 namespace Saobracaj.RadniNalozi
 {
-    public partial class RN9PrijemCirade : Form
+    public partial class RN9PrijemCirade : Syncfusion.Windows.Forms.Office2010Form
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
@@ -213,6 +213,23 @@ namespace Saobracaj.RadniNalozi
             RadniNalozi.InsertRN ir = new InsertRN();
             ir.InsRN9PrijmCiradeKam(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboSaSredstva.SelectedValue), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text, Convert.ToInt32(cboPostupak.SelectedValue), Convert.ToInt32(cboInspekcijski.SelectedValue), Convert.ToInt32(cboSpedicija.SelectedValue), Convert.ToInt32(cboBrodar.SelectedValue), txtBrojPlombe.Text);
             FillGV();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            Prijemnica pr = new Prijemnica();
+            pr.Show();
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            PrijemnicaPregled pp = new PrijemnicaPregled();
+            pp.Show();
         }
     }
 }

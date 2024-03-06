@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.RadniNalozi
 {
-    public partial class PrijemnicaPregled : Form
+    public partial class PrijemnicaPregled : Syncfusion.Windows.Forms.Office2010Form
     {
         string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         string korisnik;

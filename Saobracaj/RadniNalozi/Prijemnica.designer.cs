@@ -29,6 +29,7 @@ namespace Saobracaj.RadniNalozi
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Prijemnica));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cbo_Partner = new System.Windows.Forms.ComboBox();
             this.cbo_MestoTroska = new System.Windows.Forms.ComboBox();
@@ -65,7 +66,7 @@ namespace Saobracaj.RadniNalozi
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(9, 111);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
@@ -76,7 +77,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cbo_Partner.FormattingEnabled = true;
             this.cbo_Partner.Location = new System.Drawing.Point(548, 26);
-            this.cbo_Partner.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbo_Partner.Margin = new System.Windows.Forms.Padding(2);
             this.cbo_Partner.Name = "cbo_Partner";
             this.cbo_Partner.Size = new System.Drawing.Size(282, 21);
             this.cbo_Partner.TabIndex = 6;
@@ -85,7 +86,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cbo_MestoTroska.FormattingEnabled = true;
             this.cbo_MestoTroska.Location = new System.Drawing.Point(380, 26);
-            this.cbo_MestoTroska.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbo_MestoTroska.Margin = new System.Windows.Forms.Padding(2);
             this.cbo_MestoTroska.Name = "cbo_MestoTroska";
             this.cbo_MestoTroska.Size = new System.Drawing.Size(151, 21);
             this.cbo_MestoTroska.TabIndex = 7;
@@ -94,7 +95,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cbo_Skladiste.FormattingEnabled = true;
             this.cbo_Skladiste.Location = new System.Drawing.Point(9, 26);
-            this.cbo_Skladiste.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbo_Skladiste.Margin = new System.Windows.Forms.Padding(2);
             this.cbo_Skladiste.Name = "cbo_Skladiste";
             this.cbo_Skladiste.Size = new System.Drawing.Size(151, 21);
             this.cbo_Skladiste.TabIndex = 8;
@@ -133,7 +134,7 @@ namespace Saobracaj.RadniNalozi
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(972, 26);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 42);
             this.button1.TabIndex = 10;
@@ -155,7 +156,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cbo_Lokacija.FormattingEnabled = true;
             this.cbo_Lokacija.Location = new System.Drawing.Point(190, 26);
-            this.cbo_Lokacija.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbo_Lokacija.Margin = new System.Windows.Forms.Padding(2);
             this.cbo_Lokacija.Name = "cbo_Lokacija";
             this.cbo_Lokacija.Size = new System.Drawing.Size(151, 21);
             this.cbo_Lokacija.TabIndex = 7;
@@ -174,7 +175,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cbo_Referent.FormattingEnabled = true;
             this.cbo_Referent.Location = new System.Drawing.Point(9, 87);
-            this.cbo_Referent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbo_Referent.Margin = new System.Windows.Forms.Padding(2);
             this.cbo_Referent.Name = "cbo_Referent";
             this.cbo_Referent.Size = new System.Drawing.Size(252, 21);
             this.cbo_Referent.TabIndex = 6;
@@ -182,12 +183,13 @@ namespace Saobracaj.RadniNalozi
             // btn_Povuci
             // 
             this.btn_Povuci.Location = new System.Drawing.Point(861, 26);
-            this.btn_Povuci.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Povuci.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Povuci.Name = "btn_Povuci";
             this.btn_Povuci.Size = new System.Drawing.Size(100, 40);
             this.btn_Povuci.TabIndex = 8;
             this.btn_Povuci.Text = "Povuci iz narudžbina";
             this.btn_Povuci.UseVisualStyleBackColor = true;
+            this.btn_Povuci.Visible = false;
             this.btn_Povuci.Click += new System.EventHandler(this.btn_Povuci_Click);
             // 
             // panel1
@@ -197,8 +199,8 @@ namespace Saobracaj.RadniNalozi
             this.panel1.Controls.Add(this.dataGridView3);
             this.panel1.Controls.Add(this.dataGridView2);
             this.panel1.Controls.Add(this.btn_Izaberi);
-            this.panel1.Location = new System.Drawing.Point(11, 162);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Location = new System.Drawing.Point(26, 135);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1055, 632);
             this.panel1.TabIndex = 11;
@@ -206,7 +208,7 @@ namespace Saobracaj.RadniNalozi
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(163, 9);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(54, 24);
             this.button2.TabIndex = 3;
@@ -219,7 +221,7 @@ namespace Saobracaj.RadniNalozi
             this.txt_ID.BackColor = System.Drawing.Color.Bisque;
             this.txt_ID.Enabled = false;
             this.txt_ID.Location = new System.Drawing.Point(15, 15);
-            this.txt_ID.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_ID.Margin = new System.Windows.Forms.Padding(2);
             this.txt_ID.Name = "txt_ID";
             this.txt_ID.Size = new System.Drawing.Size(60, 20);
             this.txt_ID.TabIndex = 2;
@@ -228,7 +230,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(567, 38);
-            this.dataGridView3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 24;
@@ -239,7 +241,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(8, 38);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
@@ -250,7 +252,7 @@ namespace Saobracaj.RadniNalozi
             // btn_Izaberi
             // 
             this.btn_Izaberi.Location = new System.Drawing.Point(94, 9);
-            this.btn_Izaberi.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btn_Izaberi.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Izaberi.Name = "btn_Izaberi";
             this.btn_Izaberi.Size = new System.Drawing.Size(56, 24);
             this.btn_Izaberi.TabIndex = 1;
@@ -273,7 +275,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cboPrimio.FormattingEnabled = true;
             this.cboPrimio.Location = new System.Drawing.Point(370, 87);
-            this.cboPrimio.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboPrimio.Margin = new System.Windows.Forms.Padding(2);
             this.cboPrimio.Name = "cboPrimio";
             this.cboPrimio.Size = new System.Drawing.Size(252, 21);
             this.cboPrimio.TabIndex = 6;
@@ -303,6 +305,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1073, 646);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.dtpVreme);
@@ -322,7 +325,8 @@ namespace Saobracaj.RadniNalozi
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Prijemnica";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Prijemnica";

@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.RadniNalozi
 {
-    public partial class Otpremnica : Form
+    public partial class Otpremnica : Syncfusion.Windows.Forms.Office2010Form
     {
         string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
         string korisnik;
