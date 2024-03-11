@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.RadniNalozi
 {
-    public partial class Prijemnica : Form
+    public partial class Prijemnica : Syncfusion.Windows.Forms.Office2010Form
     {
         string connect = frmLogovanje.connectionString;
         string korisnik;

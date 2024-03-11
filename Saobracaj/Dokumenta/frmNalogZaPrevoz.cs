@@ -37,8 +37,7 @@ namespace Saobracaj.Dokumenta
             InitializeComponent();
             txtSifra.Text = sifra.ToString();
             KorisnikCene = Korisnik;
-            VratiPodatke(sifra);
-            RefreshDataGrid4();
+        
         }
 
         private void VratiPodatke(int ID)
@@ -234,7 +233,7 @@ namespace Saobracaj.Dokumenta
             dataGridView3.Columns[1].Width = 270;
 
 
-            var select4 = " Select Distinct ID, Naziv From Komitenti order by Naziv";
+            var select4 = " Select Distinct PASifra, PaNaziv From Partnerji order by PaNaziv";
             var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
@@ -244,10 +243,10 @@ namespace Saobracaj.Dokumenta
             var ds4 = new DataSet();
             dataAdapter4.Fill(ds4);
             cboPlatilac.DataSource = ds4.Tables[0];
-            cboPlatilac.DisplayMember = "Naziv";
-            cboPlatilac.ValueMember = "ID";
+            cboPlatilac.DisplayMember = "PaNaziv";
+            cboPlatilac.ValueMember = "PaSifra";
 
-            var select5 = " Select Distinct ID, Naziv From Komitenti order by Naziv";
+            var select5 = " Select Distinct PaSifra, PaNaziv From Partnerji order by PaNaziv";
             var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection5);
@@ -257,10 +256,10 @@ namespace Saobracaj.Dokumenta
             var ds5 = new DataSet();
             dataAdapter5.Fill(ds5);
             cboPrimalac.DataSource = ds5.Tables[0];
-            cboPrimalac.DisplayMember = "Naziv";
-            cboPrimalac.ValueMember = "ID";
+            cboPrimalac.DisplayMember = "PaNaziv";
+            cboPrimalac.ValueMember = "PaSifra";
 
-            var select6 = " Select Distinct ID, (UNKod + '-' + Naziv) as ADR  From VrstaRobeADR";
+            var select6 = " Select Distinct ID, (UNKod + '-' + Naziv) as Naziv  From VrstaRobeADR";
             var s_connection6 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection6 = new SqlConnection(s_connection6);
             var c6 = new SqlConnection(s_connection6);
@@ -268,9 +267,9 @@ namespace Saobracaj.Dokumenta
 
             var commandBuilder6 = new SqlCommandBuilder(dataAdapter6);
             var ds6 = new DataSet();
-            dataAdapter.Fill(ds6);
+            dataAdapter6.Fill(ds6);
             cboVrstaRobeKomerijala.DataSource = ds6.Tables[0];
-            cboVrstaRobeKomerijala.DisplayMember = "ADR";
+            cboVrstaRobeKomerijala.DisplayMember = "Naziv";
             cboVrstaRobeKomerijala.ValueMember = "ID";
 
 
@@ -282,7 +281,7 @@ namespace Saobracaj.Dokumenta
 
             var commandBuilder7 = new SqlCommandBuilder(dataAdapter7);
             var ds7 = new DataSet();
-            dataAdapter.Fill(ds7);
+            dataAdapter7.Fill(ds7);
             txtUtovarnoMesto.DataSource = ds7.Tables[0];
             txtUtovarnoMesto.DisplayMember = "Naziv";
             txtUtovarnoMesto.ValueMember = "ID";
@@ -296,14 +295,15 @@ namespace Saobracaj.Dokumenta
 
             var commandBuilder8 = new SqlCommandBuilder(dataAdapter8);
             var ds8 = new DataSet();
-            dataAdapter.Fill(ds8);
-            txtIstovarnoMesto.DataSource = ds7.Tables[0];
+            dataAdapter8.Fill(ds8);
+            txtIstovarnoMesto.DataSource = ds8.Tables[0];
             txtIstovarnoMesto.DisplayMember = "Naziv";
             txtIstovarnoMesto.ValueMember = "ID";
 
             if (txtSifra.Text != "")
             {
                 VratiPodatke(Convert.ToInt32(txtSifra.Text));
+                RefreshDataGrid4();
             }
 
 
@@ -441,8 +441,8 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripLabel1_Click(object sender, EventArgs e)
         {
-            Saobracaj.TrackModal.TestiranjeDataSet11TableAdapters.SelectNajavaPrevozaTableAdapter ta = new Saobracaj.TrackModal.TestiranjeDataSet11TableAdapters.SelectNajavaPrevozaTableAdapter();
-            Saobracaj.TrackModal.TestiranjeDataSet11.SelectNajavaPrevozaDataTable dt = new Saobracaj.TrackModal.TestiranjeDataSet11.SelectNajavaPrevozaDataTable();
+            TrackModalDataSet111TableAdapters.SelectNajavaPrevozaTableAdapter ta = new TrackModalDataSet111TableAdapters.SelectNajavaPrevozaTableAdapter();
+           TrackModalDataSet111.SelectNajavaPrevozaDataTable dt = new TrackModalDataSet111.SelectNajavaPrevozaDataTable();
 
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();
@@ -453,7 +453,18 @@ namespace Saobracaj.Dokumenta
             par[0] = new ReportParameter("ID", txtSifra.Text);
 
             reportViewer1.LocalReport.DataSources.Clear();
-            reportViewer1.LocalReport.ReportPath = "rptNalogZaPrevoz.rdlc";
+            if (Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                reportViewer1.LocalReport.ReportPath = "rptNalogZaPrevoz.rdlc";
+            }
+            else if (Sifarnici.frmLogovanje.Firma == "TA")
+            {
+                reportViewer1.LocalReport.ReportPath = "rptNalogZaPrevozTA.rdlc";
+            }
+            else if (Sifarnici.frmLogovanje.Firma == "DPT")
+            {
+                reportViewer1.LocalReport.ReportPath = "rptNalogZaPrevozTA.rdlc";
+            }
             reportViewer1.LocalReport.SetParameters(par);
             reportViewer1.LocalReport.DataSources.Add(rds);
 

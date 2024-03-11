@@ -2676,6 +2676,11 @@
     <Compile Include="Testiranje\TestiranjeStampa.Designer.cs">
       <DependentUpon>TestiranjeStampa.cs</DependentUpon>
     </Compile>
+    <Compile Include="TrackModalDataSet111.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TrackModalDataSet111.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TrackModal\Dokumeta\frmCIRPregled.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3139,13 +3144,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TestiranjeDataSet10.xsd</DependentUpon>
     </Compile>
-    <Compile Include="TrackModal\TestiranjeDataSet11.cs">
-      <DependentUpon>TestiranjeDataSet11.xsd</DependentUpon>
+    <Compile Include="TrackModal\TrackModalDataSet11.cs">
+      <DependentUpon>TrackModalDataSet11.xsd</DependentUpon>
     </Compile>
-    <Compile Include="TrackModal\TestiranjeDataSet11.Designer.cs">
+    <Compile Include="TrackModal\TrackModalDataSet11.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TestiranjeDataSet11.xsd</DependentUpon>
+      <DependentUpon>TrackModalDataSet11.xsd</DependentUpon>
     </Compile>
     <Compile Include="TrackModal\TestiranjeDataSet12.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -4003,8 +4008,10 @@
     <EmbeddedResource Include="Izvestaji\NajavaPrim.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptCIR.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptCIRGreske.rdlc" />
+    <EmbeddedResource Include="Izvestaji\rptCIRTA.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptEvidencijaKvarova.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptMUPDozvola.rdlc" />
+    <EmbeddedResource Include="Izvestaji\rptNalogZaPrevozTA.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptUkupnoZaPeriod.rdlc" />
     <EmbeddedResource Include="Izvestaji\Teretnica2.rdlc" />
     <EmbeddedResource Include="Izvestaji\TeretnicaProba.rdlc" />
@@ -5095,6 +5102,17 @@
     <None Include="TESTIRANJEDataSet1TA.xss">
       <DependentUpon>TESTIRANJEDataSet1TA.xsd</DependentUpon>
     </None>
+    <None Include="TrackModalDataSet111.xsc">
+      <DependentUpon>TrackModalDataSet111.xsd</DependentUpon>
+    </None>
+    <None Include="TrackModalDataSet111.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TrackModalDataSet111.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TrackModalDataSet111.xss">
+      <DependentUpon>TrackModalDataSet111.xsd</DependentUpon>
+    </None>
     <None Include="TrackModal\Izvestaji\DataSetFaktursanjeMan.xsc">
       <DependentUpon>DataSetFaktursanjeMan.xsd</DependentUpon>
     </None>
@@ -5161,16 +5179,16 @@
     <None Include="TrackModal\TestiranjeDataSet10.xss">
       <DependentUpon>TestiranjeDataSet10.xsd</DependentUpon>
     </None>
-    <None Include="TrackModal\TestiranjeDataSet11.xsc">
-      <DependentUpon>TestiranjeDataSet11.xsd</DependentUpon>
+    <None Include="TrackModal\TrackModalDataSet11.xsc">
+      <DependentUpon>TrackModalDataSet11.xsd</DependentUpon>
     </None>
-    <None Include="TrackModal\TestiranjeDataSet11.xsd">
+    <None Include="TrackModal\TrackModalDataSet11.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TestiranjeDataSet11.Designer.cs</LastGenOutput>
+      <LastGenOutput>TrackModalDataSet11.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="TrackModal\TestiranjeDataSet11.xss">
-      <DependentUpon>TestiranjeDataSet11.xsd</DependentUpon>
+    <None Include="TrackModal\TrackModalDataSet11.xss">
+      <DependentUpon>TrackModalDataSet11.xsd</DependentUpon>
     </None>
     <None Include="TrackModal\TestiranjeDataSet12.xsc">
       <DependentUpon>TestiranjeDataSet12.xsd</DependentUpon>

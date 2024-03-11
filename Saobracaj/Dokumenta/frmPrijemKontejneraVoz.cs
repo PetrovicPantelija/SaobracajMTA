@@ -268,7 +268,7 @@ namespace TrackModal.Dokumeta
             dataGridView1.Columns[3].Width = 110;
 
             DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Broj Vagona";
+            dataGridView1.Columns[4].HeaderText = "Vagon";
             dataGridView1.Columns[4].Width = 110;
 
             DataGridViewColumn column6 = dataGridView1.Columns[5];
@@ -276,11 +276,11 @@ namespace TrackModal.Dokumeta
             dataGridView1.Columns[5].Width = 50;
 
             DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Br os";
+            dataGridView1.Columns[6].HeaderText = "Br osov";
             dataGridView1.Columns[6].Width = 50;
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Sops masa";
+            dataGridView1.Columns[7].HeaderText = "Sop masa";
             dataGridView1.Columns[7].Width = 50;
 
             DataGridViewColumn column9 = dataGridView1.Columns[8];
@@ -292,16 +292,16 @@ namespace TrackModal.Dokumeta
             dataGridView1.Columns[9].Width = 70;
 
             DataGridViewColumn column11 = dataGridView1.Columns[10];
-            dataGridView1.Columns[10].HeaderText = "Posiljalac";
-            dataGridView1.Columns[10].Width = 50;
+            dataGridView1.Columns[10].HeaderText = "Špediter";
+            dataGridView1.Columns[10].Width = 150;
 
             DataGridViewColumn column12 = dataGridView1.Columns[11];
             dataGridView1.Columns[11].HeaderText = "Primalac";
-            dataGridView1.Columns[11].Width = 50;
+            dataGridView1.Columns[11].Width = 150;
 
             DataGridViewColumn column13 = dataGridView1.Columns[12];
-            dataGridView1.Columns[12].HeaderText = "Vlasnik";
-            dataGridView1.Columns[12].Width = 40;
+            dataGridView1.Columns[12].HeaderText = "Vlasnik kontejnera";
+            dataGridView1.Columns[12].Width = 140;
 
             DataGridViewColumn column14 = dataGridView1.Columns[13];
             dataGridView1.Columns[13].HeaderText = "Tip kontejnera";
@@ -312,7 +312,7 @@ namespace TrackModal.Dokumeta
             dataGridView1.Columns[14].Width = 40;
 
             DataGridViewColumn column16 = dataGridView1.Columns[15];
-            dataGridView1.Columns[15].HeaderText = "Buking broldar";
+            dataGridView1.Columns[15].HeaderText = "Buking brodar";
             dataGridView1.Columns[15].Width = 70;
 
             DataGridViewColumn column17 = dataGridView1.Columns[16];
@@ -328,20 +328,21 @@ namespace TrackModal.Dokumeta
             dataGridView1.Columns[18].Width = 9;
 
             DataGridViewColumn column20 = dataGridView1.Columns[19];
-            dataGridView1.Columns[19].HeaderText = "Plan lager";
+            dataGridView1.Columns[19].HeaderText = "Lager";
             dataGridView1.Columns[19].Width = 30;
 
             DataGridViewColumn column21 = dataGridView1.Columns[20];
             dataGridView1.Columns[20].HeaderText = "Vreme dolaska";
+            dataGridView1.Columns[20].Visible = false;
             dataGridView1.Columns[20].Width = 70;
 
             DataGridViewColumn column22 = dataGridView1.Columns[21];
-            dataGridView1.Columns[21].HeaderText = "Vreme prip";
+            dataGridView1.Columns[21].HeaderText = "Pl Vreme pripreme";
             dataGridView1.Columns[21].Visible = false;
             dataGridView1.Columns[21].Width = 70;
 
             DataGridViewColumn column23 = dataGridView1.Columns[22];
-            dataGridView1.Columns[22].HeaderText = "Vreme odlaska";
+            dataGridView1.Columns[22].HeaderText = "PL Vreme otpremeVreme odlaska";
             dataGridView1.Columns[22].Visible = false;
             dataGridView1.Columns[22].Width = 70;
 
@@ -354,7 +355,7 @@ namespace TrackModal.Dokumeta
             dataGridView1.Columns[24].Width = 70;
 
             DataGridViewColumn column26 = dataGridView1.Columns[25];
-            dataGridView1.Columns[25].HeaderText = "Napomena stav";
+            dataGridView1.Columns[25].HeaderText = "Napomena stavke";
             dataGridView1.Columns[25].Width = 70;
 
 

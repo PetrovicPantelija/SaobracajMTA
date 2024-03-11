@@ -13,7 +13,7 @@ using System.Configuration;
 
 namespace TrackModal.Dokumeta
 {
-    public partial class frmPregledNaloziZaPrevoz : Form
+    public partial class frmPregledNaloziZaPrevoz : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmPregledNaloziZaPrevoz";
         public bool Pravo;

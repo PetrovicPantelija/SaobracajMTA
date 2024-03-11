@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.RadniNalozi
 {
-    public partial class OtpremnicaPregled : Form
+    public partial class OtpremnicaPregled : Syncfusion.Windows.Forms.Office2010Form
     {
         private string connect = frmLogovanje.connectionString;
         private string korisnik;

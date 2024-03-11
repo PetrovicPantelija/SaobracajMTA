@@ -12,7 +12,7 @@ using System.Drawing;
 //
 namespace Saobracaj.RadniNalozi
 {
-    public partial class RN7OtpremaPlatforme2 : Form
+    public partial class RN7OtpremaPlatforme2 : Syncfusion.Windows.Forms.Office2010Form
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;

@@ -508,7 +508,11 @@ namespace Saobracaj.Dokumenta
             {
                 reportViewer1.LocalReport.ReportPath = "rptCIR.rdlc";
             }
-            else if (Sifarnici.frmLogovanje.Firma == "Leget")
+            else if (Sifarnici.frmLogovanje.Firma == "TA")
+            {
+                reportViewer1.LocalReport.ReportPath = "rptCIRTA.rdlc";
+            }
+            else if (Sifarnici.frmLogovanje.Firma == "DPT")
             {
                 reportViewer1.LocalReport.ReportPath = "rptCIRTA.rdlc";
             }

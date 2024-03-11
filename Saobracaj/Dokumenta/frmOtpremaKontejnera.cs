@@ -51,6 +51,8 @@ namespace Saobracaj.Dokumeta
                 toolStripButton6.Visible = true;
                 tabControl1.TabPages.Remove(tabPage2);
                 tabControl1.TabPages.Remove(tabPage3);
+
+               
             }
             else
             {
@@ -66,7 +68,18 @@ namespace Saobracaj.Dokumeta
                 dtpVremeOdlaska.Value = DateTime.Now;
                 tabControl1.TabPages.Remove(tabPage2);
                 tabControl1.TabPages.Remove(tabPage3);
-                
+                label15.Visible = false;
+                cboVozBuking.Visible = false;
+                chkVoz.Visible = false;
+                label6.Visible = false;
+                txtVagon.Visible = false;
+                button6.Visible = false;
+                label22.Visible = false;
+                label23.Visible = false;
+                label24.Visible = false;
+                txtGranica.Visible = false;
+                txtSopstvenaMasa.Visible = false;
+                txtBrojOsovina.Visible = false;
             }
         }
 
@@ -287,7 +300,7 @@ namespace Saobracaj.Dokumeta
             dataGridView1.Columns[8].Width = 50;
 
             DataGridViewColumn column10 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Posiljalac";
+            dataGridView1.Columns[9].HeaderText = "Špediter";
             dataGridView1.Columns[9].Width = 50;
 
             DataGridViewColumn column11 = dataGridView1.Columns[10];

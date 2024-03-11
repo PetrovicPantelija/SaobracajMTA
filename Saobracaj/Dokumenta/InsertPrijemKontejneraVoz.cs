@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -638,7 +636,7 @@ namespace Saobracaj.Dokumeta
             cmd.Parameters.Add(stavka);
 
             SqlParameter postupak = new SqlParameter();
-            postupak.ParameterName = "@IdPostupka";
+            postupak.ParameterName = "@IDPostupka";
             postupak.SqlDbType = SqlDbType.Int;
             postupak.Direction = ParameterDirection.Input;
             postupak.Value = IdPostupka;

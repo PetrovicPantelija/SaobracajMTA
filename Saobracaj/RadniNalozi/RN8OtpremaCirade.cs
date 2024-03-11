@@ -13,7 +13,8 @@ using System.Configuration;
 //
 namespace Saobracaj.RadniNalozi
 {
-    public partial class RN8OtpremaCirade : Form
+    public partial class RN8OtpremaCirade :  Syncfusion.Windows.Forms.Office2010Form
+
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
@@ -361,6 +362,18 @@ namespace Saobracaj.RadniNalozi
 
             }
             VratiPodatkeStavke(txtID.Text);
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            Otpremnica otp = new Otpremnica();
+            otp.Show();
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            OtpremnicaPregled otpp = new OtpremnicaPregled();
+            otpp.Show();
         }
     }
 }

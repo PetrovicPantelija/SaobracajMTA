@@ -78,6 +78,11 @@ namespace Saobracaj.RadniNalozi
             this.label5 = new System.Windows.Forms.Label();
             this.txtKamion = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.txtNalogID = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -170,7 +175,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cboPostupak.FormattingEnabled = true;
             this.cboPostupak.ItemHeight = 13;
-            this.cboPostupak.Location = new System.Drawing.Point(449, 177);
+            this.cboPostupak.Location = new System.Drawing.Point(446, 177);
             this.cboPostupak.Margin = new System.Windows.Forms.Padding(2);
             this.cboPostupak.Name = "cboPostupak";
             this.cboPostupak.Size = new System.Drawing.Size(186, 21);
@@ -354,7 +359,10 @@ namespace Saobracaj.RadniNalozi
             this.tsDelete,
             this.toolStripSeparator1,
             this.toolStripButton1,
-            this.toolStripButton2});
+            this.toolStripButton2,
+            this.toolStripButton4,
+            this.toolStripButton5,
+            this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(889, 27);
@@ -398,8 +406,9 @@ namespace Saobracaj.RadniNalozi
             // 
             // toolStripButton1
             // 
-            this.toolStripButton1.BackColor = System.Drawing.Color.White;
+            this.toolStripButton1.BackColor = System.Drawing.Color.DarkRed;
             this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
@@ -416,6 +425,7 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(167, 24);
             this.toolStripButton2.Text = "PREGLED I POSTAVKA CIRADE";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // cboVrstaKontejnera
             // 
@@ -523,7 +533,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // txtPrijemID
             // 
-            this.txtPrijemID.Location = new System.Drawing.Point(17, 230);
+            this.txtPrijemID.Location = new System.Drawing.Point(11, 248);
             this.txtPrijemID.Margin = new System.Windows.Forms.Padding(2);
             this.txtPrijemID.Name = "txtPrijemID";
             this.txtPrijemID.Size = new System.Drawing.Size(119, 20);
@@ -532,7 +542,7 @@ namespace Saobracaj.RadniNalozi
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 215);
+            this.label5.Location = new System.Drawing.Point(13, 233);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(46, 13);
@@ -541,21 +551,73 @@ namespace Saobracaj.RadniNalozi
             // 
             // txtKamion
             // 
-            this.txtKamion.Location = new System.Drawing.Point(148, 230);
+            this.txtKamion.Location = new System.Drawing.Point(134, 248);
             this.txtKamion.Margin = new System.Windows.Forms.Padding(2);
             this.txtKamion.Name = "txtKamion";
-            this.txtKamion.Size = new System.Drawing.Size(134, 20);
+            this.txtKamion.Size = new System.Drawing.Size(148, 20);
             this.txtKamion.TabIndex = 476;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(145, 215);
+            this.label7.Location = new System.Drawing.Point(131, 228);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(42, 13);
             this.label7.TabIndex = 475;
             this.label7.Text = "Kamion";
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton3.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(121, 24);
+            this.toolStripButton3.Text = "Pregled prijema robe";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.BackColor = System.Drawing.Color.SeaGreen;
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton4.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(91, 24);
+            this.toolStripButton4.Text = "Potvrdi završen";
+            // 
+            // txtNalogID
+            // 
+            this.txtNalogID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txtNalogID.Location = new System.Drawing.Point(294, 248);
+            this.txtNalogID.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNalogID.Name = "txtNalogID";
+            this.txtNalogID.Size = new System.Drawing.Size(101, 20);
+            this.txtNalogID.TabIndex = 478;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(291, 233);
+            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(49, 13);
+            this.label19.TabIndex = 477;
+            this.label19.Text = "Nalog ID";
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton5.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(94, 24);
+            this.toolStripButton5.Text = "Prijemnica robe";
+            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // RN9PrijemCirade
             // 
@@ -563,6 +625,8 @@ namespace Saobracaj.RadniNalozi
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(889, 644);
+            this.Controls.Add(this.txtNalogID);
+            this.Controls.Add(this.label19);
             this.Controls.Add(this.txtKamion);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtPrijemID);
@@ -607,7 +671,7 @@ namespace Saobracaj.RadniNalozi
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RN9PrijemCirade";
-            this.Text = "RN9 - PRIJEM CIRADE";
+            this.Text = "PRIJEM CIRADE";
             this.Load += new System.EventHandler(this.RN9PrijemCirade_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.toolStrip1.ResumeLayout(false);
@@ -667,5 +731,10 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtKamion;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.TextBox txtNalogID;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.ToolStripButton toolStripButton5;
     }
 }
