@@ -13,6 +13,7 @@ using System.Configuration;
 
 using Microsoft.Reporting.WinForms;
 using System.IO;
+using Saobracaj.Sifarnici;
 
 namespace Saobracaj.Dokumenta
 {
@@ -26,7 +27,7 @@ namespace Saobracaj.Dokumenta
         int slika = 0;
         int DosaoSpolja = 0;
 
-        public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connect = frmLogovanje.connectionString;
         bool status = false;
         string niz = "";
         public static string code = "frmAutomobiliPregledPrijava";

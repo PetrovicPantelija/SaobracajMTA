@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,7 +14,7 @@ namespace Saobracaj.Dokumenta
 {
     class InsertNajavaLog
     {
-        string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        string connect = frmLogovanje.connectionString;
         public void insNajavaLog(string Izmenio,string Akcija,DateTime Datum,int ID,string BrojNajave,int Voz,int Posiljalac,int Prevoznik,int Otpravna, 
            int Uputna,int Primalac,int RobaNHM,string PrevozniPut,decimal Tezina,decimal Duzina,int BrojKola,int RID,DateTime PredvidjenoPrimanje,
            DateTime StvarnoPrimanje,DateTime PredvidjenaPredaja,DateTime StvarnaPredaja,int Status,string OnBroj,int Verzija,int Razlog,DateTime DatumUnosa,

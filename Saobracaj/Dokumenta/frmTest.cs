@@ -15,12 +15,13 @@ using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET.WindowsForms.ToolTips;
+using Saobracaj.Sifarnici;
 
 namespace Saobracaj.Dokumenta
 {
     public partial class frmTest : Form
     {
-        public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connect = frmLogovanje.connectionString;
 
         public bool Pravo;
         int idGrupe;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -12,7 +13,7 @@ namespace Saobracaj.Dokumenta
 {
     class InsertAutomobiliPregledPrijava
     {
-        string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        string connect = frmLogovanje.connectionString;
         public void InsAutomobiliPregledPrijava(int Zaposleni, DateTime DatumPrijave, DateTime DatumOdjave, int AutomobilId,  int CistocaSpoljaZaduzivanje,
         int CistocaIznutraZaduzivanje, int CistocaSpoljaRazduzivanje, int CistocaIznutraRazduzivanje, int NivoUljaZaduzivanje, bool DirektnaPrimopredajaZaduzivanje,
         int NivoUljaRazduzivanje, bool DirektnaPrimopredajaRazduzivanje, float KilometrazaZaduzivanje, float KilometrazaRazduzivanje, bool Plomba1PotvrdaZaduzenje,

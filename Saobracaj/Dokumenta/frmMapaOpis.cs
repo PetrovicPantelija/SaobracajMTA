@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -14,7 +15,7 @@ namespace Saobracaj.Dokumenta
 {
     public partial class frmMapaOpis : Form
     {
-        public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connect = frmLogovanje.connectionString;
         int marker = Dokumenta.frmMapa.stanicaMarker;
         int partner = Dokumenta.frmMapa.partner;
         int najava = Dokumenta.frmMapa.najava;

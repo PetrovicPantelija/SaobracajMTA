@@ -13,13 +13,13 @@ using System.Configuration;
 
 using Microsoft.Reporting.WinForms;
 using System.IO;
-
+using Saobracaj.Sifarnici;
 
 namespace Saobracaj.Dokumenta
 {
     public partial class frmVucaPregled : Form
     {
-        public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connect = frmLogovanje.connectionString;
         public frmVucaPregled()
         {
             InitializeComponent();

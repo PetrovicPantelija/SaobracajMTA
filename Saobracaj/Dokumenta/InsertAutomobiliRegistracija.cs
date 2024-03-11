@@ -7,12 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Windows.Forms;
+using Saobracaj.Sifarnici;
 
 namespace Saobracaj.Dokumenta
 {
     class InsertAutomobiliRegistracija
     {
-        public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connect = frmLogovanje.connectionString;
         public void InsertRegistracija(int IDAutomobila, DateTime DatumRegistracije,int Zaposleni,int Partner,string Napomena)
         {
             SqlConnection conn = new SqlConnection(connect);

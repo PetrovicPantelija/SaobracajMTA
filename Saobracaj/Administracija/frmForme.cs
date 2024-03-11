@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -17,7 +18,7 @@ namespace Saobracaj.Administracija
         private bool update;
         private bool delete;
         private string Kor = Sifarnici.frmLogovanje.user.ToString();
-        public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connect = frmLogovanje.connectionString;
         private bool status = false;
         private string niz = "";
 

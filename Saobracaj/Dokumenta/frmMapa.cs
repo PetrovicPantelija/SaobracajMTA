@@ -2,6 +2,7 @@
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using Saobracaj.Sifarnici;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +19,7 @@ namespace Saobracaj.Dokumenta
 {
     public partial class frmMapa : Form
     {
-        public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connect = frmLogovanje.connectionString;
         GMapControl map = new GMapControl();
         GMapOverlay overlay = new GMapOverlay("marker");
         GMapOverlay polyOvelray = new GMapOverlay("polygons");

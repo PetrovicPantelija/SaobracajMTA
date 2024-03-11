@@ -17,7 +17,7 @@ namespace Saobracaj.RadniNalozi
 {
     public partial class PrijemnicaPregled : Form
     {
-        string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        string connect = frmLogovanje.connectionString;
         string korisnik;
         public PrijemnicaPregled()
         {

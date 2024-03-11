@@ -7,12 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Windows.Forms;
+using Saobracaj.Sifarnici;
 
 namespace Saobracaj.Servis
 {
     class InsertPrijavaKvaraAuto
     {
-        public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connect = frmLogovanje.connectionString;
         public void InsertPrijava(string Automobil, int Prijavio, DateTime DatumPrijave, int Kvar, int StatusKvara, int Promenio, string Napomena, int AutomobilID)
         {
             SqlConnection conn = new SqlConnection(connect);

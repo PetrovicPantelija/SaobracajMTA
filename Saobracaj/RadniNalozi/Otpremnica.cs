@@ -16,7 +16,7 @@ namespace Saobracaj.RadniNalozi
 {
     public partial class Otpremnica : Form
     {
-        string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        string connect = frmLogovanje.connectionString;
         string korisnik;
         public Otpremnica()
         {
@@ -131,11 +131,11 @@ namespace Saobracaj.RadniNalozi
             InsertIsporuka isporuka = new InsertIsporuka();
             if (checkBox1.Checked == true)
             {
-                isporuka.InsertDobavnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(), Convert.ToInt32(comboBox1.SelectedValue), txtVozac.Text.ToString().TrimEnd(), txtVozilo.Text.ToString().TrimEnd(), Convert.ToDateTime(dtpVreme.Value));
+                isporuka.InsertDobavnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(), Convert.ToInt32(comboBox1.SelectedValue), txtVozac.Text.ToString().TrimEnd(), txtVozilo.Text.ToString().TrimEnd(), Convert.ToDateTime(dtpVreme.Value),txtBrojKontejnera.Text.ToString().TrimEnd());
             }
             else
             {
-                isporuka.InsertDobavnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(), Convert.ToInt32(comboBox1.SelectedValue), cboVozac.SelectedValue.ToString(), cboVozilo.SelectedValue.ToString(), Convert.ToDateTime(dtpVreme.Value));
+                isporuka.InsertDobavnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(), Convert.ToInt32(comboBox1.SelectedValue), cboVozac.SelectedValue.ToString(), cboVozilo.SelectedValue.ToString(), Convert.ToDateTime(dtpVreme.Value),txtBrojKontejnera.ToString().TrimEnd());
             }
 
             foreach (DataGridViewRow row in dataGridView1.Rows)

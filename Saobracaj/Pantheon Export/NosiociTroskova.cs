@@ -236,7 +236,7 @@ namespace Saobracaj.Pantheon_Export
                                 return;
                             }
                         }
-                        ins.InsApiLog("NT-"+ID.ToString(),json, response);
+                        ins.InsApiLog("NT-"+ID.ToString()+"/DEMO",json, response);
 
                     }
 

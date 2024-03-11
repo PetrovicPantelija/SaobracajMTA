@@ -16,7 +16,7 @@ namespace Saobracaj.Sifarnici
     public partial class frmVagoniSerije : Form
     {
         string Kor = Sifarnici.frmLogovanje.user.ToString();
-        public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connect = frmLogovanje.connectionString;
         bool status = false;
         int count;
         int idPom;

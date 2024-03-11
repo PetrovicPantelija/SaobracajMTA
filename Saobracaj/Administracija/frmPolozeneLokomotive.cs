@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,7 +10,7 @@ namespace Saobracaj.Administracija
 {
     public partial class frmPolozeneLokomotive : Form
     {
-        private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        private string connect = frmLogovanje.connectionString;
         private bool status = false;
 
         public frmPolozeneLokomotive()

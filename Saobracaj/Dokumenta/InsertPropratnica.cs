@@ -7,12 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Windows.Forms;
+using Saobracaj.Sifarnici;
 
 namespace Saobracaj.Dokumenta
 {
     class InsertPropratnica
     {
-        string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        string connect = frmLogovanje.connectionString;
         public void InsPropratnica(int IdNajave, string Napomena,int Zaduzen,int ZaduzenaFirma)
         {
             SqlConnection conn = new SqlConnection(connect);

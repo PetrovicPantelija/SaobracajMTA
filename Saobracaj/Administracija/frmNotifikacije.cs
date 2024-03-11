@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -8,7 +9,7 @@ namespace Saobracaj.Administracija
 {
     public partial class frmNotifikacije : Form
     {
-        private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        private string connect = frmLogovanje.connectionString;
         private string Kor = Sifarnici.frmLogovanje.user.ToString();
         private string niz = "";
         private bool status = false;

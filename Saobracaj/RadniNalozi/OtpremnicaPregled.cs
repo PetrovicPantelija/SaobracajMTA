@@ -11,7 +11,7 @@ namespace Saobracaj.RadniNalozi
 {
     public partial class OtpremnicaPregled : Form
     {
-        private string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        private string connect = frmLogovanje.connectionString;
         private string korisnik;
 
         public OtpremnicaPregled()

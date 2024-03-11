@@ -153,5 +153,11 @@ namespace Saobracaj.Sifarnici
         {
             
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            RadniNalozi.Medjuskladisni frm = new RadniNalozi.Medjuskladisni();
+            frm.Show();
+        }
     }
 }
