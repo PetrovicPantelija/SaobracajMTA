@@ -15,7 +15,7 @@ namespace Saobracaj.Sifarnici
 {
     public partial class frmTelegramiPrikazi : Form
     {
-        public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connect = frmLogovanje.connectionString;
         public frmTelegramiPrikazi()
         {
             InitializeComponent();

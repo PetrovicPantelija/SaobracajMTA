@@ -32,7 +32,7 @@ namespace Saobracaj.Sifarnici
         FolderBrowserDialog fbd1 = new FolderBrowserDialog();
 
         bool status = false;
-        public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connect = frmLogovanje.connectionString;
         public frmTelegrami()
         {
             InitializeComponent();

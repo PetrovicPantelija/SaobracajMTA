@@ -16,7 +16,7 @@ namespace Saobracaj.RadniNalozi
 {
     public partial class Prijemnica : Syncfusion.Windows.Forms.Office2010Form
     {
-        string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        string connect = frmLogovanje.connectionString;
         string korisnik;
         public Prijemnica()
         {
@@ -122,7 +122,7 @@ namespace Saobracaj.RadniNalozi
         private void button1_Click_1(object sender, EventArgs e)
         {
             InsertIsporuka isporuka = new InsertIsporuka();
-            isporuka.InsertPrijemnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(),Convert.ToInt32(cbo_Referent.SelectedValue),Convert.ToInt32(cboPrimio.SelectedValue), Convert.ToDateTime(dtpVreme.Value));
+            isporuka.InsertPrijemnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(),Convert.ToInt32(cbo_Referent.SelectedValue),Convert.ToInt32(cboPrimio.SelectedValue), Convert.ToDateTime(dtpVreme.Value),txtBrojKontejnera.Text.ToString().TrimEnd());
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {

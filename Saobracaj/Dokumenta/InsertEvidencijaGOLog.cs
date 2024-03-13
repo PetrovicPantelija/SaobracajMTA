@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -12,7 +13,7 @@ namespace Saobracaj.Dokumenta
 {
     class InsertEvidencijaGOLog
     {
-        public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connect = frmLogovanje.connectionString;
         public void InsertGoLOG(string Korisnik,DateTime Datum,string Akcija)
         {
             SqlConnection conn = new SqlConnection(connect);

@@ -12,7 +12,7 @@ namespace Saobracaj.Sifarnici
 {
     class InsertTelegrami
     {
-        string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        string connect = frmLogovanje.connectionString;
 
        public void InsTelegrami(int BrojTelegrama,int PrugaID,int OdStanice,int DoStanice, string Kolosek, DateTime VaziOd, DateTime VaziDo, 
            DateTime TrajeOd,DateTime TrajeDo,string Napomena,bool Aktivan,string PDF,bool NarocitaPosiljka)

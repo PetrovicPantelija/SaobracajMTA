@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,7 +11,7 @@ namespace Saobracaj.Administracija
     public partial class frmDodeliGrupu : Form
     {
         private string Kor = Sifarnici.frmLogovanje.user.ToString();
-        public string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connect = frmLogovanje.connectionString;
         private bool status = false;
         private int count;
         private int idPom;

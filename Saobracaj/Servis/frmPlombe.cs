@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -15,7 +16,7 @@ namespace Saobracaj.Servis
 {
     public partial class frmPlombe : Form
     {
-        string connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        string connect = frmLogovanje.connectionString;
         public static string code = "frmPlombe";
         public bool Pravo;
         int idForme;

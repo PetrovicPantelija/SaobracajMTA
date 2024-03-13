@@ -12,7 +12,7 @@ namespace Saobracaj.RadniNalozi
     internal class InsertIsporuka
     {
         public string connect = Sifarnici.frmLogovanje.connectionString;
-        public void InsertDobavnica(int Partner, string MestoTroska, int Referent, string Vozac, string Vozilo, DateTime Datum)
+        public void InsertDobavnica(int Partner, string MestoTroska, int Referent, string Vozac, string Vozilo, DateTime Datum,string BrojKontejnera)
         {
             SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -65,6 +65,14 @@ namespace Saobracaj.RadniNalozi
             parameter6.Direction = ParameterDirection.Input;
             parameter6.Value = Datum;
             myCommand.Parameters.Add(parameter6);
+
+            SqlParameter parameter7 = new SqlParameter();
+            parameter7.ParameterName = "@BrojKontejnera";
+            parameter7.SqlDbType=SqlDbType.NVarChar;
+            parameter7.Size = 100;
+            parameter7.Direction = ParameterDirection.Input;
+            parameter7.Value = BrojKontejnera;
+            myCommand.Parameters.Add(parameter7);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -181,7 +189,7 @@ namespace Saobracaj.RadniNalozi
 
 
         }
-        public void InsertPrijemnica(int Partner, string MestoTroska, int Referent, int Primio, DateTime Datum)
+        public void InsertPrijemnica(int Partner, string MestoTroska, int Referent, int Primio, DateTime Datum, string BrojKontejnera)
         {
             SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -224,6 +232,14 @@ namespace Saobracaj.RadniNalozi
             parameter6.Direction = ParameterDirection.Input;
             parameter6.Value = Datum;
             myCommand.Parameters.Add(parameter6);
+
+            SqlParameter parameter7 = new SqlParameter();
+            parameter7.ParameterName = "@BrojKontejnera";
+            parameter7.SqlDbType = SqlDbType.NVarChar;
+            parameter7.Size = 100;
+            parameter7.Direction = ParameterDirection.Input;
+            parameter7.Value = BrojKontejnera;
+            myCommand.Parameters.Add(parameter7);
 
             // PrepareCommand(myCommand);
 
@@ -401,6 +417,156 @@ namespace Saobracaj.RadniNalozi
                 }
             }
         }
+        public void InsertMedju(string Napomena, string Datum)
+        {
 
+            SqlConnection myConnection = new SqlConnection(connect);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "InsertPrometTrans";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter parameter5 = new SqlParameter();
+            parameter5.ParameterName = "@Napomena";
+            parameter5.SqlDbType = SqlDbType.NVarChar;
+            parameter5.Size = 70;
+            parameter5.Direction = ParameterDirection.Input;
+            parameter5.Value = Napomena;
+            myCommand.Parameters.Add(parameter5);
+
+            SqlParameter parameter6 = new SqlParameter();
+            parameter6.ParameterName = "@Datum";
+            parameter6.SqlDbType = SqlDbType.NVarChar;
+            parameter6.Size = 10;
+            parameter6.Direction = ParameterDirection.Input;
+            parameter6.Value = Datum;
+            myCommand.Parameters.Add(parameter6);
+
+            /*
+            SqlParameter parameter6 = new SqlParameter();
+            parameter6.ParameterName = "@Korisnik";
+            parameter6.SqlDbType = SqlDbType.NVarChar;
+            parameter6.Size = 50;
+            parameter6.Direction = ParameterDirection.Input;
+            parameter6.Value = Korisnik;
+            myCommand.Parameters.Add(parameter6);
+            */
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis zaglavlja medjuskladisnog");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos kombinacije je uspesno zavrsen", "Rezultat generisanja",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void InsertMedjuPostav(int Artikal, decimal Kolicina, int SkladisteIz, int SkladisteU, string LokacIz, string LokacU)
+        {
+            SqlConnection myConnection = new SqlConnection(connect);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "InsertTransPosPostav";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@Artikal";
+            parameter.SqlDbType = SqlDbType.Int;
+            parameter.Direction = ParameterDirection.Input;
+            parameter.Value = Artikal;
+            myCommand.Parameters.Add(parameter);
+            // PrepareCommand(myCommand);
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@Kolicina";
+            parameter2.SqlDbType = SqlDbType.Decimal;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = Kolicina;
+            myCommand.Parameters.Add(parameter2);
+
+
+            SqlParameter parameter3 = new SqlParameter();
+            parameter3.ParameterName = "@SkladisteIz";
+            parameter3.SqlDbType = SqlDbType.Int;
+            parameter3.Direction = ParameterDirection.Input;
+            parameter3.Value = SkladisteIz;
+            myCommand.Parameters.Add(parameter3);
+
+            SqlParameter parameter4 = new SqlParameter();
+            parameter4.ParameterName = "@SkladisteU";
+            parameter4.SqlDbType = SqlDbType.Int;
+            parameter4.Direction = ParameterDirection.Input;
+            parameter4.Value = SkladisteU;
+            myCommand.Parameters.Add(parameter4);
+
+            SqlParameter parameter5 = new SqlParameter();
+            parameter5.ParameterName = "@LokacIz";
+            parameter5.SqlDbType = SqlDbType.NVarChar;
+            parameter5.Size = 12;
+            parameter5.Direction = ParameterDirection.Input;
+            parameter5.Value = LokacIz;
+            myCommand.Parameters.Add(parameter5);
+
+            SqlParameter parameter6 = new SqlParameter();
+            parameter6.ParameterName = "@LokacU";
+            parameter6.SqlDbType = SqlDbType.NVarChar;
+            parameter6.Size = 12;
+            parameter6.Direction = ParameterDirection.Input;
+            parameter6.Value = LokacU;
+            myCommand.Parameters.Add(parameter6);
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis stavki medjuskladisnog");
+            }
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos kombinacije je uspesno zavrsen", "Rezultat generisanja",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
     }
 }
