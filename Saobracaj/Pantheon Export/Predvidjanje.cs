@@ -284,6 +284,7 @@ namespace Saobracaj.Pantheon_Export
                     {
                         if (StatusSelektovanog == 0)
                         {
+                            iznosRSD = (Convert.ToDecimal(txtIznos.Value) * Convert.ToDecimal(txtKurs.Value));
                             ins.UpdPredvidjanje(Convert.ToInt32(txtID.Text), txtPredvidjanje.Text.ToString().TrimEnd(), RB, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue),
                                 Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Value), cboValuta.SelectedValue.ToString(), Najava, Convert.ToInt32(txtIDPredvidjanja.Text), Convert.ToInt32(cboIdent.SelectedValue), Convert.ToDecimal(txtKolicina.Value), cboJM.SelectedValue.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd(),Convert.ToDecimal(txtKurs.Value),iznosRSD);
                         }
@@ -502,6 +503,19 @@ namespace Saobracaj.Pantheon_Export
                 }
             }
             catch { }
+            FillGV();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            InsertPatheonExport ins = new InsertPatheonExport();
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                if (row.Selected)
+                {
+                    ins.VratiPredvidjenjeStatus(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                }
+            }
             FillGV();
         }
 

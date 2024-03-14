@@ -774,5 +774,35 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
+        public void VratiPredvidjenjeStatus(int ID)
+        {
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using(SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using(SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction= transaction;
+                            cmd.CommandText = "VratiPredvidjanjeStatus";
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = ID });
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (SqlException ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Neuspešano vraćanje statusa!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+            }
+        }
     }
 }

@@ -70,6 +70,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.txtKurs = new System.Windows.Forms.NumericUpDown();
             this.label14 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -295,6 +296,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.dataGridView2);
             this.panel1.Location = new System.Drawing.Point(12, 167);
@@ -347,7 +349,7 @@
             // 
             this.button2.BackColor = System.Drawing.Color.DodgerBlue;
             this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button2.Location = new System.Drawing.Point(1514, 65);
+            this.button2.Location = new System.Drawing.Point(1422, 65);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(112, 34);
             this.button2.TabIndex = 206;
@@ -450,13 +452,13 @@
             this.txtNapomena.Location = new System.Drawing.Point(1197, 50);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
-            this.txtNapomena.Size = new System.Drawing.Size(311, 73);
+            this.txtNapomena.Size = new System.Drawing.Size(219, 73);
             this.txtNapomena.TabIndex = 217;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(1363, 34);
+            this.label13.Location = new System.Drawing.Point(1278, 34);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(59, 13);
             this.label13.TabIndex = 199;
@@ -493,6 +495,16 @@
             this.label14.Size = new System.Drawing.Size(28, 13);
             this.label14.TabIndex = 199;
             this.label14.Text = "Kurs";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1410, 3);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(94, 29);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Vrati na status 0";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Predvidjanje
             // 
@@ -592,5 +604,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.NumericUpDown txtKurs;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button button3;
     }
 }
