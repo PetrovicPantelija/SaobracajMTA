@@ -149,11 +149,11 @@ namespace Testiranje.Dokumeta
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            var select = "select TovarniList.ID as ID, Komitenti.Naziv as Posiljalac," +
-               " k2.Naziv as Primalac, MestoIspostavljanja, DatumIspostavljanja, CIMBroj " +
+            var select = "select TovarniList.ID as ID, Partnerji.PaNaziv as Posiljalac," +
+               " k2.PaNaziv as Primalac, MestoIspostavljanja, DatumIspostavljanja, CIMBroj " +
                 " from TovarniList " +
-               " inner Join Komitenti on TovarniList.Posiljalac = Komitenti.ID " +
-               " inner Join Komitenti k2 on TovarniList.Primalac = k2.ID " +
+               " inner Join Partnerji on TovarniList.Posiljalac = Partnerji.PaSifra " +
+               " inner Join Partnerji k2 on TovarniList.Primalac = k2.PaSifra " +
                " order by ID desc  ";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -182,6 +182,12 @@ namespace Testiranje.Dokumeta
         private void toolStripButton4_Click_1(object sender, EventArgs e)
         {
             Saobracaj.Testiranje.frmTovarniList tl = new Saobracaj.Testiranje.frmTovarniList(Convert.ToInt32(txtSifra.Text));
+            tl.Show();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            Saobracaj.Testiranje.frmTovarniList tl = new Saobracaj.Testiranje.frmTovarniList();
             tl.Show();
         }
     }

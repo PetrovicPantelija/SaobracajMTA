@@ -36,10 +36,6 @@ namespace Saobracaj.Testiranje
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsPrvi = new System.Windows.Forms.ToolStripButton();
-            this.tsNazad = new System.Windows.Forms.ToolStripButton();
-            this.tsNapred = new System.Windows.Forms.ToolStripButton();
-            this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.txtSifra = new System.Windows.Forms.TextBox();
@@ -141,8 +137,6 @@ namespace Saobracaj.Testiranje
             this.txtVrstaRobe = new System.Windows.Forms.TextBox();
             this.label66 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
             this.txtCIMBroj = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
             this.label65 = new System.Windows.Forms.Label();
@@ -181,10 +175,6 @@ namespace Saobracaj.Testiranje
             this.tsSave,
             this.tsDelete,
             this.toolStripSeparator1,
-            this.tsPrvi,
-            this.tsNazad,
-            this.tsNapred,
-            this.tsPoslednja,
             this.toolStripSeparator2,
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -228,42 +218,6 @@ namespace Saobracaj.Testiranje
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
-            // 
-            // tsPrvi
-            // 
-            this.tsPrvi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
-            this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(24, 24);
-            this.tsPrvi.Text = "toolStripButton1";
-            // 
-            // tsNazad
-            // 
-            this.tsNazad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
-            this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(24, 24);
-            this.tsNazad.Text = "toolStripButton1";
-            // 
-            // tsNapred
-            // 
-            this.tsNapred.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
-            this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(24, 24);
-            this.tsNapred.Text = "toolStripButton1";
-            // 
-            // tsPoslednja
-            // 
-            this.tsPoslednja.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
-            this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(24, 24);
-            this.tsPoslednja.Text = "toolStripButton1";
             // 
             // toolStripSeparator2
             // 
@@ -1272,8 +1226,6 @@ namespace Saobracaj.Testiranje
             this.tabPage1.Controls.Add(this.txtVrstaRobe);
             this.tabPage1.Controls.Add(this.label66);
             this.tabPage1.Controls.Add(this.label55);
-            this.tabPage1.Controls.Add(this.label40);
-            this.tabPage1.Controls.Add(this.label35);
             this.tabPage1.Controls.Add(this.txtCIMBroj);
             this.tabPage1.Controls.Add(this.label34);
             this.tabPage1.Controls.Add(this.label65);
@@ -1370,7 +1322,7 @@ namespace Saobracaj.Testiranje
             this.tabPage1.ForeColor = System.Drawing.Color.Black;
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1141, 599);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Podaci";
@@ -1500,33 +1452,11 @@ namespace Saobracaj.Testiranje
             this.label55.AutoSize = true;
             this.label55.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label55.ForeColor = System.Drawing.Color.Black;
-            this.label55.Location = new System.Drawing.Point(200, 7);
+            this.label55.Location = new System.Drawing.Point(127, 3);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(57, 15);
             this.label55.TabIndex = 408;
             this.label55.Text = "CIM Broj:";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label40.ForeColor = System.Drawing.Color.Black;
-            this.label40.Location = new System.Drawing.Point(118, 3);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(66, 16);
-            this.label40.TabIndex = 408;
-            this.label40.Text = "CIM Broj:";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label35.ForeColor = System.Drawing.Color.Black;
-            this.label35.Location = new System.Drawing.Point(121, 1);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(66, 16);
-            this.label35.TabIndex = 408;
-            this.label35.Text = "CIM Broj:";
             // 
             // txtCIMBroj
             // 
@@ -1706,7 +1636,7 @@ namespace Saobracaj.Testiranje
             this.tabPage2.Controls.Add(this.reportViewer1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1141, 599);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Štampa";
@@ -1721,9 +1651,9 @@ namespace Saobracaj.Testiranje
             reportDataSource1.Value = null;
             this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(0, 6);
+            this.reportViewer1.Location = new System.Drawing.Point(0, 3);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(1135, 545);
+            this.reportViewer1.Size = new System.Drawing.Size(1135, 572);
             this.reportViewer1.TabIndex = 280;
             // 
             // frmTovarniList
@@ -1763,10 +1693,6 @@ namespace Saobracaj.Testiranje
         private System.Windows.Forms.ToolStripButton tsSave;
         private System.Windows.Forms.ToolStripButton tsDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton tsPrvi;
-        private System.Windows.Forms.ToolStripButton tsNazad;
-        private System.Windows.Forms.ToolStripButton tsNapred;
-        private System.Windows.Forms.ToolStripButton tsPoslednja;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.TextBox txtSifra;
         private System.Windows.Forms.Label label1;
@@ -1858,7 +1784,6 @@ namespace Saobracaj.Testiranje
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
-        private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Button button30;
         private System.Windows.Forms.Label label37;
@@ -1871,7 +1796,6 @@ namespace Saobracaj.Testiranje
         private System.Windows.Forms.TextBox txtDrugiPrevoznici;
         private System.Windows.Forms.Label label66;
         private System.Windows.Forms.Label label55;
-        private System.Windows.Forms.Label label40;
         private System.Windows.Forms.TextBox txtCIMBroj;
         private System.Windows.Forms.Label label65;
         private System.Windows.Forms.Label label64;

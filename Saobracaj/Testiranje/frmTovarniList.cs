@@ -16,7 +16,7 @@ using Microsoft.Reporting.WinForms;
 using Saobracaj.TrackModal;
 namespace Saobracaj.Testiranje
 {
-    public partial class frmTovarniList : Form
+    public partial class frmTovarniList : Syncfusion.Windows.Forms.Office2010Form
     {
         string KorisnikCene = "";
         bool status = false;
@@ -27,7 +27,7 @@ namespace Saobracaj.Testiranje
         {
             InitializeComponent();
 
-            var select4 = " Select Distinct ID, Naziv From Komitenti order by Naziv";
+            var select4 = " Select Distinct PaSifra, PaNaziv From Partnerji order by PaNaziv";
             var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
@@ -37,10 +37,10 @@ namespace Saobracaj.Testiranje
             var ds4 = new DataSet();
             dataAdapter4.Fill(ds4);
             cboPosiljalac.DataSource = ds4.Tables[0];
-            cboPosiljalac.DisplayMember = "Naziv";
-            cboPosiljalac.ValueMember = "ID";
+            cboPosiljalac.DisplayMember = "PaNaziv";
+            cboPosiljalac.ValueMember = "PaSifra";
 
-            var select5 = " Select Distinct ID, Naziv From Komitenti order by Naziv";
+            var select5 = " Select Distinct PaSifra, PaNaziv From Partnerji order by PaNaziv";
             var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection5);
@@ -50,8 +50,8 @@ namespace Saobracaj.Testiranje
             var ds5 = new DataSet();
             dataAdapter5.Fill(ds5);
             cboPrimalac.DataSource = ds5.Tables[0];
-            cboPrimalac.DisplayMember = "Naziv";
-            cboPrimalac.ValueMember = "ID";
+            cboPrimalac.DisplayMember = "PaNaziv";
+            cboPrimalac.ValueMember = "PaSifra";
         }
 
         public frmTovarniList(int Sifra)
@@ -59,7 +59,8 @@ namespace Saobracaj.Testiranje
             InitializeComponent();
             txtSifra.Text = Sifra.ToString();
 
-            var select4 = " Select Distinct ID, Naziv From Komitenti order by Naziv";
+
+            var select4 = " Select Distinct PaSifra, PaNaziv From Partnerji order by PaNaziv";
             var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
@@ -69,10 +70,10 @@ namespace Saobracaj.Testiranje
             var ds4 = new DataSet();
             dataAdapter4.Fill(ds4);
             cboPosiljalac.DataSource = ds4.Tables[0];
-            cboPosiljalac.DisplayMember = "Naziv";
-            cboPosiljalac.ValueMember = "ID";
+            cboPosiljalac.DisplayMember = "PaNaziv";
+            cboPosiljalac.ValueMember = "PaSifra";
 
-            var select5 = " Select Distinct ID, Naziv From Komitenti order by Naziv";
+            var select5 = " Select Distinct PaSifra, PaNaziv From Partnerji order by PaNaziv";
             var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection5);
@@ -82,8 +83,8 @@ namespace Saobracaj.Testiranje
             var ds5 = new DataSet();
             dataAdapter5.Fill(ds5);
             cboPrimalac.DataSource = ds5.Tables[0];
-            cboPrimalac.DisplayMember = "Naziv";
-            cboPrimalac.ValueMember = "ID";
+            cboPrimalac.DisplayMember = "PaNaziv";
+            cboPrimalac.ValueMember = "PaSifra";
 
 
             VratiPodatke(Sifra);
@@ -148,8 +149,8 @@ namespace Saobracaj.Testiranje
                 txtKorisnickaSIfraPosiljalac.Text = dr["KorisnickaSIfraPosiljalac"].ToString();
                 txtCIMBroj.Text = dr["CIMBroj"].ToString();
                 cboPosiljalac.SelectedValue = Convert.ToInt32(dr["Posiljalac"].ToString());
-              cboPrimalac.SelectedValue = Convert.ToInt32(dr["Primalac"].ToString());
-
+                cboPrimalac.SelectedValue = Convert.ToInt32(dr["Primalac"].ToString());
+                txtDrugiPrevoznici.Text = dr["DrugiPrevoznici"].ToString();
             }
 
             con.Close();
@@ -185,14 +186,14 @@ namespace Saobracaj.Testiranje
             if (status == true)
             {
                 Saobracaj.Dokumenta.InsertTovarniList ins = new Saobracaj.Dokumenta.InsertTovarniList();
-                ins.InsTovarniList(Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), txtKorisnickaSIfraPosiljalac.Text, txtKorisnickaSifraPrimalac.Text, txtFrankiraneTroskove.Text, txtNeFrankiraneTroskove.Text, txtIzjavePosiljaoca.Text, txtObavestenjePosiljaoca.Text, txtPrilozi.Text, Convert.ToInt32(cboMestoIzdavanja.SelectedValue), txtSifraMestaIzdavanja.Text, txtSifraStaniceMestaIzdavanja.Text, txtKomercijalniUslovi.Text, txtKorisnickiSporazum.Text, txtObavestenjePrimaocu.Text, txtPreuzimanjeNaPrevoz.Text, txtBrojKola.Text, txtFakturisanjeTranzita.Text, txtPlacanjeTroskova.Text, txtNarocitaPosiljka.Text, txtRID.Text, Convert.ToDouble(txtVrednost.Value), Convert.ToDouble(txtBrutoMasaRobe.Value), Convert.ToDouble(txtNetoRobe.Value), Convert.ToDouble(txtBrutoMasaVoza.Value), txtObezbedjenjeIsporuke.Text, txtPouzece.Text, txtMestoIspostavljanja.Text, dtpDatumIspostavljanja.Value, txtOznakaDokumenta.Text, txtCIMBroj.Text, txtVrstaRobe.Text, txtNHM.Text, txtMestoPreuzimanja.Text);
+                ins.InsTovarniList(Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), txtKorisnickaSIfraPosiljalac.Text, txtKorisnickaSifraPrimalac.Text, txtFrankiraneTroskove.Text, txtNeFrankiraneTroskove.Text, txtIzjavePosiljaoca.Text, txtObavestenjePosiljaoca.Text, txtPrilozi.Text, Convert.ToInt32(cboMestoIzdavanja.SelectedValue), txtSifraMestaIzdavanja.Text, txtSifraStaniceMestaIzdavanja.Text, txtKomercijalniUslovi.Text, txtKorisnickiSporazum.Text, txtObavestenjePrimaocu.Text, txtPreuzimanjeNaPrevoz.Text, txtBrojKola.Text, txtFakturisanjeTranzita.Text, txtPlacanjeTroskova.Text, txtNarocitaPosiljka.Text, txtRID.Text, Convert.ToDouble(txtVrednost.Value), Convert.ToDouble(txtBrutoMasaRobe.Value), Convert.ToDouble(txtNetoRobe.Value), Convert.ToDouble(txtBrutoMasaVoza.Value), txtObezbedjenjeIsporuke.Text, txtPouzece.Text, txtMestoIspostavljanja.Text, dtpDatumIspostavljanja.Value, txtOznakaDokumenta.Text, txtCIMBroj.Text, txtVrstaRobe.Text, txtNHM.Text, txtMestoPreuzimanja.Text, txtDrugiPrevoznici.Text);
                 status = false;
                 VratiPodatkeMax();
             }
             else
             {
                 Saobracaj.Dokumenta.InsertTovarniList upd = new Saobracaj.Dokumenta.InsertTovarniList();
-                upd.UpdTovarniList(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), txtKorisnickaSIfraPosiljalac.Text, txtKorisnickaSifraPrimalac.Text, txtFrankiraneTroskove.Text, txtNeFrankiraneTroskove.Text, txtIzjavePosiljaoca.Text, txtObavestenjePosiljaoca.Text, txtPrilozi.Text, Convert.ToInt32(cboMestoIzdavanja.SelectedValue), txtSifraMestaIzdavanja.Text, txtSifraStaniceMestaIzdavanja.Text, txtKomercijalniUslovi.Text, txtKorisnickiSporazum.Text, txtObavestenjePrimaocu.Text, txtPreuzimanjeNaPrevoz.Text, txtBrojKola.Text, txtFakturisanjeTranzita.Text, txtPlacanjeTroskova.Text, txtNarocitaPosiljka.Text, txtRID.Text, Convert.ToDouble(txtVrednost.Value), Convert.ToDouble(txtBrutoMasaRobe.Value), Convert.ToDouble(txtNetoRobe.Value), Convert.ToDouble(txtBrutoMasaVoza.Value), txtObezbedjenjeIsporuke.Text, txtPouzece.Text, txtMestoIspostavljanja.Text, dtpDatumIspostavljanja.Value, txtOznakaDokumenta.Text, txtCIMBroj.Text, txtVrstaRobe.Text, txtNHM.Text, txtMestoPreuzimanja.Text);
+                upd.UpdTovarniList(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), txtKorisnickaSIfraPosiljalac.Text, txtKorisnickaSifraPrimalac.Text, txtFrankiraneTroskove.Text, txtNeFrankiraneTroskove.Text, txtIzjavePosiljaoca.Text, txtObavestenjePosiljaoca.Text, txtPrilozi.Text, Convert.ToInt32(cboMestoIzdavanja.SelectedValue), txtSifraMestaIzdavanja.Text, txtSifraStaniceMestaIzdavanja.Text, txtKomercijalniUslovi.Text, txtKorisnickiSporazum.Text, txtObavestenjePrimaocu.Text, txtPreuzimanjeNaPrevoz.Text, txtBrojKola.Text, txtFakturisanjeTranzita.Text, txtPlacanjeTroskova.Text, txtNarocitaPosiljka.Text, txtRID.Text, Convert.ToDouble(txtVrednost.Value), Convert.ToDouble(txtBrutoMasaRobe.Value), Convert.ToDouble(txtNetoRobe.Value), Convert.ToDouble(txtBrutoMasaVoza.Value), txtObezbedjenjeIsporuke.Text, txtPouzece.Text, txtMestoIspostavljanja.Text, dtpDatumIspostavljanja.Value, txtOznakaDokumenta.Text, txtCIMBroj.Text, txtVrstaRobe.Text, txtNHM.Text, txtMestoPreuzimanja.Text,txtDrugiPrevoznici.Text);
                 status = false;
             }
         }
@@ -291,6 +292,11 @@ namespace Saobracaj.Testiranje
         }
 
         private void button11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tsNazad_Click(object sender, EventArgs e)
         {
 
         }
