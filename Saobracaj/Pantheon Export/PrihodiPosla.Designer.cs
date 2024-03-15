@@ -43,33 +43,33 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtAktivnosti = new System.Windows.Forms.TextBox();
             this.txtPredvidjanje = new System.Windows.Forms.TextBox();
+            this.txtPrihodiEUR = new System.Windows.Forms.TextBox();
+            this.txtPrihodiRSD = new System.Windows.Forms.TextBox();
             this.txtUeur = new System.Windows.Forms.TextBox();
             this.txtUrsd = new System.Windows.Forms.TextBox();
+            this.txtRevenue = new System.Windows.Forms.TextBox();
+            this.txtBilans = new System.Windows.Forms.TextBox();
+            this.txtFaktura = new System.Windows.Forms.TextBox();
+            this.txtBudzet = new System.Windows.Forms.TextBox();
             this.txtTrase = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtBudzet = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtRevenue = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtFaktura = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txtPrihodiRSD = new System.Windows.Forms.TextBox();
-            this.txtPrihodiEUR = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.txtBilans = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -283,6 +283,28 @@
             this.txtPredvidjanje.TabIndex = 53;
             this.txtPredvidjanje.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // txtPrihodiEUR
+            // 
+            this.txtPrihodiEUR.BackColor = System.Drawing.Color.LemonChiffon;
+            this.txtPrihodiEUR.Enabled = false;
+            this.txtPrihodiEUR.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrihodiEUR.Location = new System.Drawing.Point(973, 46);
+            this.txtPrihodiEUR.Name = "txtPrihodiEUR";
+            this.txtPrihodiEUR.Size = new System.Drawing.Size(100, 24);
+            this.txtPrihodiEUR.TabIndex = 53;
+            this.txtPrihodiEUR.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtPrihodiRSD
+            // 
+            this.txtPrihodiRSD.BackColor = System.Drawing.Color.LemonChiffon;
+            this.txtPrihodiRSD.Enabled = false;
+            this.txtPrihodiRSD.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrihodiRSD.Location = new System.Drawing.Point(973, 10);
+            this.txtPrihodiRSD.Name = "txtPrihodiRSD";
+            this.txtPrihodiRSD.Size = new System.Drawing.Size(100, 24);
+            this.txtPrihodiRSD.TabIndex = 53;
+            this.txtPrihodiRSD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // txtUeur
             // 
             this.txtUeur.BackColor = System.Drawing.Color.LemonChiffon;
@@ -305,6 +327,46 @@
             this.txtUrsd.TabIndex = 53;
             this.txtUrsd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // txtRevenue
+            // 
+            this.txtRevenue.Enabled = false;
+            this.txtRevenue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRevenue.Location = new System.Drawing.Point(729, 46);
+            this.txtRevenue.Name = "txtRevenue";
+            this.txtRevenue.Size = new System.Drawing.Size(100, 24);
+            this.txtRevenue.TabIndex = 53;
+            this.txtRevenue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtBilans
+            // 
+            this.txtBilans.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBilans.Location = new System.Drawing.Point(398, 93);
+            this.txtBilans.Name = "txtBilans";
+            this.txtBilans.ReadOnly = true;
+            this.txtBilans.Size = new System.Drawing.Size(100, 24);
+            this.txtBilans.TabIndex = 53;
+            this.txtBilans.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtFaktura
+            // 
+            this.txtFaktura.Enabled = false;
+            this.txtFaktura.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFaktura.Location = new System.Drawing.Point(729, 87);
+            this.txtFaktura.Name = "txtFaktura";
+            this.txtFaktura.Size = new System.Drawing.Size(100, 24);
+            this.txtFaktura.TabIndex = 53;
+            this.txtFaktura.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtBudzet
+            // 
+            this.txtBudzet.Enabled = false;
+            this.txtBudzet.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBudzet.Location = new System.Drawing.Point(729, 9);
+            this.txtBudzet.Name = "txtBudzet";
+            this.txtBudzet.Size = new System.Drawing.Size(100, 24);
+            this.txtBudzet.TabIndex = 53;
+            this.txtBudzet.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // txtTrase
             // 
             this.txtTrase.Enabled = false;
@@ -314,6 +376,16 @@
             this.txtTrase.Size = new System.Drawing.Size(100, 24);
             this.txtTrase.TabIndex = 53;
             this.txtTrase.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(1079, 52);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(40, 18);
+            this.label17.TabIndex = 52;
+            this.label17.Text = "EUR";
             // 
             // label6
             // 
@@ -335,6 +407,16 @@
             this.label10.TabIndex = 52;
             this.label10.Text = "EUR";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(864, 49);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(113, 18);
+            this.label16.TabIndex = 52;
+            this.label16.Text = "Ukupno zarada:";
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -344,6 +426,16 @@
             this.label5.Size = new System.Drawing.Size(148, 18);
             this.label5.TabIndex = 52;
             this.label5.Text = "Troškovi predivđanja:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(1079, 18);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(40, 18);
+            this.label15.TabIndex = 52;
+            this.label15.Text = "RSD";
             // 
             // label9
             // 
@@ -365,6 +457,56 @@
             this.label8.TabIndex = 52;
             this.label8.Text = "RSD";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(583, 49);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(140, 18);
+            this.label12.TabIndex = 52;
+            this.label12.Text = "Estimated Revenue:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(401, 119);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(90, 13);
+            this.label19.TabIndex = 52;
+            this.label19.Text = "Budžet - Troškovi";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(340, 96);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(52, 18);
+            this.label18.TabIndex = 52;
+            this.label18.Text = "Bilans:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(864, 12);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(113, 18);
+            this.label14.TabIndex = 52;
+            this.label14.Text = "Ukupno zarada:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(661, 90);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(62, 18);
+            this.label13.TabIndex = 52;
+            this.label13.Text = "Faktura:";
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -374,6 +516,16 @@
             this.label7.Size = new System.Drawing.Size(121, 18);
             this.label7.TabIndex = 52;
             this.label7.Text = "Ukupno troškovi:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(665, 12);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(58, 18);
+            this.label11.TabIndex = 52;
+            this.label11.Text = "Budžet:";
             // 
             // label4
             // 
@@ -405,158 +557,6 @@
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.Size = new System.Drawing.Size(1424, 112);
             this.dataGridView4.TabIndex = 55;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(665, 12);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(58, 18);
-            this.label11.TabIndex = 52;
-            this.label11.Text = "Budžet:";
-            // 
-            // txtBudzet
-            // 
-            this.txtBudzet.Enabled = false;
-            this.txtBudzet.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBudzet.Location = new System.Drawing.Point(729, 9);
-            this.txtBudzet.Name = "txtBudzet";
-            this.txtBudzet.Size = new System.Drawing.Size(100, 24);
-            this.txtBudzet.TabIndex = 53;
-            this.txtBudzet.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(583, 49);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(140, 18);
-            this.label12.TabIndex = 52;
-            this.label12.Text = "Estimated Revenue:";
-            // 
-            // txtRevenue
-            // 
-            this.txtRevenue.Enabled = false;
-            this.txtRevenue.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRevenue.Location = new System.Drawing.Point(729, 46);
-            this.txtRevenue.Name = "txtRevenue";
-            this.txtRevenue.Size = new System.Drawing.Size(100, 24);
-            this.txtRevenue.TabIndex = 53;
-            this.txtRevenue.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(661, 90);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(62, 18);
-            this.label13.TabIndex = 52;
-            this.label13.Text = "Faktura:";
-            // 
-            // txtFaktura
-            // 
-            this.txtFaktura.Enabled = false;
-            this.txtFaktura.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFaktura.Location = new System.Drawing.Point(729, 87);
-            this.txtFaktura.Name = "txtFaktura";
-            this.txtFaktura.Size = new System.Drawing.Size(100, 24);
-            this.txtFaktura.TabIndex = 53;
-            this.txtFaktura.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(864, 12);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(113, 18);
-            this.label14.TabIndex = 52;
-            this.label14.Text = "Ukupno zarada:";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(1079, 18);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(40, 18);
-            this.label15.TabIndex = 52;
-            this.label15.Text = "RSD";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(864, 49);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(113, 18);
-            this.label16.TabIndex = 52;
-            this.label16.Text = "Ukupno zarada:";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(1079, 52);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(40, 18);
-            this.label17.TabIndex = 52;
-            this.label17.Text = "EUR";
-            // 
-            // txtPrihodiRSD
-            // 
-            this.txtPrihodiRSD.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtPrihodiRSD.Enabled = false;
-            this.txtPrihodiRSD.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrihodiRSD.Location = new System.Drawing.Point(973, 10);
-            this.txtPrihodiRSD.Name = "txtPrihodiRSD";
-            this.txtPrihodiRSD.Size = new System.Drawing.Size(100, 24);
-            this.txtPrihodiRSD.TabIndex = 53;
-            this.txtPrihodiRSD.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtPrihodiEUR
-            // 
-            this.txtPrihodiEUR.BackColor = System.Drawing.Color.LemonChiffon;
-            this.txtPrihodiEUR.Enabled = false;
-            this.txtPrihodiEUR.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrihodiEUR.Location = new System.Drawing.Point(973, 46);
-            this.txtPrihodiEUR.Name = "txtPrihodiEUR";
-            this.txtPrihodiEUR.Size = new System.Drawing.Size(100, 24);
-            this.txtPrihodiEUR.TabIndex = 53;
-            this.txtPrihodiEUR.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(340, 96);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(52, 18);
-            this.label18.TabIndex = 52;
-            this.label18.Text = "Bilans:";
-            // 
-            // txtBilans
-            // 
-            this.txtBilans.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBilans.Location = new System.Drawing.Point(398, 93);
-            this.txtBilans.Name = "txtBilans";
-            this.txtBilans.ReadOnly = true;
-            this.txtBilans.Size = new System.Drawing.Size(100, 24);
-            this.txtBilans.TabIndex = 53;
-            this.txtBilans.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(401, 119);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(90, 13);
-            this.label19.TabIndex = 52;
-            this.label19.Text = "Budžet - Troškovi";
             // 
             // PrihodiPosla
             // 
