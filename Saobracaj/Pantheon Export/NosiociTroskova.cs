@@ -1,6 +1,7 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using Newtonsoft.Json.Linq;
 using Org.BouncyCastle.Asn1.Ocsp;
+using Saobracaj.Sifarnici;
 using Syncfusion.Windows.Forms.Tools;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace Saobracaj.Pantheon_Export
     {
         bool status = false;
         private string connect = Sifarnici.frmLogovanje.connectionString;
+        string korisnik = frmLogovanje.user;
 
         public NosiociTroskova()
         {
@@ -34,7 +36,7 @@ namespace Saobracaj.Pantheon_Export
         private void FillGV()
         {
             var select = "Select NosiociTroskova.ID,NosilacTroska,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska,Grupa,RTrim(PaNaziv) as Kupac,RTrim(SifraSubjekta) as Odeljenje, " +
-                "(RTrim(Opportunity.OppID) + ' - ' + RTrim(Opportunity.NazivPosla)) as Opportunity, Kupac, NosiociTroskova.Odeljenje,NosiociTroskova.OppID,Posao,NosiociTroskova.Status " +
+                "(RTrim(Opportunity.OppID) + ' - ' + RTrim(Opportunity.NazivPosla)) as Opportunity, Kupac, NosiociTroskova.Odeljenje,NosiociTroskova.OppID,Posao,NosiociTroskova.Status,NosiociTroskova.Korisnik " +
                 "From NosiociTroskova " +
                 "inner join Partnerji on NosiociTroskova.Kupac = Partnerji.PaSifra " +
                 "inner join Odeljenja on NosiociTroskova.Odeljenje = Odeljenja.ID " +
@@ -133,18 +135,31 @@ namespace Saobracaj.Pantheon_Export
             txtNosilacTroska.Text = ID.ToString() + "/" + g;
         }
         int statusNT;
+
+        int stariNT;
         private void tsSave_Click(object sender, EventArgs e)
         {
             InsertPatheonExport ins = new InsertPatheonExport();
             if (status == true)
             {
-                ins.InsNosiociTroskova(txtNosilacTroska.Text.ToString().TrimEnd(), txtNazivNosioca.Text.ToString().TrimEnd(), cboGrupa.Text.ToString().TrimEnd(), Convert.ToInt32(cboKupac.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue),Convert.ToInt32(cboOpportunity.SelectedValue),Convert.ToInt32(cboPosao.SelectedValue));
+                ins.InsNosiociTroskova(txtNosilacTroska.Text.ToString().TrimEnd(), txtNazivNosioca.Text.ToString().TrimEnd(), cboGrupa.Text.ToString().TrimEnd(), Convert.ToInt32(cboKupac.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue),Convert.ToInt32(cboOpportunity.SelectedValue),Convert.ToInt32(cboPosao.SelectedValue),korisnik);
             }
             else
             {
                 if (statusNT == 0)
                 {
-                    ins.UpdNosiociTroskova(Convert.ToInt32(txtID.Text), txtNosilacTroska.Text.ToString().TrimEnd(), txtNazivNosioca.Text.ToString().TrimEnd(), cboGrupa.Text.ToString().TrimEnd(), Convert.ToInt32(cboKupac.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToInt32(cboOpportunity.SelectedValue), Convert.ToInt32(cboPosao.SelectedValue));
+                    ins.UpdNosiociTroskova(Convert.ToInt32(txtID.Text), txtNosilacTroska.Text.ToString().TrimEnd(), txtNazivNosioca.Text.ToString().TrimEnd(), cboGrupa.Text.ToString().TrimEnd(), Convert.ToInt32(cboKupac.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToInt32(cboOpportunity.SelectedValue), Convert.ToInt32(cboPosao.SelectedValue), korisnik);
+
+                    using (SqlConnection conn2 = new SqlConnection(connect))
+                    {
+                        using (SqlCommand cmd2 = conn2.CreateCommand())
+                        {
+                            cmd2.CommandText = "UPDATE Predvidjanja SET NajavaID = " + Convert.ToInt32(cboPosao.SelectedValue) + " Where NosialcTroska="+Convert.ToInt32(txtID.Text);
+                            conn2.Open();
+                            cmd2.ExecuteNonQuery();
+                            conn2.Close();
+                        }
+                    }
                 }
                 else
                 {
@@ -255,7 +270,7 @@ namespace Saobracaj.Pantheon_Export
             panel1.Visible = true;
 
             var select = "Select NosiociTroskova.ID,NosilacTroska,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska,Grupa,RTrim(PaNaziv) as Kupac,RTrim(SifraSubjekta) as Odeljenje, " +
-                "(RTrim(Opportunity.OppID) + ' - ' + RTrim(Opportunity.NazivPosla)) as Opportunity, Kupac, NosiociTroskova.Odeljenje,NosiociTroskova.OppID,Posao,NosiociTroskova.Status " +
+                "(RTrim(Opportunity.OppID) + ' - ' + RTrim(Opportunity.NazivPosla)) as Opportunity, Kupac, NosiociTroskova.Odeljenje,NosiociTroskova.OppID,Posao,NosiociTroskova.Status,NosiociTroskova.Korisnik " +
                 "From NosiociTroskova " +
                 "inner join Partnerji on NosiociTroskova.Kupac = Partnerji.PaSifra " +
                 "inner join Odeljenja on NosiociTroskova.Odeljenje = Odeljenja.ID " +
