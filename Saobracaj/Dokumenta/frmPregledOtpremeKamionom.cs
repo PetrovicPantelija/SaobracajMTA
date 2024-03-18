@@ -16,7 +16,7 @@ using System.Configuration;
 
 namespace TrackModal.Dokumeta
 {
-    public partial class frmPregledOtpremeKamionom : Form
+    public partial class frmPregledOtpremeKamionom : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmPregledOtpremeKamionom";
         public bool Pravo;

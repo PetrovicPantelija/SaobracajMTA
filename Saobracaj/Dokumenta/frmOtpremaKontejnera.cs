@@ -51,8 +51,11 @@ namespace Saobracaj.Dokumeta
                 toolStripButton6.Visible = true;
                 tabControl1.TabPages.Remove(tabPage2);
                 tabControl1.TabPages.Remove(tabPage3);
+                txtRegBrKamiona.Visible = false;
+                txtImeVozaca.Visible = false;
+            
 
-               
+
             }
             else
             {
@@ -63,7 +66,8 @@ namespace Saobracaj.Dokumeta
                 cboVozBuking.Enabled = false;
                 //   toolStripButton3.Visible = false;
                 toolStripLabel1.Visible = false;
-
+                cboVozBuking.Visible = false;
+                chkVoz.Visible = false;
                 dtpDatumOtpreme.Value = DateTime.Now;
                 dtpVremeOdlaska.Value = DateTime.Now;
                 tabControl1.TabPages.Remove(tabPage2);
@@ -103,6 +107,8 @@ namespace Saobracaj.Dokumeta
                 toolStripButton6.Visible = true;
                 tabControl1.TabPages.Remove(tabPage2);
                 tabControl1.TabPages.Remove(tabPage3);
+                txtRegBrKamiona.Visible = false;
+                txtImeVozaca.Visible = false;
             }
             else
             {
@@ -111,6 +117,8 @@ namespace Saobracaj.Dokumeta
                 txtRegBrKamiona.Enabled = true;
                 txtImeVozaca.Enabled = true;
                 cboVozBuking.Enabled = false;
+                cboVozBuking.Visible = false;
+                chkVoz.Visible = false;
                 //   toolStripButton3.Visible = false;
                 toolStripLabel1.Visible = false;
 
@@ -118,6 +126,18 @@ namespace Saobracaj.Dokumeta
                 dtpVremeOdlaska.Value = DateTime.Now;
                 tabControl1.TabPages.Remove(tabPage2);
                 tabControl1.TabPages.Remove(tabPage3);
+                label15.Visible = false;
+                cboVozBuking.Visible = false;
+                chkVoz.Visible = false;
+                label6.Visible = false;
+                txtVagon.Visible = false;
+                button6.Visible = false;
+                label22.Visible = false;
+                label23.Visible = false;
+                label24.Visible = false;
+                txtGranica.Visible = false;
+                txtSopstvenaMasa.Visible = false;
+                txtBrojOsovina.Visible = false;
             }
         }
 
@@ -133,7 +153,7 @@ namespace Saobracaj.Dokumeta
                 ins.InsertOtpremaKontejneraStav(Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, txtVagon.Text, Convert.ToDouble(txtGranica.Value), Convert.ToDouble(txtBrojOsovina.Value), Convert.ToDouble(txtSopstvenaMasa.Value), Convert.ToDouble(txtTara.Value), Convert.ToDouble(txtNeto.Value), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboVlasnikKontejnera.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue), txtBukingBrodar.Text, Convert.ToInt32(cboStatusKontejnera.SelectedValue), txtBrojPlombe.Text, Convert.ToInt32(txtPlaniraniLager.Text), 0, Convert.ToDateTime(dtpVremePripremljen.Value), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtBrojPlombe2.Text, Convert.ToInt32(cboOrganizator.SelectedValue), txtNapomenaS.Text, DateTime.Now, DateTime.Now, 0, 0, 0, "", 0,0,0,0,0,"","","", 0);
                 RefreshDataGrid2();
             }
-
+            /* Prikaz datagrid 2 - drugi tabulator
             var select = "  SELECT  OtpremaKontejneraVozStavke.BrojKontejnera, Promet.ID from " +
               " OtpremaKontejneraVozStavke inner join Promet On OtpremaKontejneraVozStavke.BrojKontejnera = Promet.BrojKontejnera " +
               " where Promet.Zatvoren = 0 and IdNadredjenog = " + txtSifra.Text + " order by RB";
@@ -157,7 +177,7 @@ namespace Saobracaj.Dokumeta
             DataGridViewColumn column2 = dataGridView2.Columns[1];
             dataGridView2.Columns[1].HeaderText = "ID";
             dataGridView2.Columns[1].Width = 90;
-
+            */
         }
 
         private void tsNew_Click(object sender, System.EventArgs e)
@@ -418,18 +438,22 @@ namespace Saobracaj.Dokumeta
             DataGridViewColumn column5 = dataGridView1.Columns[4];
             dataGridView1.Columns[4].HeaderText = "Vagon";
             dataGridView1.Columns[4].Width = 70;
+            dataGridView1.Columns[4].Visible = false;
 
             DataGridViewColumn column6 = dataGridView1.Columns[5];
             dataGridView1.Columns[5].HeaderText = "Granica";
             dataGridView1.Columns[5].Width = 40;
+            dataGridView1.Columns[5].Visible = false;
 
             DataGridViewColumn column7 = dataGridView1.Columns[6];
             dataGridView1.Columns[6].HeaderText = "Broj osovina";
             dataGridView1.Columns[6].Width = 20;
+            dataGridView1.Columns[6].Visible = false;
 
             DataGridViewColumn column8 = dataGridView1.Columns[7];
             dataGridView1.Columns[7].HeaderText = "Sopstvena masa";
             dataGridView1.Columns[7].Width = 30;
+            dataGridView1.Columns[7].Visible = false;
 
             DataGridViewColumn column9 = dataGridView1.Columns[8];
             dataGridView1.Columns[8].HeaderText = "Tara";
@@ -442,31 +466,31 @@ namespace Saobracaj.Dokumeta
 
 
             DataGridViewColumn column11 = dataGridView1.Columns[10];
-            dataGridView1.Columns[10].HeaderText = "Posiljalac";
-            dataGridView1.Columns[10].Width = 50;
+            dataGridView1.Columns[10].HeaderText = "Špediter";
+            dataGridView1.Columns[10].Width = 150;
 
             DataGridViewColumn column12 = dataGridView1.Columns[11];
             dataGridView1.Columns[11].HeaderText = "Primalac";
 
-            dataGridView1.Columns[11].Width = 50;
+            dataGridView1.Columns[11].Width = 150;
 
             DataGridViewColumn column13 = dataGridView1.Columns[12];
             dataGridView1.Columns[12].HeaderText = "Vlasnik kontejnera";
-            dataGridView1.Columns[12].Width = 40;
+            dataGridView1.Columns[12].Width = 140;
 
             DataGridViewColumn column14 = dataGridView1.Columns[13];
             dataGridView1.Columns[13].HeaderText = "Organizator";
-            dataGridView1.Columns[13].Width = 40;
+            dataGridView1.Columns[13].Width = 140;
 
           
 
             DataGridViewColumn column15 = dataGridView1.Columns[14];
             dataGridView1.Columns[14].HeaderText = "Tip kontejnera";
-            dataGridView1.Columns[14].Width = 30;
+            dataGridView1.Columns[14].Width = 130;
 
             DataGridViewColumn column16 = dataGridView1.Columns[15];
             dataGridView1.Columns[15].HeaderText = "Vrsta robe";
-            dataGridView1.Columns[15].Width = 30;
+            dataGridView1.Columns[15].Width = 130;
 
             DataGridViewColumn column17 = dataGridView1.Columns[16];
             dataGridView1.Columns[16].HeaderText = "Buking";
