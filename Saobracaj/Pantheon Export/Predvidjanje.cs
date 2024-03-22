@@ -286,6 +286,15 @@ namespace Saobracaj.Pantheon_Export
                     {
                         if (StatusSelektovanog == 0)
                         {
+                            var query = "Select Posao From NosiociTroskova Where ID=" + Convert.ToInt32(cboNosilacTroska.SelectedValue);
+                            conn.Open();
+                            SqlCommand cmd = new SqlCommand(query, conn);
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            while (dr.Read())
+                            {
+                                Najava = Convert.ToInt32(dr[0].ToString());
+                            }
+
                             iznosRSD = (Convert.ToDecimal(txtIznos.Value) * Convert.ToDecimal(txtKurs.Value));
                             ins.UpdPredvidjanje(Convert.ToInt32(txtID.Text), txtPredvidjanje.Text.ToString().TrimEnd(), RB, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue),
                                 Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Value), cboValuta.SelectedValue.ToString(), Najava, Convert.ToInt32(txtIDPredvidjanja.Text), Convert.ToInt32(cboIdent.SelectedValue), Convert.ToDecimal(txtKolicina.Value), cboJM.SelectedValue.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd(),Convert.ToDecimal(txtKurs.Value),iznosRSD,korisnik);
@@ -320,6 +329,15 @@ namespace Saobracaj.Pantheon_Export
                 {
                     if (StatusSelektovanog == 0)
                     {
+                        var query = "Select Posao From NosiociTroskova Where ID=" + Convert.ToInt32(cboNosilacTroska.SelectedValue);
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand(query, conn);
+                        SqlDataReader dr = cmd.ExecuteReader();
+                        while (dr.Read())
+                        {
+                            Najava = Convert.ToInt32(dr[0].ToString());
+                        }
+
                         ins.UpdPredvidjanje(Convert.ToInt32(txtID.Text), txtPredvidjanje.Text.ToString().TrimEnd(), RB, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue),
                             Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Value), cboValuta.SelectedValue.ToString(), Najava, Convert.ToInt32(txtIDPredvidjanja.Text), Convert.ToInt32(cboIdent.SelectedValue), Convert.ToDecimal(txtKolicina.Value), cboJM.SelectedValue.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd(),Convert.ToInt32(txtKurs.Value),Convert.ToDecimal(txtIznos.Value),korisnik);
                     }

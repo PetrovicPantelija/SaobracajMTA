@@ -302,7 +302,7 @@ namespace Saobracaj.Pantheon_Export
             string valuta=cboValuta.SelectedValue.ToString();
             if(sifDr==82 && valuta != "RSD")
             {
-                DialogResult dr = MessageBox.Show("Za domaćeg dobavljača dokument treba biti u dinarima\nDa li želite da potvrdite dokument u valuti " + valuta, "Potvrda valute", MessageBoxButtons.YesNo);
+                DialogResult dr = MessageBox.Show("Za domaćeg dobavljača dokument treba biti u dinarima\nDa li želite da potvrdite dokument u valuti " + valuta+" po kursu:"+txtKurs.Value.ToString(), "Potvrda valute", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
                 {
                     if (status == true)
