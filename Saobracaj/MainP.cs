@@ -69,8 +69,8 @@ namespace Saobracaj
                 toolStripButton342.Visible = false;
                 toolStripEx39.Visible = false;
                 toolStripButton344.Visible = false;
-
-
+                toolStripButton238.Visible = false;
+                toolStripButton237.Visible = false;
 
                 toolStripButton184.Visible = false;
                 toolStripButton186.Visible = false;

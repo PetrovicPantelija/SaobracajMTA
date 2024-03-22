@@ -150,7 +150,7 @@ namespace TrackModal.Dokumeta
           "  [PrijemKontejneraVoz].Korisnik,[PrijemKontejneraVoz].Datum  " +
             " FROM [dbo].[PrijemKontejneraVoz] " +
            " inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza  " +
-           " where PrijemKontejneraVoz.Vozom = 1";
+           " where PrijemKontejneraVoz.Vozom = 1 order by PrijemKontejneraVoz.[ID] desc";
             var s_connection = frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);

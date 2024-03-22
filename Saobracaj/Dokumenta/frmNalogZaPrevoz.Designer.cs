@@ -113,6 +113,7 @@
             this.cboVrstaRobe = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.button4 = new System.Windows.Forms.Button();
             this.btnManipulacija.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtUkupnaMasa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUkupnaMasa2)).BeginInit();
@@ -830,6 +831,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.tabPage1.Controls.Add(this.button4);
             this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Controls.Add(this.txtIstovarnoMesto);
             this.tabPage1.Controls.Add(this.txtUtovarnoMesto);
@@ -1066,6 +1068,20 @@
             this.reportViewer1.Size = new System.Drawing.Size(1220, 670);
             this.reportViewer1.TabIndex = 338;
             // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(450, 341);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(21, 25);
+            this.button4.TabIndex = 349;
+            this.button4.Text = ">>";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // frmNalogZaPrevoz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1178,5 +1194,6 @@
         private System.Windows.Forms.ComboBox txtIstovarnoMesto;
         private System.Windows.Forms.ComboBox txtUtovarnoMesto;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }

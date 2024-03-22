@@ -470,12 +470,12 @@ namespace TrackModal.Dokumeta
         " ,Promet.[PrStDokumenta],Promet.[PrSifVrstePrometa],Promet.[BrojKontejnera] " +
         " ,Promet.[PrPrimKol] ,Promet.[SkladisteU], Skladista.Naziv as Skladiste " +
         " ,Promet.[LokacijaU] as LokacijaU,Pozicija.Oznaka ,Promet.[PrOznSled] " +
-        " ,Promet.[Datum] ,Promet.[Korisnik], TipKontenjera.Naziv, VrstaRobe.Nkm as NHM, VrstaRobe.Naziv  " +
+        " ,Promet.[Datum] ,Promet.[Korisnik], TipKontenjera.Naziv, NHM.ID as NHMID, NHM.Naziv  " +
         " FROM [dbo].[Promet] inner join Skladista on Promet.SkladisteU = Skladista.ID " +
         " inner join Pozicija on Promet.LokacijaU = Pozicija.ID " +
        "   inner join PrijemKontejneraVozStavke on Promet.[PrOznSled] = PrijemKontejneraVozStavke.Id " +
        " inner join TipKontenjera on TipKontenjera.Id = PrijemKontejneraVozStavke.TipKontejnera " +
-       " inner join VrstaRobe on VrstaRobe.Id = PrijemKontejneraVozStavke.VrstaRobe" +
+       " inner join NHM on NHM.Id = PrijemKontejneraVozStavke.VrstaRobe" +
         "  where Zatvoren = 0 and SkladisteU = " + Convert.ToInt32(cboSkladiste.SelectedValue);
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -749,19 +749,19 @@ group by substring(Naziv,1,3)
             if (usao == 1)
             {
                 var select = "  SELECT OtpremaKontejneraVozStavke.ID, OtpremaKontejneraVozStavke.RB, OtpremaKontejneraVozStavke.IDNadredjenog,  OtpremaKontejneraVozStavke.BrojKontejnera, OtpremaKontejneraVozStavke.Granica, "
-                         + " OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, Komitenti.Naziv AS Posiljalac, Komitenti_1.Naziv AS primalac, "
-                         + " Komitenti_2.Naziv AS Vlasnikkontejnera, " +
-                           " Komitenti_3.Naziv AS Organizator, " +
-                         "  TipKontenjera.Naziv AS TipKontejnera, VrstaRobe.Naziv AS VrstaRobe, OtpremaKontejneraVozStavke.Buking , OtpremaKontejneraVozStavke.StatusKontejnera, "
+                         + " OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, Partnerji.PaNaziv AS Posiljalac, Komitenti_1.PaNaziv AS primalac, "
+                         + " Komitenti_2.PaNaziv AS Vlasnikkontejnera, " +
+                           " Komitenti_3.PaNaziv AS Organizator, " +
+                         "  TipKontenjera.Naziv AS TipKontejnera, NHM.Naziv AS VrstaRobe, OtpremaKontejneraVozStavke.Buking , OtpremaKontejneraVozStavke.StatusKontejnera, "
                          + " OtpremaKontejneraVozStavke.BrojPlombe, OtpremaKontejneraVozStavke.BrojPlombe2, OtpremaKontejneraVozStavke.PlaniraniLager,"
                          + " OtpremaKontejneraVozStavke.Datum, OtpremaKontejneraVozStavke.Korisnik "
-                         + "FROM  Komitenti INNER JOIN "
-                         + " OtpremaKontejneraVozStavke ON Komitenti.ID = OtpremaKontejneraVozStavke.Posiljalac INNER JOIN "
-                         + " Komitenti AS Komitenti_1 ON OtpremaKontejneraVozStavke.Primalac = Komitenti_1.ID INNER JOIN "
-                         + " Komitenti AS Komitenti_2 ON OtpremaKontejneraVozStavke.VlasnikKontejnera = Komitenti_2.ID INNER JOIN "
-                           + " Komitenti AS Komitenti_3 ON OtpremaKontejneraVozStavke.Organizator = Komitenti_3.ID INNER JOIN "
+                         + "FROM  Partnerji INNER JOIN "
+                         + " OtpremaKontejneraVozStavke ON Partnerji.PaSifra = OtpremaKontejneraVozStavke.Posiljalac INNER JOIN "
+                         + " Partnerji AS Komitenti_1 ON OtpremaKontejneraVozStavke.Primalac = Komitenti_1.PaSifra INNER JOIN "
+                         + " Partnerji AS Komitenti_2 ON OtpremaKontejneraVozStavke.VlasnikKontejnera = Komitenti_2.PaSifra INNER JOIN "
+                           + " Partnerji AS Komitenti_3 ON OtpremaKontejneraVozStavke.Organizator = Komitenti_3.PaSifra INNER JOIN "
                           + "TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID INNER JOIN "
-                         + " VrstaRobe ON OtpremaKontejneraVozStavke.VrstaRobe = VrstaRobe.ID "
+                         + " NHM ON OtpremaKontejneraVozStavke.VrstaRobe = NHM.ID "
                                  + " where IdNadredjenog = " + Convert.ToInt32(cboOtpremnica.SelectedValue) + " order by RB";
 
                 var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -945,6 +945,7 @@ group by substring(Naziv,1,3)
             txtTara.Text = "0";
             txtNeto.Text = "0";
             txtBruto.Text = "0";
+            txtBR20.Value = 0;
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
@@ -955,22 +956,42 @@ group by substring(Naziv,1,3)
                     txtTara.Text = (Convert.ToDecimal(txtTara.Text) + Convert.ToDecimal(row.Cells[5].Value.ToString())).ToString();
                     txtNeto.Text = (Convert.ToDecimal(txtNeto.Text) + Convert.ToDecimal(row.Cells[6].Value.ToString())).ToString();
                     txtBruto.Text = (Convert.ToDecimal(txtBruto.Text) + Convert.ToDecimal(row.Cells[7].Value.ToString())).ToString();
+
+                    VratiUkupanBrojKontejnera();
                 }
             }
         }
+        private void VratiUkupanBrojKontejnera()
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
 
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select isnull(SUM(Broj20 * BrojSerija),0) as BrojKontejnera from VozSerijeKola " +
+            " inner join SerijeKola on SerijeKola.Id = VozSerijeKola.TipKontejnera where IDVoza =  " + Convert.ToInt32(cboVoz.SelectedValue) + " ", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtBR20.Value = Convert.ToInt32(dr["BrojKontejnera"].ToString());
+            }
+
+            con.Close();
+
+        }
         private void button3_Click(object sender, EventArgs e)
         {
             var select = "  SELECT DISTINCT Promet.[Id], Promet.[DatumTransakcije], Promet.[VrstaDokumenta] " +
       " ,Promet.[PrStDokumenta],Promet.[PrSifVrstePrometa],Promet.[BrojKontejnera] " +
       " ,Promet.[PrPrimKol] ,Promet.[SkladisteU], Skladista.Naziv as Skladiste " +
       " ,Promet.[LokacijaU] as LokacijaU,Pozicija.Oznaka ,Promet.[PrOznSled] " +
-      " ,Promet.[Datum] ,Promet.[Korisnik], TipKontenjera.Naziv, VrstaRobe.Nkm as NHM, VrstaRobe.Naziv  " +
+      " ,Promet.[Datum] ,Promet.[Korisnik], TipKontenjera.Naziv, NHM.ID as NHM, NHM.Naziv  " +
       " FROM [dbo].[Promet] inner join Skladista on Promet.SkladisteU = Skladista.ID " +
       " inner join Pozicija on Promet.LokacijaU = Pozicija.ID " +
      "   inner join PrijemKontejneraVozStavke on Promet.[PrOznSled] = PrijemKontejneraVozStavke.Id " +
      " inner join TipKontenjera on TipKontenjera.Id = PrijemKontejneraVozStavke.TipKontejnera " +
-     " inner join VrstaRobe on VrstaRobe.Id = PrijemKontejneraVozStavke.VrstaRobe" +
+     " inner join NHM on NHM.Id = PrijemKontejneraVozStavke.VrstaRobe" +
       "  where Zatvoren = 0 and Promet.[BrojKontejnera] = " + "'" + txtBrojKontejnera.Text + "'";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -1094,6 +1115,11 @@ group by substring(Naziv,1,3)
                 //do something else
             }
 
+
+        }
+
+        private void tsPrvi_Click(object sender, EventArgs e)
+        {
 
         }
     }
