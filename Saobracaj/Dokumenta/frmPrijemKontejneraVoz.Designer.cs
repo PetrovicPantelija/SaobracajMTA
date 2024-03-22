@@ -160,8 +160,8 @@
             this.toolStripButton4,
             this.toolStripButton7,
             this.toolStripButton6,
-            this.toolStripButton8,
-            this.toolStripButton9});
+            this.toolStripButton9,
+            this.toolStripButton8});
             this.btnManipulacija.Location = new System.Drawing.Point(0, 0);
             this.btnManipulacija.Name = "btnManipulacija";
             this.btnManipulacija.Size = new System.Drawing.Size(1333, 27);

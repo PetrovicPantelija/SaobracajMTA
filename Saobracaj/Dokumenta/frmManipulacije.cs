@@ -15,7 +15,7 @@ using System.Net.Mail;
 //Panta
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmManipulacije : Form
+    public partial class frmManipulacije : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmManipulacije";
         public bool Pravo;
@@ -289,7 +289,7 @@ namespace Saobracaj.Dokumenta
                 */
 
             }
-            var select3 = " Select Distinct ID, Naziv From Komitenti order by Naziv";
+            var select3 = " Select Distinct PaSifra, PaNaziv From Partnerji order by PaNaziv";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
@@ -299,8 +299,8 @@ namespace Saobracaj.Dokumenta
             var ds3 = new DataSet();
             dataAdapter3.Fill(ds3);
             cboPlatilac.DataSource = ds3.Tables[0];
-            cboPlatilac.DisplayMember = "Naziv";
-            cboPlatilac.ValueMember = "ID";
+            cboPlatilac.DisplayMember = "PaNaziv";
+            cboPlatilac.ValueMember = "PaSifra";
 
             RefreshManipulacije();
 
@@ -481,7 +481,7 @@ namespace Saobracaj.Dokumenta
  " CASE WHEN NaruceneManipulacije.Uradjeno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Uradjeno, " +
  " NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik,  NaruceneManipulacije.ID from NaruceneManipulacije " + 
 " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
-" inner join Komitenti on NaruceneManipulacije.Platilac = Komitenti.ID " +
+" inner join Partnerji on NaruceneManipulacije.Platilac = Partnerji.PaSifra " +
                " where Broj = " + Convert.ToInt32(txtSifra.Text);
 
                 var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -954,7 +954,7 @@ namespace Saobracaj.Dokumenta
             cboPrijemKamionom.DisplayMember = "Naziv";
             cboPrijemKamionom.ValueMember = "ID";
 
-            var select3 = " Select Distinct ID, Naziv From Komitenti order by Naziv";
+            var select3 = " Select Distinct PaSifra, PaNaziv From Partnerji order by PaNaziv";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
@@ -964,8 +964,8 @@ namespace Saobracaj.Dokumenta
             var ds3 = new DataSet();
             dataAdapter3.Fill(ds3);
             cboPlatilac.DataSource = ds3.Tables[0];
-            cboPlatilac.DisplayMember = "Naziv";
-            cboPlatilac.ValueMember = "ID";
+            cboPlatilac.DisplayMember = "PaNaziv";
+            cboPlatilac.ValueMember = "PaSifra";
 
             RefreshManipulacije();
 
@@ -1007,7 +1007,7 @@ namespace Saobracaj.Dokumenta
             cboPrijemKamionom.DisplayMember = "Naziv";
             cboPrijemKamionom.ValueMember = "ID";
 
-            var select3 = " Select Distinct ID, Naziv From Komitenti order by Naziv";
+            var select3 = " Select Distinct PaSifra, PaNaziv From Partnerji order by PaNaziv";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
@@ -1017,8 +1017,8 @@ namespace Saobracaj.Dokumenta
             var ds3 = new DataSet();
             dataAdapter3.Fill(ds3);
             cboPlatilac.DataSource = ds3.Tables[0];
-            cboPlatilac.DisplayMember = "Naziv";
-            cboPlatilac.ValueMember = "ID";
+            cboPlatilac.DisplayMember = "PaNaziv";
+            cboPlatilac.ValueMember = "PaSifra";
 
             RefreshManipulacije();
 

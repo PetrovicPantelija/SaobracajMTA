@@ -520,6 +520,12 @@ namespace Saobracaj.Dokumenta
                 txtKontaktOsoba.Text = detailForm.GetKontakt(Convert.ToInt32(cboPrimalac.SelectedValue));
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            txtRelacija1.Text = txtUtovarnoMesto.Text;
+            txtRelacija2.Text = txtIstovarnoMesto.Text;
+        }
     }
 }
 

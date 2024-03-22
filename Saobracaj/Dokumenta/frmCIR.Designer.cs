@@ -629,9 +629,9 @@
             this.dtpDatumIn.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatumIn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpDatumIn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDatumIn.Location = new System.Drawing.Point(229, 568);
+            this.dtpDatumIn.Location = new System.Drawing.Point(200, 568);
             this.dtpDatumIn.Name = "dtpDatumIn";
-            this.dtpDatumIn.Size = new System.Drawing.Size(127, 22);
+            this.dtpDatumIn.Size = new System.Drawing.Size(145, 22);
             this.dtpDatumIn.TabIndex = 250;
             this.dtpDatumIn.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.dtpDatumIn.ValueChanged += new System.EventHandler(this.dtpDatumOtpreme_ValueChanged);
@@ -641,7 +641,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(208, 549);
+            this.label16.Location = new System.Drawing.Point(197, 549);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(144, 16);
             this.label16.TabIndex = 251;

@@ -15,7 +15,7 @@ using System.Net.Mail;
 
 namespace TrackModal.Dokumeta
 {
-    public partial class frmBukingKolaKontrejner : Form
+    public partial class frmBukingKolaKontrejner : Syncfusion.Windows.Forms.Office2010Form
     {
         string KorisnikCene;
 
@@ -137,19 +137,19 @@ namespace TrackModal.Dokumeta
         private void button3_Click(object sender, EventArgs e)
         {
             var select = "  SELECT OtpremaKontejneraVozStavke.ID, OtpremaKontejneraVozStavke.RB, OtpremaKontejneraVozStavke.IDNadredjenog,  OtpremaKontejneraVozStavke.BrojKontejnera, OtpremaKontejneraVozStavke.BrojVagona, "
-                        + " OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, Komitenti.Naziv AS Posiljalac, Komitenti_1.Naziv AS primalac, "
-                        + " Komitenti_2.Naziv AS Vlasnikkontejnera, " +
-                          " Komitenti_3.Naziv AS Organizator, " +
-                        "  TipKontenjera.Naziv AS TipKontejnera, VrstaRobe.Naziv AS VrstaRobe, OtpremaKontejneraVozStavke.Buking , OtpremaKontejneraVozStavke.StatusKontejnera, "
+                        + " OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, Partnerji.PaNaziv AS Posiljalac, Komitenti_1.PaNaziv AS primalac, "
+                        + " Komitenti_2.PaNaziv AS Vlasnikkontejnera, " +
+                          " Komitenti_3.PaNaziv AS Organizator, " +
+                        "  TipKontenjera.Naziv AS TipKontejnera, NHM.Naziv AS VrstaRobe, OtpremaKontejneraVozStavke.Buking , OtpremaKontejneraVozStavke.StatusKontejnera, "
                         + " OtpremaKontejneraVozStavke.BrojPlombe, OtpremaKontejneraVozStavke.BrojPlombe2, OtpremaKontejneraVozStavke.PlaniraniLager,"
                         + " OtpremaKontejneraVozStavke.Datum, OtpremaKontejneraVozStavke.Korisnik "
-                        + "FROM  Komitenti INNER JOIN "
-                        + " OtpremaKontejneraVozStavke ON Komitenti.ID = OtpremaKontejneraVozStavke.Posiljalac INNER JOIN "
-                        + " Komitenti AS Komitenti_1 ON OtpremaKontejneraVozStavke.Primalac = Komitenti_1.ID INNER JOIN "
-                        + " Komitenti AS Komitenti_2 ON OtpremaKontejneraVozStavke.VlasnikKontejnera = Komitenti_2.ID INNER JOIN "
-                          + " Komitenti AS Komitenti_3 ON OtpremaKontejneraVozStavke.Organizator = Komitenti_3.ID INNER JOIN "
+                        + "FROM  Partnerji INNER JOIN "
+                        + " OtpremaKontejneraVozStavke ON Komitenti.PaSifra = OtpremaKontejneraVozStavke.Posiljalac INNER JOIN "
+                        + " Partnerji AS Komitenti_1 ON OtpremaKontejneraVozStavke.Primalac = Komitenti_1.PaSifra INNER JOIN "
+                        + " Partnerji AS Komitenti_2 ON OtpremaKontejneraVozStavke.VlasnikKontejnera = Partnerji_2.PaSifra INNER JOIN "
+                          + " Partnerji AS Komitenti_3 ON OtpremaKontejneraVozStavke.Organizator = Komitenti_3.PaSifra INNER JOIN "
                          + "TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID INNER JOIN "
-                        + " VrstaRobe ON OtpremaKontejneraVozStavke.VrstaRobe = VrstaRobe.ID "
+                        + " NHM ON OtpremaKontejneraVozStavke.VrstaRobe = NHM.ID "
                                 + " where IdNadredjenog = " + Convert.ToInt32(cboOtpremnica.SelectedValue) + " order by RB";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
