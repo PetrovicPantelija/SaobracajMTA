@@ -1,6 +1,7 @@
 ﻿using Microsoft.Office.Interop.Excel;
 using Newtonsoft.Json.Linq;
 using Org.BouncyCastle.Asn1.Ocsp;
+using Saobracaj.eDokumenta;
 using Saobracaj.Sifarnici;
 using Syncfusion.Windows.Forms.Tools;
 using System;
@@ -150,16 +151,24 @@ namespace Saobracaj.Pantheon_Export
                 {
                     ins.UpdNosiociTroskova(Convert.ToInt32(txtID.Text), txtNosilacTroska.Text.ToString().TrimEnd(), txtNazivNosioca.Text.ToString().TrimEnd(), cboGrupa.Text.ToString().TrimEnd(), Convert.ToInt32(cboKupac.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToInt32(cboOpportunity.SelectedValue), Convert.ToInt32(cboPosao.SelectedValue), korisnik);
 
-                    using (SqlConnection conn2 = new SqlConnection(connect))
+                    var query = "Select * from Predvidjanje Where NosilacTroska="+Convert.ToInt32(txtID.Text);
+                    SqlConnection conn = new SqlConnection(connect);
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    if (dr.HasRows)
                     {
-                        using (SqlCommand cmd2 = conn2.CreateCommand())
+                        using (SqlCommand cmd2 = conn.CreateCommand())
                         {
-                            cmd2.CommandText = "UPDATE Predvidjanja SET NajavaID = " + Convert.ToInt32(cboPosao.SelectedValue) + " Where NosialcTroska="+Convert.ToInt32(txtID.Text);
-                            conn2.Open();
+                            cmd2.CommandText = "UPDATE Predvidjanje SET NajavaID = " + Convert.ToInt32(cboPosao.SelectedValue) + " Where NosialcTroska=" + Convert.ToInt32(txtID.Text);
                             cmd2.ExecuteNonQuery();
-                            conn2.Close();
                         }
                     }
+                    else
+                    {
+                        return;
+                    }
+                    conn.Close();
                 }
                 else
                 {

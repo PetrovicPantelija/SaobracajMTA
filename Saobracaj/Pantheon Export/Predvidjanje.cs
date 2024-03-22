@@ -523,7 +523,6 @@ namespace Saobracaj.Pantheon_Export
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            txtIznos.Value=Convert.ToDecimal(txtKolicina.Value)*Convert.ToDecimal(numericUpDown1.Value);
         }
 
         private void txtIznos_ValueChanged(object sender, EventArgs e)
@@ -531,12 +530,30 @@ namespace Saobracaj.Pantheon_Export
         }
         private void Izracunaj()
         {
-            numericUpDown1.Value = Convert.ToDecimal(txtIznos.Value) / Convert.ToDecimal(txtKolicina.Value);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             Izracunaj();
+        }
+
+        private void txtKolicina_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtKolicina_Leave(object sender, EventArgs e)
+        {
+            numericUpDown1.Value=Convert.ToDecimal(txtIznos.Value)/(txtKolicina.Value);
+        }
+
+        private void numericUpDown1_Leave(object sender, EventArgs e)
+        {
+            txtIznos.Value = Convert.ToDecimal(txtKolicina.Value) * Convert.ToDecimal(numericUpDown1.Value);
+        }
+
+        private void txtIznos_Leave(object sender, EventArgs e)
+        {
+            numericUpDown1.Value = Convert.ToDecimal(txtIznos.Value) / Convert.ToDecimal(txtKolicina.Value);
         }
 
         private void button1_Click(object sender, EventArgs e)

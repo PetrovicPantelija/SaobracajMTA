@@ -247,9 +247,9 @@ namespace Saobracaj.Sifarnici
                         txtTelefon.Text = row.Cells[7].Value.ToString().Trim();
                         txtTR.Text = row.Cells[8].Value.ToString().Trim();
                         txtNapomena.Text = row.Cells[9].Value.ToString().Trim();
-                        txtMaticniBroj.Text = row.Cells[10].Value.ToString().Trim();
+                        txtMaticniBroj.Text = row.Cells[12].Value.ToString().Trim();
                         txtEmail.Text = row.Cells[11].Value.ToString().Trim();
-                        txtPIB.Text = row.Cells[12].Value.ToString().Trim();
+                        txtPIB.Text = row.Cells[10].Value.ToString().Trim();
                         txtUIC.Text = row.Cells[13].Value.ToString().Trim();
                         chkPrevoznik.Checked = Convert.ToBoolean(row.Cells[14].Value.ToString());
                         chkPosiljalac.Checked = Convert.ToBoolean(row.Cells[15].Value.ToString());
@@ -320,6 +320,8 @@ namespace Saobracaj.Sifarnici
                         if (row.Cells["Supplier"].Value.ToString() == "T") { cbDobavljac.Checked = true; } else { cbDobavljac.Checked = false; }
                         if (row.Cells["WayOfSale"].Value.ToString() == "Z") { cbObveznik.Checked= true; } else { cbObveznik.Checked = false; }
 
+                        cboValuta.SelectedValue = row.Cells["Currency"].Value;
+
                         RefreshDataGrid2(txtSifra.Text);
                     }
                 }
@@ -339,7 +341,7 @@ namespace Saobracaj.Sifarnici
         {
             var select = " Select PaSifra, Rtrim(PaNaziv) as PaNaziv, PaUlicaHisnaSt , PaKraj, PaDelDrzave, PaPostnaSt, PaSifDrzave, PaTelefon1, PaZiroRac, " +
                 " PaOpomba, PaDMatSt, PaEMail, PaEMatSt1, Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac ,  Brodar " +
-            " , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik,Logisticar,Kamioner,AgentBrodara,Buyer,Supplier,WayOfSale from Partnerji";
+            " , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik,Logisticar,Kamioner,AgentBrodara,Buyer,Supplier,WayOfSale,Currency from Partnerji";
             SqlConnection myConnection = new SqlConnection(connect);
             var c = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -420,7 +422,7 @@ namespace Saobracaj.Sifarnici
             dataGridView1.Columns[9].Width = 250;
 
             DataGridViewColumn column11 = dataGridView1.Columns[10];
-            dataGridView1.Columns[10].HeaderText = "Matični broj";
+            dataGridView1.Columns[10].HeaderText = "PIB";
             dataGridView1.Columns[10].Width = 70;
 
             DataGridViewColumn column12 = dataGridView1.Columns[11];
@@ -429,7 +431,7 @@ namespace Saobracaj.Sifarnici
 
 
             DataGridViewColumn column13 = dataGridView1.Columns[12];
-            dataGridView1.Columns[12].HeaderText = "PIB";
+            dataGridView1.Columns[12].HeaderText = "Matični broj";
             dataGridView1.Columns[12].Width = 70;
 
             DataGridViewColumn column14 = dataGridView1.Columns[13];
@@ -464,6 +466,8 @@ namespace Saobracaj.Sifarnici
             DataGridViewColumn column21 = dataGridView1.Columns[20];
             dataGridView1.Columns[20].HeaderText = "Izvoznik";
             dataGridView1.Columns[20].Width = 60;
+
+            dataGridView1.Columns["Currency"].Visible = false;
 
             if (Sifarnici.frmLogovanje.Firma == "TA")
             {
