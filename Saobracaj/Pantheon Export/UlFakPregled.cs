@@ -37,7 +37,7 @@ namespace Saobracaj.Pantheon_Export
             var select = "Select UlFak.ID,RTrim(Predvidjanje.PredvidjanjeId) as PredvidjanjeID,VrstaDokumenta,Tip,DatumPrijema,RTrim(UlFak.Valuta) as Valuta,UlFak.Kurs,FakturaBr,RTrim(PaNaziv) as Dobavljac," +
                 "RTrim(RacunDobavljaca) as RacunDobavljaca,DatumIzdavanja,DatumPDVa,DatumValute, (RTrim(DeIMe) + ' ' + RTrim(DePriimek)) as Referent, UlFak.Napomena, UlFak.Status,UlFak.CRMID,Predvidjanje,IDDobavljaca," +
                 "UlFak.Referent,(Select Sum(Cena) from UlFakPostav Where UlFakPostav.IDFak = UlFak.ID) as Iznos," +
-                "(Select Sum(IznosRSD) from UlFakPostav Where UlFakPostav.IDFak = UlFak.ID) as IznosRSD " +
+                "(Select Sum(IznosRSD) from UlFakPostav Where UlFakPostav.IDFak = UlFak.ID) as IznosRSD,UlFak.Korisnik " +
                 "From UlFak " +
                 "Inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID " +
                 "inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +

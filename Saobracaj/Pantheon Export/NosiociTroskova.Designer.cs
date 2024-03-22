@@ -77,7 +77,7 @@
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1443, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1482, 27);
             this.toolStrip1.TabIndex = 197;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -213,7 +213,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(14, 79);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1419, 666);
+            this.dataGridView1.Size = new System.Drawing.Size(1458, 666);
             this.dataGridView1.TabIndex = 199;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -264,7 +264,7 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Location = new System.Drawing.Point(24, 79);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1354, 666);
+            this.panel1.Size = new System.Drawing.Size(1425, 666);
             this.panel1.TabIndex = 203;
             // 
             // dataGridView2
@@ -276,7 +276,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(3, 35);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(1347, 628);
+            this.dataGridView2.Size = new System.Drawing.Size(1418, 628);
             this.dataGridView2.TabIndex = 1;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
@@ -285,7 +285,7 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.NavajoWhite;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(1240, 3);
+            this.button1.Location = new System.Drawing.Point(1311, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 26);
             this.button1.TabIndex = 0;
@@ -348,7 +348,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1443, 757);
+            this.ClientSize = new System.Drawing.Size(1482, 757);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.txtNazivNosioca);
             this.Controls.Add(this.txtNosilacTroska);

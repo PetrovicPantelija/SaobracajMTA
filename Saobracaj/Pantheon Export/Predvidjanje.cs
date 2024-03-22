@@ -1,5 +1,6 @@
 ﻿using GMap.NET.Internals;
 using Org.BouncyCastle.Asn1.X509.Qualified;
+using Saobracaj.Sifarnici;
 using Syncfusion.Windows.Forms.Tools;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace Saobracaj.Pantheon_Export
     {
         bool status = false;
         private string connect = Sifarnici.frmLogovanje.connectionString;
+        string korisnik = frmLogovanje.user;
         public Predvidjanje()
         {
             InitializeComponent();
@@ -30,7 +32,7 @@ namespace Saobracaj.Pantheon_Export
         private void FillGV()
         {
             var select = "select p.ID,p.IDp,RTrim(PredvidjanjeID) as PredvidjanjeID,p.PredvodjanjePoz,p.Datum,RTrim(PaNaziv) as Subjekt,RTrim(NosiociTroskova.NazivNosiocaTroska) as NT,RTrim(SifraSubjekta) as Odeljenje,Iznos," +
-                "Valuta,NosiociTroskova.NosilacTroska,p.Subjekt,RTrim(p.NosilacTroska) as NosilacTroska,p.Odeljenje,p.NajavaID,p.Napomena as Napomena,(RTrim(MpStaraSif) + '-' + RTrim(MpNaziv)) as Ident,JM,Kolicina,Ident,IznosRSD,p.Kurs " +
+                "Valuta,NosiociTroskova.NosilacTroska,p.Subjekt,RTrim(p.NosilacTroska) as NosilacTroska,p.Odeljenje,p.NajavaID,p.Napomena as Napomena,(RTrim(MpStaraSif) + '-' + RTrim(MpNaziv)) as Ident,JM,Kolicina,Ident,IznosRSD,p.Kurs,p.Korisnik " +
                 "From Predvidjanje p " +
                 "inner join Partnerji on p.Subjekt = Partnerji.PaSifra " +
                 "inner join NosiociTroskova on p.NosilacTroska = NosiociTroskova.ID " +
@@ -72,7 +74,7 @@ namespace Saobracaj.Pantheon_Export
             dataGridView1.Columns[19].Visible = false;
             dataGridView1.Columns[20].Visible = false;
 
-            var select2 ="select p.ID,p.IDp,PredvidjanjeID,p.PredvodjanjePoz,p.Datum,RTrim(PaNaziv) as PaNaziv,RTrim(NosiociTroskova.NazivNosiocaTroska) as NT,RTrim(SifraSubjekta) as Odeljenje,Iznos,Valuta,NosiociTroskova.NosilacTroska,p.Subjekt,p.NosilacTroska,p.Odeljenje,p.NajavaID,p.Status as Status,p.Napomena as Napomena,JM,Kolicina,Ident " +
+            var select2 ="select p.ID,p.IDp,PredvidjanjeID,p.PredvodjanjePoz,p.Datum,RTrim(PaNaziv) as PaNaziv,RTrim(NosiociTroskova.NazivNosiocaTroska) as NT,RTrim(SifraSubjekta) as Odeljenje,Iznos,Valuta,NosiociTroskova.NosilacTroska,p.Subjekt,p.NosilacTroska,p.Odeljenje,p.NajavaID,p.Status as Status,p.Napomena as Napomena,JM,Kolicina,Ident,p.Korisnik " +
                 "From Predvidjanje p  " +
                 "inner join Partnerji on p.Subjekt = Partnerji.PaSifra " +
                 "inner join NosiociTroskova on p.NosilacTroska = NosiociTroskova.ID " +
@@ -264,7 +266,7 @@ namespace Saobracaj.Pantheon_Export
             string valuta = cboValuta.SelectedValue.ToString();
             if (sifDr == 82 && valuta != "RSD")
             {
-                DialogResult result = MessageBox.Show("Za domaćeg dobavljača dokument treba biti u dinarima\nDa li želite da potvrdite dokument u valuti " + valuta, "Potvrda valute", MessageBoxButtons.YesNo);
+                DialogResult result = MessageBox.Show("Za domaćeg dobavljača dokument treba biti u dinarima\nDa li želite da potvrdite dokument u valuti " + valuta +" po kursu: "+txtKurs.Value.ToString().TrimEnd(), "Potvrda valute", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
                     if (status == true)
@@ -278,7 +280,7 @@ namespace Saobracaj.Pantheon_Export
                             Najava = Convert.ToInt32(dr[0].ToString());
                         }
                         iznosRSD = (Convert.ToDecimal(txtIznos.Value) * Convert.ToDecimal(txtKurs.Value));
-                        ins.InsPredvidjanje(IDp, txtPredvidjanje.Text.ToString().TrimEnd(), RB, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Text.ToString()), cboValuta.SelectedValue.ToString(), 0, Najava, Convert.ToInt32(cboIdent.SelectedValue), Convert.ToDecimal(txtKolicina.Value), cboJM.SelectedValue.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd(),Convert.ToDecimal(txtKurs.Value),iznosRSD);
+                        ins.InsPredvidjanje(IDp, txtPredvidjanje.Text.ToString().TrimEnd(), RB, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Text.ToString()), cboValuta.SelectedValue.ToString(), 0, Najava, Convert.ToInt32(cboIdent.SelectedValue), Convert.ToDecimal(txtKolicina.Value), cboJM.SelectedValue.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd(),Convert.ToDecimal(txtKurs.Value),iznosRSD,korisnik);
                     }
                     else
                     {
@@ -286,7 +288,7 @@ namespace Saobracaj.Pantheon_Export
                         {
                             iznosRSD = (Convert.ToDecimal(txtIznos.Value) * Convert.ToDecimal(txtKurs.Value));
                             ins.UpdPredvidjanje(Convert.ToInt32(txtID.Text), txtPredvidjanje.Text.ToString().TrimEnd(), RB, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue),
-                                Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Value), cboValuta.SelectedValue.ToString(), Najava, Convert.ToInt32(txtIDPredvidjanja.Text), Convert.ToInt32(cboIdent.SelectedValue), Convert.ToDecimal(txtKolicina.Value), cboJM.SelectedValue.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd(),Convert.ToDecimal(txtKurs.Value),iznosRSD);
+                                Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Value), cboValuta.SelectedValue.ToString(), Najava, Convert.ToInt32(txtIDPredvidjanja.Text), Convert.ToInt32(cboIdent.SelectedValue), Convert.ToDecimal(txtKolicina.Value), cboJM.SelectedValue.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd(),Convert.ToDecimal(txtKurs.Value),iznosRSD,korisnik);
                         }
                         else
                         {
@@ -312,14 +314,14 @@ namespace Saobracaj.Pantheon_Export
                     {
                         Najava = Convert.ToInt32(dr[0].ToString());
                     }
-                    ins.InsPredvidjanje(IDp, txtPredvidjanje.Text.ToString().TrimEnd(), RB, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Text.ToString()), cboValuta.SelectedValue.ToString(), 0, Najava, Convert.ToInt32(cboIdent.SelectedValue), Convert.ToDecimal(txtKolicina.Value), cboJM.SelectedValue.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd(),Convert.ToDecimal(txtKurs.Value),Convert.ToDecimal(txtIznos.Value));
+                    ins.InsPredvidjanje(IDp, txtPredvidjanje.Text.ToString().TrimEnd(), RB, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Text.ToString()), cboValuta.SelectedValue.ToString(), 0, Najava, Convert.ToInt32(cboIdent.SelectedValue), Convert.ToDecimal(txtKolicina.Value), cboJM.SelectedValue.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd(),Convert.ToDecimal(txtKurs.Value),Convert.ToDecimal(txtIznos.Value),korisnik);
                 }
                 else
                 {
                     if (StatusSelektovanog == 0)
                     {
                         ins.UpdPredvidjanje(Convert.ToInt32(txtID.Text), txtPredvidjanje.Text.ToString().TrimEnd(), RB, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue),
-                            Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Value), cboValuta.SelectedValue.ToString(), Najava, Convert.ToInt32(txtIDPredvidjanja.Text), Convert.ToInt32(cboIdent.SelectedValue), Convert.ToDecimal(txtKolicina.Value), cboJM.SelectedValue.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd(),Convert.ToInt32(txtKurs.Value),Convert.ToDecimal(txtIznos.Value));
+                            Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Value), cboValuta.SelectedValue.ToString(), Najava, Convert.ToInt32(txtIDPredvidjanja.Text), Convert.ToInt32(cboIdent.SelectedValue), Convert.ToDecimal(txtKolicina.Value), cboJM.SelectedValue.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd(),Convert.ToInt32(txtKurs.Value),Convert.ToDecimal(txtIznos.Value),korisnik);
                     }
                     else
                     {
@@ -519,6 +521,41 @@ namespace Saobracaj.Pantheon_Export
             FillGV();
         }
 
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtIznos_ValueChanged(object sender, EventArgs e)
+        {
+        }
+        private void Izracunaj()
+        {
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Izracunaj();
+        }
+
+        private void txtKolicina_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void txtKolicina_Leave(object sender, EventArgs e)
+        {
+            numericUpDown1.Value=Convert.ToDecimal(txtIznos.Value)/(txtKolicina.Value);
+        }
+
+        private void numericUpDown1_Leave(object sender, EventArgs e)
+        {
+            txtIznos.Value = Convert.ToDecimal(txtKolicina.Value) * Convert.ToDecimal(numericUpDown1.Value);
+        }
+
+        private void txtIznos_Leave(object sender, EventArgs e)
+        {
+            numericUpDown1.Value = Convert.ToDecimal(txtIznos.Value) / Convert.ToDecimal(txtKolicina.Value);
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             panel1.Visible = false;
@@ -553,7 +590,7 @@ namespace Saobracaj.Pantheon_Export
             GetNosiociInfo();
             iznosRSD = (Convert.ToDecimal(txtIznos.Value) * Convert.ToDecimal(txtKurs.Value));
             InsertPatheonExport ins = new InsertPatheonExport();
-            ins.InsPredvidjanje(Convert.ToInt32(txtIDPredvidjanja.Text),txtPredvidjanje.Text.ToString().TrimEnd(), poz, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Text.ToString()), cboValuta.SelectedValue.ToString(), 0,Najava,Convert.ToInt32(cboIdent.SelectedValue),Convert.ToDecimal(txtKolicina.Value),cboJM.SelectedValue.ToString().TrimEnd(),txtNapomena.Text.ToString().TrimEnd(),Convert.ToInt32(txtKurs.Value),iznosRSD);
+            ins.InsPredvidjanje(Convert.ToInt32(txtIDPredvidjanja.Text),txtPredvidjanje.Text.ToString().TrimEnd(), poz, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Text.ToString()), cboValuta.SelectedValue.ToString(), 0,Najava,Convert.ToInt32(cboIdent.SelectedValue),Convert.ToDecimal(txtKolicina.Value),cboJM.SelectedValue.ToString().TrimEnd(),txtNapomena.Text.ToString().TrimEnd(),Convert.ToInt32(txtKurs.Value),iznosRSD,korisnik);
             FillGV();
         }
     }

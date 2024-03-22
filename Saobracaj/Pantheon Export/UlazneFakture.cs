@@ -1,5 +1,6 @@
 ﻿using Org.BouncyCastle.Crypto;
 using Saobracaj.eDokumenta;
+using Saobracaj.Sifarnici;
 using Syncfusion.Windows.Forms.Chart;
 using Syncfusion.XPS;
 using System;
@@ -23,6 +24,7 @@ namespace Saobracaj.Pantheon_Export
         string VrstaDokumenta, TipDokumenta, Valuta, FakturaBr, RacunDobavljaca, Napomena;
         DateTime DatumPrijema, DatumIzdavanja, DatumPDVa, DatumValute;
         decimal Kurs;
+        string korisnik = frmLogovanje.user;
 
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
@@ -307,13 +309,13 @@ namespace Saobracaj.Pantheon_Export
                     {
                         ins.InsUlFak(Convert.ToInt32(txtID.Text), cboCRM.SelectedValue.ToString(), cboVrstaDok.Text.ToString().Substring(0, 2), txtBrFakture.Text.ToString(), Convert.ToInt32(cboDobavljac.SelectedValue), cboTip.Text.ToString().Substring(0, 4),
                             Convert.ToDateTime(dtPrijem.Value.ToString()), cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Text), txtRacunDobavljaca.Text.ToString(), Convert.ToDateTime(dtIzdavanje.Value.ToString()), Convert.ToDateTime(dtPDV.Value.ToString()),
-                            Convert.ToDateTime(dtValute.Value.ToString()), Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboCRM.SelectedValue), txtNapomena.Text.ToString().TrimEnd(), Convert.ToInt32(crmID));
+                            Convert.ToDateTime(dtValute.Value.ToString()), Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboCRM.SelectedValue), txtNapomena.Text.ToString().TrimEnd(), Convert.ToInt32(crmID),korisnik);
                     }
                     else
                     {
-                        ins.UpdUlFak(Convert.ToInt32(txtID.Text), cboCRM.SelectedValue.ToString(), cboVrstaDok.SelectedValue.ToString().Substring(0, 2), txtBrFakture.Text.ToString(), Convert.ToInt32(cboDobavljac.SelectedValue), cboTip.Text.ToString().Substring(0, 4),
+                        ins.UpdUlFak(Convert.ToInt32(txtID.Text), txtBrFakture.Text.ToString(), Convert.ToInt32(cboDobavljac.SelectedValue),
                             Convert.ToDateTime(dtPrijem.Value.ToString()), cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Text), txtRacunDobavljaca.Text.ToString(), Convert.ToDateTime(dtIzdavanje.Value.ToString()), Convert.ToDateTime(dtPDV.Value.ToString()),
-                            Convert.ToDateTime(dtValute.Value.ToString()), Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboCRM.SelectedValue), txtNapomena.Text.ToString().TrimEnd());
+                            Convert.ToDateTime(dtValute.Value.ToString()), Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboCRM.SelectedValue), txtNapomena.Text.ToString().TrimEnd(),korisnik);
                     }
                     FillGV();
                 }
@@ -328,13 +330,13 @@ namespace Saobracaj.Pantheon_Export
                 {
                     ins.InsUlFak(Convert.ToInt32(txtID.Text), cboCRM.SelectedValue.ToString(), cboVrstaDok.Text.ToString().Substring(0, 2), txtBrFakture.Text.ToString(), Convert.ToInt32(cboDobavljac.SelectedValue), cboTip.Text.ToString().Substring(0, 4),
                         Convert.ToDateTime(dtPrijem.Value.ToString()), cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Text), txtRacunDobavljaca.Text.ToString(), Convert.ToDateTime(dtIzdavanje.Value.ToString()), Convert.ToDateTime(dtPDV.Value.ToString()),
-                        Convert.ToDateTime(dtValute.Value.ToString()), Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboCRM.SelectedValue), txtNapomena.Text.ToString().TrimEnd(), Convert.ToInt32(crmID));
+                        Convert.ToDateTime(dtValute.Value.ToString()), Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboCRM.SelectedValue), txtNapomena.Text.ToString().TrimEnd(), Convert.ToInt32(crmID),korisnik);
                 }
                 else
                 {
-                    ins.UpdUlFak(Convert.ToInt32(txtID.Text), cboCRM.SelectedValue.ToString(), cboVrstaDok.SelectedValue.ToString().Substring(0, 2), txtBrFakture.Text.ToString(), Convert.ToInt32(cboDobavljac.SelectedValue), cboTip.Text.ToString().Substring(0, 4),
-                        Convert.ToDateTime(dtPrijem.Value.ToString()), cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Text), txtRacunDobavljaca.Text.ToString(), Convert.ToDateTime(dtIzdavanje.Value.ToString()), Convert.ToDateTime(dtPDV.Value.ToString()),
-                        Convert.ToDateTime(dtValute.Value.ToString()), Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboCRM.SelectedValue), txtNapomena.Text.ToString().TrimEnd());
+                    ins.UpdUlFak(Convert.ToInt32(txtID.Text), txtBrFakture.Text.ToString(), Convert.ToInt32(cboDobavljac.SelectedValue),
+                             Convert.ToDateTime(dtPrijem.Value.ToString()), cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Text), txtRacunDobavljaca.Text.ToString(), Convert.ToDateTime(dtIzdavanje.Value.ToString()), Convert.ToDateTime(dtPDV.Value.ToString()),
+                             Convert.ToDateTime(dtValute.Value.ToString()), Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboCRM.SelectedValue), txtNapomena.Text.ToString().TrimEnd(), korisnik);
                 }
                 FillGV();
             }
