@@ -536,6 +536,7 @@ namespace Saobracaj.Pantheon_Export
                     ins.VratiPredvidjenjeStatus(Convert.ToInt32(row.Cells[0].Value.ToString()));
                 }
             }
+            StatusSelektovanog = 0;
             FillGV();
         }
 

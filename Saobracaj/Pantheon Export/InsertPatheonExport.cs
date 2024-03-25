@@ -244,7 +244,7 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@Odeljenje", SqlDbType.Int) { Value = Odeljenje });
                             cmd.Parameters.Add(new SqlParameter("@OppID", SqlDbType.Int) { Value=OppID });
                             cmd.Parameters.Add(new SqlParameter("@Posao",SqlDbType.Int) { Value = Posao });
-                            cmd.Parameters.Add(new SqlParameter("@Korsinik", SqlDbType.NVarChar, 50) { Value = Korisnik });
+                            cmd.Parameters.Add(new SqlParameter("@Korisnik", SqlDbType.NVarChar, 50) { Value = Korisnik });
 
                             cmd.ExecuteNonQuery();
                         }
@@ -253,7 +253,7 @@ namespace Saobracaj.Pantheon_Export
                     catch (SqlException ex)
                     {
                         transaction.Rollback();
-                        MessageBox.Show("Neuspešan upis cena u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Neuspešan upis cena u bazu\n"+ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 conn.Close();
@@ -401,6 +401,38 @@ namespace Saobracaj.Pantheon_Export
                             cmd.CommandType = CommandType.StoredProcedure;
 
                             cmd.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = ID });
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (SqlException ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Neuspesan upis predvidjanja", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                conn.Close();
+            }
+        }
+
+        public void RefreshPredvidjanje(int Najava,int NT)
+        {
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "RefreshPredvidjanja";
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.Add(new SqlParameter("@PosaoID", SqlDbType.Int) { Value = Najava });
+                            cmd.Parameters.Add(new SqlParameter("@NT", SqlDbType.Int) { Value = NT });
 
                             cmd.ExecuteNonQuery();
                         }
