@@ -253,5 +253,10 @@ namespace Saobracaj.Administracija
             korisnikGrupa.DeleteKorisnikGrupa(combo_Korisnik.SelectedValue.ToString(), Convert.ToInt32(combo_Grupa.SelectedValue.ToString()));
             RefreshGV();
         }
+
+        private void frmDodeliGrupu_Load(object sender, EventArgs e)
+        {
+            //
+        }
     }
 }
