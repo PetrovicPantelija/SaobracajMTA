@@ -708,9 +708,6 @@ namespace Saobracaj.Sifarnici
             if (cbDobavljac.Checked) { Dobavljac = "T";Kupac = "F"; } else { Dobavljac = "F";Kupac = "T"; }
             if (cbObveznik.Checked) { Obveznik = "Z"; } else { Obveznik = "I"; }
 
-
-
-
                     if (status == true)
             {
               //  txtNaziv.Text,  txtUlica.Text,  txtMesto.Text,  txtOblast.Text, txtPosta.Text ,txtDrzava.Text, txtTelefon.Text, txtTR.Text ,  txtNapomena.Text,txtMaticniBroj.Text,  txtEmail.Text,  txtPIB.Text
@@ -720,7 +717,7 @@ namespace Saobracaj.Sifarnici
             else
             {
                 InsertPartnerji upd = new InsertPartnerji();
-                upd.UpdPartneri(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtOblast.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtPIB.Text, txtEmail.Text, txtMaticniBroj.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik, txtMUAdresa.Text, txtMUKontakt.Text, txtUICDrzava.Text, txtTR2.Text, txtFaks.Text, PomIzvoznik,PomLogisticar,PomKamioner,PomAgentBrodara,Kupac,Obveznik,Dobavljac);
+                upd.UpdPartneri(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtOblast.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtPIB.Text, txtEmail.Text, txtMaticniBroj.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik, txtMUAdresa.Text, txtMUKontakt.Text, txtUICDrzava.Text, txtTR2.Text, txtFaks.Text, PomIzvoznik, PomLogisticar, PomKamioner, PomAgentBrodara, Kupac, Obveznik, Dobavljac, cboValuta.SelectedValue.ToString());
             }
             RefreshDataGrid();
         }
