@@ -367,7 +367,7 @@ namespace Saobracaj.Sifarnici
             }
         }
 
-        public void UpdPartneri(int ID, string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB,  string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar, int Vlasnik, int Spediter, int Platilac, int Organizator, int Nalogodavac, int Uvoznik, string MUAdresa, string MUKontakt, string UICDrzava, string TR2, string Faks, int PomIzvoznik,int Logisticar,int Kamioner,int Agent,string Kupac, string Obveznik, string Dobavljac)
+        public void UpdPartneri(int ID, string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB,  string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar, int Vlasnik, int Spediter, int Platilac, int Organizator, int Nalogodavac, int Uvoznik, string MUAdresa, string MUKontakt, string UICDrzava, string TR2, string Faks, int PomIzvoznik,int Logisticar,int Kamioner,int Agent,string Kupac, string Obveznik, string Dobavljac,string Valuta)
         {
             SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -653,6 +653,14 @@ namespace Saobracaj.Sifarnici
             sqlParameter1.Direction = ParameterDirection.Input;
             sqlParameter1.Value = Dobavljac;
             myCommand.Parameters.Add(sqlParameter1);
+
+            SqlParameter sqlParameter3 = new SqlParameter();
+            sqlParameter3.ParameterName = "@Valuta";
+            sqlParameter3.SqlDbType = SqlDbType.Char;
+            sqlParameter3.Size = 3;
+            sqlParameter3.Direction = ParameterDirection.Input;
+            sqlParameter3.Value = Valuta;
+            myCommand.Parameters.Add(sqlParameter3);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

@@ -66,6 +66,7 @@ namespace Saobracaj.Pantheon_Export
             dtDatumUtovara.Value = Convert.ToDateTime(datumUtovara.ToShortDateString());
             txtMestoIstovara.Text = mestoIstovara.ToString();
             dtDatumIstovara.Value = Convert.ToDateTime(datumIstovara.ToShortDateString());
+            dtValuta.Value = Convert.ToDateTime(datumValute.ToShortDateString());
             cboReferent.SelectedValue= referent;
             cboIzjava.SelectedValue = izjava;
             txtNapomena.Text = napomena.ToString();
