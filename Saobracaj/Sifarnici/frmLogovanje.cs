@@ -48,29 +48,107 @@ namespace Saobracaj.Sifarnici
         }
         private void Main()
         {
+            panel1.Visible = false;
             string basedir = AppDomain.CurrentDomain.BaseDirectory;
             string[] txtFile = Directory.GetFiles(basedir, "*txt");
            // string company = "";
             foreach(string file in txtFile)
             {
-                company = Path.GetFileNameWithoutExtension(file);
+                int lenght = txtFile.Length;
+                if(lenght > 1)
+                {
+                    panel1.Visible = true;
+                }
+                else
+                {
+                    panel1.Visible = false;
+                    company = Path.GetFileNameWithoutExtension(file);
+                    var companyConfig = ConfigManager.GetCompanyConfiguration(company);
+                    connectionString = companyConfig.DB;
+                    Firma = companyConfig.Naziv;
+                    PIB = companyConfig.PIB;
+                    Naziv = companyConfig.Name_Value;
+                    Ulica = companyConfig.Ulica_Value;
+                    Grad = companyConfig.Grad_Value;
+                    PostanskiBR = companyConfig.PostanskiBroj_Value;
+                    Line = companyConfig.Line_Value;
+                    CompanyID = companyConfig.CompanyID_Value;
+                    MB = companyConfig.MB_Value;
+                    Email = companyConfig.EmailSender_Value;
+                    Skladiste = companyConfig.OsnovnoSkladiste;
+                    Lokacija = companyConfig.OsnovnaLokacija;
+
+                    FillCombo();
+                }
             }
-            var companyConfig = ConfigManager.GetCompanyConfiguration(company);
+        }
+        private void btn_TA_Click(object sender, EventArgs e)
+        {
+            var companyConfig = ConfigManager.GetCompanyConfiguration("TA");
             connectionString = companyConfig.DB;
             Firma = companyConfig.Naziv;
-            PIB= companyConfig.PIB;
+            PIB = companyConfig.PIB;
             Naziv = companyConfig.Name_Value;
             Ulica = companyConfig.Ulica_Value;
             Grad = companyConfig.Grad_Value;
             PostanskiBR = companyConfig.PostanskiBroj_Value;
             Line = companyConfig.Line_Value;
             CompanyID = companyConfig.CompanyID_Value;
-            MB= companyConfig.MB_Value;
+            MB = companyConfig.MB_Value;
             Email = companyConfig.EmailSender_Value;
             Skladiste = companyConfig.OsnovnoSkladiste;
             Lokacija = companyConfig.OsnovnaLokacija;
+
+            FillCombo();
+            panel1.Visible = false;
+
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
+
+            connectionStringsSection.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString = @"Data Source=192.168.129.7\;Initial Catalog=TESTIRANJE;User ID=sa;Password=duki7990;";
+            connectionStringsSection.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString = @"Data Source=192.168.129.7\;Initial Catalog=TESTIRANJE;User ID=sa;Password=duki7990;";
+            connectionStringsSection.ConnectionStrings["Saobracaj.Properties.Settings.NedraConnectionString"].ConnectionString = @"Data Source=192.168.129.7\;Initial Catalog=TESTIRANJE;User ID=sa;Password=duki7990";
+            connectionStringsSection.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString = @"Data Source=192.168.129.7\;Initial Catalog=TESTIRANJE;User ID=sa;Password=duki7990";
+            connectionStringsSection.ConnectionStrings["WindowsFormsApplication3.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString = @"Data Source=192.168.129.7\;Initial Catalog=TESTIRANJE;Persist Security Info=True;User ID=sa;Password=duki7990";
+
+            config.Save();
+            ConfigurationManager.RefreshSection("connectionStrings");
         }
-        private void frmLogovanje_Load(object sender, EventArgs e)
+
+        private void btn_DPT_Click(object sender, EventArgs e)
+        {
+            var companyConfig = ConfigManager.GetCompanyConfiguration("DPT");
+            connectionString = companyConfig.DB;
+            Firma = companyConfig.Naziv;
+            PIB = companyConfig.PIB;
+            Naziv = companyConfig.Name_Value;
+            Ulica = companyConfig.Ulica_Value;
+            Grad = companyConfig.Grad_Value;
+            PostanskiBR = companyConfig.PostanskiBroj_Value;
+            Line = companyConfig.Line_Value;
+            CompanyID = companyConfig.CompanyID_Value;
+            MB = companyConfig.MB_Value;
+            Email = companyConfig.EmailSender_Value;
+            Skladiste = companyConfig.OsnovnoSkladiste;
+            Lokacija = companyConfig.OsnovnaLokacija;
+
+            FillCombo();
+            panel1.Visible = false;
+
+
+            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
+
+            connectionStringsSection.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString = @"Data Source=192.168.129.7\;Initial Catalog=DPTDB;User ID=sa;Password=duki7990;";
+            connectionStringsSection.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString = @"Data Source=192.168.129.7\;Initial Catalog=DPTDB;User ID=sa;Password=duki7990;";
+            connectionStringsSection.ConnectionStrings["Saobracaj.Properties.Settings.NedraConnectionString"].ConnectionString = @"Data Source=192.168.129.7\;Initial Catalog=DPTDB;User ID=sa;Password=duki7990";
+            connectionStringsSection.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString = @"Data Source=192.168.129.7\;Initial Catalog=DPTDB;User ID=sa;Password=duki7990";
+            connectionStringsSection.ConnectionStrings["WindowsFormsApplication3.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString = @"Data Source=192.168.129.7\;Initial Catalog=DPTDB;Persist Security Info=True;User ID=sa;Password=duki7990";
+
+            config.Save();
+            ConfigurationManager.RefreshSection("connectionStrings");
+        }
+        private void FillCombo()
         {
             var select = " Select Distinct RTrim(Korisnik) as Korisnik From Korisnici";
             SqlConnection myConnection = new SqlConnection(connectionString);
@@ -82,6 +160,10 @@ namespace Saobracaj.Sifarnici
             cboKorisnik.DataSource = ds.Tables[0];
             cboKorisnik.DisplayMember = "Korisnik";
             cboKorisnik.ValueMember = "Korisnik";
+        }
+        private void frmLogovanje_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -156,8 +238,9 @@ namespace Saobracaj.Sifarnici
 
         private void button2_Click(object sender, EventArgs e)
         {
-            RadniNalozi.Medjuskladisni frm = new RadniNalozi.Medjuskladisni();
-            frm.Show();
+
         }
+
+
     }
 }

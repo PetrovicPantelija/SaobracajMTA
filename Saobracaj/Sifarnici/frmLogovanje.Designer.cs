@@ -36,17 +36,21 @@
             this.cboKorisnik = new MetroFramework.Controls.MetroComboBox();
             this.autoLabel3 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.gradientPanel1 = new Syncfusion.Windows.Forms.Tools.GradientPanel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.autoLabel4 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.autoLabel5 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btn_TA = new System.Windows.Forms.Button();
+            this.btn_DPT = new System.Windows.Forms.Button();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gradientPanel1)).BeginInit();
             this.gradientPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtPassword
@@ -132,17 +136,6 @@
             this.gradientPanel1.Size = new System.Drawing.Size(255, 424);
             this.gradientPanel1.TabIndex = 55;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(35, 135);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(185, 69);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // autoLabel4
             // 
             this.autoLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
@@ -160,6 +153,46 @@
             this.autoLabel5.Size = new System.Drawing.Size(56, 18);
             this.autoLabel5.TabIndex = 59;
             this.autoLabel5.Text = "English";
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.btn_TA);
+            this.panel1.Controls.Add(this.btn_DPT);
+            this.panel1.Location = new System.Drawing.Point(326, 87);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(282, 220);
+            this.panel1.TabIndex = 1;
+            // 
+            // btn_TA
+            // 
+            this.btn_TA.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btn_TA.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_TA.Image = global::Saobracaj.Properties.Resources.ta;
+            this.btn_TA.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_TA.Location = new System.Drawing.Point(65, 41);
+            this.btn_TA.Name = "btn_TA";
+            this.btn_TA.Size = new System.Drawing.Size(180, 54);
+            this.btn_TA.TabIndex = 1;
+            this.btn_TA.Text = "TA";
+            this.btn_TA.UseVisualStyleBackColor = false;
+            this.btn_TA.Click += new System.EventHandler(this.btn_TA_Click);
+            // 
+            // btn_DPT
+            // 
+            this.btn_DPT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(143)))), ((int)(((byte)(51)))), ((int)(((byte)(116)))));
+            this.btn_DPT.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_DPT.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btn_DPT.Image = global::Saobracaj.Properties.Resources.dpt;
+            this.btn_DPT.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
+            this.btn_DPT.Location = new System.Drawing.Point(65, 123);
+            this.btn_DPT.Name = "btn_DPT";
+            this.btn_DPT.Size = new System.Drawing.Size(180, 54);
+            this.btn_DPT.TabIndex = 0;
+            this.btn_DPT.Text = "DPT";
+            this.btn_DPT.UseVisualStyleBackColor = false;
+            this.btn_DPT.Click += new System.EventHandler(this.btn_DPT_Click);
             // 
             // pictureBox3
             // 
@@ -181,12 +214,24 @@
             this.pictureBox2.TabIndex = 56;
             this.pictureBox2.TabStop = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(35, 135);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(185, 69);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmLogovanje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(692, 424);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.autoLabel5);
             this.Controls.Add(this.autoLabel4);
             this.Controls.Add(this.pictureBox3);
@@ -205,9 +250,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gradientPanel1)).EndInit();
             this.gradientPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,5 +272,8 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel4;
         private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel5;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btn_DPT;
+        private System.Windows.Forms.Button btn_TA;
     }
 }
