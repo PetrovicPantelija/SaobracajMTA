@@ -85,6 +85,7 @@ namespace Saobracaj
                         EmailSender_Value = "office@transagent.rs",
                         OsnovnoSkladiste = "1",
                         OsnovnaLokacija = "1"
+                        //
 
                     };
                 case "KP":
