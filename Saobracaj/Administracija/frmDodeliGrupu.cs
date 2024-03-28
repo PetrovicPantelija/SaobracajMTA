@@ -256,7 +256,7 @@ namespace Saobracaj.Administracija
 
         private void frmDodeliGrupu_Load(object sender, EventArgs e)
         {
-            //
+            /////
         }
     }
 }
