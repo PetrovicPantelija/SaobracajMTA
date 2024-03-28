@@ -96,6 +96,44 @@ namespace Saobracaj
                 toolStripButton351.Visible = false;
             }
 
+            if (Sifarnici.frmLogovanje.Firma == "DPT")
+            {
+                toolStripEx39.Visible = false;
+                toolStripButton343.Visible = false;
+                toolStripButton338.Visible = false;
+                toolStripButton336.Visible = false;
+                toolStripButton337.Visible = false;
+                toolStripButton341.Visible = false;
+                toolStripButton342.Visible = false;
+                toolStripEx39.Visible = false;
+                toolStripButton344.Visible = false;
+                toolStripButton238.Visible = false;
+                toolStripButton237.Visible = false;
+
+                toolStripButton184.Visible = false;
+                toolStripButton186.Visible = false;
+                toolStripButton188.Visible = false;
+                toolStripButton189.Visible = false;
+                toolStripButton197.Visible = false;
+                toolStripButton217.Visible = false;
+                toolStripButton129.Visible = false;
+                toolStripButton264.Visible = false;
+                toolStripButton128.Visible = false;
+                toolStripButton194.Text = "Mesto utovara/istovara";
+
+                toolStripButton350.Visible = false;
+                toolStripButton350.Visible = false;
+                toolStripButton348.Visible = false;
+                toolStripButton347.Visible = false;
+                toolStripButton345.Visible = false;
+                toolStripButton342.Visible = false;
+                toolStripButton341.Visible = false;
+                toolStripButton346.Visible = false;
+                toolStripButton336.Visible = false;
+                toolStripButton337.Visible = false;
+                toolStripButton351.Visible = false;
+            }
+
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
