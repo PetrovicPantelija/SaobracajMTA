@@ -800,7 +800,60 @@ namespace Saobracaj.Dokumenta
            }
        }
 
-       public void UpdateZatvorenOtprema(string ID, DateTime DatumOtpreme, int BrojOtpremnice)
+        public void UpdateZatvorenPoBrojuKontejnera(string BrojKontejnera)
+        {
+            var s_connection = frmLogovanje.connectionString; ;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "UpdateZatvorenOtpremaPBRK";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@BrojKontejnera";
+            parameter.SqlDbType = SqlDbType.NVarChar;
+            parameter.Size = 20;
+            parameter.Direction = ParameterDirection.Input;
+            parameter.Value = BrojKontejnera;
+            myCommand.Parameters.Add(parameter);
+
+          
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Zatvaranje neuspešno");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Zatvaranje uspešno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void UpdateZatvorenOtprema(string ID, DateTime DatumOtpreme, int BrojOtpremnice)
        {
            var s_connection = frmLogovanje.connectionString;;
            SqlConnection myConnection = new SqlConnection(s_connection);

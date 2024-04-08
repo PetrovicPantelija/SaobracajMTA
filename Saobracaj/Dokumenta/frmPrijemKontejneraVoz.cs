@@ -3018,21 +3018,22 @@ namespace TrackModal.Dokumeta
                 int pom3 = 1;
                 string s1 = "PRI";
                 string s2 = "PRV";
-                ins.InsProm(Convert.ToDateTime(dtpVremeDolaska.Value), s1, SledeciBroj, row.Cells[3].Value.ToString(), s2, pom3, pom2, 11, 1366, pom2, pom1, row.Cells[0].Value.ToString(), Convert.ToDateTime(DateTime.Now), KorisnikCene, 0, 0, Convert.ToDateTime(DateTime.Now));
+                ins.InsProm(Convert.ToDateTime(dtpVremeDolaska.Value), s1, SledeciBroj, row.Cells[3].Value.ToString(), s2, pom3, pom2, 9, 1366, pom2, pom1, row.Cells[0].Value.ToString(), Convert.ToDateTime(DateTime.Now), KorisnikCene, 0, 0, Convert.ToDateTime(DateTime.Now));
               }
             }
         }
 
         private void toolStripButton8_Click(object sender, EventArgs e)
         {
+            //Tip dokumenta = 1 - Prijemnica,   za 0 je otpremnica
             if (chkVoz.Checked == true)
             {
-                Saobracaj.Dokumenta.frmPregledNarucenihManipulacija pnm = new Saobracaj.Dokumenta.frmPregledNarucenihManipulacija(KorisnikCene, Convert.ToInt32(txtSifra.Text), 1);
+                Saobracaj.Dokumenta.frmPregledNarucenihManipulacija pnm = new Saobracaj.Dokumenta.frmPregledNarucenihManipulacija(KorisnikCene, Convert.ToInt32(txtSifra.Text), 1,1);
                 pnm.Show();
             }
             else
             {
-                Saobracaj.Dokumenta.frmPregledNarucenihManipulacija pnm = new Saobracaj.Dokumenta.frmPregledNarucenihManipulacija(KorisnikCene, Convert.ToInt32(txtSifra.Text), 0);
+                Saobracaj.Dokumenta.frmPregledNarucenihManipulacija pnm = new Saobracaj.Dokumenta.frmPregledNarucenihManipulacija(KorisnikCene, Convert.ToInt32(txtSifra.Text), 0,1);
                 pnm.Show();
             }
         }

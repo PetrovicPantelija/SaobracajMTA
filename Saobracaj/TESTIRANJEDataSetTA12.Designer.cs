@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Saobracaj.TrackModal {
+namespace Saobracaj {
     
     
     /// <summary>
@@ -20,9 +20,9 @@ namespace Saobracaj.TrackModal {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("TestiranjeDataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("TESTIRANJEDataSetTA12")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class TestiranjeDataSet : global::System.Data.DataSet {
+    public partial class TESTIRANJEDataSetTA12 : global::System.Data.DataSet {
         
         private SelectDodatniListDataTable tableSelectDodatniList;
         
@@ -30,7 +30,7 @@ namespace Saobracaj.TrackModal {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public TestiranjeDataSet() {
+        public TESTIRANJEDataSetTA12() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace Saobracaj.TrackModal {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        protected TestiranjeDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected TESTIRANJEDataSetTA12(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -127,7 +127,7 @@ namespace Saobracaj.TrackModal {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            TestiranjeDataSet cln = ((TestiranjeDataSet)(base.Clone()));
+            TESTIRANJEDataSetTA12 cln = ((TESTIRANJEDataSetTA12)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -199,10 +199,10 @@ namespace Saobracaj.TrackModal {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "TestiranjeDataSet";
+            this.DataSetName = "TESTIRANJEDataSetTA12";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/TestiranjeDataSet.xsd";
-            this.EnforceConstraints = true;
+            this.Namespace = "http://tempuri.org/TESTIRANJEDataSetTA12.xsd";
+            this.EnforceConstraints = false;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableSelectDodatniList = new SelectDodatniListDataTable();
             base.Tables.Add(this.tableSelectDodatniList);
@@ -225,7 +225,7 @@ namespace Saobracaj.TrackModal {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            TestiranjeDataSet ds = new TestiranjeDataSet();
+            TESTIRANJEDataSetTA12 ds = new TESTIRANJEDataSetTA12();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -279,7 +279,7 @@ namespace Saobracaj.TrackModal {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class SelectDodatniListDataTable : global::System.Data.TypedTableBase<SelectDodatniListRow> {
             
-            private global::System.Data.DataColumn columnDatumOtpreme;
+            private global::System.Data.DataColumn columnVremeOdlaska;
             
             private global::System.Data.DataColumn columnStatusOtpreme;
             
@@ -305,8 +305,6 @@ namespace Saobracaj.TrackModal {
             
             private global::System.Data.DataColumn columnNeto;
             
-            private global::System.Data.DataColumn columnNKM;
-            
             private global::System.Data.DataColumn columnNaziv;
             
             private global::System.Data.DataColumn columnBrojPlombe;
@@ -315,11 +313,13 @@ namespace Saobracaj.TrackModal {
             
             private global::System.Data.DataColumn columnExpr1;
             
-            private global::System.Data.DataColumn columnVremeOdlaska;
-            
             private global::System.Data.DataColumn columnBrojPlombe2;
             
             private global::System.Data.DataColumn columnRB;
+            
+            private global::System.Data.DataColumn columnNKM;
+            
+            private global::System.Data.DataColumn columnID;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -356,9 +356,9 @@ namespace Saobracaj.TrackModal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn DatumOtpremeColumn {
+            public global::System.Data.DataColumn VremeOdlaskaColumn {
                 get {
-                    return this.columnDatumOtpreme;
+                    return this.columnVremeOdlaska;
                 }
             }
             
@@ -460,14 +460,6 @@ namespace Saobracaj.TrackModal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn NKMColumn {
-                get {
-                    return this.columnNKM;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn NazivColumn {
                 get {
                     return this.columnNaziv;
@@ -500,14 +492,6 @@ namespace Saobracaj.TrackModal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn VremeOdlaskaColumn {
-                get {
-                    return this.columnVremeOdlaska;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn BrojPlombe2Column {
                 get {
                     return this.columnBrojPlombe2;
@@ -519,6 +503,22 @@ namespace Saobracaj.TrackModal {
             public global::System.Data.DataColumn RBColumn {
                 get {
                     return this.columnRB;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn NKMColumn {
+                get {
+                    return this.columnNKM;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
                 }
             }
             
@@ -560,7 +560,7 @@ namespace Saobracaj.TrackModal {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public SelectDodatniListRow AddSelectDodatniListRow(
-                        System.DateTime DatumOtpreme, 
+                        System.DateTime VremeOdlaska, 
                         int StatusOtpreme, 
                         string RegBrKamiona, 
                         string ImeVozaca, 
@@ -573,17 +573,17 @@ namespace Saobracaj.TrackModal {
                         decimal SopstvenaMasa, 
                         decimal Tara, 
                         decimal Neto, 
-                        string NKM, 
                         string Naziv, 
                         string BrojPlombe, 
                         int Primalac, 
                         string Expr1, 
-                        System.DateTime VremeOdlaska, 
                         string BrojPlombe2, 
-                        int RB) {
+                        int RB, 
+                        int NKM, 
+                        int ID) {
                 SelectDodatniListRow rowSelectDodatniListRow = ((SelectDodatniListRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        DatumOtpreme,
+                        VremeOdlaska,
                         StatusOtpreme,
                         RegBrKamiona,
                         ImeVozaca,
@@ -596,14 +596,14 @@ namespace Saobracaj.TrackModal {
                         SopstvenaMasa,
                         Tara,
                         Neto,
-                        NKM,
                         Naziv,
                         BrojPlombe,
                         Primalac,
                         Expr1,
-                        VremeOdlaska,
                         BrojPlombe2,
-                        RB};
+                        RB,
+                        NKM,
+                        ID};
                 rowSelectDodatniListRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSelectDodatniListRow);
                 return rowSelectDodatniListRow;
@@ -626,7 +626,7 @@ namespace Saobracaj.TrackModal {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnDatumOtpreme = base.Columns["DatumOtpreme"];
+                this.columnVremeOdlaska = base.Columns["VremeOdlaska"];
                 this.columnStatusOtpreme = base.Columns["StatusOtpreme"];
                 this.columnRegBrKamiona = base.Columns["RegBrKamiona"];
                 this.columnImeVozaca = base.Columns["ImeVozaca"];
@@ -639,21 +639,21 @@ namespace Saobracaj.TrackModal {
                 this.columnSopstvenaMasa = base.Columns["SopstvenaMasa"];
                 this.columnTara = base.Columns["Tara"];
                 this.columnNeto = base.Columns["Neto"];
-                this.columnNKM = base.Columns["NKM"];
                 this.columnNaziv = base.Columns["Naziv"];
                 this.columnBrojPlombe = base.Columns["BrojPlombe"];
                 this.columnPrimalac = base.Columns["Primalac"];
                 this.columnExpr1 = base.Columns["Expr1"];
-                this.columnVremeOdlaska = base.Columns["VremeOdlaska"];
                 this.columnBrojPlombe2 = base.Columns["BrojPlombe2"];
                 this.columnRB = base.Columns["RB"];
+                this.columnNKM = base.Columns["NKM"];
+                this.columnID = base.Columns["ID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnDatumOtpreme = new global::System.Data.DataColumn("DatumOtpreme", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDatumOtpreme);
+                this.columnVremeOdlaska = new global::System.Data.DataColumn("VremeOdlaska", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVremeOdlaska);
                 this.columnStatusOtpreme = new global::System.Data.DataColumn("StatusOtpreme", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnStatusOtpreme);
                 this.columnRegBrKamiona = new global::System.Data.DataColumn("RegBrKamiona", typeof(string), null, global::System.Data.MappingType.Element);
@@ -678,8 +678,6 @@ namespace Saobracaj.TrackModal {
                 base.Columns.Add(this.columnTara);
                 this.columnNeto = new global::System.Data.DataColumn("Neto", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNeto);
-                this.columnNKM = new global::System.Data.DataColumn("NKM", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNKM);
                 this.columnNaziv = new global::System.Data.DataColumn("Naziv", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNaziv);
                 this.columnBrojPlombe = new global::System.Data.DataColumn("BrojPlombe", typeof(string), null, global::System.Data.MappingType.Element);
@@ -688,22 +686,24 @@ namespace Saobracaj.TrackModal {
                 base.Columns.Add(this.columnPrimalac);
                 this.columnExpr1 = new global::System.Data.DataColumn("Expr1", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnExpr1);
-                this.columnVremeOdlaska = new global::System.Data.DataColumn("VremeOdlaska", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnVremeOdlaska);
                 this.columnBrojPlombe2 = new global::System.Data.DataColumn("BrojPlombe2", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBrojPlombe2);
                 this.columnRB = new global::System.Data.DataColumn("RB", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRB);
+                this.columnNKM = new global::System.Data.DataColumn("NKM", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNKM);
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
                 this.columnRegBrKamiona.MaxLength = 20;
                 this.columnImeVozaca.MaxLength = 50;
                 this.columnRelacija.MaxLength = 200;
                 this.columnBrojKontejnera.MaxLength = 20;
                 this.columnBrojVagona.MaxLength = 20;
-                this.columnNKM.MaxLength = 8;
-                this.columnNaziv.MaxLength = 50;
+                this.columnNaziv.MaxLength = 200;
                 this.columnBrojPlombe.MaxLength = 30;
-                this.columnExpr1.MaxLength = 100;
+                this.columnExpr1.MaxLength = 1000;
                 this.columnBrojPlombe2.MaxLength = 30;
+                this.columnNKM.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -771,7 +771,7 @@ namespace Saobracaj.TrackModal {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                TestiranjeDataSet ds = new TestiranjeDataSet();
+                TESTIRANJEDataSetTA12 ds = new TESTIRANJEDataSetTA12();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -846,17 +846,17 @@ namespace Saobracaj.TrackModal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public System.DateTime DatumOtpreme {
+            public System.DateTime VremeOdlaska {
                 get {
                     try {
-                        return ((global::System.DateTime)(this[this.tableSelectDodatniList.DatumOtpremeColumn]));
+                        return ((global::System.DateTime)(this[this.tableSelectDodatniList.VremeOdlaskaColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DatumOtpreme\' in table \'SelectDodatniList\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'VremeOdlaska\' in table \'SelectDodatniList\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableSelectDodatniList.DatumOtpremeColumn] = value;
+                    this[this.tableSelectDodatniList.VremeOdlaskaColumn] = value;
                 }
             }
             
@@ -1054,22 +1054,6 @@ namespace Saobracaj.TrackModal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string NKM {
-                get {
-                    try {
-                        return ((string)(this[this.tableSelectDodatniList.NKMColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NKM\' in table \'SelectDodatniList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSelectDodatniList.NKMColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string Naziv {
                 get {
                     try {
@@ -1134,22 +1118,6 @@ namespace Saobracaj.TrackModal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public System.DateTime VremeOdlaska {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableSelectDodatniList.VremeOdlaskaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'VremeOdlaska\' in table \'SelectDodatniList\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSelectDodatniList.VremeOdlaskaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string BrojPlombe2 {
                 get {
                     try {
@@ -1182,14 +1150,41 @@ namespace Saobracaj.TrackModal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsDatumOtpremeNull() {
-                return this.IsNull(this.tableSelectDodatniList.DatumOtpremeColumn);
+            public int NKM {
+                get {
+                    return ((int)(this[this.tableSelectDodatniList.NKMColumn]));
+                }
+                set {
+                    this[this.tableSelectDodatniList.NKMColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetDatumOtpremeNull() {
-                this[this.tableSelectDodatniList.DatumOtpremeColumn] = global::System.Convert.DBNull;
+            public int ID {
+                get {
+                    try {
+                        return ((int)(this[this.tableSelectDodatniList.IDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ID\' in table \'SelectDodatniList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSelectDodatniList.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsVremeOdlaskaNull() {
+                return this.IsNull(this.tableSelectDodatniList.VremeOdlaskaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetVremeOdlaskaNull() {
+                this[this.tableSelectDodatniList.VremeOdlaskaColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1338,18 +1333,6 @@ namespace Saobracaj.TrackModal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsNKMNull() {
-                return this.IsNull(this.tableSelectDodatniList.NKMColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetNKMNull() {
-                this[this.tableSelectDodatniList.NKMColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsNazivNull() {
                 return this.IsNull(this.tableSelectDodatniList.NazivColumn);
             }
@@ -1398,18 +1381,6 @@ namespace Saobracaj.TrackModal {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsVremeOdlaskaNull() {
-                return this.IsNull(this.tableSelectDodatniList.VremeOdlaskaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetVremeOdlaskaNull() {
-                this[this.tableSelectDodatniList.VremeOdlaskaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsBrojPlombe2Null() {
                 return this.IsNull(this.tableSelectDodatniList.BrojPlombe2Column);
             }
@@ -1430,6 +1401,18 @@ namespace Saobracaj.TrackModal {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetRBNull() {
                 this[this.tableSelectDodatniList.RBColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsIDNull() {
+                return this.IsNull(this.tableSelectDodatniList.IDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetIDNull() {
+                this[this.tableSelectDodatniList.IDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1468,7 +1451,7 @@ namespace Saobracaj.TrackModal {
         }
     }
 }
-namespace Saobracaj.TrackModal.TestiranjeDataSetTableAdapters {
+namespace Saobracaj.TESTIRANJEDataSetTA12TableAdapters {
     
     
     /// <summary>
@@ -1592,7 +1575,7 @@ namespace Saobracaj.TrackModal.TestiranjeDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "SelectDodatniList";
-            tableMapping.ColumnMappings.Add("DatumOtpreme", "DatumOtpreme");
+            tableMapping.ColumnMappings.Add("VremeOdlaska", "VremeOdlaska");
             tableMapping.ColumnMappings.Add("StatusOtpreme", "StatusOtpreme");
             tableMapping.ColumnMappings.Add("RegBrKamiona", "RegBrKamiona");
             tableMapping.ColumnMappings.Add("ImeVozaca", "ImeVozaca");
@@ -1605,14 +1588,14 @@ namespace Saobracaj.TrackModal.TestiranjeDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("SopstvenaMasa", "SopstvenaMasa");
             tableMapping.ColumnMappings.Add("Tara", "Tara");
             tableMapping.ColumnMappings.Add("Neto", "Neto");
-            tableMapping.ColumnMappings.Add("NKM", "NKM");
             tableMapping.ColumnMappings.Add("Naziv", "Naziv");
             tableMapping.ColumnMappings.Add("BrojPlombe", "BrojPlombe");
             tableMapping.ColumnMappings.Add("Primalac", "Primalac");
             tableMapping.ColumnMappings.Add("Expr1", "Expr1");
-            tableMapping.ColumnMappings.Add("VremeOdlaska", "VremeOdlaska");
             tableMapping.ColumnMappings.Add("BrojPlombe2", "BrojPlombe2");
             tableMapping.ColumnMappings.Add("RB", "RB");
+            tableMapping.ColumnMappings.Add("NKM", "NKM");
+            tableMapping.ColumnMappings.Add("ID", "ID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -1632,20 +1615,20 @@ namespace Saobracaj.TrackModal.TestiranjeDataSetTableAdapters {
             this._commandCollection[0].CommandText = "dbo.SelectDodatniList";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(TestiranjeDataSet.SelectDodatniListDataTable dataTable, global::System.Nullable<int> ID) {
+        public virtual int Fill(TESTIRANJEDataSetTA12.SelectDodatniListDataTable dataTable, string ID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((ID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(ID.Value));
+            if ((ID == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(ID));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1658,15 +1641,15 @@ namespace Saobracaj.TrackModal.TestiranjeDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual TestiranjeDataSet.SelectDodatniListDataTable GetData(global::System.Nullable<int> ID) {
+        public virtual TESTIRANJEDataSetTA12.SelectDodatniListDataTable GetData(string ID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((ID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(ID.Value));
-            }
-            else {
+            if ((ID == null)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            TestiranjeDataSet.SelectDodatniListDataTable dataTable = new TestiranjeDataSet.SelectDodatniListDataTable();
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(ID));
+            }
+            TESTIRANJEDataSetTA12.SelectDodatniListDataTable dataTable = new TESTIRANJEDataSetTA12.SelectDodatniListDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1740,7 +1723,7 @@ namespace Saobracaj.TrackModal.TestiranjeDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private int UpdateUpdatedRows(TestiranjeDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(TESTIRANJEDataSetTA12 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1750,7 +1733,7 @@ namespace Saobracaj.TrackModal.TestiranjeDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private int UpdateInsertedRows(TestiranjeDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(TESTIRANJEDataSetTA12 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             return result;
         }
@@ -1760,7 +1743,7 @@ namespace Saobracaj.TrackModal.TestiranjeDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private int UpdateDeletedRows(TestiranjeDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(TESTIRANJEDataSetTA12 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             return result;
         }
@@ -1794,7 +1777,7 @@ namespace Saobracaj.TrackModal.TestiranjeDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public virtual int UpdateAll(TestiranjeDataSet dataSet) {
+        public virtual int UpdateAll(TESTIRANJEDataSetTA12 dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

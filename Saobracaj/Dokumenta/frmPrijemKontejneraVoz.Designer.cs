@@ -41,8 +41,8 @@
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
             this.label18 = new System.Windows.Forms.Label();
             this.dtpVremeDolaska = new System.Windows.Forms.DateTimePicker();
             this.cboBukingPrijema = new System.Windows.Forms.ComboBox();
@@ -164,7 +164,7 @@
             this.toolStripButton8});
             this.btnManipulacija.Location = new System.Drawing.Point(0, 0);
             this.btnManipulacija.Name = "btnManipulacija";
-            this.btnManipulacija.Size = new System.Drawing.Size(1333, 27);
+            this.btnManipulacija.Size = new System.Drawing.Size(1303, 27);
             this.btnManipulacija.TabIndex = 113;
             this.btnManipulacija.Text = "Manipulacije kontejnerom";
             // 
@@ -282,17 +282,6 @@
             this.toolStripButton6.Text = "Nalog za prevoz";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
-            // toolStripButton8
-            // 
-            this.toolStripButton8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.toolStripButton8.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
-            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton8.Name = "toolStripButton8";
-            this.toolStripButton8.Size = new System.Drawing.Size(125, 24);
-            this.toolStripButton8.Text = "Usluge pregled";
-            this.toolStripButton8.Click += new System.EventHandler(this.toolStripButton8_Click);
-            // 
             // toolStripButton9
             // 
             this.toolStripButton9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -303,6 +292,17 @@
             this.toolStripButton9.Size = new System.Drawing.Size(132, 24);
             this.toolStripButton9.Text = "Usluge raspored";
             this.toolStripButton9.Click += new System.EventHandler(this.toolStripButton9_Click);
+            // 
+            // toolStripButton8
+            // 
+            this.toolStripButton8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.toolStripButton8.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton8.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton8.Image")));
+            this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton8.Name = "toolStripButton8";
+            this.toolStripButton8.Size = new System.Drawing.Size(125, 24);
+            this.toolStripButton8.Text = "Usluge pregled";
+            this.toolStripButton8.Click += new System.EventHandler(this.toolStripButton8_Click);
             // 
             // label18
             // 
@@ -465,7 +465,7 @@
             this.txtPlaniraniLager.Name = "txtPlaniraniLager";
             this.txtPlaniraniLager.Size = new System.Drawing.Size(75, 22);
             this.txtPlaniraniLager.TabIndex = 200;
-            this.txtPlaniraniLager.Text = "0";
+            this.txtPlaniraniLager.Text = "1";
             // 
             // label14
             // 
@@ -764,7 +764,7 @@
             this.panel1.Controls.Add(this.label11);
             this.panel1.Location = new System.Drawing.Point(12, 142);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1307, 261);
+            this.panel1.Size = new System.Drawing.Size(1284, 261);
             this.panel1.TabIndex = 210;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -774,7 +774,7 @@
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(1021, 101);
             this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(273, 150);
+            this.dataGridView2.Size = new System.Drawing.Size(244, 150);
             this.dataGridView2.TabIndex = 243;
             // 
             // btnObrisiPostupak
@@ -782,7 +782,7 @@
             this.btnObrisiPostupak.BackColor = System.Drawing.Color.Firebrick;
             this.btnObrisiPostupak.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnObrisiPostupak.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnObrisiPostupak.Location = new System.Drawing.Point(1201, 63);
+            this.btnObrisiPostupak.Location = new System.Drawing.Point(1156, 61);
             this.btnObrisiPostupak.Name = "btnObrisiPostupak";
             this.btnObrisiPostupak.Size = new System.Drawing.Size(92, 32);
             this.btnObrisiPostupak.TabIndex = 244;
@@ -842,7 +842,7 @@
             this.cboPostupak.FormattingEnabled = true;
             this.cboPostupak.Location = new System.Drawing.Point(1021, 31);
             this.cboPostupak.Name = "cboPostupak";
-            this.cboPostupak.Size = new System.Drawing.Size(272, 24);
+            this.cboPostupak.Size = new System.Drawing.Size(227, 24);
             this.cboPostupak.TabIndex = 242;
             // 
             // button6
@@ -1191,7 +1191,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1296, 309);
+            this.tabPage1.Size = new System.Drawing.Size(1276, 309);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Stavke";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1206,7 +1206,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(4, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1286, 297);
+            this.dataGridView1.Size = new System.Drawing.Size(1266, 297);
             this.dataGridView1.TabIndex = 168;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -1220,7 +1220,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 409);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1304, 338);
+            this.tabControl1.Size = new System.Drawing.Size(1284, 338);
             this.tabControl1.TabIndex = 211;
             // 
             // txtImeVozaca
@@ -1317,7 +1317,7 @@
             this.txtNapomena.Location = new System.Drawing.Point(958, 55);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
-            this.txtNapomena.Size = new System.Drawing.Size(361, 39);
+            this.txtNapomena.Size = new System.Drawing.Size(338, 39);
             this.txtNapomena.TabIndex = 220;
             // 
             // label31
@@ -1348,7 +1348,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1333, 749);
+            this.ClientSize = new System.Drawing.Size(1303, 749);
             this.Controls.Add(this.cboPredefinisanePoruke);
             this.Controls.Add(this.label33);
             this.Controls.Add(this.chkCIRUradjen);

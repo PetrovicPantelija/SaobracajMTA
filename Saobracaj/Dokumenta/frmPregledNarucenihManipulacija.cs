@@ -29,6 +29,7 @@ namespace Saobracaj.Dokumenta
         string KorisnikCene;
         int pomPrijemnica = 0;
         int pomVozom = 0;
+        int pomTipDokumenta = 0;
       //  bool status = false;
         public frmPregledNarucenihManipulacija()
         {
@@ -47,7 +48,7 @@ namespace Saobracaj.Dokumenta
             PravoPristupa();
         }
 
-        public frmPregledNarucenihManipulacija(string Korisnik, int Prijemnica, int Vozom)
+        public frmPregledNarucenihManipulacija(string Korisnik, int Prijemnica, int Vozom, int TipDokumenta)
         {
             pomPrijemnica = Prijemnica;
             pomVozom = Vozom;
@@ -56,6 +57,8 @@ namespace Saobracaj.Dokumenta
             IdGrupe();
             IdForme();
             PravoPristupa();
+            pomTipDokumenta = TipDokumenta;
+            
         }
         public string IdGrupe()
         {
@@ -148,7 +151,18 @@ namespace Saobracaj.Dokumenta
         }
         private void frmPregledNarucenihManipulacija_Load(object sender, EventArgs e)
         {
-            if (pomPrijemnica > 1)
+            if (pomTipDokumenta == 1)
+            {
+                chkOtprema.Checked = false;
+                chkPrijem.Checked = true;
+            }
+
+            if (pomTipDokumenta == 0)
+            {
+                chkOtprema.Checked = true;
+                chkPrijem.Checked = false;
+            }
+            if (pomTipDokumenta == 1)
             {
                 if (pomVozom == 1)
                 {
@@ -165,17 +179,14 @@ namespace Saobracaj.Dokumenta
                     cboPrijemVozom.DataSource = ds.Tables[0];
                     cboPrijemVozom.DisplayMember = "Naziv";
                     cboPrijemVozom.ValueMember = "ID";
-                    chkPrijem.Checked = true;
+                    //chkPrijem.Checked = true;
                     cboPrijemKamionom.Enabled = false;
                     chkVoz.Checked = true;
                     if (chkPrijem.Checked == true)
                     {
                         RefreshDataGrid3();
                     }
-                    else
-                    {
-                        RefreshDataGrid4();
-                    }
+                    
 
                 }
                 else
@@ -209,37 +220,67 @@ namespace Saobracaj.Dokumenta
                     }
                 }
             }
-            else
+
+            //Iz otpreme
+           if (pomTipDokumenta == 0)
             {
-                var select = "SELECT PrijemKontejneraVoz.[ID], (CAst(PrijemKontejneraVoz.[ID] as nvarchar(5)) + '-' + Cast(Voz.BrVoza as nvarchar(6)) + ' ' + Voz.Relacija +  ' ' +  CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],104)      + ' '      + SUBSTRING(CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],108),1,5)) as Naziv " +
-                         " FROM [dbo].[PrijemKontejneraVoz]    inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza  where Vozom = 1 order by  PrijemKontejneraVoz.[DatumPrijema] desc, PrijemKontejneraVoz.[ID] ";
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-                SqlConnection myConnection = new SqlConnection(s_connection);
-                var c = new SqlConnection(s_connection);
-                var dataAdapter = new SqlDataAdapter(select, c);
+                if (pomVozom == 1)
+                {
+                    var select = "SELECT OtpremaKontejnera.[ID], (CAst(OtpremaKontejnera.[ID] as nvarchar(5)) + '-' + Cast(Voz.BrVoza as nvarchar(6)) + ' ' + Voz.Relacija +  ' ' +  CONVERT(varchar,OtpremaKontejnera.[DatumOtpreme],104)      + ' '      + SUBSTRING(CONVERT(varchar,OtpremaKontejnera.[DatumOtpreme],108),1,5)) as Naziv " +
+                            " FROM [dbo].[OtpremaKontejnera]    inner join Voz on Voz.ID = OtpremaKontejnera.IdVoza  where OtpremaKontejnera.[ID] = " + pomPrijemnica + "  order by  OtpremaKontejnera.[DatumOtpreme] desc, OtpremaKontejnera.[ID] ";
+                    var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                    SqlConnection myConnection = new SqlConnection(s_connection);
+                    var c = new SqlConnection(s_connection);
+                    var dataAdapter = new SqlDataAdapter(select, c);
 
-                var commandBuilder = new SqlCommandBuilder(dataAdapter);
-                var ds = new DataSet();
-                dataAdapter.Fill(ds);
-                cboPrijemVozom.DataSource = ds.Tables[0];
-                cboPrijemVozom.DisplayMember = "Naziv";
-                cboPrijemVozom.ValueMember = "ID";
-               
-                var select2 = "SELECT PrijemKontejneraVoz.[ID], (CAst(PrijemKontejneraVoz.[ID] as nvarchar(5)) + '-' + RegBrKamiona + ' ' + ImeVozaca +  ' ' +   CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],104)      + ' '      + SUBSTRING(CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],108),1,5)) as Naziv " +
-      " FROM [dbo].[PrijemKontejneraVoz]  where Vozom = 0  order by  PrijemKontejneraVoz.[DatumPrijema] desc, PrijemKontejneraVoz.[ID] ";
+                    var commandBuilder = new SqlCommandBuilder(dataAdapter);
+                    var ds = new DataSet();
+                    dataAdapter.Fill(ds);
+                    cboPrijemVozom.DataSource = ds.Tables[0];
+                    cboPrijemVozom.DisplayMember = "Naziv";
+                    cboPrijemVozom.ValueMember = "ID";
+                    //chkPrijem.Checked = true;
+                    cboPrijemKamionom.Enabled = false;
+                    chkVoz.Checked = true;
+                    if (chkPrijem.Checked == true)
+                    {
+                        RefreshDataGrid4();
+                    }
 
-                var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-                SqlConnection myConnection2 = new SqlConnection(s_connection2);
-                var c2 = new SqlConnection(s_connection2);
-                var dataAdapter2 = new SqlDataAdapter(select2, c2);
 
-                var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
-                var ds2 = new DataSet();
-                dataAdapter2.Fill(ds2);
-                cboPrijemKamionom.DataSource = ds2.Tables[0];
-                cboPrijemKamionom.DisplayMember = "Naziv";
-                cboPrijemKamionom.ValueMember = "ID";
+                }
+                else
+                {
+                    var select2 = "SELECT OtpremaKontejnera.[ID], (CAst(OtpremaKontejnera.[ID] as nvarchar(5)) + '-' + RegBrKamiona + ' ' + ImeVozaca +  ' ' +   CONVERT(varchar,OtpremaKontejnera.[DatumOtpreme],104)      + ' '      + SUBSTRING(CONVERT(varchar,OtpremaKontejnera.[DatumOtpreme],108),1,5)) as Naziv " +
+    " FROM [dbo].[OtpremaKontejnera]  where NacinOtpreme = 0  order by  OtpremaKontejnera.[DatumOtpreme] desc, OtpremaKontejnera.[ID] ";
+
+                    var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                    SqlConnection myConnection2 = new SqlConnection(s_connection2);
+                    var c2 = new SqlConnection(s_connection2);
+                    var dataAdapter2 = new SqlDataAdapter(select2, c2);
+
+                    var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
+                    var ds2 = new DataSet();
+                    dataAdapter2.Fill(ds2);
+                    cboPrijemKamionom.DataSource = ds2.Tables[0];
+                    cboPrijemKamionom.DisplayMember = "Naziv";
+                    cboPrijemKamionom.ValueMember = "ID";
+
+                   // chkPrijem.Checked = true;
+                    cboPrijemVozom.Enabled = false;
+
+                    chkVoz.Checked = false;
+                    if (chkPrijem.Checked == true)
+                    {
+                        RefreshDataGrid3();
+                    }
+                    else
+                    {
+                        RefreshDataGrid4();
+                    }
+                }
             }
+            
          
         }
 
@@ -398,7 +439,9 @@ namespace Saobracaj.Dokumenta
                     dataGridView3.Columns[11].Width = 80;
 
                 }
+
           
+
         }
 
         //Iz otpreme

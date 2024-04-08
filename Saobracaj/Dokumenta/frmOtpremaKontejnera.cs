@@ -332,7 +332,7 @@ namespace Saobracaj.Dokumeta
             dataGridView1.Columns[11].Width = 40;
 
             DataGridViewColumn column13 = dataGridView1.Columns[12];
-            dataGridView1.Columns[12].HeaderText = "Organizator";
+            dataGridView1.Columns[12].HeaderText = "Operater";
             dataGridView1.Columns[12].Width = 40;
 
             DataGridViewColumn column14 = dataGridView1.Columns[13];
@@ -479,7 +479,7 @@ namespace Saobracaj.Dokumeta
             dataGridView1.Columns[12].Width = 140;
 
             DataGridViewColumn column14 = dataGridView1.Columns[13];
-            dataGridView1.Columns[13].HeaderText = "Organizator";
+            dataGridView1.Columns[13].HeaderText = "Operater";
             dataGridView1.Columns[13].Width = 140;
 
           
@@ -1212,13 +1212,31 @@ namespace Saobracaj.Dokumeta
 
         private void toolStripButton1_Click(object sender, System.EventArgs e)
         {
+            DialogResult result = MessageBox.Show("Zatvaranje uraditi po broju kontejnera?", "Potvrda", MessageBoxButtons.YesNoCancel);
+            if (result == DialogResult.Yes)
+            {
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
+                    ins.UpdateZatvorenPoBrojuKontejnera(row.Cells[2].Value.ToString());
+                }
+            }
+            else if (result == DialogResult.No)
+            {
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
+                    ins.UpdateZatvorenOtprema(row.Cells[1].Value.ToString(), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToInt32(txtSifra.Text));
+                }
+            }
+            else
+            {
+                //...
+            }
+          
             //Zatvaranje kontejnera
             //
-            foreach (DataGridViewRow row in dataGridView2.Rows)
-            {
-                Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
-                ins.UpdateZatvorenOtprema(row.Cells[1].Value.ToString(), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToInt32(txtSifra.Text));
-            }
+          
         }
 
         private void toolStripButton2_Click(object sender, System.EventArgs e)
@@ -3309,12 +3327,12 @@ namespace Saobracaj.Dokumeta
         {
             if (chkVoz.Checked == true)
             {
-                Saobracaj.Dokumenta.frmPregledNarucenihManipulacija pnm = new Saobracaj.Dokumenta.frmPregledNarucenihManipulacija(KorisnikCene, Convert.ToInt32(txtSifra.Text), 1);
+                Saobracaj.Dokumenta.frmPregledNarucenihManipulacija pnm = new Saobracaj.Dokumenta.frmPregledNarucenihManipulacija(KorisnikCene, Convert.ToInt32(txtSifra.Text), 1,0);
                 pnm.Show();
             }
             else
             {
-                Saobracaj.Dokumenta.frmPregledNarucenihManipulacija pnm = new Saobracaj.Dokumenta.frmPregledNarucenihManipulacija(KorisnikCene, Convert.ToInt32(txtSifra.Text), 0);
+                Saobracaj.Dokumenta.frmPregledNarucenihManipulacija pnm = new Saobracaj.Dokumenta.frmPregledNarucenihManipulacija(KorisnikCene, Convert.ToInt32(txtSifra.Text), 0,0);
                 pnm.Show();
             }
         }

@@ -183,11 +183,13 @@ namespace Saobracaj.Izvoz
             {
                 InsertMestaUtovara ins = new InsertMestaUtovara();
                 ins.InsMestaUtovara(txtNaziv.Text);
+                status = false;
             }
             else
             {
                 InsertMestaUtovara upd = new InsertMestaUtovara();
                 upd.UpdMestaUtovara(Convert.ToInt32(txtID.Text), txtNaziv.Text);
+
             }
             RefreshDataGrid();
         }

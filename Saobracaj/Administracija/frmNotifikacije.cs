@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
-    public partial class frmNotifikacije : Form
+    public partial class frmNotifikacije : Syncfusion.Windows.Forms.Office2010Form
     {
         private string connect = frmLogovanje.connectionString;
         private string Kor = Sifarnici.frmLogovanje.user.ToString();
@@ -287,6 +287,11 @@ namespace Saobracaj.Administracija
             cbList_Korisnici.DataSource = ds.Tables[0];
             cbList_Korisnici.DisplayMember = "Korisnik";
             cbList_Korisnici.ValueMember = "DeSifra";
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            FillGV();
         }
     }
 }

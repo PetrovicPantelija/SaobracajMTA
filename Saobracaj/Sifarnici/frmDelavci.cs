@@ -13,7 +13,7 @@ using System.Configuration;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmDelavci : Form
+    public partial class frmDelavci : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmDelavci";
         public bool Pravo;
@@ -148,7 +148,7 @@ namespace Saobracaj.Sifarnici
                          "   CASE WHEN Delavci.Vozovodja   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Vozovodja  , " +
                           "   CASE WHEN Delavci.PregledacKola   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PregledacKola  , " +
                           "   CASE WHEN Delavci.Manevrista   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Manevrista  , " +
-                     "   DelovnaMesta.DmNaziv, Delavci.DeUlHisStBivS, Delavci.DeKrajBivS " +
+                     "   DelovnaMesta.DmNaziv, Delavci.DeUlHisStBivS, Delavci.DeKrajBivS, Delavci.DeStaraSif " +
                      " FROM         Delavci INNER JOIN " +
                      "  DelovnaMesta ON Delavci.DeSifDelMes = DelovnaMesta.DmSifra where DeSifStat <> 'P'";
 
@@ -256,6 +256,7 @@ namespace Saobracaj.Sifarnici
             chkPomocnik.Checked = false;
             chkPregledacKola.Checked = false;
             chkVozovodja.Checked = false;
+            txtERPID.Text = "";
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -311,12 +312,12 @@ namespace Saobracaj.Sifarnici
                // txtDeSifra.Text,  txtDePriimek.Text,  txtDeIme.Text, txtDeTelefon1.Text,  txtDeTelefon2.Text ,  txtDeEMail.Text , txtDeUlHisStBivS.Text , txtDeKrajBivS.Text , txtDeSifDelMes.Text ,  txtDeSifStat.Text ,  PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja)
                 //  txtNaziv.Text,  txtUlica.Text,  txtMesto.Text,  txtOblast.Text, txtPosta.Text ,txtDrzava.Text, txtTelefon.Text, txtTR.Text ,  txtNapomena.Text,txtMaticniBroj.Text,  txtEmail.Text,  txtPIB.Text
                 InsertDelavciMTA ins = new InsertDelavciMTA();
-                ins.InsDelavciMTA( txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.SelectedValue), txtDeSifStat.Text,  PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja);
+                ins.InsDelavciMTA( txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.SelectedValue), txtDeSifStat.Text,  PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja, txtERPID.Text);
             }
             else
             {
                 InsertDelavciMTA upd = new InsertDelavciMTA();
-                upd.UpdDelavciMTA(Convert.ToInt32(txtDeSifra.Text), txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.SelectedValue), txtDeSifStat.Text,  PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja);
+                upd.UpdDelavciMTA(Convert.ToInt32(txtDeSifra.Text), txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.SelectedValue), txtDeSifStat.Text,  PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja, txtERPID.Text);
             }
             RefreshDataGrid();
         }
@@ -334,7 +335,7 @@ namespace Saobracaj.Sifarnici
                          "   CASE WHEN Delavci.Vozovodja   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Vozovodja  , " +
                           "   CASE WHEN Delavci.PregledacKola   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PregledacKola  , " +
                           "   CASE WHEN Delavci.Manevrista   > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Manevrista  , " +
-                     "   DelovnaMesta.DmSifra, DelovnaMesta.DmNaziv, Delavci.DeUlHisStBivS, Delavci.DeKrajBivS, Delavci.DeSifStat " +
+                     "   DelovnaMesta.DmSifra, DelovnaMesta.DmNaziv, Delavci.DeUlHisStBivS, Delavci.DeKrajBivS, Delavci.DeSifStat, Delavci.DeStaraSif " +
                      " FROM         Delavci INNER JOIN " +
                      "  DelovnaMesta ON Delavci.DeSifDelMes = DelovnaMesta.DmSifra where DeSifStat <> 'P' ANd    Delavci.DeSifra=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -352,7 +353,7 @@ namespace Saobracaj.Sifarnici
                 txtDeKrajBivS.Text = dr["DeKrajBivS"].ToString().ToString();
                 txtDeSifDelMes.SelectedValue = Convert.ToInt32(dr["DmSifra"].ToString().ToString());
                 txtDeSifStat.Text = dr["DeSifStat"].ToString().ToString();
-
+                txtERPID.Text = dr["DeStaraSif"].ToString().ToString();
                 if (dr["Manevrista"].ToString().ToString() == "1")
                 {
                     chkManevrista.Checked = true;
@@ -509,7 +510,7 @@ namespace Saobracaj.Sifarnici
                 // txtDeSifra.Text,  txtDePriimek.Text,  txtDeIme.Text, txtDeTelefon1.Text,  txtDeTelefon2.Text ,  txtDeEMail.Text , txtDeUlHisStBivS.Text , txtDeKrajBivS.Text , txtDeSifDelMes.Text ,  txtDeSifStat.Text ,  PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja)
                 //  txtNaziv.Text,  txtUlica.Text,  txtMesto.Text,  txtOblast.Text, txtPosta.Text ,txtDrzava.Text, txtTelefon.Text, txtTR.Text ,  txtNapomena.Text,txtMaticniBroj.Text,  txtEmail.Text,  txtPIB.Text
                 InsertDelavciMTA ins = new InsertDelavciMTA();
-                ins.InsDelavciStariMTA(Convert.ToInt32(txtDeSifra.Text),   txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.SelectedValue), txtDeSifStat.Text, PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja);
+                ins.InsDelavciStariMTA(Convert.ToInt32(txtDeSifra.Text),   txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.SelectedValue), txtDeSifStat.Text, PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja, txtERPID.Text);
          
          
             RefreshDataGrid();

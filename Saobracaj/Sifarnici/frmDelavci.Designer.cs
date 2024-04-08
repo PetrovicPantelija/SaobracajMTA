@@ -62,6 +62,8 @@ namespace Saobracaj.Sifarnici
             this.chkPomocnik = new System.Windows.Forms.CheckBox();
             this.chkMasinovodja = new System.Windows.Forms.CheckBox();
             this.txtDeSifDelMes = new System.Windows.Forms.ComboBox();
+            this.txtERPID = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -178,9 +180,9 @@ namespace Saobracaj.Sifarnici
             // 
             // txtDeTelefon2
             // 
-            this.txtDeTelefon2.Location = new System.Drawing.Point(58, 143);
+            this.txtDeTelefon2.Location = new System.Drawing.Point(66, 143);
             this.txtDeTelefon2.Name = "txtDeTelefon2";
-            this.txtDeTelefon2.Size = new System.Drawing.Size(229, 20);
+            this.txtDeTelefon2.Size = new System.Drawing.Size(221, 20);
             this.txtDeTelefon2.TabIndex = 207;
             // 
             // label6
@@ -194,9 +196,9 @@ namespace Saobracaj.Sifarnici
             // 
             // txtDeTelefon1
             // 
-            this.txtDeTelefon1.Location = new System.Drawing.Point(58, 117);
+            this.txtDeTelefon1.Location = new System.Drawing.Point(66, 117);
             this.txtDeTelefon1.Name = "txtDeTelefon1";
-            this.txtDeTelefon1.Size = new System.Drawing.Size(229, 20);
+            this.txtDeTelefon1.Size = new System.Drawing.Size(221, 20);
             this.txtDeTelefon1.TabIndex = 205;
             // 
             // label5
@@ -210,9 +212,9 @@ namespace Saobracaj.Sifarnici
             // 
             // txtDeIme
             // 
-            this.txtDeIme.Location = new System.Drawing.Point(58, 91);
+            this.txtDeIme.Location = new System.Drawing.Point(66, 91);
             this.txtDeIme.Name = "txtDeIme";
-            this.txtDeIme.Size = new System.Drawing.Size(229, 20);
+            this.txtDeIme.Size = new System.Drawing.Size(221, 20);
             this.txtDeIme.TabIndex = 203;
             // 
             // label4
@@ -226,9 +228,9 @@ namespace Saobracaj.Sifarnici
             // 
             // txtDeSifra
             // 
-            this.txtDeSifra.Location = new System.Drawing.Point(58, 37);
+            this.txtDeSifra.Location = new System.Drawing.Point(66, 37);
             this.txtDeSifra.Name = "txtDeSifra";
-            this.txtDeSifra.Size = new System.Drawing.Size(106, 20);
+            this.txtDeSifra.Size = new System.Drawing.Size(98, 20);
             this.txtDeSifra.TabIndex = 201;
             // 
             // label3
@@ -242,9 +244,9 @@ namespace Saobracaj.Sifarnici
             // 
             // txtDePriimek
             // 
-            this.txtDePriimek.Location = new System.Drawing.Point(58, 65);
+            this.txtDePriimek.Location = new System.Drawing.Point(66, 65);
             this.txtDePriimek.Name = "txtDePriimek";
-            this.txtDePriimek.Size = new System.Drawing.Size(229, 20);
+            this.txtDePriimek.Size = new System.Drawing.Size(221, 20);
             this.txtDePriimek.TabIndex = 199;
             // 
             // lblNaziv
@@ -263,10 +265,10 @@ namespace Saobracaj.Sifarnici
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(10, 182);
+            this.dataGridView1.Location = new System.Drawing.Point(10, 203);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(838, 259);
+            this.dataGridView1.Size = new System.Drawing.Size(838, 238);
             this.dataGridView1.TabIndex = 216;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -360,12 +362,30 @@ namespace Saobracaj.Sifarnici
             this.txtDeSifDelMes.Size = new System.Drawing.Size(229, 21);
             this.txtDeSifDelMes.TabIndex = 226;
             // 
+            // txtERPID
+            // 
+            this.txtERPID.Location = new System.Drawing.Point(376, 162);
+            this.txtERPID.Name = "txtERPID";
+            this.txtERPID.Size = new System.Drawing.Size(150, 20);
+            this.txtERPID.TabIndex = 227;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(304, 162);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(43, 13);
+            this.label8.TabIndex = 228;
+            this.label8.Text = "ERP ID";
+            // 
             // frmDelavci
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(865, 453);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtERPID);
             this.Controls.Add(this.txtDeSifDelMes);
             this.Controls.Add(this.chkManevrista);
             this.Controls.Add(this.chkPregledacKola);
@@ -440,5 +460,7 @@ namespace Saobracaj.Sifarnici
         private System.Windows.Forms.CheckBox chkMasinovodja;
         private System.Windows.Forms.ComboBox txtDeSifDelMes;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.TextBox txtERPID;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -26,8 +26,19 @@ namespace Saobracaj.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.6\\SQLEXPRESS2008K;Initial Catalog=TESTIRANJE;User ID=sa;Pas" +
-            "sword=4321;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.129.7\\;Initial Catalog=TESTIRANJE;User ID=sa;Password=duki799" +
+            "0")]
+        public string NedraConnectionString {
+            get {
+                return ((string)(this["NedraConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.129.7\\;Initial Catalog=TESTIRANJE;User ID=sa;Password=duki799" +
+            "0")]
         public string TESTIRANJEConnectionString {
             get {
                 return ((string)(this["TESTIRANJEConnectionString"]));
@@ -37,11 +48,11 @@ namespace Saobracaj.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.1.6\\SQLEXPRESS2008K;Initial Catalog=TESTIRANJE;User ID=sa;Pas" +
-            "sword=duki7990")]
-        public string NedraConnectionString {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.129.7\\;Initial Catalog=TESTIRANJE;User ID=sa;Password=duki799" +
+            "0")]
+        public string Perftech_BeogradConnectionString {
             get {
-                return ((string)(this["NedraConnectionString"]));
+                return ((string)(this["Perftech_BeogradConnectionString"]));
             }
         }
     }

@@ -414,6 +414,7 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -2651,6 +2652,15 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
+    <Compile Include="TESTIRANJEDataSetTA12.cs">
+      <DependentUpon>TESTIRANJEDataSetTA12.xsd</DependentUpon>
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="TESTIRANJEDataSetTA12.Designer.cs">
+      <DependentUpon>TESTIRANJEDataSetTA12.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="Testiranje\frmGenerisanjeTestaKorisnik.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3128,6 +3138,9 @@
     </Compile>
     <Compile Include="TrackModal\Sifarnici\PrvaProbaForma.Designer.cs">
       <DependentUpon>PrvaProbaForma.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TrackModal\TestiranjeDataSet.cs">
+      <DependentUpon>TestiranjeDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="TrackModal\TestiranjeDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -4009,6 +4022,8 @@
     <EmbeddedResource Include="Izvestaji\rptCIR.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptCIRGreske.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptCIRTA.rdlc" />
+    <EmbeddedResource Include="Izvestaji\rptDodatniList.rdlc" />
+    <EmbeddedResource Include="Izvestaji\rptDodatniListTA.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptEvidencijaKvarova.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptMUPDozvola.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptNalogZaPrevozTA.rdlc" />
@@ -4623,7 +4638,6 @@
     <EmbeddedResource Include="TrackModal\Izvestaji\frmZadrzavanjeKotejneraPun.resx">
       <DependentUpon>frmZadrzavanjeKotejneraPun.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TrackModal\Izvestaji\rptDodatniList.rdlc" />
     <EmbeddedResource Include="TrackModal\Izvestaji\rptFakturisanjeManipulacija.rdlc" />
     <EmbeddedResource Include="TrackModal\Izvestaji\rptKvarovi.rdlc" />
     <EmbeddedResource Include="TrackModal\Izvestaji\rptSelectTransport1.rdlc" />
@@ -5101,6 +5115,17 @@
     </None>
     <None Include="TESTIRANJEDataSet1TA.xss">
       <DependentUpon>TESTIRANJEDataSet1TA.xsd</DependentUpon>
+    </None>
+    <None Include="TESTIRANJEDataSetTA12.xsc">
+      <DependentUpon>TESTIRANJEDataSetTA12.xsd</DependentUpon>
+    </None>
+    <None Include="TESTIRANJEDataSetTA12.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TESTIRANJEDataSetTA12.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TESTIRANJEDataSetTA12.xss">
+      <DependentUpon>TESTIRANJEDataSetTA12.xsd</DependentUpon>
     </None>
     <None Include="TrackModalDataSet111.xsc">
       <DependentUpon>TrackModalDataSet111.xsd</DependentUpon>

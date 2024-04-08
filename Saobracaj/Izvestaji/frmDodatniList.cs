@@ -29,23 +29,30 @@ namespace Saobracaj.Izvestaji
 
         private void btnStampa_Click(object sender, EventArgs e)
         {
-            Saobracaj.TrackModal.TestiranjeDataSetTableAdapters.SelectDodatniListTableAdapter ta = new Saobracaj.TrackModal.TestiranjeDataSetTableAdapters.SelectDodatniListTableAdapter();
+            Saobracaj.TESTIRANJEDataSetTA12TableAdapters.SelectDodatniListTableAdapter ta = new Saobracaj.TESTIRANJEDataSetTA12TableAdapters.SelectDodatniListTableAdapter();
 
-            Saobracaj.TrackModal.TestiranjeDataSet.SelectDodatniListDataTable dt = new Saobracaj.TrackModal.TestiranjeDataSet.SelectDodatniListDataTable();
 
-            ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
-            ReportDataSource rds = new ReportDataSource();
-            rds.Name = "DataSet1";
-            rds.Value = dt;
+            Saobracaj.TESTIRANJEDataSetTA12.SelectDodatniListDataTable dt = new Saobracaj.TESTIRANJEDataSetTA12.SelectDodatniListDataTable();
+            try
+            {
+                ta.Fill(dt, txtSifra.Text);
+                ReportDataSource rds = new ReportDataSource();
+                rds.Name = "DataSet1";
+                rds.Value = dt;
 
-            ReportParameter[] par = new ReportParameter[1];
-            par[0] = new ReportParameter("ID", txtSifra.Text);
+                ReportParameter[] par = new ReportParameter[1];
+                par[0] = new ReportParameter("ID", txtSifra.Text);
 
-            reportViewer1.LocalReport.DataSources.Clear();
-            reportViewer1.LocalReport.ReportPath = "rptDodatniList.rdlc";
-            reportViewer1.LocalReport.SetParameters(par);
-            reportViewer1.LocalReport.DataSources.Add(rds);
-            reportViewer1.RefreshReport();
+                reportViewer1.LocalReport.DataSources.Clear();
+                reportViewer1.LocalReport.ReportPath = "rptDodatniList.rdlc";
+                reportViewer1.LocalReport.SetParameters(par);
+                reportViewer1.LocalReport.DataSources.Add(rds);
+                reportViewer1.RefreshReport();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void frmDodatniList_Load(object sender, EventArgs e)
