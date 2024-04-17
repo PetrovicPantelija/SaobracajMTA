@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 
 namespace Saobracaj.Izvoz
 {
-    public partial class frmIzvoz : Form
+    public partial class frmIzvoz : Syncfusion.Windows.Forms.Office2010Form
     {
         float firstWidth;
         float firstHeight;

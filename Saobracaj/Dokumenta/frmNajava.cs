@@ -149,7 +149,7 @@ namespace Saobracaj.Dokumenta
             Arhiv = ArhivskiPodaci;
             IdGrupe();
             IdForme();
-            PravoPristupa();
+             PravoPristupa();
             RefreshDataGrid();
             tabNajave.TabPages.Remove(tabPage3);
             tabNajave.TabPages.Remove(tabPage4);

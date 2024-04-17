@@ -15,7 +15,7 @@ using System.Net.Mail;
 
 namespace Saobracaj.RadniNalozi
 {
-    public partial class frmDodelaSkladista : Form
+    public partial class frmDodelaSkladista : Syncfusion.Windows.Forms.Office2010Form
     {
         int TipRadnogNaloga = 0;
         public frmDodelaSkladista()
@@ -30,11 +30,23 @@ namespace Saobracaj.RadniNalozi
             textBox1.Text = Prijem;
             if (TipRN == 1)
             {
-                label5.Text = "Prijem ID";
+                label5.Text = "GATE IN VOZ";
+                chkGateInVoz.Checked = true;
             };
+            if (TipRN == 2)
+            {
+                label5.Text = "GATE IN KAMION - RN4";
+                chkGAteInKamion.Checked = true;
+
+            }
+            if (TipRN == 3)
+            {
+                label5.Text = "CIR";
+                chkCIR.Checked = true;
+            }
             if (TipRN == 4)
             {
-                label5.Text = "Prijem ID";
+                label5.Text = "GATE IN KAMION S1";
             };
             if (TipRN == 6)
             {
@@ -91,6 +103,37 @@ namespace Saobracaj.RadniNalozi
    " inner join Partnerji p2 on p2.PaSifra = RNPrijemVoza.NazivBrodara " +
    " inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge where RNPrijemVoza.PrijemID = " + textBox1.Text + 
    " order by RNPrijemVoza.ID  ";
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = ds.Tables[0];
+
+            dataGridView2.BorderStyle = BorderStyle.None;
+            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView2.BackgroundColor = Color.White;
+
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+        }
+
+        private void FillDGRN2()
+        {
+            // Prijem platforme kalmarista
+            var select = "select * from RnPrijemPlatforme " +
+   " order by RnPrijemPlatforme.ID  ";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -238,6 +281,56 @@ namespace Saobracaj.RadniNalozi
                 FillDGRN1();
 
             }
+            // Dodeljujemo privremeno skladiste na koje Kalmarista spusta
+            if (TipRadnogNaloga == 2)
+            {
+                //Prijem voza
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    InsertRN ins = new InsertRN();
+
+                    if (row.Selected == true)
+                        foreach (DataGridViewRow row2 in dataGridView2.Rows)
+                        {
+                            if (row2.Selected == true)
+                            {
+                                ins.UpdateRN4PrivremenoSkladiste(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row2.Cells[0].Value.ToString()));
+                            }
+
+
+                        }
+
+                    // ins.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
+                }
+                FillDGRN2(); //
+
+            }
+
+            if (TipRadnogNaloga == 3)
+            {
+                //Prijem voza
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    InsertRN ins = new InsertRN();
+
+                    if (row.Selected == true)
+                        foreach (DataGridViewRow row2 in dataGridView2.Rows)
+                        {
+                            if (row2.Selected == true)
+                            {
+                                ins.UpdateRN4SkladisteIzCIRA(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row2.Cells[0].Value.ToString()));
+                            }
+
+
+                        }
+
+                    // ins.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
+                }
+                FillDGRN2(); //
+
+            }
+
+
             if (TipRadnogNaloga == 4)
             {
                 //Napisano za PrijemPlatvorme Uvoz

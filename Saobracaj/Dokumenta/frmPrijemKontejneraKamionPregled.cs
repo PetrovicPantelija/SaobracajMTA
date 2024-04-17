@@ -15,7 +15,7 @@ using System.Configuration;
 
 namespace TrackModal.Dokumeta
 {
-    public partial class frmPrijemKontejneraKamionPregled : Form
+    public partial class frmPrijemKontejneraKamionPregled : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmPrijemKontejneraKamionPregled";
         public bool Pravo;
@@ -205,7 +205,7 @@ namespace TrackModal.Dokumeta
 "  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
 " FOR XML PATH('')), 1, 1, ''  ) As Skupljen) " +
 " as Kontejner " +
-              " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0";
+              " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 order by ID desc";
 
 
 
@@ -273,7 +273,7 @@ namespace TrackModal.Dokumeta
  "  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
  " FOR XML PATH('')), 1, 1, ''  ) As Skupljen) " +
  " as Kontejner " +
-               "FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 and n1.StatusPrijema = 0";
+               "FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 and n1.StatusPrijema = 0 Order by ID Desc";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -332,7 +332,7 @@ namespace TrackModal.Dokumeta
  "  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
  " FOR XML PATH('')), 1, 1, ''  ) As Skupljen) " +
  " as Kontejner " +
-               " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 and n1.StatusPrijema = 1";
+               " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 and n1.StatusPrijema = 1 Order by ID Desc";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -500,7 +500,7 @@ namespace TrackModal.Dokumeta
  "  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
  " FOR XML PATH('')), 1, 1, ''  ) As Skupljen) " +
  " as Kontejner " +
-               " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 and n1.REgBrKamiona = '" + txtRegBrKamiona.Text + "'";
+               " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 and n1.REgBrKamiona = '" + txtRegBrKamiona.Text + "' Order by ID Desc";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);

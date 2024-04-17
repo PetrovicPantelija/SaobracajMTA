@@ -113,7 +113,7 @@ namespace Saobracaj.RadniNalozi
 
         private void FillGVPoVozu()
         {
-            var select = "select RNPrijemVoza.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, DatumRasporeda, NalogIzdao, Voz.BrVoza, NaSkladiste,Skladista.Naziv as Sklad,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, VrstaManipulacije.Naziv as Usliga, BrojPlombe, RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID,RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, Zavrsen  from RNPrijemVoza " +
+            var select = "select RNPrijemVoza.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, DatumRasporeda, NalogIzdao, Voz.BrVoza, NaSkladiste,Skladista.Naziv as Sklad,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, VrstaManipulacije.Naziv as Usliga, BrojPlombe, RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID,RNPrijemVoza.NalogID, DatumRealizacijeVP, NalogRealizovaoVP, ZavrsenVP, DatumRealizacije, NalogRealizovao, Zavrsen  from RNPrijemVoza " +
 " inner join TipKontenjera on TipKontenjera.ID = RNPrijemVoza.VrstaKontejnera " +
 " inner join Voz on RNPrijemVoza.SaVoznogSredstva = Voz.ID " +
 " inner join Skladista on Skladista.ID = NaSkladiste " +
@@ -248,7 +248,7 @@ namespace Saobracaj.RadniNalozi
             */
 
 
-            var sklad = "select ID,naziv from Skladista";
+            var sklad = "select ID,naziv from Skladista order by ID";
             var daSklad = new SqlDataAdapter(sklad, conn);
             var dsSklad = new DataSet();
             daSklad.Fill(dsSklad);
@@ -456,7 +456,7 @@ namespace Saobracaj.RadniNalozi
             SqlCommand cmd = new SqlCommand(" select RNPrijemVoza.ID, RNPrijemVoza.BrojKontejnera, TipKontenjera.ID as VrstaKontejnera, DatumRasporeda," +
                 " NalogIzdao, Voz.BrVoza, NaSkladiste, NaPozicijuSklad,  PArtnerji.PaSifra as Uvoznik, p2.PaSifra as Brodar, VrstaManipulacije.ID as Usluga, " +
                 "BrojPlombe, RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID, RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, " +
-                "Zavrsen  from RNPrijemVoza " +
+                "Zavrsen, NalogRealizovaoVP, ZavrsenVP, NapomenaVP, DatumRealizacijeVP from RNPrijemVoza " +
 " inner join TipKontenjera on TipKontenjera.ID = RNPrijemVoza.VrstaKontejnera " +
 " inner join Voz on RNPrijemVoza.SaVoznogSredstva = Voz.ID " +
 " inner join Skladista on Skladista.ID = NaSkladiste " +
@@ -474,6 +474,7 @@ namespace Saobracaj.RadniNalozi
                 cbovrstakontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
                         cboUsluge.SelectedValue = Convert.ToInt32(dr["Usluga"].ToString());
                   txtNalogRealizovao.Text = dr["NalogRealizovao"].ToString();
+                txtNalogRealizovaoVP.Text = dr["NalogRealizovaoVP"].ToString();
 
                 txtPrijemID.Text = dr["PrijemID"].ToString();
              
@@ -482,6 +483,14 @@ namespace Saobracaj.RadniNalozi
                  cboNaPoziciju.SelectedValue = Convert.ToInt32(dr["NaPozicijuSklad"].ToString());
                 txtNalogIzdao.Text = dr["NalogIzdao"].ToString();
                 txtDatumRealizacije.Value = Convert.ToDateTime(dr["DatumRealizacije"].ToString());
+                if (dr["DatumRealizacijeVP"].ToString() == "")
+                {
+                }
+                else 
+                { 
+                    txtDatumRealizacijeVP.Value = Convert.ToDateTime(dr["DatumRealizacijeVP"].ToString()); 
+                }
+                    
                 cboUvoznik.SelectedValue = Convert.ToInt32(dr["Uvoznik"].ToString());
                  cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
   //cboVrstaRobe.SelectedValue = Convert.ToInt32(dr["VrstaRobe"].ToString());
@@ -489,6 +498,7 @@ namespace Saobracaj.RadniNalozi
 
                 txtBrojPlombe.Text = dr["BrojPlombe"].ToString();
                 txtNapomena.Text = dr["Napomena"].ToString();
+                txtNapomenaVP.Text = dr["NapomenaVP"].ToString();
 
 
                 if (dr["Zavrsen"].ToString() == "1")
@@ -496,6 +506,13 @@ namespace Saobracaj.RadniNalozi
                 else
                 {
                     chkZavrsen.Checked = false;
+                }
+
+                if (dr["ZavrsenVP"].ToString() == "1")
+                { chkZavrsenVP.Checked = true; }
+                else
+                {
+                    chkZavrsenVP.Checked = false;
                 }
             }
 
@@ -543,6 +560,19 @@ namespace Saobracaj.RadniNalozi
         private void button3_Click(object sender, EventArgs e)
         {
             FillGVPoVozu();
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            InsertRN up = new InsertRN();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    up.PotvrdiUradjenRN1VP(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                }
+
+            }
         }
     }
 }

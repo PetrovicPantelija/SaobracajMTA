@@ -532,5 +532,10 @@ namespace Saobracaj.RadniNalozi
                     break;
             }
         }
+
+        private void gridGroupingControl2_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
+        {
+
+        }
     }
 }

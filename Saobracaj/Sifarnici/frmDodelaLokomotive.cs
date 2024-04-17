@@ -13,7 +13,7 @@ using System.Configuration;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmDodelaLokomotive : Form
+    public partial class frmDodelaLokomotive : Syncfusion.Windows.Forms.Office2010Form
     {
         Boolean status = false;
 

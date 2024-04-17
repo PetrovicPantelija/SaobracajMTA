@@ -24,7 +24,7 @@ namespace Saobracaj.Sifarnici
         private void RefreshDataGrid()
         {
             var select = " SELECT DmSifra, DmNaziv " +
-                     " FROM  DelovnaMesta ";
+                     " FROM  DelovnaMesta order by DMSifra";
 
 
 

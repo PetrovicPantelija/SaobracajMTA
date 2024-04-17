@@ -10,6 +10,7 @@ using System.Configuration;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
+using Saobracaj.Dokumenta;
 //
 namespace Saobracaj.RadniNalozi
 {
@@ -39,6 +40,7 @@ namespace Saobracaj.RadniNalozi
             {
                 chkUvoz.Checked = true;
                 chkIzvoz.Checked = false;
+                
             }
             if (Uvoz == 1)
             {
@@ -46,7 +48,7 @@ namespace Saobracaj.RadniNalozi
                 chkIzvoz.Checked = true;
             }
             // cboUsluga.SelectedValue = Usluga;
-            //  FillGV();
+             FillGV();
 
         }
         private void VratiPodatkeVrstaMan(string IDUsluge)
@@ -105,6 +107,8 @@ namespace Saobracaj.RadniNalozi
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
         }
+
+
         private void FillCombo()
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -235,8 +239,12 @@ namespace Saobracaj.RadniNalozi
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                txtID.Text = row.Cells[0].Value.ToString();
-                VratiPodatkeStavka();
+                if (row.Selected == true)
+                {
+                    txtID.Text = row.Cells[0].Value.ToString();
+                    VratiPodatkeStavka();
+                }
+                 
             }
         }
 
@@ -338,7 +346,48 @@ namespace Saobracaj.RadniNalozi
             {
                 if (row.Selected == true)
                 {
+                    up.PotvrdiUradjenRN4Premesten(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                }
+
+            }
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmCIR cir = new frmCIR(Convert.ToInt32(txtID.Text));
+            cir.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //Dodeljuje se skladiste na koje Kalmarista spusta kontejner
+            Saobracaj.RadniNalozi.frmDodelaSkladista ds = new frmDodelaSkladista(txtPrijemID.Text, 2);
+            ds.Show();
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            InsertRN up = new InsertRN();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected == true)
+                {
                     up.PotvrdiUradjenRN4(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                }
+
+            }
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            InsertRN up = new InsertRN();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    up.PotvrdiUradjenRN4CIR(Convert.ToInt32(row.Cells[0].Value.ToString()));
                 }
 
             }

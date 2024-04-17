@@ -144,6 +144,8 @@ namespace Saobracaj.Sifarnici
             cboStatus.ValueMember = "ID";
 
             RefreshDataGrid();
+           
+
         }
 
         private void btnRacun_Click(object sender, EventArgs e)
@@ -204,6 +206,17 @@ namespace Saobracaj.Sifarnici
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
+        }
+
+        private void tsDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            frmTerminalProces tp = new frmTerminalProces(txtSifra.Text);
+            tp.Show();
         }
     }
 }

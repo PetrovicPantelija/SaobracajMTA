@@ -96,9 +96,20 @@ namespace Saobracaj.Uvoz
                     VratiIDPrijemnice(Convert.ToInt32(cboBukingPrijema.SelectedValue));
 
                 }
+                 
 
             }
-           
+            if (i == 0)
+            {
+                ///Potrebno je insertovati novi voz jer ne postoji
+                ///
+
+                Dokumeta.InsertPrijemKontejneraVoz ins = new Dokumeta.InsertPrijemKontejneraVoz();
+                ins.InsertPrijemKontVoz(Convert.ToDateTime(dtpDatumPrijema.Text), Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, "", "", 1, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), Convert.ToInt32(cboOperater.SelectedValue), 0, 0, Convert.ToInt32(cboOperaterHR.SelectedValue), 0);
+                status = false;
+                VratiPodatkeMax();
+
+            }
         }
         private void VratiIDPrijemnice(int Voz)
         {

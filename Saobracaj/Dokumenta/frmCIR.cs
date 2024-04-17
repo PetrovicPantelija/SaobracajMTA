@@ -14,12 +14,13 @@ using System.Net;
 using System.Net.Mail;
 
 using Microsoft.Reporting.WinForms;
+using Saobracaj.RadniNalozi;
 
 namespace Saobracaj.Dokumenta
 {
     public partial class frmCIR : Syncfusion.Windows.Forms.Office2010Form
     {
-        string KorisnikCene;
+        string KorisnikCene = "";
         bool status = false;
         int Dokument = 0;
         int Prijem = 0;
@@ -1223,6 +1224,12 @@ namespace Saobracaj.Dokumenta
         private void tsPrvi_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            Saobracaj.RadniNalozi.frmDodelaSkladista ds = new frmDodelaSkladista(txtDokument.Text, 3);
+            ds.Show();
         }
     }
     }

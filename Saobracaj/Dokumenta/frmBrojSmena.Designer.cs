@@ -33,9 +33,9 @@ namespace Saobracaj.Dokumenta
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.label5 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Button1 = new ns1.BunifuFlatButton();
-            this.bunifuFlatButton3 = new ns1.BunifuFlatButton();
-            this.bunifuFlatButton2 = new ns1.BunifuFlatButton();
+           // this.Button1 = new ns1.BunifuFlatButton();
+         //   this.bunifuFlatButton3 = new ns1.BunifuFlatButton();
+          //  this.bunifuFlatButton2 = new ns1.BunifuFlatButton();
             this.label6 = new System.Windows.Forms.Label();
             this.chkSumValues = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -52,7 +52,7 @@ namespace Saobracaj.Dokumenta
             this.dtpVremeDo = new System.Windows.Forms.DateTimePicker();
             this.dtpVremeOd = new System.Windows.Forms.DateTimePicker();
             this.label9 = new System.Windows.Forms.Label();
-            this.bunifuFlatButton1 = new ns1.BunifuFlatButton();
+          //  this.bunifuFlatButton1 = new ns1.BunifuFlatButton();
             this.cboRadnaMesta = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -495,10 +495,10 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.DateTimePicker dtpVremeDo;
         private System.Windows.Forms.DateTimePicker dtpVremeOd;
         private System.Windows.Forms.Label label9;
-        private ns1.BunifuFlatButton bunifuFlatButton1;
-        private ns1.BunifuFlatButton bunifuFlatButton2;
-        private ns1.BunifuFlatButton bunifuFlatButton3;
-        private ns1.BunifuFlatButton Button1;
+      //  private ns1.BunifuFlatButton bunifuFlatButton1;
+      //  private ns1.BunifuFlatButton bunifuFlatButton2;
+      //  private ns1.BunifuFlatButton bunifuFlatButton3;
+      //  private ns1.BunifuFlatButton Button1;
         private System.Windows.Forms.ComboBox cboRadnaMesta;
     }
 }

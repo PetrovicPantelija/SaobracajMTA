@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class Carinarnice : Form
+    public partial class Carinarnice : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmCarinarnice";
         public bool Pravo;

@@ -25,6 +25,7 @@ using Syncfusion.Windows.Forms.Diagram;
 using Saobracaj.Izvoz;
 using frmVozila = Testiranje.Dokumeta.frmVozila;
 using frmCIRPregled = Testiranje.Dokumeta.frmCIRPregled;
+using Saobracaj.Tehnologija;
 namespace Saobracaj
 {
     public partial class MainP : Syncfusion.Windows.Forms.Tools.RibbonForm
@@ -56,6 +57,10 @@ namespace Saobracaj
                 toolStripEx39.Visible = true;
                 toolStripButton344.Visible = true;
                 toolStripButton141.Visible = false;
+                toolStripButton140.Text = "GATE IN VOZ";
+                toolStripButton139.Text = "GATE IN KAMION";
+                toolStripButton142.Text = "GATE OUT VOZ";
+                toolStripButton143.Text = "GATE OUT KAMION";
             }
 
             if (Sifarnici.frmLogovanje.Firma == "TA")
@@ -94,6 +99,12 @@ namespace Saobracaj
                 toolStripButton336.Visible = false;
                 toolStripButton337.Visible = false;
                 toolStripButton351.Visible = false;
+                toolStripButton357.Visible = false;
+                toolStripButton356.Visible = false;
+                toolStripButton358.Visible = false;
+                toolStripButton359.Visible = false;
+                toolStripButton361.Visible = false;
+                toolStripButton360.Visible = false;
             }
 
             if (Sifarnici.frmLogovanje.Firma == "DPT")
@@ -132,6 +143,12 @@ namespace Saobracaj
                 toolStripButton336.Visible = false;
                 toolStripButton337.Visible = false;
                 toolStripButton351.Visible = false;
+                toolStripButton357.Visible = false;
+                toolStripButton356.Visible = false;
+                toolStripButton358.Visible = false;
+                toolStripButton359.Visible = false;
+                toolStripButton361.Visible = false;
+                toolStripButton360.Visible = false;
             }
 
         }
@@ -992,9 +1009,9 @@ namespace Saobracaj
 
         private void toolStripButton69_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmBrojSmena brsm = new Dokumenta.frmBrojSmena();
-            PravoP = brsm.Pravo;
-            if (PravoP == true) { brsm.Show(); } else { return; }
+          //  Dokumenta.frmBrojSmena brsm = new Dokumenta.frmBrojSmena();
+         //   PravoP = brsm.Pravo;
+           // if (PravoP == true) { brsm.Show(); } else { return; }
         }
 
         private void toolStripButton57_Click(object sender, EventArgs e)
@@ -4159,6 +4176,53 @@ namespace Saobracaj
         {
             frmCIRPregled pc = new frmCIRPregled();
             pc.Show();
+        }
+
+        private void toolStripButton355_Click(object sender, EventArgs e)
+        {
+            frmTerminalOperacije to = new frmTerminalOperacije();
+            to.Show();
+        }
+
+        private void toolStripButton356_Click(object sender, EventArgs e)
+        {
+            frmKalmarGateInVoz giv = new frmKalmarGateInVoz();
+            giv.Show();
+        }
+
+        private void toolStripButton357_Click(object sender, EventArgs e)
+        {
+            frmVizuelniPregledi vp = new frmVizuelniPregledi();
+            vp.Show();
+        }
+
+        private void toolStripButton358_Click(object sender, EventArgs e)
+        {
+            frmKalmarGateOut kgo = new frmKalmarGateOut();
+            kgo.Show();
+        }
+
+        private void toolStripButton359_Click(object sender, EventArgs e)
+        {
+            frmKalmarGateIN kgi = new frmKalmarGateIN();    
+            kgi.Show();
+        }
+
+        private void toolStripButton360_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton361_Click(object sender, EventArgs e)
+        {
+            frmCIRPregledac cIRPregledac = new frmCIRPregledac();   
+            cIRPregledac.Show();
+        }
+
+        private void toolStripButton360_Click_1(object sender, EventArgs e)
+        {
+            frmKalmarGateINKaminonPreneseno kgikp = new frmKalmarGateINKaminonPreneseno();
+            kgikp.Show();
         }
     }
     }
