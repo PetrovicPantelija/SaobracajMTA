@@ -45,7 +45,7 @@ namespace TrackModal.Promet
         }
         public string IdGrupe()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -79,7 +79,7 @@ namespace TrackModal.Promet
         }
         private int IdForme()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -96,7 +96,7 @@ namespace TrackModal.Promet
 
         private void PravoPristupa()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -178,7 +178,7 @@ namespace TrackModal.Promet
         private void frmSredstvoRada_Load(object sender, EventArgs e)
         {
             /*var select4 = " Select Distinct ID, (Naziv + ' RO:' +  RegistarskaOznaka + ' IB:' + IndividualniBroj) as Naziv   From Vozila";
-            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
             var dataAdapter4 = new SqlDataAdapter(select4, c4);

@@ -43,7 +43,7 @@ namespace Saobracaj.Dokumenta
         }
         public string IdGrupe()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
             string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
             SqlConnection conn = new SqlConnection(s_connection);
@@ -71,7 +71,7 @@ namespace Saobracaj.Dokumenta
         }
         private int IdForme()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -88,7 +88,7 @@ namespace Saobracaj.Dokumenta
 
         private void PravoPristupa()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -145,7 +145,7 @@ namespace Saobracaj.Dokumenta
              " inner join Delavci on Delavci.DeSifra = KontrolaDokumentacije.RadnikID";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -225,7 +225,7 @@ namespace Saobracaj.Dokumenta
             " where NadredjeniID =" + Convert.ToInt32(txtSifra.Text);
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -327,7 +327,7 @@ namespace Saobracaj.Dokumenta
         private void VratiSifru()
         {
           
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection con = new SqlConnection(s_connection);
 
                 con.Open();
@@ -440,7 +440,7 @@ namespace Saobracaj.Dokumenta
             if (usao == 1)
             { 
             var select2 = " select ID, Naziv from KontrolneGreske where TipDokumenta = " + Convert.ToInt32(cboTipDokumenta.SelectedValue) + " order by Naziv";
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
             var dataAdapter2 = new SqlDataAdapter(select2, c2);
@@ -459,7 +459,7 @@ namespace Saobracaj.Dokumenta
         {
             bool temp = false;
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -481,7 +481,7 @@ namespace Saobracaj.Dokumenta
            if (txtKontrola1.Text == "kontrola1")
             { 
             var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci order by opis";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -495,7 +495,7 @@ namespace Saobracaj.Dokumenta
 
 
             var select = " Select ID, PrevozniPut, StvarnoPrimanje as ATA,Tezina, Duzina, BrojKola, StvarnoPrimanje, StvarnaPredaja, Status from Najava where ID > 210001 order by ID desc";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -511,7 +511,7 @@ namespace Saobracaj.Dokumenta
 
 
             var select4 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci order by opis";
-            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
             var dataAdapter4 = new SqlDataAdapter(select4, c4);
@@ -525,7 +525,7 @@ namespace Saobracaj.Dokumenta
 
 
             var select2 = " select ID, Naziv from KontrolneGreske order by Naziv";
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
             var dataAdapter2 = new SqlDataAdapter(select2, c2);
@@ -539,7 +539,7 @@ namespace Saobracaj.Dokumenta
 
 
             var select5 = " select ID, Naziv from KontrolneGreskeTipDokumenta order by Naziv";
-            var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection5 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection5);
             var dataAdapter5 = new SqlDataAdapter(select5, c5);

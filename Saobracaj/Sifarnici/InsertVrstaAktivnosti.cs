@@ -15,7 +15,7 @@ namespace Saobracaj.Sifarnici
 
         public void InsVrstaAktivnosti(string Naziv, double Cena, string Opis, int ObracunPoSatu, int PotrebanRazlog, int PotrebanNalogodavac, int PotrebnoVozilo, int ObaveznaNapomena, double FisnaCena, int Smederevo, int Kragujevac, int CG, int Remont, int Milsped, int Dnevnica, double VremeVagon, double MaxSati, double MaxVagona)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertVrstaAktivnosti";
@@ -190,7 +190,7 @@ namespace Saobracaj.Sifarnici
 
         public void UpdVrstaAktivnosti(int ID, string Naziv, double Cena, string Opis, int ObracunPoSatu, int PotrebanRazlog, int PotrebanNalogodavac, int PotrebnoVozilo, int ObaveznaNapomena, double FisnaCena, int Smederevo, int Kragujevac, int CG, int Remont, int Milsped, int Dnevnica, double VremeVagon, double MaxSati, double MaxVagona)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateVrstaAktivnosti";
@@ -377,7 +377,7 @@ namespace Saobracaj.Sifarnici
 
         public void DeleteVrstaAktivnosti(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteVrstaAktivnosti";

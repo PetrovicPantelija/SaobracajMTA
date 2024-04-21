@@ -53,7 +53,7 @@ namespace Saobracaj
                     return new CompanyConfiguration
                     {
                         Naziv = "TA",
-                        DB = @"Data Source=192.168.129.7\;Initial Catalog=TESTIRANJE;User ID=sa;Password=duki7990",
+                        DB = @"Data Source=192.168.129.7\;Initial Catalog=Testiranje;User ID=sa;Password=duki7990",
                         Dokumenta= @"\\192.168.129.7\TA\",
                         PIB = "108430447",
                         Name_Value = "TRANSAGENT OPERATOR DOO BEOGRAD\r\n",
@@ -64,10 +64,11 @@ namespace Saobracaj
                         CompanyID_Value = "RS108430447",
                         MB_Value = "20997923",
                         EmailSender_Value = "office@transagent.rs",
-                        OsnovnoSkladiste= "1",
-                        OsnovnaLokacija= "1"
+                        OsnovnoSkladiste= "9",
+                        OsnovnaLokacija= "1044"
                         
                     };
+               
                 case "DPT":
                     return new CompanyConfiguration
                     {

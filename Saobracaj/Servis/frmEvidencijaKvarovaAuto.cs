@@ -40,7 +40,7 @@ namespace Saobracaj.Servis
              " inner join StatusKvara on EvidencijaKvarovaAuto.StatusKvara = StatusKvara.ID " +
              " inner join GrupaKvarovaAuto on KvaroviAuto.GrupaKvarovaID = GrupaKvarovaAuto.ID ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -94,7 +94,7 @@ namespace Saobracaj.Servis
              " inner join GrupaKvarovaAuto on KvaroviAuto.GrupaKvarovaID = GrupaKvarovaAuto.ID " +
              " where StatusKvara = " + cboStatusi.SelectedValue;
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -156,7 +156,7 @@ namespace Saobracaj.Servis
              " inner join StatusKvara on EvidencijaKvarovaAuto.StatusKvara = StatusKvara.ID " +
              " inner join GrupaKvarovaAuto on KvaroviAuto.GrupaKvarovaID = GrupaKvarovaAuto.ID where EvidencijaKvarovaAuto.Automobil = '" + cboLokomotiva.SelectedValue + "'";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

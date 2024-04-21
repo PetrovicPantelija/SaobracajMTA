@@ -15,7 +15,7 @@ namespace Saobracaj.Dokumenta
         public void InsPrijemDokumenta(int IDPrijemnica, string Putanja)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertDokumentaPrijemKontejneraVoz";
@@ -77,7 +77,7 @@ namespace Saobracaj.Dokumenta
         public void DelPrijemDokumenta(int ID)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteDokumentaPrijemKontejneraVoz";

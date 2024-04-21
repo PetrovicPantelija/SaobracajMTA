@@ -14,7 +14,7 @@ namespace Saobracaj.Sifarnici
     {
         public void InsKontrolneGreskeTipDokumenta(string Naziv)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertKontrolneGreskeTipDokumenta";
@@ -69,7 +69,7 @@ namespace Saobracaj.Sifarnici
 
         public void UpdKontrolneGreskeTipDokumenta(int ID, string Naziv)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateKontrolneGreskeTipDokumenta";
@@ -128,7 +128,7 @@ namespace Saobracaj.Sifarnici
 
         public void DeleteKontrolneGreskeTipDokumenta(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteKontrolneGreskeTipDokumenta";

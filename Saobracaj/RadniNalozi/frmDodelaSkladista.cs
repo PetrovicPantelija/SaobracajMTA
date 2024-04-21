@@ -60,7 +60,7 @@ namespace Saobracaj.RadniNalozi
             var select = "  Select ID, Naziv, Kapacitet ,  " +
 " (Select Count(*) from KontejnerTekuce where KontejnerTekuce.Skladiste = Skladista.ID) as TrenutnoKontejnera " +
 " From Skladista ";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -104,7 +104,7 @@ namespace Saobracaj.RadniNalozi
    " inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge where RNPrijemVoza.PrijemID = " + textBox1.Text + 
    " order by RNPrijemVoza.ID  ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -135,7 +135,7 @@ namespace Saobracaj.RadniNalozi
             var select = "select * from RnPrijemPlatforme " +
    " order by RnPrijemPlatforme.ID  ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -174,7 +174,7 @@ namespace Saobracaj.RadniNalozi
 " inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge where RNPrijemPlatforme.PrijemID = " + textBox1.Text +
    " order by RNPrijemVoza.ID  ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -222,7 +222,7 @@ namespace Saobracaj.RadniNalozi
 " inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = [CarinskiPostupak] " +
 " inner join Partnerji p3 on p3.PaSifra = [RNOtpremaPlatforme].[SpedicijaRTC]  where OtpremaID = " + textBox1.Text;
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -388,7 +388,7 @@ namespace Saobracaj.RadniNalozi
             var select = "  Select ID, Naziv, Kapacitet ,  " +
 " (Select Count(*) from KontejnerTekuce where KontejnerTekuce.Skladiste = Skladista.ID) as TrenutnoKontejnera " +
 " From Skladista where Skladista.Naziv like ('%"+ textBox2.Text +"%') order by Skladista.Naziv";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

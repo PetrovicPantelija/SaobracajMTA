@@ -20,7 +20,7 @@ namespace Saobracaj.Uvoz
     {
         bool status = false;
         string KorisnikCene = "Panta";
-        public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         public frmPrijemKamionaPlatforma()
         {
             InitializeComponent();
@@ -60,7 +60,7 @@ namespace Saobracaj.Uvoz
 
         private void VratiPodatkeMax()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();

@@ -817,11 +817,11 @@
     <Compile Include="Dokumenta\frmOtpremaKontejneraIzvozKamion.Designer.cs">
       <DependentUpon>frmOtpremaKontejneraIzvozKamion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dokumenta\frmOtpremaKontejneraLeget.cs">
+    <Compile Include="Dokumenta\frmOtpremaKontejneraLegetIZVOZ.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dokumenta\frmOtpremaKontejneraLeget.Designer.cs">
-      <DependentUpon>frmOtpremaKontejneraLeget.cs</DependentUpon>
+    <Compile Include="Dokumenta\frmOtpremaKontejneraLegetIZVOZ.Designer.cs">
+      <DependentUpon>frmOtpremaKontejneraLegetIZVOZ.cs</DependentUpon>
     </Compile>
     <Compile Include="Dokumenta\frmOtpremaKontejneraUvozKamion.cs">
       <SubType>Form</SubType>
@@ -3740,8 +3740,8 @@
     <EmbeddedResource Include="Dokumenta\frmOtpremaKontejneraIzvozKamion.resx">
       <DependentUpon>frmOtpremaKontejneraIzvozKamion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dokumenta\frmOtpremaKontejneraLeget.resx">
-      <DependentUpon>frmOtpremaKontejneraLeget.cs</DependentUpon>
+    <EmbeddedResource Include="Dokumenta\frmOtpremaKontejneraLegetIZVOZ.resx">
+      <DependentUpon>frmOtpremaKontejneraLegetIZVOZ.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmOtpremaKontejneraUvozKamion.resx">
       <DependentUpon>frmOtpremaKontejneraUvozKamion.cs</DependentUpon>

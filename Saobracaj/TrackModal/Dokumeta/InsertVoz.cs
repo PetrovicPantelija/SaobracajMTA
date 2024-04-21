@@ -18,7 +18,7 @@ namespace Testiranje.Dokumeta
             DateTime PlOtpreme, DateTime PLFormiranja, DateTime IzvlacenjeSaTerminala, DateTime PreuzimanjeSM, DateTime PolazakSid, DateTime PredajaHR, DateTime PrispeceRijeka, DateTime IskrcajRijeka, DateTime PristizanjaUSid, DateTime Sazeta)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertVoz";
@@ -452,7 +452,7 @@ namespace Testiranje.Dokumeta
             DateTime PrispeceRijeka, DateTime IskrcajRijeka, DateTime PristizanjaUSid, DateTime Sazeta)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateVoz";
@@ -852,7 +852,7 @@ namespace Testiranje.Dokumeta
 
           public void DeleteVoz(int ID)
           {
-              var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+              var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
               SqlConnection myConnection = new SqlConnection(s_connection);
               SqlCommand myCommand = myConnection.CreateCommand();
               myCommand.CommandText = "DeleteVoz";
@@ -903,7 +903,7 @@ namespace Testiranje.Dokumeta
           public void PrekopirajVoz(int ID)
           {
 
-              var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+              var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
               SqlConnection myConnection = new SqlConnection(s_connection);
               SqlCommand myCommand = myConnection.CreateCommand();
               myCommand.CommandText = "PrekopirajVoz";
@@ -960,7 +960,7 @@ namespace Testiranje.Dokumeta
         public void InsSerijeKola(int IDVoza, int TipKontejnera, int BrojSerija)
         {
             //TipKontejnera je serija kola 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertVozSerijeKola";
@@ -1031,7 +1031,7 @@ namespace Testiranje.Dokumeta
         public void DelSerijeKola(int ID)
         {
             //TipKontejnera je serija kola 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteVozSerijeKola";

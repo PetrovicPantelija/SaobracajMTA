@@ -16,7 +16,7 @@ namespace Saobracaj.Dokumenta
     {
         public frmEvidencijaGodLOG()
         {
-            var connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var connect = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
             InitializeComponent();
             var query = "Select * FROM EvidencijaGOLog order by ID desc";

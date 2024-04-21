@@ -15,7 +15,7 @@ namespace Saobracaj.Dokumenta
         public void InsRNTLZEVID(int RadniNalog, int Trasa, string MestoTroska, int DeSifra, DateTime VremeJavljanja, DateTime VremePocetka, int DirektnaPrimopredaja, DateTime VremePrimopredaja, DateTime VremeZavrsetka, int VoznoVreme, int UkupnoVreme, int JalovoVreme, int JalovoVremeVanVoznje)
         {
                
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertRadniNalogZapEv";

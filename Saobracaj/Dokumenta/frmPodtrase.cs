@@ -34,7 +34,7 @@ namespace Saobracaj.Dokumenta
         private void frmPodtrase_Load(object sender, EventArgs e)
         {
             var select = "   Select ID, Oznaka, RTRIM(Opis) as Opis, Elektrificirana from Pruga ";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -56,7 +56,7 @@ namespace Saobracaj.Dokumenta
             " inner join stanice on PrugaStavke.StanicaOd = Stanice.ID " +
             " where IDPruge = ' " +  cboPruge.SelectedValue +  " ' " +
             " order by PrugaStavke.RB ";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -87,7 +87,7 @@ namespace Saobracaj.Dokumenta
                 " order by PrugaStavke.RB ";
 
 
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
             var dataAdapter2 = new SqlDataAdapter(select2, c2);
@@ -155,7 +155,7 @@ namespace Saobracaj.Dokumenta
               " order by RB ";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -225,7 +225,7 @@ namespace Saobracaj.Dokumenta
             double StacionazaOd = 0;
             double StacionazaDo = 0; 
             
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -241,7 +241,7 @@ namespace Saobracaj.Dokumenta
 
             con.Close();
 
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con2 = new SqlConnection(s_connection2);
 
             con2.Open();

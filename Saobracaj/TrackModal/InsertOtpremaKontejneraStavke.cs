@@ -17,7 +17,7 @@ namespace Testiranje.Dokumeta
         {
            
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertOtpremaKontejneraVozStavke";
@@ -262,7 +262,7 @@ namespace Testiranje.Dokumeta
 
         public void InsertOtpremaKontejneraStavBuking(int Id, string BrojKontejnera, int IdNadredjenog)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "PrekopirajStavke";
@@ -337,7 +337,7 @@ namespace Testiranje.Dokumeta
 
         public void PromeniBrojVagona(int Id, string BrojVagona, double SopstvenaMasa, double BrojOsovina)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "PromeniBrojVagona";
@@ -421,7 +421,7 @@ namespace Testiranje.Dokumeta
         public void UpdOtpremaKontejneraVozStav(int ID, int IdNadredjenog, string BrojKontejnera, String BrojVagona, double Granica, double BrojOsovina, double SopstvenaMasa, double Tara, double Neto, int Posiljalac, int Primalac, int VlasnikKontejnera, int TipKontejnera, int VrstaRobe, string Buking, int StatusKontejnera, string BrojPlombe, int PlaniraniLager, int IdVoza, DateTime VremePripremljen, DateTime VremeOdlaska, DateTime Datum, string Korisnik, int RB, string BrojPlombe2, int Organizator, string NapomenaS)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateOtpremaKontejneraVozStavke";
@@ -683,7 +683,7 @@ namespace Testiranje.Dokumeta
 
         public void DeleteOtpremaKontejneraVozStav(int ID)
           {
-              var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+              var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
               SqlConnection myConnection = new SqlConnection(s_connection);
               SqlCommand myCommand = myConnection.CreateCommand();
               myCommand.CommandText = "DeleteOtpremaKontejneraVozStavke";

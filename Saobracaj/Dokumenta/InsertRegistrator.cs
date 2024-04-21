@@ -16,7 +16,7 @@ namespace Saobracaj.Dokumenta
         public void InsRegistrator( int Partner, int Zaposleni, string Predmet, DateTime Datum, string Tekst)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertRegistrator";
@@ -101,7 +101,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdRegistrator(int ID, int Partner, int Zaposleni, string Predmet, DateTime Datum, string Tekst)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateRegistrator";
@@ -191,7 +191,7 @@ namespace Saobracaj.Dokumenta
 
         public void DelRegistrator(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteRegistrator";

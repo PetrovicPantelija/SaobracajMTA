@@ -15,7 +15,7 @@ namespace Saobracaj.Dokumenta
         public void InsPotNal(int Radnik, int Kraj, int KrajO, string MestoTroska, DateTime DatumOdlaska, DateTime DatumDolaska, int DanaOdsustva, double Iznos, string OpisRada)
         {
            
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertPotNal";
@@ -135,7 +135,7 @@ namespace Saobracaj.Dokumenta
         public void InsPotNalRelacije(int Radnik, int Kraj, int KrajO, int DanaOdsustva, DateTime DatumOdlaska, DateTime DatumDolaska)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertPotNalRelacije";
@@ -228,7 +228,7 @@ namespace Saobracaj.Dokumenta
         public void InsPotNalStavke(int DanaOdsustva,double Cena ,double Iznos, int Puna)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertPotNalStavke";
@@ -304,7 +304,7 @@ namespace Saobracaj.Dokumenta
         public void UpdPotNal(int ID)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateAktivnostiPutniNalog";

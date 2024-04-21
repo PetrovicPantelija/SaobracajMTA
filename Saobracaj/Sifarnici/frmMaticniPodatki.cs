@@ -57,7 +57,7 @@ namespace Saobracaj.Sifarnici
 
             var select = "  select MpSifra, MpStaraSif, MpNaziv, MpDoNaziv, MpSifEnoteMere1, MpSifEnoteMere2, MpSifProdSkup  from MaticniPodatki";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -149,7 +149,7 @@ namespace Saobracaj.Sifarnici
         private void frmMaticniPodatki_Load(object sender, EventArgs e)
         {
             var select3 = " select PsSifra, PsNaziv from ProdSkup";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -162,7 +162,7 @@ namespace Saobracaj.Sifarnici
             cboProdajnaGrupa.ValueMember = "PsSifra";
 
             var select4 = " select MeSifra, MeNaziv from MerskeEnote";
-            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
             var dataAdapter4 = new SqlDataAdapter(select4, c4);
@@ -176,7 +176,7 @@ namespace Saobracaj.Sifarnici
 
 
             var select5 = " select MeSifra, MeNaziv from MerskeEnote";
-            var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection5 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection4);
             var c5 = new SqlConnection(s_connection5);
             var dataAdapter5 = new SqlDataAdapter(select5, c5);

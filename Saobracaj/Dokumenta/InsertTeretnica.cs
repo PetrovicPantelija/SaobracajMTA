@@ -23,7 +23,7 @@ namespace Saobracaj.Dokumenta
         public void InsTeretnica(string BrojTeretnice, int StanicaOd, int StanicaDo, int StanicaPopisa, DateTime VremeOd, DateTime VremeDo, string BrojLista, int Prijemna, int Predajna, string Korisnik, int Prevozna, int RN, int TrainListID, string Napomena)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertTeretnica";
@@ -172,7 +172,7 @@ namespace Saobracaj.Dokumenta
         public void UpdTeretnica(int ID, string BrojTeretnice, int StanicaOd, int StanicaDo, int StanicaPopisa, DateTime VremeOd, DateTime VremeDo, string BrojLista, int Prijemna, int Predajna, string Korisnik, int Prevozna, int RN, int TrainListID, string Napomena)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateTeretnica";
@@ -330,7 +330,7 @@ namespace Saobracaj.Dokumenta
         public void UpdNajavaCIM(int ID, string Korisnik)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateNajavaTerStampa";
@@ -394,7 +394,7 @@ namespace Saobracaj.Dokumenta
 
         public void DeleteTeretnica(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteTeretnica";

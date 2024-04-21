@@ -22,7 +22,7 @@ namespace Saobracaj.Dokumeta
   @IdVoza [int] ,
   @VremeDolaska [datetime] ,
              */
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertPrijemKontejneraVoz";
@@ -194,7 +194,7 @@ namespace Saobracaj.Dokumeta
         public void UpdPrijemKontejneraVoz(int ID, DateTime DatumPrijema, int StatusPrijema, int IdVoza, DateTime VremeDolaska, DateTime Datum, string Korisnik, string RegBrKamiona, string ImeVozaca, int Vozom, string Napomena, int PredefinisanePorukeID, int Operater, int VrstaKamiona, int Poreklo, int OperaterHR, int Modul)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdatePrijemKontejneraVoz";
@@ -371,7 +371,7 @@ namespace Saobracaj.Dokumeta
 
         public void DeletePrijemKontejneraVoz(int ID)
           {
-              var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+              var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
               SqlConnection myConnection = new SqlConnection(s_connection);
               SqlCommand myCommand = myConnection.CreateCommand();
               myCommand.CommandText = "DeletePrijemKontejneraVoz";
@@ -421,7 +421,7 @@ namespace Saobracaj.Dokumeta
 
         public void UpdateEmailPrijemNajava(int ID)
           {
-              var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+              var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
               SqlConnection myConnection = new SqlConnection(s_connection);
               SqlCommand myCommand = myConnection.CreateCommand();
               myCommand.CommandText = "UpdateEmailPrijemNajava";
@@ -471,7 +471,7 @@ namespace Saobracaj.Dokumeta
 
         public void UpdateEmailPrijemPrijem(int ID)
           {
-              var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+              var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
               SqlConnection myConnection = new SqlConnection(s_connection);
               SqlCommand myCommand = myConnection.CreateCommand();
               myCommand.CommandText = "UpdateEmailPrijemPrijem";

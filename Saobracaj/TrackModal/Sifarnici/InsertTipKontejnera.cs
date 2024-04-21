@@ -17,7 +17,7 @@ namespace Testiranje.Sifarnici
         public void InsTipKontejnera(string Naziv, double Duzina, double Sirina, double Visina, double Tara, DateTime Datum, string Korisnik, string SkNaziv, string Velicina)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertTipKontenjera";
@@ -132,7 +132,7 @@ namespace Testiranje.Sifarnici
         public void UpdTipKontejnera(int ID, string Naziv, double Duzina, double Sirina, double Visina, double Tara, DateTime Datum, string Korisnik, string SkNaziv, string Velicina)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateTipKontenjera";
@@ -252,7 +252,7 @@ namespace Testiranje.Sifarnici
 
         public void DeleteTipKontejnera(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteTipKontenjera";

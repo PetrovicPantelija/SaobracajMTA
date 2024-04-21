@@ -15,7 +15,7 @@ namespace Saobracaj.Dokumenta
         public void InsAutomobiliServis(int IDAutomobila, DateTime DatumServisa, int VelikiServis, string KM, int Zaposleni, int Partner, string Napomena)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertAutomobiliServis";
@@ -121,7 +121,7 @@ namespace Saobracaj.Dokumenta
         public void UpdAutomobiliServis(int ID, int IDAutomobila, DateTime DatumServisa, int VelikiServis, string KM, int Zaposleni, int Partner, string Napomena)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateAutomobiliServis";
@@ -234,7 +234,7 @@ namespace Saobracaj.Dokumenta
         public void DelAutomobiliServis(int ID)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteAutomobiliServis";
@@ -299,7 +299,7 @@ namespace Saobracaj.Dokumenta
            , string NivoUlja, string Nepravilnosti, string MestoTroska
             )
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertAutomobili";
@@ -676,7 +676,7 @@ namespace Saobracaj.Dokumenta
            , string LGDubinaSare, string Napomena, string CistocaSpolja, string CistocaUnutra
            , string NivoUlja, string Nepravilnosti, string MestoTroska)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateAutomobili";
@@ -1048,7 +1048,7 @@ namespace Saobracaj.Dokumenta
 
         public void DeleteAutomobili(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteAutomobili";

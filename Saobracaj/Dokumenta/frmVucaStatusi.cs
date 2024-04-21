@@ -15,7 +15,7 @@ namespace Saobracaj.Dokumenta
     public partial class frmVucaStatusi : Form
     {
         bool status = false;
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         public frmVucaStatusi()
         {
             InitializeComponent();

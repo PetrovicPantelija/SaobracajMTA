@@ -55,7 +55,7 @@ namespace Saobracaj.Dokumenta
 
 
    
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -106,7 +106,7 @@ namespace Saobracaj.Dokumenta
         private void frmPregledSmena_Load(object sender, EventArgs e)
         {
             var select2 = "  Select DelovnaMesta.DmSifra  as ID, DelovnaMesta.DmNaziv as Naziv from DelovnaMesta";
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
             var dataAdapter2 = new SqlDataAdapter(select2, c2);
@@ -147,7 +147,7 @@ namespace Saobracaj.Dokumenta
             " and DelovnaMesta.DmSifra = " + +Convert.ToInt32(cboRadnoMesto.SelectedValue) + " and Aktivnosti.PravoDnevnice = 0 And  Convert(nvarchar(10),VremeDo,126) <  '" + dtpVremeDo.Text + "' Group by DelovnaMesta.DmNaziv, (RTrim(DeIme) + ' ' + RTRim(DePriimek))   ";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

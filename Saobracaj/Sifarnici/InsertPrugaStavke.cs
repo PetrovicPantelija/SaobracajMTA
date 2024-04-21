@@ -14,7 +14,7 @@ namespace Saobracaj.Sifarnici
     {
         public void InsPrugaStavke(int IDPruge, int StanicaOd, int StanicaDo, int RastojanjeKM, int RastojanjeM, Double StacionazaKM, int StacionazaM, int VmaxL, int VmaxD, string OsOtpor, int MaxDVA, string KoliseciA, int MaxDVB, string KoliseciB, string Vaga, string PutTer, double Nagib, double MNU, double MNP, double MNOU, double MNOP, string Klasa, double Osovinsko)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertPrugaStavke";
@@ -226,7 +226,7 @@ namespace Saobracaj.Sifarnici
 
         public void UpdPrugaStavke(int rb, int IDPruge, int StanicaOd, int StanicaDo, int RastojanjeKM, int RastojanjeM, double StacionazaKM, int StacionazaM, int VmaxL, int VmaxD, string OsOtpor, int MaxDVA, string KoliseciA, int MaxDVB, string KoliseciB, string Vaga, string PutTer, double Nagib, double MNU, double MNP, double MNOU, double MNOP, string Klasa, double Osovinsko)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdatePrugaStavke";

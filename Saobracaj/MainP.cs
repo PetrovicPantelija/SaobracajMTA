@@ -61,6 +61,7 @@ namespace Saobracaj
                 toolStripButton139.Text = "GATE IN KAMION";
                 toolStripButton142.Text = "GATE OUT VOZ";
                 toolStripButton143.Text = "GATE OUT KAMION";
+             
             }
 
             if (Sifarnici.frmLogovanje.Firma == "TA")
@@ -105,6 +106,8 @@ namespace Saobracaj
                 toolStripButton359.Visible = false;
                 toolStripButton361.Visible = false;
                 toolStripButton360.Visible = false;
+                toolStripButton362.Visible = false;
+                toolStripButton355.Visible = false;
             }
 
             if (Sifarnici.frmLogovanje.Firma == "DPT")
@@ -149,6 +152,8 @@ namespace Saobracaj
                 toolStripButton359.Visible = false;
                 toolStripButton361.Visible = false;
                 toolStripButton360.Visible = false;
+                toolStripButton362.Visible = false;
+                toolStripButton355.Visible = false;
             }
 
         }
@@ -2548,7 +2553,7 @@ namespace Saobracaj
 
         private void toolStripButton58_Click_1(object sender, EventArgs e)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             myConnection.Open();
             SqlCommand myCommand = myConnection.CreateCommand();

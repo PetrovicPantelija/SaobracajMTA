@@ -10,7 +10,7 @@ namespace Saobracaj.Administracija
     public partial class frmStavkePrimopredaje : Form
     {
         private bool status = false;
-        private string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        private string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
         public frmStavkePrimopredaje()
         {

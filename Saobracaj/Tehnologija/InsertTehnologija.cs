@@ -14,7 +14,7 @@ namespace Saobracaj.Tehnologija
     {
         public void InsTehnologija(int PorudzbinaID, int Prazan, string Napomena, double Tonaza, double TonazaPovratak, int PovratnaTehnologija, double UkupnoVremeTransporta)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertTehnologija";
@@ -118,7 +118,7 @@ namespace Saobracaj.Tehnologija
 
         public void UpdTehnologija(int ID, int PorudzbinaID, int Prazan, string Napomena, double Tonaza, double TonazaPovratak, int PovratnaTehnologija, double UkupnoVremeTransporta)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateTehnologija";
@@ -225,7 +225,7 @@ namespace Saobracaj.Tehnologija
 
         public void DeleteTehnologija(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteTehnologija";
@@ -275,7 +275,7 @@ namespace Saobracaj.Tehnologija
 
         public void InsTehnologijaTrase(int IDNadredjeni,  int Trasa, int StanicaOd, int StanicaDo, double Cena, double Dizel, double Energija, int Povratak)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertTehnologijaTrase";
@@ -377,7 +377,7 @@ namespace Saobracaj.Tehnologija
 
         public void UpdTehnologijaTrase(int ID, int IDNadredjeni, int Trasa, int StanicaOd, int StanicaDo, double Cena, double Dizel, double Energija, int Povratak)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateTehnologijaTrase";
@@ -488,7 +488,7 @@ namespace Saobracaj.Tehnologija
 
         public void DelTehnologijaTrase(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteTehnologijaTrasa";
@@ -541,7 +541,7 @@ namespace Saobracaj.Tehnologija
 
         public void InsTehnologijaTraseLokomotiva(int IDTehnologije, int IDTrase, int IDSerije, double fiksna, double sati, double cena, double ukupno)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertTehnologijaTrasaLokomotiva";
@@ -638,7 +638,7 @@ namespace Saobracaj.Tehnologija
 
         public void UpdTehnologijaTraseLokomotiva(int ID, int IDTehnologije, int IDTrase, int IDSerije, double fiksna, double sati, double cena, double ukupno)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateTehnologijaTrasaLokomotiva";
@@ -739,7 +739,7 @@ namespace Saobracaj.Tehnologija
 
         public void DelTehnologijaTraseLokomotiva(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteTehnologijaTrasaLokomotiva";
@@ -791,7 +791,7 @@ namespace Saobracaj.Tehnologija
 
         public void InsTehnologijaTraseAktivnosti(int IDTehnologije, int VrstaAktivnostiID, int RadnoMestoID, double Koef, string Napomena, double ukupno)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertTehnologijaTrasaAktivnost";
@@ -881,7 +881,7 @@ namespace Saobracaj.Tehnologija
 
         public void DelTehnologijaTraseAktivnosti(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteTehnologijaTraseAktivnosti";

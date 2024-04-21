@@ -14,7 +14,7 @@ namespace Testiranje.Sifarnici
     {
         public void InsKomitentUgovori(string Oznaka, int Komitenti, DateTime DatumVezivanja, DateTime Datum, string Korisnik, int Cenovnik)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertKomitentiUgovori";
@@ -105,7 +105,7 @@ namespace Testiranje.Sifarnici
         public void UpdKomitentUgovori(int ID, string Oznaka, int Komitenti, DateTime DatumVezivanja, DateTime Datum, string Korisnik, int Cenovnik)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateKomitent";
@@ -203,7 +203,7 @@ namespace Testiranje.Sifarnici
 
         public void DeleteKomitentUgovori(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteKomitentUgovori";

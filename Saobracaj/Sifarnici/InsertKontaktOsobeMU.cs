@@ -14,7 +14,7 @@ namespace Saobracaj.Sifarnici
     {
         public void InsKontaktOsoba(int PaSifra, string Ime, string Prezime, string Odeljenje, string Telefon, string Mail, string Napomena, int Operatika)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertKontaktOsobeMU";
@@ -131,7 +131,7 @@ namespace Saobracaj.Sifarnici
 
         public void UpdKontaktOsoba(int ID, int PaSifra, string Ime, string Prezime, string Odeljenje, string Telefon, string Mail, string Napomena, int Operatika)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateKontaktOsobeMU";
@@ -257,7 +257,7 @@ namespace Saobracaj.Sifarnici
 
         public void DelKontaktOsoba(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteKontaktOsobaMU";

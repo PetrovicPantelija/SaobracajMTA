@@ -16,7 +16,7 @@ namespace Saobracaj.Dokumenta
         {
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertAutoPrevozniList";
@@ -186,7 +186,7 @@ namespace Saobracaj.Dokumenta
         public void UpdAutoprevozniList(int ID, int IDPutniNalog, int IDNalogZaPrevoz, int IDRadniNalog, int Platilac, string Kontakt, int Vozilo, DateTime Dana, string UtovarnoMesto, string IstovarnoMesto, int Primalac, string Ugovor, string Ponuda, string MestoIzdavanja, DateTime Datum)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateAutoprevoznilist";
@@ -360,7 +360,7 @@ namespace Saobracaj.Dokumenta
 
         public void DelAutoprevozniList(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteAutoprevozniList";
@@ -415,7 +415,7 @@ namespace Saobracaj.Dokumenta
         {
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertAutoPrevozniListGeneralni";
@@ -541,7 +541,7 @@ namespace Saobracaj.Dokumenta
         public void UpdAutoprevozniListGeneralni(int ID, int IDAutoprevozniList, string Korisnik, string TovList, string Racun, double Dencano, double Kolsko, double DencanoRSD, double OstaloRSD, string Primedba, string Potpisao)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateAutoprevoznilistGeneralni";
@@ -669,7 +669,7 @@ namespace Saobracaj.Dokumenta
 
         public void DelAutoprevozniListGeneralni(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteAutoprevozniListGeneralni";
@@ -725,7 +725,7 @@ namespace Saobracaj.Dokumenta
         {
 
           
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertAutoPrevozniListKameni";
@@ -827,7 +827,7 @@ namespace Saobracaj.Dokumenta
         public void UpdAutoprevozniListKameni(int ID, int IDAutoprevozniList, string RelacijaOd, string RelacijaDo, string BrojOtpravljanja, double BrojVagona, double NetoMasa, DateTime DatumIstovara)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateAutoprevoznilistKameni";
@@ -930,7 +930,7 @@ namespace Saobracaj.Dokumenta
 
         public void DelAutoprevozniListKameni(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteAutoprevozniListKameni";

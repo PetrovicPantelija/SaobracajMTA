@@ -14,7 +14,7 @@ namespace Saobracaj.Dokumenta
     {
         public void InsRNTL(int RadniNalog, int Trasa, string MestoTroska, string Komentar, bool Vucna, int StanicaOd, int StanicaDo, int Vreme)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertRadniNalogLokNaTrasi";
@@ -117,7 +117,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdRNTL(int RadniNalog, int Trasa, string MestoTroska, string Komentar, bool Vucna, int StanicaOd, int StanicaDo, int Vreme)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateRadniNalogLokNaTrasi";
@@ -220,7 +220,7 @@ namespace Saobracaj.Dokumenta
 
         public void delRNTL(int RadniNalog, int Trasa, string MestoTroska)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteRadniNalogLokNaTrasi";

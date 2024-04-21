@@ -15,7 +15,7 @@ namespace TrackModal.Dokumeta
 
         public void InsertPrijemKont( DateTime DatumPrijema,int StatusPrijema,string BrojKontejnera ,string RegBrKamiona, string ImeVozaca,int Posiljalac,int Primalac,int VlasnikKontejnera, int TipKontejnera, 	int VrstaRobe,int Buking, int StatusKontejnera,string BrojPlombe,int PlaniraniLager, int IdVoza, DateTime VremeDolaska, 	DateTime VremePripremljen, 	DateTime VremeOdlaska,	DateTime Datum, string Korisnik, Double Tara, Double Neto, string BrojPlombe2, int Organizator)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertPrijemKontejnera";
@@ -245,7 +245,7 @@ namespace TrackModal.Dokumeta
         public void UpdPrijemKontejnera(int ID, DateTime DatumPrijema, int StatusPrijema, string BrojKontejnera, string RegBrKamiona, string ImeVozaca, int Posiljalac, int Primalac, int VlasnikKontejnera, int TipKontejnera, int VrstaRobe, int Buking, int StatusKontejnera, string BrojPlombe, int PlaniraniLager, int IdVoza, DateTime VremeDolaska, DateTime VremePripremljen, DateTime VremeOdlaska, DateTime Datum, string Korisnik, double Tara, double Neto, string BrojPlombe2, int Organizator)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdatePrijemKontejnera";
@@ -480,7 +480,7 @@ namespace TrackModal.Dokumeta
 
           public void DeletePrijemKontejnera(int ID)
           {
-              var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+              var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
               SqlConnection myConnection = new SqlConnection(s_connection);
               SqlCommand myCommand = myConnection.CreateCommand();
               myCommand.CommandText = "DeletePrijemKontejnera";

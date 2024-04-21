@@ -45,7 +45,7 @@ namespace TrackModal.Dokumeta
         }
         public string IdGrupe()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -79,7 +79,7 @@ namespace TrackModal.Dokumeta
         }
         private int IdForme()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -96,7 +96,7 @@ namespace TrackModal.Dokumeta
 
         private void PravoPristupa()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -142,7 +142,7 @@ namespace TrackModal.Dokumeta
             if (chkVoz.Checked == true)
             {
                 var select = "SELECT top 500 [ID],[DatumOtpreme],[StatusOtpreme],[IdVoza],[RegBrKamiona],[ImeVozaca],[VremeOdlaska] ,[NacinOtpreme] ,[Datum] ,[Korisnik]  FROM [dbo].[OtpremaKontejnera] where NacinOtpreme = 1 order by ID desc";
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -196,7 +196,7 @@ namespace TrackModal.Dokumeta
             else
             {
                 var select = "SELECT top 500 [ID],[DatumOtpreme],[StatusOtpreme],[IdVoza],[RegBrKamiona],[ImeVozaca],[VremeOdlaska] ,[NacinOtpreme] ,[Datum] ,[Korisnik]  FROM [dbo].[OtpremaKontejnera] where NacinOtpreme = 0 order by ID desc";
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -403,7 +403,7 @@ namespace TrackModal.Dokumeta
              " inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza " +
              " where PrijemKontejneraVoz.StatusPrijema = 0  order by PrijemKontejneraVoz.[ID] desc";
            */
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -470,7 +470,7 @@ namespace TrackModal.Dokumeta
               " inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza " +
               " where PrijemKontejneraVoz.StatusPrijema = 0  order by PrijemKontejneraVoz.[ID] desc";
             */
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -528,7 +528,7 @@ namespace TrackModal.Dokumeta
                     "OtpremaKontejnera.[ImeVozaca],OtpremaKontejnera.[VremeOdlaska] ,OtpremaKontejnera.[NacinOtpreme] ,OtpremaKontejnera.[Datum], OtpremaKontejnera.[Korisnik]  FROM [dbo].[OtpremaKontejnera]" +
                     " inner join OtpremaKontejneraVozStavke on OtpremaKontejneraVozStavke.IDNAdredjenog = [OtpremaKontejnera].ID" +
                     " where OtpremaKontejneraVozStavke.BrojKontejnera = '" + txtBrojKontejnera.Text + "' order by OtpremaKontejnera.ID desc";
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -584,7 +584,7 @@ namespace TrackModal.Dokumeta
                 var select = "SELECT Distinct top 500 OtpremaKontejnera.[ID],OtpremaKontejnera.[DatumOtpreme],OtpremaKontejnera.[StatusOtpreme],OtpremaKontejnera.[IdVoza],OtpremaKontejnera.[RegBrKamiona]," +
                      "OtpremaKontejnera.[ImeVozaca],OtpremaKontejnera.[VremeOdlaska] ,OtpremaKontejnera.[NacinOtpreme] ,OtpremaKontejnera.[Datum], OtpremaKontejnera.[Korisnik]  FROM [dbo].[OtpremaKontejnera]" +
                      " inner join OtpremaKontejneraVozStavke on OtpremaKontejneraVozStavke.IDNAdredjenog = [OtpremaKontejnera].ID" +
-                     " where OtpremaKontejneraVozStavke.BrojKontejnera = '" + txtBrojKontejnera.Text + "' order by OtpremaKontejnera.ID desc"; var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                     " where OtpremaKontejneraVozStavke.BrojKontejnera = '" + txtBrojKontejnera.Text + "' order by OtpremaKontejnera.ID desc"; var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -647,7 +647,7 @@ namespace TrackModal.Dokumeta
                     " inner join OtpremaKontejneraVozStavke on OtpremaKontejneraVozStavke.IDNAdredjenog = [OtpremaKontejnera].ID" +
                     " where OtpremaKontejneraVozStavke.Buking = '" + txtBukingBrodar.Text + "' order by OtpremaKontejnera.ID desc";
 
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -705,7 +705,7 @@ namespace TrackModal.Dokumeta
                      " inner join OtpremaKontejneraVozStavke on OtpremaKontejneraVozStavke.IDNAdredjenog = [OtpremaKontejnera].ID" +
                      " where OtpremaKontejneraVozStavke.Buking = '" + txtBukingBrodar.Text + "' order by OtpremaKontejnera.ID desc";
 
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);

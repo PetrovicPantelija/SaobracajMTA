@@ -12,7 +12,7 @@ namespace Saobracaj.Nepravilnosti
 {
     class InsertNepravilnosti
     {
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         public void InsSifGrupaNepravilnosti(string Naziv, string Opis)
         {
 

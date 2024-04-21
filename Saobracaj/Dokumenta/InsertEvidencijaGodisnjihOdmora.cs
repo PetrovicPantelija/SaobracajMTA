@@ -17,7 +17,7 @@ namespace Saobracaj.Dokumenta
 
         public void InsEvidGodisnjihOdmora(int Nadredjena, DateTime VremeOd, DateTime VremeDo, double Ukupno, string Napomena, string Razlog, int Odobrio, int StatusGodmora, DateTime DatumZahteva, DateTime DatumPovratka,int PoslatMail, int PoslatoResenje)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertDopustStavke";
@@ -153,7 +153,7 @@ namespace Saobracaj.Dokumenta
         public void UpdEvidGodisnjihOdmora(int ID, int Nadredjena, DateTime VremeOd, DateTime VremeDo, double Ukupno, string Napomena, string Razlog, int Odobrio, int StatusGodmora, DateTime DatumZahteva, DateTime DatumPovratka, int PoslatMail, int PoslatoResenje)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateDopustStavke";
@@ -294,7 +294,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateEVGOPoslaoMail(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateEVGOPoslatMail";
@@ -346,7 +346,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdatePoslaoMailAktivnosti(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdatePoslatMail";
@@ -398,7 +398,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateAktivnostiPlaceno(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateAktivnostiPlaceno";
@@ -451,7 +451,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateAktivnostiPlacenoRacuni(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateAktivnostiPlacenoRacuni";
@@ -501,7 +501,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateAktivnostiPregledano(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateAktivnostiPregledano";
@@ -551,7 +551,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateMasinovodja(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateMasinovodja";
@@ -603,7 +603,7 @@ namespace Saobracaj.Dokumenta
 
         public void DeleteDopustStavke(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteDopustStavke";

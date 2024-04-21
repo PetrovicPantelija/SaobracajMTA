@@ -15,7 +15,7 @@ namespace Saobracaj.Dokumenta
     {
         public void InsKontrola(int NajavaID, int RadnikID, DateTime DatumPrijemaKoverte, int Uradio, DateTime DAtumCekiranja, int Uradio2, DateTime DatumCekiranja2, string Napomena)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertKontrolaDokumentacije";
@@ -125,7 +125,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdKontrola(int ID, int NajavaID, int RadnikID, DateTime DatumPrijemaKoverte, int Uradio, DateTime DAtumCekiranja, int Uradio2, DateTime DatumCekiranja2, string Napomena)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateKontrolaDokumentacije";
@@ -238,7 +238,7 @@ namespace Saobracaj.Dokumenta
 
         public void DeleteKontrola(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteKontrolaDokumentacije";

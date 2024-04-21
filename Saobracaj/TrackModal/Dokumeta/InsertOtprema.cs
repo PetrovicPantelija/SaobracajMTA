@@ -28,7 +28,7 @@ namespace Testiranje.Dokumeta
 	@Datum [datetime] ,
 	@Korisnik [nvarchar](20) 
              * */
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertOtpremaKontejnera";
@@ -172,7 +172,7 @@ namespace Testiranje.Dokumeta
         public void UpdOtpremaKontejnera(int ID, DateTime DatumOtpreme, int StatusOtpreme, int IdVoza, string RegBrKamiona, string ImeVozaca, DateTime VremeOdlaska, int NacinOtpreme, DateTime Datum, string Korisnik, string Napomena, int PredefinisanePorukeID)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateOtpremaKontejnera";
@@ -317,7 +317,7 @@ namespace Testiranje.Dokumeta
 
           public void DeleteOtpremaKontejnera(int ID)
           {
-              var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+              var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
               SqlConnection myConnection = new SqlConnection(s_connection);
               SqlCommand myCommand = myConnection.CreateCommand();
               myCommand.CommandText = "DeleteOtpremaKontejnera";
@@ -367,7 +367,7 @@ namespace Testiranje.Dokumeta
 
         public void UpdateEmailOtpremaNajava(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateEmailOtpremaNajava";
@@ -417,7 +417,7 @@ namespace Testiranje.Dokumeta
 
         public void UpdateEmailOtpremaOtprema(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateEmailOtpremaOtprema";
@@ -467,7 +467,7 @@ namespace Testiranje.Dokumeta
 
         public void UpdateZatvorenOtpremaCheck(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateZatvorenOtpremaCheck";

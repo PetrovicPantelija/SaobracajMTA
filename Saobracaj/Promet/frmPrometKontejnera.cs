@@ -143,10 +143,10 @@ namespace TrackModal.Promet
 
         private void btnPregled_Click(object sender, EventArgs e)
         {
-             var select = " SELECT DISTINCT Promet.[Id], Promet.[DatumTransakcije], Promet.[VrstaDokumenta] " +
+             var select = " SELECT DISTINCT Promet.[Id], Promet.[DatumTransakcije], Promet.[VrstaDokumenta],   " +
          " ,Promet.[PrStDokumenta],Promet.[PrSifVrstePrometa],Promet.[BrojKontejnera] " +
          " ,Promet.[PrPrimKol],Promet.[PrIzdKol] , Skladista.Naziv as Skladiste  , Pozicija.Oznaka, Skladista1.Naziv as SkaldisteIz, pozicija1.Oznaka as LokacijaIz, " +
-         " Promet.[PrOznSled]  ,Promet.[Datum] ,Promet.[Korisnik]  FROM [dbo].[Promet] inner join Skladista on Promet.SkladisteU = Skladista.ID " +
+         " Promet.[PrOznSled]  ,Zatvoren, DatumOtpreme, BrojOtpremnice, Promet.[Datum] ,Promet.[Korisnik]  FROM [dbo].[Promet] inner join Skladista on Promet.SkladisteU = Skladista.ID " +
          " inner join Pozicija on Pozicija.ID = Promet.LokacijaU " +
          " inner join skladista as skladista1 on skladista1.ID = promet.SkladisteIz " +
          " inner join pozicija as pozicija1 on Pozicija1.ID = Promet.LokacijaIz " +

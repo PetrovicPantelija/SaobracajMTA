@@ -12,10 +12,11 @@ namespace Saobracaj.Dokumenta
 {
     class InsertNajava
     {
+        private string connect = Sifarnici.frmLogovanje.connectionString;
         public void InsNaj(string BrojNajave, int Voz, int Posiljalac, int Prevoznik, int Otpravna, int Uputna, int Primalac, int RobaNHM, string PrevozniPut, double Tezina, double Duzina, int BrojKola, bool RID, System.DateTime PredvidjenoPrimanje, System.DateTime StvarnoPrimanje, System.DateTime PredvidjenaPredaja, System.DateTime StvarnaPredaja, int Status, string OnBroj, string RidBroj, string Komentar, int VozP, int Granicna, int Platilac, bool AdHoc, int PrevoznikZa, string Faktura, string Zadatak, bool CIM, string Korisnik, string DispecerRid, int TipPrevoza, double NetoTezinaM, int PorudzbinaID, int ImaPovrat, int TehnologijaID, int RobaNHM2, string DodatnoPorudzbina,string Oznaka,string SerijaVagona, string OznakaPrefiks, string OznakaBroj, int BrojKontejnera)
         {
            
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertNajava";
@@ -378,7 +379,7 @@ namespace Saobracaj.Dokumenta
 
         public void InsertVerzija(int ID, string BrojNajave, int Voz, int Posiljalac, int Prevoznik, int Otpravna, int Uputna, int Primalac, int RobaNHM, string PrevozniPut, double Tezina, double Duzina, int BrojKola, bool RID, System.DateTime PredvidjenoPrimanje, System.DateTime StvarnoPrimanje, System.DateTime PredvidjenaPredaja, System.DateTime StvarnaPredaja, int Status, string OnBroj, int Razlog, string RidBroj)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertNajavaVerzija";
@@ -590,8 +591,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdNaj(int ID, string BrojNajave, int Voz, int Posiljalac, int Prevoznik, int Otpravna, int Uputna, int Primalac, int RobaNHM, string PrevozniPut, double Tezina, double Duzina, int BrojKola, bool RID, System.DateTime PredvidjenoPrimanje, System.DateTime StvarnoPrimanje, System.DateTime PredvidjenaPredaja, System.DateTime StvarnaPredaja, int Status, string OnBroj, string RIDBroj, string Komentar, int VozP, int Granicna, int Platilac, bool AdHoc, int PrevoznikZa, string Faktura, string Zadatak, bool CIM, string Korisnik, string DispecerRid, int TipPrevoza, double NetoTezinaM, int PorudzbinaID, int ImaPovrat, int TehnologijaID, int RobaNHM2, string DodatnoPorudzbina,string Oznaka,string SerijaVagona, string OznakaPrefiks, string OznakaBroj, int BrojKontejnera)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateNajava";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
@@ -964,7 +964,7 @@ namespace Saobracaj.Dokumenta
 
         public void DeleteNaj(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteNajava";
@@ -1015,7 +1015,7 @@ namespace Saobracaj.Dokumenta
         public void InsNajDodatneUSluge(int PorudzbinaID, int NajavaID)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertNajavaDodatneUsluge";
@@ -1081,7 +1081,7 @@ namespace Saobracaj.Dokumenta
         public void InsNajDeljenjeVoza(int PorudzbinaID, int NajavaID, int BrojKola, double Tezina)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertNajavaDeljenjeVoza";

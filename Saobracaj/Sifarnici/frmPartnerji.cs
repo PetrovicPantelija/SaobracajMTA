@@ -226,6 +226,25 @@ namespace Saobracaj.Sifarnici
                     cbObveznik.Visible = true;
                     //cboValuta.Visible = false;
                     break;
+
+                case "DPT":
+                    chkPrevoznik.Visible = true;
+                    chkPosiljalac.Visible = true;
+                    chkPrimalac.Visible = true;
+                    chkBrodar.Visible = true;
+                    chkVlasnik.Visible = true;
+                    chkSpediter.Visible = true;
+                    chkPlatilac.Visible = true;
+                    chkOrganizator.Visible = true;
+                    chkNalogodavac.Visible = true;
+                    chkUvoznik.Visible = true;
+                    chkIzvoznik.Visible = true;
+                    //btnDrzava.Visible = false;
+                    //btnPosta.Visible = false;
+                    cbDobavljac.Visible = true;
+                    cbObveznik.Visible = true;
+                    //cboValuta.Visible = false;
+                    break;
             }
         }
 
@@ -352,7 +371,7 @@ namespace Saobracaj.Sifarnici
            
             /*
             var select4 = " Select Distinct PaSifra, RTrim(PaNaziv) as Partner From Partnerji";
-            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
             var dataAdapter4 = new SqlDataAdapter(select4, c4);
@@ -493,7 +512,7 @@ namespace Saobracaj.Sifarnici
 
             /*
             var select4 = " Select Distinct PaSifra, RTrim(PaNaziv) as Partner From Partnerji";
-            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
             var dataAdapter4 = new SqlDataAdapter(select4, c4);

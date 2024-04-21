@@ -48,7 +48,7 @@ namespace TrackModal.Promet
         }
         public string IdGrupe()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -82,7 +82,7 @@ namespace TrackModal.Promet
         }
         private int IdForme()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -99,7 +99,7 @@ namespace TrackModal.Promet
 
         private void PravoPristupa()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -142,7 +142,7 @@ namespace TrackModal.Promet
             var select = " select OtpremaKontejnera.ID,  (Cast(OtpremaKontejnera.ID as nvarchar(5)) + '-' + Relacija + '-' + Cast(Cast(OtpremaKontejnera.VremeOdlaska as DateTime) as Nvarchar(12))) as IDVoza from OtpremaKontejnera " +
          " inner join Voz on Voz.ID = OtpremaKontejnera.IdVoza " +
          " where OtpremaKontejnera.StatusOtpreme = 1 and OtpremaKontejnera.NacinOtpreme = 1 order by OtpremaKontejnera.VremeOdlaska desc";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -156,7 +156,7 @@ namespace TrackModal.Promet
 
             var select2 = "select OtpremaKontejnera.ID,  (Cast(OtpremaKontejnera.ID as nvarchar(15)) + '-' + Cast(OtpremaKontejnera.RegBrKamiona as nvarchar(15)) + '-'  + Cast(ImeVozaca as Nvarchar(12))+ '-' + Cast(Cast(OtpremaKontejnera.VremeOdlaska as DateTime) as Nvarchar(12))) as IDVoza from OtpremaKontejnera " +
           " where OtpremaKontejnera.StatusOtpreme = 1 and NacinOtpreme = 0 order by OtpremaKontejnera.VremeOdlaska desc";
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
             var dataAdapter2 = new SqlDataAdapter(select2, c2);
@@ -169,7 +169,7 @@ namespace TrackModal.Promet
             cboOtpremaKamionom.ValueMember = "ID";
 
             var select3 = " Select Distinct ID, Naziv   From Skladista";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -182,7 +182,7 @@ namespace TrackModal.Promet
             cboSkladiste.ValueMember = "ID";
 
             var select33 = " Select Distinct ID, Naziv   From Skladista";
-            var s_connection33 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection33 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection33 = new SqlConnection(s_connection33);
             var c33 = new SqlConnection(s_connection33);
             var dataAdapter33 = new SqlDataAdapter(select33, c33);
@@ -196,7 +196,7 @@ namespace TrackModal.Promet
 
 
             var select4 = " Select Distinct ID, (Naziv + ' RB:' +  RegistarskaOznaka + ' IB:' + IndividualniBroj) as Naziv   From Vozila";
-            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
             var dataAdapter4 = new SqlDataAdapter(select4, c4);
@@ -210,7 +210,7 @@ namespace TrackModal.Promet
 
 
             var select5 = " Select Distinct ID, (Cast(ID as nvarchar(5)) + ' ' + Rtrim(Prezime) + ' ' + Rtrim(Ime)) as Naziv   From Zaposleni";
-            var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection5 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection5);
             var dataAdapter5 = new SqlDataAdapter(select5, c5);
@@ -228,7 +228,7 @@ namespace TrackModal.Promet
 
         private void VratiPodatkeMase()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -250,7 +250,7 @@ namespace TrackModal.Promet
 
         private void VratiPodatkeMaxSledeci()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -273,7 +273,7 @@ namespace TrackModal.Promet
  " inner join TipKontenjera on TipKontenjera.Id = OtpremaKontejneraVozStavke.TipKontejnera " +
  " inner join OtpremaKontejnera on OtpremaKontejnera.Id = OtpremaKontejneraVozStavke.IDNadredjenog " +
  " inner join VrstaRobe on VrstaRobe.Id = OtpremaKontejneraVozStavke.VrstaRobe where OtpremaKontejnera.NacinOtpreme = 1 and IDNadredjenog = " + Convert.ToInt32(cboOtpremaVozom.SelectedValue);
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -336,8 +336,8 @@ namespace TrackModal.Promet
              " inner join TipKontenjera on TipKontenjera.Id = OtpremaKontejneraVozStavke.TipKontejnera " +
              " inner join OtpremaKontejnera on OtpremaKontejnera.Id = OtpremaKontejneraVozStavke.IDNadredjenog " +
              " inner join VrstaRobe on VrstaRobe.Id = OtpremaKontejneraVozStavke.VrstaRobe where OtpremaKontejnera.NacinOtpreme = 0 and IDNadredjenog = " + Convert.ToInt32(cboOtpremaKamionom.SelectedValue);
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            // var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            // var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -394,7 +394,7 @@ namespace TrackModal.Promet
 
         private void PostaviDatumPrijemaVoz()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -412,7 +412,7 @@ namespace TrackModal.Promet
 
         private void PostaviDatumPrijemaKamion()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -441,7 +441,7 @@ namespace TrackModal.Promet
             " inner join Komitenti on  NaruceneManipulacije.Platilac = Komitenti.ID " +
             " where NaruceneManipulacije.IzPrijema = 0 and BrojKontejnera = '" + row.Cells[0].Value.ToString() + "'";
                    
-                    var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                    var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -497,7 +497,7 @@ namespace TrackModal.Promet
             if (usao == true)
             {
                 var select = " Select ID, Oznaka From Pozicija where Skladiste = " + Convert.ToInt32(cboSkladiste.SelectedValue);
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -516,7 +516,7 @@ namespace TrackModal.Promet
             if (usao == true)
             {
                 var select = " Select ID, Oznaka From Pozicija where Skladiste = " + Convert.ToInt32(cboSkladisteU.SelectedValue);
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -538,7 +538,7 @@ namespace TrackModal.Promet
              " ,Promet.[Datum] ,Promet.[Korisnik] " +
              " FROM [dbo].[Promet] inner join Skladista on Promet.SkladisteU = Skladista.ID " +
              " inner join Pozicija on Promet.LokacijaU = Pozicija.ID  where PrstDokumenta = " + Convert.ToInt32(txtSifra.Text);
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -679,7 +679,7 @@ namespace TrackModal.Promet
                       "  Zaposleni ON PrometManipulacije.Zaposleni = Zaposleni.ID INNER JOIN " +
                        " Vozila ON PrometManipulacije.SredstvoRada = Vozila.ID  and PrStDokumenta =  " + Convert.ToInt32(txtSifra.Text);
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

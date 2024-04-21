@@ -12,7 +12,7 @@ namespace Saobracaj.Uvoz
 {
     class InsertUvozKonacna
     {
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
        
         public void InsUvozKonacna(int ID,  int IDNadredjeni, DateTime ETABroda, DateTime ATABroda, string Status, string BrojKont, int TipKont, DateTime DobijenNalog, string DobijeBZ, string Napomena,
             string PIN, int DirigacijaKont, int NazivBroda, string BTeretnica, int ADR, int Vlasnik, int Buking, string Nalogodavac, string VrstaUsluge, int Uvoznik, int NHM,

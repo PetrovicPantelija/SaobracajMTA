@@ -41,7 +41,7 @@ namespace Saobracaj.Dokumenta
         }
         public string IdGrupe()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
             string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
             SqlConnection conn = new SqlConnection(s_connection);
@@ -69,7 +69,7 @@ namespace Saobracaj.Dokumenta
         }
         private int IdForme()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -86,7 +86,7 @@ namespace Saobracaj.Dokumenta
 
         private void PravoPristupa()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -135,7 +135,7 @@ namespace Saobracaj.Dokumenta
 
         private void VratiPodatkeMax()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -164,7 +164,7 @@ namespace Saobracaj.Dokumenta
         private void frmMUPDozvola_Load(object sender, EventArgs e)
         {
             var select3 = " select DeSifra as ID, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis from Delavci where DeSifStat <> 'P' order by opis";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -188,7 +188,7 @@ namespace Saobracaj.Dokumenta
  " inner join Delavci on Delavci.DeSifra = MUPDozvola.Zaposleni order by MUPDozvola.ID desc";
 
      
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -283,7 +283,7 @@ namespace Saobracaj.Dokumenta
 
         private void cboZaposleni_Leave(object sender, EventArgs e)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -308,7 +308,7 @@ namespace Saobracaj.Dokumenta
 
             cboAutomobili.Text = "";
             var select3 = " select ID, (Rtrim(RegBr) + ' ' + RTrim(Marka)) as Opis from Automobili where Sluzbeni = 0 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) + " order by opis";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -366,7 +366,7 @@ namespace Saobracaj.Dokumenta
                     " (RTRIM(Delavci.DePriimek) + ' ' + RTrim(Delavci.DeIme)) as ImeIPrezime, Delavci.DeEMail as Email,  MUPDozvola.VremeOd, MUPDozvola.VremeDo, MUPDozvola.JMBG, MUPDozvola.RadnoMesto, MUPDozvola.Relacija  from MupDozvola  inner join Delavci on Delavci.DeSifra = MUPDozvola.Zaposleni " +
                 " where ID = " + Convert.ToInt32(txtSifra.Text);
 
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -430,7 +430,7 @@ namespace Saobracaj.Dokumenta
             if (chkSluzbeni.Checked == true)
             {
                 var select3 = " select ID, (Rtrim(RegBr) + ' ' + RTrim(Marka)) as Opis from Automobili where Sluzbeni = 1 order by opis";
-                var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection3 = new SqlConnection(s_connection3);
                 var c3 = new SqlConnection(s_connection3);
                 var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -446,7 +446,7 @@ namespace Saobracaj.Dokumenta
             {
                 cboAutomobili.Text = "";
                 var select3 = " select ID, (Rtrim(RegBr) + ' ' + RTrim(Marka)) as Opis from Automobili where Sluzbeni = 0 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) + " order by opis";
-                var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection3 = new SqlConnection(s_connection3);
                 var c3 = new SqlConnection(s_connection3);
                 var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -494,7 +494,7 @@ Pruga*/
             {
             ///Ako je stan
                 var select3 = " select ID, AdresaStana as Opis from MUPMesto where Stan = 1  order by opis";
-                var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection3 = new SqlConnection(s_connection3);
                 var c3 = new SqlConnection(s_connection3);
                 var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -510,7 +510,7 @@ Pruga*/
             else
             {
                 var select3 = " select ID, AdresaStanovanja as Opis from MUPMesto where Stan = 0 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) + " order by opis";
-                var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection3 = new SqlConnection(s_connection3);
                 var c3 = new SqlConnection(s_connection3);
                 var dataAdapter3 = new SqlDataAdapter(select3, c3);

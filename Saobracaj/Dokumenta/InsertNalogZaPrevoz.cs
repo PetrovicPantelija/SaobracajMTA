@@ -16,7 +16,7 @@ namespace Saobracaj.Dokumenta
         {
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertNaloziZaPrevoz";
@@ -265,7 +265,7 @@ namespace Saobracaj.Dokumenta
         public void UpdNaloziZaPrevoz(int ID, string BrojKontejnera1, string BrojKontejnera2, double UkupnaMasa, string Relacija1, string Relacija2, DateTime DatumPrevoza, string VrstaRobe, double UkupnaMasa2, int Platilac, int OrganizacionaJedinica, int UtovarnoMesto, int IstovarnoMesto, string KontaktOsoba, string Napomena, DateTime Datum, string Korisnik, int Primalac, int statusrn,  DateTime DatumUtovara, DateTime PredvidjenoDatumUtovara, string TipKontejnera1, string TipKontejnera2, int VrstaRobeID, double NetoMasaRobe)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateNaloziZaprevoz";
@@ -500,7 +500,7 @@ namespace Saobracaj.Dokumenta
 
         public void DeleteNaloziZaPrevoz(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteNalogZaPrevoz";
@@ -550,7 +550,7 @@ namespace Saobracaj.Dokumenta
 
         public void InsNalogZaPrevozTroskovi(int ID, int VrstaManipulacijeID, DateTime Datum, string Korisnik, double Popust)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertNaloziZaPrevozTrosak";
@@ -633,7 +633,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdNalogZaPrevozTroskovi(int ID, double Popust)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateNaloziZaPrevozTrosak";
@@ -692,7 +692,7 @@ namespace Saobracaj.Dokumenta
 
         public void DelNalogZaPrevozTroskovi(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteNajavaPrevozaTroskovi";

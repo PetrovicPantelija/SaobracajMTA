@@ -14,7 +14,7 @@ namespace Saobracaj.Sifarnici
     {
         public void InsTras(int Pocetna, int Krajnja, string Relacija, string OpisRelacije, string Voz, string Rang, double TezinaVoza, double TezinaLokomotive, int Prevoznik, double DuzinaVoza, double ProcenatKocenja, double Cena, double Rastojanje, System.DateTime VremePolaska, System.DateTime VremeDolaska, int DuzinaTrajanja, bool Rezi, string Godina, double CenaKalk, double RastojanjeMag, double RastojanjeReg, double RastojanjeLok, double Dana, double NajveciOtpor, double NajkraciKol, double OsovinskoOpter, int TipED, double ElektroKM, double DizelKM, double PrevoznoRastojanje)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertTrase";
@@ -298,7 +298,7 @@ namespace Saobracaj.Sifarnici
 
         public void UpdTrase(int ID, int Pocetna, int Krajnja, string Relacija, string OpisRelacije, string Voz, string Rang, double TezinaVoza, double TezinaLokomotive, int Prevoznik, double DuzinaVoza, double ProcenatKocenja, double Cena, double Rastojanje, System.DateTime VremePolaska, System.DateTime VremeDolaska, int DuzinaTrajanja, bool Rezi, string Godina, double CenaKalk, double RastojanjeMag, double RastojanjeReg, double RastojanjeLok, double Dana, double NajveciOtpor, double NajkraciKol, double OsovinskoOpter, int TipED, double ElektroKM, double DizelKM, double PrevoznoRastojanje)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateTrase";
@@ -568,7 +568,7 @@ namespace Saobracaj.Sifarnici
 
         public void DeleteTrase(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteTrase";
@@ -619,7 +619,7 @@ namespace Saobracaj.Sifarnici
 
         public void InsPodTras(int IDRadnogNaloga, int IDTrase, int StanicaOD, int StanicaDO, double Rastojanje, int Elektrificirana, string PrugaOznaka, string TipPruge, int RB)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertPodTrase";

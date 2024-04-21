@@ -16,7 +16,7 @@ namespace Saobracaj.Izvoz
     {
         float firstWidth;
         float firstHeight;
-        public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         string tKorisnik = "";
         int NHMObrni = 0;
 
@@ -47,7 +47,7 @@ namespace Saobracaj.Izvoz
         public void VratiPodatke(int ID)
         {
             
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection con = new SqlConnection(s_connection);
 
                 con.Open();
@@ -1131,7 +1131,7 @@ namespace Saobracaj.Izvoz
 
         private void VratiPodatkeSelect(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -1459,7 +1459,7 @@ namespace Saobracaj.Izvoz
 
         private void VratiAdresuKontaktaIzNapomene(int Sifra)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -1542,7 +1542,7 @@ namespace Saobracaj.Izvoz
         }
         private void VratiNHM(int Sifra)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -1803,9 +1803,13 @@ namespace Saobracaj.Izvoz
         {
             using (var detailForm = new frmIzvozTable())
             {
-                detailForm.ShowDialog();
-                txtID.Text = detailForm.GetID();
-                VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+                if (txtID.Text !=  "")
+                     {
+                    detailForm.ShowDialog();
+                    txtID.Text = detailForm.GetID();
+                    VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+                }
+                
             }
 
 

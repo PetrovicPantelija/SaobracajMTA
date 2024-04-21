@@ -15,7 +15,7 @@ namespace Saobracaj.Dokumenta
         public void InsTovarniList(int Posiljalac, int Primalac, string KorisnickaSIfraPosiljalac, string KorisnickaSifraPrimalac, string FrankiraneTroskove, string NeFrankiraneTroskove, string IzjavePosiljaoca, string ObavestenjePosiljaoca, string Prilozi, int MestoIzdavanja, string SifraMestaIzdavanja, string SifraStaniceMestaIzdavanja, string KomercijalniUslovi, string KorisnickiSporazum, string ObavestenjePrimaocu, string PreuzimanjeNaPrevoz, string BrojKola, string FakturisanjeTranzita, string PlacanjeTroskova, string NarocitaPosiljka, string RID, double Vrednost, double BrutoMasaRobe, double NetoRobe, double BrutoMasaVoza, string ObezbedjenjeIsporuke, string Pouzece, string MestoIspostavljanja, DateTime DatumIspostavljanja, string OznakaDokumenta, string CIMBroj, string VrstaRobe, string NHM, string MestoPreuzimanja, string DrugiPrevoznici)
         {
          
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertTovarniList";
@@ -337,7 +337,7 @@ namespace Saobracaj.Dokumenta
         public void UpdTovarniList(int ID, int Posiljalac, int Primalac, string KorisnickaSIfraPosiljalac, string KorisnickaSifraPrimalac, string FrankiraneTroskove, string NeFrankiraneTroskove, string IzjavePosiljaoca, string ObavestenjePosiljaoca, string Prilozi, int MestoIzdavanja, string SifraMestaIzdavanja, string SifraStaniceMestaIzdavanja, string KomercijalniUslovi, string KorisnickiSporazum, string ObavestenjePrimaocu, string PreuzimanjeNaPrevoz, string BrojKola, string FakturisanjeTranzita, string PlacanjeTroskova, string NarocitaPosiljka, string RID, double Vrednost, double BrutoMasaRobe, double NetoRobe, double BrutoMasaVoza, string ObezbedjenjeIsporuke, string Pouzece, string MestoIspostavljanja, DateTime DatumIspostavljanja, string OznakaDokumenta, string CIMBroj, string VrstaRobe, string NHM, string MestoPreuzimanja, string DrugiPrevoznici)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateTovarniList";
@@ -668,7 +668,7 @@ namespace Saobracaj.Dokumenta
 
         public void DelTovarniList(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteTovarniList";

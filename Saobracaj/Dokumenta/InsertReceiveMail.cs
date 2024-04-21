@@ -19,7 +19,7 @@ namespace Saobracaj.Dokumenta
     {
         public void InsRecMail(string ID, string Subject, string From, string To, string Datum, string DatumSlanja, string Body, string Status)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertReceiveMail";
@@ -129,7 +129,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdRecMail(string ID,  string Status)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateReceiveMail";

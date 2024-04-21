@@ -34,7 +34,7 @@ namespace Testiranje.Dokumeta
 
             */
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertPromet";
@@ -218,7 +218,7 @@ namespace Testiranje.Dokumeta
 
        public void InsPromMan( int PRStDokumenta  , string BrojKontejnera  ,int ManipulacijaID ,int NajavaID ,int SredstvoRada ,int Zaposleni ,DateTime Datum,string @Korisnik, string SkladisteIz, string PozicijaIz, string SkladisteU, string PozicijaU)
        {
-           var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+           var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
            SqlConnection myConnection = new SqlConnection(s_connection);
            SqlCommand myCommand = myConnection.CreateCommand();
            myCommand.CommandText = "InsertPrometManipulacije";
@@ -363,7 +363,7 @@ namespace Testiranje.Dokumeta
        public void UpdProm(int ID, string Naziv, string IndividualniBroj, string LicencaBroj, DateTime LicencaVaziDo, string Namena, string Vrsta, int BrojOsovina, string RegistarskaOznaka, DateTime GodinaProizvodnje, double SopstvenaTezina, DateTime NarednaREgistracija, DateTime SetomesecniTehnicki, DateTime GodisnjiTehnicki, DateTime TahografSertifikat, DateTime PPAparat, DateTime Servis, DateTime Atest, double Nosivost, string Napomena, string SifraERP, DateTime Datum, string Korisnik, int UradjenTromesecni, int UradjenSetomesecni, int UradjenServis, DateTime DatumUradjenTromesecni, DateTime DatumUradjenSetomesecni, DateTime DatumUradjenServis, DateTime DatumUradjenGodisnji, DateTime TromesecniTehnicki, int UradjenGodisnji)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateVozila";
@@ -651,7 +651,7 @@ namespace Testiranje.Dokumeta
 
        public void DeleteProm(int ID)
           {
-              var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+              var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
               SqlConnection myConnection = new SqlConnection(s_connection);
               SqlCommand myCommand = myConnection.CreateCommand();
               myCommand.CommandText = "DeletePromet";
@@ -701,7 +701,7 @@ namespace Testiranje.Dokumeta
 
         public void DeletePromManipulacije(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeletePrometManipulacije";
@@ -751,7 +751,7 @@ namespace Testiranje.Dokumeta
 
         public void UpdateZatvoren(int ID)
        {
-           var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+           var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
            SqlConnection myConnection = new SqlConnection(s_connection);
            SqlCommand myCommand = myConnection.CreateCommand();
            myCommand.CommandText = "UpdateZatvoren";
@@ -801,7 +801,7 @@ namespace Testiranje.Dokumeta
 
        public void UpdateZatvorenOtprema(string ID, DateTime DatumOtpreme, int BrojOtpremnice)
        {
-           var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+           var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
            SqlConnection myConnection = new SqlConnection(s_connection);
            SqlCommand myCommand = myConnection.CreateCommand();
            myCommand.CommandText = "UpdateZatvorenOtprema";

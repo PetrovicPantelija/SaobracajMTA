@@ -41,7 +41,7 @@ namespace Testiranje.Sifarnici
          private void RefreshDataGrid()
          {
              var select = " SELECT [ID],[Oznaka],[Komitenti],[DatumVezivanja],[Cenovnik]  FROM [dbo].[KomitentiUgovori]";
-             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
              SqlConnection myConnection = new SqlConnection(s_connection);
              var c = new SqlConnection(s_connection);
              var dataAdapter = new SqlDataAdapter(select, c);
@@ -124,7 +124,7 @@ namespace Testiranje.Sifarnici
 
         private void VratiPodatke(string ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();

@@ -30,7 +30,7 @@ namespace Saobracaj.Sifarnici
         private void frmDodelaLokomotive_Load(object sender, EventArgs e)
         {
             var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -43,7 +43,7 @@ namespace Saobracaj.Sifarnici
             cboPartneri.ValueMember = "ID";
 
             var select = " Select SmSifra, SmNaziv as Opis from Mesta where Lokomotiva=1";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -117,7 +117,7 @@ namespace Saobracaj.Sifarnici
         private void RefreshDataGrid()
         {
             var select = " select Radnik as Sifra, Delavci.DeIme as Ime, Delavci.DePriimek as Prezime, Lokomotiva from RadnikLokomotive inner join Delavci on DeSifra = Radnik";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

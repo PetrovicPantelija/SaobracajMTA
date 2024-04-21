@@ -15,7 +15,7 @@ namespace Testiranje.Dokumeta
         public void InsRadniNalogTransportStavke(int IDNadredjenog, string Korisnik, string TovList,string Racun, double Dencano, double Kolsko, double DencanoRSD, double OstaloRSD,string Primedba, string Potpisao)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertRadniNalogTransportStavke";
@@ -140,7 +140,7 @@ namespace Testiranje.Dokumeta
 
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateRadniNalogTransportStavke";
@@ -278,7 +278,7 @@ namespace Testiranje.Dokumeta
 
         public void DeleteRadniNalogTransportStavke(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteRadniNalogTransportStavke";

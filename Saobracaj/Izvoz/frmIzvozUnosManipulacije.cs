@@ -15,7 +15,7 @@ namespace Saobracaj.Izvoz
 {
     public partial class frmIzvozUnosManipulacije : Form
     {
-        public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         int pIDPlana = 0;
         int pID = 0;
         int pNalogodavac1 = 0;
@@ -594,7 +594,7 @@ namespace Saobracaj.Izvoz
 
         int PretraziPoNalogodavciIIzvozniku(int PomManipulacija, int Nalogodavac, int Uvoznik)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
             int tmp = 0;
             con.Open();
@@ -624,7 +624,7 @@ namespace Saobracaj.Izvoz
 
         int PretraziPoNalogodavci(int PomManipulacija, int Nalogodavac, int Uvoznik)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
             int tmp = 0;
             con.Open();
@@ -679,7 +679,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip1 == 1)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -703,7 +703,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip2 == 1 && CenaNadjenaTip2 == 0)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -728,7 +728,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip2 == 0 && CenaNadjenaTip2 == 0)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -1265,7 +1265,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip1 == 1)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -1289,7 +1289,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip2 == 1 && CenaNadjenaTip2 == 0)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -1314,7 +1314,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip2 == 0 && CenaNadjenaTip2 == 0)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -1386,7 +1386,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip1 == 1)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -1410,7 +1410,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip2 == 1 && CenaNadjenaTip2 == 0)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -1435,7 +1435,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip2 == 0 && CenaNadjenaTip2 == 0)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -1548,7 +1548,7 @@ namespace Saobracaj.Izvoz
         int VratiOrgJed(int Manipulacija)
         {
             int pomOJ = 0;
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -1594,7 +1594,7 @@ namespace Saobracaj.Izvoz
 
 
 
-                        var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                        var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();

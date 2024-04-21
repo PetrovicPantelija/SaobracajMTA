@@ -14,7 +14,7 @@ namespace Saobracaj.Servis
     {
         public void InsLokomotiveVrstePopisa(string Lokomotiva, int VrstaPopisaID, int Kolicina, int ReferentnaKolicina)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertLokomotivaVrstaPopisa";
@@ -90,7 +90,7 @@ namespace Saobracaj.Servis
 
         public void UpdLokomotiveVrstePopisa(int ID, string Lokomotiva, int VrstaPopisaID, int Kolicina, int ReferentnaKolicina)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateLokomotiveVrstaPopisa";
@@ -174,7 +174,7 @@ namespace Saobracaj.Servis
 
         public void DeleteLokomotiveVrstePopisa(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteLokomotiveVrstePopisa";

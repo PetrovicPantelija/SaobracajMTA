@@ -33,7 +33,7 @@ namespace Saobracaj.Dokumenta
             var select = " select  ZlLok,  ZlSifMP,  MaticniPodatki.MpStaraSif as Artikal, ZlDejanskaKol from ZalogaLokacija inner join MaticniPodatki on MaticniPodatki.MpSifra = ZaLogaLokacija.ZlSifMp";
             select = select + " where ZlSifSklad = " + cboSkladiste.SelectedValue + " and ZlLok like ( '" + txtLokacija.Text + "%' )" + " order by ZlLok  "; ;
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -69,7 +69,7 @@ namespace Saobracaj.Dokumenta
             var select = " select  ZlLok,  ZlSifMP,  MaticniPodatki.MpStaraSif as Artikal, ZlDejanskaKol from ZalogaLokacija inner join MaticniPodatki on MaticniPodatki.MpSifra = ZaLogaLokacija.ZlSifMp";
             select = select + " where ZlSifSklad = " + cboSkladiste2.SelectedValue + " and ZlLok like ( '" + txtLokacija2.Text + "%' )" + " order by ZlLok  "; ;
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -105,7 +105,7 @@ namespace Saobracaj.Dokumenta
             var select = " select  ZlLok,  ZlSifMP,  MaticniPodatki.MpStaraSif as Artikal, ZlDejanskaKol from ZalogaLokacija inner join MaticniPodatki on MaticniPodatki.MpSifra = ZaLogaLokacija.ZlSifMp";
             select = select + " where ZlSifSklad = " + cboSkladiste2.SelectedValue + " and ZlLok like ( '" + txtLokacija2.Text + "%' )" + " order by ZlLok  "; ;
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -139,7 +139,7 @@ namespace Saobracaj.Dokumenta
             var select = " select  ZlLok,  ZlSifMP,  MaticniPodatki.MpStaraSif as Artikal, ZlDejanskaKol from ZalogaLokacija inner join MaticniPodatki on MaticniPodatki.MpSifra = ZaLogaLokacija.ZlSifMp";
             select = select + " where ZlSifSklad = " + cboSkladiste2.SelectedValue + " and ZlLok like ( '" + txtLokacija2.Text + "%' )" + " order by ZlLok  "; ;
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -172,7 +172,7 @@ namespace Saobracaj.Dokumenta
         {
 
             var select2 = " Select SkSifra, SkNaziv from Sklad order by SkSifra";
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
             var dataAdapter2 = new SqlDataAdapter(select2, c2);
@@ -187,7 +187,7 @@ namespace Saobracaj.Dokumenta
             ///
 
             var select3 = " Select SkSifra, SkNaziv from Sklad order by SkSifra";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -203,7 +203,7 @@ namespace Saobracaj.Dokumenta
             ///
 
             var select4 = " Select SkSifra, SkNaziv from Sklad order by SkSifra";
-            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection4= new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection3);
             var dataAdapter4 = new SqlDataAdapter(select4, c4);
@@ -216,7 +216,7 @@ namespace Saobracaj.Dokumenta
             cboSkladiste3.ValueMember = "SkSifra";
             //
             var select5 = " Select SkSifra, SkNaziv from Sklad order by SkSifra";
-            var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection5 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection4);
             var dataAdapter5 = new SqlDataAdapter(select5, c5);

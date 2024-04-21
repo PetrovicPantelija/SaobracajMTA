@@ -30,7 +30,7 @@ namespace Saobracaj.Dokumenta
         private void frmNajavaPrevoznik_Load(object sender, EventArgs e)
         {
             var select = " Select PaSifra, Rtrim(PaNaziv) as PaNaziv from Partnerji where Prevoznik = 1";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -44,7 +44,7 @@ namespace Saobracaj.Dokumenta
 
 
             var select2 = " Select Distinct ID, RTrim(Voz) as Voz From Trase";
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
             var dataAdapter2 = new SqlDataAdapter(select2, c2);
@@ -65,7 +65,7 @@ namespace Saobracaj.Dokumenta
 
         private void cboPartneri_Leave(object sender, EventArgs e)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
             SqlCommand command = new SqlCommand(" Select PaSifra, Rtrim(PaNaziv) as PaNaziv, Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac from Partnerji where PaNaziv=@NAZIV", conn);
@@ -118,7 +118,7 @@ namespace Saobracaj.Dokumenta
             int pomNaj = Convert.ToInt32(txtSifraNajave.Text);
             var select = "select NajavaPrevoznik.ID,NajavaPrevoznik.IDNajave,  NajavaPrevoznik.Red, NajavaPrevoznik.IDPrevoznik, NajavaPrevoznik.PaNaziv, Partnerji.UIC, NajavaPrevoznik.Voz  from NajavaPrevoznik inner join Partnerji on " +
             " NajavaPrevoznik.IDPrevoznik = Partnerji.PaSifra where NajavaPrevoznik.IDNajave =  " + pomNaj +  "  order by NajavaPrevoznik.Red";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

@@ -36,7 +36,7 @@ namespace TrackModal.Dokumeta
         private void frmSpisakBukingaOtpreme_Load(object sender, EventArgs e)
         {
             var select = " SELECT [ID] ,[IdVoza],[DatumOtpreme],[StanicaOtpreme],[Datum] ,[Korisnik] FROM [dbo].[BukingVoza]";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

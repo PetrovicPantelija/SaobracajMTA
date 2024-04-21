@@ -35,7 +35,7 @@ namespace Saobracaj.Dokumenta
 " THEN '1-Najava' ELSE '2-Prijem' END as Status,  n1.VremeDolaska as VremeDolaska   " +
 "  FROM[dbo].[PrijemKontejneraVoz] as n1 inner join PrijemKontejneraVozStavke as vs on n1.ID = vs.IDNadredjenog" +
   " where  vs.BrojKontejnera = '" + uKontejner + "' order by n1.[ID]";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

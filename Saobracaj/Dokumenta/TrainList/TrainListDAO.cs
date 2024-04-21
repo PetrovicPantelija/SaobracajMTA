@@ -11,7 +11,7 @@ namespace Saobracaj.Dokumenta.TrainList
 {
     public class TrainListDAO
     {
-        private string connectionString = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        private string connectionString = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
         public int Insert(TrainListModel obj)
         {

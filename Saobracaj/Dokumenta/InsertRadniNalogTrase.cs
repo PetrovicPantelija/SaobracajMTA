@@ -15,7 +15,7 @@ namespace Saobracaj.Dokumenta
         public void InsRNT(int RadniNalog, int Trasa, DateTime DatumPolaskaReal, DateTime DatumDolaskaReal, DateTime DatumPolaska, DateTime DatumDolaska, int Vreme, int VremeReal , double PlaniranaMasa , double MasaLokomotive, double MasaVoza, double BrutoMasa, string Napomena, bool Rezi, int StanicaOd, int StanicaDo, bool Poslato, int Status)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InserRadniNalogTrase";
@@ -187,7 +187,7 @@ namespace Saobracaj.Dokumenta
         public void UpdRNT(int RadniNalog, int Trasa, DateTime DatumPolaskaReal, DateTime DatumDolaskaReal, DateTime DatumPolaska, DateTime DatumDolaska, int Vreme, int VremeReal, double PlaniranaMasa, double MasaLokomotive, double MasaVoza, double BrutoMasa, string Napomena, bool Rezi, int StanicaOd, int StanicaDo,  bool Poslato, int Status, int RB)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateRadniNalogTrase";
@@ -367,7 +367,7 @@ namespace Saobracaj.Dokumenta
         public void UpdRNTStatusIzMaila(int RadniNalog, int RB)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateRadniNalogTrasePoslato";
@@ -428,7 +428,7 @@ namespace Saobracaj.Dokumenta
         public void delRNT(int RadniNalog, int Trasa, int rb)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteRadniNalogTrase";
@@ -495,7 +495,7 @@ namespace Saobracaj.Dokumenta
         public void InsRNTPodrtrase(int RadniNalog, int Trasa, int StanicaOd, int StanicaDo, double Rastojanje, int Elektrificirana, string PrugaOznaka, string TipPruge )
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InserRadniNalogPodTrase";

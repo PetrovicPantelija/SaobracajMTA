@@ -13,7 +13,7 @@ namespace Saobracaj.Dokumenta.TrainListItem
 {
     internal class TrainListItemDAO
     {
-        private string connectionString = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        private string connectionString = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
         internal void ReadFromExcel(int id_sup)
         {

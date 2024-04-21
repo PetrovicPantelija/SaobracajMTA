@@ -15,7 +15,7 @@ namespace Saobracaj.Dokumenta
 
         public void InsertIskljuceniVag(int IDTeretnice, int StanicaIsklj)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertTerIskljuceniVagoni";
@@ -72,7 +72,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateIskljuceniVag(int IDTeretnice, int RN)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateIskljuceniVagoniRN";
@@ -129,7 +129,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateIskljuceniVagRSP(int ID, int StanicaIsklj)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateIskljuceniVagoniRNRsp";
@@ -186,7 +186,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateIskljuceniVagPredaj(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateIskljuceniVagoniRNPred";
@@ -236,7 +236,7 @@ namespace Saobracaj.Dokumenta
 
         public void InsertIskljuceniVagPrijem(int IDTeretnice, int StanicaIsklj, int statusvagona)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertTerIskljVagPrijem";
@@ -300,7 +300,7 @@ namespace Saobracaj.Dokumenta
 
         public void DeleteIskljuceniVagoni(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteTerIskljuceniVagoni";

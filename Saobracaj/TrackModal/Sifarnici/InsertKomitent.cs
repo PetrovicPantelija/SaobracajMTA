@@ -15,7 +15,7 @@ namespace Testiranje.Sifarnici
         public void InsKomitent(string Naziv,string Adresa, string Telefon, string email, string KontaktOsoba, int Brodar, int Posiljalac , 	int Primalac , 	int Platilac , 	int Organizator , 	int Vlasnik, 	int Operator ,  string  Napomena, DateTime Datum, string Korisnik, string PIB, string MaticniBroj, string SifraERP, string TR)
         {
            
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertKomitenti";
@@ -206,7 +206,7 @@ namespace Testiranje.Sifarnici
         public void UpdKomitent(int ID, string Naziv, string Adresa, string Telefon, string email, string KontaktOsoba, int Brodar, int Posiljalac, int Primalac, int Platilac, int Organizator, int Vlasnik, int Operator, string Napomena, DateTime Datum, string Korisnik, string PIB, string MaticniBroj, string SifraERP, string TR)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateKomitenti";
@@ -403,7 +403,7 @@ namespace Testiranje.Sifarnici
 
         public void DeleteKomitent(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteKomitenti";

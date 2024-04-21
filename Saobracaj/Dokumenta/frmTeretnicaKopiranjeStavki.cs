@@ -25,7 +25,7 @@ namespace Saobracaj.Dokumenta
         private void frmTeretnicaKopiranjeStavki_Load(object sender, EventArgs e)
         {
             var select = " Select ID, (Cast(id as nvarchar) + '/' +BrojTeretnice) as Teretnica From Teretnica";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -38,7 +38,7 @@ namespace Saobracaj.Dokumenta
             cboTeretnicaIz.ValueMember = "ID";
 
             var select2 = " Select ID, (Cast(id as nvarchar) + '/' +BrojTeretnice) as Teretnica From Teretnica";
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
             var dataAdapter2 = new SqlDataAdapter(select2, c2);
@@ -51,7 +51,7 @@ namespace Saobracaj.Dokumenta
             cboTeretnicaU.ValueMember = "ID";
 
             var select6 = " Select ID, RTrim(Opis) as Stanica From Stanice order by opis";
-            var s_connection6 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection6 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection6 = new SqlConnection(s_connection6);
             var c6 = new SqlConnection(s_connection6);
             var dataAdapter6 = new SqlDataAdapter(select6, c6);
@@ -102,7 +102,7 @@ namespace Saobracaj.Dokumenta
                           + " stanice AS stanice_2 ON TeretnicaStavke.Otpravna = stanice_2.ID "
                           + " where BrojTEretnice = " + cboTeretnicaIz.SelectedValue + " order by RB";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -233,7 +233,7 @@ namespace Saobracaj.Dokumenta
                               + " stanice AS stanice_2 ON TeretnicaStavke.Otpravna = stanice_2.ID "
                               + " where BrojTEretnice = " + cboTeretnicaU.SelectedValue + " order by RB";
 
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -359,7 +359,7 @@ namespace Saobracaj.Dokumenta
                         " stanice AS stanice_3 ON TeretnicaStavke.Otpravna = stanice_3.ID INNER JOIN " +
                         " stanice AS stanice_4 ON TeretnicaStavke.Uputna = stanice_4.ID";
 
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);

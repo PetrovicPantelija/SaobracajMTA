@@ -16,7 +16,7 @@ namespace Saobracaj.Dokumenta
         public void InsRN(string BrojNajave, int Najava, string Komentar, int Planer, string StatusRN, int TehnologijaID, int PredhodniRadniNalog)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertRadniNalog";
@@ -117,7 +117,7 @@ namespace Saobracaj.Dokumenta
 
         public void InsertVerzija(int ID, string BrojNajave, string Voz, int Posiljalac, int Prevoznik, int Otpravna, int Uputna, int Primalac, bool RobaNHM, string PrevozniPut, double Tezina, double Duzina, int BrojKola, bool RID, System.DateTime PredvidjenoPrimanje, System.DateTime StvarnoPrimanje, System.DateTime PredvidjenaPredaja, System.DateTime StvarnaPredaja, string Status, string OnBroj, int Razlog)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertRadniNalogVerzija";
@@ -316,7 +316,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdRN(int ID, string BrojNajave, int Najava, string Komentar, int Planer, string StatusRN, int TehnologijaID, int PredhodniRadniNalog)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateRadniNalog";
@@ -423,7 +423,7 @@ namespace Saobracaj.Dokumenta
 
         public void DeleteRN(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteRadniNalog";
@@ -474,7 +474,7 @@ namespace Saobracaj.Dokumenta
         public void InsRNTeretnica(int RadniNalog)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertRadniNalogTeretnice";
@@ -527,7 +527,7 @@ namespace Saobracaj.Dokumenta
 
         public void InsRadniNalogVezaNajava(int IDRadnogNaloga, int IDNajave, int BrojKola)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertRadniNalogVezaNajave";
@@ -593,7 +593,7 @@ namespace Saobracaj.Dokumenta
 
         public void InsRadniNalogIzNajaveKopiranjem(int IDRadnogNalogaPostojeci, int IDNajaveNovi, string OznakaPoslaNovi)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertRadniNalogIzNajaveKopiranjem";
@@ -660,7 +660,7 @@ namespace Saobracaj.Dokumenta
 
         public void DeleteRNVezaNajava(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteRadniNalogVezaNajave";

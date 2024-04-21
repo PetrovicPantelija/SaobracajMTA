@@ -234,7 +234,7 @@ namespace TrackModal.Dokumeta
        "      ON PrijemKontejneraVozStavke.VlasnikKontejnera = Partnerji_2.PaSifra INNER JOIN TipKontenjera" +
        "       ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID" +
       "        INNER JOIN  NHM ON PrijemKontejneraVozStavke.VrstaRobe = NHM.ID" +
-       "       INNER JOIN  Voz ON PrijemKontejneraVozStavke.IdVoza = Voz.ID " +
+       "       Left JOIN  Voz ON PrijemKontejneraVozStavke.IdVoza = Voz.ID " +
                            " where IdNadredjenog = " + txtSifra.Text + " order by RB";
 
             var s_connection = frmLogovanje.connectionString;;
@@ -474,7 +474,7 @@ namespace TrackModal.Dokumeta
 
         private void frmPrijemKontejneraVoz_Load_1(object sender, EventArgs e)
         {
-            var select = " Select Distinct ID, (Broj + '-' + Naziv) as NHM  From NHM";
+            var select = " Select Distinct ID, (Broj + '-' + Naziv) as NHM  From NHM ORDER BY ID";
             var s_connection = frmLogovanje.connectionString;;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -528,7 +528,7 @@ namespace TrackModal.Dokumeta
             cboVlasnikKontejnera.ValueMember = "ID";
 
 
-            var select4 = " Select Distinct ID, Naziv From TipKontenjera order by Naziv";
+            var select4 = " Select Distinct ID, Naziv From TipKontenjera order by Naziv ";
             var s_connection4 = frmLogovanje.connectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
@@ -554,7 +554,7 @@ namespace TrackModal.Dokumeta
             cboBukingOtpreme.DisplayMember = "IdVoza";
             cboBukingOtpreme.ValueMember = "ID";
 
-            var select6 = " Select Distinct ID, (Cast(id as nvarchar(3)) + '-' + Naziv) as Naziv From StatusRobe ";
+            var select6 = " Select Distinct ID, (Cast(id as nvarchar(3)) + '-' + Naziv) as Naziv From StatusRobe Order by Naziv ";
             var s_connection6 = frmLogovanje.connectionString;
             SqlConnection myConnection6 = new SqlConnection(s_connection6);
             var c6 = new SqlConnection(s_connection6);
@@ -622,7 +622,7 @@ namespace TrackModal.Dokumeta
 
             usao = 1;
 
-            var select11 = "select ID,RTrim(Naziv) as Naziv from VrstePostupakaUvoz";
+            var select11 = "select ID,RTrim(Naziv) as Naziv from VrstePostupakaUvoz order by Naziv";
             SqlConnection conn = new SqlConnection(connect);
             var da11=new SqlDataAdapter(select11, conn);
             var ds11 = new DataSet();

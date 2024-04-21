@@ -16,7 +16,7 @@ namespace Saobracaj.Uvoz
     public partial class frmForrmiranjePlanaDrumski : Form
     {
         bool status = false;
-        public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
         public frmForrmiranjePlanaDrumski()
         {
@@ -31,7 +31,7 @@ namespace Saobracaj.Uvoz
         }
         private void VratiOstalePodatke()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();

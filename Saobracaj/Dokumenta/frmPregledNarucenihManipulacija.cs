@@ -62,7 +62,7 @@ namespace Saobracaj.Dokumenta
         }
         public string IdGrupe()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -96,7 +96,7 @@ namespace Saobracaj.Dokumenta
         }
         private int IdForme()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -113,7 +113,7 @@ namespace Saobracaj.Dokumenta
 
         private void PravoPristupa()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -168,7 +168,7 @@ namespace Saobracaj.Dokumenta
                 {
                     var select = "SELECT PrijemKontejneraVoz.[ID], (CAst(PrijemKontejneraVoz.[ID] as nvarchar(5)) + '-' + Cast(Voz.BrVoza as nvarchar(6)) + ' ' + Voz.Relacija +  ' ' +  CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],104)      + ' '      + SUBSTRING(CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],108),1,5)) as Naziv " +
                             " FROM [dbo].[PrijemKontejneraVoz]    inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza  where PrijemKontejneraVoz.[ID] = " + pomPrijemnica + "  order by  PrijemKontejneraVoz.[DatumPrijema] desc, PrijemKontejneraVoz.[ID] ";
-                    var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                    var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -194,7 +194,7 @@ namespace Saobracaj.Dokumenta
                     var select2 = "SELECT PrijemKontejneraVoz.[ID], (CAst(PrijemKontejneraVoz.[ID] as nvarchar(5)) + '-' + RegBrKamiona + ' ' + ImeVozaca +  ' ' +   CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],104)      + ' '      + SUBSTRING(CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],108),1,5)) as Naziv " +
     " FROM [dbo].[PrijemKontejneraVoz]  where Vozom = 0  order by  PrijemKontejneraVoz.[DatumPrijema] desc, PrijemKontejneraVoz.[ID] ";
 
-                    var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                    var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection2 = new SqlConnection(s_connection2);
                     var c2 = new SqlConnection(s_connection2);
                     var dataAdapter2 = new SqlDataAdapter(select2, c2);
@@ -228,7 +228,7 @@ namespace Saobracaj.Dokumenta
                 {
                     var select = "SELECT OtpremaKontejnera.[ID], (CAst(OtpremaKontejnera.[ID] as nvarchar(5)) + '-' + Cast(Voz.BrVoza as nvarchar(6)) + ' ' + Voz.Relacija +  ' ' +  CONVERT(varchar,OtpremaKontejnera.[DatumOtpreme],104)      + ' '      + SUBSTRING(CONVERT(varchar,OtpremaKontejnera.[DatumOtpreme],108),1,5)) as Naziv " +
                             " FROM [dbo].[OtpremaKontejnera]    inner join Voz on Voz.ID = OtpremaKontejnera.IdVoza  where OtpremaKontejnera.[ID] = " + pomPrijemnica + "  order by  OtpremaKontejnera.[DatumOtpreme] desc, OtpremaKontejnera.[ID] ";
-                    var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                    var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -254,7 +254,7 @@ namespace Saobracaj.Dokumenta
                     var select2 = "SELECT OtpremaKontejnera.[ID], (CAst(OtpremaKontejnera.[ID] as nvarchar(5)) + '-' + RegBrKamiona + ' ' + ImeVozaca +  ' ' +   CONVERT(varchar,OtpremaKontejnera.[DatumOtpreme],104)      + ' '      + SUBSTRING(CONVERT(varchar,OtpremaKontejnera.[DatumOtpreme],108),1,5)) as Naziv " +
     " FROM [dbo].[OtpremaKontejnera]  where NacinOtpreme = 0  order by  OtpremaKontejnera.[DatumOtpreme] desc, OtpremaKontejnera.[ID] ";
 
-                    var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                    var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection2 = new SqlConnection(s_connection2);
                     var c2 = new SqlConnection(s_connection2);
                     var dataAdapter2 = new SqlDataAdapter(select2, c2);
@@ -297,7 +297,7 @@ namespace Saobracaj.Dokumenta
                      " inner join Komitenti on NaruceneManipulacije.Platilac = Komitenti.ID " +
                      " where NaruceneManipulacije.IzPrijema = 1 and NaruceneManipulacije.IDPrijemaVoza = " + Convert.ToInt32(cboPrijemVozom.SelectedValue);
 
-                    var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                    var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -372,7 +372,7 @@ namespace Saobracaj.Dokumenta
                 " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
                  " where NaruceneManipulacije.IzPrijema = 1 and NaruceneManipulacije.IDPrijemaKamionom = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue);
 
-                    var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                    var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -457,7 +457,7 @@ namespace Saobracaj.Dokumenta
                  " inner join Komitenti on NaruceneManipulacije.Platilac = Komitenti.ID " +
                  " where NaruceneManipulacije.IzPrijema = 0 and NaruceneManipulacije.IDPrijemaVoza = " + Convert.ToInt32(cboPrijemVozom.SelectedValue);
 
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -532,7 +532,7 @@ namespace Saobracaj.Dokumenta
             " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
              " where NaruceneManipulacije.IzPrijema = 0 and NaruceneManipulacije.IDPrijemaKamionom = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue);
 
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -615,7 +615,7 @@ namespace Saobracaj.Dokumenta
                  " inner join Komitenti on NaruceneManipulacije.Platilac = Komitenti.ID " +
                  " where NaruceneManipulacije.IzPrijema = 1 and NaruceneManipulacije.IDPrijemaVoza = " + Convert.ToInt32(cboPrijemVozom.SelectedValue) + " and NaruceneManipulacije.BrojKontejnera = '" + txtBrojKontejnera.Text + "'"; ;
 
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -690,7 +690,7 @@ namespace Saobracaj.Dokumenta
             " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
              " where NaruceneManipulacije.IzPrijema = 1 and NaruceneManipulacije.IDPrijemaKamionom = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue) + " and NaruceneManipulacije.BrojKontejnera = '" + txtBrojKontejnera.Text + "'"; ;
 
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -773,7 +773,7 @@ namespace Saobracaj.Dokumenta
                  " inner join Komitenti on NaruceneManipulacije.Platilac = Komitenti.ID " +
                  " where NaruceneManipulacije.IzPrijema = 0 and NaruceneManipulacije.IDPrijemaVoza = " + Convert.ToInt32(cboPrijemVozom.SelectedValue) + " and NaruceneManipulacije.BrojKontejnera = '" + txtBrojKontejnera.Text + "'"; ;
 
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -848,7 +848,7 @@ namespace Saobracaj.Dokumenta
             " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
              " where NaruceneManipulacije.IzPrijema = 0 and NaruceneManipulacije.IDPrijemaKamionom = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue) + " and NaruceneManipulacije.BrojKontejnera = '" + txtBrojKontejnera.Text + "'"; ;
 
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -1008,7 +1008,7 @@ namespace Saobracaj.Dokumenta
         {
             var select = "SELECT PrijemKontejneraVoz.[ID], (CAst(PrijemKontejneraVoz.[ID] as nvarchar(4)) + '-' + Cast(Voz.BrVoza as nvarchar(6)) + ' ' + Voz.Relacija +  ' ' +  CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],104)      + ' '      + SUBSTRING(CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],108),1,5)) as Naziv " +
       " FROM [dbo].[PrijemKontejneraVoz]    inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza  where Vozom = 1 order by  PrijemKontejneraVoz.[DatumPrijema] desc, PrijemKontejneraVoz.[ID] ";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -1022,7 +1022,7 @@ namespace Saobracaj.Dokumenta
             var select2 = "SELECT PrijemKontejneraVoz.[ID], (CAst(PrijemKontejneraVoz.[ID] as nvarchar(4)) + '-' + RegBrKamiona + ' ' + ImeVozaca +  ' ' +   CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],104)      + ' '      + SUBSTRING(CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],108),1,5)) as Naziv " +
   " FROM [dbo].[PrijemKontejneraVoz]  where Vozom = 0  order by  PrijemKontejneraVoz.[DatumPrijema] desc, PrijemKontejneraVoz.[ID] ";
 
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
             var dataAdapter2 = new SqlDataAdapter(select2, c2);
@@ -1045,7 +1045,7 @@ namespace Saobracaj.Dokumenta
  " CONVERT(varchar, OtpremaKontejnera.[DatumOtpreme], 104) + ' ' + " +
  " SUBSTRING(CONVERT(varchar, OtpremaKontejnera.[DatumOtpreme], 108), 1, 5)) as Naziv " +
    " FROM[dbo].[OtpremaKontejnera]    inner join Voz on Voz.ID = OtpremaKontejnera.IdVoza  where otpremakontejnera.NacinOtpreme = 1 order by OtpremaKontejnera.[DatumOtpreme] desc, OtpremaKontejnera.[ID]";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -1060,7 +1060,7 @@ namespace Saobracaj.Dokumenta
 " CONVERT(varchar, OtpremaKontejnera.[DatumOtpreme], 104) + ' ' + " +
 " SUBSTRING(CONVERT(varchar, OtpremaKontejnera.[DatumOtpreme], 108), 1, 5)) as Naziv " +
   " FROM[dbo].[OtpremaKontejnera]     where otpremakontejnera.NacinOtpreme = 0 order by OtpremaKontejnera.[DatumOtpreme] desc, OtpremaKontejnera.[ID]";
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
             var dataAdapter2 = new SqlDataAdapter(select2, c2);

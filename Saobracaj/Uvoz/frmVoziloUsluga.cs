@@ -16,7 +16,7 @@ namespace Saobracaj.Uvoz
     public partial class frmVoziloUsluga : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
-        public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         public frmVoziloUsluga()
         {
             InitializeComponent();
@@ -46,7 +46,7 @@ namespace Saobracaj.Uvoz
 
         private void VratiOstalePodatkeIzUsluge(int ID, int Modul)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -78,7 +78,7 @@ namespace Saobracaj.Uvoz
 
         private void VratiOstalePodatke()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
