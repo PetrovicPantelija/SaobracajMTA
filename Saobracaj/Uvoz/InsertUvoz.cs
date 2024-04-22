@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
@@ -13,18 +9,18 @@ namespace Saobracaj.Uvoz
     class InsertUvoz
     {
         string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
-        public void UpdUvoz(int ID,DateTime ETABroda,DateTime ATABroda,string Status,string BrojKont,int TipKont,DateTime DobijenNalog,string DobijeBZ,string Napomena,
-            string PIN,int DirigacijaKont,int NazivBroda,string BTeretnica,int ADR,int Vlasnik,int Buking,string Nalogodavac,string VrstaUsluge,int Uvoznik,int NHM,
-            string NazivRobe,int SpedicijaGranicna,int SpedicijaRTC,int CarinskiPostupak,int PostupakRoba,int NacinPakovanja,int OdredisnaCarina,int OdredisnaSpedicija,
-            int MestoIstovara,int KontaktOsoba,string Mail,string Plomba1,string Plomba2,decimal NetoRoba,decimal BrutoRoba,decimal TaraKont,decimal BrutoKont,
-            int NapomenaPoz,DateTime ATAOtpreme,int BrojVoza,string Relacija,DateTime ATADolazak, decimal Koleta, int RLTerminali
+        public void UpdUvoz(int ID, DateTime ETABroda, DateTime ATABroda, string Status, string BrojKont, int TipKont, DateTime DobijenNalog, string DobijeBZ, string Napomena,
+            string PIN, int DirigacijaKont, int NazivBroda, string BTeretnica, int ADR, int Vlasnik, int Buking, string Nalogodavac, string VrstaUsluge, int Uvoznik, int NHM,
+            string NazivRobe, int SpedicijaGranicna, int SpedicijaRTC, int CarinskiPostupak, int PostupakRoba, int NacinPakovanja, int OdredisnaCarina, int OdredisnaSpedicija,
+            int MestoIstovara, int KontaktOsoba, string Mail, string Plomba1, string Plomba2, decimal NetoRoba, decimal BrutoRoba, decimal TaraKont, decimal BrutoKont,
+            int NapomenaPoz, DateTime ATAOtpreme, int BrojVoza, string Relacija, DateTime ATADolazak, decimal Koleta, int RLTerminali
             , string Napomena1, int VrstaPregleda, int Nalogodavac1, string Ref1, int Nalogodavac2,
-string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet, int AdresaMestaUtovara, string KontaktOsobe )
+string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet, int AdresaMestaUtovara, string KontaktOsobe)
         {
 
-             
 
-              
+
+
 
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -239,7 +235,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             SqlParameter mesto = new SqlParameter();
             mesto.ParameterName = "@MestoIstovara";
             mesto.SqlDbType = SqlDbType.Int;
-           // mesto.Size = 50;
+            // mesto.Size = 50;
             mesto.Direction = ParameterDirection.Input;
             mesto.Value = MestoIstovara;
             cmd.Parameters.Add(mesto);
@@ -247,7 +243,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             SqlParameter kontakt = new SqlParameter();
             kontakt.ParameterName = "@KontaktOsoba";
             kontakt.SqlDbType = SqlDbType.Int;
-         //   kontakt.Size = 50;
+            //   kontakt.Size = 50;
             kontakt.Direction = ParameterDirection.Input;
             kontakt.Value = KontaktOsoba;
             cmd.Parameters.Add(kontakt);
@@ -340,7 +336,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             ataD.Value = ATADolazak;
             cmd.Parameters.Add(ataD);
 
-            SqlParameter koleta= new SqlParameter();
+            SqlParameter koleta = new SqlParameter();
             koleta.ParameterName = "@Koleta";
             koleta.SqlDbType = SqlDbType.Decimal;
             koleta.Direction = ParameterDirection.Input;

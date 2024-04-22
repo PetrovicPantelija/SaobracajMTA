@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -20,7 +16,7 @@ namespace Saobracaj.Sifarnici
             myCommand.CommandText = "InsertStatusVoza";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-         
+
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@Opis";
             parameter2.SqlDbType = SqlDbType.Char;
@@ -91,7 +87,7 @@ namespace Saobracaj.Sifarnici
             parameter2.Value = Opis;
             myCommand.Parameters.Add(parameter2);
 
-           
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;

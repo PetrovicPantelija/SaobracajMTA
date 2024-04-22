@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -28,7 +22,7 @@ namespace Saobracaj.Dokumenta
 
         private void RefreshDataGrid()
         {
-           
+
             var select = "  select NaStNar as ID, NaStatus, NaDatNar, NaPartPlac, Partnerji.PaNaziv, Narocilo.NaNacinDobave, NacinDobave.NDobOpis as NacinIsporuke, TipSaobPrevoza.ID, TipSaobPrevoza.Naziv  NaOpomba1 from Narocilo " +
 " inner join Partnerji on PaSifra = NaPartPlac " +
 " inner join NacinDobave on NaNacinDobave = NDobSifra " +
@@ -114,7 +108,7 @@ namespace Saobracaj.Dokumenta
                     if (row.Selected)
                     {
                         txtNaStNar.Text = row.Cells[0].Value.ToString();
-                      
+
                     }
                 }
             }

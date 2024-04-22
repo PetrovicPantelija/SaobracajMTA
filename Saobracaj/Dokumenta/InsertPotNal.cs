@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -14,7 +10,7 @@ namespace Saobracaj.Dokumenta
     {
         public void InsPotNal(int Radnik, int Kraj, int KrajO, string MestoTroska, DateTime DatumOdlaska, DateTime DatumDolaska, int DanaOdsustva, double Iznos, string OpisRada)
         {
-           
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -24,7 +20,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter = new SqlParameter();
             parameter.ParameterName = "@Radnik";
             parameter.SqlDbType = SqlDbType.Int;
-           // parameter.Size = 50;
+            // parameter.Size = 50;
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = Radnik;
             myCommand.Parameters.Add(parameter);
@@ -33,7 +29,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@Kraj";
             parameter2.SqlDbType = SqlDbType.Int;
-        
+
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = Kraj;
             myCommand.Parameters.Add(parameter2);
@@ -63,7 +59,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter6 = new SqlParameter();
             parameter6.ParameterName = "@DatumDolaska";
             parameter6.SqlDbType = SqlDbType.DateTime;
-           
+
             parameter6.Direction = ParameterDirection.Input;
             parameter6.Value = DatumDolaska;
             myCommand.Parameters.Add(parameter6);
@@ -74,8 +70,8 @@ namespace Saobracaj.Dokumenta
             parameter7.Direction = ParameterDirection.Input;
             parameter7.Value = DanaOdsustva;
             myCommand.Parameters.Add(parameter7);
-          
-      
+
+
 
             SqlParameter parameter10 = new SqlParameter();
             parameter10.ParameterName = "@Iznos";
@@ -84,8 +80,8 @@ namespace Saobracaj.Dokumenta
             parameter10.Value = Iznos;
             myCommand.Parameters.Add(parameter10);
 
-         
-      
+
+
             SqlParameter parameter19 = new SqlParameter();
             parameter19.ParameterName = "@OpisRada";
             parameter19.SqlDbType = SqlDbType.NChar;
@@ -94,7 +90,7 @@ namespace Saobracaj.Dokumenta
             parameter19.Value = OpisRada;
             myCommand.Parameters.Add(parameter19);
 
-          
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -225,7 +221,7 @@ namespace Saobracaj.Dokumenta
 
         }
 
-        public void InsPotNalStavke(int DanaOdsustva,double Cena ,double Iznos, int Puna)
+        public void InsPotNalStavke(int DanaOdsustva, double Cena, double Iznos, int Puna)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -234,7 +230,7 @@ namespace Saobracaj.Dokumenta
             myCommand.CommandText = "InsertPotNalStavke";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-            
+
             SqlParameter parameter7 = new SqlParameter();
             parameter7.ParameterName = "@Kolicina";
             parameter7.SqlDbType = SqlDbType.Int;

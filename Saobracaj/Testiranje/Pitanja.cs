@@ -1,20 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Globalization;
-using Syncfusion.Windows.Forms.Grid.Grouping;
-using Syncfusion.Windows.Forms;
-
-using MetroFramework.Forms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Testiranje
 {
@@ -24,9 +12,7 @@ namespace Saobracaj.Testiranje
         public Pitanja()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
         public static string code = "Pitanja";
         public bool Pravo;
@@ -37,89 +23,6 @@ namespace Saobracaj.Testiranje
         bool delete;
         string Kor = Sifarnici.frmLogovanje.user.ToString();
         string niz = "";
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
-
-            while (dr.Read())
-            {
-                if (count == 0)
-                {
-                    niz = dr["IdGrupe"].ToString();
-                    count++;
-                }
-                else
-                {
-                    niz = niz + "," + dr["IdGrupe"].ToString();
-                    count++;
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
-        }
         private void GrupeTestova()
         {
             var select = "  SELECT ID, Naziv,Datum, BrojTacnih,BrResenja, Mesto, Komisija1,Komisija2,komisija3 from testovi ";
@@ -176,7 +79,7 @@ namespace Saobracaj.Testiranje
 
         private void RefreshOdgovori()
         {
-           
+
             var select = "   SELECT ID, [IDNadredjenog] ,[Opis] ,[RBBroj] FROM [TESTIRANJE].[dbo].[TestoviPitanjaOdgovor] where IDNadredjenog =  " + Convert.ToInt32(txtIDStavke.Text);
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -314,22 +217,20 @@ namespace Saobracaj.Testiranje
 
         private void btnUnesiTrasa_Click(object sender, EventArgs e)
         {
-            int Tacno = 0;
             Tehnologija.InsertTestoviPitanja ins = new Tehnologija.InsertTestoviPitanja();
-           /*
-            if (chkTacno.Checked == true)
-            {
-                Tacno = 1;
-            
-            }
-           */
-                ins.InsTestoviPitanja(Convert.ToInt32(txtSifra.Text), txtPitanje.Text, Convert.ToInt32(txtIspravanOdgovor.Text));
+            /*
+             if (chkTacno.Checked == true)
+             {
+                 Tacno = 1;
+
+             }
+            */
+            ins.InsTestoviPitanja(Convert.ToInt32(txtSifra.Text), txtPitanje.Text, Convert.ToInt32(txtIspravanOdgovor.Text));
             GrupeTestovaPitanja();
         }
 
         private void sfButton5_Click(object sender, EventArgs e)
         {
-            int Tacno = 0;
             Tehnologija.InsertTestoviPitanja upd = new Tehnologija.InsertTestoviPitanja();
             /*
             if (chkTacno.Checked == true)
@@ -338,7 +239,7 @@ namespace Saobracaj.Testiranje
 
             }
             */
-            upd.UpdTestoviPitanja(Convert.ToInt32(txtIDStavke.Text),Convert.ToInt32(txtSifra.Text), txtPitanje.Text,  Convert.ToInt32(txtIspravanOdgovor.Text));
+            upd.UpdTestoviPitanja(Convert.ToInt32(txtIDStavke.Text), Convert.ToInt32(txtSifra.Text), txtPitanje.Text, Convert.ToInt32(txtIspravanOdgovor.Text));
             GrupeTestovaPitanja();
         }
 
@@ -352,7 +253,7 @@ namespace Saobracaj.Testiranje
                     {
                         txtSifra.Text = row.Cells[0].Value.ToString();
                         txtNaziv.Text = row.Cells[1].Value.ToString();
-                        dtpDatumTesta.Value  = Convert.ToDateTime(row.Cells[2].Value.ToString());
+                        dtpDatumTesta.Value = Convert.ToDateTime(row.Cells[2].Value.ToString());
                         txtBrojTacnih.Value = Convert.ToInt32(row.Cells[3].Value.ToString());
                         txtBrojRegistratora.Text = row.Cells[4].Value.ToString();
                         txtMesto.Text = row.Cells[5].Value.ToString();
@@ -360,7 +261,7 @@ namespace Saobracaj.Testiranje
                         cboClanKomisije2.SelectedValue = Convert.ToInt32(row.Cells[7].Value.ToString());
                         cboClanKomisije3.SelectedValue = Convert.ToInt32(row.Cells[8].Value.ToString());
                         GrupeTestovaPitanja();
-                       
+
                     }
                 }
 

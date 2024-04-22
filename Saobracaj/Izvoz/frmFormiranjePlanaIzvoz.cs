@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using Syncfusion.Grouping;
+using Syncfusion.Windows.Forms.Grid.Grouping;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Office.Interop.Excel;
-using Syncfusion.Grouping;
-using Syncfusion.Windows.Forms.Grid.Grouping;
 
 
 namespace Saobracaj.Izvoz
@@ -235,7 +229,7 @@ namespace Saobracaj.Izvoz
         private void RefreshDataGrid1()
         {
 
-            var select =  " SELECT Izvoz.ID as ID,  Izvoz.BrojKontejnera,  Izvoz.VrstaKontejnera as Vrk_ID, TipKontenjera.Naziv as VrstaKontejnera, Partnerji.PaNaziv as Brodar, Izvoz.BookingBrodara, " +
+            var select = " SELECT Izvoz.ID as ID,  Izvoz.BrojKontejnera,  Izvoz.VrstaKontejnera as Vrk_ID, TipKontenjera.Naziv as VrstaKontejnera, Partnerji.PaNaziv as Brodar, Izvoz.BookingBrodara, " +
 " Izvoz.BrojVagona,   Izvoz.CutOffPort,Partnerji_2.PaNaziv AS Izvoznik,Partnerji_3.PaNaziv AS Nalogodavac1, Partnerji_4.PaNaziv AS kNalogodavac2, Partnerji_5.PaNaziv AS Nalogodavac3, " +
 " Izvoz.DobijenNalogKlijent1, Izvoz.BrodskaPlomba, Izvoz.OstalePlombe,  " +
 " Izvoz.NetoRobe, Izvoz.BrutoRobe, Izvoz.BrutoRobeO, Izvoz.BrojKoleta, Izvoz.BrojKoletaO, Izvoz.CBM, Izvoz.CBMO, Izvoz.VrednostRobeFaktura,  " +
@@ -380,7 +374,7 @@ namespace Saobracaj.Izvoz
             }
 
             RefreshSync();
-           // RefreshDataGrid1();
+            // RefreshDataGrid1();
             RefreshDataGrid2();
             VratiUkupanBrojKontejnera();
             VratiUkupanBrojKontejneraPrenetih();
@@ -413,7 +407,7 @@ namespace Saobracaj.Izvoz
 
         private void frmFormiranjePlanaIzvoz_Load(object sender, EventArgs e)
         {
-           // RefreshDataGrid1();
+            // RefreshDataGrid1();
             RefreshSync();
             RefreshDataGrid2();
             FillCombo();
@@ -428,7 +422,7 @@ namespace Saobracaj.Izvoz
                 VratiUkupanBrojKontejneraPrenetihBezSerije();
 
             }
-           
+
         }
 
         private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
@@ -462,8 +456,8 @@ namespace Saobracaj.Izvoz
             }
 
             //Panta
-           // InsertIzvozKonacna ins = new InsertIzvozKonacna();
-                //    ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+            // InsertIzvozKonacna ins = new InsertIzvozKonacna();
+            //    ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
 
             RefreshSync();
             //RefreshDataGrid1();

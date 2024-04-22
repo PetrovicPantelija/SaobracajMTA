@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -27,12 +23,12 @@ namespace Saobracaj.Dokumenta
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = IDAutomobila;
             myCommand.Parameters.Add(parameter);
- 
+
 
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@DatumServisa";
             parameter2.SqlDbType = SqlDbType.DateTime;
-           // parameter2.Size = 500;
+            // parameter2.Size = 500;
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = DatumServisa;
             myCommand.Parameters.Add(parameter2);
@@ -48,7 +44,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter4 = new SqlParameter();
             parameter4.ParameterName = "@KM";
             parameter4.SqlDbType = SqlDbType.NVarChar;
-             parameter4.Size = 50;
+            parameter4.Size = 50;
             parameter4.Direction = ParameterDirection.Input;
             parameter4.Value = VelikiServis;
             myCommand.Parameters.Add(parameter4);
@@ -57,7 +53,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter5 = new SqlParameter();
             parameter5.ParameterName = "@Zaposleni";
             parameter5.SqlDbType = SqlDbType.Int;
-          //  parameter5.Size = 50;
+            //  parameter5.Size = 50;
             parameter5.Direction = ParameterDirection.Input;
             parameter5.Value = Zaposleni;
             myCommand.Parameters.Add(parameter5);
@@ -73,12 +69,12 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter7 = new SqlParameter();
             parameter7.ParameterName = "@Napomena";
             parameter7.SqlDbType = SqlDbType.NVarChar;
-              parameter7.Size = 250;
+            parameter7.Size = 250;
             parameter7.Direction = ParameterDirection.Input;
             parameter7.Value = Napomena;
             myCommand.Parameters.Add(parameter7);
 
-           
+
 
 
             myConnection.Open();
@@ -287,8 +283,8 @@ namespace Saobracaj.Dokumenta
 
 
 
-        public void InsAutomobili(int Zaposleni, string RegBr, string Marka, int Sluzbeni  
-            , string Model, DateTime DatumRegistracije, int GodinaProizvodnje, string Gorivo 
+        public void InsAutomobili(int Zaposleni, string RegBr, string Marka, int Sluzbeni
+            , string Model, DateTime DatumRegistracije, int GodinaProizvodnje, string Gorivo
            , int ZapreminaMotora, string Kategorija, DateTime VServisUradjen, double VServisKM
            , DateTime VServisSledeci, DateTime MServisUradjen, double MServisKM, DateTime MServisSledeci
            , string BrojPlombe1, string BrojPlombe2, DateTime PPAparatDatumOvere, DateTime PPAparatDatumIsteka
@@ -306,7 +302,7 @@ namespace Saobracaj.Dokumenta
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
 
-            
+
 
 
 
@@ -353,7 +349,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter5 = new SqlParameter();
             parameter5.ParameterName = "@DatumRegistracije";
             parameter5.SqlDbType = SqlDbType.DateTime;
-           // parameter5.Size = 50;
+            // parameter5.Size = 50;
             parameter5.Direction = ParameterDirection.Input;
             parameter5.Value = DatumRegistracije;
             myCommand.Parameters.Add(parameter5);
@@ -369,7 +365,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter7 = new SqlParameter();
             parameter7.ParameterName = "@Gorivo";
             parameter7.SqlDbType = SqlDbType.NVarChar;
-             parameter7.Size = 50;
+            parameter7.Size = 50;
             parameter7.Direction = ParameterDirection.Input;
             parameter7.Value = Gorivo;
             myCommand.Parameters.Add(parameter7);
@@ -377,7 +373,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter8 = new SqlParameter();
             parameter8.ParameterName = "@ZapreminaMotora";
             parameter8.SqlDbType = SqlDbType.Int;
-           // parameter8.Size = 50;
+            // parameter8.Size = 50;
             parameter8.Direction = ParameterDirection.Input;
             parameter8.Value = ZapreminaMotora;
             myCommand.Parameters.Add(parameter8);
@@ -441,7 +437,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter16 = new SqlParameter();
             parameter16.ParameterName = "@BrojPlombe1";
             parameter16.SqlDbType = SqlDbType.NVarChar;
-             parameter16.Size = 50;
+            parameter16.Size = 50;
             parameter16.Direction = ParameterDirection.Input;
             parameter16.Value = BrojPlombe1;
             myCommand.Parameters.Add(parameter16);
@@ -449,7 +445,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter17 = new SqlParameter();
             parameter17.ParameterName = "@BrojPlombe2";
             parameter17.SqlDbType = SqlDbType.NVarChar;
-             parameter17.Size = 50;
+            parameter17.Size = 50;
             parameter17.Direction = ParameterDirection.Input;
             parameter17.Value = BrojPlombe2;
             myCommand.Parameters.Add(parameter17);
@@ -625,7 +621,7 @@ namespace Saobracaj.Dokumenta
             parameter38.Direction = ParameterDirection.Input;
             parameter38.Value = MestoTroska;
             myCommand.Parameters.Add(parameter38);
-         
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -720,7 +716,7 @@ namespace Saobracaj.Dokumenta
             parameter3.Direction = ParameterDirection.Input;
             parameter3.Value = Sluzbeni;
             myCommand.Parameters.Add(parameter3);
-            
+
             SqlParameter parameter4 = new SqlParameter();
             parameter4.ParameterName = "@Model";
             parameter4.SqlDbType = SqlDbType.NVarChar;

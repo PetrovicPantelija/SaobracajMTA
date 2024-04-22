@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
-using Saobracaj.Sifarnici;
 
 namespace Saobracaj.Dokumenta
 {
     class InsertAutomobiliRegistracija
     {
         public string connect = frmLogovanje.connectionString;
-        public void InsertRegistracija(int IDAutomobila, DateTime DatumRegistracije,int Zaposleni,int Partner,string Napomena)
+        public void InsertRegistracija(int IDAutomobila, DateTime DatumRegistracije, int Zaposleni, int Partner, string Napomena)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -68,7 +63,7 @@ namespace Saobracaj.Dokumenta
                 tran = conn.BeginTransaction();
                 cmd.Transaction = tran;
             }
-            catch(SqlException ex)
+            catch (SqlException)
             {
                 throw new Exception("Neuspešan upis");
             }
@@ -86,7 +81,7 @@ namespace Saobracaj.Dokumenta
                 }
             }
         }
-        public void UpdateRegistracija (int ID,int IDAutomobila, DateTime DatumRegistracije, int Zaposleni, int Partner, string Napomena)
+        public void UpdateRegistracija(int ID, int IDAutomobila, DateTime DatumRegistracije, int Zaposleni, int Partner, string Napomena)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -147,7 +142,7 @@ namespace Saobracaj.Dokumenta
                 tran = conn.BeginTransaction();
                 cmd.Transaction = tran;
             }
-            catch(SqlException ex)
+            catch (SqlException)
             {
                 throw new Exception("Neuspešna izmena");
             }

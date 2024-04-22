@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace TrackModal.Promet
 {
@@ -35,120 +25,25 @@ namespace TrackModal.Promet
         public frmPopis()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
 
         public frmPopis(string Korisnik)
         {
             KorisnikCene = Korisnik;
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
 
         public frmPopis(int Broj, string Korisnik)
         {
             KorisnikCene = Korisnik;
-           
+
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
             txtSifra.Text = Broj.ToString();
             VratiPodatke(Convert.ToInt32(txtSifra.Text));
             RefreshDataGrid();
-        }
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
-
-            while (dr.Read())
-            {
-                if (dr.HasRows)
-                {
-                    if (count == 0)
-                    {
-                        niz = dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                    else
-                    {
-                        niz = niz + "," + dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Korisnik ne pripada grupi");
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
         }
         private void VratiPodatke(int ID)
         {
@@ -164,9 +59,9 @@ namespace TrackModal.Promet
             while (dr.Read())
             {
                 dtpDatumPopisa.Value = Convert.ToDateTime(dr["DatumPopisa"].ToString());
-              
+
                 txtNapomena.Text = dr["Napomena"].ToString();
-             
+
 
             }
 
@@ -186,9 +81,9 @@ namespace TrackModal.Promet
             var commandBuilder3 = new SqlCommandBuilder(dataAdapter3);
             var ds3 = new DataSet();
             dataAdapter3.Fill(ds3);
-          //  cboSkladiste.DataSource = ds3.Tables[0];
-          //  cboSkladiste.DisplayMember = "Naziv";
-          //  cboSkladiste.ValueMember = "ID";
+            //  cboSkladiste.DataSource = ds3.Tables[0];
+            //  cboSkladiste.DisplayMember = "Naziv";
+            //  cboSkladiste.ValueMember = "ID";
 
 
             var select4 = " Select Distinct ID, Naziv   From Skladista";
@@ -252,24 +147,24 @@ namespace TrackModal.Promet
 
         private void tsSave_Click(object sender, EventArgs e)
         {
-          
-           
-                if (status == true)
-                {
-                    /// ,  string RegBrKamiona,   string ImeVozaca,   int Vozom
-                    InsertPopis ins = new InsertPopis();
-                    ins.InsPopis(Convert.ToDateTime(dtpDatumPopisa.Text), txtNapomena.Text ,Convert.ToDateTime(DateTime.Now), KorisnikCene);
-                    status = false;
-                    VratiPodatkeMax();
-                }
-                else
-                {
-                    //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
-                    InsertPopis upd = new InsertPopis();
-                    upd.UpdPopis(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumPopisa.Text), txtNapomena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene);
-                    status = false;
-                }
-           
+
+
+            if (status == true)
+            {
+                /// ,  string RegBrKamiona,   string ImeVozaca,   int Vozom
+                InsertPopis ins = new InsertPopis();
+                ins.InsPopis(Convert.ToDateTime(dtpDatumPopisa.Text), txtNapomena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene);
+                status = false;
+                VratiPodatkeMax();
+            }
+            else
+            {
+                //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
+                InsertPopis upd = new InsertPopis();
+                upd.UpdPopis(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumPopisa.Text), txtNapomena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene);
+                status = false;
+            }
+
         }
 
         private void tsDelete_Click(object sender, EventArgs e)
@@ -286,7 +181,7 @@ namespace TrackModal.Promet
                 //do something else
             }
 
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -298,7 +193,7 @@ namespace TrackModal.Promet
             else
             {
                 InsertPopis ins = new InsertPopis();
-                ins.InsPopisStavke(Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, Convert.ToInt32(cboSkladisteNovo.SelectedValue), Convert.ToInt32(cboPozicijaNovo.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene );
+                ins.InsPopisStavke(Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, Convert.ToInt32(cboSkladisteNovo.SelectedValue), Convert.ToInt32(cboPozicijaNovo.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene);
                 RefreshDataGrid();
             }
         }
@@ -337,7 +232,7 @@ namespace TrackModal.Promet
                          " PopisStavke ON Popis.ID = PopisStavke.IDNadredjenog INNER JOIN " +
                         " Skladista ON PopisStavke.SkladisteU = Skladista.ID INNER JOIN " +
                         " Pozicija ON PopisStavke.LokacijaU = Pozicija.ID " +
-                           " where PopisStavke.IdNadredjenog = " + txtSifra.Text ;
+                           " where PopisStavke.IdNadredjenog = " + txtSifra.Text;
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -413,7 +308,7 @@ namespace TrackModal.Promet
                 txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
                 cboSkladisteNovo.SelectedValue = Convert.ToInt32(dr["SkladisteU"].ToString());
                 cboPozicijaNovo.SelectedValue = Convert.ToInt32(dr["LokacijaU"].ToString());
-             
+
             }
 
             con.Close();
@@ -441,7 +336,7 @@ namespace TrackModal.Promet
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-         frmPopisUporedniPrikaz2 pup = new frmPopisUporedniPrikaz2(Convert.ToInt32(txtSifra.Text));
+            frmPopisUporedniPrikaz2 pup = new frmPopisUporedniPrikaz2(Convert.ToInt32(txtSifra.Text));
             pup.Show();
         }
 

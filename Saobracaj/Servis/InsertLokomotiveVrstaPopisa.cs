@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Servis
 {
@@ -20,7 +16,7 @@ namespace Saobracaj.Servis
             myCommand.CommandText = "InsertLokomotivaVrstaPopisa";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-          
+
             SqlParameter parameter = new SqlParameter();
             parameter.ParameterName = "@Lokomotiva";
             parameter.SqlDbType = SqlDbType.NVarChar;
@@ -49,7 +45,7 @@ namespace Saobracaj.Servis
             parameter3.Direction = ParameterDirection.Input;
             parameter3.Value = ReferentnaKolicina;
             myCommand.Parameters.Add(parameter3);
-           
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;

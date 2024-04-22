@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Configuration;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -44,7 +36,7 @@ namespace Saobracaj.Dokumenta
             rds.Name = "DataSet1";
             rds.Value = dt;
             DateTime dtStartDate = dtpVremeOd.Value;
-            DateTime dtEndDate = dtpVremeDo.Value;     
+            DateTime dtEndDate = dtpVremeDo.Value;
 
             ReportParameter[] par = new ReportParameter[3];
             par[0] = new ReportParameter("ID", cboZaposleni.SelectedValue.ToString());
@@ -55,7 +47,7 @@ namespace Saobracaj.Dokumenta
             reportViewer1.LocalReport.ReportPath = "ZaradeStavkePoZaposlenom.rdlc";
             reportViewer1.LocalReport.SetParameters(par);
             reportViewer1.LocalReport.DataSources.Add(rds);
-         
+
             reportViewer1.RefreshReport();
 
         }

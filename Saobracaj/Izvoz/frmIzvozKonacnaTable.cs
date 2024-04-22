@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
-using System.Configuration;
+﻿using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms.Grid.Grouping;
-using Syncfusion.Data;
-using Syncfusion.Drawing;
-using Syncfusion.Windows.Forms.Grid;
-using Syncfusion.Grouping;
+using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
 {
@@ -44,7 +36,7 @@ namespace Saobracaj.Izvoz
 
         private void frmIzvozKonacnaTable_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -91,7 +83,6 @@ namespace Saobracaj.Izvoz
         {
 
             SqlConnection conn = new SqlConnection(connection);
-            string updatestring = "";
             switch (cboPolje.Text)
             {
 
@@ -497,7 +488,6 @@ namespace Saobracaj.Izvoz
 
         private void UpdateVrednostiPolja(int IdZaPromenu)
         {
-            int temp = 0;
             SqlConnection conn = new SqlConnection(connection);
             string updatestring = "";
             switch (cboPolje.Text)

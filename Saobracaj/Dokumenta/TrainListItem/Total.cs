@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Saobracaj.Dokumenta.TrainListItem
 {
@@ -33,7 +29,7 @@ namespace Saobracaj.Dokumenta.TrainListItem
                     }
                 }
                 TotalUnitTare = TotalUnitTare / 2;
-                     TotalWeight = TotalGoods + TotalUnitTare + TotalWagonTare;
+                TotalWeight = TotalGoods + TotalUnitTare + TotalWagonTare;
             }
         }
     }

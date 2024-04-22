@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -29,92 +23,7 @@ namespace Saobracaj.Sifarnici
         public frmPruge()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
-        }
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
 
-            while (dr.Read())
-            {
-                if (count == 0)
-                {
-                    niz = dr["IdGrupe"].ToString();
-                    count++;
-                }
-                else
-                {
-                    niz = niz + "," + dr["IdGrupe"].ToString();
-                    count++;
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
         }
         private void groupBox1_Enter(object sender, EventArgs e)
         {
@@ -164,7 +73,7 @@ namespace Saobracaj.Sifarnici
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select Max(ID) as ID from Pruga " , con);
+            SqlCommand cmd = new SqlCommand("select Max(ID) as ID from Pruga ", con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -181,19 +90,19 @@ namespace Saobracaj.Sifarnici
 
         private void tsSave_Click(object sender, EventArgs e)
         {
-           
+
             if (status == true)
             {
                 int tmpEliktrificirana = 0;
                 if (chkElektrificirana.Checked == true)
                 {
                     tmpEliktrificirana = 1;
-                
+
                 }
                 InsertPruga ins = new InsertPruga();
                 ins.InsPruga(txtOznaka.Text, txtOpis.Text, tmpEliktrificirana);
                 VratiMaxId();
-               // RefreshDataGrid();
+                // RefreshDataGrid();
                 status = false;
             }
             else
@@ -208,7 +117,7 @@ namespace Saobracaj.Sifarnici
                 upd.UpdPruga(Convert.ToInt32(txtSifra.Text), txtOznaka.Text, txtOpis.Text, tmpEliktrificirana);
                 status = false;
                 txtSifra.Enabled = false;
-               // RefreshDataGrid();
+                // RefreshDataGrid();
             }
         }
 
@@ -218,23 +127,23 @@ namespace Saobracaj.Sifarnici
             ins.InsPrugaStavke(Convert.ToInt32(txtOznaka.Text), Convert.ToInt32(StanicaOD.SelectedValue), Convert.ToInt32(stanicaDO.SelectedValue), Convert.ToInt32(RastojanjeKM.Value), Convert.ToInt32(RastojanjeM.Value), Convert.ToDouble(StacionazaKM.Value), Convert.ToInt32(StacionazaM.Value), Convert.ToInt32(VmaxL.Text), Convert.ToInt32(VmaxD.Text), OsOtpor.Text, Convert.ToInt32(MaxDVA.Value), KoliseciA.Text, Convert.ToInt32(MaxDVB.Value), KoliseciB.Text, Vaga.Text, PutTer.Text, Convert.ToDouble(Nagib.Value), Convert.ToDouble(MNU.Value), Convert.ToDouble(MNP.Value), Convert.ToDouble(MNOU.Value), Convert.ToDouble(MNOP.Value), cmbKlasa.Text, Convert.ToDouble(txtOsovinsko.Value));
             RastojanjeKM.Value = 0;
             RastojanjeM.Value = 0;
-            StacionazaKM.Value = 0; 
+            StacionazaKM.Value = 0;
             StacionazaM.Value = 0;
-            VmaxL.Value = 0; 
-            VmaxD.Value = 0; 
+            VmaxL.Value = 0;
+            VmaxD.Value = 0;
             OsOtpor.Text = "";
-            MaxDVA.Value = 0; 
+            MaxDVA.Value = 0;
             KoliseciA.Text = "";
             MaxDVB.Value = 0;
             KoliseciB.Text = "";
             Vaga.Text = "";
-            PutTer.Text = ""; 
+            PutTer.Text = "";
             Nagib.Value = 0;
-            MNU.Value = 0; 
+            MNU.Value = 0;
             MNP.Value = 0;
             MNOU.Value = 0;
             MNOP.Value = 0;
-            RefreshDataGrid(); 
+            RefreshDataGrid();
         }
 
         private void frmPruge_Load(object sender, EventArgs e)
@@ -412,16 +321,16 @@ namespace Saobracaj.Sifarnici
             DataGridViewColumn column8 = dataGridView1.Columns[7];
             dataGridView1.Columns[7].HeaderText = "MO B";
             dataGridView1.Columns[7].Width = 40;
-            
+
             DataGridViewColumn column9 = dataGridView1.Columns[8];
             dataGridView1.Columns[8].HeaderText = "Klasa";
             dataGridView1.Columns[8].Width = 40;
-          
-             DataGridViewColumn column10 = dataGridView1.Columns[9];
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
             dataGridView1.Columns[9].HeaderText = "Osovinsko";
             dataGridView1.Columns[9].Width = 40;
 
-           
+
 
         }
 
@@ -433,10 +342,10 @@ namespace Saobracaj.Sifarnici
                 {
 
                     if (row.Selected)
-                    { 
+                    {
                         txtRB.Text = row.Cells[0].Value.ToString();
                         VratiPodatke(Convert.ToInt32(row.Cells[0].Value.ToString()));
-                       
+
                     }
                 }
             }
@@ -461,7 +370,7 @@ namespace Saobracaj.Sifarnici
             {
                 StanicaOD.SelectedValue = Convert.ToInt32(dr["StanicaOd"].ToString());
                 stanicaDO.SelectedValue = Convert.ToInt32(dr["StanicaDo"].ToString());
-                RastojanjeKM.Value  = Convert.ToInt32(dr["RastojanjeKM"].ToString());
+                RastojanjeKM.Value = Convert.ToInt32(dr["RastojanjeKM"].ToString());
                 RastojanjeM.Value = Convert.ToInt32(dr["RastojanjeM"].ToString());
                 StacionazaKM.Value = Convert.ToDecimal(dr["StacionazaKM"].ToString());
                 StacionazaM.Value = Convert.ToInt32(dr["StacionazaM"].ToString());
@@ -480,14 +389,14 @@ namespace Saobracaj.Sifarnici
                 MNOU.Value = Convert.ToDecimal(dr["MNOU"].ToString());
                 MNOP.Value = Convert.ToDecimal(dr["MNOP"].ToString());
                 temp = true;
-                }
+            }
 
             if (temp == false)
 
-            MessageBox.Show("not found");
+                MessageBox.Show("not found");
             con.Close();
 
-            }
+        }
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -511,13 +420,13 @@ namespace Saobracaj.Sifarnici
             MNP.Value = 0;
             MNOU.Value = 0;
             MNOP.Value = 0;
-            RefreshDataGrid(); 
+            RefreshDataGrid();
         }
 
         private void txtOznaka_TextChanged(object sender, EventArgs e)
         {
 
         }
-        }
     }
+}
 

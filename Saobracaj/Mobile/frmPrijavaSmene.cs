@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using MetroFramework.Forms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Mobile
 {
@@ -19,9 +12,7 @@ namespace Saobracaj.Mobile
         public frmPrijavaSmene()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
         string niz = "";
         public static string code = "frmPrijavaSmene";
@@ -32,89 +23,7 @@ namespace Saobracaj.Mobile
         bool update;
         bool delete;
         string Kor = Sifarnici.frmLogovanje.user.ToString();
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
 
-            while (dr.Read())
-            {
-                if (count == 0)
-                {
-                    niz = dr["IdGrupe"].ToString();
-                    count++;
-                }
-                else
-                {
-                    niz = niz + "," + dr["IdGrupe"].ToString();
-                    count++;
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        //tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        //tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        //tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
-        }
         private void metroButton1_Click(object sender, EventArgs e)
         {
             RefreshDataGrid();
@@ -212,15 +121,15 @@ namespace Saobracaj.Mobile
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 var pom = row.Cells[5].Value.ToString();
-               
-                    if (pom == "")
-                    {
-                        row.DefaultCellStyle.BackColor = Color.LightGreen;
-                        row.DefaultCellStyle.SelectionBackColor = Color.LightGreen;
-                    }
+
+                if (pom == "")
+                {
+                    row.DefaultCellStyle.BackColor = Color.LightGreen;
+                    row.DefaultCellStyle.SelectionBackColor = Color.LightGreen;
+                }
 
 
-                
+
                 dataGridView1.Refresh();
 
             }
@@ -230,7 +139,7 @@ namespace Saobracaj.Mobile
         {
             var select = "Select distinct top 300 ZaposleniPrijava.ID,AktivnostiStavke.OznakaPosla ,ZaposleniPrijava.Zaposleni as ZaposleniID, Rtrim(DeIme) + ' ' + Rtrim(DePriimek) as Zaposleni,DatumPrijave, DatumOdjave, AktivnostId, LongPrijave, LatPrijave, LongOdjave, LatOdjave,   DateDiff(minute, DatumPrijave,DatumOdjave) as Minuta from ZaposleniPrijava " +
             "   inner join Aktivnosti on Aktivnosti.ID = ZaposleniPrijava.AktivnostID " +
-" inner join AktivnostiStavke on AktivnostiStavke.IDNadredjena = Aktivnosti.ID " + 
+" inner join AktivnostiStavke on AktivnostiStavke.IDNadredjena = Aktivnosti.ID " +
             "inner join Delavci on DeSifra = ZaposleniPrijava.Zaposleni where ZaposleniPrijava.DatumOdjave is null order by ZaposleniPrijava.ID desc";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -310,7 +219,7 @@ namespace Saobracaj.Mobile
 
             DataGridViewColumn column12 = dataGridView1.Columns[11];
             dataGridView1.Columns[11].HeaderText = "Minuta";
-   
+
             dataGridView1.Columns[11].Width = 50;
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -434,10 +343,6 @@ namespace Saobracaj.Mobile
 
         private void RefreshDataGridPoVremenu()
         {
-            string Godina = "";
-            string Mesec = "";
-            string Dan = "";
-
             string Vreme = dateTimePicker1.Text;
             char[] spearator = { '.' };
             Int32 count = 3;
@@ -447,8 +352,8 @@ namespace Saobracaj.Mobile
                    count, StringSplitOptions.None);
 
 
-          
- 
+
+
 
             var select = "Select  ZaposleniPrijava.ID,  AktivnostiStavke.OznakaPosla , ZaposleniPrijava.Zaposleni as ZaposleniID, Rtrim(DeIme) + ' ' + Rtrim(DePriimek) as Zaposleni,DatumPrijave, DatumOdjave, " +
                 " AktivnostID, LongPrijave, LatPrijave, LongOdjave, LatOdjave,  DateDiff(minute, DatumPrijave,DatumOdjave) as Minuta from ZaposleniPrijava " +
@@ -570,7 +475,7 @@ namespace Saobracaj.Mobile
                     if (row.Selected)
                     {
                         txtSifra.Text = row.Cells[0].Value.ToString();
-                       
+
                     }
                 }
 

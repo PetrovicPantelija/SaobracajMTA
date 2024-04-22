@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Servis
 {
@@ -124,7 +120,7 @@ namespace Saobracaj.Servis
 
         }
 
-        public void UpdatePrijavaMasinovodje(int ID, string Lokomotiva, int Smer , int Zaposleni, DateTime Datum, int Stanica, double MotoSati, double KM, double Gorivo, string Napomena)
+        public void UpdatePrijavaMasinovodje(int ID, string Lokomotiva, int Smer, int Zaposleni, DateTime Datum, int Stanica, double MotoSati, double KM, double Gorivo, string Napomena)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -205,7 +201,7 @@ namespace Saobracaj.Servis
             parameter9.Value = Napomena;
             myCommand.Parameters.Add(parameter9);
 
-           
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -258,7 +254,7 @@ namespace Saobracaj.Servis
             parameter.Value = ID;
             myCommand.Parameters.Add(parameter);
 
-          
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Configuration;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing;
 //
 namespace Saobracaj.RadniNalozi
 {
@@ -266,20 +260,20 @@ namespace Saobracaj.RadniNalozi
                 txtNalogRealizovao.Text = dr["NalogRealizovao"].ToString();
                 txtNalogIzdao.Text = dr["NalogIzdao"].ToString();
                 txtDatumRealizacije.Value = Convert.ToDateTime(dr["DatumRealizacije"].ToString());
-                txtPrijemID.Text = dr["PrijemID"].ToString(); 
+                txtPrijemID.Text = dr["PrijemID"].ToString();
                 //cboIzvoznik.SelectedValue = Convert.ToInt32(dr["Izvoznik"].ToString());
                 txtBrojPlombe.Text = dr["BrojPlombe"].ToString();
                 txtNalogID.Text = dr["NalogID"].ToString();
                 cboBrodar.SelectedValue = Convert.ToInt32(dr["NazivBrodara"].ToString());
-               cboVrstaRobe.SelectedValue = Convert.ToInt32(dr["VrstaRobe"].ToString());
+                cboVrstaRobe.SelectedValue = Convert.ToInt32(dr["VrstaRobe"].ToString());
 
                 cboNaPoz.SelectedValue = Convert.ToInt32(dr["UPozicijaSklad"].ToString());
 
                 cboNaSklad.SelectedValue = Convert.ToInt32(dr["USkladiste"].ToString());
                 txtKamion.Text = dr["Kamion"].ToString();
-             //NIJE DOBRO null   cboPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
+                //NIJE DOBRO null   cboPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
                 txtNapomena.Text = dr["Napomena"].ToString();
-             //NIJE DOBR NULL   cboInspekcijski.SelectedValue = Convert.ToInt32(dr["InspekcijskiPregled"].ToString());
+                //NIJE DOBR NULL   cboInspekcijski.SelectedValue = Convert.ToInt32(dr["InspekcijskiPregled"].ToString());
 
                 if (dr["Zavrsen"].ToString() == "1")
                 { chkZavrsen.Checked = true; }
@@ -327,7 +321,7 @@ namespace Saobracaj.RadniNalozi
                 ir.InsRNPrijemPlatformeKamIzvoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text);
                 FillGV();
             }
-           
+
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)

@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
     class InsertRadniNalogTrase
     {
-        public void InsRNT(int RadniNalog, int Trasa, DateTime DatumPolaskaReal, DateTime DatumDolaskaReal, DateTime DatumPolaska, DateTime DatumDolaska, int Vreme, int VremeReal , double PlaniranaMasa , double MasaLokomotive, double MasaVoza, double BrutoMasa, string Napomena, bool Rezi, int StanicaOd, int StanicaDo, bool Poslato, int Status)
+        public void InsRNT(int RadniNalog, int Trasa, DateTime DatumPolaskaReal, DateTime DatumDolaskaReal, DateTime DatumPolaska, DateTime DatumDolaska, int Vreme, int VremeReal, double PlaniranaMasa, double MasaLokomotive, double MasaVoza, double BrutoMasa, string Napomena, bool Rezi, int StanicaOd, int StanicaDo, bool Poslato, int Status)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -43,14 +39,14 @@ namespace Saobracaj.Dokumenta
             parameter3.Value = DatumPolaskaReal;
             myCommand.Parameters.Add(parameter3);
 
-             SqlParameter parameter4 = new SqlParameter();
+            SqlParameter parameter4 = new SqlParameter();
             parameter4.ParameterName = "@DatumDolaskaReal";
             parameter4.SqlDbType = SqlDbType.DateTime;
             parameter4.Direction = ParameterDirection.Input;
             parameter4.Value = DatumDolaskaReal;
             myCommand.Parameters.Add(parameter4);
 
-             SqlParameter parameter5 = new SqlParameter();
+            SqlParameter parameter5 = new SqlParameter();
             parameter5.ParameterName = "@DatumPolaska";
             parameter5.SqlDbType = SqlDbType.DateTime;
             parameter5.Direction = ParameterDirection.Input;
@@ -63,22 +59,22 @@ namespace Saobracaj.Dokumenta
             parameter6.Direction = ParameterDirection.Input;
             parameter6.Value = DatumDolaska;
             myCommand.Parameters.Add(parameter6);
-          
-			 SqlParameter parameter7 = new SqlParameter();
+
+            SqlParameter parameter7 = new SqlParameter();
             parameter7.ParameterName = "@Vreme";
             parameter7.SqlDbType = SqlDbType.Int;
             parameter7.Direction = ParameterDirection.Input;
             parameter7.Value = Vreme;
             myCommand.Parameters.Add(parameter7);
-			
-		     SqlParameter parameter8 = new SqlParameter();
+
+            SqlParameter parameter8 = new SqlParameter();
             parameter8.ParameterName = "@VremeReal";
             parameter8.SqlDbType = SqlDbType.Int;
             parameter8.Direction = ParameterDirection.Input;
             parameter8.Value = VremeReal;
             myCommand.Parameters.Add(parameter8);
 
-             SqlParameter parameter9 = new SqlParameter();
+            SqlParameter parameter9 = new SqlParameter();
             parameter9.ParameterName = "@PlaniranaMasa";
             parameter9.SqlDbType = SqlDbType.Decimal;
             parameter9.Direction = ParameterDirection.Input;
@@ -91,8 +87,8 @@ namespace Saobracaj.Dokumenta
             parameter10.Direction = ParameterDirection.Input;
             parameter10.Value = MasaLokomotive;
             myCommand.Parameters.Add(parameter10);
-		
-		    SqlParameter parameter11 = new SqlParameter();
+
+            SqlParameter parameter11 = new SqlParameter();
             parameter11.ParameterName = "@MasaVoza";
             parameter11.SqlDbType = SqlDbType.Decimal;
             parameter11.Direction = ParameterDirection.Input;
@@ -109,7 +105,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter13 = new SqlParameter();
             parameter13.ParameterName = "@Napomena";
             parameter13.SqlDbType = SqlDbType.NVarChar;
-            parameter13.Size = 500; 
+            parameter13.Size = 500;
             parameter13.Direction = ParameterDirection.Input;
             parameter13.Value = Napomena;
             myCommand.Parameters.Add(parameter13);
@@ -148,7 +144,7 @@ namespace Saobracaj.Dokumenta
             parameter18.Direction = ParameterDirection.Input;
             parameter18.Value = Status;
             myCommand.Parameters.Add(parameter18);
-	
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -184,7 +180,7 @@ namespace Saobracaj.Dokumenta
             }
         }
 
-        public void UpdRNT(int RadniNalog, int Trasa, DateTime DatumPolaskaReal, DateTime DatumDolaskaReal, DateTime DatumPolaska, DateTime DatumDolaska, int Vreme, int VremeReal, double PlaniranaMasa, double MasaLokomotive, double MasaVoza, double BrutoMasa, string Napomena, bool Rezi, int StanicaOd, int StanicaDo,  bool Poslato, int Status, int RB)
+        public void UpdRNT(int RadniNalog, int Trasa, DateTime DatumPolaskaReal, DateTime DatumDolaskaReal, DateTime DatumPolaska, DateTime DatumDolaska, int Vreme, int VremeReal, double PlaniranaMasa, double MasaLokomotive, double MasaVoza, double BrutoMasa, string Napomena, bool Rezi, int StanicaOd, int StanicaDo, bool Poslato, int Status, int RB)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -327,7 +323,7 @@ namespace Saobracaj.Dokumenta
             parameter19.Direction = ParameterDirection.Input;
             parameter19.Value = RB;
             myCommand.Parameters.Add(parameter19);
-	
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -388,7 +384,7 @@ namespace Saobracaj.Dokumenta
             parameter2.Value = RB;
             myCommand.Parameters.Add(parameter2);
 
-          
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -492,7 +488,7 @@ namespace Saobracaj.Dokumenta
         }
 
 
-        public void InsRNTPodrtrase(int RadniNalog, int Trasa, int StanicaOd, int StanicaDo, double Rastojanje, int Elektrificirana, string PrugaOznaka, string TipPruge )
+        public void InsRNTPodrtrase(int RadniNalog, int Trasa, int StanicaOd, int StanicaDo, double Rastojanje, int Elektrificirana, string PrugaOznaka, string TipPruge)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -515,7 +511,7 @@ namespace Saobracaj.Dokumenta
             parameter2.Value = Trasa;
             myCommand.Parameters.Add(parameter2);
 
-          
+
 
             SqlParameter parameter3 = new SqlParameter();
             parameter3.ParameterName = "@StanicaOd";
@@ -561,7 +557,7 @@ namespace Saobracaj.Dokumenta
             parameter8.Value = TipPruge;
             myCommand.Parameters.Add(parameter8);
 
-           
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

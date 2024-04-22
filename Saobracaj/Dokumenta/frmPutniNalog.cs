@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Net;
 using System.Net.Mail;
-
-
-using Microsoft.Reporting.WinForms;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -35,17 +26,13 @@ namespace Saobracaj.Dokumenta
         public frmPutniNalog()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
 
         public frmPutniNalog(int sifra, string Korisnik)
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
             txtSifra.Text = sifra.ToString();
             KorisnikCene = Korisnik;
             VratiPodatke(sifra);
@@ -62,106 +49,12 @@ namespace Saobracaj.Dokumenta
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
-
-            while (dr.Read())
-            {
-                if (dr.HasRows)
-                {
-                    if (count == 0)
-                    {
-                        niz = dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                    else
-                    {
-                        niz = niz + "," + dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Korisnik ne pripada grupi");
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
-        }
-
-        public frmPutniNalog(string NalogZaPrevozID, string MestoUtovara, string MestoIstovara,string Korisnik, string RelacijaOd, string RelacijaDo)
+        public frmPutniNalog(string NalogZaPrevozID, string MestoUtovara, string MestoIstovara, string Korisnik, string RelacijaOd, string RelacijaDo)
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
             KorisnikCene = Korisnik;
             txtNalogZaPrevozID.Text = NalogZaPrevozID;
             txtUtovarnoMesto.Text = MestoUtovara;
@@ -174,7 +67,7 @@ namespace Saobracaj.Dokumenta
                 VratiPodatke(Convert.ToInt32(txtSifra.Text));
             }
 
-            
+
         }
 
         private void VratiPodatke(int ID)
@@ -186,9 +79,9 @@ namespace Saobracaj.Dokumenta
 
             SqlCommand cmd = new SqlCommand("SELECT [ID] ,[IDNalogZaPrevoz] " +
      " ,[MestoIzdavanja] ,[DatumPrevoza] ,[UtovarnoMesto],[IstovarnoMesto] " +
-     " ,[Vozilo],[PrikljucnaVozila],[Napomena],[Dispecer] "+
-     " ,[Vozac],[TehnickuIspravnost],[Datum],[Korisnik] "+
-     " ,[PrikljucnoVoziloID],[Marka1],[Tip1] "+
+     " ,[Vozilo],[PrikljucnaVozila],[Napomena],[Dispecer] " +
+     " ,[Vozac],[TehnickuIspravnost],[Datum],[Korisnik] " +
+     " ,[PrikljucnoVoziloID],[Marka1],[Tip1] " +
      " ,[Tezina1],[Marka2],[Tip2],[Tezina2] ,[RelacijaOd],[RelacijaDo] " +
      "   FROM [dbo].[PutniNalog]    where ID = " + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -205,7 +98,7 @@ namespace Saobracaj.Dokumenta
                 txtNapomena.Text = dr["Napomena"].ToString();
                 cboTransportniDispičer.SelectedValue = Convert.ToInt32(dr["Dispecer"].ToString());
                 cboVozac.SelectedValue = Convert.ToInt32(dr["Vozac"].ToString());
-                cboTehnickaIspravnost.SelectedValue =  Convert.ToInt32(dr["Vozac"].ToString());
+                cboTehnickaIspravnost.SelectedValue = Convert.ToInt32(dr["Vozac"].ToString());
                 cboPrikljucnoVozilo.SelectedValue = Convert.ToInt32(dr["PrikljucnoVoziloID"].ToString());
                 txtMarka1.Text = dr["Marka1"].ToString();
                 txtTip1.Text = dr["Tip1"].ToString();
@@ -234,11 +127,11 @@ namespace Saobracaj.Dokumenta
         {
 
 
-           
+
             if (status == true)
             {
                 Saobracaj.Dokumenta.InsertPutniNalog ins = new InsertPutniNalog();
-                ins.InsPutniNalog(Convert.ToInt32(txtNalogZaPrevozID.Text),txtMestoIzdavanja.Text, Convert.ToDateTime(dtpDatumPrevoza.Value), txtIstovarnoMesto.Text, txtUtovarnoMesto.Text,Convert.ToInt32(cboVozilo.SelectedValue), txtPrikljucnaVozila.Text,txtNapomena.Text, Convert.ToInt32(cboTransportniDispičer.SelectedValue), Convert.ToInt32(cboVozac.SelectedValue), Convert.ToInt32(cboTehnickaIspravnost.SelectedValue),DateTime.Now, KorisnikCene,Convert.ToInt32(cboPrikljucnoVozilo.SelectedValue), txtMarka1.Text, txtTip1.Text, Convert.ToDouble(txtTezina1.Text), txtMarka2.Text, txtTip2.Text, Convert.ToDouble(txtTezina2.Text),txtRelacija1.Text, txtRelacija2.Text);
+                ins.InsPutniNalog(Convert.ToInt32(txtNalogZaPrevozID.Text), txtMestoIzdavanja.Text, Convert.ToDateTime(dtpDatumPrevoza.Value), txtIstovarnoMesto.Text, txtUtovarnoMesto.Text, Convert.ToInt32(cboVozilo.SelectedValue), txtPrikljucnaVozila.Text, txtNapomena.Text, Convert.ToInt32(cboTransportniDispičer.SelectedValue), Convert.ToInt32(cboVozac.SelectedValue), Convert.ToInt32(cboTehnickaIspravnost.SelectedValue), DateTime.Now, KorisnikCene, Convert.ToInt32(cboPrikljucnoVozilo.SelectedValue), txtMarka1.Text, txtTip1.Text, Convert.ToDouble(txtTezina1.Text), txtMarka2.Text, txtTip2.Text, Convert.ToDouble(txtTezina2.Text), txtRelacija1.Text, txtRelacija2.Text);
                 status = false;
                 VratiPodatkeMax();
             }
@@ -247,9 +140,9 @@ namespace Saobracaj.Dokumenta
 
 
                 Saobracaj.Dokumenta.InsertPutniNalog upd = new InsertPutniNalog();
-                    upd.UpdPutniNalog(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtNalogZaPrevozID.Text), txtMestoIzdavanja.Text, Convert.ToDateTime(dtpDatumPrevoza.Value), txtIstovarnoMesto.Text, txtUtovarnoMesto.Text, Convert.ToInt32(cboVozilo.SelectedValue), txtPrikljucnaVozila.Text, txtNapomena.Text, Convert.ToInt32(cboTransportniDispičer.SelectedValue), Convert.ToInt32(cboVozac.SelectedValue), Convert.ToInt32(cboTehnickaIspravnost.SelectedValue), DateTime.Now, KorisnikCene, Convert.ToInt32(cboPrikljucnoVozilo.SelectedValue), txtMarka1.Text, txtTip1.Text, Convert.ToDouble(txtTezina1.Text), txtMarka2.Text, txtTip2.Text, Convert.ToDouble(txtTezina2.Text), txtRelacija1.Text, txtRelacija2.Text);
-                    status = false;
-                
+                upd.UpdPutniNalog(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtNalogZaPrevozID.Text), txtMestoIzdavanja.Text, Convert.ToDateTime(dtpDatumPrevoza.Value), txtIstovarnoMesto.Text, txtUtovarnoMesto.Text, Convert.ToInt32(cboVozilo.SelectedValue), txtPrikljucnaVozila.Text, txtNapomena.Text, Convert.ToInt32(cboTransportniDispičer.SelectedValue), Convert.ToInt32(cboVozac.SelectedValue), Convert.ToInt32(cboTehnickaIspravnost.SelectedValue), DateTime.Now, KorisnikCene, Convert.ToInt32(cboPrikljucnoVozilo.SelectedValue), txtMarka1.Text, txtTip1.Text, Convert.ToDouble(txtTezina1.Text), txtMarka2.Text, txtTip2.Text, Convert.ToDouble(txtTezina2.Text), txtRelacija1.Text, txtRelacija2.Text);
+                status = false;
+
 
             }
         }
@@ -356,7 +249,7 @@ namespace Saobracaj.Dokumenta
             CboZaposleni.DisplayMember = "Naziv";
             CboZaposleni.ValueMember = "ID";
 
-           
+
 
             if (txtSifra.Text != "")
             {
@@ -379,7 +272,7 @@ namespace Saobracaj.Dokumenta
             Saobracaj.Dokumenta.InsertPutniNalogZaposleni ins = new InsertPutniNalogZaposleni();
             ins.InsPutniNalogZaposleni(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(CboZaposleni.SelectedValue), pomVozac);
             RefreshDataGridOsoblje();
-        
+
         }
 
         private void RefreshDataGridOsoblje()
@@ -481,14 +374,11 @@ namespace Saobracaj.Dokumenta
 
             if (dialogResult == DialogResult.Yes)
             {
-                int pomVozac = 0;
                 if (chk1.Checked == true)
                 {
-                    pomVozac = 1;
                 }
                 else
                 {
-                    pomVozac = 0;
                 }
 
                 Saobracaj.Dokumenta.InsertPutniNalogZaposleni upd = new InsertPutniNalogZaposleni();
@@ -599,17 +489,17 @@ namespace Saobracaj.Dokumenta
             int Polazak = 0;
 
             if (chkPolazak.Checked == true)
-                {
+            {
                 Polazak = 1;
-                }
+            }
             else
             {
                 Polazak = 2;
             }
 
             Saobracaj.Dokumenta.InsertPutniNalogRuta ins = new InsertPutniNalogRuta();
-            ins.InsPutniNalogRuta(Convert.ToInt32(txtSifra.Text), Polazak, Convert.ToDateTime(dtpDatumRuta.Value), Convert.ToDouble(StanjeBrojilaRuta.Value), txtServiserRuta.Text, Convert.ToInt32(cboVozacRute.SelectedValue), txtRelacijaRute.Text, txtBrojTure.Text, Convert.ToDouble(txtTezinaTure.Value));   
-           
+            ins.InsPutniNalogRuta(Convert.ToInt32(txtSifra.Text), Polazak, Convert.ToDateTime(dtpDatumRuta.Value), Convert.ToDouble(StanjeBrojilaRuta.Value), txtServiserRuta.Text, Convert.ToInt32(cboVozacRute.SelectedValue), txtRelacijaRute.Text, txtBrojTure.Text, Convert.ToDouble(txtTezinaTure.Value));
+
             RefreshDataGridRuta();
         }
         //Rutatxt
@@ -696,7 +586,7 @@ namespace Saobracaj.Dokumenta
         private void button8_Click(object sender, EventArgs e)
         {
             Saobracaj.Dokumenta.InsertPutniNalogGume ins = new InsertPutniNalogGume();
-            ins.InsPutniNalogGume(Convert.ToInt32(txtSifra.Text),txtBrojGume.Text, Convert.ToDateTime(dtpDatumGume.Value),Convert.ToDouble(txtStanjeBrojilaGume.Value),txtNapomenaGume.Text);
+            ins.InsPutniNalogGume(Convert.ToInt32(txtSifra.Text), txtBrojGume.Text, Convert.ToDateTime(dtpDatumGume.Value), Convert.ToDouble(txtStanjeBrojilaGume.Value), txtNapomenaGume.Text);
 
             RefreshDataGridGume();
         }
@@ -853,7 +743,7 @@ namespace Saobracaj.Dokumenta
         private void button14_Click(object sender, EventArgs e)
         {
             Saobracaj.Dokumenta.InsertPutniNalogTroskovi ins = new InsertPutniNalogTroskovi();
-            ins.InsPutniNalogTroskovi(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumTroskovi.Value),txtSvrha.Text, Convert.ToDouble(txtKolicina.Value), Convert.ToDateTime(dtpDatumPotpisTroskovi.Value),txtPotpisaoTroskovi.Text);
+            ins.InsPutniNalogTroskovi(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumTroskovi.Value), txtSvrha.Text, Convert.ToDouble(txtKolicina.Value), Convert.ToDateTime(dtpDatumPotpisTroskovi.Value), txtPotpisaoTroskovi.Text);
 
             RefreshDataGridTroskovi();
         }
@@ -955,7 +845,7 @@ namespace Saobracaj.Dokumenta
             if (chkMail.Checked == true)
             {
                 pom = 1;
-              
+
             }
             Saobracaj.Dokumenta.InsertPutniNalogKvarovi ins = new InsertPutniNalogKvarovi();
             ins.InsPutniNalogKvarovi(Convert.ToInt32(txtSifra.Text), txtKvar.Text, pom);
@@ -988,62 +878,62 @@ namespace Saobracaj.Dokumenta
                 chkMail.Checked = true;
                 string zadnjibroj = txtSifra.Text;
                 //drugi je kome
-                
-
-                    mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
-
-                    mailMessage.Subject = "RTC LUKA LEGET TRANSPORT PUTNI NALOG BR: " + zadnjibroj + " . ";
-
-                    var select = "  SELECT Tekst from PutniNalogKvarovi" +
-                " where ID= " + Convert.ToInt32(txtSifra.Text);
 
 
-                    var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-                    SqlConnection myConnection = new SqlConnection(s_connection);
-                    var c = new SqlConnection(s_connection);
-                    var dataAdapter = new SqlDataAdapter(select, c);
+                mailMessage = new MailMessage("logistika@zitbgd.rs", Kome);
 
-                    var commandBuilder = new SqlCommandBuilder(dataAdapter);
-                    var ds = new DataSet();
-                    dataAdapter.Fill(ds);
-                    string body = "TRANSPORTNA SLUŽBA:  <br /><br />";
-                    body = body + " Poštovani,    <br /> <br /> <br />";
+                mailMessage.Subject = "RTC LUKA LEGET TRANSPORT PUTNI NALOG BR: " + zadnjibroj + " . ";
+
+                var select = "  SELECT Tekst from PutniNalogKvarovi" +
+            " where ID= " + Convert.ToInt32(txtSifra.Text);
 
 
-                    int countS = 0;
-                    foreach (DataRow myRow in ds.Tables[0].Rows)
+                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection myConnection = new SqlConnection(s_connection);
+                var c = new SqlConnection(s_connection);
+                var dataAdapter = new SqlDataAdapter(select, c);
+
+                var commandBuilder = new SqlCommandBuilder(dataAdapter);
+                var ds = new DataSet();
+                dataAdapter.Fill(ds);
+                string body = "TRANSPORTNA SLUŽBA:  <br /><br />";
+                body = body + " Poštovani,    <br /> <br /> <br />";
+
+
+                int countS = 0;
+                foreach (DataRow myRow in ds.Tables[0].Rows)
+                {
+                    if (countS == 0)
                     {
-                        if (countS == 0)
-                        {
-                            body = body +  myRow["Tekst"].ToString() + "<br />";
+                        body = body + myRow["Tekst"].ToString() + "<br />";
 
-                          
-                        }
-                        countS = countS + 1;
 
                     }
+                    countS = countS + 1;
+
+                }
                 body = body + "Potpis" + "<br />";
                 body = body + cboTransportniDispičer.Text + "<br />";
-                
+
                 //  body = body + "<br /> Po izvršenom dolasku voza i prijemu kontejnera na terminal ŽIT-a u Beograd ranžirnoj obavestićemo Vas blagovremeno na e-mailom.   <br />";
                 body = body + "Transportna služba <br />";
-                    body = body + "Tel: <br />";
-                    body = body + "Email: <br />";
+                body = body + "Tel: <br />";
+                body = body + "Email: <br />";
 
 
-                    mailMessage.Body = body;
-                    mailMessage.IsBodyHtml = true;
+                mailMessage.Body = body;
+                mailMessage.IsBodyHtml = true;
 
-                    SmtpClient smtpClient = new SmtpClient();
-                    smtpClient.Host = "mail.zitbgd.rs";
+                SmtpClient smtpClient = new SmtpClient();
+                smtpClient.Host = "mail.zitbgd.rs";
 
-                    smtpClient.Port = 25;
-                    smtpClient.UseDefaultCredentials = true;
-                    smtpClient.Credentials = new NetworkCredential("logistika@zitbgd.rs", "zit2019log");
+                smtpClient.Port = 25;
+                smtpClient.UseDefaultCredentials = true;
+                smtpClient.Credentials = new NetworkCredential("logistika@zitbgd.rs", "zit2019log");
 
-                    smtpClient.EnableSsl = false;
-                    smtpClient.Send(mailMessage);
-                
+                smtpClient.EnableSsl = false;
+                smtpClient.Send(mailMessage);
+
 
             }
             catch (Exception ex)
@@ -1056,7 +946,7 @@ namespace Saobracaj.Dokumenta
 
         private void button18_Click(object sender, EventArgs e)
         {
-           // PosaljiMailRadionica("zoran.milosevic@zitbgd.rs");
+            // PosaljiMailRadionica("zoran.milosevic@zitbgd.rs");
             PosaljiMailRadionica("panta0307@yahoo.com");
 
             int pom = 1;
@@ -1079,7 +969,7 @@ namespace Saobracaj.Dokumenta
             rds.Name = "DataSet1";
             rds.Value = dt;
 
-         
+
             ReportParameter[] par = new ReportParameter[1];
             par[0] = new ReportParameter("ID", txtSifra.Text);
 
@@ -1087,7 +977,7 @@ namespace Saobracaj.Dokumenta
             reportViewer1.LocalReport.ReportPath = "rptPutniNalog.rdlc";
             reportViewer1.LocalReport.SetParameters(par);
             reportViewer1.LocalReport.DataSources.Add(rds);
-           
+
             reportViewer1.RefreshReport();
         }
 

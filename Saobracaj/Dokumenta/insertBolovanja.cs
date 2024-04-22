@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -105,7 +101,7 @@ namespace Saobracaj.Dokumenta
             }
         }
 
-        public void UpdBolovanje(int ID, DateTime DatumOd, DateTime DatumDo, double Ukupno, int ZaposleniID, string Napomena,int TipBolovanja)
+        public void UpdBolovanje(int ID, DateTime DatumOd, DateTime DatumDo, double Ukupno, int ZaposleniID, string Napomena, int TipBolovanja)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;

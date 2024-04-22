@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -14,7 +10,7 @@ namespace Saobracaj.Dokumenta
     {
         public void InsNarocilo(string NaStatus, DateTime NaDatNar, int NaPartPlac, int NaNacinDobave, int NaSifObjekt, string NaOpomba1)
         {
-         // int  NaStNar ,  string NaStatus , DateTime    NaDatNar ,        int    NaPartPlac,        int  NaNacinDobave ,        int   NaSifObjekt ,        string   NaOpomba1 
+            // int  NaStNar ,  string NaStatus , DateTime    NaDatNar ,        int    NaPartPlac,        int  NaNacinDobave ,        int   NaSifObjekt ,        string   NaOpomba1 
 
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -61,7 +57,7 @@ namespace Saobracaj.Dokumenta
             parameter5.Value = NaSifObjekt;
             myCommand.Parameters.Add(parameter5);
 
-            SqlParameter parameter6= new SqlParameter();
+            SqlParameter parameter6 = new SqlParameter();
             parameter6.ParameterName = "@NaOpomba1";
             parameter6.SqlDbType = SqlDbType.VarChar;
             parameter1.Size = 255;

@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using Saobracaj.Sifarnici;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumeta
 {
@@ -53,7 +47,7 @@ namespace Saobracaj.Dokumeta
                 tabControl1.TabPages.Remove(tabPage3);
                 txtRegBrKamiona.Visible = false;
                 txtImeVozaca.Visible = false;
-            
+
 
 
             }
@@ -150,7 +144,7 @@ namespace Saobracaj.Dokumeta
             else
             {
                 Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke ins = new Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke();
-                ins.InsertOtpremaKontejneraStav(Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, txtVagon.Text, Convert.ToDouble(txtGranica.Value), Convert.ToDouble(txtBrojOsovina.Value), Convert.ToDouble(txtSopstvenaMasa.Value), Convert.ToDouble(txtTara.Value), Convert.ToDouble(txtNeto.Value), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboVlasnikKontejnera.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue), txtBukingBrodar.Text, Convert.ToInt32(cboStatusKontejnera.SelectedValue), txtBrojPlombe.Text, Convert.ToInt32(txtPlaniraniLager.Text), 0, Convert.ToDateTime(dtpVremePripremljen.Value), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtBrojPlombe2.Text, Convert.ToInt32(cboOrganizator.SelectedValue), txtNapomenaS.Text, DateTime.Now, DateTime.Now, 0, 0, 0, "", 0,0,0,0,0,"","","", 0);
+                ins.InsertOtpremaKontejneraStav(Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, txtVagon.Text, Convert.ToDouble(txtGranica.Value), Convert.ToDouble(txtBrojOsovina.Value), Convert.ToDouble(txtSopstvenaMasa.Value), Convert.ToDouble(txtTara.Value), Convert.ToDouble(txtNeto.Value), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboVlasnikKontejnera.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue), txtBukingBrodar.Text, Convert.ToInt32(cboStatusKontejnera.SelectedValue), txtBrojPlombe.Text, Convert.ToInt32(txtPlaniraniLager.Text), 0, Convert.ToDateTime(dtpVremePripremljen.Value), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtBrojPlombe2.Text, Convert.ToInt32(cboOrganizator.SelectedValue), txtNapomenaS.Text, DateTime.Now, DateTime.Now, 0, 0, 0, "", 0, 0, 0, 0, 0, "", "", "", 0);
                 RefreshDataGrid2();
             }
             /* Prikaz datagrid 2 - drugi tabulator
@@ -220,7 +214,7 @@ namespace Saobracaj.Dokumeta
             {
 
                 Saobracaj.Dokumenta.InsertOtprema ins = new Saobracaj.Dokumenta.InsertOtprema();
-                ins.InsertOtp(Convert.ToDateTime(dtpDatumOtpreme.Text), Convert.ToInt32(cboStatusOtpreme.SelectedIndex), Convert.ToInt32(cboVozBuking.SelectedValue), txtRegBrKamiona.Text, txtImeVozaca.Text, Convert.ToDateTime(dtpVremeOdlaska.Value), otpremaVozom, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue),0,0,0);
+                ins.InsertOtp(Convert.ToDateTime(dtpDatumOtpreme.Text), Convert.ToInt32(cboStatusOtpreme.SelectedIndex), Convert.ToInt32(cboVozBuking.SelectedValue), txtRegBrKamiona.Text, txtImeVozaca.Text, Convert.ToDateTime(dtpVremeOdlaska.Value), otpremaVozom, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), 0, 0, 0);
                 status = false;
                 VratiPodatkeMax();
             }
@@ -228,7 +222,7 @@ namespace Saobracaj.Dokumeta
             {
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 Saobracaj.Dokumenta.InsertOtprema upd = new Saobracaj.Dokumenta.InsertOtprema();
-                upd.UpdOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumOtpreme.Text), Convert.ToInt32(cboStatusOtpreme.SelectedIndex), Convert.ToInt32(cboVozBuking.SelectedValue), txtRegBrKamiona.Text, txtImeVozaca.Text, Convert.ToDateTime(dtpVremeOdlaska.Value), otpremaVozom, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue),0,0,0);
+                upd.UpdOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumOtpreme.Text), Convert.ToInt32(cboStatusOtpreme.SelectedIndex), Convert.ToInt32(cboVozBuking.SelectedValue), txtRegBrKamiona.Text, txtImeVozaca.Text, Convert.ToDateTime(dtpVremeOdlaska.Value), otpremaVozom, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), 0, 0, 0);
                 status = false;
             }
         }
@@ -247,7 +241,7 @@ namespace Saobracaj.Dokumeta
                 //do something else
             }
 
-            
+
         }
 
         private void RefreshDataGrid()
@@ -433,7 +427,7 @@ namespace Saobracaj.Dokumeta
             dataGridView1.Columns[3].HeaderText = "Broj kontejnera";
             dataGridView1.Columns[3].Width = 90;
 
-       
+
 
             DataGridViewColumn column5 = dataGridView1.Columns[4];
             dataGridView1.Columns[4].HeaderText = "Vagon";
@@ -462,7 +456,7 @@ namespace Saobracaj.Dokumeta
             DataGridViewColumn column10 = dataGridView1.Columns[9];
             dataGridView1.Columns[9].HeaderText = "Neto";
             dataGridView1.Columns[9].Width = 50;
-           
+
 
 
             DataGridViewColumn column11 = dataGridView1.Columns[10];
@@ -482,7 +476,7 @@ namespace Saobracaj.Dokumeta
             dataGridView1.Columns[13].HeaderText = "Organizator";
             dataGridView1.Columns[13].Width = 140;
 
-          
+
 
             DataGridViewColumn column15 = dataGridView1.Columns[14];
             dataGridView1.Columns[14].HeaderText = "Tip kontejnera";
@@ -513,7 +507,7 @@ namespace Saobracaj.Dokumeta
             dataGridView1.Columns[20].HeaderText = "Pl lager";
             dataGridView1.Columns[20].Width = 70;
 
-           
+
 
             DataGridViewColumn column22 = dataGridView1.Columns[21];
             dataGridView1.Columns[21].HeaderText = "Datum";
@@ -542,7 +536,7 @@ namespace Saobracaj.Dokumeta
 
             con.Open();
 
-           // SqlCommand cmd = new SqlCommand("select [ID] ,[DatumOtpreme],[StatusOtpreme],[IdVoza],[VremeOdlaska], [RegBrKamiona], [ImeVozaca], NacinOtpreme, Napomena, NajavaEmail, OtpremaEmail, Zatvoren, CIRUradjen, PredefinisanePorukeID from OtpremaKontejnera where ID = " + ID, con);
+            // SqlCommand cmd = new SqlCommand("select [ID] ,[DatumOtpreme],[StatusOtpreme],[IdVoza],[VremeOdlaska], [RegBrKamiona], [ImeVozaca], NacinOtpreme, Napomena, NajavaEmail, OtpremaEmail, Zatvoren, CIRUradjen, PredefinisanePorukeID from OtpremaKontejnera where ID = " + ID, con);
 
             SqlCommand cmd = new SqlCommand("select [ID] ,[DatumOtpreme],[StatusOtpreme],[IdVoza],[VremeOdlaska], [RegBrKamiona], [ImeVozaca], NacinOtpreme, Napomena, NajavaEmail, OtpremaEmail, Zatvoren, CIRUradjen from OtpremaKontejnera where ID = " + ID, con);
 
@@ -553,7 +547,7 @@ namespace Saobracaj.Dokumeta
                 dtpDatumOtpreme.Value = Convert.ToDateTime(dr["DatumOtpreme"].ToString());
                 dtpVremeOdlaska.Value = Convert.ToDateTime(dr["VremeOdlaska"].ToString());
                 cboVozBuking.SelectedValue = Convert.ToInt32(dr["IDVoza"].ToString());
-               // cboPredefinisanePoruke.SelectedValue = Convert.ToInt32(dr["PredefinisanePorukeID"].ToString());
+                // cboPredefinisanePoruke.SelectedValue = Convert.ToInt32(dr["PredefinisanePorukeID"].ToString());
                 cboStatusOtpreme.SelectedIndex = Convert.ToInt32(dr["StatusOtpreme"].ToString());
                 txtRegBrKamiona.Text = dr["RegBrKamiona"].ToString();
                 txtImeVozaca.Text = dr["ImeVozaca"].ToString();
@@ -612,7 +606,7 @@ namespace Saobracaj.Dokumeta
         private void button2_Click(object sender, System.EventArgs e)
         {
             Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke ins = new Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke();
-            ins.UpdOtpremaKontejneraVozStav(Convert.ToInt32(txtStavka.Text), Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, txtVagon.Text, Convert.ToDouble(txtGranica.Value), Convert.ToDouble(txtBrojOsovina.Value), Convert.ToDouble(txtSopstvenaMasa.Value), Convert.ToDouble(txtTara.Value), Convert.ToDouble(txtNeto.Value), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboVlasnikKontejnera.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue), txtBukingBrodar.Text, Convert.ToInt32(cboStatusKontejnera.SelectedValue), txtBrojPlombe.Text, Convert.ToInt32(txtPlaniraniLager.Text), 0, Convert.ToDateTime(dtpVremePripremljen.Value), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(txtRB.Text), txtBrojPlombe2.Text, Convert.ToInt32(cboOrganizator.SelectedValue), txtNapomenaS.Text, DateTime.Now, DateTime.Now, 0,0,0,"",0,0,0,0,0,"","","");
+            ins.UpdOtpremaKontejneraVozStav(Convert.ToInt32(txtStavka.Text), Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, txtVagon.Text, Convert.ToDouble(txtGranica.Value), Convert.ToDouble(txtBrojOsovina.Value), Convert.ToDouble(txtSopstvenaMasa.Value), Convert.ToDouble(txtTara.Value), Convert.ToDouble(txtNeto.Value), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboVlasnikKontejnera.SelectedValue), Convert.ToInt32(cboTipKontejnera.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue), txtBukingBrodar.Text, Convert.ToInt32(cboStatusKontejnera.SelectedValue), txtBrojPlombe.Text, Convert.ToInt32(txtPlaniraniLager.Text), 0, Convert.ToDateTime(dtpVremePripremljen.Value), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(txtRB.Text), txtBrojPlombe2.Text, Convert.ToInt32(cboOrganizator.SelectedValue), txtNapomenaS.Text, DateTime.Now, DateTime.Now, 0, 0, 0, "", 0, 0, 0, 0, 0, "", "", "");
             RefreshDataGrid2();
         }
 
@@ -633,9 +627,9 @@ namespace Saobracaj.Dokumeta
                 //do something else
             }
 
-           // InsertOtpremaKontejneraStavke dels = new InsertOtpremaKontejneraStavke();
-           // dels.DeleteOtpremaKontejneraVozStav(Convert.ToInt32(txtStavka.Text));
-           // RefreshDataGrid2();
+            // InsertOtpremaKontejneraStavke dels = new InsertOtpremaKontejneraStavke();
+            // dels.DeleteOtpremaKontejneraVozStav(Convert.ToInt32(txtStavka.Text));
+            // RefreshDataGrid2();
         }
 
 
@@ -1322,7 +1316,7 @@ namespace Saobracaj.Dokumeta
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    dtpVremeOdlaska.Value =  DateTime.Now;
+                    dtpVremeOdlaska.Value = DateTime.Now;
                     Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
                     ins.UpdateZatvorenOtprema(row.Cells[3].Value.ToString(), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToInt32(txtSifra.Text));
                 }
@@ -3107,7 +3101,6 @@ namespace Saobracaj.Dokumeta
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             int PostojiPrvi = 0;
-            int PostojiDrugi = 0;
             string BrojKontejnera1 = "";
             string BrojKontejnera2 = "";
             string VrstaRobe1 = "";
@@ -3130,9 +3123,8 @@ namespace Saobracaj.Dokumeta
 
 
                             BrojKontejnera2 = row.Cells[3].Value.ToString();
-                            PostojiDrugi = 1;
                             VrstaRobe2 = row.Cells[15].Value.ToString();
-                            ukupnaMasa2 = ukupnaMasa2 + Convert.ToDouble(row.Cells[8].Value.ToString()) +( Convert.ToDouble(row.Cells[9].Value.ToString() ) / 1000);
+                            ukupnaMasa2 = ukupnaMasa2 + Convert.ToDouble(row.Cells[8].Value.ToString()) + (Convert.ToDouble(row.Cells[9].Value.ToString()) / 1000);
                             TipKontejnera2 = row.Cells[14].Value.ToString();
                             //Panta
                             //14,7,13   Tara - 7 13 - Tip kontejnera 14 - Vrsta robe 8 - Neto
@@ -3228,7 +3220,7 @@ namespace Saobracaj.Dokumeta
                 {
                     Saobracaj.Dokumeta.InsertPrijemKontejneraVozStavke insTer = new Saobracaj.Dokumeta.InsertPrijemKontejneraVozStavke();
                     insTer.UpdateOtpremaKontejneraVozStavkeRB(Convert.ToInt32(row.Cells[1].Value.ToString()), Convert.ToInt32(row.Cells[0].Value.ToString()));
-               //Row.CellS
+                    //Row.CellS
                 }
                 RefreshDataGrid2();
             }
@@ -3247,12 +3239,12 @@ namespace Saobracaj.Dokumeta
         {
             if (chkVoz.Checked == true)
             {
-                Saobracaj.Dokumenta.frmManipulacije pnm = new Saobracaj.Dokumenta.frmManipulacije(KorisnikCene, Convert.ToInt32(txtSifra.Text), 1,0);
+                Saobracaj.Dokumenta.frmManipulacije pnm = new Saobracaj.Dokumenta.frmManipulacije(KorisnikCene, Convert.ToInt32(txtSifra.Text), 1, 0);
                 pnm.Show();
             }
             else
             {
-                Saobracaj.Dokumenta.frmManipulacije pnm = new Saobracaj.Dokumenta.frmManipulacije(KorisnikCene, Convert.ToInt32(txtSifra.Text), 0,0);
+                Saobracaj.Dokumenta.frmManipulacije pnm = new Saobracaj.Dokumenta.frmManipulacije(KorisnikCene, Convert.ToInt32(txtSifra.Text), 0, 0);
                 pnm.Show();
             }
         }
@@ -3321,5 +3313,5 @@ namespace Saobracaj.Dokumeta
     }
 }
 
- 
+
 

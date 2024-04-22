@@ -37,7 +37,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -52,6 +51,16 @@
             this.cboValuta = new System.Windows.Forms.ComboBox();
             this.cboOdeljenje = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.cboPredvidjanjeIDFilter = new System.Windows.Forms.ComboBox();
+            this.btnPredvidjanjeFilter = new System.Windows.Forms.Button();
+            this.btnNTNazivFilter = new System.Windows.Forms.Button();
+            this.txtFilterNazivNT = new System.Windows.Forms.TextBox();
+            this.btnNTFilter = new System.Windows.Forms.Button();
+            this.txtFilterNT = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -93,7 +102,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 130);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1614, 576);
+            this.dataGridView1.Size = new System.Drawing.Size(1614, 626);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -107,8 +116,7 @@
             this.tsDelete,
             this.toolStripSeparator1,
             this.toolStripButton2,
-            this.toolStripButton3,
-            this.toolStripButton1});
+            this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1638, 27);
@@ -153,35 +161,26 @@
             // toolStripButton2
             // 
             this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripButton2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(97, 24);
+            this.toolStripButton2.Size = new System.Drawing.Size(108, 24);
             this.toolStripButton2.Text = "Sva predvidjanja";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripButton3
             // 
             this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripButton3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(99, 24);
+            this.toolStripButton3.Size = new System.Drawing.Size(108, 24);
             this.toolStripButton3.Text = "Export Pantheon";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(144, 24);
-            this.toolStripButton1.Text = "Export Pantheon - DEMO";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // label1
             // 
@@ -248,6 +247,7 @@
             // 
             // txtIDPredvidjanja
             // 
+            this.txtIDPredvidjanja.Enabled = false;
             this.txtIDPredvidjanja.Location = new System.Drawing.Point(97, 53);
             this.txtIDPredvidjanja.Name = "txtIDPredvidjanja";
             this.txtIDPredvidjanja.Size = new System.Drawing.Size(46, 20);
@@ -299,19 +299,128 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.btnRefresh);
+            this.panel1.Controls.Add(this.cboPredvidjanjeIDFilter);
+            this.panel1.Controls.Add(this.btnPredvidjanjeFilter);
+            this.panel1.Controls.Add(this.btnNTNazivFilter);
+            this.panel1.Controls.Add(this.txtFilterNazivNT);
+            this.panel1.Controls.Add(this.btnNTFilter);
+            this.panel1.Controls.Add(this.txtFilterNT);
+            this.panel1.Controls.Add(this.label18);
+            this.panel1.Controls.Add(this.label16);
+            this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.dataGridView2);
-            this.panel1.Location = new System.Drawing.Point(12, 167);
+            this.panel1.Location = new System.Drawing.Point(12, 77);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1614, 539);
+            this.panel1.Size = new System.Drawing.Size(1614, 679);
             this.panel1.TabIndex = 204;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(1115, 9);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(99, 30);
+            this.btnRefresh.TabIndex = 14;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // cboPredvidjanjeIDFilter
+            // 
+            this.cboPredvidjanjeIDFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.cboPredvidjanjeIDFilter.FormattingEnabled = true;
+            this.cboPredvidjanjeIDFilter.Location = new System.Drawing.Point(869, 12);
+            this.cboPredvidjanjeIDFilter.Name = "cboPredvidjanjeIDFilter";
+            this.cboPredvidjanjeIDFilter.Size = new System.Drawing.Size(187, 23);
+            this.cboPredvidjanjeIDFilter.TabIndex = 13;
+            // 
+            // btnPredvidjanjeFilter
+            // 
+            this.btnPredvidjanjeFilter.BackColor = System.Drawing.Color.NavajoWhite;
+            this.btnPredvidjanjeFilter.Location = new System.Drawing.Point(1059, 13);
+            this.btnPredvidjanjeFilter.Name = "btnPredvidjanjeFilter";
+            this.btnPredvidjanjeFilter.Size = new System.Drawing.Size(20, 21);
+            this.btnPredvidjanjeFilter.TabIndex = 12;
+            this.btnPredvidjanjeFilter.UseVisualStyleBackColor = false;
+            this.btnPredvidjanjeFilter.Click += new System.EventHandler(this.btnPredvidjanjeFilter_Click);
+            // 
+            // btnNTNazivFilter
+            // 
+            this.btnNTNazivFilter.BackColor = System.Drawing.Color.NavajoWhite;
+            this.btnNTNazivFilter.Location = new System.Drawing.Point(654, 11);
+            this.btnNTNazivFilter.Name = "btnNTNazivFilter";
+            this.btnNTNazivFilter.Size = new System.Drawing.Size(20, 21);
+            this.btnNTNazivFilter.TabIndex = 12;
+            this.btnNTNazivFilter.UseVisualStyleBackColor = false;
+            this.btnNTNazivFilter.Click += new System.EventHandler(this.btnNTNazivFilter_Click);
+            // 
+            // txtFilterNazivNT
+            // 
+            this.txtFilterNazivNT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtFilterNazivNT.Location = new System.Drawing.Point(434, 10);
+            this.txtFilterNazivNT.Name = "txtFilterNazivNT";
+            this.txtFilterNazivNT.Size = new System.Drawing.Size(214, 22);
+            this.txtFilterNazivNT.TabIndex = 11;
+            // 
+            // btnNTFilter
+            // 
+            this.btnNTFilter.BackColor = System.Drawing.Color.NavajoWhite;
+            this.btnNTFilter.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnNTFilter.Location = new System.Drawing.Point(257, 12);
+            this.btnNTFilter.Name = "btnNTFilter";
+            this.btnNTFilter.Size = new System.Drawing.Size(20, 20);
+            this.btnNTFilter.TabIndex = 10;
+            this.btnNTFilter.UseVisualStyleBackColor = false;
+            this.btnNTFilter.Click += new System.EventHandler(this.btnNTFilter_Click);
+            // 
+            // txtFilterNT
+            // 
+            this.txtFilterNT.Location = new System.Drawing.Point(138, 12);
+            this.txtFilterNT.Name = "txtFilterNT";
+            this.txtFilterNT.Size = new System.Drawing.Size(113, 20);
+            this.txtFilterNT.TabIndex = 9;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label18.Location = new System.Drawing.Point(696, 14);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(167, 16);
+            this.label18.TabIndex = 7;
+            this.label18.Text = "Pretraži po predvidjanjuID :";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label16.Location = new System.Drawing.Point(291, 15);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(137, 16);
+            this.label16.TabIndex = 7;
+            this.label16.Text = "Pretraži po nazivu NT:";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label17.Location = new System.Drawing.Point(8, 16);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(124, 16);
+            this.label17.TabIndex = 8;
+            this.label17.Text = "Pretraži po nosiocu:";
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1410, 3);
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(1428, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 29);
+            this.button3.Size = new System.Drawing.Size(94, 39);
             this.button3.TabIndex = 2;
             this.button3.Text = "Vrati na status 0";
             this.button3.UseVisualStyleBackColor = true;
@@ -321,9 +430,10 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.NavajoWhite;
-            this.button1.Location = new System.Drawing.Point(1528, 3);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(1528, 7);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 29);
+            this.button1.Size = new System.Drawing.Size(83, 35);
             this.button1.TabIndex = 1;
             this.button1.Text = "Nazad";
             this.button1.UseVisualStyleBackColor = false;
@@ -331,19 +441,21 @@
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(3, 38);
+            this.dataGridView2.Location = new System.Drawing.Point(3, 48);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(1608, 498);
+            this.dataGridView2.Size = new System.Drawing.Size(1608, 628);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
             // txtPredvidjanje
             // 
+            this.txtPredvidjanje.Enabled = false;
             this.txtPredvidjanje.Location = new System.Drawing.Point(180, 53);
             this.txtPredvidjanje.Name = "txtPredvidjanje";
             this.txtPredvidjanje.Size = new System.Drawing.Size(111, 20);
@@ -547,7 +659,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1638, 718);
+            this.ClientSize = new System.Drawing.Size(1638, 768);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.cboOdeljenje);
@@ -586,10 +698,12 @@
             this.Name = "Predvidjanje";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Predvidjanje";
+            this.Load += new System.EventHandler(this.Predvidjanje_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtIznos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKolicina)).EndInit();
@@ -620,7 +734,6 @@
         private System.Windows.Forms.ComboBox cboSubjekt;
         private System.Windows.Forms.ComboBox cboNosilacTroska;
         private System.Windows.Forms.ComboBox cboValuta;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ComboBox cboOdeljenje;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
@@ -646,5 +759,15 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button btnNTNazivFilter;
+        private System.Windows.Forms.TextBox txtFilterNazivNT;
+        private System.Windows.Forms.Button btnNTFilter;
+        private System.Windows.Forms.TextBox txtFilterNT;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox cboPredvidjanjeIDFilter;
+        private System.Windows.Forms.Button btnPredvidjanjeFilter;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }

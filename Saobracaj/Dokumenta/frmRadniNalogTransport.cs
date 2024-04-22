@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -26,8 +16,8 @@ namespace Saobracaj.Dokumenta
         int PriklucjucnoVoziloS = 0;
         int transportnidispecerS = 0;
         string mestoizdavanjaS = "";
-       
-        
+
+
 
         DataTable ndt;
         public frmRadniNalogTransport(string Korisnik)
@@ -39,7 +29,7 @@ namespace Saobracaj.Dokumenta
         public frmRadniNalogTransport()
         {
             InitializeComponent();
-           
+
         }
 
         public frmRadniNalogTransport(int sifra, string Korisnik)
@@ -48,26 +38,26 @@ namespace Saobracaj.Dokumenta
             txtSifra.Text = sifra.ToString();
             KorisnikCene = Korisnik;
             VratiPodatke(sifra);
-           
+
         }
 
 
         public frmRadniNalogTransport(string NalogZaPrevozID, string PutniNalogID, int VoziloP, string mestoizdavanjaP, int prikljucnovoziloP, int transportnidispecerP)
         {
             InitializeComponent();
-            
+
             txtNalogZaPrevozID.Text = NalogZaPrevozID;
             txtPutniNalogID.Text = PutniNalogID;
             //////
             ///
-          
+
             VoziloS = Convert.ToInt32(VoziloP);
             PriklucjucnoVoziloS = Convert.ToInt32(prikljucnovoziloP);
             transportnidispecerS = Convert.ToInt32(transportnidispecerP);
             mestoizdavanjaS = mestoizdavanjaP;
 
             dtpDatumPrevoza.Value = DateTime.Now;
-            
+
             if (txtSifra.Text != "")
             {
                 VratiPodatke(Convert.ToInt32(txtSifra.Text));
@@ -101,7 +91,7 @@ namespace Saobracaj.Dokumenta
                 dtpDana.Value = Convert.ToDateTime(dr["Dana"].ToString());
                 dtpDatumIstovara.Value = Convert.ToDateTime(dr["DatumIstovara"].ToString());
                 cboTransportniDispičer.SelectedValue = Convert.ToInt32(dr["TransportniDispecer"].ToString());
-              
+
                 cboPrikljucnoVozilo.SelectedValue = Convert.ToInt32(dr["PrikljucnoVoziloID"].ToString());
                 txtRelacija1.Text = dr["RelacijaOd"].ToString();
                 txtRelacija2.Text = dr["RelacijaDo"].ToString();
@@ -112,7 +102,7 @@ namespace Saobracaj.Dokumenta
             con.Close();
         }
 
-      
+
 
         private void frmRadniNalogTransport_Load(object sender, EventArgs e)
         {
@@ -172,7 +162,7 @@ namespace Saobracaj.Dokumenta
                 txtMestoIzdavanja.Text = mestoizdavanjaS;
             }
 
-            
+
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -305,7 +295,7 @@ namespace Saobracaj.Dokumenta
         private void button13_Click(object sender, EventArgs e)
         {
             InsertRadniNalogTransportStavke ins = new InsertRadniNalogTransportStavke();
-            ins.UpdRadniNalogTransportStavke(Convert.ToInt32(txtStavka.Text), Convert.ToInt32(txtSifra.Text),  txtKorisnik.Text, txtTovarniList.Text, txtRačun.Text, Convert.ToDouble(txtDencano.Value), Convert.ToDouble(txtKolsko.Value), Convert.ToDouble(txtPrihodDencano.Value), Convert.ToDouble(txtPrihodOstalo.Value), txtPrimedba.Text, txtPotpisao.Text);
+            ins.UpdRadniNalogTransportStavke(Convert.ToInt32(txtStavka.Text), Convert.ToInt32(txtSifra.Text), txtKorisnik.Text, txtTovarniList.Text, txtRačun.Text, Convert.ToDouble(txtDencano.Value), Convert.ToDouble(txtKolsko.Value), Convert.ToDouble(txtPrihodDencano.Value), Convert.ToDouble(txtPrihodOstalo.Value), txtPrimedba.Text, txtPotpisao.Text);
             RefreshDataGridStavke();
         }
 
@@ -324,7 +314,7 @@ namespace Saobracaj.Dokumenta
                 //do something else
             }
 
-            
+
         }
 
         private void toolStripLabel1_Click(object sender, EventArgs e)
@@ -372,7 +362,7 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripLabel2_Click(object sender, EventArgs e)
         {
-            frmAutoprevozniList2 auto = new frmAutoprevozniList2(txtNalogZaPrevozID.Text, txtPutniNalogID.Text, txtSifra.Text, Convert.ToInt32(cboVozilo.SelectedValue), txtMestoIzdavanja.Text, Convert.ToInt32(cboPrikljucnoVozilo.SelectedValue),  Convert.ToInt32(cboTransportniDispičer.SelectedValue));
+            frmAutoprevozniList2 auto = new frmAutoprevozniList2(txtNalogZaPrevozID.Text, txtPutniNalogID.Text, txtSifra.Text, Convert.ToInt32(cboVozilo.SelectedValue), txtMestoIzdavanja.Text, Convert.ToInt32(cboPrikljucnoVozilo.SelectedValue), Convert.ToInt32(cboTransportniDispičer.SelectedValue));
             auto.Show();
         }
 
@@ -397,5 +387,5 @@ namespace Saobracaj.Dokumenta
 
         }
     }
-    }
+}
 

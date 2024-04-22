@@ -1,10 +1,5 @@
-﻿using System;
+﻿using OpenPop.Mime;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenPop.Mime;
-using OpenPop.Pop3;
 
 namespace Saobracaj
 {

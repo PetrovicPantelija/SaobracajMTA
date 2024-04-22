@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
@@ -384,7 +380,7 @@ namespace Saobracaj.Dokumenta
             tezina.Value = Tezina;
             myCommand.Parameters.Add(tezina);
 
-            SqlParameter duzina= new SqlParameter();
+            SqlParameter duzina = new SqlParameter();
             duzina.ParameterName = "@Duzina";
             duzina.SqlDbType = SqlDbType.Decimal;
             duzina.Direction = ParameterDirection.Input;

@@ -1,27 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Configuration;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Data.OleDb;
+using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 //using iTextSharp.text;
 //using iTextSharp.text.pdf;
 //using iTextSharp;
-using System.Text.RegularExpressions;
-
-using System.Drawing.Imaging;
 
 namespace Saobracaj.Uvoz
 {
@@ -194,7 +180,7 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }

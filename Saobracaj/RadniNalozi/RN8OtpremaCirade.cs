@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
 
 //
 namespace Saobracaj.RadniNalozi
 {
-    public partial class RN8OtpremaCirade :  Syncfusion.Windows.Forms.Office2010Form
+    public partial class RN8OtpremaCirade : Syncfusion.Windows.Forms.Office2010Form
 
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
@@ -305,8 +300,8 @@ namespace Saobracaj.RadniNalozi
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand(" SELECT [ID]      ,[DatumRasporeda] "+
-   "  ,[BrojKontejnera]      ,[NazivBrodara]      ,[NalogIzdao]      ,[DatumRealizacije] "+
+            SqlCommand cmd = new SqlCommand(" SELECT [ID]      ,[DatumRasporeda] " +
+   "  ,[BrojKontejnera]      ,[NazivBrodara]      ,[NalogIzdao]      ,[DatumRealizacije] " +
     "     ,[NaVoznoSredstvo]      ,[CarinskiPostupak]      ,[VrstaRobe]      ,[SaSkladista] " +
     "     ,[SaPozicijeSklad]      ,[IdUsluge]      ,[NalogRealizovao]      ,[Napomena] " +
      "    ,[OtpremaID]      ,[Kamion]      ,[Zavrsen]      ,[NalogID] " +

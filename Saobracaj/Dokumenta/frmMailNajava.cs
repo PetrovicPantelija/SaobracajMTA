@@ -1,16 +1,10 @@
 ﻿using Saobracaj.Sifarnici;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
@@ -128,7 +122,7 @@ namespace Saobracaj.Dokumenta
                 "inner join stanice on Najava.Otpravna = stanice.ID " +
                 "inner join stanice as stanice1 on najava.Uputna = stanice1.ID " +
                 "inner join stanice as stanice2 on Najava.Granicna = stanice2.ID " +
-                "WHERE Najava.Faktura = '' and Partnerji.Posiljalac = 1 and status= "+Convert.ToInt32(comboBox1.SelectedValue) +
+                "WHERE Najava.Faktura = '' and Partnerji.Posiljalac = 1 and status= " + Convert.ToInt32(comboBox1.SelectedValue) +
                 "order by PaSifra";
 
             SqlConnection conn = new SqlConnection(connect);
@@ -178,15 +172,15 @@ namespace Saobracaj.Dokumenta
 
         private void btn_PosaljiSvi_Click(object sender, EventArgs e)
         {
-            for(int i= 0; i < cbList_Partneri.Items.Count; i++)
+            for (int i = 0; i < cbList_Partneri.Items.Count; i++)
             {
                 if (cbList_Partneri.GetItemCheckState(i) == CheckState.Unchecked)
                 {
                     cbList_Partneri.SetItemChecked(i, true);
-                    cbList_Partneri.SetSelected(i,true);
+                    cbList_Partneri.SetSelected(i, true);
                     PaSifra = Convert.ToInt32(cbList_Partneri.SelectedValue);
 
-                    string query = "Select PaKOMail From PartnerjiKontOseba Where PaKOSifra= "+PaSifra;
+                    string query = "Select PaKOMail From PartnerjiKontOseba Where PaKOSifra= " + PaSifra;
                     SqlConnection conn = new SqlConnection(connect);
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(query, conn);
@@ -214,7 +208,7 @@ namespace Saobracaj.Dokumenta
                     }
                     conn.Close();
 
-                    
+
                     try
                     {
                         string cuvaj = "panta@kprevoz.co.rs";
@@ -232,7 +226,7 @@ namespace Saobracaj.Dokumenta
                             "inner join stanice as stanice1 on najava.Uputna = stanice1.ID " +
                             "inner join stanice as stanice2 on Najava.Granicna = stanice2.ID " +
                             "WHERE Najava.Faktura = '' and Partnerji.Posiljalac = 1  and" +
-                            "(status = 1 or status = 2 or status = 4 or status = 5) and PaSifra = "+PaSifra+" " +
+                            "(status = 1 or status = 2 or status = 4 or status = 5) and PaSifra = " + PaSifra + " " +
                             "order by Najava.ID";
                         var dataAdapter = new SqlDataAdapter(select, conn);
 
@@ -274,7 +268,7 @@ namespace Saobracaj.Dokumenta
                             body = body + "Salje na mail (dok je u fazi testiranja sluzi za proveru mail adresa): " + nizMail + "<br/><br/>";
                         }
                         body = body + "Srdačan pozdrav, <br/>" + "Dispečerska služba, RTC LUKA LEGET";
-                        
+
                         mailMessage.Body = body;
                         mailMessage.IsBodyHtml = true;
                         SmtpClient smtpClient = new SmtpClient();
@@ -392,7 +386,7 @@ namespace Saobracaj.Dokumenta
                             body = body + "Salje na mail (dok je u fazi testiranja sluzi za proveru mail adresa): " + nizMail + "<br/><br/>";
                         }
                         body = body + "<br/>Srdačan pozdrav, \n<br/>" + "Dispečerska služba, RTC LUKA LEGET";
-                        
+
                         mailMessage.Body = body;
                         mailMessage.IsBodyHtml = true;
                         SmtpClient smtpClient = new SmtpClient();

@@ -1,25 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Syncfusion.Windows.Forms.Grid.Grouping;
+using System;
 using System.Configuration;
-using Syncfusion.Windows.Forms.Grid.Grouping;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace Saobracaj.SyncForm
 {
-    public partial class frmPregledMobilni2 :  Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmPregledMobilni2 : Syncfusion.Windows.Forms.Office2010Form
     {
         public frmPregledMobilni2()
         {
-        Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
-        InitializeComponent();
-      
-    }
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+            InitializeComponent();
+
+        }
 
         private void frmPregledMobilni2_Load(object sender, EventArgs e)
         {

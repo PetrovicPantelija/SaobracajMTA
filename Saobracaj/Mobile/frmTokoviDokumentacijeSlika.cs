@@ -1,21 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Configuration;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Data.OleDb;
+using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Saobracaj.Mobile
 {
@@ -36,20 +25,20 @@ namespace Saobracaj.Mobile
         private void button1_Click(object sender, EventArgs e)
         {
             txtPutanja.Text = @"\\192.168.129.7\TA\TokoviDokumentacijeSlike\" + txtSifraNajave.Text;
-            
+
             string PictureFolder = txtPutanja.Text;
             ofd1.InitialDirectory = PictureFolder;
 
             if (ofd1.ShowDialog() == DialogResult.OK)
             {
-               // ofd1.ShowDialog();
+                // ofd1.ShowDialog();
                 txtPutanja.Text = fbd1.SelectedPath.ToString() + ofd1.FileName;
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-     //       txtPutanja.Text = txtPutanja.Text.Replace("192.168.1.6", "WSS");
+            //       txtPutanja.Text = txtPutanja.Text.Replace("192.168.1.6", "WSS");
             System.Diagnostics.Process.Start(txtPutanja.Text);
         }
 

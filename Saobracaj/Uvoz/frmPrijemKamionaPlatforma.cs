@@ -1,22 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-using System.Diagnostics.CodeAnalysis;
+using System.Data.SqlClient;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmPrijemKamionaPlatforma :  Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmPrijemKamionaPlatforma : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         string KorisnikCene = "Panta";
@@ -52,7 +40,7 @@ namespace Saobracaj.Uvoz
             {
                 /// ,  string RegBrKamiona,   string ImeVozaca,   int Vozom
                 Dokumeta.InsertPrijemKontejneraVoz ins = new Dokumeta.InsertPrijemKontejneraVoz();
-                ins.InsertPrijemKontVoz(Convert.ToDateTime(dtpDatumPrijema.Text),Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtRegBrKamiona.Text, txtImeVozaca.Text, 0, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), Convert.ToInt32(cboOperater.SelectedValue), 0, 0,0,0);
+                ins.InsertPrijemKontVoz(Convert.ToDateTime(dtpDatumPrijema.Text), Convert.ToInt32(cboStatusPrijema.SelectedIndex), Convert.ToInt32(cboBukingPrijema.SelectedValue), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, txtRegBrKamiona.Text, txtImeVozaca.Text, 0, txtNapomena.Text, Convert.ToInt32(cboPredefinisanePoruke.SelectedValue), Convert.ToInt32(cboOperater.SelectedValue), 0, 0, 0, 0);
                 status = false;
                 VratiPodatkeMax();
             }

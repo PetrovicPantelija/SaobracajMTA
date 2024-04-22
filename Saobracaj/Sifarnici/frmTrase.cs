@@ -1,32 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Threading;
+using System.Windows.Forms;
 
 
 
 //using iTextSharp.text;
 //using iTextSharp.text.pdf;
 //using iTextSharp;
-using System.Text.RegularExpressions;
-
-using System.Drawing.Imaging;
-
-
-using System.Drawing.Imaging;
 
 namespace Saobracaj.Sifarnici
 {
@@ -46,98 +30,13 @@ namespace Saobracaj.Sifarnici
         public frmTrase()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
 
         public frmTrase(int Trasa)
         {
             InitializeComponent();
             pomTrasa = Trasa;
-        }
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
-            string query = "Select IdGrupe from KorisnikGrupa Where RTrim(Korisnik) = " + "'" + Kor.ToString().Trim() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
-
-            while (dr.Read())
-            {
-                if (count == 0)
-                {
-                    niz = dr["IdGrupe"].ToString();
-                    count++;
-                }
-                else
-                {
-                    niz = niz + "," + dr["IdGrupe"].ToString();
-                    count++;
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
         }
         private void RefreshDataGrid()
         {
@@ -246,15 +145,15 @@ namespace Saobracaj.Sifarnici
             dataGridView1.Columns[18].HeaderText = "Godina";
             dataGridView1.Columns[18].Width = 70;
 
-           /*
-           @Cena decimal(18,2),
-           @Rastojanje decimal(18,2),
-           @VremePolaska datetime,
-           @VremeDolaska datetime,
-           @DuzinaTrajanja int,
-           @Rezi tinyint,
-           @Godina nvarchar(4)
-           */
+            /*
+            @Cena decimal(18,2),
+            @Rastojanje decimal(18,2),
+            @VremePolaska datetime,
+            @VremeDolaska datetime,
+            @DuzinaTrajanja int,
+            @Rezi tinyint,
+            @Godina nvarchar(4)
+            */
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -280,30 +179,30 @@ namespace Saobracaj.Sifarnici
             {
                 pom = 1;
             }
-            
+
             if (status == true)
             {
                 double rastojanje = 0;
                 rastojanje = Convert.ToDouble(txtMagistralno.Value) + Convert.ToDouble(txtRegionalno.Value) + Convert.ToDouble(txtLokalne.Value);
-                     InsertTrase ins = new InsertTrase();
-                ins.InsTras(Convert.ToInt32(cmbPocetna.SelectedValue), Convert.ToInt32(cboKrajnja.SelectedValue), txtRelacija.Text, txtOpisRelacije.Text, txtVoz.Text, cmbRang.Text, Convert.ToDouble(txtTezinaVozaM.Text), Convert.ToDouble(txtTezinaLokM.Text), Convert.ToInt32(cboPrevoznik.SelectedValue), Convert.ToDouble(txtDuzinaLokomM.Text), Convert.ToDouble(txtProcenatKocenjaM.Text), Convert.ToDouble(txtCenaM.Text), Convert.ToDouble(txtRastojanjeM.Text), dtpVremePolaska.Value, dtpVremeDolaska.Value, Convert.ToInt32(txtDuzinaTrajanjaM.Text), chkRezi.Checked, cboGodinaVazenja.Text, Convert.ToDouble(txtCenaKalk.Value), Convert.ToDouble(txtMagistralno.Value), Convert.ToDouble(txtRegionalno.Value), Convert.ToDouble(txtLokalne.Value), Convert.ToDouble(txtDana.Value), Convert.ToDouble(txtNajveciOtpor.Value), Convert.ToDouble(txtNajkraciKolosek.Value), Convert.ToDouble(txtOsovinskoOpterecenje.Value), pom, Convert.ToDouble(txtElektro.Value), Convert.ToDouble(txtDizel.Value), Convert.ToDouble(txtRastojanjeP.Value));  
+                InsertTrase ins = new InsertTrase();
+                ins.InsTras(Convert.ToInt32(cmbPocetna.SelectedValue), Convert.ToInt32(cboKrajnja.SelectedValue), txtRelacija.Text, txtOpisRelacije.Text, txtVoz.Text, cmbRang.Text, Convert.ToDouble(txtTezinaVozaM.Text), Convert.ToDouble(txtTezinaLokM.Text), Convert.ToInt32(cboPrevoznik.SelectedValue), Convert.ToDouble(txtDuzinaLokomM.Text), Convert.ToDouble(txtProcenatKocenjaM.Text), Convert.ToDouble(txtCenaM.Text), Convert.ToDouble(txtRastojanjeM.Text), dtpVremePolaska.Value, dtpVremeDolaska.Value, Convert.ToInt32(txtDuzinaTrajanjaM.Text), chkRezi.Checked, cboGodinaVazenja.Text, Convert.ToDouble(txtCenaKalk.Value), Convert.ToDouble(txtMagistralno.Value), Convert.ToDouble(txtRegionalno.Value), Convert.ToDouble(txtLokalne.Value), Convert.ToDouble(txtDana.Value), Convert.ToDouble(txtNajveciOtpor.Value), Convert.ToDouble(txtNajkraciKolosek.Value), Convert.ToDouble(txtOsovinskoOpterecenje.Value), pom, Convert.ToDouble(txtElektro.Value), Convert.ToDouble(txtDizel.Value), Convert.ToDouble(txtRastojanjeP.Value));
                 RefreshDataGrid();
                 txtSifra.Enabled = true;
                 status = false;
-               
+
             }
             else
             {
                 double rastojanje = 0;
                 rastojanje = Convert.ToDouble(txtMagistralno.Value) + Convert.ToDouble(txtRegionalno.Value) + Convert.ToDouble(txtLokalne.Value);
-               
+
                 if (rastojanje == Convert.ToDouble(txtRastojanjeM.Value))
                 {
-                InsertTrase upd = new InsertTrase();
-                upd.UpdTrase(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cmbPocetna.SelectedValue), Convert.ToInt32(cboKrajnja.SelectedValue), txtRelacija.Text, txtOpisRelacije.Text, txtVoz.Text, cmbRang.Text, Convert.ToDouble(txtTezinaVozaM.Text), Convert.ToDouble(txtTezinaLokM.Text), Convert.ToInt32(cboPrevoznik.SelectedValue), Convert.ToDouble(txtDuzinaLokomM.Text), Convert.ToDouble(txtProcenatKocenjaM.Text), Convert.ToDouble(txtCenaM.Text), Convert.ToDouble(txtRastojanjeM.Text), dtpVremePolaska.Value, dtpVremeDolaska.Value, Convert.ToInt32(txtDuzinaTrajanjaM.Text), chkRezi.Checked, cboGodinaVazenja.Text, Convert.ToDouble(txtCenaKalk.Value), Convert.ToDouble(txtMagistralno.Value), Convert.ToDouble(txtRegionalno.Value), Convert.ToDouble(txtLokalne.Value), Convert.ToDouble(txtDana.Value), Convert.ToDouble(txtNajveciOtpor.Value), Convert.ToDouble(txtNajkraciKolosek.Value), Convert.ToDouble(txtOsovinskoOpterecenje.Value), pom, Convert.ToDouble(txtElektro.Value), Convert.ToDouble(txtDizel.Value), Convert.ToDouble(txtRastojanjeP.Value));  
-                status = false;
-                txtSifra.Enabled = false;
-                RefreshDataGrid();
+                    InsertTrase upd = new InsertTrase();
+                    upd.UpdTrase(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cmbPocetna.SelectedValue), Convert.ToInt32(cboKrajnja.SelectedValue), txtRelacija.Text, txtOpisRelacije.Text, txtVoz.Text, cmbRang.Text, Convert.ToDouble(txtTezinaVozaM.Text), Convert.ToDouble(txtTezinaLokM.Text), Convert.ToInt32(cboPrevoznik.SelectedValue), Convert.ToDouble(txtDuzinaLokomM.Text), Convert.ToDouble(txtProcenatKocenjaM.Text), Convert.ToDouble(txtCenaM.Text), Convert.ToDouble(txtRastojanjeM.Text), dtpVremePolaska.Value, dtpVremeDolaska.Value, Convert.ToInt32(txtDuzinaTrajanjaM.Text), chkRezi.Checked, cboGodinaVazenja.Text, Convert.ToDouble(txtCenaKalk.Value), Convert.ToDouble(txtMagistralno.Value), Convert.ToDouble(txtRegionalno.Value), Convert.ToDouble(txtLokalne.Value), Convert.ToDouble(txtDana.Value), Convert.ToDouble(txtNajveciOtpor.Value), Convert.ToDouble(txtNajkraciKolosek.Value), Convert.ToDouble(txtOsovinskoOpterecenje.Value), pom, Convert.ToDouble(txtElektro.Value), Convert.ToDouble(txtDizel.Value), Convert.ToDouble(txtRastojanjeP.Value));
+                    status = false;
+                    txtSifra.Enabled = false;
+                    RefreshDataGrid();
                 }
                 else
                 {
@@ -406,7 +305,7 @@ namespace Saobracaj.Sifarnici
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select * from Trase where ID=" +  IdTrase, con);
+            SqlCommand cmd = new SqlCommand("select * from Trase where ID=" + IdTrase, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -432,17 +331,17 @@ namespace Saobracaj.Sifarnici
                 cboKrajnja.SelectedValue = Convert.ToInt32(dr["Krajnja"].ToString());
                 txtRelacija.Text = dr["Relacija"].ToString();
                 txtOpisRelacije.Text = dr["OpisRelacije"].ToString();
-                txtVoz.Text =  dr["Voz"].ToString();
+                txtVoz.Text = dr["Voz"].ToString();
                 cmbRang.Text = dr["Rang"].ToString();
-                txtTezinaVozaM.Value =  Convert.ToDecimal(dr["TezinaVoza"].ToString());
-                txtTezinaLokM.Value =  Convert.ToDecimal(dr["TezinaLokomotive"].ToString()); 
-                cboPrevoznik.SelectedValue =   Convert.ToInt32(dr["Prevoznik"].ToString());
-                txtDuzinaLokomM.Value =  Convert.ToDecimal(dr["DuzinaVoza"].ToString()); 
+                txtTezinaVozaM.Value = Convert.ToDecimal(dr["TezinaVoza"].ToString());
+                txtTezinaLokM.Value = Convert.ToDecimal(dr["TezinaLokomotive"].ToString());
+                cboPrevoznik.SelectedValue = Convert.ToInt32(dr["Prevoznik"].ToString());
+                txtDuzinaLokomM.Value = Convert.ToDecimal(dr["DuzinaVoza"].ToString());
                 txtProcenatKocenjaM.Value = Convert.ToDecimal(dr["ProcenatKocenja"].ToString());
-                txtCenaM.Value =  Convert.ToDecimal(dr["Cena"].ToString());
-                txtRastojanjeM.Value =  Convert.ToDecimal(dr["Rastojanje"].ToString());
-                dtpVremePolaska.Value =  Convert.ToDateTime(dr["VremePolaska"].ToString());
-                dtpVremeDolaska.Value =  Convert.ToDateTime(dr["VremeDolaska"].ToString());
+                txtCenaM.Value = Convert.ToDecimal(dr["Cena"].ToString());
+                txtRastojanjeM.Value = Convert.ToDecimal(dr["Rastojanje"].ToString());
+                dtpVremePolaska.Value = Convert.ToDateTime(dr["VremePolaska"].ToString());
+                dtpVremeDolaska.Value = Convert.ToDateTime(dr["VremeDolaska"].ToString());
                 txtDuzinaTrajanjaM.Value = Convert.ToInt32(dr["DuzinaTrajanja"].ToString());
                 if (Convert.ToInt32(dr["Rezi"].ToString()) == 0)
                 {
@@ -452,7 +351,7 @@ namespace Saobracaj.Sifarnici
                 {
                     chkRezi.Checked = true;
                 }
-                cboGodinaVazenja.Text =  dr["Godina"].ToString();
+                cboGodinaVazenja.Text = dr["Godina"].ToString();
                 txtCenaKalk.Value = Convert.ToDecimal(dr["CenaKalk"].ToString());
                 txtMagistralno.Value = Convert.ToDecimal(dr["RastojanjeMag"].ToString());
                 txtRegionalno.Value = Convert.ToDecimal(dr["RastojanjeReg"].ToString());
@@ -460,7 +359,7 @@ namespace Saobracaj.Sifarnici
                 txtDana.Value = Convert.ToDecimal(dr["Dana"].ToString());
                 txtNajveciOtpor.Value = Convert.ToDecimal(dr["NajveciOtpor"].ToString());
                 txtNajkraciKolosek.Value = Convert.ToDecimal(dr["NajkraciKol"].ToString());
-		        txtOsovinskoOpterecenje.Value = Convert.ToDecimal(dr["OsovinskoOpter"].ToString());
+                txtOsovinskoOpterecenje.Value = Convert.ToDecimal(dr["OsovinskoOpter"].ToString());
                 txtRastojanjeP.Value = Convert.ToDecimal(dr["PrevoznoRastojanje"].ToString());
                 if (Convert.ToInt32(dr["TipED"].ToString()) == 0)
                 {
@@ -470,9 +369,9 @@ namespace Saobracaj.Sifarnici
                 {
                     chkDE.Checked = true;
                 }
-		    txtElektro.Value = Convert.ToDecimal(dr["ElektroKM"].ToString());
-		    txtDizel.Value = Convert.ToDecimal(dr["DizelKM"].ToString());
-            temp = true;
+                txtElektro.Value = Convert.ToDecimal(dr["ElektroKM"].ToString());
+                txtDizel.Value = Convert.ToDecimal(dr["DizelKM"].ToString());
+                temp = true;
             }
 
             if (temp == false)
@@ -492,7 +391,7 @@ namespace Saobracaj.Sifarnici
                     {
                         txtSifra.Text = row.Cells[0].Value.ToString();
                         VratiPodatke(Convert.ToInt32(row.Cells[0].Value.ToString()));
-                     
+
                     }
                 }
             }
@@ -572,7 +471,7 @@ namespace Saobracaj.Sifarnici
             File.Copy(sourceFile, remote);
             if (Tip == 1)
             {
-              txtTrase.Text = remote;
+                txtTrase.Text = remote;
             }
             else
             {
@@ -597,12 +496,12 @@ namespace Saobracaj.Sifarnici
 
         private void btnRacunSacuvaj_Click(object sender, EventArgs e)
         {
-           
-                Dokumenta.InsertTraseDokumenta ins = new Dokumenta.InsertTraseDokumenta();
-                KopirajFajlPoTipu(txtTrase.Text, txtVoz.Text.TrimEnd(), 1);
-                ins.InsTraseDokumenta(Convert.ToInt32(txtVoz.Text), txtTrase.Text.TrimEnd());
-                RefreshDataGrid();
-          
+
+            Dokumenta.InsertTraseDokumenta ins = new Dokumenta.InsertTraseDokumenta();
+            KopirajFajlPoTipu(txtTrase.Text, txtVoz.Text.TrimEnd(), 1);
+            ins.InsTraseDokumenta(Convert.ToInt32(txtVoz.Text), txtTrase.Text.TrimEnd());
+            RefreshDataGrid();
+
         }
 
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

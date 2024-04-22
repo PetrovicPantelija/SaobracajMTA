@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.Net;
 using System.Net.Mail;
-using Microsoft.Reporting.WinForms;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
     public partial class frmEvidencijaGodišnjihOdmora : Form
     {
-        
+
         bool status = false;
         int IzMobilneObrade = 0;
         int ZaposleniM;
@@ -36,111 +30,20 @@ namespace Saobracaj.Dokumenta
         public frmEvidencijaGodišnjihOdmora()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
 
             tsDelete.Enabled = false;
             tsDelete.Visible = false;
             cboGodina.SelectedValue = "2021";
         }
-        string niz = "";
-        public static string code = "frmEvidencijaGodišnjihOdmora";
-        public bool Pravo;
-        int idGrupe;
-        int idForme;
-        bool insert;
-        bool update;
-        bool delete;
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
 
-            while (dr.Read())
-            {
-                if (count == 0)
-                {
-                    niz = dr["IdGrupe"].ToString();
-                    count++;
-                }
-                else
-                {
-                    niz = niz + "," + dr["IdGrupe"].ToString();
-                    count++;
-                }
 
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
-        }
         public frmEvidencijaGodišnjihOdmora(int Zaposleni, DateTime VremeOd, DateTime VremeDo, int Odobrio, string Napomena, int SlobodanDan, DateTime DatumZahteva)
         {
             InitializeComponent();
             status = true;
             IzMobilneObrade = 1;
-           
+
             ZaposleniM = Zaposleni;
             VremeOdM = VremeOd;
             VremeDoM = VremeDo;
@@ -160,23 +63,23 @@ namespace Saobracaj.Dokumenta
         private void VratiIDNadredjenog()
         {
             if (cboGodina.Text != "")
-            { 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(s_connection);
-
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand("Select DoStZapisa  from Dopust " +
-             " WHERE Dopust.DoLeto = " + Convert.ToInt32(cboGodina.Text) + " And Dopust.DoSifDe = " + Convert.ToInt32(cboZaposleni.SelectedValue), con);
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            while (dr.Read())
             {
-                txtNadredjeni.Text = dr["DoStZapisa"].ToString();
-                
-            }
+                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection con = new SqlConnection(s_connection);
 
-            con.Close();
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("Select DoStZapisa  from Dopust " +
+                 " WHERE Dopust.DoLeto = " + Convert.ToInt32(cboGodina.Text) + " And Dopust.DoSifDe = " + Convert.ToInt32(cboZaposleni.SelectedValue), con);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    txtNadredjeni.Text = dr["DoStZapisa"].ToString();
+
+                }
+
+                con.Close();
             }
 
         }
@@ -184,38 +87,38 @@ namespace Saobracaj.Dokumenta
         private void VratiPodatkeDopustStavke()
         {
             if (cboGodina.Text != "")
-            { 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(s_connection);
-
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand("Select ID, IDNadredjena, VremeOd, VremeDo, Ukupno, Napomena, Razlog, Odobrio, StatusGodmora, DatumZahteva, DatumPovratka, PoslatMail, PoslatoResenje from DopustStavke " +
-            " inner join Dopust on Dopust.DoStZapisa = DopustStavke.IdNadredjena  where  + "  + " Dopust.DoLeto = " + Convert.ToInt32(cboGodina.Text) + " And Dopust.DoSifDe = " + Convert.ToInt32(cboZaposleni.SelectedValue)  , con);
-            SqlDataReader dr = cmd.ExecuteReader();
-            //Panta
-            while (dr.Read())
             {
-                txtSifra.Text = dr["ID"].ToString();
-                // cboZaposleni.SelectedValue = Convert.ToInt32(dr["Zaposleni"].ToString());
-                dtpVremeOd.Value = Convert.ToDateTime(dr["VremeOd"].ToString());
-                dtpVremeDo.Value = Convert.ToDateTime(dr["VremeDo"].ToString());
-                txtUkupno.Text = dr["Ukupno"].ToString();
-                txtNapomena.Text = dr["Napomena"].ToString();
-                txtRazlog.Text = dr["Razlog"].ToString();
-                cboOdobrio.SelectedValue = Convert.ToInt32(dr["Odobrio"].ToString());
-                txtNadredjeni.Text = dr["IDNadredjena"].ToString();
-                cbostatusGOdmora.SelectedValue = Convert.ToInt32(dr["StatusGodmora"].ToString());
-                dtpDatumZahteva.Value = Convert.ToDateTime(dr["DatumZahteva"].ToString());
-                dtpDatumPovratka.Value = Convert.ToDateTime(dr["DatumPovratka"].ToString());
-                poslatMail = Convert.ToInt32(dr["PoslatMail"].ToString());
-                if (poslatMail == 1) { cbMail.Checked = true; } else { poslatMail = 0; cbMail.Checked = false; }
-                poslatoResenje = Convert.ToInt32(dr["PoslatoResenje"].ToString());
-                if (poslatoResenje == 1) { cbResenje.Checked = true; } else { poslatoResenje = 0; cbResenje.Checked = false; }
+                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection con = new SqlConnection(s_connection);
 
-            }
+                con.Open();
 
-            con.Close();
+                SqlCommand cmd = new SqlCommand("Select ID, IDNadredjena, VremeOd, VremeDo, Ukupno, Napomena, Razlog, Odobrio, StatusGodmora, DatumZahteva, DatumPovratka, PoslatMail, PoslatoResenje from DopustStavke " +
+                " inner join Dopust on Dopust.DoStZapisa = DopustStavke.IdNadredjena  where  + " + " Dopust.DoLeto = " + Convert.ToInt32(cboGodina.Text) + " And Dopust.DoSifDe = " + Convert.ToInt32(cboZaposleni.SelectedValue), con);
+                SqlDataReader dr = cmd.ExecuteReader();
+                //Panta
+                while (dr.Read())
+                {
+                    txtSifra.Text = dr["ID"].ToString();
+                    // cboZaposleni.SelectedValue = Convert.ToInt32(dr["Zaposleni"].ToString());
+                    dtpVremeOd.Value = Convert.ToDateTime(dr["VremeOd"].ToString());
+                    dtpVremeDo.Value = Convert.ToDateTime(dr["VremeDo"].ToString());
+                    txtUkupno.Text = dr["Ukupno"].ToString();
+                    txtNapomena.Text = dr["Napomena"].ToString();
+                    txtRazlog.Text = dr["Razlog"].ToString();
+                    cboOdobrio.SelectedValue = Convert.ToInt32(dr["Odobrio"].ToString());
+                    txtNadredjeni.Text = dr["IDNadredjena"].ToString();
+                    cbostatusGOdmora.SelectedValue = Convert.ToInt32(dr["StatusGodmora"].ToString());
+                    dtpDatumZahteva.Value = Convert.ToDateTime(dr["DatumZahteva"].ToString());
+                    dtpDatumPovratka.Value = Convert.ToDateTime(dr["DatumPovratka"].ToString());
+                    poslatMail = Convert.ToInt32(dr["PoslatMail"].ToString());
+                    if (poslatMail == 1) { cbMail.Checked = true; } else { poslatMail = 0; cbMail.Checked = false; }
+                    poslatoResenje = Convert.ToInt32(dr["PoslatoResenje"].ToString());
+                    if (poslatoResenje == 1) { cbResenje.Checked = true; } else { poslatoResenje = 0; cbResenje.Checked = false; }
+
+                }
+
+                con.Close();
             }
         }
 
@@ -263,8 +166,8 @@ namespace Saobracaj.Dokumenta
 
             if (IzMobilneObrade == 1)
             {
-                cboZaposleni.SelectedValue = ZaposleniM ;
-                dtpVremeOd.Value =  VremeOdM ;
+                cboZaposleni.SelectedValue = ZaposleniM;
+                dtpVremeOd.Value = VremeOdM;
                 dtpVremeDo.Value = VremeDoM;
                 cboOdobrio.SelectedValue = OdobrioM;
                 txtNapomena.Text = NapomenaM;
@@ -293,16 +196,16 @@ namespace Saobracaj.Dokumenta
             txtNapomena.Text = "";
             InsertEvidencijaGOLog GoLog = new InsertEvidencijaGOLog();
             GoLog.InsertGoLOG(Kor, DateTime.Now, "Kreiranje novog zapisa");
-           
+
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
-           // 
+            // 
             if (status == true)
             {
                 InsertEvidencijaGodisnjihOdmora ins = new InsertEvidencijaGodisnjihOdmora();
-                ins.InsEvidGodisnjihOdmora(Convert.ToInt32(txtNadredjeni.Text), dtpVremeOd.Value, dtpVremeDo.Value, Convert.ToInt32(txtUkupno.Text), txtNapomena.Text, txtRazlog.Text, Convert.ToInt32(cboOdobrio.SelectedValue), 3, Convert.ToDateTime(dtpDatumZahteva.Value), Convert.ToDateTime(dtpDatumPovratka.Value),poslatMail,poslatoResenje);
+                ins.InsEvidGodisnjihOdmora(Convert.ToInt32(txtNadredjeni.Text), dtpVremeOd.Value, dtpVremeDo.Value, Convert.ToInt32(txtUkupno.Text), txtNapomena.Text, txtRazlog.Text, Convert.ToInt32(cboOdobrio.SelectedValue), 3, Convert.ToDateTime(dtpDatumZahteva.Value), Convert.ToDateTime(dtpDatumPovratka.Value), poslatMail, poslatoResenje);
                 status = false;
                 RefreshDataGrid1();
                 InsertEvidencijaGOLog GoLog = new InsertEvidencijaGOLog();
@@ -312,10 +215,10 @@ namespace Saobracaj.Dokumenta
             else
             {
                 InsertEvidencijaGodisnjihOdmora upd = new InsertEvidencijaGodisnjihOdmora();
-                upd.UpdEvidGodisnjihOdmora(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtNadredjeni.Text), dtpVremeOd.Value, dtpVremeDo.Value, Convert.ToInt32(txtUkupno.Text), txtNapomena.Text, txtRazlog.Text, Convert.ToInt32(cboOdobrio.SelectedValue), Convert.ToInt32(cbostatusGOdmora.SelectedValue),  Convert.ToDateTime(dtpDatumZahteva.Value), Convert.ToDateTime(dtpDatumPovratka.Value),poslatMail,poslatoResenje);
+                upd.UpdEvidGodisnjihOdmora(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtNadredjeni.Text), dtpVremeOd.Value, dtpVremeDo.Value, Convert.ToInt32(txtUkupno.Text), txtNapomena.Text, txtRazlog.Text, Convert.ToInt32(cboOdobrio.SelectedValue), Convert.ToInt32(cbostatusGOdmora.SelectedValue), Convert.ToDateTime(dtpDatumZahteva.Value), Convert.ToDateTime(dtpDatumPovratka.Value), poslatMail, poslatoResenje);
                 RefreshDataGrid1();
                 InsertEvidencijaGOLog GoLog = new InsertEvidencijaGOLog();
-                GoLog.InsertGoLOG(Kor, DateTime.Now, "Promena zapisa: "+ txtSifra.Text);
+                GoLog.InsertGoLOG(Kor, DateTime.Now, "Promena zapisa: " + txtSifra.Text);
             }
             VratiSlobodneDane();
         }
@@ -334,23 +237,23 @@ namespace Saobracaj.Dokumenta
         private void VratiPodatkeUkupnoDana()
         {
             if (cboGodina.Text != "")
-            { 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(s_connection);
-
-            con.Open();
-
-            SqlCommand cmd = new SqlCommand("Select DoSkupaj  from Dopust " +
-             " WHERE Dopust.DoLeto = " + Convert.ToInt32(cboGodina.Text) + " And Dopust.DoSifDe = " + Convert.ToInt32(cboZaposleni.SelectedValue), con);
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            while (dr.Read())
             {
-                txtSUMUkupno.Text = dr["DoSkupaj"].ToString();
+                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection con = new SqlConnection(s_connection);
 
-            }
+                con.Open();
 
-            con.Close();
+                SqlCommand cmd = new SqlCommand("Select DoSkupaj  from Dopust " +
+                 " WHERE Dopust.DoLeto = " + Convert.ToInt32(cboGodina.Text) + " And Dopust.DoSifDe = " + Convert.ToInt32(cboZaposleni.SelectedValue), con);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    txtSUMUkupno.Text = dr["DoSkupaj"].ToString();
+
+                }
+
+                con.Close();
             }
         }
 
@@ -386,7 +289,7 @@ namespace Saobracaj.Dokumenta
                 txtNekorisceno.Text = "0";
                 txtSumKorisceno.Text = "0";
                 return;
-            }    
+            }
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
@@ -409,22 +312,22 @@ namespace Saobracaj.Dokumenta
         private void RefreshDataGrid1()
         {
             if (cboGodina.Text != "")
-            { 
-            var select = " Select ID, IDNadredjena, VremeOd, VremeDo, Ukupno, Napomena, Razlog, (Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek)) as Odobrio , StatusGodmora, DatumZahteva, DatumPovratka,PoslatMail, PoslatoResenje from DopustStavke " +
-            " inner join Dopust on Dopust.DoStZapisa = DopustStavke.IdNadredjena " +
-             " inner join Delavci on DopustStavke.Odobrio = Delavci.DeSifra " +
-            " where  + "  + " Dopust.DoLeto = " + Convert.ToInt32(cboGodina.Text) + " And Dopust.DoSifDe = " + Convert.ToInt32(cboZaposleni.SelectedValue) ;
+            {
+                var select = " Select ID, IDNadredjena, VremeOd, VremeDo, Ukupno, Napomena, Razlog, (Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek)) as Odobrio , StatusGodmora, DatumZahteva, DatumPovratka,PoslatMail, PoslatoResenje from DopustStavke " +
+                " inner join Dopust on Dopust.DoStZapisa = DopustStavke.IdNadredjena " +
+                 " inner join Delavci on DopustStavke.Odobrio = Delavci.DeSifra " +
+                " where  + " + " Dopust.DoLeto = " + Convert.ToInt32(cboGodina.Text) + " And Dopust.DoSifDe = " + Convert.ToInt32(cboZaposleni.SelectedValue);
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
+                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection myConnection = new SqlConnection(s_connection);
+                var c = new SqlConnection(s_connection);
+                var dataAdapter = new SqlDataAdapter(select, c);
 
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
-            dataAdapter.Fill(ds);
-            dataGridView2.ReadOnly = true;
-            dataGridView2.DataSource = ds.Tables[0];
+                var commandBuilder = new SqlCommandBuilder(dataAdapter);
+                var ds = new DataSet();
+                dataAdapter.Fill(ds);
+                dataGridView2.ReadOnly = true;
+                dataGridView2.DataSource = ds.Tables[0];
 
                 dataGridView2.BorderStyle = BorderStyle.None;
                 dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
@@ -439,80 +342,80 @@ namespace Saobracaj.Dokumenta
                 dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
                 DataGridViewColumn column = dataGridView2.Columns[0];
-            dataGridView2.Columns[0].HeaderText = "ID";
-            dataGridView2.Columns[0].Width = 40;
+                dataGridView2.Columns[0].HeaderText = "ID";
+                dataGridView2.Columns[0].Width = 40;
 
-            DataGridViewColumn column2 = dataGridView2.Columns[1];
-            dataGridView2.Columns[1].HeaderText = "IDNAdredjena";
-            dataGridView2.Columns[1].Width = 40;
+                DataGridViewColumn column2 = dataGridView2.Columns[1];
+                dataGridView2.Columns[1].HeaderText = "IDNAdredjena";
+                dataGridView2.Columns[1].Width = 40;
 
-            DataGridViewColumn column3 = dataGridView2.Columns[2];
-            dataGridView2.Columns[2].HeaderText = "Vreme Od";
-            dataGridView2.Columns[2].Width = 100;
+                DataGridViewColumn column3 = dataGridView2.Columns[2];
+                dataGridView2.Columns[2].HeaderText = "Vreme Od";
+                dataGridView2.Columns[2].Width = 100;
 
-            DataGridViewColumn column4 = dataGridView2.Columns[3];
-            dataGridView2.Columns[3].HeaderText = "Vreme Do";
-            dataGridView2.Columns[3].Width = 100;
+                DataGridViewColumn column4 = dataGridView2.Columns[3];
+                dataGridView2.Columns[3].HeaderText = "Vreme Do";
+                dataGridView2.Columns[3].Width = 100;
 
-            DataGridViewColumn column5 = dataGridView2.Columns[4];
-            dataGridView2.Columns[4].HeaderText = "Ukupno";
-            dataGridView2.Columns[4].Width = 50;
+                DataGridViewColumn column5 = dataGridView2.Columns[4];
+                dataGridView2.Columns[4].HeaderText = "Ukupno";
+                dataGridView2.Columns[4].Width = 50;
 
-            DataGridViewColumn column6 = dataGridView2.Columns[5];
-            dataGridView2.Columns[5].HeaderText = "Napomena";
-            dataGridView2.Columns[5].Width = 120;
+                DataGridViewColumn column6 = dataGridView2.Columns[5];
+                dataGridView2.Columns[5].HeaderText = "Napomena";
+                dataGridView2.Columns[5].Width = 120;
 
-            DataGridViewColumn column7 = dataGridView2.Columns[6];
-            dataGridView2.Columns[6].HeaderText = "Razlog";
-            dataGridView2.Columns[6].Width = 100;
+                DataGridViewColumn column7 = dataGridView2.Columns[6];
+                dataGridView2.Columns[6].HeaderText = "Razlog";
+                dataGridView2.Columns[6].Width = 100;
 
-            DataGridViewColumn column8 = dataGridView2.Columns[7];
-            dataGridView2.Columns[7].HeaderText = "Odobrio";
-            dataGridView2.Columns[7].Width = 100;
+                DataGridViewColumn column8 = dataGridView2.Columns[7];
+                dataGridView2.Columns[7].HeaderText = "Odobrio";
+                dataGridView2.Columns[7].Width = 100;
 
-            DataGridViewColumn column9 = dataGridView2.Columns[8];
-            dataGridView2.Columns[8].HeaderText = "Status Odmora";
-            dataGridView2.Columns[8].Width = 50;
+                DataGridViewColumn column9 = dataGridView2.Columns[8];
+                dataGridView2.Columns[8].HeaderText = "Status Odmora";
+                dataGridView2.Columns[8].Width = 50;
 
-            DataGridViewColumn column10 = dataGridView2.Columns[9];
-            dataGridView2.Columns[9].HeaderText = "Zahtev";
-            dataGridView2.Columns[9].Width = 50;
+                DataGridViewColumn column10 = dataGridView2.Columns[9];
+                dataGridView2.Columns[9].HeaderText = "Zahtev";
+                dataGridView2.Columns[9].Width = 50;
 
-            DataGridViewColumn column11 = dataGridView2.Columns[10];
-            dataGridView2.Columns[10].HeaderText = "Povratak";
-            dataGridView2.Columns[10].Width = 50;
+                DataGridViewColumn column11 = dataGridView2.Columns[10];
+                dataGridView2.Columns[10].HeaderText = "Povratak";
+                dataGridView2.Columns[10].Width = 50;
 
-            dataGridView2.Columns[11].HeaderText = "PoslatMail";
-            dataGridView2.Columns[12].HeaderText = "PoslatoResenje";
+                dataGridView2.Columns[11].HeaderText = "PoslatMail";
+                dataGridView2.Columns[12].HeaderText = "PoslatoResenje";
             }
         }
 
         private void VratiSlobodneDane()
         {
             if (cboGodina.Text != "")
-            { 
-            var select = " Select EvidencijaZahteva.ID, Zaposleni, (Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek)) as Radnik, " +
-            " EvidencujaZahtevaVrsta.Naziv as Tip, DatumOd, DatumDo, Status, Napomena, " +
-            " Odobrio as OdobrioSifra, (Rtrim(o.DeIme) + ' ' + Rtrim(o.DePriimek)) as Odobrio " +
-            " from EvidencijaZahteva " +
-            " inner join EvidencujaZahtevaVrsta on EvidencujaZahtevaVrsta.ID = EvidencijaZahteva.VrstaZahtevaID " +
-            " inner " +
-            " join Delavci on Delavci.DeSifra = Zaposleni " +
-            " left " +
-            " join Delavci o on o.DeSifra = Odobrio " +
-            " where Status = 2 and EvidencujaZahtevaVrsta.Naziv = 'Slobodni dani' and Zaposleni = " + cboZaposleni.SelectedValue + " and Year(DatumOd) =  " + cboGodina.SelectedValue +  
-            " order by EvidencijaZahteva.ID desc";
+            {
+                var select = " Select EvidencijaZahteva.ID, Zaposleni, (Rtrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek)) as Radnik, " +
+                " EvidencujaZahtevaVrsta.Naziv as Tip, DatumOd, DatumDo, Status, Napomena, " +
+                " Odobrio as OdobrioSifra, (Rtrim(o.DeIme) + ' ' + Rtrim(o.DePriimek)) as Odobrio " +
+                " from EvidencijaZahteva " +
+                " inner join EvidencujaZahtevaVrsta on EvidencujaZahtevaVrsta.ID = EvidencijaZahteva.VrstaZahtevaID " +
+                " inner " +
+                " join Delavci on Delavci.DeSifra = Zaposleni " +
+                " left " +
+                " join Delavci o on o.DeSifra = Odobrio " +
+                " where Status = 2 and EvidencujaZahtevaVrsta.Naziv = 'Slobodni dani' and Zaposleni = " + cboZaposleni.SelectedValue + " and Year(DatumOd) =  " + cboGodina.SelectedValue +
+                " order by EvidencijaZahteva.ID desc";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
+                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection myConnection = new SqlConnection(s_connection);
+                var c = new SqlConnection(s_connection);
+                var dataAdapter = new SqlDataAdapter(select, c);
 
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
-            dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
+                var commandBuilder = new SqlCommandBuilder(dataAdapter);
+                var ds = new DataSet();
+                dataAdapter.Fill(ds);
+                dataGridView1.ReadOnly = true;
+                dataGridView1.DataSource = ds.Tables[0];
 
                 dataGridView1.BorderStyle = BorderStyle.None;
                 dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
@@ -528,41 +431,41 @@ namespace Saobracaj.Dokumenta
 
                 //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
                 DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "ID";
-            dataGridView1.Columns[0].Width = 50;
+                dataGridView1.Columns[0].HeaderText = "ID";
+                dataGridView1.Columns[0].Width = 50;
 
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Zaposleni ID";
-            dataGridView1.Columns[1].Width = 50;
+                DataGridViewColumn column2 = dataGridView1.Columns[1];
+                dataGridView1.Columns[1].HeaderText = "Zaposleni ID";
+                dataGridView1.Columns[1].Width = 50;
 
-            DataGridViewColumn column3 = dataGridView1.Columns[2];
-            dataGridView1.Columns[2].HeaderText = "Radnik Zahtevao";
-            dataGridView1.Columns[2].Width = 250;
+                DataGridViewColumn column3 = dataGridView1.Columns[2];
+                dataGridView1.Columns[2].HeaderText = "Radnik Zahtevao";
+                dataGridView1.Columns[2].Width = 250;
 
 
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Tip";
-            dataGridView1.Columns[3].Width = 90;
+                DataGridViewColumn column4 = dataGridView1.Columns[3];
+                dataGridView1.Columns[3].HeaderText = "Tip";
+                dataGridView1.Columns[3].Width = 90;
 
-            DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Vreme Od";
-            dataGridView1.Columns[4].Width = 90;
+                DataGridViewColumn column5 = dataGridView1.Columns[4];
+                dataGridView1.Columns[4].HeaderText = "Vreme Od";
+                dataGridView1.Columns[4].Width = 90;
 
-            DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Vreme Do";
-            dataGridView1.Columns[5].Width = 50;
+                DataGridViewColumn column6 = dataGridView1.Columns[5];
+                dataGridView1.Columns[5].HeaderText = "Vreme Do";
+                dataGridView1.Columns[5].Width = 50;
 
-            DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Status";
-            dataGridView1.Columns[6].Width = 50;
+                DataGridViewColumn column7 = dataGridView1.Columns[6];
+                dataGridView1.Columns[6].HeaderText = "Status";
+                dataGridView1.Columns[6].Width = 50;
 
-            DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Napomena";
-            dataGridView1.Columns[7].Width = 250;
+                DataGridViewColumn column8 = dataGridView1.Columns[7];
+                dataGridView1.Columns[7].HeaderText = "Napomena";
+                dataGridView1.Columns[7].Width = 250;
 
-            DataGridViewColumn column9 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "Odobrio";
-            dataGridView1.Columns[8].Width = 250;
+                DataGridViewColumn column9 = dataGridView1.Columns[8];
+                dataGridView1.Columns[8].HeaderText = "Odobrio";
+                dataGridView1.Columns[8].Width = 250;
             }
         }
 
@@ -606,7 +509,7 @@ namespace Saobracaj.Dokumenta
                         // txtOpis.Text = row.Cells[1].Value.ToString();
                     }
                 }
-                
+
 
             }
             catch
@@ -704,9 +607,9 @@ order by RzStZapisa desc
             con.Open();
 
             SqlCommand cmd = new SqlCommand("select top 1 DmNaziv from Razporeditve " +
-            " inner join DelovnaMesta on DelovnaMesta.DmSifra = Razporeditve.RzSifDelMes "+ 
-            " where RzSifDe =  " + cboZaposleni.SelectedValue + 
-            " order by RzStZapisa desc"  , con);
+            " inner join DelovnaMesta on DelovnaMesta.DmSifra = Razporeditve.RzSifDelMes " +
+            " where RzSifDe =  " + cboZaposleni.SelectedValue +
+            " order by RzStZapisa desc", con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -766,18 +669,18 @@ order by RzStZapisa desc
             {
                 Korisceno = "je iskoristio " + txtSumKorisceno.Text + " dana godišnjeg odmora za " + cboGodina.Text + " godinu ";
             }
-            ingo.InsReportGO(cboZaposleni.Text,Prebivaliste, "", JMBG, RadnoMesto, cboGodina.Text, txtUkupno.Text,DatumOD,DatumDo,DatumPovratka, txtSUMUkupno.Text, Korisceno, DatumZahteva);
+            ingo.InsReportGO(cboZaposleni.Text, Prebivaliste, "", JMBG, RadnoMesto, cboGodina.Text, txtUkupno.Text, DatumOD, DatumDo, DatumPovratka, txtSUMUkupno.Text, Korisceno, DatumZahteva);
             TESTIRANJEDataSet14TableAdapters._1ReportGOTableAdapter ta = new TESTIRANJEDataSet14TableAdapters._1ReportGOTableAdapter();
             TESTIRANJEDataSet14._1ReportGODataTable dt = new TESTIRANJEDataSet14._1ReportGODataTable();
-         
+
             ta.Fill(dt);
             ReportDataSource rds = new ReportDataSource();
             rds.Name = "DataSet1";
             rds.Value = dt;
-          
+
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.ReportPath = "rptGodisnjiOdmor.rdlc";
-          
+
             reportViewer1.LocalReport.DataSources.Add(rds);
             reportViewer1.RefreshReport();
             poslatoResenje = 1;
@@ -794,7 +697,7 @@ order by RzStZapisa desc
                 mailMessage = new MailMessage("pantelija.petrovic@kprevoz.co.rs", Kome);
                 mailMessage.CC.Add(cuvaj);
                 mailMessage.Subject = "Rešenje o godišnjem odmoru";
-                
+
                 var select = " SELECT [Zaposleni],[Prebivaliste],[Ulica] " +
       " ,[JMBG] ,[RadnoMesto] ,[Godina] ,[Dana] " +
       " ,[DatumOd] ,[DatumDo],[DatumPovratka] ,[DanaGodisnjeg] " +
@@ -812,7 +715,7 @@ order by RzStZapisa desc
                     " ('Sl.glasnik RS', br. 24/05, 61/05, 54/09, 32/13, 75/14, 13/17 - odluka US, 113/17 i 95/18 - autentično tumačenje) <br />" +
                     " poslodavac Kombinovani prevoz d.o.o. Prokuplje, ul. Milena Jovanovića br. 15, matični broj: 07492251, PIB: 101555174, <br />" +
                     " koga zastupa direktor Branko Petković, dana " + DateTime.Now.ToString("dd.MM.yyyy.") + " godine, donosi sledeće:  <br /> <br />";
-                
+
                 body = body + "                             REŠENJE <br /> ";
                 body = body + "                  O KORIŠĆENJU GODIŠNJEG ODMORA <br /> <br /> <br />";
                 foreach (DataRow myRow in ds.Tables[0].Rows)
@@ -829,7 +732,7 @@ order by RzStZapisa desc
                     body = body + "U svakoj kalendarskoj godini zaposleni ima pravo na godišnji odmor u trajanju utvrđenom Pravilnikom  " + "<br />";
                     body = body + "o radu poslodavca i ugovorom o radu, a najmanje 20 radnih dana. " + "<br />";
                     body = body + "Zaposleni je u 2021. godini , ostvario pravo na " + myRow["DanaGodisnjeg"].ToString() + " dana godišnjeg odmora. " + "<br />";
-                    body = body + "Do dana donošenja ovog rešenja zaposleni " + myRow["DanaIskoristio"].ToString() +  " <br /> ";
+                    body = body + "Do dana donošenja ovog rešenja zaposleni " + myRow["DanaIskoristio"].ToString() + " <br /> ";
                     body = body + "Pri utvrđivanju dužine godišnjeg odmora radna nedelja računata je kao pet radnih dana." + "<br />";
                     body = body + "Praznici koji su neradni dani u skladu sa zakonom, odsustvo sa rada uz naknadu zarade i privremena " + "<br />";
                     body = body + "sprečenost za rad u skladu sa propisima o zdravstvenom osiguranju ne uračunavaju se u dane " + "<br />";
@@ -837,8 +740,8 @@ order by RzStZapisa desc
                     body = body + "Zaposleni se obaveštava da, u skladu sa čl. 75 st. 4 Zakona o radu, poslodavac može da izmeni vreme" + "<br />";
                     body = body + "određeno za korišćenje godišnjeg odmora ako to zahtevaju potrebe posla, najkasnije pet radnih dana " + "<br />";
                     body = body + "pre dana određenog za korišćenje godišnjeg odmora.<br />";
-                    body = body + "Zaposleni je dana "  + myRow["DatumZahteva"].ToString()  + " godine dostavio poslodavcu zahtev za korišćenje godišnjeg  <br />";
-                    body = body + "odmora u trajanju od radnih " + myRow["Dana"].ToString() + "dana, od " + myRow["DatumOd"].ToString()  +" do "  + myRow["DatumDo"].ToString() + " godine. <br />";
+                    body = body + "Zaposleni je dana " + myRow["DatumZahteva"].ToString() + " godine dostavio poslodavcu zahtev za korišćenje godišnjeg  <br />";
+                    body = body + "odmora u trajanju od radnih " + myRow["Dana"].ToString() + "dana, od " + myRow["DatumOd"].ToString() + " do " + myRow["DatumDo"].ToString() + " godine. <br />";
                     body = body + "Poslodavac se utvrdio da se zaposlenom može odobriti korišćenje godišnjeg odmora u navedenom " + "<br />";
                     body = body + "periodu i da je vreme korišćenja godišnjeg odmora zaposlenog u skladu sa Planom (rasporedom)  " + "<br />";
                     body = body + "korišćenja godišnjih odmora kod poslodavca." + "<br /> <br /> <br />";
@@ -850,7 +753,7 @@ order by RzStZapisa desc
                     body = body + "Rešenje se zaposlenom dostavlja elektronskim putem. <br />";
                     body = body + "Rešenje je važeće bez potpisa i pečata.<br />";
                     body = body + "Po pisanom zahtevu zaposlenog, Rešenje će biti dostavljeno u pisanoj formi.<br />";
-                   
+
 
 
                 }

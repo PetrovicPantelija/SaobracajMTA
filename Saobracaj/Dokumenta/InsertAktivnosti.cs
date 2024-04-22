@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 
 
@@ -23,7 +19,7 @@ namespace Saobracaj.Dokumenta
 		   @Opis [nvarchar](500) ,
 		   @RN [int]
             */
-    
+
 
     class InsertAktivnosti
     {
@@ -132,7 +128,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter12 = new SqlParameter();
             parameter12.ParameterName = "@Milsped";
             parameter12.SqlDbType = SqlDbType.TinyInt;
-          
+
             parameter12.Direction = ParameterDirection.Input;
             parameter12.Value = milspedsmena;
             myCommand.Parameters.Add(parameter12);
@@ -171,7 +167,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter17 = new SqlParameter();
             parameter17.ParameterName = "@OutSide";
             parameter17.SqlDbType = SqlDbType.Int;
-    
+
             parameter17.Direction = ParameterDirection.Input;
             parameter17.Value = OutSide;
             myCommand.Parameters.Add(parameter17);
@@ -505,7 +501,7 @@ namespace Saobracaj.Dokumenta
             myCommand.CommandText = "InsertAktivnostiZaglavljeID";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-           
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -559,7 +555,7 @@ namespace Saobracaj.Dokumenta
 
             cmd.Parameters.Add("@Postoji", SqlDbType.Int);
             cmd.Parameters["@Postoji"].Direction = ParameterDirection.Output;
-        
+
             try
             {
                 conn.Open();
@@ -567,10 +563,10 @@ namespace Saobracaj.Dokumenta
                 //Storing the output parameters value in 3 different variables.  
                 Postoji = Convert.ToInt32(cmd.Parameters["@Postoji"].Value);
                 //clientName = Convert.ToString(cmd.Parameters["@ClientName"].Value);
-               // dateCreated = Convert.ToDateTime(cmd.Parameters["@DateCreated"].Value);
+                // dateCreated = Convert.ToDateTime(cmd.Parameters["@DateCreated"].Value);
                 // Here we get all three values from database in above three variables.  
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // throw the exception  
             }
@@ -596,8 +592,8 @@ namespace Saobracaj.Dokumenta
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = ID;
             myCommand.Parameters.Add(parameter);
-            
-            
+
+
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@Zaposleni";
             parameter1.SqlDbType = SqlDbType.Int;
@@ -666,7 +662,7 @@ namespace Saobracaj.Dokumenta
             parameter9.Value = Racun;
             myCommand.Parameters.Add(parameter9);
 
-            SqlParameter parameter10= new SqlParameter();
+            SqlParameter parameter10 = new SqlParameter();
             parameter10.ParameterName = "@Kartica";
             parameter10.SqlDbType = SqlDbType.Decimal;
             parameter10.Direction = ParameterDirection.Input;
@@ -748,7 +744,7 @@ namespace Saobracaj.Dokumenta
             }
         }
 
-        public void UpdAktivnostiZarada(int ID,  double Izracun, double Razlika, double Zarada)
+        public void UpdAktivnostiZarada(int ID, double Izracun, double Razlika, double Zarada)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -786,7 +782,7 @@ namespace Saobracaj.Dokumenta
             parameter9.Value = Zarada;
             myCommand.Parameters.Add(parameter9);
 
-           
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -838,7 +834,7 @@ namespace Saobracaj.Dokumenta
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = ID;
             myCommand.Parameters.Add(parameter);
-            
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -898,7 +894,7 @@ namespace Saobracaj.Dokumenta
             parameter1.Value = VremePlaceno;
             myCommand.Parameters.Add(parameter1);
 
- 
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -952,7 +948,7 @@ namespace Saobracaj.Dokumenta
             parameter.Value = ID;
             myCommand.Parameters.Add(parameter);
 
- 
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -1013,7 +1009,7 @@ namespace Saobracaj.Dokumenta
             myCommand.Parameters.Add(parameter1);
 
 
-         
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -1201,7 +1197,7 @@ namespace Saobracaj.Dokumenta
                 }
             }
         }
-    
+
     }
 
 }

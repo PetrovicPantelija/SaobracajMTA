@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Servis
 {
     class InsertGrupaKvarova
     {
-         public void InsGRKVAR(string Naziv)
+        public void InsGRKVAR(string Naziv)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -89,7 +85,7 @@ namespace Saobracaj.Servis
             parameter1.Value = Naziv;
             myCommand.Parameters.Add(parameter1);
 
-        
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -350,7 +346,7 @@ namespace Saobracaj.Servis
 
 
     }
-    }
+}
 
 
 

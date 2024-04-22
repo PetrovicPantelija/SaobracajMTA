@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Testiranje.Sifarnici
 {
@@ -74,7 +64,7 @@ namespace Testiranje.Sifarnici
                 //do something else
             }
 
-            
+
         }
 
         private void RefreshDataGrid()
@@ -140,34 +130,34 @@ namespace Testiranje.Sifarnici
             {
                 // Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene
                 txtNaziv.Text = dr["Naziv"].ToString();
-               switch (dr["Modul"].ToString())
-	{
-                   case "1-Šifarnici":
-                           {
-                               cboModul.SelectedIndex = 0;
-                               break;
-                           }
+                switch (dr["Modul"].ToString())
+                {
+                    case "1-Šifarnici":
+                        {
+                            cboModul.SelectedIndex = 0;
+                            break;
+                        }
 
-                   case "2-Skladišno":
+                    case "2-Skladišno":
                         {
                             cboModul.SelectedIndex = 1;
-                               break;
-                           }
-                   case "3-Administracija":
+                            break;
+                        }
+                    case "3-Administracija":
                         {
                             cboModul.SelectedIndex = 2;
-                               break;
-                           }
-                   case "4-Terminal":
+                            break;
+                        }
+                    case "4-Terminal":
                         {
                             cboModul.SelectedIndex = 3;
-                               break;
-                           }
-		default:
- break;
+                            break;
+                        }
+                    default:
+                        break;
 
-	}
-              
+                }
+
             }
 
             con.Close();

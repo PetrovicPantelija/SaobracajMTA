@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
-using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-using Microsoft.Reporting.WinForms;
+﻿using Microsoft.Reporting.WinForms;
 using Saobracaj.TrackModal;
+using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 namespace Saobracaj.Testiranje
 {
     public partial class frmTovarniList : Syncfusion.Windows.Forms.Office2010Form
@@ -88,7 +79,7 @@ namespace Saobracaj.Testiranje
 
 
             VratiPodatke(Sifra);
-          
+
 
 
         }
@@ -144,7 +135,7 @@ namespace Saobracaj.Testiranje
                 txtObavestenjePosiljaoca.Text = dr["ObavestenjePosiljaoca"].ToString();
                 txtIzjavePosiljaoca.Text = dr["IzjavePosiljaoca"].ToString();
                 txtNeFrankiraneTroskove.Text = dr["NeFrankiraneTroskove"].ToString();
-              //  txtFrankiraneTroskove.Text = dr["FrankiraneTroskove"].ToString();
+                //  txtFrankiraneTroskove.Text = dr["FrankiraneTroskove"].ToString();
                 txtKorisnickaSifraPrimalac.Text = dr["KorisnickaSifraPrimalac"].ToString();
                 txtKorisnickaSIfraPosiljalac.Text = dr["KorisnickaSIfraPosiljalac"].ToString();
                 txtCIMBroj.Text = dr["CIMBroj"].ToString();
@@ -193,7 +184,7 @@ namespace Saobracaj.Testiranje
             else
             {
                 Saobracaj.Dokumenta.InsertTovarniList upd = new Saobracaj.Dokumenta.InsertTovarniList();
-                upd.UpdTovarniList(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), txtKorisnickaSIfraPosiljalac.Text, txtKorisnickaSifraPrimalac.Text, txtFrankiraneTroskove.Text, txtNeFrankiraneTroskove.Text, txtIzjavePosiljaoca.Text, txtObavestenjePosiljaoca.Text, txtPrilozi.Text, Convert.ToInt32(cboMestoIzdavanja.SelectedValue), txtSifraMestaIzdavanja.Text, txtSifraStaniceMestaIzdavanja.Text, txtKomercijalniUslovi.Text, txtKorisnickiSporazum.Text, txtObavestenjePrimaocu.Text, txtPreuzimanjeNaPrevoz.Text, txtBrojKola.Text, txtFakturisanjeTranzita.Text, txtPlacanjeTroskova.Text, txtNarocitaPosiljka.Text, txtRID.Text, Convert.ToDouble(txtVrednost.Value), Convert.ToDouble(txtBrutoMasaRobe.Value), Convert.ToDouble(txtNetoRobe.Value), Convert.ToDouble(txtBrutoMasaVoza.Value), txtObezbedjenjeIsporuke.Text, txtPouzece.Text, txtMestoIspostavljanja.Text, dtpDatumIspostavljanja.Value, txtOznakaDokumenta.Text, txtCIMBroj.Text, txtVrstaRobe.Text, txtNHM.Text, txtMestoPreuzimanja.Text,txtDrugiPrevoznici.Text);
+                upd.UpdTovarniList(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), txtKorisnickaSIfraPosiljalac.Text, txtKorisnickaSifraPrimalac.Text, txtFrankiraneTroskove.Text, txtNeFrankiraneTroskove.Text, txtIzjavePosiljaoca.Text, txtObavestenjePosiljaoca.Text, txtPrilozi.Text, Convert.ToInt32(cboMestoIzdavanja.SelectedValue), txtSifraMestaIzdavanja.Text, txtSifraStaniceMestaIzdavanja.Text, txtKomercijalniUslovi.Text, txtKorisnickiSporazum.Text, txtObavestenjePrimaocu.Text, txtPreuzimanjeNaPrevoz.Text, txtBrojKola.Text, txtFakturisanjeTranzita.Text, txtPlacanjeTroskova.Text, txtNarocitaPosiljka.Text, txtRID.Text, Convert.ToDouble(txtVrednost.Value), Convert.ToDouble(txtBrutoMasaRobe.Value), Convert.ToDouble(txtNetoRobe.Value), Convert.ToDouble(txtBrutoMasaVoza.Value), txtObezbedjenjeIsporuke.Text, txtPouzece.Text, txtMestoIspostavljanja.Text, dtpDatumIspostavljanja.Value, txtOznakaDokumenta.Text, txtCIMBroj.Text, txtVrstaRobe.Text, txtNHM.Text, txtMestoPreuzimanja.Text, txtDrugiPrevoznici.Text);
                 status = false;
             }
         }
@@ -228,7 +219,7 @@ namespace Saobracaj.Testiranje
 
         private void frmTovarniList_Load(object sender, EventArgs e)
         {
-         
+
         }
 
         private void tsDelete_Click(object sender, EventArgs e)

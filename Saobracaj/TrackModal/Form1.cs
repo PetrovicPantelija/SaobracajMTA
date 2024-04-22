@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Globalization;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Testiranje
 {
@@ -57,12 +49,12 @@ namespace Testiranje
             {
                 while (reader.Read())
                 {
-                   
+
                     string myString = reader.GetString(0); //The 0 stands for "the 0'th column", so the first column of the result.
                     // Do somthing with this rows string, for example to put them in to a list
                     if (myString.TrimEnd() == cboKorisnik.Text.TrimEnd())
                     {
-                       // Main mainf = new Main(cboKorisnik.Text.TrimEnd(), 1);
+                        // Main mainf = new Main(cboKorisnik.Text.TrimEnd(), 1);
                         //mainf.Show();
                     }
                     else
@@ -72,7 +64,7 @@ namespace Testiranje
                     }
                 }
             }
-           
+
         }
 
         private void frmLogovanje_Enter(object sender, EventArgs e)
@@ -96,8 +88,8 @@ namespace Testiranje
                 // Do somthing with this rows string, for example to put them in to a list
                 if (myString.TrimEnd() == cboKorisnik.Text.TrimEnd())
                 {
-                 //   Main mainf = new Main(cboKorisnik.Text.TrimEnd(), 1);
-                  //  mainf.Show();
+                    //   Main mainf = new Main(cboKorisnik.Text.TrimEnd(), 1);
+                    //  mainf.Show();
                 }
                 else
                 {

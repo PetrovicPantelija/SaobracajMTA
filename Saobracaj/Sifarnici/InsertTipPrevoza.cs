@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -29,7 +25,7 @@ namespace Saobracaj.Sifarnici
             parameter2.Value = Naziv;
             myCommand.Parameters.Add(parameter2);
 
-          
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

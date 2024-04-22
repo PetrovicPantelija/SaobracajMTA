@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
     class InsertNajava
     {
-        public void InsNaj(string BrojNajave, int Voz, int Posiljalac, int Prevoznik, int Otpravna, int Uputna, int Primalac, int RobaNHM, string PrevozniPut, double Tezina, double Duzina, int BrojKola, bool RID, System.DateTime PredvidjenoPrimanje, System.DateTime StvarnoPrimanje, System.DateTime PredvidjenaPredaja, System.DateTime StvarnaPredaja, int Status, string OnBroj, string RidBroj, string Komentar, int VozP, int Granicna, int Platilac, bool AdHoc, int PrevoznikZa, string Faktura, string Zadatak, bool CIM, string Korisnik, string DispecerRid, int TipPrevoza, double NetoTezinaM, int PorudzbinaID, int ImaPovrat, int TehnologijaID, int RobaNHM2, string DodatnoPorudzbina,string Oznaka,string SerijaVagona, string OznakaPrefiks, string OznakaBroj, int BrojKontejnera)
+        public void InsNaj(string BrojNajave, int Voz, int Posiljalac, int Prevoznik, int Otpravna, int Uputna, int Primalac, int RobaNHM, string PrevozniPut, double Tezina, double Duzina, int BrojKola, bool RID, System.DateTime PredvidjenoPrimanje, System.DateTime StvarnoPrimanje, System.DateTime PredvidjenaPredaja, System.DateTime StvarnaPredaja, int Status, string OnBroj, string RidBroj, string Komentar, int VozP, int Granicna, int Platilac, bool AdHoc, int PrevoznikZa, string Faktura, string Zadatak, bool CIM, string Korisnik, string DispecerRid, int TipPrevoza, double NetoTezinaM, int PorudzbinaID, int ImaPovrat, int TehnologijaID, int RobaNHM2, string DodatnoPorudzbina, string Oznaka, string SerijaVagona, string OznakaPrefiks, string OznakaBroj, int BrojKontejnera)
         {
-           
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -33,7 +29,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@Voz";
             parameter2.SqlDbType = SqlDbType.Int;
-        
+
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = Voz;
             myCommand.Parameters.Add(parameter2);
@@ -72,7 +68,7 @@ namespace Saobracaj.Dokumenta
             parameter7.Direction = ParameterDirection.Input;
             parameter7.Value = Primalac;
             myCommand.Parameters.Add(parameter7);
-          
+
             SqlParameter parameter8 = new SqlParameter();
             parameter8.ParameterName = "@RobaNHM";
             parameter8.SqlDbType = SqlDbType.Int;
@@ -115,7 +111,7 @@ namespace Saobracaj.Dokumenta
             parameter13.Direction = ParameterDirection.Input;
             parameter13.Value = RID;
             myCommand.Parameters.Add(parameter13);
-          
+
             SqlParameter parameter14 = new SqlParameter();
             parameter14.ParameterName = "@PredvidjenoPrimanje";
             parameter14.SqlDbType = SqlDbType.DateTime;
@@ -143,15 +139,15 @@ namespace Saobracaj.Dokumenta
             parameter17.Direction = ParameterDirection.Input;
             parameter17.Value = StvarnaPredaja;
             myCommand.Parameters.Add(parameter17);
-          
+
             SqlParameter parameter18 = new SqlParameter();
             parameter18.ParameterName = "@Status";
             parameter18.SqlDbType = SqlDbType.Int;
-        
+
             parameter18.Direction = ParameterDirection.Input;
             parameter18.Value = Status;
             myCommand.Parameters.Add(parameter18);
-      
+
             SqlParameter parameter19 = new SqlParameter();
             parameter19.ParameterName = "@OnBroj";
             parameter19.SqlDbType = SqlDbType.NChar;
@@ -403,7 +399,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@Voz";
             parameter2.SqlDbType = SqlDbType.Int;
-          
+
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = Voz;
             myCommand.Parameters.Add(parameter2);
@@ -517,7 +513,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter18 = new SqlParameter();
             parameter18.ParameterName = "@Status";
             parameter18.SqlDbType = SqlDbType.Int;
-           
+
             parameter18.Direction = ParameterDirection.Input;
             parameter18.Value = StvarnaPredaja;
             myCommand.Parameters.Add(parameter18);
@@ -588,7 +584,7 @@ namespace Saobracaj.Dokumenta
             }
         }
 
-        public void UpdNaj(int ID, string BrojNajave, int Voz, int Posiljalac, int Prevoznik, int Otpravna, int Uputna, int Primalac, int RobaNHM, string PrevozniPut, double Tezina, double Duzina, int BrojKola, bool RID, System.DateTime PredvidjenoPrimanje, System.DateTime StvarnoPrimanje, System.DateTime PredvidjenaPredaja, System.DateTime StvarnaPredaja, int Status, string OnBroj, string RIDBroj, string Komentar, int VozP, int Granicna, int Platilac, bool AdHoc, int PrevoznikZa, string Faktura, string Zadatak, bool CIM, string Korisnik, string DispecerRid, int TipPrevoza, double NetoTezinaM, int PorudzbinaID, int ImaPovrat, int TehnologijaID, int RobaNHM2, string DodatnoPorudzbina,string Oznaka,string SerijaVagona, string OznakaPrefiks, string OznakaBroj, int BrojKontejnera)
+        public void UpdNaj(int ID, string BrojNajave, int Voz, int Posiljalac, int Prevoznik, int Otpravna, int Uputna, int Primalac, int RobaNHM, string PrevozniPut, double Tezina, double Duzina, int BrojKola, bool RID, System.DateTime PredvidjenoPrimanje, System.DateTime StvarnoPrimanje, System.DateTime PredvidjenaPredaja, System.DateTime StvarnaPredaja, int Status, string OnBroj, string RIDBroj, string Komentar, int VozP, int Granicna, int Platilac, bool AdHoc, int PrevoznikZa, string Faktura, string Zadatak, bool CIM, string Korisnik, string DispecerRid, int TipPrevoza, double NetoTezinaM, int PorudzbinaID, int ImaPovrat, int TehnologijaID, int RobaNHM2, string DodatnoPorudzbina, string Oznaka, string SerijaVagona, string OznakaPrefiks, string OznakaBroj, int BrojKontejnera)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -615,7 +611,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@Voz";
             parameter2.SqlDbType = SqlDbType.Int;
-            
+
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = Voz;
             myCommand.Parameters.Add(parameter2);
@@ -729,7 +725,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter18 = new SqlParameter();
             parameter18.ParameterName = "@Status";
             parameter18.SqlDbType = SqlDbType.Int;
-       
+
             parameter18.Direction = ParameterDirection.Input;
             parameter18.Value = Status;
             myCommand.Parameters.Add(parameter18);

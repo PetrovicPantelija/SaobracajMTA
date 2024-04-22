@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -419,7 +413,7 @@ namespace Saobracaj.Dokumenta
         {
             InsertNarocilo ins = new InsertNarocilo();
             if (txtNaPem2.Text == "")
-                { txtNaPem2.Text = " "; }
+            { txtNaPem2.Text = " "; }
 
             if (txtNaPOpomba.Text == "")
             { txtNaPOpomba.Text = " "; }
@@ -427,7 +421,7 @@ namespace Saobracaj.Dokumenta
             if (txtNaPNote.Text == "")
             { txtNaPNote.Text = " "; }
 
-            ins.InsNarociloStavka( Convert.ToInt32(txtNaStNar.Text), Convert.ToInt32(cboNaPSifra.SelectedValue), cboNaPSifra.Text, txtNaPEM.Text, txtNaPem2.Text,  Convert.ToDecimal(txtNaPKolNar.Value), Convert.ToDecimal(txtNaPKolNar2.Value), txtNaPOpomba.Text, txtNaPNote.Text);
+            ins.InsNarociloStavka(Convert.ToInt32(txtNaStNar.Text), Convert.ToInt32(cboNaPSifra.SelectedValue), cboNaPSifra.Text, txtNaPEM.Text, txtNaPem2.Text, Convert.ToDecimal(txtNaPKolNar.Value), Convert.ToDecimal(txtNaPKolNar2.Value), txtNaPOpomba.Text, txtNaPNote.Text);
             RefreshDataGridPoStavkeMAX();
         }
 

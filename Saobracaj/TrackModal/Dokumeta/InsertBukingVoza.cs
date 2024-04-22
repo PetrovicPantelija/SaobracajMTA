@@ -1,26 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Testiranje.Dokumeta
 {
     class InsertBukingVoza
     {
 
-        public void InsertBuk(int IdVoza, DateTime DatumOtpreme, string StanicaOtpreme,  DateTime Datum, string Korisnik, int BrojVagona, double SopstvenaMasa)
+        public void InsertBuk(int IdVoza, DateTime DatumOtpreme, string StanicaOtpreme, DateTime Datum, string Korisnik, int BrojVagona, double SopstvenaMasa)
         {
-            	/*[ID] [int] NULL,
-	[IdVoza] int,
-	[DatumOtpreme] DateTime,
-	StanicaOtpreme nvarchar(100),
-	[Datum] [datetime] NULL,
-	[Korisnik] [nvarchar](20) NULL*/
+            /*[ID] [int] NULL,
+[IdVoza] int,
+[DatumOtpreme] DateTime,
+StanicaOtpreme nvarchar(100),
+[Datum] [datetime] NULL,
+[Korisnik] [nvarchar](20) NULL*/
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -28,7 +24,7 @@ namespace Testiranje.Dokumeta
             myCommand.CommandText = "InsertBukingVoza";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-             
+
 
             SqlParameter parameter = new SqlParameter();
             parameter.ParameterName = "@IdVoza";
@@ -40,14 +36,14 @@ namespace Testiranje.Dokumeta
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "DatumOtpreme";
             parameter1.SqlDbType = SqlDbType.DateTime;
-    
+
             parameter1.Direction = ParameterDirection.Input;
             parameter1.Value = DatumOtpreme;
             myCommand.Parameters.Add(parameter1);
 
-           
 
-              SqlParameter parameter2 = new SqlParameter();
+
+            SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@StanicaOtpreme";
             parameter2.SqlDbType = SqlDbType.NVarChar;
             parameter2.Size = 100;
@@ -55,8 +51,8 @@ namespace Testiranje.Dokumeta
             parameter2.Value = StanicaOtpreme;
             myCommand.Parameters.Add(parameter2);
 
-           
-            
+
+
             SqlParameter parameter3 = new SqlParameter();
             parameter3.ParameterName = "@Datum";
             parameter3.SqlDbType = SqlDbType.DateTime;
@@ -85,8 +81,8 @@ namespace Testiranje.Dokumeta
             parameter6.Direction = ParameterDirection.Input;
             parameter6.Value = SopstvenaMasa;
             myCommand.Parameters.Add(parameter6);
-            
-          
+
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -236,56 +232,56 @@ namespace Testiranje.Dokumeta
             }
         }
 
-          public void DeleteVoz(int ID)
-          {
-              var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-              SqlConnection myConnection = new SqlConnection(s_connection);
-              SqlCommand myCommand = myConnection.CreateCommand();
-              myCommand.CommandText = "DeleteBukingVoza";
-              myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        public void DeleteVoz(int ID)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "DeleteBukingVoza";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-              SqlParameter parameter = new SqlParameter();
-              parameter.ParameterName = "@ID";
-              parameter.SqlDbType = SqlDbType.Int;
-              parameter.Direction = ParameterDirection.Input;
-              parameter.Value = ID;
-              myCommand.Parameters.Add(parameter);
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@ID";
+            parameter.SqlDbType = SqlDbType.Int;
+            parameter.Direction = ParameterDirection.Input;
+            parameter.Value = ID;
+            myCommand.Parameters.Add(parameter);
 
-              myConnection.Open();
-              SqlTransaction myTransaction = myConnection.BeginTransaction();
-              myCommand.Transaction = myTransaction;
-              bool error = true;
-              try
-              {
-                  myCommand.ExecuteNonQuery();
-                  myTransaction.Commit();
-                  myTransaction = myConnection.BeginTransaction();
-                  myCommand.Transaction = myTransaction;
-              }
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
 
-              catch (SqlException)
-              {
-                  throw new Exception("Brisanje neuspešno");
-              }
+            catch (SqlException)
+            {
+                throw new Exception("Brisanje neuspešno");
+            }
 
-              finally
-              {
-                  if (!error)
-                  {
-                      myTransaction.Commit();
-                      MessageBox.Show("Brisanje Cena uspešno završeno", "",
-                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Brisanje Cena uspešno završeno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                  }
-                  myConnection.Close();
+                }
+                myConnection.Close();
 
-                  if (error)
-                  {
-                      // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-                  }
-              }
-          }
-    
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
     }
 }
 

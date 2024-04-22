@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace Saobracaj.RadniNalozi
@@ -12,7 +8,7 @@ namespace Saobracaj.RadniNalozi
     internal class InsertIsporuka
     {
         public string connect = Sifarnici.frmLogovanje.connectionString;
-        public void InsertDobavnica(int Partner, string MestoTroska, int Referent, string Vozac, string Vozilo, DateTime Datum,string BrojKontejnera)
+        public void InsertDobavnica(int Partner, string MestoTroska, int Referent, string Vozac, string Vozilo, DateTime Datum, string BrojKontejnera)
         {
             SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -68,7 +64,7 @@ namespace Saobracaj.RadniNalozi
 
             SqlParameter parameter7 = new SqlParameter();
             parameter7.ParameterName = "@BrojKontejnera";
-            parameter7.SqlDbType=SqlDbType.NVarChar;
+            parameter7.SqlDbType = SqlDbType.NVarChar;
             parameter7.Size = 100;
             parameter7.Direction = ParameterDirection.Input;
             parameter7.Value = BrojKontejnera;
@@ -87,7 +83,7 @@ namespace Saobracaj.RadniNalozi
             }
             catch (SqlException ex)
             {
-                throw new Exception("Neuspešan upis zaglavlja otpremnice\n"+ex.ToString());
+                throw new Exception("Neuspešan upis zaglavlja otpremnice\n" + ex.ToString());
             }
             finally
             {
@@ -257,7 +253,7 @@ namespace Saobracaj.RadniNalozi
             }
             catch (SqlException ex)
             {
-                throw new Exception("Neuspešan upis zaglavlja prijemnice\n"+ex.ToString());
+                throw new Exception("Neuspešan upis zaglavlja prijemnice\n" + ex.ToString());
             }
             finally
             {

@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 
 namespace TrackModal.Promet
@@ -28,112 +19,19 @@ namespace TrackModal.Promet
         string Kor = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
         string niz = "";
         string KorisnikCene;
-       // bool status = false;
+        // bool status = false;
         bool usao = false;
         public frmMedjuskladisniPrenos()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
 
         public frmMedjuskladisniPrenos(string Korisnik)
         {
             KorisnikCene = Korisnik;
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
-        }
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
 
-            while (dr.Read())
-            {
-                if (dr.HasRows)
-                {
-                    if (count == 0)
-                    {
-                        niz = dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                    else
-                    {
-                        niz = niz + "," + dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Korisnik ne pripada grupi");
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
         }
         private void VratiPodatkeMaxSledeci()
         {
@@ -346,12 +244,12 @@ namespace TrackModal.Promet
             DataGridViewColumn column14 = dataGridView2.Columns[13];
             dataGridView2.Columns[13].HeaderText = "Korisnik";
             dataGridView2.Columns[13].Width = 80;
-        
+
         }
 
         private void btnOsvezi_Click(object sender, EventArgs e)
         {
-            var select = "  SELECT Promet.[Id], Promet.[DatumTransakcije], Promet.[VrstaDokumenta] " + 
+            var select = "  SELECT Promet.[Id], Promet.[DatumTransakcije], Promet.[VrstaDokumenta] " +
           " ,Promet.[PrStDokumenta],Promet.[PrSifVrstePrometa],Promet.[BrojKontejnera] " +
           " ,Promet.[PrPrimKol] ,Promet.[SkladisteU], Skladista.Naziv as Skladiste " +
           " ,Promet.[LokacijaU] as LokacijaU,Pozicija.Oznaka ,Promet.[PrOznSled] " +
@@ -467,8 +365,8 @@ namespace TrackModal.Promet
             " ,Promet.[LokacijaU] as LokacijaU,Pozicija.Oznaka ,Promet.[PrOznSled] " +
             " ,Promet.[Datum] ,Promet.[Korisnik]
                       */
-                   // ins.InsProm(Convert.ToDateTime(dtpDatumPrijema.Value), s1, Convert.ToInt32(txtSifra.Text), row.Cells[0].Value.ToString(), s2, pom3, Convert.ToDouble(pom1), Convert.ToInt32(cboSkladiste.SelectedValue), pozicija, pom2, pom1, poms, Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(cboSredstvoRada.SelectedValue), Convert.ToInt32(cboZaposleni.SelectedValue), Convert.ToDateTime(dtpDatumRasporeda.Value));
-                    ins.InsProm(Convert.ToDateTime(dtpDatumPrijema.Value), s1, Convert.ToInt32(txtSifra.Text), row.Cells[5].Value.ToString(), s2, pom3, pom1,                   Convert.ToInt32(cboSkladiste.SelectedValue), pozicija, Convert.ToInt32(row.Cells[7].Value.ToString()), Convert.ToInt32(row.Cells[9].Value.ToString()), row.Cells[11].Value.ToString(), Convert.ToDateTime(DateTime.Now), KorisnikCene,0,0, Convert.ToDateTime(dtpDatumRasporeda.Value));
+                    // ins.InsProm(Convert.ToDateTime(dtpDatumPrijema.Value), s1, Convert.ToInt32(txtSifra.Text), row.Cells[0].Value.ToString(), s2, pom3, Convert.ToDouble(pom1), Convert.ToInt32(cboSkladiste.SelectedValue), pozicija, pom2, pom1, poms, Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(cboSredstvoRada.SelectedValue), Convert.ToInt32(cboZaposleni.SelectedValue), Convert.ToDateTime(dtpDatumRasporeda.Value));
+                    ins.InsProm(Convert.ToDateTime(dtpDatumPrijema.Value), s1, Convert.ToInt32(txtSifra.Text), row.Cells[5].Value.ToString(), s2, pom3, pom1, Convert.ToInt32(cboSkladiste.SelectedValue), pozicija, Convert.ToInt32(row.Cells[7].Value.ToString()), Convert.ToInt32(row.Cells[9].Value.ToString()), row.Cells[11].Value.ToString(), Convert.ToDateTime(DateTime.Now), KorisnikCene, 0, 0, Convert.ToDateTime(dtpDatumRasporeda.Value));
                     ins.UpdateZatvoren(Convert.ToInt32(row.Cells[0].Value.ToString()));
                 }
             }
@@ -503,7 +401,7 @@ namespace TrackModal.Promet
                     " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
                     " inner join Komitenti on  NaruceneManipulacije.Platilac = Komitenti.ID " +
                     " where NaruceneManipulacije.IDPrijemaVoza = (select IDNadredjenog from PrijemKontejneraVozStavke where ID=" + Convert.ToInt32(row.Cells[11].Value.ToString()) + ") " + " and BrojKontejnera = '" + row.Cells[5].Value.ToString() + "'" +
-                    " union "  +
+                    " union " +
                     " select BrojKontejnera, VrstaManipulacije.Naziv, Komitenti.Naziv,NaruceneManipulacije.ID as NM, " +
                      " NaruceneManipulacije.IDPrijemaVoza, NaruceneManipulacije.IDPrijemaKamionom,  VrstaManipulacije.ID from NaruceneManipulacije inner join VrstaManipulacije " +
                      " on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID  inner join Komitenti on " +
@@ -762,16 +660,16 @@ namespace TrackModal.Promet
                 {
                     string poms = row.Cells[2].Value.ToString();
 
-                  
-                        foreach (DataGridViewRow rowM in dataGridView3.Rows)
+
+                    foreach (DataGridViewRow rowM in dataGridView3.Rows)
+                    {
+                        if (rowM.Selected == true)
                         {
-                            if (rowM.Selected == true)
-                            {
-                                ins.InsPromMan(Convert.ToInt32(txtSifra.Text), rowM.Cells[0].Value.ToString(), Convert.ToInt32(rowM.Cells[6].Value.ToString()), Convert.ToInt32(rowM.Cells[3].Value.ToString()), Convert.ToInt32(cboSredstvoRada.SelectedValue), Convert.ToInt32(cboZaposleni.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene, cboSkladisteIzbor.Text, row.Cells[11].Value.ToString(), cboSkladiste.Text, cboPozicija.Text);
-                            }
+                            ins.InsPromMan(Convert.ToInt32(txtSifra.Text), rowM.Cells[0].Value.ToString(), Convert.ToInt32(rowM.Cells[6].Value.ToString()), Convert.ToInt32(rowM.Cells[3].Value.ToString()), Convert.ToInt32(cboSredstvoRada.SelectedValue), Convert.ToInt32(cboZaposleni.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene, cboSkladisteIzbor.Text, row.Cells[11].Value.ToString(), cboSkladiste.Text, cboPozicija.Text);
                         }
-                   
-                   
+                    }
+
+
                 }
             }
             RefreshDataGrid4();
@@ -928,7 +826,7 @@ namespace TrackModal.Promet
       "   inner join PrijemKontejneraVozStavke on Promet.[PrOznSled] = PrijemKontejneraVozStavke.Id " +
       " inner join TipKontenjera on TipKontenjera.Id = PrijemKontejneraVozStavke.TipKontejnera " +
       " inner join VrstaRobe on VrstaRobe.Id = PrijemKontejneraVozStavke.VrstaRobe" +
-       "  where Zatvoren = 0 and SkladisteU = " + Convert.ToInt32(cboSkladisteIzbor.SelectedValue) + " and PrijemKontejneraVozStavke.VrstaRobe = " + Convert.ToInt32(cboVrstaRobe.SelectedValue) +  " and PrijemKontejneraVozStavke.BrojKontejnera = '" + txtBrojKontejnera.Text + "'" ;
+       "  where Zatvoren = 0 and SkladisteU = " + Convert.ToInt32(cboSkladisteIzbor.SelectedValue) + " and PrijemKontejneraVozStavke.VrstaRobe = " + Convert.ToInt32(cboVrstaRobe.SelectedValue) + " and PrijemKontejneraVozStavke.BrojKontejnera = '" + txtBrojKontejnera.Text + "'";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -1013,17 +911,17 @@ namespace TrackModal.Promet
 
         private void button4_Click(object sender, EventArgs e)
         {
-          var select = "  SELECT Promet.[Id], Promet.[DatumTransakcije], Promet.[VrstaDokumenta] " +
-           " ,Promet.[PrStDokumenta],Promet.[PrSifVrstePrometa],Promet.[BrojKontejnera] " +
-           " ,Promet.[PrPrimKol] ,Promet.[SkladisteU], Skladista.Naziv as Skladiste " +
-           " ,Promet.[LokacijaU] as LokacijaU,Pozicija.Oznaka ,Promet.[PrOznSled] " +
-           " ,Promet.[Datum] ,Promet.[Korisnik], TipKontenjera.Naziv, VrstaRobe.Nkm as NHM, VrstaRobe.Naziv  " +
-           " FROM [dbo].[Promet] inner join Skladista on Promet.SkladisteU = Skladista.ID " +
-           " inner join Pozicija on Promet.LokacijaU = Pozicija.ID " +
-           " inner join PrijemKontejneraVozStavke on Promet.[PrOznSled] = PrijemKontejneraVozStavke.Id " +
-           " inner join TipKontenjera on TipKontenjera.Id = PrijemKontejneraVozStavke.TipKontejnera " +
-           " inner join VrstaRobe on VrstaRobe.Id = PrijemKontejneraVozStavke.VrstaRobe" +
-           "  where Zatvoren = 0 and SkladisteU = " + Convert.ToInt32(cboSkladisteIzbor.SelectedValue) + " and PrijemKontejneraVozStavke.VrstaRobe = " + Convert.ToInt32(cboVrstaRobe.SelectedValue) +" and PrijemKontejneraVozStavke.BrojKontejnera = '" + txtBrojKontejnera.Text + "'" + " and PrijemKontejneraVozStavke.VlasnikKontejnera = " + Convert.ToInt32(cboVlasnikKontejnera.SelectedValue);
+            var select = "  SELECT Promet.[Id], Promet.[DatumTransakcije], Promet.[VrstaDokumenta] " +
+             " ,Promet.[PrStDokumenta],Promet.[PrSifVrstePrometa],Promet.[BrojKontejnera] " +
+             " ,Promet.[PrPrimKol] ,Promet.[SkladisteU], Skladista.Naziv as Skladiste " +
+             " ,Promet.[LokacijaU] as LokacijaU,Pozicija.Oznaka ,Promet.[PrOznSled] " +
+             " ,Promet.[Datum] ,Promet.[Korisnik], TipKontenjera.Naziv, VrstaRobe.Nkm as NHM, VrstaRobe.Naziv  " +
+             " FROM [dbo].[Promet] inner join Skladista on Promet.SkladisteU = Skladista.ID " +
+             " inner join Pozicija on Promet.LokacijaU = Pozicija.ID " +
+             " inner join PrijemKontejneraVozStavke on Promet.[PrOznSled] = PrijemKontejneraVozStavke.Id " +
+             " inner join TipKontenjera on TipKontenjera.Id = PrijemKontejneraVozStavke.TipKontejnera " +
+             " inner join VrstaRobe on VrstaRobe.Id = PrijemKontejneraVozStavke.VrstaRobe" +
+             "  where Zatvoren = 0 and SkladisteU = " + Convert.ToInt32(cboSkladisteIzbor.SelectedValue) + " and PrijemKontejneraVozStavke.VrstaRobe = " + Convert.ToInt32(cboVrstaRobe.SelectedValue) + " and PrijemKontejneraVozStavke.BrojKontejnera = '" + txtBrojKontejnera.Text + "'" + " and PrijemKontejneraVozStavke.VlasnikKontejnera = " + Convert.ToInt32(cboVlasnikKontejnera.SelectedValue);
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);

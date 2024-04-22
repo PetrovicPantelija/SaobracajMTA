@@ -1,19 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-
-using System.IO;
-using iTextSharp.text;
+﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
-using iTextSharp;
-using System.Text.RegularExpressions;
-
+using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 
 namespace Saobracaj
@@ -53,7 +46,7 @@ namespace Saobracaj
                 int i = 1;
                 foreach (string file in files)
                 {
-                   // string path = "C:\\stagelist.txt";
+                    // string path = "C:\\stagelist.txt";
 
                     // string extension = Path.GetExtension(path);
                     // string filename = Path.GetFileName(path);
@@ -65,8 +58,8 @@ namespace Saobracaj
                     //var ext = filePath.Substring(filePath.lastIndexOf('.') + 1).toLowerCase();
                     string extension = Path.GetExtension(filePath);
                     if (extension == ".pdf")
-                    { 
-                        pdf.AddDocument(new PdfReader(file)); 
+                    {
+                        pdf.AddDocument(new PdfReader(file));
                     }
                     if (extension == ".JPG")
                     {
@@ -85,8 +78,8 @@ namespace Saobracaj
                     i++;
                 }
                 pdfDoc.Close();
-               // if (pdfDoc != null)
-               //     pdfDoc.Close();
+                // if (pdfDoc != null)
+                //     pdfDoc.Close();
 
                 Console.WriteLine("SpeedPASS PDF merge complete.");
             }
@@ -109,7 +102,7 @@ namespace Saobracaj
             ///doc.Add(para);
 
             // setting image path
-            string imagePath =   sourceDir + "\\s1.jpg";
+            string imagePath = sourceDir + "\\s1.jpg";
             // string imagePath = Server.MapPath("Images\\demo.PNG") + "";
             iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(imagePath);
             image.Alignment = Element.ALIGN_CENTER;
@@ -124,89 +117,89 @@ namespace Saobracaj
 
         public void InsertImage2(string targetPDF, string sourceDir, string targetpdf2, string imagePath)
         {
-           
-            var pdfPath = targetPDF ;
+
+            var pdfPath = targetPDF;
 
             //Panta dodao
-             var pdfReader = new PdfReader(targetPDF);
-             var ms = new MemoryStream();
+            var pdfReader = new PdfReader(targetPDF);
+            var ms = new MemoryStream();
 
-             var stamp = new PdfStamper(pdfReader, ms);
-       
-            
-                var size = pdfReader.GetPageSize(1);
-                var page = pdfReader.NumberOfPages + 1;
-                stamp.InsertPage(page, pdfReader.GetPageSize(1));
+            var stamp = new PdfStamper(pdfReader, ms);
 
-                        //load pdf file
-                        var pdfBytes = File.ReadAllBytes(pdfPath);
-                        var oldFile = new PdfReader(pdfBytes);
 
-                        //load image
-                        var preImage = System.Drawing.Image.FromFile(imagePath);
-                        var image = iTextSharp.text.Image.GetInstance(preImage, ImageFormat.Jpeg);
-                        preImage.Dispose();
+            var size = pdfReader.GetPageSize(1);
+            var page = pdfReader.NumberOfPages + 1;
+            stamp.InsertPage(page, pdfReader.GetPageSize(1));
 
-                        //optional: if image is wider than the page, scale down the image to fit the page
-                        var sizeWithRotation = oldFile.GetPageSizeWithRotation(1);
-                        if (image.Width > sizeWithRotation.Width)
-                            image.ScalePercent(sizeWithRotation.Width / image.Width * 100);
+            //load pdf file
+            var pdfBytes = File.ReadAllBytes(pdfPath);
+            var oldFile = new PdfReader(pdfBytes);
 
-                        image.SetAbsolutePosition(0, sizeWithRotation.Height - image.ScaledHeight);
+            //load image
+            var preImage = System.Drawing.Image.FromFile(imagePath);
+            var image = iTextSharp.text.Image.GetInstance(preImage, ImageFormat.Jpeg);
+            preImage.Dispose();
 
-                        //in production, I use MemoryStream
-                        //I put FileStream here to test the code in console application
-                        using (var newFileStream = new FileStream(targetpdf2, FileMode.Create))
-                        {
-                            //setup PdfStamper
-                            var stamper = new PdfStamper(oldFile, newFileStream);
-               
-                            //iterate through the pages in the original file
-                            for (var i = 1; i <= oldFile.NumberOfPages; i++)
-                            {
-                                //get canvas for current page
-                 
-                            }
-                            var canvas = stamper.GetOverContent(oldFile.NumberOfPages);
-                            //add image with pre-set position and size
-                             canvas.AddImage(image);
-                            //stamper.AddImage(image);
+            //optional: if image is wider than the page, scale down the image to fit the page
+            var sizeWithRotation = oldFile.GetPageSizeWithRotation(1);
+            if (image.Width > sizeWithRotation.Width)
+                image.ScalePercent(sizeWithRotation.Width / image.Width * 100);
 
-                            stamper.Close();
-                        }
-                    }
+            image.SetAbsolutePosition(0, sizeWithRotation.Height - image.ScaledHeight);
+
+            //in production, I use MemoryStream
+            //I put FileStream here to test the code in console application
+            using (var newFileStream = new FileStream(targetpdf2, FileMode.Create))
+            {
+                //setup PdfStamper
+                var stamper = new PdfStamper(oldFile, newFileStream);
+
+                //iterate through the pages in the original file
+                for (var i = 1; i <= oldFile.NumberOfPages; i++)
+                {
+                    //get canvas for current page
+
+                }
+                var canvas = stamper.GetOverContent(oldFile.NumberOfPages);
+                //add image with pre-set position and size
+                canvas.AddImage(image);
+                //stamper.AddImage(image);
+
+                stamper.Close();
+            }
+        }
 
         public static byte[] InsertImage3(string targetPDF, List<string> images)
         {
             var pdfReader = new PdfReader(targetPDF);
-using (var ms = new MemoryStream())
-{
-        using (var stamp = new PdfStamper(pdfReader, ms))
-        {
-            foreach (var image in images)
+            using (var ms = new MemoryStream())
             {
+                using (var stamp = new PdfStamper(pdfReader, ms))
+                {
+                    foreach (var image in images)
+                    {
 
-                var size = pdfReader.GetPageSize(1);
-                var page = pdfReader.NumberOfPages + 1;
-                stamp.InsertPage(page, pdfReader.GetPageSize(1));
-                iTextSharp.text.Image imageV = iTextSharp.text.Image.GetInstance(image);
-                ImageFormat format = ImageFormat.Jpeg;
+                        var size = pdfReader.GetPageSize(1);
+                        var page = pdfReader.NumberOfPages + 1;
+                        stamp.InsertPage(page, pdfReader.GetPageSize(1));
+                        iTextSharp.text.Image imageV = iTextSharp.text.Image.GetInstance(image);
+                        ImageFormat format = ImageFormat.Jpeg;
 
-                var pdfImage = imageV;
-                pdfImage.Alignment = Element.ALIGN_CENTER;
-                pdfImage.SetAbsolutePosition(0, size.Height - pdfImage.Height);
-                pdfImage.ScaleToFit(size.Width, size.Height);
-                stamp.GetOverContent(page).AddImage(pdfImage);
+                        var pdfImage = imageV;
+                        pdfImage.Alignment = Element.ALIGN_CENTER;
+                        pdfImage.SetAbsolutePosition(0, size.Height - pdfImage.Height);
+                        pdfImage.ScaleToFit(size.Width, size.Height);
+                        stamp.GetOverContent(page).AddImage(pdfImage);
+                    }
+                }
+                ms.Flush();
+                return ms.GetBuffer();
             }
-        }
-        ms.Flush();
-        return ms.GetBuffer();
-}
-        
-        
-        
-        
-        
+
+
+
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -223,11 +216,11 @@ using (var ms = new MemoryStream())
             }
             string[] array = imageFiles.ToArray();
             ImagesToPdf(array, @"D:\PDFIzlaz\");
-           
-           
+
+
 
             CreateMergedPDF(@"D:\PDFIzlaz\Test.pdf", @"D:\PDFUlaz");
-          
+
         }
 
         public void ImagesToPdf(string[] imagepaths, string pdfpath)
@@ -253,7 +246,7 @@ using (var ms = new MemoryStream())
                     document.Add(image);
                     document.Close();
 
-                    File.WriteAllBytes( slika.ToString() + ".pdf", ms.ToArray());
+                    File.WriteAllBytes(slika.ToString() + ".pdf", ms.ToArray());
                 }
             }
             /*
@@ -262,20 +255,20 @@ using (var ms = new MemoryStream())
                 pageSize = new iTextSharp.text.Rectangle(0, 0, srcImage.Width, srcImage.Height);
             }
              * */
-/*
-            using (var ms = new MemoryStream())
-            {
-                var document = new iTextSharp.text.Document(pageSize, 0, 0, 0, 0);
-                iTextSharp.text.pdf.PdfWriter.GetInstance(document, ms).SetFullCompression();
-                document.Open();
-                var image = iTextSharp.text.Image.GetInstance(imagepaths[0].ToString());
-                document.Add(image);
-                document.Close();
+            /*
+                        using (var ms = new MemoryStream())
+                        {
+                            var document = new iTextSharp.text.Document(pageSize, 0, 0, 0, 0);
+                            iTextSharp.text.pdf.PdfWriter.GetInstance(document, ms).SetFullCompression();
+                            document.Open();
+                            var image = iTextSharp.text.Image.GetInstance(imagepaths[0].ToString());
+                            document.Add(image);
+                            document.Close();
 
-                File.WriteAllBytes(pdfpath + image.ToString() +"cheque.pdf", ms.ToArray());
-            }
- * */
+                            File.WriteAllBytes(pdfpath + image.ToString() +"cheque.pdf", ms.ToArray());
+                        }
+             * */
         }
-       
+
     }
 }

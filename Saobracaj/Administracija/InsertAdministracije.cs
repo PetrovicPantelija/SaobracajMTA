@@ -104,7 +104,7 @@ namespace Saobracaj.Administracija
                 tran = conn.BeginTransaction();
                 cmd.Transaction = tran;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 throw new Exception("Neuspešan upis");
             }
@@ -155,7 +155,7 @@ namespace Saobracaj.Administracija
                 tran = conn.BeginTransaction();
                 cmd.Transaction = tran;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 throw new Exception("Neuspešan upis");
             }

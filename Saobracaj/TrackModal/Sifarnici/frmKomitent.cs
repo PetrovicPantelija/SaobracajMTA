@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Testiranje.Sifarnici
 {
@@ -22,14 +12,14 @@ namespace Testiranje.Sifarnici
         string KorisnikCene;
         bool status = false;
         int PomBrodar = 0;
-         int PomPosiljalac = 0;
-         int PomPrimalac = 0;
-         int PomPlatilac = 0;
-         int PomOrganizator = 0;
-         int PomVlasnik = 0;
+        int PomPosiljalac = 0;
+        int PomPrimalac = 0;
+        int PomPlatilac = 0;
+        int PomOrganizator = 0;
+        int PomVlasnik = 0;
         int PomOperator = 0;
-      
-       
+
+
         public frmKomitent()
         {
             InitializeComponent();
@@ -123,19 +113,19 @@ namespace Testiranje.Sifarnici
                 PomOperator = 0;
             }
 
-            
-      
+
+
             if (status == true)
             {
                 InsertKomitent ins = new InsertKomitent();
-                ins.InsKomitent(txtNaziv.Text, txtAdresa.Text, txtTelefon.Text, txtemail.Text, txtKontaktOsoba.Text, PomBrodar, PomPosiljalac, PomPrimalac, PomPlatilac, PomOrganizator, PomVlasnik, PomOperator, txtNapomena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtPIB.Text, txtMaticniBroj.Text,txtSifraERP.Text, txtTR.Text);
+                ins.InsKomitent(txtNaziv.Text, txtAdresa.Text, txtTelefon.Text, txtemail.Text, txtKontaktOsoba.Text, PomBrodar, PomPosiljalac, PomPrimalac, PomPlatilac, PomOrganizator, PomVlasnik, PomOperator, txtNapomena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtPIB.Text, txtMaticniBroj.Text, txtSifraERP.Text, txtTR.Text);
                 status = false;
             }
             else
             {
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertKomitent upd = new InsertKomitent();
-                upd.UpdKomitent(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, txtAdresa.Text, txtTelefon.Text, txtemail.Text, txtKontaktOsoba.Text, PomBrodar, PomPosiljalac, PomPrimalac, PomPlatilac, PomOrganizator, PomVlasnik, PomOperator, txtNapomena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene,txtPIB.Text, txtMaticniBroj.Text, txtSifraERP.Text, txtTR.Text);
+                upd.UpdKomitent(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, txtAdresa.Text, txtTelefon.Text, txtemail.Text, txtKontaktOsoba.Text, PomBrodar, PomPosiljalac, PomPrimalac, PomPlatilac, PomOrganizator, PomVlasnik, PomOperator, txtNapomena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtPIB.Text, txtMaticniBroj.Text, txtSifraERP.Text, txtTR.Text);
             }
             RefreshDataGrid();
         }
@@ -155,7 +145,7 @@ namespace Testiranje.Sifarnici
                 //do something else
             }
 
-            
+
         }
 
         private void RefreshDataGrid()
@@ -169,7 +159,7 @@ namespace Testiranje.Sifarnici
               " CASE WHEN Vlasnik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Vlasnik , " +
               " CASE WHEN Operator > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Operator , " +
               " [Napomena], Datum, Korisnik FROM [dbo].[Komitenti] order by ID asc";
-           
+
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -344,7 +334,7 @@ namespace Testiranje.Sifarnici
                 else
                 {
                     chkBrodar.Checked = false;
-                   
+
                 }
             }
 

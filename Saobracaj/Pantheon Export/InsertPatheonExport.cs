@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Windows.Forms;
-using System.Configuration;
-using Syncfusion.Styles;
-using Saobracaj.eDokumenta;
-using System.Security.Cryptography.Xml;
-using Syncfusion.Presentation;
 
 namespace Saobracaj.Pantheon_Export
 {
@@ -19,7 +10,7 @@ namespace Saobracaj.Pantheon_Export
         public string connect = Sifarnici.frmLogovanje.connectionString;
 
         public void InsUlFak(int ID, string CRMDocID, string VrstaDokumenta, string FakturaBr, int IDDobavljaca, string Tip, DateTime DatumPrijema, string Valuta, decimal Kurs, string RacunDobavljaca, DateTime DatumIzdavanja,
-            DateTime DatumPDVa, DateTime DatumValute, int Referent, int Predvidjanje, string Napomena, int CrmID,string Korisnik)
+            DateTime DatumPDVa, DateTime DatumValute, int Referent, int Predvidjanje, string Napomena, int CrmID, string Korisnik)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -68,7 +59,7 @@ namespace Saobracaj.Pantheon_Export
             }
         }
         public void UpdUlFak(int ID, string FakturaBr, int IDDobavljaca, DateTime DatumPrijema, string Valuta, decimal Kurs, string RacunDobavljaca, DateTime DatumIzdavanja,
-            DateTime DatumPDVa, DateTime DatumValute, int Referent, int Predvidjanje, string Napomena,string Korisnik)
+            DateTime DatumPDVa, DateTime DatumValute, int Referent, int Predvidjanje, string Napomena, string Korisnik)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -128,7 +119,7 @@ namespace Saobracaj.Pantheon_Export
                             cmd.CommandType = CommandType.StoredProcedure;
 
                             cmd.Parameters.Add(new SqlParameter("@IDFak", SqlDbType.Int) { Value = IDFak });
-                            cmd.Parameters.Add(new SqlParameter("@IdPredvidjanja", SqlDbType.Int) { Value=Predvidjanje });
+                            cmd.Parameters.Add(new SqlParameter("@IdPredvidjanja", SqlDbType.Int) { Value = Predvidjanje });
 
                             cmd.ExecuteNonQuery();
                         }
@@ -144,7 +135,7 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
-        public void InsUlFakPostav(int IDFak, int RB, int MP, decimal Kolicina, decimal Cena, int NosilacTroska, string JM, string Proizvod, int Najava,decimal IznosRSD)
+        public void InsUlFakPostav(int IDFak, int RB, int MP, decimal Kolicina, decimal Cena, int NosilacTroska, string JM, string Proizvod, int Najava, decimal IznosRSD)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -168,7 +159,7 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@JM", SqlDbType.Char, 30) { Value = JM });
                             cmd.Parameters.Add(new SqlParameter("@Proizvod", SqlDbType.NVarChar) { Value = Proizvod });
                             cmd.Parameters.Add(new SqlParameter("@Najava", SqlDbType.Int) { Value = Najava });
-                            cmd.Parameters.Add(new SqlParameter("@IznosRSD",SqlDbType.Decimal) { Value = Kolicina });
+                            cmd.Parameters.Add(new SqlParameter("@IznosRSD", SqlDbType.Decimal) { Value = Kolicina });
 
                             cmd.ExecuteNonQuery();
                         }
@@ -184,7 +175,7 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
-        public void InsNosiociTroskova(string NosilacTroska, string NazivNosiocaTroska, string Grupa, int Kupac, int Odeljenje,int OppID,int Posao,string Korisnik)
+        public void InsNosiociTroskova(string NosilacTroska, string NazivNosiocaTroska, string Grupa, int Kupac, int Odeljenje, int OppID, int Posao, string Korisnik)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -204,7 +195,7 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@Grupa", SqlDbType.Char, 16) { Value = Grupa });
                             cmd.Parameters.Add(new SqlParameter("@Kupac", SqlDbType.Int) { Value = Kupac });
                             cmd.Parameters.Add(new SqlParameter("@Odeljenje", SqlDbType.Int) { Value = Odeljenje });
-                            cmd.Parameters.Add(new SqlParameter("@OppID",SqlDbType.Int) { Value = OppID });
+                            cmd.Parameters.Add(new SqlParameter("@OppID", SqlDbType.Int) { Value = OppID });
                             cmd.Parameters.Add(new SqlParameter("@Posao", SqlDbType.Int) { Value = Posao });
                             cmd.Parameters.Add(new SqlParameter("@Korisnik", SqlDbType.NVarChar, 50) { Value = Korisnik });
 
@@ -212,7 +203,7 @@ namespace Saobracaj.Pantheon_Export
                         }
                         transaction.Commit();
                     }
-                    catch (SqlException ex)
+                    catch (SqlException)
                     {
                         transaction.Rollback();
                         MessageBox.Show("Neuspešan upis cena u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -221,7 +212,7 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
-        public void UpdNosiociTroskova(int ID, string NosilacTroska, string NazivNosiocaTroska, string Grupa, int Kupac, int Odeljenje, int OppID,int Posao,string Korisnik)
+        public void UpdNosiociTroskova(int ID, string NosilacTroska, string NazivNosiocaTroska, string Grupa, int Kupac, int Odeljenje, int OppID, int Posao, string Korisnik)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -242,8 +233,8 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@Grupa", SqlDbType.Char, 16) { Value = Grupa });
                             cmd.Parameters.Add(new SqlParameter("@Kupac", SqlDbType.Int) { Value = Kupac });
                             cmd.Parameters.Add(new SqlParameter("@Odeljenje", SqlDbType.Int) { Value = Odeljenje });
-                            cmd.Parameters.Add(new SqlParameter("@OppID", SqlDbType.Int) { Value=OppID });
-                            cmd.Parameters.Add(new SqlParameter("@Posao",SqlDbType.Int) { Value = Posao });
+                            cmd.Parameters.Add(new SqlParameter("@OppID", SqlDbType.Int) { Value = OppID });
+                            cmd.Parameters.Add(new SqlParameter("@Posao", SqlDbType.Int) { Value = Posao });
                             cmd.Parameters.Add(new SqlParameter("@Korisnik", SqlDbType.NVarChar, 50) { Value = Korisnik });
 
                             cmd.ExecuteNonQuery();
@@ -253,7 +244,7 @@ namespace Saobracaj.Pantheon_Export
                     catch (SqlException ex)
                     {
                         transaction.Rollback();
-                        MessageBox.Show("Neuspešan upis cena u bazu\n"+ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Neuspešan upis cena u bazu\n" + ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 conn.Close();
@@ -280,7 +271,7 @@ namespace Saobracaj.Pantheon_Export
                         }
                         transaction.Commit();
                     }
-                    catch (SqlException ex)
+                    catch (SqlException)
                     {
                         transaction.Rollback();
                         MessageBox.Show("Neuspešan upis cena u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -289,8 +280,8 @@ namespace Saobracaj.Pantheon_Export
                 conn.Close();
             }
         }
-        public void InsPredvidjanje(int IdP, string PredvidjanjeID, int PredvidjanjePoz, DateTime Datum, int Subjekat, int NosilacTroska, int Odeljenje, decimal Iznos, string Valuta, int Status, int Najava,int Ident,
-            decimal Kolicina,string JM,string Napomena,decimal Kurs,decimal IznosRSD,string Korisnik)
+        public void InsPredvidjanje(int IdP, string PredvidjanjeID, int PredvidjanjePoz, DateTime Datum, int Subjekat, int NosilacTroska, int Odeljenje, decimal Iznos, string Valuta, int Status, int Najava, int Ident,
+            decimal Kolicina, string JM, string Napomena, decimal Kurs, decimal IznosRSD, string Korisnik)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -316,7 +307,7 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@Valuta", SqlDbType.Char, 3) { Value = Valuta });
                             cmd.Parameters.Add(new SqlParameter("@Status", SqlDbType.Int) { Value = Status });
                             cmd.Parameters.Add(new SqlParameter("@Najava", SqlDbType.Int) { Value = Najava });
-                            cmd.Parameters.Add(new SqlParameter("@Ident",SqlDbType.Int) { Value = Ident });
+                            cmd.Parameters.Add(new SqlParameter("@Ident", SqlDbType.Int) { Value = Ident });
                             cmd.Parameters.Add(new SqlParameter("@Kolicina", SqlDbType.Decimal) { Value = Kolicina });
                             cmd.Parameters.Add(new SqlParameter("@JM", SqlDbType.NVarChar, 10) { Value = JM });
                             cmd.Parameters.Add(new SqlParameter("@Napomena", SqlDbType.NVarChar, 500) { Value = Napomena });
@@ -328,7 +319,7 @@ namespace Saobracaj.Pantheon_Export
                         }
                         transaction.Commit();
                     }
-                    catch (SqlException ex)
+                    catch (SqlException)
                     {
                         transaction.Rollback();
                         MessageBox.Show("Neuspesan upis predvidjanja", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -338,7 +329,7 @@ namespace Saobracaj.Pantheon_Export
             }
         }
         public void UpdPredvidjanje(int ID, string PredvidjanjeID, int PredvidjanjePoz, DateTime Datum, int Subjekat, int NosilacTroska, int Odeljenje, decimal Iznos, string Valuta, int NajavaID, int IDp,
-            int Ident, decimal Kolicina, string JM, string Napomena,decimal Kurs,decimal IznosRSD,string Korisnik)
+            int Ident, decimal Kolicina, string JM, string Napomena, decimal Kurs, decimal IznosRSD, string Korisnik)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -369,7 +360,7 @@ namespace Saobracaj.Pantheon_Export
                             cmd.Parameters.Add(new SqlParameter("@JM", SqlDbType.NVarChar, 10) { Value = JM });
                             cmd.Parameters.Add(new SqlParameter("@Napomena", SqlDbType.NVarChar, 500) { Value = Napomena });
                             cmd.Parameters.Add(new SqlParameter("@Kurs", SqlDbType.Decimal) { Value = Kurs });
-                            cmd.Parameters.Add(new SqlParameter("@IznosRSD",SqlDbType.Decimal) { Value = IznosRSD });
+                            cmd.Parameters.Add(new SqlParameter("@IznosRSD", SqlDbType.Decimal) { Value = IznosRSD });
                             cmd.Parameters.Add(new SqlParameter("@Korisnik", SqlDbType.NVarChar, 50) { Value = Korisnik });
 
                             cmd.ExecuteNonQuery();
@@ -379,7 +370,7 @@ namespace Saobracaj.Pantheon_Export
                     catch (SqlException ex)
                     {
                         transaction.Rollback();
-                        MessageBox.Show("Neuspesan upis predvidjanja\n"+ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Neuspesan upis predvidjanja\n" + ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 conn.Close();
@@ -406,7 +397,7 @@ namespace Saobracaj.Pantheon_Export
                         }
                         transaction.Commit();
                     }
-                    catch (SqlException ex)
+                    catch (SqlException)
                     {
                         transaction.Rollback();
                         MessageBox.Show("Neuspesan upis predvidjanja", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -416,7 +407,7 @@ namespace Saobracaj.Pantheon_Export
             }
         }
 
-        public void RefreshPredvidjanje(int Najava,int NT)
+        public void RefreshPredvidjanje(int Najava, int NT)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -438,7 +429,7 @@ namespace Saobracaj.Pantheon_Export
                         }
                         transaction.Commit();
                     }
-                    catch (SqlException ex)
+                    catch (SqlException)
                     {
                         transaction.Rollback();
                         MessageBox.Show("Neuspesan upis predvidjanja", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -492,7 +483,7 @@ namespace Saobracaj.Pantheon_Export
                     catch (Exception ex)
                     {
                         tran.Rollback();
-                        MessageBox.Show("Neuspesan upis\n"+ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Neuspesan upis\n" + ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     }
                 }
@@ -544,14 +535,14 @@ namespace Saobracaj.Pantheon_Export
                     catch (Exception ex)
                     {
                         tran.Rollback();
-                        MessageBox.Show("Neuspesan upis\n"+ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Neuspesan upis\n" + ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     }
                 }
                 conn.Close();
             }
         }
-        public void InsFakturaPostav(string Referent, int Faktura, int RB, int MP, string MPNaziv, string JM, decimal Kolicina, decimal Cena, int NosilacTroska, int Najava,decimal IznosRSD)
+        public void InsFakturaPostav(string Referent, int Faktura, int RB, int MP, string MPNaziv, string JM, decimal Kolicina, decimal Cena, int NosilacTroska, int Najava, decimal IznosRSD)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -611,7 +602,7 @@ namespace Saobracaj.Pantheon_Export
                         }
                         transaction.Commit();
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         transaction.Rollback();
                         MessageBox.Show("Neuspesan upis", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -641,7 +632,7 @@ namespace Saobracaj.Pantheon_Export
                         }
                         transaction.Commit();
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         transaction.Rollback();
                         MessageBox.Show("Neuspesan upis", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -776,7 +767,7 @@ namespace Saobracaj.Pantheon_Export
             }
         }
 
-        public void InsApiLog(string Dokument,string Poziv,string Response)
+        public void InsApiLog(string Dokument, string Poziv, string Response)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -791,9 +782,9 @@ namespace Saobracaj.Pantheon_Export
                             cmd.CommandText = "InsertApiLogovi";
                             cmd.CommandType = CommandType.StoredProcedure;
 
-                            cmd.Parameters.Add(new SqlParameter("@Dokument", SqlDbType.NVarChar,50) { Value = Dokument });
+                            cmd.Parameters.Add(new SqlParameter("@Dokument", SqlDbType.NVarChar, 50) { Value = Dokument });
                             cmd.Parameters.Add(new SqlParameter("@Poziv", SqlDbType.NVarChar) { Value = Poziv });
-                            cmd.Parameters.Add(new SqlParameter("@Response",SqlDbType.NVarChar) { Value = Response });
+                            cmd.Parameters.Add(new SqlParameter("@Response", SqlDbType.NVarChar) { Value = Response });
 
                             cmd.ExecuteNonQuery();
                         }
@@ -814,13 +805,13 @@ namespace Saobracaj.Pantheon_Export
             using (SqlConnection conn = new SqlConnection(connect))
             {
                 conn.Open();
-                using(SqlTransaction transaction = conn.BeginTransaction())
+                using (SqlTransaction transaction = conn.BeginTransaction())
                 {
                     try
                     {
-                        using(SqlCommand cmd = conn.CreateCommand())
+                        using (SqlCommand cmd = conn.CreateCommand())
                         {
-                            cmd.Transaction= transaction;
+                            cmd.Transaction = transaction;
                             cmd.CommandText = "VratiPredvidjanjeStatus";
                             cmd.CommandType = CommandType.StoredProcedure;
 
@@ -834,6 +825,64 @@ namespace Saobracaj.Pantheon_Export
                     {
                         transaction.Rollback();
                         MessageBox.Show("Neuspešano vraćanje statusa!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+            }
+        }
+        public void DeleteUlFak(int ID)
+        {
+            using(SqlConnection conn=new SqlConnection(connect))
+            {
+                conn.Open();
+                using(SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using(SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "DeleteUlFak";
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int) { Value=ID});
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch(SqlException ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Neuspešno brisanje!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(ex.ToString());
+                    }
+                }
+            }
+        }
+        public void DeleteFaktura(int ID)
+        {
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "DeleteFaktura";
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.Add(new SqlParameter("@ID", SqlDbType.Int) { Value = ID });
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch (SqlException ex)
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Neuspešno brisanje!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         MessageBox.Show(ex.ToString());
                     }
                 }

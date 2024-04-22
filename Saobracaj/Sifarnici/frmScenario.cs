@@ -1,22 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Globalization;
-using Syncfusion.Windows.Forms.Grid.Grouping;
-using Syncfusion.Windows.Forms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmScenario :  Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmScenario : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         public frmScenario()
@@ -39,8 +30,8 @@ namespace Saobracaj.Sifarnici
             else
             {
                 InsertScenario upd = new InsertScenario();
-                upd.UpdScenario(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtRB.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.SelectedText );
-            
+                upd.UpdScenario(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtRB.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.SelectedText);
+
             }
             RefreshDataGrid();
         }
@@ -82,7 +73,7 @@ namespace Saobracaj.Sifarnici
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "Šifra";
             dataGridView1.Columns[0].Width = 50;
-            
+
             DataGridViewColumn column1 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "RB";
             dataGridView1.Columns[1].Width = 30;
@@ -97,7 +88,7 @@ namespace Saobracaj.Sifarnici
 
             DataGridViewColumn column4 = dataGridView1.Columns[4];
             dataGridView1.Columns[4].HeaderText = "Usluga";
-            dataGridView1.Columns[4].Width =230;
+            dataGridView1.Columns[4].Width = 230;
 
             DataGridViewColumn column5 = dataGridView1.Columns[5];
             dataGridView1.Columns[5].HeaderText = "Pokret";
@@ -151,9 +142,9 @@ namespace Saobracaj.Sifarnici
             InsertScenario ins = new InsertScenario();
             //0-Ako je novi scenario
             //1-Je broj tekuceg scaniraj
-            ins.InsScenario(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue),cboForma.Text);
+            ins.InsScenario(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.Text);
             RefreshDataGrid();
-}
+        }
         private void VratiPodatkeSelect(string ID, string RB)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;

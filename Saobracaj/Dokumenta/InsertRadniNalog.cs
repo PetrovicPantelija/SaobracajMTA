@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 
 namespace Saobracaj.Dokumenta
@@ -64,7 +60,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter6 = new SqlParameter();
             parameter6.ParameterName = "@TehnologijaID";
             parameter6.SqlDbType = SqlDbType.Int;
-           // parameter6.Size = 2;
+            // parameter6.Size = 2;
             parameter6.Direction = ParameterDirection.Input;
             parameter6.Value = TehnologijaID;
             myCommand.Parameters.Add(parameter6);
@@ -326,7 +322,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter = new SqlParameter();
             parameter.ParameterName = "@ID";
             parameter.SqlDbType = SqlDbType.Int;
-          //  parameter.Size = 50;
+            //  parameter.Size = 50;
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = ID;
             myCommand.Parameters.Add(parameter);

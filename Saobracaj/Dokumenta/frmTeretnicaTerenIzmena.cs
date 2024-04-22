@@ -1,14 +1,8 @@
 ﻿using Saobracaj.Sifarnici;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
@@ -62,9 +56,9 @@ namespace Saobracaj.Dokumenta
             dataGridView4.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView4.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView4.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-           
-                dataGridView4.Columns[0].Width = 30; //RB
-                dataGridView4.Columns[1].Width = 30; //ID
+
+            dataGridView4.Columns[0].Width = 30; //RB
+            dataGridView4.Columns[1].Width = 30; //ID
             dataGridView4.Columns[2].Width = 30; //IDNajave
             dataGridView4.Columns[3].Width = 350; //Uvrstena
             /*
@@ -111,26 +105,26 @@ namespace Saobracaj.Dokumenta
             "  order by RedniBrojKola";
 
 
-                SqlConnection myConnection = new SqlConnection(connect);
-                var conn = new SqlConnection(connect);
-                var dataAdapter = new SqlDataAdapter(select, conn);
+            SqlConnection myConnection = new SqlConnection(connect);
+            var conn = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, conn);
 
-                var ds = new DataSet();
-                dataAdapter.Fill(ds);
-                dataGridView3.ReadOnly = false;
-                dataGridView3.DataSource = ds.Tables[0];
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView3.ReadOnly = false;
+            dataGridView3.DataSource = ds.Tables[0];
 
-                dataGridView3.BorderStyle = BorderStyle.None;
-                dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-                dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-                dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-                dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-                dataGridView3.BackgroundColor = Color.White;
+            dataGridView3.BorderStyle = BorderStyle.None;
+            dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView3.BackgroundColor = Color.White;
 
-                dataGridView3.EnableHeadersVisualStyles = false;
-                dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-                dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-                dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView3.EnableHeadersVisualStyles = false;
+            dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             /*
                 dataGridView1.Columns[0].Width = 30; //RB
                 dataGridView1.Columns[1].Width = 50; //ID
@@ -168,7 +162,7 @@ namespace Saobracaj.Dokumenta
                 "Duzina,Tara,P,RucKoc,PopisTeretnica.ZaposleniId,RTrim(Korisnici.Korisnik) as Zaposleni " +
                 "From PopisTeretnicaStavke,PopisTeretnica,Korisnici " +
                 "Where PopisTeretnicaStavke.BrojPopisaneTeretnice=PopisTeretnica.TeretnicaId and Korisnici.DeSifra=PopisTeretnica.ZaposleniId " +
-                "and BrojPopisaneTeretnice= "+Teretnica+"order by RedniBroj";
+                "and BrojPopisaneTeretnice= " + Teretnica + "order by RedniBroj";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -344,7 +338,7 @@ namespace Saobracaj.Dokumenta
             {
                 MessageBox.Show("Broj popisanih stavki se ne poklapa sa brojem najavljenih stavki", "Informacije o popisu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            Proveri();  
+            Proveri();
         }
         public int otpravna;
         public int uputna;
@@ -363,30 +357,30 @@ namespace Saobracaj.Dokumenta
                     {
                         int rb = Convert.ToInt32(dataGridView1.Rows[j].Cells[0].Value);
                         int brojTeretnice = Convert.ToInt32(dataGridView2.Rows[j].Cells[2].Value);
-                        int idNajave=Convert.ToInt32(dataGridView1.Rows[j].Cells[2].Value);
-                        string uvrstena=dataGridView1.Rows[j].Cells[3].Value.ToString();
-                        if(uvrstena.Equals(""))
+                        int idNajave = Convert.ToInt32(dataGridView1.Rows[j].Cells[2].Value);
+                        string uvrstena = dataGridView1.Rows[j].Cells[3].Value.ToString();
+                        if (uvrstena.Equals(""))
                         {
                             uvrstena = 1072.ToString().TrimEnd();
                         }
-                        string otkacena= dataGridView1.Rows[j].Cells[4].Value.ToString();
-                        if(otkacena.Equals(""))
+                        string otkacena = dataGridView1.Rows[j].Cells[4].Value.ToString();
+                        if (otkacena.Equals(""))
                         {
                             otkacena = 1072.ToString().TrimEnd();
                         }
-                        string brojKola=dataGridView2.Rows[j].Cells[3].Value.ToString().TrimEnd();
-                        string serija=dataGridView1.Rows[j].Cells[6].Value.ToString().TrimEnd();
-                        double brojOsovina=Convert.ToDouble(dataGridView1.Rows[j].Cells[7].Value);
-                        double duzina=Convert.ToDouble(dataGridView2.Rows[j].Cells[4].Value);
-                        double tara=Convert.ToDouble(dataGridView2.Rows[j].Cells[5].Value);
-                        double neto=Convert.ToDouble(dataGridView1.Rows[j].Cells[10].Value);
-                        double g=Convert.ToDouble(dataGridView1.Rows[j].Cells[11].Value);
-                        double p=Convert.ToDouble(dataGridView2.Rows[j].Cells[6].Value);
-                        double r=Convert.ToDouble(dataGridView1.Rows[j].Cells[13].Value);
-                        double pr=Convert.ToDouble(dataGridView1.Rows[j].Cells[14].Value);
-                        string vrnp=dataGridView1.Rows[j].Cells[15].Value.ToString().TrimEnd();
+                        string brojKola = dataGridView2.Rows[j].Cells[3].Value.ToString().TrimEnd();
+                        string serija = dataGridView1.Rows[j].Cells[6].Value.ToString().TrimEnd();
+                        double brojOsovina = Convert.ToDouble(dataGridView1.Rows[j].Cells[7].Value);
+                        double duzina = Convert.ToDouble(dataGridView2.Rows[j].Cells[4].Value);
+                        double tara = Convert.ToDouble(dataGridView2.Rows[j].Cells[5].Value);
+                        double neto = Convert.ToDouble(dataGridView1.Rows[j].Cells[10].Value);
+                        double g = Convert.ToDouble(dataGridView1.Rows[j].Cells[11].Value);
+                        double p = Convert.ToDouble(dataGridView2.Rows[j].Cells[6].Value);
+                        double r = Convert.ToDouble(dataGridView1.Rows[j].Cells[13].Value);
+                        double pr = Convert.ToDouble(dataGridView1.Rows[j].Cells[14].Value);
+                        string vrnp = dataGridView1.Rows[j].Cells[15].Value.ToString().TrimEnd();
 
-                        string ot=dataGridView1.Rows[j].Cells[16].Value.ToString().TrimEnd();
+                        string ot = dataGridView1.Rows[j].Cells[16].Value.ToString().TrimEnd();
                         string queryOtpravna = "Select ID from Stanice Where Opis = " + "'" + ot + "'";
                         SqlConnection connOtpravna = new SqlConnection(connect);
                         connOtpravna.Open();
@@ -398,7 +392,7 @@ namespace Saobracaj.Dokumenta
                         }
                         connOtpravna.Close();
 
-                        string up= dataGridView1.Rows[j].Cells[17].Value.ToString().TrimEnd();
+                        string up = dataGridView1.Rows[j].Cells[17].Value.ToString().TrimEnd();
                         string queryUputna = "Select ID from Stanice Where Opis = " + "'" + up + "'";
                         SqlConnection connUputna = new SqlConnection(connect);
                         connUputna.Open();
@@ -410,9 +404,9 @@ namespace Saobracaj.Dokumenta
                         }
                         connUputna.Close();
 
-                        string reon=dataGridView1.Rows[j].Cells[18].Value.ToString().TrimEnd();
+                        string reon = dataGridView1.Rows[j].Cells[18].Value.ToString().TrimEnd();
                         string primedba = dataGridView1.Rows[j].Cells[19].Value.ToString().TrimEnd();
-                        double rucKoc=Convert.ToDouble(dataGridView2.Rows[j].Cells[7].Value);
+                        double rucKoc = Convert.ToDouble(dataGridView2.Rows[j].Cells[7].Value);
 
                         string uv = dataGridView1.Rows[j].Cells[22].Value.ToString().TrimEnd();
                         string queryUvozna = "Select ID from Stanice Where Opis = " + "'" + uv + "'";
@@ -438,10 +432,10 @@ namespace Saobracaj.Dokumenta
                         }
                         connIzvozna.Close();
 
-                        string rid=dataGridView1.Rows[j].Cells[23].Value.ToString().TrimEnd();
-                        string dokument=dataGridView1.Rows[j].Cells[24].Value.ToString().TrimEnd();
+                        string rid = dataGridView1.Rows[j].Cells[23].Value.ToString().TrimEnd();
+                        string dokument = dataGridView1.Rows[j].Cells[24].Value.ToString().TrimEnd();
                         InsertTeretnicaStavke t = new InsertTeretnicaStavke();
-                        t.UpdTeretnicaStavke(rb, brojTeretnice, idNajave,Convert.ToInt32(uvrstena), Convert.ToInt32(otkacena), brojKola, serija, brojOsovina, duzina, tara, neto, g, p, r, pr, vrnp, otpravna, uputna, reon, primedba, rucKoc, uvozna, izvozna, rid, dokument);
+                        t.UpdTeretnicaStavke(rb, brojTeretnice, idNajave, Convert.ToInt32(uvrstena), Convert.ToInt32(otkacena), brojKola, serija, brojOsovina, duzina, tara, neto, g, p, r, pr, vrnp, otpravna, uputna, reon, primedba, rucKoc, uvozna, izvozna, rid, dokument);
                     }
                 }
                 FillGV1();
@@ -468,7 +462,7 @@ namespace Saobracaj.Dokumenta
                     if (row.Selected)
                     {
                         txtAktivnostStavkeID.Text = row.Cells[2].Value.ToString();
-                       
+
                     }
                 }
 

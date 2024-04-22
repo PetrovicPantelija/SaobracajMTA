@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -22,108 +14,12 @@ namespace Saobracaj.Dokumenta
         {
             InitializeComponent();
             TekuciKorisnik = Korisnik;
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
-        }
-        string niz = "";
-        public static string code = "frmEvidencijaRadaZaglavlje";
-        public bool Pravo;
-        int idGrupe;
-        int idForme;
-        bool insert;
-        bool update;
-        bool delete;
-        string Kor = Sifarnici.frmLogovanje.user.ToString();
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
 
-            while (dr.Read())
-            {
-                if (count == 0)
-                {
-                    niz = dr["IdGrupe"].ToString();
-                    count++;
-                }
-                else
-                {
-                    niz = niz + "," + dr["IdGrupe"].ToString();
-                    count++;
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                       // tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        //tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        //tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
         }
         public frmEvidencijaRadaZaglavlje()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
 
         private void frmEvidencijaRadaZaglavlje_Load(object sender, EventArgs e)
@@ -164,8 +60,8 @@ namespace Saobracaj.Dokumenta
                              " inner join Delavci on Delavci.DeSifra = Aktivnosti.Zaposleni  " +
                                " inner join Kraji on Kraji.KrSifra = Aktivnosti.MestoUpucivanja" +
                               "  where Aktivnosti.Masinovodja = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) +
-                    //  " and VremeOd>= "  + DateTime.ParseExact(dtpPredvidjenoPrimanje.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) +
-                    // " and  VremeDo<= " + DateTime.ParseExact(dtpVremeDo.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) + Convert.ToDateTime(dtpVremeDo.Value) +
+                               //  " and VremeOd>= "  + DateTime.ParseExact(dtpPredvidjenoPrimanje.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) +
+                               // " and  VremeDo<= " + DateTime.ParseExact(dtpVremeDo.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) + Convert.ToDateTime(dtpVremeDo.Value) +
 
                                " order by Aktivnosti.ID desc";
             }
@@ -184,8 +80,8 @@ namespace Saobracaj.Dokumenta
                                  " inner join Delavci on Delavci.DeSifra = Aktivnosti.Zaposleni  " +
                                    " inner join Kraji on Kraji.KrSifra = Aktivnosti.MestoUpucivanja" +
                                   "  where Aktivnosti.Masinovodja = 0 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) +
-                    //   " and VremeOd>= " + DateTime.ParseExact(dtpPredvidjenoPrimanje.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) +
-                    // " and  VremeDo<= " + DateTime.ParseExact(dtpVremeDo.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) + Convert.ToDateTime(dtpVremeDo.Value) +
+                                  //   " and VremeOd>= " + DateTime.ParseExact(dtpPredvidjenoPrimanje.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) +
+                                  // " and  VremeDo<= " + DateTime.ParseExact(dtpVremeDo.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) + Convert.ToDateTime(dtpVremeDo.Value) +
                                   " order by Aktivnosti.ID desc";
             }
 
@@ -344,28 +240,27 @@ namespace Saobracaj.Dokumenta
         private void btnPretrazi_Click(object sender, EventArgs e)
         {
             var select = "";
-            DateTime outputDateTimeValue;
 
 
             if (chkUnosMasinovođa.Checked == true && chkSpolja.Checked == false)
             {
                 select = "Select Aktivnosti.ID as Zapis,  Aktivnosti.Oznaka, " +
- " (RTrim(DeIme) + ' ' + RTRim(DePriimek)) as Zaposleni,    VremeOD, VremeDo, Ukupno, "+
- " UkupniTroskovi, Aktivnosti.Opis, RN,     CASE WHEN Aktivnosti.PoslatEmail > 0 "+
- " THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PoslatEmail,   CASE WHEN Aktivnosti.Placeno > 0 "+
+ " (RTrim(DeIme) + ' ' + RTRim(DePriimek)) as Zaposleni,    VremeOD, VremeDo, Ukupno, " +
+ " UkupniTroskovi, Aktivnosti.Opis, RN,     CASE WHEN Aktivnosti.PoslatEmail > 0 " +
+ " THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as PoslatEmail,   CASE WHEN Aktivnosti.Placeno > 0 " +
  " THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Placeno,   RAcun, Kartica, " +
  " CASE WHEN Aktivnosti.Masinovodja > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Masinovodja," +
  "  Kraji.KrNaziv as Mesto, CASE WHEN Aktivnosti.PlacenoRacun > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) " +
  "  END as PlaceniRacuni, CASE WHEN Aktivnosti.Pregledano > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) " +
  "  END as Pregledano, CASE WHEN Aktivnosti.Milsped > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Milsped , " +
  "   (SELECT COUNT(*) FROM AktivnostiDokumenta where AktivnostiDokumenta.IDAktivnosti = Aktivnosti.ID) as Zapisa , Outside" +
- "    from Aktivnosti   inner join Delavci on Delavci.DeSifra = Aktivnosti.Zaposleni  " + 
+ "    from Aktivnosti   inner join Delavci on Delavci.DeSifra = Aktivnosti.Zaposleni  " +
   "   inner join Kraji on Kraji.KrSifra = Aktivnosti.MestoUpucivanja  " +
                               "  where  Aktivnosti.Masinovodja = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) + " order by Aktivnosti.ID desc";
-                    //  " and VremeOd>= "  + DateTime.ParseExact(dtpPredvidjenoPrimanje.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) +
-                    // " and  VremeDo<= " + DateTime.ParseExact(dtpVremeDo.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) + Convert.ToDateTime(dtpVremeDo.Value) +
+                //  " and VremeOd>= "  + DateTime.ParseExact(dtpPredvidjenoPrimanje.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) +
+                // " and  VremeDo<= " + DateTime.ParseExact(dtpVremeDo.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) + Convert.ToDateTime(dtpVremeDo.Value) +
 
-                             
+
             }
             else if (chkUnosMasinovođa.Checked == false && chkSpolja.Checked == false)
             {
@@ -383,8 +278,8 @@ namespace Saobracaj.Dokumenta
                                  " inner join Delavci on Delavci.DeSifra = Aktivnosti.Zaposleni  " +
                                    " inner join Kraji on Kraji.KrSifra = Aktivnosti.MestoUpucivanja" +
                                   "  where Aktivnosti.Masinovodja = 0 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) +
-                    //   " and VremeOd>= " + DateTime.ParseExact(dtpPredvidjenoPrimanje.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) +
-                    // " and  VremeDo<= " + DateTime.ParseExact(dtpVremeDo.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) + Convert.ToDateTime(dtpVremeDo.Value) +
+                                  //   " and VremeOd>= " + DateTime.ParseExact(dtpPredvidjenoPrimanje.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) +
+                                  // " and  VremeDo<= " + DateTime.ParseExact(dtpVremeDo.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) + Convert.ToDateTime(dtpVremeDo.Value) +
                                   " order by Aktivnosti.ID desc";
             }
             else
@@ -639,7 +534,7 @@ namespace Saobracaj.Dokumenta
                     {
                         frmEvidencijaRadaSmederevo er = new frmEvidencijaRadaSmederevo(Convert.ToInt32(row.Cells[0].Value.ToString()));
                         er.Show();
-                    
+
                     }
                     else if (chkSmederevo1.Checked == true)
                     {
@@ -655,9 +550,9 @@ namespace Saobracaj.Dokumenta
                     }
                     else
                     {
-                    
-                    frmEvidencijaRada er = new frmEvidencijaRada(Convert.ToInt32(row.Cells[0].Value.ToString()), TekuciKorisnik);
-                    er.Show();
+
+                        frmEvidencijaRada er = new frmEvidencijaRada(Convert.ToInt32(row.Cells[0].Value.ToString()), TekuciKorisnik);
+                        er.Show();
                     }
                 }
             }
@@ -678,7 +573,7 @@ namespace Saobracaj.Dokumenta
                 if (row.Selected == true)
                 {
                     InsertAktivnosti ins = new InsertAktivnosti();
-                   // ins.UpdateAktivnostiPlaceno(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                    // ins.UpdateAktivnostiPlaceno(Convert.ToInt32(row.Cells[0].Value.ToString()));
 
                 }
             }
@@ -800,7 +695,6 @@ namespace Saobracaj.Dokumenta
         private void button9_Click(object sender, EventArgs e)
         {
             var select = "";
-            DateTime outputDateTimeValue;
 
 
             if (chkSmederevo1.Checked == true)
@@ -822,8 +716,8 @@ namespace Saobracaj.Dokumenta
                                " inner Join  VrstaAktivnosti on AktivnostiStavke.VrstaAktivnostiID = VrstaAktivnosti.ID " +
                                  " inner join Kraji on Kraji.KrSifra = Aktivnosti.MestoUpucivanja" +
                               "  where Smederevo = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) +
-                    //  " and VremeOd>= "  + DateTime.ParseExact(dtpPredvidjenoPrimanje.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) +
-                    // " and  VremeDo<= " + DateTime.ParseExact(dtpVremeDo.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) + Convert.ToDateTime(dtpVremeDo.Value) +
+                               //  " and VremeOd>= "  + DateTime.ParseExact(dtpPredvidjenoPrimanje.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) +
+                               // " and  VremeDo<= " + DateTime.ParseExact(dtpVremeDo.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) + Convert.ToDateTime(dtpVremeDo.Value) +
 
                                " order by Aktivnosti.ID desc";
             }
@@ -846,11 +740,11 @@ namespace Saobracaj.Dokumenta
                                " inner Join  VrstaAktivnosti on AktivnostiStavke.VrstaAktivnostiID = VrstaAktivnosti.ID " +
                                  " inner join Kraji on Kraji.KrSifra = Aktivnosti.MestoUpucivanja" +
                               "  where Kragujevac = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) +
-                    //  " and VremeOd>= "  + DateTime.ParseExact(dtpPredvidjenoPrimanje.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) +
-                    // " and  VremeDo<= " + DateTime.ParseExact(dtpVremeDo.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) + Convert.ToDateTime(dtpVremeDo.Value) +
-                    
+                               //  " and VremeOd>= "  + DateTime.ParseExact(dtpPredvidjenoPrimanje.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) +
+                               // " and  VremeDo<= " + DateTime.ParseExact(dtpVremeDo.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) + Convert.ToDateTime(dtpVremeDo.Value) +
+
                                " order by Aktivnosti.ID desc";
-                }
+            }
             else if (chkCG.Checked == true)
             {
                 select = "Select Aktivnosti.ID as Zapis,  Aktivnosti.Oznaka, " +
@@ -870,8 +764,8 @@ namespace Saobracaj.Dokumenta
                                " inner Join  VrstaAktivnosti on AktivnostiStavke.VrstaAktivnostiID = VrstaAktivnosti.ID " +
                                  " inner join Kraji on Kraji.KrSifra = Aktivnosti.MestoUpucivanja" +
                               "  where CG = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) +
-                    //  " and VremeOd>= "  + DateTime.ParseExact(dtpPredvidjenoPrimanje.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) +
-                    // " and  VremeDo<= " + DateTime.ParseExact(dtpVremeDo.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) + Convert.ToDateTime(dtpVremeDo.Value) +
+                               //  " and VremeOd>= "  + DateTime.ParseExact(dtpPredvidjenoPrimanje.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) +
+                               // " and  VremeDo<= " + DateTime.ParseExact(dtpVremeDo.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) + Convert.ToDateTime(dtpVremeDo.Value) +
 
                                " order by Aktivnosti.ID desc";
             }
@@ -894,23 +788,23 @@ namespace Saobracaj.Dokumenta
                                " inner Join  VrstaAktivnosti on AktivnostiStavke.VrstaAktivnostiID = VrstaAktivnosti.ID " +
                                  " inner join Kraji on Kraji.KrSifra = Aktivnosti.MestoUpucivanja" +
                               "  where Remont = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) +
-                    //  " and VremeOd>= "  + DateTime.ParseExact(dtpPredvidjenoPrimanje.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) +
-                    // " and  VremeDo<= " + DateTime.ParseExact(dtpVremeDo.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) + Convert.ToDateTime(dtpVremeDo.Value) +
+                               //  " and VremeOd>= "  + DateTime.ParseExact(dtpPredvidjenoPrimanje.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) +
+                               // " and  VremeDo<= " + DateTime.ParseExact(dtpVremeDo.Value.ToString(), "yyyy-MM-dd HH:mm:ss,fff", System.Globalization.CultureInfo.InvariantCulture) + Convert.ToDateTime(dtpVremeDo.Value) +
 
                                " order by Aktivnosti.ID desc";
             }
-               
-            
+
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
-                var dataAdapter = new SqlDataAdapter(select, c);
+            var dataAdapter = new SqlDataAdapter(select, c);
 
-                var commandBuilder = new SqlCommandBuilder(dataAdapter);
-                var ds = new DataSet();
-                dataAdapter.Fill(ds);
-                dataGridView1.ReadOnly = true;
-                dataGridView1.DataSource = ds.Tables[0];
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
 
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
@@ -925,88 +819,87 @@ namespace Saobracaj.Dokumenta
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
             DataGridViewColumn column = dataGridView1.Columns[0];
-                dataGridView1.Columns[0].HeaderText = "ID";
-                dataGridView1.Columns[0].Width = 30;
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 30;
 
-                DataGridViewColumn column1 = dataGridView1.Columns[1];
-                dataGridView1.Columns[1].HeaderText = "Oznaka";
-                dataGridView1.Columns[1].Width = 30;
+            DataGridViewColumn column1 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Oznaka";
+            dataGridView1.Columns[1].Width = 30;
 
-                DataGridViewColumn column2 = dataGridView1.Columns[2];
-                dataGridView1.Columns[2].HeaderText = "Zaposleni";
-                dataGridView1.Columns[2].Width = 100;
+            DataGridViewColumn column2 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Zaposleni";
+            dataGridView1.Columns[2].Width = 100;
 
-                DataGridViewColumn column3 = dataGridView1.Columns[3];
-                dataGridView1.Columns[3].HeaderText = "Vreme od";
-                dataGridView1.Columns[3].Width = 100;
+            DataGridViewColumn column3 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Vreme od";
+            dataGridView1.Columns[3].Width = 100;
 
-                DataGridViewColumn column4 = dataGridView1.Columns[4];
-                dataGridView1.Columns[4].HeaderText = "Vreme do";
-                dataGridView1.Columns[4].Width = 100;
+            DataGridViewColumn column4 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Vreme do";
+            dataGridView1.Columns[4].Width = 100;
 
-                DataGridViewColumn column5 = dataGridView1.Columns[5];
-                dataGridView1.Columns[5].HeaderText = "Ukupno";
-                dataGridView1.Columns[5].Width = 50;
+            DataGridViewColumn column5 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Ukupno";
+            dataGridView1.Columns[5].Width = 50;
 
-                DataGridViewColumn column6 = dataGridView1.Columns[6];
-                dataGridView1.Columns[6].HeaderText = "Ukupni troškovi";
-                dataGridView1.Columns[6].Width = 50;
+            DataGridViewColumn column6 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Ukupni troškovi";
+            dataGridView1.Columns[6].Width = 50;
 
-                DataGridViewColumn column7 = dataGridView1.Columns[7];
-                dataGridView1.Columns[7].HeaderText = "Opis";
-                dataGridView1.Columns[7].Width = 120;
+            DataGridViewColumn column7 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Opis";
+            dataGridView1.Columns[7].Width = 120;
 
-                DataGridViewColumn column8 = dataGridView1.Columns[8];
-                dataGridView1.Columns[8].HeaderText = "RN";
-                dataGridView1.Columns[8].Width = 50;
+            DataGridViewColumn column8 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "RN";
+            dataGridView1.Columns[8].Width = 50;
 
-                DataGridViewColumn column9 = dataGridView1.Columns[9];
-                dataGridView1.Columns[9].HeaderText = "Poslat Email";
-                dataGridView1.Columns[9].Width = 50;
+            DataGridViewColumn column9 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Poslat Email";
+            dataGridView1.Columns[9].Width = 50;
 
-                DataGridViewColumn column10 = dataGridView1.Columns[10];
-                dataGridView1.Columns[10].HeaderText = "Plaćeno";
-                dataGridView1.Columns[10].Width = 50;
+            DataGridViewColumn column10 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "Plaćeno";
+            dataGridView1.Columns[10].Width = 50;
 
-                DataGridViewColumn column11 = dataGridView1.Columns[11];
-                dataGridView1.Columns[11].HeaderText = "Računi";
-                dataGridView1.Columns[11].Width = 50;
+            DataGridViewColumn column11 = dataGridView1.Columns[11];
+            dataGridView1.Columns[11].HeaderText = "Računi";
+            dataGridView1.Columns[11].Width = 50;
 
-                DataGridViewColumn column12 = dataGridView1.Columns[12];
-                dataGridView1.Columns[12].HeaderText = "Kartice";
-                dataGridView1.Columns[12].Width = 50;
+            DataGridViewColumn column12 = dataGridView1.Columns[12];
+            dataGridView1.Columns[12].HeaderText = "Kartice";
+            dataGridView1.Columns[12].Width = 50;
 
-                DataGridViewColumn column13 = dataGridView1.Columns[13];
-                dataGridView1.Columns[13].HeaderText = "Masinovodja";
-                dataGridView1.Columns[13].Width = 50;
+            DataGridViewColumn column13 = dataGridView1.Columns[13];
+            dataGridView1.Columns[13].HeaderText = "Masinovodja";
+            dataGridView1.Columns[13].Width = 50;
 
-                DataGridViewColumn column14 = dataGridView1.Columns[14];
-                dataGridView1.Columns[14].HeaderText = "Mesto";
-                dataGridView1.Columns[14].Width = 100;
+            DataGridViewColumn column14 = dataGridView1.Columns[14];
+            dataGridView1.Columns[14].HeaderText = "Mesto";
+            dataGridView1.Columns[14].Width = 100;
 
-                DataGridViewColumn column15 = dataGridView1.Columns[15];
-                dataGridView1.Columns[15].HeaderText = "Pregledano računi";
-                dataGridView1.Columns[15].Width = 50;
+            DataGridViewColumn column15 = dataGridView1.Columns[15];
+            dataGridView1.Columns[15].HeaderText = "Pregledano računi";
+            dataGridView1.Columns[15].Width = 50;
 
-                DataGridViewColumn column16 = dataGridView1.Columns[16];
-                dataGridView1.Columns[16].HeaderText = "Pregledano kartice";
-                dataGridView1.Columns[16].Width = 50;
+            DataGridViewColumn column16 = dataGridView1.Columns[16];
+            dataGridView1.Columns[16].HeaderText = "Pregledano kartice";
+            dataGridView1.Columns[16].Width = 50;
 
-                DataGridViewColumn column17 = dataGridView1.Columns[17];
-                dataGridView1.Columns[17].HeaderText = "Milšped";
-                dataGridView1.Columns[17].Width = 50;
+            DataGridViewColumn column17 = dataGridView1.Columns[17];
+            dataGridView1.Columns[17].HeaderText = "Milšped";
+            dataGridView1.Columns[17].Width = 50;
 
-                DataGridViewColumn column18 = dataGridView1.Columns[18];
-                dataGridView1.Columns[18].HeaderText = "Zapisa";
-                dataGridView1.Columns[18].Width = 50;
+            DataGridViewColumn column18 = dataGridView1.Columns[18];
+            dataGridView1.Columns[18].HeaderText = "Zapisa";
+            dataGridView1.Columns[18].Width = 50;
 
-                RefreshTroskovi();
-            }
+            RefreshTroskovi();
+        }
 
         private void button10_Click(object sender, EventArgs e)
         {
             var select = "";
-            DateTime outputDateTimeValue;
 
 
             //  if (chkUnosMasinovođa.Checked == true)
@@ -1176,5 +1069,5 @@ namespace Saobracaj.Dokumenta
             MessageBox.Show("TO TI JE ZAVRŠENO!!!! Uradi refresh");
         }
     }
-    }
+}
 

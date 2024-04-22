@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -37,7 +27,7 @@ namespace Saobracaj.Dokumenta
             InitializeComponent();
             txtSifra.Text = sifra.ToString();
             KorisnikCene = Korisnik;
-        
+
         }
 
         private void VratiPodatke(int ID)
@@ -442,7 +432,7 @@ namespace Saobracaj.Dokumenta
         private void toolStripLabel1_Click(object sender, EventArgs e)
         {
             TrackModalDataSet111TableAdapters.SelectNajavaPrevozaTableAdapter ta = new TrackModalDataSet111TableAdapters.SelectNajavaPrevozaTableAdapter();
-           TrackModalDataSet111.SelectNajavaPrevozaDataTable dt = new TrackModalDataSet111.SelectNajavaPrevozaDataTable();
+            TrackModalDataSet111.SelectNajavaPrevozaDataTable dt = new TrackModalDataSet111.SelectNajavaPrevozaDataTable();
 
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();

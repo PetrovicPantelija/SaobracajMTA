@@ -1,19 +1,12 @@
-﻿using System;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.IO;
-using Saobracaj.Sifarnici;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -29,21 +22,11 @@ namespace Saobracaj.Dokumenta
 
         public string connect = frmLogovanje.connectionString;
         bool status = false;
-        string niz = "";
-        public static string code = "frmAutomobiliPregledPrijava";
-        public bool Pravo;
-        int idGrupe;
-        int idForme;
-        bool insert;
-        bool update;
-        bool delete;
-        string Kor = Sifarnici.frmLogovanje.user.ToString();
+
         public frmAutomobiliPregledPrijava()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
 
         public frmAutomobiliPregledPrijava(int sifra)
@@ -53,92 +36,6 @@ namespace Saobracaj.Dokumenta
             FillGV();
             DosaoSpolja = 1;
         }
-       
-
-      
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
-
-            while (dr.Read())
-            {
-                if (count == 0)
-                {
-                    niz = dr["IdGrupe"].ToString();
-                    count++;
-                }
-                else
-                {
-                    niz = niz + "," + dr["IdGrupe"].ToString();
-                    count++;
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
-        }
         private void frmAutomobiliPregledPrijava_Load(object sender, EventArgs e)
         {
             FillGV();
@@ -146,7 +43,7 @@ namespace Saobracaj.Dokumenta
             if (DosaoSpolja == 1)
             {
                 VratiPodatke(txt_Sifra.Text);
-            
+
             }
         }
         private void FillData()
@@ -238,7 +135,7 @@ namespace Saobracaj.Dokumenta
         private void FillGV()
         {
             var select = "  SELECT     ZaposleniPrijavaAuto.Id, AktivnostID, ZaposleniPrijavaAuto.OznakaPosla, Delavci.DeStaraSif, (RTRIM(Delavci.DeIme) + '  ' + RTRIM(Delavci.DePriimek)) AS Zaposleni, " +
-               "      ZaposleniPrijavaAuto.DatumPrijave, ZaposleniPrijavaAuto.DatumOdjave, ZaposleniPrijavaAuto.AutomobilId, Automobili.RegBr, Automobili.Marka, " + 
+               "      ZaposleniPrijavaAuto.DatumPrijave, ZaposleniPrijavaAuto.DatumOdjave, ZaposleniPrijavaAuto.AutomobilId, Automobili.RegBr, Automobili.Marka, " +
                 "           ZaposleniPrijavaAuto.DirektnaPrimopredajaZaduzivanje, ZaposleniPrijavaAuto.DirektnaPrimopredajaRazduzivanje, ZaposleniPrijavaAuto.KilometrazaZaduzivanje, " +
                  "          ZaposleniPrijavaAuto.KilometrazaRazduzivanje, CistocaSpolja.CistocaVrsta AS CistocaSpolja, CistocaIznutra.CistocaVrsta AS CistocaIznutra,  " +
                  "          CistocaSpoljaRazduzivanje.CistocaVrsta AS CistocaSpoljaRazduzivanje, CistocaIznutraRazduzivanje.CistocaVrsta AS CistocaUnutraRazduzivanje,  " +
@@ -292,7 +189,7 @@ namespace Saobracaj.Dokumenta
 
             DataGridViewColumn column3 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "Oznaka posla";
-           // dataGridView1.Columns[2].Visible = false;
+            // dataGridView1.Columns[2].Visible = false;
             dataGridView1.Columns[2].Width = 100;
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
@@ -392,7 +289,7 @@ namespace Saobracaj.Dokumenta
 
             DataGridViewColumn column24 = dataGridView1.Columns[23];
             dataGridView1.Columns[23].HeaderText = "Uloga";
-           // dataGridView1.Columns[22].Visible = false;
+            // dataGridView1.Columns[22].Visible = false;
             dataGridView1.Columns[23].Width = 100;
 
             DataGridViewColumn column25 = dataGridView1.Columns[24];
@@ -511,7 +408,7 @@ namespace Saobracaj.Dokumenta
                         txt_Sifra.Text = row.Cells[0].Value.ToString();
                         VratiPodatke(txt_Sifra.Text);
 
-                      
+
                         if (row.Cells[9].Value.Equals(true))
                         {
                             cb_DirPredZad.Checked = true;
@@ -519,7 +416,7 @@ namespace Saobracaj.Dokumenta
                         PictureBoxes.Clear();
                         filenames.Clear();
                         pictureBox1.Image = null;
-                       // FillGV();
+                        // FillGV();
                     }
                 }
             }
@@ -547,7 +444,7 @@ namespace Saobracaj.Dokumenta
                 else
                 {
                     string[] filterVideo = { "*.heic", ".*mp4" };
-                    foreach(string video in filterVideo)
+                    foreach (string video in filterVideo)
                     {
                         videos.AddRange(Directory.GetFiles(path, video, SearchOption.TopDirectoryOnly));
                         if (videos.Count > 0)
@@ -560,7 +457,7 @@ namespace Saobracaj.Dokumenta
 
                     }
                     string[] paterns = { "*.png", "*.gif", "*.jpg", "*.bmp", "*.tif" };
-                    
+
                     foreach (string pattern in paterns)
                     {
                         filenames.AddRange(Directory.GetFiles(path, pattern, SearchOption.TopDirectoryOnly));
@@ -568,13 +465,13 @@ namespace Saobracaj.Dokumenta
                     filenames.Sort();
                     for (int i = 0; i < files.Length; i++)
                     {
-                        if (slika < 0 || slika > files.Length-1)
+                        if (slika < 0 || slika > files.Length - 1)
                         {
                             if (slika < 0)
                             {
                                 slika = 0;
                             }
-                            if (slika > files.Length-1)
+                            if (slika > files.Length - 1)
                             {
                                 slika = files.Length - 1;
                             }
@@ -650,7 +547,7 @@ namespace Saobracaj.Dokumenta
                 dtpDatumPrijave.Value = Convert.ToDateTime(dr["DatumPrijave"].ToString());
                 dt_Odjava.Value = Convert.ToDateTime(dr["DatumOdjave"].ToString());
                 combo_Automobil.SelectedValue = Convert.ToInt32(dr["AutomobilId"].ToString());
-                combo_CistocaSpoljaZad.SelectedValue= Convert.ToInt32(dr["CistocaSpoljaZaduzivanje"].ToString()); ;
+                combo_CistocaSpoljaZad.SelectedValue = Convert.ToInt32(dr["CistocaSpoljaZaduzivanje"].ToString()); ;
                 combo_CistocaUnutraZad.SelectedValue = Convert.ToInt32(dr["CistocaIznutraZaduzivanje"].ToString()); ;
                 combo_CistocaSpoljaRaz.SelectedValue = Convert.ToInt32(dr["CistocaSpoljaRazduzivanje"].ToString());
                 combo_CistocaUnutraRaz.SelectedValue = Convert.ToInt32(dr["CistocaIznutraRazduzivanje"].ToString());
@@ -677,7 +574,7 @@ namespace Saobracaj.Dokumenta
                 txtNGRazduzenje.Text = dr["NivoGorivaRazduzivanje"].ToString();
                 txt_KmZaduzenje.Text = dr["KilometrazaZaduzivanje"].ToString();
                 txt_KmRazduzenje.Text = dr["KilometrazaRazduzivanje"].ToString();
-                txtPosao.Text  = dr["OznakaPosla"].ToString();
+                txtPosao.Text = dr["OznakaPosla"].ToString();
                 txtUloga.Text = dr["Uloga"].ToString();
                 cboMestoPolaska.SelectedValue = Convert.ToInt32(dr["MestoPolaska"].ToString());
                 cboMestoDolaska.SelectedValue = Convert.ToInt32(dr["MestoDolaska"].ToString());

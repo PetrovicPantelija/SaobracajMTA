@@ -3,7 +3,6 @@ using Newtonsoft.Json.Linq;
 using Saobracaj.Sifarnici;
 //using RestSharp;
 using System;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.IO;
@@ -1696,7 +1695,7 @@ namespace Saobracaj.eDokumenta
                     string json = "{\n" +
                         "Username:" + txt_uName.Text.ToString().TrimEnd() + "," +
                         "\nPassword:\"" + txt_Password.Text.ToString().TrimEnd() + "\"," +
-                        "\nCompanyId:\""+Saobracaj.Sifarnici.frmLogovanje.PIB+"\"," +
+                        "\nCompanyId:\"" + Saobracaj.Sifarnici.frmLogovanje.PIB + "\"," +
                         "\nSoftwareId:\"MtaSoft-001\"," +
                         "\nSendToCir:null," +
                         "\nFile:" + xmlEscape + "\n}";
@@ -1737,7 +1736,7 @@ namespace Saobracaj.eDokumenta
                     string json = "{\n" +
                         "Username:" + txt_uName.Text.ToString().TrimEnd() + "," +
                         "\nPassword:\"" + txt_Password.Text.ToString().TrimEnd() + "\"," +
-                        "\nCompanyId:\""+Saobracaj.Sifarnici.frmLogovanje.PIB+"\"," +
+                        "\nCompanyId:\"" + Saobracaj.Sifarnici.frmLogovanje.PIB + "\"," +
                         "\nSoftwareId:\"MtaSoft-001\"," +
                         "\nSendToCir:true," +
                         "\nFile:" + xmlEscape + "\n}";
@@ -1780,7 +1779,7 @@ namespace Saobracaj.eDokumenta
                 string json2 = "{\n" +
             "Username:Test," +
             "\nPassword:\"TestPass\"," +
-            "\nCompanyId:\""+Saobracaj.Sifarnici.frmLogovanje.PIB+"\"," +
+            "\nCompanyId:\"" + Saobracaj.Sifarnici.frmLogovanje.PIB + "\"," +
             "\nSoftwareId:\"MtaSoft-001\"," +
             "\nElectronicId:" + elID + "}";
 

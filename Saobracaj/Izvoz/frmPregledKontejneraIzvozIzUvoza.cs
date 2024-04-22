@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Syncfusion.Windows.Forms.Grid.Grouping;
+using System;
 using System.Configuration;
-using Syncfusion.Windows.Forms.Grid.Grouping;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
 {
@@ -35,7 +28,7 @@ namespace Saobracaj.Izvoz
             con.Open();
 
             SqlCommand cmd = new SqlCommand("select Count(ID) as Broj" +
-            "  from IzvozKonacnaZaglavlje" 
+            "  from IzvozKonacnaZaglavlje"
            , con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -52,8 +45,8 @@ namespace Saobracaj.Izvoz
 
         private void frmPregledKontejneraIzvozIzUvoza_Load(object sender, EventArgs e)
         {
-        RefreshUvoz();
-        RefreshIzvoz();
+            RefreshUvoz();
+            RefreshIzvoz();
             SqlConnection conn = new SqlConnection(connection);
             var bro = "Select distinct ID From UvozKonacnaZaglavlje  order by ID desc";
             var broAD = new SqlDataAdapter(bro, conn);
@@ -169,5 +162,5 @@ namespace Saobracaj.Izvoz
         }
     }
 
-    
+
 }

@@ -1,22 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-using System.Diagnostics.CodeAnalysis;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
 {
-    public partial class frmOtpremaKontejneraKamionomIzKontejnera :  Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmOtpremaKontejneraKamionomIzKontejnera : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         string KorisnikCene = Sifarnici.frmLogovanje.user;
@@ -93,8 +82,8 @@ namespace Saobracaj.Izvoz
                 txtRegBrKamiona.Text = dr["RegBr"].ToString();
                 txtImeVozaca.Text = dr["Vozac"].ToString();
                 dtpDatumOtpreme.Value = Convert.ToDateTime(dr["Datum"].ToString());
-                txtNapomena.Text = "BR TELEFONA:" + dr["BrojTelefona"].ToString() + " Napomena: "+ dr["Napomena"].ToString();
-              
+                txtNapomena.Text = "BR TELEFONA:" + dr["BrojTelefona"].ToString() + " Napomena: " + dr["Napomena"].ToString();
+
             }
             con.Close();
 
@@ -162,7 +151,7 @@ namespace Saobracaj.Izvoz
 
         private void button1_Click(object sender, EventArgs e)
         {
-          
+
 
 
         }
@@ -170,7 +159,7 @@ namespace Saobracaj.Izvoz
         private void frmOtpremaKontejneraKamionomIzKontejnera_Load(object sender, EventArgs e)
         {
             if (chkUvoz.Checked == true)
-            { VratiOstalePodatkeIzUsluge(KonkretnaUsluga, 0); } 
+            { VratiOstalePodatkeIzUsluge(KonkretnaUsluga, 0); }
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -198,10 +187,10 @@ namespace Saobracaj.Izvoz
                             return;
 
                         }
-                     
+
                 }
             }
-            
+
         }
     }
 }

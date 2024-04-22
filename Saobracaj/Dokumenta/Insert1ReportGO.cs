@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -21,7 +17,7 @@ namespace Saobracaj.Dokumenta
             myCommand.CommandText = "Insert1REportGO";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-          
+
 
             SqlParameter parameter = new SqlParameter();
             parameter.ParameterName = "@Zaposleni";
@@ -31,8 +27,8 @@ namespace Saobracaj.Dokumenta
             parameter.Value = Zaposleni;
             myCommand.Parameters.Add(parameter);
 
-           
-           
+
+
 
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@Prebivaliste";
@@ -129,7 +125,7 @@ namespace Saobracaj.Dokumenta
             parameter12.Direction = ParameterDirection.Input;
             parameter12.Value = DatumZahteva;
             myCommand.Parameters.Add(parameter12);
-          
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

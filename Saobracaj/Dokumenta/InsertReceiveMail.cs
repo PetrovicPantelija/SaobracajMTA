@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
-
-
-using System.Threading.Tasks;
-using System.Data.OleDb;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 
 namespace Saobracaj.Dokumenta
@@ -89,7 +81,7 @@ namespace Saobracaj.Dokumenta
             parameter8.Direction = ParameterDirection.Input;
             parameter8.Value = Status;
             myCommand.Parameters.Add(parameter8);
-           
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -127,7 +119,7 @@ namespace Saobracaj.Dokumenta
 
         }
 
-        public void UpdRecMail(string ID,  string Status)
+        public void UpdRecMail(string ID, string Status)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

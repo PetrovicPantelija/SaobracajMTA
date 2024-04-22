@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 
 namespace Testiranje.Sifarnici
@@ -31,7 +27,7 @@ namespace Testiranje.Sifarnici
             parameter3.Value = Korisnik;
             myCommand.Parameters.Add(parameter3);
 
-           
+
 
             SqlParameter parameter5 = new SqlParameter();
             parameter5.ParameterName = "@Password";
@@ -45,7 +41,7 @@ namespace Testiranje.Sifarnici
             SqlParameter parameter6 = new SqlParameter();
             parameter6.ParameterName = "@Zakljucavanje";
             parameter6.SqlDbType = SqlDbType.Int;
-           // parameter6.Size = 20;
+            // parameter6.Size = 20;
             parameter6.Direction = ParameterDirection.Input;
             parameter6.Value = Zakljucavanje;
             myCommand.Parameters.Add(parameter6);
@@ -87,7 +83,7 @@ namespace Testiranje.Sifarnici
             }
         }
 
-      
+
 
         public void DeleteKor(string Korisnik)
         {

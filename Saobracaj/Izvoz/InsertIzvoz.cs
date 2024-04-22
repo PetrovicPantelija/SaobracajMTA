@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
@@ -326,7 +322,7 @@ namespace Saobracaj.Izvoz
             }
         }
 
-        public void IzvozOpredelioTerminal(int ID,string BrojKontejnera)
+        public void IzvozOpredelioTerminal(int ID, string BrojKontejnera)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -720,7 +716,7 @@ namespace Saobracaj.Izvoz
             }
         }
 
-       
+
 
 
         public void DelIzvozNHM(int ID)
@@ -978,7 +974,7 @@ namespace Saobracaj.Izvoz
             orgjed.Value = OrgJed;
             cmd.Parameters.Add(orgjed);
 
-            SqlParameter platilac= new SqlParameter();
+            SqlParameter platilac = new SqlParameter();
             platilac.ParameterName = "@Platilac";
             platilac.SqlDbType = SqlDbType.Int;
             platilac.Direction = ParameterDirection.Input;
@@ -1264,11 +1260,11 @@ namespace Saobracaj.Izvoz
                             int NacinPakovanja, int NacinPretovara, string DodatneNapomeneDrumski, int Vaganje,
                             decimal VGMTezina, decimal Tara, decimal VGMBrod, int Izvoznik,
                             int Klijent1, int Napomena1REf, int DobijenNalogKlijent1, int Klijent2,
-                            int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, 
+                            int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR,
                             string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, int VrstaBrodskePlombe, string NapomenaZaRobu, decimal VGMBrod2, string KontaktSpeditera, string KontaktOsobe)
         {
 
-            
+
 
 
 
@@ -1356,7 +1352,7 @@ namespace Saobracaj.Izvoz
             brutorobeO.Direction = ParameterDirection.Input;
             brutorobeO.Value = BrutoRobeO;
             cmd.Parameters.Add(brutorobeO);
-           
+
             SqlParameter brojkoleta = new SqlParameter();
             brojkoleta.ParameterName = "@BrojKoleta";
             brojkoleta.SqlDbType = SqlDbType.Int;
@@ -1448,7 +1444,7 @@ namespace Saobracaj.Izvoz
             SqlParameter kontaktOsoba = new SqlParameter();
             kontaktOsoba.ParameterName = "@KontaktOsoba";
             kontaktOsoba.SqlDbType = SqlDbType.Int;
-           // kontaktOsoba.Size = 50;
+            // kontaktOsoba.Size = 50;
             kontaktOsoba.Direction = ParameterDirection.Input;
             kontaktOsoba.Value = KontaktOsoba;
             cmd.Parameters.Add(kontaktOsoba);
@@ -1717,7 +1713,7 @@ namespace Saobracaj.Izvoz
             cmd.Parameters.Add(kontaktspeditera);
 
 
-            SqlParameter kontaktosobe= new SqlParameter();
+            SqlParameter kontaktosobe = new SqlParameter();
             kontaktosobe.ParameterName = "@KontaktOsobe";
             kontaktosobe.SqlDbType = SqlDbType.NVarChar;
             kontaktosobe.Size = 500;

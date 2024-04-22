@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -14,7 +10,7 @@ namespace Saobracaj.Dokumenta
     {
         public void InsTovarniList(int Posiljalac, int Primalac, string KorisnickaSIfraPosiljalac, string KorisnickaSifraPrimalac, string FrankiraneTroskove, string NeFrankiraneTroskove, string IzjavePosiljaoca, string ObavestenjePosiljaoca, string Prilozi, int MestoIzdavanja, string SifraMestaIzdavanja, string SifraStaniceMestaIzdavanja, string KomercijalniUslovi, string KorisnickiSporazum, string ObavestenjePrimaocu, string PreuzimanjeNaPrevoz, string BrojKola, string FakturisanjeTranzita, string PlacanjeTroskova, string NarocitaPosiljka, string RID, double Vrednost, double BrutoMasaRobe, double NetoRobe, double BrutoMasaVoza, string ObezbedjenjeIsporuke, string Pouzece, string MestoIspostavljanja, DateTime DatumIspostavljanja, string OznakaDokumenta, string CIMBroj, string VrstaRobe, string NHM, string MestoPreuzimanja, string DrugiPrevoznici)
         {
-         
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();

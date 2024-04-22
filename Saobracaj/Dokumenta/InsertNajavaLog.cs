@@ -1,12 +1,7 @@
 ﻿using Saobracaj.Sifarnici;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -15,13 +10,13 @@ namespace Saobracaj.Dokumenta
     class InsertNajavaLog
     {
         string connect = frmLogovanje.connectionString;
-        public void insNajavaLog(string Izmenio,string Akcija,DateTime Datum,int ID,string BrojNajave,int Voz,int Posiljalac,int Prevoznik,int Otpravna, 
-           int Uputna,int Primalac,int RobaNHM,string PrevozniPut,decimal Tezina,decimal Duzina,int BrojKola,int RID,DateTime PredvidjenoPrimanje,
-           DateTime StvarnoPrimanje,DateTime PredvidjenaPredaja,DateTime StvarnaPredaja,int Status,string OnBroj,int Verzija,int Razlog,DateTime DatumUnosa,
-           string RIDBroj,string Komentar,int VozP,int Granicna,int Platilac,int AdHoc,int PrevoznikZa,string Faktura,string Zadatak,int CIM,string Korisnik,
-           string DispecerRID,int TipPrevoza,decimal NetoTezinaM,int PorudzbinaID,int ImaPovrat,int TehnologijaID,int RobaNhm2,string DodatnoPorudzbina,DateTime PomocniDatum)
+        public void insNajavaLog(string Izmenio, string Akcija, DateTime Datum, int ID, string BrojNajave, int Voz, int Posiljalac, int Prevoznik, int Otpravna,
+           int Uputna, int Primalac, int RobaNHM, string PrevozniPut, decimal Tezina, decimal Duzina, int BrojKola, int RID, DateTime PredvidjenoPrimanje,
+           DateTime StvarnoPrimanje, DateTime PredvidjenaPredaja, DateTime StvarnaPredaja, int Status, string OnBroj, int Verzija, int Razlog, DateTime DatumUnosa,
+           string RIDBroj, string Komentar, int VozP, int Granicna, int Platilac, int AdHoc, int PrevoznikZa, string Faktura, string Zadatak, int CIM, string Korisnik,
+           string DispecerRID, int TipPrevoza, decimal NetoTezinaM, int PorudzbinaID, int ImaPovrat, int TehnologijaID, int RobaNhm2, string DodatnoPorudzbina, DateTime PomocniDatum)
         {
-            
+
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "sp_InsertNajavaLOG";
@@ -94,7 +89,7 @@ namespace Saobracaj.Dokumenta
             cmd.Parameters.Add(otpravna);
 
             SqlParameter uputna = new SqlParameter();
-            uputna.ParameterName="@Uputna";
+            uputna.ParameterName = "@Uputna";
             uputna.SqlDbType = SqlDbType.Int;
             uputna.Direction = ParameterDirection.Input;
             uputna.Value = Uputna;
@@ -389,7 +384,7 @@ namespace Saobracaj.Dokumenta
                 conn.Close();
                 if (error)
                 {
-                    
+
                 }
             }
         }

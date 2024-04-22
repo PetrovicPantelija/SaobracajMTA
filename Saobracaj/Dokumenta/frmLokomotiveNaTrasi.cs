@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -30,7 +24,7 @@ namespace Saobracaj.Dokumenta
             txtSifraRN.Text = RadniNalog;
             pomTrasa = Trasa;
 
-            
+
         }
 
         private void frmLokomotiveNaTrasi_Load(object sender, EventArgs e)
@@ -95,39 +89,31 @@ namespace Saobracaj.Dokumenta
 
         private void tsSave_Click(object sender, EventArgs e)
         {
-           
-          
-            int pomVucna;
-            pomVucna = 1;
-            if (status==true)
+            if (status == true)
             {
                 if (chkVucna.Checked)
                 {
-                    pomVucna = 1;
                 }
                 else
                 {
-                    pomVucna = 0;
                 }
                 InsertLokomotiveNaTrasi ins = new InsertLokomotiveNaTrasi();
-                ins.InsRNTL(Convert.ToInt32(txtSifraRN.Text), Convert.ToInt32(cboTrase.SelectedValue), cboLokomotiva.Text, txtKomentar.Text,chkVucna.Checked, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(txtVreme.Value));
+                ins.InsRNTL(Convert.ToInt32(txtSifraRN.Text), Convert.ToInt32(cboTrase.SelectedValue), cboLokomotiva.Text, txtKomentar.Text, chkVucna.Checked, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(txtVreme.Value));
                 RefreshDataGrid();
                 status = false;
             }
             else
             {
-                 
-            
+
+
                 if (chkVucna.Checked)
                 {
-                    pomVucna = 1;
                 }
                 else
                 {
-                    pomVucna = 0;
                 }
                 InsertLokomotiveNaTrasi upd = new InsertLokomotiveNaTrasi();
-                upd.UpdRNTL(Convert.ToInt32(txtSifraRN.Text), Convert.ToInt32(cboTrase.SelectedValue), cboLokomotiva.Text, txtKomentar.Text,chkVucna.Checked, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(txtVreme.Value));
+                upd.UpdRNTL(Convert.ToInt32(txtSifraRN.Text), Convert.ToInt32(cboTrase.SelectedValue), cboLokomotiva.Text, txtKomentar.Text, chkVucna.Checked, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(txtVreme.Value));
                 RefreshDataGrid();
                 status = false;
             }
@@ -166,7 +152,7 @@ namespace Saobracaj.Dokumenta
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "RN";
             dataGridView1.Columns[0].Width = 40;
-           
+
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Trasa";
             dataGridView1.Columns[1].Width = 60;
@@ -217,13 +203,13 @@ namespace Saobracaj.Dokumenta
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(s_connection);
             con.Open();
-            SqlCommand cmd = new SqlCommand("select IDRadnogNaloga, IDTrase, SMSifra, Komentar, Vucna, StanicaOd, StanicaDo, Vreme from RadniNalogLokNaTrasi where IDRadnogNaloga=" + txtSifraRN.Text + " and IDTrase = " + Convert.ToInt32(cboTrase.SelectedValue) + "and SmSifra = '"  + lokomotiva.Trim() + "'", con);
+            SqlCommand cmd = new SqlCommand("select IDRadnogNaloga, IDTrase, SMSifra, Komentar, Vucna, StanicaOd, StanicaDo, Vreme from RadniNalogLokNaTrasi where IDRadnogNaloga=" + txtSifraRN.Text + " and IDTrase = " + Convert.ToInt32(cboTrase.SelectedValue) + "and SmSifra = '" + lokomotiva.Trim() + "'", con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
-               cboLokomotiva.SelectedValue = Convert.ToInt32(dr["SmSifra"].ToString());
-               txtKomentar.Text = dr["Komentar"].ToString();
+                cboLokomotiva.SelectedValue = Convert.ToInt32(dr["SmSifra"].ToString());
+                txtKomentar.Text = dr["Komentar"].ToString();
                 txtVreme.Value = Convert.ToInt32(dr["Vreme"].ToString());
                 cboStanicaOd.SelectedValue = Convert.ToInt32(dr["StanicaOd"].ToString());
                 cboStanicaDo.SelectedValue = Convert.ToInt32(dr["StanicaDo"].ToString());
@@ -238,8 +224,8 @@ namespace Saobracaj.Dokumenta
                     chkVucna.Checked = false;
                 }
             }
-            con.Close();    
-            }
+            con.Close();
+        }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
@@ -249,8 +235,8 @@ namespace Saobracaj.Dokumenta
                 {
                     if (row.Selected)
                     {
-                       cboLokomotiva.SelectedValue = row.Cells[2].Value.ToString();
-                       VratiPodatke(cboLokomotiva.Text);
+                        cboLokomotiva.SelectedValue = row.Cells[2].Value.ToString();
+                        VratiPodatke(cboLokomotiva.Text);
                     }
                 }
 
@@ -264,7 +250,7 @@ namespace Saobracaj.Dokumenta
 
         private void tsDelete_Click(object sender, EventArgs e)
         {
-           
+
             InsertLokomotiveNaTrasi del = new InsertLokomotiveNaTrasi();
             del.delRNTL(Convert.ToInt32(txtSifraRN.Text), Convert.ToInt32(cboTrase.SelectedValue), cboLokomotiva.Text.TrimEnd());
             RefreshDataGrid();

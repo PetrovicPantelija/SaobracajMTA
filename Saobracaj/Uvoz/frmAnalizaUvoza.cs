@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Syncfusion.Windows.Forms.Grid.Grouping;
+using System;
 using System.Configuration;
-using Syncfusion.Windows.Forms.Grid.Grouping;
-using Syncfusion.Data;
-using Syncfusion.Drawing;
-using Syncfusion.Windows.Forms.Grid;
-using Syncfusion.Grouping;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
@@ -23,7 +14,7 @@ namespace Saobracaj.Uvoz
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MzcwMDg5QDMxMzgyZTM0MmUzMFhQSmlDM0M2bGpxcXVtT1VScTg1a0dtVTFLcUZiK0tLRnpvRTYyRFpMc3M9");
 
             InitializeComponent();
-           
+
         }
 
         private void frmAnalizaUvoza_Load(object sender, EventArgs e)
@@ -64,20 +55,20 @@ namespace Saobracaj.Uvoz
             {
                 column.AllowFilter = true;
             }
-          /*
-            GridSummaryColumnDescriptor summaryColumnDescriptor = new GridSummaryColumnDescriptor();
-            summaryColumnDescriptor.Appearance.AnySummaryCell.Interior = new BrushInfo(Color.FromArgb(192, 255, 162));
-            summaryColumnDescriptor.DataMember = "Ukupno";
-            summaryColumnDescriptor.Format = "{Sum}";
-            summaryColumnDescriptor.Name = "Potrošeno";
-            summaryColumnDescriptor.SummaryType = Syncfusion.Grouping.SummaryType.Int32Aggregate;
+            /*
+              GridSummaryColumnDescriptor summaryColumnDescriptor = new GridSummaryColumnDescriptor();
+              summaryColumnDescriptor.Appearance.AnySummaryCell.Interior = new BrushInfo(Color.FromArgb(192, 255, 162));
+              summaryColumnDescriptor.DataMember = "Ukupno";
+              summaryColumnDescriptor.Format = "{Sum}";
+              summaryColumnDescriptor.Name = "Potrošeno";
+              summaryColumnDescriptor.SummaryType = Syncfusion.Grouping.SummaryType.Int32Aggregate;
 
-            GridSummaryRowDescriptor summaryRowDescriptor = new GridSummaryRowDescriptor();
-            summaryRowDescriptor.SummaryColumns.Add(summaryColumnDescriptor);
-            summaryRowDescriptor.Appearance.AnySummaryCell.Interior = new BrushInfo(Color.FromArgb(255, 231, 162));
+              GridSummaryRowDescriptor summaryRowDescriptor = new GridSummaryRowDescriptor();
+              summaryRowDescriptor.SummaryColumns.Add(summaryColumnDescriptor);
+              summaryRowDescriptor.Appearance.AnySummaryCell.Interior = new BrushInfo(Color.FromArgb(255, 231, 162));
 
-            this.gridGroupingControl1.TableDescriptor.SummaryRows.Add(summaryRowDescriptor);
-          */
+              this.gridGroupingControl1.TableDescriptor.SummaryRows.Add(summaryRowDescriptor);
+            */
         }
     }
 }

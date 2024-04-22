@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Nepravilnosti
@@ -71,7 +67,7 @@ namespace Saobracaj.Nepravilnosti
                 }
             }
         }
-        public void UpdSifGrupaNepravilnosti(int ID,string Naziv, string Opis)
+        public void UpdSifGrupaNepravilnosti(int ID, string Naziv, string Opis)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();

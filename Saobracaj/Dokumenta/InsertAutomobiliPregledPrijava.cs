@@ -1,12 +1,7 @@
 ﻿using Saobracaj.Sifarnici;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
@@ -14,7 +9,7 @@ namespace Saobracaj.Dokumenta
     class InsertAutomobiliPregledPrijava
     {
         string connect = frmLogovanje.connectionString;
-        public void InsAutomobiliPregledPrijava(int Zaposleni, DateTime DatumPrijave, DateTime DatumOdjave, int AutomobilId,  int CistocaSpoljaZaduzivanje,
+        public void InsAutomobiliPregledPrijava(int Zaposleni, DateTime DatumPrijave, DateTime DatumOdjave, int AutomobilId, int CistocaSpoljaZaduzivanje,
         int CistocaIznutraZaduzivanje, int CistocaSpoljaRazduzivanje, int CistocaIznutraRazduzivanje, int NivoUljaZaduzivanje, bool DirektnaPrimopredajaZaduzivanje,
         int NivoUljaRazduzivanje, bool DirektnaPrimopredajaRazduzivanje, float KilometrazaZaduzivanje, float KilometrazaRazduzivanje, bool Plomba1PotvrdaZaduzenje,
         bool Plomba2PotvrdaZaduzenje, bool Plomba1PotvrdaRazduzenje, bool Plomba2PotvrdaRazduzenje)
@@ -26,7 +21,7 @@ namespace Saobracaj.Dokumenta
 
             SqlParameter paramZaposleni = new SqlParameter();
             paramZaposleni.ParameterName = "@Zaposleni";
-            paramZaposleni.SqlDbType=SqlDbType.Int;
+            paramZaposleni.SqlDbType = SqlDbType.Int;
             paramZaposleni.Direction = ParameterDirection.Input;
             paramZaposleni.Value = Zaposleni;
             cmd.Parameters.Add(paramZaposleni);
@@ -52,7 +47,7 @@ namespace Saobracaj.Dokumenta
             paramAuto.Value = AutomobilId;
             cmd.Parameters.Add(paramAuto);
 
-           
+
 
             SqlParameter paramCistocaSpZad = new SqlParameter();
             paramCistocaSpZad.ParameterName = "@CistocaSpoljaZaduzivanje";
@@ -182,7 +177,7 @@ namespace Saobracaj.Dokumenta
                 }
             }
         }
-        public void UpdAutomobiliPregledPrijava(int ID, int Zaposleni, DateTime DatumPrijave, DateTime DatumOdjave, int AutomobilId,  int CistocaSpoljaZaduzivanje,
+        public void UpdAutomobiliPregledPrijava(int ID, int Zaposleni, DateTime DatumPrijave, DateTime DatumOdjave, int AutomobilId, int CistocaSpoljaZaduzivanje,
         int CistocaIznutraZaduzivanje, int CistocaSpoljaRazduzivanje, int CistocaIznutraRazduzivanje, int NivoUljaZaduzivanje, bool DirektnaPrimopredajaZaduzivanje,
         int NivoUljaRazduzivanje, bool DirektnaPrimopredajaRazduzivanje, float KilometrazaZaduzivanje, float KilometrazaRazduzivanje, bool Plomba1PotvrdaZaduzenje,
         bool Plomba2PotvrdaZaduzenje, bool Plomba1PotvrdaRazduzenje, bool Plomba2PotvrdaRazduzenje)
@@ -387,7 +382,7 @@ namespace Saobracaj.Dokumenta
             {
                 MessageBox.Show(ex.ToString());
                 throw new Exception("Brisanje neuspešno");
-             
+
             }
             finally
             {

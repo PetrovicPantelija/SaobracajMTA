@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-using System.Diagnostics.CodeAnalysis;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
@@ -28,7 +18,7 @@ namespace Saobracaj.Uvoz
         {
             InitializeComponent();
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
-            
+
         }
 
         public frmPrijemVozaIzPlana(int RNI)
@@ -64,7 +54,7 @@ namespace Saobracaj.Uvoz
             }
             con.Close();
             return Postoji;
-           
+
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -98,7 +88,7 @@ namespace Saobracaj.Uvoz
                 }
 
             }
-           
+
         }
         private void VratiIDPrijemnice(int Voz)
         {
@@ -163,7 +153,7 @@ namespace Saobracaj.Uvoz
         private void button2_Click(object sender, EventArgs e)
         {
             VratiVozIzPlana();
-            
+
         }
 
         int VratiPlan()
@@ -183,7 +173,7 @@ namespace Saobracaj.Uvoz
             }
             con.Close();
             return PlanID;
-            
+
 
         }
 
@@ -229,7 +219,7 @@ namespace Saobracaj.Uvoz
             var select5 = "  select PaSifra, PaNaziv from Partnerji order by PaNaziv";
             var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection4);
-            var c5= new SqlConnection(s_connection5);
+            var c5 = new SqlConnection(s_connection5);
             var dataAdapter5 = new SqlDataAdapter(select5, c5);
 
             var commandBuilder5 = new SqlCommandBuilder(dataAdapter5);
@@ -245,7 +235,7 @@ namespace Saobracaj.Uvoz
                 cboPlanUtovara.SelectedValue = voz;
                 VratiVozIzPlana();
             }
-           
+
         }
 
         private void ProglasiObradjenimRNIVOZ(int PlanID)
@@ -267,7 +257,7 @@ namespace Saobracaj.Uvoz
                 ProglasiObradjenimRNIVOZ(Convert.ToInt32(cboPlanUtovara.SelectedValue));
             }
             MessageBox.Show("Uspešno ste formirali prijemnicu za Plan");
-            
+
         }
 
         private void RefreshDataGrid()
@@ -438,7 +428,7 @@ namespace Saobracaj.Uvoz
                 default:
                     {
 
-                      
+
                         return;
 
                     }

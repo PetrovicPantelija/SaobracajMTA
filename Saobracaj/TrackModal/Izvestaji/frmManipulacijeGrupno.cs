@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Testiranje.Izvestaji
 {
@@ -59,13 +51,13 @@ namespace Testiranje.Izvestaji
             DataGridViewColumn column = dataGridView3.Columns[0];
             dataGridView3.Columns[0].HeaderText = "Platilac id";
             dataGridView3.Columns[0].Width = 40;
-          //  dataGridView3.Columns[0].DefaultCellStyle.BackColor = Color.LightYellow;
+            //  dataGridView3.Columns[0].DefaultCellStyle.BackColor = Color.LightYellow;
             // dataGridView2.Columns[0].Visible = false;
 
             DataGridViewColumn column2 = dataGridView3.Columns[1];
             dataGridView3.Columns[1].HeaderText = "Naziv";
             dataGridView3.Columns[1].Width = 400;
-          //  dataGridView3.Columns[1].DefaultCellStyle.BackColor = Color.LightSeaGreen;
+            //  dataGridView3.Columns[1].DefaultCellStyle.BackColor = Color.LightSeaGreen;
 
             DataGridViewColumn column3 = dataGridView3.Columns[2];
             dataGridView3.Columns[2].HeaderText = "Ukupno";
@@ -76,7 +68,7 @@ namespace Testiranje.Izvestaji
             dataGridView3.Columns[3].Width = 250;
             dataGridView3.Columns[3].DefaultCellStyle.BackColor = Color.LightYellow;
 
-         
+
         }
 
         private void frmManipulacijeGrupno_Load(object sender, EventArgs e)

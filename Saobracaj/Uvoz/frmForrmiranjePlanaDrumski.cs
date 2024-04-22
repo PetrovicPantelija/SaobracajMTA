@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Office.Interop.Excel;
 
 namespace Saobracaj.Uvoz
 {
@@ -90,13 +84,13 @@ namespace Saobracaj.Uvoz
             InsertUvozKonacnaZaglavlje ins = new InsertUvozKonacnaZaglavlje();
             if (status == true)
             {
-                ins.InsUvozKonacnaZaglavlje(0,txtNapomena.Text,0,txtVozilo.Text, Convert.ToDateTime(dtpDatum.Value), txtVozac.Text, txtBrojTelefona.Text,0);
+                ins.InsUvozKonacnaZaglavlje(0, txtNapomena.Text, 0, txtVozilo.Text, Convert.ToDateTime(dtpDatum.Value), txtVozac.Text, txtBrojTelefona.Text, 0);
             }
             else
             {
                 ins.UpdUvozKonacnaZaglavlje(Convert.ToInt32(txtID.Text.ToString()), 0, txtNapomena.Text, 0, txtVozilo.Text, Convert.ToDateTime(dtpDatum.Value), txtVozac.Text, txtBrojTelefona.Text);
             }
-          //  FillGV();
+            //  FillGV();
             tsNew.Enabled = true;
             status = false;
 

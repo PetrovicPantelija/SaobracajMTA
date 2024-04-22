@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 
 namespace Testiranje.Sifarnici
@@ -14,10 +10,10 @@ namespace Testiranje.Sifarnici
     class InsertDokumenta
     {
 
-        public void InsDok(string Naziv, string Oznaka, string DokumentIzradjuje, int IDNacinaDolaskaOdlaska,  DateTime Datum, string Korisnik)
+        public void InsDok(string Naziv, string Oznaka, string DokumentIzradjuje, int IDNacinaDolaskaOdlaska, DateTime Datum, string Korisnik)
         {
-           // DokumentIzradjuje nvarchar(50),
- // @IDNacinaDolaskaOdlaska int,
+            // DokumentIzradjuje nvarchar(50),
+            // @IDNacinaDolaskaOdlaska int,
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();

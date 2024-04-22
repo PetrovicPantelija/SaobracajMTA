@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -23,12 +16,12 @@ namespace Saobracaj.Dokumenta
         private void txtLokacija_Leave(object sender, EventArgs e)
         {
             RefreshDataGrid1();
-            
+
         }
 
         private void RefreshDataGrid1()
         {
-           
+
 
             var select = " select  ZlLok,  ZlSifMP,  MaticniPodatki.MpStaraSif as Artikal, ZlDejanskaKol from ZalogaLokacija inner join MaticniPodatki on MaticniPodatki.MpSifra = ZaLogaLokacija.ZlSifMp";
             select = select + " where ZlSifSklad = " + cboSkladiste.SelectedValue + " and ZlLok like ( '" + txtLokacija.Text + "%' )" + " order by ZlLok  "; ;
@@ -60,7 +53,7 @@ namespace Saobracaj.Dokumenta
             dataGridView1.Columns[3].HeaderText = "Količina";
             dataGridView1.Columns[3].Width = 50;
 
-           
+
 
         }
 
@@ -204,7 +197,7 @@ namespace Saobracaj.Dokumenta
 
             var select4 = " Select SkSifra, SkNaziv from Sklad order by SkSifra";
             var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection4= new SqlConnection(s_connection4);
+            SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection3);
             var dataAdapter4 = new SqlDataAdapter(select4, c4);
 
@@ -243,6 +236,6 @@ namespace Saobracaj.Dokumenta
         {
             RefreshDataGrid4();
         }
-    
+
     }
 }

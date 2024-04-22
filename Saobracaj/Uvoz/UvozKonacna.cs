@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Office.Interop.Excel;
 
 namespace Saobracaj.Uvoz
 {
@@ -21,7 +16,7 @@ namespace Saobracaj.Uvoz
         int NHMObrni = 0;
         DataSet nhmSDSA;
         DataSet nhmSDS2A;
-       
+
         float firstWidth;
         float firstHeight;
         string KorisnikTekuci = Sifarnici.frmLogovanje.user.ToString();
@@ -41,15 +36,15 @@ namespace Saobracaj.Uvoz
             //UcitajNHMoveCombo();
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             FillCombo();
-           
+
             FillZaglavlje(Sifra);
             txtNadredjeni.Text = Sifra.ToString();
             FillCheck();
-           
-           // FillGV();
+
+            // FillGV();
             KorisnikTekuci = Korisnik;
-           // FillDG2(); jos nemam ID
-           // FillDG3();
+            // FillDG2(); jos nemam ID
+            // FillDG3();
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
@@ -77,23 +72,23 @@ namespace Saobracaj.Uvoz
 
         private void FillZaglavlje(int Sifra)
         {
-          
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-                SqlConnection con = new SqlConnection(s_connection);
 
-                con.Open();
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
 
-                SqlCommand cmd = new SqlCommand("select ID, idVoza,Napomena from UvozKonacnaZaglavlje where ID=" + Sifra, con);
-                SqlDataReader dr = cmd.ExecuteReader();
+            con.Open();
 
-                while (dr.Read())
-                {
+            SqlCommand cmd = new SqlCommand("select ID, idVoza,Napomena from UvozKonacnaZaglavlje where ID=" + Sifra, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
                 txtNadredjeni.Text = dr["ID"].ToString();
                 cboVoz.SelectedValue = Convert.ToInt32(dr["idVoza"].ToString());
                 txtNapomenaZaglavlje.Text = dr["Napomena"].ToString();
-                  
-                }
-                con.Close();
+
+            }
+            con.Close();
             VratiVoz();
         }
 
@@ -309,7 +304,7 @@ namespace Saobracaj.Uvoz
             cbDirigacija.DisplayMember = "Naziv";
             cbDirigacija.ValueMember = "ID";
             //carinski postupak
-            
+
             var dir2 = "Select ID, (Oznaka + ' ' + Naziv) as Naziv from VrstaCarinskogPostupka order by Oznaka";
             var dirAD2 = new SqlDataAdapter(dir2, conn);
             var dirDS2 = new DataSet();
@@ -318,7 +313,7 @@ namespace Saobracaj.Uvoz
             cboCarinskiPostupak.DisplayMember = "Naziv";
             cboCarinskiPostupak.ValueMember = "ID";
             //postupak roba/kont
-            
+
             var dir3 = "Select ID,Naziv from VrstePostupakaUvoz order by ID";
             var dirAD3 = new SqlDataAdapter(dir3, conn);
             var dirDS3 = new DataSet();
@@ -327,7 +322,7 @@ namespace Saobracaj.Uvoz
             cbPostupak.DisplayMember = "Naziv";
             cbPostupak.ValueMember = "ID";
             //nacin pakovanja
-            
+
             var dir4 = "Select ID,(Oznaka + ' ' + Naziv) as Naziv from uvNacinPakovanja order by ID";
             var dirAD4 = new SqlDataAdapter(dir4, conn);
             var dirDS4 = new DataSet();
@@ -336,7 +331,7 @@ namespace Saobracaj.Uvoz
             cbNacinPakovanja.DisplayMember = "Naziv";
             cbNacinPakovanja.ValueMember = "ID";
             //napomena pozicioniranje
-            
+
             var dir5 = "Select ID,Naziv from PredefinisanePoruke order by ID";
             var dirAD5 = new SqlDataAdapter(dir5, conn);
             var dirDS5 = new DataSet();
@@ -377,7 +372,7 @@ namespace Saobracaj.Uvoz
             cboUvoznik.DisplayMember = "PaNaziv";
             cboUvoznik.ValueMember = "PaSifra";
             //spedicija na granici
-           
+
             var partner3 = "Select PaSifra,PaNaziv From Partnerji  order by PaSifra";
             var partAD3 = new SqlDataAdapter(partner3, conn);
             var partDS3 = new DataSet();
@@ -386,7 +381,7 @@ namespace Saobracaj.Uvoz
             cboSpedicijaG.DisplayMember = "PaNaziv";
             cboSpedicijaG.ValueMember = "PaSifra";
             //spedicija rtc luka leget
-           
+
             var partner4 = "Select PaSifra,PaNaziv From Partnerji  order by PaSifra";
             var partAD4 = new SqlDataAdapter(partner4, conn);
             var partDS4 = new DataSet();
@@ -543,7 +538,7 @@ namespace Saobracaj.Uvoz
             clVrstaUsluga.DisplayMember = "Naziv";
             clVrstaUsluga.ValueMember = "Naziv";
 
-            
+
         }
 
         private void tsDelete_Click(object sender, EventArgs e)
@@ -696,7 +691,7 @@ namespace Saobracaj.Uvoz
             if (txtID.Text == "")
             {
                 return;
-            
+
             }
             var select = "";
 
@@ -753,7 +748,7 @@ namespace Saobracaj.Uvoz
 
             DataGridViewColumn column5 = dataGridView8.Columns[4];
             dataGridView8.Columns[4].HeaderText = "MID";
-           // dataGridView8.Columns[4].Visible = false;
+            // dataGridView8.Columns[4].Visible = false;
             dataGridView8.Columns[4].Width = 30;
 
 
@@ -817,7 +812,7 @@ namespace Saobracaj.Uvoz
                     FillDG2();
                     FillDG3();
                     FillDG4();
-                   // FillDG8();
+                    // FillDG8();
                     FillDGUsluge();
                 }
             }
@@ -892,7 +887,7 @@ namespace Saobracaj.Uvoz
         private void button1_Click(object sender, EventArgs e)
         {
             InsertUvozKonacnaZaglavlje ins = new InsertUvozKonacnaZaglavlje();
-            ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text,1,"",Convert.ToDateTime("1.1.1900"),"","",0);
+            ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "", 0);
             //refreshStavke(); - Dodati
         }
 
@@ -1008,7 +1003,7 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -1052,8 +1047,8 @@ namespace Saobracaj.Uvoz
             if (txtIDNHM.Text == "")
             {
                 MessageBox.Show("Selektujte stavku koju zelite da izbrisete");
-            
-            
+
+
             }
             else
             {
@@ -1062,7 +1057,7 @@ namespace Saobracaj.Uvoz
                 FillDG2();
             }
 
-           
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -1085,7 +1080,7 @@ namespace Saobracaj.Uvoz
                 uvK.DelUvozKonacnaVrstaRobeHS(Convert.ToInt32(txtVrstaRobeHS.Text));
                 FillDG3();
             }
-           
+
         }
 
         private void FillDG2()
@@ -1093,7 +1088,7 @@ namespace Saobracaj.Uvoz
             if (txtID.Text == "")
                 return;
             var select = "  SELECT     UvozKonacnaNHM.ID, NHM.Broj, UvozKonacnaNHM.IDNHM, NHM.Naziv FROM NHM INNER JOIN " +
-                      " UvozKonacnaNHM ON NHM.ID = UvozKonacnaNHM.IDNHM where UvozKonacnanhm.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by UvozKonacnanhm.ID desc"; 
+                      " UvozKonacnaNHM ON NHM.ID = UvozKonacnaNHM.IDNHM where UvozKonacnanhm.idnadredjena = " + Convert.ToInt32(txtID.Text) + " order by UvozKonacnanhm.ID desc";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -1219,7 +1214,7 @@ namespace Saobracaj.Uvoz
         private void button2_Click(object sender, EventArgs e)
         {
             InsertUvozKonacnaZaglavlje upd = new InsertUvozKonacnaZaglavlje();
-            upd.UpdUvozKonacnaZaglavlje(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(cboVoz.SelectedValue),txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "");
+            upd.UpdUvozKonacnaZaglavlje(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "");
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -1493,12 +1488,12 @@ namespace Saobracaj.Uvoz
         }
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-               
+
         }
         private void ExportToBezbednost()
         {
@@ -1618,7 +1613,7 @@ namespace Saobracaj.Uvoz
         }
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void toolStripButton6_Click(object sender, EventArgs e)
@@ -1672,7 +1667,7 @@ namespace Saobracaj.Uvoz
             dataGridView4.Columns[2].Width = 100;
 
         }
-       
+
         private void button9_Click(object sender, EventArgs e)
         {
             InsertUvozKonacna uvK = new InsertUvozKonacna();
@@ -1826,8 +1821,8 @@ namespace Saobracaj.Uvoz
         private void UbaciStavkuUsluge(int ID, int Manipulacija, double Cena)
         {
             InsertUvozKonacna uvK = new InsertUvozKonacna();
-         //   uvK.InsUbaciUsluguKonacna(Convert.ToInt32(txtID.Text), Manipulacija, Cena);
-           // FillDG8();
+            //   uvK.InsUbaciUsluguKonacna(Convert.ToInt32(txtID.Text), Manipulacija, Cena);
+            // FillDG8();
         }
 
         private void FillDG8()
@@ -2041,22 +2036,22 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton9_Click(object sender, EventArgs e)
         {
-            
-           /* DialogResult dialogResult = MessageBox.Show("Da li pravite i naloge Da/Ne", "Radni nalog", MessageBoxButtons.YesNo);
 
-            if (dialogResult == DialogResult.Yes)
-            {
-                InsertRadniNalogInterni ins = new InsertRadniNalogInterni();
-              
-                    ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(5), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime(DateTime.MinValue), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(row.Cells[0].Value.ToString()), "sa", "sa");
-                
-                FormirajOpstiExcel();
-            }
-            else
-            {
-                FormirajOpstiExcel();
-            }
-          */
+            /* DialogResult dialogResult = MessageBox.Show("Da li pravite i naloge Da/Ne", "Radni nalog", MessageBoxButtons.YesNo);
+
+             if (dialogResult == DialogResult.Yes)
+             {
+                 InsertRadniNalogInterni ins = new InsertRadniNalogInterni();
+
+                     ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(5), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime(DateTime.MinValue), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(row.Cells[0].Value.ToString()), "sa", "sa");
+
+                 FormirajOpstiExcel();
+             }
+             else
+             {
+                 FormirajOpstiExcel();
+             }
+           */
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -2121,7 +2116,7 @@ namespace Saobracaj.Uvoz
                     updatestring = " Update uvoz set Ref3 = '" + txtRef3.Text + "'";
                     break;
                 case "VrstaPregleda":
-                    updatestring = " Update uvoz set VrstaPregleda = '" + Convert.ToInt32(txtVrstaPregleda.SelectedValue)+ "'";
+                    updatestring = " Update uvoz set VrstaPregleda = '" + Convert.ToInt32(txtVrstaPregleda.SelectedValue) + "'";
                     break;
                 case "Špedicija - RTCLeget":
                     updatestring = " Update uvoz set SpedicijaRTC = " + Convert.ToInt32(cboSpedicijaRTC.SelectedValue);
@@ -2223,14 +2218,14 @@ namespace Saobracaj.Uvoz
             PostojeRn = VratiPostojeceRN();
             if (dialogResult == DialogResult.Yes)
             {
-              
-                        InsertRadniNalogInterni ins = new InsertRadniNalogInterni();
-                        ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text),KorisnikTekuci, "");
-               
+
+                InsertRadniNalogInterni ins = new InsertRadniNalogInterni();
+                ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
+
             }
             else
             {
-               // FormirajOpstiExcel();
+                // FormirajOpstiExcel();
             }
         }
 
@@ -2439,7 +2434,7 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton2_Click_1(object sender, EventArgs e)
         {
-           // FillGV();
+            // FillGV();
         }
 
         private void button15_Click(object sender, EventArgs e)
@@ -2620,7 +2615,7 @@ namespace Saobracaj.Uvoz
                 cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + "  " + txtADR.Text;
             }
 
-           
+
             if (checkedListBox2.GetItemCheckState(2) == CheckState.Checked)
             {
                 cboNaslovStatusaVozila.Text = cboNaslovStatusaVozila.Text + "  " + cboUvoznik.Text;
@@ -2789,7 +2784,7 @@ namespace Saobracaj.Uvoz
 
 
 
-           
+
         }
 
         private void toolStripButton5_Click_1(object sender, EventArgs e)
@@ -2860,5 +2855,5 @@ namespace Saobracaj.Uvoz
             FillDG4();
         }
     }
-    }
+}
 

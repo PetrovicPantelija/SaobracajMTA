@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -15,15 +11,15 @@ namespace Saobracaj
         string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
         public void InsVoziloUsluga(string RegBr, DateTime Datum, string Vozac, string BrojTelefona, string Napomena, int Modul, int IDUsluge)
         {
-          /*  @ID int,
-@RegBr  nvarchar(50),
-@Datum datetime,
-@Vozac nvarchar(100),
-@BrojTelefona nvarchar(100),
-@Napomena nvarchar(500),
-@Modul int,
-@IDUsluge int
-          */
+            /*  @ID int,
+  @RegBr  nvarchar(50),
+  @Datum datetime,
+  @Vozac nvarchar(100),
+  @BrojTelefona nvarchar(100),
+  @Napomena nvarchar(500),
+  @Modul int,
+  @IDUsluge int
+            */
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "InsertVoziloUsluga";
@@ -86,7 +82,7 @@ namespace Saobracaj
             idusluge.Value = IDUsluge;
             cmd.Parameters.Add(idusluge);
 
-        
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.Net.Mail;
-using System.Diagnostics.CodeAnalysis;
-using Saobracaj;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -45,7 +36,7 @@ namespace Saobracaj.Dokumenta
             txtSifra.Text = Sifra;
             VratiPodatke(Convert.ToInt32(Sifra));
             RefreshDataGrid();
-         }
+        }
 
         private void VratiPodatkeIzvoznePoNalogu(string ID)
         {
@@ -80,7 +71,7 @@ namespace Saobracaj.Dokumenta
                 txtNeto.Value = Convert.ToDecimal(dr["NetoRobe"].ToString());
                 dtpPerodSkladistenjaOd.Value = Convert.ToDateTime(dr["PeriodSkladistenjaOd"].ToString());
                 dtpPeriodSkladistenjaDo.Value = Convert.ToDateTime(dr["PeriodSkladistenjaDo"].ToString());
-              //  bttoRobeFaktura.Value = Convert.ToDecimal(dr["BrutoRobe"].ToString());
+                //  bttoRobeFaktura.Value = Convert.ToDecimal(dr["BrutoRobe"].ToString());
                 bttoRobeOtpremnica.Value = Convert.ToDecimal(dr["BrutoRobeO"].ToString());
                 bttoRobeOdvaga.Value = Convert.ToDecimal(dr["BrutoRobeO"].ToString());
                 txtCBMOTP.Text = dr["CBMO"].ToString();
@@ -353,7 +344,7 @@ namespace Saobracaj.Dokumenta
             {
                 MessageBox.Show("Niste uneli zaglavlje");
             }
-        
+
             else
             {
                 Saobracaj.Dokumeta.InsertPrijemKontejneraVozStavke ins = new Saobracaj.Dokumeta.InsertPrijemKontejneraVozStavke();
@@ -708,7 +699,7 @@ namespace Saobracaj.Dokumenta
 
         private void frmPrijemKontejneraKamionLegetIzvoz_Load(object sender, EventArgs e)
         {
-           
+
 
             //where Posiljalac = 1
             var select1 = " Select Distinct PaSifra as ID, PaNaziv as Naziv From Partnerji  order by PaNaziv";
@@ -867,7 +858,6 @@ namespace Saobracaj.Dokumenta
 
         private void VratiPodatkeStavke(string IdNadredjenog, int RB)
         {
-            int KontejnerID = 0;
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
@@ -942,8 +932,8 @@ namespace Saobracaj.Dokumenta
                         txtSifra.Text = row.Cells[2].Value.ToString();
                         txtStavka.Text = row.Cells[0].Value.ToString();
                         PopuniPolja();
-                       // VratiPodatkeStavke(txtSifra.Text, Convert.ToInt32(row.Cells[1].Value.ToString()));
-                       
+                        // VratiPodatkeStavke(txtSifra.Text, Convert.ToInt32(row.Cells[1].Value.ToString()));
+
                     }
                 }
             }
@@ -990,10 +980,10 @@ namespace Saobracaj.Dokumenta
 
         private void txtKontejnerID_TextChanged(object sender, EventArgs e)
         {
-            
-                FillDGUsluge();
-                PopuniPolja();
-              //  FillDG3();
+
+            FillDGUsluge();
+            PopuniPolja();
+            //  FillDG3();
 
         }
 
@@ -1022,7 +1012,7 @@ namespace Saobracaj.Dokumenta
 "  INNER JOIN  Partnerji AS Partnerji_2 ON IzvozKonacna.Izvoznik = Partnerji_2.PaSifra " +
 " INNER JOIN  InspekciskiTretman AS INSTret ON IZvozKOnacna.Inspekcija = INSTret.ID " +
 "  INNER JOIN TipKontenjera ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
-" where PrijemKontejneraVozStavke.Id = " + Convert.ToInt32(txtStavka.Text) , con);
+" where PrijemKontejneraVozStavke.Id = " + Convert.ToInt32(txtStavka.Text), con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -1030,19 +1020,19 @@ namespace Saobracaj.Dokumenta
             {
                 txtNalogID.Text = dr["NajavaID"].ToString();
                 txtStavka.Text = dr["ID"].ToString();
-                txtRB.Text = dr["RB"].ToString(); 
+                txtRB.Text = dr["RB"].ToString();
                 txtKontejnerID.Text = dr["KontejnerID"].ToString();
                 txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
                 cboTipKontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
                 txtVagon.Text = "";
                 cboVlasnikKontejnera.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
                 txtTara.Value = Convert.ToDecimal(dr["Tara"].ToString());
-                txtBukingBrodar.Text=dr["BookingBrodara"].ToString();
+                txtBukingBrodar.Text = dr["BookingBrodara"].ToString();
                 txtBrojPlombe.Text = dr["BrodskaPlomba"].ToString();
                 txtBrojPlombe2.Text = dr["OstalePlombe"].ToString();
                 cboIzvoznik.SelectedValue = Convert.ToInt32(dr["Izvoznik"].ToString());
                 bttoRobeOtpremnica.Value = Convert.ToDecimal(dr["BrutoRobeO"].ToString());
-                txtCBMOTP.Text =dr["CBMO"].ToString();
+                txtCBMOTP.Text = dr["CBMO"].ToString();
                 //Napomena
 
             }

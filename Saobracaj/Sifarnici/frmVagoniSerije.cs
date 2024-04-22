@@ -1,14 +1,6 @@
-﻿using Saobracaj.Sifarnici;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
@@ -52,7 +44,7 @@ namespace Saobracaj.Sifarnici
         {
             try
             {
-                foreach(DataGridViewRow row in dataGridView1.Rows)
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (row.Selected)
                     {
@@ -83,11 +75,11 @@ namespace Saobracaj.Sifarnici
                 lok.InsVagoniSerije(txtSerija.Text.ToString().TrimEnd(), txtBrojcanaSerija.Text, Convert.ToInt32(txtBrojOsovina.Value));
                 status = false;
                 tsNew.Enabled = true;
-                
+
             }
             else
             {
-                lok.UpdVagoniSerije(Convert.ToInt32(txtID.Text.ToString()), txtSerija.Text.ToString().TrimEnd(),txtBrojcanaSerija.Text,  Convert.ToInt32(txtBrojOsovina.Value));
+                lok.UpdVagoniSerije(Convert.ToInt32(txtID.Text.ToString()), txtSerija.Text.ToString().TrimEnd(), txtBrojcanaSerija.Text, Convert.ToInt32(txtBrojOsovina.Value));
             }
             RefreshGV();
         }

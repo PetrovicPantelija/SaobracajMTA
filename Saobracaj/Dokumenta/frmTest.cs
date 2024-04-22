@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using GMap.NET;
+﻿using GMap.NET;
 using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
-using GMap.NET.WindowsForms.ToolTips;
 using Saobracaj.Sifarnici;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -50,7 +43,7 @@ namespace Saobracaj.Dokumenta
             FillCombo();
             SveNajave();
         }
-        
+
         private void LoadMap()
         {
             map.MapProvider = GMapProviders.BingMap;
@@ -82,7 +75,7 @@ namespace Saobracaj.Dokumenta
             adapterNajava.Fill(setNajava);
             //combo_Najave.DataSource = setNajava.Tables[0];
             //combo_Najave.DisplayMember = "PrevozniPut";
-           // combo_Najave.ValueMember = "ID";
+            // combo_Najave.ValueMember = "ID";
         }
         private void SveNajave()
         {
@@ -96,12 +89,12 @@ namespace Saobracaj.Dokumenta
                 "group by Najava.Granicna,Stanice.Opis,Stanice.Longitude,Stanice.Latitude";
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dr = cmd.ExecuteReader();
-            
+
             int brKola;
             double tezina;
             double neto;
-            int id=0;
-            int count=dr.FieldCount;
+            int id = 0;
+            int count = dr.FieldCount;
             while (dr.Read())
             {
                 id = Convert.ToInt32(dr["Granicna"]);
@@ -111,13 +104,13 @@ namespace Saobracaj.Dokumenta
                 brKola = Convert.ToInt32(dr["BrojKola"].ToString());
                 tezina = Convert.ToDouble(dr["Tezina"].ToString());
                 neto = Convert.ToDouble(dr["NetoTezinaM"].ToString());
-                string text = opis+"\nBroj Kola: " + brKola.ToString() + "\nTezina: " + tezina.ToString() + "\nNeto: " + neto.ToString();
+                string text = opis + "\nBroj Kola: " + brKola.ToString() + "\nTezina: " + tezina.ToString() + "\nNeto: " + neto.ToString();
                 GMarkerGoogle marker = new GMarkerGoogle(new PointLatLng(lng, lat), GMarkerGoogleType.red_pushpin);
                 marker.ToolTipMode = MarkerTooltipMode.Always;
                 marker.ToolTipText = text;
                 overlay.Markers.Add(marker);
                 map.Overlays.Add(overlay);
-                
+
             }
             //combo_Stanice.Text = opis;
             conn.Close();
@@ -129,7 +122,7 @@ namespace Saobracaj.Dokumenta
             routes.Clear();
 
             marker.ToolTipMode = MarkerTooltipMode.Always;
-            
+
             overlay.Markers.Add(marker);
             map.Overlays.Add(overlay);
 
@@ -244,9 +237,9 @@ namespace Saobracaj.Dokumenta
             overlay.Clear();
             SqlConnection conn = new SqlConnection(connect);
             conn.Open();
-            int Od=0;
-            int Do=0;
-            int status=0;
+            int Od = 0;
+            int Do = 0;
+            int status = 0;
             var query = "Select * From Najava Where ID= " + combo_Najave.SelectedValue;
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -260,8 +253,8 @@ namespace Saobracaj.Dokumenta
 
             var query2 = "Select Opis,Longitude,Latitude From Stanice Where ID= " + Od.ToString();
             string od = "";
-            double lngOD=0;
-            double latOD=0;
+            double lngOD = 0;
+            double latOD = 0;
             conn.Open();
             SqlCommand cmd2 = new SqlCommand(query2, conn);
             SqlDataReader dr2 = cmd2.ExecuteReader();
@@ -271,7 +264,7 @@ namespace Saobracaj.Dokumenta
                 latOD = Convert.ToDouble(dr2["Latitude"].ToString());
                 od = dr2["Opis"].ToString();
             }
-            if (lngOD == 0) { lngOD =  20.243095; }
+            if (lngOD == 0) { lngOD = 20.243095; }
             if (latOD == 0) { latOD = 43.569355; }
             conn.Close();
 
@@ -324,7 +317,7 @@ namespace Saobracaj.Dokumenta
             else if (status == 6) { polygon.Stroke.Color = Color.White; }
             else if (status == 8) { polygon.Stroke.Color = Color.Gray; }
             else { polygon.Stroke.Color = Color.RosyBrown; }
-            
+
             //routes.Routes.Add(r);
             //map.Overlays.Add(routes);
             polyOverlay.Polygons.Add(polygon);
@@ -342,7 +335,7 @@ namespace Saobracaj.Dokumenta
         }
         private void combo_Stanice_TextChanged(object sender, EventArgs e)
         {
-           // overlay.Clear();
+            // overlay.Clear();
         }
 
         private void combo_Najave_TextChanged(object sender, EventArgs e)

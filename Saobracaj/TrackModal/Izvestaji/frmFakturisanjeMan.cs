@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-using Microsoft.Reporting.WinForms;
-using Saobracaj.TrackModal;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Testiranje.Izvestaji
 {
@@ -46,8 +36,8 @@ namespace Testiranje.Izvestaji
         {
             Saobracaj.TrackModal.Izvestaji.DataSetFaktursanjeManTableAdapters.FakturisanjeManipulacijamaViewTableAdapter ta = new Saobracaj.TrackModal.Izvestaji.DataSetFaktursanjeManTableAdapters.FakturisanjeManipulacijamaViewTableAdapter();
             Saobracaj.TrackModal.Izvestaji.DataSetFaktursanjeMan.FakturisanjeManipulacijamaViewDataTable dt = new Saobracaj.TrackModal.Izvestaji.DataSetFaktursanjeMan.FakturisanjeManipulacijamaViewDataTable();
-           // TestiranjeDataSet5TableAdapters.SelectNalogZaRAdPrometTableAdapter ta = new TestiranjeDataSet5TableAdapters.SelectNalogZaRAdPrometTableAdapter();
-           // TestiranjeDataSet5.SelectNalogZaRAdPrometDataTable dt = new TestiranjeDataSet5.SelectNalogZaRAdPrometDataTable();
+            // TestiranjeDataSet5TableAdapters.SelectNalogZaRAdPrometTableAdapter ta = new TestiranjeDataSet5TableAdapters.SelectNalogZaRAdPrometTableAdapter();
+            // TestiranjeDataSet5.SelectNalogZaRAdPrometDataTable dt = new TestiranjeDataSet5.SelectNalogZaRAdPrometDataTable();
 
             ta.Fill(dt);
             ReportDataSource rds = new ReportDataSource();
@@ -56,7 +46,7 @@ namespace Testiranje.Izvestaji
 
 
             ReportParameter[] par = new ReportParameter[3];
-           // par[0] = new ReportParameter("Komitenti", cboKomitent.Text.ToString());
+            // par[0] = new ReportParameter("Komitenti", cboKomitent.Text.ToString());
             par[0] = new ReportParameter("VremePrijema", txtDatumOd.Value.Date.ToShortDateString());
             par[1] = new ReportParameter("VremeOtpreme", txtDatumDo.Value.Date.ToShortDateString());
             par[2] = new ReportParameter("Naziv", cboKomitent.Text.ToString());

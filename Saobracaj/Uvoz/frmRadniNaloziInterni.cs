@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
@@ -53,7 +48,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
-           
+
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
             dataGridView1.Columns[0].Width = 50;
@@ -90,7 +85,7 @@ namespace Saobracaj.Uvoz
         private void tsSave_Click(object sender, EventArgs e)
         {
             int tmpuradjen = 0;
-            
+
             if (chkZavrsen.Checked == true)
             {
                 tmpuradjen = 1;
@@ -98,11 +93,11 @@ namespace Saobracaj.Uvoz
             InsertRadniNalogInterni ins = new InsertRadniNalogInterni();
             if (status == true)
             {
-                ins.InsRadniNalogInterni(Convert.ToInt32(cboIzdatOd.SelectedValue), Convert.ToInt32(cboIzdatZa.SelectedValue),Convert.ToDateTime(dtpDatumIzdavanja.Value), Convert.ToDateTime(dtpDatumRealizacije.Value), txtNapomena.Text, Convert.ToInt32(tmpuradjen), cboOsnov.Text, Convert.ToInt32(txtRefBroj.Text), "panta", "panta");
+                ins.InsRadniNalogInterni(Convert.ToInt32(cboIzdatOd.SelectedValue), Convert.ToInt32(cboIzdatZa.SelectedValue), Convert.ToDateTime(dtpDatumIzdavanja.Value), Convert.ToDateTime(dtpDatumRealizacije.Value), txtNapomena.Text, Convert.ToInt32(tmpuradjen), cboOsnov.Text, Convert.ToInt32(txtRefBroj.Text), "panta", "panta");
             }
             else
             {
-                ins.UpdRadniNalogInterni(Convert.ToInt32(txtID.Text),Convert.ToInt32(cboIzdatOd.SelectedValue), Convert.ToInt32(cboIzdatZa.SelectedValue), Convert.ToDateTime(dtpDatumIzdavanja.Value), Convert.ToDateTime(dtpDatumRealizacije.Value), txtNapomena.Text, Convert.ToInt32(tmpuradjen), cboOsnov.Text, Convert.ToInt32(txtRefBroj.Text), "panta", "panta");
+                ins.UpdRadniNalogInterni(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboIzdatOd.SelectedValue), Convert.ToInt32(cboIzdatZa.SelectedValue), Convert.ToDateTime(dtpDatumIzdavanja.Value), Convert.ToDateTime(dtpDatumRealizacije.Value), txtNapomena.Text, Convert.ToInt32(tmpuradjen), cboOsnov.Text, Convert.ToInt32(txtRefBroj.Text), "panta", "panta");
             }
             FillGV();
             tsNew.Enabled = true;
@@ -147,7 +142,7 @@ namespace Saobracaj.Uvoz
                 }
                 cboOsnov.Text = dr["Osnov"].ToString();
                 txtRefBroj.Text = dr["BrojOsnov"].ToString();
-              
+
             }
             con.Close();
 

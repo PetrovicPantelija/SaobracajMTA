@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Testiranje.Dokumeta
 {
@@ -29,7 +25,7 @@ namespace Testiranje.Dokumeta
             parameter1.Value = IDNadredjeni;
             myCommand.Parameters.Add(parameter1);
 
-           
+
 
 
             SqlParameter parameter3 = new SqlParameter();

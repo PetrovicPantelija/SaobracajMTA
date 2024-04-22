@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -90,37 +82,37 @@ namespace Saobracaj.Dokumenta
         {
             string pom = "'1'";
             var select = " select ID, Komentar, (Cast(Zaposleni.DeSifra as nvarchar(3)) + '--'  + Rtrim(Zaposleni.DeIme) + ' ' + Rtrim(Zaposleni.DePriimek)) as Planer, StatusRN  from RadniNalog RN " +
-            " inner Join Delavci as Zaposleni ON RN.Planer = Zaposleni.DeSifra "; 
-           
+            " inner Join Delavci as Zaposleni ON RN.Planer = Zaposleni.DeSifra ";
+
             if (chkLA.Checked == true)
             {
-            pom = pom + ",'RA'";
+                pom = pom + ",'RA'";
             }
             if (chkOD.Checked == true)
             {
-            pom = pom + ",'OD'";
+                pom = pom + ",'OD'";
             }
-            
-            if ( chkPL.Checked == true)
+
+            if (chkPL.Checked == true)
             {
-            pom = pom + ",'PL'";
+                pom = pom + ",'PL'";
             }
 
             if (chkPR.Checked == true)
             {
-            pom = pom + ",'PR'";
+                pom = pom + ",'PR'";
             }
 
             if (chkST.Checked == true)
             {
-            pom = pom + ",'ST'";
+                pom = pom + ",'ST'";
             }
             if (chkZA.Checked == true)
             {
-            pom = pom + ",'ZA'";
+                pom = pom + ",'ZA'";
             }
-              
-            select = select + "where StatusRN in ( " + pom + ")"  ;
+
+            select = select + "where StatusRN in ( " + pom + ")";
 
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;

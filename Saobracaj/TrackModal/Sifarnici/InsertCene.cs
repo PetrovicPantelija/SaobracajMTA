@@ -1,21 +1,17 @@
-﻿﻿
+﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Testiranje
 {
     class InsertCene
     {
 
-          public void InsCene(int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik, double Cena2, int Uvoznik, int PostupakSaRobom,
-              string NazivCenovnika, string Razred, string OznakaManipulacije, int OrgJed)
+        public void InsCene(int TipCenovnika, int Komitent, double Cena, int VrstaManipulacije, DateTime Datum, string Korisnik, double Cena2, int Uvoznik, int PostupakSaRobom,
+            string NazivCenovnika, string Razred, string OznakaManipulacije, int OrgJed)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -24,10 +20,10 @@ namespace Testiranje
             myCommand.CommandText = "InsertCene";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-          //  @NazivCenovnika nvarchar(100),
-	//@Razred nvarchar(3),
-	//@OznakaManipulacije nvarchar(50),
-	//@OrgJed int
+            //  @NazivCenovnika nvarchar(100),
+            //@Razred nvarchar(3),
+            //@OznakaManipulacije nvarchar(50),
+            //@OrgJed int
 
 
 
@@ -38,14 +34,14 @@ namespace Testiranje
             parameter.Value = TipCenovnika;
             myCommand.Parameters.Add(parameter);
 
-              SqlParameter parameter1 = new SqlParameter();
+            SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@Komitent";
             parameter1.SqlDbType = SqlDbType.Int;
             parameter1.Direction = ParameterDirection.Input;
-            parameter1.Value =  Komitent;
+            parameter1.Value = Komitent;
             myCommand.Parameters.Add(parameter1);
 
-              SqlParameter parameter2 = new SqlParameter();
+            SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@Cena";
             parameter2.SqlDbType = SqlDbType.Decimal;
             parameter2.Direction = ParameterDirection.Input;
@@ -66,7 +62,7 @@ namespace Testiranje
             parameter4.Value = Datum;
             myCommand.Parameters.Add(parameter4);
 
-             SqlParameter parameter5 = new SqlParameter();
+            SqlParameter parameter5 = new SqlParameter();
             parameter5.ParameterName = "@Korisnik";
             parameter5.SqlDbType = SqlDbType.NVarChar;
             parameter5.Size = 20;
@@ -171,8 +167,8 @@ namespace Testiranje
             }
         }
 
-          public void UpdCene(int ID, int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik, double Cena2, int Uvoznik, int PostupakSaRobom,
-              string NazivCenovnika, string Razred, string OznakaManipulacije, int OrgJed)
+        public void UpdCene(int ID, int TipCenovnika, int Komitent, double Cena, int VrstaManipulacije, DateTime Datum, string Korisnik, double Cena2, int Uvoznik, int PostupakSaRobom,
+            string NazivCenovnika, string Razred, string OznakaManipulacije, int OrgJed)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -188,7 +184,7 @@ namespace Testiranje
             parameter.Value = ID;
             myCommand.Parameters.Add(parameter);
 
-       
+
 
 
             SqlParameter parameter1 = new SqlParameter();
@@ -198,14 +194,14 @@ namespace Testiranje
             parameter1.Value = TipCenovnika;
             myCommand.Parameters.Add(parameter1);
 
-              SqlParameter parameter2 = new SqlParameter();
+            SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@Komitent";
             parameter2.SqlDbType = SqlDbType.Int;
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = Komitent;
             myCommand.Parameters.Add(parameter2);
 
-              SqlParameter parameter3 = new SqlParameter();
+            SqlParameter parameter3 = new SqlParameter();
             parameter3.ParameterName = "@Cena";
             parameter3.SqlDbType = SqlDbType.Decimal;
             parameter3.Direction = ParameterDirection.Input;
@@ -226,7 +222,7 @@ namespace Testiranje
             parameter5.Value = Datum;
             myCommand.Parameters.Add(parameter5);
 
-             SqlParameter parameter6 = new SqlParameter();
+            SqlParameter parameter6 = new SqlParameter();
             parameter6.ParameterName = "@Korisnik";
             parameter6.SqlDbType = SqlDbType.NVarChar;
             parameter6.Size = 20;
@@ -235,10 +231,10 @@ namespace Testiranje
             myCommand.Parameters.Add(parameter6);
 
 
-          
 
 
- 
+
+
 
 
 
@@ -333,54 +329,54 @@ namespace Testiranje
         }
 
         public void DeleteCene(int ID)
-          {
-              var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-              SqlConnection myConnection = new SqlConnection(s_connection);
-              SqlCommand myCommand = myConnection.CreateCommand();
-              myCommand.CommandText = "DeleteCene";
-              myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "DeleteCene";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-              SqlParameter parameter = new SqlParameter();
-              parameter.ParameterName = "@ID";
-              parameter.SqlDbType = SqlDbType.Int;
-              parameter.Direction = ParameterDirection.Input;
-              parameter.Value = ID;
-              myCommand.Parameters.Add(parameter);
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@ID";
+            parameter.SqlDbType = SqlDbType.Int;
+            parameter.Direction = ParameterDirection.Input;
+            parameter.Value = ID;
+            myCommand.Parameters.Add(parameter);
 
-              myConnection.Open();
-              SqlTransaction myTransaction = myConnection.BeginTransaction();
-              myCommand.Transaction = myTransaction;
-              bool error = true;
-              try
-              {
-                  myCommand.ExecuteNonQuery();
-                  myTransaction.Commit();
-                  myTransaction = myConnection.BeginTransaction();
-                  myCommand.Transaction = myTransaction;
-              }
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
 
-              catch (SqlException)
-              {
-                  throw new Exception("Brisanje neuspešno");
-              }
+            catch (SqlException)
+            {
+                throw new Exception("Brisanje neuspešno");
+            }
 
-              finally
-              {
-                  if (!error)
-                  {
-                      myTransaction.Commit();
-                      MessageBox.Show("Brisanje Cena uspešno završeno", "",
-                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Brisanje Cena uspešno završeno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                  }
-                  myConnection.Close();
+                }
+                myConnection.Close();
 
-                  if (error)
-                  {
-                      // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-                  }
-              }
-          }
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
 
         public void KopirajCene(int ID, int Komitent)
         {

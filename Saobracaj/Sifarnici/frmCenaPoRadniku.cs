@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -49,7 +41,7 @@ namespace Saobracaj.Sifarnici
  " CASE WHEN EvidencijaCenaRadnik.ObracunPoSatu > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as ObracunPoSatu , Cena  from EvidencijaCenaRadnik " +
  " inner join Delavci on Delavci.DeSifra " +
  " = EvidencijaCenaRadnik.Zaposleni ";
-       
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -84,7 +76,7 @@ namespace Saobracaj.Sifarnici
             DataGridViewColumn column3 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "ObracunPoSatu";
             dataGridView1.Columns[2].Width = 50;
-          
+
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
             dataGridView1.Columns[3].HeaderText = "Cena";
@@ -96,13 +88,13 @@ namespace Saobracaj.Sifarnici
         {
             int PoSatu = 0;
             if (chkPoSatu.Checked)
-                {
-                    PoSatu = 1;
-                }
-                else
-                {
-                    PoSatu = 0;
-                }
+            {
+                PoSatu = 1;
+            }
+            else
+            {
+                PoSatu = 0;
+            }
 
             if (status == true)
             {
@@ -136,11 +128,11 @@ namespace Saobracaj.Sifarnici
             while (dr.Read())
             {
 
-              
+
                 cboZaposleni.SelectedValue = Convert.ToInt32(dr["Zaposleni"].ToString());
-          
+
                 txtCena.Text = Convert.ToDecimal(dr["Cena"].ToString()).ToString();
-               
+
 
                 if (dr["ObracunPoSatu"].ToString() == "1")
                 {
@@ -150,7 +142,7 @@ namespace Saobracaj.Sifarnici
                 {
                     chkPoSatu.Checked = false;
                 }
-              
+
             }
 
             con.Close();
@@ -180,11 +172,11 @@ namespace Saobracaj.Sifarnici
 
         private void tsDelete_Click(object sender, EventArgs e)
         {
-            
+
             InsertEvidencijaSatiPoRadniku ins = new InsertEvidencijaSatiPoRadniku();
             ins.DeleteEvidencijaCenaRadnik(Convert.ToInt32(txtSifra.Text));
             status = false;
-            
+
         }
 
         private void tsPoslednja_Click(object sender, EventArgs e)

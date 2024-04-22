@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -44,12 +40,12 @@ namespace Saobracaj.Dokumenta
             parameter2.Value = StanicaOd;
             myCommand.Parameters.Add(parameter2);
 
-           SqlParameter parameter3 = new SqlParameter();
+            SqlParameter parameter3 = new SqlParameter();
             parameter3.ParameterName = "@StanicaDo";
             parameter3.SqlDbType = SqlDbType.Int;
             parameter3.Direction = ParameterDirection.Input;
             parameter3.Value = StanicaDo;
-            myCommand.Parameters.Add(parameter3); 
+            myCommand.Parameters.Add(parameter3);
 
             SqlParameter parameter4 = new SqlParameter();
             parameter4.ParameterName = "@StanicaPopisa";
@@ -344,7 +340,7 @@ namespace Saobracaj.Dokumenta
             parameter.Value = ID;
             myCommand.Parameters.Add(parameter);
 
-            
+
 
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@Korisnik";
@@ -441,7 +437,7 @@ namespace Saobracaj.Dokumenta
                 }
             }
         }
-    
+
     }
 
 }

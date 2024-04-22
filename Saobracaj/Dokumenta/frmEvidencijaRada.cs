@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.Net;
 using System.Net.Mail;
-using Microsoft.Reporting.WinForms;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -34,103 +27,9 @@ namespace Saobracaj.Dokumenta
             InitializeComponent();
             VratiDatumZakljucavanja();
             Korisnik = TekuciKorisnik;
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
-        }
-        public static string code = "frmEvidencijaRada";
-        public bool Pravo;
-        int idGrupe;
-        int idForme;
-        bool insert;
-        bool update;
-        bool delete;
-        string Kor = Sifarnici.frmLogovanje.user.ToString();
-        string niz = "";
 
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
-
-            while (dr.Read())
-            {
-                if (count == 0)
-                {
-                    niz = dr["IdGrupe"].ToString();
-                    count++;
-                }
-                else
-                {
-                    niz = niz + "," + dr["IdGrupe"].ToString();
-                    count++;
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
         }
 
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
-        }
         public frmEvidencijaRada(int Sifra, string TekuciKorisnik)
         {
             InitializeComponent();
@@ -138,9 +37,7 @@ namespace Saobracaj.Dokumenta
             prvinovi = false;
             VratiDatumZakljucavanja();
             Korisnik = TekuciKorisnik;
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
 
         }
 
@@ -182,7 +79,7 @@ namespace Saobracaj.Dokumenta
                 */
                 txtTrosak.Text = dr["UkupniTroskovi"].ToString();
                 txtKomentar.Text = dr["Opis"].ToString();
-               // cboRadniNalog.SelectedValue = Convert.ToInt32(dr["RN"].ToString());
+                // cboRadniNalog.SelectedValue = Convert.ToInt32(dr["RN"].ToString());
                 cboRadniNalog.SelectedValue = 0;
                 txtOznaka.Text = dr["Oznaka"].ToString();
                 txtRacun.Text = dr["Racun"].ToString();
@@ -198,7 +95,7 @@ namespace Saobracaj.Dokumenta
                 else
                 {
                     chkPoslatMail.Checked = false;
-                    
+
                 }
                 if (dr["Milsped"].ToString() == "1")
                 {
@@ -239,9 +136,9 @@ namespace Saobracaj.Dokumenta
 
                 }
                 cboTIpRada.SelectedIndex = Convert.ToInt32(dr["Dnevnica"].ToString());
-               //nis
+                //nis
                 cboMestoUpucenja.SelectedValue = Convert.ToInt32(dr["mestoUpucivanja"].ToString());
-               // int BrojAktivnosti = ProveriPostojeAktivnosti();
+                // int BrojAktivnosti = ProveriPostojeAktivnosti();
             }
 
             con.Close();
@@ -261,7 +158,7 @@ namespace Saobracaj.Dokumenta
             while (dr.Read())
             {
                 DatumZakljucavanja = Convert.ToDateTime(dr["Data"].ToString());
-            
+
             }
 
             con.Close();
@@ -292,20 +189,20 @@ namespace Saobracaj.Dokumenta
 
         private void tsNew_Click(object sender, EventArgs e)
         {
-           /*
-            if (prvinovi == true)
-            {
-                chkUnetaAktivnost.Checked = false;
-                prvinovi = false;
-            }
-            else if (chkUnetaAktivnost.Checked == true)
-                chkUnetaAktivnost.Checked = false;
-            else
-            {
-                MessageBox.Show("Niste uneli ni jednu aktivnost za predhodnu aktivnost");
-                return;
-            }
-            */
+            /*
+             if (prvinovi == true)
+             {
+                 chkUnetaAktivnost.Checked = false;
+                 prvinovi = false;
+             }
+             else if (chkUnetaAktivnost.Checked == true)
+                 chkUnetaAktivnost.Checked = false;
+             else
+             {
+                 MessageBox.Show("Niste uneli ni jednu aktivnost za predhodnu aktivnost");
+                 return;
+             }
+             */
             status = true;
             txtSifra.Text = "";
             txtSifra.Enabled = false;
@@ -320,7 +217,7 @@ namespace Saobracaj.Dokumenta
 
         private void frmEvidencijaRada_Load(object sender, EventArgs e)
         {
-            
+
             var select2 = "select Distinct  Rtrim(KrNaziv) as KrNaziv, Max(KrSifra) as KrSifra from Kraji " +
                           " group by KrNaziv";
             var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -334,7 +231,7 @@ namespace Saobracaj.Dokumenta
             cboMestoUpucenja.DataSource = ds2.Tables[0];
             cboMestoUpucenja.DisplayMember = "KrNaziv";
             cboMestoUpucenja.ValueMember = "KrSifra";
-            
+
             /*
             var select2 = " Select SmSifra, SmSifra as Opis from Mesta where Lokomotiva=1";
             var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -350,7 +247,7 @@ namespace Saobracaj.Dokumenta
             cboLokomotiva.ValueMember = "SmSifra";
 
             */
-            
+
             var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci order by opis";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
@@ -364,12 +261,12 @@ namespace Saobracaj.Dokumenta
             cboZaposleni.DisplayMember = "Opis";
             cboZaposleni.ValueMember = "ID";
 
-           
+
 
             var select5 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci where DeSifStat <> 'P' order by opis";
             var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
-            var c5= new SqlConnection(s_connection5);
+            var c5 = new SqlConnection(s_connection5);
             var dataAdapter5 = new SqlDataAdapter(select5, c5);
 
             var commandBuilder5 = new SqlCommandBuilder(dataAdapter5);
@@ -382,7 +279,7 @@ namespace Saobracaj.Dokumenta
             cboNalogodavac.SelectedValue = 0;
 
 
-           // --------------------------
+            // --------------------------
             var select6 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci where DeSifStat <> 'P' order by opis";
             var s_connection6 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection6 = new SqlConnection(s_connection6);
@@ -414,7 +311,6 @@ namespace Saobracaj.Dokumenta
                 // VratiTrase(txtSifra.Text);
 
                 InsertAktivnosti ins = new InsertAktivnosti();
-                int postoji = 0;
                 StoredProcWithOutPutParameter(Convert.ToInt32(cboZaposleni.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value);
                 ///pntatattt
                 if (Postoji > 1)
@@ -467,16 +363,16 @@ namespace Saobracaj.Dokumenta
             int masinovodja = 0;
             int milspedsmena = 0;
             if (dtpVremeOd.Value < Convert.ToDateTime(DatumZakljucavanja))
-            { 
+            {
                 MessageBox.Show("Nije dozvoljen unos posle datuma zaključavanja");
                 return;
 
-            }    
-               
+            }
+
             if (cboTIpRada.SelectedIndex < 0)
             {
-            
-            MessageBox.Show(" Niste uneli Tip Rada ");
+
+                MessageBox.Show(" Niste uneli Tip Rada ");
             }
 
             if (Convert.ToInt32(cboMestoUpucenja.SelectedValue) < 1)
@@ -511,7 +407,7 @@ namespace Saobracaj.Dokumenta
                 chkPravoDnevnice.Checked = false;
             }
 
-             
+
 
             if (chkUnosMasinovođa.Checked == true)
             {
@@ -526,7 +422,7 @@ namespace Saobracaj.Dokumenta
 
             if (chkMilsped.Checked == true)
             {
-               milspedsmena = 1;
+                milspedsmena = 1;
             }
             else
             {
@@ -534,7 +430,7 @@ namespace Saobracaj.Dokumenta
             }
             decimal provera = 0;
             provera = Convert.ToDecimal(txtVreme.Text);
-            if ( provera> 12)
+            if (provera > 12)
             {
                 MessageBox.Show("Ukupno vreme je veće od 12 sati ");
             }
@@ -543,7 +439,6 @@ namespace Saobracaj.Dokumenta
             if (status == true)
             {
                 InsertAktivnosti ins = new InsertAktivnosti();
-                int postoji = 0;
                 StoredProcWithOutPutParameter(Convert.ToInt32(cboZaposleni.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value);
                 ///pntatattt
                 if (Postoji > 0)
@@ -558,7 +453,7 @@ namespace Saobracaj.Dokumenta
                     //Ovde pravimo dupli upis
                     status = false;
                     VratiPodatkeMax();
-                    insL.InsLog(Convert.ToInt32(txtSifra.Text), "Insert zaglavlje", Korisnik, DateTime.Now, 0,0,0);
+                    insL.InsLog(Convert.ToInt32(txtSifra.Text), "Insert zaglavlje", Korisnik, DateTime.Now, 0, 0, 0);
                 }
             }
             else
@@ -582,22 +477,22 @@ namespace Saobracaj.Dokumenta
                     if (tRacun != Convert.ToDouble(txtRacun.Text))
                     {
                         insL.InsLog(Convert.ToInt32(txtSifra.Text), "Update zaglavlje Racun", Korisnik, DateTime.Now, Convert.ToDouble(tRacunPrvi), Convert.ToDouble(tRacun), Convert.ToDouble(txtRacun.Text));
-                    } 
+                    }
                     if (tKartica != Convert.ToDouble(txtKartica.Text))
                     {
-                            insL.InsLog(Convert.ToInt32(txtSifra.Text), "Update zaglavlje Kartica", Korisnik, DateTime.Now, Convert.ToDouble(tKarticaPrvi), Convert.ToDouble(tKartica), Convert.ToDouble(txtKartica.Text));
+                        insL.InsLog(Convert.ToInt32(txtSifra.Text), "Update zaglavlje Kartica", Korisnik, DateTime.Now, Convert.ToDouble(tKarticaPrvi), Convert.ToDouble(tKartica), Convert.ToDouble(txtKartica.Text));
                     }
-                 }
-
-
-                    /*
-                    int i = ProveraPromeneDodatniTrosak(txtSifra.Text);
-                    int j = ProveraPromeneTekuciRacuni(txtSifra.Text);
-                    int k = ProveraPromeneKartica(txtSifra.Text);
-                    */
-                    //  insL.InsLog(Convert.ToInt32(txtSifra.Text), "Update zaglavlje", Korisnik);
-                    //Ovde treba zapamtiti menjanje troškova
                 }
+
+
+                /*
+                int i = ProveraPromeneDodatniTrosak(txtSifra.Text);
+                int j = ProveraPromeneTekuciRacuni(txtSifra.Text);
+                int k = ProveraPromeneKartica(txtSifra.Text);
+                */
+                //  insL.InsLog(Convert.ToInt32(txtSifra.Text), "Update zaglavlje", Korisnik);
+                //Ovde treba zapamtiti menjanje troškova
+            }
         }
         private void VratiVrednostiPrvi()
         {
@@ -615,7 +510,7 @@ namespace Saobracaj.Dokumenta
                 tUkupniTroskoviPrvi = Convert.ToDouble(dr["UkupniTroskovi"].ToString());
                 tRacunPrvi = Convert.ToDouble(dr["Racun"].ToString());
                 tKarticaPrvi = Convert.ToDouble(dr["Kartica"].ToString());
-               
+
             }
 
             con.Close();
@@ -650,7 +545,7 @@ namespace Saobracaj.Dokumenta
 
         public Tuple<int> StoredProcWithOutPutParameter(int clientId, DateTime DatumOd, DateTime DatumDo)
         {
-            
+
             SqlConnection conn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             conn.ConnectionString = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -674,7 +569,7 @@ namespace Saobracaj.Dokumenta
                 // dateCreated = Convert.ToDateTime(cmd.Parameters["@DateCreated"].Value);
                 // Here we get all three values from database in above three variables.  
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // throw the exception  
             }
@@ -730,7 +625,7 @@ namespace Saobracaj.Dokumenta
             dataGridView3.Columns[1].HeaderText = "ID smene";
             dataGridView3.Columns[1].Width = 60;
 
-            
+
             DataGridViewColumn column3 = dataGridView3.Columns[2];
             dataGridView3.Columns[2].HeaderText = "Naziv";
             dataGridView3.Columns[2].Width = 150;
@@ -776,14 +671,14 @@ namespace Saobracaj.Dokumenta
         private void RefreshDataGrid()
         {
             // select ID, Naziv from VrstaAktivnosti 
-// inner join PravoAktivnosti on VrstaAktivnosti.ID = PravoAktivnosti.VrstaAktivnostiID
- //and PravoAktivnosti.Zaposleni = cboZaposleni.SelectedValue
+            // inner join PravoAktivnosti on VrstaAktivnosti.ID = PravoAktivnosti.VrstaAktivnostiID
+            //and PravoAktivnosti.Zaposleni = cboZaposleni.SelectedValue
             var select = "  select ID, Naziv from VrstaAktivnosti " +
              " inner join PravoAktivnosti on VrstaAktivnosti.ID = PravoAktivnosti.VrstaAktivnostiID " +
              " where VrstaAktivnosti.ObracunPoSatu=0   and PravoAktivnosti.Zaposleni = " + cboZaposleni.SelectedValue;
 
             //var select = "select ID, Naziv from VrstaAktivnosti where ObracunPoSatu=0 and ID <> 24";
-           
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -815,7 +710,7 @@ namespace Saobracaj.Dokumenta
             dataGridView2.Columns[1].HeaderText = "Naziv";
             dataGridView2.Columns[1].Width = 300;
 
-         
+
         }
 
         private void RefreshDataGridDnevnice()
@@ -960,7 +855,7 @@ namespace Saobracaj.Dokumenta
                     txtDodatnaNapomena.Text = " ";
                 if (row.Selected == true)
                 {
-                  //  chkUnetaAktivnost.Checked = true;
+                    //  chkUnetaAktivnost.Checked = true;
                     ins.InsAktivnostiStavke(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToDouble(txtRad.Text), Convert.ToDouble(txtKoeficijent.Text), txtDodatnaNapomena.Text, Convert.ToInt32(txtBrojVagona.Text), txtRazlog.Text, Convert.ToInt32(cboNalogodavac.SelectedValue), cboVozilo.Text, Convert.ToInt32(txtPosao.Text), dtpStavke.Value, Convert.ToInt32(cboNadlezni.SelectedValue));
                     pomID = Convert.ToInt32(row.Cells[0].Value.ToString());
                     if (chkPravoDnevnice.Checked == true)
@@ -971,25 +866,24 @@ namespace Saobracaj.Dokumenta
                     {
                         IzracunPoStarom(pomID);
                     }
-                  
+
                 }
                 InsertLogAktivnosti insL = new InsertLogAktivnosti();
                 //insL.InsLog(Convert.ToInt32(txtSifra.Text), "Ubacivanje stavke po Vagonu", Korisnik);
-                    // ins.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
+                // ins.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
             }
 
-            
-         
-            
+
+
+
             RefreshDataGridPoAktivnostima();
-            
+
             status = false;
         }
 
         private void IzracunPoStarom(int pomID)
         {
-            int Smena = 1;  //Polusmena
-         
+
 
             // ins.InsAktivnostiStavke(Convert.ToInt32(txtSifra.Text),  Convert.ToInt32(cboZaposleni.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, Convert.ToDouble(txtVreme.Text), Convert.ToDouble(txtTrosak.Text), txtKomentar.Text, 0);
             double cena = 0;
@@ -1016,7 +910,7 @@ namespace Saobracaj.Dokumenta
             pom = pom + vrd;
             txtIzracun.Text = pom.ToString();
             txtRazlika.Text = "0";
-            txtZarada.Text =  txtIzracun.Text;
+            txtZarada.Text = txtIzracun.Text;
         }
 
         private void IzracunPoDnevnici(int pomID)
@@ -1096,46 +990,43 @@ namespace Saobracaj.Dokumenta
 
             }
             int Nalogodavac = 0;
-              //  chkUnetaAktivnost.Checked = true;
-                InsertAktivnostiStavke ins = new InsertAktivnostiStavke();
-                if (txtDodatnaNapomena.Text == "")
-                    txtDodatnaNapomena.Text = " ";
+            //  chkUnetaAktivnost.Checked = true;
+            InsertAktivnostiStavke ins = new InsertAktivnostiStavke();
+            if (txtDodatnaNapomena.Text == "")
+                txtDodatnaNapomena.Text = " ";
 
-                if (cboNalogodavac.Text == "")
-                    Nalogodavac = 0;
-                else
-                    Nalogodavac = Convert.ToInt32(cboNalogodavac.SelectedValue);
+            if (cboNalogodavac.Text == "")
+                Nalogodavac = 0;
+            else
+                Nalogodavac = Convert.ToInt32(cboNalogodavac.SelectedValue);
 
-                chkUnetaAktivnost.Checked = true;
-                ins.InsAktivnostiStavke(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboAktivnost.SelectedValue), Convert.ToDouble(txtRad.Text), Convert.ToDouble(txtKoeficijent.Text), txtDodatnaNapomena.Text, Convert.ToInt32(txtBrojVagona.Text), txtRazlog.Text, Nalogodavac, cboVozilo.Text, Convert.ToInt32(txtPosao.Text), dtpStavke.Value, Convert.ToInt32(cboNadlezni.SelectedValue));
-               
+            chkUnetaAktivnost.Checked = true;
+            ins.InsAktivnostiStavke(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboAktivnost.SelectedValue), Convert.ToDouble(txtRad.Text), Convert.ToDouble(txtKoeficijent.Text), txtDodatnaNapomena.Text, Convert.ToInt32(txtBrojVagona.Text), txtRazlog.Text, Nalogodavac, cboVozilo.Text, Convert.ToInt32(txtPosao.Text), dtpStavke.Value, Convert.ToInt32(cboNadlezni.SelectedValue));
 
-                if (chkPravoDnevnice.Checked == true)
-                {
-                    IzracunPoDnevniciSati();
-                }
-                else
-                {
-                    IzracunPoStaromSati();
-                }
+
+            if (chkPravoDnevnice.Checked == true)
+            {
+                IzracunPoDnevniciSati();
+            }
+            else
+            {
+                IzracunPoStaromSati();
+            }
 
             InsertLogAktivnosti insL = new InsertLogAktivnosti();
-          //  insL.InsLog(Convert.ToInt32(txtSifra.Text), "Ubacivanje stavke po Satu", Korisnik);
+            //  insL.InsLog(Convert.ToInt32(txtSifra.Text), "Ubacivanje stavke po Satu", Korisnik);
 
-            RefreshDataGridPoAktivnostima();     
-        
+            RefreshDataGridPoAktivnostima();
+
         }
 
         private void IzracunPoStaromSati()
         {
-            int Smena = 1;  //Polusmena
             if (Convert.ToDouble(txtVreme.Text) <= 7)
             {
-                Smena = 1;
             }
             else
             {
-                Smena = 2;
             }
             double cena = 0;
             int KG = 0;
@@ -1276,7 +1167,7 @@ namespace Saobracaj.Dokumenta
 
 
             //Izvlacenje Vrste Aktivnosti, Sati, Koeficijenta, BrojaVagona
-          
+
 
             var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection conn2 = new SqlConnection(s_connection2);
@@ -1296,7 +1187,7 @@ namespace Saobracaj.Dokumenta
             }
             conn2.Close();
 
-           
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -1316,8 +1207,8 @@ namespace Saobracaj.Dokumenta
             conn.Close();
             double vrd = 0;
             if (VrstaAktivnostiID != 43)
-            { 
-                vrd = (Sati * cena * (Koeficijent / 100)) + FiksnaCena + BrojVagona * cena * (Koeficijent / 100) ;
+            {
+                vrd = (Sati * cena * (Koeficijent / 100)) + FiksnaCena + BrojVagona * cena * (Koeficijent / 100);
             }
             else
             {
@@ -1327,7 +1218,7 @@ namespace Saobracaj.Dokumenta
             double pom = Convert.ToDouble(txtIzracun.Text);
             pom = pom + vrd;
             txtIzracun.Text = pom.ToString();
-           
+
             if ((pom < 21) & (Smena == 1))
             {
                 double Razlika = 21 - pom;
@@ -1452,12 +1343,12 @@ namespace Saobracaj.Dokumenta
         private void dtpVremeDo_Leave(object sender, EventArgs e)
         {
             TimeSpan span = dtpVremeDo.Value.Subtract(dtpVremeOd.Value);
-            txtVreme.Text = Convert.ToString(Math.Round(Convert.ToDouble(span.TotalHours),2));
+            txtVreme.Text = Convert.ToString(Math.Round(Convert.ToDouble(span.TotalHours), 2));
             if (Math.Round(Convert.ToDouble(span.TotalHours), 2) > 16)
             {
                 MessageBox.Show("Ne možete uneti smenu veću od 16 sati");
             }
-            
+
             if (Math.Round(Convert.ToDouble(span.TotalHours), 2) < 7)
             {
                 txtUkupnoMašinovođa.Text = "6";
@@ -1468,12 +1359,12 @@ namespace Saobracaj.Dokumenta
                 txtUkupnoMašinovođa.Text = "12";
             }
 
-           // Math.Round(inputValue, 2);
+            // Math.Round(inputValue, 2);
         }
 
         private void cboAktivnost_SelectedValueChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void cboAktivnost_Leave(object sender, EventArgs e)
@@ -1489,7 +1380,7 @@ namespace Saobracaj.Dokumenta
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
-           // SqlCommand command = new SqlCommand(" select ObracunPoSatu, PotrebanRazlog, PotrebanNalogodavac, PotrebnoVozilo, ObaveznaNapomena from VrstaAktivnosti where ID = " + Convert.ToInt32(cboAktivnost.SelectedValue), conn);
+            // SqlCommand command = new SqlCommand(" select ObracunPoSatu, PotrebanRazlog, PotrebanNalogodavac, PotrebnoVozilo, ObaveznaNapomena from VrstaAktivnosti where ID = " + Convert.ToInt32(cboAktivnost.SelectedValue), conn);
             SqlCommand cmd = new SqlCommand("select ObracunPoSatu, PotrebanRazlog, PotrebanNalogodavac, PotrebnoVozilo, ObaveznaNapomena from VrstaAktivnosti where ID = " + Convert.ToInt32(cboAktivnost.SelectedValue), conn);
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.HasRows)
@@ -1551,7 +1442,7 @@ namespace Saobracaj.Dokumenta
                 var select = "Select ID, RTrim(Delavci.DeIme) + ' ' + Rtrim(Delavci.DePriimek) as Zaposleni, " +
                 " VremeOd, VremeDo, Ukupno, UkupniTroskovi, Opis, RN, Oznaka, " +
                 " Racun, Kartica, Izracun, Razlika, Zarada " +
-                " from Aktivnosti " + 
+                " from Aktivnosti " +
                 " inner join Delavci on Aktivnosti.Zaposleni = Delavci.DeSifra " +
                 " where ID = " + Convert.ToInt32(txtSifra.Text);
 
@@ -1565,11 +1456,11 @@ namespace Saobracaj.Dokumenta
                 dataAdapter.Fill(ds);
                 string body = "Spisak unetih aktivnosti za:  <br />";
 
-              
+
                 foreach (DataRow myRow in ds.Tables[0].Rows)
                 {
-                    body = body + "Zaposleni: " + myRow["Zaposleni"].ToString()  + "<br /> ";
-                    body = body + "Vreme: " + myRow["VremeOd"].ToString() + " - " + myRow["VremeDo"].ToString() + " Ukupno:" + myRow["Ukupno"].ToString() + "H" +"<br /> ";
+                    body = body + "Zaposleni: " + myRow["Zaposleni"].ToString() + "<br /> ";
+                    body = body + "Vreme: " + myRow["VremeOd"].ToString() + " - " + myRow["VremeDo"].ToString() + " Ukupno:" + myRow["Ukupno"].ToString() + "H" + "<br /> ";
 
                     body = body + "TROŠAK: " + "<br /> ";
                     body = body + "Dodatni troškovi: " + myRow["UkupniTroskovi"].ToString() + "<br /> ";
@@ -1585,8 +1476,8 @@ namespace Saobracaj.Dokumenta
                         body = body + "Po učinku: " + myRow["Izracun"].ToString() + "<br /> ";
                         body = body + "Zarada: " + myRow["Zarada"].ToString() + "<br /> ";
                     }
-                    
-                    
+
+
                     body = body + "Napomena: " + myRow["Opis"].ToString() + "<br /> <br />";
                 }
 
@@ -1610,13 +1501,13 @@ namespace Saobracaj.Dokumenta
 
                 foreach (DataRow myRow2 in ds2.Tables[0].Rows)
                 {
-                    body = body + "<br />"; 
+                    body = body + "<br />";
                     body = body + "Aktivnost: " + myRow2["Naziv"].ToString() + "<br />";
                     if (Convert.ToInt32(myRow2["ID"].ToString()) == 43)
                     {
                         double pom = 0;
                         pom = Convert.ToDouble(myRow2["Sati"].ToString()) * Convert.ToDouble(myRow2["Koeficijent"].ToString()) * 0.01;
-                       // body = body + "Sati: " + myRow2["Sati"].ToString() + " H " + "<br />";
+                        // body = body + "Sati: " + myRow2["Sati"].ToString() + " H " + "<br />";
                         body = body + "Zarada aktivnost: " + pom.ToString() + "<br />";
                     }
                     else if (Convert.ToInt32(myRow2["ObracunPoSatu"].ToString()) == 1)
@@ -1633,20 +1524,20 @@ namespace Saobracaj.Dokumenta
                         body = body + "Broj vagona: " + myRow2["BrojVagona"].ToString() + " VAG " + "<br />";
                         body = body + "Zarada aktivnost: " + pom.ToString() + "<br />";
                     }
-//  if (Convert.ToDouble(myRow2["Sati"].ToString()) != 0)
-                     
-// if (Convert.ToInt32(myRow2["BrojVagona"].ToString()) != 0)
-  //                      body = body + "Broj vagona: " + myRow2["BrojVagona"].ToString() + " VAG " +"<br />";
-                 
+                    //  if (Convert.ToDouble(myRow2["Sati"].ToString()) != 0)
+
+                    // if (Convert.ToInt32(myRow2["BrojVagona"].ToString()) != 0)
+                    //                      body = body + "Broj vagona: " + myRow2["BrojVagona"].ToString() + " VAG " +"<br />";
+
                     if (myRow2["Razlog"].ToString() != "")
-                        body = body + "Razlog: " + myRow2["Razlog"].ToString() + "<br />"; 
+                        body = body + "Razlog: " + myRow2["Razlog"].ToString() + "<br />";
                     if (myRow2["Nalogodavac"].ToString() != "")
-                        body = body + "Nalogodavac: " + myRow2["Nalogodavac"].ToString() + "<br />"; 
+                        body = body + "Nalogodavac: " + myRow2["Nalogodavac"].ToString() + "<br />";
                     if (myRow2["Vozilo"].ToString() != "")
-                        body = body + "Vozilo: " + myRow2["Vozilo"].ToString() + "<br />"; 
+                        body = body + "Vozilo: " + myRow2["Vozilo"].ToString() + "<br />";
                     if (myRow2["Napomena"].ToString().TrimEnd() != "")
                         body = body + "Napomena: " + myRow2["Napomena"].ToString() + "<br />  <br />"; ;
-                    
+
                 }
 
                 body = body + "<br /> <br /> ";
@@ -1673,7 +1564,7 @@ namespace Saobracaj.Dokumenta
                 chkPoslatMail.Checked = true;
 
                 InsertLogAktivnosti insL = new InsertLogAktivnosti();
-               // insL.InsLog(Convert.ToInt32(txtSifra.Text), "Brisanje stavke", Korisnik);
+                // insL.InsLog(Convert.ToInt32(txtSifra.Text), "Brisanje stavke", Korisnik);
             }
             catch (Exception ex)
             {
@@ -1682,15 +1573,15 @@ namespace Saobracaj.Dokumenta
         }
 
         private void VratiMoguceAktivnosti()
-        { 
-        // refresh cbo
-        //refresh datagrid
+        {
+            // refresh cbo
+            //refresh datagrid
             var select4 = "  select ID, Naziv from VrstaAktivnosti " +
            " inner join PravoAktivnosti on VrstaAktivnosti.ID = PravoAktivnosti.VrstaAktivnostiID " +
            " where VrstaAktivnosti.ObracunPoSatu=1   and PravoAktivnosti.Zaposleni = " + cboZaposleni.SelectedValue;
 
 
-          //  var select4 = " select ID, Naziv from VrstaAktivnosti where ObracunPoSatu = 1 and Dnevnica = 1";
+            //  var select4 = " select ID, Naziv from VrstaAktivnosti where ObracunPoSatu = 1 and Dnevnica = 1";
             var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
@@ -1715,7 +1606,7 @@ namespace Saobracaj.Dokumenta
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             InsertAktivnosti ins = new InsertAktivnosti();
-           // ins.UpdateAktivnostiPlaceno(Convert.ToInt32(txtSifra.Text));
+            // ins.UpdateAktivnostiPlaceno(Convert.ToInt32(txtSifra.Text));
             chkPlaceno.Checked = true;
         }
 
@@ -1725,7 +1616,7 @@ namespace Saobracaj.Dokumenta
             ins.UpdateAktivnostiKontrolisanoSpoljno(Convert.ToInt32(txtSifra.Text));
 
             InsertLogAktivnosti insL = new InsertLogAktivnosti();
-           // insL.InsLog(Convert.ToInt32(txtSifra.Text), "Kontrolisano outside", Korisnik);
+            // insL.InsLog(Convert.ToInt32(txtSifra.Text), "Kontrolisano outside", Korisnik);
             // chkPlaceno.Checked = true;
             /*
             frmEvidencijaRadaDokumenti frmER = new frmEvidencijaRadaDokumenti(txtSifra.Text);
@@ -1929,15 +1820,11 @@ namespace Saobracaj.Dokumenta
 
         private void OduzmiBezDnevnice(int Stavka)
         {
-            int Smena = 1;
-
             if (Convert.ToDouble(txtVreme.Text) <= 7)
             {
-                Smena = 1;
             }
             else
             {
-                Smena = 2;
             }
             double cena = 0;
             int obracunposatu = 1;
@@ -1980,7 +1867,7 @@ namespace Saobracaj.Dokumenta
                 double Razlika = 0;
                 txtRazlika.Text = Razlika.ToString();
                 txtZarada.Text = txtIzracun.Text;
-                
+
             }
             else
             {
@@ -1992,7 +1879,7 @@ namespace Saobracaj.Dokumenta
                 double Razlika = 0;
                 txtRazlika.Text = Razlika.ToString();
                 txtZarada.Text = txtIzracun.Text;
-               
+
 
                 //end po vagonu
             }
@@ -2003,16 +1890,16 @@ namespace Saobracaj.Dokumenta
         private void OduzmiStavku(int Stavka)
         {
             if (chkPravoDnevnice.Checked == true)
-            {       
+            {
                 OduzmiPoDnevnici(Stavka);
-            }   
-                else
+            }
+            else
             {
                 OduzmiBezDnevnice(Stavka);
-            }           
-            
-         
-        
+            }
+
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -2032,7 +1919,7 @@ namespace Saobracaj.Dokumenta
                     {
                         OduzmiStavku(Convert.ToInt32(row.Cells[8].Value.ToString()));
                         ins.DeleteAktivnostiStavke(Convert.ToInt32(row.Cells[8].Value.ToString()));
-                      
+
                         RefreshDataGridPoAktivnostima();
                     }
                 }
@@ -2048,15 +1935,15 @@ namespace Saobracaj.Dokumenta
         private void button2_Click(object sender, EventArgs e)
         {
             InsertAktivnostiStavke ins = new InsertAktivnostiStavke();
-            ins.InsAktivnostiStavke(Convert.ToInt32(txtSifra.Text), 43, Convert.ToDouble(1), Convert.ToDouble(Convert.ToDouble(txtRazlika.Text) * 100), "Zaključenje smene", 0, "", 1, "", 0, dtpStavke.Value,0);
+            ins.InsAktivnostiStavke(Convert.ToInt32(txtSifra.Text), 43, Convert.ToDouble(1), Convert.ToDouble(Convert.ToDouble(txtRazlika.Text) * 100), "Zaključenje smene", 0, "", 1, "", 0, dtpStavke.Value, 0);
             InsertAktivnosti insA = new InsertAktivnosti();
             insA.UpdAktivnostiZarada(Convert.ToInt32(txtSifra.Text), Convert.ToDouble(txtIzracun.Text), Convert.ToDouble(txtRazlika.Text), Convert.ToDouble(txtZarada.Text));
             InsertLogAktivnosti insL = new InsertLogAktivnosti();
-          //  insL.InsLog(Convert.ToInt32(txtSifra.Text), "Kraj unosa", Korisnik);
+            //  insL.InsLog(Convert.ToInt32(txtSifra.Text), "Kraj unosa", Korisnik);
             RefreshDataGridPoAktivnostima();
-        
 
-           
+
+
 
         }
 
@@ -2126,8 +2013,8 @@ namespace Saobracaj.Dokumenta
             else
             {
                 vrd = 0;
-            
-            }    
+
+            }
             double pom = Convert.ToDouble(txtIzracun.Text);
             pom = pom + vrd;
             txtIzracun.Text = pom.ToString();
@@ -2144,16 +2031,16 @@ namespace Saobracaj.Dokumenta
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (chkPravoDnevnice.Checked == true)
-                { 
-                IzracunPoDnevniciSatiRefresh(Convert.ToInt32(row.Cells[8].Value.ToString()));
+                {
+                    IzracunPoDnevniciSatiRefresh(Convert.ToInt32(row.Cells[8].Value.ToString()));
                 }
                 else
                 {
-                IzracunPoStaromRefresh(Convert.ToInt32(row.Cells[8].Value.ToString()));
+                    IzracunPoStaromRefresh(Convert.ToInt32(row.Cells[8].Value.ToString()));
                 }
                 // ins.UpdUkupnoUEUR(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToDouble(txtZarada.Value));
-                   
-                
+
+
             }
         }
 
@@ -2161,13 +2048,13 @@ namespace Saobracaj.Dokumenta
         {
             try
             {
-              
+
                 InsertAktivnostiStavke ins = new InsertAktivnostiStavke();
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (row.Selected)
                     {
-                       
+
                         ins.PromeniSati(Convert.ToInt32(row.Cells[8].Value.ToString()), Convert.ToDouble(txtRad.Value));
 
                         RefreshDataGridPoAktivnostima();
@@ -2196,12 +2083,12 @@ namespace Saobracaj.Dokumenta
 
                     ins.InsAktivnostiStavkeMas(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(txtSifra.Text));
 
-                }   
+                }
 
                 // ins.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
             }
             RefreshDataGridPoAktivnostima();
-           
+
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
@@ -2214,7 +2101,7 @@ namespace Saobracaj.Dokumenta
         {
             try
             {
-//Panta
+                //Panta
                 InsertAktivnostiStavke ins = new InsertAktivnostiStavke();
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
@@ -2244,32 +2131,32 @@ namespace Saobracaj.Dokumenta
         }
     }
 
-        /* protected void Submit(object sender, EventArgs e)
+    /* protected void Submit(object sender, EventArgs e)
+     {
+
+
+
+
+         string constring = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+         using (SqlConnection con = new SqlConnection(constring))
          {
-
-
-
-
-             string constring = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-             using (SqlConnection con = new SqlConnection(constring))
+             using (SqlCommand cmd = new SqlCommand("ProveriUnos", con))
              {
-                 using (SqlCommand cmd = new SqlCommand("ProveriUnos", con))
-                 {
-                     cmd.CommandType = CommandType.StoredProcedure;
-                     cmd.Parameters.AddWithValue("@Zaposleni", cboZaposleni.SelectedValue());
-                     cmd.Parameters.Add("@Postoji", SqlDbType.Int);
-                     cmd.Parameters["@Postoji"].Direction = ParameterDirection.Output;
-                     con.Open();
-                     cmd.ExecuteNonQuery();
-                     con.Close();
-                     string test;
-                     test= "Fruit Name: " + cmd.Parameters["@Postoji"].Value.ToString();
-                 }
+                 cmd.CommandType = CommandType.StoredProcedure;
+                 cmd.Parameters.AddWithValue("@Zaposleni", cboZaposleni.SelectedValue());
+                 cmd.Parameters.Add("@Postoji", SqlDbType.Int);
+                 cmd.Parameters["@Postoji"].Direction = ParameterDirection.Output;
+                 con.Open();
+                 cmd.ExecuteNonQuery();
+                 con.Close();
+                 string test;
+                 test= "Fruit Name: " + cmd.Parameters["@Postoji"].Value.ToString();
              }
-
          }
-           * */
+
+     }
+       * */
 
 
-    }
+}
 

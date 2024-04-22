@@ -1,21 +1,17 @@
 ﻿
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Testiranje.Dokumeta
 {
     class InsertPromet
     {
 
-       public void InsProm(DateTime DatumTransakcije, string VrstaDokumenta,int PrStDokumenta,string BrojKontejnera,string PrSifVrstePrometa, double PrPrimKol, double PrIzdKol, int SkladisteU,int LokacijaU, int SkladisteIz, int LokacijaIz, string PrOznSled, DateTime Datum, string Korisnik, int SredstvoRada, int Zaposleni, DateTime DatumRasporeda )
+        public void InsProm(DateTime DatumTransakcije, string VrstaDokumenta, int PrStDokumenta, string BrojKontejnera, string PrSifVrstePrometa, double PrPrimKol, double PrIzdKol, int SkladisteU, int LokacijaU, int SkladisteIz, int LokacijaIz, string PrOznSled, DateTime Datum, string Korisnik, int SredstvoRada, int Zaposleni, DateTime DatumRasporeda)
         {
             /*
             	@VrstaDokumenta [char](3),
@@ -43,7 +39,7 @@ namespace Testiranje.Dokumeta
             SqlParameter parameter0 = new SqlParameter();
             parameter0.ParameterName = "@DatumTransakcije";
             parameter0.SqlDbType = SqlDbType.DateTime;
-           // parameter0.Size = 3;
+            // parameter0.Size = 3;
             parameter0.Direction = ParameterDirection.Input;
             parameter0.Value = DatumTransakcije;
             myCommand.Parameters.Add(parameter0);
@@ -56,7 +52,7 @@ namespace Testiranje.Dokumeta
             parameter.Value = VrstaDokumenta;
             myCommand.Parameters.Add(parameter);
 
-           
+
 
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@PrStDokumenta";
@@ -94,7 +90,7 @@ namespace Testiranje.Dokumeta
             SqlParameter parameter2a2 = new SqlParameter();
             parameter2a2.ParameterName = "@PrIzdKol";
             parameter2a2.SqlDbType = SqlDbType.Decimal;
-           // parameter2a2.Size = 100;
+            // parameter2a2.Size = 100;
             parameter2a2.Direction = ParameterDirection.Input;
             parameter2a2.Value = PrIzdKol;
             myCommand.Parameters.Add(parameter2a2);
@@ -107,7 +103,7 @@ namespace Testiranje.Dokumeta
             parameter2a3.Value = SkladisteU;
             myCommand.Parameters.Add(parameter2a3);
 
-          SqlParameter parameter2a4 = new SqlParameter();
+            SqlParameter parameter2a4 = new SqlParameter();
             parameter2a4.ParameterName = "@LokacijaU";
             parameter2a4.SqlDbType = SqlDbType.Int;
             //parameter2a3.Size = 100;
@@ -115,7 +111,7 @@ namespace Testiranje.Dokumeta
             parameter2a4.Value = LokacijaU;
             myCommand.Parameters.Add(parameter2a4);
 
-             SqlParameter parameter2a5 = new SqlParameter();
+            SqlParameter parameter2a5 = new SqlParameter();
             parameter2a5.ParameterName = "@SkladisteIz";
             parameter2a5.SqlDbType = SqlDbType.Int;
             //parameter2a3.Size = 100;
@@ -123,7 +119,7 @@ namespace Testiranje.Dokumeta
             parameter2a5.Value = SkladisteIz;
             myCommand.Parameters.Add(parameter2a5);
 
-          SqlParameter parameter2a6 = new SqlParameter();
+            SqlParameter parameter2a6 = new SqlParameter();
             parameter2a6.ParameterName = "@LokacijaIz";
             parameter2a6.SqlDbType = SqlDbType.Int;
             //parameter2a3.Size = 100;
@@ -139,8 +135,8 @@ namespace Testiranje.Dokumeta
             parameter2a7.Value = PrOznSled;
             myCommand.Parameters.Add(parameter2a7);
 
-          
-            
+
+
             SqlParameter parameter7 = new SqlParameter();
             parameter7.ParameterName = "@Datum";
             parameter7.SqlDbType = SqlDbType.DateTime;
@@ -216,77 +212,77 @@ namespace Testiranje.Dokumeta
             }
         }
 
-       public void InsPromMan( int PRStDokumenta  , string BrojKontejnera  ,int ManipulacijaID ,int NajavaID ,int SredstvoRada ,int Zaposleni ,DateTime Datum,string @Korisnik, string SkladisteIz, string PozicijaIz, string SkladisteU, string PozicijaU)
-       {
-           var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-           SqlConnection myConnection = new SqlConnection(s_connection);
-           SqlCommand myCommand = myConnection.CreateCommand();
-           myCommand.CommandText = "InsertPrometManipulacije";
-           myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        public void InsPromMan(int PRStDokumenta, string BrojKontejnera, int ManipulacijaID, int NajavaID, int SredstvoRada, int Zaposleni, DateTime Datum, string @Korisnik, string SkladisteIz, string PozicijaIz, string SkladisteU, string PozicijaU)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "InsertPrometManipulacije";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-           SqlParameter parameter = new SqlParameter();
-           parameter.ParameterName = "@PRStDokumenta";
-           parameter.SqlDbType = SqlDbType.Int;
-           // parameter0.Size = 3;
-           parameter.Direction = ParameterDirection.Input;
-           parameter.Value = PRStDokumenta;
-           myCommand.Parameters.Add(parameter);
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@PRStDokumenta";
+            parameter.SqlDbType = SqlDbType.Int;
+            // parameter0.Size = 3;
+            parameter.Direction = ParameterDirection.Input;
+            parameter.Value = PRStDokumenta;
+            myCommand.Parameters.Add(parameter);
 
-           SqlParameter parameter1 = new SqlParameter();
-           parameter1.ParameterName = "@BrojKontejnera";
-           parameter1.SqlDbType = SqlDbType.NVarChar;
-           parameter1.Size = 20;
-           parameter1.Direction = ParameterDirection.Input;
-           parameter1.Value = BrojKontejnera;
-           myCommand.Parameters.Add(parameter1);
-
-
-           SqlParameter parameter2 = new SqlParameter();
-           parameter2.ParameterName = "@ManipulacijaID";
-           parameter2.SqlDbType = SqlDbType.Int;
-           parameter2.Direction = ParameterDirection.Input;
-           parameter2.Value = ManipulacijaID;
-           myCommand.Parameters.Add(parameter2);
-
-           SqlParameter parameter3 = new SqlParameter();
-           parameter3.ParameterName = "@NajavaID";
-           parameter3.SqlDbType = SqlDbType.Int;
-           //parameter2a3.Size = 100;
-           parameter3.Direction = ParameterDirection.Input;
-           parameter3.Value = NajavaID;
-           myCommand.Parameters.Add(parameter3);
-
-           SqlParameter parameter4 = new SqlParameter();
-           parameter4.ParameterName = "@SredstvoRada";
-           parameter4.SqlDbType = SqlDbType.Int;
-           //parameter2a3.Size = 100;
-           parameter4.Direction = ParameterDirection.Input;
-           parameter4.Value = SredstvoRada;
-           myCommand.Parameters.Add(parameter4);
-
-           SqlParameter parameter5 = new SqlParameter();
-           parameter5.ParameterName = "@Zaposleni";
-           parameter5.SqlDbType = SqlDbType.Int;
-           //parameter2a3.Size = 100;
-           parameter5.Direction = ParameterDirection.Input;
-           parameter5.Value = Zaposleni;
-           myCommand.Parameters.Add(parameter5);
+            SqlParameter parameter1 = new SqlParameter();
+            parameter1.ParameterName = "@BrojKontejnera";
+            parameter1.SqlDbType = SqlDbType.NVarChar;
+            parameter1.Size = 20;
+            parameter1.Direction = ParameterDirection.Input;
+            parameter1.Value = BrojKontejnera;
+            myCommand.Parameters.Add(parameter1);
 
 
-           SqlParameter parameter6 = new SqlParameter();
-           parameter6.ParameterName = "@Datum";
-           parameter6.SqlDbType = SqlDbType.DateTime;
-           parameter6.Direction = ParameterDirection.Input;
-           parameter6.Value = Datum;
-           myCommand.Parameters.Add(parameter6);
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@ManipulacijaID";
+            parameter2.SqlDbType = SqlDbType.Int;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = ManipulacijaID;
+            myCommand.Parameters.Add(parameter2);
 
-           SqlParameter parameter7 = new SqlParameter();
-           parameter7.ParameterName = "@Korisnik";
-           parameter7.SqlDbType = SqlDbType.NVarChar;
-           parameter7.Size = 20;
-           parameter7.Direction = ParameterDirection.Input;
-           parameter7.Value = Korisnik;
-           myCommand.Parameters.Add(parameter7);
+            SqlParameter parameter3 = new SqlParameter();
+            parameter3.ParameterName = "@NajavaID";
+            parameter3.SqlDbType = SqlDbType.Int;
+            //parameter2a3.Size = 100;
+            parameter3.Direction = ParameterDirection.Input;
+            parameter3.Value = NajavaID;
+            myCommand.Parameters.Add(parameter3);
+
+            SqlParameter parameter4 = new SqlParameter();
+            parameter4.ParameterName = "@SredstvoRada";
+            parameter4.SqlDbType = SqlDbType.Int;
+            //parameter2a3.Size = 100;
+            parameter4.Direction = ParameterDirection.Input;
+            parameter4.Value = SredstvoRada;
+            myCommand.Parameters.Add(parameter4);
+
+            SqlParameter parameter5 = new SqlParameter();
+            parameter5.ParameterName = "@Zaposleni";
+            parameter5.SqlDbType = SqlDbType.Int;
+            //parameter2a3.Size = 100;
+            parameter5.Direction = ParameterDirection.Input;
+            parameter5.Value = Zaposleni;
+            myCommand.Parameters.Add(parameter5);
+
+
+            SqlParameter parameter6 = new SqlParameter();
+            parameter6.ParameterName = "@Datum";
+            parameter6.SqlDbType = SqlDbType.DateTime;
+            parameter6.Direction = ParameterDirection.Input;
+            parameter6.Value = Datum;
+            myCommand.Parameters.Add(parameter6);
+
+            SqlParameter parameter7 = new SqlParameter();
+            parameter7.ParameterName = "@Korisnik";
+            parameter7.SqlDbType = SqlDbType.NVarChar;
+            parameter7.Size = 20;
+            parameter7.Direction = ParameterDirection.Input;
+            parameter7.Value = Korisnik;
+            myCommand.Parameters.Add(parameter7);
 
             SqlParameter parameter8 = new SqlParameter();
             parameter8.ParameterName = "@SkladisteIz";
@@ -324,43 +320,43 @@ namespace Testiranje.Dokumeta
 
 
             myConnection.Open();
-           SqlTransaction myTransaction = myConnection.BeginTransaction();
-           myCommand.Transaction = myTransaction;
-           bool error = true;
-           try
-           {
-               myCommand.ExecuteNonQuery();
-               myTransaction.Commit();
-               myTransaction = myConnection.BeginTransaction();
-               myCommand.Transaction = myTransaction;
-           }
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
 
-           catch (SqlException)
-           {
-               throw new Exception("Neuspešan upis u bazu");
-           }
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis u bazu");
+            }
 
-           finally
-           {
-               if (!error)
-               {
-                   myTransaction.Commit();
-                   MessageBox.Show("Nije uspeo upis ", "",
-                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Nije uspeo upis ", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-               }
-               myConnection.Close();
+                }
+                myConnection.Close();
 
-               if (error)
-               {
-                   // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-               }
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
 
 
-           }
-       }
+            }
+        }
 
-       public void UpdProm(int ID, string Naziv, string IndividualniBroj, string LicencaBroj, DateTime LicencaVaziDo, string Namena, string Vrsta, int BrojOsovina, string RegistarskaOznaka, DateTime GodinaProizvodnje, double SopstvenaTezina, DateTime NarednaREgistracija, DateTime SetomesecniTehnicki, DateTime GodisnjiTehnicki, DateTime TahografSertifikat, DateTime PPAparat, DateTime Servis, DateTime Atest, double Nosivost, string Napomena, string SifraERP, DateTime Datum, string Korisnik, int UradjenTromesecni, int UradjenSetomesecni, int UradjenServis, DateTime DatumUradjenTromesecni, DateTime DatumUradjenSetomesecni, DateTime DatumUradjenServis, DateTime DatumUradjenGodisnji, DateTime TromesecniTehnicki, int UradjenGodisnji)
+        public void UpdProm(int ID, string Naziv, string IndividualniBroj, string LicencaBroj, DateTime LicencaVaziDo, string Namena, string Vrsta, int BrojOsovina, string RegistarskaOznaka, DateTime GodinaProizvodnje, double SopstvenaTezina, DateTime NarednaREgistracija, DateTime SetomesecniTehnicki, DateTime GodisnjiTehnicki, DateTime TahografSertifikat, DateTime PPAparat, DateTime Servis, DateTime Atest, double Nosivost, string Napomena, string SifraERP, DateTime Datum, string Korisnik, int UradjenTromesecni, int UradjenSetomesecni, int UradjenServis, DateTime DatumUradjenTromesecni, DateTime DatumUradjenSetomesecni, DateTime DatumUradjenServis, DateTime DatumUradjenGodisnji, DateTime TromesecniTehnicki, int UradjenGodisnji)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -649,55 +645,55 @@ namespace Testiranje.Dokumeta
             }
         }
 
-       public void DeleteProm(int ID)
-          {
-              var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-              SqlConnection myConnection = new SqlConnection(s_connection);
-              SqlCommand myCommand = myConnection.CreateCommand();
-              myCommand.CommandText = "DeletePromet";
-              myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        public void DeleteProm(int ID)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "DeletePromet";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-              SqlParameter parameter = new SqlParameter();
-              parameter.ParameterName = "@ID";
-              parameter.SqlDbType = SqlDbType.Int;
-              parameter.Direction = ParameterDirection.Input;
-              parameter.Value = ID;
-              myCommand.Parameters.Add(parameter);
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@ID";
+            parameter.SqlDbType = SqlDbType.Int;
+            parameter.Direction = ParameterDirection.Input;
+            parameter.Value = ID;
+            myCommand.Parameters.Add(parameter);
 
-              myConnection.Open();
-              SqlTransaction myTransaction = myConnection.BeginTransaction();
-              myCommand.Transaction = myTransaction;
-              bool error = true;
-              try
-              {
-                  myCommand.ExecuteNonQuery();
-                  myTransaction.Commit();
-                  myTransaction = myConnection.BeginTransaction();
-                  myCommand.Transaction = myTransaction;
-              }
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
 
-              catch (SqlException)
-              {
-                  throw new Exception("Brisanje neuspešno");
-              }
+            catch (SqlException)
+            {
+                throw new Exception("Brisanje neuspešno");
+            }
 
-              finally
-              {
-                  if (!error)
-                  {
-                      myTransaction.Commit();
-                      MessageBox.Show("Brisanje Cena uspešno završeno", "",
-                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Brisanje Cena uspešno završeno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                  }
-                  myConnection.Close();
+                }
+                myConnection.Close();
 
-                  if (error)
-                  {
-                      // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-                  }
-              }
-          }
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
 
         public void DeletePromManipulacije(int ID)
         {
@@ -750,120 +746,120 @@ namespace Testiranje.Dokumeta
         }
 
         public void UpdateZatvoren(int ID)
-       {
-           var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-           SqlConnection myConnection = new SqlConnection(s_connection);
-           SqlCommand myCommand = myConnection.CreateCommand();
-           myCommand.CommandText = "UpdateZatvoren";
-           myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "UpdateZatvoren";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-           SqlParameter parameter = new SqlParameter();
-           parameter.ParameterName = "@ID";
-           parameter.SqlDbType = SqlDbType.Int;
-           parameter.Direction = ParameterDirection.Input;
-           parameter.Value = ID;
-           myCommand.Parameters.Add(parameter);
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@ID";
+            parameter.SqlDbType = SqlDbType.Int;
+            parameter.Direction = ParameterDirection.Input;
+            parameter.Value = ID;
+            myCommand.Parameters.Add(parameter);
 
-           myConnection.Open();
-           SqlTransaction myTransaction = myConnection.BeginTransaction();
-           myCommand.Transaction = myTransaction;
-           bool error = true;
-           try
-           {
-               myCommand.ExecuteNonQuery();
-               myTransaction.Commit();
-               myTransaction = myConnection.BeginTransaction();
-               myCommand.Transaction = myTransaction;
-           }
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
 
-           catch (SqlException)
-           {
-               throw new Exception("Zatvaranje neuspešno");
-           }
+            catch (SqlException)
+            {
+                throw new Exception("Zatvaranje neuspešno");
+            }
 
-           finally
-           {
-               if (!error)
-               {
-                   myTransaction.Commit();
-                   MessageBox.Show("Zatvaranje uspešno", "",
-                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Zatvaranje uspešno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-               }
-               myConnection.Close();
+                }
+                myConnection.Close();
 
-               if (error)
-               {
-                   // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-               }
-           }
-       }
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
 
-       public void UpdateZatvorenOtprema(string ID, DateTime DatumOtpreme, int BrojOtpremnice)
-       {
-           var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-           SqlConnection myConnection = new SqlConnection(s_connection);
-           SqlCommand myCommand = myConnection.CreateCommand();
-           myCommand.CommandText = "UpdateZatvorenOtprema";
-           myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+        public void UpdateZatvorenOtprema(string ID, DateTime DatumOtpreme, int BrojOtpremnice)
+        {
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "UpdateZatvorenOtprema";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-           SqlParameter parameter = new SqlParameter();
-           parameter.ParameterName = "@ID";
-           parameter.SqlDbType = SqlDbType.NVarChar;
-           parameter.Size = 20;
-           parameter.Direction = ParameterDirection.Input;
-           parameter.Value = ID;
-           myCommand.Parameters.Add(parameter);
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@ID";
+            parameter.SqlDbType = SqlDbType.NVarChar;
+            parameter.Size = 20;
+            parameter.Direction = ParameterDirection.Input;
+            parameter.Value = ID;
+            myCommand.Parameters.Add(parameter);
 
-           SqlParameter parameter1 = new SqlParameter();
-           parameter1.ParameterName = "@DatumOtpreme";
-           parameter1.SqlDbType = SqlDbType.DateTime;
-           parameter1.Direction = ParameterDirection.Input;
-           parameter1.Value = DatumOtpreme;
-           myCommand.Parameters.Add(parameter1);
+            SqlParameter parameter1 = new SqlParameter();
+            parameter1.ParameterName = "@DatumOtpreme";
+            parameter1.SqlDbType = SqlDbType.DateTime;
+            parameter1.Direction = ParameterDirection.Input;
+            parameter1.Value = DatumOtpreme;
+            myCommand.Parameters.Add(parameter1);
 
-           SqlParameter parameter2 = new SqlParameter();
-           parameter2.ParameterName = "@BrojOtpremnice";
-           parameter2.SqlDbType = SqlDbType.Int;
-           parameter2.Direction = ParameterDirection.Input;
-           parameter2.Value = BrojOtpremnice;
-           myCommand.Parameters.Add(parameter2);
+            SqlParameter parameter2 = new SqlParameter();
+            parameter2.ParameterName = "@BrojOtpremnice";
+            parameter2.SqlDbType = SqlDbType.Int;
+            parameter2.Direction = ParameterDirection.Input;
+            parameter2.Value = BrojOtpremnice;
+            myCommand.Parameters.Add(parameter2);
 
-           myConnection.Open();
-           SqlTransaction myTransaction = myConnection.BeginTransaction();
-           myCommand.Transaction = myTransaction;
-           bool error = true;
-           try
-           {
-               myCommand.ExecuteNonQuery();
-               myTransaction.Commit();
-               myTransaction = myConnection.BeginTransaction();
-               myCommand.Transaction = myTransaction;
-           }
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
 
-           catch (SqlException)
-           {
-               throw new Exception("Zatvaranje neuspešno");
-           }
+            catch (SqlException)
+            {
+                throw new Exception("Zatvaranje neuspešno");
+            }
 
-           finally
-           {
-               if (!error)
-               {
-                   myTransaction.Commit();
-                   MessageBox.Show("Zatvaranje uspešno", "",
-                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Zatvaranje uspešno", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-               }
-               myConnection.Close();
+                }
+                myConnection.Close();
 
-               if (error)
-               {
-                   // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-               }
-           }
-       }
-    
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
     }
 }
 

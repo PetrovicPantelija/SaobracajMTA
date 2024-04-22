@@ -1,21 +1,11 @@
 ﻿
 
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Testiranje.Sifarnici
 {
@@ -53,7 +43,7 @@ namespace Testiranje.Sifarnici
                 ins.InsKor(txtKorisnik.Text, txtPassword.Text, 0);
                 status = false;
             }
-           
+
             RefreshDataGrid();
         }
 
@@ -72,7 +62,7 @@ namespace Testiranje.Sifarnici
                 //do something else
             }
 
-            
+
         }
 
         private void RefreshDataGrid()
@@ -111,7 +101,7 @@ namespace Testiranje.Sifarnici
             dataGridView1.Columns[1].Width = 100;
 
 
-           
+
         }
 
         private void VratiPodatke(string ID)
@@ -129,8 +119,8 @@ namespace Testiranje.Sifarnici
                 // Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene
                 txtPassword.Text = dr["Password"].ToString();
                 txtKorisnik.Text = dr["Korisnik"].ToString();
-              
-              
+
+
             }
 
             con.Close();

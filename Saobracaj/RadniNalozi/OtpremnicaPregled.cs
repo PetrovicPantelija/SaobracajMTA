@@ -2,7 +2,6 @@
 using Microsoft.Reporting.WinForms;
 using Saobracaj.Sifarnici;
 using System;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -21,7 +20,7 @@ namespace Saobracaj.RadniNalozi
 
         private void OtpremnicaPregled_Load(object sender, EventArgs e)
         {
-            korisnik =frmLogovanje.user;
+            korisnik = frmLogovanje.user;
             FillGV();
         }
 
@@ -30,10 +29,10 @@ namespace Saobracaj.RadniNalozi
             var query = "select distinct DoStDob,DoStatus,DoDatDob,Partnerji.PaNaziv,p1.PaNaziv,DoSmSifra,DOZnes " +
                 "From DObavnica " +
                 "Inner join DobavnicaPostav on Dobavnica.DoStDob = DobavnicaPostav.DoPStDob " +
-                
+
                 "Inner join Partnerji on Dobavnica.DoPartPlac = Partnerji.PaSifra " +
                 "Inner join Partnerji as p1 on Dobavnica.DoPartPrjm = p1.PaSifra " +
-                
+
                 "order by DoStDob desc";
             SqlConnection conn = new SqlConnection(connect);
             SqlDataAdapter da = new SqlDataAdapter(query, conn);

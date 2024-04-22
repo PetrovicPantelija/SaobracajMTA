@@ -1,24 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Saobracaj.Pantheon_Export;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
 using System.Data.SqlClient;
-using System.Configuration;
-using Syncfusion.Windows.Forms.Tools;
-using Saobracaj.RadniNalozi;
+using System.Drawing;
 using System.IO;
 using System.Net;
-using Syncfusion.XlsIO.Parser.Biff_Records;
-using System.Security.Cryptography.Xml;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
-using Newtonsoft.Json;
-using Saobracaj.Pantheon_Export;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -56,89 +45,7 @@ namespace Saobracaj.Sifarnici
         public frmPartnerji()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
-        }
-        public string IdGrupe()
-        {
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(connect);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
 
-            while (dr.Read())
-            {
-                if (count == 0)
-                {
-                    niz = dr["IdGrupe"].ToString();
-                    count++;
-                }
-                else
-                {
-                    niz = niz + "," + dr["IdGrupe"].ToString();
-                    count++;
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(connect);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(connect);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
         }
         private void frmPartnerji_Load(object sender, EventArgs e)
         {
@@ -160,14 +67,14 @@ namespace Saobracaj.Sifarnici
         {
             foreach (Control c in ctrlCollection)
             {
-                if(c is CheckBox)
+                if (c is CheckBox)
                 {
                     c.Visible = false;
                 }
             }
 
             string firma = Sifarnici.frmLogovanje.Firma;
-            switch(firma)
+            switch (firma)
             {
                 case "Leget":
                     btnDrzava.Visible = false;
@@ -176,50 +83,50 @@ namespace Saobracaj.Sifarnici
                     cbObveznik.Visible = false;
                     cboValuta.Visible = false;
 
-                int prviRedX = 16;
-                int prviRedY = 245;
+                    int prviRedX = 16;
+                    int prviRedY = 245;
 
-                int drugiRedX = 159;
-                int drugiRedY = 245;
+                    int drugiRedX = 159;
+                    int drugiRedY = 245;
 
-                chkLogisitcar.Visible = true;
-                chkLogisitcar.Location=new Point(prviRedX,prviRedY);
+                    chkLogisitcar.Visible = true;
+                    chkLogisitcar.Location = new Point(prviRedX, prviRedY);
 
-                chkSpediter.Visible = true;
-                chkSpediter.Location = new Point(prviRedX, prviRedY+30);
+                    chkSpediter.Visible = true;
+                    chkSpediter.Location = new Point(prviRedX, prviRedY + 30);
 
-                chkBrodar.Visible = true;
-                chkBrodar.Location = new Point(prviRedX, prviRedY+60);
+                    chkBrodar.Visible = true;
+                    chkBrodar.Location = new Point(prviRedX, prviRedY + 60);
 
-                chkAgentBrodara.Visible = true;
-                chkAgentBrodara.Location = new Point(prviRedX, prviRedY+90);
+                    chkAgentBrodara.Visible = true;
+                    chkAgentBrodara.Location = new Point(prviRedX, prviRedY + 90);
 
-                chkUvoznik.Visible = true;
-                chkUvoznik.Location = new Point(drugiRedX, drugiRedY);
+                    chkUvoznik.Visible = true;
+                    chkUvoznik.Location = new Point(drugiRedX, drugiRedY);
 
-                chkIzvoznik.Visible = true;
-                chkIzvoznik.Location = new Point(drugiRedX, drugiRedY+30);
+                    chkIzvoznik.Visible = true;
+                    chkIzvoznik.Location = new Point(drugiRedX, drugiRedY + 30);
 
-                chkKamioner.Visible = true;
-                chkKamioner.Location=new Point(drugiRedX,drugiRedY+60);
+                    chkKamioner.Visible = true;
+                    chkKamioner.Location = new Point(drugiRedX, drugiRedY + 60);
 
-                chkOrganizator.Text = "Železnički operater";
-                chkOrganizator.Visible = true;
-                chkOrganizator.Location = new Point(drugiRedX, drugiRedY + 90);
-                break;
+                    chkOrganizator.Text = "Železnički operater";
+                    chkOrganizator.Visible = true;
+                    chkOrganizator.Location = new Point(drugiRedX, drugiRedY + 90);
+                    break;
 
                 case "TA":
-                chkPrevoznik.Visible= true;
-                chkPosiljalac.Visible= true;
-                chkPrimalac.Visible=true;
-                chkBrodar.Visible=true;
-                chkVlasnik.Visible=true;
-                chkSpediter.Visible=true;
-                chkPlatilac.Visible = true;
-                chkOrganizator.Visible = true;
-                chkNalogodavac.Visible = true;
-                chkUvoznik.Visible = true;
-                chkIzvoznik.Visible = true;
+                    chkPrevoznik.Visible = true;
+                    chkPosiljalac.Visible = true;
+                    chkPrimalac.Visible = true;
+                    chkBrodar.Visible = true;
+                    chkVlasnik.Visible = true;
+                    chkSpediter.Visible = true;
+                    chkPlatilac.Visible = true;
+                    chkOrganizator.Visible = true;
+                    chkNalogodavac.Visible = true;
+                    chkUvoznik.Visible = true;
+                    chkIzvoznik.Visible = true;
                     //btnDrzava.Visible = false;
                     //btnPosta.Visible = false;
                     cbDobavljac.Visible = true;
@@ -314,11 +221,11 @@ namespace Saobracaj.Sifarnici
                         {
                             chkIzvoznik.Checked = false;
                         }
-                        if (row.Cells[28].Value.ToString()== "1") { chkLogisitcar.Checked = true; } else { chkLogisitcar.Checked = false; }
-                        if (row.Cells[29].Value.ToString() == "1") { chkKamioner.Checked= true; } else { chkKamioner.Checked = false; }
-                        if (row.Cells[30].Value.ToString() == "1") { chkAgentBrodara.Checked= true; } else { chkAgentBrodara.Checked = false; }
+                        if (row.Cells[28].Value.ToString() == "1") { chkLogisitcar.Checked = true; } else { chkLogisitcar.Checked = false; }
+                        if (row.Cells[29].Value.ToString() == "1") { chkKamioner.Checked = true; } else { chkKamioner.Checked = false; }
+                        if (row.Cells[30].Value.ToString() == "1") { chkAgentBrodara.Checked = true; } else { chkAgentBrodara.Checked = false; }
                         if (row.Cells["Supplier"].Value.ToString() == "T") { cbDobavljac.Checked = true; } else { cbDobavljac.Checked = false; }
-                        if (row.Cells["WayOfSale"].Value.ToString() == "Z") { cbObveznik.Checked= true; } else { cbObveznik.Checked = false; }
+                        if (row.Cells["WayOfSale"].Value.ToString() == "Z") { cbObveznik.Checked = true; } else { cbObveznik.Checked = false; }
 
                         cboValuta.SelectedValue = row.Cells["Currency"].Value;
 
@@ -334,7 +241,7 @@ namespace Saobracaj.Sifarnici
 
         private void tsSave_Click(object sender, EventArgs e)
         {
-         
+
         }
 
         private void RefreshDataGrid()
@@ -349,7 +256,7 @@ namespace Saobracaj.Sifarnici
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-           
+
             /*
             var select4 = " Select Distinct PaSifra, RTrim(PaNaziv) as Partner From Partnerji";
             var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -478,7 +385,7 @@ namespace Saobracaj.Sifarnici
 
         }
 
-     
+
 
         private void RefreshDataGrid2(string SifraPartnera)
         {
@@ -598,16 +505,16 @@ namespace Saobracaj.Sifarnici
         int referent;
         private void tsSave_Click_1(object sender, EventArgs e)
         {
-            var query = "Select DeSifra From Korisnici Where Korisnik='" + Kor.ToString().TrimEnd()+"'";
-           SqlConnection conn = new SqlConnection(connect);
-           conn.Open();
-           SqlCommand cmd = new SqlCommand(query, conn);
-           SqlDataReader dr = cmd.ExecuteReader();
-           while (dr.Read())
-           {
-               referent = Convert.ToInt32(dr[0].ToString());
-           }
-           conn.Close();
+            var query = "Select DeSifra From Korisnici Where Korisnik='" + Kor.ToString().TrimEnd() + "'";
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                referent = Convert.ToInt32(dr[0].ToString());
+            }
+            conn.Close();
 
             string firma = Sifarnici.frmLogovanje.Firma;
             switch (firma)
@@ -625,9 +532,9 @@ namespace Saobracaj.Sifarnici
             {
                 PomBrodar = 0;
             }
-         
-          
-          
+
+
+
             if (chkPlatilac.Checked)
             {
                 PomPlatilac = 1;
@@ -705,14 +612,14 @@ namespace Saobracaj.Sifarnici
             if (chkKamioner.Checked) { PomKamioner = 1; } else { PomKamioner = 0; }
             if (chkAgentBrodara.Checked) { PomAgentBrodara = 1; } else { PomAgentBrodara = 0; }
 
-            if (cbDobavljac.Checked) { Dobavljac = "T";Kupac = "F"; } else { Dobavljac = "F";Kupac = "T"; }
+            if (cbDobavljac.Checked) { Dobavljac = "T"; Kupac = "F"; } else { Dobavljac = "F"; Kupac = "T"; }
             if (cbObveznik.Checked) { Obveznik = "Z"; } else { Obveznik = "I"; }
 
-                    if (status == true)
+            if (status == true)
             {
-              //  txtNaziv.Text,  txtUlica.Text,  txtMesto.Text,  txtOblast.Text, txtPosta.Text ,txtDrzava.Text, txtTelefon.Text, txtTR.Text ,  txtNapomena.Text,txtMaticniBroj.Text,  txtEmail.Text,  txtPIB.Text
+                //  txtNaziv.Text,  txtUlica.Text,  txtMesto.Text,  txtOblast.Text, txtPosta.Text ,txtDrzava.Text, txtTelefon.Text, txtTR.Text ,  txtNapomena.Text,txtMaticniBroj.Text,  txtEmail.Text,  txtPIB.Text
                 InsertPartnerji ins = new InsertPartnerji();
-                ins.InsPartneri( txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtPIB.Text, txtEmail.Text, txtMaticniBroj.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik, txtMUAdresa.Text, txtMUKontakt.Text, txtUICDrzava.Text, txtTR2.Text, txtFaks.Text , PomIzvoznik,PomLogisticar,PomKamioner,PomAgentBrodara,Kupac,Obveznik,cboValuta.SelectedValue.ToString(),Dobavljac,referent);
+                ins.InsPartneri(txtNaziv.Text, txtUlica.Text, txtMesto.Text, txtPosta.Text, txtDrzava.Text, txtTelefon.Text, txtTR.Text, txtNapomena.Text, txtPIB.Text, txtEmail.Text, txtMaticniBroj.Text, txtUIC.Text, chkPrevoznik.Checked, chkPosiljalac.Checked, chkPrimalac.Checked, PomBrodar, PomVlasnik, PomSpediter, PomPlatilac, PomOrganizator, PomNalogodavac, PomUvoznik, txtMUAdresa.Text, txtMUKontakt.Text, txtUICDrzava.Text, txtTR2.Text, txtFaks.Text, PomIzvoznik, PomLogisticar, PomKamioner, PomAgentBrodara, Kupac, Obveznik, cboValuta.SelectedValue.ToString(), Dobavljac, referent);
             }
             else
             {
@@ -732,7 +639,7 @@ namespace Saobracaj.Sifarnici
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
 
-             Dokumenta.frmKontaktOsobe pko = new Dokumenta.frmKontaktOsobe(Convert.ToInt32(txtSifra.Text));
+            Dokumenta.frmKontaktOsobe pko = new Dokumenta.frmKontaktOsobe(Convert.ToInt32(txtSifra.Text));
             pko.Show();
         }
 
@@ -742,7 +649,7 @@ namespace Saobracaj.Sifarnici
             panel1.Visible = false;
 
         }
-        
+
         int SifDrzave;
         string Drzava = "";
         private void btnDrzava_Click(object sender, EventArgs e)
@@ -792,7 +699,7 @@ namespace Saobracaj.Sifarnici
 
         }
         string postaNaziv = "";
-        string Posta="";
+        string Posta = "";
         private void btnPosta_Click(object sender, EventArgs e)
         {
 
@@ -824,7 +731,7 @@ namespace Saobracaj.Sifarnici
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             InsertPatheonExport ins = new InsertPatheonExport();
-            string PaSifra="";
+            string PaSifra = "";
             var query = "Select RTRim(PaNaziv) as Subject,RTrim(PaNaziv) as Name2,RTrim(PaUlicaHisnaSt) as Address,RTrim(PaPostnaSt) as Post,RTrim(DrNaziv) as Country,(SUBSTRING(paPostnaSt,0,CHARINDEX('-',PaPostnaSt,0)))as CountryPIB,RTrim(PaDMatSt) as Code," +
                      "RTrim(PaEMatSt1) as RegNo,'Papirno i elektronski' as WayOfTransaction,Buyer,WayOfSale,Currency,Supplier,'' as SuppSaleMet,'' as SuppCurr,'30' as Clerk,Referent as SuppClerk,PaSifra " +
                      "From Partnerji " +
@@ -895,7 +802,7 @@ namespace Saobracaj.Sifarnici
                             }
                         }
                     }
-                    ins.InsApiLog("Partner-"+PaSifra.ToString(),jsonOutput, response);
+                    ins.InsApiLog("Partner-" + PaSifra.ToString(), jsonOutput, response);
                 }
             }
         }

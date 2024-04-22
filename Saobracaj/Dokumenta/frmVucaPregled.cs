@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Configuration;
-
-using Microsoft.Reporting.WinForms;
-using System.IO;
-using Saobracaj.Sifarnici;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -71,7 +62,7 @@ namespace Saobracaj.Dokumenta
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-           
+
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
             dataGridView1.Columns[0].Width = 50;
@@ -276,7 +267,7 @@ namespace Saobracaj.Dokumenta
             DataGridViewColumn column13 = dataGridView1.Columns[13];
             dataGridView1.Columns[13].HeaderText = "Lokomotiva";
             dataGridView1.Columns[13].Width = 100;
-         
+
 
             DataGridViewColumn column14 = dataGridView1.Columns[14];
             dataGridView1.Columns[14].HeaderText = "Dizel";
@@ -305,7 +296,7 @@ namespace Saobracaj.Dokumenta
             DataGridViewColumn column19 = dataGridView1.Columns[19];
             dataGridView1.Columns[19].HeaderText = "Datum pocetka";
             dataGridView1.Columns[19].Width = 120;
-         
+
 
             DataGridViewColumn column20 = dataGridView1.Columns[20];
             dataGridView1.Columns[20].HeaderText = "DeSifra";

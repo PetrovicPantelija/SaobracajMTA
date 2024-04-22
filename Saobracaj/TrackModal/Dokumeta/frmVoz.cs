@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 
 
@@ -32,7 +24,7 @@ namespace Testiranje.Dokumeta
 
         string KorisnikCene = "Panta";
         bool status = false;
-      //  int VozID = 1;
+        //  int VozID = 1;
         public frmVoz()
         {
             InitializeComponent();
@@ -40,9 +32,7 @@ namespace Testiranje.Dokumeta
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
 
             KorisnikCene = "Panta";
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
             ProveriFirmu();
         }
 
@@ -54,9 +44,7 @@ namespace Testiranje.Dokumeta
             KorisnikCene = Korisnik;
             KorisnikCene = "Panta";
             RefreshDataGrid();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
             ProveriFirmu();
         }
 
@@ -70,7 +58,7 @@ namespace Testiranje.Dokumeta
                         panelLeget.Visible = true;
                         panelLegetOperater.Visible = true;
                         panel1.Visible = false;
-                       // panelLegetUvoz.Visible = true;
+                        // panelLegetUvoz.Visible = true;
                         return;
 
                     }
@@ -88,95 +76,6 @@ namespace Testiranje.Dokumeta
             }
 
         }
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
-
-            while (dr.Read())
-            {
-                if (dr.HasRows)
-                {
-                    if (count == 0)
-                    {
-                        niz = dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                    else
-                    {
-                        niz = niz + "," + dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Korisnik ne pripada grupi");
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
-        }
         public frmVoz(int Voz, string Korisnik)
         {
             InitializeComponent();
@@ -185,87 +84,87 @@ namespace Testiranje.Dokumeta
             txtSifra.Text = Voz.ToString();
             RefreshDataGrid2();
             VratiUkupanBrojKontejnera();
-            
+
         }
         private void tsSave_Click(object sender, EventArgs e)
         {
             int Dolazeci = 0;
             int Ponedeljak = 0;
-			int Utorak = 0;
-			int Sreda = 0;
-			int Cetvrtak = 0;
-			int Petak = 0;
-			int Subota = 0;
-			int Nedelja = 0;
-            
-            if (chkDolazeci.Checked ==true)  
-            Dolazeci = 1;
-             if (chkPonedeljak.Checked ==true)  
-            Ponedeljak = 1;
-             if (chkUtorak.Checked ==true)  
-            Utorak = 1;
-              if (chkSreda.Checked ==true)  
-            Sreda = 1;
-                if (chkCetvrtak.Checked ==true)  
-            Cetvrtak = 1;
-              if (chkPetak.Checked ==true)  
-            Petak = 1;
-             if (chkSubota.Checked ==true)  
-            Subota = 1;
-              if (chkNedelja.Checked ==true)  
-            Nedelja = 1;
-         
-			
-            
-            
+            int Utorak = 0;
+            int Sreda = 0;
+            int Cetvrtak = 0;
+            int Petak = 0;
+            int Subota = 0;
+            int Nedelja = 0;
+
+            if (chkDolazeci.Checked == true)
+                Dolazeci = 1;
+            if (chkPonedeljak.Checked == true)
+                Ponedeljak = 1;
+            if (chkUtorak.Checked == true)
+                Utorak = 1;
+            if (chkSreda.Checked == true)
+                Sreda = 1;
+            if (chkCetvrtak.Checked == true)
+                Cetvrtak = 1;
+            if (chkPetak.Checked == true)
+                Petak = 1;
+            if (chkSubota.Checked == true)
+                Subota = 1;
+            if (chkNedelja.Checked == true)
+                Nedelja = 1;
+
+
+
+
             if (status == true)
             {
-            InsertVoz ins = new InsertVoz();
-            ins.InsVoz(Convert.ToInt32(txtBrVoza.Text), txtRelacija.Text, txtKalendarSaobracaja.Text, Convert.ToDateTime(dtpVremePolaska.Value), 
-                Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDouble(txtMaksBruto.Value), 
-                Convert.ToDouble(txtDuzina.Value), Convert.ToDouble(txtMaksBrojKola.Value), Convert.ToDateTime(dtpVremeZavrsetkaUtovara.Value),
-                Convert.ToDateTime(dtpVremeZavrsetkaKP.Value), Convert.ToDateTime(dtpVremePrimopredaje.Value), txtNapomena.Text,
-                Convert.ToDateTime(DateTime.Now), KorisnikCene, Dolazeci, Convert.ToInt32(txtPostNaTerminalD.Value),
-                Convert.ToInt32(txtKontrolniPregledD.Value), Convert.ToInt32(txtVremeIstovaraD.Value),
-                Convert.ToInt32(txtVremePrimopredajeD.Value), Ponedeljak, Utorak, Sreda, Cetvrtak, Petak, Subota, Nedelja, 
-                Convert.ToInt32(txtPostNaTerminalO.Value), Convert.ToInt32(txtVremeUtovaraO.Value), 
-                Convert.ToInt32(txtVremeKontrolnogO.Value), Convert.ToInt32(txtVremeIzvlacenjaO.Value),
-                Convert.ToDateTime(dtpVremePolaskaO.Value), Convert.ToDateTime(dtpVremeDolaskaO.Value),
-                Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboOperater.SelectedValue),
-            Convert.ToInt32(cboVlasnik.SelectedValue),
-            Convert.ToInt32(cboOperaterSrbija.SelectedValue),
-            Convert.ToInt32(cboOperaterHR.SelectedValue),
-            Convert.ToDateTime(dtpPlOtpreme.Value),
-            Convert.ToDateTime(dtpPLFormiranja.Value),
-            Convert.ToDateTime(dtpIzvlacenjeSaTerminala.Value),
-            Convert.ToDateTime(dtpPreuzimanjeSM.Value),
-            Convert.ToDateTime(dtpPolazakSid.Value),
-            Convert.ToDateTime(dtpPredajaHR.Value),
-            Convert.ToDateTime(dtpPrispeceRijeka.Value),
-            Convert.ToDateTime(dtpIskrcajRijeka.Value),
-             Convert.ToDateTime(dtpPristizanjaUSid.Value),
-              Convert.ToDateTime(dtpSazeta.Value));
-             status = false;
-             VratiPodatkeMax();
+                InsertVoz ins = new InsertVoz();
+                ins.InsVoz(Convert.ToInt32(txtBrVoza.Text), txtRelacija.Text, txtKalendarSaobracaja.Text, Convert.ToDateTime(dtpVremePolaska.Value),
+                    Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDouble(txtMaksBruto.Value),
+                    Convert.ToDouble(txtDuzina.Value), Convert.ToDouble(txtMaksBrojKola.Value), Convert.ToDateTime(dtpVremeZavrsetkaUtovara.Value),
+                    Convert.ToDateTime(dtpVremeZavrsetkaKP.Value), Convert.ToDateTime(dtpVremePrimopredaje.Value), txtNapomena.Text,
+                    Convert.ToDateTime(DateTime.Now), KorisnikCene, Dolazeci, Convert.ToInt32(txtPostNaTerminalD.Value),
+                    Convert.ToInt32(txtKontrolniPregledD.Value), Convert.ToInt32(txtVremeIstovaraD.Value),
+                    Convert.ToInt32(txtVremePrimopredajeD.Value), Ponedeljak, Utorak, Sreda, Cetvrtak, Petak, Subota, Nedelja,
+                    Convert.ToInt32(txtPostNaTerminalO.Value), Convert.ToInt32(txtVremeUtovaraO.Value),
+                    Convert.ToInt32(txtVremeKontrolnogO.Value), Convert.ToInt32(txtVremeIzvlacenjaO.Value),
+                    Convert.ToDateTime(dtpVremePolaskaO.Value), Convert.ToDateTime(dtpVremeDolaskaO.Value),
+                    Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboOperater.SelectedValue),
+                Convert.ToInt32(cboVlasnik.SelectedValue),
+                Convert.ToInt32(cboOperaterSrbija.SelectedValue),
+                Convert.ToInt32(cboOperaterHR.SelectedValue),
+                Convert.ToDateTime(dtpPlOtpreme.Value),
+                Convert.ToDateTime(dtpPLFormiranja.Value),
+                Convert.ToDateTime(dtpIzvlacenjeSaTerminala.Value),
+                Convert.ToDateTime(dtpPreuzimanjeSM.Value),
+                Convert.ToDateTime(dtpPolazakSid.Value),
+                Convert.ToDateTime(dtpPredajaHR.Value),
+                Convert.ToDateTime(dtpPrispeceRijeka.Value),
+                Convert.ToDateTime(dtpIskrcajRijeka.Value),
+                 Convert.ToDateTime(dtpPristizanjaUSid.Value),
+                  Convert.ToDateTime(dtpSazeta.Value));
+                status = false;
+                VratiPodatkeMax();
             }
             else
             {
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
-            InsertVoz upd = new InsertVoz();
-            upd.UpdVoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtBrVoza.Text), txtRelacija.Text, txtKalendarSaobracaja.Text, Convert.ToDateTime(dtpVremePolaska.Value), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDouble(txtMaksBruto.Text), Convert.ToDouble(txtDuzina.Text), Convert.ToDouble(txtMaksBrojKola.Text), Convert.ToDateTime(dtpVremeZavrsetkaUtovara.Value), Convert.ToDateTime(dtpVremeZavrsetkaKP.Value), Convert.ToDateTime(dtpVremePrimopredaje.Value), txtNapomena.Text, Convert.ToDateTime(DateTime.Now),KorisnikCene, Dolazeci, Convert.ToInt32(txtPostNaTerminalD.Value), Convert.ToInt32(txtKontrolniPregledD.Value), Convert.ToInt32(txtVremeIstovaraD.Value), Convert.ToInt32(txtVremePrimopredajeD.Value), Ponedeljak, Utorak, Sreda, Cetvrtak, Petak, Subota, Nedelja, Convert.ToInt32(txtPostNaTerminalO.Value), Convert.ToInt32(txtVremeUtovaraO.Value), Convert.ToInt32(txtVremeKontrolnogO.Value), Convert.ToInt32(txtVremeIzvlacenjaO.Value), dtpVremePolaskaO.Value, dtpVremeDolaskaO.Value, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboOperater.SelectedValue),
-            Convert.ToInt32(cboVlasnik.SelectedValue),
-            Convert.ToInt32(cboOperaterSrbija.SelectedValue),
-            Convert.ToInt32(cboOperaterHR.SelectedValue),
-            Convert.ToDateTime(dtpPlOtpreme.Value),
-            Convert.ToDateTime(dtpPLFormiranja.Value),
-            Convert.ToDateTime(dtpIzvlacenjeSaTerminala.Value),
-            Convert.ToDateTime(dtpPreuzimanjeSM.Value),
-            Convert.ToDateTime(dtpPolazakSid.Value),
-            Convert.ToDateTime(dtpPredajaHR.Value),
-            Convert.ToDateTime(dtpPrispeceRijeka.Value),
-            Convert.ToDateTime(dtpIskrcajRijeka.Value),
-              Convert.ToDateTime(dtpPristizanjaUSid.Value),
-              Convert.ToDateTime(dtpSazeta.Value));
+                InsertVoz upd = new InsertVoz();
+                upd.UpdVoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtBrVoza.Text), txtRelacija.Text, txtKalendarSaobracaja.Text, Convert.ToDateTime(dtpVremePolaska.Value), Convert.ToDateTime(dtpVremeDolaska.Value), Convert.ToDouble(txtMaksBruto.Text), Convert.ToDouble(txtDuzina.Text), Convert.ToDouble(txtMaksBrojKola.Text), Convert.ToDateTime(dtpVremeZavrsetkaUtovara.Value), Convert.ToDateTime(dtpVremeZavrsetkaKP.Value), Convert.ToDateTime(dtpVremePrimopredaje.Value), txtNapomena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Dolazeci, Convert.ToInt32(txtPostNaTerminalD.Value), Convert.ToInt32(txtKontrolniPregledD.Value), Convert.ToInt32(txtVremeIstovaraD.Value), Convert.ToInt32(txtVremePrimopredajeD.Value), Ponedeljak, Utorak, Sreda, Cetvrtak, Petak, Subota, Nedelja, Convert.ToInt32(txtPostNaTerminalO.Value), Convert.ToInt32(txtVremeUtovaraO.Value), Convert.ToInt32(txtVremeKontrolnogO.Value), Convert.ToInt32(txtVremeIzvlacenjaO.Value), dtpVremePolaskaO.Value, dtpVremeDolaskaO.Value, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboOperater.SelectedValue),
+                Convert.ToInt32(cboVlasnik.SelectedValue),
+                Convert.ToInt32(cboOperaterSrbija.SelectedValue),
+                Convert.ToInt32(cboOperaterHR.SelectedValue),
+                Convert.ToDateTime(dtpPlOtpreme.Value),
+                Convert.ToDateTime(dtpPLFormiranja.Value),
+                Convert.ToDateTime(dtpIzvlacenjeSaTerminala.Value),
+                Convert.ToDateTime(dtpPreuzimanjeSM.Value),
+                Convert.ToDateTime(dtpPolazakSid.Value),
+                Convert.ToDateTime(dtpPredajaHR.Value),
+                Convert.ToDateTime(dtpPrispeceRijeka.Value),
+                Convert.ToDateTime(dtpIskrcajRijeka.Value),
+                  Convert.ToDateTime(dtpPristizanjaUSid.Value),
+                  Convert.ToDateTime(dtpSazeta.Value));
                 status = false;
             }
             RefreshDataGrid();
@@ -286,14 +185,14 @@ namespace Testiranje.Dokumeta
                 //do something else
             }
 
-            
+
         }
 
         private void RefreshDataGrid()
         {
 
             var select = "  SELECT [ID],[BrVoza],[Relacija],[MaksimalnaBruto],[MaksimalnaDuzina],[MaksimalanBrojKola],[Napomena],[Datum],[Korisnik] ,Dolazeci ,VremeDolaskaO, StanicaOd,StanicaDo,Operater  FROM [dbo].[Voz] order by ID desc";
-           
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -368,7 +267,7 @@ namespace Testiranje.Dokumeta
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
-           
+
             SqlCommand cmd = new SqlCommand("SELECT [ID],[BrVoza],[Relacija],[KalendarSaobracaja],[VremePolaska],[VremeDolaska],[MaksimalnaBruto],[MaksimalnaDuzina],[MaksimalanBrojKola],[VremeZavrsetkaUtovara],[VremeZavrsetkaKP],[VremePrimopredaje],[Napomena],[Datum],[Korisnik] ,Dolazeci,PostNaTerminalD ,KontrolniPregledD,VremeIstovaraD ,VremePrimopredajeD,Ponedeljak ,Utorak	,Sreda,Cetvrtak,Petak	,Subota ,Nedelja,PostNaTerminalO,VremeUtovaraO ,VremeKontrolnogO ,VremeIzvlacenjaO	,VremePolaskaO ,VremeDolaskaO, StanicaOd, StanicaDo, Napomena, Operater " +
                 " ,[Vlasnik]      ,[OperaterSrbija]      ,[OperaterHR]      ,[PlOtpreme]      ,[PLFormiranja]      ,[IzvlacenjeSaTerminala] " +
       " ,[PreuzimanjeSM]      ,[PolazakSid]      ,[PredajaHR]      ,[PrispeceRijeka]      ,[IskrcajRijeka]  FROM [dbo].[Voz] where ID=" + txtSifra.Text, con);
@@ -376,22 +275,23 @@ namespace Testiranje.Dokumeta
 
             while (dr.Read())
             {
-                
+
                 // Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene
                 txtBrVoza.Text = dr["BrVoza"].ToString();
                 txtRelacija.Text = dr["Relacija"].ToString();
                 txtKalendarSaobracaja.Text = dr["KalendarSaobracaja"].ToString();
                 txtNapomena.Text = dr["Napomena"].ToString();
-                dtpVremePolaska.Value = Convert.ToDateTime(dr["VremePolaska"].ToString()); 
-                dtpVremeDolaska.Value = Convert.ToDateTime(dr["VremeDolaska"].ToString()); 
-                dtpVremeZavrsetkaUtovara.Value = Convert.ToDateTime(dr["VremeZavrsetkaUtovara"].ToString()); 
+                dtpVremePolaska.Value = Convert.ToDateTime(dr["VremePolaska"].ToString());
+                dtpVremeDolaska.Value = Convert.ToDateTime(dr["VremeDolaska"].ToString());
+                dtpVremeZavrsetkaUtovara.Value = Convert.ToDateTime(dr["VremeZavrsetkaUtovara"].ToString());
                 dtpVremeZavrsetkaKP.Value = Convert.ToDateTime(dr["VremeZavrsetkaKP"].ToString());
                 dtpVremePrimopredaje.Value = Convert.ToDateTime(dr["VremePrimopredaje"].ToString());
                 txtMaksBruto.Value = Convert.ToDecimal(dr["MaksimalnaBruto"].ToString());
                 txtDuzina.Value = Convert.ToDecimal(dr["MaksimalnaDuzina"].ToString());
                 txtMaksBrojKola.Value = Convert.ToDecimal(dr["MaksimalanBrojKola"].ToString());
                 if (dr["Dolazeci"].ToString() == "1")
-                { chkDolazeci.Checked = true;
+                {
+                    chkDolazeci.Checked = true;
                 }
                 else
                 {
@@ -421,24 +321,24 @@ namespace Testiranje.Dokumeta
                 txtPostNaTerminalD.Value = Convert.ToInt32(dr["PostNaTerminalD"].ToString());
                 txtKontrolniPregledD.Value = Convert.ToInt32(dr["KontrolniPregledD"].ToString());
                 txtVremeIstovaraD.Value = Convert.ToInt32(dr["VremeIstovaraD"].ToString());
-                 txtVremePrimopredajeD.Value = Convert.ToInt32(dr["VremePrimopredajeD"].ToString());
-                 txtPostNaTerminalO.Value = Convert.ToInt32(dr["PostNaTerminalO"].ToString());
+                txtVremePrimopredajeD.Value = Convert.ToInt32(dr["VremePrimopredajeD"].ToString());
                 txtPostNaTerminalO.Value = Convert.ToInt32(dr["PostNaTerminalO"].ToString());
-                 txtVremeUtovaraO.Value = Convert.ToInt32(dr["VremeUtovaraO"].ToString());
-                 txtVremeKontrolnogO.Value = Convert.ToInt32(dr["VremeKontrolnogO"].ToString());
-                 txtVremeIzvlacenjaO.Value = Convert.ToInt32(dr["VremeIzvlacenjaO"].ToString());
-                 if (dr["VremePolaskaO"].ToString() == "")
+                txtPostNaTerminalO.Value = Convert.ToInt32(dr["PostNaTerminalO"].ToString());
+                txtVremeUtovaraO.Value = Convert.ToInt32(dr["VremeUtovaraO"].ToString());
+                txtVremeKontrolnogO.Value = Convert.ToInt32(dr["VremeKontrolnogO"].ToString());
+                txtVremeIzvlacenjaO.Value = Convert.ToInt32(dr["VremeIzvlacenjaO"].ToString());
+                if (dr["VremePolaskaO"].ToString() == "")
                     dtpVremePolaskaO.Value = dtpVremePolaskaO.MinDate;
                 else
-                dtpVremePolaskaO.Value = Convert.ToDateTime(dr["VremePolaskaO"].ToString());
-                 if (dr["VremeDolaskaO"].ToString() == "")
+                    dtpVremePolaskaO.Value = Convert.ToDateTime(dr["VremePolaskaO"].ToString());
+                if (dr["VremeDolaskaO"].ToString() == "")
                     dtpVremeDolaskaO.Value = dtpVremeDolaskaO.MinDate;
                 else
-                dtpVremeDolaskaO.Value = Convert.ToDateTime(dr["VremeDolaskaO"].ToString());
+                    dtpVremeDolaskaO.Value = Convert.ToDateTime(dr["VremeDolaskaO"].ToString());
 
                 cboStanicaOd.SelectedValue = Convert.ToInt32(dr["StanicaOd"].ToString());
                 cboStanicaDo.SelectedValue = Convert.ToInt32(dr["StanicaDo"].ToString());
-                cboOperater.SelectedValue =  Convert.ToInt32(dr["Operater"].ToString());
+                cboOperater.SelectedValue = Convert.ToInt32(dr["Operater"].ToString());
 
 
                 cboVlasnik.SelectedValue = Convert.ToInt32(dr["Vlasnik"].ToString());
@@ -484,7 +384,7 @@ namespace Testiranje.Dokumeta
                 txtVremeIzvlacenjaO.Enabled = true;
                 dtpVremePolaskaO.Enabled = true;
                 dtpVremeDolaskaO.Enabled = true;
-            } 
+            }
             con.Close();
         }
 
@@ -634,9 +534,9 @@ namespace Testiranje.Dokumeta
                 txtVremeIzvlacenjaO.Enabled = false;
                 dtpVremePolaskaO.Enabled = false;
                 dtpVremeDolaskaO.Enabled = false;
-                }
-                else
-	            {
+            }
+            else
+            {
                 dtpVremePolaska.Enabled = false;
                 dtpVremeDolaska.Enabled = false;
                 txtPostNaTerminalD.Enabled = false;
@@ -650,7 +550,7 @@ namespace Testiranje.Dokumeta
                 txtVremeIzvlacenjaO.Enabled = true;
                 dtpVremePolaskaO.Enabled = true;
                 dtpVremeDolaskaO.Enabled = true;
-	            } 
+            }
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -670,25 +570,25 @@ namespace Testiranje.Dokumeta
         private void button1_Click(object sender, EventArgs e)
         {
             dtpVremePolaska.Value = DateTime.Today;
-          
+
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             dtpVremeDolaska.Value = DateTime.Today;
-           
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             dtpVremePolaskaO.Value = DateTime.Today;
-         
+
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             dtpVremeDolaskaO.Value = DateTime.Today;
-         
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -696,16 +596,16 @@ namespace Testiranje.Dokumeta
             if (txtSifra.Text == "")
             {
                 MessageBox.Show("Prvo oformite voz");
-            
+
             }
             InsertVoz ins = new InsertVoz();
-            ins.InsSerijeKola(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboSerijaKola.SelectedValue),  Convert.ToInt32(nmBrojSerija.Value));
+            ins.InsSerijeKola(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboSerijaKola.SelectedValue), Convert.ToInt32(nmBrojSerija.Value));
             RefreshDataGrid2();
             VratiUkupanBrojKontejnera();
         }
         private void RefreshDataGrid2()
         {
-            var select = "  select VozSerijeKola.ID as Zapis, IDVoza, VozSerijeKola.TipKontejnera as IDT, Naziv, Broj20 as Nosivost20, BrojSerija from VozSerijeKola " + 
+            var select = "  select VozSerijeKola.ID as Zapis, IDVoza, VozSerijeKola.TipKontejnera as IDT, Naziv, Broj20 as Nosivost20, BrojSerija from VozSerijeKola " +
  " inner join SerijeKola on SerijeKola.Id = VozSerijeKola.TipKontejnera where IDVoza = " + Convert.ToInt32(txtSifra.Text);
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -731,7 +631,7 @@ namespace Testiranje.Dokumeta
             dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
-         
+
             DataGridViewColumn column = dataGridView2.Columns[0];
             dataGridView2.Columns[0].HeaderText = "ID";
             dataGridView2.Columns[0].Width = 50;
@@ -827,7 +727,7 @@ namespace Testiranje.Dokumeta
 
             while (dr.Read())
             {
-               
+
                 BrojPlanaUvoza = dr["ID"].ToString();
             }
 
@@ -838,8 +738,8 @@ namespace Testiranje.Dokumeta
         {
 
             Saobracaj.Uvoz.InsertUvozKonacnaZaglavlje ins = new Saobracaj.Uvoz.InsertUvozKonacnaZaglavlje();
-            ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text), txtNapomena.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "",0);
-           
+            ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text), txtNapomena.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "", 0);
+
             VratiZadnjiBrojPlanaUvoza();
             MessageBox.Show("Uspesno ste formirirali novi Plan: " + BrojPlanaUvoza + " potrebno je da dodelite kontejnere planu, koristite opciju Popunjavanje Plana kontejnerima");
 

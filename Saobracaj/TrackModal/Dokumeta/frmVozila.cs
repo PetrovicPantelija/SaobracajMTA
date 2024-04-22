@@ -1,26 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-using Saobracaj.Sifarnici;
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Testiranje.Dokumeta
 {
     public partial class frmVozila : Form
     {
         string connect = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-            string KorisnikCene;
+        string KorisnikCene;
         bool status = false;
         public frmVozila()
         {
@@ -88,7 +78,7 @@ namespace Testiranje.Dokumeta
                 //do something else
             }
 
-            
+
         }
 
         private void RefreshDataGrid()
@@ -101,13 +91,13 @@ namespace Testiranje.Dokumeta
      " CASE WHEN UradjenSetomesecni > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as UradjenSetomesecni,  " +
       " CASE WHEN UradjenGodisnji > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as UradjenGodisnji,  " +
        " CASE WHEN UradjenServis > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as UradjenServis,  " +
-     " [DatumUradjenTromesecni],[DatumUradjenSetomesecni],[DatumUradjenGodisnji],[DatumUradjenServis] " +   
+     " [DatumUradjenTromesecni],[DatumUradjenSetomesecni],[DatumUradjenGodisnji],[DatumUradjenServis] " +
      "   FROM [dbo].[Vozila]";
-            
+
             SqlConnection myConnection = new SqlConnection(connect);
             var c = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, c);
-// [ID],[Naziv],[IndividualniBroj] ,[LicencaBroj],[LicencaVaziDo],[Namena]
+            // [ID],[Naziv],[IndividualniBroj] ,[LicencaBroj],[LicencaVaziDo],[Namena]
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
@@ -151,7 +141,7 @@ namespace Testiranje.Dokumeta
             DataGridViewColumn column6 = dataGridView1.Columns[5];
             dataGridView1.Columns[5].HeaderText = "Namena";
             dataGridView1.Columns[5].Width = 100;
-           // [Vrsta],[BrojOsovina],[RegistarskaOznaka],[GodinaProizvodnje],[SopstvenaTezina],[NarednaREgistracija] " +
+            // [Vrsta],[BrojOsovina],[RegistarskaOznaka],[GodinaProizvodnje],[SopstvenaTezina],[NarednaREgistracija] " +
             DataGridViewColumn column7 = dataGridView1.Columns[6];
             dataGridView1.Columns[6].HeaderText = "Vrsta";
             dataGridView1.Columns[6].Width = 100;
@@ -227,12 +217,12 @@ namespace Testiranje.Dokumeta
             DataGridViewColumn column24 = dataGridView1.Columns[23];
             dataGridView1.Columns[23].HeaderText = "Korisnik";
             dataGridView1.Columns[23].Width = 70;
-/*
-             " CASE WHEN UradjenTromesecni > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as UradjenTromesecni,  " +
-     " CASE WHEN UradjenSetomesecni > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as UradjenSetomesecni,  " +
-      " CASE WHEN UradjenGodisnji > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as UradjenGodisnji,  " +
-       " CASE WHEN UradjenServis > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as UradjenServis,  " +
- * */
+            /*
+                         " CASE WHEN UradjenTromesecni > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as UradjenTromesecni,  " +
+                 " CASE WHEN UradjenSetomesecni > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as UradjenSetomesecni,  " +
+                  " CASE WHEN UradjenGodisnji > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as UradjenGodisnji,  " +
+                   " CASE WHEN UradjenServis > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as UradjenServis,  " +
+             * */
             DataGridViewColumn column25 = dataGridView1.Columns[24];
             dataGridView1.Columns[24].HeaderText = "Tromesečni";
             dataGridView1.Columns[24].Width = 50;
@@ -249,7 +239,7 @@ namespace Testiranje.Dokumeta
             dataGridView1.Columns[27].HeaderText = "Servis";
             dataGridView1.Columns[27].Width = 50;
 
-           // [DatumUradjenTromesecni],[DatumUradjenSetomesecni],[DatumUradjenGodisnji],[DatumUradjenServis] 
+            // [DatumUradjenTromesecni],[DatumUradjenSetomesecni],[DatumUradjenGodisnji],[DatumUradjenServis] 
 
             DataGridViewColumn column29 = dataGridView1.Columns[28];
             dataGridView1.Columns[28].HeaderText = "Ur tromesečni";
@@ -290,25 +280,25 @@ namespace Testiranje.Dokumeta
             while (dr.Read())
             {
                 if (dr["DatumUradjenServis"].ToString() == "")
-                    dtpUradjenServis.Value = dtpUradjenServis.MinDate; 
+                    dtpUradjenServis.Value = dtpUradjenServis.MinDate;
                 else
-                dtpUradjenServis.Value = Convert.ToDateTime(dr["DatumUradjenServis"].ToString());
+                    dtpUradjenServis.Value = Convert.ToDateTime(dr["DatumUradjenServis"].ToString());
 
                 if (dr["DatumUradjenGodisnji"].ToString() == "")
                     dtpUradjenGodisnji.Value = dtpUradjenGodisnji.MinDate;
                 else
-                dtpUradjenGodisnji.Value = Convert.ToDateTime(dr["DatumUradjenGodisnji"].ToString());
+                    dtpUradjenGodisnji.Value = Convert.ToDateTime(dr["DatumUradjenGodisnji"].ToString());
 
 
                 if (dr["DatumUradjenSetomesecni"].ToString() == "")
                     dtpUradjenSestomesecni.Value = dtpUradjenSestomesecni.MinDate;
                 else
-                dtpUradjenSestomesecni.Value = Convert.ToDateTime(dr["DatumUradjenSetomesecni"].ToString());
+                    dtpUradjenSestomesecni.Value = Convert.ToDateTime(dr["DatumUradjenSetomesecni"].ToString());
 
                 if (dr["DatumUradjenTromesecni"].ToString() == "")
                     dtpUradjenTromesecni.Value = dtpUradjenTromesecni.MinDate;
                 else
-                dtpUradjenTromesecni.Value = Convert.ToDateTime(dr["DatumUradjenTromesecni"].ToString()); 
+                    dtpUradjenTromesecni.Value = Convert.ToDateTime(dr["DatumUradjenTromesecni"].ToString());
                 // Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene
                 if (dr["UradjenTromesecni"].ToString() == "True")
                 { chkUradjenTromesecni.Checked = true; }
@@ -326,7 +316,7 @@ namespace Testiranje.Dokumeta
                 if (dr["UradjenServis"].ToString() == "True")
                 { chkUradjenServis.Checked = true; }
                 else { chkUradjenServis.Checked = false; }
-               
+
                 txtSifraERP.Text = dr["SifraErp"].ToString();
                 txtNapomena.Text = dr["Napomena"].ToString();
                 txtNosivost.Value = Convert.ToDecimal(dr["Nosivost"].ToString());
@@ -334,42 +324,42 @@ namespace Testiranje.Dokumeta
                 if (dr["Atest"].ToString() == "")
                     dtpAtest.Value = dtpAtest.MinDate;
                 else
-                dtpAtest.Value = Convert.ToDateTime(dr["Atest"].ToString());
+                    dtpAtest.Value = Convert.ToDateTime(dr["Atest"].ToString());
 
                 if (dr["PPAparat"].ToString() == "")
                     dtpPPAparat.Value = dtpPPAparat.MinDate;
                 else
-                dtpPPAparat.Value = Convert.ToDateTime(dr["PPAparat"].ToString());
+                    dtpPPAparat.Value = Convert.ToDateTime(dr["PPAparat"].ToString());
 
                 if (dr["TahografSertifikat"].ToString() == "")
                     dtpTahograf.Value = dtpTahograf.MinDate;
                 else
-                dtpTahograf.Value = Convert.ToDateTime(dr["TahografSertifikat"].ToString());
+                    dtpTahograf.Value = Convert.ToDateTime(dr["TahografSertifikat"].ToString());
 
                 if (dr["servis"].ToString() == "")
                     dtpServis.Value = dtpServis.MinDate;
                 else
-                dtpServis.Value = Convert.ToDateTime(dr["servis"].ToString());
+                    dtpServis.Value = Convert.ToDateTime(dr["servis"].ToString());
 
                 if (dr["GodisnjiTehnicki"].ToString() == "")
                     dtpGodisniTehnicki.Value = dtpGodisniTehnicki.MinDate;
                 else
-                dtpGodisniTehnicki.Value = Convert.ToDateTime(dr["GodisnjiTehnicki"].ToString());
+                    dtpGodisniTehnicki.Value = Convert.ToDateTime(dr["GodisnjiTehnicki"].ToString());
 
                 if (dr["SetomesecniTehnicki"].ToString() == "")
                     dtpSestomesecniTehnicki.Value = dtpSestomesecniTehnicki.MinDate;
                 else
-                dtpSestomesecniTehnicki.Value = Convert.ToDateTime(dr["SetomesecniTehnicki"].ToString());
+                    dtpSestomesecniTehnicki.Value = Convert.ToDateTime(dr["SetomesecniTehnicki"].ToString());
 
                 if (dr["TromesecniTehnicki"].ToString() == "")
                     dtpTromesecniTehnicki.Value = dtpTromesecniTehnicki.MinDate;
                 else
-                dtpTromesecniTehnicki.Value = Convert.ToDateTime(dr["TromesecniTehnicki"].ToString());
+                    dtpTromesecniTehnicki.Value = Convert.ToDateTime(dr["TromesecniTehnicki"].ToString());
 
                 if (dr["NarednaREgistracija"].ToString() == "")
                     dtpNarednaRegistracija.Value = dtpNarednaRegistracija.MinDate;
                 else
-                dtpNarednaRegistracija.Value = Convert.ToDateTime(dr["NarednaREgistracija"].ToString()); 
+                    dtpNarednaRegistracija.Value = Convert.ToDateTime(dr["NarednaREgistracija"].ToString());
                 txtSopstvenaTezina.Value = Convert.ToDecimal(dr["SopstvenaTezina"].ToString());
                 txtGodinaProizvodnje.Text = dr["GodinaProizvodnje"].ToString();
                 txtRegistarskaOznaka.Text = dr["RegistarskaOznaka"].ToString();
@@ -379,11 +369,11 @@ namespace Testiranje.Dokumeta
                 if (dr["LicencaVaziDo"].ToString() == "")
                     dtpLicencaVaziDo.Value = dtpLicencaVaziDo.MinDate;
                 else
-                dtpLicencaVaziDo.Value = Convert.ToDateTime(dr["LicencaVaziDo"].ToString());
+                    dtpLicencaVaziDo.Value = Convert.ToDateTime(dr["LicencaVaziDo"].ToString());
                 txtNaziv.Text = dr["Naziv"].ToString();
                 txtIndividualniBroj.Text = dr["IndividualniBroj"].ToString();
                 txtLicencaBroj.Text = dr["LicencaBroj"].ToString();
-                
+
             }
 
             con.Close();
@@ -512,7 +502,7 @@ namespace Testiranje.Dokumeta
                 string configvalue1 = ConfigurationManager.AppSettings["ip"];
                 string configvalue2 = ConfigurationManager.AppSettings["server"];
                 string putanja = "\\\\" + configvalue1 + "\\Dok\\1\\fakturdomaci.rpt";
-              
+
                 putanja = putanja.Replace(configvalue1, configvalue2);
                 System.Diagnostics.Process.Start(putanja);
             }
@@ -532,4 +522,4 @@ namespace Testiranje.Dokumeta
 
 
 
-        
+

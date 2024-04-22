@@ -1,25 +1,15 @@
-﻿using Microsoft.Ajax.Utilities;
-using Saobracaj.eDokumenta;
-using Saobracaj.Sifarnici;
-using Syncfusion.Windows.Forms.Diagram;
+﻿using Saobracaj.Sifarnici;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Syncfusion.WinForms.Core.NativeScroll;
 
 namespace Saobracaj.Pantheon_Export
 {
     public partial class IzlazneFakture : Form
     {
-        int ID,StatusFak;
+        int ID, StatusFak;
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
         private string korisnik = frmLogovanje.user.ToString().TrimEnd();
@@ -28,7 +18,7 @@ namespace Saobracaj.Pantheon_Export
             InitializeComponent();
             FillCombo();
         }
-        public IzlazneFakture(int id,DateTime datumDokumenta,string vrsta,int primalac,string valuta,decimal kurs,DateTime datumPDV,DateTime datumValute,string mestoUtovara,DateTime datumUtovara,string mestoIstovara,DateTime datumIstovara,int referent,int izjava,string napomena,int statusFak)
+        public IzlazneFakture(int id, DateTime datumDokumenta, string vrsta, int primalac, string valuta, decimal kurs, DateTime datumPDV, DateTime datumValute, string mestoUtovara, DateTime datumUtovara, string mestoIstovara, DateTime datumIstovara, int referent, int izjava, string napomena, int statusFak)
         {
             InitializeComponent();
             ID = id;
@@ -59,56 +49,56 @@ namespace Saobracaj.Pantheon_Export
             dtDatum.Value = Convert.ToDateTime(datumDokumenta.ToShortDateString());
             comboBox1.Text = vrsta;
             cboPrimalac.SelectedValue = primalac;
-            cboValuta.SelectedValue= valuta;
+            cboValuta.SelectedValue = valuta;
             txtKurs.Value = Convert.ToDecimal(kurs);
             dtPDV.Value = Convert.ToDateTime(datumPDV.ToShortDateString());
-            txtMestoUtovara.Text= mestoUtovara.ToString();
+            txtMestoUtovara.Text = mestoUtovara.ToString();
             dtDatumUtovara.Value = Convert.ToDateTime(datumUtovara.ToShortDateString());
             txtMestoIstovara.Text = mestoIstovara.ToString();
             dtDatumIstovara.Value = Convert.ToDateTime(datumIstovara.ToShortDateString());
             dtValuta.Value = Convert.ToDateTime(datumValute.ToShortDateString());
-            cboReferent.SelectedValue= referent;
+            cboReferent.SelectedValue = referent;
             cboIzjava.SelectedValue = izjava;
             txtNapomena.Text = napomena.ToString();
-            StatusFak=statusFak;
+            StatusFak = statusFak;
 
 
         }
         private void FillGV()
         {
             ID = Convert.ToInt32(txtID.Text);
-                var select = "select FaPStFak as Faktura,FaPstPos as RB,FaPSifra as MP,RTrim(MpStaraSif)+'-'+FaPNaziv as Naziv,FaPEM as JM,FaPKolOdpr as Kolicna,FapCenaEM as Cena,NosilacTroska,NajavaID,FapFakZap From FakturaPostav inner join MaticniPodatki on FakturaPostav.FaPsifra=MaticniPodatki.MpSifra Where FaPStFak=" + ID;
-                SqlConnection conn = new SqlConnection(connect);
-                var dataAdapter = new SqlDataAdapter(select, conn);
-                var ds = new DataSet();
-                dataAdapter.Fill(ds);
-                dataGridView1.ReadOnly = true;
-                dataGridView1.DataSource = ds.Tables[0];
+            var select = "select FaPStFak as Faktura,FaPstPos as RB,FaPSifra as MP,RTrim(MpStaraSif)+'-'+FaPNaziv as Naziv,FaPEM as JM,FaPKolOdpr as Kolicna,FapCenaEM as Cena,NosilacTroska,NajavaID,FapFakZap From FakturaPostav inner join MaticniPodatki on FakturaPostav.FaPsifra=MaticniPodatki.MpSifra Where FaPStFak=" + ID;
+            SqlConnection conn = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
 
 
-                dataGridView1.BorderStyle = BorderStyle.FixedSingle;
-                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-                dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-                dataGridView1.BackgroundColor = Color.White;
+            dataGridView1.BorderStyle = BorderStyle.FixedSingle;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
 
-                dataGridView1.EnableHeadersVisualStyles = false;
-                dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
-                dataGridView1.Columns[0].Width = 60;
-                dataGridView1.Columns[1].Width = 60;
-                dataGridView1.Columns[2].Width = 60;
-                dataGridView1.Columns[3].Width = 280;
-                dataGridView1.Columns[4].Width = 100;
-                dataGridView1.Columns[5].Width = 100;
-                dataGridView1.Columns[9].Visible = false;
+            dataGridView1.Columns[0].Width = 60;
+            dataGridView1.Columns[1].Width = 60;
+            dataGridView1.Columns[2].Width = 60;
+            dataGridView1.Columns[3].Width = 280;
+            dataGridView1.Columns[4].Width = 100;
+            dataGridView1.Columns[5].Width = 100;
+            dataGridView1.Columns[9].Visible = false;
 
-                if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count + 1; }
-                txtRB.Text = rb.ToString();
-        
+            if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count + 1; }
+            txtRB.Text = rb.ToString();
+
         }
         private void IzlazneFakture_Load(object sender, EventArgs e)
         {
@@ -167,7 +157,7 @@ namespace Saobracaj.Pantheon_Export
             var da3 = new SqlDataAdapter(query3, conn);
             var ds3 = new DataSet();
             da3.Fill(ds3);
-            cboIzjava.DataSource= ds3.Tables[0];
+            cboIzjava.DataSource = ds3.Tables[0];
             cboIzjava.DisplayMember = "Naziv";
             cboIzjava.ValueMember = "ID";
 
@@ -179,7 +169,7 @@ namespace Saobracaj.Pantheon_Export
             cboJM.DisplayMember = "MeNaziv";
             cboJM.ValueMember = "MeSifra";
         }
-        
+
         private void cboReferent_SelectedValueChanged(object sender, EventArgs e)
         {
 
@@ -199,10 +189,10 @@ namespace Saobracaj.Pantheon_Export
             while (dr.Read())
             {
                 if (dr["id"].GetType() == typeof(DBNull))
-                { FaStFak =year+ 1.ToString("".PadLeft(4,'0')); }
+                { FaStFak = year + 1.ToString("".PadLeft(4, '0')); }
                 else
                 {
-                    FaStFak =  dr["id"].ToString();
+                    FaStFak = dr["id"].ToString();
                 }
             }
             conn.Close();
@@ -295,7 +285,7 @@ namespace Saobracaj.Pantheon_Export
                 }
                 FillGV();
             }
-            
+
             status = false;
         }
         string MpNaziv;
@@ -323,7 +313,7 @@ namespace Saobracaj.Pantheon_Export
         {
             try
             {
-                foreach(DataGridViewRow row in dataGridView1.Rows)
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (row.Selected)
                     {
@@ -382,14 +372,14 @@ namespace Saobracaj.Pantheon_Export
             decimal iznosRSD;
             if (sifDr == 82)
             {
-                iznosRSD=Convert.ToDecimal(txtKurs.Value)*Convert.ToDecimal(txtCena.Value);
+                iznosRSD = Convert.ToDecimal(txtKurs.Value) * Convert.ToDecimal(txtCena.Value);
             }
             else
             {
                 iznosRSD = Convert.ToDecimal(txtCena.Value);
             }
             InsertPatheonExport ins = new InsertPatheonExport();
-            ins.InsFakturaPostav(korisnik.ToString().TrimEnd(), Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), MpNaziv, cboJM.SelectedValue.ToString().TrimEnd(), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), posao,iznosRSD);
+            ins.InsFakturaPostav(korisnik.ToString().TrimEnd(), Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), MpNaziv, cboJM.SelectedValue.ToString().TrimEnd(), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), posao, iznosRSD);
 
             FillGV();
         }

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Tehnologija
 {
@@ -23,7 +19,7 @@ namespace Saobracaj.Tehnologija
             SqlParameter parameter = new SqlParameter();
             parameter.ParameterName = "@PorudzbinaID";
             parameter.SqlDbType = SqlDbType.Int;
-          //  parameter.Size = 100;
+            //  parameter.Size = 100;
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = PorudzbinaID;
             myCommand.Parameters.Add(parameter);
@@ -47,7 +43,7 @@ namespace Saobracaj.Tehnologija
             SqlParameter parameter3 = new SqlParameter();
             parameter3.ParameterName = "@Tonaza";
             parameter3.SqlDbType = SqlDbType.Decimal;
-          //  parameter3.Size = 500;
+            //  parameter3.Size = 500;
             parameter3.Direction = ParameterDirection.Input;
             parameter3.Value = Tonaza;
             myCommand.Parameters.Add(parameter3);
@@ -135,7 +131,7 @@ namespace Saobracaj.Tehnologija
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@PorudzbinaID";
             parameter2.SqlDbType = SqlDbType.Int;
-         
+
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = PorudzbinaID;
             myCommand.Parameters.Add(parameter2);
@@ -273,7 +269,7 @@ namespace Saobracaj.Tehnologija
             }
         }
 
-        public void InsTehnologijaTrase(int IDNadredjeni,  int Trasa, int StanicaOd, int StanicaDo, double Cena, double Dizel, double Energija, int Povratak)
+        public void InsTehnologijaTrase(int IDNadredjeni, int Trasa, int StanicaOd, int StanicaDo, double Cena, double Dizel, double Energija, int Povratak)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -363,7 +359,7 @@ namespace Saobracaj.Tehnologija
                     MessageBox.Show("Unos tehnologije je uspešno završena", "",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                }  
+                }
                 myConnection.Close();
 
                 if (error)
@@ -501,7 +497,7 @@ namespace Saobracaj.Tehnologija
             parameter.Value = ID;
             myCommand.Parameters.Add(parameter);
 
-           
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -597,7 +593,7 @@ namespace Saobracaj.Tehnologija
             myCommand.Parameters.Add(parameter7);
 
 
-           // double sati, double cena, double ukupno
+            // double sati, double cena, double ukupno
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -803,7 +799,7 @@ namespace Saobracaj.Tehnologija
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = IDTehnologije;
             myCommand.Parameters.Add(parameter);
-           
+
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@VrstaAktivnostiID";
             parameter2.SqlDbType = SqlDbType.Int;

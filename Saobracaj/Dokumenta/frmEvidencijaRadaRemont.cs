@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Net;
 using System.Net.Mail;
-
-
-using Microsoft.Reporting.WinForms;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -202,11 +192,10 @@ namespace Saobracaj.Dokumenta
         {
             double vreme = 0;
             int masinovodja = 0;
-             int milspedsmena = 0;
 
-           
 
-              if (chkUnosMasinovođa.Checked == true)
+
+            if (chkUnosMasinovođa.Checked == true)
             {
                 vreme = Convert.ToDouble(txtUkupnoMašinovođa.Text);
                 masinovodja = 1;
@@ -219,14 +208,14 @@ namespace Saobracaj.Dokumenta
             if (status == true)
             {
                 InsertAktivnosti ins = new InsertAktivnosti();
-                ins.InsAktivnosti(Convert.ToInt32(cboZaposleni.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, vreme, Convert.ToDouble(txtTrosak.Text), txtKomentar.Text, 0, txtOznaka.Text, Convert.ToDouble(txtRacun.Text), Convert.ToDouble(txtKartica.Text), masinovodja, txtMesto.Text.Trim(),0,1,1,1, "sa", 0 );
+                ins.InsAktivnosti(Convert.ToInt32(cboZaposleni.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, vreme, Convert.ToDouble(txtTrosak.Text), txtKomentar.Text, 0, txtOznaka.Text, Convert.ToDouble(txtRacun.Text), Convert.ToDouble(txtKartica.Text), masinovodja, txtMesto.Text.Trim(), 0, 1, 1, 1, "sa", 0);
                 status = false;
                 VratiPodatkeMax();
             }
             else
             {
                 InsertAktivnosti upd = new InsertAktivnosti();
-                upd.UpdAktivnosti(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboZaposleni.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, vreme, Convert.ToDouble(txtTrosak.Text), txtKomentar.Text, 0, txtOznaka.Text, Convert.ToDouble(txtRacun.Text), Convert.ToDouble(txtKartica.Text), masinovodja, txtMesto.Text.Trim(),0,1,1);
+                upd.UpdAktivnosti(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboZaposleni.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, vreme, Convert.ToDouble(txtTrosak.Text), txtKomentar.Text, 0, txtOznaka.Text, Convert.ToDouble(txtRacun.Text), Convert.ToDouble(txtKartica.Text), masinovodja, txtMesto.Text.Trim(), 0, 1, 1);
             }
         }
 
@@ -320,7 +309,7 @@ namespace Saobracaj.Dokumenta
                 if (txtDodatnaNapomena.Text == "")
                     txtDodatnaNapomena.Text = " ";
                 if (row.Selected == true)
-                    ins.InsAktivnostiStavke(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToDouble(txtRad.Text), Convert.ToDouble(txtKoeficijent.Text), txtDodatnaNapomena.Text, Convert.ToInt32(txtBrojVagona.Text), txtRazlog.Text, Convert.ToInt32(cboNalogodavac.SelectedValue), cboVozilo.Text,0,dtpStavke.Value,0);
+                    ins.InsAktivnostiStavke(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToDouble(txtRad.Text), Convert.ToDouble(txtKoeficijent.Text), txtDodatnaNapomena.Text, Convert.ToInt32(txtBrojVagona.Text), txtRazlog.Text, Convert.ToInt32(cboNalogodavac.SelectedValue), cboVozilo.Text, 0, dtpStavke.Value, 0);
                 // ins.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
             }
             RefreshDataGridPoAktivnostima();
@@ -342,7 +331,7 @@ namespace Saobracaj.Dokumenta
                 Nalogodavac = Convert.ToInt32(cboNalogodavac.SelectedValue);
 
 
-            ins.InsAktivnostiStavke(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboAktivnost.SelectedValue), Convert.ToDouble(txtRad.Text), Convert.ToDouble(txtKoeficijent.Text), txtDodatnaNapomena.Text, Convert.ToInt32(txtBrojVagona.Text), txtRazlog.Text, Nalogodavac, cboVozilo.Text, 0, dtpStavke.Value,0);
+            ins.InsAktivnostiStavke(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboAktivnost.SelectedValue), Convert.ToDouble(txtRad.Text), Convert.ToDouble(txtKoeficijent.Text), txtDodatnaNapomena.Text, Convert.ToInt32(txtBrojVagona.Text), txtRazlog.Text, Nalogodavac, cboVozilo.Text, 0, dtpStavke.Value, 0);
             RefreshDataGridPoAktivnostima();
 
         }
@@ -546,7 +535,7 @@ namespace Saobracaj.Dokumenta
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             InsertAktivnosti ins = new InsertAktivnosti();
-          //  ins.UpdateAktivnostiPlaceno(Convert.ToInt32(txtSifra.Text));
+            //  ins.UpdateAktivnostiPlaceno(Convert.ToInt32(txtSifra.Text));
             chkPlaceno.Checked = true;
         }
 

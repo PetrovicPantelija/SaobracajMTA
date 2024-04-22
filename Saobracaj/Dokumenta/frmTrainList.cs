@@ -2,16 +2,11 @@
 using Saobracaj.Dokumenta.TrainListItem;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
-using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-
-using Microsoft.Reporting.WinForms;
 
 
 namespace Saobracaj.Dokumenta
@@ -41,9 +36,7 @@ namespace Saobracaj.Dokumenta
         {
             InitializeComponent();
             setStyle();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
 
         public frmTrainList(string Oznaka, int samoTekuci)
@@ -53,12 +46,10 @@ namespace Saobracaj.Dokumenta
             OtvaranjeIzNajave = 1;
             txt_trainNo.Text = Oznaka;
             if (samoTekuci == 1)
-            { chkAktvni.Checked = true;}
+            { chkAktvni.Checked = true; }
             else
             { chkAktvni.Checked = false; }
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
 
         public frmTrainList(string Oznaka, int i, DateTime PredvidjenoVreme, int samoTekuci)
@@ -68,7 +59,7 @@ namespace Saobracaj.Dokumenta
             OtvaranjeIzNajave = 2;
             groupBoxAddEdit.Visible = true;
             groupBoxAddEdit.Text = "Insert Train Item";
-            
+
             txt_note.Text = "";
             txt_TotalUnitTare.Text = "";
             txt_TotalGoods.Text = "";
@@ -88,101 +79,11 @@ namespace Saobracaj.Dokumenta
             { chkAktvni.Checked = true; }
             else
             { chkAktvni.Checked = false; }
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
-        }
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
 
-            while (dr.Read())
-            {
-                if (dr.HasRows)
-                {
-                    if (count == 0)
-                    {
-                        niz = dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                    else
-                    {
-                        niz = niz + "," + dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Korisnik ne pripada grupi");
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        //tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                       // tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        //tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
         }
         private void REfreshSve()
         {
-           
+
             if (OtvaranjeIzNajave == 2)
             { groupBoxAddEdit.Visible = true; }
             else
@@ -249,7 +150,7 @@ namespace Saobracaj.Dokumenta
                     }
 
                 }
-                
+
             }
             else
             {
@@ -258,7 +159,7 @@ namespace Saobracaj.Dokumenta
                 {
                     dataGrid1.DataSource = data;
                     dataGrid1.Columns[0].Width = 0;
-                   // dataGrid1.Rows[SelectedRowIndexTekuci].Selected = true;
+                    // dataGrid1.Rows[SelectedRowIndexTekuci].Selected = true;
                     //  dataGrid1.CurrentRow.Selected = ;
                     //  trainListSelectedRow = dataGrid1.CurrentRow.Index;
                     trainListSelectedRow = SelectedRowIndexTekuci;
@@ -304,7 +205,7 @@ namespace Saobracaj.Dokumenta
                     }
 
                 }
-        
+
             }
             SelectROWDataGRID1();
         }
@@ -317,11 +218,11 @@ namespace Saobracaj.Dokumenta
                 groupBoxAddEdit.Visible = false;
             }
             //_trainList data ;
-           // var data = ;
+            // var data = ;
             //PANTA Get all
             if (chkAktvni.Checked == true)
-                {
-             var data = _trainList.GetAllActive();
+            {
+                var data = _trainList.GetAllActive();
                 if (data.Count > 0)
                 {
                     dataGrid1.DataSource = data;
@@ -381,7 +282,7 @@ namespace Saobracaj.Dokumenta
             }
             else
             {
-              var  data = _trainList.GetAll();
+                var data = _trainList.GetAll();
                 if (data.Count > 0)
                 {
                     dataGrid1.DataSource = data;
@@ -439,8 +340,8 @@ namespace Saobracaj.Dokumenta
                     //Treba obeleziti plan
                 }
             }
-            
-           
+
+
         }
 
         private void VratiTrainListID()
@@ -519,11 +420,11 @@ namespace Saobracaj.Dokumenta
                     RefreshDatagridSumarno();
                     SelectROWDataGRID1();
                 }
-               
+
             }
             catch
             {
-               // MessageBox.Show("Nije uspela selekcija stavki");
+                // MessageBox.Show("Nije uspela selekcija stavki");
             }
 
             //  RefreshDatagridKontrolisano();
@@ -624,7 +525,7 @@ namespace Saobracaj.Dokumenta
             while (dr.Read())
             {
                 TON = dr["KomOznaka"].ToString();
-               
+
 
 
             }
@@ -705,7 +606,7 @@ namespace Saobracaj.Dokumenta
             txt_MRN.Text = "";
             txt_Seals.Text = "";
             txt_UN.Text = "";
-           // dataGrid2.Rows.Clear();
+            // dataGrid2.Rows.Clear();
             btnAddUpdate.Text = "Add";
             departure_time.Value = DateTime.Now;
         }
@@ -853,7 +754,7 @@ namespace Saobracaj.Dokumenta
             dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
             dataGridView1.BackgroundColor = Color.White;
 
-          
+
 
         }
 
@@ -888,10 +789,10 @@ namespace Saobracaj.Dokumenta
                     dataGridView3[5, row.Index].Style.BackColor = Color.LightGreen; //doesn't work
 
                 }
-                    //row.Cells[col.Index].Style.BackColor = Color.Green; //doesn't work
-                    //col.Cells[row.Index].Style.BackColor = Color.Green; //doesn't work
-                 //   dataGridView1[col.Index, row.Index].Style.BackColor = Color.Green; //doesn't work
-              
+                //row.Cells[col.Index].Style.BackColor = Color.Green; //doesn't work
+                //col.Cells[row.Index].Style.BackColor = Color.Green; //doesn't work
+                //   dataGridView1[col.Index, row.Index].Style.BackColor = Color.Green; //doesn't work
+
             }
 
             foreach (DataGridViewRow row in dataGridView3.Rows)
@@ -926,7 +827,7 @@ namespace Saobracaj.Dokumenta
         private void RefreshDatagridSumarno()
         {
             var select = " SELECT OznakaKola as Oznaka, Min(RedniBroj) as RB, Min(ID) as ID, Max(TaraKola) as Tara, Min(DuzinaKola) as DuzinaKOla, Sum(Neto) as Neto, SUM(KontTara) as KontTara  FROM TrainListStavke " +
-            " Where TrainListId = " + Convert.ToInt32(textBoxSearch.Text) + 
+            " Where TrainListId = " + Convert.ToInt32(textBoxSearch.Text) +
             " group by OznakaKola ";
 
 
@@ -961,13 +862,13 @@ namespace Saobracaj.Dokumenta
 
             SqlCommand cmd = new SqlCommand("select SUM(t1.Tara) as Tara, SUM(t1.DuzinaKola) as DuzinaKola, Count(Oznaka) as BrojKola from " +
 " (SELECT Rednibroj as Oznaka, Max(TaraKola) as Tara, Max(DuzinaKola) as DuzinaKOla FROM TrainListStavke  " +
-"Where TrainListId= " + Convert.ToInt32(textBoxSearch.Text) + " group by redniBroj) t1 "  , con);
+"Where TrainListId= " + Convert.ToInt32(textBoxSearch.Text) + " group by redniBroj) t1 ", con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
                 sTaraKola.Text = dr["Tara"].ToString();
-                sDuzinaKola.Text =  dr["DuzinaKola"].ToString();
+                sDuzinaKola.Text = dr["DuzinaKola"].ToString();
                 txtBrojKola.Text = dr["BrojKola"].ToString();
             }
             con.Close();
@@ -983,7 +884,7 @@ namespace Saobracaj.Dokumenta
             con.Open();
 
             SqlCommand cmd = new SqlCommand("SELECT    Sum(Neto) as Neto, Sum(KontTara) as KontTara, (Sum(Neto) + Sum(KontTara)) as Bruto , Count(ID) as BrojKontejnera FROM TrainListStavke " +
-            " Where TrainListId = " + Convert.ToInt32(textBoxSearch.Text) 
+            " Where TrainListId = " + Convert.ToInt32(textBoxSearch.Text)
             , con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -993,13 +894,13 @@ namespace Saobracaj.Dokumenta
                 sNetoKont.Text = dr["Neto"].ToString();
                 // txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
                 VratiBrojKontejnera();
-              //  sBruto.Text = (Convert.ToDecimal(sTaraKont.Text) + Convert.ToDecimal(sNetoKont.Text) + Convert.ToDecimal(sTaraKola.Text)).ToString();
+                //  sBruto.Text = (Convert.ToDecimal(sTaraKont.Text) + Convert.ToDecimal(sNetoKont.Text) + Convert.ToDecimal(sTaraKola.Text)).ToString();
                 if ((sTaraKont.Text != "") && (sNetoKont.Text != ""))
                 {
                     sBruto.Text = (Convert.ToDecimal(sNetoKont.Text) + Convert.ToDecimal(sTaraKola.Text)).ToString();
                 }
 
-                
+
             }
             con.Close();
 
@@ -1020,9 +921,9 @@ namespace Saobracaj.Dokumenta
 
             while (dr.Read())
             {
-               
+
                 txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
-               
+
             }
             con.Close();
 
@@ -1044,7 +945,7 @@ namespace Saobracaj.Dokumenta
 
             else if (tabControl1.SelectedIndex == 2)
             {
-               RefreshDatagridSumarno();
+                RefreshDatagridSumarno();
             }
             else if (tabControl1.SelectedIndex == 3)
             {
@@ -1056,20 +957,20 @@ namespace Saobracaj.Dokumenta
         }
         private void SelectROWDataGRID1()
         {
-           // dataGrid1.ReadOnly = false;
-             dataGrid1.ClearSelection(); 
+            // dataGrid1.ReadOnly = false;
+            dataGrid1.ClearSelection();
             foreach (DataGridViewRow row in dataGrid1.Rows)
             {
-                if (row.Cells[0].Value.ToString() == textBoxSearch.Text )
+                if (row.Cells[0].Value.ToString() == textBoxSearch.Text)
                 {
                     row.Selected = true;
-                   // dataGrid1.CurrentRow.Index = dataGridView1.SelectedRows[0].Index;
+                    // dataGrid1.CurrentRow.Index = dataGridView1.SelectedRows[0].Index;
                 }
-                  
+
             }
             VratiSumuTaraKola();
             VratiSumuNetoDuzinaKola();
-            
+
             if (dataGrid1.RowCount > 0)
             {
                 trainListSelectedRow = dataGrid1.SelectedRows[0].Index;
@@ -1079,27 +980,27 @@ namespace Saobracaj.Dokumenta
                 dataGrid2.Columns[0].Width = 0;
                 dataGrid2.Columns[1].Visible = false;
 
-            /*
-                Total totalCalc = new Total(itemList, (int)dataGrid1.Rows[trainListSelectedRow].Cells[0].Value);
-                txt_TotalUnitTare.Text = totalCalc.TotalUnitTare.ToString() + " kg";
-                txt_TotalGoods.Text = totalCalc.TotalGoods.ToString() + " kg";
-                txt_TotalWagonTare.Text = totalCalc.TotalWagonTare.ToString() + " kg";
-                txt_TotalWeight.Text = totalCalc.TotalWeight.ToString() + " kg";
-                txt_TotalTrainLength.Text = totalCalc.TotalTrainLength.ToString() + " m";
-            */
+                /*
+                    Total totalCalc = new Total(itemList, (int)dataGrid1.Rows[trainListSelectedRow].Cells[0].Value);
+                    txt_TotalUnitTare.Text = totalCalc.TotalUnitTare.ToString() + " kg";
+                    txt_TotalGoods.Text = totalCalc.TotalGoods.ToString() + " kg";
+                    txt_TotalWagonTare.Text = totalCalc.TotalWagonTare.ToString() + " kg";
+                    txt_TotalWeight.Text = totalCalc.TotalWeight.ToString() + " kg";
+                    txt_TotalTrainLength.Text = totalCalc.TotalTrainLength.ToString() + " m";
+                */
             }
-           
+
         }
 
         private void dataGrid1_SelectionChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             InsertTrainList del = new InsertTrainList();
-            
+
             del.DelSveStavkeTrainLista(Convert.ToInt32(textBoxSearch.Text));
             dataGrid1.Refresh();
 
@@ -1165,7 +1066,8 @@ namespace Saobracaj.Dokumenta
             InsertTrainList upd = new InsertTrainList();
             upd.UpdateNajave(Convert.ToDouble(sNetoKont.Text), Convert.ToDouble(sDuzinaKola.Text), Convert.ToInt32(txtBrojKola.Text), txt_trainNo.Text, Convert.ToDouble(sBruto.Text), Convert.ToInt32(txtBrojKontejnera.Text));
         
-            */}
+            */
+        }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
@@ -1188,7 +1090,7 @@ namespace Saobracaj.Dokumenta
                     {
                         InsertTrainList del = new InsertTrainList();
                         del.DelStavkuTrainLista(Convert.ToInt32(row.Cells[0].Value.ToString()));
-                     
+
                     }
                 }
                 dataGrid2.Refresh();

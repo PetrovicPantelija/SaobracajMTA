@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -54,7 +48,7 @@ namespace Saobracaj.Dokumenta
         {
             var select = "   select StanicaOD, RTRIM((Cast(PrugaStavke.RB as nvarchar(4)) + '-' + stanice.Opis)) as Opis from PrugaStavke " +
             " inner join stanice on PrugaStavke.StanicaOd = Stanice.ID " +
-            " where IDPruge = ' " +  cboPruge.SelectedValue +  " ' " +
+            " where IDPruge = ' " + cboPruge.SelectedValue + " ' " +
             " order by PrugaStavke.RB ";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -65,18 +59,18 @@ namespace Saobracaj.Dokumenta
             var ds = new DataSet();
             dataAdapter.Fill(ds);
 
-           
 
-           
+
+
             //multiColumnComboBox1.ReadOnly = true;
             cboStanicaOd.DataSource = ds.Tables[0]; ;
             cboStanicaOd.DisplayMember = "Opis";
             cboStanicaOd.ValueMember = "StanicaOd";
 
-            
 
 
-          
+
+
         }
 
         private void cboStanicaOd_Leave(object sender, EventArgs e)
@@ -103,8 +97,8 @@ namespace Saobracaj.Dokumenta
 
         private void tsNew_Click(object sender, EventArgs e)
         {
-           // txtSifra.Text = "";
-           // txtSifra.Enabled = false;
+            // txtSifra.Text = "";
+            // txtSifra.Enabled = false;
             status = true;
         }
 
@@ -122,9 +116,9 @@ namespace Saobracaj.Dokumenta
             {
                 Sifarnici.InsertTrase ins = new Sifarnici.InsertTrase();
                 // ins.DeleteSaloni();
-                ins.InsPodTras(Convert.ToInt32(txtRN.Text), Convert.ToInt32(txtTrase.Text), Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToDouble(txtRastojanjeKM.Value), Elektrificirana, cboPruge.SelectedValue.ToString().Trim(), cmbKlasa.Text, Convert.ToInt32(txtRB.Text)  );
+                ins.InsPodTras(Convert.ToInt32(txtRN.Text), Convert.ToInt32(txtTrase.Text), Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToDouble(txtRastojanjeKM.Value), Elektrificirana, cboPruge.SelectedValue.ToString().Trim(), cmbKlasa.Text, Convert.ToInt32(txtRB.Text));
                 //MessageBox.Show("Uspešno uneta stanica");
-              //  RefreshDataGrid();
+                //  RefreshDataGrid();
                 status = false;
             }
             else
@@ -151,7 +145,7 @@ namespace Saobracaj.Dokumenta
             var select = " SELECT [IDRadnogNaloga]      ,[IDTrase]      ,[IDPodtrase]      ,[StanicaOD] " +
               " ,[StanicaDO]      ,[Rastojanje]      ,[Elektrificirana]      ,[PrugaOznaka] " +
               " ,[TipPruge]      ,[RB]  FROM[TESTIRANJE].[dbo].[PodTrase] " +
-              " where IDRadnogNaloga = " + Convert.ToInt32(txtRN.Text) + " and IDTrase = " + Convert.ToInt32(txtTrase.Text) + " and RB =  " + Convert.ToInt32(txtRB.Text) + 
+              " where IDRadnogNaloga = " + Convert.ToInt32(txtRN.Text) + " and IDTrase = " + Convert.ToInt32(txtTrase.Text) + " and RB =  " + Convert.ToInt32(txtRB.Text) +
               " order by RB ";
 
 
@@ -223,9 +217,9 @@ namespace Saobracaj.Dokumenta
         private void cboStanicaDo_Leave(object sender, EventArgs e)
         {
             double StacionazaOd = 0;
-            double StacionazaDo = 0; 
-            
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            double StacionazaDo = 0;
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -235,8 +229,8 @@ namespace Saobracaj.Dokumenta
 
             while (dr.Read())
             {
-               StacionazaOd = Convert.ToDouble(dr["StacionazaKM"].ToString());
-               cmbKlasa.Text = dr["Klasa"].ToString();
+                StacionazaOd = Convert.ToDouble(dr["StacionazaKM"].ToString());
+                cmbKlasa.Text = dr["Klasa"].ToString();
             }
 
             con.Close();

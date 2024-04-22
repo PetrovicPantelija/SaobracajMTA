@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace TrackModal.Promet
 {
@@ -14,13 +10,13 @@ namespace TrackModal.Promet
     {
         public void InsPopis(DateTime DatumPopisa, string Napomena, DateTime Datum, string Korisnik)
         {
-           /*  @DatumPopisa datetime
-           ,@Napomena nvarchar(120)
-           ,@Datum datetime
-           ,@Korisnik nvarchar(20)
-            */
-            
-         
+            /*  @DatumPopisa datetime
+            ,@Napomena nvarchar(120)
+            ,@Datum datetime
+            ,@Korisnik nvarchar(20)
+             */
+
+
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -59,7 +55,7 @@ namespace TrackModal.Promet
             parameter8.Value = Korisnik;
             myCommand.Parameters.Add(parameter8);
 
-          
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -215,7 +211,7 @@ namespace TrackModal.Promet
             parameter00.Value = ID;
             myCommand.Parameters.Add(parameter00);
 
-           
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -292,7 +288,7 @@ namespace TrackModal.Promet
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@SkladisteU";
             parameter1.SqlDbType = SqlDbType.Int;
-          //  parameter1.Size = 20;
+            //  parameter1.Size = 20;
             parameter1.Direction = ParameterDirection.Input;
             parameter1.Value = SkladisteU;
             myCommand.Parameters.Add(parameter1);
@@ -374,7 +370,7 @@ namespace TrackModal.Promet
             parameter00.Direction = ParameterDirection.Input;
             parameter00.Value = ID;
             myCommand.Parameters.Add(parameter00);
-            
+
             SqlParameter parameter0 = new SqlParameter();
             parameter0.ParameterName = "@IDNadredjenog";
             parameter0.SqlDbType = SqlDbType.Int;
@@ -476,7 +472,7 @@ namespace TrackModal.Promet
             parameter00.Value = ID;
             myCommand.Parameters.Add(parameter00);
 
- 
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;

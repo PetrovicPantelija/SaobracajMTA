@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
-using System.Configuration;
-using Syncfusion.Windows.Forms.Grid.Grouping;
-using Syncfusion.Data;
-using Syncfusion.Drawing;
+﻿using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms.Grid;
-using Syncfusion.Grouping;
+using Syncfusion.Windows.Forms.Grid.Grouping;
+using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
@@ -28,7 +22,7 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-         
+
             string DodatniAND = " AND 1=1 ";
             if (chkVOZ.Checked == true)
             {
@@ -69,7 +63,7 @@ namespace Saobracaj.Uvoz
    " inner join Partnerji uv on uv.PaSifra = UvozKonacnaVrstaManipulacije.Platilac " +
    " Inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
    " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera " +
-           " where OJIzdavanja = " + Convert.ToInt32(cboIzdatOd.SelectedValue) + DodatniAND + 
+           " where OJIzdavanja = " + Convert.ToInt32(cboIzdatOd.SelectedValue) + DodatniAND +
            " order by RadniNalogInterni.ID desc";
             }
             else if (cboIzdatOd.Text == "Izvoz")
@@ -88,12 +82,12 @@ namespace Saobracaj.Uvoz
       " inner join Partnerji uv on uv.PaSifra = IzvozKonacnaVrstaManipulacije.Platilac " +
          " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera " +
       " inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera" +
-              " where OJIzdavanja = " + Convert.ToInt32(cboIzdatOd.SelectedValue) + DodatniAND + 
+              " where OJIzdavanja = " + Convert.ToInt32(cboIzdatOd.SelectedValue) + DodatniAND +
               " order by RadniNalogInterni.ID desc";
 
             }
 
-           else if (cboIzdatOd.Text == "Terminal")
+            else if (cboIzdatOd.Text == "Terminal")
             {
                 select = "  SELECT RadniNalogInterni.[ID]  ,RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]     " +
   "  ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena]  , UvozKonacnaVrstaManipulacije.IDVrstaManipulacije, " +
@@ -121,12 +115,12 @@ namespace Saobracaj.Uvoz
             gridGroupingControl1.DataSource = ds.Tables[0];
             gridGroupingControl1.ShowGroupDropArea = true;
             this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
-            
+
 
             GridConditionalFormatDescriptor gcfd = new GridConditionalFormatDescriptor();
             gcfd.Appearance.AnyRecordFieldCell.BackColor = Color.BlueViolet;
             gcfd.Appearance.AnyRecordFieldCell.TextColor = Color.White;
-          
+
             gcfd.Expression = "[StatusIzdavanja] =  'DOPUNA'";
 
             //To add the conditional format instances to the ConditionalFormats collection. 
@@ -138,16 +132,16 @@ namespace Saobracaj.Uvoz
 
             gcfd2.Expression = "[StatusIzdavanja] =  'STORNO'";
             this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd2);
-            
+
             GridConditionalFormatDescriptor gcfd3 = new GridConditionalFormatDescriptor();
             gcfd3.Appearance.AnyRecordFieldCell.BackColor = Color.Green;
             gcfd3.Appearance.AnyRecordFieldCell.TextColor = Color.Yellow;
 
             gcfd3.Expression = "[Uradjen] =  '1'";
-             this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd3);
+            this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd3);
             //To add the conditional format instances to the ConditionalFormats collection. 
-           
-      
+
+
             this.gridGroupingControl1.TableDescriptor.Columns[0].Width = 30;
             this.gridGroupingControl1.TableDescriptor.Columns[1].Width = 70;
 
@@ -195,7 +189,7 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-           
+
             var select = "  SELECT RadniNalogInterni.[ID] " +
       " ,[OJIzdavanja]      , o1.Naziv as Izdao " +
       " ,[OJRealizacije]      ,o2.Naziv as Realizuje " +
@@ -301,13 +295,13 @@ namespace Saobracaj.Uvoz
         {
             frmPrijemKamionaIzPlana pkip = new frmPrijemKamionaIzPlana(textBox1.Text);
             pkip.Show();
-            
+
             /*
            *  InsertUvozKonacna ins = new InsertUvozKonacna();
             ins.PrenesiKontejnerIzPlanaNaPrijemnicu(Convert.ToInt32(textBox1.Text));
             */
-           
-            
+
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -324,7 +318,7 @@ namespace Saobracaj.Uvoz
                 {
                     InsertRadniNalogInterni ins = new InsertRadniNalogInterni();
                     ins.PromeniStatusStorno(Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()));
-                  
+
                 }
             }
         }
@@ -346,13 +340,13 @@ namespace Saobracaj.Uvoz
 
         private void button3_Click(object sender, EventArgs e)
         {
-          
-          
+
+
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void toolStripButton5_Click(object sender, EventArgs e)
@@ -400,7 +394,7 @@ namespace Saobracaj.Uvoz
             frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana();
             rd1.Show();
         }
-        int  VratiKonkretanIDUsluge()
+        int VratiKonkretanIDUsluge()
         {
             int Konkretan = 0;
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -461,7 +455,7 @@ namespace Saobracaj.Uvoz
             if (Forma == "GATE IN PRETOVAR")
             {
                 MessageBox.Show("Formirate Otprema kamionom Cirada");
-                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik,1);
+                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 1);
                 okk.Show();
             }
 
@@ -495,8 +489,8 @@ namespace Saobracaj.Uvoz
                 con.Close();
                 return formica;
             }
-           
-           
+
+
         }
     }
 }

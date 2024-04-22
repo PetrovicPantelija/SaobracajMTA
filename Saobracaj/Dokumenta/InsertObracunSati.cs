@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -21,7 +17,7 @@ namespace Saobracaj.Dokumenta
             myCommand.CommandText = "SelectObracunMMV";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-         
+
 
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@DatumOd";
@@ -37,7 +33,7 @@ namespace Saobracaj.Dokumenta
             parameter2.Value = VremeDo;
             myCommand.Parameters.Add(parameter2);
 
-         
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -939,7 +935,7 @@ namespace Saobracaj.Dokumenta
             myCommand.CommandText = "UpdateKazne";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-          
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -999,7 +995,7 @@ namespace Saobracaj.Dokumenta
             parameter2.ParameterName = "@Kazna";
             parameter2.SqlDbType = SqlDbType.Decimal;
             parameter2.Direction = ParameterDirection.Input;
-            parameter2.Value =Kazna;
+            parameter2.Value = Kazna;
             myCommand.Parameters.Add(parameter2);
 
             myConnection.Open();

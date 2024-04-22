@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.RadniNalozi
@@ -40,9 +35,9 @@ namespace Saobracaj.RadniNalozi
             string dugme = "";
             string kNaziv = "";
             conn.Close();
-            foreach(Control c in this.Controls)
+            foreach (Control c in this.Controls)
             {
-                if(c is Button)
+                if (c is Button)
                 {
                     dugme = c.Text.ToString();
 
@@ -103,7 +98,7 @@ namespace Saobracaj.RadniNalozi
             if (btn != null)
             {
                 string btnNaziv = btn.Text;
-                var query = "SELECT ID,ISNUll(RTrim(Naziv)+'-'+RTrim(Kapacitet),0) as Skladiste, ISNULL((SELECT STUFF((SELECT DISTINCT '\n' + CAST(Kontejner AS NVARCHAR(50)) FROM KontejnerTekuce WHERE KontejnerTekuce.Skladiste = Skladista.ID FOR XML PATH('')), 1, 1, '' ) AS Skupljen),'') AS Lokom FROM Skladista WHERE Skladista.Naziv='"+btnNaziv.ToString().TrimEnd()+"'";
+                var query = "SELECT ID,ISNUll(RTrim(Naziv)+'-'+RTrim(Kapacitet),0) as Skladiste, ISNULL((SELECT STUFF((SELECT DISTINCT '\n' + CAST(Kontejner AS NVARCHAR(50)) FROM KontejnerTekuce WHERE KontejnerTekuce.Skladiste = Skladista.ID FOR XML PATH('')), 1, 1, '' ) AS Skupljen),'') AS Lokom FROM Skladista WHERE Skladista.Naziv='" + btnNaziv.ToString().TrimEnd() + "'";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     conn.Open();

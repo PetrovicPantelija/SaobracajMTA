@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
 
 namespace Saobracaj.Dokumenta
@@ -140,7 +139,6 @@ namespace Saobracaj.Dokumenta
                     //Read each row to fill the DataTable
                     foreach (DataRow dr in rows)
                     {
-                        decimal Zbir = 0;
                         string rowColumnTitle = dr[columnX].ToString();
 
                         //Read each column to fill the DataTable
@@ -155,7 +153,7 @@ namespace Saobracaj.Dokumenta
                                     try
                                     {
                                         drReturn[rowColumnTitle] = Convert.ToDecimal(drReturn[rowColumnTitle]) + Convert.ToDecimal(dr[columnZ]);
-                                       // Zbir = Zbir + Convert.ToDecimal(dr[columnZ]);
+                                        // Zbir = Zbir + Convert.ToDecimal(dr[columnZ]);
                                     }
                                     catch
                                     {
@@ -169,9 +167,9 @@ namespace Saobracaj.Dokumenta
 
                             }
                         }
-                       // drReturn[rowColumnTitle] = Zbir;
+                        // drReturn[rowColumnTitle] = Zbir;
                     }
-                  
+
                     returnTable.Rows.Add(drReturn);
                 }
 

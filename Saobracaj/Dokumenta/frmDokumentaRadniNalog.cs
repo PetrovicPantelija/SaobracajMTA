@@ -1,28 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Configuration;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Data.OleDb;
+using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
     public partial class frmDokumentaRadniNalog : Form
     {
         bool status = false;
-      
+
 
         public frmDokumentaRadniNalog()
         {
@@ -206,12 +195,12 @@ namespace Saobracaj.Dokumenta
             {
                 targetPath = @"\\192.168.129.7\TA\Saobracaj\RN\CIM\" + FolderDestinacije + "";
             }
-            else 
+            else
             {
                 targetPath = @"\\192.168.129.7\TA\Saobracaj\RN\" + FolderDestinacije + "";
             }
 
-        
+
             string sourceFile = putanja;
             string destFile = System.IO.Path.Combine(targetPath, result);
 
@@ -220,7 +209,7 @@ namespace Saobracaj.Dokumenta
                 System.IO.Directory.CreateDirectory(targetPath);
             }
 
-          
+
             var remote = Path.Combine(targetPath, result);
             File.Copy(sourceFile, remote);
             if (tip == 1)
@@ -283,7 +272,7 @@ namespace Saobracaj.Dokumenta
                 InsertRadniNalogDokumenta ins = new InsertRadniNalogDokumenta();
                 KopirajFajl(txtPutanjaCIM.Text, txtSifraNajave.Text, true);
                 //ins.InsRNDokumenta(Convert.ToInt32(txtSifraNajave.Text), txtPutanjaCIM.Text);
-               //RN PANTA KOMENTARISAO ins.UpdateNajavaCIM(Convert.ToInt32(txtSifraNajave.Text));
+                //RN PANTA KOMENTARISAO ins.UpdateNajavaCIM(Convert.ToInt32(txtSifraNajave.Text));
                 RefreshDataGrid();
                 status = true;
             }
@@ -627,6 +616,6 @@ namespace Saobracaj.Dokumenta
 
             }
         }
-   
+
     }
 }

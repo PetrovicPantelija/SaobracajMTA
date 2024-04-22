@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -14,7 +10,7 @@ namespace Saobracaj.Uvoz
     class InsertCarinarnice
     {
         string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
-        public void InsCarinarnice(string Naziv,string CINaziv , string CIOznaka, string CIEmail, string CITelefon)
+        public void InsCarinarnice(string Naziv, string CINaziv, string CIOznaka, string CIEmail, string CITelefon)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -36,7 +32,7 @@ namespace Saobracaj.Uvoz
             cINaziv.Direction = ParameterDirection.Input;
             cINaziv.Value = CINaziv;
             cmd.Parameters.Add(cINaziv);
-            
+
             SqlParameter cIOznaka = new SqlParameter();
             cIOznaka.ParameterName = "@CIOznaka";
             cIOznaka.SqlDbType = SqlDbType.NVarChar;
@@ -96,7 +92,7 @@ namespace Saobracaj.Uvoz
                 }
             }
         }
-        public void UpdCarinarnice(int ID,string Naziv, string CINaziv, string CIOznaka, string CIEmail, string CITelefon)
+        public void UpdCarinarnice(int ID, string Naziv, string CINaziv, string CIOznaka, string CIEmail, string CITelefon)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();

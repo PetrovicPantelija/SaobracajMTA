@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Net;
 using System.Net.Mail;
-
-
-using Microsoft.Reporting.WinForms;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -35,92 +26,7 @@ namespace Saobracaj.Dokumenta
         public frmMUPDozvola()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
-        }
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
 
-            while (dr.Read())
-            {
-                if (count == 0)
-                {
-                    niz = dr["IdGrupe"].ToString();
-                    count++;
-                }
-                else
-                {
-                    niz = niz + "," + dr["IdGrupe"].ToString();
-                    count++;
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
         }
         private void tsNew_Click(object sender, EventArgs e)
         {
@@ -130,7 +36,7 @@ namespace Saobracaj.Dokumenta
             dtpVremeOd.Value = DateTime.Now;
             dtpVremeDo.Value = DateTime.Now;
             txtRelacija.Text = "";
-          
+
         }
 
         private void VratiPodatkeMax()
@@ -154,11 +60,11 @@ namespace Saobracaj.Dokumenta
         private void tsSave_Click(object sender, EventArgs e)
         {
             InsertMUPDozvola ins = new InsertMUPDozvola();
-            ins.InsMUPDozvola(Convert.ToInt32(cboZaposleni.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, txtJMBG.Text, txtRadnoMesto.Text, txtRelacija.Text, cboLokacija.Text,txtAdresa.Text,Convert.ToInt32(cboAutomobili.SelectedValue));
+            ins.InsMUPDozvola(Convert.ToInt32(cboZaposleni.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, txtJMBG.Text, txtRadnoMesto.Text, txtRelacija.Text, cboLokacija.Text, txtAdresa.Text, Convert.ToInt32(cboAutomobili.SelectedValue));
             status = false;
             prikazisvedozvole();
             VratiPodatkeMax();
-            
+
         }
 
         private void frmMUPDozvola_Load(object sender, EventArgs e)
@@ -183,11 +89,11 @@ namespace Saobracaj.Dokumenta
         {
             var select = "";
 
-        
+
             select = " select top 100 MUPDozvola.ID,  MUPDozvola.Zaposleni, (RTrim(Delavci.DeIme) + ' ' + RTRIM(Delavci.DePriimek)) as ImeIPrezime, Delavci.DeEMail as Email,  MUPDozvola.VremeOd, MUPDozvola.VremeDo, MUPDozvola.JMBG, MUPDozvola.RadnoMesto, MUPDozvola.Relacija  from MupDozvola " +
  " inner join Delavci on Delavci.DeSifra = MUPDozvola.Zaposleni order by MUPDozvola.ID desc";
 
-     
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -278,7 +184,7 @@ namespace Saobracaj.Dokumenta
             dataGridView1.Columns[18].HeaderText = "Zapisa";
             dataGridView1.Columns[18].Width = 50;
              * */
-        
+
         }
 
         private void cboZaposleni_Leave(object sender, EventArgs e)
@@ -288,10 +194,10 @@ namespace Saobracaj.Dokumenta
 
             con.Open();
 
-          
 
 
-            SqlCommand cmd = new SqlCommand("  select  DeEMSO as JMBG,  DelovnaMesta.DmNaziv as RadnoMesto, DeEmail as Email   from Delavci " + 
+
+            SqlCommand cmd = new SqlCommand("  select  DeEMSO as JMBG,  DelovnaMesta.DmNaziv as RadnoMesto, DeEmail as Email   from Delavci " +
             " inner join DelovnaMesta on DelovnaMesta.DmSifra = Delavci.DeSifDelMes " +
             " where  DeSifStat = 'A' and DeSifra =" + Convert.ToInt32(cboZaposleni.SelectedValue), con);
             SqlDataReader dr = cmd.ExecuteReader();
@@ -301,7 +207,7 @@ namespace Saobracaj.Dokumenta
                 txtEmail.Text = dr["Email"].ToString();
                 txtJMBG.Text = dr["JMBG"].ToString();
                 txtRadnoMesto.Text = dr["RadnoMesto"].ToString();
-               // txtJMBG.Text = dr["JMBG"].ToString();
+                // txtJMBG.Text = dr["JMBG"].ToString();
             }
 
             con.Close();
@@ -325,7 +231,7 @@ namespace Saobracaj.Dokumenta
 
         private void btnStampa_Click(object sender, EventArgs e)
         {
-           
+
 
             TESTIRANJEDataSet11TableAdapters.SelectMUPDozvolaTableAdapter ta = new TESTIRANJEDataSet11TableAdapters.SelectMUPDozvolaTableAdapter();
             TESTIRANJEDataSet11.SelectMUPDozvolaDataTable dt = new TESTIRANJEDataSet11.SelectMUPDozvolaDataTable();
@@ -339,7 +245,7 @@ namespace Saobracaj.Dokumenta
 
             ReportParameter[] par = new ReportParameter[1];
             par[0] = new ReportParameter("ID", txtSifra.Text.ToString());
-          
+
 
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.ReportPath = "rptMUPDozvola.rdlc";
@@ -347,7 +253,7 @@ namespace Saobracaj.Dokumenta
             reportViewer1.LocalReport.DataSources.Add(rds);
 
             reportViewer1.RefreshReport();
-             
+
         }
 
         private void btnPosaljiMail_Click(object sender, EventArgs e)
@@ -375,14 +281,14 @@ namespace Saobracaj.Dokumenta
                 var ds = new DataSet();
                 dataAdapter.Fill(ds);
                 string body = " Nalog o obavljanju radnih zadataka i poslova u periodu od 20:00 h do 05:00 h " + "<br /> <br />";
-                body = body + "Ovim putem privredno društvo KOMBINOVANI PREVOZ d.o.o Prokuplje, sa registrovanim sedištem" + "<br /> ";;
+                body = body + "Ovim putem privredno društvo KOMBINOVANI PREVOZ d.o.o Prokuplje, sa registrovanim sedištem" + "<br /> "; ;
                 body = body + "na adresi: Milena Jovanovića 15, 18400 Prokuplje, u svojstvu Poslodavca, izdaje Nalog zaposlenom:   " + "<br /> ";
 
                 foreach (DataRow myRow in ds.Tables[0].Rows)
                 {
                     body = body + myRow["ImeIPrezime"].ToString() + ", JMBG:  " + myRow["JMBG"].ToString() + " o obavljanju poslova i radnih zadataka na radnom mestu: " + "<br /> ";
-                    body = body +  myRow["RadnoMesto"].ToString() + " a prema utvrđenom rasporedu u periodu od 20:00 h do 05:00 h u dane  " + myRow["VremeOd"].ToString() +  "<br /> ";
-                    body = body +  "na relaciji - u stanici:  "  + myRow["Relacija"].ToString() +  "<br /> ";
+                    body = body + myRow["RadnoMesto"].ToString() + " a prema utvrđenom rasporedu u periodu od 20:00 h do 05:00 h u dane  " + myRow["VremeOd"].ToString() + "<br /> ";
+                    body = body + "na relaciji - u stanici:  " + myRow["Relacija"].ToString() + "<br /> ";
                 }
                 body = body + "Ovaj nalog se izdaje u svrhu dokazivanja nadležnim organima Republike Srbije da predmetni zaposleni " + "<br /> ";
                 body = body + "Oobavlja poslove i radne zadatke u periodu od 20:00 h do 05:00 h za privredno društvo KOMBINOVANI  " + "<br /> ";
@@ -416,7 +322,7 @@ namespace Saobracaj.Dokumenta
                 smtpClient.Send(mailMessage);
 
 
-               
+
 
             }
             catch (Exception ex)
@@ -462,9 +368,9 @@ namespace Saobracaj.Dokumenta
 
         private void comboBox1_SelectedValueChanged(object sender, EventArgs e)
         {
-         /*   Firma
-Zrenjanin Šinvoz
-Pruga*/
+            /*   Firma
+   Zrenjanin Šinvoz
+   Pruga*/
             if (cboLokacija.Text == "Firma")
             {
                 txtAdresa.Text = "M.Milankovića 108/BEOGRAD lokal";
@@ -492,7 +398,7 @@ Pruga*/
         {
             if (chkStan.Checked == true)
             {
-            ///Ako je stan
+                ///Ako je stan
                 var select3 = " select ID, AdresaStana as Opis from MUPMesto where Stan = 1  order by opis";
                 var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
                 SqlConnection myConnection3 = new SqlConnection(s_connection3);

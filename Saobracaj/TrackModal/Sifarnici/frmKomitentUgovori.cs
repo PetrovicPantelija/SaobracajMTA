@@ -1,20 +1,10 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Testiranje.Sifarnici
 {
@@ -26,31 +16,31 @@ namespace Testiranje.Sifarnici
         {
             InitializeComponent();
         }
-     
-         public frmKomitentUgovori(string Korisnik)
+
+        public frmKomitentUgovori(string Korisnik)
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
         }
 
-         private void tsNew_Click(object sender, EventArgs e)
-         {
-             status = true;
-         }
+        private void tsNew_Click(object sender, EventArgs e)
+        {
+            status = true;
+        }
 
-         private void RefreshDataGrid()
-         {
-             var select = " SELECT [ID],[Oznaka],[Komitenti],[DatumVezivanja],[Cenovnik]  FROM [dbo].[KomitentiUgovori]";
-             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-             SqlConnection myConnection = new SqlConnection(s_connection);
-             var c = new SqlConnection(s_connection);
-             var dataAdapter = new SqlDataAdapter(select, c);
+        private void RefreshDataGrid()
+        {
+            var select = " SELECT [ID],[Oznaka],[Komitenti],[DatumVezivanja],[Cenovnik]  FROM [dbo].[KomitentiUgovori]";
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
 
-             var commandBuilder = new SqlCommandBuilder(dataAdapter);
-             var ds = new DataSet();
-             dataAdapter.Fill(ds);
-             dataGridView1.ReadOnly = true;
-             dataGridView1.DataSource = ds.Tables[0];
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
 
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
@@ -66,47 +56,47 @@ namespace Testiranje.Sifarnici
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView1.Columns[0];
-             dataGridView1.Columns[0].HeaderText = "ID";
-             dataGridView1.Columns[0].Width = 50;
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 50;
 
-             DataGridViewColumn column2 = dataGridView1.Columns[1];
-             dataGridView1.Columns[1].HeaderText = "Oznaka";
-             dataGridView1.Columns[1].Width = 150;
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Oznaka";
+            dataGridView1.Columns[1].Width = 150;
 
-             DataGridViewColumn column3 = dataGridView1.Columns[2];
-             dataGridView1.Columns[2].HeaderText = "Komitent";
-             dataGridView1.Columns[2].Width = 300;
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Komitent";
+            dataGridView1.Columns[2].Width = 300;
 
-             DataGridViewColumn column4 = dataGridView1.Columns[3];
-             dataGridView1.Columns[3].HeaderText = "DatumVezivanja";
-             dataGridView1.Columns[3].Width = 100;
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "DatumVezivanja";
+            dataGridView1.Columns[3].Width = 100;
 
-             DataGridViewColumn column5 = dataGridView1.Columns[4];
-             dataGridView1.Columns[4].HeaderText = "Cenovnik";
-             dataGridView1.Columns[4].Width = 100;
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Cenovnik";
+            dataGridView1.Columns[4].Width = 100;
 
-          
-         }
 
-         private void tsSave_Click(object sender, EventArgs e)
-         {
-             if (status == true)
-             {
-                 InsertKomitentUgovori ins = new InsertKomitentUgovori();
-                 ins.InsKomitentUgovori(txtOznaka.Text, Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDateTime(dtpDatumVezivanja.Value),  Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(cboCenovnik.SelectedValue));
-                 status = false;
-             }
-             else
-             {
-                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
-                 InsertKomitentUgovori upd = new InsertKomitentUgovori();
-                 upd.UpdKomitentUgovori(Convert.ToInt32(txtSifra.Text), txtOznaka.Text, Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDateTime(dtpDatumVezivanja.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(cboCenovnik.SelectedValue));
-             }
-             RefreshDataGrid();
-         }
+        }
 
-         private void tsDelete_Click(object sender, EventArgs e)
-         {
+        private void tsSave_Click(object sender, EventArgs e)
+        {
+            if (status == true)
+            {
+                InsertKomitentUgovori ins = new InsertKomitentUgovori();
+                ins.InsKomitentUgovori(txtOznaka.Text, Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDateTime(dtpDatumVezivanja.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(cboCenovnik.SelectedValue));
+                status = false;
+            }
+            else
+            {
+                //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
+                InsertKomitentUgovori upd = new InsertKomitentUgovori();
+                upd.UpdKomitentUgovori(Convert.ToInt32(txtSifra.Text), txtOznaka.Text, Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDateTime(dtpDatumVezivanja.Value), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(cboCenovnik.SelectedValue));
+            }
+            RefreshDataGrid();
+        }
+
+        private void tsDelete_Click(object sender, EventArgs e)
+        {
             DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da brišete?", "Izbor", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
@@ -119,8 +109,8 @@ namespace Testiranje.Sifarnici
                 //do something else
             }
 
-            
-         }
+
+        }
 
         private void VratiPodatke(string ID)
         {
@@ -143,9 +133,9 @@ namespace Testiranje.Sifarnici
             con.Close();
         }
 
-         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
-         {
-             try
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            try
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
@@ -162,10 +152,10 @@ namespace Testiranje.Sifarnici
             }
         }
 
-         private void txtSifra_TextChanged(object sender, EventArgs e)
-         {
+        private void txtSifra_TextChanged(object sender, EventArgs e)
+        {
 
-         }
+        }
 
         private void frmKomitentUgovori_Load(object sender, EventArgs e)
         {
@@ -177,6 +167,6 @@ namespace Testiranje.Sifarnici
             }
         }
     }
-    }
+}
 
 

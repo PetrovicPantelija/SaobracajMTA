@@ -1,22 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Syncfusion.Windows.Forms.Grid.Grouping;
+using System;
 using System.Configuration;
-using Syncfusion.Windows.Forms.Grid.Grouping;
-using Syncfusion.Data;
-using Syncfusion.Drawing;
-using Syncfusion.Windows.Forms.Grid;
-using Syncfusion.Grouping;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.RadniNalozi
 {
-    public partial class frmAnalizaRadnihNaloga :  Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmAnalizaRadnihNaloga : Syncfusion.Windows.Forms.Office2010Form
     {
         int TIPRN = 0;
         public frmAnalizaRadnihNaloga()
@@ -34,7 +25,7 @@ namespace Saobracaj.RadniNalozi
         {
             var select = "";
             select = "   select ID, TipRN, IDRadnogNaloga, IDUsluge, BrojKontejnera, Uradjen from TerminalRadniNalozi";
-           
+
             var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -192,7 +183,7 @@ namespace Saobracaj.RadniNalozi
             gridGroupingControl2.ResetTableDescriptor();
             gridGroupingControl2.Refresh();
             var select = "";
-            select = "select TerminalRadniNalozi.BrojKontejnera, TipKontenjera.Naziv as TipKontejnera, Skladista.Naziv, Pozicija.Opis,  " + 
+            select = "select TerminalRadniNalozi.BrojKontejnera, TipKontenjera.Naziv as TipKontejnera, Skladista.Naziv, Pozicija.Opis,  " +
 " p1.PaNaziv as Brodar, Izvoz.BookingBrodara,  RNPrijemPlatforme.Kamion, TerminalRadniNalozi.IDUsluge, VrstaManipulacije.Naziv as NAzivUSluge, " +
 " PArtnerji.PaNaziv as Uvoznik, RNPrijemPlatforme.DatumRasporeda, RNPrijemPlatforme.NalogIzdao, " +
  " RNPrijemPlatforme.DatumRealizacije, RNPrijemPlatforme.NalogRealizovao, RNPrijemPlatforme.Napomena as RNNapomena, Uradjen " +
@@ -323,7 +314,7 @@ namespace Saobracaj.RadniNalozi
             gridGroupingControl2.ResetTableDescriptor();
             gridGroupingControl2.Refresh();
             var select = "";
-            select = "select TerminalRadniNalozi.BrojKontejnera, TipKontenjera.Naziv as TipKontejnera, Skladista.Naziv, Pozicija.Opis, Pozicija.Opis as Pozicija , "+
+            select = "select TerminalRadniNalozi.BrojKontejnera, TipKontenjera.Naziv as TipKontejnera, Skladista.Naziv, Pozicija.Opis, Pozicija.Opis as Pozicija , " +
 " RNOtpremaCirade.Kamion, RNOtpremaCirade.IDUsluge, VrstaManipulacije.Naziv as NAzivUSluge, " +
 " RNOtpremaCirade.DatumRasporeda, RNOtpremaCirade.NalogIzdao, " +
 " RNOtpremaCirade.DatumRealizacije, RNOtpremaCirade.NalogRealizovao,  Uradjen " +

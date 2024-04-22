@@ -2,15 +2,8 @@
 using Microsoft.Reporting.WinForms;
 using Saobracaj.Sifarnici;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.RadniNalozi
@@ -35,7 +28,7 @@ namespace Saobracaj.RadniNalozi
                 "inner join NpreP on NPre.NPrStPre = Nprep.NPrPStPre " +
                 "inner join Partnerji on NPre.NPrPartPlac = Partnerji.PaSifra " +
                 "Inner join Partnerji as p1 on NPre.NPrPartDob = p1.PaSifra " +
-                "inner join Delavci on NPre.NPrStDelPre=Delavci.DeSifra "+
+                "inner join Delavci on NPre.NPrStDelPre=Delavci.DeSifra " +
                 "order by NPRStPre desc";
             SqlConnection conn = new SqlConnection(connect);
             SqlDataAdapter da = new SqlDataAdapter(query, conn);
@@ -59,7 +52,7 @@ namespace Saobracaj.RadniNalozi
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in dataGridView1.Rows)
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Selected)
                 {

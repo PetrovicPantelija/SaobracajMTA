@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 
 namespace Saobracaj.Dokumenta
@@ -15,7 +11,7 @@ namespace Saobracaj.Dokumenta
     {
         public void InsZar(int Zaposleni, double Ciljna, double Minimalna, int Smena, int Parametar1, int Parametar2, double PrviDeo, double DrugiDeo, int Fiksna, int Benificirani, string TipRadnika)
         {
-           
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -456,7 +452,7 @@ namespace Saobracaj.Dokumenta
             myCommand.CommandText = "UpdateZaradePrvideoSvi";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-           
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -500,14 +496,14 @@ namespace Saobracaj.Dokumenta
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateZaradePrvideoSviMinimalna";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-           
+
             SqlParameter parameter = new SqlParameter();
             parameter.ParameterName = "@MinimalnaDrzavna";
             parameter.SqlDbType = SqlDbType.Decimal;
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = MinimalnaDrzavna;
             myCommand.Parameters.Add(parameter);
-            
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;

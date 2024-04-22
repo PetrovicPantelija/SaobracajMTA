@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Configuration;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -20,129 +13,37 @@ namespace Saobracaj.Dokumenta
         public frmFinansije()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
-        }
-        string niz = "";
-        public static string code = "frmFinansije";
-        public bool Pravo;
-        int idGrupe;
-        int idForme;
-        bool insert;
-        bool update;
-        bool delete;
-        string Kor = Sifarnici.frmLogovanje.user.ToString();
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
 
-            while (dr.Read())
-            {
-                if (count == 0)
-                {
-                    niz = dr["IdGrupe"].ToString();
-                    count++;
-                }
-                else
-                {
-                    niz = niz + "," + dr["IdGrupe"].ToString();
-                    count++;
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
         }
 
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                       // tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        //tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        //tsDelete.Enabled = false;
-                    }
-                }
-            }
 
-            conn.Close();
-        }
         private void btnStampa_Click(object sender, EventArgs e)
         {
             if (txtSifra.Text == "DejanIvan")
             {
-            TESTIRANJEDataSet6TableAdapters.SelectAktivnostiFinasijeTableAdapter ta = new TESTIRANJEDataSet6TableAdapters.SelectAktivnostiFinasijeTableAdapter();
-            TESTIRANJEDataSet6.SelectAktivnostiFinasijeDataTable dt = new TESTIRANJEDataSet6.SelectAktivnostiFinasijeDataTable();
+                TESTIRANJEDataSet6TableAdapters.SelectAktivnostiFinasijeTableAdapter ta = new TESTIRANJEDataSet6TableAdapters.SelectAktivnostiFinasijeTableAdapter();
+                TESTIRANJEDataSet6.SelectAktivnostiFinasijeDataTable dt = new TESTIRANJEDataSet6.SelectAktivnostiFinasijeDataTable();
 
-            ta.Fill(dt, Convert.ToDateTime(dtpVremeOd.Value), Convert.ToDateTime(dtpVremeDo.Value));
-            ReportDataSource rds = new ReportDataSource();
-            rds.Name = "DataSet10";
-            rds.Value = dt;
-            DateTime dtStartDate = dtpVremeOd.Value;
-            DateTime dtEndDate = dtpVremeDo.Value;
+                ta.Fill(dt, Convert.ToDateTime(dtpVremeOd.Value), Convert.ToDateTime(dtpVremeDo.Value));
+                ReportDataSource rds = new ReportDataSource();
+                rds.Name = "DataSet10";
+                rds.Value = dt;
+                DateTime dtStartDate = dtpVremeOd.Value;
+                DateTime dtEndDate = dtpVremeDo.Value;
 
-            ReportParameter[] par = new ReportParameter[2];
-          
-            par[0] = new ReportParameter("DatumOd", dtStartDate.ToLongDateString(), false);
-            par[1] = new ReportParameter("DatumDo", dtEndDate.ToLongDateString(), false);
+                ReportParameter[] par = new ReportParameter[2];
 
-            reportViewer1.LocalReport.DataSources.Clear();
-            reportViewer1.LocalReport.ReportPath = "Troskovi.rdlc";
-            reportViewer1.LocalReport.SetParameters(par);
-            reportViewer1.LocalReport.DataSources.Add(rds);
-            reportViewer1.RefreshReport();
+                par[0] = new ReportParameter("DatumOd", dtStartDate.ToLongDateString(), false);
+                par[1] = new ReportParameter("DatumDo", dtEndDate.ToLongDateString(), false);
 
-            RefreshDataGrid1();
-        }
+                reportViewer1.LocalReport.DataSources.Clear();
+                reportViewer1.LocalReport.ReportPath = "Troskovi.rdlc";
+                reportViewer1.LocalReport.SetParameters(par);
+                reportViewer1.LocalReport.DataSources.Add(rds);
+                reportViewer1.RefreshReport();
+
+                RefreshDataGrid1();
+            }
         }
         private void RefreshDataGrid1()
         {
@@ -246,11 +147,11 @@ namespace Saobracaj.Dokumenta
             DataGridViewColumn column19 = dataGridView1.Columns[19];
             dataGridView1.Columns[19].HeaderText = "Zapisa";
             dataGridView1.Columns[19].Width = 50;
-        
-        
-      
-        
-        
+
+
+
+
+
         }
 
         private void RefreshDataGrid1Zaposleni()
@@ -780,7 +681,7 @@ namespace Saobracaj.Dokumenta
             cboZaposleni.DataSource = ds3.Tables[0];
             cboZaposleni.DisplayMember = "Opis";
             cboZaposleni.ValueMember = "ID";
-           // this.reportViewer1.RefreshReport();
+            // this.reportViewer1.RefreshReport();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -835,8 +736,8 @@ namespace Saobracaj.Dokumenta
             {
                 if (row.Selected == true)
                 {
-                        frmEvidencijaRada er = new frmEvidencijaRada(Convert.ToInt32(row.Cells[0].Value.ToString()), "");
-                        er.Show();
+                    frmEvidencijaRada er = new frmEvidencijaRada(Convert.ToInt32(row.Cells[0].Value.ToString()), "");
+                    er.Show();
                 }
             }
         }

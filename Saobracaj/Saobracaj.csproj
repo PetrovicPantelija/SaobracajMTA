@@ -510,6 +510,12 @@
     <Compile Include="Administracija\InsertPolozenePruge.cs" />
     <Compile Include="Administracija\InsertSistematizacija.cs" />
     <Compile Include="Administracija\InsertStavkePrimopredaje.cs" />
+    <Compile Include="Administracija\Prava.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracija\Prava.Designer.cs">
+      <DependentUpon>Prava.cs</DependentUpon>
+    </Compile>
     <Compile Include="Config.cs" />
     <Compile Include="Dokumenta\frmAutomobili.cs">
       <SubType>Form</SubType>
@@ -3528,6 +3534,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administracija\frmStavkePrimopredaje.resx">
       <DependentUpon>frmStavkePrimopredaje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracija\Prava.resx">
+      <DependentUpon>Prava.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmAutomobili.resx">
       <DependentUpon>frmAutomobili.cs</DependentUpon>

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -38,7 +34,7 @@ namespace Saobracaj.Uvoz
             SqlParameter vozom = new SqlParameter();
             vozom.ParameterName = "@Vozom";
             vozom.SqlDbType = SqlDbType.Int;
-          //  vozom.Size = 250;
+            //  vozom.Size = 250;
             vozom.Direction = ParameterDirection.Input;
             vozom.Value = Vozom;
             cmd.Parameters.Add(vozom);
@@ -75,7 +71,7 @@ namespace Saobracaj.Uvoz
             brojtelefona.Value = BrojTelefona;
             cmd.Parameters.Add(brojtelefona);
 
-            SqlParameter terminal= new SqlParameter();
+            SqlParameter terminal = new SqlParameter();
             terminal.ParameterName = "@Terminal";
             terminal.SqlDbType = SqlDbType.Int;
             //  vozom.Size = 250;

@@ -1,27 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
- 
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Testiranje.Sifarnici
 {
     public partial class frmPravoPristupaFormi : Form
     {
         string KorisnikCene;
-       // bool status = true;
+        // bool status = true;
         public frmPravoPristupaFormi()
         {
             InitializeComponent();
@@ -31,7 +20,7 @@ namespace Testiranje.Sifarnici
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
-           // txtSifra.Text = Sifra.ToString();
+            // txtSifra.Text = Sifra.ToString();
         }
 
         private void frmPravoPristupaFormi_Load(object sender, EventArgs e)
@@ -56,15 +45,15 @@ namespace Testiranje.Sifarnici
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 InsertPravoPristupaFormi ins = new InsertPravoPristupaFormi();
-               
+
                 if (row.Selected == true)
                     ins.InsPravoPristupaFormi(row.Cells[1].Value.ToString(), Convert.ToDateTime(DateTime.Now), KorisnikCene, cboKorisnik.SelectedValue.ToString(), Convert.ToInt32(row.Cells[3].Value.ToString()));
                 // ins.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
             }
-           // RefreshDataGridPoAktivnostima();
+            // RefreshDataGridPoAktivnostima();
             RefreshDataGridNema();
             RefreshDataGridIma();
-           
+
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -198,7 +187,7 @@ namespace Testiranje.Sifarnici
                     if (row.Cells[5].Value.ToString() == "True")
                         pDelete = 1;
                     InsertPravoPristupaFormi insTer = new InsertPravoPristupaFormi();
-                    insTer.UpdPravoPristupaFormi(Convert.ToInt32(row.Cells[0].Value.ToString()), pInsert, pUpdate,pDelete);
+                    insTer.UpdPravoPristupaFormi(Convert.ToInt32(row.Cells[0].Value.ToString()), pInsert, pUpdate, pDelete);
                 }
                 RefreshDataGridIma();
                 RefreshDataGridNema();

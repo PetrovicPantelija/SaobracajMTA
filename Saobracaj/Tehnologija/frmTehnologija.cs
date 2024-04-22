@@ -1,24 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Globalization;
-using Syncfusion.Windows.Forms.Grid.Grouping;
-using Syncfusion.Windows.Forms;
-
-using MetroFramework.Forms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Tehnologija
 {
-    
+
     public partial class frmTehnologija : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmTehnologija";
@@ -37,9 +26,7 @@ namespace Saobracaj.Tehnologija
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
             KorisnikP = Korisnik;
             if (Korisnik != "admin")
             {
@@ -96,89 +83,6 @@ namespace Saobracaj.Tehnologija
                 lblUkupnoZaposleni.Visible = true;
                 lblSumarno.Visible = true;
             }
-        }
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
-
-            while (dr.Read())
-            {
-                if (count == 0)
-                {
-                    niz = dr["IdGrupe"].ToString();
-                    count++;
-                }
-                else
-                {
-                    niz = niz + "," + dr["IdGrupe"].ToString();
-                    count++;
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
         }
         public frmTehnologija(int SifraTehnologije, string Korisnik)
         {
@@ -286,8 +190,8 @@ namespace Saobracaj.Tehnologija
 " where Narocilo.NaStNar > 542 and NaStatus = 'PO' ";
             */
 
-            var select =  "select MpSifra, MpStaraSif as Kod, MpNaziv as Naziv, MpSifEnoteMere1 as JM1, MpSifEnoteMere2 as JM2   from MaticniPodatki " +
-            " where MpSifProdSkup = 1" ;
+            var select = "select MpSifra, MpStaraSif as Kod, MpNaziv as Naziv, MpSifEnoteMere1 as JM1, MpSifEnoteMere2 as JM2   from MaticniPodatki " +
+            " where MpSifProdSkup = 1";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -432,7 +336,7 @@ namespace Saobracaj.Tehnologija
                 Prazno = Convert.ToInt32(dr["Prazan"].ToString());
                 txtTonaza.Value = Convert.ToDecimal(dr["Tonaza"].ToString());
                 txtTonazaPovratak.Value = Convert.ToDecimal(dr["TonazaPovratak"].ToString());
-                
+
                 if (Prazno == 1)
                 { chkPrazno.Checked = true; }
 
@@ -461,7 +365,7 @@ namespace Saobracaj.Tehnologija
             {
                 txtSifra.Text = dr["ID"].ToString();
             }
-           
+
             con.Close();
 
 
@@ -528,7 +432,7 @@ namespace Saobracaj.Tehnologija
 
         private void RefreshDataGridTehnologijaTrase()
         {
-            var select = "  SELECT TehnologijaTrase.[ID] , TehnologijaTrase.[Trasa], Trase.Voz as Trasa      ,[StanicaOd], stanice.Opis ,[StanicaDo], st2.Opis      ,[IDTehnologije], TehnologijaTrase.Povratak     FROM [TESTIRANJE].[dbo].[TehnologijaTrase]  inner join stanice on TehnologijaTrase.StanicaOd = stanice.id  inner join stanice st2 on TehnologijaTrase.StanicaDo = st2.id "+
+            var select = "  SELECT TehnologijaTrase.[ID] , TehnologijaTrase.[Trasa], Trase.Voz as Trasa      ,[StanicaOd], stanice.Opis ,[StanicaDo], st2.Opis      ,[IDTehnologije], TehnologijaTrase.Povratak     FROM [TESTIRANJE].[dbo].[TehnologijaTrase]  inner join stanice on TehnologijaTrase.StanicaOd = stanice.id  inner join stanice st2 on TehnologijaTrase.StanicaDo = st2.id " +
             " inner join Trase on TehnologijaTrase.Trasa = Trase.ID " +
             " where TehnologijaTrase.IDTehnologije = " + Convert.ToInt32(txtSifra.Text);
 
@@ -572,7 +476,7 @@ namespace Saobracaj.Tehnologija
             DataGridViewColumn column4 = dataGridView1.Columns[3];
             dataGridView1.Columns[3].HeaderText = "St1";
             dataGridView1.Columns[3].Width = 30;
-            
+
             DataGridViewColumn column5 = dataGridView1.Columns[4];
             dataGridView1.Columns[4].HeaderText = "St1 Od";
             dataGridView1.Columns[4].Width = 70;
@@ -666,7 +570,7 @@ namespace Saobracaj.Tehnologija
         {
             var select = "  select TehnologijaTrasaLokomotiva.ID, IDSerije, LokomotivaSerija.Oznaka as Serija, " +
                             " IDTrase as TrasaID, Trase.Voz, " +
-                            " TehnologijaTrasaLokomotiva.fiksna as FiksnaCena, TehnologijaTrasaLokomotiva.Sati,  " + 
+                            " TehnologijaTrasaLokomotiva.fiksna as FiksnaCena, TehnologijaTrasaLokomotiva.Sati,  " +
                             " TehnologijaTrasaLokomotiva.Cena, TehnologijaTrasaLokomotiva.ukupno " +
                             " from TehnologijaTrasaLokomotiva inner join LokomotivaSerija " +
                             " on TehnologijaTrasaLokomotiva.IdSerije = LokomotivaSerija.ID " +
@@ -776,9 +680,9 @@ namespace Saobracaj.Tehnologija
 
             while (dr.Read())
             {
-                if ((dr["ukupno"].ToString() != "")  && (dr["dizel"].ToString() != "") && (dr["energija"].ToString() != ""))
-                { 
-                txtUkupnoTrase.Value = Convert.ToDecimal(dr["ukupno"].ToString()) + Convert.ToDecimal(dr["dizel"].ToString()) + Convert.ToDecimal(dr["energija"].ToString());
+                if ((dr["ukupno"].ToString() != "") && (dr["dizel"].ToString() != "") && (dr["energija"].ToString() != ""))
+                {
+                    txtUkupnoTrase.Value = Convert.ToDecimal(dr["ukupno"].ToString()) + Convert.ToDecimal(dr["dizel"].ToString()) + Convert.ToDecimal(dr["energija"].ToString());
                 }
 
             }
@@ -831,9 +735,9 @@ namespace Saobracaj.Tehnologija
             treca();
             //ukupno serije
 
-           
 
-          
+
+
 
             txtUkupnoSumarno.Value = txtUkupnoZaposleni.Value + txtUkupnoLokomotive.Value + txtUkupnoTrase.Value;
 
@@ -846,15 +750,15 @@ namespace Saobracaj.Tehnologija
             {
                 PomPovratak = 1;
             }
-            
-            
+
+
             InsertTehnologija ins = new InsertTehnologija();
             ins.InsTehnologijaTrase(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboTrase.SelectedValue), Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToDouble(txtCena.Value), Convert.ToDouble(txtDizel.Value), Convert.ToDouble(txtEnergija.Value), PomPovratak);
-          
-             RefreshDataGridTehnologijaTrase();
-             VratiZadnjiTrasa();
-             VratiUkupneCene();
-             status = false;
+
+            RefreshDataGridTehnologijaTrase();
+            VratiZadnjiTrasa();
+            VratiUkupneCene();
+            status = false;
         }
 
         private void btnIzbaciTrasa_Click(object sender, EventArgs e)
@@ -868,7 +772,7 @@ namespace Saobracaj.Tehnologija
         private void sfButton3_Click(object sender, EventArgs e)
         {
             InsertTehnologija ins = new InsertTehnologija();
-            ins.InsTehnologijaTraseLokomotiva(Convert.ToInt32(txtSifra.Text),Convert.ToInt32(txtIDTrase.Text), Convert.ToInt32(cboSerija.SelectedValue), Convert.ToDouble(txtFiksnaCenaL.Value), Convert.ToDouble(txtSatiL.Value), Convert.ToDouble(txtCenaL.Value), Convert.ToDouble(txtUkupnol.Value));
+            ins.InsTehnologijaTraseLokomotiva(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtIDTrase.Text), Convert.ToInt32(cboSerija.SelectedValue), Convert.ToDouble(txtFiksnaCenaL.Value), Convert.ToDouble(txtSatiL.Value), Convert.ToDouble(txtCenaL.Value), Convert.ToDouble(txtUkupnol.Value));
             RefreshDataGridTehnologijaTraseLokomotiva();
             VratiZadnjiSerija();
             VratiUkupneCene();
@@ -877,8 +781,8 @@ namespace Saobracaj.Tehnologija
 
         private void sfButton2_Click(object sender, EventArgs e)
         {
-           //Insert aktivnosti
-            
+            //Insert aktivnosti
+
             InsertTehnologija ins = new InsertTehnologija();
             ins.InsTehnologijaTraseAktivnosti(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboVrstaAktivnosti.SelectedValue), Convert.ToInt32(cboRadnoMesto.SelectedValue), Convert.ToDouble(txtSatiA.Value), txtNapomenaAktivnosti.Text, Convert.ToDouble(txtUkupnoA.Value));
             VratiZadnjiAktivnosti();
@@ -909,7 +813,7 @@ namespace Saobracaj.Tehnologija
 
         private void sfButton4_Click(object sender, EventArgs e)
         {
-            
+
             InsertTehnologija del = new InsertTehnologija();
             del.DelTehnologijaTraseLokomotiva(Convert.ToInt32(txtIDSerija.Text));
             RefreshDataGridTehnologijaTraseLokomotiva();
@@ -928,7 +832,7 @@ namespace Saobracaj.Tehnologija
 
         private void txtSatiL_ValueChanged(object sender, EventArgs e)
         {
-            txtUkupnol.Value = (txtFiksnaCenaL.Value + (txtCenaL.Value * txtSatiL.Value)) * txtKurs.Value; 
+            txtUkupnol.Value = (txtFiksnaCenaL.Value + (txtCenaL.Value * txtSatiL.Value)) * txtKurs.Value;
         }
 
         private void txtSatiA_ValueChanged(object sender, EventArgs e)
@@ -968,7 +872,7 @@ namespace Saobracaj.Tehnologija
                     if (row.Selected)
                     {
                         txtAktivnostiID.Text = row.Cells[0].Value.ToString();
-                       // VratiPodatke(txtSifra.Text);
+                        // VratiPodatke(txtSifra.Text);
                         // txtOpis.Text = row.Cells[1].Value.ToString();
                     }
                 }

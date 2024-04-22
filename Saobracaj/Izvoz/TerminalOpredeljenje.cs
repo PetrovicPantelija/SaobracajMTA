@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Syncfusion.Windows.Forms.Grid.Grouping;
+using System;
 using System.Configuration;
-using Syncfusion.Windows.Forms.Grid.Grouping;
-using Syncfusion.Data;
-using Syncfusion.Drawing;
-using Syncfusion.Windows.Forms.Grid;
-using Syncfusion.Grouping;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
 {
@@ -25,7 +16,7 @@ namespace Saobracaj.Izvoz
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             InitializeComponent();
-          
+
         }
 
         private void RefreshGV()

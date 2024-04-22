@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 
 namespace TrackModal.Dokumeta
@@ -30,107 +23,14 @@ namespace TrackModal.Dokumeta
         public frmPregledOtpreme()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
 
         public frmPregledOtpreme(string Korisnik)
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
-        }
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
 
-            while (dr.Read())
-            {
-                if (dr.HasRows)
-                {
-                    if (count == 0)
-                    {
-                        niz = dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                    else
-                    {
-                        niz = niz + "," + dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Korisnik ne pripada grupi");
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        //tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        //tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        //tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
         }
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -246,7 +146,7 @@ namespace TrackModal.Dokumeta
                 DataGridViewColumn column10 = dataGridView1.Columns[9];
                 dataGridView1.Columns[9].HeaderText = "Korisnik";
                 dataGridView1.Columns[9].Width = 100;
-            
+
             }
         }
 
@@ -289,7 +189,7 @@ namespace TrackModal.Dokumeta
 
         private void frmPregledOtpreme_Load(object sender, EventArgs e)
         {
-           // RefreshDataGrid();
+            // RefreshDataGrid();
         }
 
         private void toolStripButton1_Click_1(object sender, EventArgs e)
@@ -363,8 +263,8 @@ namespace TrackModal.Dokumeta
 
 
 
-           // Saobracaj.Dokumeta.frmOtpremaKontejnera otpr = new Saobracaj.Dokumeta.frmOtpremaKontejnera(KorisnikCene, 1);
-           // otpr.Show();
+            // Saobracaj.Dokumeta.frmOtpremaKontejnera otpr = new Saobracaj.Dokumeta.frmOtpremaKontejnera(KorisnikCene, 1);
+            // otpr.Show();
         }
 
         private void toolStripButton5_Click(object sender, EventArgs e)
@@ -382,27 +282,27 @@ namespace TrackModal.Dokumeta
               " inner join Voz on Voz.ID = OtpremaKontejnera.IdVoza " +
             " where OtpremaKontejnera.StatusOtpreme = 0  " +
           " and NacinOtpreme = 1 order by OtpremaKontejnera.ID desc ";
-/*
-            var select = " SELECT top 500 OtpremaKontejnera.[ID],Voz.BrVoza, Voz.Relacija, " +
-                " CONVERT(varchar,OtpremaKontejnera.DatumOtpreme,104)      + ' '      + SUBSTRING(CONVERT(varchar,OtpremaKontejnera.[DatumOtpreme],108),1,5) as ETA, " +
-                        " CASE WHEN OtpremaKontejnera.StatusOtpreme = 0 THEN '1-Najava' ELSE '2-Otpremljen' END as Status, " +
-                     " CONVERT(varchar,OtpremaKontejnera.VremeOdlaska,104)      + ' '      + SUBSTRING(CONVERT(varchar,OtpremaKontejnera.[VremeOdlaska],108),1,5) as ATA, " +
-           "  OtpremaKontejnera.[Datum] ,OtpremaKontejnera.[Korisnik] " +
-          "   FROM [dbo].[OtpremaKontejnera] " +
-               " inner join Voz on Voz.ID = OtpremaKontejnera.IdVoza " +
-             " where OtpremaKontejnera.StatusOtpreme = 0  " +
-           " and NacinOtpreme = 1 order by OtpremaKontejnera.ID desc ";
-*/
-           /*
-            var select = "SELECT PrijemKontejneraVoz.[ID],Voz.BrVoza, Voz.Relacija, " +
-               " CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],104)      + ' '      + SUBSTRING(CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],108),1,5) as ETA, " +
-            " CASE WHEN PrijemKontejneraVoz.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status, " +
-           " CONVERT(varchar,PrijemKontejneraVoz.VremeDolaska,104)      + ' '      + SUBSTRING(CONVERT(varchar,PrijemKontejneraVoz.VremeDolaska,108),1,5) as ATA, " +
-            "  [PrijemKontejneraVoz].Korisnik,[PrijemKontejneraVoz].Datum  " +
-              " FROM [dbo].[PrijemKontejneraVoz] " +
-             " inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza " +
-             " where PrijemKontejneraVoz.StatusPrijema = 0  order by PrijemKontejneraVoz.[ID] desc";
-           */
+            /*
+                        var select = " SELECT top 500 OtpremaKontejnera.[ID],Voz.BrVoza, Voz.Relacija, " +
+                            " CONVERT(varchar,OtpremaKontejnera.DatumOtpreme,104)      + ' '      + SUBSTRING(CONVERT(varchar,OtpremaKontejnera.[DatumOtpreme],108),1,5) as ETA, " +
+                                    " CASE WHEN OtpremaKontejnera.StatusOtpreme = 0 THEN '1-Najava' ELSE '2-Otpremljen' END as Status, " +
+                                 " CONVERT(varchar,OtpremaKontejnera.VremeOdlaska,104)      + ' '      + SUBSTRING(CONVERT(varchar,OtpremaKontejnera.[VremeOdlaska],108),1,5) as ATA, " +
+                       "  OtpremaKontejnera.[Datum] ,OtpremaKontejnera.[Korisnik] " +
+                      "   FROM [dbo].[OtpremaKontejnera] " +
+                           " inner join Voz on Voz.ID = OtpremaKontejnera.IdVoza " +
+                         " where OtpremaKontejnera.StatusOtpreme = 0  " +
+                       " and NacinOtpreme = 1 order by OtpremaKontejnera.ID desc ";
+            */
+            /*
+             var select = "SELECT PrijemKontejneraVoz.[ID],Voz.BrVoza, Voz.Relacija, " +
+                " CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],104)      + ' '      + SUBSTRING(CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],108),1,5) as ETA, " +
+             " CASE WHEN PrijemKontejneraVoz.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status, " +
+            " CONVERT(varchar,PrijemKontejneraVoz.VremeDolaska,104)      + ' '      + SUBSTRING(CONVERT(varchar,PrijemKontejneraVoz.VremeDolaska,108),1,5) as ATA, " +
+             "  [PrijemKontejneraVoz].Korisnik,[PrijemKontejneraVoz].Datum  " +
+               " FROM [dbo].[PrijemKontejneraVoz] " +
+              " inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza " +
+              " where PrijemKontejneraVoz.StatusPrijema = 0  order by PrijemKontejneraVoz.[ID] desc";
+            */
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -444,9 +344,9 @@ namespace TrackModal.Dokumeta
             DataGridViewColumn column8 = dataGridView1.Columns[7];
             dataGridView1.Columns[7].HeaderText = "Korisnik";
             dataGridView1.Columns[7].Width = 100;
-        
-        
-        
+
+
+
         }
 
         public void REfreshDataGridOtpremaOtpremljen()

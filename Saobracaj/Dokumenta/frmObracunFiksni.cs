@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 
 namespace Saobracaj.Dokumenta
@@ -23,9 +12,7 @@ namespace Saobracaj.Dokumenta
         public frmObracunFiksni()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
         public static string code = "frmObracunFiksni";
         public bool Pravo;
@@ -36,89 +23,6 @@ namespace Saobracaj.Dokumenta
         bool delete;
         string Kor = Sifarnici.frmLogovanje.user.ToString();
         string niz = "";
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
-
-            while (dr.Read())
-            {
-                if (count == 0)
-                {
-                    niz = dr["IdGrupe"].ToString();
-                    count++;
-                }
-                else
-                {
-                    niz = niz + "," + dr["IdGrupe"].ToString();
-                    count++;
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                       // tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        //tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        //tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
-        }
         private void btnPostaviPrviDeo_Click(object sender, EventArgs e)
         {
             var select = " select Zaposleni, (Rtrim(DePriimek) + ' ' + Rtrim(DeIme)) as Radnik , Osnovna, Parametar1 as Nocni," +
@@ -127,7 +31,7 @@ namespace Saobracaj.Dokumenta
                 " '0' as SatiRedovan, Smena as Smenski, Parametar2 as TerenskiRad, '0' as IznosBolovanje, " +
                 " '0' as IznosRedovan, '1000' as Regres, '2200' as TopliObrok, '0' as NocniIznos, '0' as RadniPraznikomIznos, " +
                 "'0' as SmenskiRadIznos,  '0' as TerenskiRadIznos, '0' as Stimulacija " +
-                "  from Zarada " + 
+                "  from Zarada " +
            " inner join Delavci on DeSifra = Zarada.Zaposleni where Fiksna = 1";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -263,7 +167,7 @@ namespace Saobracaj.Dokumenta
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-          
+
         }
         private void PovuciRadPraznikom()
         {
@@ -294,7 +198,7 @@ namespace Saobracaj.Dokumenta
                 MessageBox.Show("Nije uspelo povlacenje rada praznikom");
             }
 
-    }
+        }
 
         private void PovuciSateGodisnjiOdmor()
         {
@@ -308,7 +212,7 @@ namespace Saobracaj.Dokumenta
                     con.Open();
 
                     SqlCommand cmd = new SqlCommand("Select (isnull(Sum(Ukupno),0) * 8) as UK from DopustStavke " +
-                    " inner join Dopust on Dopust.DoStZapisa = DopustStavke.IdNadredjena  where  Convert(nvarchar(10), VremeOd, 126) > '" + dtpVremeOd.Text + "' and Convert(nvarchar(10), VremeDo, 126) < '"+ dtpVremeDo.Text + "'  And Dopust.DoSifDe = " + row.Cells[0].Value, con);
+                    " inner join Dopust on Dopust.DoStZapisa = DopustStavke.IdNadredjena  where  Convert(nvarchar(10), VremeOd, 126) > '" + dtpVremeOd.Text + "' and Convert(nvarchar(10), VremeDo, 126) < '" + dtpVremeDo.Text + "'  And Dopust.DoSifDe = " + row.Cells[0].Value, con);
                     SqlDataReader dr = cmd.ExecuteReader();
 
                     while (dr.Read())
@@ -338,7 +242,7 @@ namespace Saobracaj.Dokumenta
 
                     con.Open();
 
-                   
+
                     SqlCommand cmd = new SqlCommand("Select (isnull(Sum(Ukupno),0)) as UK from Bolovanje where ZaposleniID = " + row.Cells[0].Value +
                         " and Convert(nvarchar(10), DatumOd, 126) > '" + dtpVremeOd.Text + "' and Convert(nvarchar(10), DatumDo, 126) < '" + dtpVremeDo.Text + "' and TipBolovanja = '65'", con);
                     SqlDataReader dr = cmd.ExecuteReader();
@@ -419,7 +323,7 @@ namespace Saobracaj.Dokumenta
                     int OD5 = Convert.ToInt32(s5);
 
                     //int Oduzeti = Convert.ToInt32(row.Cells[6].Value.ToString()) + Convert.ToInt32(row.Cells[7].Value.ToString()) + Convert.ToInt32(row.Cells[8].Value.ToString()) + Convert.ToInt32(row.Cells[9].Value.ToString()) + Convert.ToInt32(row.Cells[10].Value.ToString());
-                    row.Cells[11].Value = (UKSati - (OD1 + OD2 + OD3+ OD4+OD5)).ToString();
+                    row.Cells[11].Value = (UKSati - (OD1 + OD2 + OD3 + OD4 + OD5)).ToString();
                     // Iyracun sati
                     double Bol1 = OD5 * Convert.ToDouble(txtCenaSata.Value);
                     double Bol2 = OD4 * Convert.ToDouble(txtCenaSata.Value) * 65 / 100;
@@ -442,12 +346,12 @@ namespace Saobracaj.Dokumenta
                         Smen = Convert.ToDouble(row.Cells[15].Value.ToString()) * 26 / 100;
                         row.Cells[20].Value = Smen.ToString();
                     }
-                       
-                   
-                    
+
+
+
                     //Terenski
                     string s7 = row.Cells[12].Value.ToString();
-                   // s7 = s7.Remove(s7.IndexOf(","));
+                    // s7 = s7.Remove(s7.IndexOf(","));
                     int OD7 = Convert.ToInt32(s7);
                     double Ter = 0;
                     if (row.Cells[13].Value.ToString() == "1")
@@ -455,9 +359,9 @@ namespace Saobracaj.Dokumenta
                         Ter = Convert.ToDouble(row.Cells[15].Value.ToString()) * 5 / 100;
                         row.Cells[21].Value = Ter.ToString();
                     }
-                  
+
                     //Obracun stimulacije
-                    
+
                     double Osnovna = Convert.ToDouble(row.Cells[2].Value); //osnovna
                     double St1 = Convert.ToDouble(row.Cells[20].Value);
                     double St2 = Convert.ToDouble(row.Cells[19].Value);
@@ -481,13 +385,13 @@ namespace Saobracaj.Dokumenta
         }
         private void metroButton2_Click(object sender, EventArgs e)
         {
-        SatiNocni();
-        PovuciRadPraznikom();
-        PovuciSateGodisnjiOdmor();
-        PovuciBolovanje65();
-        PovuciBolovanje100();
-        RedovanRadSati();
+            SatiNocni();
+            PovuciRadPraznikom();
+            PovuciSateGodisnjiOdmor();
+            PovuciBolovanje65();
+            PovuciBolovanje100();
+            RedovanRadSati();
         }
-            
+
     }
 }

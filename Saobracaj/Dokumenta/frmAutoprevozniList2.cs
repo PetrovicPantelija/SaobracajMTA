@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -37,7 +27,7 @@ namespace Saobracaj.Dokumenta
             KorisnikCene = Korisnik;
         }
 
-        
+
 
         public frmAutoprevozniList2(int sifra, string Korisnik)
         {
@@ -49,7 +39,7 @@ namespace Saobracaj.Dokumenta
         }
 
 
-        public frmAutoprevozniList2(string NalogZaPrevozID, string PutniNalogID, string RAdniNalogID,  int VoziloP, string mestoizdavanjaP, int prikljucnovoziloP, int transportnidispecerP)
+        public frmAutoprevozniList2(string NalogZaPrevozID, string PutniNalogID, string RAdniNalogID, int VoziloP, string mestoizdavanjaP, int prikljucnovoziloP, int transportnidispecerP)
         {
             InitializeComponent();
 
@@ -79,7 +69,7 @@ namespace Saobracaj.Dokumenta
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT [ID] " + 
+            SqlCommand cmd = new SqlCommand("SELECT [ID] " +
      " ,[IDPutniNalog]  ,[IDNalogZaPrevoz] ,[IDRadniNalog],[Platilac] " +
      " ,[Kontakt],[Vozilo]      ,[Dana] ,[UtovarnoMesto] " +
      " ,[IstovarnoMesto],[Primalac]      ,[Ugovor] ,[Ponuda] " +
@@ -90,7 +80,7 @@ namespace Saobracaj.Dokumenta
 
             while (dr.Read())
             {
-               // dtpDatum.Value = Convert.ToDateTime(dr["Datum"].ToString());
+                // dtpDatum.Value = Convert.ToDateTime(dr["Datum"].ToString());
                 txtUgovor.Text = dr["Ugovor"].ToString();
                 txtPonuda.Text = dr["Ponuda"].ToString();
                 txtPutniNalogID.Text = dr["IDPutniNalog"].ToString();
@@ -101,15 +91,15 @@ namespace Saobracaj.Dokumenta
                 dtpDatumPrevoza.Value = Convert.ToDateTime(dr["Dana"].ToString());
                 txtKontaktOsoba.Text = dr["Kontakt"].ToString();
                 txtMestoIzdavanja.Text = dr["MestoIzdavanja"].ToString();
-               // dtpDatumPrevoza.Value = Convert.ToDateTime(dr["DatumPrevoza"].ToString());
+                // dtpDatumPrevoza.Value = Convert.ToDateTime(dr["DatumPrevoza"].ToString());
                 txtUtovarnoMesto.Text = dr["UtovarnoMesto"].ToString();
                 txtIstovarnoMesto.Text = dr["IstovarnoMesto"].ToString();
                 cboPrimalac.SelectedValue = Convert.ToInt32(dr["Primalac"].ToString());
-              
+
             }
             con.Close();
             VratiPodatkePutniNalog(Convert.ToInt32(txtPutniNalogID.Text));
-         
+
             //VratiPodatkeRadniNalog();
         }
 
@@ -257,7 +247,7 @@ namespace Saobracaj.Dokumenta
             {
                 cboVozilo.SelectedValue = Convert.ToInt32(VoziloS);
                 cboPrikljucnoVozilo.SelectedValue = Convert.ToInt32(PriklucjucnoVoziloS);
-               // cboTransportniDispicer.SelectedValue = Convert.ToInt32(transportnidispecerS);
+                // cboTransportniDispicer.SelectedValue = Convert.ToInt32(transportnidispecerS);
                 txtMestoIzdavanja.Text = mestoizdavanjaS;
             }
 
@@ -292,7 +282,7 @@ namespace Saobracaj.Dokumenta
                 Saobracaj.Dokumenta.InsertAutoprevozniList ins = new InsertAutoprevozniList();
                 ins.InsAutoprevozniList(Convert.ToInt32(txtPutniNalogID.Text), Convert.ToInt32(txtNalogZaPrevozID.Text), Convert.ToInt32(txtRadniNalogID.Text), Convert.ToInt32(cboPlatilac.SelectedValue), txtKontaktOsoba.Text, Convert.ToInt32(cboVozilo.SelectedValue), Convert.ToDateTime(dtpDatumPrevoza.Value), txtUtovarnoMesto.Text, txtIstovarnoMesto.Text, Convert.ToInt32(cboPrimalac.SelectedValue), txtUgovor.Text, txtPonuda.Text, txtMestoIzdavanja.Text, DateTime.Now);
                 status = false;
-                 VratiPodatkeMax();
+                VratiPodatkeMax();
             }
             else
             {
@@ -380,7 +370,7 @@ namespace Saobracaj.Dokumenta
             reportViewer1.LocalReport.ReportPath = "rptAutoprevozniList.rdlc";
             reportViewer1.LocalReport.SetParameters(par);
             reportViewer1.LocalReport.DataSources.Add(rds);
-          
+
             reportViewer1.RefreshReport();
         }
 

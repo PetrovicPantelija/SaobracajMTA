@@ -1,12 +1,7 @@
 ﻿using Saobracaj.Sifarnici;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
@@ -78,7 +73,7 @@ namespace Saobracaj.Administracija
                 tran = conn.BeginTransaction();
                 cmd.Transaction = tran;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 throw new Exception("Neuspešan upis");
             }
@@ -168,7 +163,7 @@ namespace Saobracaj.Administracija
                 tran = conn.BeginTransaction();
                 cmd.Transaction = tran;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 throw new Exception("Neuspešan upis");
             }
@@ -213,7 +208,7 @@ namespace Saobracaj.Administracija
                 tran = conn.BeginTransaction();
                 cmd.Transaction = tran;
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
                 throw new Exception("Neuspešan upis");
             }

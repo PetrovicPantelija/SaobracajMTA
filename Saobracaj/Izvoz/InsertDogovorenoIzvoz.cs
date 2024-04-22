@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
 {
-   
+
     class InsertDogovorenoIzvoz
     {
         string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
-        public void InsDogovorenoIzvoz(int Partner, DateTime PeriodOd, DateTime PeriodDo, int BrojUgovorenih, int BrojUradjenih,  string Napomena, int Zatvoren)
+        public void InsDogovorenoIzvoz(int Partner, DateTime PeriodOd, DateTime PeriodDo, int BrojUgovorenih, int BrojUradjenih, string Napomena, int Zatvoren)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();

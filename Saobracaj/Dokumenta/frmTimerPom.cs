@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
@@ -16,12 +9,12 @@ namespace Saobracaj.Dokumenta
         frmNajava20 frm1 = new frmNajava20();
         frmNajava20 frm2 = new frmNajava20();
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-    
-        
+
+
         public frmTimerPom()
         {
             InitializeComponent();
-           
+
         }
 
         private void frmTimerPom_Load(object sender, EventArgs e)
@@ -34,8 +27,8 @@ namespace Saobracaj.Dokumenta
 
         private void OnTimerEvent(object sender, EventArgs e)
         {
-           // this.Hide();
-           // frmNajava20 frmNaj20 = new frmNajava20();
+            // this.Hide();
+            // frmNajava20 frmNaj20 = new frmNajava20();
             if (StartnaForma == 1)
             {
 
@@ -57,7 +50,7 @@ namespace Saobracaj.Dokumenta
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-           
+
         }
     }
 }

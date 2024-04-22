@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -29,22 +21,18 @@ namespace Saobracaj.Dokumenta
         string KorisnikCene;
         int pomPrijemnica = 0;
         int pomVozom = 0;
-      //  bool status = false;
+        //  bool status = false;
         public frmPregledNarucenihManipulacija()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
 
         public frmPregledNarucenihManipulacija(string Korisnik)
         {
             KorisnikCene = Korisnik;
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
 
         public frmPregledNarucenihManipulacija(string Korisnik, int Prijemnica, int Vozom)
@@ -53,98 +41,7 @@ namespace Saobracaj.Dokumenta
             pomVozom = Vozom;
             KorisnikCene = Korisnik;
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
-        }
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
 
-            while (dr.Read())
-            {
-                if (dr.HasRows)
-                {
-                    if (count == 0)
-                    {
-                        niz = dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                    else
-                    {
-                        niz = niz + "," + dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Korisnik ne pripada grupi");
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        //tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                       // tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                      //  tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
         }
         private void frmPregledNarucenihManipulacija_Load(object sender, EventArgs e)
         {
@@ -224,7 +121,7 @@ namespace Saobracaj.Dokumenta
                 cboPrijemVozom.DataSource = ds.Tables[0];
                 cboPrijemVozom.DisplayMember = "Naziv";
                 cboPrijemVozom.ValueMember = "ID";
-               
+
                 var select2 = "SELECT PrijemKontejneraVoz.[ID], (CAst(PrijemKontejneraVoz.[ID] as nvarchar(5)) + '-' + RegBrKamiona + ' ' + ImeVozaca +  ' ' +   CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],104)      + ' '      + SUBSTRING(CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],108),1,5)) as Naziv " +
       " FROM [dbo].[PrijemKontejneraVoz]  where Vozom = 0  order by  PrijemKontejneraVoz.[DatumPrijema] desc, PrijemKontejneraVoz.[ID] ";
 
@@ -240,83 +137,83 @@ namespace Saobracaj.Dokumenta
                 cboPrijemKamionom.DisplayMember = "Naziv";
                 cboPrijemKamionom.ValueMember = "ID";
             }
-         
+
         }
 
         //Iz prijema
         private void RefreshDataGrid3()
         {// if (chkPrijem.Checked == true)
-            //{
-                if (chkVoz.Checked == true)
-                {
-                    var select = "   select  NaruceneManipulacije.IDPrijemaVoza, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv, " +
-                     " CASE WHEN NaruceneManipulacije.Uradjeno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Uradjeno, " +
-                     " NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik,  NaruceneManipulacije.ID, NaruceneManipulacije.Broj from NaruceneManipulacije " +
-                     " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
-                     " inner join Komitenti on NaruceneManipulacije.Platilac = Komitenti.ID " +
-                     " where NaruceneManipulacije.IzPrijema = 1 and NaruceneManipulacije.IDPrijemaVoza = " + Convert.ToInt32(cboPrijemVozom.SelectedValue);
+         //{
+            if (chkVoz.Checked == true)
+            {
+                var select = "   select  NaruceneManipulacije.IDPrijemaVoza, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv, " +
+                 " CASE WHEN NaruceneManipulacije.Uradjeno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Uradjeno, " +
+                 " NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik,  NaruceneManipulacije.ID, NaruceneManipulacije.Broj from NaruceneManipulacije " +
+                 " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
+                 " inner join Komitenti on NaruceneManipulacije.Platilac = Komitenti.ID " +
+                 " where NaruceneManipulacije.IzPrijema = 1 and NaruceneManipulacije.IDPrijemaVoza = " + Convert.ToInt32(cboPrijemVozom.SelectedValue);
 
-                    var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-                    SqlConnection myConnection = new SqlConnection(s_connection);
-                    var c = new SqlConnection(s_connection);
-                    var dataAdapter = new SqlDataAdapter(select, c);
+                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection myConnection = new SqlConnection(s_connection);
+                var c = new SqlConnection(s_connection);
+                var dataAdapter = new SqlDataAdapter(select, c);
 
-                    var commandBuilder = new SqlCommandBuilder(dataAdapter);
-                    var ds = new DataSet();
-                    dataAdapter.Fill(ds);
-                    dataGridView3.ReadOnly = false;
-                    dataGridView3.DataSource = ds.Tables[0];
+                var commandBuilder = new SqlCommandBuilder(dataAdapter);
+                var ds = new DataSet();
+                dataAdapter.Fill(ds);
+                dataGridView3.ReadOnly = false;
+                dataGridView3.DataSource = ds.Tables[0];
 
 
 
-                    DataGridViewColumn column = dataGridView3.Columns[0];
-                    dataGridView3.Columns[0].HeaderText = "Prijem";
-                    dataGridView3.Columns[0].Width = 40;
-                    dataGridView3.Columns[0].DefaultCellStyle.BackColor = Color.LightYellow;
-                    // dataGridView2.Columns[0].Visible = false;
+                DataGridViewColumn column = dataGridView3.Columns[0];
+                dataGridView3.Columns[0].HeaderText = "Prijem";
+                dataGridView3.Columns[0].Width = 40;
+                dataGridView3.Columns[0].DefaultCellStyle.BackColor = Color.LightYellow;
+                // dataGridView2.Columns[0].Visible = false;
 
-                    DataGridViewColumn column2 = dataGridView3.Columns[1];
-                    dataGridView3.Columns[1].HeaderText = "Broj kontejnera";
-                    dataGridView3.Columns[1].Width = 100;
-                    dataGridView3.Columns[1].DefaultCellStyle.BackColor = Color.LightSeaGreen;
+                DataGridViewColumn column2 = dataGridView3.Columns[1];
+                dataGridView3.Columns[1].HeaderText = "Broj kontejnera";
+                dataGridView3.Columns[1].Width = 100;
+                dataGridView3.Columns[1].DefaultCellStyle.BackColor = Color.LightSeaGreen;
 
-                    DataGridViewColumn column3 = dataGridView3.Columns[2];
-                    dataGridView3.Columns[2].HeaderText = "Man ID";
-                    dataGridView3.Columns[2].Width = 50;
+                DataGridViewColumn column3 = dataGridView3.Columns[2];
+                dataGridView3.Columns[2].HeaderText = "Man ID";
+                dataGridView3.Columns[2].Width = 50;
 
-                    DataGridViewColumn column4 = dataGridView3.Columns[3];
-                    dataGridView3.Columns[3].HeaderText = "Manipulacija";
-                    dataGridView3.Columns[3].Width = 250;
-                    dataGridView3.Columns[3].DefaultCellStyle.BackColor = Color.LightYellow;
+                DataGridViewColumn column4 = dataGridView3.Columns[3];
+                dataGridView3.Columns[3].HeaderText = "Manipulacija";
+                dataGridView3.Columns[3].Width = 250;
+                dataGridView3.Columns[3].DefaultCellStyle.BackColor = Color.LightYellow;
 
-                    DataGridViewColumn column5 = dataGridView3.Columns[4];
-                    dataGridView3.Columns[4].HeaderText = "Urađeno";
-                    dataGridView3.Columns[4].Width = 50;
+                DataGridViewColumn column5 = dataGridView3.Columns[4];
+                dataGridView3.Columns[4].HeaderText = "Urađeno";
+                dataGridView3.Columns[4].Width = 50;
 
-                    DataGridViewColumn column6 = dataGridView3.Columns[5];
-                    dataGridView3.Columns[5].HeaderText = "Datum od";
-                    dataGridView3.Columns[5].Width = 150;
+                DataGridViewColumn column6 = dataGridView3.Columns[5];
+                dataGridView3.Columns[5].HeaderText = "Datum od";
+                dataGridView3.Columns[5].Width = 150;
 
-                    DataGridViewColumn column7 = dataGridView3.Columns[6];
-                    dataGridView3.Columns[6].HeaderText = "Datum do";
-                    dataGridView3.Columns[6].Width = 150;
+                DataGridViewColumn column7 = dataGridView3.Columns[6];
+                dataGridView3.Columns[6].HeaderText = "Datum do";
+                dataGridView3.Columns[6].Width = 150;
 
-                    DataGridViewColumn column8 = dataGridView3.Columns[7];
-                    dataGridView3.Columns[7].HeaderText = "Datum";
-                    dataGridView3.Columns[7].Width = 80;
+                DataGridViewColumn column8 = dataGridView3.Columns[7];
+                dataGridView3.Columns[7].HeaderText = "Datum";
+                dataGridView3.Columns[7].Width = 80;
 
-                    DataGridViewColumn column9 = dataGridView3.Columns[8];
-                    dataGridView3.Columns[8].HeaderText = "Korisnik";
-                    dataGridView3.Columns[8].Width = 80;
+                DataGridViewColumn column9 = dataGridView3.Columns[8];
+                dataGridView3.Columns[8].HeaderText = "Korisnik";
+                dataGridView3.Columns[8].Width = 80;
 
-                    DataGridViewColumn column10 = dataGridView3.Columns[9];
-                    dataGridView3.Columns[9].HeaderText = "ID";
-                    dataGridView3.Columns[9].Width = 70;
+                DataGridViewColumn column10 = dataGridView3.Columns[9];
+                dataGridView3.Columns[9].HeaderText = "ID";
+                dataGridView3.Columns[9].Width = 70;
 
-                    DataGridViewColumn column11 = dataGridView3.Columns[10];
-                    dataGridView3.Columns[10].HeaderText = "Broj";
-                    dataGridView3.Columns[10].Width = 70;
-                    dataGridView3.Columns[10].DefaultCellStyle.BackColor = Color.LightSeaGreen;
+                DataGridViewColumn column11 = dataGridView3.Columns[10];
+                dataGridView3.Columns[10].HeaderText = "Broj";
+                dataGridView3.Columns[10].Width = 70;
+                dataGridView3.Columns[10].DefaultCellStyle.BackColor = Color.LightSeaGreen;
 
                 /*
                     DataGridViewColumn column12 = dataGridView3.Columns[11];
@@ -324,81 +221,81 @@ namespace Saobracaj.Dokumenta
                     dataGridView3.Columns[11].Width = 80;
                 */
 
-                }
-                else
-                {
-                    var select = "  select NaruceneManipulacije.IDPrijemaKamionom, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv, NaruceneManipulacije.Uradjeno, NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik, NaruceneManipulacije.ID, NaruceneManipulacije.Broj, NaruceneManipulacije.DatumUradjeno from NaruceneManipulacije " +
-                " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
-                 " where NaruceneManipulacije.IzPrijema = 1 and NaruceneManipulacije.IDPrijemaKamionom = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue);
+            }
+            else
+            {
+                var select = "  select NaruceneManipulacije.IDPrijemaKamionom, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv, NaruceneManipulacije.Uradjeno, NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik, NaruceneManipulacije.ID, NaruceneManipulacije.Broj, NaruceneManipulacije.DatumUradjeno from NaruceneManipulacije " +
+            " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
+             " where NaruceneManipulacije.IzPrijema = 1 and NaruceneManipulacije.IDPrijemaKamionom = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue);
 
-                    var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-                    SqlConnection myConnection = new SqlConnection(s_connection);
-                    var c = new SqlConnection(s_connection);
-                    var dataAdapter = new SqlDataAdapter(select, c);
+                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection myConnection = new SqlConnection(s_connection);
+                var c = new SqlConnection(s_connection);
+                var dataAdapter = new SqlDataAdapter(select, c);
 
-                    var commandBuilder = new SqlCommandBuilder(dataAdapter);
-                    var ds = new DataSet();
-                    dataAdapter.Fill(ds);
-                    dataGridView3.ReadOnly = false;
-                    dataGridView3.DataSource = ds.Tables[0];
+                var commandBuilder = new SqlCommandBuilder(dataAdapter);
+                var ds = new DataSet();
+                dataAdapter.Fill(ds);
+                dataGridView3.ReadOnly = false;
+                dataGridView3.DataSource = ds.Tables[0];
 
 
 
-                    DataGridViewColumn column = dataGridView3.Columns[0];
-                    dataGridView3.Columns[0].HeaderText = "Prijem kamionom";
-                    dataGridView3.Columns[0].Width = 40;
-                    dataGridView3.Columns[0].DefaultCellStyle.BackColor = Color.CadetBlue;
-                    //  dataGridView3.Columns[0].
-                    // dataGridView2.Columns[0].Visible = false;
+                DataGridViewColumn column = dataGridView3.Columns[0];
+                dataGridView3.Columns[0].HeaderText = "Prijem kamionom";
+                dataGridView3.Columns[0].Width = 40;
+                dataGridView3.Columns[0].DefaultCellStyle.BackColor = Color.CadetBlue;
+                //  dataGridView3.Columns[0].
+                // dataGridView2.Columns[0].Visible = false;
 
-                    DataGridViewColumn column2 = dataGridView3.Columns[1];
-                    dataGridView3.Columns[1].HeaderText = "Broj kontejnera";
-                    dataGridView3.Columns[1].Width = 100;
-                    dataGridView3.Columns[1].DefaultCellStyle.BackColor = Color.LightSeaGreen;
+                DataGridViewColumn column2 = dataGridView3.Columns[1];
+                dataGridView3.Columns[1].HeaderText = "Broj kontejnera";
+                dataGridView3.Columns[1].Width = 100;
+                dataGridView3.Columns[1].DefaultCellStyle.BackColor = Color.LightSeaGreen;
 
-                    DataGridViewColumn column3 = dataGridView3.Columns[2];
-                    dataGridView3.Columns[2].HeaderText = "Man ID";
-                    dataGridView3.Columns[2].Width = 50;
+                DataGridViewColumn column3 = dataGridView3.Columns[2];
+                dataGridView3.Columns[2].HeaderText = "Man ID";
+                dataGridView3.Columns[2].Width = 50;
 
-                    DataGridViewColumn column4 = dataGridView3.Columns[3];
-                    dataGridView3.Columns[3].HeaderText = "Manipulacija";
-                    dataGridView3.Columns[3].Width = 250;
-                    dataGridView3.Columns[3].DefaultCellStyle.BackColor = Color.LightYellow;
+                DataGridViewColumn column4 = dataGridView3.Columns[3];
+                dataGridView3.Columns[3].HeaderText = "Manipulacija";
+                dataGridView3.Columns[3].Width = 250;
+                dataGridView3.Columns[3].DefaultCellStyle.BackColor = Color.LightYellow;
 
-                    DataGridViewColumn column5 = dataGridView3.Columns[4];
-                    dataGridView3.Columns[4].HeaderText = "Urađeno";
-                    dataGridView3.Columns[4].Width = 50;
+                DataGridViewColumn column5 = dataGridView3.Columns[4];
+                dataGridView3.Columns[4].HeaderText = "Urađeno";
+                dataGridView3.Columns[4].Width = 50;
 
-                    DataGridViewColumn column6 = dataGridView3.Columns[5];
-                    dataGridView3.Columns[5].HeaderText = "Datum od";
-                    dataGridView3.Columns[5].Width = 120;
+                DataGridViewColumn column6 = dataGridView3.Columns[5];
+                dataGridView3.Columns[5].HeaderText = "Datum od";
+                dataGridView3.Columns[5].Width = 120;
 
-                    DataGridViewColumn column7 = dataGridView3.Columns[6];
-                    dataGridView3.Columns[6].HeaderText = "Datum do";
-                    dataGridView3.Columns[6].Width = 120;
+                DataGridViewColumn column7 = dataGridView3.Columns[6];
+                dataGridView3.Columns[6].HeaderText = "Datum do";
+                dataGridView3.Columns[6].Width = 120;
 
-                    DataGridViewColumn column8 = dataGridView3.Columns[7];
-                    dataGridView3.Columns[7].HeaderText = "Datum";
-                    dataGridView3.Columns[7].Width = 80;
+                DataGridViewColumn column8 = dataGridView3.Columns[7];
+                dataGridView3.Columns[7].HeaderText = "Datum";
+                dataGridView3.Columns[7].Width = 80;
 
-                    DataGridViewColumn column9 = dataGridView3.Columns[8];
-                    dataGridView3.Columns[8].HeaderText = "Korisnik";
-                    dataGridView3.Columns[8].Width = 80;
+                DataGridViewColumn column9 = dataGridView3.Columns[8];
+                dataGridView3.Columns[8].HeaderText = "Korisnik";
+                dataGridView3.Columns[8].Width = 80;
 
-                    DataGridViewColumn column10 = dataGridView3.Columns[9];
-                    dataGridView3.Columns[9].HeaderText = "ID";
-                    dataGridView3.Columns[9].Width = 80;
+                DataGridViewColumn column10 = dataGridView3.Columns[9];
+                dataGridView3.Columns[9].HeaderText = "ID";
+                dataGridView3.Columns[9].Width = 80;
 
-                    DataGridViewColumn column11 = dataGridView3.Columns[10];
-                    dataGridView3.Columns[10].HeaderText = "Broj";
-                    dataGridView3.Columns[10].Width = 80;
+                DataGridViewColumn column11 = dataGridView3.Columns[10];
+                dataGridView3.Columns[10].HeaderText = "Broj";
+                dataGridView3.Columns[10].Width = 80;
 
-                    DataGridViewColumn column12 = dataGridView3.Columns[11];
-                    dataGridView3.Columns[11].HeaderText = "Datum urađeno";
-                    dataGridView3.Columns[11].Width = 80;
+                DataGridViewColumn column12 = dataGridView3.Columns[11];
+                dataGridView3.Columns[11].HeaderText = "Datum urađeno";
+                dataGridView3.Columns[11].Width = 80;
 
-                }
-          
+            }
+
         }
 
         //Iz otpreme
@@ -886,7 +783,7 @@ namespace Saobracaj.Dokumenta
             {
                 RefreshDataGrid4();
             }
-                
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -901,7 +798,7 @@ namespace Saobracaj.Dokumenta
                 RefreshDataGrid4();
             }
 
-            
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -927,7 +824,7 @@ namespace Saobracaj.Dokumenta
                 if (row.Selected == true)
                 {
 
-                    ins.UpdateUradjeno(Convert.ToInt32(row.Cells[9].Value) , DateTime.Now);
+                    ins.UpdateUradjeno(Convert.ToInt32(row.Cells[9].Value), DateTime.Now);
 
                 }
             }
@@ -991,7 +888,7 @@ namespace Saobracaj.Dokumenta
             cboPrijemKamionom.DisplayMember = "Naziv";
             cboPrijemKamionom.ValueMember = "ID";
 
-           
+
 
 
         }
@@ -1029,7 +926,7 @@ namespace Saobracaj.Dokumenta
             cboPrijemKamionom.DisplayMember = "Naziv";
             cboPrijemKamionom.ValueMember = "ID";
 
-          
+
 
 
         }
@@ -1059,7 +956,7 @@ namespace Saobracaj.Dokumenta
             {
                 RefreshDataGrid4PoKontejneru();
             }
-           
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -1075,5 +972,5 @@ namespace Saobracaj.Dokumenta
             }
         }
     }
-    }
+}
 

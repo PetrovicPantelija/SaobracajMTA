@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
@@ -118,7 +114,7 @@ namespace Saobracaj.Sifarnici
             bool error = true;
 
             myCommand.Transaction = myTransaction;
-            
+
             try
             {
                 myCommand.ExecuteNonQuery();

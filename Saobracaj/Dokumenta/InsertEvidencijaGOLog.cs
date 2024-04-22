@@ -1,12 +1,7 @@
 ﻿using Saobracaj.Sifarnici;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
@@ -14,7 +9,7 @@ namespace Saobracaj.Dokumenta
     class InsertEvidencijaGOLog
     {
         public string connect = frmLogovanje.connectionString;
-        public void InsertGoLOG(string Korisnik,DateTime Datum,string Akcija)
+        public void InsertGoLOG(string Korisnik, DateTime Datum, string Akcija)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -55,7 +50,7 @@ namespace Saobracaj.Dokumenta
                 tran = conn.BeginTransaction();
                 cmd.Transaction = tran;
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 MessageBox.Show(ex.Message.ToString());
                 throw new Exception("Neuspešan upis LOG");

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Testiranje.Dokumeta
 {
@@ -36,8 +32,8 @@ namespace Testiranje.Dokumeta
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = IDNalogZaPrevoz;
             myCommand.Parameters.Add(parameter2);
-           
-             SqlParameter parameter3 = new SqlParameter();
+
+            SqlParameter parameter3 = new SqlParameter();
             parameter3.ParameterName = "@IDRadniNalog";
             parameter3.SqlDbType = SqlDbType.Int;
             parameter3.Direction = ParameterDirection.Input;
@@ -52,7 +48,7 @@ namespace Testiranje.Dokumeta
             parameter4.Value = Platilac;
             myCommand.Parameters.Add(parameter4);
 
-          SqlParameter parameter5 = new SqlParameter();
+            SqlParameter parameter5 = new SqlParameter();
             parameter5.ParameterName = "@Kontakt";
             parameter5.SqlDbType = SqlDbType.NVarChar;
             parameter5.Size = 100;
@@ -67,7 +63,7 @@ namespace Testiranje.Dokumeta
             parameter6.Value = Vozilo;
             myCommand.Parameters.Add(parameter6);
 
-         
+
 
 
             SqlParameter parameter8 = new SqlParameter();
@@ -77,10 +73,10 @@ namespace Testiranje.Dokumeta
             parameter8.Value = Dana;
             myCommand.Parameters.Add(parameter8);
 
-          
 
 
-         SqlParameter parameter15 = new SqlParameter();
+
+            SqlParameter parameter15 = new SqlParameter();
             parameter15.ParameterName = "@UtovarnoMesto";
             parameter15.SqlDbType = SqlDbType.NVarChar;
             parameter15.Size = 50;
@@ -88,7 +84,7 @@ namespace Testiranje.Dokumeta
             parameter15.Value = UtovarnoMesto;
             myCommand.Parameters.Add(parameter15);
 
-       
+
 
             SqlParameter parameter16 = new SqlParameter();
             parameter16.ParameterName = "@IstovarnoMesto";
@@ -105,11 +101,11 @@ namespace Testiranje.Dokumeta
             parameter17.Value = Primalac;
             myCommand.Parameters.Add(parameter17);
 
-          
 
 
 
-           SqlParameter parameter18 = new SqlParameter();
+
+            SqlParameter parameter18 = new SqlParameter();
             parameter18.ParameterName = "@Ugovor";
             parameter18.SqlDbType = SqlDbType.NVarChar;
             parameter18.Size = 50;
@@ -117,9 +113,9 @@ namespace Testiranje.Dokumeta
             parameter18.Value = Ugovor;
             myCommand.Parameters.Add(parameter18);
 
-            
 
-           SqlParameter parameter19 = new SqlParameter();
+
+            SqlParameter parameter19 = new SqlParameter();
             parameter19.ParameterName = "@Ponuda";
             parameter19.SqlDbType = SqlDbType.NVarChar;
             parameter19.Size = 50;
@@ -143,7 +139,7 @@ namespace Testiranje.Dokumeta
             parameter23.Value = Datum;
             myCommand.Parameters.Add(parameter23);
 
-          
+
 
 
             myConnection.Open();
@@ -724,7 +720,7 @@ namespace Testiranje.Dokumeta
         public void InsAutoprevozniListKameni(int IDAutoprevozniList, string RelacijaOd, string RelacijaDo, string BrojOtpravljanja, double BrojVagona, double NetoMasa, DateTime DatumIstovara)
         {
 
-          
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -746,7 +742,7 @@ namespace Testiranje.Dokumeta
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = RelacijaOd;
             myCommand.Parameters.Add(parameter2);
-        
+
             SqlParameter parameter3 = new SqlParameter();
             parameter3.ParameterName = "@RelacijaDo";
             parameter3.SqlDbType = SqlDbType.NVarChar;
@@ -763,7 +759,7 @@ namespace Testiranje.Dokumeta
             parameter5.Value = BrojOtpravljanja;
             myCommand.Parameters.Add(parameter5);
 
-          
+
 
 
             SqlParameter parameter6 = new SqlParameter();

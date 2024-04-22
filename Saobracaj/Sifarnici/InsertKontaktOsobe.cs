@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -19,7 +15,7 @@ namespace Saobracaj.Sifarnici
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertKontaktOsobe";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-            
+
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@PaKOSifra";
             parameter1.SqlDbType = SqlDbType.Int;
@@ -27,17 +23,17 @@ namespace Saobracaj.Sifarnici
             parameter1.Value = PaSifra;
             myCommand.Parameters.Add(parameter1);
 
-    /*
-     [PaKOSifra] [int] NOT NULL,
-    [PaKOIme] [char](35) NULL,
-	[PaKOPriimek] [char](35) NULL,
-	[PaKOOddelek] [char](35) NULL,
-	[PaKOTel] [char](17) NULL,
-	[PaKOMail] [char](70) NULL,
-	[PaKOOpomba] [varchar](2048) NULL,
-	[Operatika] [bit] NULL,
-           */ 
-            
+            /*
+             [PaKOSifra] [int] NOT NULL,
+            [PaKOIme] [char](35) NULL,
+            [PaKOPriimek] [char](35) NULL,
+            [PaKOOddelek] [char](35) NULL,
+            [PaKOTel] [char](17) NULL,
+            [PaKOMail] [char](70) NULL,
+            [PaKOOpomba] [varchar](2048) NULL,
+            [Operatika] [bit] NULL,
+                   */
+
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@PaKOIme";
             parameter2.SqlDbType = SqlDbType.Char;

@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 //Panta
 namespace Saobracaj.Dokumenta
 {
@@ -35,18 +26,14 @@ namespace Saobracaj.Dokumenta
         public frmManipulacije()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
 
         public frmManipulacije(string Korisnik)
         {
             KorisnikCene = Korisnik;
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
 
         public frmManipulacije(string Korisnik, int PrijemnicaOtpremnica, int Vozom, int IzPrijema)
@@ -63,100 +50,8 @@ namespace Saobracaj.Dokumenta
             pomVozom = Vozom;
             KorisnikCene = Korisnik;
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
-
-            while (dr.Read())
-            {
-                if (dr.HasRows)
-                {
-                    if (count == 0)
-                    {
-                        niz = dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                    else
-                    {
-                        niz = niz + "," + dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Korisnik ne pripada grupi");
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
-        }
-
         private void frmManipulacije_Load(object sender, EventArgs e)
         {
             // var select = " Select ID From PrijemKontejneraVoz";
@@ -182,7 +77,7 @@ namespace Saobracaj.Dokumenta
                     chkVoz.Checked = true;
 
                     PretraziKontejnereVozomIzPrijemnice();
-                  // Ovde treba refreh kontejnera
+                    // Ovde treba refreh kontejnera
 
                 }
                 else
@@ -253,7 +148,7 @@ namespace Saobracaj.Dokumenta
 
                     PretraziKontejnereKamionomIzOtpremnice();
                 }
-              
+
 
                 //
 
@@ -309,56 +204,56 @@ namespace Saobracaj.Dokumenta
         private void PretraziKontejnereVozomIzPrijemnice()
         {
             chkPrijem.Checked = true;
-                chkVoz.Checked = true;
-                var select = "  Select BrojKontejnera, IDNAdredjenog as Dokument   From PrijemKontejneraVozStavke where IDNadredjenog = " + Convert.ToInt32(cboPrijemVozom.SelectedValue);
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-                SqlConnection myConnection = new SqlConnection(s_connection);
-                var c = new SqlConnection(s_connection);
-                var dataAdapter = new SqlDataAdapter(select, c);
+            chkVoz.Checked = true;
+            var select = "  Select BrojKontejnera, IDNAdredjenog as Dokument   From PrijemKontejneraVozStavke where IDNadredjenog = " + Convert.ToInt32(cboPrijemVozom.SelectedValue);
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
 
-                var commandBuilder = new SqlCommandBuilder(dataAdapter);
-                var ds = new DataSet();
-                dataAdapter.Fill(ds);
-                dataGridView1.ReadOnly = true;
-                dataGridView1.DataSource = ds.Tables[0];
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
 
-                //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
-                DataGridViewColumn column = dataGridView1.Columns[0];
-                dataGridView1.Columns[0].HeaderText = "Broj kontejnera";
-                dataGridView1.Columns[0].Width = 100;
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "Broj kontejnera";
+            dataGridView1.Columns[0].Width = 100;
 
-                DataGridViewColumn column1 = dataGridView1.Columns[1];
-                dataGridView1.Columns[1].HeaderText = "Dokument prijema voza";
-                dataGridView1.Columns[1].Width = 100;
-           
+            DataGridViewColumn column1 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Dokument prijema voza";
+            dataGridView1.Columns[1].Width = 100;
+
 
         }
 
         private void PretraziKontejnereKamionomIzPrijemnice()
         {
-          
-                chkVoz.Checked = false;
-                var select = "  Select BrojKontejnera, IDNAdredjenog as Dokument   From PrijemKontejneraVozStavke where IDNadredjenog = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue);
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-                SqlConnection myConnection = new SqlConnection(s_connection);
-                var c = new SqlConnection(s_connection);
-                var dataAdapter = new SqlDataAdapter(select, c);
 
-                var commandBuilder = new SqlCommandBuilder(dataAdapter);
-                var ds = new DataSet();
-                dataAdapter.Fill(ds);
-                dataGridView1.ReadOnly = true;
-                dataGridView1.DataSource = ds.Tables[0];
+            chkVoz.Checked = false;
+            var select = "  Select BrojKontejnera, IDNAdredjenog as Dokument   From PrijemKontejneraVozStavke where IDNadredjenog = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue);
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
 
-                //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
-                DataGridViewColumn column = dataGridView1.Columns[0];
-                dataGridView1.Columns[0].HeaderText = "Broj kontejnera";
-                dataGridView1.Columns[0].Width = 100;
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
 
-                DataGridViewColumn column1 = dataGridView1.Columns[1];
-                dataGridView1.Columns[1].HeaderText = "Dokument prijema";
-                dataGridView1.Columns[1].Width = 100;
-          
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "Broj kontejnera";
+            dataGridView1.Columns[0].Width = 100;
+
+            DataGridViewColumn column1 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Dokument prijema";
+            dataGridView1.Columns[1].Width = 100;
+
         }
 
         private void PretraziKontejnereVozomIzOtpremnice()
@@ -479,7 +374,7 @@ namespace Saobracaj.Dokumenta
             {
                 var select = "   select  NaruceneManipulacije.IDPrijemaVoza, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv, " +
  " CASE WHEN NaruceneManipulacije.Uradjeno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Uradjeno, " +
- " NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik,  NaruceneManipulacije.ID from NaruceneManipulacije " + 
+ " NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik,  NaruceneManipulacije.ID from NaruceneManipulacije " +
 " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
 " inner join Partnerji on NaruceneManipulacije.Platilac = Partnerji.PaSifra " +
                " where Broj = " + Convert.ToInt32(txtSifra.Text);
@@ -512,7 +407,7 @@ namespace Saobracaj.Dokumenta
                 dataGridView3.Columns[3].HeaderText = "Manipulacija";
                 dataGridView3.Columns[3].Width = 50;
 
-              
+
 
                 DataGridViewColumn column5 = dataGridView3.Columns[4];
                 dataGridView3.Columns[4].HeaderText = "Urađeno";
@@ -539,8 +434,8 @@ namespace Saobracaj.Dokumenta
                 dataGridView3.Columns[9].Width = 70;
 
 
-            
-            
+
+
             }
             else
             {
@@ -603,53 +498,14 @@ namespace Saobracaj.Dokumenta
                 dataGridView3.Columns[9].Width = 80;
 
             }
-          
+
 
         }
 
         private void RefreshManipulacije()
-            {
-                var select = "  SELECT ID, Naziv, JM, CASE WHEN UticeSkladisno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as UticeSkladisno from VrstaManipulacije";
-
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-                SqlConnection myConnection = new SqlConnection(s_connection);
-                var c = new SqlConnection(s_connection);
-                var dataAdapter = new SqlDataAdapter(select, c);
-
-                var commandBuilder = new SqlCommandBuilder(dataAdapter);
-                var ds = new DataSet();
-                dataAdapter.Fill(ds);
-                dataGridView2.ReadOnly = false;
-                dataGridView2.DataSource = ds.Tables[0];
-
-
-
-                DataGridViewColumn column = dataGridView2.Columns[0];
-                dataGridView2.Columns[0].HeaderText = "ID";
-                dataGridView2.Columns[0].Width = 40;
-               // dataGridView2.Columns[0].Visible = false;
-
-                DataGridViewColumn column2 = dataGridView2.Columns[1];
-                dataGridView2.Columns[1].HeaderText = "Manipulacija";
-                dataGridView2.Columns[1].Width = 250;
-
-                DataGridViewColumn column3 = dataGridView2.Columns[2];
-                dataGridView2.Columns[2].HeaderText = "JM";
-                dataGridView2.Columns[2].Width = 80;
-
-                DataGridViewColumn column4 = dataGridView2.Columns[3];
-                dataGridView2.Columns[3].HeaderText = "Skladišno";
-                dataGridView2.Columns[3].Width = 80;
-
-               
-              }
-
-        private void button1_Click(object sender, EventArgs e)
         {
-            if (chkPrijem.Checked == true)
-            { 
-            chkVoz.Checked = false;
-            var select = "  Select BrojKontejnera, IDNAdredjenog as Dokument   From PrijemKontejneraVozStavke where IDNadredjenog = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue);
+            var select = "  SELECT ID, Naziv, JM, CASE WHEN UticeSkladisno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as UticeSkladisno from VrstaManipulacije";
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -658,17 +514,56 @@ namespace Saobracaj.Dokumenta
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView2.ReadOnly = false;
+            dataGridView2.DataSource = ds.Tables[0];
 
-            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "Broj kontejnera";
-            dataGridView1.Columns[0].Width = 100;
 
-            DataGridViewColumn column1 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Dokument prijema";
-            dataGridView1.Columns[1].Width = 100;
+
+            DataGridViewColumn column = dataGridView2.Columns[0];
+            dataGridView2.Columns[0].HeaderText = "ID";
+            dataGridView2.Columns[0].Width = 40;
+            // dataGridView2.Columns[0].Visible = false;
+
+            DataGridViewColumn column2 = dataGridView2.Columns[1];
+            dataGridView2.Columns[1].HeaderText = "Manipulacija";
+            dataGridView2.Columns[1].Width = 250;
+
+            DataGridViewColumn column3 = dataGridView2.Columns[2];
+            dataGridView2.Columns[2].HeaderText = "JM";
+            dataGridView2.Columns[2].Width = 80;
+
+            DataGridViewColumn column4 = dataGridView2.Columns[3];
+            dataGridView2.Columns[3].HeaderText = "Skladišno";
+            dataGridView2.Columns[3].Width = 80;
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (chkPrijem.Checked == true)
+            {
+                chkVoz.Checked = false;
+                var select = "  Select BrojKontejnera, IDNAdredjenog as Dokument   From PrijemKontejneraVozStavke where IDNadredjenog = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue);
+                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection myConnection = new SqlConnection(s_connection);
+                var c = new SqlConnection(s_connection);
+                var dataAdapter = new SqlDataAdapter(select, c);
+
+                var commandBuilder = new SqlCommandBuilder(dataAdapter);
+                var ds = new DataSet();
+                dataAdapter.Fill(ds);
+                dataGridView1.ReadOnly = true;
+                dataGridView1.DataSource = ds.Tables[0];
+
+                //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+                DataGridViewColumn column = dataGridView1.Columns[0];
+                dataGridView1.Columns[0].HeaderText = "Broj kontejnera";
+                dataGridView1.Columns[0].Width = 100;
+
+                DataGridViewColumn column1 = dataGridView1.Columns[1];
+                dataGridView1.Columns[1].HeaderText = "Dokument prijema";
+                dataGridView1.Columns[1].Width = 100;
             }
             else
             {
@@ -707,11 +602,12 @@ namespace Saobracaj.Dokumenta
                 IzPrijema = 0;
             }
             if (chkDirektna.Checked == true)
-            { Direktna = 1; 
+            {
+                Direktna = 1;
             }
             else
             {
-               Direktna = 0;
+                Direktna = 0;
             }
 
 
@@ -728,15 +624,15 @@ namespace Saobracaj.Dokumenta
                         }
                         else if (chkVoz.Checked == false && row2.Selected == true)
                         {
-                            ins.InsertNarManipulacije( 0,Convert.ToInt32(cboPrijemKamionom.SelectedValue) , row.Cells[0].Value.ToString(), Convert.ToInt32(row2.Cells[0].Value.ToString()), 0, Convert.ToDateTime(dtpVremeOd.Text), Convert.ToDateTime(dtpVremeDo.Text), Convert.ToDateTime(DateTime.Now), KorisnikCene,  Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlatilac.SelectedValue), IzPrijema, Direktna);
+                            ins.InsertNarManipulacije(0, Convert.ToInt32(cboPrijemKamionom.SelectedValue), row.Cells[0].Value.ToString(), Convert.ToInt32(row2.Cells[0].Value.ToString()), 0, Convert.ToDateTime(dtpVremeOd.Text), Convert.ToDateTime(dtpVremeDo.Text), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlatilac.SelectedValue), IzPrijema, Direktna);
                         }
                     }
-                    
+
                 // ins.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
-                     }
+            }
             RefreshDataGrid3();
-           //RefreshDataGrid3();
-           //RefreshDataGridIma();
+            //RefreshDataGrid3();
+            //RefreshDataGridIma();
         }
 
         private void label21_Click(object sender, EventArgs e)
@@ -846,7 +742,7 @@ namespace Saobracaj.Dokumenta
 
             con.Close();
             RefreshDataGrid3();
-        
+
         }
 
         private void VratiPodatkeMax()
@@ -885,12 +781,12 @@ namespace Saobracaj.Dokumenta
 
             con.Close();
             RefreshDataGrid3();
-/*
-            if ((Convert.ToInt32(txtSifra.Text) + 1) == zadnji)
-              //  VratiPodatke((Convert.ToInt32(zadnji).ToString()));
-            else
-               // VratiPodatke((Convert.ToInt32(txtSifra.Text) + 1).ToString());
-            */
+            /*
+                        if ((Convert.ToInt32(txtSifra.Text) + 1) == zadnji)
+                          //  VratiPodatke((Convert.ToInt32(zadnji).ToString()));
+                        else
+                           // VratiPodatke((Convert.ToInt32(txtSifra.Text) + 1).ToString());
+                        */
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -989,7 +885,7 @@ namespace Saobracaj.Dokumenta
             cboPrijemVozom.DataSource = ds.Tables[0];
             cboPrijemVozom.DisplayMember = "Naziv";
             cboPrijemVozom.ValueMember = "ID";
-          
+
             var select2 = "SELECT OtpremaKontejnera.[ID], (CAst(OtpremaKontejnera.[ID] as nvarchar(5)) + '-' + (CAst(OtpremaKontejnera.[ID] as nvarchar(5)) + '-' + OtpremaKontejnera.RegBrKamiona + ' ' + OtpremaKontejnera.ImeVozaca +  ' ' + " +
  " CONVERT(varchar, OtpremaKontejnera.[DatumOtpreme], 104) + ' ' + " +
  " SUBSTRING(CONVERT(varchar, OtpremaKontejnera.[DatumOtpreme], 108), 1, 5))) as Naziv " +

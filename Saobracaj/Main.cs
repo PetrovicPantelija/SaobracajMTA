@@ -1,15 +1,7 @@
 ﻿using Saobracaj.Dokumenta;
 using Saobracaj.Servis;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Syncfusion.Licensing;
 
 
 namespace Saobracaj
@@ -62,7 +54,7 @@ namespace Saobracaj
 
         private void najavaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Dokumenta.frmNajava frmNaj = new Dokumenta.frmNajava(Korisnik,0);
+            Dokumenta.frmNajava frmNaj = new Dokumenta.frmNajava(Korisnik, 0);
             frmNaj.Show();
         }
 
@@ -92,7 +84,7 @@ namespace Saobracaj
 
         private void radniNalogToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void osobljeToolStripMenuItem_Click(object sender, EventArgs e)
@@ -256,7 +248,7 @@ namespace Saobracaj
 
         private void vrsteAktivnostiToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void toolStripMenuItem2_Click(object sender, EventArgs e)
@@ -270,10 +262,10 @@ namespace Saobracaj
 
         private void evidencijaRadaPregledPoStavkamaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           /*
-            Dokumenta.frmEvidencijaRadaPregled erp = new Dokumenta.frmEvidencijaRadaPregled();
-            erp.Show();
-           */
+            /*
+             Dokumenta.frmEvidencijaRadaPregled erp = new Dokumenta.frmEvidencijaRadaPregled();
+             erp.Show();
+            */
         }
 
         private void evidencijaRadaPoZaglavljimaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -316,7 +308,7 @@ namespace Saobracaj
             {
                 zar.Show();
             }
-            
+
             /*
             Dokumenta.frmZarade zar = new Dokumenta.frmZarade();
             zar.Show();
@@ -331,7 +323,7 @@ namespace Saobracaj
 
         private void troškoviPoBankamaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void izveštajPlaćenoNeplaćenoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -475,12 +467,12 @@ namespace Saobracaj
 
         private void grupeKvarovaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void kvaroviToolStripMenuItem_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void korisniciToolStripMenuItem_Click(object sender, EventArgs e)
@@ -664,8 +656,8 @@ namespace Saobracaj
 
         private void mainNewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-         //   frmMainNew nowi = new frmMainNew();
-           // nowi.Show();
+            //   frmMainNew nowi = new frmMainNew();
+            // nowi.Show();
         }
 
         private void kašnjenjaToolStripMenuItem_Click(object sender, EventArgs e)

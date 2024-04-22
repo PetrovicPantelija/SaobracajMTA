@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta.TrainListItem
 {
@@ -25,203 +22,203 @@ namespace Saobracaj.Dokumenta.TrainListItem
             if (result == DialogResult.OK)   // Check if Result == "OK".
             {
                 file = openFileDialog1.FileName; //get the filename with the location of the file
-                                                 try
+                try
 
                 {
-                //Create Object for Microsoft.Office.Interop.Excel that will be use to read excel file
+                    //Create Object for Microsoft.Office.Interop.Excel that will be use to read excel file
 
-                Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+                    Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
 
-                Microsoft.Office.Interop.Excel.Workbook excelWorkbook = excelApp.Workbooks.Open(file);
+                    Microsoft.Office.Interop.Excel.Workbook excelWorkbook = excelApp.Workbooks.Open(file);
 
-                Microsoft.Office.Interop.Excel._Worksheet excelWorksheet = excelWorkbook.Sheets[1];
+                    Microsoft.Office.Interop.Excel._Worksheet excelWorksheet = excelWorkbook.Sheets[1];
 
-                Microsoft.Office.Interop.Excel.Range excelRange = excelWorksheet.UsedRange;
-
-
-                int rowCount = excelRange.Rows.Count;  //get row count of excel data
-
-                int colCount = excelRange.Columns.Count; // get column count of excel data
-
-                //Set column names                
-                //dt.Columns.Add(excelRange.Cells[1, j].Value2.ToString());
-                dt.Columns.Add("TrainListID", typeof(int)); //int
-                dt.Columns.Add("RedniBroj", typeof(int)); //int
-                dt.Columns.Add("OznakaKola", typeof(string));
-                dt.Columns.Add("SerijaKola", typeof(string));
-                dt.Columns.Add("TaraKola", typeof(decimal)); //decimal
-                dt.Columns.Add("GKocnaMasa", typeof(decimal)); //decimal
-                dt.Columns.Add("PKocnaMasa", typeof(decimal)); //decimal
-                dt.Columns.Add("DuzinaKola", typeof(decimal)); //decimal
-                dt.Columns.Add("BrojOsovina", typeof(int)); //int
-                dt.Columns.Add("KontBroj", typeof(string));
-                dt.Columns.Add("KontTip", typeof(string));
-                dt.Columns.Add("KontTara", typeof(decimal)); //decimal
-                dt.Columns.Add("Neto", typeof(decimal)); //decimal
-                dt.Columns.Add("NHM", typeof(string)); // izbacuje se
-                dt.Columns.Add("UN", typeof(string)); // izbacuje se
-                dt.Columns.Add("RIDRobaMasa", typeof(decimal)); //decimal
-                dt.Columns.Add("BrojKomada", typeof(int)); //int
-                dt.Columns.Add("CIM", typeof(int)); //int
-                dt.Columns.Add("OtpStanicaTerminal", typeof(string));
-                dt.Columns.Add("PolStanicaTerminal", typeof(string));
-                dt.Columns.Add("Posiljac", typeof(string));
-                dt.Columns.Add("Primalac", typeof(string));
-                dt.Columns.Add("Proizvod", typeof(string));
-                dt.Columns.Add("T1", typeof(string));
-                dt.Columns.Add("MRN", typeof(string)); // izbacuje se
-                dt.Columns.Add("Klient", typeof(string));
-                dt.Columns.Add("Plombe", typeof(string)); // izbacuje se
-                dt.Columns.Add("Buking", typeof(string));
+                    Microsoft.Office.Interop.Excel.Range excelRange = excelWorksheet.UsedRange;
 
 
-                //Get Row Data of Excel              
-                for (int i = 2; i <= rowCount; i++) //Loop for available row of excel data
-                {
-                    bool replica = false;
-                    row = dt.NewRow();  //assign new row to DataTable
+                    int rowCount = excelRange.Rows.Count;  //get row count of excel data
 
-                    row[0] = id_sup;
-                    for (int j = 1; j <= colCount; j++) //Loop for available column of excel data
+                    int colCount = excelRange.Columns.Count; // get column count of excel data
+
+                    //Set column names                
+                    //dt.Columns.Add(excelRange.Cells[1, j].Value2.ToString());
+                    dt.Columns.Add("TrainListID", typeof(int)); //int
+                    dt.Columns.Add("RedniBroj", typeof(int)); //int
+                    dt.Columns.Add("OznakaKola", typeof(string));
+                    dt.Columns.Add("SerijaKola", typeof(string));
+                    dt.Columns.Add("TaraKola", typeof(decimal)); //decimal
+                    dt.Columns.Add("GKocnaMasa", typeof(decimal)); //decimal
+                    dt.Columns.Add("PKocnaMasa", typeof(decimal)); //decimal
+                    dt.Columns.Add("DuzinaKola", typeof(decimal)); //decimal
+                    dt.Columns.Add("BrojOsovina", typeof(int)); //int
+                    dt.Columns.Add("KontBroj", typeof(string));
+                    dt.Columns.Add("KontTip", typeof(string));
+                    dt.Columns.Add("KontTara", typeof(decimal)); //decimal
+                    dt.Columns.Add("Neto", typeof(decimal)); //decimal
+                    dt.Columns.Add("NHM", typeof(string)); // izbacuje se
+                    dt.Columns.Add("UN", typeof(string)); // izbacuje se
+                    dt.Columns.Add("RIDRobaMasa", typeof(decimal)); //decimal
+                    dt.Columns.Add("BrojKomada", typeof(int)); //int
+                    dt.Columns.Add("CIM", typeof(int)); //int
+                    dt.Columns.Add("OtpStanicaTerminal", typeof(string));
+                    dt.Columns.Add("PolStanicaTerminal", typeof(string));
+                    dt.Columns.Add("Posiljac", typeof(string));
+                    dt.Columns.Add("Primalac", typeof(string));
+                    dt.Columns.Add("Proizvod", typeof(string));
+                    dt.Columns.Add("T1", typeof(string));
+                    dt.Columns.Add("MRN", typeof(string)); // izbacuje se
+                    dt.Columns.Add("Klient", typeof(string));
+                    dt.Columns.Add("Plombe", typeof(string)); // izbacuje se
+                    dt.Columns.Add("Buking", typeof(string));
+
+
+                    //Get Row Data of Excel              
+                    for (int i = 2; i <= rowCount; i++) //Loop for available row of excel data
                     {
+                        bool replica = false;
+                        row = dt.NewRow();  //assign new row to DataTable
 
-                        if (j == 1 && excelRange.Cells[i, j].Value.ToString() == excelRange.Cells[i - 1, j].Value.ToString())
+                        row[0] = id_sup;
+                        for (int j = 1; j <= colCount; j++) //Loop for available column of excel data
                         {
-                            replica = true;
-                        }
-                        string cell = "";
 
-                        if (excelRange.Cells[i, j] != null && excelRange.Cells[i, j].Value2 != null)
-                        {
-                            cell = excelRange.Cells[i, j].Value.ToString();
-                        }
-
-                        if (j == 1 || j == 8 || j == 16 || j == 17)
-                        {
-                            if (cell == "")
+                            if (j == 1 && excelRange.Cells[i, j].Value.ToString() == excelRange.Cells[i - 1, j].Value.ToString())
                             {
-                                row[j] = 0;
+                                replica = true;
+                            }
+                            string cell = "";
+
+                            if (excelRange.Cells[i, j] != null && excelRange.Cells[i, j].Value2 != null)
+                            {
+                                cell = excelRange.Cells[i, j].Value.ToString();
+                            }
+
+                            if (j == 1 || j == 8 || j == 16 || j == 17)
+                            {
+                                if (cell == "")
+                                {
+                                    row[j] = 0;
+                                }
+                                else
+                                {
+
+                                    row[j] = (int)Convert.ToInt64(cell);
+                                }
+                            }
+                            else if (j == 4 || j == 5 || j == 6 || j == 7 || j == 11 || j == 12 || j == 15)
+                            {
+                                if (cell == "")
+                                {
+                                    row[j] = 0.00;
+                                }
+                                else
+                                {
+                                    row[j] = (decimal)Convert.ToDecimal(cell);
+                                }
                             }
                             else
                             {
-
-                                row[j] = (int)Convert.ToInt64(cell);
+                                row[j] = cell;
                             }
+
+
                         }
-                        else if (j == 4 || j == 5 || j == 6 || j == 7 || j == 11 || j == 12 || j == 15)
+                        if (replica)
                         {
-                            if (cell == "")
+                            for (int j = 3; j < 9; j++)
                             {
-                                row[j] = 0.00;
-                            }
-                            else
-                            {
-                                row[j] = (decimal)Convert.ToDecimal(cell);
+                                row[j] = dt.Rows[i - 3].ItemArray[j];
                             }
                         }
-                        else
+
+
+                        dt.Rows.Add(row); //add row to DataTable
+
+                        // obrada podataka
+                        DataTable tab = dt.Clone();
+                        tab.ImportRow(dt.Rows[i - 2]);
+
+
+                        char[] separators = new char[] { '-', ',' };
+                        string[] subsNHM = tab.Rows[0].Field<string>("NHM").Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                        tab.Columns.Remove("NHM");
+                        string[] subsMRN = tab.Rows[0].Field<string>("MRN").Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                        tab.Columns.Remove("MRN");
+                        string[] subsSeals = tab.Rows[0].Field<string>("Plombe").Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                        tab.Columns.Remove("Plombe");
+                        string[] subUN = tab.Rows[0].Field<string>("UN").Split(separators, StringSplitOptions.RemoveEmptyEntries);
+                        tab.Columns.Remove("UN");
+
+                        int resoult = Insert(tab);
+                        //MessageBox.Show(resoult + " row(s) is added");
+
+                        int id_last = GetLastRowID();
+
+                        DataTable tabNHM = new DataTable();
+                        tabNHM.Columns.Add("NHM", typeof(int));
+                        tabNHM.Columns.Add("TrainListStavkeID", typeof(int)).SetOrdinal(0);
+                        foreach (string item in subsNHM)
                         {
-                            row[j] = cell;
+                            DataRow rowNHM = tabNHM.NewRow();
+                            rowNHM[0] = id_last;
+                            rowNHM[1] = (int)Convert.ToInt64(item);
+                            tabNHM.Rows.Add(rowNHM);
                         }
+                        resoult = InsertNHM(tabNHM);
+                        //MessageBox.Show(resoult + " row(s) is added");
 
-
-                    }
-                    if (replica)
-                    {
-                        for (int j = 3; j < 9; j++)
+                        DataTable tabMRN = new DataTable();
+                        tabMRN.Columns.Add("MRN", typeof(string));
+                        tabMRN.Columns.Add("TrainListStavkeID", typeof(int)).SetOrdinal(0);
+                        foreach (string item in subsMRN)
                         {
-                            row[j] = dt.Rows[i - 3].ItemArray[j];
+                            DataRow rowMRN = tabMRN.NewRow();
+                            rowMRN[0] = id_last;
+                            rowMRN[1] = (string)item;
+                            tabMRN.Rows.Add(rowMRN);
                         }
+                        resoult = InsertMRN(tabMRN);
+                        //MessageBox.Show(resoult + " row(s) is added");
+
+                        DataTable tabSeals = new DataTable();
+                        tabSeals.Columns.Add("Plomba", typeof(string));
+                        tabSeals.Columns.Add("TrainListStavkeID", typeof(int)).SetOrdinal(0);
+                        foreach (string item in subsSeals)
+                        {
+                            DataRow rowSeals = tabSeals.NewRow();
+                            rowSeals[0] = id_last;
+                            rowSeals[1] = (string)item;
+                            tabSeals.Rows.Add(rowSeals);
+                        }
+                        resoult = InsertSeals(tabSeals);
+                        // MessageBox.Show(resoult + " row(s) is added");
+
+                        DataTable tabUN = new DataTable();
+                        tabUN.Columns.Add("UNBroj", typeof(string));
+                        tabUN.Columns.Add("TrainListStavkeID", typeof(int)).SetOrdinal(0);
+                        foreach (string item in subUN)
+                        {
+                            DataRow rowUN = tabUN.NewRow();
+                            rowUN[0] = id_last;
+                            rowUN[1] = (string)item;
+                            tabUN.Rows.Add(rowUN);
+                        }
+                        resoult = InsertUN(tabUN);
+                        //MessageBox.Show(resoult + " row(s) is added");
+
                     }
 
+                    //Close and Clean excel process
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
+                    Marshal.ReleaseComObject(excelRange);
+                    Marshal.ReleaseComObject(excelWorksheet);
+                    excelWorkbook.Close();
+                    Marshal.ReleaseComObject(excelWorkbook);
 
-                    dt.Rows.Add(row); //add row to DataTable
-
-                    // obrada podataka
-                    DataTable tab = dt.Clone();
-                    tab.ImportRow(dt.Rows[i - 2]);
-
-
-                    char[] separators = new char[] { '-', ',' };
-                    string[] subsNHM = tab.Rows[0].Field<string>("NHM").Split(separators, StringSplitOptions.RemoveEmptyEntries);
-                    tab.Columns.Remove("NHM");
-                    string[] subsMRN = tab.Rows[0].Field<string>("MRN").Split(separators, StringSplitOptions.RemoveEmptyEntries);
-                    tab.Columns.Remove("MRN");
-                    string[] subsSeals = tab.Rows[0].Field<string>("Plombe").Split(separators, StringSplitOptions.RemoveEmptyEntries);
-                    tab.Columns.Remove("Plombe");
-                    string[] subUN = tab.Rows[0].Field<string>("UN").Split(separators, StringSplitOptions.RemoveEmptyEntries);
-                    tab.Columns.Remove("UN");
-
-                    int resoult = Insert(tab);
-                    //MessageBox.Show(resoult + " row(s) is added");
-
-                    int id_last = GetLastRowID();
-
-                    DataTable tabNHM = new DataTable();
-                    tabNHM.Columns.Add("NHM", typeof(int));
-                    tabNHM.Columns.Add("TrainListStavkeID", typeof(int)).SetOrdinal(0);
-                    foreach (string item in subsNHM)
-                    {
-                        DataRow rowNHM = tabNHM.NewRow();
-                        rowNHM[0] = id_last;
-                        rowNHM[1] = (int)Convert.ToInt64(item);
-                        tabNHM.Rows.Add(rowNHM);
-                    }
-                    resoult = InsertNHM(tabNHM);
-                    //MessageBox.Show(resoult + " row(s) is added");
-
-                    DataTable tabMRN = new DataTable();
-                    tabMRN.Columns.Add("MRN", typeof(string));
-                    tabMRN.Columns.Add("TrainListStavkeID", typeof(int)).SetOrdinal(0);
-                    foreach (string item in subsMRN)
-                    {
-                        DataRow rowMRN = tabMRN.NewRow();
-                        rowMRN[0] = id_last;
-                        rowMRN[1] = (string)item;
-                        tabMRN.Rows.Add(rowMRN);
-                    }
-                    resoult = InsertMRN(tabMRN);
-                    //MessageBox.Show(resoult + " row(s) is added");
-
-                    DataTable tabSeals = new DataTable();
-                    tabSeals.Columns.Add("Plomba", typeof(string));
-                    tabSeals.Columns.Add("TrainListStavkeID", typeof(int)).SetOrdinal(0);
-                    foreach (string item in subsSeals)
-                    {
-                        DataRow rowSeals = tabSeals.NewRow();
-                        rowSeals[0] = id_last;
-                        rowSeals[1] = (string)item;
-                        tabSeals.Rows.Add(rowSeals);
-                    }
-                    resoult = InsertSeals(tabSeals);
-                    // MessageBox.Show(resoult + " row(s) is added");
-
-                    DataTable tabUN = new DataTable();
-                    tabUN.Columns.Add("UNBroj", typeof(string));
-                    tabUN.Columns.Add("TrainListStavkeID", typeof(int)).SetOrdinal(0);
-                    foreach (string item in subUN)
-                    {
-                        DataRow rowUN = tabUN.NewRow();
-                        rowUN[0] = id_last;
-                        rowUN[1] = (string)item;
-                        tabUN.Rows.Add(rowUN);
-                    }
-                    resoult = InsertUN(tabUN);
-                    //MessageBox.Show(resoult + " row(s) is added");
-
-                }
-
-                //Close and Clean excel process
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-                Marshal.ReleaseComObject(excelRange);
-                Marshal.ReleaseComObject(excelWorksheet);
-                excelWorkbook.Close();
-                Marshal.ReleaseComObject(excelWorkbook);
-
-                //quit 
-                excelApp.Quit();
-                Marshal.ReleaseComObject(excelApp);
+                    //quit 
+                    excelApp.Quit();
+                    Marshal.ReleaseComObject(excelApp);
 
                 }
                 catch (Exception ex)
@@ -454,7 +451,7 @@ namespace Saobracaj.Dokumenta.TrainListItem
                 parameter3.Direction = ParameterDirection.Input;
                 parameter3.Value = data.Rows[0].ItemArray[3].ToString(); ;
                 command.Parameters.Add(parameter3);
-                
+
                 SqlParameter parameter4 = new SqlParameter();
                 parameter4.ParameterName = "@TaraKola";
                 parameter4.SqlDbType = SqlDbType.Decimal;

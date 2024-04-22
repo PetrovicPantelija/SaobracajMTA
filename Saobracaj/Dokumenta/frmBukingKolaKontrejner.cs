@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace TrackModal.Dokumeta
 {
@@ -28,7 +20,7 @@ namespace TrackModal.Dokumeta
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
-            
+
         }
 
         private void frmBukingKolaKontrejner_Load(object sender, EventArgs e)
@@ -128,7 +120,7 @@ namespace TrackModal.Dokumeta
             DataGridViewColumn column9 = dataGridView1.Columns[8];
             dataGridView1.Columns[8].HeaderText = "Sopstv. masa";
             dataGridView1.Columns[8].Width = 70;
-            
+
             DataGridViewColumn column10 = dataGridView1.Columns[9];
             dataGridView1.Columns[9].HeaderText = "Br. osovina";
             dataGridView1.Columns[9].Width = 70;
@@ -275,9 +267,9 @@ namespace TrackModal.Dokumeta
                             }
                             else
                             {
-                               // ins.PromeniBrojVagona(Convert.ToInt32(row2.Cells[0].Value.ToString()), row.Cells[0].Value.ToString());
+                                // ins.PromeniBrojVagona(Convert.ToInt32(row2.Cells[0].Value.ToString()), row.Cells[0].Value.ToString());
                             }
-                            }
+                        }
 
                     }
                 }
@@ -294,13 +286,13 @@ namespace TrackModal.Dokumeta
                     if (prvi == 1)
                     {
                         InsertVozPaket ins = new InsertVozPaket();
-                        ins.InsertVozPak(Convert.ToInt32(txtSifra.Text),row.Cells[0].Value.ToString(), Convert.ToDouble(row.Cells[8].Value), Convert.ToDouble(row.Cells[9].Value), DateTime.Now, "sa", 1);
+                        ins.InsertVozPak(Convert.ToInt32(txtSifra.Text), row.Cells[0].Value.ToString(), Convert.ToDouble(row.Cells[8].Value), Convert.ToDouble(row.Cells[9].Value), DateTime.Now, "sa", 1);
                         prvi = 0;
                     }
                     else
                     {
                         InsertVozPaket ins = new InsertVozPaket();
-                        ins.InsertVozPak(Convert.ToInt32(txtSifra.Text),row.Cells[0].Value.ToString(), Convert.ToDouble(row.Cells[8].Value), Convert.ToDouble(row.Cells[9].Value), DateTime.Now, "sa", 0);
+                        ins.InsertVozPak(Convert.ToInt32(txtSifra.Text), row.Cells[0].Value.ToString(), Convert.ToDouble(row.Cells[8].Value), Convert.ToDouble(row.Cells[9].Value), DateTime.Now, "sa", 0);
                     }
 
 
@@ -335,7 +327,7 @@ namespace TrackModal.Dokumeta
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
-           
+
             // dataGridView3.Columns[3].Visible = false;
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
@@ -436,8 +428,8 @@ namespace TrackModal.Dokumeta
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
-          
-           // dataGridView3.Columns[3].Visible = false;
+
+            // dataGridView3.Columns[3].Visible = false;
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
@@ -489,7 +481,7 @@ namespace TrackModal.Dokumeta
             cboGarnitura.DisplayMember = "ID";
             cboGarnitura.ValueMember = "ID";
 
-           
+
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -514,32 +506,32 @@ namespace TrackModal.Dokumeta
             }
 
 
-                   
+
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-          
-                foreach (DataGridViewRow row in dataGridView3.Rows)
-                {
-                 
-                        InsertVozPaket dels = new InsertVozPaket();
-                        dels.UpdateVozPak(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(row.Cells[3].Value), row.Cells[0].Value.ToString().Trim());
-                  
-                }
-                RefreshDataGrid3();
-           
-          
+
+            foreach (DataGridViewRow row in dataGridView3.Rows)
+            {
+
+                InsertVozPaket dels = new InsertVozPaket();
+                dels.UpdateVozPak(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(row.Cells[3].Value), row.Cells[0].Value.ToString().Trim());
+
+            }
+            RefreshDataGrid3();
+
+
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
             try
             {
-               
-                    InsertVozPaket dels = new InsertVozPaket();
-                    dels.ObrniVozPak(Convert.ToInt32(txtSifra.Text));
-                    
+
+                InsertVozPaket dels = new InsertVozPaket();
+                dels.ObrniVozPak(Convert.ToInt32(txtSifra.Text));
+
 
                 RefreshDataGrid3();
             }

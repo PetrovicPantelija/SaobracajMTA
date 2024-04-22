@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
 using System.Net;
-using System.Net.Mail; 
-
-using Microsoft.Reporting.WinForms;
+using System.Net.Mail;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -32,92 +24,7 @@ namespace Saobracaj.Dokumenta
         public frmRadniNalogPregled()
         {
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
-        }
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
 
-            while (dr.Read())
-            {
-                if (count == 0)
-                {
-                    niz = dr["IdGrupe"].ToString();
-                    count++;
-                }
-                else
-                {
-                    niz = niz + "," + dr["IdGrupe"].ToString();
-                    count++;
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        //tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        //tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        //tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
         }
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -147,11 +54,11 @@ namespace Saobracaj.Dokumenta
 " ) As Skupljen) as Lokom, " +
 "(  SELECT  STUFF(  (  SELECT distinct   '/' + (Cast(del.DeSifra as nvarchar(3)) + '--'  + Rtrim(del.DeIme) + ' ' + Rtrim(del.DePriimek))  " +
 "   from RadniNalogTraseLokZap  " +
-"   inner Join Delavci del on (RadniNalogTraseLokZap.DeSifra = del.DeSifra) "+
-"   where RadniNalogTraseLokZap.IDRadnogNaloga = d1.IDRadnogNaloga "+
+"   inner Join Delavci del on (RadniNalogTraseLokZap.DeSifra = del.DeSifra) " +
+"   where RadniNalogTraseLokZap.IDRadnogNaloga = d1.IDRadnogNaloga " +
 "   and  RadniNalogTraseLokZap.IdTrase = d1.IDTrase " +
 "   FOR XML PATH('')   ), 1, 1, ''  ) As Skupljen2) " +
-"   as Zaposleni2, " +  
+"   as Zaposleni2, " +
 " d1.DatumPolaska ,d1.DatumDolaska , " +
 " d1.Vreme ,d1.DatumPolaskaReal , " +
 " d1.DatumDolaskaReal ,d1.VremeReal , " +
@@ -196,7 +103,7 @@ namespace Saobracaj.Dokumenta
                 pom = pom + ",'ZA'";
             }
 
-            select = select + "where RN.StatusRN in ( " + pom + ")" + " order by RN.ID, d1.RB ";;
+            select = select + "where RN.StatusRN in ( " + pom + ")" + " order by RN.ID, d1.RB "; ;
 
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -318,7 +225,7 @@ namespace Saobracaj.Dokumenta
         private void frmRadniNalogPregled_Load(object sender, EventArgs e)
         {
             RefreshDataGrid1();
-            
+
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -326,7 +233,7 @@ namespace Saobracaj.Dokumenta
 
             frmRadniNalog ter = new frmRadniNalog(txtSifra.Text);
             ter.Show();
-           
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -398,7 +305,7 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-             try
+            try
             {
                 string zadnjibroj = txtSifra.Text;
 
@@ -407,15 +314,15 @@ namespace Saobracaj.Dokumenta
                 mailMessage.Subject = "Najava infrastruktiri automatski generisan primer sve planirano";
 
                 var select = " select d1.IDRadnogNaloga, d1.RB, Trase.Voz as Trasa , d1.statustrase as StatusTrase, DatumPolaskaReal as PlaniranOd, DatumDolaskaReal as PlaniranDo, " +
-                " stanice.Opis as StanicaOd ,Stanice1.Opis as StanicaDo,  d1.Rezi, "+
+                " stanice.Opis as StanicaOd ,Stanice1.Opis as StanicaDo,  d1.Rezi, " +
                 " (  SELECT  STUFF(  (  SELECT distinct   '/' + Cast(SmSifra as nvarchar(8)) " +
                 "  FROM RadniNalogLokNaTrasi " +
-                " where RadniNalogLokNaTrasi.IDRadnogNaloga = d1.IDRadnogNaloga and  RadniNalogLokNaTrasi.IdTrase = d1.IDTrase " + 
+                " where RadniNalogLokNaTrasi.IDRadnogNaloga = d1.IDRadnogNaloga and  RadniNalogLokNaTrasi.IdTrase = d1.IDTrase " +
                 "  FOR XML PATH('')   ), 1, 1, '' " +
                 " ) As Skupljen) as Lokom, " +
                 " Napomena from RadniNalogTrase d1 " +
                 " inner join Trase on Trase.ID = d1.IDTrase " +
-                " inner join stanice on Stanice.ID = d1.StanicaOd " + 
+                " inner join stanice on Stanice.ID = d1.StanicaOd " +
                 " inner join stanice as Stanice1 on Stanice1.ID = d1.StanicaDo " +
                 " where DatumDolaska = '1900-01-01 00:00:00.000' and d1.Poslato = 0";
 
@@ -427,18 +334,18 @@ namespace Saobracaj.Dokumenta
                 var commandBuilder = new SqlCommandBuilder(dataAdapter);
                 var ds = new DataSet();
                 dataAdapter.Fill(ds);
-                 string body = "SAOBRAĆA:  <br />";
+                string body = "SAOBRAĆA:  <br />";
 
-                 body = body + "Ovo je testni majl koji treba da se šalje infrastrukturi nakon planiranja mail je generisan iz Larga nije ograničen na 12 sati<br /> <br /> <br />";
-                 body = body + "Proverite tačnost i oblik maila !!!!!! <br />";
-                 body = body + "PLANIRANI PREVOZI" + "<br /> " + "<br />" + "  <br />";
-                
-                 foreach (DataRow myRow in ds.Tables[0].Rows)
+                body = body + "Ovo je testni majl koji treba da se šalje infrastrukturi nakon planiranja mail je generisan iz Larga nije ograničen na 12 sati<br /> <br /> <br />";
+                body = body + "Proverite tačnost i oblik maila !!!!!! <br />";
+                body = body + "PLANIRANI PREVOZI" + "<br /> " + "<br />" + "  <br />";
+
+                foreach (DataRow myRow in ds.Tables[0].Rows)
                 {
                     body = body + "Trasa: " + myRow["Trasa"].ToString() + " " + myRow["StanicaOd"].ToString() + "-" + myRow["StanicaDo"].ToString() + "<br /> ";
                     if (myRow["StatusTrase"].ToString() == "2")
                     {
-                        body = body  + "<br />";
+                        body = body + "<br />";
                         body = body + "OTKAZAN !!! " + "<br />";
                         //Ovde treba update
                     }
@@ -477,7 +384,7 @@ namespace Saobracaj.Dokumenta
 
                 SmtpClient smtpClient = new SmtpClient();
                 smtpClient.Host = "mail.kprevoz.co.rs";
-               
+
                 smtpClient.Port = 25;
                 smtpClient.UseDefaultCredentials = true;
                 smtpClient.Credentials = new NetworkCredential("pantelija.petrovic@kprevoz.co.rs", "pele1616");
@@ -492,6 +399,6 @@ namespace Saobracaj.Dokumenta
             }
 
         }
-        }
     }
+}
 

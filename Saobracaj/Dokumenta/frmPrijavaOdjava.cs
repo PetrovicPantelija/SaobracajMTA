@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -43,9 +35,9 @@ namespace Saobracaj.Dokumenta
             var select = "";
             select = "select top 1000 ID, Zaposleni, Rtrim(DeIme) + ' ' + RTRIM(DePriimek), DatumPrijave, DatumOdjave, LongPrijave, LatPrijave, LongOdjave, LatOdjave from ZaposleniPrijava " +
 " inner join Delavci on ZaposleniPrijava.Zaposleni = Delavci.DeSifra  ";
-            
-                            //  "  where  Aktivnosti.Masinovodja = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) + " order by Aktivnosti.ID desc";
-             
+
+            //  "  where  Aktivnosti.Masinovodja = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) + " order by Aktivnosti.ID desc";
+
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -57,7 +49,7 @@ namespace Saobracaj.Dokumenta
             dataAdapter.Fill(ds);
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
-                        dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
@@ -105,7 +97,7 @@ namespace Saobracaj.Dokumenta
             dataGridView1.Columns[8].HeaderText = "Lat odj";
             dataGridView1.Columns[8].Width = 80;
 
-           
+
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -113,7 +105,7 @@ namespace Saobracaj.Dokumenta
             var select = "";
             select = "select top 1000 ID, Zaposleni,Rtrim(DeIme)  + ' ' + RTRIM(DePriimek), DatumPrijave, DatumOdjave, LongPrijave, LatPrijave, LongOdjave, LatOdjave from ZaposleniPrijava " +
 " inner join Delavci on ZaposleniPrijava.Zaposleni = Delavci.DeSifra  " +
-  "  where  Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) ;
+  "  where  Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue);
 
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;

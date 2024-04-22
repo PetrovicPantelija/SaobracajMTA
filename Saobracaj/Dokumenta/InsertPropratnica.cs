@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
-using Saobracaj.Sifarnici;
 
 namespace Saobracaj.Dokumenta
 {
     class InsertPropratnica
     {
         string connect = frmLogovanje.connectionString;
-        public void InsPropratnica(int IdNajave, string Napomena,int Zaduzen,int ZaduzenaFirma)
+        public void InsPropratnica(int IdNajave, string Napomena, int Zaduzen, int ZaduzenaFirma)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -79,7 +74,7 @@ namespace Saobracaj.Dokumenta
                 }
             }
         }
-        public void UpdPropratnica(int ID, int IdNajave, string Napomena,int Zaduzen,int ZaduzenaFirma)
+        public void UpdPropratnica(int ID, int IdNajave, string Napomena, int Zaduzen, int ZaduzenaFirma)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = new SqlCommand();

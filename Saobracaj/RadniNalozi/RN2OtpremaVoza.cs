@@ -1,14 +1,9 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-using System.Diagnostics.CodeAnalysis;
-using Saobracaj;
 using System.Drawing;
+using System.Windows.Forms;
 //
 namespace Saobracaj.RadniNalozi
 {
@@ -31,7 +26,7 @@ namespace Saobracaj.RadniNalozi
             txtNalogIzdao.Text = Korisnik;
             cboNaSredstvo.SelectedValue = Convert.ToInt32(IDVOza);
             cboUsluga.SelectedValue = Convert.ToInt32(IDUsluge);
-            txtOtpremaID.Text =OtpremaID;
+            txtOtpremaID.Text = OtpremaID;
             RefreshStavkeVoza(OtpremaID);
 
         }
@@ -216,7 +211,7 @@ namespace Saobracaj.RadniNalozi
         {
             try
             {
-                foreach(DataGridViewRow row in dataGridView1.Rows)
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (row.Selected)
                     {

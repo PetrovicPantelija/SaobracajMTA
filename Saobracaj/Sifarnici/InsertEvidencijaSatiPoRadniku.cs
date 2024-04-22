@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 namespace Saobracaj.Sifarnici
 {
     class InsertEvidencijaSatiPoRadniku
     {
-        public void InsCenaPoRadniku(int Zaposleni,  int ObracunPoSatu, double Cena)
+        public void InsCenaPoRadniku(int Zaposleni, int ObracunPoSatu, double Cena)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -32,7 +28,7 @@ namespace Saobracaj.Sifarnici
             parameter1.Direction = ParameterDirection.Input;
             parameter1.Value = ObracunPoSatu;
             myCommand.Parameters.Add(parameter1);
-        
+
 
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@Cena";

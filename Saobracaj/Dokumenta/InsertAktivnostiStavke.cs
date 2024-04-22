@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 
 namespace Saobracaj.Dokumenta
@@ -14,7 +10,7 @@ namespace Saobracaj.Dokumenta
 
     class InsertAktivnostiStavke
     {
-        public void PromeniSati(int ID,  double Sati)
+        public void PromeniSati(int ID, double Sati)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -30,7 +26,7 @@ namespace Saobracaj.Dokumenta
             parameter.Value = ID;
             myCommand.Parameters.Add(parameter);
 
-           
+
 
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@Sati";
@@ -39,7 +35,7 @@ namespace Saobracaj.Dokumenta
             parameter2.Value = Sati;
             myCommand.Parameters.Add(parameter2);
 
-           
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -163,7 +159,7 @@ namespace Saobracaj.Dokumenta
             parameter1.Value = IDNadredjena;
             myCommand.Parameters.Add(parameter1);
 
-           
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -335,7 +331,7 @@ namespace Saobracaj.Dokumenta
             }
         }
 
-        public void UpdAktivnostiStavke(int ID, int IDNadredjena, int VrstaAktivnostiID, double Sati, double Koeficijent, string Napomena, int BrojVagona,string Razlog, int Nalogodavac, string Vozilo)
+        public void UpdAktivnostiStavke(int ID, int IDNadredjena, int VrstaAktivnostiID, double Sati, double Koeficijent, string Napomena, int BrojVagona, string Razlog, int Nalogodavac, string Vozilo)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;

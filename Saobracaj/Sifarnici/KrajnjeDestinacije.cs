@@ -1,13 +1,8 @@
 ﻿using Saobracaj.Izvoz;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
@@ -50,11 +45,11 @@ namespace Saobracaj.Sifarnici
 
 
             var query2 = "Select ID,Naziv,SifDr,RTrim(DrNaziv) as Drzava from KrajnjaDestinacija inner join Drzave on KrajnjaDestinacija.SifDr=Drzave.DrSifra order by ID desc";
-            var da2 = new SqlDataAdapter( query2, conn);
-            var ds2=new DataSet();
+            var da2 = new SqlDataAdapter(query2, conn);
+            var ds2 = new DataSet();
             da2.Fill(ds2);
             dataGridView2.ReadOnly = true;
-            dataGridView2.DataSource= ds2.Tables[0];
+            dataGridView2.DataSource = ds2.Tables[0];
             dataGridView2.BorderStyle = BorderStyle.None;
             dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -80,9 +75,9 @@ namespace Saobracaj.Sifarnici
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in dataGridView1.Rows)
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                if(row.Selected)
+                if (row.Selected)
                 {
                     txtIdDrzave.Text = row.Cells[0].Value.ToString().TrimEnd();
                     txtDrzava.Text = row.Cells[1].Value.ToString();
@@ -91,7 +86,7 @@ namespace Saobracaj.Sifarnici
         }
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in dataGridView2.Rows)
+            foreach (DataGridViewRow row in dataGridView2.Rows)
             {
                 if (row.Selected)
                 {

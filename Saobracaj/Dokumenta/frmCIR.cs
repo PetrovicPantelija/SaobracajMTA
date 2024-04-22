@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -423,7 +413,7 @@ namespace Saobracaj.Dokumenta
                 double TezinaPom = 0;
                 TezinaPom = Convert.ToDouble(txtBruto.Text);
 
-                upd.UpdCIR(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtSize.Value), Convert.ToInt32(cboTipKontejnera.SelectedValue), MaterijalCelik, MaterijalAlumni, incoming, Pun, Convert.ToDouble(txtBruto.Text), txtBrojKontejnera.Text, Plomba1, Plomba2, Convert.ToDateTime(dtpDatumIn.Value), txtVagon.Text, txtTruckIn.Text, Damaged, Ispravan, Prevoz, txtContainerresponsible.Text, txtprimedbe.Text, txtReceived.Text, txtInspected.Text, txtDelivery.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Prijem, Convert.ToInt32(txtDokument.Text), Convert.ToDouble(txtDuzina.Value), Convert.ToDouble(txtSirina.Value), Convert.ToDouble(txtDuzina.Value), txtPlomba.Text, txtPlomba2.Text,Interni, Convert.ToDouble(txtNosivost.Value));
+                upd.UpdCIR(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtSize.Value), Convert.ToInt32(cboTipKontejnera.SelectedValue), MaterijalCelik, MaterijalAlumni, incoming, Pun, Convert.ToDouble(txtBruto.Text), txtBrojKontejnera.Text, Plomba1, Plomba2, Convert.ToDateTime(dtpDatumIn.Value), txtVagon.Text, txtTruckIn.Text, Damaged, Ispravan, Prevoz, txtContainerresponsible.Text, txtprimedbe.Text, txtReceived.Text, txtInspected.Text, txtDelivery.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Prijem, Convert.ToInt32(txtDokument.Text), Convert.ToDouble(txtDuzina.Value), Convert.ToDouble(txtSirina.Value), Convert.ToDouble(txtDuzina.Value), txtPlomba.Text, txtPlomba2.Text, Interni, Convert.ToDouble(txtNosivost.Value));
 
                 status = false;
             }
@@ -914,7 +904,7 @@ namespace Saobracaj.Dokumenta
                 //do something else
             }
 
-            
+
         }
 
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
@@ -948,7 +938,7 @@ namespace Saobracaj.Dokumenta
 
             while (dr.Read())
             {
-                return  Convert.ToInt32(dr["Vozom"].ToString());
+                return Convert.ToInt32(dr["Vozom"].ToString());
             }
 
             con.Close();
@@ -990,7 +980,7 @@ namespace Saobracaj.Dokumenta
                 pomPrijem = 0;
                 pomVozom = VratiDalijeVozOtprema();
 
-                
+
             }
             if (pomPrijem == 1)
             {
@@ -1024,7 +1014,7 @@ namespace Saobracaj.Dokumenta
 
             }
 
-             //txtBrojKontejnera   
+            //txtBrojKontejnera   
             /*
         Select SUBSTRING(
             (
@@ -1207,23 +1197,23 @@ namespace Saobracaj.Dokumenta
             }
             if (chkIspravan.Checked == true)
             {
-                tmpOstecenja = "ISPRAVAN" + " "  + txtSifra.Text + " - CIR" ;
+                tmpOstecenja = "ISPRAVAN" + " " + txtSifra.Text + " - CIR";
             }
             else
             {
                 tmpOstecenja = "OSTECEN" + " " + txtSifra.Text + " - CIR";
             }
             Saobracaj.RadniNalozi.InsertRN up = new Saobracaj.RadniNalozi.InsertRN();
-          
-                    up.UpdateKontejnerIzCira(txtBrojKontejnera.Text,tmpStanje, txtOstecenje.Text, Convert.ToInt32(cboKvalitet.Text), Convert.ToInt32(txtSifra.Text));
-            
 
-            }
+            up.UpdateKontejnerIzCira(txtBrojKontejnera.Text, tmpStanje, txtOstecenje.Text, Convert.ToInt32(cboKvalitet.Text), Convert.ToInt32(txtSifra.Text));
+
+
+        }
 
         private void tsPrvi_Click(object sender, EventArgs e)
         {
 
         }
     }
-    }
+}
 

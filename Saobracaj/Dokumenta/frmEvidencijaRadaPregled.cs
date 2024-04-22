@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -139,7 +131,7 @@ namespace Saobracaj.Dokumenta
 
             RefreshDataGrid1();
 
-          
+
         }
 
         private void btnPretrazi_Click(object sender, EventArgs e)
@@ -152,7 +144,7 @@ namespace Saobracaj.Dokumenta
                            " from Aktivnosti  " +
                            " inner join Delavci on Delavci.DeSifra = Aktivnosti.Zaposleni  " +
                            " inner join AktivnostiStavke on Aktivnosti.ID = AktivnostiStavke.IDNadredjena  " +
-                           "inner join VrstaAktivnosti on AktivnostiStavke.VrstaAktivnostiID = VrstaAktivnosti.ID " + 
+                           "inner join VrstaAktivnosti on AktivnostiStavke.VrstaAktivnostiID = VrstaAktivnosti.ID " +
                            "  where Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) +
                            " order by Aktivnosti.ID desc";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -233,9 +225,9 @@ namespace Saobracaj.Dokumenta
             DataGridViewColumn column13 = dataGridView1.Columns[13];
             dataGridView1.Columns[13].HeaderText = "Ukupno troškovi";
             dataGridView1.Columns[13].Width = 50;
-           
-                 
-                        
+
+
+
 
         }
 
@@ -250,7 +242,7 @@ namespace Saobracaj.Dokumenta
                     ins.DeleteAktivnostiStavke(Convert.ToInt32(row.Cells[1].Value.ToString()));
                 }
 
-               
+
                 // ins.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
             }
             RefreshDataGrid();

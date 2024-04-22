@@ -1,43 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Configuration;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Data.OleDb;
+using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
 
 //using iTextSharp.text;
 //using iTextSharp.text.pdf;
 //using iTextSharp;
-using System.Text.RegularExpressions;
-
-using System.Drawing.Imaging;
 
 namespace Saobracaj.Dokumenta
 {
     public partial class frmEvidencijaRadaDokumenti : Form
     {
-        public static string code = "frmEvidencijaRadaDokumenti";
-        public bool Pravo;
-        int idGrupe;
-        int idForme;
-        bool insert;
-        bool update;
-        bool delete;
-        string Kor = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
-        string niz = "";
+
         bool status = false;
         public frmEvidencijaRadaDokumenti()
         {
@@ -48,98 +26,9 @@ namespace Saobracaj.Dokumenta
         {
             InitializeComponent();
             txtSifraNajave.Text = sifra;
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
-        }
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
 
-            while (dr.Read())
-            {
-                if (dr.HasRows)
-                {
-                    if (count == 0)
-                    {
-                        niz = dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                    else
-                    {
-                        niz = niz + "," + dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Korisnik ne pripada grupi");
-                }
-
-            }
-            conn.Close();
-            return niz;
         }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
 
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        //tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        //tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
-        }
         private void button1_Click(object sender, EventArgs e)
         {
             string PictureFolder = txtPutanja.Text;
@@ -153,7 +42,7 @@ namespace Saobracaj.Dokumenta
 
         private void button2_Click(object sender, EventArgs e)
         {
-           // txtPutanja.Text = txtPutanja.Text.Replace("192.168.1.6", "WSS");
+            // txtPutanja.Text = txtPutanja.Text.Replace("192.168.1.6", "WSS");
             System.Diagnostics.Process.Start(txtPutanja.Text);
             //TA\Racuni\2259\Racuni
         }
@@ -230,16 +119,16 @@ namespace Saobracaj.Dokumenta
         {
             var select = "";
 
-        
-                select = "Select Aktivnosti.ID as Zapis,  Aktivnosti.Oznaka, " +
-                                 " (RTrim(DeIme) + ' ' + RTRim(DePriimek)) as Zaposleni,  " +
-                                 "  VremeOD, VremeDo,  Aktivnosti.Opis, UkupniTroskovi, RAcun, Kartica," +
-                                   " Aktivnosti.DatumInserta " +
-                                  " from Aktivnosti  " +
-                                 " inner join Delavci on Delavci.DeSifra = Aktivnosti.Zaposleni  " +
-                                   " inner join Kraji on Kraji.KrSifra = Aktivnosti.MestoUpucivanja" +
-                                  " order by Aktivnosti.ID desc";
-      
+
+            select = "Select Aktivnosti.ID as Zapis,  Aktivnosti.Oznaka, " +
+                             " (RTrim(DeIme) + ' ' + RTRim(DePriimek)) as Zaposleni,  " +
+                             "  VremeOD, VremeDo,  Aktivnosti.Opis, UkupniTroskovi, RAcun, Kartica," +
+                               " Aktivnosti.DatumInserta " +
+                              " from Aktivnosti  " +
+                             " inner join Delavci on Delavci.DeSifra = Aktivnosti.Zaposleni  " +
+                               " inner join Kraji on Kraji.KrSifra = Aktivnosti.MestoUpucivanja" +
+                              " order by Aktivnosti.ID desc";
+
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -272,7 +161,7 @@ namespace Saobracaj.Dokumenta
             dataGridView2.Columns[4].HeaderText = "Vreme do";
             dataGridView2.Columns[4].Width = 100;
 
-         
+
             DataGridViewColumn column5 = dataGridView2.Columns[5];
             dataGridView2.Columns[5].HeaderText = "Opis";
             dataGridView2.Columns[5].Width = 120;
@@ -343,7 +232,7 @@ namespace Saobracaj.Dokumenta
             string targetPath = "";
 
             targetPath = @"\\192.168.129.7\TA\Racuni\" + FolderDestinacije + @"\Racuni";
-            
+
             string sourceFile = putanja;
             string destFile = System.IO.Path.Combine(targetPath, result);
 
@@ -430,7 +319,7 @@ namespace Saobracaj.Dokumenta
                     if (row.Selected)
                     {
                         txtSifra.Text = row.Cells[0].Value.ToString();
-                      
+
 
                     }
                 }
@@ -454,13 +343,13 @@ namespace Saobracaj.Dokumenta
                 {
                     if (row.Selected)
                     {
-                       
+
                         txtSifraNajave.Text = row.Cells[0].Value.ToString();
                         RefreshDataGrid();
                         // txtPutanja.Text = row.Cells[2].Value.ToString();
                     }
                 }
-                
+
 
             }
             catch

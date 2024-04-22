@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Globalization;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -61,7 +53,7 @@ namespace Saobracaj.Sifarnici
             dataAdapter.Fill(ds);
             dataGridView2.ReadOnly = true;
             dataGridView2.DataSource = ds.Tables[0];
-            dataGridView2.AutoResizeColumns() ;
+            dataGridView2.AutoResizeColumns();
         }
 
         private void frmTimovi_Load(object sender, EventArgs e)
@@ -112,7 +104,7 @@ namespace Saobracaj.Sifarnici
 
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
         {
-         
+
         }
 
         private void button4_Click(object sender, EventArgs e)

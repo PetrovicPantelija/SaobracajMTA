@@ -1,33 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using OpenPop.Pop3;
-using OpenPop.Common;
-using OpenPop.Mime;
-
-
-using System.Configuration;
-
-using System.Data.OleDb;
-using System.Data.SqlClient;
 
 
 namespace Saobracaj.Dokumenta
 {
     public partial class frmReceiveMail : Form
     {
-       InsertReceiveMail insertrm = new InsertReceiveMail();
-           
+        InsertReceiveMail insertrm = new InsertReceiveMail();
+
         public frmReceiveMail()
         {
             InitializeComponent();
-           
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,11 +26,11 @@ namespace Saobracaj.Dokumenta
             client.Connect(hostname: "mail.kprevoz.co.rs", username: "pantelija.petrovic@kprevoz.co.rs", password: "pele1616", port: 110, isUseSsl: false);
 
             var allMail = client.GetMail();
-       
+
             int pom = 0;
             foreach (var mail in allMail)
             {
-              
+
                 var subject = mail.Message.Headers.Subject;
                 var to = string.Join(",", mail.Message.Headers.To.Select(m => m.Address));
                 var from = mail.Message.Headers.From.Address;
@@ -50,13 +40,13 @@ namespace Saobracaj.Dokumenta
                 var datum3 = mail.Message.Headers.Date;
                 var datum4 = mail.Message.Headers.DateSent;
 
-               // MessageBox.Show("Email Subject: " + subject + " Sent To:  " + to + " Sent From: " + from);
+                // MessageBox.Show("Email Subject: " + subject + " Sent To:  " + to + " Sent From: " + from);
                 OpenPop.Mime.MessagePart plainText = mail.Message.FindFirstPlainTextVersion();
                 StringBuilder builder = new StringBuilder();
                 if (plainText != null)
                 {
                     // We found some plaintext!
-                   // body = builder.Append(plainText.GetBodyAsText());
+                    // body = builder.Append(plainText.GetBodyAsText());
                     body = plainText.GetBodyAsText();
                 }
                 else
@@ -75,14 +65,14 @@ namespace Saobracaj.Dokumenta
 
                 //this.dataGridView1.Rows.Add("subject", "to", "from");
                 //this.dataGridView1.Rows.Insert(pom, id, subject, from, to, datum3, datum4, body);
-               
+
                 insertrm.InsRecMail(id.ToString(), subject.ToString(), from.ToString(), to.ToString(), datum3.ToString(), datum4.ToString(), body.ToString(), "Novi");
                 pom = pom + 1;
-               // Console.WriteLine("Email Subject: {0}", subject);
-               // Console.WriteLine("Sent To: {0}", to);
-               // Console.WriteLine("Sent From: {0}", from);
+                // Console.WriteLine("Email Subject: {0}", subject);
+                // Console.WriteLine("Sent To: {0}", to);
+                // Console.WriteLine("Sent From: {0}", from);
 
-               //P client.Delete(mail.MessageNumber);
+                //P client.Delete(mail.MessageNumber);
             }
             /*P
             client.DeleteAll();
@@ -103,7 +93,7 @@ namespace Saobracaj.Dokumenta
                 client.Delete(mail.MessageNumber);
             }
             */
-           // var mailWithAttachments = client.GetMail(fromAddress: "pantelija.petrovic@kprevoz.co.rs");
+            // var mailWithAttachments = client.GetMail(fromAddress: "pantelija.petrovic@kprevoz.co.rs");
             var mailWithAttachments = client.GetMail();
 
             foreach (var mail in mailWithAttachments)
@@ -114,24 +104,24 @@ namespace Saobracaj.Dokumenta
                 {
                     foreach (var attachment in attachments)
                     {
-                       // MessageBox.Show("File Location:    " + attachment);
-                       // Console.WriteLine("File Location: {0}", attachment);
+                        // MessageBox.Show("File Location:    " + attachment);
+                        // Console.WriteLine("File Location: {0}", attachment);
                     }
                 }
                 else
                 {
                     Console.WriteLine("Email has no attachments, if attachments are required, make sure to not delete this email");
                 }
-               // client.Delete(mail.MessageNumber);
+                // client.Delete(mail.MessageNumber);
             }
 
-          //  Console.WriteLine("Press any key to exit...");
+            //  Console.WriteLine("Press any key to exit...");
             RefreshDataGrid();
-          //  Console.ReadLine();
+            //  Console.ReadLine();
         }
         private void RefreshDataGrid()
         {
-          
+
             var select = "select * from ReceiveMail";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -191,7 +181,7 @@ namespace Saobracaj.Dokumenta
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+
             insertrm.UpdRecMail(txtID.Text, cboStatus.Text);
             RefreshDataGrid();
         }
@@ -213,6 +203,6 @@ namespace Saobracaj.Dokumenta
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
         }
-       
+
     }
 }

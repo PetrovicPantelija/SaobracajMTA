@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
-using Saobracaj.Sifarnici;
 
 namespace Saobracaj.Servis
 {
@@ -92,7 +87,7 @@ namespace Saobracaj.Servis
                 tran = conn.BeginTransaction();
                 cmd.Transaction = tran;
             }
-            catch(SqlException)
+            catch (SqlException)
             {
                 throw new Exception("Neuspešan upis NHM brojeva");
             }
@@ -209,13 +204,13 @@ namespace Saobracaj.Servis
                 }
                 conn.Close();
                 if (error)
-                { 
+                {
 
                 }
             }
 
         }
-        public void DeletePrijava (int ID)
+        public void DeletePrijava(int ID)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -246,7 +241,7 @@ namespace Saobracaj.Servis
             }
             finally
             {
-                if(!error)
+                if (!error)
                 {
                     tran.Commit();
                     MessageBox.Show("Uspešno obrisano", "", MessageBoxButtons.OK, MessageBoxIcon.Information);

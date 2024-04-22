@@ -1,14 +1,9 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-using System.Diagnostics.CodeAnalysis;
-using Saobracaj;
 using System.Drawing;
+using System.Windows.Forms;
 
 //
 namespace Saobracaj.RadniNalozi
@@ -120,7 +115,7 @@ namespace Saobracaj.RadniNalozi
 " inner join Partnerji on Partnerji.PaSifra = RNPrijemVoza.Uvoznik " +
 " inner join Partnerji p2 on p2.PaSifra = RNPrijemVoza.NazivBrodara " +
 " inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge " +
-" where Voz.ID = " + Convert.ToInt32(cboSaVoznog.SelectedValue) + 
+" where Voz.ID = " + Convert.ToInt32(cboSaVoznog.SelectedValue) +
 " order by RNPrijemVoza.ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
@@ -393,7 +388,7 @@ namespace Saobracaj.RadniNalozi
                     VratiPodatkeStavka();
                     FillDG2();
                 }
-               
+
             }
         }
 
@@ -407,7 +402,7 @@ namespace Saobracaj.RadniNalozi
 
 
             SqlConnection conn = new SqlConnection(connect);
-           
+
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
@@ -462,7 +457,7 @@ namespace Saobracaj.RadniNalozi
 " inner join Skladista on Skladista.ID = NaSkladiste " +
 " inner join Partnerji on Partnerji.PaSifra = RNPrijemVoza.Uvoznik " +
 " inner join Partnerji p2 on p2.PaSifra = RNPrijemVoza.NazivBrodara " +
-" inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge"  +
+" inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge" +
              " where RNPrijemVoza.ID = " + txtID.Text, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -472,19 +467,19 @@ namespace Saobracaj.RadniNalozi
                 txtDatumRasporeda.Value = Convert.ToDateTime(dr["DatumRasporeda"].ToString());
                 txtbrojkontejnera.Text = dr["BrojKontejnera"].ToString();
                 cbovrstakontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
-                        cboUsluge.SelectedValue = Convert.ToInt32(dr["Usluga"].ToString());
-                  txtNalogRealizovao.Text = dr["NalogRealizovao"].ToString();
+                cboUsluge.SelectedValue = Convert.ToInt32(dr["Usluga"].ToString());
+                txtNalogRealizovao.Text = dr["NalogRealizovao"].ToString();
 
                 txtPrijemID.Text = dr["PrijemID"].ToString();
-             
+
                 txtNalogID.Text = dr["NalogID"].ToString();
-            
-                 cboNaPoziciju.SelectedValue = Convert.ToInt32(dr["NaPozicijuSklad"].ToString());
+
+                cboNaPoziciju.SelectedValue = Convert.ToInt32(dr["NaPozicijuSklad"].ToString());
                 txtNalogIzdao.Text = dr["NalogIzdao"].ToString();
                 txtDatumRealizacije.Value = Convert.ToDateTime(dr["DatumRealizacije"].ToString());
                 cboUvoznik.SelectedValue = Convert.ToInt32(dr["Uvoznik"].ToString());
-                 cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
-  //cboVrstaRobe.SelectedValue = Convert.ToInt32(dr["VrstaRobe"].ToString());
+                cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
+                //cboVrstaRobe.SelectedValue = Convert.ToInt32(dr["VrstaRobe"].ToString());
                 cboNaSkladiste.SelectedValue = Convert.ToInt32(dr["NaSkladiste"].ToString());
 
                 txtBrojPlombe.Text = dr["BrojPlombe"].ToString();
@@ -512,7 +507,7 @@ namespace Saobracaj.RadniNalozi
                 {
                     up.PotvrdiUradjenRN1(Convert.ToInt32(row.Cells[0].Value.ToString()));
                 }
-                    
+
             }
         }
 

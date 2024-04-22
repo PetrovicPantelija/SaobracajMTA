@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
-using System.Configuration;
+﻿using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms.Grid.Grouping;
-using Syncfusion.Data;
-using Syncfusion.Drawing;
-using Syncfusion.Windows.Forms.Grid;
-using Syncfusion.Grouping;
+using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
 {
@@ -27,7 +19,7 @@ namespace Saobracaj.Izvoz
             InitializeComponent();
         }
 
-        public string  GetID()
+        public string GetID()
         {
             return textBox1.Text;
         }
@@ -99,13 +91,13 @@ namespace Saobracaj.Izvoz
 
         private void gridGroupingControl1_SelectedRecordsChanging(object sender, SelectedRecordsChangedEventArgs e)
         {
-           
+
         }
 
         private void gridGroupingControl1_SourceListRecordChanging(object sender, RecordChangedEventArgs e)
         {
 
-          
+
         }
 
         private void gridGroupingControl1_SourceListRecordChanged(object sender, RecordChangedEventArgs e)
@@ -120,12 +112,12 @@ namespace Saobracaj.Izvoz
 
         private void gridGroupingControl1_SelectedRecordsChanging_2(object sender, SelectedRecordsChangedEventArgs e)
         {
-           
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-          
+
 
             FormCollection fc = Application.OpenForms;
 
@@ -148,7 +140,7 @@ namespace Saobracaj.Izvoz
                 {
                     textBox1.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
 
-                   // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                    // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
                 }
 
             }
@@ -161,7 +153,7 @@ namespace Saobracaj.Izvoz
 
         private void frmIzvozTable_KeyDown(object sender, KeyEventArgs e)
         {
-           
+
 
             /* if (Control.ModifierKeys == Keys.None && keyData == Keys.Enter)
             {
@@ -172,7 +164,7 @@ namespace Saobracaj.Izvoz
         private void frmIzvozTable_KeyPress(object sender, KeyPressEventArgs e)
         {
 
-           
+
         }
 
         private void frmIzvozTable_KeyUp(object sender, KeyEventArgs e)
@@ -185,12 +177,11 @@ namespace Saobracaj.Izvoz
 
         private void PunjenjeVrednostiPolja()
         {
-            
+
             SqlConnection conn = new SqlConnection(connection);
-            string updatestring = "";
             switch (cboPolje.Text)
             {
-                
+
 
 
 
@@ -212,11 +203,11 @@ namespace Saobracaj.Izvoz
 
                 case "ETA Leget":
                     dtpOpsti.Visible = true;
-            cboOpsti.Visible = false;
-            txtOpsti.Visible = false;
-            chkOpsti.Visible = false;
-            nmrOpsti.Visible = false;
-            break;
+                    cboOpsti.Visible = false;
+                    txtOpsti.Visible = false;
+                    chkOpsti.Visible = false;
+                    nmrOpsti.Visible = false;
+                    break;
                 case "Broj kontejnera":
                     dtpOpsti.Visible = false;
                     cboOpsti.Visible = false;
@@ -496,7 +487,7 @@ namespace Saobracaj.Izvoz
                     chkOpsti.Visible = false;
                     nmrOpsti.Visible = false;
 
-                  
+
                     break;
                 case "Mesto carinjenja":
                     dtpOpsti.Visible = false;
@@ -598,12 +589,11 @@ namespace Saobracaj.Izvoz
 
         private void UpdateVrednostiPolja(int IdZaPromenu)
         {
-            int temp = 0;
             SqlConnection conn = new SqlConnection(connection);
             string updatestring = "";
             switch (cboPolje.Text)
             {
-                
+
                 case "Cut off port":
                     updatestring = " Update Izvoz set CutOffPort = " + Convert.ToDateTime(dtpOpsti.Text) + " where ID =" + IdZaPromenu;
                     break;
@@ -630,7 +620,7 @@ namespace Saobracaj.Izvoz
                     updatestring = " Update Izvoz set NaslovSlanjaStatusa = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "Adresa za slanje statusa vozila":
-                    updatestring = " Update Izvoz set AdresaSlanjaStatusa = '" +txtOpsti.Text + "' where ID =" + IdZaPromenu;
+                    updatestring = " Update Izvoz set AdresaSlanjaStatusa = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "DODATNE NAPOMENE ZA KAMIONSKI PREVOZ I PRETOVAR":
                     updatestring = " Update Izvoz set DodatneNapomeneDrumski = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
@@ -649,7 +639,7 @@ namespace Saobracaj.Izvoz
                     break;
 
                 case "Broj vagona":
-                    updatestring = " Update Izvoz set BrojVagona = '" +txtOpsti.Text + "' where ID =" + IdZaPromenu;
+                    updatestring = " Update Izvoz set BrojVagona = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "Kontakt osoba špeditera":
                     updatestring = " Update Izvoz set obijeBZ = " + dtpOpsti.Text + " where ID =" + IdZaPromenu;
@@ -662,16 +652,16 @@ namespace Saobracaj.Izvoz
                     break;
                 case "Nalogodavac za usluge":
                     updatestring = " Update Izvoz set Klijent2 = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                                        break;
+                    break;
                 case "Nalogodavac za drumski prevoz":
                     updatestring = " Update Izvoz set Klijent3 = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                                        break;
+                    break;
                 case "Špediter u Rijeci":
                     updatestring = " Update Izvoz set SpediterRijeka = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                                        break;
+                    break;
                 case "Vrsta kontejnera":
                     updatestring = " Update Izvoz set VrstaKontejnera = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
-                                        break;
+                    break;
                 case "Brodar":
                     updatestring = " Update Izvoz set Brodar = " + Convert.ToInt32(cboOpsti.SelectedValue) + " where ID =" + IdZaPromenu;
                     break;
@@ -734,7 +724,7 @@ namespace Saobracaj.Izvoz
 
 
 
-           
+
         }
 
         private void button2_Click(object sender, EventArgs e)

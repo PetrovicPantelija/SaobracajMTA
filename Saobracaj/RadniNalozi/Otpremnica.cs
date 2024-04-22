@@ -1,15 +1,8 @@
-﻿using Saobracaj.RadniNalozi;
-using Saobracaj.Sifarnici;
+﻿using Saobracaj.Sifarnici;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.RadniNalozi
@@ -75,7 +68,7 @@ namespace Saobracaj.RadniNalozi
             cboVozilo.DataSource = ds6.Tables[0];
             cboVozilo.DisplayMember = "Naziv";
             cboVozilo.ValueMember = "Naziv";
-            
+
 
             var query7 = "select LokSifra,LokOpis from Lokac";
             SqlDataAdapter da7 = new SqlDataAdapter(query7, conn);
@@ -114,7 +107,7 @@ namespace Saobracaj.RadniNalozi
             cbo.DisplayMember = "MpNaziv";
             cbo.ValueMember = "MpSifra";
 
-            
+
             cbo2.HeaderText = "Kolicina";
             cbo2.Name = "Kolicina";
 
@@ -131,11 +124,11 @@ namespace Saobracaj.RadniNalozi
             InsertIsporuka isporuka = new InsertIsporuka();
             if (checkBox1.Checked == true)
             {
-                isporuka.InsertDobavnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(), Convert.ToInt32(comboBox1.SelectedValue), txtVozac.Text.ToString().TrimEnd(), txtVozilo.Text.ToString().TrimEnd(), Convert.ToDateTime(dtpVreme.Value),txtBrojKontejnera.Text.ToString().TrimEnd());
+                isporuka.InsertDobavnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(), Convert.ToInt32(comboBox1.SelectedValue), txtVozac.Text.ToString().TrimEnd(), txtVozilo.Text.ToString().TrimEnd(), Convert.ToDateTime(dtpVreme.Value), txtBrojKontejnera.Text.ToString().TrimEnd());
             }
             else
             {
-                isporuka.InsertDobavnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(), Convert.ToInt32(comboBox1.SelectedValue), cboVozac.SelectedValue.ToString(), cboVozilo.SelectedValue.ToString(), Convert.ToDateTime(dtpVreme.Value),txtBrojKontejnera.ToString().TrimEnd());
+                isporuka.InsertDobavnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(), Convert.ToInt32(comboBox1.SelectedValue), cboVozac.SelectedValue.ToString(), cboVozilo.SelectedValue.ToString(), Convert.ToDateTime(dtpVreme.Value), txtBrojKontejnera.ToString().TrimEnd());
             }
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -186,7 +179,7 @@ namespace Saobracaj.RadniNalozi
                 "from Narocilo " +
                 "inner join sklad on Narocilo.NaSmSifra=sklad.SkSifSM " +
                 "inner join Skladiste_Korisnik on sklad.SkSifra = Skladiste_Korisnik.Sif_Skladiste " +
-                "Where NaStatus='PO' and Skladiste_Korisnik.Korisnik = '"+korisnik+"' order by NaStNar desc";
+                "Where NaStatus='PO' and Skladiste_Korisnik.Korisnik = '" + korisnik + "' order by NaStNar desc";
             SqlConnection conn = new SqlConnection(connect);
             SqlDataAdapter da = new SqlDataAdapter(query, conn);
             DataSet ds = new DataSet();
@@ -243,12 +236,12 @@ namespace Saobracaj.RadniNalozi
                 status = 0;
                 panel1.Visible = false;
             }
-            
+
         }
 
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in dataGridView2.Rows)
+            foreach (DataGridViewRow row in dataGridView2.Rows)
             {
                 if (row.Selected)
                 {
@@ -267,14 +260,14 @@ namespace Saobracaj.RadniNalozi
                     dataGridView3.Columns[2].HeaderText = "Kolicina";
                     dataGridView3.Columns[2].Width = 120;
 
-                    conn.Close(); 
+                    conn.Close();
                 }
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button3_Click(object sender, EventArgs e)

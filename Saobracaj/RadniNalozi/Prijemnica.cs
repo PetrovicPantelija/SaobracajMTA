@@ -1,15 +1,8 @@
-﻿using Saobracaj.RadniNalozi;
-using Saobracaj.Sifarnici;
+﻿using Saobracaj.Sifarnici;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.RadniNalozi
@@ -25,7 +18,7 @@ namespace Saobracaj.RadniNalozi
 
         private void Prijemnica_Load(object sender, EventArgs e)
         {
-            korisnik =frmLogovanje.user;
+            korisnik = frmLogovanje.user;
             FillCombo();
             DGVCombo();
             panel1.Visible = false;
@@ -122,7 +115,7 @@ namespace Saobracaj.RadniNalozi
         private void button1_Click_1(object sender, EventArgs e)
         {
             InsertIsporuka isporuka = new InsertIsporuka();
-            isporuka.InsertPrijemnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(),Convert.ToInt32(cbo_Referent.SelectedValue),Convert.ToInt32(cboPrimio.SelectedValue), Convert.ToDateTime(dtpVreme.Value),txtBrojKontejnera.Text.ToString().TrimEnd());
+            isporuka.InsertPrijemnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(), Convert.ToInt32(cbo_Referent.SelectedValue), Convert.ToInt32(cboPrimio.SelectedValue), Convert.ToDateTime(dtpVreme.Value), txtBrojKontejnera.Text.ToString().TrimEnd());
 
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
@@ -139,7 +132,7 @@ namespace Saobracaj.RadniNalozi
                     if (row != null && row.Cells[2].Value != null)
                     {
                         isporuka.InsertPrijemnicaPostav(Convert.ToInt32(row.Cells[2].Value), Convert.ToDecimal(row.Cells[4].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
-                        isporuka.UpdPorudzbenica(brPor,Convert.ToInt32(row.Cells[2].Value), Convert.ToDecimal(row.Cells[4].Value));
+                        isporuka.UpdPorudzbenica(brPor, Convert.ToInt32(row.Cells[2].Value), Convert.ToDecimal(row.Cells[4].Value));
                     }
                 }
             }
@@ -159,7 +152,7 @@ namespace Saobracaj.RadniNalozi
                 "inner join sklad on NNal.NNaSmSifra = sklad.SkSifSM " +
                 "inner join NPreP on NNal.NNaStNal = NPrep.NPrPStPre " +
                 "inner join NPre on NPreP.NPrPstPre = NPre.NPrStPre " +
-                "inner join Delavci on NPre.NPrStDelPre = Delavci.DeSifra "+
+                "inner join Delavci on NPre.NPrStDelPre = Delavci.DeSifra " +
                 "WHere NNaStatus='PO' ' order by NNaStNal desc";
             SqlConnection conn = new SqlConnection(connect);
             SqlDataAdapter da = new SqlDataAdapter(query, conn);
@@ -174,7 +167,7 @@ namespace Saobracaj.RadniNalozi
         int brPor;
         private void btn_Izaberi_Click(object sender, EventArgs e)
         {
-            if(txt_ID.Text != "")
+            if (txt_ID.Text != "")
             {
                 status = 1;
                 var query = "Select NNaStNal as [BrojPorudzbenice],NNaStatus as [Status],NNaSmSifra as [Mesto],NNaPartPlac, NNaNaziv as [Partner],NnaZnes as Iznos,SkSifra " +
@@ -223,7 +216,7 @@ namespace Saobracaj.RadniNalozi
 
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in dataGridView2.Rows)
+            foreach (DataGridViewRow row in dataGridView2.Rows)
             {
                 if (row.Selected)
                 {
@@ -249,13 +242,13 @@ namespace Saobracaj.RadniNalozi
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+
 
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void label6_Click(object sender, EventArgs e)

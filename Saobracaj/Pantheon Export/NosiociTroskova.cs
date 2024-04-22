@@ -1,22 +1,11 @@
-﻿using Microsoft.Office.Interop.Excel;
-using Newtonsoft.Json.Linq;
-using Org.BouncyCastle.Asn1.Ocsp;
-using Saobracaj.eDokumenta;
-using Saobracaj.Sifarnici;
-using Syncfusion.Windows.Forms.Tools;
+﻿using Saobracaj.Sifarnici;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static Syncfusion.Windows.Forms.Tools.NavigationView;
 
 
 namespace Saobracaj.Pantheon_Export
@@ -37,7 +26,7 @@ namespace Saobracaj.Pantheon_Export
         private void FillGV()
         {
             var select = "Select NosiociTroskova.ID,NosilacTroska,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska,Grupa,RTrim(PaNaziv) as Kupac,RTrim(SifraSubjekta) as Odeljenje, " +
-                "(RTrim(Opportunity.OppID) + ' - ' + RTrim(Opportunity.NazivPosla)) as Opportunity, Kupac, NosiociTroskova.Odeljenje,NosiociTroskova.OppID,Posao,NosiociTroskova.Status,NosiociTroskova.Korisnik " +
+                "(RTrim(Opportunity.OppID) + ' - ' + RTrim(Opportunity.NazivPosla)) as Opportunity, Kupac, NosiociTroskova.Odeljenje,NosiociTroskova.OppID,Posao,NosiociTroskova.Status,RTrim(NosiociTroskova.Korisnik) as Korisnik " +
                 "From NosiociTroskova " +
                 "inner join Partnerji on NosiociTroskova.Kupac = Partnerji.PaSifra " +
                 "inner join Odeljenja on NosiociTroskova.Odeljenje = Odeljenja.ID " +
@@ -54,13 +43,15 @@ namespace Saobracaj.Pantheon_Export
             dataGridView1.Columns[0].Width = 50;
             dataGridView1.Columns[1].Width = 150;
             dataGridView1.Columns[2].Width = 220;
+            dataGridView1.Columns[3].Visible = false;
             dataGridView1.Columns[3].Width = 150;
             dataGridView1.Columns[4].Width = 300;
             dataGridView1.Columns[5].Width = 150;
+            dataGridView1.Columns[5].Visible = false;
             dataGridView1.Columns[6].Width = 300;
             dataGridView1.Columns[7].Visible = false;
-            dataGridView1.Columns[8].Visible=false;
-            dataGridView1.Columns[9].Visible=false;
+            dataGridView1.Columns[8].Visible = false;
+            dataGridView1.Columns[9].Visible = false;
             dataGridView1.Columns[10].Width = 80;
             dataGridView1.Columns[11].Width = 60;
 
@@ -143,25 +134,19 @@ namespace Saobracaj.Pantheon_Export
             InsertPatheonExport ins = new InsertPatheonExport();
             if (status == true)
             {
-                ins.InsNosiociTroskova(txtNosilacTroska.Text.ToString().TrimEnd(), txtNazivNosioca.Text.ToString().TrimEnd(), cboGrupa.Text.ToString().TrimEnd(), Convert.ToInt32(cboKupac.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue),Convert.ToInt32(cboOpportunity.SelectedValue),Convert.ToInt32(cboPosao.SelectedValue),korisnik);
+                ins.InsNosiociTroskova(txtNosilacTroska.Text.ToString().TrimEnd(), txtNazivNosioca.Text.ToString().TrimEnd(), cboGrupa.Text.ToString().TrimEnd(), Convert.ToInt32(cboKupac.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToInt32(cboOpportunity.SelectedValue), Convert.ToInt32(cboPosao.SelectedValue), korisnik);
             }
             else
             {
                 if (statusNT == 0)
                 {
-
-                    var query = "Select * from Predvidjanje Where NosilacTroska="+Convert.ToInt32(txtID.Text);
+                    var query = "Select * from Predvidjanje Where NosilacTroska=" + Convert.ToInt32(txtID.Text);
                     SqlConnection conn = new SqlConnection(connect);
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(query, conn);
                     SqlDataReader dr = cmd.ExecuteReader();
-                    if (dr.HasRows)
-                    {/*
-                        using (SqlCommand cmd2 = conn.CreateCommand())
-                        {
-                            cmd2.CommandText = "UPDATE Predvidjanje SET NajavaID = " + Convert.ToInt32(cboPosao.SelectedValue) + " Where NosialcTroska=" + Convert.ToInt32(txtID.Text);
-                            cmd2.ExecuteNonQuery();
-                        }*/
+                    while (dr.Read())
+                    {
                         ins.RefreshPredvidjanje(Convert.ToInt32(cboPosao.SelectedValue), Convert.ToInt32(txtID.Text));
                     }
                     conn.Close();
@@ -210,75 +195,14 @@ namespace Saobracaj.Pantheon_Export
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            InsertPatheonExport ins = new InsertPatheonExport();
-            int ID;
-            string NT, NTNaziv, Grupa, Kupac, Odeljenje;
-            string json;
-            try
-            {
-                if (dataGridView1.Rows.Count > 0)
-                {
-                    foreach (DataGridViewRow row in dataGridView1.Rows)
-                    {
-                        ID = Convert.ToInt32(row.Cells[0].Value.ToString());
-                        NT = row.Cells[1].Value.ToString().TrimEnd();
-                        NTNaziv = row.Cells[2].Value.ToString().TrimEnd();
-                        Grupa = row.Cells[3].Value.ToString().TrimEnd();
-                        Kupac = row.Cells[4].Value.ToString().TrimEnd();
-                        Odeljenje = row.Cells[5].Value.ToString().TrimEnd();
-
-                        var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/Strn/StrnPost");
-                        httpWebRequest.ContentType = "application/json";
-                        httpWebRequest.Method = "POST";
-
-                        using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                        {
-                            json = "{" +
-                                   "\n\"CostDrv\":\"" + NT + "\"," +
-                                   "\n\"CostName\":\"" + NTNaziv + "\"," +
-                                   "\n\"Classif\":\"" + Grupa + "\"," +
-                                   "\n\"Consignee\":\"" + Kupac + "\"," +
-                                   "\n\"Dept\":\"" + Odeljenje + "\"\n}";
-                            streamWriter.Write(json);
-                        }
-
-                        string response = "";
-
-                        var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-
-                        using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                        {
-                            var result = streamReader.ReadToEnd();
-                            response = result.ToString();
-
-                            if (response.Contains("Error")==true || response.Contains("Greška")==true || response.Contains("ERROR")==true || response.Contains("Duplikat") == true)
-                            {
-                                
-                                MessageBox.Show("Slanje nije uspelo\n"+response.ToString());
-                                ins.InsApiLog("NT-" + ID.ToString()+"/DEMO", json, response);
-                                return;
-                            }
-                        }
-                        ins.InsApiLog("NT-"+ID.ToString()+"/DEMO",json, response);
-
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error: {ex.Message}");
-            }
-
-            FillGV();
         }
-        
+
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             panel1.Visible = true;
 
             var select = "Select NosiociTroskova.ID,NosilacTroska,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska,Grupa,RTrim(PaNaziv) as Kupac,RTrim(SifraSubjekta) as Odeljenje, " +
-                "(RTrim(Opportunity.OppID) + ' - ' + RTrim(Opportunity.NazivPosla)) as Opportunity, Kupac, NosiociTroskova.Odeljenje,NosiociTroskova.OppID,Posao,NosiociTroskova.Status,NosiociTroskova.Korisnik " +
+                "(RTrim(Opportunity.OppID) + ' - ' + RTrim(Opportunity.NazivPosla)) as Opportunity, Kupac, NosiociTroskova.Odeljenje,NosiociTroskova.OppID,Posao,NosiociTroskova.Status,RTrim(NosiociTroskova.Korisnik) as Korisnik " +
                 "From NosiociTroskova " +
                 "inner join Partnerji on NosiociTroskova.Kupac = Partnerji.PaSifra " +
                 "inner join Odeljenja on NosiociTroskova.Odeljenje = Odeljenja.ID " +
@@ -308,8 +232,10 @@ namespace Saobracaj.Pantheon_Export
             dataGridView2.Columns[1].Width = 150;
             dataGridView2.Columns[2].Width = 220;
             dataGridView2.Columns[3].Width = 150;
+            dataGridView2.Columns[3].Visible = false;
             dataGridView2.Columns[4].Width = 300;
             dataGridView2.Columns[5].Width = 150;
+            dataGridView2.Columns[5].Visible = false;
             dataGridView2.Columns[6].Width = 300;
             dataGridView2.Columns[7].Visible = false;
             dataGridView2.Columns[8].Visible = false;
@@ -325,7 +251,7 @@ namespace Saobracaj.Pantheon_Export
 
         private void cboOpportunity_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            var query = "Select Odeljenje,Klijent from Opportunity Where ID="+Convert.ToInt32(cboOpportunity.SelectedValue);
+            var query = "Select Odeljenje,Klijent from Opportunity Where ID=" + Convert.ToInt32(cboOpportunity.SelectedValue);
             SqlConnection conn = new SqlConnection(connect);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
@@ -333,7 +259,7 @@ namespace Saobracaj.Pantheon_Export
             while (dr.Read())
             {
                 cboOdeljenje.SelectedValue = Convert.ToInt32(dr[0].ToString());
-                cboKupac.SelectedValue= Convert.ToInt32(dr[1].ToString());
+                cboKupac.SelectedValue = Convert.ToInt32(dr[1].ToString());
             }
             conn.Close();
         }
@@ -403,7 +329,7 @@ namespace Saobracaj.Pantheon_Export
                             if (response.Contains("Error") == true || response.Contains("Greška") == true || response.Contains("ERROR") == true || response.Contains("Duplikat") == true)
                             {
                                 MessageBox.Show("Slanje nije uspelo\n" + response.ToString());
-                                ins.InsApiLog("NT-"+ID.ToString(),json,response);
+                                ins.InsApiLog("NT-" + ID.ToString(), json, response);
                                 return;
                             }
                             else
@@ -420,7 +346,7 @@ namespace Saobracaj.Pantheon_Export
                                 }
                             }
                         }
-                        ins.InsApiLog("NT-"+ID.ToString(), json,response);
+                        ins.InsApiLog("NT-" + ID.ToString(), json, response);
                     }
 
                 }
@@ -431,6 +357,34 @@ namespace Saobracaj.Pantheon_Export
             }
 
             FillGV();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string nt = "";
+            nt = txtFilterNT.Text.ToString().TrimEnd();
+            foreach(DataGridViewRow row in dataGridView2.Rows)
+            {
+                if (nt==row.Cells[1].Value.ToString().TrimEnd())
+                {
+                    row.Selected = true;
+                    dataGridView2.CurrentCell = row.Cells[1];
+                }
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string nt = "";
+            nt = txtFilterNazivNT.Text.ToString().TrimEnd().ToLower();
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                if (nt == row.Cells[2].Value.ToString().TrimEnd().ToLower())
+                {
+                    row.Selected = true;
+                    dataGridView2.CurrentCell = row.Cells[2];
+                }
+            }
         }
     }
 }

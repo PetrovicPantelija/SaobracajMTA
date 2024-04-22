@@ -1,23 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
     class InsertPutniNalogTroskovi
     {
-       
 
 
 
 
-        public void InsPutniNalogTroskovi(int IDNadredjeni,DateTime Datum, string Svrha, Double Kolicina, DateTime DatumPotpisa, string Potpisao)
+
+        public void InsPutniNalogTroskovi(int IDNadredjeni, DateTime Datum, string Svrha, Double Kolicina, DateTime DatumPotpisa, string Potpisao)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -50,8 +46,8 @@ namespace Saobracaj.Dokumenta
             parameter3.Value = Svrha;
             myCommand.Parameters.Add(parameter3);
 
-   
-       
+
+
 
             SqlParameter parameter4 = new SqlParameter();
             parameter4.ParameterName = "@Kolicina";

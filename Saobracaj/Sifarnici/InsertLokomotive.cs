@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -39,7 +35,7 @@ namespace Saobracaj.Sifarnici
             SqlParameter parameter3 = new SqlParameter();
             parameter3.ParameterName = "@Masa";
             parameter3.SqlDbType = SqlDbType.Decimal;
-           // parameter3.Size = 10;
+            // parameter3.Size = 10;
             parameter3.Direction = ParameterDirection.Input;
             parameter3.Value = Masa;
             myCommand.Parameters.Add(parameter3);
@@ -207,7 +203,7 @@ namespace Saobracaj.Sifarnici
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateLokomotive";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-            
+
             SqlParameter parameter = new SqlParameter();
             parameter.ParameterName = "@SmSifra";
             parameter.SqlDbType = SqlDbType.Char;

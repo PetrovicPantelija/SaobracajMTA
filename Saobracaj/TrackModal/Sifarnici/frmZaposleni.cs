@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 
 
@@ -37,12 +29,12 @@ namespace Testiranje.Sifarnici
             txtSifra.Enabled = false;
             txtemail.Text = "";
             txtIme.Text = "";
-            txtNapomena.Text  = "";
+            txtNapomena.Text = "";
             txtPrezime.Text = "";
             txtRadnoMesto.Text = "";
             txtSifraERP.Text = "";
             txtTelefon.Text = "";
-            
+
         }
 
         private void RefreshDataGrid()
@@ -103,24 +95,24 @@ namespace Testiranje.Sifarnici
             DataGridViewColumn column8 = dataGridView1.Columns[7];
             dataGridView1.Columns[7].HeaderText = "Datum";
             dataGridView1.Columns[7].Width = 100;
-            
+
             DataGridViewColumn column9 = dataGridView1.Columns[8];
             dataGridView1.Columns[8].HeaderText = "Korisnik";
             dataGridView1.Columns[8].Width = 100;
 
-             DataGridViewColumn column10 = dataGridView1.Columns[9];
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
             dataGridView1.Columns[9].HeaderText = "Školska sprema";
             dataGridView1.Columns[9].Width = 100;
 
-             DataGridViewColumn column11 = dataGridView1.Columns[10];
+            DataGridViewColumn column11 = dataGridView1.Columns[10];
             dataGridView1.Columns[10].HeaderText = "Org jedinica";
             dataGridView1.Columns[10].Width = 100;
 
-              DataGridViewColumn column12 = dataGridView1.Columns[11];
+            DataGridViewColumn column12 = dataGridView1.Columns[11];
             dataGridView1.Columns[11].HeaderText = "Sifra ERP";
             dataGridView1.Columns[11].Width = 100;
 
-///,[SkolskaSprema]       ,[OrganizacionaJedinica]      ,[SifraERP]
+            ///,[SkolskaSprema]       ,[OrganizacionaJedinica]      ,[SifraERP]
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -155,7 +147,7 @@ namespace Testiranje.Sifarnici
                 //do something else
             }
 
-            
+
         }
 
         private void VratiPodatke(string ID)
@@ -173,12 +165,12 @@ namespace Testiranje.Sifarnici
                 // Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene
                 cboOrganizacionaJedinica.SelectedValue = Convert.ToInt32(dr["OrganizacionaJedinica"].ToString());
                 string ss = dr["SkolskaSprema"].ToString();
-                if (ss ==  "")
+                if (ss == "")
                     cboSkolskaSprema.SelectedValue = 0;
                 else
-                cboSkolskaSprema.SelectedValue = Convert.ToInt32(dr["SkolskaSprema"].ToString());
-               // cboTipRadnika.SelectedValue = Convert.ToInt32(dr["TipRadnika"].ToString());
-                txtPrezime.Text =dr["Prezime"].ToString().ToString();
+                    cboSkolskaSprema.SelectedValue = Convert.ToInt32(dr["SkolskaSprema"].ToString());
+                // cboTipRadnika.SelectedValue = Convert.ToInt32(dr["TipRadnika"].ToString());
+                txtPrezime.Text = dr["Prezime"].ToString().ToString();
                 txtIme.Text = dr["Ime"].ToString().ToString();
                 txtemail.Text = dr["email"].ToString().ToString();
                 txtTelefon.Text = dr["Telefon"].ToString().ToString();
@@ -323,7 +315,7 @@ namespace Testiranje.Sifarnici
 
         private void frmZaposleni_Load(object sender, EventArgs e)
         {
-           
+
             var select = " Select Distinct ID, Naziv  From SkolskaSprema";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -358,7 +350,7 @@ namespace Testiranje.Sifarnici
                 tsDelete.Enabled = false;
             }
         }
-   
+
     }
 }
 

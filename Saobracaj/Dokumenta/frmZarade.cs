@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Configuration;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -25,20 +17,14 @@ namespace Saobracaj.Dokumenta
 
         private void btnStampa_Click(object sender, EventArgs e)
         {
-           int pomMilsped = 0;
+            int pomMilsped = 0;
             if (chkMilsped.Checked == true)
                 pomMilsped = 2;
-          
-
-            int pomLokomotiva = 0;
             if (chkLokomotiva.Checked == true)
                 pomMilsped = 0;
-           
-
-            int pomVanLokomotive = 0;
             if (chkVanLokomotive.Checked == true)
                 pomMilsped = 1;
-          
+
             TESTIRANJEDataSet3TableAdapters.SelectAktivnostiTableAdapter ta = new TESTIRANJEDataSet3TableAdapters.SelectAktivnostiTableAdapter();
             TESTIRANJEDataSet3.SelectAktivnostiDataTable dt = new TESTIRANJEDataSet3.SelectAktivnostiDataTable();
 
@@ -48,7 +34,7 @@ namespace Saobracaj.Dokumenta
             TESTIRANJEDataSet3TableAdapters.SelectAktDISPTableAdapter tad = new TESTIRANJEDataSet3TableAdapters.SelectAktDISPTableAdapter();
             TESTIRANJEDataSet3.SelectAktDISPDataTable dtd = new TESTIRANJEDataSet3.SelectAktDISPDataTable();
             // TESTIRANJEDataSet3TableAdapters. tap = new TESTIRANJEDataSet3TableAdapters.SelectAktPPKTableAdapter();
-           // TESTIRANJEDataSet3.SelectAktPPKDataTable dtp = new TESTIRANJEDataSet3.SelectAktPPKDataTable();
+            // TESTIRANJEDataSet3.SelectAktPPKDataTable dtp = new TESTIRANJEDataSet3.SelectAktPPKDataTable();
             TESTIRANJEDataSet3TableAdapters.SelectObracunUkupnoTableAdapter tao = new TESTIRANJEDataSet3TableAdapters.SelectObracunUkupnoTableAdapter();
             TESTIRANJEDataSet3.SelectObracunUkupnoDataTable dto = new TESTIRANJEDataSet3.SelectObracunUkupnoDataTable();
 
@@ -68,7 +54,7 @@ namespace Saobracaj.Dokumenta
 
 
             int dtMilsped = pomMilsped;
-          
+
             ta.Fill(dt, Convert.ToInt32(cboZaposleni.SelectedValue), Convert.ToDateTime(dtpVremeOd.Value), Convert.ToDateTime(dtpVremeDo.Value), Convert.ToInt32(pomMilsped));
             tap.Fill(dtp, Convert.ToInt32(cboZaposleni.SelectedValue), Convert.ToDateTime(dtpVremeOd.Value), Convert.ToDateTime(dtpVremeDo.Value), Convert.ToInt32(pomMilsped));
             tad.Fill(dtd, Convert.ToInt32(cboZaposleni.SelectedValue), Convert.ToDateTime(dtpVremeOd.Value), Convert.ToDateTime(dtpVremeDo.Value), Convert.ToInt32(pomMilsped));
@@ -82,7 +68,7 @@ namespace Saobracaj.Dokumenta
             rds.Value = dt;
             DateTime dtStartDate = dtpVremeOd.Value;
             DateTime dtEndDate = dtpVremeDo.Value;
-           
+
 
             ReportDataSource rdsp = new ReportDataSource();
             rdsp.Name = "DataSetPPK";
@@ -109,20 +95,20 @@ namespace Saobracaj.Dokumenta
             rdsn.Value = ntp;
 
             tal.Fill(dtl);
-           
+
             ReportDataSource rdsl = new ReportDataSource();
             rdsl.Name = "DataSetZaradaStavke";
             rdsl.Value = dtl;
             ndt = dtl;
 
-           
+
 
             ReportParameter[] par = new ReportParameter[4];
             par[0] = new ReportParameter("ID", cboZaposleni.SelectedValue.ToString());
             par[1] = new ReportParameter("DatumOd", dtStartDate.ToLongDateString(), false);
             par[2] = new ReportParameter("DatumDo", dtEndDate.ToLongDateString(), false);
             par[3] = new ReportParameter("Milsped", dtMilsped.ToString(), false);
-          
+
 
             reportViewer1.LocalReport.DataSources.Clear();
             reportViewer1.LocalReport.ReportPath = "Zarada.rdlc";
@@ -158,8 +144,8 @@ namespace Saobracaj.Dokumenta
             cboZaposleni.DataSource = ds3.Tables[0];
             cboZaposleni.DisplayMember = "Opis";
             cboZaposleni.ValueMember = "ID";
-           // this.reportViewer1.RefreshReport();
-           // this.reportViewer1.RefreshReport();
+            // this.reportViewer1.RefreshReport();
+            // this.reportViewer1.RefreshReport();
         }
     }
 }

@@ -1,22 +1,18 @@
-﻿﻿
+﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
     class InsertCIR
     {
 
-        public void InsCIR(int Size , int TiKontejnera , int MaterijalCelik ,int MaterijalAlumini ,int incoming ,int Pun ,double Tezina , string BrKontejnera ,int Plomba1 , int Plomba2 , DateTime DatumIn , string Vagon ,string TruckNo , int Damaged ,int Ispravan ,int Prevoz ,string Containerresponsible , string primedbe ,string Received ,string Inspected, string Delivery , DateTime Datum,  string Korisnik, int Prijem, int Dokumenta, double Duzina, double Sirina, double Visina, string sPlomba, string sPlomba2, int Interni, double Nosivost)
+        public void InsCIR(int Size, int TiKontejnera, int MaterijalCelik, int MaterijalAlumini, int incoming, int Pun, double Tezina, string BrKontejnera, int Plomba1, int Plomba2, DateTime DatumIn, string Vagon, string TruckNo, int Damaged, int Ispravan, int Prevoz, string Containerresponsible, string primedbe, string Received, string Inspected, string Delivery, DateTime Datum, string Korisnik, int Prijem, int Dokumenta, double Duzina, double Sirina, double Visina, string sPlomba, string sPlomba2, int Interni, double Nosivost)
         {
-      
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -37,7 +33,7 @@ namespace Saobracaj.Sifarnici
             parameter1.Value = TiKontejnera;
             myCommand.Parameters.Add(parameter1);
 
-         
+
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@MaterijalCelik";
             parameter2.SqlDbType = SqlDbType.Int;
@@ -204,7 +200,7 @@ namespace Saobracaj.Sifarnici
             SqlParameter parameter24 = new SqlParameter();
             parameter24.ParameterName = "@Dokument";
             parameter24.SqlDbType = SqlDbType.Int;
-         //   parameter24.Size
+            //   parameter24.Size
             parameter24.Direction = ParameterDirection.Input;
             parameter24.Value = Dokumenta;
             myCommand.Parameters.Add(parameter24);
@@ -223,7 +219,7 @@ namespace Saobracaj.Sifarnici
             parameter26.Value = Sirina;
             myCommand.Parameters.Add(parameter26);
 
-              SqlParameter parameter27 = new SqlParameter();
+            SqlParameter parameter27 = new SqlParameter();
             parameter27.ParameterName = "@Visina";
             parameter27.SqlDbType = SqlDbType.Decimal;
             parameter27.Direction = ParameterDirection.Input;
@@ -721,10 +717,10 @@ namespace Saobracaj.Sifarnici
         }
 
 
-        public void InsCIRGreske(int IDNadredjenog, int IDGreske, int IDDela  ,DateTime Datum, string Korisnik)
+        public void InsCIRGreske(int IDNadredjenog, int IDGreske, int IDDela, DateTime Datum, string Korisnik)
         {
 
-       
+
 
 
             /*  int ID , int Size , int TiKontejnera , 
@@ -825,7 +821,7 @@ namespace Saobracaj.Sifarnici
             }
         }
 
-        public void DelCIRGreske( int IDGreske)
+        public void DelCIRGreske(int IDGreske)
         {
 
 
@@ -842,7 +838,7 @@ namespace Saobracaj.Sifarnici
             myCommand.CommandText = "DeleteCIRGreske";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-          
+
 
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@IDGreske";

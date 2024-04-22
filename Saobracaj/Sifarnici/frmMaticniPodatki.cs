@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Globalization;
-using Syncfusion.Windows.Forms.Grid.Grouping;
-using Syncfusion.Windows.Forms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -36,7 +27,7 @@ namespace Saobracaj.Sifarnici
 
         private void tsSave_Click(object sender, EventArgs e)
         {
-           
+
 
             if (status == true)
             {
@@ -181,7 +172,7 @@ namespace Saobracaj.Sifarnici
             var c5 = new SqlConnection(s_connection5);
             var dataAdapter5 = new SqlDataAdapter(select5, c5);
 
-            var commandBuilder5= new SqlCommandBuilder(dataAdapter5);
+            var commandBuilder5 = new SqlCommandBuilder(dataAdapter5);
             var ds5 = new DataSet();
             dataAdapter5.Fill(ds5);
             txtJM2.DataSource = ds5.Tables[0];

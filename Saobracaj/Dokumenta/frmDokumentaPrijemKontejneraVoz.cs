@@ -1,24 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Configuration;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Data.OleDb;
+using System.Data;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
-using System.Drawing.Imaging;
-using Saobracaj;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -143,7 +129,7 @@ namespace Saobracaj.Dokumenta
              * */
             string configvalue1 = ConfigurationManager.AppSettings["ip"];
             targetPath = @"\\" + configvalue1 + "\\PrijemnaDok\\" + FolderDestinacije;
-           // }
+            // }
 
             string sourceFile = putanja;
             string destFile = System.IO.Path.Combine(targetPath, result);
@@ -155,9 +141,9 @@ namespace Saobracaj.Dokumenta
 
             var remote = Path.Combine(targetPath, result);
             File.Copy(sourceFile, remote);
-         
-             txtPutanja.Text = remote;
-            
+
+            txtPutanja.Text = remote;
+
 
 
 
@@ -179,7 +165,7 @@ namespace Saobracaj.Dokumenta
         {
             if (status == true)
             {
-               Saobracaj.Dokumenta.InsertDokumentaPrijemKontejneraVoz ins = new Saobracaj.Dokumenta.InsertDokumentaPrijemKontejneraVoz();
+                Saobracaj.Dokumenta.InsertDokumentaPrijemKontejneraVoz ins = new Saobracaj.Dokumenta.InsertDokumentaPrijemKontejneraVoz();
                 KopirajFajlPoTipu(txtPutanja.Text, txtSifraVozila.Text, 6);
                 ins.InsPrijemDokumenta(Convert.ToInt32(txtSifraVozila.Text), txtPutanja.Text);
                 RefreshDataGrid();
@@ -224,7 +210,7 @@ namespace Saobracaj.Dokumenta
 
             if (dialogResult == DialogResult.Yes)
             {
-               Saobracaj.Dokumenta.InsertDokumentaPrijemKontejneraVoz del = new Saobracaj.Dokumenta.InsertDokumentaPrijemKontejneraVoz();
+                Saobracaj.Dokumenta.InsertDokumentaPrijemKontejneraVoz del = new Saobracaj.Dokumenta.InsertDokumentaPrijemKontejneraVoz();
 
                 del.DelPrijemDokumenta(Convert.ToInt32(txtSifra.Text));
                 RefreshDataGrid();
@@ -232,7 +218,7 @@ namespace Saobracaj.Dokumenta
             else if (dialogResult == DialogResult.No)
             {
                 //do something else
-            } 
+            }
 
         }
 

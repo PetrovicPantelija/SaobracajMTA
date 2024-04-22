@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Testiranje.Dokumeta
 {
@@ -30,7 +26,7 @@ namespace Testiranje.Dokumeta
             myCommand.Parameters.Add(parameter1);
 
 
-      
+
 
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@Polazak";
@@ -38,7 +34,7 @@ namespace Testiranje.Dokumeta
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = Polazak;
             myCommand.Parameters.Add(parameter2);
-           
+
 
             SqlParameter parameter3 = new SqlParameter();
             parameter3.ParameterName = "@Datum";
@@ -94,7 +90,7 @@ namespace Testiranje.Dokumeta
             parameter9.Value = TezinaRute;
             myCommand.Parameters.Add(parameter9);
 
-           
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

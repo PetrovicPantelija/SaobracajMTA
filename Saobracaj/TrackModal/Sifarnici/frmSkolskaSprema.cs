@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Testiranje.Sifarnici
 {
@@ -73,7 +63,7 @@ namespace Testiranje.Sifarnici
                 //do something else
             }
 
-            
+
         }
 
         private void RefreshDataGrid()
@@ -271,7 +261,7 @@ namespace Testiranje.Sifarnici
             con.Open();
 
             SqlCommand cmd = new SqlCommand("select top 1 ID as ID from SkolskaSprema where ID >" + Convert.ToInt32(txtSifra.Text) + " Order by ID", con);
-            
+
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())

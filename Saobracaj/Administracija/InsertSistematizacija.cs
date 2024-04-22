@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
@@ -28,7 +24,7 @@ namespace Saobracaj.Administracija
             parameter.Value = Naziv;
             myCommand.Parameters.Add(parameter);
 
-           
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -178,7 +174,7 @@ namespace Saobracaj.Administracija
             }
         }
 
-       // DeleteSistematizacijaPovezivanje
+        // DeleteSistematizacijaPovezivanje
         public void InsertSistematizacijaPovezivanje(int IDLargo, int IDDincic)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -294,6 +290,6 @@ namespace Saobracaj.Administracija
                 }
             }
         }
-    
+
     }
 }

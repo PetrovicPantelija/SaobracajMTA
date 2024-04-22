@@ -1,28 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Syncfusion.Windows.Forms.Grid.Grouping;
+using System;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-using Syncfusion.Windows.Forms.Grid.Grouping;
-using Syncfusion.Data;
-using Syncfusion.Drawing;
-using Syncfusion.Windows.Forms.Grid;
-using Syncfusion.Grouping;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Testiranje.Dokumeta
 {
-    public partial class frmCIRPregled :  Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmCIRPregled : Syncfusion.Windows.Forms.Office2010Form
     {
         public frmCIRPregled()
         {
@@ -92,7 +77,7 @@ namespace Testiranje.Dokumeta
             dataGridView1.ReadOnly = false;
             dataGridView1.DataSource = ds.Tables[0];
 
-         
+
 
 
 

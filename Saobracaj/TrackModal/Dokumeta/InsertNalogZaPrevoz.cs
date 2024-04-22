@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Testiranje.Dokumeta
 {
@@ -41,14 +37,14 @@ namespace Testiranje.Dokumeta
            @Datum datetime,
            @Korisnik nvarchar(20)
             */
-          
+
 
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@BrojKontejnera1";
             parameter1.SqlDbType = SqlDbType.NVarChar;
             parameter1.Size = 20;
             parameter1.Direction = ParameterDirection.Input;
-            parameter1.Value =  BrojKontejnera1;
+            parameter1.Value = BrojKontejnera1;
             myCommand.Parameters.Add(parameter1);
 
             SqlParameter parameter2 = new SqlParameter();
@@ -56,7 +52,7 @@ namespace Testiranje.Dokumeta
             parameter2.SqlDbType = SqlDbType.NVarChar;
             parameter2.Size = 20;
             parameter2.Direction = ParameterDirection.Input;
-            parameter2.Value =  BrojKontejnera2;
+            parameter2.Value = BrojKontejnera2;
             myCommand.Parameters.Add(parameter2);
 
             SqlParameter parameter3 = new SqlParameter();
@@ -67,72 +63,72 @@ namespace Testiranje.Dokumeta
             myCommand.Parameters.Add(parameter3);
 
 
-             SqlParameter parameter4 = new SqlParameter();
+            SqlParameter parameter4 = new SqlParameter();
             parameter4.ParameterName = "@Relacija1";
             parameter4.SqlDbType = SqlDbType.NVarChar;
             parameter4.Size = 30;
             parameter4.Direction = ParameterDirection.Input;
-            parameter4.Value =  Relacija1;
+            parameter4.Value = Relacija1;
             myCommand.Parameters.Add(parameter4);
-           
-      SqlParameter parameter5 = new SqlParameter();
+
+            SqlParameter parameter5 = new SqlParameter();
             parameter5.ParameterName = "@Relacija2";
             parameter5.SqlDbType = SqlDbType.NVarChar;
             parameter5.Size = 30;
             parameter5.Direction = ParameterDirection.Input;
-            parameter5.Value =  Relacija2;
+            parameter5.Value = Relacija2;
             myCommand.Parameters.Add(parameter5);
 
-               SqlParameter parameter6 = new SqlParameter();
+            SqlParameter parameter6 = new SqlParameter();
             parameter6.ParameterName = "@DatumPrevoza";
             parameter6.SqlDbType = SqlDbType.DateTime;
             parameter6.Direction = ParameterDirection.Input;
             parameter6.Value = DatumPrevoza;
             myCommand.Parameters.Add(parameter6);
 
-             SqlParameter parameter7 = new SqlParameter();
+            SqlParameter parameter7 = new SqlParameter();
             parameter7.ParameterName = "@VrstaRobe";
             parameter7.SqlDbType = SqlDbType.NVarChar;
             parameter7.Size = 30;
             parameter7.Direction = ParameterDirection.Input;
-            parameter7.Value =  VrstaRobe;
+            parameter7.Value = VrstaRobe;
             myCommand.Parameters.Add(parameter7);
 
-               SqlParameter parameter8 = new SqlParameter();
+            SqlParameter parameter8 = new SqlParameter();
             parameter8.ParameterName = "@UkupnaMasa2";
             parameter8.SqlDbType = SqlDbType.Decimal;
             parameter8.Direction = ParameterDirection.Input;
             parameter8.Value = UkupnaMasa2;
             myCommand.Parameters.Add(parameter8);
 
-              SqlParameter parameter9 = new SqlParameter();
+            SqlParameter parameter9 = new SqlParameter();
             parameter9.ParameterName = "@Platilac";
             parameter9.SqlDbType = SqlDbType.Int;
             parameter9.Direction = ParameterDirection.Input;
             parameter9.Value = Platilac;
             myCommand.Parameters.Add(parameter9);
-       
-          SqlParameter parameter10 = new SqlParameter();
+
+            SqlParameter parameter10 = new SqlParameter();
             parameter10.ParameterName = "@OrganizacionaJedinica";
             parameter10.SqlDbType = SqlDbType.Int;
             parameter10.Direction = ParameterDirection.Input;
             parameter10.Value = OrganizacionaJedinica;
             myCommand.Parameters.Add(parameter10);
-        
+
             SqlParameter parameter11 = new SqlParameter();
             parameter11.ParameterName = "@UtovarnoMesto";
             parameter11.SqlDbType = SqlDbType.NVarChar;
             parameter11.Size = 70;
             parameter11.Direction = ParameterDirection.Input;
-            parameter11.Value =  UtovarnoMesto;
+            parameter11.Value = UtovarnoMesto;
             myCommand.Parameters.Add(parameter11);
-       
-          SqlParameter parameter12 = new SqlParameter();
+
+            SqlParameter parameter12 = new SqlParameter();
             parameter12.ParameterName = "@IstovarnoMesto";
             parameter12.SqlDbType = SqlDbType.NVarChar;
             parameter12.Size = 70;
             parameter12.Direction = ParameterDirection.Input;
-            parameter12.Value =  IstovarnoMesto;
+            parameter12.Value = IstovarnoMesto;
             myCommand.Parameters.Add(parameter12);
 
             SqlParameter parameter13 = new SqlParameter();
@@ -140,18 +136,18 @@ namespace Testiranje.Dokumeta
             parameter13.SqlDbType = SqlDbType.NVarChar;
             parameter13.Size = 70;
             parameter13.Direction = ParameterDirection.Input;
-            parameter13.Value =  KontaktOsoba;
+            parameter13.Value = KontaktOsoba;
             myCommand.Parameters.Add(parameter13);
 
-           SqlParameter parameter14 = new SqlParameter();
+            SqlParameter parameter14 = new SqlParameter();
             parameter14.ParameterName = "@Napomena";
             parameter14.SqlDbType = SqlDbType.NVarChar;
             parameter14.Size = 300;
             parameter14.Direction = ParameterDirection.Input;
-            parameter14.Value =  Napomena;
+            parameter14.Value = Napomena;
             myCommand.Parameters.Add(parameter14);
-          
-              SqlParameter parameter15 = new SqlParameter();
+
+            SqlParameter parameter15 = new SqlParameter();
             parameter15.ParameterName = "@Datum";
             parameter15.SqlDbType = SqlDbType.DateTime;
             parameter15.Direction = ParameterDirection.Input;
@@ -262,7 +258,7 @@ namespace Testiranje.Dokumeta
             }
         }
 
-        public void UpdNaloziZaPrevoz(int ID, string BrojKontejnera1, string BrojKontejnera2, double UkupnaMasa, string Relacija1, string Relacija2, DateTime DatumPrevoza, string VrstaRobe, double UkupnaMasa2, int Platilac, int OrganizacionaJedinica, string UtovarnoMesto, string IstovarnoMesto, string KontaktOsoba, string Napomena, DateTime Datum, string Korisnik, int Primalac, int statusrn,  DateTime DatumUtovara, DateTime PredvidjenoDatumUtovara, string TipKontejnera1, string TipKontejnera2, int VrstaRobeID, double NetoMasaRobe)
+        public void UpdNaloziZaPrevoz(int ID, string BrojKontejnera1, string BrojKontejnera2, double UkupnaMasa, string Relacija1, string Relacija2, DateTime DatumPrevoza, string VrstaRobe, double UkupnaMasa2, int Platilac, int OrganizacionaJedinica, string UtovarnoMesto, string IstovarnoMesto, string KontaktOsoba, string Napomena, DateTime Datum, string Korisnik, int Primalac, int statusrn, DateTime DatumUtovara, DateTime PredvidjenoDatumUtovara, string TipKontejnera1, string TipKontejnera2, int VrstaRobeID, double NetoMasaRobe)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -571,7 +567,7 @@ namespace Testiranje.Dokumeta
             parameter2.Value = VrstaManipulacijeID;
             myCommand.Parameters.Add(parameter2);
 
-           
+
             SqlParameter parameter15 = new SqlParameter();
             parameter15.ParameterName = "@Datum";
             parameter15.SqlDbType = SqlDbType.DateTime;

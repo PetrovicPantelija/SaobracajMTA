@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
-using System.Configuration;
+﻿using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms.Grid.Grouping;
-using Syncfusion.Data;
-using Syncfusion.Drawing;
-using Syncfusion.Windows.Forms.Grid;
-using Syncfusion.Grouping;
+using System;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
@@ -151,7 +143,6 @@ Koleta
 
 */
             SqlConnection conn = new SqlConnection(connection);
-            string updatestring = "";
             switch (cboPolje.Text)
             {
                 case "Datum BZ":
@@ -160,7 +151,7 @@ Koleta
                     txtOpsti.Visible = false;
                     chkOpsti.Visible = false;
                     nmrOpsti.Visible = false;
-                  //  updatestring = " Update uvoz set NazivBroda = " + cbBrod.SelectedValue;
+                    //  updatestring = " Update uvoz set NazivBroda = " + cbBrod.SelectedValue;
                     break;
                 case "ATA broda u Luku Rijeka":
                     dtpOpsti.Visible = true;
@@ -169,7 +160,7 @@ Koleta
                     chkOpsti.Visible = false;
                     nmrOpsti.Visible = false;
                     break;
-                   
+
                 case "DobijenBZ":
                     dtpOpsti.Visible = false;
                     cboOpsti.Visible = false;
@@ -254,8 +245,8 @@ Koleta
                     chkOpsti.Visible = false;
                     nmrOpsti.Visible = false;
                     break;
- 
-   
+
+
                 case "Vrsta kontejnera":
                     dtpOpsti.Visible = false;
                     cboOpsti.Visible = true;
@@ -755,28 +746,28 @@ Koleta
             switch (cboPolje.Text)
             {
                 case "Datum BZ":
-                        updatestring = " Update uvoz set obijeBZ = " + Convert.ToDateTime(dtpOpsti.Text) + " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvoz set obijeBZ = " + Convert.ToDateTime(dtpOpsti.Text) + " where ID =" + IdZaPromenu;
                     break;
                 case "ATA broda u Luku Rijeka":
-                    updatestring = " Update uvoz set EtaBroda = " + Convert.ToDateTime(dtpOpsti.Value)+ " where ID =" + IdZaPromenu;
+                    updatestring = " Update uvoz set EtaBroda = " + Convert.ToDateTime(dtpOpsti.Value) + " where ID =" + IdZaPromenu;
                     break;
 
                 case "DobijenBZ":
-                  
+
                     temp = 0;
                     if (chkOpsti.Checked == true)
                     { temp = 1; }
-                    updatestring = " Update uvoz set DobijenBZ = " + temp + " where ID ="  + IdZaPromenu;
+                    updatestring = " Update uvoz set DobijenBZ = " + temp + " where ID =" + IdZaPromenu;
                     break;
                 case "Prioritet":
-                   
+
                     temp = 0;
                     if (chkOpsti.Checked == true)
                     { temp = 1; }
                     updatestring = " Update uvoz set Prioritet = " + temp + " where ID =" + IdZaPromenu;
                     break;
                 case "PIN":
-                   
+
                     updatestring = " Update uvoz set PIN = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
                     break;
                 case "Broj kontejnera":
@@ -784,7 +775,7 @@ Koleta
                     break;
                 case "BL":
                     updatestring = " Update uvoz set BrodskaTeretnica = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
-                    
+
                     break;
                 case "Ref za fakturisanje 1":
                     updatestring = " Update uvoz set Ref1 = '" + txtOpsti.Text + "' where ID =" + IdZaPromenu;
@@ -892,7 +883,7 @@ Koleta
 
             }
 
-            string updateSql = updatestring ;
+            string updateSql = updatestring;
 
             SqlConnection conn2 = new SqlConnection(connection);
             SqlCommand cmd = new SqlCommand(updateSql, conn2);

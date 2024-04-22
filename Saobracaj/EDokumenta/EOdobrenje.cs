@@ -3,20 +3,13 @@ using Newtonsoft.Json.Linq;
 using Saobracaj.Sifarnici;
 //using RestSharp;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Mime;
-using System.Text;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
@@ -1692,7 +1685,7 @@ namespace Saobracaj.eDokumenta
                     string json = "{\n" +
                         "Username:" + txt_uName.Text.ToString().TrimEnd() + "," +
                         "\nPassword:\"" + txt_Password.Text.ToString().TrimEnd() + "\"," +
-                        "\nCompanyId:\""+Saobracaj.Sifarnici.frmLogovanje.PIB+"\"," +
+                        "\nCompanyId:\"" + Saobracaj.Sifarnici.frmLogovanje.PIB + "\"," +
                         "\nSoftwareId:\"MtaSoft-001\"," +
                         "\nSendToCir:null," +
                         "\nFile:" + xmlEscape + "\n}";
@@ -1733,7 +1726,7 @@ namespace Saobracaj.eDokumenta
                     string json = "{\n" +
                         "Username:" + txt_uName.Text.ToString().TrimEnd() + "," +
                         "\nPassword:\"" + txt_Password.Text.ToString().TrimEnd() + "\"," +
-                        "\nCompanyId:\""+Saobracaj.Sifarnici.frmLogovanje.PIB+"\"," +
+                        "\nCompanyId:\"" + Saobracaj.Sifarnici.frmLogovanje.PIB + "\"," +
                         "\nSoftwareId:\"MtaSoft-001\"," +
                         "\nSendToCir:true," +
                         "\nFile:" + xmlEscape + "\n}";
@@ -1776,7 +1769,7 @@ namespace Saobracaj.eDokumenta
                 string json2 = "{\n" +
             "Username:Test," +
             "\nPassword:\"TestPass\"," +
-            "\nCompanyId:\""+Saobracaj.Sifarnici.frmLogovanje.PIB+"\"," +
+            "\nCompanyId:\"" + Saobracaj.Sifarnici.frmLogovanje.PIB + "\"," +
             "\nSoftwareId:\"MtaSoft-001\"," +
             "\nElectronicId:" + elID + "}";
 

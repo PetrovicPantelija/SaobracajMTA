@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Configuration;
-
-using Microsoft.Reporting.WinForms;
-using System.IO;
-using Saobracaj.Sifarnici;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -32,7 +23,7 @@ namespace Saobracaj.Dokumenta
         private void FillGV()
         {
 
-            var select = "  SELECT     LokomotivaPrimopredaja.ID, LokomotivaPrimopredaja.StavkaAktivnostiID, " + 
+            var select = "  SELECT     LokomotivaPrimopredaja.ID, LokomotivaPrimopredaja.StavkaAktivnostiID, " +
             " LokomotivaPrimopredaja.VrstaPosla, LokomotivaPrimopredaja.VrstaPrimopredaje, " +
             "  LokomotivaPrimopredaja.Kilometraza, LokomotivaPrimopredaja.MotoSati,  LokomotivaPrimopredaja.Napomena, LokomotivaPrimopredaja.Lokomotiva, " +
                    "    LokomotivaPrimopredaja.Dizel, AktivnostiStavke.VrstaAktivnostiID, AktivnostiStavke.Sati, AktivnostiStavke.Posao, AktivnostiStavke.OznakaPosla, AktivnostiStavke.DatumZavrsetka, " +

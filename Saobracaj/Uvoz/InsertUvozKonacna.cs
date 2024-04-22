@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
@@ -13,14 +9,14 @@ namespace Saobracaj.Uvoz
     class InsertUvozKonacna
     {
         string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-       
-        public void InsUvozKonacna(int ID,  int IDNadredjeni, DateTime ETABroda, DateTime ATABroda, string Status, string BrojKont, int TipKont, DateTime DobijenNalog, string DobijeBZ, string Napomena,
+
+        public void InsUvozKonacna(int ID, int IDNadredjeni, DateTime ETABroda, DateTime ATABroda, string Status, string BrojKont, int TipKont, DateTime DobijenNalog, string DobijeBZ, string Napomena,
             string PIN, int DirigacijaKont, int NazivBroda, string BTeretnica, int ADR, int Vlasnik, int Buking, string Nalogodavac, string VrstaUsluge, int Uvoznik, int NHM,
             int NazivRobe, int SpedicijaGranicna, int SpedicijaRTC, int CarinskiPostupak, int PostupakRoba, int NacinPakovanja, int OdredisnaCarina, int OdredisnaSpedicija,
             int MestoIstovara, int KontaktOsoba, string Mail, string Plomba1, string Plomba2, decimal NetoRoba, decimal BrutoRoba, decimal TaraKont, decimal BrutoKont,
             int NapomenaPoz, DateTime ATAOtpreme, int BrojVoza, string Relacija, DateTime ATADolazak, decimal Koleta, int RLTerminali
             , string Napomena1, int VrstaPregleda, int Nalogodavac1, string Ref1, int Nalogodavac2,
-string Ref2, int Nalogodavac3, string Ref3, int Brodar , string NaslovStatusaVozila, int DobijenBZ, int Prioritet)
+string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -185,7 +181,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar , string NaslovStatusaVoz
             SqlParameter nazivRobe = new SqlParameter();
             nazivRobe.ParameterName = "@NazivRobe";
             nazivRobe.SqlDbType = SqlDbType.Int;
-         
+
             nazivRobe.Direction = ParameterDirection.Input;
             nazivRobe.Value = NazivRobe;
             cmd.Parameters.Add(nazivRobe);
@@ -242,7 +238,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar , string NaslovStatusaVoz
             SqlParameter mesto = new SqlParameter();
             mesto.ParameterName = "@MestoIstovara";
             mesto.SqlDbType = SqlDbType.Int;
-           // mesto.Size = 50;
+            // mesto.Size = 50;
             mesto.Direction = ParameterDirection.Input;
             mesto.Value = MestoIstovara;
             cmd.Parameters.Add(mesto);
@@ -250,7 +246,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar , string NaslovStatusaVoz
             SqlParameter kontakt = new SqlParameter();
             kontakt.ParameterName = "@KontaktOsoba";
             kontakt.SqlDbType = SqlDbType.Int;
-          //  kontakt.Size = 50;
+            //  kontakt.Size = 50;
             kontakt.Direction = ParameterDirection.Input;
             kontakt.Value = KontaktOsoba;
             cmd.Parameters.Add(kontakt);
@@ -368,7 +364,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar , string NaslovStatusaVoz
             SqlParameter vrstapregleda = new SqlParameter();
             vrstapregleda.ParameterName = "@VrstaPregleda";
             vrstapregleda.SqlDbType = SqlDbType.Int;
-           // vrstapregleda.Size = 100;
+            // vrstapregleda.Size = 100;
             vrstapregleda.Direction = ParameterDirection.Input;
             vrstapregleda.Value = VrstaPregleda;
             cmd.Parameters.Add(vrstapregleda);
@@ -482,7 +478,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar , string NaslovStatusaVoz
                 }
             }
         }
-        public void UpdUvozKonacna(int ID,int IDNadredjeni , DateTime ETABroda, DateTime ATABroda, string Status, string BrojKont, int TipKont, DateTime DobijenNalog, string DobijeBZ, string Napomena,
+        public void UpdUvozKonacna(int ID, int IDNadredjeni, DateTime ETABroda, DateTime ATABroda, string Status, string BrojKont, int TipKont, DateTime DobijenNalog, string DobijeBZ, string Napomena,
             string PIN, int DirigacijaKont, int NazivBroda, string BTeretnica, int ADR, int Vlasnik, int Buking, string Nalogodavac, string VrstaUsluge, int Uvoznik, int NHM,
             int NazivRobe, int SpedicijaGranicna, int SpedicijaRTC, int CarinskiPostupak, int PostupakRoba, int NacinPakovanja, int OdredisnaCarina, int OdredisnaSpedicija,
             int MestoIstovara, int KontaktOsoba, string Mail, string Plomba1, string Plomba2, decimal NetoRoba, decimal BrutoRoba, decimal TaraKont, decimal BrutoKont,
@@ -501,7 +497,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             id.Direction = ParameterDirection.Input;
             id.Value = ID;
             cmd.Parameters.Add(id);
-            
+
 
             SqlParameter idnadredjeni = new SqlParameter();
             idnadredjeni.ParameterName = "@IDNadredjeni";
@@ -710,7 +706,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             SqlParameter mesto = new SqlParameter();
             mesto.ParameterName = "@MestoIstovara";
             mesto.SqlDbType = SqlDbType.Int;
-           // mesto.Size = 50;
+            // mesto.Size = 50;
             mesto.Direction = ParameterDirection.Input;
             mesto.Value = MestoIstovara;
             cmd.Parameters.Add(mesto);
@@ -718,7 +714,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             SqlParameter kontakt = new SqlParameter();
             kontakt.ParameterName = "@KontaktOsoba";
             kontakt.SqlDbType = SqlDbType.Int;
-          //  kontakt.Size = 50;
+            //  kontakt.Size = 50;
             kontakt.Direction = ParameterDirection.Input;
             kontakt.Value = KontaktOsoba;
             cmd.Parameters.Add(kontakt);
@@ -836,7 +832,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             SqlParameter vrstapregleda = new SqlParameter();
             vrstapregleda.ParameterName = "@VrstaPregleda";
             vrstapregleda.SqlDbType = SqlDbType.Int;
-          //  vrstapregleda.Size = 100;
+            //  vrstapregleda.Size = 100;
             vrstapregleda.Direction = ParameterDirection.Input;
             vrstapregleda.Value = VrstaPregleda;
             cmd.Parameters.Add(vrstapregleda);
@@ -1231,9 +1227,9 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
 
         public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV, string Pokret, int StatusKontejnera, string Korisnik, string pomForma)
         {
-          //  @IdNadredjena int,
-//@IDVrstaManipulacije int,
-//@Cena numeric(18, 2)
+            //  @IdNadredjena int,
+            //@IDVrstaManipulacije int,
+            //@Cena numeric(18, 2)
 
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -1767,7 +1763,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             }
         }
 
-        public void InsUvozKonacnaNapomenePozicioniranja(int IDNadredjena, int IDNapomene,string  stNapomene)
+        public void InsUvozKonacnaNapomenePozicioniranja(int IDNadredjena, int IDNapomene, string stNapomene)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -2547,7 +2543,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             cmd.Parameters.Add(id);
 
 
-           
+
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;

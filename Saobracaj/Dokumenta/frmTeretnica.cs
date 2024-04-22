@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Configuration;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -37,9 +30,7 @@ namespace Saobracaj.Dokumenta
         {
             InitializeComponent();
             NovaTeretnica = 1;
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
 
         public frmTeretnica(string KorisnikTeretnica)
@@ -47,9 +38,7 @@ namespace Saobracaj.Dokumenta
             InitializeComponent();
             NovaTeretnica = 1;
             Korisnik = KorisnikTeretnica;
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
+
         }
 
         public frmTeretnica(string IdTeretnice, string KorisnikTeretnica)
@@ -60,97 +49,7 @@ namespace Saobracaj.Dokumenta
             VratiPodatke(IdTeretnice);
             RefreshDataGrid();
             NovaTeretnica = 0;
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
-        }
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
 
-            while (dr.Read())
-            {
-                if (dr.HasRows)
-                {
-                    if (count == 0)
-                    {
-                        niz = dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                    else
-                    {
-                        niz = niz + "," + dr["IdGrupe"].ToString();
-                        count++;
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Korisnik ne pripada grupi");
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
         }
         private void VratiPodatke(string IdTeretnice)
         {
@@ -165,7 +64,7 @@ namespace Saobracaj.Dokumenta
             while (dr.Read())
             {
                 txtVozBroj.Text = dr["BrojTeretnice"].ToString();
-                cboStanicaOd.SelectedValue = Convert.ToInt32(dr["StanicaOd"].ToString()); 
+                cboStanicaOd.SelectedValue = Convert.ToInt32(dr["StanicaOd"].ToString());
                 cboStanicaDo.SelectedValue = Convert.ToInt32(dr["StanicaDo"].ToString());
                 cboStanicaPopisa.SelectedValue = Convert.ToInt32(dr["StanicaPopisa"].ToString());
                 dtpVremeOd.Value = Convert.ToDateTime(dr["VremeOd"].ToString());
@@ -180,7 +79,7 @@ namespace Saobracaj.Dokumenta
                 }
                 else
                 {
-                  chkPrijemna.Checked = false;     
+                    chkPrijemna.Checked = false;
                 }
 
 
@@ -234,8 +133,8 @@ namespace Saobracaj.Dokumenta
             SqlCommand cmd = new SqlCommand("SELECT [ID] ,[RB] ,[BrojTeretnice] ,[IDNajave] ,[Uvrstena] "
             + " ,[Otkacena] ,[BrojKola] ,[Serija] ,[BrojOsovina] ,[Duzina] ,[Tara] ,[Neto] ,[G] "
             + " ,[P] ,[R] ,[RR] ,[VRNP] ,[Otpravna] ,[Uputna] ,[Reon] ,[Primedba],[RucKoc], [Uvozna], [Izvozna], RID, Dokument "
-            + " FROM [TESTIRANJE].[dbo].[TeretnicaStavke]  where BrojTeretnice=" + IdTeretnice +  " and RB = "  + RB, con);
-           
+            + " FROM [TESTIRANJE].[dbo].[TeretnicaStavke]  where BrojTeretnice=" + IdTeretnice + " and RB = " + RB, con);
+
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -247,7 +146,7 @@ namespace Saobracaj.Dokumenta
                 txtBrojKola.Text = dr["BrojKola"].ToString();
                 txtSerija.Text = dr["Serija"].ToString();
                 txtBrojOsovina.Text = dr["BrojOsovina"].ToString();
-                txtDuzina.Value = Convert.ToDecimal(dr["Duzina"].ToString()); 
+                txtDuzina.Value = Convert.ToDecimal(dr["Duzina"].ToString());
                 txtTara.Value = Convert.ToDecimal(dr["Tara"].ToString());
                 txtNeto.Value = Convert.ToDecimal(dr["Neto"].ToString());
                 txtG.Value = Convert.ToDecimal(dr["G"].ToString());
@@ -292,7 +191,7 @@ namespace Saobracaj.Dokumenta
                 {
                     pomPrijemna = 0;
                 }
-               
+
                 InsertTeretnica ins = new InsertTeretnica();
                 ins.InsTeretnica(txtVozBroj.Text, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboStanicaPopisa.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, txtBrojLista.Text, pomPrijemna, pomPredajna, Korisnik, pomPrevozna, Convert.ToInt32(txtRN.Text), Convert.ToInt32(cboTrainList.SelectedValue), txtNapomena.Text);
                 VratiPodatkeMax();
@@ -310,7 +209,7 @@ namespace Saobracaj.Dokumenta
                     pomPrijemna = 0;
                 }
                 InsertTeretnica upd = new InsertTeretnica();
-                upd.UpdTeretnica(Convert.ToInt32(txtSifra.Text), txtVozBroj.Text, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboStanicaPopisa.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, txtBrojLista.Text, pomPrijemna, pomPredajna, Korisnik, pomPrevozna, Convert.ToInt32(txtRN.Text), Convert.ToInt32(cboTrainList.SelectedValue),  txtNapomena.Text);
+                upd.UpdTeretnica(Convert.ToInt32(txtSifra.Text), txtVozBroj.Text, Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboStanicaPopisa.SelectedValue), dtpVremeOd.Value, dtpVremeDo.Value, txtBrojLista.Text, pomPrijemna, pomPredajna, Korisnik, pomPrevozna, Convert.ToInt32(txtRN.Text), Convert.ToInt32(cboTrainList.SelectedValue), txtNapomena.Text);
             }
         }
 
@@ -340,7 +239,7 @@ namespace Saobracaj.Dokumenta
             var commandBuilder6 = new SqlCommandBuilder(dataAdapter6);
             var ds6 = new DataSet();
             var ds7 = new DataSet();
-            var ds8= new DataSet();
+            var ds8 = new DataSet();
             var ds9 = new DataSet();
             var ds10 = new DataSet();
             var ds11 = new DataSet();
@@ -357,7 +256,7 @@ namespace Saobracaj.Dokumenta
             dataAdapter6.Fill(ds12);
             dataAdapter6.Fill(ds13);
             dataAdapter6.Fill(ds14);
-        
+
             cboStanicaOd.DataSource = ds6.Tables[0];
             cboStanicaOd.DisplayMember = "Stanica";
             cboStanicaOd.ValueMember = "ID";
@@ -399,7 +298,7 @@ namespace Saobracaj.Dokumenta
                 this.reportViewer1.RefreshReport();
 
             }
-           
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -422,14 +321,14 @@ namespace Saobracaj.Dokumenta
                     ins.InsTeretnicaStavke(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtBrojNajave.Text), Convert.ToInt32(cboUvrstena.SelectedValue), Convert.ToInt32(cboOtkacena.SelectedValue), txtBrojKola.Text, txtSerija.Text, Convert.ToDouble(txtBrojOsovina.Text), Convert.ToDouble(txtDuzina.Value), Convert.ToDouble(txtTara.Value), Convert.ToDouble(txtNeto.Value), Convert.ToDouble(txtG.Value), Convert.ToDouble(txtP.Value), Convert.ToDouble(txtR.Value), Convert.ToDouble(txtRR.Value), txtVRNP.Text, Convert.ToInt32(cboOtpravna.SelectedValue), Convert.ToInt32(cboUputna.SelectedValue), txtReon.Text, txtPrimedba.Text, Convert.ToDouble(txtRucKoc.Value), Convert.ToInt32(cboUvozna.SelectedValue), Convert.ToInt32(cboIzvozna.SelectedValue), txtRID.Text, txtDokument.Text);
                     RefreshDataGrid();
                 }
-             
+
             }
-            
+
         }
 
         static int ProveriDaLiPOstoji(int Teretnica, string BrojKola)
         {
-            int CountKola = 0; 
+            int CountKola = 0;
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(s_connection);
             con.Open();
@@ -439,8 +338,8 @@ namespace Saobracaj.Dokumenta
             while (dr.Read())
             {
 
-               CountKola =  Convert.ToInt32(dr["Ima"].ToString());
-               
+                CountKola = Convert.ToInt32(dr["Ima"].ToString());
+
             }
             con.Close();
 
@@ -618,7 +517,7 @@ namespace Saobracaj.Dokumenta
         private void button2_Click(object sender, EventArgs e)
         {
             InsertTeretnicaStavke ins = new InsertTeretnicaStavke();
-            ins.UpdTeretnicaStavke(Convert.ToInt32(txtRB.Text), Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtBrojNajave.Text), Convert.ToInt32(cboUvrstena.SelectedValue), Convert.ToInt32(cboOtkacena.SelectedValue), txtBrojKola.Text, txtSerija.Text, Convert.ToDouble(txtBrojOsovina.Text), Convert.ToDouble(txtDuzina.Value), Convert.ToDouble(txtTara.Value), Convert.ToDouble(txtNeto.Value), Convert.ToDouble(txtG.Value), Convert.ToDouble(txtP.Value), Convert.ToDouble(txtR.Value), Convert.ToDouble(txtRR.Value), txtVRNP.Text, Convert.ToInt32(cboOtpravna.SelectedValue), Convert.ToInt32(cboUputna.SelectedValue), txtReon.Text, txtPrimedba.Text, Convert.ToDouble(txtRucKoc.Value),  Convert.ToInt32(cboUvozna.SelectedValue), Convert.ToInt32(cboIzvozna.SelectedValue), txtRID.Text, txtDokument.Text);
+            ins.UpdTeretnicaStavke(Convert.ToInt32(txtRB.Text), Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtBrojNajave.Text), Convert.ToInt32(cboUvrstena.SelectedValue), Convert.ToInt32(cboOtkacena.SelectedValue), txtBrojKola.Text, txtSerija.Text, Convert.ToDouble(txtBrojOsovina.Text), Convert.ToDouble(txtDuzina.Value), Convert.ToDouble(txtTara.Value), Convert.ToDouble(txtNeto.Value), Convert.ToDouble(txtG.Value), Convert.ToDouble(txtP.Value), Convert.ToDouble(txtR.Value), Convert.ToDouble(txtRR.Value), txtVRNP.Text, Convert.ToInt32(cboOtpravna.SelectedValue), Convert.ToInt32(cboUputna.SelectedValue), txtReon.Text, txtPrimedba.Text, Convert.ToDouble(txtRucKoc.Value), Convert.ToInt32(cboUvozna.SelectedValue), Convert.ToInt32(cboIzvozna.SelectedValue), txtRID.Text, txtDokument.Text);
             RefreshDataGrid();
         }
 
@@ -637,11 +536,11 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            
+
             Saobracaj.TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter ta = new Saobracaj.TESTIRANJEDataSetTableAdapters.SelectTeretnicaTableAdapter();
 
             Saobracaj.TESTIRANJEDataSet.SelectTeretnicaDataTable dt = new Saobracaj.TESTIRANJEDataSet.SelectTeretnicaDataTable();
-           
+
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));
             ReportDataSource rds = new ReportDataSource();
             rds.Name = "DataSet2";
@@ -654,7 +553,7 @@ namespace Saobracaj.Dokumenta
             reportViewer1.LocalReport.ReportPath = "Teretnica.rdlc";
             reportViewer1.LocalReport.SetParameters(par);
             reportViewer1.LocalReport.DataSources.Add(rds);
-           
+
             reportViewer1.RefreshReport();
 
             InsertTeretnica upd = new InsertTeretnica();
@@ -739,7 +638,7 @@ namespace Saobracaj.Dokumenta
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    InsertTeretnicaStavke  insTer = new InsertTeretnicaStavke();
+                    InsertTeretnicaStavke insTer = new InsertTeretnicaStavke();
                     insTer.UpdateRB(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()));
                 }
                 RefreshDataGrid();
@@ -777,8 +676,8 @@ namespace Saobracaj.Dokumenta
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                        InsertIskljuceniVagoni its = new InsertIskljuceniVagoni();
-                        its.InsertIskljuceniVagPrijem(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(cboStanicaPopisa.SelectedValue), 1);
+                    InsertIskljuceniVagoni its = new InsertIskljuceniVagoni();
+                    its.InsertIskljuceniVagPrijem(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(cboStanicaPopisa.SelectedValue), 1);
                 }
                 MessageBox.Show("Vagoni su raspušteni nalaze se u stanici popisa");
             }
@@ -796,7 +695,7 @@ namespace Saobracaj.Dokumenta
             {
                 return;
             }
-           
+
             InsertTeretnicaStavke ins = new InsertTeretnicaStavke();
             ins.UpdateTeretnicaRBUpDown(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value.ToString()), Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString()), 1);
             //dataGridView1.CurrentCell.RowIndex = trenutniindex + 1;
@@ -811,24 +710,24 @@ namespace Saobracaj.Dokumenta
             {
                 return;
             }
-            
+
             InsertTeretnicaStavke ins = new InsertTeretnicaStavke();
             ins.UpdateTeretnicaRBUpDown(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(dataGridView1.CurrentRow.Cells[1].Value.ToString()), Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString()), 0);
             RefreshDataGrid();
-            
+
             this.dataGridView1.CurrentCell = this.dataGridView1[5, trenutniindex - 1];
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-           //promena sve
+            //promena sve
             try
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-             
+
                     InsertTeretnicaStavke insTer = new InsertTeretnicaStavke();
-                    insTer.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()),row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(),  Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()),Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
+                    insTer.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
                 }
                 RefreshDataGrid();
             }
@@ -856,8 +755,8 @@ namespace Saobracaj.Dokumenta
 
             int s1 = Convert.ToInt32(sub1) * 2;
             if (s1 > 9)
-            { 
-            s1 = Convert.ToInt32(s1.ToString().Substring(0, 1))  + Convert.ToInt32(s1.ToString().Substring(1, 1));
+            {
+                s1 = Convert.ToInt32(s1.ToString().Substring(0, 1)) + Convert.ToInt32(s1.ToString().Substring(1, 1));
             }
             int s2 = Convert.ToInt32(sub2);
             int s3 = Convert.ToInt32(sub3) * 2;
@@ -925,7 +824,7 @@ namespace Saobracaj.Dokumenta
             con.Close();
         }
 
-        private void  VratiPodatkeKola()
+        private void VratiPodatkeKola()
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(s_connection);
@@ -937,14 +836,14 @@ namespace Saobracaj.Dokumenta
             //select Top 1 Serija, BrojOsovina, Duzina, Tara, P, RucKoc  from TeretnicaStavke where BrojKola = '31655960061-4' order by ID desc
             while (dr.Read())
             {
-                txtSerija.Text =  dr["Serija"].ToString();
+                txtSerija.Text = dr["Serija"].ToString();
                 txtBrojOsovina.Value = Convert.ToDecimal(dr["BrojOsovina"].ToString());
                 txtDuzina.Value = Convert.ToDecimal(dr["Duzina"].ToString());
                 txtTara.Value = Convert.ToDecimal(dr["Tara"].ToString());
                 txtP.Value = Convert.ToDecimal(dr["P"].ToString());
                 txtRucKoc.Value = Convert.ToDecimal(dr["RucKoc"].ToString());
             }
-           
+
             con.Close();
         }
 
@@ -990,7 +889,7 @@ namespace Saobracaj.Dokumenta
 
         private void cboTrainList_SelectedValueChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button10_Click(object sender, EventArgs e)
@@ -1031,7 +930,7 @@ namespace Saobracaj.Dokumenta
                     }
                 }
             }
-            
+
             ReportDataSource rds = new ReportDataSource();
             rds.Name = "DataSet1TA";
             rds.Value = dt;
@@ -1205,5 +1104,5 @@ namespace Saobracaj.Dokumenta
             reportViewer9.RefreshReport();
         }
     }
-    }
+}
 

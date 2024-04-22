@@ -1,14 +1,8 @@
 ﻿using Saobracaj.Sifarnici;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
@@ -193,10 +187,10 @@ namespace Saobracaj.Dokumenta
                 {
                     dataGridView1.Rows[i].Cells[35].Style.BackColor = Color.Red;
                 }
-                
+
                 if (dataGridView1.Rows[0].Cells[38].Value.ToString().TrimEnd().Equals(dataGridView1.Rows[i].Cells[38].Value.ToString().TrimEnd()))
                 {
-                        dataGridView1.Rows[i].Cells[38].Style.BackColor = Color.Blue;
+                    dataGridView1.Rows[i].Cells[38].Style.BackColor = Color.Blue;
                 }
                 else
                 {
@@ -205,7 +199,7 @@ namespace Saobracaj.Dokumenta
 
                 if (dataGridView1.Rows[0].Cells[45].Value.ToString().TrimEnd().Equals(dataGridView1.Rows[i].Cells[45].Value.ToString().TrimEnd()))
                 {
-                        dataGridView1.Rows[i].Cells[45].Style.BackColor = Color.Blue;
+                    dataGridView1.Rows[i].Cells[45].Style.BackColor = Color.Blue;
                 }
                 else
                 {

@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using Syncfusion.Grouping;
+using Syncfusion.Windows.Forms.Grid.Grouping;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Office.Interop.Excel;
-using Syncfusion.Grouping;
-using Syncfusion.Windows.Forms.Grid.Grouping;
 
 namespace Saobracaj.Uvoz
 {
@@ -90,7 +84,7 @@ namespace Saobracaj.Uvoz
             }
 
             //gridGroupingControl1.TableOptions.AllowSelections = None
-           //  grid.TableOptions.ListBoxSelectionMode
+            //  grid.TableOptions.ListBoxSelectionMode
 
         }
 
@@ -102,7 +96,7 @@ namespace Saobracaj.Uvoz
             con.Open();
 
             SqlCommand cmd = new SqlCommand("select Isnull(SUM(CASE WHEN TipKontejnera = 2 THEN 1 else 2 END),0) as BrojKontejnera from UvozKonacna " +
-            " where IDNadredjeni = " + cboPlanUtovara.SelectedValue , con);
+            " where IDNadredjeni = " + cboPlanUtovara.SelectedValue, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -183,7 +177,7 @@ namespace Saobracaj.Uvoz
 
             SqlCommand cmd = new SqlCommand("select IsNULL(MaksimalnaBruto,0) as MaksimalnaBruto  from Voz " +
   " inner join UvozKonacnaZaglavlje on UvozKonacnaZaglavlje.IdVoza = Voz.ID " +
-  "  where UvozkonacnaZaglavlje.ID = " + Convert.ToInt32(cboPlanUtovara.SelectedValue) , con);
+  "  where UvozkonacnaZaglavlje.ID = " + Convert.ToInt32(cboPlanUtovara.SelectedValue), con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -277,15 +271,15 @@ namespace Saobracaj.Uvoz
         }
         private void RefreshDataGrid1()
         {
-            
-                var select = " select Uvoz.ID, EtaBroda, AtaBroda, BrojKontejnera, TipKontenjera.SkNaziv from Uvoz " +
-  " inner join TipKontenjera on TipKontenjera.ID = Uvoz.TipKontejnera order by Uvoz.ID desc";
-                SqlConnection conn = new SqlConnection(connection);
-                var da = new SqlDataAdapter(select, conn);
-                var ds = new DataSet();
-                da.Fill(ds);
-                dataGridView1.ReadOnly = true;
-                dataGridView1.DataSource = ds.Tables[0];
+
+            var select = " select Uvoz.ID, EtaBroda, AtaBroda, BrojKontejnera, TipKontenjera.SkNaziv from Uvoz " +
+" inner join TipKontenjera on TipKontenjera.ID = Uvoz.TipKontejnera order by Uvoz.ID desc";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
 
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
@@ -323,7 +317,7 @@ namespace Saobracaj.Uvoz
             " inner join DirigacijaKontejneraZa pp1 on pp1.ID = UvozKonacna.DirigacijaKontejeraZa     inner join Brodovi on Brodovi.ID = UvozKonacna.NazivBroda    inner join VrstaRobeADR on VrstaRobeADR.ID = ADR     inner join VrstePostupakaUvoz on VrstePostupakaUvoz.ID = PostupakSaRobom     inner join MestaUtovara on UvozKOnacna.MestoIstovara = MestaUtovara.ID  " +
             "  inner join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja  inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija " +
             " inner join Partnerji pv on pv.PaSifra = UvozKonacna.VlasnikKontejnera " +
-            " where UvozKonacna.IdNadredjeni = " + Convert.ToInt32(cboPlanUtovara.SelectedValue) + " order by UvozKonacna.ID desc";  
+            " where UvozKonacna.IdNadredjeni = " + Convert.ToInt32(cboPlanUtovara.SelectedValue) + " order by UvozKonacna.ID desc";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -364,8 +358,8 @@ namespace Saobracaj.Uvoz
                     InsertUvozKonacna ins = new InsertUvozKonacna();
                     ins.PrenesiUPlanUtovara(Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()), Convert.ToInt32(cboPlanUtovara.SelectedValue));
                     //To get the cell value of particular column of selected records   
-                  //  string cellValue = selectedRecord.Record.GetValue("ID").ToString();
-                   // MessageBox.Show(cellValue);
+                    //  string cellValue = selectedRecord.Record.GetValue("ID").ToString();
+                    // MessageBox.Show(cellValue);
                 }
             }
             /*
@@ -380,7 +374,7 @@ namespace Saobracaj.Uvoz
                 }
             }
             */
-           // RefreshDataGrid1();
+            // RefreshDataGrid1();
             RefreshSync();
             RefreshDataGrid2();
             VratiUkupanBrojKontejnera();
@@ -404,13 +398,13 @@ namespace Saobracaj.Uvoz
 
         private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
         {
-           
+
 
         }
         private void FillCombo()
         {
             var planutovara = "select UvozKonacnaZaglavlje.ID, ( 'PLAN:' + Cast(UvozKonacnaZaglavlje.ID as nvarchar(4)) + ' VOZ: ' + Cast(BrVoza as nvarchar(15)) + ' Pl. datum otpreme: ' + Cast(Convert(Nvarchar(10), Voz.PlOtpreme, 104) as nvarchar(12)) + ' Operater SRB: ' + Partnerji.PaNaziv) as Naziv " +
-" from UvozKonacnaZaglavlje inner join Voz on Voz.Id = UvozKonacnaZaglavlje.IdVoza inner "+
+" from UvozKonacnaZaglavlje inner join Voz on Voz.Id = UvozKonacnaZaglavlje.IdVoza inner " +
 " join Partnerji on Partnerji.PaSifra = OperaterSrbija where Dolazeci = 1 order by UvozKonacnaZaglavlje.ID desc";
             var planutovaraSAD = new SqlDataAdapter(planutovara, connection);
             var planutovaraSDS = new DataSet();
@@ -423,7 +417,7 @@ namespace Saobracaj.Uvoz
 
         private void frmFormiranjePlana_Load(object sender, EventArgs e)
         {
-           // RefreshDataGrid1();
+            // RefreshDataGrid1();
             RefreshSync();
             RefreshDataGrid2();
             FillCombo();
@@ -438,7 +432,7 @@ namespace Saobracaj.Uvoz
                 VratiUkupanBrojKontejneraPrenetihBezSerije();
 
             }
-           
+
         }
 
         private void label29_Click(object sender, EventArgs e)
@@ -462,7 +456,7 @@ namespace Saobracaj.Uvoz
             {
                 if (gridGroupingControl1.Table.CurrentRecord != null)
                 {
-                   // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                    // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
                 }
 
             }

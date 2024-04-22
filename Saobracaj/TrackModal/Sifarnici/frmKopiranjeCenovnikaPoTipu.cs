@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.TrackModal.Sifarnici
 {
@@ -91,9 +83,9 @@ namespace Saobracaj.TrackModal.Sifarnici
             {
                 return;
             }
-            
-           // ins.InsVrstaManipulacije(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value));
-     
+
+            // ins.InsVrstaManipulacije(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value));
+
         }
 
         private void RefreshDataGridRazred()
@@ -104,7 +96,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             " inner join Partnerji p2 on p2.PaSifra = Cene.Uvoznik " +
             " inner join VrstePostupakaUvoz  on VrstePostupakaUvoz.ID = Cene.PostupakSaRobom " +
            " inner join VrstaManipulacije on VrstaManipulacije.Id = Cene.VrstaManipulacije  where Razred = '" + cboRazred.Text + "'" +
-           " order by Cene.ID desc"; 
+           " order by Cene.ID desc";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -129,17 +121,17 @@ namespace Saobracaj.TrackModal.Sifarnici
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
-           /*
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "ID";
-            dataGridView1.Columns[0].Width = 50;
+            /*
+             DataGridViewColumn column = dataGridView1.Columns[0];
+             dataGridView1.Columns[0].HeaderText = "ID";
+             dataGridView1.Columns[0].Width = 50;
 
-            DataGridViewColumn column2 = dataGridView1.Columns[1];
-            dataGridView1.Columns[1].HeaderText = "Naziv";
-            dataGridView1.Columns[1].Width = 350;
-           */
+             DataGridViewColumn column2 = dataGridView1.Columns[1];
+             dataGridView1.Columns[1].HeaderText = "Naziv";
+             dataGridView1.Columns[1].Width = 350;
+            */
 
-           
+
 
 
         }
@@ -156,7 +148,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             " inner join Partnerji on Partnerji.PaSifra = Cene.Komitent " +
              " inner join Partnerji p2 on p2.PaSifra = Cene.Uvoznik " +
              " inner join VrstePostupakaUvoz  on VrstePostupakaUvoz.ID = Cene.PostupakSaRobom " +
-            " inner join VrstaManipulacije on VrstaManipulacije.Id = Cene.VrstaManipulacije  where TipCenovnika = " + cboTipCenovnika2.SelectedValue  + " and Cene.Komitent =  " + Convert.ToInt32(cboPartner2.SelectedValue) + 
+            " inner join VrstaManipulacije on VrstaManipulacije.Id = Cene.VrstaManipulacije  where TipCenovnika = " + cboTipCenovnika2.SelectedValue + " and Cene.Komitent =  " + Convert.ToInt32(cboPartner2.SelectedValue) +
             " order by Cene.ID desc";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

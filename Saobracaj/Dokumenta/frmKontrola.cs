@@ -1,20 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Globalization;
-using Syncfusion.Windows.Forms.Grid.Grouping;
-using Syncfusion.Windows.Forms;
-
-using MetroFramework.Forms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -37,96 +26,11 @@ namespace Saobracaj.Dokumenta
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             InitializeComponent();
-            IdGrupe();
-            IdForme();
-            PravoPristupa();
-        }
-        public string IdGrupe()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
-            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
 
-            while (dr.Read())
-            {
-                if (count == 0)
-                {
-                    niz = dr["IdGrupe"].ToString();
-                    count++;
-                }
-                else
-                {
-                    niz = niz + "," + dr["IdGrupe"].ToString();
-                    count++;
-                }
-
-            }
-            conn.Close();
-            return niz;
-        }
-        private int IdForme()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-                idForme = Convert.ToInt32(dr["IdForme"].ToString());
-            }
-            conn.Close();
-            return idForme;
-        }
-
-        private void PravoPristupa()
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
-            SqlConnection conn = new SqlConnection(s_connection);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader reader = cmd.ExecuteReader();
-            if (reader.HasRows == false)
-            {
-                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
-                Pravo = false;
-            }
-            else
-            {
-                Pravo = true;
-                while (reader.Read())
-                {
-                    insert = Convert.ToBoolean(reader["Upis"]);
-                    if (insert == false)
-                    {
-                        tsNew.Enabled = false;
-                    }
-                    update = Convert.ToBoolean(reader["Izmena"]);
-                    if (update == false)
-                    {
-                        tsSave.Enabled = false;
-                    }
-                    delete = Convert.ToBoolean(reader["Brisanje"]);
-                    if (delete == false)
-                    {
-                        tsDelete.Enabled = false;
-                    }
-                }
-            }
-
-            conn.Close();
         }
         private void frmKontrola_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -285,8 +189,8 @@ namespace Saobracaj.Dokumenta
         private void tsSave_Click(object sender, EventArgs e)
         {
             int pomUradio = 0;
-            int pomUradio2 = 0; 
-            
+            int pomUradio2 = 0;
+
             if (chkUradio.Checked == true)
             {
                 pomUradio = 1;
@@ -309,7 +213,7 @@ namespace Saobracaj.Dokumenta
             if (status == true)
             {
                 InsertKontrola ins = new InsertKontrola();
-                ins.InsKontrola(Convert.ToInt32(cboNajavaID.SelectedValue), Convert.ToInt32(cboRadnikID.SelectedValue) ,Convert.ToDateTime(dtpDatumPrijemaKoverte.Value),pomUradio, Convert.ToDateTime(dtpDatumCekiranja.Value), pomUradio2, Convert.ToDateTime(dtpDatumCekiranja2.Value), txtNapomenaZaglavlje.Text);
+                ins.InsKontrola(Convert.ToInt32(cboNajavaID.SelectedValue), Convert.ToInt32(cboRadnikID.SelectedValue), Convert.ToDateTime(dtpDatumPrijemaKoverte.Value), pomUradio, Convert.ToDateTime(dtpDatumCekiranja.Value), pomUradio2, Convert.ToDateTime(dtpDatumCekiranja2.Value), txtNapomenaZaglavlje.Text);
                 VratiSifru();
                 RefreshDataGrid();
                 status = false;
@@ -326,25 +230,25 @@ namespace Saobracaj.Dokumenta
 
         private void VratiSifru()
         {
-          
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-                SqlConnection con = new SqlConnection(s_connection);
 
-                con.Open();
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(s_connection);
 
-                SqlCommand cmd = new SqlCommand("SELECT Max(ID) as ID  FROM [TESTIRANJE].[dbo].[KontrolaDokumentacije]", con);
-                SqlDataReader dr = cmd.ExecuteReader();
+            con.Open();
 
-                while (dr.Read())
-                {
-                    txtSifra.Text = dr["ID"].ToString();
-                }
+            SqlCommand cmd = new SqlCommand("SELECT Max(ID) as ID  FROM [TESTIRANJE].[dbo].[KontrolaDokumentacije]", con);
+            SqlDataReader dr = cmd.ExecuteReader();
 
-                con.Close();
+            while (dr.Read())
+            {
+                txtSifra.Text = dr["ID"].ToString();
             }
 
+            con.Close();
+        }
 
-       
+
+
 
         private void tsDelete_Click(object sender, EventArgs e)
         {
@@ -367,9 +271,9 @@ namespace Saobracaj.Dokumenta
                         cboNajavaID.SelectedValue = Convert.ToInt32(row.Cells[1].Value.ToString());
                         cboRadnikID.SelectedValue = Convert.ToInt32(row.Cells[2].Value.ToString());
                         dtpDatumPrijemaKoverte.Value = Convert.ToDateTime(row.Cells[4].Value.ToString());
-                       if (row.Cells[5].Value.ToString() == "1")
+                        if (row.Cells[5].Value.ToString() == "1")
                         { chkUradio.Checked = true; }
-                       else
+                        else
                         { chkUradio.Checked = false; }
 
                         dtpDatumCekiranja.Value = Convert.ToDateTime(row.Cells[6].Value.ToString());
@@ -421,10 +325,10 @@ namespace Saobracaj.Dokumenta
                 {
                     if (row.Selected)
                     {
-                       txtSifraGreske.Text = row.Cells[0].Value.ToString();
-                       txtNapomenaStavka.Text = row.Cells[6].Value.ToString();
-                       cboGreska.SelectedValue = Convert.ToInt32(row.Cells[4].Value.ToString());
-                       cboRadnikID.SelectedValue = Convert.ToInt32(row.Cells[2].Value.ToString());
+                        txtSifraGreske.Text = row.Cells[0].Value.ToString();
+                        txtNapomenaStavka.Text = row.Cells[6].Value.ToString();
+                        cboGreska.SelectedValue = Convert.ToInt32(row.Cells[4].Value.ToString());
+                        cboRadnikID.SelectedValue = Convert.ToInt32(row.Cells[2].Value.ToString());
                     }
                 }
             }
@@ -438,27 +342,25 @@ namespace Saobracaj.Dokumenta
         {
 
             if (usao == 1)
-            { 
-            var select2 = " select ID, Naziv from KontrolneGreske where TipDokumenta = " + Convert.ToInt32(cboTipDokumenta.SelectedValue) + " order by Naziv";
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection2 = new SqlConnection(s_connection2);
-            var c2 = new SqlConnection(s_connection2);
-            var dataAdapter2 = new SqlDataAdapter(select2, c2);
+            {
+                var select2 = " select ID, Naziv from KontrolneGreske where TipDokumenta = " + Convert.ToInt32(cboTipDokumenta.SelectedValue) + " order by Naziv";
+                var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection myConnection2 = new SqlConnection(s_connection2);
+                var c2 = new SqlConnection(s_connection2);
+                var dataAdapter2 = new SqlDataAdapter(select2, c2);
 
-            var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
-            var ds2 = new DataSet();
-            dataAdapter2.Fill(ds2);
-            cboGreska.DataSource = ds2.Tables[0];
-            cboGreska.DisplayMember = "Naziv";
-            cboGreska.ValueMember = "ID";
+                var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
+                var ds2 = new DataSet();
+                dataAdapter2.Fill(ds2);
+                cboGreska.DataSource = ds2.Tables[0];
+                cboGreska.DisplayMember = "Naziv";
+                cboGreska.ValueMember = "ID";
 
             }
         }
 
         private void cboNajavaID_Leave(object sender, EventArgs e)
         {
-            bool temp = false;
-
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
@@ -469,90 +371,90 @@ namespace Saobracaj.Dokumenta
 
             while (dr.Read())
             {
-                dtpDatumPrijemaKoverte.Value = Convert.ToDateTime(dr["StvarnoPrimanje"].ToString());  
+                dtpDatumPrijemaKoverte.Value = Convert.ToDateTime(dr["StvarnoPrimanje"].ToString());
             }
 
-           
+
             con.Close();
         }
 
         private void sfButton3_Click(object sender, EventArgs e)
         {
-           if (txtKontrola1.Text == "kontrola1")
-            { 
-            var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci order by opis";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection3 = new SqlConnection(s_connection3);
-            var c3 = new SqlConnection(s_connection3);
-            var dataAdapter3 = new SqlDataAdapter(select3, c3);
+            if (txtKontrola1.Text == "kontrola1")
+            {
+                var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci order by opis";
+                var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection myConnection3 = new SqlConnection(s_connection3);
+                var c3 = new SqlConnection(s_connection3);
+                var dataAdapter3 = new SqlDataAdapter(select3, c3);
 
-            var commandBuilder3 = new SqlCommandBuilder(dataAdapter3);
-            var ds3 = new DataSet();
-            dataAdapter3.Fill(ds3);
-            cboRadnikID.DataSource = ds3.Tables[0];
-            cboRadnikID.DisplayMember = "Opis";
-            cboRadnikID.ValueMember = "ID";
-
-
-            var select = " Select ID, PrevozniPut, StvarnoPrimanje as ATA,Tezina, Duzina, BrojKola, StvarnoPrimanje, StvarnaPredaja, Status from Najava where ID > 210001 order by ID desc";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
-
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
-            dataAdapter.Fill(ds);
-
-            DataView view = new DataView(ds.Tables[0]);
-            cboNajavaID.DataSource = view;
-            cboNajavaID.DisplayMember = "ID";
-            cboNajavaID.ValueMember = "ID";
+                var commandBuilder3 = new SqlCommandBuilder(dataAdapter3);
+                var ds3 = new DataSet();
+                dataAdapter3.Fill(ds3);
+                cboRadnikID.DataSource = ds3.Tables[0];
+                cboRadnikID.DisplayMember = "Opis";
+                cboRadnikID.ValueMember = "ID";
 
 
-            var select4 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci order by opis";
-            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection4 = new SqlConnection(s_connection4);
-            var c4 = new SqlConnection(s_connection4);
-            var dataAdapter4 = new SqlDataAdapter(select4, c4);
+                var select = " Select ID, PrevozniPut, StvarnoPrimanje as ATA,Tezina, Duzina, BrojKola, StvarnoPrimanje, StvarnaPredaja, Status from Najava where ID > 210001 order by ID desc";
+                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection myConnection = new SqlConnection(s_connection);
+                var c = new SqlConnection(s_connection);
+                var dataAdapter = new SqlDataAdapter(select, c);
 
-            var commandBuilder4 = new SqlCommandBuilder(dataAdapter4);
-            var ds4 = new DataSet();
-            dataAdapter4.Fill(ds4);
-            cboGreskaRadnik.DataSource = ds4.Tables[0];
-            cboGreskaRadnik.DisplayMember = "Opis";
-            cboGreskaRadnik.ValueMember = "ID";
+                var commandBuilder = new SqlCommandBuilder(dataAdapter);
+                var ds = new DataSet();
+                dataAdapter.Fill(ds);
 
-
-            var select2 = " select ID, Naziv from KontrolneGreske order by Naziv";
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection2 = new SqlConnection(s_connection2);
-            var c2 = new SqlConnection(s_connection2);
-            var dataAdapter2 = new SqlDataAdapter(select2, c2);
-
-            var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
-            var ds2 = new DataSet();
-            dataAdapter2.Fill(ds2);
-            cboGreska.DataSource = ds2.Tables[0];
-            cboGreska.DisplayMember = "Naziv";
-            cboGreska.ValueMember = "ID";
+                DataView view = new DataView(ds.Tables[0]);
+                cboNajavaID.DataSource = view;
+                cboNajavaID.DisplayMember = "ID";
+                cboNajavaID.ValueMember = "ID";
 
 
-            var select5 = " select ID, Naziv from KontrolneGreskeTipDokumenta order by Naziv";
-            var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection5 = new SqlConnection(s_connection5);
-            var c5 = new SqlConnection(s_connection5);
-            var dataAdapter5 = new SqlDataAdapter(select5, c5);
+                var select4 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci order by opis";
+                var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection myConnection4 = new SqlConnection(s_connection4);
+                var c4 = new SqlConnection(s_connection4);
+                var dataAdapter4 = new SqlDataAdapter(select4, c4);
 
-            var commandBuilder5 = new SqlCommandBuilder(dataAdapter5);
-            var ds5 = new DataSet();
-            dataAdapter5.Fill(ds5);
-            cboTipDokumenta.DataSource = ds5.Tables[0];
-            cboTipDokumenta.DisplayMember = "Naziv";
-            cboTipDokumenta.ValueMember = "ID";
+                var commandBuilder4 = new SqlCommandBuilder(dataAdapter4);
+                var ds4 = new DataSet();
+                dataAdapter4.Fill(ds4);
+                cboGreskaRadnik.DataSource = ds4.Tables[0];
+                cboGreskaRadnik.DisplayMember = "Opis";
+                cboGreskaRadnik.ValueMember = "ID";
 
-            RefreshDataGrid();
-            usao = 1;
+
+                var select2 = " select ID, Naziv from KontrolneGreske order by Naziv";
+                var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection myConnection2 = new SqlConnection(s_connection2);
+                var c2 = new SqlConnection(s_connection2);
+                var dataAdapter2 = new SqlDataAdapter(select2, c2);
+
+                var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
+                var ds2 = new DataSet();
+                dataAdapter2.Fill(ds2);
+                cboGreska.DataSource = ds2.Tables[0];
+                cboGreska.DisplayMember = "Naziv";
+                cboGreska.ValueMember = "ID";
+
+
+                var select5 = " select ID, Naziv from KontrolneGreskeTipDokumenta order by Naziv";
+                var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                SqlConnection myConnection5 = new SqlConnection(s_connection5);
+                var c5 = new SqlConnection(s_connection5);
+                var dataAdapter5 = new SqlDataAdapter(select5, c5);
+
+                var commandBuilder5 = new SqlCommandBuilder(dataAdapter5);
+                var ds5 = new DataSet();
+                dataAdapter5.Fill(ds5);
+                cboTipDokumenta.DataSource = ds5.Tables[0];
+                cboTipDokumenta.DisplayMember = "Naziv";
+                cboTipDokumenta.ValueMember = "ID";
+
+                RefreshDataGrid();
+                usao = 1;
             }
         }
     }

@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -35,11 +24,11 @@ namespace Saobracaj.Dokumenta
             var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
             var ds2 = new DataSet();
             dataAdapter2.Fill(ds2);
-        
+
             cboPrijemnica.DataSource = ds2.Tables[0];
             cboPrijemnica.DisplayMember = "NprStPre";
             cboPrijemnica.ValueMember = "NprStPre";
-        
+
         }
 
         private void cboPrijemnica_Leave(object sender, EventArgs e)
@@ -48,12 +37,12 @@ namespace Saobracaj.Dokumenta
         }
 
         private void RefreshDataGrid1()
-            {
-           
+        {
+
             var select = " select NPrePPreZap as ID, NPrPSifra as Sifra, MaticniPodatki.MpStaraSif ,NPrPEM as JM, NPrPKolPre as KOL, kolicina2, NPrPSifSkl as Skladiste, " +
                 " NPrPLokac as Lokacija from NPreP inner join MAticniPodatki on MaticniPodatki.MpSifra = nprep.nPrPSifra " +
                 " where NPrPStPre = " + Convert.ToInt32(cboPrijemnica.SelectedValue);
-           
+
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -69,7 +58,7 @@ namespace Saobracaj.Dokumenta
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "Sifra";
             dataGridView1.Columns[0].Width = 30;
-                
+
             DataGridViewColumn column1 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Sifra";
             dataGridView1.Columns[1].Width = 30;
@@ -108,10 +97,10 @@ namespace Saobracaj.Dokumenta
                 {
                     InsertPrijemnica ins = new InsertPrijemnica();
                     ins.UpdatePrijemnicaKOlicina(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToDouble(row.Cells[5].Value.ToString()));
-                
+
                 }
             }
         }
-        }
     }
+}
 

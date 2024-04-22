@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
 using System.Data;
-using System.Configuration;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -204,7 +198,7 @@ namespace Saobracaj.Sifarnici
 
         public void DeleteNHM(int ID)
         {
-            
+
             SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteNHM";

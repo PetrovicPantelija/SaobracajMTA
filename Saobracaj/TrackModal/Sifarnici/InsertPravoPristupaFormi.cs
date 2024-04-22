@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 
 namespace Testiranje.Sifarnici
@@ -16,7 +12,7 @@ namespace Testiranje.Sifarnici
         //UpdateInUpDel
         public void InsPravoPristupaFormi(string Naziv, DateTime Datum, string Korisnik, string KorisnikKojiImaPravo, int IdForme)
         {
-            
+
             /*@Naziv nvarchar(200),
   @Datum datetime,
   @Korisnik nvarchar(20),
@@ -53,7 +49,7 @@ namespace Testiranje.Sifarnici
             parameter5.Value = Korisnik;
             myCommand.Parameters.Add(parameter5);
 
-             SqlParameter parameter6 = new SqlParameter();
+            SqlParameter parameter6 = new SqlParameter();
             parameter6.ParameterName = "@KorisnikKojiImaPravo";
             parameter6.SqlDbType = SqlDbType.NVarChar;
             parameter6.Size = 20;

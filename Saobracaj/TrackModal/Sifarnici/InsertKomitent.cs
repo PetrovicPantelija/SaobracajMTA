@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Testiranje.Sifarnici
 {
     class InsertKomitent
     {
-        public void InsKomitent(string Naziv,string Adresa, string Telefon, string email, string KontaktOsoba, int Brodar, int Posiljalac , 	int Primalac , 	int Platilac , 	int Organizator , 	int Vlasnik, 	int Operator ,  string  Napomena, DateTime Datum, string Korisnik, string PIB, string MaticniBroj, string SifraERP, string TR)
+        public void InsKomitent(string Naziv, string Adresa, string Telefon, string email, string KontaktOsoba, int Brodar, int Posiljalac, int Primalac, int Platilac, int Organizator, int Vlasnik, int Operator, string Napomena, DateTime Datum, string Korisnik, string PIB, string MaticniBroj, string SifraERP, string TR)
         {
-           
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -450,7 +446,7 @@ namespace Testiranje.Sifarnici
                 }
             }
         }
-    
+
     }
 }
 

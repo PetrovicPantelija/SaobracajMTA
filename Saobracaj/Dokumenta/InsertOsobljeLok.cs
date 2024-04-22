@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
     class InsertOsobljeLok
     {
-        public void InsOsobLok(int DeSifra,  string MestoTroska)
+        public void InsOsobLok(int DeSifra, string MestoTroska)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -93,7 +89,7 @@ namespace Saobracaj.Dokumenta
             parameter2.Value = Pruga;
             myCommand.Parameters.Add(parameter2);
 
-          
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -132,7 +128,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdDelavci(int DeSifra, int Manevrista, int Pregledac, int Vozovodja, int PregledacKola, int Masinovodja)
         {
- 
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();

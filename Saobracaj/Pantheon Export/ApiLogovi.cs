@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Saobracaj.Pantheon_Export
 {
@@ -26,7 +22,7 @@ namespace Saobracaj.Pantheon_Export
                 Console.WriteLine($"Error initializing log file: {ex.Message}");
             }
         }
-        public static void Log(string tip,string id,string request,string response)
+        public static void Log(string tip, string id, string request, string response)
         {
             try
             {

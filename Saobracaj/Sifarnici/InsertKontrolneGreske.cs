@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -32,7 +28,7 @@ namespace Saobracaj.Sifarnici
             SqlParameter parameter3 = new SqlParameter();
             parameter3.ParameterName = "@TipDokumenta";
             parameter3.SqlDbType = SqlDbType.Int;
-           // parameter3.Size = 50;
+            // parameter3.Size = 50;
             parameter3.Direction = ParameterDirection.Input;
             parameter3.Value = TipDokumenta;
             myCommand.Parameters.Add(parameter3);
@@ -74,7 +70,7 @@ namespace Saobracaj.Sifarnici
 
         }
 
-        public void UpdKontrolneGreske(int ID,  string Naziv, int TipDokumenta)
+        public void UpdKontrolneGreske(int ID, string Naziv, int TipDokumenta)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

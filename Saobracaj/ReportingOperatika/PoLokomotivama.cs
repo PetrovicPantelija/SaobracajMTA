@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.ReportingOperatika
 {
@@ -37,7 +27,7 @@ namespace Saobracaj.ReportingOperatika
                 "Vuca.Kilometraza, Vuca.NivoGoriva, (RTRIM(Delavci.DeIme) + '  ' + RTRIM(Delavci.DePriimek)) as Zaposleni, Aktivnosti.VremeOd as PocetakSmene, " +
                 "Aktivnosti.VremeDo as ZavrsetakSmene,  DateDiff(hour, Aktivnosti.VremeOd, IsNUll(Aktivnosti.VremeDo, GetDate())) as SatiTrajanjaSmene, " +
                 " DateDiff(hour,  IsNUll(Aktivnosti.VremeDo, GetDate()),GEtDAte()) as SatiOdOdjaveSmene, DateDiff(hour,  IsNUll(Aktivnosti.VremeOd, GetDate()),GEtDAte()) as SatiOdPrijaveSmene  From AktivnostiStavke inner join Vuca on Vuca.StavkaAktivnostiID = AktivnostiStavke.ID " +
- " inner join Aktivnosti on Aktivnosti.ID = AktivnostiStavke.IDNadredjena "+
+ " inner join Aktivnosti on Aktivnosti.ID = AktivnostiStavke.IDNadredjena " +
   " inner join Delavci on Delavci.DeSifra = Aktivnosti.Zaposleni " +
   " where DatumPocetka >= ' " + dtpVremeOd.Text + "' and DatumPocetka <= ' " + dtpVremeDo.Text + "' and VrstaAktivnostiID = 61 " +
   " order by  AktivnostiStavke.Lokomotiva";

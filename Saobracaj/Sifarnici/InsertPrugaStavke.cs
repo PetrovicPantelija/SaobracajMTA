@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -86,7 +82,7 @@ namespace Saobracaj.Sifarnici
             SqlParameter parameter10 = new SqlParameter();
             parameter10.ParameterName = "@OsOtpor";
             parameter10.SqlDbType = SqlDbType.NVarChar;
-             parameter10.Size = 20;
+            parameter10.Size = 20;
             parameter10.Direction = ParameterDirection.Input;
             parameter10.Value = OsOtpor;
             myCommand.Parameters.Add(parameter10);
@@ -238,7 +234,7 @@ namespace Saobracaj.Sifarnici
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = rb;
             myCommand.Parameters.Add(parameter);
-            
+
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@IDPruge";
             parameter1.SqlDbType = SqlDbType.Int;

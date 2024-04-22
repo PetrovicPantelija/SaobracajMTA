@@ -1,24 +1,11 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Configuration;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Data.OleDb;
+using System.Data;
 using System.Data.SqlClient;
-using System.Text.RegularExpressions;
-using System.Drawing.Imaging;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Testiranje.Dokumeta
 {
@@ -142,7 +129,7 @@ namespace Testiranje.Dokumeta
              * */
             string configvalue1 = ConfigurationManager.AppSettings["ip"];
             targetPath = @"\\" + configvalue1 + "\\Kamion\\" + FolderDestinacije;
-           // }
+            // }
 
             string sourceFile = putanja;
             string destFile = System.IO.Path.Combine(targetPath, result);
@@ -154,9 +141,9 @@ namespace Testiranje.Dokumeta
 
             var remote = Path.Combine(targetPath, result);
             File.Copy(sourceFile, remote);
-         
-             txtPutanja.Text = remote;
-            
+
+            txtPutanja.Text = remote;
+
 
 
 

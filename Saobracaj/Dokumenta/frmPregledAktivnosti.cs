@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -33,7 +25,7 @@ namespace Saobracaj.Dokumenta
 
             }
             var select = "";
-            select = " SELECT     AktivnostiStavke.ID, AktivnostiStavke.IDNadredjena, AktivnostiStavke.VrstaAktivnostiID, VrstaAktivnosti.Naziv, AktivnostiStavke.DatumPocetka, " + 
+            select = " SELECT     AktivnostiStavke.ID, AktivnostiStavke.IDNadredjena, AktivnostiStavke.VrstaAktivnostiID, VrstaAktivnosti.Naziv, AktivnostiStavke.DatumPocetka, " +
                      " AktivnostiStavke.DatumZavrsetka, AktivnostiStavke.Posao, AktivnostiStavke.OznakaPosla, AktivnostiStavke.MestoIzvrsenja, AktivnostiStavke.Teretnica, " +
                       "  AktivnostiStavke.Lokomotiva, AktivnostiStavke.Stanica, Stanice.Opis, Aktivnosti.Zaposleni, Delavci.DeSifra, Delavci.DeIme,Delavci.DePriimek,  Aktivnosti.VremeOd, " +
                      "  Aktivnosti.VremeDo " +
@@ -175,7 +167,7 @@ namespace Saobracaj.Dokumenta
                      "  Aktivnosti ON AktivnostiStavke.IDNadredjena = Aktivnosti.ID " +
                        " inner join Stanice on Stanice.ID = AktivnostiStavke.Stanica " +
                      " INNER JOIN " +
-                     "  Delavci ON Aktivnosti.Zaposleni = Delavci.DeSifra where AktivnostiStavke.OznakaPosla = '" + cboPosao.SelectedValue + "'" + dwhere + 
+                     "  Delavci ON Aktivnosti.Zaposleni = Delavci.DeSifra where AktivnostiStavke.OznakaPosla = '" + cboPosao.SelectedValue + "'" + dwhere +
                      "  order by AktivnostiStavke.DatumPocetka desc   ";
 
 
@@ -332,7 +324,7 @@ namespace Saobracaj.Dokumenta
                 pa.Show();
             }
 
-            
+
         }
         private void FillDG2Automobil(string ID)
         {
@@ -429,8 +421,8 @@ namespace Saobracaj.Dokumenta
             dataGridView2.Columns[9].Width = 100;
 
 
-        
-             
+
+
 
             DataGridViewColumn column11 = dataGridView2.Columns[10];
             dataGridView2.Columns[10].HeaderText = "DirektnaPrimopredaja";
@@ -450,7 +442,7 @@ namespace Saobracaj.Dokumenta
             dataGridView2.Columns[13].HeaderText = "Kolometraza razduzenja";
             dataGridView2.Columns[13].Width = 80;
 
-       
+
 
             DataGridViewColumn column15 = dataGridView2.Columns[14];
             dataGridView2.Columns[14].HeaderText = "Cistoca spolja";
@@ -526,12 +518,12 @@ namespace Saobracaj.Dokumenta
 
             DataGridViewColumn column28 = dataGridView2.Columns[27];
             dataGridView2.Columns[27].HeaderText = "Mesto polaska";
-          //  dataGridView2.Columns[27].Visible = false;
+            //  dataGridView2.Columns[27].Visible = false;
             dataGridView2.Columns[27].Width = 140;
 
             DataGridViewColumn column29 = dataGridView2.Columns[28];
             dataGridView2.Columns[28].HeaderText = "Mesto dolaska";
-          //   dataGridView2.Columns[28].Visible = false;
+            //   dataGridView2.Columns[28].Visible = false;
             dataGridView2.Columns[28].Width = 140;
 
             /*
@@ -1008,7 +1000,7 @@ namespace Saobracaj.Dokumenta
                 case "58":
                     FillGV2TehnickiPregled(ID);
                     FillGV2TehnickiPregledSlike(ID);
-                    
+
                     break;
 
                 case "59":
@@ -1119,7 +1111,7 @@ namespace Saobracaj.Dokumenta
 
         int VratiPodatkeTeretnica()
         {
-           // int TeretnicaID = 0;
+            // int TeretnicaID = 0;
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
@@ -1131,7 +1123,7 @@ namespace Saobracaj.Dokumenta
             while (dr.Read())
             {
                 return Convert.ToInt32(dr["ID"].ToString());
-                
+
             }
 
             con.Close();
@@ -1162,15 +1154,15 @@ namespace Saobracaj.Dokumenta
         private void button4_Click(object sender, EventArgs e)
         {
             int terBR = VratiPodatkeTeretnica();
-                    frmTeretnica ter = new frmTeretnica(terBR.ToString(), "sa");
-                    ter.Show();
-                
-            
+            frmTeretnica ter = new frmTeretnica(terBR.ToString(), "sa");
+            ter.Show();
+
+
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+
             frmTrainList ter = new frmTrainList(cboPosao.Text, 1);
             ter.Show();
         }

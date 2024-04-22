@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -20,7 +16,7 @@ namespace Saobracaj.Sifarnici
             myCommand.CommandText = "InsertStatusiUsluga";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-         
+
 
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@Naziv";
@@ -139,7 +135,7 @@ namespace Saobracaj.Sifarnici
             SqlParameter parameter = new SqlParameter();
             parameter.ParameterName = "@ID";
             parameter.SqlDbType = SqlDbType.Int;
-          
+
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = Sifra;
             myCommand.Parameters.Add(parameter);

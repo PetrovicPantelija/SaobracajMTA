@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace TrackModal.Promet
 {
@@ -38,9 +32,9 @@ namespace TrackModal.Promet
             var select = " SELECT [ID]  ,[IDNadredjenog] ,[BrojKontejnera] " +
        " ,[SkladisteUNaziv]  ,[LokacijaUOznaka] " +
       " ,[SkladistePUNaziv],[LokacijaIzOznaka],[SkladistePIZNaziv]  ,[LokacijaPIZOznaka] " +
-       " ,[PrOznSled] " + 
+       " ,[PrOznSled] " +
       "  FROM[dbo].[PopisStavkeUporedni] ";
-          
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -71,7 +65,7 @@ namespace TrackModal.Promet
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Broj popisa";
             dataGridView1.Columns[1].Width = 50;
-           
+
             DataGridViewColumn column3 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "Broj kontejnera";
             dataGridView1.Columns[2].Width = 100;

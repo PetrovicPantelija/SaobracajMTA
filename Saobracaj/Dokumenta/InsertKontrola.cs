@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 
 namespace Saobracaj.Dokumenta
@@ -26,7 +22,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@NajavaID";
             parameter2.SqlDbType = SqlDbType.Int;
-          //  parameter2.Size = 50;
+            //  parameter2.Size = 50;
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = NajavaID;
             myCommand.Parameters.Add(parameter2);

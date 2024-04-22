@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
@@ -271,7 +267,7 @@ namespace Saobracaj.Izvoz
             cmd.Parameters.Add(id);
 
 
-          
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

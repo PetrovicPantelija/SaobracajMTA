@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
 //
 namespace Saobracaj.RadniNalozi
 {
@@ -34,7 +29,7 @@ namespace Saobracaj.RadniNalozi
             txtNalogID.Text = Usluga;
             FillCombo();
             VratiPodatkeVrstaMan(Usluga.ToString());
-           
+
 
 
         }
@@ -186,7 +181,7 @@ namespace Saobracaj.RadniNalozi
                 rn.UpdRNPPrijemPlatforme2(Convert.ToInt32(txtID.Text), Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text.ToString().TrimEnd(), Convert.ToDateTime(txtDatumRealizacije.Value),
                     Convert.ToInt32(cboSaSredstva.SelectedValue), txtbrojkontejnera.Text.ToString().TrimEnd(), Convert.ToInt32(cboVrstaKontejnera.SelectedValue),
                     Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue),
-                    Convert.ToInt32(cboUsluga.SelectedValue),txtNalogRealizovao.Text.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd());
+                    Convert.ToInt32(cboUsluga.SelectedValue), txtNalogRealizovao.Text.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd());
             }
             FillGV();
             status = false;
@@ -208,7 +203,7 @@ namespace Saobracaj.RadniNalozi
         {
             try
             {
-                foreach(DataGridViewRow row in dataGridView1.Rows)
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (row.Selected)
                     {
@@ -254,7 +249,7 @@ namespace Saobracaj.RadniNalozi
                 txtKamion.Text = dr["Kamion"].ToString();
                 //NIJE DOBRO null   cboPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
                 txtNapomena.Text = dr["Napomena"].ToString();
-              
+
 
                 if (dr["Zavrsen"].ToString() == "1")
                 { chkZavrsen.Checked = true; }

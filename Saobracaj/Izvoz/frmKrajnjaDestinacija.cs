@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
 {
@@ -65,7 +59,7 @@ namespace Saobracaj.Izvoz
             dataGridView1.Columns[1].HeaderText = "Naziv";
             dataGridView1.Columns[1].Width = 150;
 
-           
+
 
         }
 
@@ -74,7 +68,7 @@ namespace Saobracaj.Izvoz
             status = true;
             txtID.Enabled = false;
             txtNaziv.Text = "";
-          
+
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -82,12 +76,12 @@ namespace Saobracaj.Izvoz
             if (status == true)
             {
                 InsertKrajnjaDestinacija ins = new InsertKrajnjaDestinacija();
-               // ins.InsKrajnjaDestinacija(txtNaziv.Text);
+                // ins.InsKrajnjaDestinacija(txtNaziv.Text);
             }
             else
             {
                 InsertKrajnjaDestinacija upd = new InsertKrajnjaDestinacija();
-               // upd.UpdKrajnjaDestinacija(Convert.ToInt32(txtID.Text), txtNaziv.Text);
+                // upd.UpdKrajnjaDestinacija(Convert.ToInt32(txtID.Text), txtNaziv.Text);
             }
             RefreshDataGrid();
         }
@@ -109,7 +103,7 @@ namespace Saobracaj.Izvoz
                     {
                         txtID.Text = row.Cells[0].Value.ToString();
                         txtNaziv.Text = row.Cells[1].Value.ToString();
-                       
+
                     }
                 }
             }

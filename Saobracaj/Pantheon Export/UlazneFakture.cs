@@ -1,18 +1,8 @@
-﻿using Org.BouncyCastle.Crypto;
-using Saobracaj.eDokumenta;
-using Saobracaj.Sifarnici;
-using Syncfusion.Windows.Forms.Chart;
-using Syncfusion.XPS;
+﻿using Saobracaj.Sifarnici;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Security.Cryptography.Xml;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Pantheon_Export
@@ -20,7 +10,7 @@ namespace Saobracaj.Pantheon_Export
     public partial class UlazneFakture : Form
     {
         int rb;
-        int ID,Predvidjanje,Dobavljac,Referent;
+        int ID, Predvidjanje, Dobavljac, Referent;
         string VrstaDokumenta, TipDokumenta, Valuta, FakturaBr, RacunDobavljaca, Napomena;
         DateTime DatumPrijema, DatumIzdavanja, DatumPDVa, DatumValute;
         decimal Kurs;
@@ -34,8 +24,8 @@ namespace Saobracaj.Pantheon_Export
             FillCombo();
         }
 
-        public UlazneFakture(int id,int predvidjanje,string vrstaDokumenta, string tipDokumenta,DateTime datumPrijema,string valuta,decimal kurs,string fakturaBr,int dobavljac,string racunDobavljaca,DateTime datumIzdavanja,
-            DateTime datumPDVa,DateTime datumValute,int referent,string napomena)
+        public UlazneFakture(int id, int predvidjanje, string vrstaDokumenta, string tipDokumenta, DateTime datumPrijema, string valuta, decimal kurs, string fakturaBr, int dobavljac, string racunDobavljaca, DateTime datumIzdavanja,
+            DateTime datumPDVa, DateTime datumValute, int referent, string napomena)
         {
             InitializeComponent();
             ID = id;
@@ -132,45 +122,45 @@ namespace Saobracaj.Pantheon_Export
             var jmDa = new SqlDataAdapter(jm, conn);
             var jmDS = new DataSet();
             jmDa.Fill(jmDS);
-            cboJM.DataSource= jmDS.Tables[0];
+            cboJM.DataSource = jmDS.Tables[0];
             cboJM.DisplayMember = "MeNaziv";
             cboJM.ValueMember = "MeNaziv";
         }
         private void FillGV()
         {
             ID = Convert.ToInt32(txtID.Text);
-                var select = "select UlFakPostav.ID,IDFak,RB,MP,Rtrim(MpStaraSif) as Ident,Kolicina,Cena,UlFakPostav.NosilacTroska as NT,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska,JM,Proizvod,Oznaka from UlFakPostav inner join UlFak on UlFakPostav.IDFak=UlFak.ID inner join MaticniPodatki on UlFakPostav.Mp=MaticniPodatki.MpSifra inner join NosiociTroskova on UlFakPostav.NosilacTroska=NosiociTroskova.ID inner join Najava on UlFakPostav.NajavaID=Najava.ID Where IDFak=" + txtID.Text;
-                SqlConnection conn = new SqlConnection(connect);
-                var dataAdapter = new SqlDataAdapter(select, conn);
-                var ds = new DataSet();
-                dataAdapter.Fill(ds);
-                dataGridView1.ReadOnly = true;
-                dataGridView1.DataSource = ds.Tables[0];
+            var select = "select UlFakPostav.ID,IDFak,RB,MP,Rtrim(MpStaraSif) as Ident,Kolicina,Cena,UlFakPostav.NosilacTroska as NT,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska,JM,Proizvod,Oznaka from UlFakPostav inner join UlFak on UlFakPostav.IDFak=UlFak.ID inner join MaticniPodatki on UlFakPostav.Mp=MaticniPodatki.MpSifra inner join NosiociTroskova on UlFakPostav.NosilacTroska=NosiociTroskova.ID inner join Najava on UlFakPostav.NajavaID=Najava.ID Where IDFak=" + txtID.Text;
+            SqlConnection conn = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
 
 
-                dataGridView1.BorderStyle = BorderStyle.FixedSingle;
-                dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-                dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-                dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-                dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-                dataGridView1.BackgroundColor = Color.White;
+            dataGridView1.BorderStyle = BorderStyle.FixedSingle;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
 
-                dataGridView1.EnableHeadersVisualStyles = false;
-                dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-                dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-                dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
-                dataGridView1.Columns[0].Width = 50;
-                dataGridView1.Columns[1].Visible = false;
-                dataGridView1.Columns[2].Width = 50;
-                dataGridView1.Columns[3].Visible = false;
-                dataGridView1.Columns[4].Width = 100;
-                dataGridView1.Columns[5].Width = 100;
-                dataGridView1.Columns[8].Width = 200;
+            dataGridView1.Columns[0].Width = 50;
+            dataGridView1.Columns[1].Visible = false;
+            dataGridView1.Columns[2].Width = 50;
+            dataGridView1.Columns[3].Visible = false;
+            dataGridView1.Columns[4].Width = 100;
+            dataGridView1.Columns[5].Width = 100;
+            dataGridView1.Columns[8].Width = 200;
             dataGridView1.Columns[7].Visible = false;
 
             if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count + 1; }
-                txtRB.Text = rb.ToString();
+            txtRB.Text = rb.ToString();
 
         }
 
@@ -225,7 +215,7 @@ namespace Saobracaj.Pantheon_Export
             }
             conn.Close();
 
-            
+
 
             string query2 = "Select IDP From Predvidjanje Where ID=" + Convert.ToInt32(cboCRM.SelectedValue);
             conn.Open();
@@ -251,18 +241,18 @@ namespace Saobracaj.Pantheon_Export
             }
             ins.PoveziPredvidjanje(Convert.ToInt32(txtID.Text), IDVeza);
             FillGV();
-            
+
         }
 
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            
-            
+
+
         }
         int posao;
         private void button1_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count+1; }
+            if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count + 1; }
 
             GetNosilacInfo();
 
@@ -277,7 +267,7 @@ namespace Saobracaj.Pantheon_Export
             }
 
             InsertPatheonExport ins = new InsertPatheonExport();
-            ins.InsUlFakPostav(Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), cboJM.SelectedValue.ToString().TrimEnd()," ",posao, iznosRSD);
+            ins.InsUlFakPostav(Convert.ToInt32(txtID.Text), rb, Convert.ToInt32(cboMP.SelectedValue), Convert.ToDecimal(txtKolicina.Text), Convert.ToDecimal(txtCena.Text), Convert.ToInt32(cboNosilac.SelectedValue), cboJM.SelectedValue.ToString().TrimEnd(), " ", posao, iznosRSD);
             FillGV();
         }
 
@@ -290,7 +280,7 @@ namespace Saobracaj.Pantheon_Export
         {
             InsertPatheonExport ins = new InsertPatheonExport();
             SqlConnection conn = new SqlConnection(connect);
-            string query2 = "Select PaSifDrzave from Partnerji Where PaSifra="+Convert.ToInt32(cboDobavljac.SelectedValue);
+            string query2 = "Select PaSifDrzave from Partnerji Where PaSifra=" + Convert.ToInt32(cboDobavljac.SelectedValue);
             conn.Open();
             SqlCommand cmd2 = new SqlCommand(query2, conn);
             SqlDataReader dr2 = cmd2.ExecuteReader();
@@ -299,23 +289,23 @@ namespace Saobracaj.Pantheon_Export
                 sifDr = Convert.ToInt32(dr2[0].ToString());
             }
             conn.Close();
-            string valuta=cboValuta.SelectedValue.ToString();
-            if(sifDr==82 && valuta != "RSD")
+            string valuta = cboValuta.SelectedValue.ToString();
+            if (sifDr == 82 && valuta != "RSD")
             {
-                DialogResult dr = MessageBox.Show("Za domaćeg dobavljača dokument treba biti u dinarima\nDa li želite da potvrdite dokument u valuti " + valuta+" po kursu:"+txtKurs.Value.ToString(), "Potvrda valute", MessageBoxButtons.YesNo);
+                DialogResult dr = MessageBox.Show("Za domaćeg dobavljača dokument treba biti u dinarima\nDa li želite da potvrdite dokument u valuti " + valuta + " po kursu:" + txtKurs.Value.ToString(), "Potvrda valute", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
                 {
                     if (status == true)
                     {
                         ins.InsUlFak(Convert.ToInt32(txtID.Text), cboCRM.SelectedValue.ToString(), cboVrstaDok.Text.ToString().Substring(0, 2), txtBrFakture.Text.ToString(), Convert.ToInt32(cboDobavljac.SelectedValue), cboTip.Text.ToString().Substring(0, 4),
                             Convert.ToDateTime(dtPrijem.Value.ToString()), cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Text), txtRacunDobavljaca.Text.ToString(), Convert.ToDateTime(dtIzdavanje.Value.ToString()), Convert.ToDateTime(dtPDV.Value.ToString()),
-                            Convert.ToDateTime(dtValute.Value.ToString()), Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboCRM.SelectedValue), txtNapomena.Text.ToString().TrimEnd(), Convert.ToInt32(crmID),korisnik);
+                            Convert.ToDateTime(dtValute.Value.ToString()), Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboCRM.SelectedValue), txtNapomena.Text.ToString().TrimEnd(), Convert.ToInt32(crmID), korisnik);
                     }
                     else
                     {
                         ins.UpdUlFak(Convert.ToInt32(txtID.Text), txtBrFakture.Text.ToString(), Convert.ToInt32(cboDobavljac.SelectedValue),
                             Convert.ToDateTime(dtPrijem.Value.ToString()), cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Text), txtRacunDobavljaca.Text.ToString(), Convert.ToDateTime(dtIzdavanje.Value.ToString()), Convert.ToDateTime(dtPDV.Value.ToString()),
-                            Convert.ToDateTime(dtValute.Value.ToString()), Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboCRM.SelectedValue), txtNapomena.Text.ToString().TrimEnd(),korisnik);
+                            Convert.ToDateTime(dtValute.Value.ToString()), Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboCRM.SelectedValue), txtNapomena.Text.ToString().TrimEnd(), korisnik);
                     }
                     FillGV();
                 }
@@ -330,7 +320,7 @@ namespace Saobracaj.Pantheon_Export
                 {
                     ins.InsUlFak(Convert.ToInt32(txtID.Text), cboCRM.SelectedValue.ToString(), cboVrstaDok.Text.ToString().Substring(0, 2), txtBrFakture.Text.ToString(), Convert.ToInt32(cboDobavljac.SelectedValue), cboTip.Text.ToString().Substring(0, 4),
                         Convert.ToDateTime(dtPrijem.Value.ToString()), cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtKurs.Text), txtRacunDobavljaca.Text.ToString(), Convert.ToDateTime(dtIzdavanje.Value.ToString()), Convert.ToDateTime(dtPDV.Value.ToString()),
-                        Convert.ToDateTime(dtValute.Value.ToString()), Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboCRM.SelectedValue), txtNapomena.Text.ToString().TrimEnd(), Convert.ToInt32(crmID),korisnik);
+                        Convert.ToDateTime(dtValute.Value.ToString()), Convert.ToInt32(cboReferent.SelectedValue), Convert.ToInt32(cboCRM.SelectedValue), txtNapomena.Text.ToString().TrimEnd(), Convert.ToInt32(crmID), korisnik);
                 }
                 else
                 {
@@ -352,11 +342,11 @@ namespace Saobracaj.Pantheon_Export
         {
             try
             {
-                foreach(DataGridViewRow row in dataGridView1.Rows)
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (row.Selected)
                     {
-                        
+
                         IDPostav = Convert.ToInt32(row.Cells[0].Value.ToString());
                         txtRB.Text = row.Cells["RB"].Value.ToString();
                         cboMP.SelectedValue = Convert.ToInt32(row.Cells["MP"].Value);

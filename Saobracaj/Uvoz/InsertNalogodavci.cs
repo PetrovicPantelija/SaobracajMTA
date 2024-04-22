@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -15,7 +11,7 @@ namespace Saobracaj.Uvoz
     {
         string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
 
-        public void InsNalogodavci(int PaSifra,string PaNaziv)
+        public void InsNalogodavci(int PaSifra, string PaNaziv)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -71,7 +67,7 @@ namespace Saobracaj.Uvoz
                 }
             }
         }
-        public void UpdNalogodavci(int ID,int PaSifra, string PaNaziv)
+        public void UpdNalogodavci(int ID, int PaSifra, string PaNaziv)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();

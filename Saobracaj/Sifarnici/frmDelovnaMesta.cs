@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -61,7 +55,7 @@ namespace Saobracaj.Sifarnici
             dataGridView1.Columns[1].HeaderText = "Naziv";
             dataGridView1.Columns[1].Width = 150;
 
-          
+
 
 
 
@@ -77,13 +71,13 @@ namespace Saobracaj.Sifarnici
             status = true;
             txtDmSifra.Enabled = false;
             txtDmNaziv.Text = "";
-          
+
         }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
- 
-          
+
+
             if (status == true)
             {
                 // txtDeSifra.Text,  txtDePriimek.Text,  txtDeIme.Text, txtDeTelefon1.Text,  txtDeTelefon2.Text ,  txtDeEMail.Text , txtDeUlHisStBivS.Text , txtDeKrajBivS.Text , txtDeSifDelMes.Text ,  txtDeSifStat.Text ,  PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja)

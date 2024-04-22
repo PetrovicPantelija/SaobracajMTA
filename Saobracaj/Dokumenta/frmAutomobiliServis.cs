@@ -1,19 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -158,7 +148,7 @@ namespace Saobracaj.Dokumenta
         {
             txtSifra.Text = "";
             txtSifra.Enabled = false;
-       
+
 
             status = true;
         }
@@ -172,12 +162,12 @@ namespace Saobracaj.Dokumenta
                     if (row.Selected)
                     {
                         txtSifra.Text = row.Cells[0].Value.ToString();
-                       txtAutomobilID.Text = row.Cells[1].Value.ToString();
+                        txtAutomobilID.Text = row.Cells[1].Value.ToString();
                         dtpDatumServisa.Value = Convert.ToDateTime(row.Cells[2].Value.ToString());
                         if (row.Cells[3].Value.ToString() == "1")
                         {
                             chkVelikiServis.Checked = true;
-                        
+
                         }
                         else
                         {

@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 
 namespace Saobracaj.Servis
 {
     class InsertKvarovi
     {
-         public void InsKVAR(string Naziv, int GrupaKvarovaID)
+        public void InsKVAR(string Naziv, int GrupaKvarovaID)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -630,7 +626,7 @@ namespace Saobracaj.Servis
 
         public void InsStampajKvarovi(int ID, string Lokomotiva, string Kvar, string GrupaKvarova, DateTime DatumPrijave, string Prijavio, string Status, string Napomena)
         {
-           
+
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -638,8 +634,8 @@ namespace Saobracaj.Servis
             myCommand.CommandText = "InsertStampajKvarovi";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-         
-            
+
+
             SqlParameter parameter = new SqlParameter();
             parameter.ParameterName = "@ID";
             parameter.SqlDbType = SqlDbType.Int;
@@ -648,9 +644,9 @@ namespace Saobracaj.Servis
             myCommand.Parameters.Add(parameter);
 
 
-       
-         
-            
+
+
+
 
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@Lokomotiva";
@@ -706,7 +702,7 @@ namespace Saobracaj.Servis
             parameter7.Direction = ParameterDirection.Input;
             parameter7.Value = Napomena;
             myCommand.Parameters.Add(parameter7);
-     
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -753,7 +749,7 @@ namespace Saobracaj.Servis
             myCommand.CommandText = "DeleteStampajKvarovi";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-           
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
     class InsertDelavciMTA
     {
-        public void InsDelavciMTA( string DePriimek, string DeIme, string DeTelefon1, string DeTelefon2, string DeEMail, string DeUlHisStBivS, string DeKrajBivS, int DeSifDelMes, string DeSifStat, int PomManevrista, int PomPomocnik, int PomVozovodja, int PomPregledacKola, int PomMasinovodja)
+        public void InsDelavciMTA(string DePriimek, string DeIme, string DeTelefon1, string DeTelefon2, string DeEMail, string DeUlHisStBivS, string DeKrajBivS, int DeSifDelMes, string DeSifStat, int PomManevrista, int PomPomocnik, int PomVozovodja, int PomPregledacKola, int PomMasinovodja)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -84,12 +80,12 @@ namespace Saobracaj.Sifarnici
             parameter8.Value = DeSifStat;
             myCommand.Parameters.Add(parameter8);
 
-           // int PomManevrista, int PomPomocnik, int PomVozovodja, int PomPregledacKola, int PomMasinovodja
+            // int PomManevrista, int PomPomocnik, int PomVozovodja, int PomPregledacKola, int PomMasinovodja
 
             SqlParameter parameter9 = new SqlParameter();
             parameter9.ParameterName = "@PomManevrista";
             parameter9.SqlDbType = SqlDbType.Int;
-          //  parameter9.Size = 2048;
+            //  parameter9.Size = 2048;
             parameter9.Direction = ParameterDirection.Input;
             parameter9.Value = PomManevrista;
             myCommand.Parameters.Add(parameter9);
@@ -98,7 +94,7 @@ namespace Saobracaj.Sifarnici
             SqlParameter parameter10 = new SqlParameter();
             parameter10.ParameterName = "@PomPomocnik";
             parameter10.SqlDbType = SqlDbType.Int;
-          //  parameter10.Size = 35;
+            //  parameter10.Size = 35;
             parameter10.Direction = ParameterDirection.Input;
             parameter10.Value = PomPomocnik;
             myCommand.Parameters.Add(parameter10);
@@ -106,7 +102,7 @@ namespace Saobracaj.Sifarnici
             SqlParameter parameter11 = new SqlParameter();
             parameter11.ParameterName = "@PomVozovodja";
             parameter11.SqlDbType = SqlDbType.Int;
-          //  parameter11.Size = 70;
+            //  parameter11.Size = 70;
             parameter11.Direction = ParameterDirection.Input;
             parameter11.Value = PomVozovodja;
             myCommand.Parameters.Add(parameter11);
@@ -114,7 +110,7 @@ namespace Saobracaj.Sifarnici
             SqlParameter parameter12 = new SqlParameter();
             parameter12.ParameterName = "@PomPregledacKola";
             parameter12.SqlDbType = SqlDbType.Int;
-        //    parameter12.Size = 35;
+            //    parameter12.Size = 35;
             parameter12.Direction = ParameterDirection.Input;
             parameter12.Value = PomPregledacKola;
             myCommand.Parameters.Add(parameter12);
@@ -140,7 +136,7 @@ namespace Saobracaj.Sifarnici
             SqlParameter parameter13 = new SqlParameter();
             parameter13.ParameterName = "@PomMasinovodja";
             parameter13.SqlDbType = SqlDbType.Int;
-         //   parameter13.Size = 10;
+            //   parameter13.Size = 10;
             parameter13.Direction = ParameterDirection.Input;
             parameter13.Value = PomMasinovodja;
             myCommand.Parameters.Add(parameter13);
@@ -202,7 +198,7 @@ namespace Saobracaj.Sifarnici
             SqlParameter parameter0 = new SqlParameter();
             parameter0.ParameterName = "@DeSIfra";
             parameter0.SqlDbType = SqlDbType.Int;
-           //parameter0.Size = 35;
+            //parameter0.Size = 35;
             parameter0.Direction = ParameterDirection.Input;
             parameter0.Value = DeSIfra;
             myCommand.Parameters.Add(parameter0);
@@ -377,7 +373,7 @@ namespace Saobracaj.Sifarnici
                 }
             }
         }
-        public void UpdDelavciMTA(int DeSifra, string DePriimek, string DeIme, string DeTelefon1, string DeTelefon2, string DeEMail, string DeUlHisStBivS, string DeKrajBivS, int DeSifDelMes, string DeSifStat,int PomManevrista, int PomPomocnik, int PomVozovodja, int PomPregledacKola, int PomMasinovodja)
+        public void UpdDelavciMTA(int DeSifra, string DePriimek, string DeIme, string DeTelefon1, string DeTelefon2, string DeEMail, string DeUlHisStBivS, string DeKrajBivS, int DeSifDelMes, string DeSifStat, int PomManevrista, int PomPomocnik, int PomVozovodja, int PomPregledacKola, int PomMasinovodja)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -490,7 +486,7 @@ namespace Saobracaj.Sifarnici
             parameter12.Direction = ParameterDirection.Input;
             parameter12.Value = PomPregledacKola;
             myCommand.Parameters.Add(parameter12);
-           
+
             SqlParameter parameter13 = new SqlParameter();
             parameter13.ParameterName = "@PomMasinovodja";
             parameter13.SqlDbType = SqlDbType.Int;

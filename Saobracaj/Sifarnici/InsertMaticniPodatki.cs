@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
     class InsertMaticniPodatki
     {
-        public void InsMaticniPodatki( string MpStaraSif, string MpNaziv, string MpDoNaziv, string MpSifEnoteMere1, string MpSifEnoteMere2, int MpSifProdSkup)
+        public void InsMaticniPodatki(string MpStaraSif, string MpNaziv, string MpDoNaziv, string MpSifEnoteMere1, string MpSifEnoteMere2, int MpSifProdSkup)
         {
 
 
@@ -39,7 +35,7 @@ namespace Saobracaj.Sifarnici
             parameter.Value = MpSifra;
             myCommand.Parameters.Add(parameter);
             */
-          
+
 
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@MpStaraSif";
@@ -52,12 +48,12 @@ namespace Saobracaj.Sifarnici
             SqlParameter parameter3 = new SqlParameter();
             parameter3.ParameterName = "@MpNaziv";
             parameter3.SqlDbType = SqlDbType.Char;
-              parameter3.Size = 35;
+            parameter3.Size = 35;
             parameter3.Direction = ParameterDirection.Input;
             parameter3.Value = MpNaziv;
             myCommand.Parameters.Add(parameter3);
-           
-            
+
+
             SqlParameter parameter4 = new SqlParameter();
             parameter4.ParameterName = "@MpDoNaziv";
             parameter4.SqlDbType = SqlDbType.Char;
@@ -141,15 +137,15 @@ namespace Saobracaj.Sifarnici
             myCommand.CommandText = "UpdateMaticniPodatki";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-           
-           SqlParameter parameter = new SqlParameter();
-           parameter.ParameterName = "@MpSifra";
-           parameter.SqlDbType = SqlDbType.Int;
-           //  parameter.Size = 100;
-           parameter.Direction = ParameterDirection.Input;
-           parameter.Value = MpSifra;
-           myCommand.Parameters.Add(parameter);
-           
+
+            SqlParameter parameter = new SqlParameter();
+            parameter.ParameterName = "@MpSifra";
+            parameter.SqlDbType = SqlDbType.Int;
+            //  parameter.Size = 100;
+            parameter.Direction = ParameterDirection.Input;
+            parameter.Value = MpSifra;
+            myCommand.Parameters.Add(parameter);
+
 
 
             SqlParameter parameter2 = new SqlParameter();

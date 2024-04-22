@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj
@@ -34,7 +30,7 @@ namespace Saobracaj
         private void LoadPage()
         {
             int rc = 0;
-            
+
 
             var query = $"SELECT ID, Naziv +'-'+ Kapacitet, ISNULL((SELECT STUFF((SELECT DISTINCT '\n' + CAST(Kontejner AS NVARCHAR(50)) FROM KontejnerTekuce WHERE KontejnerTekuce.Skladiste = Skladista.ID FOR XML PATH('')), 1, 1, '' ) AS Skupljen),'') AS Lokom, ROW_NUMBER() OVER (ORDER BY ID) AS RowNum FROM Skladista WHERE Skladista.ID BETWEEN {startRow} AND {endRow}";
 
@@ -53,7 +49,7 @@ namespace Saobracaj
             gridContainer = new TableLayoutPanel();
             gridContainer.Dock = DockStyle.Fill;
             gridContainer.ColumnCount = 14;
-            foreach(DataRow row in dt.Rows)
+            foreach (DataRow row in dt.Rows)
             {
                 int id = Convert.ToInt32(row["ID"].ToString());
 

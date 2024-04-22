@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -56,7 +50,7 @@ namespace Saobracaj.Dokumenta
 
             cboTrase.SelectedValue = pomTrasa;
 
-          
+
 
             var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci order by opis";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -113,9 +107,9 @@ namespace Saobracaj.Dokumenta
             RefreshDataGrid();
             status = false;
         }
-       
+
         private void RefreshDataGrid()
-        { 
+        {
             /*
             SELECT     RadniNalogTraseLokZap.IDRadnogNaloga, RadniNalogTraseLokZap.RB, RadniNalogTraseLokZap.SMSifra, RadniNalogTraseLokZap.DeSifra, 
                       RadniNalogTraseLokZap.DatumPolaska, RadniNalogTraseLokZap.DatumDolaska, RadniNalogTraseLokZap.PlaniranoVreme, Trase.Voz, Delavci.DeSifra AS Expr1, 
@@ -341,10 +335,10 @@ namespace Saobracaj.Dokumenta
                 txtJalovoVreme.Text = Convert.ToString((Convert.ToInt32(txtJalovoVreme.Text) - 60));
             }
             InsertRadniNalogZaposleniEvid ins = new InsertRadniNalogZaposleniEvid();
-            ins.InsRNTLZEVID(Convert.ToInt32(txtSifraRN.Text), Convert.ToInt32(cboTrase.SelectedValue), "", Convert.ToInt32(cboZaposleni.SelectedValue), dtpVremeJavljanja.Value, dtpVremePocetka.Value, pomDirektna,dtpVremePrimopredaja.Value, dtpVremeZavrsetka.Value, Convert.ToInt32(txtVoznoVreme.Text), Convert.ToInt32(txtUkupnoVreme.Text), Convert.ToInt32(txtJalovoVreme.Text), Convert.ToInt32(txtJalovoVremeVV.Text));
+            ins.InsRNTLZEVID(Convert.ToInt32(txtSifraRN.Text), Convert.ToInt32(cboTrase.SelectedValue), "", Convert.ToInt32(cboZaposleni.SelectedValue), dtpVremeJavljanja.Value, dtpVremePocetka.Value, pomDirektna, dtpVremePrimopredaja.Value, dtpVremeZavrsetka.Value, Convert.ToInt32(txtVoznoVreme.Text), Convert.ToInt32(txtUkupnoVreme.Text), Convert.ToInt32(txtJalovoVreme.Text), Convert.ToInt32(txtJalovoVremeVV.Text));
             RefreshDataGrid2();
             status = false;
-            
+
         }
 
         private void RefreshDataGrid2()
@@ -446,25 +440,25 @@ namespace Saobracaj.Dokumenta
             dataGridView2.Columns[15].Width = 40;
 
 
-           /*
-            SELECT [IDRadnogNaloga]
-      ,[RB]
-      ,[IDTrase]
-      ,[SMSifra]
-      ,RadniNalogTraseLokZapEvid.DeSifra
-      ,[VremeJavljanja]
-      ,[VremePocetka]
-      ,[DirektnaPrimopredaja]
-      ,[VremePrimopredaja]
-      ,[VremeZavrsetka]
-      ,[VoznoVreme]
-      ,[UkupnoVreme]
-      ,[JalovoVreme]
-      ,[JalovoVremeVanVoznje]
-  FROM [TESTIRANJE].[dbo].[RadniNalogTraseLokZapEvid]
-  inner join Delavci on Delavci.DeSifra = RadniNalogTraseLokZapEvid.DeSifra
+            /*
+             SELECT [IDRadnogNaloga]
+       ,[RB]
+       ,[IDTrase]
+       ,[SMSifra]
+       ,RadniNalogTraseLokZapEvid.DeSifra
+       ,[VremeJavljanja]
+       ,[VremePocetka]
+       ,[DirektnaPrimopredaja]
+       ,[VremePrimopredaja]
+       ,[VremeZavrsetka]
+       ,[VoznoVreme]
+       ,[UkupnoVreme]
+       ,[JalovoVreme]
+       ,[JalovoVremeVanVoznje]
+   FROM [TESTIRANJE].[dbo].[RadniNalogTraseLokZapEvid]
+   inner join Delavci on Delavci.DeSifra = RadniNalogTraseLokZapEvid.DeSifra
 
-            */
+             */
 
 
         }
@@ -609,7 +603,7 @@ namespace Saobracaj.Dokumenta
             {
                 cboTrase.SelectedValue = Convert.ToInt32(dr["IDTrase"].ToString());
                 txtRB.Text = dr["RB"].ToString();
-               // cboLokomotiva.SelectedValue = Convert.ToInt32(dr["SmSifra"].ToString());
+                // cboLokomotiva.SelectedValue = Convert.ToInt32(dr["SmSifra"].ToString());
                 cboZaposleni.SelectedValue = Convert.ToInt32(dr["DeSifra"].ToString());
                 dtpVremeOd.Value = Convert.ToDateTime(dr["DatumPolaska"].ToString());
                 dtpVremeDo.Value = Convert.ToDateTime(dr["DatumDolaska"].ToString());
@@ -622,7 +616,7 @@ namespace Saobracaj.Dokumenta
                 else
                 {
                     chkMasinovodja.Checked = false;
-                
+
                 }
 
                 if (dr["Pomocnik"].ToString() == "1")
@@ -660,8 +654,8 @@ namespace Saobracaj.Dokumenta
             }
 
             con.Close();
-        
-        
+
+
         }
 
         private void txtVoznoVreme_Leave(object sender, EventArgs e)
@@ -680,10 +674,10 @@ namespace Saobracaj.Dokumenta
                     {
                         int RN = Convert.ToInt32(row.Cells[0].Value.ToString());
                         int RB = Convert.ToInt32(row.Cells[2].Value.ToString()); ;
-                       // txtSifra.Text = row.Cells[0].Value.ToString();
+                        // txtSifra.Text = row.Cells[0].Value.ToString();
                         VratiPodatke(RN, RB);
-                       // txtSifra.Text = row.Cells[0].Value.ToString();
-                       // VratiPodatke(txtSifra.Text);
+                        // txtSifra.Text = row.Cells[0].Value.ToString();
+                        // VratiPodatke(txtSifra.Text);
                         // txtOpis.Text = row.Cells[1].Value.ToString();
                     }
                 }
@@ -716,7 +710,7 @@ namespace Saobracaj.Dokumenta
 
         private void cboZaposleni_SelectedValueChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         private void cboAktivnost_SelectedValueChanged(object sender, EventArgs e)
@@ -726,7 +720,7 @@ namespace Saobracaj.Dokumenta
 
         private void cboAktivnost_SelectionChangeCommitted(object sender, EventArgs e)
         {
-          
+
 
         }
 

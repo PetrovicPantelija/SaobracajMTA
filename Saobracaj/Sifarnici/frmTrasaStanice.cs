@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -37,11 +31,11 @@ namespace Saobracaj.Sifarnici
         {
             if (status == true)
             {
-               /*
-                InsertTrasaStanice ins = new InsertTrasaStanice();
-                ins.InsTStan(Convert.ToInt32((cboPruga.SelectedValue)), Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cmbPocetna.SelectedValue), Convert.ToInt32(cboKrajnja.SelectedValue));
-                RefreshDataGrid();
-               */
+                /*
+                 InsertTrasaStanice ins = new InsertTrasaStanice();
+                 ins.InsTStan(Convert.ToInt32((cboPruga.SelectedValue)), Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cmbPocetna.SelectedValue), Convert.ToInt32(cboKrajnja.SelectedValue));
+                 RefreshDataGrid();
+                */
                 //status = false;
             }
             else
@@ -68,7 +62,7 @@ namespace Saobracaj.Sifarnici
                       " stanice ON TrasaStanice.StanicaOD = stanice.ID INNER JOIN " +
                       " stanice AS stanice_1 ON TrasaStanice.StanicaDo = stanice_1.ID " +
                       " inner join Trase on Trase.ID = TrasaStanice.IDTrase  where IdTrase = " + txtSifra.Text;
-         
+
 
 
 
@@ -150,7 +144,7 @@ namespace Saobracaj.Sifarnici
             cboPruga.ValueMember = "ID";
 
 
-           
+
 
             var select2 = " Select Distinct ID, RTrim(Opis) as Stanica From Stanice";
             var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -169,7 +163,7 @@ namespace Saobracaj.Sifarnici
             var select3 = " Select Distinct ID, RTrim(Opis) as Stanica From Stanice";
             var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
-            var c3= new SqlConnection(s_connection3);
+            var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
 
             var commandBuilder3 = new SqlCommandBuilder(dataAdapter3);
@@ -184,43 +178,43 @@ namespace Saobracaj.Sifarnici
         {
             if (PrviUlazak != 0)
             {
-           
+
             }
 
         }
 
         private void cboPruga_Leave(object sender, EventArgs e)
         {
-           /*
-            var select = " Select Stanice.ID, RTrim(Stanice.Opis) as Opis from PRugaStavke inner join Stanice on PrugaStavke.StanicaOd = Stanice.Id where PrugaStavke.IdPruge =  " + cboPruga.SelectedValue;
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
+            /*
+             var select = " Select Stanice.ID, RTrim(Stanice.Opis) as Opis from PRugaStavke inner join Stanice on PrugaStavke.StanicaOd = Stanice.Id where PrugaStavke.IdPruge =  " + cboPruga.SelectedValue;
+             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+             SqlConnection myConnection = new SqlConnection(s_connection);
+             var c = new SqlConnection(s_connection);
+             var dataAdapter = new SqlDataAdapter(select, c);
 
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
-            dataAdapter.Fill(ds);
-            cmbPocetna.DataSource = ds.Tables[0];
-            cmbPocetna.DisplayMember = "Opis";
-            cmbPocetna.ValueMember = "ID";
+             var commandBuilder = new SqlCommandBuilder(dataAdapter);
+             var ds = new DataSet();
+             dataAdapter.Fill(ds);
+             cmbPocetna.DataSource = ds.Tables[0];
+             cmbPocetna.DisplayMember = "Opis";
+             cmbPocetna.ValueMember = "ID";
 
 
-            /////////////Stanica do
+             /////////////Stanica do
 
-            var select2 = " Select Stanice.ID, RTrim(Stanice.OPis) as Opis from PRugaStavke inner join Stanice on PrugaStavke.StanicaDo= Stanice.Id where PrugaStavke.IdPruge =  " + cboPruga.SelectedValue;
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection2 = new SqlConnection(s_connection2);
-            var c2 = new SqlConnection(s_connection2);
-            var dataAdapter2 = new SqlDataAdapter(select2, c2);
+             var select2 = " Select Stanice.ID, RTrim(Stanice.OPis) as Opis from PRugaStavke inner join Stanice on PrugaStavke.StanicaDo= Stanice.Id where PrugaStavke.IdPruge =  " + cboPruga.SelectedValue;
+             var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+             SqlConnection myConnection2 = new SqlConnection(s_connection2);
+             var c2 = new SqlConnection(s_connection2);
+             var dataAdapter2 = new SqlDataAdapter(select2, c2);
 
-            var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
-            var ds2 = new DataSet();
-            dataAdapter2.Fill(ds2);
-            cboKrajnja.DataSource = ds2.Tables[0];
-            cboKrajnja.DisplayMember = "Opis";
-            cboKrajnja.ValueMember = "ID";
-           */
+             var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
+             var ds2 = new DataSet();
+             dataAdapter2.Fill(ds2);
+             cboKrajnja.DataSource = ds2.Tables[0];
+             cboKrajnja.DisplayMember = "Opis";
+             cboKrajnja.ValueMember = "ID";
+            */
 
         }
 

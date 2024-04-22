@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 
 namespace Saobracaj.Uvoz
@@ -103,7 +97,7 @@ namespace Saobracaj.Uvoz
                     MessageBox.Show(ex.Message);
                 }
             }
-            }
+        }
         private void FillCombo()
         {
             var planutovara = "select UvozKonacnaZaglavlje.ID,(Cast(BrVoza as nvarchar(15)) + ' '  + Relacija) as Naziv from UvozKonacnaZaglavlje " +
@@ -152,7 +146,7 @@ namespace Saobracaj.Uvoz
                 {
 
                     InsertUvozKonacna ins = new InsertUvozKonacna();
-                    ins.UpdateBrojKolaIzExcela(Convert.ToInt32(cboPlanUtovara.SelectedValue), row.Cells[1].Value.ToString(),  row.Cells[2].Value.ToString(),  row.Cells[3].Value.ToString());
+                    ins.UpdateBrojKolaIzExcela(Convert.ToInt32(cboPlanUtovara.SelectedValue), row.Cells[1].Value.ToString(), row.Cells[2].Value.ToString(), row.Cells[3].Value.ToString());
                     RefreshDataGrid2();
                 }
             }

@@ -1,26 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
     public partial class frmNajavaStavkePorudzbine : Form
     {
         int SifraPartnera = 0;
-        
+
         public frmNajavaStavkePorudzbine()
         {
             InitializeComponent();
@@ -41,7 +30,7 @@ namespace Saobracaj.Dokumenta
                 "NaPNote as Napomena   from Narocilo inner join NarociloPostav " +
 " on Narocilo.NaStNar = NarociloPostav.NaPStNar " +
 " where NaStatus = 'PO' and NaPartPlac = " + SifraPartnera;
-           
+
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -58,7 +47,7 @@ namespace Saobracaj.Dokumenta
             dataGridView1.Columns[0].HeaderText = "ID";
             dataGridView1.Columns[0].Width = 70;
 
-           
+
 
         }
 
@@ -69,12 +58,12 @@ namespace Saobracaj.Dokumenta
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-           
+
         }
     }
 }

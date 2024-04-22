@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Office.Interop.Excel;
 
 namespace Saobracaj.Uvoz
 {
@@ -86,7 +80,7 @@ namespace Saobracaj.Uvoz
             {
                 txtID.Text = dr["ID"].ToString();
             }
-        
+
             con.Close();
         }
 
@@ -100,9 +94,9 @@ namespace Saobracaj.Uvoz
             }
             if (status == true)
             {
-                
+
                 InsertUvozKonacnaZaglavlje ins = new InsertUvozKonacnaZaglavlje();
-                ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text,1, "", Convert.ToDateTime("1.1.1900"), "","", tmpTerminalski);
+                ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "", tmpTerminalski);
                 RefreshDataGrid();
                 VratiZadnjiBroj();
                 status = false;
@@ -115,7 +109,7 @@ namespace Saobracaj.Uvoz
                     return;
                 }
                 InsertUvozKonacnaZaglavlje ins = new InsertUvozKonacnaZaglavlje();
-                ins.UpdUvozKonacnaZaglavlje(Convert.ToInt32(txtID.Text),Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "");
+                ins.UpdUvozKonacnaZaglavlje(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "");
                 RefreshDataGrid();
                 status = false;
             }
@@ -187,7 +181,7 @@ namespace Saobracaj.Uvoz
             if (pomVoz > 1)
             {
                 cboVoz.SelectedValue = pomVoz;
-            
+
             }
         }
 

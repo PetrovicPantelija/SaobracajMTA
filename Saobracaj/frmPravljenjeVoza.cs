@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj
 {
@@ -21,7 +13,7 @@ namespace Saobracaj
         public frmPravljenjeVoza()
         {
             InitializeComponent();
-           // int RadniNalog = 0;
+            // int RadniNalog = 0;
 
             var select8 = " Select ID, RTrim(Opis) as Stanica From Stanice order by opis";
             var s_connection8 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -50,7 +42,7 @@ namespace Saobracaj
             cboStanicaDo.ValueMember = "ID";
 
 
-       
+
         }
 
         public frmPravljenjeVoza(int RN)
@@ -85,14 +77,14 @@ namespace Saobracaj
             cboStanicaDo.ValueMember = "ID";
 
 
-          
+
         }
 
         public frmPravljenjeVoza(int RN, int StanicaPopisa, int StanicaOd, int StanicaDo, DateTime vreme)
         {
             InitializeComponent();
             cboRadniNalog.SelectedValue = RN;
-            
+
 
             var select8 = " Select ID, RTrim(Opis) as Stanica From Stanice order by opis";
             var s_connection8 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -130,7 +122,7 @@ namespace Saobracaj
         private void refreshGroup()
         {
             var select = " Select Max(ID) as ID ,Opis, COUNT(ID) as BrojVagona, SUM(neto) as Neto, SUM(Tara) as Tara, sum(Duzina) as Duzina from ( " +
-            " Select TIV.ID, TIV.StanicaIskljucenja, s1.Opis, ts.Duzina, ts.Tara, ts.Neto " + 
+            " Select TIV.ID, TIV.StanicaIskljucenja, s1.Opis, ts.Duzina, ts.Tara, ts.Neto " +
             " from TeretnicaIskljuceniVagoni TIV " +
             " inner join stanice s1 on TIV.StanicaIskljucenja = s1.ID " +
             " inner join TeretnicaStavke ts on TIV.IDTeretnice = ts.id) f1 " +
@@ -184,7 +176,7 @@ namespace Saobracaj
             dataGridView1.Columns[5].HeaderText = "Ukupno Duzina";
             dataGridView1.Columns[5].Width = 80;
 
-        
+
         }
 
         private void frmPravljenjeVoza_Load(object sender, EventArgs e)
@@ -208,7 +200,7 @@ namespace Saobracaj
             cboStanicaIsklj.DisplayMember = "Opis";
             cboStanicaIsklj.ValueMember = "ID";
 
-           
+
 
 
             refreshGroup();
@@ -231,7 +223,7 @@ namespace Saobracaj
                 cboStanicaIsklj.SelectedValue = tmpStanicaPopisa;
                 PovuciVagone(tmpStanicaPopisa);
             }
-            
+
 
         }
 
@@ -479,9 +471,9 @@ inner join TeretnicaStavke ts on TIV.IDTeretnice = ts.id*/
             DataGridViewColumn column22 = dataGridView3.Columns[21];
             dataGridView3.Columns[21].HeaderText = "Ruč koč";
             dataGridView3.Columns[21].Width = 60;
-        
-        
-        
+
+
+
         }
 
         private void dataGridView3_SelectionChanged(object sender, EventArgs e)
@@ -517,9 +509,9 @@ inner join TeretnicaStavke ts on TIV.IDTeretnice = ts.id*/
         }
 
         private void RefreshDataGrid()
-        { 
-        
-        
+        {
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -527,7 +519,7 @@ inner join TeretnicaStavke ts on TIV.IDTeretnice = ts.id*/
             try
             {
                 Dokumenta.InsertTeretnica it = new Dokumenta.InsertTeretnica();
-                it.InsTeretnica("", Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboStanicaIsklj.SelectedValue), Convert.ToDateTime(dtpVremeOd.Value), Convert.ToDateTime(dtpVremeOd.Value), "", 0, 0, "sa", 1, Convert.ToInt32(cboRadniNalog.SelectedValue),0, "");
+                it.InsTeretnica("", Convert.ToInt32(cboStanicaOd.SelectedValue), Convert.ToInt32(cboStanicaDo.SelectedValue), Convert.ToInt32(cboStanicaIsklj.SelectedValue), Convert.ToDateTime(dtpVremeOd.Value), Convert.ToDateTime(dtpVremeOd.Value), "", 0, 0, "sa", 1, Convert.ToInt32(cboRadniNalog.SelectedValue), 0, "");
 
                 Dokumenta.InsertRadniNalog irn = new Dokumenta.InsertRadniNalog();
                 irn.InsRNTeretnica(Convert.ToInt32(cboRadniNalog.SelectedValue));
@@ -540,7 +532,7 @@ inner join TeretnicaStavke ts on TIV.IDTeretnice = ts.id*/
 
                         Dokumenta.InsertIskljuceniVagoni div = new Dokumenta.InsertIskljuceniVagoni();
                         div.UpdateIskljuceniVag(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(cboRadniNalog.SelectedValue));
-                       
+
                     }
                 }
                 //dataGridView3
@@ -552,6 +544,6 @@ inner join TeretnicaStavke ts on TIV.IDTeretnice = ts.id*/
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
         }
-    
+
     }
 }

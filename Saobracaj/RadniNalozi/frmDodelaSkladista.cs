@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.RadniNalozi
 {
@@ -41,7 +33,7 @@ namespace Saobracaj.RadniNalozi
                 label5.Text = "Otprema ID";
             };
 
-            
+
         }
         private void FillGVSkladista()
         {
@@ -77,7 +69,7 @@ namespace Saobracaj.RadniNalozi
         {
 
             FillGVSkladista();
-           
+
 
         }
 
@@ -89,7 +81,7 @@ namespace Saobracaj.RadniNalozi
    " inner join Skladista on Skladista.ID = NaSkladiste " +
    " inner join Partnerji on Partnerji.PaSifra = RNPrijemVoza.Uvoznik " +
    " inner join Partnerji p2 on p2.PaSifra = RNPrijemVoza.NazivBrodara " +
-   " inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge where RNPrijemVoza.PrijemID = " + textBox1.Text + 
+   " inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge where RNPrijemVoza.PrijemID = " + textBox1.Text +
    " order by RNPrijemVoza.ID  ";
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -207,7 +199,7 @@ namespace Saobracaj.RadniNalozi
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (TipRadnogNaloga == 1)
-            FillDGRN1();
+                FillDGRN1();
 
             if (TipRadnogNaloga == 6)
                 FillDGRN6();
@@ -218,8 +210,8 @@ namespace Saobracaj.RadniNalozi
             if (TipRadnogNaloga == 1)
             {
                 //Prijem voza
-                foreach(DataGridViewRow row in dataGridView1.Rows)
-            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
                     InsertRN ins = new InsertRN();
 
                     if (row.Selected == true)
@@ -241,8 +233,8 @@ namespace Saobracaj.RadniNalozi
             if (TipRadnogNaloga == 4)
             {
                 //Napisano za PrijemPlatvorme Uvoz
-              
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
                     InsertRN ins = new InsertRN();
 
@@ -288,13 +280,13 @@ namespace Saobracaj.RadniNalozi
                 FillDGRN6();
             }
 
-            }
+        }
 
         private void FillGVSkladistaSuzeno()
         {
             var select = "  Select ID, Naziv, Kapacitet ,  " +
 " (Select Count(*) from KontejnerTekuce where KontejnerTekuce.Skladiste = Skladista.ID) as TrenutnoKontejnera " +
-" From Skladista where Skladista.Naziv like ('%"+ textBox2.Text +"%') order by Skladista.Naziv";
+" From Skladista where Skladista.Naziv like ('%" + textBox2.Text + "%') order by Skladista.Naziv";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);

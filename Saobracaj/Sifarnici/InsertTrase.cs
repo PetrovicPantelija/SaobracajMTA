@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -189,7 +185,7 @@ namespace Saobracaj.Sifarnici
 
             SqlParameter parameter21 = new SqlParameter();
             parameter21.ParameterName = "@RastojanjeReg";
-             parameter21.SqlDbType = SqlDbType.Decimal;
+            parameter21.SqlDbType = SqlDbType.Decimal;
             parameter21.Direction = ParameterDirection.Input;
             parameter21.Value = RastojanjeReg;
             myCommand.Parameters.Add(parameter21);
@@ -200,14 +196,14 @@ namespace Saobracaj.Sifarnici
             parameter22.Direction = ParameterDirection.Input;
             parameter22.Value = RastojanjeLok;
             myCommand.Parameters.Add(parameter22);
-            
+
             SqlParameter parameter23 = new SqlParameter();
             parameter23.ParameterName = "@Dana";
             parameter23.SqlDbType = SqlDbType.Decimal;
             parameter23.Direction = ParameterDirection.Input;
             parameter23.Value = Dana;
             myCommand.Parameters.Add(parameter23);
-            
+
             SqlParameter parameter24 = new SqlParameter();
             parameter24.ParameterName = "@NajveciOtpor";
             parameter24.SqlDbType = SqlDbType.Decimal;
@@ -243,7 +239,7 @@ namespace Saobracaj.Sifarnici
             parameter28.Value = ElektroKM;
             myCommand.Parameters.Add(parameter28);
 
-	        SqlParameter parameter29 = new SqlParameter();
+            SqlParameter parameter29 = new SqlParameter();
             parameter29.ParameterName = "@DizelKM";
             parameter29.SqlDbType = SqlDbType.Decimal;
             parameter29.Direction = ParameterDirection.Input;
@@ -631,7 +627,7 @@ namespace Saobracaj.Sifarnici
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = IDRadnogNaloga;
             myCommand.Parameters.Add(parameter);
-   
+
 
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@IDTrase";

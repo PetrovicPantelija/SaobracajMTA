@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
 using System.Data;
-using System.Configuration;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -14,14 +9,14 @@ namespace Saobracaj.Sifarnici
     {
         string connect = frmLogovanje.connectionString;
 
-       public void InsTelegrami(int BrojTelegrama,int PrugaID,int OdStanice,int DoStanice, string Kolosek, DateTime VaziOd, DateTime VaziDo, 
-           DateTime TrajeOd,DateTime TrajeDo,string Napomena,bool Aktivan,string PDF,bool NarocitaPosiljka)
+        public void InsTelegrami(int BrojTelegrama, int PrugaID, int OdStanice, int DoStanice, string Kolosek, DateTime VaziOd, DateTime VaziDo,
+            DateTime TrajeOd, DateTime TrajeDo, string Napomena, bool Aktivan, string PDF, bool NarocitaPosiljka)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "InsertTelegrami";
             cmd.CommandType = CommandType.StoredProcedure;
-            
+
 
             SqlParameter paramBrTelegrama = new SqlParameter();
             paramBrTelegrama.ParameterName = "@BrTelegrama";
@@ -157,7 +152,7 @@ namespace Saobracaj.Sifarnici
         }
 
         public void UpdTelegrami(int ID, int BrojTelegrama, int PrugaID, int OdStanice, int DoStanice, string Kolosek, DateTime VaziOd, DateTime VaziDo,
-           DateTime TrajeOd, DateTime TrajeDo, string Napomena,bool Aktivan,string PDF,bool NarocitaPosiljka)
+           DateTime TrajeOd, DateTime TrajeDo, string Napomena, bool Aktivan, string PDF, bool NarocitaPosiljka)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -317,14 +312,14 @@ namespace Saobracaj.Sifarnici
             cmd.Parameters.Add(paramID);
 
             conn.Open();
-            SqlTransaction tran= conn.BeginTransaction();
+            SqlTransaction tran = conn.BeginTransaction();
             cmd.Transaction = tran;
             bool error = true;
             try
             {
                 cmd.ExecuteNonQuery();
                 tran.Commit();
-                tran =conn.BeginTransaction();
+                tran = conn.BeginTransaction();
                 cmd.Transaction = tran;
             }
 
@@ -342,7 +337,7 @@ namespace Saobracaj.Sifarnici
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
-               conn.Close();
+                conn.Close();
 
                 if (error)
                 {

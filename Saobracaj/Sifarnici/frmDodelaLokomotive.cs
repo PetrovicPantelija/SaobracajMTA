@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -87,16 +81,16 @@ namespace Saobracaj.Sifarnici
 
             if (status == true)
             {
-                 foreach (DataGridViewRow row in dataGridView1.Rows)
-                 {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
                     if (row.Selected)
                     {
-                         InsertRadnikLokomotiva ins = new InsertRadnikLokomotiva();
-                         ins.InsRadnikLokomotiva( Convert.ToInt32(cboPartneri.SelectedValue), Convert.ToString(row.Cells[0].Value.ToString()));
+                        InsertRadnikLokomotiva ins = new InsertRadnikLokomotiva();
+                        ins.InsRadnikLokomotiva(Convert.ToInt32(cboPartneri.SelectedValue), Convert.ToString(row.Cells[0].Value.ToString()));
                     }
-                 }
-                 status = false;
-                 RefreshDataGrid();
+                }
+                status = false;
+                RefreshDataGrid();
             }
             else
             {
@@ -105,14 +99,14 @@ namespace Saobracaj.Sifarnici
                     if (row.Selected)
                     {
                         InsertRadnikLokomotiva ins = new InsertRadnikLokomotiva();
-                       // ins.UpdRadnikLokomotiva(Convert.ToInt32(cboPartneri.SelectedValue), Convert.ToString(row.Cells[0].Value.ToString()));
+                        // ins.UpdRadnikLokomotiva(Convert.ToInt32(cboPartneri.SelectedValue), Convert.ToString(row.Cells[0].Value.ToString()));
                     }
                 }
 
                 status = false;
-           
+
+            }
         }
-    }
 
         private void RefreshDataGrid()
         {

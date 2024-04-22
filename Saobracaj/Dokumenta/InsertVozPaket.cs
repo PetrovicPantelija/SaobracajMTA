@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace TrackModal.Dokumeta
 {
     class InsertVozPaket
     {
 
-        public void InsertVozPak(int Sifra,string BrojVagona, double SopstvenaMasa, double BrojOsovina, DateTime Datum, string Korisnik, int prvi)
+        public void InsertVozPak(int Sifra, string BrojVagona, double SopstvenaMasa, double BrojOsovina, DateTime Datum, string Korisnik, int prvi)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -132,7 +128,7 @@ namespace TrackModal.Dokumeta
             parameter1.Value = Stavka;
             myCommand.Parameters.Add(parameter1);
 
-           
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -253,7 +249,7 @@ namespace TrackModal.Dokumeta
             parameter0.Value = Sifra;
             myCommand.Parameters.Add(parameter0);
 
-           
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;

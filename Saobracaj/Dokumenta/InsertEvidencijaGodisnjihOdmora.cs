@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 
 
@@ -15,7 +11,7 @@ namespace Saobracaj.Dokumenta
     class InsertEvidencijaGodisnjihOdmora
     {
 
-        public void InsEvidGodisnjihOdmora(int Nadredjena, DateTime VremeOd, DateTime VremeDo, double Ukupno, string Napomena, string Razlog, int Odobrio, int StatusGodmora, DateTime DatumZahteva, DateTime DatumPovratka,int PoslatMail, int PoslatoResenje)
+        public void InsEvidGodisnjihOdmora(int Nadredjena, DateTime VremeOd, DateTime VremeDo, double Ukupno, string Napomena, string Razlog, int Odobrio, int StatusGodmora, DateTime DatumZahteva, DateTime DatumPovratka, int PoslatMail, int PoslatoResenje)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -79,7 +75,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter7 = new SqlParameter();
             parameter7.ParameterName = "@StatusGOdmora";
             parameter7.SqlDbType = SqlDbType.Int;
-            
+
             parameter7.Direction = ParameterDirection.Input;
             parameter7.Value = StatusGodmora;
             myCommand.Parameters.Add(parameter7);
@@ -358,7 +354,7 @@ namespace Saobracaj.Dokumenta
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = ID;
             myCommand.Parameters.Add(parameter);
-            
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -650,7 +646,7 @@ namespace Saobracaj.Dokumenta
                 }
             }
         }
-    
+
     }
 
 }

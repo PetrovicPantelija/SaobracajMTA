@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Nepravilnosti
@@ -70,12 +65,12 @@ namespace Saobracaj.Nepravilnosti
             Nepravilnosti.InsertNepravilnosti ins = new InsertNepravilnosti();
             if (status == true)
             {
-                
+
                 ins.InsSifOpisNeispravnosti(txtNaziv.Text.ToString().TrimEnd(), txtOpis.Text.ToString().TrimEnd());
             }
             else
             {
-                ins.UpdSifOpisNeispravnosti(Convert.ToInt32(txtID.Text), txtNaziv.Text.ToString().TrimEnd(),  txtOpis.Text.ToString().TrimEnd());
+                ins.UpdSifOpisNeispravnosti(Convert.ToInt32(txtID.Text), txtNaziv.Text.ToString().TrimEnd(), txtOpis.Text.ToString().TrimEnd());
             }
             MessageBox.Show("Uspešno sačuvan zapis");
             FillGV();

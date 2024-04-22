@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
     class InsertNacinDobave
     {
-        
-        public void InsNacinDobave(         string NDobOpis            ,string NDobDOpis )
+
+        public void InsNacinDobave(string NDobOpis, string NDobDOpis)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -21,7 +17,7 @@ namespace Saobracaj.Sifarnici
             myCommand.CommandText = "InsertNacinDobave";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-           
+
 
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@NDobOpis";

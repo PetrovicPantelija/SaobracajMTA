@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Office.Interop.Excel;
-using Syncfusion.Windows.Forms.Grid.Grouping;
 
 namespace Saobracaj.Izvoz
 {
@@ -58,14 +51,14 @@ namespace Saobracaj.Izvoz
             if (status == true)
             {
                 InsertDogovorenoIzvoz ins = new InsertDogovorenoIzvoz();
-                ins.InsDogovorenoIzvoz(Convert.ToInt32(cboPartner.SelectedValue), Convert.ToDateTime(dtpPeriodOd.Value), Convert.ToDateTime(dtpPeriodDo.Value), Convert.ToInt32(txtBrojKontejnera.Value), Convert.ToInt32(txtBrojIsporucenih.Value), txtNapomena.Text, tmpZatvoren );
+                ins.InsDogovorenoIzvoz(Convert.ToInt32(cboPartner.SelectedValue), Convert.ToDateTime(dtpPeriodOd.Value), Convert.ToDateTime(dtpPeriodDo.Value), Convert.ToInt32(txtBrojKontejnera.Value), Convert.ToInt32(txtBrojIsporucenih.Value), txtNapomena.Text, tmpZatvoren);
                 status = false;
             }
             else
             {
                 InsertDogovorenoIzvoz ins = new InsertDogovorenoIzvoz();
                 ins.UpdDogovorenoIzvoz(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboPartner.SelectedValue), Convert.ToDateTime(dtpPeriodOd.Value), Convert.ToDateTime(dtpPeriodDo.Value), Convert.ToInt32(txtBrojKontejnera.Value), Convert.ToInt32(txtBrojIsporucenih.Value), txtNapomena.Text, tmpZatvoren);
-           
+
             }
             RefreshDataGrid();
         }
@@ -143,13 +136,13 @@ namespace Saobracaj.Izvoz
             while (dr.Read())
             {
                 txtID.Text = dr["ID"].ToString();
-              
+
                 cboPartner.SelectedValue = Convert.ToInt32(dr["Partner"].ToString());
 
                 dtpPeriodDo.Value = Convert.ToDateTime(dr["PeriodDo"].ToString());
                 dtpPeriodOd.Value = Convert.ToDateTime(dr["PeriodOd"].ToString());
                 txtBrojKontejnera.Value = Convert.ToInt32(dr["BrojUgovorenih"].ToString());
-               txtBrojIsporucenih.Value = Convert.ToInt32(dr["BrojUradjenih"].ToString());
+                txtBrojIsporucenih.Value = Convert.ToInt32(dr["BrojUradjenih"].ToString());
                 txtNapomena.Text = dr["Napomena"].ToString();
                 if (dr["Zatvoren"].ToString() == "1")
                 {
@@ -174,7 +167,7 @@ namespace Saobracaj.Izvoz
                     if (row.Selected)
                     {
                         txtID.Text = row.Cells[0].Value.ToString();
-                       
+
                         VratiPodatke(Convert.ToInt32(txtID.Text));
 
                     }

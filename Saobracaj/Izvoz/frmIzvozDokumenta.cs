@@ -1,27 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Configuration;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Data.OleDb;
+using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
+using System.Windows.Forms;
 //using iTextSharp.text;
 //using iTextSharp.text.pdf;
 //using iTextSharp;
-using System.Text.RegularExpressions;
-
-using System.Drawing.Imaging;
 
 namespace Saobracaj.Izvoz
 {
@@ -326,9 +312,9 @@ namespace Saobracaj.Izvoz
         private void button4_Click(object sender, EventArgs e)
         {
             //UVodimo novo polje kod insert u tabelu
-           // 1- Point kontejneru
+            // 1- Point kontejneru
             //    2- Point bukingu
-             //   3 - Point vozu
+            //   3 - Point vozu
             //  if (status == true)
             // {
             InsertIzvozDokumenta ins = new InsertIzvozDokumenta();
@@ -419,7 +405,7 @@ namespace Saobracaj.Izvoz
             // 2 - buking
             InsertIzvozDokumenta ins = new InsertIzvozDokumenta();
             KopirajFajlPoTipu2(txtPutanja2.Text, txtSifraUvoza2.Text, 6);
-            ins.InsIzvozDokumenta(Convert.ToInt32(txtSifraUvoza2.Text), txtPutanja2.Text,2);
+            ins.InsIzvozDokumenta(Convert.ToInt32(txtSifraUvoza2.Text), txtPutanja2.Text, 2);
             RefreshDataGrid2();
 
             status = true;
@@ -435,7 +421,7 @@ namespace Saobracaj.Izvoz
             //Po vozu
             InsertIzvozDokumenta ins = new InsertIzvozDokumenta();
             KopirajFajlPoTipu3(txtPutanja3.Text, txtSifraUvoza3.Text, 3);
-            ins.InsIzvozDokumenta(Convert.ToInt32(txtSifraUvoza3.Text), txtPutanja3.Text,3);
+            ins.InsIzvozDokumenta(Convert.ToInt32(txtSifraUvoza3.Text), txtPutanja3.Text, 3);
             RefreshDataGrid3();
 
             status = true;

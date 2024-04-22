@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Testiranje
 {
@@ -14,8 +10,8 @@ namespace Saobracaj.Testiranje
     {
         public void InsTestovi(string Naziv, DateTime Datum, int BrojTacnih, string BrResenja, string Mesto, int Komisija1, int Komisija2, int Komisija3)
         {
-         
-  
+
+
 
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -67,7 +63,7 @@ namespace Saobracaj.Testiranje
             SqlParameter parameter5 = new SqlParameter();
             parameter5.ParameterName = "@Komisija1";
             parameter5.SqlDbType = SqlDbType.Int;
-          //  parameter5.Size = 50;
+            //  parameter5.Size = 50;
             parameter5.Direction = ParameterDirection.Input;
             parameter5.Value = Komisija1;
             myCommand.Parameters.Add(parameter5);
@@ -292,10 +288,10 @@ namespace Saobracaj.Testiranje
 
         public void InsTestoviOdgovori(int IDNadredjenog, string Opis, int RBBroj)
         {
-           
 
 
-             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertTestoviPitanjaOdgovor";
@@ -304,7 +300,7 @@ namespace Saobracaj.Testiranje
             SqlParameter parameter = new SqlParameter();
             parameter.ParameterName = "@IDNadredjenog";
             parameter.SqlDbType = SqlDbType.Int;
-           // parameter.Size = 20;
+            // parameter.Size = 20;
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = IDNadredjenog;
             myCommand.Parameters.Add(parameter);
@@ -325,7 +321,7 @@ namespace Saobracaj.Testiranje
             parameter2.Value = RBBroj;
             myCommand.Parameters.Add(parameter2);
 
-          
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -380,7 +376,7 @@ namespace Saobracaj.Testiranje
             parameter.Value = ID;
             myCommand.Parameters.Add(parameter);
 
-           
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

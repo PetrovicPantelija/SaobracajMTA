@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -42,7 +38,7 @@ namespace Saobracaj.Dokumenta
             parameter3.Direction = ParameterDirection.Input;
             parameter3.Value = MestoTroska;
             myCommand.Parameters.Add(parameter3);
-          
+
             SqlParameter parameter4 = new SqlParameter();
             parameter4.ParameterName = "@Komentar";
             parameter4.SqlDbType = SqlDbType.NVarChar;
@@ -135,7 +131,7 @@ namespace Saobracaj.Dokumenta
             parameter2.ParameterName = "@IDTrase";
             parameter2.SqlDbType = SqlDbType.Int;
             parameter2.Direction = ParameterDirection.Input;
-            parameter2.Value = Trasa; 
+            parameter2.Value = Trasa;
             myCommand.Parameters.Add(parameter2);
 
             SqlParameter parameter3 = new SqlParameter();
@@ -248,7 +244,7 @@ namespace Saobracaj.Dokumenta
             parameter3.Direction = ParameterDirection.Input;
             parameter3.Value = MestoTroska;
             myCommand.Parameters.Add(parameter3);
-   
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;

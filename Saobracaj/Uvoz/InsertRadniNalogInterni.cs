@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -44,7 +40,7 @@ namespace Saobracaj.Uvoz
             datumizdavanja.Value = DatumIzdavanja;
             cmd.Parameters.Add(datumizdavanja);
 
-            SqlParameter datumrealizacije= new SqlParameter();
+            SqlParameter datumrealizacije = new SqlParameter();
             datumrealizacije.ParameterName = "@DatumRealizacije";
             datumrealizacije.SqlDbType = SqlDbType.DateTime;
             datumrealizacije.Direction = ParameterDirection.Input;
@@ -96,38 +92,38 @@ namespace Saobracaj.Uvoz
             korisnikzavrsio.Direction = ParameterDirection.Input;
             korisnikzavrsio.Value = KorisnikZavrsio;
             cmd.Parameters.Add(korisnikzavrsio);
-/*
-            SqlParameter idmanipulacijaJED = new SqlParameter();
-            idmanipulacijaJED.ParameterName = "@IDManipulacijaJED";
-            idmanipulacijaJED.SqlDbType = SqlDbType.Int;
-            idmanipulacijaJED.Direction = ParameterDirection.Input;
-            idmanipulacijaJED.Value = IDManipulacijaJED;
-            cmd.Parameters.Add(idmanipulacijaJED);
+            /*
+                        SqlParameter idmanipulacijaJED = new SqlParameter();
+                        idmanipulacijaJED.ParameterName = "@IDManipulacijaJED";
+                        idmanipulacijaJED.SqlDbType = SqlDbType.Int;
+                        idmanipulacijaJED.Direction = ParameterDirection.Input;
+                        idmanipulacijaJED.Value = IDManipulacijaJED;
+                        cmd.Parameters.Add(idmanipulacijaJED);
 
-            SqlParameter planid = new SqlParameter();
-            planid.ParameterName = "@PlanID";
-            planid.SqlDbType = SqlDbType.Int;
-            planid.Direction = ParameterDirection.Input;
-            planid.Value = PlanID;
-            cmd.Parameters.Add(planid);
-            
-            SqlParameter statusizdavanja = new SqlParameter();
-            statusizdavanja.ParameterName = "@StatusIzdavanja";
-            statusizdavanja.SqlDbType = SqlDbType.NVarChar;
-            statusizdavanja.Size = 50;
-            statusizdavanja.Direction = ParameterDirection.Input;
-            statusizdavanja.Value = StatusIzdavanja;
-            cmd.Parameters.Add(statusizdavanja);
+                        SqlParameter planid = new SqlParameter();
+                        planid.ParameterName = "@PlanID";
+                        planid.SqlDbType = SqlDbType.Int;
+                        planid.Direction = ParameterDirection.Input;
+                        planid.Value = PlanID;
+                        cmd.Parameters.Add(planid);
 
-            SqlParameter konkretaIDUsluge = new SqlParameter();
-            konkretaIDUsluge.ParameterName = "@KonkretaIDUsluge";
-            konkretaIDUsluge.SqlDbType = SqlDbType.Int;
-            konkretaIDUsluge.Direction = ParameterDirection.Input;
-            konkretaIDUsluge.Value = konkretaIDUsluge;
-            cmd.Parameters.Add(konkretaIDUsluge);
+                        SqlParameter statusizdavanja = new SqlParameter();
+                        statusizdavanja.ParameterName = "@StatusIzdavanja";
+                        statusizdavanja.SqlDbType = SqlDbType.NVarChar;
+                        statusizdavanja.Size = 50;
+                        statusizdavanja.Direction = ParameterDirection.Input;
+                        statusizdavanja.Value = StatusIzdavanja;
+                        cmd.Parameters.Add(statusizdavanja);
 
-           
-            */
+                        SqlParameter konkretaIDUsluge = new SqlParameter();
+                        konkretaIDUsluge.ParameterName = "@KonkretaIDUsluge";
+                        konkretaIDUsluge.SqlDbType = SqlDbType.Int;
+                        konkretaIDUsluge.Direction = ParameterDirection.Input;
+                        konkretaIDUsluge.Value = konkretaIDUsluge;
+                        cmd.Parameters.Add(konkretaIDUsluge);
+
+
+                        */
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

@@ -1,31 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Threading;
 using System.Configuration;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Data.OleDb;
+using System.Data;
 using System.Data.SqlClient;
-
-
-using iTextSharp.text;
-using iTextSharp.text.pdf;
-using iTextSharp;
-using System.Text.RegularExpressions;
-
-using System.Drawing.Imaging;
-
-using MetroFramework.Forms;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -172,8 +150,8 @@ namespace Saobracaj.Dokumenta
             txtSifra.Text = "";
             txtSifra.Enabled = false;
             txtPutanja.Text = "";
-          
-          
+
+
             status = true;
         }
     }

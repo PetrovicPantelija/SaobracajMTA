@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-
-using Microsoft.Reporting.WinForms;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -47,14 +39,14 @@ namespace Saobracaj.Dokumenta
             " inner join DelovnaMesta  on Delavci.DesifDelMes = DelovnaMesta.DmSifra " +
             " where AktivnostiStavke.VrstaAktivnostiID = 43 and Convert(nvarchar(10),VremeOd,126) >  '" + dtpVremeOd.Text + "' " +
             " and Aktivnosti.PravoDnevnice = 0 And  Convert(nvarchar(10),VremeDo,126) <  '" + dtpVremeDo.Text + "' Group by DelovnaMesta.DmNaziv, (RTrim(DeIme) + ' ' + RTRim(DePriimek))   ";
-          
 
 
 
 
 
 
-   
+
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -100,7 +92,7 @@ namespace Saobracaj.Dokumenta
             dataGridView1.Columns[4].HeaderText = "Smena";
             dataGridView1.Columns[4].Width = 100;
 
-           
+
         }
 
         private void frmPregledSmena_Load(object sender, EventArgs e)

@@ -1,23 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Configuration;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Collections;
+using System.Data.SqlClient;
 using System.Net;
 using System.Net.Mail;
-using System.Configuration;
-using System.Data.SqlClient;
 using System.Net.Mime;
+using System.Text;
+using System.Windows.Forms;
 
 namespace Saobracaj
 {
     public partial class frmSendEmailWithAttacment : Form
     {
-       // ArrayList alAttachments;
+        // ArrayList alAttachments;
         MailMessage mailMessage;
         int ID;
         string oznaka;
@@ -25,7 +20,7 @@ namespace Saobracaj
         {
             InitializeComponent();
         }
-        public frmSendEmailWithAttacment(int id,string Oznaka)
+        public frmSendEmailWithAttacment(int id, string Oznaka)
         {
             ID = id;
             oznaka = Oznaka;
@@ -47,7 +42,6 @@ namespace Saobracaj
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dr = cmd.ExecuteReader();
-            int count = 0;
 
             while (dr.Read())
             {
@@ -71,7 +65,7 @@ namespace Saobracaj
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -87,7 +81,6 @@ namespace Saobracaj
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     string[] file = dialog.FileNames;
-                    string cuvaj = "disp@kprevoz.co.rs";
                     mailMessage = new MailMessage(txtFrom.Text.ToString(), txtTo.Text.ToString());
                     mailMessage.CC.Add(txtCC.Text.ToString().TrimEnd());
                     mailMessage.Subject = txtTema.Text;
@@ -194,8 +187,6 @@ namespace Saobracaj
             }
             if (dr == DialogResult.No)
             {
-                //string[] file = dialog.FileNames;
-                string cuvaj = "disp@kprevoz.co.rs";
                 mailMessage = new MailMessage(txtFrom.Text.ToString(), txtTo.Text.ToString());
                 mailMessage.CC.Add(txtCC.Text.ToString().TrimEnd());
                 mailMessage.Subject = txtTema.Text;

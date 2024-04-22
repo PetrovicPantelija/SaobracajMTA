@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 
 namespace Testiranje.Sifarnici
@@ -14,7 +10,7 @@ namespace Testiranje.Sifarnici
     class InsertPozicija
     {
 
-        public void InsPozicija(int Skladiste, string Oznaka, string Opis, string namena,  DateTime Datum, string Korisnik)
+        public void InsPozicija(int Skladiste, string Oznaka, string Opis, string namena, DateTime Datum, string Korisnik)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -26,7 +22,7 @@ namespace Testiranje.Sifarnici
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@Skladiste";
             parameter1.SqlDbType = SqlDbType.Int;
-           
+
             parameter1.Direction = ParameterDirection.Input;
             parameter1.Value = Skladiste;
             myCommand.Parameters.Add(parameter1);
@@ -109,7 +105,7 @@ namespace Testiranje.Sifarnici
             }
         }
 
-        public void UpdPozicija(int ID, int Skladiste, string Oznaka, string Opis, string namena,  DateTime Datum, string Korisnik)
+        public void UpdPozicija(int ID, int Skladiste, string Oznaka, string Opis, string namena, DateTime Datum, string Korisnik)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;

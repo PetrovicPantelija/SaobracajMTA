@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -28,8 +24,8 @@ namespace Saobracaj.Sifarnici
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = Naziv;
             myCommand.Parameters.Add(parameter);
-           
-            
+
+
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@Cena";
             parameter2.SqlDbType = SqlDbType.Decimal;
@@ -40,7 +36,7 @@ namespace Saobracaj.Sifarnici
             SqlParameter parameter3 = new SqlParameter();
             parameter3.ParameterName = "@Opis";
             parameter3.SqlDbType = SqlDbType.NVarChar;
-            parameter3.Size = 500; 
+            parameter3.Size = 500;
             parameter3.Direction = ParameterDirection.Input;
             parameter3.Value = Opis;
             myCommand.Parameters.Add(parameter3);
@@ -48,7 +44,7 @@ namespace Saobracaj.Sifarnici
             SqlParameter parameter4 = new SqlParameter();
             parameter4.ParameterName = "@ObracunPoSatu";
             parameter4.SqlDbType = SqlDbType.TinyInt;
-        
+
             parameter4.Direction = ParameterDirection.Input;
             parameter4.Value = ObracunPoSatu;
             myCommand.Parameters.Add(parameter4);
@@ -102,7 +98,7 @@ namespace Saobracaj.Sifarnici
             parameter11.Value = Kragujevac;
             myCommand.Parameters.Add(parameter11);
 
-             SqlParameter parameter12 = new SqlParameter();
+            SqlParameter parameter12 = new SqlParameter();
             parameter12.ParameterName = "@CG";
             parameter12.SqlDbType = SqlDbType.TinyInt;
             parameter12.Direction = ParameterDirection.Input;
@@ -201,8 +197,8 @@ namespace Saobracaj.Sifarnici
             parameter.SqlDbType = SqlDbType.Int;
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = ID;
-            myCommand.Parameters.Add(parameter); 
-            
+            myCommand.Parameters.Add(parameter);
+
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@Naziv";
             parameter2.SqlDbType = SqlDbType.NVarChar;

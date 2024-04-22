@@ -5,17 +5,14 @@
 // licensing@syncfusion.com. Any infringement will be prosecuted under
 // applicable laws. 
 #endregion
+using Syncfusion.Schedule;
 using System;
 using System.Collections.Generic;
-using System.Text;
-using Syncfusion.Schedule;
-using System.Data;
-using System.Data.OleDb;
-using System.Drawing;
-using Syncfusion.Windows.Forms.Schedule;
-using System.Windows.Forms;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace MDB_ScheduleSample_CS
 {
@@ -46,7 +43,7 @@ namespace MDB_ScheduleSample_CS
             this.dr = dr;
         }
 
-        
+
 
         private DataRow dr;
 
@@ -59,7 +56,7 @@ namespace MDB_ScheduleSample_CS
         {
             get
             {
-                return (bool) dr[Column_AllDay];
+                return (bool)dr[Column_AllDay];
             }
             set
             {
@@ -70,7 +67,7 @@ namespace MDB_ScheduleSample_CS
         {
             get
             {
-                return (string) dr[Column_Content];
+                return (string)dr[Column_Content];
             }
             set
             {
@@ -91,9 +88,9 @@ namespace MDB_ScheduleSample_CS
                 dirtyFlagExplicitlySet = true;
                 changedItem = this;
                 int iii = this.LabelValue;
-              //  dr[Column_Dirty] = value;
+                //  dr[Column_Dirty] = value;
 
-               
+
             }
         }
 
@@ -102,7 +99,7 @@ namespace MDB_ScheduleSample_CS
         {
             get
             {
-                return (DateTime) dr[Column_EndTime];
+                return (DateTime)dr[Column_EndTime];
             }
             set
             {
@@ -241,7 +238,7 @@ namespace MDB_ScheduleSample_CS
 
         private RecurrenceList dateList;
 
-         public RecurrenceList DateList
+        public RecurrenceList DateList
         {
             get
             {
@@ -273,16 +270,16 @@ namespace MDB_ScheduleSample_CS
         {
             get
             {
-                 
-                    if (dr.Table == null)
-                        return "";
 
-                    if (dr.RowState == DataRowState.Deleted)
-                        return "";
+                if (dr.Table == null)
+                    return "";
 
-                    if (dr[Column_RecurrenceRule] == DBNull.Value)
-                        return "";
-                 
+                if (dr.RowState == DataRowState.Deleted)
+                    return "";
+
+                if (dr[Column_RecurrenceRule] == DBNull.Value)
+                    return "";
+
                 return (string)dr[Column_RecurrenceRule];
             }
             set
@@ -435,7 +432,7 @@ namespace MDB_ScheduleSample_CS
 
         #region ICloneable Members
 
-        
+
         private string lastRecurrenceRule = "";
         public new object Clone()
         {
@@ -480,24 +477,24 @@ namespace MDB_ScheduleSample_CS
 
         public override void Remove(IScheduleAppointment item1)
         {
-           base.Remove(item1);
+            base.Remove(item1);
 
-                MDB_ScheduleItem item = item1 as MDB_ScheduleItem;
-                if (item != null && item.RecurrenceRule.Length > 0)
+            MDB_ScheduleItem item = item1 as MDB_ScheduleItem;
+            if (item != null && item.RecurrenceRule.Length > 0)
+            {
+                if (MDB_ScheduleDataProvider.itemsToDelete == null)
                 {
-                    if (MDB_ScheduleDataProvider.itemsToDelete == null)
-                    {
-                        MDB_ScheduleDataProvider.itemsToDelete = new List<DataRow>();
-                    }
-                    foreach (DataRow dr in MDB_ScheduleDataProvider.scheduleDataSet.Tables[MDB_ScheduleDataProvider.Table_Appointments].Rows)
-                    {
-                        if(dr.RowState != DataRowState.Deleted
-                            && dr.RowState != DataRowState.Detached
-                            && item.RecurrenceRule.Equals(dr[MDB_ScheduleItem.Column_RecurrenceRule]))
-                            MDB_ScheduleDataProvider.itemsToDelete.Add(dr);
-                    }
-                 }
-          }
+                    MDB_ScheduleDataProvider.itemsToDelete = new List<DataRow>();
+                }
+                foreach (DataRow dr in MDB_ScheduleDataProvider.scheduleDataSet.Tables[MDB_ScheduleDataProvider.Table_Appointments].Rows)
+                {
+                    if (dr.RowState != DataRowState.Deleted
+                        && dr.RowState != DataRowState.Detached
+                        && item.RecurrenceRule.Equals(dr[MDB_ScheduleItem.Column_RecurrenceRule]))
+                        MDB_ScheduleDataProvider.itemsToDelete.Add(dr);
+                }
+            }
+        }
     }
 
     #endregion
@@ -518,7 +515,7 @@ namespace MDB_ScheduleSample_CS
         internal static List<DataRow> itemsToDelete;
 
         public static MDB_ScheduleDataProvider ScheduleDataProvider;
-         
+
         public DataSet ScheduleDataSet
         {
             get { return scheduleDataSet; }
@@ -527,9 +524,9 @@ namespace MDB_ScheduleSample_CS
         SqlConnection connection;
         public MDB_ScheduleDataProvider(string MDBpathName)
         {
-            
+
             itemsToDelete = new List<DataRow>();
-            
+
             MDB_ScheduleDataProvider.ScheduleDataProvider = this;
 
             MDB_ScheduleDataProvider.scheduleDataSet = new DataSet(DataSet_Name);
@@ -555,7 +552,7 @@ namespace MDB_ScheduleSample_CS
             dataAdapter = new SqlDataAdapter(sqlString, c);
             dataAdapter.Fill(scheduleDataSet, Table_Reminders);
 
-           
+
 
             sqlString = "SELECT * FROM " + Table_Appointments;
             dataAdapter = new SqlDataAdapter(sqlString, c);
@@ -566,10 +563,10 @@ namespace MDB_ScheduleSample_CS
             dataAdapter.Fill(scheduleDataSet, Table_Delavci);
 
             nextID = int.MinValue;
-          //  connection.Close();
+            //  connection.Close();
         }
 
-    
+
 
         static int nextID = int.MinValue;
         internal static int GetNextID()
@@ -651,20 +648,20 @@ namespace MDB_ScheduleSample_CS
             ((MDB_ScheduleItem)item).Dr[9] = item.ReminderValue;
             ((MDB_ScheduleItem)item).Dr[10] = item.StartTime;
             ((MDB_ScheduleItem)item).Dr[11] = item.Subject;
-          //  ((MDB_ScheduleItem)item).Dr[12] = item.RecurrenceRule;
-         
-           
+            //  ((MDB_ScheduleItem)item).Dr[12] = item.RecurrenceRule;
 
 
-            scheduleDataSet.Tables[Table_Appointments].Rows.Add(((MDB_ScheduleItem) item).Dr);
-        //    base.AddItem(item);
+
+
+            scheduleDataSet.Tables[Table_Appointments].Rows.Add(((MDB_ScheduleItem)item).Dr);
+            //    base.AddItem(item);
         }
 
         private void Dodaj(DataRow item)
-        { 
-        
-        
-        
+        {
+
+
+
         }
 
         public bool UpdateAdmins(DataSet ds)
@@ -673,14 +670,14 @@ namespace MDB_ScheduleSample_CS
             SqlConnection myConnection = new SqlConnection(s_connection);
             try
             {
-               // for (int i = 0; i < ds.Tables["Appointments"].Rows.Count; i++)
-                    foreach (DataRow item in ds.Tables["Appointments"].Rows)
+                // for (int i = 0; i < ds.Tables["Appointments"].Rows.Count; i++)
+                foreach (DataRow item in ds.Tables["Appointments"].Rows)
                 {
                     switch (item.RowState)
                     {
                         case DataRowState.Added:
                             {
-                               
+
                                 //Insert
                                 //PInsert
                                 using (SqlConnection conn = new SqlConnection(s_connection))
@@ -715,7 +712,7 @@ namespace MDB_ScheduleSample_CS
                                     parameter0INS.Direction = ParameterDirection.Input;
                                     string pom = "";
                                     pom = item["AllDay"].ToString();
-                                   // ds.Tables[3].Rows[]["AllDay"].ToString();
+                                    // ds.Tables[3].Rows[]["AllDay"].ToString();
                                     parameter0INS.Value = 1;
                                     dataAdapter.InsertCommand.Parameters.Add(parameter0INS);
 
@@ -965,11 +962,11 @@ namespace MDB_ScheduleSample_CS
                             }
                         case DataRowState.Deleted:
                             {//Update
-                            
+
                                 break;
-                            
-                    }
-                    default:
+
+                            }
+                        default:
                             break;
                     }
                 }
@@ -996,13 +993,13 @@ namespace MDB_ScheduleSample_CS
 
         internal static LookUpObjectList Labels
         {
-            get 
+            get
             {
                 if (labels == null)
                 {
                     labels = new LookUpObjectList(scheduleDataSet.Tables[Table_Labels].DefaultView);
                 }
-                return MDB_ScheduleDataProvider.labels; 
+                return MDB_ScheduleDataProvider.labels;
             }
             set { MDB_ScheduleDataProvider.labels = value; }
         }
@@ -1081,41 +1078,41 @@ namespace MDB_ScheduleSample_CS
         //}
 
         DataView theDataView = null;
-       /* public override IScheduleAppointmentList GetSchedule(DateTime startDate, DateTime endDate)
-        {
-          //Ps  ProcessOldMasterListForUnSaveRecurrences();
-            theDataView = new DataView(scheduleDataSet.Tables[Table_Appointments]);
-            string filter = string.Format("[{0}] >= #{1}# AND [{2}] < #{3}#", MDB_ScheduleItem.Column_StartTime, startDate.Date,
-               MDB_ScheduleItem.Column_EndTime, endDate.Date.AddDays(1));
-            foreach (DataRow dr in itemsToDelete)
-            {
-                filter = string.Format("{0} AND [{1}]<>{2} ", filter, MDB_ScheduleItem.Column_UniqueID, dr[MDB_ScheduleItem.Column_UniqueID]);
+        /* public override IScheduleAppointmentList GetSchedule(DateTime startDate, DateTime endDate)
+         {
+           //Ps  ProcessOldMasterListForUnSaveRecurrences();
+             theDataView = new DataView(scheduleDataSet.Tables[Table_Appointments]);
+             string filter = string.Format("[{0}] >= #{1}# AND [{2}] < #{3}#", MDB_ScheduleItem.Column_StartTime, startDate.Date,
+                MDB_ScheduleItem.Column_EndTime, endDate.Date.AddDays(1));
+             foreach (DataRow dr in itemsToDelete)
+             {
+                 filter = string.Format("{0} AND [{1}]<>{2} ", filter, MDB_ScheduleItem.Column_UniqueID, dr[MDB_ScheduleItem.Column_UniqueID]);
 
-            }
-            //panta theDataView.RowFilter = filter;
-            //display(theDataView);
+             }
+             //panta theDataView.RowFilter = filter;
+             //display(theDataView);
 
-            //display(this.MasterList);
-                     MasterList = new MDB_ScheduleItemList(theDataView);
+             //display(this.MasterList);
+                      MasterList = new MDB_ScheduleItemList(theDataView);
 
-            //  MasterList[0].StartTime;
-            //Panta EnforceUniqueIDs();
-            // display(this.MasterList);
-                    MasterList.SortStartTime();
-              return MasterList;
-        }
-      */
+             //  MasterList[0].StartTime;
+             //Panta EnforceUniqueIDs();
+             // display(this.MasterList);
+                     MasterList.SortStartTime();
+               return MasterList;
+         }
+       */
         private void ProcessOldMasterListForUnSaveRecurrences()
         {
             if (itemsToDelete.Count > 0)
             {
-                  this.IsDirty = true;
-               // MDB_ScheduleDataProvider.scheduleDataSet.Tables[MDB_ScheduleDataProvider.Table_Appointments].AcceptChanges();
+                this.IsDirty = true;
+                // MDB_ScheduleDataProvider.scheduleDataSet.Tables[MDB_ScheduleDataProvider.Table_Appointments].AcceptChanges();
 
             }
             GetUniqueIdsForRecurrences();
 
-             foreach (MDB_ScheduleItem item in MasterList)
+            foreach (MDB_ScheduleItem item in MasterList)
             {
                 if (item.Dr.RowState == DataRowState.Detached)
                 {
@@ -1133,18 +1130,18 @@ namespace MDB_ScheduleSample_CS
                             DataView dv = new DataView(scheduleDataSet.Tables[Table_Appointments], filter, "", DataViewRowState.CurrentRows);
                             if (dv.Count == 1)
                             {
-                                 itemsToDelete.Add(dv[0].Row);
-                                 scheduleDataSet.Tables[Table_Appointments].Rows.Add(item.Dr);
-                             }
+                                itemsToDelete.Add(dv[0].Row);
+                                scheduleDataSet.Tables[Table_Appointments].Rows.Add(item.Dr);
+                            }
                         }
                     }
                 }
-                
-                
+
+
             }
-            
+
             MDB_ScheduleItem.changedItem = null;
-            
+
         }
 
         List<string> recurrences = new List<string>();
@@ -1208,7 +1205,7 @@ namespace MDB_ScheduleSample_CS
             }
             set
             {
-               base.IsDirty = value;
+                base.IsDirty = value;
             }
         }
         public override IScheduleAppointment NewScheduleAppointment()
@@ -1216,53 +1213,53 @@ namespace MDB_ScheduleSample_CS
             DataRow dr = scheduleDataSet.Tables[Table_Appointments].NewRow();
 
             PopulateDefaults(dr);
-            return new MDB_ScheduleItem(dr); 
+            return new MDB_ScheduleItem(dr);
         }
 
         private void PopulateDefaults(DataRow dr)
         {
-             dr[MDB_ScheduleItem.Column_AllDay] = false;
-             dr[MDB_ScheduleItem.Column_Content] = "";
-       // dr[MDB_ScheduleItem.Column_Dirty] = false;
-        dr[MDB_ScheduleItem.Column_EndTime] = DateTime.Now;
-       // dr[MDB_ScheduleItem.Column_IgnoreChanges] = false;
-        dr[MDB_ScheduleItem.Column_LabelValue] = 0;
-        dr[MDB_ScheduleItem.Column_LocationValue] = "";
-        dr[MDB_ScheduleItem.Column_MarkerValue] = 0;
-        dr[MDB_ScheduleItem.Column_Owner] = 0;
-        dr[MDB_ScheduleItem.Column_Reminder] = false;
-        dr[MDB_ScheduleItem.Column_ReminderValue] = 0;
-        dr[MDB_ScheduleItem.Column_StartTime] = DateTime.Now;
-        dr[MDB_ScheduleItem.Column_Subject] = "";
-        dr[MDB_ScheduleItem.Column_RecurrenceRule] = "";
-        //dr[MDB_ScheduleItem.Column_UniqueID] = "ID"; 
+            dr[MDB_ScheduleItem.Column_AllDay] = false;
+            dr[MDB_ScheduleItem.Column_Content] = "";
+            // dr[MDB_ScheduleItem.Column_Dirty] = false;
+            dr[MDB_ScheduleItem.Column_EndTime] = DateTime.Now;
+            // dr[MDB_ScheduleItem.Column_IgnoreChanges] = false;
+            dr[MDB_ScheduleItem.Column_LabelValue] = 0;
+            dr[MDB_ScheduleItem.Column_LocationValue] = "";
+            dr[MDB_ScheduleItem.Column_MarkerValue] = 0;
+            dr[MDB_ScheduleItem.Column_Owner] = 0;
+            dr[MDB_ScheduleItem.Column_Reminder] = false;
+            dr[MDB_ScheduleItem.Column_ReminderValue] = 0;
+            dr[MDB_ScheduleItem.Column_StartTime] = DateTime.Now;
+            dr[MDB_ScheduleItem.Column_Subject] = "";
+            dr[MDB_ScheduleItem.Column_RecurrenceRule] = "";
+            //dr[MDB_ScheduleItem.Column_UniqueID] = "ID"; 
         }
-        
+
         public override void RemoveItem(IScheduleAppointment item)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             using (SqlConnection conn = new SqlConnection(s_connection))
-    {
-        //declare adapter
-        SqlDataAdapter dataAdapter = new SqlDataAdapter("Select * from Appointments", conn);
-        dataAdapter.DeleteCommand = new SqlCommand("delete from [Appointments] where ID = @ID", conn);
-        
-        SqlParameter parameter00INS2 = new SqlParameter();
-        parameter00INS2.ParameterName = "@ID";
-        parameter00INS2.SqlDbType = SqlDbType.Int;
-        parameter00INS2.Direction = ParameterDirection.Input;
-        parameter00INS2.Value = Convert.ToInt32(item.UniqueID);
+            {
+                //declare adapter
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("Select * from Appointments", conn);
+                dataAdapter.DeleteCommand = new SqlCommand("delete from [Appointments] where ID = @ID", conn);
+
+                SqlParameter parameter00INS2 = new SqlParameter();
+                parameter00INS2.ParameterName = "@ID";
+                parameter00INS2.SqlDbType = SqlDbType.Int;
+                parameter00INS2.Direction = ParameterDirection.Input;
+                parameter00INS2.Value = Convert.ToInt32(item.UniqueID);
                 conn.Open();
                 dataAdapter.DeleteCommand.Parameters.Add(parameter00INS2);
                 dataAdapter.DeleteCommand.ExecuteNonQuery();
-        //int deleted = dataAdapter.Update(scheduleDataSet.Tables[3].Select(null, null, DataViewRowState.Unchanged));
+                //int deleted = dataAdapter.Update(scheduleDataSet.Tables[3].Select(null, null, DataViewRowState.Unchanged));
 
-              
+
                 SqlDataAdapter adapter = new SqlDataAdapter();
                 string sql = null;
-               // connetionString = "Data Source=ServerName;Initial Catalog=DatabaseName;User ID=UserName;Password=Password";
-                
+                // connetionString = "Data Source=ServerName;Initial Catalog=DatabaseName;User ID=UserName;Password=Password";
+
                 sql = "delete from [Appointments] where ID = " + Convert.ToInt32(item.UniqueID);
                 try
                 {
@@ -1291,22 +1288,22 @@ namespace MDB_ScheduleSample_CS
                 MDB_ScheduleDataProvider.itemsToDelete.Add((item as MDB_ScheduleItem).Dr);
                 */
             }
-    }
+        }
         public override void SaveModifiedItem(IScheduleAppointment appModifiedItem, IScheduleAppointment appOriginalItem)
         {
             (appOriginalItem as MDB_ScheduleItem).Dr.ItemArray = (appModifiedItem as MDB_ScheduleItem).Dr.ItemArray.Clone() as object[];
         }
 
-       
+
     }
 
     #endregion
 
     #region lookup lists
 
-    public class LookUpObjectList : ListObjectList 
+    public class LookUpObjectList : ListObjectList
     {
-        
+
         public LookUpObjectList(DataView dv)
         {
             foreach (DataRowView drv in dv)

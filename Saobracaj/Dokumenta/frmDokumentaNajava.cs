@@ -1,36 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Threading;
-using System.Configuration;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Data.OleDb;
-using System.Data.SqlClient;
-
-
-using iTextSharp.text;
+﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
-using iTextSharp;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
 using System.Text.RegularExpressions;
-
-using System.Drawing.Imaging;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
     public partial class frmDokumentaNajava : Form
     {
         bool status = false;
-    
+
         public frmDokumentaNajava()
         {
             InitializeComponent();
@@ -55,7 +40,7 @@ namespace Saobracaj.Dokumenta
                     btnTovarniList.Enabled = true;
                     btnSacuvajTovarniList.Enabled = true;
                     break;
-                case "Unutrašnji pun": 
+                case "Unutrašnji pun":
                     txtTovarniList.Enabled = true;
                     btnTovarniList.Enabled = true;
                     btnSacuvajTovarniList.Enabled = true;
@@ -69,21 +54,21 @@ namespace Saobracaj.Dokumenta
                     btnCIT23Sacuvaj.Enabled = true;
                     // CIM
                     break;
-                case "Uvoz/Tranzit tovareno": 
+                case "Uvoz/Tranzit tovareno":
                     txtCIT23.Enabled = true;
                     txtPutanja2.Enabled = true;
                     txtRacun.Enabled = true;
                     button3.Enabled = true;
-                    button6.Enabled = true;  
+                    button6.Enabled = true;
                     btnCIT23.Enabled = true;
                     btnCIT23Sacuvaj.Enabled = true;
                     btnRacun.Enabled = true;
                     btnRacunSacuvaj.Enabled = true;
-                    
-                
-                // CIM
+
+
+                    // CIM
                     break;
-                case "Izvoz tovareno": 
+                case "Izvoz tovareno":
                     txtCIT23.Enabled = true;
                     txtPutanja2.Enabled = true; // CIM
                     button3.Enabled = true;
@@ -91,10 +76,10 @@ namespace Saobracaj.Dokumenta
                     btnCIT23.Enabled = true;
                     btnCIT23Sacuvaj.Enabled = true;
                     break;
-                default: 
+                default:
                     MessageBox.Show("Odrediti prvo tip prevoza");
-                    
-                  
+
+
                     break;
             }
 
@@ -117,7 +102,7 @@ namespace Saobracaj.Dokumenta
         {
             string PictureFolder = txtPutanja.Text;
             ofd1.InitialDirectory = PictureFolder;
-         
+
             if (ofd1.ShowDialog() == DialogResult.OK)
             {
                 txtPutanja.Text = fbd.SelectedPath.ToString() + ofd1.FileName;
@@ -126,7 +111,7 @@ namespace Saobracaj.Dokumenta
 
         private void KopirajFajlPoTipu(string putanja, string FolderDestinacije, int Tip)
         {
-            string fileName =  ofd1.FileName; //Ovde ce trebati promena
+            string fileName = ofd1.FileName; //Ovde ce trebati promena
             fileName = fileName.Replace(" ", "_");
             string sourcePath = fbd.SelectedPath.ToString();
             string result = Path.GetFileName(fileName);
@@ -156,57 +141,57 @@ namespace Saobracaj.Dokumenta
             {
                 targetPath = @"\\192.168.129.7\TA\Saobracaj\" + FolderDestinacije;
             }
-        
-        string sourceFile = putanja;
-        string destFile = System.IO.Path.Combine(targetPath, result);
 
-        if (!System.IO.Directory.Exists(targetPath))
-        {
-            System.IO.Directory.CreateDirectory(targetPath);
-        }
+            string sourceFile = putanja;
+            string destFile = System.IO.Path.Combine(targetPath, result);
 
-        var remote = Path.Combine(targetPath, result);
-        File.Copy(sourceFile, remote);
-        if (Tip == 1)
-        {
-            txtTovarniList.Text = remote;
-        }
-        else if (Tip == 2)
-        {
-            txtPutanja2.Text = remote;    
-        }
-        else if (Tip == 3)
-        {
-            txtCIT23.Text = remote;
-        }
-        else if (Tip == 4)
-        {
-            txtRacun.Text = remote;
-
-        }
-        else if (Tip == 5)
-        {
-            txtPrijemnaTeretnica.Text = remote;
-        }
-        else
-        {
-            txtPutanja.Text = remote;    
-        }
-            
-            
-          
-        if (System.IO.Directory.Exists(sourcePath))
-        {
-            string[] files = System.IO.Directory.GetFiles(sourcePath);
-            // Copy the files and overwrite destination files if they already exist.
-            foreach (string s in files)
+            if (!System.IO.Directory.Exists(targetPath))
             {
-                // Use static Path methods to extract only the file name from the path.
-                fileName = System.IO.Path.GetFileName(s);
-                destFile = System.IO.Path.Combine(targetPath, fileName);
-                System.IO.File.Copy(s, destFile, true);
+                System.IO.Directory.CreateDirectory(targetPath);
             }
-        }
+
+            var remote = Path.Combine(targetPath, result);
+            File.Copy(sourceFile, remote);
+            if (Tip == 1)
+            {
+                txtTovarniList.Text = remote;
+            }
+            else if (Tip == 2)
+            {
+                txtPutanja2.Text = remote;
+            }
+            else if (Tip == 3)
+            {
+                txtCIT23.Text = remote;
+            }
+            else if (Tip == 4)
+            {
+                txtRacun.Text = remote;
+
+            }
+            else if (Tip == 5)
+            {
+                txtPrijemnaTeretnica.Text = remote;
+            }
+            else
+            {
+                txtPutanja.Text = remote;
+            }
+
+
+
+            if (System.IO.Directory.Exists(sourcePath))
+            {
+                string[] files = System.IO.Directory.GetFiles(sourcePath);
+                // Copy the files and overwrite destination files if they already exist.
+                foreach (string s in files)
+                {
+                    // Use static Path methods to extract only the file name from the path.
+                    fileName = System.IO.Path.GetFileName(s);
+                    destFile = System.IO.Path.Combine(targetPath, fileName);
+                    System.IO.File.Copy(s, destFile, true);
+                }
+            }
         }
 
         private void tsSave_Click(object sender, EventArgs e)
@@ -296,7 +281,7 @@ namespace Saobracaj.Dokumenta
                     {
                         txtSifra.Text = row.Cells[0].Value.ToString();
                         txtPutanja.Text = row.Cells[2].Value.ToString();
-                       
+
                     }
                 }
 
@@ -312,15 +297,15 @@ namespace Saobracaj.Dokumenta
         {
             try
             {
-          //P1      txtPutanja.Text = txtPutanja.Text.Replace("192.168.1.6", "WSS");
+                //P1      txtPutanja.Text = txtPutanja.Text.Replace("192.168.1.6", "WSS");
                 System.Diagnostics.Process.Start(txtPutanja.Text);
             }
             catch (Exception ex)
             {
-                
+
                 throw ex;
             }
-           // System.Diagnostics.Process.Start(txtPutanja.Text);
+            // System.Diagnostics.Process.Start(txtPutanja.Text);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -360,7 +345,7 @@ namespace Saobracaj.Dokumenta
             }
             else
             {
-              
+
             }
         }
 
@@ -459,7 +444,7 @@ namespace Saobracaj.Dokumenta
                 InsertNajavaDokumenta ins = new InsertNajavaDokumenta();
                 KopirajFajlPoTipu(txtTovarniList.Text, txtSifraNajave.Text, 1);
                 ins.InsNajDokumenta(Convert.ToInt32(txtSifraNajave.Text), txtTovarniList.Text);
-              //  ins.UpdateNajavaCIM(Convert.ToInt32(txtSifraNajave.Text));
+                //  ins.UpdateNajavaCIM(Convert.ToInt32(txtSifraNajave.Text));
                 RefreshDataGrid();
                 status = true;
             }
@@ -532,7 +517,7 @@ namespace Saobracaj.Dokumenta
             }
             else
             {
-               
+
             }
         }
 
@@ -555,14 +540,14 @@ namespace Saobracaj.Dokumenta
                     var filePath = file;
                     string filenameNoExtension = Path.GetFileNameWithoutExtension(filePath);
                     string extension = Path.GetExtension(filePath);
-                    if (extension == ".pdf") 
+                    if (extension == ".pdf")
                     {
                         if (filenameNoExtension != "Objedinjen")
-                          pdf.AddDocument(new PdfReader(file));
+                            pdf.AddDocument(new PdfReader(file));
                     }
                     if (extension == ".JPG")
                     {
-                     
+
                     }
                     i++;
                 }
@@ -597,12 +582,12 @@ namespace Saobracaj.Dokumenta
                     File.WriteAllBytes(slika.ToString() + ".pdf", ms.ToArray());
                 }
             }
-           
+
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
-             //CreateMergedPDF(@"\\192.168.1.6\Saobracaj\" + txtSifraNajave.Text + @"\\Objedinjen.pdf", @"\\192.168.1.6\Saobracaj\" + txtSifraNajave.Text);
+            //CreateMergedPDF(@"\\192.168.1.6\Saobracaj\" + txtSifraNajave.Text + @"\\Objedinjen.pdf", @"\\192.168.1.6\Saobracaj\" + txtSifraNajave.Text);
 
             var files = Directory.GetFiles(@"\\192.168.129.7\TA\Saobracaj\" + txtSifraNajave.Text, "*.*", SearchOption.AllDirectories);
 

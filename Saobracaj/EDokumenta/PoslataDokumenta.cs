@@ -1,14 +1,9 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 //using System.Linq.Dynamic;
 
@@ -54,7 +49,7 @@ namespace Saobracaj.eDokumenta
                 string json = "{\n" +
                     "Username:Test," +
                     "\nPassword:\"TestPass\"," +
-                    "\nCompanyId:\""+Saobracaj.Sifarnici.frmLogovanje.PIB+"\"," +
+                    "\nCompanyId:\"" + Saobracaj.Sifarnici.frmLogovanje.PIB + "\"," +
                     "\nSoftwareId:\"MtaSoft-001\"\n}";
 
                 streamWriter.Write(json);
@@ -161,7 +156,7 @@ namespace Saobracaj.eDokumenta
                                 string json = "{\n" +
                                     "Username:Test," +
                                     "\nPassword:\"TestPass\"," +
-                                    "\nCompanyId:\""+Saobracaj.Sifarnici.frmLogovanje.PIB+"\"," +
+                                    "\nCompanyId:\"" + Saobracaj.Sifarnici.frmLogovanje.PIB + "\"," +
                                     "\nSoftwareId:\"MtaSoft-001\"," +
                                     "\nElectronicId:\"" + txt_EID.Text + "\"," +
                                     "\nApply:\"cancel\"," +
@@ -202,7 +197,7 @@ namespace Saobracaj.eDokumenta
                         string json = "{\n" +
                             "Username:Test," +
                             "\nPassword:\"TestPass\"," +
-                            "\nCompanyId:\""+Saobracaj.Sifarnici.frmLogovanje.PIB+"\"," +
+                            "\nCompanyId:\"" + Saobracaj.Sifarnici.frmLogovanje.PIB + "\"," +
                             "\nSoftwareId:\"MtaSoft-001\"," +
                             "\nElectronicId:\"" + txt_EID.Text + "\"," +
                             "\nApply:\"resend\"}";
@@ -248,7 +243,7 @@ namespace Saobracaj.eDokumenta
                 string json = "{\n" +
                     "Username:Test," +
                     "\nPassword:\"TestPass\"," +
-                    "\nCompanyId:\""+Saobracaj.Sifarnici.frmLogovanje.PIB+"\"," +
+                    "\nCompanyId:\"" + Saobracaj.Sifarnici.frmLogovanje.PIB + "\"," +
                     "\nSoftwareId:\"MtaSoft-001\"," +
                     "\nStatusId:" + cbo_Status.SelectedValue + "}";
 
@@ -340,7 +335,7 @@ namespace Saobracaj.eDokumenta
                 string json = "{\n" +
                     "Username:Test," +
                     "\nPassword:\"TestPass\"," +
-                    "\nCompanyId:\""+Saobracaj.Sifarnici.frmLogovanje.PIB+"\"," +
+                    "\nCompanyId:\"" + Saobracaj.Sifarnici.frmLogovanje.PIB + "\"," +
                     "\nSoftwareId:\"MtaSoft-001\"," +
                     "\nFrom:\"" + vremeOd.ToString("yyyy-MM-dd") + "\"," +
                     "\nTo:\"" + vremeDo.ToString("yyyy-MM-dd") + "\"}";

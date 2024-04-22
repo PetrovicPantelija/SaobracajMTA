@@ -1,14 +1,9 @@
 ﻿using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Configuration;
-using System.Net;
-using System.Net.Mail;
-using System.Diagnostics.CodeAnalysis;
-using Saobracaj;
 using System.Drawing;
+using System.Windows.Forms;
 //
 namespace Saobracaj.RadniNalozi
 {
@@ -31,7 +26,7 @@ namespace Saobracaj.RadniNalozi
             txtNalogIzdao.Text = Korisnik;
             cboSaVoznog.SelectedValue = Convert.ToInt32(IDVOza);
             NapuniVrstuUsluge(IDUsluge);
-           // cboUsluga.SelectedValue = Convert.ToInt32(IDUsluge);
+            // cboUsluga.SelectedValue = Convert.ToInt32(IDUsluge);
             txtPrijemID.Text = PrijemID;
             txtKamion.Text = Kamion;
 
@@ -181,7 +176,7 @@ namespace Saobracaj.RadniNalozi
             cboNaPoz.DataSource = dsPoz.Tables[0];
             cboNaPoz.DisplayMember = "Pozicija";
             cboNaPoz.ValueMember = "ID";
-            
+
             var sklad2 = "Select SkSifra,SkNaziv From Sklad order by SkSifra";
             var daSklad2 = new SqlDataAdapter(sklad2, conn);
             var dsSklad2 = new DataSet();
@@ -273,7 +268,7 @@ namespace Saobracaj.RadniNalozi
                 //do something else
             }
 
-            
+
         }
     }
 }

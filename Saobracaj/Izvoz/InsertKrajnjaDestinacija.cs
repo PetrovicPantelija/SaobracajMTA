@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using Saobracaj.Dokumenta;
-using Saobracaj.Sifarnici;
 
 namespace Saobracaj.Izvoz
 {
@@ -16,7 +10,7 @@ namespace Saobracaj.Izvoz
     {
         string connection = frmLogovanje.connectionString;
 
-        public void InsKrajnjaDestinacija(string Naziv,int SifDr)
+        public void InsKrajnjaDestinacija(string Naziv, int SifDr)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -73,7 +67,7 @@ namespace Saobracaj.Izvoz
                 }
             }
         }
-        public void UpdKrajnjaDestinacija(int ID, string Naziv,int SifDr)
+        public void UpdKrajnjaDestinacija(int ID, string Naziv, int SifDr)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();

@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -169,11 +163,11 @@ namespace Saobracaj.Dokumenta
                     {
                         txtID.Text = row.Cells[0].Value.ToString();
                         txtSifra.Text = row.Cells[1].Value.ToString();
-                       // cboPruga.SelectedValue = Convert.ToInt32(row.Cells[1].Value.ToString());
+                        // cboPruga.SelectedValue = Convert.ToInt32(row.Cells[1].Value.ToString());
                         txtVoz.Text = row.Cells[3].Value.ToString();
                         txtRB.Text = row.Cells[5].Value.ToString();
                         cmbStanica.SelectedValue = Convert.ToInt32(row.Cells[6].Value.ToString());
-                       
+
                     }
                 }
             }

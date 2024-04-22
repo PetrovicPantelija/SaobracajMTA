@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -50,7 +44,7 @@ namespace Saobracaj.Dokumenta
             {
                 txtPaKOSifra.SelectedValue = pomPartner;
                 RefreshDataGridPoPartneru();
-                
+
             }
             else
             {
@@ -146,12 +140,12 @@ namespace Saobracaj.Dokumenta
 
         }
 
-       
+
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
             txtPaKOZapSt.Enabled = false;
-           
+
             txtPaKOZapSt.Text = "";
             txtPaKOSifra.Text = "";
             txtPaKOIme.Text = "";
@@ -167,13 +161,13 @@ namespace Saobracaj.Dokumenta
         {
             int pomOperater = 0;
             if (chkOperatika.Checked == true)
-                {
+            {
                 pomOperater = 1;
             }
 
             if (status == true)
             {
-                
+
                 Sifarnici.InsertKontaktOsobe ins = new Sifarnici.InsertKontaktOsobe();
                 ins.InsKontaktOsoba(Convert.ToInt32(txtPaKOSifra.SelectedValue), txtPaKOIme.Text, txtPaKOPriimek.Text, txtPaKOOddelek.Text, txtPaKOTel.Text, txtPaKOMail.Text, txtPaKOOpomba.Text, pomOperater);
             }
@@ -232,7 +226,7 @@ namespace Saobracaj.Dokumenta
 
         public string GetKontakt(int Partner)
         {
-            
+
             RefreshDataGridPoPartneru();
             return txtPaKOIme.Text.TrimEnd() + " " + txtPaKOPriimek.Text.TrimEnd() + " " + txtPaKOTel.Text.TrimEnd();
         }
@@ -250,15 +244,15 @@ namespace Saobracaj.Dokumenta
                 {
                     if (row.Selected)
                     {
-                      
+
                         txtPaKOZapSt.Text = row.Cells[0].Value.ToString();
-                       // txtPaKOSifra.Text = row.Cells[1].Value.ToString();
+                        // txtPaKOSifra.Text = row.Cells[1].Value.ToString();
                         txtPaKOIme.Text = row.Cells[2].Value.ToString();
                         txtPaKOPriimek.Text = row.Cells[3].Value.ToString();
-                        txtPaKOOddelek.Text= row.Cells[4].Value.ToString();
+                        txtPaKOOddelek.Text = row.Cells[4].Value.ToString();
                         txtPaKOTel.Text = row.Cells[5].Value.ToString();
-                        txtPaKOMail.Text= row.Cells[6].Value.ToString();
-                        txtPaKOOpomba.Text =row.Cells[7].Value.ToString();
+                        txtPaKOMail.Text = row.Cells[6].Value.ToString();
+                        txtPaKOOpomba.Text = row.Cells[7].Value.ToString();
 
                         if (row.Cells[7].Value.ToString() == "1")
                         { chkOperatika.Checked = true; }

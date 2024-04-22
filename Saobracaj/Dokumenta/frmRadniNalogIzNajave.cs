@@ -1,17 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
-using System.Net;
-using System.Net.Mail;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -38,12 +30,12 @@ namespace Saobracaj.Dokumenta
 
              }
             */
-           // txtSifra.Text = RN.ToString();
-           // VratiPodatke(RN.ToString());
+            // txtSifra.Text = RN.ToString();
+            // VratiPodatke(RN.ToString());
         }
 
 
-     
+
         int VratiRN(string NajavaID)
         {
 
@@ -80,11 +72,11 @@ namespace Saobracaj.Dokumenta
             while (dr.Read())
             {
 
-               txtOznaka.Text = dr["Oznaka"].ToString();
+                txtOznaka.Text = dr["Oznaka"].ToString();
             }
 
             con.Close();
-         
+
 
 
         }
@@ -117,7 +109,7 @@ namespace Saobracaj.Dokumenta
             dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
-           
+
             /*
             
             DataGridViewColumn column = dataGridView2.Columns[0];
@@ -164,8 +156,8 @@ namespace Saobracaj.Dokumenta
                     if (row.Selected)
                     {
                         txtRN.Text = row.Cells[1].Value.ToString();
-                       
-                       
+
+
                         // txtOpis.Text = row.Cells[1].Value.ToString();
                     }
                 }
@@ -180,7 +172,7 @@ namespace Saobracaj.Dokumenta
 
         private void VratiMAXRN()
         {
-     
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
@@ -208,7 +200,7 @@ namespace Saobracaj.Dokumenta
 
         private void button2_Click(object sender, EventArgs e)
         {
-            frmRadniNalog rn = new frmRadniNalog(txtSifra.Text,1,1);
+            frmRadniNalog rn = new frmRadniNalog(txtSifra.Text, 1, 1);
             rn.Show();
         }
     }

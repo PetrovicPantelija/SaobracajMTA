@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Testiranje.Dokumeta
 {
     class InsertRadniNalogTransportStavke
     {
-        public void InsRadniNalogTransportStavke(int IDNadredjenog, string Korisnik, string TovList,string Racun, double Dencano, double Kolsko, double DencanoRSD, double OstaloRSD,string Primedba, string Potpisao)
+        public void InsRadniNalogTransportStavke(int IDNadredjenog, string Korisnik, string TovList, string Racun, double Dencano, double Kolsko, double DencanoRSD, double OstaloRSD, string Primedba, string Potpisao)
         {
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -97,7 +93,7 @@ namespace Testiranje.Dokumeta
             parameter11.Value = Potpisao;
             myCommand.Parameters.Add(parameter11);
 
-           
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -136,7 +132,7 @@ namespace Testiranje.Dokumeta
             }
         }
 
-        public void UpdRadniNalogTransportStavke(int ID, int IDNadredjenog,  string Korisnik, string TovList, string Racun, double Dencano, double Kolsko, double DencanoRSD, double OstaloRSD, string Primedba, string Potpisao)
+        public void UpdRadniNalogTransportStavke(int ID, int IDNadredjenog, string Korisnik, string TovList, string Racun, double Dencano, double Kolsko, double DencanoRSD, double OstaloRSD, string Primedba, string Potpisao)
 
         {
 
@@ -162,14 +158,14 @@ namespace Testiranje.Dokumeta
             parameter1.Value = IDNadredjenog;
             myCommand.Parameters.Add(parameter1);
 
-/*
-            SqlParameter parameterp1 = new SqlParameter();
-            parameterp1.ParameterName = "@RB";
-            parameterp1.SqlDbType = SqlDbType.Int;
-            parameterp1.Direction = ParameterDirection.Input;
-            parameterp1.Value = RB;
-            myCommand.Parameters.Add(parameterp1);
-*/
+            /*
+                        SqlParameter parameterp1 = new SqlParameter();
+                        parameterp1.ParameterName = "@RB";
+                        parameterp1.SqlDbType = SqlDbType.Int;
+                        parameterp1.Direction = ParameterDirection.Input;
+                        parameterp1.Value = RB;
+                        myCommand.Parameters.Add(parameterp1);
+            */
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@Korisnik";
             parameter2.SqlDbType = SqlDbType.NVarChar;

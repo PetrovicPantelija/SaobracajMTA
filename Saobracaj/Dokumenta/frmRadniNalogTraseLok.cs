@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -30,7 +24,7 @@ namespace Saobracaj.Dokumenta
             txtBrojNajave.Text = Voznja;
             //Ubaciti popunjavanje trasa
             pomTrasa = Trasa;
-            
+
         }
 
         private void VratiLokomotive(int IDTrase, string IDRadnogNaloga)
@@ -79,14 +73,14 @@ namespace Saobracaj.Dokumenta
             DataGridViewColumn column5 = dataGridView2.Columns[4];
             dataGridView2.Columns[4].HeaderText = "Napomena";
             dataGridView2.Columns[4].Width = 460;
-            
-            
-       
+
+
+
         }
 
         private void tsNew_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void frmRadniNalogTraseLok_Load(object sender, EventArgs e)
@@ -263,46 +257,46 @@ namespace Saobracaj.Dokumenta
 
         private void button1_Click(object sender, EventArgs e)
         {
-          
+
         }
 
         private void RefreshDataGrid2()
         {
-             var select = "SELECT  RadniNalogTrase.IDRadnogNaloga, RadniNalogTrase.RB, RadniNalogTrase.IDTrase, Trase.Voz, " +
-                "StatusTrasa.Opis," +
-                "RadniNalogTrase.Poslato," +
-                "RadniNalogTrase.DatumPolaska " +
-                ",RadniNalogTrase.DatumDolaska " +
-                ",RadniNalogTrase.Vreme " +
-                ",RadniNalogTrase.DatumPolaskaReal " +
-                ",RadniNalogTrase.DatumDolaskaReal " +
-                ",RadniNalogTrase.VremeReal " +
-                ",RadniNalogTrase.PlaniranaMasa " +
-                ",RadniNalogTrase.MasaLokomotive " +
-                ",RadniNalogTrase.MasaVoza " +
-                ",RadniNalogTrase.BrutoMasa " +
-                ",RadniNalogTrase.Napomena " +
-                ",stanice_2.Opis AS RN_Pocetna " +
-                ",stanice_3.Opis AS RN_Krajnja " + 
-                ",stanice.Opis AS Trasa_Pocetna " +
-                ",stanice_1.Opis AS Trasa_Krajnja " + 
-                " FROM RadniNalogTrase INNER JOIN " +
-                " Trase ON RadniNalogTrase.IDTrase = Trase.ID INNER JOIN " + 
-                " stanice ON Trase.Pocetna = stanice.ID INNER JOIN " +
-                " stanice AS stanice_1 ON Trase.Krajnja = stanice_1.ID " +
-                " inner join stanice as stanice_2 ON RadniNalogTrase.StanicaOd = stanice_2.ID INNER JOIN  stanice AS stanice_3 ON RadniNalogTrase.StanicaDo = stanice_3.ID " + 
-                " INNER JOIN  StatusTrasa  ON RadniNalogTrase.StatusTrase = StatusTrasa.ID " + 
-                " where RadniNalogTrase.IDRadnogNaloga = " + Convert.ToInt32(txtSifraRN.Text) + " order by IDRadnogNaloga, RadniNalogTrase.RB";
-             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-             SqlConnection myConnection = new SqlConnection(s_connection);
-             var c = new SqlConnection(s_connection);
-             var dataAdapter = new SqlDataAdapter(select, c);
+            var select = "SELECT  RadniNalogTrase.IDRadnogNaloga, RadniNalogTrase.RB, RadniNalogTrase.IDTrase, Trase.Voz, " +
+               "StatusTrasa.Opis," +
+               "RadniNalogTrase.Poslato," +
+               "RadniNalogTrase.DatumPolaska " +
+               ",RadniNalogTrase.DatumDolaska " +
+               ",RadniNalogTrase.Vreme " +
+               ",RadniNalogTrase.DatumPolaskaReal " +
+               ",RadniNalogTrase.DatumDolaskaReal " +
+               ",RadniNalogTrase.VremeReal " +
+               ",RadniNalogTrase.PlaniranaMasa " +
+               ",RadniNalogTrase.MasaLokomotive " +
+               ",RadniNalogTrase.MasaVoza " +
+               ",RadniNalogTrase.BrutoMasa " +
+               ",RadniNalogTrase.Napomena " +
+               ",stanice_2.Opis AS RN_Pocetna " +
+               ",stanice_3.Opis AS RN_Krajnja " +
+               ",stanice.Opis AS Trasa_Pocetna " +
+               ",stanice_1.Opis AS Trasa_Krajnja " +
+               " FROM RadniNalogTrase INNER JOIN " +
+               " Trase ON RadniNalogTrase.IDTrase = Trase.ID INNER JOIN " +
+               " stanice ON Trase.Pocetna = stanice.ID INNER JOIN " +
+               " stanice AS stanice_1 ON Trase.Krajnja = stanice_1.ID " +
+               " inner join stanice as stanice_2 ON RadniNalogTrase.StanicaOd = stanice_2.ID INNER JOIN  stanice AS stanice_3 ON RadniNalogTrase.StanicaDo = stanice_3.ID " +
+               " INNER JOIN  StatusTrasa  ON RadniNalogTrase.StatusTrase = StatusTrasa.ID " +
+               " where RadniNalogTrase.IDRadnogNaloga = " + Convert.ToInt32(txtSifraRN.Text) + " order by IDRadnogNaloga, RadniNalogTrase.RB";
+            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
 
-             var commandBuilder = new SqlCommandBuilder(dataAdapter);
-             var ds = new DataSet();
-             dataAdapter.Fill(ds);
-             dataGridView1.ReadOnly = true;
-             dataGridView1.DataSource = ds.Tables[0];
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
 
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
@@ -317,81 +311,81 @@ namespace Saobracaj.Dokumenta
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
             DataGridViewColumn column = dataGridView1.Columns[0];
-             dataGridView1.Columns[0].HeaderText = "RN";
-             dataGridView1.Columns[0].Width = 30;
+            dataGridView1.Columns[0].HeaderText = "RN";
+            dataGridView1.Columns[0].Width = 30;
 
-             DataGridViewColumn column2 = dataGridView1.Columns[1];
-             dataGridView1.Columns[1].HeaderText = "RB";
-             dataGridView1.Columns[1].Width = 20;
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "RB";
+            dataGridView1.Columns[1].Width = 20;
 
-             DataGridViewColumn column3 = dataGridView1.Columns[2];
-             dataGridView1.Columns[2].HeaderText = "ID Trasa";
-             dataGridView1.Columns[2].Width = 30;
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "ID Trasa";
+            dataGridView1.Columns[2].Width = 30;
 
-             DataGridViewColumn column4 = dataGridView1.Columns[3];
-             dataGridView1.Columns[3].HeaderText = "Trasa";
-             dataGridView1.Columns[3].Width = 70;
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Trasa";
+            dataGridView1.Columns[3].Width = 70;
 
-             DataGridViewColumn column5 = dataGridView1.Columns[4];
-             dataGridView1.Columns[4].HeaderText = "Status Trase";
-             dataGridView1.Columns[4].Width = 100;
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Status Trase";
+            dataGridView1.Columns[4].Width = 100;
 
-             DataGridViewColumn column6 = dataGridView1.Columns[5];
-             dataGridView1.Columns[5].HeaderText = "Poslato";
-             dataGridView1.Columns[5].Width = 100;
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Poslato";
+            dataGridView1.Columns[5].Width = 100;
 
-             DataGridViewColumn column7 = dataGridView1.Columns[6];
-             dataGridView1.Columns[6].HeaderText = "Plan polaska";
-             dataGridView1.Columns[6].Width = 100;
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Plan polaska";
+            dataGridView1.Columns[6].Width = 100;
 
-             DataGridViewColumn column8 = dataGridView1.Columns[7];
-             dataGridView1.Columns[7].HeaderText = "Plan dolaska";
-             dataGridView1.Columns[7].Width = 100;
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Plan dolaska";
+            dataGridView1.Columns[7].Width = 100;
 
-             DataGridViewColumn column9 = dataGridView1.Columns[8];
-             dataGridView1.Columns[8].HeaderText = "Planirano vreme";
-             dataGridView1.Columns[8].Width = 50;
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Planirano vreme";
+            dataGridView1.Columns[8].Width = 50;
 
-             DataGridViewColumn column10 = dataGridView1.Columns[9];
-             dataGridView1.Columns[9].HeaderText = "Realiz. polaska ";
-             dataGridView1.Columns[9].Width = 100;
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Realiz. polaska ";
+            dataGridView1.Columns[9].Width = 100;
 
-             DataGridViewColumn column11 = dataGridView1.Columns[10];
-             dataGridView1.Columns[10].HeaderText = "Realiz. dolaska";
-             dataGridView1.Columns[10].Width = 100;
+            DataGridViewColumn column11 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "Realiz. dolaska";
+            dataGridView1.Columns[10].Width = 100;
 
-             DataGridViewColumn column12 = dataGridView1.Columns[11];
-             dataGridView1.Columns[11].HeaderText = "Realizovano vreme";
-             dataGridView1.Columns[11].Width = 50;
+            DataGridViewColumn column12 = dataGridView1.Columns[11];
+            dataGridView1.Columns[11].HeaderText = "Realizovano vreme";
+            dataGridView1.Columns[11].Width = 50;
 
-             DataGridViewColumn column13 = dataGridView1.Columns[12];
-             dataGridView1.Columns[12].HeaderText = "Planirana masa";
-             dataGridView1.Columns[12].Width = 50;
+            DataGridViewColumn column13 = dataGridView1.Columns[12];
+            dataGridView1.Columns[12].HeaderText = "Planirana masa";
+            dataGridView1.Columns[12].Width = 50;
 
-             DataGridViewColumn column14 = dataGridView1.Columns[13];
-             dataGridView1.Columns[13].HeaderText = "Masa lokomotive";
-             dataGridView1.Columns[13].Width = 50;
+            DataGridViewColumn column14 = dataGridView1.Columns[13];
+            dataGridView1.Columns[13].HeaderText = "Masa lokomotive";
+            dataGridView1.Columns[13].Width = 50;
 
-             DataGridViewColumn column15 = dataGridView1.Columns[14];
-             dataGridView1.Columns[14].HeaderText = "Masa voza";
-             dataGridView1.Columns[14].Width = 50;
+            DataGridViewColumn column15 = dataGridView1.Columns[14];
+            dataGridView1.Columns[14].HeaderText = "Masa voza";
+            dataGridView1.Columns[14].Width = 50;
 
-             DataGridViewColumn column16 = dataGridView1.Columns[15];
-             dataGridView1.Columns[15].HeaderText = "Bruto masa";
-             dataGridView1.Columns[15].Width = 50;
+            DataGridViewColumn column16 = dataGridView1.Columns[15];
+            dataGridView1.Columns[15].HeaderText = "Bruto masa";
+            dataGridView1.Columns[15].Width = 50;
         }
 
         private void dtpVremeDo_Leave(object sender, EventArgs e)
         {
-            TimeSpan span =  dtpVremeDo.Value.Subtract(dtpVremeOd.Value);
+            TimeSpan span = dtpVremeDo.Value.Subtract(dtpVremeOd.Value);
             txtVreme.Text = Convert.ToString(Convert.ToInt32(span.TotalMinutes));
         }
 
         private void dtpVremeKasnjenjaDo_Leave(object sender, EventArgs e)
         {
-           // dtpVremeKasnjenjaDo
-           
-            
+            // dtpVremeKasnjenjaDo
+
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -405,7 +399,7 @@ namespace Saobracaj.Dokumenta
         private void dtpVremeDoReal_Leave(object sender, EventArgs e)
         {
             TimeSpan span = dtpVremeDoReal.Value.Subtract(dtpVremeOdReal.Value);
-            txtVremeReal.Text =  Convert.ToString(Convert.ToInt32(span.TotalMinutes));
+            txtVremeReal.Text = Convert.ToString(Convert.ToInt32(span.TotalMinutes));
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -462,7 +456,7 @@ namespace Saobracaj.Dokumenta
 
         private void VratiPodatkeTrasa(int Trasa, int RB)
         {
-           
+
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
@@ -470,7 +464,7 @@ namespace Saobracaj.Dokumenta
 
             SqlCommand cmd = new SqlCommand("Select IDRadnogNaloga, RB, IDTrase, DatumPolaskaReal, DatumDolaskaReal, DatumPolaska, " +
             " DatumDolaska, Vreme, VremeReal, PlaniranaMasa, MasaLokomotive, MasaVoza, BrutoMasa, Napomena, " +
-            " StanicaOd, StanicaDo, Rezi, Poslato, StatusTrase from RadniNalogTrase where RadniNalogTrase.IDRadnogNaloga =  " + Convert.ToInt32(txtSifraRN.Text) + " and RadniNalogTrase.IDTrase = " + Trasa +  " and RadniNalogTrase.RB = " + RB + " order by rb", con);
+            " StanicaOd, StanicaDo, Rezi, Poslato, StatusTrase from RadniNalogTrase where RadniNalogTrase.IDRadnogNaloga =  " + Convert.ToInt32(txtSifraRN.Text) + " and RadniNalogTrase.IDTrase = " + Trasa + " and RadniNalogTrase.RB = " + RB + " order by rb", con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -489,7 +483,7 @@ namespace Saobracaj.Dokumenta
                 cboStanicaOd.SelectedValue = Convert.ToInt32(dr["StanicaOd"].ToString());
                 cboStanicaDo.SelectedValue = Convert.ToInt32(dr["StanicaDo"].ToString());
                 txtNapomena.Text = dr["Napomena"].ToString();
-                
+
                 if (dr["Rezi"].ToString() == "1")
                 {
                     chkRezi.Checked = true;
@@ -497,7 +491,7 @@ namespace Saobracaj.Dokumenta
                 else
                 {
                     chkRezi.Checked = false;
-                    
+
                 }
                 cboTrase.SelectedValue = Convert.ToInt32(dr["IDTrase"].ToString());
 
@@ -544,7 +538,7 @@ namespace Saobracaj.Dokumenta
 
             SqlCommand cmd2 = new SqlCommand("select TOP 1 Najava.Tezina, Najava.Duzina from RadniNalog inner join RadniNalogVezaNajave on RadniNalog.ID = RadniNalogVezaNajave.IDRadnogNaloga " +
             " inner join Najava on Najava.ID = RadniNalogVezaNajave.IDNajave where RadniNalog.ID =  " + Convert.ToInt32(txtSifraRN.Text), con2);
-            
+
             SqlDataReader dr2 = cmd2.ExecuteReader();
 
             while (dr2.Read())
@@ -563,7 +557,7 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            frmPodtrase podtrase = new frmPodtrase(txtSifraRN.Text, cboTrase.SelectedValue.ToString(),  txtRB.Text);
+            frmPodtrase podtrase = new frmPodtrase(txtSifraRN.Text, cboTrase.SelectedValue.ToString(), txtRB.Text);
             podtrase.Show();
         }
 

@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
 {
@@ -33,7 +28,7 @@ namespace Saobracaj.Izvoz
             InitializeComponent();
 
             txtNadredjeni.Text = ID.ToString();
-          //  FillDG();
+            //  FillDG();
 
             FillCombo();
             VratiPodatke(ID);
@@ -389,9 +384,6 @@ namespace Saobracaj.Izvoz
             cboSpedicija.DataSource = partDS3.Tables[0];
             cboSpedicija.DisplayMember = "PaNaziv";
             cboSpedicija.ValueMember = "PaSifra";
-
-            //Spedicija
-            var partner4 = "Select PaSifra,PaNaziv From Partnerji where Spediter =1 order by PaNaziv";
             var partAD4 = new SqlDataAdapter(partner3, conn);
             var partDS4 = new DataSet();
             partAD4.Fill(partDS4);
@@ -1900,12 +1892,12 @@ namespace Saobracaj.Izvoz
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
-           
+
             using (var detailForm = new frmIzvozKonacnaTable(txtNadredjeni.Text))
             {
                 detailForm.ShowDialog();
                 txtID.Text = detailForm.GetID();
-           
+
                 VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
             }
         }

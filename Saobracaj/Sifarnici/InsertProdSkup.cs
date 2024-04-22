@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
@@ -28,7 +24,7 @@ namespace Saobracaj.Sifarnici
             parameter.Value = PsNaziv;
             myCommand.Parameters.Add(parameter);
 
-           
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -68,7 +64,7 @@ namespace Saobracaj.Sifarnici
         }
 
 
-        public void UpdProdSkup(int PsSifra,  string PsNaziv)
+        public void UpdProdSkup(int PsSifra, string PsNaziv)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -92,7 +88,7 @@ namespace Saobracaj.Sifarnici
             parameter2.Value = PsNaziv;
             myCommand.Parameters.Add(parameter2);
 
-           
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

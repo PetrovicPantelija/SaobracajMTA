@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Data;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace Saobracaj
 {
@@ -69,7 +65,7 @@ namespace Saobracaj
             SqlParameter parameter7 = new SqlParameter();
             parameter7.ParameterName = "@BrojOsovina";
             parameter7.SqlDbType = SqlDbType.Decimal;
-           // parameter7.Size = 20;
+            // parameter7.Size = 20;
             parameter7.Direction = ParameterDirection.Input;
             parameter7.Value = BrojOsovina;
             myCommand.Parameters.Add(parameter7);
@@ -121,8 +117,8 @@ namespace Saobracaj
             parameter14.SqlDbType = SqlDbType.Decimal;
             parameter14.Direction = ParameterDirection.Input;
             parameter14.Value = RR;
-            myCommand.Parameters.Add(parameter14);  
-  
+            myCommand.Parameters.Add(parameter14);
+
             SqlParameter parameter15 = new SqlParameter();
             parameter15.ParameterName = "@VRNP";
             parameter15.SqlDbType = SqlDbType.NVarChar;
@@ -144,7 +140,7 @@ namespace Saobracaj
             parameter17.Direction = ParameterDirection.Input;
             parameter17.Value = Uputna;
             myCommand.Parameters.Add(parameter17);
-       
+
             SqlParameter parameter18 = new SqlParameter();
             parameter18.ParameterName = "@Reon";
             parameter18.SqlDbType = SqlDbType.NVarChar;
@@ -152,7 +148,7 @@ namespace Saobracaj
             parameter18.Direction = ParameterDirection.Input;
             parameter18.Value = Reon;
             myCommand.Parameters.Add(parameter18);
-       
+
             SqlParameter parameter19 = new SqlParameter();
             parameter19.ParameterName = "@Primedba";
             parameter19.SqlDbType = SqlDbType.NVarChar;
@@ -299,7 +295,7 @@ namespace Saobracaj
             SqlParameter parameter7 = new SqlParameter();
             parameter7.ParameterName = "@BrojOsovina";
             parameter7.SqlDbType = SqlDbType.Decimal;
-           // parameter7.Size = 20;
+            // parameter7.Size = 20;
             parameter7.Direction = ParameterDirection.Input;
             parameter7.Value = BrojOsovina;
             myCommand.Parameters.Add(parameter7);
@@ -466,7 +462,7 @@ namespace Saobracaj
             }
         }
 
-        
+
         public void DeleteTeretnicaStavke(int BrojTeretnice, int RB)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
@@ -645,7 +641,7 @@ namespace Saobracaj
 
 
             }
-        
+
         }
 
         public void InsTeretnicaStavkeRN(int IDStavke, int StanicaOd, int StanicaDo)
@@ -1023,7 +1019,7 @@ namespace Saobracaj
             }
         }
 
-        public void UpdateOstaleStavke(int ID, int RB, string BrojKola, string Serija, double BrojOsovina, double Duzina, double Tara, double Neto, double G, double P, double R, double RR, string VRNP,  string Reon, string Primedba, double RucKoc,  string RID, string Dokument)
+        public void UpdateOstaleStavke(int ID, int RB, string BrojKola, string Serija, double BrojOsovina, double Duzina, double Tara, double Neto, double G, double P, double R, double RR, string VRNP, string Reon, string Primedba, double RucKoc, string RID, string Dokument)
         {
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -1045,7 +1041,7 @@ namespace Saobracaj
             parameter0.Value = RB;
             myCommand.Parameters.Add(parameter0);
 
-           
+
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@BrojKola";
             parameter1.SqlDbType = SqlDbType.NVarChar;
@@ -1127,7 +1123,7 @@ namespace Saobracaj
             parameter11.Value = VRNP;
             myCommand.Parameters.Add(parameter11);
 
-           
+
             SqlParameter parameter12 = new SqlParameter();
             parameter12.ParameterName = "@Reon";
             parameter12.SqlDbType = SqlDbType.NVarChar;

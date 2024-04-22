@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
-using System.Data.SqlClient;
 using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -105,19 +99,19 @@ namespace Saobracaj.Dokumenta
             else
             {
                 InsertNajavaPrevoznik upd = new InsertNajavaPrevoznik();
-               /*
-                upd.UpdStanice(Convert.ToInt32(txtSifra.Text), txtOpis.Text, chkGranicna.Checked, txtKod.Text, cboDrzava.Text);
-                status = false;
-                txtSifra.Enabled = false;
-                RefreshDataGrid();
-                * */
+                /*
+                 upd.UpdStanice(Convert.ToInt32(txtSifra.Text), txtOpis.Text, chkGranicna.Checked, txtKod.Text, cboDrzava.Text);
+                 status = false;
+                 txtSifra.Enabled = false;
+                 RefreshDataGrid();
+                 * */
             }
         }
         private void RefreshDataGrid()
         {
             int pomNaj = Convert.ToInt32(txtSifraNajave.Text);
             var select = "select NajavaPrevoznik.ID,NajavaPrevoznik.IDNajave,  NajavaPrevoznik.Red, NajavaPrevoznik.IDPrevoznik, NajavaPrevoznik.PaNaziv, Partnerji.UIC, NajavaPrevoznik.Voz  from NajavaPrevoznik inner join Partnerji on " +
-            " NajavaPrevoznik.IDPrevoznik = Partnerji.PaSifra where NajavaPrevoznik.IDNajave =  " + pomNaj +  "  order by NajavaPrevoznik.Red";
+            " NajavaPrevoznik.IDPrevoznik = Partnerji.PaSifra where NajavaPrevoznik.IDNajave =  " + pomNaj + "  order by NajavaPrevoznik.Red";
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -149,7 +143,7 @@ namespace Saobracaj.Dokumenta
             dataGridView1.Columns[0].HeaderText = "ID";
             dataGridView1.Columns[0].Width = 30;
 
-          
+
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Najava";
             dataGridView1.Columns[1].Width = 30;
@@ -173,7 +167,7 @@ namespace Saobracaj.Dokumenta
             DataGridViewColumn column7 = dataGridView1.Columns[6];
             dataGridView1.Columns[6].HeaderText = "Voz";
             dataGridView1.Columns[6].Width = 50;
-            
+
         }
     }
 }

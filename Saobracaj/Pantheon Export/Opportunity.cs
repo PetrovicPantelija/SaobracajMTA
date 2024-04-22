@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Saobracaj.Pantheon_Export
@@ -20,7 +15,7 @@ namespace Saobracaj.Pantheon_Export
             InitializeComponent();
             FillCombo();
             panel1.Visible = false;
-            
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -56,12 +51,12 @@ namespace Saobracaj.Pantheon_Export
             cboKlijent.ValueMember = "PaSifra";
 
             var query3 = "select ID,RTrim(Opis) as Opis from Stanice order by ID asc";
-            var da3 = new SqlDataAdapter( query3, conn);
+            var da3 = new SqlDataAdapter(query3, conn);
             var ds3 = new DataSet();
             da3.Fill(ds3);
             cboStartPoint.DataSource = ds3.Tables[0];
             cboStartPoint.DisplayMember = "Opis";
-            cboStartPoint.ValueMember= "ID";
+            cboStartPoint.ValueMember = "ID";
 
             var query4 = "select ID,Opis from Stanice order by ID asc";
             var da4 = new SqlDataAdapter(query4, conn);
@@ -69,7 +64,7 @@ namespace Saobracaj.Pantheon_Export
             da4.Fill(ds4);
             cboEndPoint.DataSource = ds4.Tables[0];
             cboEndPoint.DisplayMember = "Opis";
-            cboEndPoint.ValueMember= "ID";
+            cboEndPoint.ValueMember = "ID";
         }
         int idP;
         string oppID;
@@ -136,7 +131,7 @@ namespace Saobracaj.Pantheon_Export
             }
             else
             {
-                ins.UpdOpportunity(id,txtNaziv.Text.ToString().TrimEnd(), Convert.ToInt32(cboOdeljenje.SelectedValue), txtProizvod.Text.ToString().TrimEnd(), txtProductFor.Text.ToString().TrimEnd(), Convert.ToInt32(cboKlijent.SelectedValue),
+                ins.UpdOpportunity(id, txtNaziv.Text.ToString().TrimEnd(), Convert.ToInt32(cboOdeljenje.SelectedValue), txtProizvod.Text.ToString().TrimEnd(), txtProductFor.Text.ToString().TrimEnd(), Convert.ToInt32(cboKlijent.SelectedValue),
                    txtKontaktOsoba.Text.ToString().TrimEnd(), cboOpportunity.Text, cboJob.Text.ToString().TrimEnd(), Convert.ToDecimal(txtBudzet.Text), cboValuta.SelectedValue.ToString(), Convert.ToDecimal(txtEstimated.Text),
                    txtOpis.Text.ToString().TrimEnd(), Convert.ToInt32(cboStartPoint.SelectedValue), Convert.ToInt32(cboEndPoint.SelectedValue), won);
             }
@@ -192,10 +187,10 @@ namespace Saobracaj.Pantheon_Export
             dataGridView1.Columns[13].Visible = false;
             dataGridView1.Columns[14].Visible = false;
             dataGridView1.Columns[15].Visible = false;
-            dataGridView1.Columns[16].Visible=false;
-            dataGridView1.Columns[17].Visible=false;
+            dataGridView1.Columns[16].Visible = false;
+            dataGridView1.Columns[17].Visible = false;
             dataGridView1.Columns[18].Visible = false;
-           
+
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -240,7 +235,7 @@ namespace Saobracaj.Pantheon_Export
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
-            foreach(DataGridViewRow row in  dataGridView1.Rows)
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Selected)
                 {
@@ -258,7 +253,7 @@ namespace Saobracaj.Pantheon_Export
                 "inner join Partnerji on Opportunity.Klijent=Partnerji.PaSifra " +
                 "inner join Stanice on Opportunity.PocetnaStanica=Stanice.ID " +
                 "inner join Stanice as s on Opportunity.KrajnjaStanica=s.ID " +
-                "Where Opportunity.ID="+id;
+                "Where Opportunity.ID=" + id;
             SqlConnection conn = new SqlConnection(connect);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
@@ -272,17 +267,17 @@ namespace Saobracaj.Pantheon_Export
                 cboOpportunity.Text = dr[5].ToString();
                 cboJob.Text = dr[6].ToString();
                 txtBudzet.Text = dr[7].ToString();
-                cboValuta.SelectedValue= dr[8].ToString();
-                txtEstimated.Text= dr[9].ToString();
-                txtProizvod.Text= dr[16].ToString();
-                txtProductFor.Text= dr[17].ToString();
-                txtOpis.Text= dr[18].ToString();
+                cboValuta.SelectedValue = dr[8].ToString();
+                txtEstimated.Text = dr[9].ToString();
+                txtProizvod.Text = dr[16].ToString();
+                txtProductFor.Text = dr[17].ToString();
+                txtOpis.Text = dr[18].ToString();
                 cboStartPoint.SelectedValue = Convert.ToInt32(dr[14].ToString());
                 cboEndPoint.SelectedValue = Convert.ToInt32(dr[15].ToString());
                 txtKontaktOsoba.Text = dr[19].ToString();
                 int W = Convert.ToInt32(dr[20].ToString());
 
-                if (W == 1) { checkBox1.Checked = true; } else {  checkBox1.Checked = false; }
+                if (W == 1) { checkBox1.Checked = true; } else { checkBox1.Checked = false; }
             }
             conn.Close();
 

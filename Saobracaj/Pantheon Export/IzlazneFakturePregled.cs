@@ -1,25 +1,12 @@
-﻿using Microsoft.Ajax.Utilities;
-using Microsoft.ReportingServices.Diagnostics.Internal;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Org.BouncyCastle.Asn1.Crmf;
-using Saobracaj.Sifarnici;
-using Syncfusion.Windows.Forms.Tools;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Security.Cryptography.Xml;
-using System.Security.RightsManagement;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
-using System.Windows.Controls.Primitives;
 using System.Windows.Forms;
 
 namespace Saobracaj.Pantheon_Export
@@ -27,7 +14,6 @@ namespace Saobracaj.Pantheon_Export
     public partial class IzlazneFakturePregled : Form
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
-        
         public IzlazneFakturePregled()
         {
             InitializeComponent();
@@ -35,13 +21,13 @@ namespace Saobracaj.Pantheon_Export
         }
         private void FillGV()
         {
-            var select = "Select FaStFak, FaDatFak as Datum,FaStatus,FaModul,RTrim(PaNaziv) as Kupac,FaDatVal as DatumValute,Kurs,FaObdobje as DatumPDV,FaValutaCene as Valuta,MestoUtovara,DatumUtovara,FaDostMesto, " +
-                "DatumIstovara,(Rtrim(deIme) + ' ' + RTrim(DePriimek)) as Referent ,Izjave.Naziv as Izjava,FaOpomba2 as Napomena,FaPartPlac,FaRefer,Faktura.Status as Status,CRMID ," +
-                "(Select MAX(NosiociTroskova.NosilacTroska) " +
-                "from FakturaPostav " +
-                "inner join NosiociTroskova on FakturaPostav.NosilacTroska = NosiociTroskova.ID " +
-                "where FakturaPostav.FaPStFak = Faktura.FaStFak) as NosioID, " +
-                "(Select Sum(FaPZnesSk) from FakturaPostav where FakturaPostav.FaPStFak = Faktura.FaStFak ) as Iznos,FaOpomba1,(Select SUM(IznosRSD) From FakturaPostav Where FakturaPostav.FaPStFak=Faktura.FaStFak) as IznosRSD " +
+            var select = "Select FaStFak as ID," +
+                "(Select MAX(RTrim(NosiociTroskova.NazivNosiocaTroska)) from FakturaPostav inner join NosiociTroskova on FakturaPostav.NosilacTroska = NosiociTroskova.ID where FakturaPostav.FaPStFak = Faktura.FaStFak) as [NT Naziv]," +
+                "Faktura.Status as Status,Format(FaDatFak, 'dd.MM.yyyy') as Datum,FaStatus as FaStatus,FaModul as FaModul,RTrim(PaNaziv) as Kupac,Format(FaDatVal, 'dd.MM.yyyy') as [Datum Valute],Kurs as Kurs," +
+                "FaValutaCene as Valuta,Format(FaObdobje, 'dd.MM.yyyy') as DatumPDV,MestoUtovara as [Mesto Utovara],Format(DatumUtovara, 'dd.MM.yyyy') as [Datum Utovara],FaDostMesto as [Mesto Istovara], " +
+                "Format(DatumIstovara, 'dd.MM.yyyy') as [Datum Istovara],(Rtrim(deIme) + ' ' + RTrim(DePriimek)) as Referent ,RTrim(Izjave.Naziv) as Izjava,RTrim(FaOpomba2) as Napomena,FaPartPlac as [Platilac]," +
+                "FaRefer as [FaRefer],(Select Sum(FaPZnesSk) from FakturaPostav where FakturaPostav.FaPStFak = Faktura.FaStFak ) as Iznos,FaOpomba1," +
+                "(Select SUM(IznosRSD) From FakturaPostav Where FakturaPostav.FaPStFak = Faktura.FaStFak) as IznosRSD,RTrim(FaVPisalIme) as Korisnik,CRMID,PantheonID " +
                 "From Faktura " +
                 "inner join Partnerji on Faktura.FaPartPlac = Partnerji.PaSifra " +
                 "Inner join Delavci on Faktura.FaRefer = Delavci.DeSifra " +
@@ -66,20 +52,63 @@ namespace Saobracaj.Pantheon_Export
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
-            dataGridView1.Columns[16].Visible = false;
-            dataGridView1.Columns[17].Visible = false;
-            dataGridView1.Columns[22].Visible = false;
 
-            dataGridView1.Columns[2].Width = 60;
-            dataGridView1.Columns[3].Width= 60;
-            dataGridView1.Columns[6].Width = 60;
-            dataGridView1.Columns[8].Width = 60;
-            dataGridView1.Columns[9].Width = 70;
-            dataGridView1.Columns[11].Width = 70;
+            dataGridView1.Columns["FaStatus"].Visible=false;
+            dataGridView1.Columns["FaModul"].Visible = false;
+            dataGridView1.Columns["Mesto Utovara"].Visible = false;
+            dataGridView1.Columns["Mesto Istovara"].Visible = false;
+            dataGridView1.Columns["Datum Utovara"].Visible = false;
+            dataGridView1.Columns["Datum Istovara"].Visible = false;
+            dataGridView1.Columns["Referent"].Visible = false;
+            dataGridView1.Columns["Izjava"].Visible = false;
 
+            dataGridView1.Columns["ID"].Width = 80;
+            dataGridView1.Columns["NT Naziv"].Width = 150;
+            dataGridView1.Columns["Status"].Width = 50;
+            dataGridView1.Columns["Kupac"].Width = 200;
+            dataGridView1.Columns["Kurs"].Width = 60;
+            dataGridView1.Columns["Valuta"].Width = 50;
+            dataGridView1.Columns["Napomena"].Width = 300;
+            dataGridView1.Columns["Platilac"].Visible = false;
+            dataGridView1.Columns["FaRefer"].Visible = false;
+            dataGridView1.Columns["Iznos"].Width = 100;
+            dataGridView1.Columns["FaOpomba1"].Visible = false;
+            dataGridView1.Columns["IznosRSD"].Visible = false;
         }
-        public string Valuta,MestoUtovara,MestoIstovara,Napomena;
-        public int ID,Primalac,Referent, Izjava;
+        string Valuta, MestoUtovara, MestoIstovara, Napomena,Vrsta;
+        int ID, Primalac, Referent, Izjava,StatusFak;
+        DateTime DatumDokumenta, DatumPDV, DatumValute, DatumUtovara, DatumIstovara;
+        decimal Kurs;
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        ID = Convert.ToInt32(row.Cells["ID"].Value);
+                        DatumDokumenta = Convert.ToDateTime(row.Cells["Datum"].Value.ToString());
+                        Vrsta = row.Cells["FaModul"].Value.ToString();
+                        Primalac = Convert.ToInt32(row.Cells["Platilac"].Value);
+                        Valuta = row.Cells["Valuta"].Value.ToString().TrimEnd();
+                        Kurs = Convert.ToDecimal(row.Cells["Kurs"].Value.ToString());
+                        //DateTime pdvPom = Convert.ToDateTime(row.Cells["FaObdobje"].Value); 
+                        DatumPDV = Convert.ToDateTime(row.Cells["DatumPDV"].Value);
+                        DatumValute = Convert.ToDateTime(row.Cells["Datum Valute"].Value.ToString());
+                        MestoUtovara = row.Cells["Mesto Utovara"].Value.ToString();
+                        DatumUtovara = Convert.ToDateTime(row.Cells["Datum Utovara"].Value.ToString());
+                        MestoIstovara = row.Cells["Mesto Istovara"].Value.ToString();
+                        DatumIstovara = Convert.ToDateTime(row.Cells["Datum Istovara"].Value.ToString());
+                        Referent = Convert.ToInt32(row.Cells["FaRefer"].Value);
+                        Izjava = Convert.ToInt32(row.Cells["FaOpomba1"].Value.ToString());
+                        Napomena = row.Cells["Napomena"].Value.ToString();
+                        StatusFak = Convert.ToInt32(row.Cells["Status"].Value.ToString());
+                    }
+                }
+            }
+            catch { }
+        }
         public class Uplata
         {
             public int SetType { get; set; }
@@ -97,7 +126,6 @@ namespace Saobracaj.Pantheon_Export
             public string Poruka { get; set; }
             public List<Uplata> Uplate { get; set; }
         }
-
 
         public int CRMID;
         public decimal Iznos;
@@ -122,14 +150,14 @@ namespace Saobracaj.Pantheon_Export
                     foreach (DataGridViewRow row in dataGridView2.Rows)
                     {
                         CRMID = Convert.ToInt32(row.Cells["FakturaBr"].Value.ToString());
-                        Iznos = Convert.ToDecimal(row.Cells["Iznos"].Value.ToString().Replace(",","."));
+                        Iznos = Convert.ToDecimal(row.Cells["Iznos"].Value.ToString().Replace(",", "."));
                         ValutaResponse = row.Cells["Valuta"].Value.ToString().TrimEnd();
 
                         using (SqlConnection conn = new SqlConnection(connect))
                         {
                             using (SqlCommand cmd = conn.CreateCommand())
                             {
-                                cmd.CommandText = "UPDATE Faktura SET FaStatus='ZA',FaValutaCene='"+ValutaResponse+"', FaZnesFak='"+Iznos+"' WHERE CRMID =" + CRMID;
+                                cmd.CommandText = "UPDATE Faktura SET FaStatus='ZA',FaValutaCene='" + ValutaResponse + "', FaZnesFak='" + Iznos + "' WHERE CRMID =" + CRMID;
                                 conn.Open();
                                 cmd.ExecuteNonQuery();
                                 conn.Close();
@@ -137,7 +165,7 @@ namespace Saobracaj.Pantheon_Export
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     MessageBox.Show("Nema novih uplata");
                 }
@@ -149,153 +177,11 @@ namespace Saobracaj.Pantheon_Export
         {
             dataGridView2.Visible = false;
         }
-        int status;
-        int crm;
         private void btnExport_Click(object sender, EventArgs e)
         {
-            InsertPatheonExport ins = new InsertPatheonExport();
-            foreach(DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (row.Selected)
-                {
-                    status = Convert.ToInt32(row.Cells[18].Value);
-                    crm = Convert.ToInt32(row.Cells[19].Value);
-                    if (status == 0)
-                    {
-                        string query1 = "";
-                        string query2 = "";
-                        if (Convert.ToDecimal(row.Cells[23].Value) > Convert.ToDecimal(row.Cells[21].Value))
-                        {
-                            query1 = "SELECT CRMID AS CRMDocumentID, RTrim(FaModul) AS DocType, CONVERT(VARCHAR, FaVpisalDat, 23) AS Date, RTrim(PaNaziv) AS Receiver," +
-                                "'RSD' AS Currency, '1' AS FXRate, '' AS Doc1, '' AS DateDoc1, '' AS Doc2, '' AS DateDoc2," +
-                                "CONVERT(VARCHAR, FaObdobje, 23) AS DateVAT, CONVERT(VARCHAR, FaDatVal, 23) AS DateDue, RTrim(IDPantheon) AS Statement," +
-                                "RTrim(FaRefer) AS UserId, RTrim(FaOpomba2) AS Napomena,FaStFak " +
-                                "FROM Faktura " +
-                                "INNER JOIN Partnerji ON Faktura.FaPartPlac = Partnerji.PaSifra " +
-                                "INNER JOIN Izjave ON Faktura.FaOpomba1 = Izjave.ID " +
-                                "WHERE Faktura.Status = 0 and CRMID=" + crm;
-
-                            query2 = "SELECT FakturaPostav.FaPStFak, FakturaPostav.FapStPos AS No, RTrim(MaticniPodatki.MpStaraSif) AS Ident," +
-                               "CAST(FakturaPostav.FaPkolOdpr AS DECIMAL(10, 2)) AS Qty," +
-                               "CAST(FakturaPostav.IznosRSD AS DECIMAL(10, 2)) AS Price, RTrim(NosiociTroskova.NosilacTroska) as CostDrv, RTrim(MeNaziv) AS JNT, '' AS Product " +
-                               "FROM FakturaPostav " +
-                               "INNER JOIN MaticniPodatki ON FakturaPostav.FaPSifra = MaticniPodatki.MpSifra " +
-                               "INNER JOIN NosiociTroskova ON FakturaPostav.NosilacTroska = NosiociTroskova.ID " +
-                               "Inner join MerskeEnote on FakturaPostav.FaPEM = MerskeEnote.MeSifra " +
-                               "ORDER BY FakturaPostav.FapStPos ASC";
-                        }
-                        else
-                        {
-                             query1 = "SELECT CRMID AS CRMDocumentID, RTrim(FaModul) AS DocType, CONVERT(VARCHAR, FaVpisalDat, 23) AS Date, RTrim(PaNaziv) AS Receiver," +
-                                "RTrim(FaValutaCene) AS Currency, Cast(Kurs as DECIMAL(10,2)) AS FXRate, '' AS Doc1, '' AS DateDoc1, '' AS Doc2, '' AS DateDoc2," +
-                                "CONVERT(VARCHAR, FaObdobje, 23) AS DateVAT, CONVERT(VARCHAR, FaDatVal, 23) AS DateDue, RTrim(IDPantheon) AS Statement," +
-                                "RTrim(FaRefer) AS UserId, RTrim(FaOpomba2) AS Napomena,FaStFak " +
-                                "FROM Faktura " +
-                                "INNER JOIN Partnerji ON Faktura.FaPartPlac = Partnerji.PaSifra " +
-                                "INNER JOIN Izjave ON Faktura.FaOpomba1 = Izjave.ID " +
-                                "WHERE Faktura.Status = 0 and CRMID=" + crm;
-
-                             query2 = "SELECT FakturaPostav.FaPStFak, FakturaPostav.FapStPos AS No, RTrim(MaticniPodatki.MpStaraSif) AS Ident," +
-                                "CAST(FakturaPostav.FaPkolOdpr AS DECIMAL(10, 2)) AS Qty," +
-                                "CAST(FakturaPostav.FaPCenaEM AS DECIMAL(10, 2)) AS Price, RTrim(NosiociTroskova.NosilacTroska) as CostDrv, RTrim(MeNaziv) AS JNT, '' AS Product " +
-                                "FROM FakturaPostav " +
-                                "INNER JOIN MaticniPodatki ON FakturaPostav.FaPSifra = MaticniPodatki.MpSifra " +
-                                "INNER JOIN NosiociTroskova ON FakturaPostav.NosilacTroska = NosiociTroskova.ID " +
-                                "Inner join MerskeEnote on FakturaPostav.FaPEM = MerskeEnote.MeSifra " +
-                                "ORDER BY FakturaPostav.FapStPos ASC";
-                        }
-                        string FaStFak = "";
-
-
-                        List<object> combinedData = new List<object>();
-                        using (SqlConnection conn = new SqlConnection(connect))
-                        {
-                            SqlCommand cmd1 = new SqlCommand(query1, conn);
-                            SqlCommand cmd2 = new SqlCommand(query2, conn);
-
-                            conn.Open();
-
-                            SqlDataReader dr1 = cmd1.ExecuteReader();
-                            DataTable table1 = new DataTable();
-                            table1.Load(dr1);
-
-                            SqlDataReader dr2 = cmd2.ExecuteReader();
-                            DataTable table2 = new DataTable();
-                            table2.Load(dr2);
-
-                            foreach (DataRow row1 in table1.Rows)
-                            {
-                                Dictionary<string, object> obj = new Dictionary<string, object>();
-                                foreach (DataColumn column in table1.Columns)
-                                {
-                                    FaStFak = row1["FaStFak"].ToString();
-
-                                    if (column.ColumnName != "FaStFak") // Exclude the field FaStFak from the JSON object
-                                    {
-                                        obj.Add(column.ColumnName, row1[column]);
-                                    }
-                                }
-
-                                List<object> fakturaPoz = new List<object>();
-
-                                DataRow[] relatedRows = table2.Select($"FaPStFak = '{row1["FaStFak"]}'");
-                                foreach (DataRow row2 in relatedRows)
-                                {
-                                    Dictionary<string, object> fakturaPozObj = new Dictionary<string, object>();
-                                    foreach (DataColumn column in table2.Columns)
-                                    {
-                                        if (column.ColumnName != "FaPStFak") // Exclude the field FapStFak from the JSON object
-                                        {
-                                            fakturaPozObj.Add(column.ColumnName, row2[column]);
-                                        }
-                                    }
-                                    fakturaPoz.Add(fakturaPozObj);
-                                }
-
-                                obj.Add("FakturaPoz", fakturaPoz);
-                                combinedData.Add(obj);
-                            }
-
-                            conn.Close();
-                        }
-                        foreach (var item in combinedData)
-                        {
-                            string jsonOutput = JsonConvert.SerializeObject(item, Formatting.Indented);
-                            var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:6333/api/Faktura/FakturaPost");
-                            httpWebRequest.ContentType = "application/json";
-                            httpWebRequest.Method = "POST";
-                            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                            {
-                                streamWriter.Write(jsonOutput);
-                            }
-                            string response = "";
-                            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                            {
-                                var result = streamReader.ReadToEnd();
-                                response = result.ToString();
-
-                                if (response.Contains("ERROR") == true || response.Contains("Greška") == true || response.Contains("Error") == true || response.Contains("Duplikat") == true)
-                                {
-                                    MessageBox.Show("Slanje nije uspelo\n"+response.ToString());
-                                    ins.InsApiLog("IzlFak-" + ID.ToString()+"/DEMO", jsonOutput, response);
-                                    return;
-                                }
-                            }
-                            ins.InsApiLog("IzlFak-"+ID.ToString()+"/Demo", jsonOutput, response);
-                        }
-
-                    }
-                    else
-                    {
-                        MessageBox.Show("Faktura CRMID:" + crm + " je već poslata sinhornizacijom!");
-                        return;
-                    }
-                }
-            }
-            FillGV();
         }
-
+        int status;
+        int crm;
         private void btnExportProd_Click(object sender, EventArgs e)
         {
             InsertPatheonExport ins = new InsertPatheonExport();
@@ -303,14 +189,14 @@ namespace Saobracaj.Pantheon_Export
             {
                 if (row.Selected)
                 {
-                    status = Convert.ToInt32(row.Cells[18].Value);
-                    crm = Convert.ToInt32(row.Cells[19].Value);
+                    status = Convert.ToInt32(row.Cells["Status"].Value);
+                    crm = Convert.ToInt32(row.Cells["CRMID"].Value);
 
                     if (status == 0)
                     {
                         string query1 = "";
                         string query2 = "";
-                        if (Convert.ToDecimal(row.Cells[23].Value) > Convert.ToDecimal(row.Cells[21].Value))
+                        if (Convert.ToDecimal(row.Cells["IznosRSD"].Value) > Convert.ToDecimal(row.Cells["Iznos"].Value))
                         {
                             query1 = "SELECT CRMID AS CRMDocumentID, RTrim(FaModul) AS DocType, CONVERT(VARCHAR, FaVpisalDat, 23) AS Date, RTrim(PaNaziv) AS Receiver," +
                                 "'RSD' AS Currency, '1' AS FXRate, '' AS Doc1, '' AS DateDoc1, '' AS Doc2, '' AS DateDoc2," +
@@ -432,7 +318,11 @@ namespace Saobracaj.Pantheon_Export
                                     {
                                         using (SqlCommand cmd2 = conn.CreateCommand())
                                         {
-                                            cmd2.CommandText = "UPDATE Faktura SET Status = 1  WHERE FaStFak = " + FaStFak;
+
+                                            //string pantheon = JObject.Parse(result)["Id"].ToString().Trim();
+
+                                            //cmd2.CommandText = "UPDATE Faktura SET Status = 1,PantheonID='" + pantheon + "' WHERE FaStFak = " + FaStFak;
+                                            cmd2.CommandText = "UPDATE Faktura SET Status = 1 WHERE FaStFak = " + FaStFak;
                                             conn.Open();
                                             cmd2.ExecuteNonQuery();
                                             conn.Close();
@@ -440,7 +330,7 @@ namespace Saobracaj.Pantheon_Export
                                     }
                                 }
                             }
-                            ins.InsApiLog("IzlFak-"+ID.ToString(),jsonOutput, response);
+                            ins.InsApiLog("IzlFak-" + ID.ToString(), jsonOutput, response);
                         }
 
                     }
@@ -453,50 +343,26 @@ namespace Saobracaj.Pantheon_Export
             }
             FillGV();
         }
-
-        public DateTime DatumDokumenta,DatumPDV,DatumValute, DatumUtovara,DatumIstovara,datumDokPom,pdvPom,valutaPom,utovarPom,istovarPom;
-        public decimal Kurs;
-        string Vrsta;
-        int StatusFak;
-        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        private void btnObrisi_Click(object sender, EventArgs e)
         {
-            try
+            InsertPatheonExport ins = new InsertPatheonExport();
+            foreach(DataGridViewRow row in dataGridView1.Rows)
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                if (row.Selected)
                 {
-                    if (row.Selected)
-                    {
-                        ID = Convert.ToInt32(row.Cells[0].Value);
-                        DatumDokumenta = Convert.ToDateTime(row.Cells[1].Value.ToString());
-                        Vrsta = row.Cells[3].Value.ToString();
-                        Primalac = Convert.ToInt32(row.Cells[16].Value);
-                        Valuta = row.Cells[8].Value.ToString().TrimEnd();
-                        Kurs = Convert.ToDecimal(row.Cells[6].Value.ToString());
-                        DatumPDV = Convert.ToDateTime(row.Cells[7].Value.ToString());
-                        DatumValute = Convert.ToDateTime(row.Cells[5].Value.ToString());
-                        MestoUtovara = row.Cells[9].Value.ToString();
-                        DatumUtovara = Convert.ToDateTime(row.Cells[10].Value.ToString());
-                        MestoIstovara = row.Cells[11].Value.ToString();
-                        DatumIstovara = Convert.ToDateTime(row.Cells[12].Value.ToString());
-                        Referent = Convert.ToInt32(row.Cells[17].Value);
-                        Izjava = Convert.ToInt32(row.Cells[22].Value.ToString());
-                        Napomena = row.Cells[15].Value.ToString();
-                        StatusFak = Convert.ToInt32(row.Cells["Status"].Value.ToString());
-                    }
+                    ins.DeleteFaktura(Convert.ToInt32(row.Cells["ID"]));
                 }
             }
-            catch { }
+            FillGV();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             Pantheon_Export.IzlazneFakture frm = new IzlazneFakture();
             frm.Show();
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
-            Pantheon_Export.IzlazneFakture frm = new IzlazneFakture(ID,DatumDokumenta,Vrsta,Primalac,Valuta,Kurs,DatumPDV,DatumValute,MestoUtovara,DatumUtovara,MestoIstovara,DatumIstovara,Referent,Izjava,Napomena,StatusFak);
+            Pantheon_Export.IzlazneFakture frm = new IzlazneFakture(ID, DatumDokumenta, Vrsta, Primalac, Valuta, Kurs, DatumPDV, DatumValute, MestoUtovara, DatumUtovara, MestoIstovara, DatumIstovara, Referent, Izjava, Napomena, StatusFak);
             frm.Show();
         }
     }

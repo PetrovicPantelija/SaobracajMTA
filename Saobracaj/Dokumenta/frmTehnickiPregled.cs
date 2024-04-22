@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Configuration;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Data.OleDb;
 using System.Data.SqlClient;
-using System.Configuration;
-
-using Microsoft.Reporting.WinForms;
-using System.IO;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
@@ -36,7 +26,7 @@ namespace Saobracaj.Dokumenta
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 string Pakerista = row.Cells[10].Value.ToString();
-              
+
                 if ((Pakerista == "1"))
                 {
                     row.DefaultCellStyle.BackColor = Color.Yellow;
@@ -57,8 +47,8 @@ namespace Saobracaj.Dokumenta
                     "    SifRazredNepravilnosti ON TehnickiPregled.RazredNepravilnosti = SifRazredNepravilnosti.ID left JOIN  " +
                    "     SifGrupaNepravilnosti ON TehnickiPregled.GrupaNeispravnosti = SifGrupaNepravilnosti.ID left JOIN  " +
                     "    SifNeispravnostPostupak ON TehnickiPregled.SifraNeispravnosti = SifNeispravnostPostupak.ID " +
-                    "    where IDStavke = " + txtAktivnostStavkeID.Text  + "    order by RedniBrojKola ";
-                    
+                    "    where IDStavke = " + txtAktivnostStavkeID.Text + "    order by RedniBrojKola ";
+
 
             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
