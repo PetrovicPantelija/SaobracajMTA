@@ -10,7 +10,7 @@ namespace Saobracaj.Uvoz
     public partial class frmRadniNaloziInterni : Form
     {
         bool status = false;
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         public frmRadniNaloziInterni()
         {
             InitializeComponent();
@@ -112,7 +112,7 @@ namespace Saobracaj.Uvoz
         }
         private void VratiPodatke(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -167,7 +167,7 @@ namespace Saobracaj.Uvoz
         private void frmRadniNaloziInterni_Load(object sender, EventArgs e)
         {
             var select8 = "  Select Distinct ID, Naziv   From OrganizacioneJedinice ";
-            var s_connection8 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection8 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection8 = new SqlConnection(s_connection8);
             var c8 = new SqlConnection(s_connection8);
             var dataAdapter8 = new SqlDataAdapter(select8, c8);
@@ -182,7 +182,7 @@ namespace Saobracaj.Uvoz
 
 
             var select9 = "  Select Distinct ID, Naziv   From OrganizacioneJedinice ";
-            var s_connection9 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection9 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection9 = new SqlConnection(s_connection9);
             var c9 = new SqlConnection(s_connection9);
             var dataAdapter9 = new SqlDataAdapter(select9, c9);

@@ -1,14 +1,21 @@
 ﻿using System;
-using System.Configuration;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.Configuration;
 
 
 
 namespace TrackModal.Dokumeta
 {
-    public partial class frmPrijemKontejneraKamionPregled : Form
+    public partial class frmPrijemKontejneraKamionPregled : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmPrijemKontejneraKamionPregled";
         public bool Pravo;
@@ -23,7 +30,9 @@ namespace TrackModal.Dokumeta
         public frmPrijemKontejneraKamionPregled()
         {
             InitializeComponent();
-
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
 
             string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
             switch (Company)
@@ -70,9 +79,99 @@ namespace TrackModal.Dokumeta
                     break;
             }
             KorisnikCene = Korisnik;
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
+        }
+        public string IdGrupe()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            int count = 0;
 
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+                    if (count == 0)
+                    {
+                        niz = dr["IdGrupe"].ToString();
+                        count++;
+                    }
+                    else
+                    {
+                        niz = niz + "," + dr["IdGrupe"].ToString();
+                        count++;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Korisnik ne pripada grupi");
+                }
+
+            }
+            conn.Close();
+            return niz;
+        }
+        private int IdForme()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                idForme = Convert.ToInt32(dr["IdForme"].ToString());
+            }
+            conn.Close();
+            return idForme;
         }
 
+        private void PravoPristupa()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows == false)
+            {
+                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
+                Pravo = false;
+            }
+            else
+            {
+                Pravo = true;
+                while (reader.Read())
+                {
+                    insert = Convert.ToBoolean(reader["Upis"]);
+                    if (insert == false)
+                    {
+                        //tsNew.Enabled = false;
+                    }
+                    update = Convert.ToBoolean(reader["Izmena"]);
+                    if (update == false)
+                    {
+                       // tsSave.Enabled = false;
+                    }
+                    delete = Convert.ToBoolean(reader["Brisanje"]);
+                    if (delete == false)
+                    {
+                       // tsDelete.Enabled = false;
+                    }
+                }
+            }
+
+            conn.Close();
+        }
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
@@ -106,11 +205,11 @@ namespace TrackModal.Dokumeta
 "  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
 " FOR XML PATH('')), 1, 1, ''  ) As Skupljen) " +
 " as Kontejner " +
-              " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0";
+              " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 order by ID desc";
 
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -174,8 +273,8 @@ namespace TrackModal.Dokumeta
  "  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
  " FOR XML PATH('')), 1, 1, ''  ) As Skupljen) " +
  " as Kontejner " +
-               "FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 and n1.StatusPrijema = 0";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+               "FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 and n1.StatusPrijema = 0 Order by ID Desc";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -233,8 +332,8 @@ namespace TrackModal.Dokumeta
  "  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
  " FOR XML PATH('')), 1, 1, ''  ) As Skupljen) " +
  " as Kontejner " +
-               " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 and n1.StatusPrijema = 1";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+               " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 and n1.StatusPrijema = 1 Order by ID Desc";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -313,7 +412,7 @@ namespace TrackModal.Dokumeta
             {
                 case "Leget":
                     {
-                        Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz ter2 = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz(txtSifra.Text, 0);
+                        Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz ter2 = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz(txtSifra.Text,0);
                         ter2.Show();
                         return;
 
@@ -363,7 +462,7 @@ namespace TrackModal.Dokumeta
                         return;
 
                     }
-
+                  
             }
             ///PANTA
 
@@ -401,8 +500,8 @@ namespace TrackModal.Dokumeta
  "  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
  " FOR XML PATH('')), 1, 1, ''  ) As Skupljen) " +
  " as Kontejner " +
-               " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 and n1.REgBrKamiona = '" + txtRegBrKamiona.Text + "'";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+               " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 and n1.REgBrKamiona = '" + txtRegBrKamiona.Text + "' Order by ID Desc";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -463,7 +562,7 @@ namespace TrackModal.Dokumeta
   "    as Kontejner " +
   "  FROM[dbo].[PrijemKontejneraVoz] as n1 inner join PrijemKontejneraVozStavke as vs on n1.ID = vs.IDNadredjenog" +
   " where Vozom = 0 and vs.BrojKontejnera = '" + txtBrojKontejnera.Text + "'";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -529,7 +628,7 @@ namespace TrackModal.Dokumeta
   "    as Kontejner " +
   "  FROM[dbo].[PrijemKontejneraVoz] as n1 inner join PrijemKontejneraVozStavke as vs on n1.ID = vs.IDNadredjenog" +
   " where Vozom = 0 and vs.BukingBrodar = '" + txtBukingBrodar.Text + "'";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

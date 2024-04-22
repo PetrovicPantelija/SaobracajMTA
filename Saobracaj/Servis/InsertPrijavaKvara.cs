@@ -10,7 +10,7 @@ namespace Saobracaj.Servis
     {
         public void InsPrijavaKvarovi(string Lokomotiva, int Prijavio, DateTime DatumPrijave, int Kvar, int StatusKvara, int Promenio, string Napomena)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertEvidencijaKvarovaCentralno";
@@ -106,7 +106,7 @@ namespace Saobracaj.Servis
 
         public void UpdPrijavaKvarovi(int ID, string Lokomotiva, int Prijavio, DateTime DatumPrijave, int Kvar, int StatusKvara, int Promenio, string Napomena)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateEvidencijaKvarovaCentralno";
@@ -208,7 +208,7 @@ namespace Saobracaj.Servis
 
         public void DeletePrijavaKvarovi(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteEvidencijaKvarova";

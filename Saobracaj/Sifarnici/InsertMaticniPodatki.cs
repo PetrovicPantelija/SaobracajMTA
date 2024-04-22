@@ -21,7 +21,7 @@ namespace Saobracaj.Sifarnici
            @MpSifEnoteMere2 char(3)
             */
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertMaticniPodatki";
@@ -131,7 +131,7 @@ namespace Saobracaj.Sifarnici
 
         public void UpdMaticniPodatki(int MpSifra, string MpStaraSif, string MpNaziv, string MpDoNaziv, string MpSifEnoteMere1, string MpSifEnoteMere2, int MpSifProdSkup)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateMaticniPodatki";
@@ -237,7 +237,7 @@ namespace Saobracaj.Sifarnici
 
         public void DeleteMaticniPodatki(int MpSifra)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteMaticniPOdatki";

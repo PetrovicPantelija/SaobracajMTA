@@ -1,9 +1,16 @@
-﻿using Syncfusion.Windows.Forms.Grid.Grouping;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.Configuration;
+using Syncfusion.Windows.Forms.Grid.Grouping;
 
 namespace Saobracaj.Izvoz
 {
@@ -54,8 +61,8 @@ namespace Saobracaj.Izvoz
  " LEFT JOIN         uvNacinPakovanja ON Izvoz.NacinPakovanja = uvNacinPakovanja.ID order by Izvoz.ID desc  ";
 
 
-            // var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //  SqlConnection myConnection = new SqlConnection(s_connection);
+          // var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+          //  SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, c);
 
@@ -157,8 +164,8 @@ namespace Saobracaj.Izvoz
                    " order by Izvoz.ID desc ";
 
 
-            // var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            //  SqlConnection myConnection = new SqlConnection(s_connection);
+           // var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+          //  SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, c);
 
@@ -244,7 +251,7 @@ namespace Saobracaj.Izvoz
         {
             //  RefreshDataGrid();
 
-            var select = " SELECT  Izvoz.ID as ID,  Izvoz.BrojKontejnera,  Izvoz.VrstaKontejnera as Vrk_ID, TipKontenjera.Naziv as VrstaKontejnera, Partnerji.PaNaziv as Brodar, Izvoz.BookingBrodara, " +
+            var select =  " SELECT  Izvoz.ID as ID,  Izvoz.BrojKontejnera,  Izvoz.VrstaKontejnera as Vrk_ID, TipKontenjera.Naziv as VrstaKontejnera, Partnerji.PaNaziv as Brodar, Izvoz.BookingBrodara, " +
 " Izvoz.BrojVagona,   Izvoz.CutOffPort,Partnerji_2.PaNaziv AS Izvoznik,Partnerji_3.PaNaziv AS Nalogodavac1, Partnerji_4.PaNaziv AS kNalogodavac2, Partnerji_5.PaNaziv AS Nalogodavac3, " +
 " Izvoz.DobijenNalogKlijent1, Izvoz.BrodskaPlomba, Izvoz.OstalePlombe,  " +
 " Izvoz.NetoRobe, Izvoz.BrutoRobe, Izvoz.BrutoRobeO, Izvoz.BrojKoleta, Izvoz.BrojKoletaO, Izvoz.CBM, Izvoz.CBMO, Izvoz.VrednostRobeFaktura,  " +
@@ -277,8 +284,8 @@ namespace Saobracaj.Izvoz
 " Partnerji AS Partnerji_6 ON Izvoz.SpediterRijeka = Partnerji_6.PaSifra " +
 " LEFT JOIN         uvNacinPakovanja ON Izvoz.NacinPakovanja = uvNacinPakovanja.ID order by Izvoz.ID desc  ";
 
-            //   var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
-            //   SqlConnection myConnection = new SqlConnection(s_connection);
+         //   var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+         //   SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, c);
 
@@ -293,7 +300,7 @@ namespace Saobracaj.Izvoz
             {
                 column.AllowFilter = true;
             }
-            // this.gridGroupingControl1.SelectionMode = GridSelectionMode.Multiple;
+           // this.gridGroupingControl1.SelectionMode = GridSelectionMode.Multiple;
 
         }
 
@@ -321,20 +328,20 @@ namespace Saobracaj.Izvoz
 
         private void gridGroupingControl1_SelectedRecordsChanging(object sender, Syncfusion.Grouping.SelectedRecordsChangedEventArgs e)
         {
-
+          
         }
 
         private void gridGroupingControl1_SelectedRecordsChanged(object sender, Syncfusion.Grouping.SelectedRecordsChangedEventArgs e)
         {
-
+          
         }
 
         private void gridGroupingControl1_Click(object sender, EventArgs e)
         {
-
+       
         }
 
-
+       
 
         private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
         {
@@ -345,14 +352,14 @@ namespace Saobracaj.Izvoz
                     textBox1.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
                     txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
                 }
-
+               
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-
+          
 
         }
     }

@@ -11,7 +11,7 @@ namespace Testiranje.Dokumeta
 
         public void InsertVozPak(int Sifra, string BrojVagona, double SopstvenaMasa, double BrojOsovina, DateTime Datum, string Korisnik, int prvi)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertVozPaket";
@@ -108,7 +108,7 @@ namespace Testiranje.Dokumeta
 
         public void DeleteVozPak(int Sifra, int Stavka)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteVozPaket";
@@ -169,7 +169,7 @@ namespace Testiranje.Dokumeta
 
         public void UpdateVozPak(int Sifra, int Stavka, string Vagon)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateVozPaket";
@@ -236,7 +236,7 @@ namespace Testiranje.Dokumeta
 
         public void ObrniVozPak(int Sifra)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "ObrniVozPaket";

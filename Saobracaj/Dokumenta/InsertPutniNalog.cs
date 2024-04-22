@@ -1,8 +1,12 @@
 ﻿using System;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.IO;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
 
 namespace Saobracaj.Dokumenta
 {
@@ -11,40 +15,40 @@ namespace Saobracaj.Dokumenta
         public void InsPutniNalog(int IDNalogZaPrevoz, string MestoIzdavanja, DateTime DatumPrevoza, string UtovarnoMesto, string IstovarnoMesto, int Vozilo, string PrikljucnaVozila, string Napomena, int Dispecer, int Vozac, int TehnickuIspravnost, DateTime Datum, string Korisnik, int PrikljucnoVoziloID, string Marka1, string Tip1, double Tezina1, string Marka2, string Tip2, double Tezina2, string RelacijaOd, string RelacijaDo)
         {
 
+      
 
 
 
+          /*
+            @ID int,
+    @IDNalogZaPrevoz int,
+         @MestoIzdavanja nvarchar(50),
+           @DatumPrevoza datetime,
+           @UtovarnoMesto nvarchar(50),
+           @IstovarnoMesto nvarchar(50),
+           @Vozilo int,
+           @PrikljucnaVozila nvarchar(250),
+           @Napomena nvarchar(250),
+           @Dispecer int,
+           @Vozac int,
+           @TehnickuIspravnost int,
+           @Datum DateTime,
+		   @Korisnik nvarchar(20)
 
-            /*
-              @ID int,
-      @IDNalogZaPrevoz int,
-           @MestoIzdavanja nvarchar(50),
-             @DatumPrevoza datetime,
-             @UtovarnoMesto nvarchar(50),
-             @IstovarnoMesto nvarchar(50),
-             @Vozilo int,
-             @PrikljucnaVozila nvarchar(250),
-             @Napomena nvarchar(250),
-             @Dispecer int,
-             @Vozac int,
-             @TehnickuIspravnost int,
-             @Datum DateTime,
-             @Korisnik nvarchar(20)
-
-              */
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            */
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertPutniNalog";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-
-
+            
+          
 
 
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@IDNalogZaPrevoz";
             parameter1.SqlDbType = SqlDbType.Int;
-
+           
             parameter1.Direction = ParameterDirection.Input;
             parameter1.Value = IDNalogZaPrevoz;
             myCommand.Parameters.Add(parameter1);
@@ -56,8 +60,8 @@ namespace Saobracaj.Dokumenta
             parameter2.Direction = ParameterDirection.Input;
             parameter2.Value = MestoIzdavanja;
             myCommand.Parameters.Add(parameter2);
-
-
+         
+        
             SqlParameter parameter3 = new SqlParameter();
             parameter3.ParameterName = "@DatumPrevoza";
             parameter3.SqlDbType = SqlDbType.DateTime;
@@ -66,7 +70,7 @@ namespace Saobracaj.Dokumenta
             myCommand.Parameters.Add(parameter3);
 
 
-
+        
             SqlParameter parameter4 = new SqlParameter();
             parameter4.ParameterName = "@UtovarnoMesto";
             parameter4.SqlDbType = SqlDbType.NVarChar;
@@ -76,8 +80,8 @@ namespace Saobracaj.Dokumenta
             myCommand.Parameters.Add(parameter4);
 
 
-
-
+           
+          
 
 
             SqlParameter parameter5 = new SqlParameter();
@@ -88,8 +92,8 @@ namespace Saobracaj.Dokumenta
             parameter5.Value = IstovarnoMesto;
             myCommand.Parameters.Add(parameter5);
 
-
-
+          
+        
 
 
             SqlParameter parameter6 = new SqlParameter();
@@ -100,7 +104,7 @@ namespace Saobracaj.Dokumenta
             myCommand.Parameters.Add(parameter6);
 
 
-
+       
 
 
 
@@ -113,8 +117,8 @@ namespace Saobracaj.Dokumenta
             myCommand.Parameters.Add(parameter7);
 
 
-
-
+         
+         
             SqlParameter parameter8 = new SqlParameter();
             parameter8.ParameterName = "@Napomena";
             parameter8.SqlDbType = SqlDbType.NVarChar;
@@ -124,7 +128,7 @@ namespace Saobracaj.Dokumenta
             myCommand.Parameters.Add(parameter8);
 
 
-
+         
 
 
             SqlParameter parameter9 = new SqlParameter();
@@ -134,9 +138,9 @@ namespace Saobracaj.Dokumenta
             parameter9.Value = Dispecer;
             myCommand.Parameters.Add(parameter9);
 
-
-
-
+           
+      
+       
 
             SqlParameter parameter10 = new SqlParameter();
             parameter10.ParameterName = "@Vozac";
@@ -144,8 +148,8 @@ namespace Saobracaj.Dokumenta
             parameter10.Direction = ParameterDirection.Input;
             parameter10.Value = Vozac;
             myCommand.Parameters.Add(parameter10);
-
-
+   
+    
 
             SqlParameter parameter11 = new SqlParameter();
             parameter11.ParameterName = "@TehnickuIspravnost";
@@ -154,7 +158,7 @@ namespace Saobracaj.Dokumenta
             parameter11.Value = TehnickuIspravnost;
             myCommand.Parameters.Add(parameter11);
 
-
+         
 
             SqlParameter parameter15 = new SqlParameter();
             parameter15.ParameterName = "@Datum";
@@ -241,7 +245,7 @@ namespace Saobracaj.Dokumenta
             parameter25.Value = RelacijaDo;
             myCommand.Parameters.Add(parameter25);
 
-
+          
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -283,7 +287,7 @@ namespace Saobracaj.Dokumenta
 
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdatePutniNalog";
@@ -536,7 +540,7 @@ namespace Saobracaj.Dokumenta
 
         public void DeletePutniNalog(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeletePutniNalog";
@@ -587,5 +591,5 @@ namespace Saobracaj.Dokumenta
 }
 
 
-
+﻿
 

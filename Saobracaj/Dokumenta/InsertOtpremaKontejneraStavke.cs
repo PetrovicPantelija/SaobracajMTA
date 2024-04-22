@@ -1,19 +1,23 @@
 ﻿using System;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.IO;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
 
 namespace Saobracaj.Dokumenta
 {
     class InsertOtpremaKontejneraStavke
     {
 
-        public void InsertOtpremaKontejneraStav(int IdNadredjenog, string BrojKontejnera, String BrojVagona, double Granica, double BrojOsovina, double SopstvenaMasa, double Tara, double Neto, int Posiljalac, int Primalac, int VlasnikKontejnera, int TipKontejnera, int VrstaRobe, string Buking, int StatusKontejnera, string BrojPlombe, int PlaniraniLager, int IdVoza, DateTime VremePripremljen, DateTime VremeOdlaska, DateTime Datum, string Korisnik, string BrojPlombe2, int Organizator, string NapomenaS, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, Double BTTORobe, int KontejnerID, double BTTOKOntejnera, string Napomena2, int PostupakSaRobom, double BTTORobeFaktura, double BTTORobeOTP, double BTTORobeODVAGA, double BTTORobeKONTEJNER, string PLOMBAVLASN, string CBMOTP, string KOLETAOTP, int NalogID)
+        public void InsertOtpremaKontejneraStav(int IdNadredjenog, string BrojKontejnera, String BrojVagona, double Granica, double BrojOsovina, double SopstvenaMasa, double Tara, double Neto, int Posiljalac, int Primalac, int VlasnikKontejnera, int TipKontejnera, int VrstaRobe, string Buking, int StatusKontejnera, string BrojPlombe, int PlaniraniLager, int IdVoza,  DateTime VremePripremljen, DateTime VremeOdlaska, DateTime Datum, string Korisnik, string BrojPlombe2, int Organizator, string NapomenaS, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, Double BTTORobe, int KontejnerID, double BTTOKOntejnera, string Napomena2, int PostupakSaRobom,  double BTTORobeFaktura, double BTTORobeOTP, double BTTORobeODVAGA, double BTTORobeKONTEJNER, string PLOMBAVLASN, string CBMOTP, string KOLETAOTP, int NalogID)
         {
+           
 
-
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertOtpremaKontejneraVozStavke";
@@ -22,13 +26,13 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter1 = new SqlParameter();
             parameter1.ParameterName = "@IdNadredjenog";
             parameter1.SqlDbType = SqlDbType.Int;
-
+       
             parameter1.Direction = ParameterDirection.Input;
             parameter1.Value = IdNadredjenog;
             myCommand.Parameters.Add(parameter1);
 
-
-
+          
+		  
 
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@BrojKontejnera";
@@ -45,17 +49,17 @@ namespace Saobracaj.Dokumenta
             parameter3.Direction = ParameterDirection.Input;
             parameter3.Value = BrojVagona;
             myCommand.Parameters.Add(parameter3);
-
-
+             
+           
 
             SqlParameter parameter4 = new SqlParameter();
             parameter4.ParameterName = "@Granica";
             parameter4.SqlDbType = SqlDbType.Decimal;
-            // parameter4.Size = 20;
+           // parameter4.Size = 20;
             parameter4.Direction = ParameterDirection.Input;
             parameter4.Value = Granica;
             myCommand.Parameters.Add(parameter4);
-
+           
             SqlParameter parameter5 = new SqlParameter();
             parameter5.ParameterName = "@BrojOsovina";
             parameter5.SqlDbType = SqlDbType.Decimal;
@@ -149,7 +153,7 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter17 = new SqlParameter();
             parameter17.ParameterName = "@PlaniraniLager";
             parameter17.SqlDbType = SqlDbType.Int;
-            // parameter13.Size = 30;
+           // parameter13.Size = 30;
             parameter17.Direction = ParameterDirection.Input;
             parameter17.Value = PlaniraniLager;
             myCommand.Parameters.Add(parameter17);
@@ -183,11 +187,11 @@ namespace Saobracaj.Dokumenta
             SqlParameter parameter22 = new SqlParameter();
             parameter22.ParameterName = "@Datum";
             parameter22.SqlDbType = SqlDbType.DateTime;
-            // parameter22.Size = 20;
+           // parameter22.Size = 20;
             parameter22.Direction = ParameterDirection.Input;
             parameter22.Value = Datum;
             myCommand.Parameters.Add(parameter22);
-
+            
             SqlParameter parameter23 = new SqlParameter();
             parameter23.ParameterName = "@Korisnik";
             parameter23.SqlDbType = SqlDbType.NVarChar;
@@ -379,7 +383,7 @@ namespace Saobracaj.Dokumenta
 
         public void InsertOtpremaKontejneraStavBuking(int Id, string BrojKontejnera, int IdNadredjenog)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "PrekopirajStavke";
@@ -392,9 +396,9 @@ namespace Saobracaj.Dokumenta
             parameter1.Direction = ParameterDirection.Input;
             parameter1.Value = Id;
             myCommand.Parameters.Add(parameter1);
-
-
-
+            
+            
+          
 
 
             SqlParameter parameter2 = new SqlParameter();
@@ -413,7 +417,7 @@ namespace Saobracaj.Dokumenta
             parameter3.Value = IdNadredjenog;
             myCommand.Parameters.Add(parameter3);
 
-
+           
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -454,7 +458,7 @@ namespace Saobracaj.Dokumenta
 
         public void PromeniBrojVagona(int Id, string BrojVagona, double SopstvenaMasa, double BrojOsovina)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "PromeniBrojVagona";
@@ -483,9 +487,9 @@ namespace Saobracaj.Dokumenta
             parameter4.Direction = ParameterDirection.Input;
             parameter4.Value = SopstvenaMasa;
             myCommand.Parameters.Add(parameter4);
-
-
-
+            
+            
+            
             SqlParameter parameter5 = new SqlParameter();
             parameter5.ParameterName = "@BrojOsovina";
             parameter5.SqlDbType = SqlDbType.Decimal;
@@ -494,7 +498,7 @@ namespace Saobracaj.Dokumenta
             parameter5.Value = BrojOsovina;
             myCommand.Parameters.Add(parameter5);
 
-
+          
 
 
 
@@ -535,10 +539,10 @@ namespace Saobracaj.Dokumenta
             }
         }
 
-        public void UpdOtpremaKontejneraVozStav(int ID, int IdNadredjenog, string BrojKontejnera, String BrojVagona, double Granica, double BrojOsovina, double SopstvenaMasa, double Tara, double Neto, int Posiljalac, int Primalac, int VlasnikKontejnera, int TipKontejnera, int VrstaRobe, string Buking, int StatusKontejnera, string BrojPlombe, int PlaniraniLager, int IdVoza, DateTime VremePripremljen, DateTime VremeOdlaska, DateTime Datum, string Korisnik, int RB, string BrojPlombe2, int Organizator, string NapomenaS, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, Double BTTORobe, int KontejnerID, double BTTOKOntejnera, string Napomena2, int PostupakSaRobom, double BTTORobeFaktura, double BTTORobeOTP, double BTTORobeODVAGA, double BTTORobeKONTEJNER, string PLOMBAVLASN, string CBMOTP, string KOLETAOTP)
+        public void UpdOtpremaKontejneraVozStav(int ID, int IdNadredjenog, string BrojKontejnera, String BrojVagona, double Granica, double BrojOsovina, double SopstvenaMasa, double Tara, double Neto, int Posiljalac, int Primalac, int VlasnikKontejnera, int TipKontejnera, int VrstaRobe, string Buking, int StatusKontejnera, string BrojPlombe, int PlaniraniLager, int IdVoza, DateTime VremePripremljen, DateTime VremeOdlaska, DateTime Datum, string Korisnik, int RB, string BrojPlombe2, int Organizator, string NapomenaS, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, Double BTTORobe, int KontejnerID, double BTTOKOntejnera, string Napomena2, int PostupakSaRobom,  double BTTORobeFaktura, double BTTORobeOTP, double BTTORobeODVAGA, double BTTORobeKONTEJNER, string PLOMBAVLASN, string CBMOTP, string KOLETAOTP)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateOtpremaKontejneraVozStavke";
@@ -693,7 +697,7 @@ namespace Saobracaj.Dokumenta
             parameter18.Value = IdVoza;
             myCommand.Parameters.Add(parameter18);
 
-
+          
 
             SqlParameter parameter20 = new SqlParameter();
             parameter20.ParameterName = "@VremePripremljen";
@@ -711,12 +715,12 @@ namespace Saobracaj.Dokumenta
             parameter191.Value = VremeOdlaska;
             myCommand.Parameters.Add(parameter191);
 
-
+          
 
             SqlParameter parameter22 = new SqlParameter();
             parameter22.ParameterName = "@Datum";
             parameter22.SqlDbType = SqlDbType.Date;
-            // parameter22.Size = 20;
+           // parameter22.Size = 20;
             parameter22.Direction = ParameterDirection.Input;
             parameter22.Value = Datum;
             myCommand.Parameters.Add(parameter22);
@@ -906,55 +910,55 @@ namespace Saobracaj.Dokumenta
         }
 
         public void DeleteOtpremaKontejneraVozStav(int ID)
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            SqlCommand myCommand = myConnection.CreateCommand();
-            myCommand.CommandText = "DeleteOtpremaKontejneraVozStavke";
-            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+          {
+              var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+              SqlConnection myConnection = new SqlConnection(s_connection);
+              SqlCommand myCommand = myConnection.CreateCommand();
+              myCommand.CommandText = "DeleteOtpremaKontejneraVozStavke";
+              myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-            SqlParameter parameter = new SqlParameter();
-            parameter.ParameterName = "@ID";
-            parameter.SqlDbType = SqlDbType.Int;
-            parameter.Direction = ParameterDirection.Input;
-            parameter.Value = ID;
-            myCommand.Parameters.Add(parameter);
+              SqlParameter parameter = new SqlParameter();
+              parameter.ParameterName = "@ID";
+              parameter.SqlDbType = SqlDbType.Int;
+              parameter.Direction = ParameterDirection.Input;
+              parameter.Value = ID;
+              myCommand.Parameters.Add(parameter);
 
-            myConnection.Open();
-            SqlTransaction myTransaction = myConnection.BeginTransaction();
-            myCommand.Transaction = myTransaction;
-            bool error = true;
-            try
-            {
-                myCommand.ExecuteNonQuery();
-                myTransaction.Commit();
-                myTransaction = myConnection.BeginTransaction();
-                myCommand.Transaction = myTransaction;
-            }
+              myConnection.Open();
+              SqlTransaction myTransaction = myConnection.BeginTransaction();
+              myCommand.Transaction = myTransaction;
+              bool error = true;
+              try
+              {
+                  myCommand.ExecuteNonQuery();
+                  myTransaction.Commit();
+                  myTransaction = myConnection.BeginTransaction();
+                  myCommand.Transaction = myTransaction;
+              }
 
-            catch (SqlException)
-            {
-                throw new Exception("Brisanje neuspešno");
-            }
+              catch (SqlException)
+              {
+                  throw new Exception("Brisanje neuspešno");
+              }
 
-            finally
-            {
-                if (!error)
-                {
-                    myTransaction.Commit();
-                    MessageBox.Show("Brisanje uspešno završeno", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+              finally
+              {
+                  if (!error)
+                  {
+                      myTransaction.Commit();
+                      MessageBox.Show("Brisanje uspešno završeno", "",
+                      MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                }
-                myConnection.Close();
+                  }
+                  myConnection.Close();
 
-                if (error)
-                {
-                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-                }
-            }
-        }
-
+                  if (error)
+                  {
+                      // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                  }
+              }
+          }
+    
     }
 }
 

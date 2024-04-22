@@ -9,7 +9,7 @@ namespace Saobracaj.ReportingOperatika
 {
     public partial class PoLokomotivama : Form
     {
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         public PoLokomotivama()
         {
             InitializeComponent();

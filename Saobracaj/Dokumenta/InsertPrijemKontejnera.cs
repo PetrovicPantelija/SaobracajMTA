@@ -1,23 +1,27 @@
 ﻿using System;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.IO;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
 
 namespace TrackModal.Dokumeta
 {
     class InsertPrijemKontejnera
     {
 
-        public void InsertPrijemKont(DateTime DatumPrijema, int StatusPrijema, string BrojKontejnera, string RegBrKamiona, string ImeVozaca, int Posiljalac, int Primalac, int VlasnikKontejnera, int TipKontejnera, int VrstaRobe, int Buking, int StatusKontejnera, string BrojPlombe, int PlaniraniLager, int IdVoza, DateTime VremeDolaska, DateTime VremePripremljen, DateTime VremeOdlaska, DateTime Datum, string Korisnik, Double Tara, Double Neto, string BrojPlombe2, int Organizator)
+        public void InsertPrijemKont( DateTime DatumPrijema,int StatusPrijema,string BrojKontejnera ,string RegBrKamiona, string ImeVozaca,int Posiljalac,int Primalac,int VlasnikKontejnera, int TipKontejnera, 	int VrstaRobe,int Buking, int StatusKontejnera,string BrojPlombe,int PlaniraniLager, int IdVoza, DateTime VremeDolaska, 	DateTime VremePripremljen, 	DateTime VremeOdlaska,	DateTime Datum, string Korisnik, Double Tara, Double Neto, string BrojPlombe2, int Organizator)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertPrijemKontejnera";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-
-
+            
+            
             SqlParameter parameter = new SqlParameter();
             parameter.ParameterName = "@DatumPrijema";
             parameter.SqlDbType = SqlDbType.DateTime;
@@ -32,7 +36,7 @@ namespace TrackModal.Dokumeta
             parameter1.Value = StatusPrijema;
             myCommand.Parameters.Add(parameter1);
 
-
+           
 
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@BrojKontejnera";
@@ -119,7 +123,7 @@ namespace TrackModal.Dokumeta
             SqlParameter parameter13 = new SqlParameter();
             parameter13.ParameterName = "@PlaniraniLager";
             parameter13.SqlDbType = SqlDbType.Int;
-            // parameter13.Size = 30;
+           // parameter13.Size = 30;
             parameter13.Direction = ParameterDirection.Input;
             parameter13.Value = PlaniraniLager;
             myCommand.Parameters.Add(parameter13);
@@ -159,11 +163,11 @@ namespace TrackModal.Dokumeta
             SqlParameter parameter18 = new SqlParameter();
             parameter18.ParameterName = "@Datum";
             parameter18.SqlDbType = SqlDbType.DateTime;
-
+          
             parameter18.Direction = ParameterDirection.Input;
             parameter18.Value = Datum;
             myCommand.Parameters.Add(parameter18);
-
+            
             SqlParameter parameter19 = new SqlParameter();
             parameter19.ParameterName = "@Korisnik";
             parameter19.SqlDbType = SqlDbType.NVarChar;
@@ -241,7 +245,7 @@ namespace TrackModal.Dokumeta
         public void UpdPrijemKontejnera(int ID, DateTime DatumPrijema, int StatusPrijema, string BrojKontejnera, string RegBrKamiona, string ImeVozaca, int Posiljalac, int Primalac, int VlasnikKontejnera, int TipKontejnera, int VrstaRobe, int Buking, int StatusKontejnera, string BrojPlombe, int PlaniraniLager, int IdVoza, DateTime VremeDolaska, DateTime VremePripremljen, DateTime VremeOdlaska, DateTime Datum, string Korisnik, double Tara, double Neto, string BrojPlombe2, int Organizator)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdatePrijemKontejnera";
@@ -474,56 +478,56 @@ namespace TrackModal.Dokumeta
             }
         }
 
-        public void DeletePrijemKontejnera(int ID)
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            SqlCommand myCommand = myConnection.CreateCommand();
-            myCommand.CommandText = "DeletePrijemKontejnera";
-            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+          public void DeletePrijemKontejnera(int ID)
+          {
+              var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+              SqlConnection myConnection = new SqlConnection(s_connection);
+              SqlCommand myCommand = myConnection.CreateCommand();
+              myCommand.CommandText = "DeletePrijemKontejnera";
+              myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-            SqlParameter parameter = new SqlParameter();
-            parameter.ParameterName = "@ID";
-            parameter.SqlDbType = SqlDbType.Int;
-            parameter.Direction = ParameterDirection.Input;
-            parameter.Value = ID;
-            myCommand.Parameters.Add(parameter);
+              SqlParameter parameter = new SqlParameter();
+              parameter.ParameterName = "@ID";
+              parameter.SqlDbType = SqlDbType.Int;
+              parameter.Direction = ParameterDirection.Input;
+              parameter.Value = ID;
+              myCommand.Parameters.Add(parameter);
 
-            myConnection.Open();
-            SqlTransaction myTransaction = myConnection.BeginTransaction();
-            myCommand.Transaction = myTransaction;
-            bool error = true;
-            try
-            {
-                myCommand.ExecuteNonQuery();
-                myTransaction.Commit();
-                myTransaction = myConnection.BeginTransaction();
-                myCommand.Transaction = myTransaction;
-            }
+              myConnection.Open();
+              SqlTransaction myTransaction = myConnection.BeginTransaction();
+              myCommand.Transaction = myTransaction;
+              bool error = true;
+              try
+              {
+                  myCommand.ExecuteNonQuery();
+                  myTransaction.Commit();
+                  myTransaction = myConnection.BeginTransaction();
+                  myCommand.Transaction = myTransaction;
+              }
 
-            catch (SqlException)
-            {
-                throw new Exception("Brisanje neuspešno");
-            }
+              catch (SqlException)
+              {
+                  throw new Exception("Brisanje neuspešno");
+              }
 
-            finally
-            {
-                if (!error)
-                {
-                    myTransaction.Commit();
-                    MessageBox.Show("Brisanje uspešno završeno", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+              finally
+              {
+                  if (!error)
+                  {
+                      myTransaction.Commit();
+                      MessageBox.Show("Brisanje uspešno završeno", "",
+                      MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                }
-                myConnection.Close();
+                  }
+                  myConnection.Close();
 
-                if (error)
-                {
-                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-                }
-            }
-        }
-
+                  if (error)
+                  {
+                      // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                  }
+              }
+          }
+    
     }
 }
 

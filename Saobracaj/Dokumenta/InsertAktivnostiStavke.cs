@@ -13,7 +13,7 @@ namespace Saobracaj.Dokumenta
         public void PromeniSati(int ID, double Sati)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "PromeniSatiAktivnostiStavke";
@@ -76,7 +76,7 @@ namespace Saobracaj.Dokumenta
         public void PromeniKoeficijent(int ID, double Koeficijent)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "PromeniKoeficijentAktivnostiStavke";
@@ -139,7 +139,7 @@ namespace Saobracaj.Dokumenta
         public void InsAktivnostiStavkeMas(int ID, int IDNadredjena)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertAktivnostiStavkeMas";
@@ -201,7 +201,7 @@ namespace Saobracaj.Dokumenta
         public void InsAktivnostiStavke(int IDNadredjena, int VrstaAktivnostiID, double Sati, double Koeficijent, string Napomena, int BrojVagona, string Razlog, int Nalogodavac, string Vozilo, int Posao, DateTime dtpStavke, int Nadlezni)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertAktivnostiStavke";
@@ -334,7 +334,7 @@ namespace Saobracaj.Dokumenta
         public void UpdAktivnostiStavke(int ID, int IDNadredjena, int VrstaAktivnostiID, double Sati, double Koeficijent, string Napomena, int BrojVagona, string Razlog, int Nalogodavac, string Vozilo)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateAktivnostiStavke";
@@ -450,7 +450,7 @@ namespace Saobracaj.Dokumenta
 
         public void DeleteAktivnostiStavke(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteAktivnostiStavke";
@@ -500,7 +500,7 @@ namespace Saobracaj.Dokumenta
 
         public void DeleteAktivnostiStavkePoNadredjenom(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteAktivnostiStavkePoNadredjenom";

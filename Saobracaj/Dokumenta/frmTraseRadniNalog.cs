@@ -29,7 +29,7 @@ namespace Saobracaj.Dokumenta
         private void frmTraseRadniNalog_Load(object sender, EventArgs e)
         {
             var select = " Select ID, (Rtrim(Voz) + '-' + Rtrim(Relacija)) as Opis from Trase";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -63,7 +63,7 @@ namespace Saobracaj.Dokumenta
                      " Trase ON RadniNalogTrase.IDTrase = Trase.ID INNER JOIN " +
                      " stanice ON Trase.Pocetna = stanice.ID INNER JOIN " +
                       " stanice AS stanice_1 ON Trase.Krajnja = stanice_1.ID where RadniNalogTrase.IDRadnogNaloga =  " + Convert.ToInt32(txtSifraRN.Text) + " order by IDRadnogNaloga";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

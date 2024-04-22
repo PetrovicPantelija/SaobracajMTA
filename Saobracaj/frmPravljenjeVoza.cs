@@ -16,7 +16,7 @@ namespace Saobracaj
             // int RadniNalog = 0;
 
             var select8 = " Select ID, RTrim(Opis) as Stanica From Stanice order by opis";
-            var s_connection8 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection8 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection8 = new SqlConnection(s_connection8);
             var c8 = new SqlConnection(s_connection8);
             var dataAdapter8 = new SqlDataAdapter(select8, c8);
@@ -29,7 +29,7 @@ namespace Saobracaj
             cboStanicaOd.ValueMember = "ID";
 
             var select9 = " Select ID, RTrim(Opis) as Stanica From Stanice order by opis";
-            var s_connection9 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection9 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection9 = new SqlConnection(s_connection8);
             var c9 = new SqlConnection(s_connection9);
             var dataAdapter9 = new SqlDataAdapter(select9, c9);
@@ -51,7 +51,7 @@ namespace Saobracaj
             cboRadniNalog.SelectedValue = RN;
 
             var select8 = " Select ID, RTrim(Opis) as Stanica From Stanice order by opis";
-            var s_connection8 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection8 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection8 = new SqlConnection(s_connection8);
             var c8 = new SqlConnection(s_connection8);
             var dataAdapter8 = new SqlDataAdapter(select8, c8);
@@ -64,7 +64,7 @@ namespace Saobracaj
             cboStanicaOd.ValueMember = "ID";
 
             var select9 = " Select ID, RTrim(Opis) as Stanica From Stanice order by opis";
-            var s_connection9 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection9 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection9 = new SqlConnection(s_connection8);
             var c9 = new SqlConnection(s_connection9);
             var dataAdapter9 = new SqlDataAdapter(select9, c9);
@@ -87,7 +87,7 @@ namespace Saobracaj
 
 
             var select8 = " Select ID, RTrim(Opis) as Stanica From Stanice order by opis";
-            var s_connection8 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection8 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection8 = new SqlConnection(s_connection8);
             var c8 = new SqlConnection(s_connection8);
             var dataAdapter8 = new SqlDataAdapter(select8, c8);
@@ -100,7 +100,7 @@ namespace Saobracaj
             cboStanicaOd.ValueMember = "ID";
 
             var select9 = " Select ID, RTrim(Opis) as Stanica From Stanice order by opis";
-            var s_connection9 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection9 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection9 = new SqlConnection(s_connection8);
             var c9 = new SqlConnection(s_connection9);
             var dataAdapter9 = new SqlDataAdapter(select9, c9);
@@ -128,7 +128,7 @@ namespace Saobracaj
             " inner join TeretnicaStavke ts on TIV.IDTeretnice = ts.id) f1 " +
             " group by Opis";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -188,7 +188,7 @@ namespace Saobracaj
 " inner join TeretnicaStavke ts on TIV.IDTeretnice = ts.id " +
 " where TIV.StatusVagona in (1,3)) f1 " +
 " order by Opis";
-            var s_connection6 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection6 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection6 = new SqlConnection(s_connection6);
             var c6 = new SqlConnection(s_connection6);
             var dataAdapter6 = new SqlDataAdapter(select6, c6);
@@ -206,7 +206,7 @@ namespace Saobracaj
             refreshGroup();
 
             var select7 = " Select ID  from RadniNalog where StatusRN in ('PL','OD', 'LA') ";
-            var s_connection7 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection7 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection7 = new SqlConnection(s_connection7);
             var c7 = new SqlConnection(s_connection7);
             var dataAdapter7 = new SqlDataAdapter(select7, c7);
@@ -244,7 +244,7 @@ inner join TeretnicaStavke ts on TIV.IDTeretnice = ts.id*/
             " stanice AS stanice_2 ON ts.Uputna = stanice_2.ID " +
             " where TIV.StanicaIskljucenja = " + Convert.ToInt32(cboStanicaIsklj.SelectedValue) + " and TIV.StatusVagona in (1,3)";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -374,7 +374,7 @@ inner join TeretnicaStavke ts on TIV.IDTeretnice = ts.id*/
                " stanice AS stanice_2 ON ts.Uputna = stanice_2.ID " +
                " where TIV.StanicaIskljucenja = " + StanicaIskljucenja + " and TIV.StatusVagona in (1,3)";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

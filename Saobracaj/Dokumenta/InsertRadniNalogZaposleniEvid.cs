@@ -1,8 +1,12 @@
 ﻿using System;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.IO;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
 
 namespace Saobracaj.Dokumenta
 {
@@ -10,8 +14,8 @@ namespace Saobracaj.Dokumenta
     {
         public void InsRNTLZEVID(int RadniNalog, int Trasa, string MestoTroska, int DeSifra, DateTime VremeJavljanja, DateTime VremePocetka, int DirektnaPrimopredaja, DateTime VremePrimopredaja, DateTime VremeZavrsetka, int VoznoVreme, int UkupnoVreme, int JalovoVreme, int JalovoVremeVanVoznje)
         {
-
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+               
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertRadniNalogZapEv";
@@ -23,7 +27,7 @@ namespace Saobracaj.Dokumenta
             parameter.Direction = ParameterDirection.Input;
             parameter.Value = RadniNalog;
             myCommand.Parameters.Add(parameter);
-
+ 
             SqlParameter parameter2 = new SqlParameter();
             parameter2.ParameterName = "@IDTrase";
             parameter2.SqlDbType = SqlDbType.Int;
@@ -110,7 +114,7 @@ namespace Saobracaj.Dokumenta
             parameter13.Value = JalovoVremeVanVoznje;
             myCommand.Parameters.Add(parameter13);
 
-
+         
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;

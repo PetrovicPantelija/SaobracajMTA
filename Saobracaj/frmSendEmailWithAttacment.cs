@@ -36,7 +36,7 @@ namespace Saobracaj
         {
             string mail = "";
             string mailZa = "";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             string query = "select ID,Najava.Platilac,Partnerji.PaEMail From Najava inner join Partnerji on Najava.Platilac=Partnerji.PaSifra Where ID=" + ID;
             SqlConnection conn = new SqlConnection(s_connection);
             conn.Open();
@@ -70,7 +70,7 @@ namespace Saobracaj
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var connect = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             DialogResult dr = MessageBox.Show("Da li želite da dodate prilog uz mail?", "Attachment", MessageBoxButtons.YesNoCancel);
             if (dr == DialogResult.Yes)
             {

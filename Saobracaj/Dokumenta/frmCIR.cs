@@ -1,15 +1,26 @@
-﻿using Microsoft.Reporting.WinForms;
-using System;
-using System.Configuration;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Net;
+using System.Net.Mail;
+
+using Microsoft.Reporting.WinForms;
+using Saobracaj.RadniNalozi;
 
 namespace Saobracaj.Dokumenta
 {
     public partial class frmCIR : Syncfusion.Windows.Forms.Office2010Form
     {
-        string KorisnikCene;
+        string KorisnikCene = "";
         bool status = false;
         int Dokument = 0;
         int Prijem = 0;
@@ -86,7 +97,7 @@ namespace Saobracaj.Dokumenta
         //Panta vrati podatke zadnji
         private void VratiPodatkeZadnjiCIR(int prijem)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -203,7 +214,7 @@ namespace Saobracaj.Dokumenta
         private void frmCIR_Load(object sender, EventArgs e)
         {
             var select3 = " Select Distinct ID, Naziv   From Greske";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -216,7 +227,7 @@ namespace Saobracaj.Dokumenta
             cboOstecenja.ValueMember = "ID";
 
             var select4 = " Select Distinct ID, Naziv From TipKontenjera order by Naziv";
-            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
             var dataAdapter4 = new SqlDataAdapter(select4, c4);
@@ -229,7 +240,7 @@ namespace Saobracaj.Dokumenta
             cboTipKontejnera.ValueMember = "ID";
 
             var select5 = " Select Distinct ID, Naziv   From Delovi";
-            var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection5 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection5);
             var dataAdapter5 = new SqlDataAdapter(select5, c5);
@@ -242,7 +253,7 @@ namespace Saobracaj.Dokumenta
             cboDeo.ValueMember = "ID";
 
             var select6 = " Select Distinct ID, Naziv   From uvKvalitetKontejnera order by ID";
-            var s_connection6 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection6 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection6 = new SqlConnection(s_connection6);
             var c6 = new SqlConnection(s_connection6);
             var dataAdapter6 = new SqlDataAdapter(select6, c6);
@@ -413,7 +424,7 @@ namespace Saobracaj.Dokumenta
                 double TezinaPom = 0;
                 TezinaPom = Convert.ToDouble(txtBruto.Text);
 
-                upd.UpdCIR(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtSize.Value), Convert.ToInt32(cboTipKontejnera.SelectedValue), MaterijalCelik, MaterijalAlumni, incoming, Pun, Convert.ToDouble(txtBruto.Text), txtBrojKontejnera.Text, Plomba1, Plomba2, Convert.ToDateTime(dtpDatumIn.Value), txtVagon.Text, txtTruckIn.Text, Damaged, Ispravan, Prevoz, txtContainerresponsible.Text, txtprimedbe.Text, txtReceived.Text, txtInspected.Text, txtDelivery.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Prijem, Convert.ToInt32(txtDokument.Text), Convert.ToDouble(txtDuzina.Value), Convert.ToDouble(txtSirina.Value), Convert.ToDouble(txtDuzina.Value), txtPlomba.Text, txtPlomba2.Text, Interni, Convert.ToDouble(txtNosivost.Value));
+                upd.UpdCIR(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtSize.Value), Convert.ToInt32(cboTipKontejnera.SelectedValue), MaterijalCelik, MaterijalAlumni, incoming, Pun, Convert.ToDouble(txtBruto.Text), txtBrojKontejnera.Text, Plomba1, Plomba2, Convert.ToDateTime(dtpDatumIn.Value), txtVagon.Text, txtTruckIn.Text, Damaged, Ispravan, Prevoz, txtContainerresponsible.Text, txtprimedbe.Text, txtReceived.Text, txtInspected.Text, txtDelivery.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Prijem, Convert.ToInt32(txtDokument.Text), Convert.ToDouble(txtDuzina.Value), Convert.ToDouble(txtSirina.Value), Convert.ToDouble(txtDuzina.Value), txtPlomba.Text, txtPlomba2.Text,Interni, Convert.ToDouble(txtNosivost.Value));
 
                 status = false;
             }
@@ -437,7 +448,7 @@ namespace Saobracaj.Dokumenta
             "inner join Delovi on CIRGreske.IDDela = Delovi.ID" +
             " where IDNadredjenog = " + txtSifra.Text;
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -520,7 +531,7 @@ namespace Saobracaj.Dokumenta
 
         private void VratiPodatkeMax()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -539,7 +550,7 @@ namespace Saobracaj.Dokumenta
         private void VratiPodatkeTipKontejnera()
         {
             cboTipKontejnera.SelectedValue = tk;
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -653,7 +664,7 @@ namespace Saobracaj.Dokumenta
 
         private void VratiPodatkeCIR(int dokument)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -823,7 +834,7 @@ namespace Saobracaj.Dokumenta
             "inner join Delovi on CIRGreske.IDDela = Delovi.ID" +
             " where IDNadredjenog = " + txtSifra.Text;
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -874,7 +885,7 @@ namespace Saobracaj.Dokumenta
                 "inner join Delovi on CIRGreske.IDDela = Delovi.ID" +
                 " where IDNadredjenog = " + txtSifra.Text;
 
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -904,7 +915,7 @@ namespace Saobracaj.Dokumenta
                 //do something else
             }
 
-
+            
         }
 
         private void dataGridView2_SelectionChanged(object sender, EventArgs e)
@@ -927,7 +938,7 @@ namespace Saobracaj.Dokumenta
 
         int VratiDaLiVozPrijem()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -938,7 +949,7 @@ namespace Saobracaj.Dokumenta
 
             while (dr.Read())
             {
-                return Convert.ToInt32(dr["Vozom"].ToString());
+                return  Convert.ToInt32(dr["Vozom"].ToString());
             }
 
             con.Close();
@@ -947,7 +958,7 @@ namespace Saobracaj.Dokumenta
 
         int VratiDalijeVozOtprema()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -980,7 +991,7 @@ namespace Saobracaj.Dokumenta
                 pomPrijem = 0;
                 pomVozom = VratiDalijeVozOtprema();
 
-
+                
             }
             if (pomPrijem == 1)
             {
@@ -1014,7 +1025,7 @@ namespace Saobracaj.Dokumenta
 
             }
 
-            //txtBrojKontejnera   
+             //txtBrojKontejnera   
             /*
         Select SUBSTRING(
             (
@@ -1029,7 +1040,7 @@ namespace Saobracaj.Dokumenta
 
         int VratiBrojPrijemnica()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -1053,7 +1064,7 @@ namespace Saobracaj.Dokumenta
 
         int VratiBrojOtpreme()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -1073,7 +1084,7 @@ namespace Saobracaj.Dokumenta
 
         string NapomenaPrijemVozom()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -1100,7 +1111,7 @@ namespace Saobracaj.Dokumenta
 
         string NapomenaPrijemKamionom()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -1128,7 +1139,7 @@ namespace Saobracaj.Dokumenta
 
         string NapomenaOtpremaVozom()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -1155,7 +1166,7 @@ namespace Saobracaj.Dokumenta
 
         string NapomenaOtpremaKamionom()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -1197,23 +1208,29 @@ namespace Saobracaj.Dokumenta
             }
             if (chkIspravan.Checked == true)
             {
-                tmpOstecenja = "ISPRAVAN" + " " + txtSifra.Text + " - CIR";
+                tmpOstecenja = "ISPRAVAN" + " "  + txtSifra.Text + " - CIR" ;
             }
             else
             {
                 tmpOstecenja = "OSTECEN" + " " + txtSifra.Text + " - CIR";
             }
             Saobracaj.RadniNalozi.InsertRN up = new Saobracaj.RadniNalozi.InsertRN();
+          
+                    up.UpdateKontejnerIzCira(txtBrojKontejnera.Text,tmpStanje, txtOstecenje.Text, Convert.ToInt32(cboKvalitet.Text), Convert.ToInt32(txtSifra.Text));
+            
 
-            up.UpdateKontejnerIzCira(txtBrojKontejnera.Text, tmpStanje, txtOstecenje.Text, Convert.ToInt32(cboKvalitet.Text), Convert.ToInt32(txtSifra.Text));
-
-
-        }
+            }
 
         private void tsPrvi_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            Saobracaj.RadniNalozi.frmDodelaSkladista ds = new frmDodelaSkladista(txtDokument.Text, 3);
+            ds.Show();
+        }
     }
-}
+    }
 

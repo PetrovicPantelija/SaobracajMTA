@@ -10,7 +10,7 @@ namespace Saobracaj.Sifarnici
     {
         public void InsKontrolneGreske(string Naziv, int TipDokumenta)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertKontrolneGreske";
@@ -72,7 +72,7 @@ namespace Saobracaj.Sifarnici
 
         public void UpdKontrolneGreske(int ID, string Naziv, int TipDokumenta)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateKontrolneGreske";
@@ -138,7 +138,7 @@ namespace Saobracaj.Sifarnici
 
         public void DeleteKontrolneGreske(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteKontrolneGreske";
@@ -189,7 +189,7 @@ namespace Saobracaj.Sifarnici
 
         public void InsKontrolaDokumentacijeGreske(int NadredjeniID, int RadnikID, int GreskaID, string Napomena)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertKontrolaDokumentacijeGreske";
@@ -269,7 +269,7 @@ namespace Saobracaj.Sifarnici
 
         public void UpdKontrolaDokumentacijeGreske(int ID, int NadredjeniID, int RadnikID, int GreskaID, string Napomena)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateKontrolaDokumentacijeGreske";
@@ -351,7 +351,7 @@ namespace Saobracaj.Sifarnici
 
         public void DeleteKontrolaDokumentacijeGreske(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteKontrolaDokumentacijeGreske";

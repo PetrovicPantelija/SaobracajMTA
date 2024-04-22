@@ -64,7 +64,7 @@ namespace Saobracaj.Dokumenta
 
         private void VratiPodatke(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -105,7 +105,7 @@ namespace Saobracaj.Dokumenta
 
         private void VratiPodatkeNalogZaPrevoz(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -130,7 +130,7 @@ namespace Saobracaj.Dokumenta
 
         private void VratiPodatkePutniNalog(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -153,7 +153,7 @@ namespace Saobracaj.Dokumenta
 
         private void VratiPodatkeRadniNalog(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -183,7 +183,7 @@ namespace Saobracaj.Dokumenta
         private void frmAutoprevozniList2_Load(object sender, EventArgs e)
         {
             var select9 = " Select Distinct ID, Naziv From Komitenti where Platilac = 1 order by Naziv";
-            var s_connection9 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection9 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection9 = new SqlConnection(s_connection9);
             var c9 = new SqlConnection(s_connection9);
             var dataAdapter9 = new SqlDataAdapter(select9, c9);
@@ -196,7 +196,7 @@ namespace Saobracaj.Dokumenta
             cboPlatilac.ValueMember = "ID";
 
             var select10 = " Select Distinct ID, Naziv From Komitenti where Platilac = 1 order by Naziv";
-            var s_connection10 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection10 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection10 = new SqlConnection(s_connection9);
             var c10 = new SqlConnection(s_connection10);
             var dataAdapter10 = new SqlDataAdapter(select10, c10);
@@ -211,7 +211,7 @@ namespace Saobracaj.Dokumenta
 
             var select1 = "select ID, RegistarskaOznaka from Vozila where RegistarskaOznaka is not null";
 
-            var s_connection1 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection1 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection1 = new SqlConnection(s_connection1);
             var c1 = new SqlConnection(s_connection1);
             var dataAdapter1 = new SqlDataAdapter(select1, c1);
@@ -226,7 +226,7 @@ namespace Saobracaj.Dokumenta
 
             var select2 = "select ID, RegistarskaOznaka from Vozila where RegistarskaOznaka is not null";
 
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
             var dataAdapter2 = new SqlDataAdapter(select2, c2);
@@ -260,7 +260,7 @@ namespace Saobracaj.Dokumenta
         }
         private void VratiPodatkeMax()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();

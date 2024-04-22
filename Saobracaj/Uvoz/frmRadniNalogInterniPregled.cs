@@ -243,7 +243,7 @@ namespace Saobracaj.Uvoz
         private void frmRadniNalogInterniPregled_Load(object sender, EventArgs e)
         {
             var select8 = "  Select Distinct ID, Naziv   From OrganizacioneJedinice ";
-            var s_connection8 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection8 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection8 = new SqlConnection(s_connection8);
             var c8 = new SqlConnection(s_connection8);
             var dataAdapter8 = new SqlDataAdapter(select8, c8);
@@ -258,7 +258,7 @@ namespace Saobracaj.Uvoz
 
 
             var select9 = "  Select Distinct ID, Naziv   From OrganizacioneJedinice ";
-            var s_connection9 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection9 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection9 = new SqlConnection(s_connection9);
             var c9 = new SqlConnection(s_connection9);
             var dataAdapter9 = new SqlDataAdapter(select9, c9);
@@ -397,7 +397,7 @@ namespace Saobracaj.Uvoz
         int VratiKonkretanIDUsluge()
         {
             int Konkretan = 0;
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -459,6 +459,13 @@ namespace Saobracaj.Uvoz
                 okk.Show();
             }
 
+            if (Forma == "GATE OUT VOZ")
+            {
+                MessageBox.Show("Formirate Otprema VOZ");
+                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 1);
+                okk.Show();
+            }
+
         }
         string VratiFormu()
         {
@@ -471,7 +478,7 @@ namespace Saobracaj.Uvoz
             else
             {
                 string formica = "";
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection con = new SqlConnection(s_connection);
 
                 con.Open();

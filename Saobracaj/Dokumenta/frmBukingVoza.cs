@@ -1,16 +1,33 @@
 ﻿using System;
-using System.Configuration;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.Configuration;
+using System.Net;
+using System.Net.Mail;
 
 
 
 namespace TrackModal.Dokumeta
 {
-    public partial class frmBukingVoza : Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmBukingVoza :  Syncfusion.Windows.Forms.Office2010Form
     {
-
+        public static string code = "frmBukingVoza";
+        public bool Pravo;
+        int idGrupe;
+        int idForme;
+        bool insert;
+        bool update;
+        bool delete;
+        string Kor = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
+        string niz = "";
 
 
         string KorisnikCene;
@@ -20,7 +37,9 @@ namespace TrackModal.Dokumeta
         {
             InitializeComponent();
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
-
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
         }
 
         public frmBukingVoza(string Korisnik)
@@ -28,14 +47,106 @@ namespace TrackModal.Dokumeta
             InitializeComponent();
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             KorisnikCene = Korisnik;
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
+        }
+        public string IdGrupe()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            int count = 0;
 
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+                    if (count == 0)
+                    {
+                        niz = dr["IdGrupe"].ToString();
+                        count++;
+                    }
+                    else
+                    {
+                        niz = niz + "," + dr["IdGrupe"].ToString();
+                        count++;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Korisnik ne pripada grupi");
+                }
+
+            }
+            conn.Close();
+            return niz;
+        }
+        private int IdForme()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                idForme = Convert.ToInt32(dr["IdForme"].ToString());
+            }
+            conn.Close();
+            return idForme;
         }
 
+        private void PravoPristupa()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows == false)
+            {
+                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
+                Pravo = false;
+            }
+            else
+            {
+                Pravo = true;
+                while (reader.Read())
+                {
+                    insert = Convert.ToBoolean(reader["Upis"]);
+                    if (insert == false)
+                    {
+                        tsNew.Enabled = false;
+                    }
+                    update = Convert.ToBoolean(reader["Izmena"]);
+                    if (update == false)
+                    {
+                        tsSave.Enabled = false;
+                    }
+                    delete = Convert.ToBoolean(reader["Brisanje"]);
+                    if (delete == false)
+                    {
+                        tsDelete.Enabled = false;
+                    }
+                }
+            }
+
+            conn.Close();
+        }
         public frmBukingVoza(string Sifra, string Korisnik)
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
-
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -48,7 +159,7 @@ namespace TrackModal.Dokumeta
 
             var select = "  Select PrijemKontejneraVozStavke.BrojKontejnera, 'Voz' as Tip, PrijemKontejneraVozStavke.ID , PrijemKontejneraVozStavke.IDNadredjenog, TipKontenjera.Naziv,  PrijemKontejneraVozStavke.Tara,  PrijemKontejneraVozStavke.Neto,  (PrijemKontejneraVozStavke.Tara +  PrijemKontejneraVozStavke.Neto) as Bruto from PrijemKontejneraVozStavke " +
             " inner Join TipKontenjera on PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID where PrijemKontejneraVozStavke.Buking = " + Convert.ToInt32(cboVoz.SelectedValue);
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -91,12 +202,12 @@ namespace TrackModal.Dokumeta
             dataGridView1.Columns[7].HeaderText = "Bruto";
             dataGridView1.Columns[7].Width = 70;
 
-
+          
         }
 
         private void VratiPodatkeMax()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -117,7 +228,7 @@ namespace TrackModal.Dokumeta
             if (status == true)
             {
                 InsertBukingVoza ins = new InsertBukingVoza();
-                ins.InsertBuk(Convert.ToInt32(cboVoz.SelectedValue), Convert.ToDateTime(dtpDatumOtpreme.Value), txtStanicaOtpreme.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(txtUkupno2.Value), Convert.ToDouble(txtSopstvenaMasa2.Value));
+                ins.InsertBuk(Convert.ToInt32(cboVoz.SelectedValue), Convert.ToDateTime(dtpDatumOtpreme.Value), txtStanicaOtpreme.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(txtUkupno2.Value), Convert.ToDouble(txtSopstvenaMasa2.Value) );
                 VratiPodatkeMax();
                 status = false;
 
@@ -146,7 +257,7 @@ namespace TrackModal.Dokumeta
                 //do something else
             }
 
-
+            
         }
 
         private void RefreshKontejneri()
@@ -166,7 +277,7 @@ namespace TrackModal.Dokumeta
                     + "	BukingVoza AS BukingVoza_1 ON PrijemKontejnera.Buking = BukingVoza_1.ID  "
                      + " where PrijemKontejneraVozStavke.Buking = " + Convert.ToInt32(txtSifra.Text);
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -204,18 +315,18 @@ namespace TrackModal.Dokumeta
             dataGridView1.Columns[5].HeaderText = "Vreme odlaska";
             dataGridView1.Columns[5].Width = 90;
 
-
-
-
-
-
+           
+        
+        
+        
+        
         }
 
         private void RefreshDataGrid()
         {
             /*
             var select = "  SELECT [ID],[IdVoza],[DatumOtpreme],[StanicaOtpreme],[Datum],[Korisnik]  FROM [dbo].[BukingVoza]  ";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -257,7 +368,7 @@ namespace TrackModal.Dokumeta
 
         private void VratiPodatke(string ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -267,14 +378,14 @@ namespace TrackModal.Dokumeta
 
             while (dr.Read())
             {
-
+                
                 // Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene
                 txtStanicaOtpreme.Text = dr["StanicaOtpreme"].ToString();
                 cboVoz.SelectedValue = Convert.ToInt32(dr["IdVoza"].ToString());
 
-                dtpDatumOtpreme.Value = Convert.ToDateTime(dr["DatumOtpreme"].ToString());
-
-
+                dtpDatumOtpreme.Value = Convert.ToDateTime(dr["DatumOtpreme"].ToString()); 
+                
+          
             }
 
             con.Close();
@@ -303,10 +414,10 @@ namespace TrackModal.Dokumeta
         }
 
         private void frmBukingVoza_Load(object sender, EventArgs e)
-        {
-            var select = "Select Distinct ID, (Cast(id as nvarchar(6))+ '-' + Cast(BrVoza as nvarchar(10)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12))) as BrVoza From Voz where dolazeci = 0 ";
-            // var select = " Select Distinct ID, (Cast(id as nvarchar(5))+ '-' + Cast(BrVoza as nvarchar(5)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12)) ) as BrVoza From Voz where dolazeci = 1";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+       {
+           var select = "Select Distinct ID, (Cast(id as nvarchar(6))+ '-' + Cast(BrVoza as nvarchar(10)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12))) as BrVoza From Voz where dolazeci = 0 ";
+           // var select = " Select Distinct ID, (Cast(id as nvarchar(5))+ '-' + Cast(BrVoza as nvarchar(5)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12)) ) as BrVoza From Voz where dolazeci = 1";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -319,7 +430,7 @@ namespace TrackModal.Dokumeta
             cboVoz.ValueMember = "ID";
 
             var select3 = " Select Distinct ID, Naziv From Skladista";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -332,7 +443,7 @@ namespace TrackModal.Dokumeta
             cboSkladiste.ValueMember = "ID";
 
             var select4 = " Select Distinct OtpremaKontejnera.ID as ID, (Cast(OtpremaKontejnera.id as nvarchar(5))+ '-' + Cast(BrVoza as nvarchar(10)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12))) as BrVoza From OtpremaKontejnera inner join Voz on Voz.ID = OtpremaKontejnera.IdVoza where StatusOtpreme = 0";
-            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
             var dataAdapter4 = new SqlDataAdapter(select4, c4);
@@ -366,7 +477,7 @@ namespace TrackModal.Dokumeta
        " inner join TipKontenjera on TipKontenjera.Id = PrijemKontejneraVozStavke.TipKontejnera " +
        " inner join NHM on NHM.Id = PrijemKontejneraVozStavke.VrstaRobe" +
         "  where Zatvoren = 0 and SkladisteU = " + Convert.ToInt32(cboSkladiste.SelectedValue);
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -448,133 +559,133 @@ namespace TrackModal.Dokumeta
             dataGridView3.Columns[16].Width = 80;
         }
 
-        /*private void RefreshDataGrid()
-         {
-             var select = "  SELECT OtpremaKontejneraVozStavke.ID, OtpremaKontejneraVozStavke.RB, OtpremaKontejneraVozStavke.IDNadredjenog,  OtpremaKontejneraVozStavke.BrojKontejnera, OtpremaKontejneraVozStavke.Granica, "
-                         + " OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, Komitenti.Naziv AS Posiljalac, Komitenti_1.Naziv AS primalac, "
-                         + " Komitenti_2.Naziv AS Vlasnikkontejnera, " +
-                           " Komitenti_3.Naziv AS Organizator, " +
-                         "  TipKontenjera.Naziv AS TipKontejnera, VrstaRobe.Naziv AS VrstaRobe, OtpremaKontejneraVozStavke.Buking , OtpremaKontejneraVozStavke.StatusKontejnera, "
-                         + " OtpremaKontejneraVozStavke.BrojPlombe, OtpremaKontejneraVozStavke.BrojPlombe2, OtpremaKontejneraVozStavke.PlaniraniLager,"
-                         + " OtpremaKontejneraVozStavke.Datum, OtpremaKontejneraVozStavke.Korisnik "
-                         + "FROM  Komitenti INNER JOIN "
-                         + " OtpremaKontejneraVozStavke ON Komitenti.ID = OtpremaKontejneraVozStavke.Posiljalac INNER JOIN "
-                         + " Komitenti AS Komitenti_1 ON OtpremaKontejneraVozStavke.Primalac = Komitenti_1.ID INNER JOIN "
-                         + " Komitenti AS Komitenti_2 ON OtpremaKontejneraVozStavke.VlasnikKontejnera = Komitenti_2.ID INNER JOIN "
-                           + " Komitenti AS Komitenti_3 ON OtpremaKontejneraVozStavke.Organizator = Komitenti_3.ID INNER JOIN "
-                          + "TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID INNER JOIN "
-                         + " VrstaRobe ON OtpremaKontejneraVozStavke.VrstaRobe = VrstaRobe.ID "
-                           + " where IdNadredjenog = " + txtSifra.Text + " order by RB";
+       /*private void RefreshDataGrid()
+        {
+            var select = "  SELECT OtpremaKontejneraVozStavke.ID, OtpremaKontejneraVozStavke.RB, OtpremaKontejneraVozStavke.IDNadredjenog,  OtpremaKontejneraVozStavke.BrojKontejnera, OtpremaKontejneraVozStavke.Granica, "
+                        + " OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, Komitenti.Naziv AS Posiljalac, Komitenti_1.Naziv AS primalac, "
+                        + " Komitenti_2.Naziv AS Vlasnikkontejnera, " +
+                          " Komitenti_3.Naziv AS Organizator, " +
+                        "  TipKontenjera.Naziv AS TipKontejnera, VrstaRobe.Naziv AS VrstaRobe, OtpremaKontejneraVozStavke.Buking , OtpremaKontejneraVozStavke.StatusKontejnera, "
+                        + " OtpremaKontejneraVozStavke.BrojPlombe, OtpremaKontejneraVozStavke.BrojPlombe2, OtpremaKontejneraVozStavke.PlaniraniLager,"
+                        + " OtpremaKontejneraVozStavke.Datum, OtpremaKontejneraVozStavke.Korisnik "
+                        + "FROM  Komitenti INNER JOIN "
+                        + " OtpremaKontejneraVozStavke ON Komitenti.ID = OtpremaKontejneraVozStavke.Posiljalac INNER JOIN "
+                        + " Komitenti AS Komitenti_1 ON OtpremaKontejneraVozStavke.Primalac = Komitenti_1.ID INNER JOIN "
+                        + " Komitenti AS Komitenti_2 ON OtpremaKontejneraVozStavke.VlasnikKontejnera = Komitenti_2.ID INNER JOIN "
+                          + " Komitenti AS Komitenti_3 ON OtpremaKontejneraVozStavke.Organizator = Komitenti_3.ID INNER JOIN "
+                         + "TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID INNER JOIN "
+                        + " VrstaRobe ON OtpremaKontejneraVozStavke.VrstaRobe = VrstaRobe.ID "
+                          + " where IdNadredjenog = " + txtSifra.Text + " order by RB";
 
-             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-             SqlConnection myConnection = new SqlConnection(s_connection);
-             var c = new SqlConnection(s_connection);
-             var dataAdapter = new SqlDataAdapter(select, c);
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
 
-             var commandBuilder = new SqlCommandBuilder(dataAdapter);
-             var ds = new DataSet();
-             dataAdapter.Fill(ds);
-             dataGridView1.ReadOnly = false;
-             dataGridView1.DataSource = ds.Tables[0];
-
-
-
-             DataGridViewColumn column = dataGridView1.Columns[0];
-             dataGridView1.Columns[0].HeaderText = "ID";
-             dataGridView1.Columns[0].Width = 40;
-             dataGridView1.Columns[0].Visible = false;
-
-             DataGridViewColumn column2 = dataGridView1.Columns[1];
-             dataGridView1.Columns[1].HeaderText = "RB";
-             dataGridView1.Columns[1].Width = 30;
-
-             DataGridViewColumn column3 = dataGridView1.Columns[2];
-             dataGridView1.Columns[2].HeaderText = "Br otp";
-             dataGridView1.Columns[2].Width = 30;
-
-             DataGridViewColumn column4 = dataGridView1.Columns[3];
-             dataGridView1.Columns[3].HeaderText = "Broj kontejnera";
-             dataGridView1.Columns[3].Width = 90;
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = false;
+            dataGridView1.DataSource = ds.Tables[0];
 
 
 
-             DataGridViewColumn column5 = dataGridView1.Columns[4];
-             dataGridView1.Columns[4].HeaderText = "Granica";
-             dataGridView1.Columns[4].Width = 90;
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 40;
+            dataGridView1.Columns[0].Visible = false;
 
-             DataGridViewColumn column6 = dataGridView1.Columns[5];
-             dataGridView1.Columns[5].HeaderText = "Broj osovina";
-             dataGridView1.Columns[5].Width = 20;
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "RB";
+            dataGridView1.Columns[1].Width = 30;
 
-             DataGridViewColumn column7 = dataGridView1.Columns[6];
-             dataGridView1.Columns[6].HeaderText = "Sopstvena masa";
-             dataGridView1.Columns[6].Width = 30;
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Br otp";
+            dataGridView1.Columns[2].Width = 30;
 
-             DataGridViewColumn column8 = dataGridView1.Columns[7];
-             dataGridView1.Columns[7].HeaderText = "Tara";
-             dataGridView1.Columns[7].Width = 50;
-
-             DataGridViewColumn column9 = dataGridView1.Columns[8];
-             dataGridView1.Columns[8].HeaderText = "Neto";
-             dataGridView1.Columns[8].Width = 50;
-
-             DataGridViewColumn column10 = dataGridView1.Columns[9];
-             dataGridView1.Columns[9].HeaderText = "Posiljalac";
-             dataGridView1.Columns[9].Width = 50;
-
-             DataGridViewColumn column11 = dataGridView1.Columns[10];
-             dataGridView1.Columns[10].HeaderText = "Primalac";
-             dataGridView1.Columns[10].Width = 50;
-
-             DataGridViewColumn column12 = dataGridView1.Columns[11];
-             dataGridView1.Columns[11].HeaderText = "Vlasnik kontejnera";
-             dataGridView1.Columns[11].Width = 40;
-
-             DataGridViewColumn column13 = dataGridView1.Columns[12];
-             dataGridView1.Columns[12].HeaderText = "Organizator";
-             dataGridView1.Columns[12].Width = 40;
-
-             DataGridViewColumn column14 = dataGridView1.Columns[13];
-             dataGridView1.Columns[13].HeaderText = "Tip kontejnera";
-             dataGridView1.Columns[13].Width = 30;
-
-             DataGridViewColumn column15 = dataGridView1.Columns[14];
-             dataGridView1.Columns[14].HeaderText = "Vrsta robe";
-             dataGridView1.Columns[14].Width = 30;
-
-             DataGridViewColumn column16 = dataGridView1.Columns[15];
-             dataGridView1.Columns[15].HeaderText = "Buking";
-             dataGridView1.Columns[15].Width = 30;
-
-             DataGridViewColumn column17 = dataGridView1.Columns[16];
-             dataGridView1.Columns[16].HeaderText = " Status Kontejnera";
-             dataGridView1.Columns[16].Width = 90;
-
-             DataGridViewColumn column18 = dataGridView1.Columns[17];
-             dataGridView1.Columns[17].HeaderText = "Broj plombe";
-             dataGridView1.Columns[17].Width = 90;
-
-             DataGridViewColumn column19 = dataGridView1.Columns[18];
-             dataGridView1.Columns[18].HeaderText = "Br plombe 2";
-             dataGridView1.Columns[18].Width = 70;
-
-             DataGridViewColumn column20 = dataGridView1.Columns[19];
-             dataGridView1.Columns[19].HeaderText = "Pl lager";
-             dataGridView1.Columns[19].Width = 70;
-
-
-             DataGridViewColumn column21 = dataGridView1.Columns[20];
-             dataGridView1.Columns[20].HeaderText = "Datum";
-             dataGridView1.Columns[20].Width = 70;
-
-             DataGridViewColumn column22 = dataGridView1.Columns[21];
-             dataGridView1.Columns[21].HeaderText = "Korisnik";
-             dataGridView1.Columns[21].Width = 70;
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Broj kontejnera";
+            dataGridView1.Columns[3].Width = 90;
 
 
 
-         }
-         */
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Granica";
+            dataGridView1.Columns[4].Width = 90;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Broj osovina";
+            dataGridView1.Columns[5].Width = 20;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Sopstvena masa";
+            dataGridView1.Columns[6].Width = 30;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Tara";
+            dataGridView1.Columns[7].Width = 50;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Neto";
+            dataGridView1.Columns[8].Width = 50;
+
+            DataGridViewColumn column10 = dataGridView1.Columns[9];
+            dataGridView1.Columns[9].HeaderText = "Posiljalac";
+            dataGridView1.Columns[9].Width = 50;
+
+            DataGridViewColumn column11 = dataGridView1.Columns[10];
+            dataGridView1.Columns[10].HeaderText = "Primalac";
+            dataGridView1.Columns[10].Width = 50;
+
+            DataGridViewColumn column12 = dataGridView1.Columns[11];
+            dataGridView1.Columns[11].HeaderText = "Vlasnik kontejnera";
+            dataGridView1.Columns[11].Width = 40;
+
+            DataGridViewColumn column13 = dataGridView1.Columns[12];
+            dataGridView1.Columns[12].HeaderText = "Organizator";
+            dataGridView1.Columns[12].Width = 40;
+
+            DataGridViewColumn column14 = dataGridView1.Columns[13];
+            dataGridView1.Columns[13].HeaderText = "Tip kontejnera";
+            dataGridView1.Columns[13].Width = 30;
+
+            DataGridViewColumn column15 = dataGridView1.Columns[14];
+            dataGridView1.Columns[14].HeaderText = "Vrsta robe";
+            dataGridView1.Columns[14].Width = 30;
+
+            DataGridViewColumn column16 = dataGridView1.Columns[15];
+            dataGridView1.Columns[15].HeaderText = "Buking";
+            dataGridView1.Columns[15].Width = 30;
+
+            DataGridViewColumn column17 = dataGridView1.Columns[16];
+            dataGridView1.Columns[16].HeaderText = " Status Kontejnera";
+            dataGridView1.Columns[16].Width = 90;
+
+            DataGridViewColumn column18 = dataGridView1.Columns[17];
+            dataGridView1.Columns[17].HeaderText = "Broj plombe";
+            dataGridView1.Columns[17].Width = 90;
+
+            DataGridViewColumn column19 = dataGridView1.Columns[18];
+            dataGridView1.Columns[18].HeaderText = "Br plombe 2";
+            dataGridView1.Columns[18].Width = 70;
+
+            DataGridViewColumn column20 = dataGridView1.Columns[19];
+            dataGridView1.Columns[19].HeaderText = "Pl lager";
+            dataGridView1.Columns[19].Width = 70;
+
+
+            DataGridViewColumn column21 = dataGridView1.Columns[20];
+            dataGridView1.Columns[20].HeaderText = "Datum";
+            dataGridView1.Columns[20].Width = 70;
+
+            DataGridViewColumn column22 = dataGridView1.Columns[21];
+            dataGridView1.Columns[21].HeaderText = "Korisnik";
+            dataGridView1.Columns[21].Width = 70;
+
+
+
+        }
+        */
         /*
          * select  Count(*) as Broj, substring(Naziv,1,3) as Tip,min(TipKontenjera.Naziv) from OtpremaKontejneraVozStavke
 inner join TipKontenjera on OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID
@@ -587,7 +698,7 @@ group by substring(Naziv,1,3)
             var select = "select  Count(*) as Broj, substring(Naziv,1,3) as Tip from OtpremaKontejneraVozStavke " +
 " inner join TipKontenjera on OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
 " where IDNadredjenog = " + Convert.ToInt32(cboOtpremnica.SelectedValue) + " group by substring(Naziv,1,3) ";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -604,13 +715,13 @@ group by substring(Naziv,1,3)
             dataGridView4.Columns[0].Width = 50;
             dataGridView4.Columns[0].Visible = true;
 
-            // con.Close();
+           // con.Close();
         }
 
         private void VratiPodatkeMaseOtpremnica()
         {
             //
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -621,11 +732,11 @@ group by substring(Naziv,1,3)
             while (dr.Read())
             {
                 //Izmenjeno
-                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+               // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
                 txtSopstvenaMasa2.Value = 0;
                 txtTara2.Value = Convert.ToDecimal(dr["Tara"].ToString());
                 txtNeto2.Value = Convert.ToDecimal(dr["Neto"].ToString());
-                // txtUkupno2.Value = Convert.ToDecimal(dr["Bruto"].ToString());
+               // txtUkupno2.Value = Convert.ToDecimal(dr["Bruto"].ToString());
                 txtUkupno2.Value = 0;
                 // txtSifra.Text = dr["ID"].ToString();
             }
@@ -633,7 +744,7 @@ group by substring(Naziv,1,3)
             con.Close();
         }
 
-        private void RefreshOtpremnicaStavke()
+        private void   RefreshOtpremnicaStavke()
         {
             if (usao == 1)
             {
@@ -653,7 +764,7 @@ group by substring(Naziv,1,3)
                          + " NHM ON OtpremaKontejneraVozStavke.VrstaRobe = NHM.ID "
                                  + " where IdNadredjenog = " + Convert.ToInt32(cboOtpremnica.SelectedValue) + " order by RB";
 
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -766,8 +877,8 @@ group by substring(Naziv,1,3)
         private void cboOtpremnica_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshOtpremnicaStavke();
-
-
+           
+        
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -777,13 +888,13 @@ group by substring(Naziv,1,3)
                 if (row.Selected)
                 {
                     Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke ins = new Saobracaj.Dokumenta.InsertOtpremaKontejneraStavke();
-                    ins.InsertOtpremaKontejneraStavBuking(Convert.ToInt32(row.Cells[3].Value.ToString()), row.Cells[0].Value.ToString(), Convert.ToInt32(cboOtpremnica.SelectedValue));
+                      ins.InsertOtpremaKontejneraStavBuking(Convert.ToInt32(row.Cells[3].Value.ToString()),row.Cells[0].Value.ToString(),Convert.ToInt32(cboOtpremnica.SelectedValue) );
                 }
             }
 
             RefreshOtpremnicaStavke();
 
-        }
+          }
 
         private void btnUnesi_Click(object sender, EventArgs e)
         {
@@ -805,29 +916,29 @@ group by substring(Naziv,1,3)
             Saobracaj.Dokumeta.frmOtpremaKontejnera otpr = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(cboOtpremnica.SelectedValue), KorisnikCene);
             otpr.Show();
         }
+      
+           // RefreshDataGrid();
+       /* private void VratiPodatkeMase()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
 
-        // RefreshDataGrid();
-        /* private void VratiPodatkeMase()
-         {
-             var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-             SqlConnection con = new SqlConnection(s_connection);
+            con.Open();
 
-             con.Open();
+            SqlCommand cmd = new SqlCommand("select sum(SopstvenaMasa) as SopM, sum(Tara) as Tara, Sum(Neto) as Neto, (sum(SopstvenaMasa)+sum(Tara)+Sum(Neto))  as Bruto from PrijemKontejneraVozStavke where IDNadredjenog = " + Convert.ToInt32(cboPrijemVozom.SelectedValue), con);
+            SqlDataReader dr = cmd.ExecuteReader();
 
-             SqlCommand cmd = new SqlCommand("select sum(SopstvenaMasa) as SopM, sum(Tara) as Tara, Sum(Neto) as Neto, (sum(SopstvenaMasa)+sum(Tara)+Sum(Neto))  as Bruto from PrijemKontejneraVozStavke where IDNadredjenog = " + Convert.ToInt32(cboPrijemVozom.SelectedValue), con);
-             SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+               // txtSopstvenaMasa.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                txtTara.Value = Convert.ToDecimal(dr["Tara"].ToString());
+                txtNeto.Value = Convert.ToDecimal(dr["Neto"].ToString());
+                txtBruto.Value = Convert.ToDecimal(dr["Bruto"].ToString());
+                // txtSifra.Text = dr["ID"].ToString();
+            }
 
-             while (dr.Read())
-             {
-                // txtSopstvenaMasa.Value = Convert.ToDecimal(dr["SopM"].ToString());
-                 txtTara.Value = Convert.ToDecimal(dr["Tara"].ToString());
-                 txtNeto.Value = Convert.ToDecimal(dr["Neto"].ToString());
-                 txtBruto.Value = Convert.ToDecimal(dr["Bruto"].ToString());
-                 // txtSifra.Text = dr["ID"].ToString();
-             }
-
-             con.Close();
-         }*/
+            con.Close();
+        }*/
 
         private void dataGridView1_SelectionChanged_1(object sender, EventArgs e)
         {
@@ -852,7 +963,7 @@ group by substring(Naziv,1,3)
         }
         private void VratiUkupanBrojKontejnera()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -882,7 +993,7 @@ group by substring(Naziv,1,3)
      " inner join TipKontenjera on TipKontenjera.Id = PrijemKontejneraVozStavke.TipKontejnera " +
      " inner join NHM on NHM.Id = PrijemKontejneraVozStavke.VrstaRobe" +
       "  where Zatvoren = 0 and Promet.[BrojKontejnera] = " + "'" + txtBrojKontejnera.Text + "'";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -1012,7 +1123,7 @@ group by substring(Naziv,1,3)
 
         }
     }
-
-}
+        
+    }
 
 

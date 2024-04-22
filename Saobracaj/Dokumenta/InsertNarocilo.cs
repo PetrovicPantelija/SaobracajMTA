@@ -13,7 +13,7 @@ namespace Saobracaj.Dokumenta
             // int  NaStNar ,  string NaStatus , DateTime    NaDatNar ,        int    NaPartPlac,        int  NaNacinDobave ,        int   NaSifObjekt ,        string   NaOpomba1 
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertNarocilo";
@@ -105,7 +105,7 @@ namespace Saobracaj.Dokumenta
         public void UpdNarocilo(int NaStNar, string NaStatus, DateTime NaDatNar, int NaPartPlac, int NaNacinDobave, int NaSifObjekt, string NaOpomba1)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateNarocilo";
@@ -204,7 +204,7 @@ namespace Saobracaj.Dokumenta
         public void DeleteNarocilo(int NaStNar)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteNarocilo";
@@ -272,7 +272,7 @@ namespace Saobracaj.Dokumenta
            @NaPNote nvarchar(100)
             */
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertNarociloStavke";
@@ -389,7 +389,7 @@ namespace Saobracaj.Dokumenta
         public void UpdNarociloStavka(int NaPNarZap, int NaPstNar, int NaPSifra, string NaPNaziv, string NaPEM, string NaPem2, decimal NaPKolNar, decimal NaPKolNar2, string NaPOpomba, string NaPNote)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateNarociloStavke";
@@ -513,7 +513,7 @@ namespace Saobracaj.Dokumenta
         public void DeleteNarociloStavka(int NaPNarZap)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteNarociloStavke";

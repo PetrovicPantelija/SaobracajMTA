@@ -40,7 +40,7 @@ namespace Saobracaj.Dokumenta
         private void frmKasnjenja_Load(object sender, EventArgs e)
         {
             var select = " Select ID, (Rtrim(Voz) + '-' + Rtrim(Relacija)) as Opis from Trase";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -55,7 +55,7 @@ namespace Saobracaj.Dokumenta
             cboTrase.SelectedValue = pomTrasa;
 
             var select2 = " Select ID,  RTrim(Opis) as Opis from Razlozi order by opis";
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
             var dataAdapter2 = new SqlDataAdapter(select2, c2);
@@ -75,7 +75,7 @@ namespace Saobracaj.Dokumenta
             " inner join Razlozi on Razlozi.ID = RadniNalogTraseLokUzr.IDUzrokaKasnjenja " +
             " where IDRadnogNaloga =" + Convert.ToInt32(txtSifraRN.Text) + " and IDTrase = " + Convert.ToInt32(cboTrase.SelectedValue) + " Order by RB";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

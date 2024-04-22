@@ -1,27 +1,31 @@
 ﻿using System;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.IO;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
 
 namespace Saobracaj.Dokumenta
 {
     class InsertRadniNalogTransport
     {
-        public void InsRadniNalogZaTransport(int IdNalogZaPrevoz, int IDPutniNalog, int IDAutoprevozniList, int Vozilo, DateTime Dana, int TransportniDispecer, string MestoIzdavanja, DateTime DatumPrevoza, DateTime Datum, string Korisnik, int PrikljucnoVoziloID, string RelacijaOd, string RelacijaDo, string BrojOtpravljanja, double BrojVagona, double NetoMasa, DateTime DatumIstovara, string BrVoza)
+        public void InsRadniNalogZaTransport(  int IdNalogZaPrevoz, int IDPutniNalog, int IDAutoprevozniList, int Vozilo, DateTime Dana, int TransportniDispecer, string MestoIzdavanja, DateTime DatumPrevoza,  DateTime Datum, string Korisnik, int PrikljucnoVoziloID, string RelacijaOd, string RelacijaDo, string BrojOtpravljanja, double BrojVagona, double NetoMasa, DateTime DatumIstovara, string BrVoza)
         {
+           
 
+             /* @PrikljucnoVoziloID int,
+          @RelacijaOd nvarchar(40),
+             @RelacijaDo nvarchar(40),
+             @BrojOtpravljanja nvarchar(40),
+             @BrojVagona decimal(18, 0),
+             @NetoMasa decimal(18, 0),
+             @DatumIstovara DateTime
+            */
 
-            /* @PrikljucnoVoziloID int,
-         @RelacijaOd nvarchar(40),
-            @RelacijaDo nvarchar(40),
-            @BrojOtpravljanja nvarchar(40),
-            @BrojVagona decimal(18, 0),
-            @NetoMasa decimal(18, 0),
-            @DatumIstovara DateTime
-           */
-
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertRadniNalogTransport";
@@ -48,8 +52,8 @@ namespace Saobracaj.Dokumenta
             parameter3.Value = IDAutoprevozniList;
             myCommand.Parameters.Add(parameter3);
 
-
-
+         
+    
 
             SqlParameter parameter4 = new SqlParameter();
             parameter4.ParameterName = "@IDVozilo";
@@ -78,8 +82,8 @@ namespace Saobracaj.Dokumenta
             parameter8.Direction = ParameterDirection.Input;
             parameter8.Value = DatumPrevoza;
             myCommand.Parameters.Add(parameter8);
-
-
+            
+		  
             SqlParameter parameter7 = new SqlParameter();
             parameter7.ParameterName = "@MestoIzdavanja";
             parameter7.SqlDbType = SqlDbType.NVarChar;
@@ -88,17 +92,17 @@ namespace Saobracaj.Dokumenta
             parameter7.Value = MestoIzdavanja;
             myCommand.Parameters.Add(parameter7);
 
+           
 
-
-
+         
             SqlParameter parameter15 = new SqlParameter();
             parameter15.ParameterName = "@Datum";
             parameter15.SqlDbType = SqlDbType.DateTime;
             parameter15.Direction = ParameterDirection.Input;
             parameter15.Value = Datum;
             myCommand.Parameters.Add(parameter15);
-
-
+       
+		   
 
 
             SqlParameter parameter16 = new SqlParameter();
@@ -154,7 +158,7 @@ namespace Saobracaj.Dokumenta
             parameter22.Value = NetoMasa;
             myCommand.Parameters.Add(parameter22);
 
-
+         
             SqlParameter parameter23 = new SqlParameter();
             parameter23.ParameterName = "@DatumIstovara";
             parameter23.SqlDbType = SqlDbType.DateTime;
@@ -211,7 +215,7 @@ namespace Saobracaj.Dokumenta
         public void UpdRadniNalogZaTransport(int ID, int IdNalogZaPrevoz, int IDPutniNalog, int IDAutoprevozniList, int Vozilo, DateTime Dana, int TransportniDispecer, string MestoIzdavanja, DateTime DatumPrevoza, DateTime Datum, string Korisnik, int PrikljucnoVoziloID, string RelacijaOd, string RelacijaDo, string BrojOtpravljanja, double BrojVagona, double NetoMasa, DateTime DatumIstovara, string BrVoza)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateRadniNalogZaTransport";
@@ -401,7 +405,7 @@ namespace Saobracaj.Dokumenta
 
         public void DelRadniNalogZaTransport(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteRadniNalogZaTransport";

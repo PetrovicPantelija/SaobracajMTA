@@ -48,7 +48,7 @@ namespace Saobracaj.Izvoz
             }
             int pomNaj = Convert.ToInt32(txtSifraUvoza.Text);
             var select = "select * from IzvozDokumenta  where TipDokumenta = 1 and IzvozDokumenta.IDIzvoz =  " + pomNaj;
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -95,7 +95,7 @@ namespace Saobracaj.Izvoz
             }
             int pomNaj = Convert.ToInt32(txtSifraUvoza2.Text);
             var select = "select * from IzvozDokumenta  where TipDokumenta = 2 and IzvozDokumenta.IDIzvoz =  " + pomNaj;
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -142,7 +142,7 @@ namespace Saobracaj.Izvoz
             }
             int pomNaj = Convert.ToInt32(txtSifraUvoza3.Text);
             var select = "select * from IzvozDokumenta  where TipDokumenta = 3 and IzvozDokumenta.IDIzvoz =  " + pomNaj;
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

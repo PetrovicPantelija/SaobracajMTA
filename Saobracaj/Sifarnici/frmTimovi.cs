@@ -17,7 +17,7 @@ namespace Saobracaj.Sifarnici
         private void RefreshDataGrid()
         {
             var select = " Select * from Tim";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -43,7 +43,7 @@ namespace Saobracaj.Sifarnici
             var select = "select IDTima, Korisnik, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Ime from PripadnostTimu " +
             " inner join Delavci on Delavci.DeSifra = PripadnostTimu.Korisnik " +
             " inner join Tim on Tim.ID = PripadnostTimu.IdTima where PripadnostTimu.IdTima =  " + Convert.ToInt32(txtSifra.Text);
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -59,7 +59,7 @@ namespace Saobracaj.Sifarnici
         private void frmTimovi_Load(object sender, EventArgs e)
         {
             var select = " SELECT     Delavci.DeSifra, RTRIM(Delavci.DeIme) + ' ' +RTRIM(Delavci.DePriimek)  AS Naziv from Delavci where DeSifStat <> 'P'";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

@@ -32,7 +32,7 @@ namespace TrackModal.Dokumeta
      " ,[MestoIzdavanja]       ,[Datum] " +
     " FROM [dbo].[Autoprevoznilist]" +
       " order by Autoprevoznilist.ID desc";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

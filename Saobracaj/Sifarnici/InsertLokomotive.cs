@@ -10,7 +10,7 @@ namespace Saobracaj.Sifarnici
     {
         public void UpdPassword(string SmSifra, string Password, double Masa, int Dizel, int StatusLokomotive)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateLokomotivaPassword";
@@ -95,7 +95,7 @@ namespace Saobracaj.Sifarnici
 
         public void InsLokomotiva(string SmSifra, string SmNaziv, string Password, double Masa, int Dizel, int StatusLokomotive, int Serija)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertLokomotive";
@@ -198,7 +198,7 @@ namespace Saobracaj.Sifarnici
 
         public void UpdLokomotive(string SmSifra, string SmNaziv, string Password, double Masa, int Dizel, int StatusLokomotive, int Serija)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateLokomotive";
@@ -301,7 +301,7 @@ namespace Saobracaj.Sifarnici
 
         public void DeleteLokomotive(string SmSifra)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteLokomotiva";

@@ -1,15 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
 
 namespace Saobracaj.Izvoz
 {
     public partial class frmIzvozUnosManipulacije : Form
     {
-        public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         int pIDPlana = 0;
         int pID = 0;
         int pNalogodavac1 = 0;
@@ -22,6 +28,7 @@ namespace Saobracaj.Izvoz
         {
             InitializeComponent();
             FillDG6(1);
+            int Usao = 0;
         }
 
         public frmIzvozUnosManipulacije(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Izvoznik)
@@ -36,6 +43,7 @@ namespace Saobracaj.Izvoz
             txtNadredjeni.Text = pIDPlana.ToString();
             FillDG6(1);
             FillDG8();
+            int Usao = 0;
         }
 
         private void button11_Click(object sender, EventArgs e)
@@ -67,7 +75,7 @@ namespace Saobracaj.Izvoz
               " where ADministrativna = 1 ";
             }
             //Opsti cenovnik pozivanje
-
+          
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -517,7 +525,7 @@ namespace Saobracaj.Izvoz
 " inner " +
  "  join Izvoz on IzvozVrstaManipulacije.IDNadredjena = Izvoz.ID" +
 " inner " +
-" join KontejnerStatus on IzvozVrstaManipulacije.StatusKontejnera = KontejnerStatus.ID  ";
+" join KontejnerStatus on IzvozVrstaManipulacije.StatusKontejnera = KontejnerStatus.ID  "; 
 
 
             }
@@ -586,7 +594,7 @@ namespace Saobracaj.Izvoz
 
         int PretraziPoNalogodavciIIzvozniku(int PomManipulacija, int Nalogodavac, int Uvoznik)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
             int tmp = 0;
             con.Open();
@@ -616,7 +624,7 @@ namespace Saobracaj.Izvoz
 
         int PretraziPoNalogodavci(int PomManipulacija, int Nalogodavac, int Uvoznik)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
             int tmp = 0;
             con.Open();
@@ -655,7 +663,7 @@ namespace Saobracaj.Izvoz
             int pomPlatilac = 0;
             int pomStatusKontejnera = 0;
             string pomPokret = "";
-
+     
             try
             {
                 foreach (DataGridViewRow row in dataGridView6.Rows)
@@ -671,7 +679,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip1 == 1)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -695,7 +703,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip2 == 1 && CenaNadjenaTip2 == 0)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -720,7 +728,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip2 == 0 && CenaNadjenaTip2 == 0)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -739,7 +747,7 @@ namespace Saobracaj.Izvoz
                             }
 
                             con.Close();
-                            pomPlatilac = Convert.ToInt32(cboNalogodavac1.SelectedValue); ;
+                            pomPlatilac = Convert.ToInt32(cboNalogodavac1.SelectedValue);;
 
                         }
                         pomOrgJed = VratiOrgJed(pomManupulacija);
@@ -876,7 +884,7 @@ namespace Saobracaj.Izvoz
             dataGridView1.Columns[1].Frozen = true;
             dataGridView1.Columns[1].Width = 100;
 
-
+          
 
 
         }
@@ -915,7 +923,7 @@ namespace Saobracaj.Izvoz
 " LEFT JOIN         Partnerji AS Partnerji_5 ON IzvozKonacna.Klijent3 = Partnerji_5.PaSifra LEFT JOIN " +
 " Partnerji AS Partnerji_6 ON IzvozKonacna.SpediterRijeka = Partnerji_6.PaSifra " +
 " LEFT JOIN         uvNacinPakovanja ON IzvozKonacna.NacinPakovanja = uvNacinPakovanja.ID where IzvozKonacna.ID = " + pID + " order by IzvozKonacna.ID desc  ";
-            //  " where IzvozKonacna.IdNadredjena = " + Convert.ToInt32(txtNadredjeni.Text) + " order by IzvozKonacna.ID desc";
+          //  " where IzvozKonacna.IdNadredjena = " + Convert.ToInt32(txtNadredjeni.Text) + " order by IzvozKonacna.ID desc";
 
 
             SqlConnection conn = new SqlConnection(connection);
@@ -999,7 +1007,7 @@ namespace Saobracaj.Izvoz
             // dataGridView1.Columns[13].Frozen = true;
             dataGridView1.Columns[13].Width = 90;
             */
-
+          
 
         }
 
@@ -1241,7 +1249,7 @@ namespace Saobracaj.Izvoz
             double pomkolicina = 1;
             int pomPlatilac = 0;
             int pomStatusKontejnera = 0;
-            string pomPokret = "";
+            string pomPokret= "";
             try
             {
                 foreach (DataGridViewRow row in dataGridView6.Rows)
@@ -1257,7 +1265,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip1 == 1)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -1281,7 +1289,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip2 == 1 && CenaNadjenaTip2 == 0)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -1306,7 +1314,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip2 == 0 && CenaNadjenaTip2 == 0)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -1337,7 +1345,7 @@ namespace Saobracaj.Izvoz
                             if (row2.Selected)
                             {
                                 pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
-                                UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed, pomPlatilac, pomPokret, pomStatusKontejnera);
+                                UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed,pomPlatilac, pomPokret, pomStatusKontejnera);
                             }
                         }
 
@@ -1363,7 +1371,7 @@ namespace Saobracaj.Izvoz
             double pomkolicina = 1;
             int pomPlatilac = 0;
             int pomStatusKontejnera = 0;
-            string pomPokret = "";
+            string  pomPokret = "";
             try
             {
                 foreach (DataGridViewRow row in dataGridView6.Rows)
@@ -1378,7 +1386,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip1 == 1)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -1402,7 +1410,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip2 == 1 && CenaNadjenaTip2 == 0)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -1427,7 +1435,7 @@ namespace Saobracaj.Izvoz
 
                         if (CenaNadjenaTip2 == 0 && CenaNadjenaTip2 == 0)
                         {
-                            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                             SqlConnection con = new SqlConnection(s_connection);
 
                             con.Open();
@@ -1478,14 +1486,14 @@ namespace Saobracaj.Izvoz
         {
             int pom = 0;
             InsertIzvoz uvK = new InsertIzvoz();
-
+          
             try
             {
-
-                foreach (DataGridViewRow row2 in dataGridView7.Rows)
-                {
-                    if (row2.Selected)
-                    {
+              
+                        foreach (DataGridViewRow row2 in dataGridView7.Rows)
+                        {
+                            if (row2.Selected)
+                            {
                         if (txtNadredjeni.Text != "0")
                         {
                             pom = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
@@ -1496,8 +1504,8 @@ namespace Saobracaj.Izvoz
                             pom = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
                             uvK.DelIzvozUsluga(pom);
                         }
-                    }
-                }
+                            }
+                        }
                 FillDG8();
             }
             catch
@@ -1540,7 +1548,7 @@ namespace Saobracaj.Izvoz
         int VratiOrgJed(int Manipulacija)
         {
             int pomOJ = 0;
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -1561,7 +1569,7 @@ namespace Saobracaj.Izvoz
 
         private void button10_Click(object sender, EventArgs e)
         {
-            //Uzima cenu samo za PArtnera
+           //Uzima cenu samo za PArtnera
             int pomID = 0;
             int pomManupulacija = 0;
             double pomCena = 0;
@@ -1586,26 +1594,26 @@ namespace Saobracaj.Izvoz
 
 
 
-                        var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-                        SqlConnection con = new SqlConnection(s_connection);
+                        var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                            SqlConnection con = new SqlConnection(s_connection);
 
-                        con.Open();
+                            con.Open();
 
-                        SqlCommand cmd = new SqlCommand("select ID, Cena, OrgJed from Cene where TipCenovnika =1 and VrstaManipulacije = " + pomManupulacija, con);
-                        SqlDataReader dr = cmd.ExecuteReader();
+                            SqlCommand cmd = new SqlCommand("select ID, Cena, OrgJed from Cene where TipCenovnika =1 and VrstaManipulacije = " + pomManupulacija, con);
+                            SqlDataReader dr = cmd.ExecuteReader();
 
-                        while (dr.Read())
-                        {
-                            //Izmenjeno
-                            // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
-                            pomCena = Convert.ToDouble(dr["Cena"].ToString());
-                            pomkolicina = 1;
-                            pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+                            while (dr.Read())
+                            {
+                                //Izmenjeno
+                                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                                pomCena = Convert.ToDouble(dr["Cena"].ToString());
+                                pomkolicina = 1;
+                                pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
 
-                        }
-
-                        con.Close();
-                        pomPlatilac = Convert.ToInt32(cboUvoznik.SelectedValue);
+                            }
+                            
+                            con.Close();
+                            pomPlatilac = Convert.ToInt32(cboUvoznik.SelectedValue);
                         pomOrgJed = VratiOrgJed(pomManupulacija);
 
 
@@ -1645,8 +1653,8 @@ namespace Saobracaj.Izvoz
 
         private void dataGridView7_CurrentCellChanged(object sender, EventArgs e)
         {
-
-
+            
+            
         }
         private void dataGridView7_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
@@ -1660,15 +1668,14 @@ namespace Saobracaj.Izvoz
 
 
                 if (columnIndex == 6)
-                {
-                    string value = dataGridView7.Rows[rowIndex].Cells[0].EditedFormattedValue.ToString();
+                {   string value = dataGridView7.Rows[rowIndex].Cells[0].EditedFormattedValue.ToString();
                     string value1 = dataGridView7.Rows[rowIndex].Cells[6].EditedFormattedValue.ToString();
                     string value2 = dataGridView7.Rows[rowIndex].Cells[6].Value.ToString();
                     if (txtNadredjeni.Text != "0")
                     {
                         InsertIzvoz uvK = new InsertIzvoz();
                         uvK.UpdCENAIzvozKonacnaUsluga(Convert.ToInt32(value), Convert.ToDouble(value1));
-                        // FillDG8();
+                       // FillDG8();
                     }
                     else
                     {
@@ -1685,7 +1692,7 @@ namespace Saobracaj.Izvoz
         }
         private void dataGridView7_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-
+      
         }
 
         private void dataGridView7_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -1695,7 +1702,7 @@ namespace Saobracaj.Izvoz
                 int columnIndex = dataGridView7.CurrentCell.ColumnIndex;
                 int rowIndex = dataGridView7.CurrentCell.RowIndex;
                 int tmp = 0;
-
+                
                 if (columnIndex == 11)
                 {
                     string value = dataGridView7.Rows[rowIndex].Cells[0].Value.ToString();
@@ -1717,13 +1724,13 @@ namespace Saobracaj.Izvoz
                     {
                         InsertIzvoz uvK = new InsertIzvoz();
                         uvK.UpdPDVIzvozKonacnaUsluga(Convert.ToInt32(value), tmp);
-                        // FillDG8();
+                       // FillDG8();
                     }
                     else
                     {
                         InsertIzvoz uvK = new InsertIzvoz();
                         uvK.UpdPDVIzvozUsluga(Convert.ToInt32(value), tmp);
-                        // FillDG8();
+                       // FillDG8();
 
                     }
 
@@ -1732,7 +1739,7 @@ namespace Saobracaj.Izvoz
                     //Promeni cenu
                 }
 
-
+               
             }
         }
 
@@ -1763,7 +1770,7 @@ namespace Saobracaj.Izvoz
         }
         private void FillDG6Scenario()
         {
-
+        
 
             var select = " SELECT VrstaManipulacije.[ID]      ,VrstaManipulacije.[Naziv] ,  " +
  " VrstaManipulacije.[JM] " +
@@ -1842,5 +1849,5 @@ namespace Saobracaj.Izvoz
             FillDG6Scenario();
         }
     }
-}
+    }
 

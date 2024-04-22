@@ -1,12 +1,13 @@
 ﻿using Saobracaj.Sifarnici;
 using System;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
-    public partial class frmNotifikacije : Form
+    public partial class frmNotifikacije : Syncfusion.Windows.Forms.Office2010Form
     {
         private string connect = frmLogovanje.connectionString;
         private string Kor = Sifarnici.frmLogovanje.user.ToString();
@@ -25,7 +26,9 @@ namespace Saobracaj.Administracija
             InitializeComponent();
             FillGV();
             FillCheck();
-
+            IdGrupe();
+            IdForme();
+            PravoPristupa();
             FillCombo();
 
             txt_ID.Enabled = false;
@@ -41,6 +44,90 @@ namespace Saobracaj.Administracija
                     kreirao = Convert.ToInt32(dr["DeSifra"].ToString());
                 }
             }
+            conn.Close();
+        }
+
+        public string IdGrupe()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();
+            string query = "Select IdGrupe from KorisnikGrupa Where Korisnik = " + "'" + Kor.TrimEnd() + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            int count = 0;
+
+            while (dr.Read())
+            {
+                if (count == 0)
+                {
+                    niz = dr["IdGrupe"].ToString();
+                    count++;
+                }
+                else
+                {
+                    niz = niz + "," + dr["IdGrupe"].ToString();
+                    count++;
+                }
+            }
+            conn.Close();
+            return niz;
+        }
+
+        private int IdForme()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            string query = "Select IdForme from Forme where Rtrim(Code)=" + "'" + code + "'";
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                idForme = Convert.ToInt32(dr["IdForme"].ToString());
+            }
+            conn.Close();
+            return idForme;
+        }
+
+        private void PravoPristupa()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            string query = "Select * From GrupeForme Where IdGrupe in (" + niz + ") and IdForme=" + idForme;
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader reader = cmd.ExecuteReader();
+            if (reader.HasRows == false)
+            {
+                MessageBox.Show("Nemate prava za pristup ovoj formi", code);
+                Pravo = false;
+            }
+            else
+            {
+                Pravo = true;
+                while (reader.Read())
+                {
+                    insert = Convert.ToBoolean(reader["Upis"]);
+                    if (insert == false)
+                    {
+                        tsNew.Enabled = false;
+                    }
+                    update = Convert.ToBoolean(reader["Izmena"]);
+                    if (update == false)
+                    {
+                        tsSave.Enabled = false;
+                    }
+                    delete = Convert.ToBoolean(reader["Brisanje"]);
+                    if (delete == false)
+                    {
+                        tsDelete.Enabled = false;
+                    }
+                }
+            }
+
             conn.Close();
         }
 
@@ -200,6 +287,11 @@ namespace Saobracaj.Administracija
             cbList_Korisnici.DataSource = ds.Tables[0];
             cbList_Korisnici.DisplayMember = "Korisnik";
             cbList_Korisnici.ValueMember = "DeSifra";
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            FillGV();
         }
     }
 }

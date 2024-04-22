@@ -9,7 +9,7 @@ namespace Saobracaj.Izvoz
 {
     public partial class frmPrebacivanjeIzPlanaUPlan : Form
     {
-        public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         public frmPrebacivanjeIzPlanaUPlan()
         {
             InitializeComponent();

@@ -11,7 +11,7 @@ namespace Saobracaj
         public void InsTeretnicaStavke(int BrojTeretnice, int IDNajave, int Uvrstena, int Otkacena, string BrojKola, string Serija, double BrojOsovina, double Duzina, double Tara, double Neto, double G, double P, double R, double RR, string VRNP, int Otpravna, int Uputna, string Reon, string Primedba, double RucKoc, int Uvozna, int Izvozna, string RID, string Dokument)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertTeretnicaStavka";
@@ -234,7 +234,7 @@ namespace Saobracaj
         public void UpdTeretnicaStavke(int Rb, int BrojTeretnice, int IDNajave, int Uvrstena, int Otkacena, string BrojKola, string Serija, double BrojOsovina, double Duzina, double Tara, double Neto, double G, double P, double R, double RR, string VRNP, int Otpravna, int Uputna, string Reon, string Primedba, double RucKoc, int Uvozna, int Izvozna, string RID, string Dokument)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateTeretnicaStavke";
@@ -465,7 +465,7 @@ namespace Saobracaj
 
         public void DeleteTeretnicaStavke(int BrojTeretnice, int RB)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteTeretnicaStavke";
@@ -522,7 +522,7 @@ namespace Saobracaj
 
         public void UpdateRB(int ID, int RB)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateTeretnicaStavkeRB";
@@ -579,7 +579,7 @@ namespace Saobracaj
 
         public void InsTeretnicaStavkeKopiranje(int TeretnicaIz, int TeretnicaU, int IDStavke)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertTeretnicaStavkaKopiraj";
@@ -647,7 +647,7 @@ namespace Saobracaj
         public void InsTeretnicaStavkeRN(int IDStavke, int StanicaOd, int StanicaDo)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertTeretnicaStavkaRN";
@@ -714,7 +714,7 @@ namespace Saobracaj
 
         public void UpdTeretnicaStavkeSve(int ID, int Rb, int BrojTeretnice, int IDNajave, int Uvrstena, int Otkacena, string BrojKola, string Serija, double BrojOsovina, double Duzina, double Tara, double Neto, double G, double P, double R, double RR, string VRNP, int Otpravna, int Uputna, string Reon, string Primedba, double RucKoc, int Uvozna, int Izvozna, string RID, string Dokument)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateTeretnicaStavkeSve";
@@ -950,7 +950,7 @@ namespace Saobracaj
 
         public void UpdateTeretnicaRBUpDown(int BrojTeretnice, int RB, int ID, int Smer)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateTeretnicaRBUpDown";
@@ -1021,7 +1021,7 @@ namespace Saobracaj
 
         public void UpdateOstaleStavke(int ID, int RB, string BrojKola, string Serija, double BrojOsovina, double Duzina, double Tara, double Neto, double G, double P, double R, double RR, string VRNP, string Reon, string Primedba, double RucKoc, string RID, string Dokument)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateTeretnicaOstaleStavke";
@@ -1202,7 +1202,7 @@ namespace Saobracaj
 
         public void PrenesiTrainList(int BrojTeretnice, int TrainList)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertTeretnicaStavkeTrainList";
@@ -1263,7 +1263,7 @@ namespace Saobracaj
 
         public void UpdTeretnicaStavkeKomercijalniPregled(int BrojTeretnice, int AktivnostID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateTeretnicaStavkeKomercijalniPregled";
@@ -1324,7 +1324,7 @@ namespace Saobracaj
 
         public void ProveraTeretniceKomercijalniPregled(int BrojTeretnice, int AktivnostID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "ProveraTeretnicaKomercijalniPregled";

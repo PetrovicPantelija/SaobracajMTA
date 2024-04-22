@@ -66,7 +66,7 @@ namespace Saobracaj.Sifarnici
             dataGridView1.Columns[2].Width = 300;
 
             DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "RID";
+            dataGridView1.Columns[3].HeaderText = "RID/ADR";
             dataGridView1.Columns[3].Width = 100;
 
             DataGridViewColumn column5 = dataGridView1.Columns[4];

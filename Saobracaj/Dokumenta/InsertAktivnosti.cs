@@ -29,7 +29,7 @@ namespace Saobracaj.Dokumenta
         public void InsAktivnosti(int Zaposleni, DateTime VremeOd, DateTime VremeDo, double Ukupno, double UkupniTroskovi, string Opis, int RN, string Oznaka, double Racun, double Kartica, int Masinovodja, string Mesto, int milspedsmena, int TipRada, int MestoUpucivanja, int PravoDnevnice, string UserName, int OutSide)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertAktivnosti";
@@ -212,7 +212,7 @@ namespace Saobracaj.Dokumenta
         public void InsAktivnostiPrvi(int Zaposleni, DateTime VremeOd, DateTime VremeDo, double Ukupno, double UkupniTroskovi, string Opis, int RN, string Oznaka, double Racun, double Kartica, int Masinovodja, string Mesto, int milspedsmena, int TipRada, int MestoUpucivanja, int PravoDnevnice, string UserName, int OutSide)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertAktivnostiPrvi";
@@ -396,7 +396,7 @@ namespace Saobracaj.Dokumenta
         public void DeleteID()
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteAktivnostiID";
@@ -442,7 +442,7 @@ namespace Saobracaj.Dokumenta
         public void InsID(int ID)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertAktivnostiID";
@@ -495,7 +495,7 @@ namespace Saobracaj.Dokumenta
         public void InsAktivnotiZaglavlje()
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertAktivnostiZaglavljeID";
@@ -545,7 +545,7 @@ namespace Saobracaj.Dokumenta
         {
             SqlConnection conn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
-            conn.ConnectionString = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            conn.ConnectionString = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             cmd.Connection = conn;
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "ProveriAktivnostPostoji";
@@ -580,7 +580,7 @@ namespace Saobracaj.Dokumenta
         public void UpdAktivnosti(int ID, int Zaposleni, DateTime VremeOd, DateTime VremeDo, double Ukupno, double UkupniTroskovi, string Opis, int RN, string Oznaka, double Racun, double Kartica, int Masinovodja, string Mesto, int milspedsmena, int TipRada, int MestoUpucivanja)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateAktivnosti";
@@ -747,7 +747,7 @@ namespace Saobracaj.Dokumenta
         public void UpdAktivnostiZarada(int ID, double Izracun, double Razlika, double Zarada)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateAktivnostiZarada";
@@ -822,7 +822,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdatePoslaoMailAktivnosti(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateAktivnostiPoslatMail";
@@ -874,7 +874,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateAktivnostiPlaceno(int ID, DateTime VremePlaceno)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateAktivnostiPlaceno";
@@ -935,7 +935,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateAktivnostiKontrolisanoSpoljno(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateAktivnostiKontrolisanoSpoljno";
@@ -988,7 +988,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateAktivnostiPlacenoRacuni(int ID, int Pregledao)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateAktivnostiPlacenoRacuni";
@@ -1048,7 +1048,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateAktivnostiPregledano(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateAktivnostiPregledano";
@@ -1098,7 +1098,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateMasinovodja(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateMasinovodja";
@@ -1150,7 +1150,7 @@ namespace Saobracaj.Dokumenta
 
         public void DeleteAktivnosti(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteAktivnosti";

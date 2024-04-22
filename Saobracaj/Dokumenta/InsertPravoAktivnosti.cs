@@ -11,7 +11,7 @@ namespace Saobracaj.Dokumenta
         public void InsPravoAktivnosti(int Zaposleni, int VrstaAktivnostiID)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertPravoAktivnosti";
@@ -72,7 +72,7 @@ namespace Saobracaj.Dokumenta
         public void DelPravoAktivnosti(int Zaposleni, int VrstaAktivnostiID)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeletePravoAktivnosti";

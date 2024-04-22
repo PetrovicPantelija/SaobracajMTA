@@ -620,8 +620,8 @@ namespace Saobracaj
 
         private void brojSmenaRasporedToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmBrojSmena brsm = new frmBrojSmena();
-            brsm.Show();
+          //  frmBrojSmena brsm = new frmBrojSmena();
+           // brsm.Show();
         }
 
         private void planiranjeZaposlenihToolStripMenuItem1_Click(object sender, EventArgs e)

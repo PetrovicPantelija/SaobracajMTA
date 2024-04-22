@@ -1,17 +1,21 @@
 ﻿
 
 using System;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.IO;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
 
 namespace Testiranje.Dokumeta
 {
     class InsertOtprema
     {
 
-        public void InsertOtp(DateTime DatumOtpreme, int StatusOtpreme, int IdVoza, string RegBrKamiona, string ImeVozaca, DateTime VremeOdlaska, int NacinOtpreme, DateTime Datum, string Korisnik, string Napomena, int PredefinisanePorukeID)
+        public void InsertOtp( DateTime DatumOtpreme,int StatusOtpreme,int IdVoza, string RegBrKamiona, string ImeVozaca 	 , DateTime VremeOdlaska, int NacinOtpreme,	DateTime Datum, string Korisnik, string Napomena, int PredefinisanePorukeID)
         {
             /*
             	@DatumOtpreme [datetime] ,
@@ -24,13 +28,13 @@ namespace Testiranje.Dokumeta
 	@Datum [datetime] ,
 	@Korisnik [nvarchar](20) 
              * */
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertOtpremaKontejnera";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
-
-
+            
+            
             SqlParameter parameter = new SqlParameter();
             parameter.ParameterName = "@DatumOtpreme";
             parameter.SqlDbType = SqlDbType.DateTime;
@@ -52,7 +56,7 @@ namespace Testiranje.Dokumeta
             parameter01.Value = IdVoza;
             myCommand.Parameters.Add(parameter01);
 
-
+           
 
 
             SqlParameter parameter3 = new SqlParameter();
@@ -72,9 +76,9 @@ namespace Testiranje.Dokumeta
             parameter4.Value = ImeVozaca;
             myCommand.Parameters.Add(parameter4);
 
+          
 
-
-
+           
 
             SqlParameter parameter15 = new SqlParameter();
             parameter15.ParameterName = "@VremeOdlaska";
@@ -91,16 +95,16 @@ namespace Testiranje.Dokumeta
             parameter16.Value = NacinOtpreme;
             myCommand.Parameters.Add(parameter16);
 
-
+          
 
             SqlParameter parameter18 = new SqlParameter();
             parameter18.ParameterName = "@Datum";
             parameter18.SqlDbType = SqlDbType.DateTime;
-
+          
             parameter18.Direction = ParameterDirection.Input;
             parameter18.Value = Datum;
             myCommand.Parameters.Add(parameter18);
-
+            
             SqlParameter parameter19 = new SqlParameter();
             parameter19.ParameterName = "@Korisnik";
             parameter19.SqlDbType = SqlDbType.NVarChar;
@@ -168,7 +172,7 @@ namespace Testiranje.Dokumeta
         public void UpdOtpremaKontejnera(int ID, DateTime DatumOtpreme, int StatusOtpreme, int IdVoza, string RegBrKamiona, string ImeVozaca, DateTime VremeOdlaska, int NacinOtpreme, DateTime Datum, string Korisnik, string Napomena, int PredefinisanePorukeID)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateOtpremaKontejnera";
@@ -311,59 +315,59 @@ namespace Testiranje.Dokumeta
             }
         }
 
-        public void DeleteOtpremaKontejnera(int ID)
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            SqlCommand myCommand = myConnection.CreateCommand();
-            myCommand.CommandText = "DeleteOtpremaKontejnera";
-            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+          public void DeleteOtpremaKontejnera(int ID)
+          {
+              var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+              SqlConnection myConnection = new SqlConnection(s_connection);
+              SqlCommand myCommand = myConnection.CreateCommand();
+              myCommand.CommandText = "DeleteOtpremaKontejnera";
+              myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-            SqlParameter parameter = new SqlParameter();
-            parameter.ParameterName = "@ID";
-            parameter.SqlDbType = SqlDbType.Int;
-            parameter.Direction = ParameterDirection.Input;
-            parameter.Value = ID;
-            myCommand.Parameters.Add(parameter);
+              SqlParameter parameter = new SqlParameter();
+              parameter.ParameterName = "@ID";
+              parameter.SqlDbType = SqlDbType.Int;
+              parameter.Direction = ParameterDirection.Input;
+              parameter.Value = ID;
+              myCommand.Parameters.Add(parameter);
 
-            myConnection.Open();
-            SqlTransaction myTransaction = myConnection.BeginTransaction();
-            myCommand.Transaction = myTransaction;
-            bool error = true;
-            try
-            {
-                myCommand.ExecuteNonQuery();
-                myTransaction.Commit();
-                myTransaction = myConnection.BeginTransaction();
-                myCommand.Transaction = myTransaction;
-            }
+              myConnection.Open();
+              SqlTransaction myTransaction = myConnection.BeginTransaction();
+              myCommand.Transaction = myTransaction;
+              bool error = true;
+              try
+              {
+                  myCommand.ExecuteNonQuery();
+                  myTransaction.Commit();
+                  myTransaction = myConnection.BeginTransaction();
+                  myCommand.Transaction = myTransaction;
+              }
 
-            catch (SqlException)
-            {
-                throw new Exception("Brisanje neuspešno");
-            }
+              catch (SqlException)
+              {
+                  throw new Exception("Brisanje neuspešno");
+              }
 
-            finally
-            {
-                if (!error)
-                {
-                    myTransaction.Commit();
-                    MessageBox.Show("Brisanje uspešno završeno", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+              finally
+              {
+                  if (!error)
+                  {
+                      myTransaction.Commit();
+                      MessageBox.Show("Brisanje uspešno završeno", "",
+                      MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                }
-                myConnection.Close();
+                  }
+                  myConnection.Close();
 
-                if (error)
-                {
-                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-                }
-            }
-        }
+                  if (error)
+                  {
+                      // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                  }
+              }
+          }
 
         public void UpdateEmailOtpremaNajava(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateEmailOtpremaNajava";
@@ -413,7 +417,7 @@ namespace Testiranje.Dokumeta
 
         public void UpdateEmailOtpremaOtprema(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateEmailOtpremaOtprema";
@@ -463,7 +467,7 @@ namespace Testiranje.Dokumeta
 
         public void UpdateZatvorenOtpremaCheck(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateZatvorenOtpremaCheck";

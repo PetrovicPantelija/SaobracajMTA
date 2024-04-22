@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props" Condition="Exists('..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props')" />
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -10,7 +11,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Saobracaj</RootNamespace>
     <AssemblyName>Saobracaj</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <TargetFrameworkProfile />
@@ -80,8 +81,17 @@
     <Reference Include="AjaxMin">
       <HintPath>..\packages\AjaxMin.5.14.5506.26202\lib\net40\AjaxMin.dll</HintPath>
     </Reference>
-    <Reference Include="Bunifu_UI_v1.52">
-      <HintPath>..\..\..\..\..\Desktop\DLL\Bunifu_UI_v1.52.dll</HintPath>
+    <Reference Include="Bunifu.Licensing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=f89b4760ba7dcb6b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bunifu.UI.WinForms.6.3.0\lib\net452\Bunifu.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms, Version=0.0.0.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bunifu.UI.WinForms.6.3.0\lib\net452\Bunifu.UI.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.1.5.3, Version=1.5.3.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bunifu.UI.WinForms.1.5.3.2.0.0\lib\net452\Bunifu.UI.WinForms.1.5.3.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.Deprecated, Version=0.0.0.0, Culture=neutral, PublicKeyToken=e8e24ccd28363fe9, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bunifu.UI.WinForms.Deprecated.2.0.0\lib\net452\Bunifu.UI.WinForms.Deprecated.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -136,35 +146,29 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1001\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportViewer.Common.v12.12.0.0.1\lib\Microsoft.ReportViewer.Common.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportViewer.Runtime.Common.12.0.2402.15\lib\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportViewer.Runtime.Common.12.0.2402.15\lib\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebDesign, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1620.0\lib\net40\Microsoft.ReportViewer.WebDesign.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1484.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.WebForms.150.1620.0\lib\net40\Microsoft.ReportViewer.WebForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.ReportViewer.WinForms.resources, Version=11.0.0.0, Culture=de, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio 11.0\ReportViewer\de\Microsoft.ReportViewer.WinForms.resources.dll</HintPath>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.1016.290\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.SqlServer.Types, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.160.1000.6\lib\net462\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -357,6 +361,7 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.115.5\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Design" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.6.0.0\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
@@ -414,6 +419,7 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -564,12 +570,6 @@
     </Compile>
     <Compile Include="Dokumenta\frmBolovanja.Designer.cs">
       <DependentUpon>frmBolovanja.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Dokumenta\frmBrojSmena.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Dokumenta\frmBrojSmena.Designer.cs">
-      <DependentUpon>frmBrojSmena.cs</DependentUpon>
     </Compile>
     <Compile Include="Dokumenta\frmBukingKolaKontrejner.cs">
       <SubType>Form</SubType>
@@ -823,11 +823,11 @@
     <Compile Include="Dokumenta\frmOtpremaKontejneraIzvozKamion.Designer.cs">
       <DependentUpon>frmOtpremaKontejneraIzvozKamion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dokumenta\frmOtpremaKontejneraLeget.cs">
+    <Compile Include="Dokumenta\frmOtpremaKontejneraLegetIZVOZ.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dokumenta\frmOtpremaKontejneraLeget.Designer.cs">
-      <DependentUpon>frmOtpremaKontejneraLeget.cs</DependentUpon>
+    <Compile Include="Dokumenta\frmOtpremaKontejneraLegetIZVOZ.Designer.cs">
+      <DependentUpon>frmOtpremaKontejneraLegetIZVOZ.cs</DependentUpon>
     </Compile>
     <Compile Include="Dokumenta\frmOtpremaKontejneraUvozKamion.cs">
       <SubType>Form</SubType>
@@ -2060,17 +2060,53 @@
     <Compile Include="RadniNalozi\frmAnalizaRadnihNaloga.Designer.cs">
       <DependentUpon>frmAnalizaRadnihNaloga.cs</DependentUpon>
     </Compile>
+    <Compile Include="RadniNalozi\frmCIRPregledac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalozi\frmCIRPregledac.Designer.cs">
+      <DependentUpon>frmCIRPregledac.cs</DependentUpon>
+    </Compile>
     <Compile Include="RadniNalozi\frmDodelaSkladista.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RadniNalozi\frmDodelaSkladista.Designer.cs">
       <DependentUpon>frmDodelaSkladista.cs</DependentUpon>
     </Compile>
+    <Compile Include="RadniNalozi\frmKalmarGateIN.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalozi\frmKalmarGateIN.Designer.cs">
+      <DependentUpon>frmKalmarGateIN.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadniNalozi\frmKalmarGateINKaminonPreneseno.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalozi\frmKalmarGateINKaminonPreneseno.Designer.cs">
+      <DependentUpon>frmKalmarGateINKaminonPreneseno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadniNalozi\frmKalmarGateInVoz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalozi\frmKalmarGateInVoz.Designer.cs">
+      <DependentUpon>frmKalmarGateInVoz.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadniNalozi\frmKalmarGateOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalozi\frmKalmarGateOut.Designer.cs">
+      <DependentUpon>frmKalmarGateOut.cs</DependentUpon>
+    </Compile>
     <Compile Include="RadniNalozi\frmPregledSkladistaNovi.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="RadniNalozi\frmPregledSkladistaNovi.Designer.cs">
       <DependentUpon>frmPregledSkladistaNovi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadniNalozi\frmVizuelniPregledi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalozi\frmVizuelniPregledi.Designer.cs">
+      <DependentUpon>frmVizuelniPregledi.cs</DependentUpon>
     </Compile>
     <Compile Include="RadniNalozi\InsertIsporuka.cs" />
     <Compile Include="RadniNalozi\InsertRN.cs" />
@@ -2341,6 +2377,12 @@
     <Compile Include="Sifarnici\frmStatusUsluge.Designer.cs">
       <DependentUpon>frmStatusUsluge.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sifarnici\frmTerminalProces.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnici\frmTerminalProces.Designer.cs">
+      <DependentUpon>frmTerminalProces.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sifarnici\frmVagoniSerije.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2572,7 +2614,6 @@
       <DependentUpon>KrajnjeDestinacije.cs</DependentUpon>
     </Compile>
     <Compile Include="SimpleScheduleDataProvider.cs" />
-    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="SyncForm\frmAnalizaAktivnosti.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2645,7 +2686,15 @@
     <Compile Include="Tehnologija\frmTehnologijaPregled.Designer.cs">
       <DependentUpon>frmTehnologijaPregled.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tehnologija\frmTerminalOperacije.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tehnologija\frmTerminalOperacije.Designer.cs">
+      <DependentUpon>frmTerminalOperacije.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tehnologija\InserTerminalProces.cs" />
     <Compile Include="Tehnologija\InsertTehnologija.cs" />
+    <Compile Include="Tehnologija\InsertTerminalOperacije.cs" />
     <Compile Include="Tehnologija\InsertTestoviPitanja.cs" />
     <Compile Include="TESTIRANJEDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -2654,6 +2703,15 @@
     </Compile>
     <Compile Include="TESTIRANJEDataSet1TA.Designer.cs">
       <DependentUpon>TESTIRANJEDataSet1TA.xsd</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="TESTIRANJEDataSetTA12.cs">
+      <DependentUpon>TESTIRANJEDataSetTA12.xsd</DependentUpon>
+      <SubType>code</SubType>
+    </Compile>
+    <Compile Include="TESTIRANJEDataSetTA12.Designer.cs">
+      <DependentUpon>TESTIRANJEDataSetTA12.xsd</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
@@ -3135,6 +3193,9 @@
     <Compile Include="TrackModal\Sifarnici\PrvaProbaForma.Designer.cs">
       <DependentUpon>PrvaProbaForma.cs</DependentUpon>
     </Compile>
+    <Compile Include="TrackModal\TestiranjeDataSet.cs">
+      <DependentUpon>TestiranjeDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TrackModal\TestiranjeDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3562,9 +3623,6 @@
     <EmbeddedResource Include="Dokumenta\frmBolovanja.resx">
       <DependentUpon>frmBolovanja.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dokumenta\frmBrojSmena.resx">
-      <DependentUpon>frmBrojSmena.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmBukingKolaKontrejner.resx">
       <DependentUpon>frmBukingKolaKontrejner.cs</DependentUpon>
     </EmbeddedResource>
@@ -3691,8 +3749,8 @@
     <EmbeddedResource Include="Dokumenta\frmOtpremaKontejneraIzvozKamion.resx">
       <DependentUpon>frmOtpremaKontejneraIzvozKamion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dokumenta\frmOtpremaKontejneraLeget.resx">
-      <DependentUpon>frmOtpremaKontejneraLeget.cs</DependentUpon>
+    <EmbeddedResource Include="Dokumenta\frmOtpremaKontejneraLegetIZVOZ.resx">
+      <DependentUpon>frmOtpremaKontejneraLegetIZVOZ.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmOtpremaKontejneraUvozKamion.resx">
       <DependentUpon>frmOtpremaKontejneraUvozKamion.cs</DependentUpon>
@@ -4018,6 +4076,8 @@
     <EmbeddedResource Include="Izvestaji\rptCIR.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptCIRGreske.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptCIRTA.rdlc" />
+    <EmbeddedResource Include="Izvestaji\rptDodatniList.rdlc" />
+    <EmbeddedResource Include="Izvestaji\rptDodatniListTA.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptEvidencijaKvarova.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptMUPDozvola.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptNalogZaPrevozTA.rdlc" />
@@ -4242,14 +4302,32 @@
     <EmbeddedResource Include="RadniNalozi\frmAnalizaRadnihNaloga.resx">
       <DependentUpon>frmAnalizaRadnihNaloga.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalozi\frmCIRPregledac.resx">
+      <DependentUpon>frmCIRPregledac.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\frmDodelaSkladista.resx">
       <DependentUpon>frmDodelaSkladista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalozi\frmKalmarGateIN.resx">
+      <DependentUpon>frmKalmarGateIN.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalozi\frmKalmarGateINKaminonPreneseno.resx">
+      <DependentUpon>frmKalmarGateINKaminonPreneseno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalozi\frmKalmarGateInVoz.resx">
+      <DependentUpon>frmKalmarGateInVoz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalozi\frmKalmarGateOut.resx">
+      <DependentUpon>frmKalmarGateOut.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\frmPregledSkladista.resx">
       <DependentUpon>frmPregledSkladista.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\frmPregledSkladistaNovi.resx">
       <DependentUpon>frmPregledSkladistaNovi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalozi\frmVizuelniPregledi.resx">
+      <DependentUpon>frmVizuelniPregledi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\Medjuskladisni.resx">
       <DependentUpon>Medjuskladisni.cs</DependentUpon>
@@ -4378,6 +4456,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmStatusUsluge.resx">
       <DependentUpon>frmStatusUsluge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sifarnici\frmTerminalProces.resx">
+      <DependentUpon>frmTerminalProces.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmVagoniSerije.resx">
       <DependentUpon>frmVagoniSerije.cs</DependentUpon>
@@ -4514,6 +4595,9 @@
     <EmbeddedResource Include="Tehnologija\frmTehnologijaPregled.resx">
       <DependentUpon>frmTehnologijaPregled.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Tehnologija\frmTerminalOperacije.resx">
+      <DependentUpon>frmTerminalOperacije.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Testiranje\frmGenerisanjeTestaKorisnik.resx">
       <DependentUpon>frmGenerisanjeTestaKorisnik.cs</DependentUpon>
     </EmbeddedResource>
@@ -4632,7 +4716,6 @@
     <EmbeddedResource Include="TrackModal\Izvestaji\frmZadrzavanjeKotejneraPun.resx">
       <DependentUpon>frmZadrzavanjeKotejneraPun.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="TrackModal\Izvestaji\rptDodatniList.rdlc" />
     <EmbeddedResource Include="TrackModal\Izvestaji\rptFakturisanjeManipulacija.rdlc" />
     <EmbeddedResource Include="TrackModal\Izvestaji\rptKvarovi.rdlc" />
     <EmbeddedResource Include="TrackModal\Izvestaji\rptSelectTransport1.rdlc" />
@@ -5111,6 +5194,17 @@
     <None Include="TESTIRANJEDataSet1TA.xss">
       <DependentUpon>TESTIRANJEDataSet1TA.xsd</DependentUpon>
     </None>
+    <None Include="TESTIRANJEDataSetTA12.xsc">
+      <DependentUpon>TESTIRANJEDataSetTA12.xsd</DependentUpon>
+    </None>
+    <None Include="TESTIRANJEDataSetTA12.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TESTIRANJEDataSetTA12.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TESTIRANJEDataSetTA12.xss">
+      <DependentUpon>TESTIRANJEDataSetTA12.xsd</DependentUpon>
+    </None>
     <None Include="TrackModalDataSet111.xsc">
       <DependentUpon>TrackModalDataSet111.xsd</DependentUpon>
     </None>
@@ -5438,19 +5532,6 @@
     <None Include="Resources\excel-icon-transparent-101.png" />
     <None Include="Resources\ta.jpeg" />
     <None Include="Resources\dpt.png" />
-    <Content Include="SqlServerTypes\readme.htm" />
-    <Content Include="SqlServerTypes\x64\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\BAcground.jpg" />
     <None Include="Resources\Bacground2.jpg" />
     <None Include="Resources\Background5.jpg" />
@@ -5466,6 +5547,7 @@
     <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Data.SqlClient.SNI.4.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Data.SqlClient.SNI.4.0.0\build\net46\Microsoft.Data.SqlClient.SNI.targets'))" />
     <Error Condition="!Exists('..\packages\System.Text.Json.6.0.2\build\System.Text.Json.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Text.Json.6.0.2\build\System.Text.Json.targets'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.115.5\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />

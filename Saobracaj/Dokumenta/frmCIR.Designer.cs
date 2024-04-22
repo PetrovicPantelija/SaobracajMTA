@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCIR));
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.btnManipulacija = new System.Windows.Forms.ToolStrip();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
@@ -108,6 +108,7 @@
             this.chkInterni = new System.Windows.Forms.CheckBox();
             this.label24 = new System.Windows.Forms.Label();
             this.txtNosivost = new System.Windows.Forms.NumericUpDown();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.btnManipulacija.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTara)).BeginInit();
@@ -131,7 +132,8 @@
             this.toolStripSeparator1,
             this.toolStripLabel1,
             this.toolStripLabel2,
-            this.toolStripButton1});
+            this.toolStripButton1,
+            this.toolStripButton2});
             this.btnManipulacija.Location = new System.Drawing.Point(0, 0);
             this.btnManipulacija.Name = "btnManipulacija";
             this.btnManipulacija.Size = new System.Drawing.Size(1235, 27);
@@ -180,7 +182,7 @@
             this.toolStripLabel1.ForeColor = System.Drawing.Color.White;
             this.toolStripLabel1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel1.Image")));
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(103, 24);
+            this.toolStripLabel1.Size = new System.Drawing.Size(102, 24);
             this.toolStripLabel1.Text = "Štampa CIR";
             this.toolStripLabel1.Click += new System.EventHandler(this.toolStripLabel1_Click);
             // 
@@ -191,7 +193,7 @@
             this.toolStripLabel2.ForeColor = System.Drawing.Color.White;
             this.toolStripLabel2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripLabel2.Image")));
             this.toolStripLabel2.Name = "toolStripLabel2";
-            this.toolStripLabel2.Size = new System.Drawing.Size(132, 24);
+            this.toolStripLabel2.Size = new System.Drawing.Size(131, 24);
             this.toolStripLabel2.Text = "Pozovi postojeći";
             this.toolStripLabel2.Click += new System.EventHandler(this.toolStripLabel2_Click);
             // 
@@ -220,7 +222,7 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(12, 41);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 16);
+            this.label1.Size = new System.Drawing.Size(37, 16);
             this.label1.TabIndex = 181;
             this.label1.Text = "Šifra:";
             // 
@@ -247,7 +249,7 @@
             this.label22.ForeColor = System.Drawing.Color.Black;
             this.label22.Location = new System.Drawing.Point(142, 41);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(53, 16);
+            this.label22.Size = new System.Drawing.Size(52, 16);
             this.label22.TabIndex = 216;
             this.label22.Text = "Veličina:";
             this.label22.Visible = false;
@@ -262,7 +264,7 @@
             this.chkMaterijalCelik.Location = new System.Drawing.Point(12, 287);
             this.chkMaterijalCelik.Name = "chkMaterijalCelik";
             this.chkMaterijalCelik.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkMaterijalCelik.Size = new System.Drawing.Size(55, 20);
+            this.chkMaterijalCelik.Size = new System.Drawing.Size(54, 20);
             this.chkMaterijalCelik.TabIndex = 238;
             this.chkMaterijalCelik.Text = "Čelik";
             this.chkMaterijalCelik.UseVisualStyleBackColor = true;
@@ -275,7 +277,7 @@
             this.label11.ForeColor = System.Drawing.Color.Black;
             this.label11.Location = new System.Drawing.Point(12, 90);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(92, 16);
+            this.label11.Size = new System.Drawing.Size(91, 16);
             this.label11.TabIndex = 240;
             this.label11.Text = "Tip kontejnera:";
             // 
@@ -297,7 +299,7 @@
             this.chkAlumini.Location = new System.Drawing.Point(12, 313);
             this.chkAlumini.Name = "chkAlumini";
             this.chkAlumini.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkAlumini.Size = new System.Drawing.Size(70, 20);
+            this.chkAlumini.Size = new System.Drawing.Size(69, 20);
             this.chkAlumini.TabIndex = 241;
             this.chkAlumini.Text = "Alumini";
             this.chkAlumini.UseVisualStyleBackColor = true;
@@ -311,7 +313,7 @@
             this.chkincoming.Location = new System.Drawing.Point(211, 86);
             this.chkincoming.Name = "chkincoming";
             this.chkincoming.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkincoming.Size = new System.Drawing.Size(76, 20);
+            this.chkincoming.Size = new System.Drawing.Size(75, 20);
             this.chkincoming.TabIndex = 242;
             this.chkincoming.Text = "Otprema";
             this.chkincoming.UseVisualStyleBackColor = true;
@@ -325,7 +327,7 @@
             this.chkPun.Location = new System.Drawing.Point(12, 241);
             this.chkPun.Name = "chkPun";
             this.chkPun.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkPun.Size = new System.Drawing.Size(49, 20);
+            this.chkPun.Size = new System.Drawing.Size(48, 20);
             this.chkPun.TabIndex = 243;
             this.chkPun.Text = "Pun";
             this.chkPun.UseVisualStyleBackColor = true;
@@ -338,7 +340,7 @@
             this.label25.ForeColor = System.Drawing.Color.Black;
             this.label25.Location = new System.Drawing.Point(9, 392);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(36, 16);
+            this.label25.Size = new System.Drawing.Size(35, 16);
             this.label25.TabIndex = 245;
             this.label25.Text = "Tara:";
             // 
@@ -365,7 +367,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(5, 551);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 16);
+            this.label3.Size = new System.Drawing.Size(95, 16);
             this.label3.TabIndex = 247;
             this.label3.Text = "Broj kontejnera:";
             // 
@@ -386,7 +388,7 @@
             this.chkPlomba1.Location = new System.Drawing.Point(8, 598);
             this.chkPlomba1.Name = "chkPlomba1";
             this.chkPlomba1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkPlomba1.Size = new System.Drawing.Size(157, 20);
+            this.chkPlomba1.Size = new System.Drawing.Size(156, 20);
             this.chkPlomba1.TabIndex = 248;
             this.chkPlomba1.Text = "Plomba 1 je neispravna";
             this.chkPlomba1.UseVisualStyleBackColor = true;
@@ -399,7 +401,7 @@
             this.chkPlomba2.Location = new System.Drawing.Point(195, 598);
             this.chkPlomba2.Name = "chkPlomba2";
             this.chkPlomba2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkPlomba2.Size = new System.Drawing.Size(157, 20);
+            this.chkPlomba2.Size = new System.Drawing.Size(156, 20);
             this.chkPlomba2.TabIndex = 249;
             this.chkPlomba2.Text = "Plomba 2 je neispravna";
             this.chkPlomba2.UseVisualStyleBackColor = true;
@@ -411,7 +413,7 @@
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(172, 150);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 16);
+            this.label6.Size = new System.Drawing.Size(44, 16);
             this.label6.TabIndex = 253;
             this.label6.Text = "Vagon:";
             // 
@@ -431,7 +433,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(175, 198);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(60, 16);
+            this.label2.Size = new System.Drawing.Size(59, 16);
             this.label2.TabIndex = 255;
             this.label2.Text = "Truck in:";
             // 
@@ -452,7 +454,7 @@
             this.chkDemaged.Location = new System.Drawing.Point(358, 198);
             this.chkDemaged.Name = "chkDemaged";
             this.chkDemaged.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkDemaged.Size = new System.Drawing.Size(72, 20);
+            this.chkDemaged.Size = new System.Drawing.Size(71, 20);
             this.chkDemaged.TabIndex = 256;
             this.chkDemaged.Text = "Oštećen";
             this.chkDemaged.UseVisualStyleBackColor = true;
@@ -468,7 +470,7 @@
             this.chkIspravan.Location = new System.Drawing.Point(358, 224);
             this.chkIspravan.Name = "chkIspravan";
             this.chkIspravan.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkIspravan.Size = new System.Drawing.Size(76, 20);
+            this.chkIspravan.Size = new System.Drawing.Size(75, 20);
             this.chkIspravan.TabIndex = 257;
             this.chkIspravan.Text = "Ispravan";
             this.chkIspravan.UseVisualStyleBackColor = true;
@@ -482,7 +484,7 @@
             this.chkPrevoz.Location = new System.Drawing.Point(175, 250);
             this.chkPrevoz.Name = "chkPrevoz";
             this.chkPrevoz.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkPrevoz.Size = new System.Drawing.Size(167, 20);
+            this.chkPrevoz.Size = new System.Drawing.Size(166, 20);
             this.chkPrevoz.TabIndex = 258;
             this.chkPrevoz.Text = "Transportno nesposoban";
             this.chkPrevoz.UseVisualStyleBackColor = true;
@@ -494,7 +496,7 @@
             this.Containerresponsible.ForeColor = System.Drawing.Color.Black;
             this.Containerresponsible.Location = new System.Drawing.Point(164, 317);
             this.Containerresponsible.Name = "Containerresponsible";
-            this.Containerresponsible.Size = new System.Drawing.Size(71, 16);
+            this.Containerresponsible.Size = new System.Drawing.Size(70, 16);
             this.Containerresponsible.TabIndex = 260;
             this.Containerresponsible.Text = "Napomene:";
             // 
@@ -514,7 +516,7 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(168, 419);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(64, 16);
+            this.label4.Size = new System.Drawing.Size(63, 16);
             this.label4.TabIndex = 262;
             this.label4.Text = "Primedbe:";
             // 
@@ -534,7 +536,7 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(538, 72);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 16);
+            this.label5.Size = new System.Drawing.Size(47, 16);
             this.label5.TabIndex = 264;
             this.label5.Text = "Primio:";
             this.label5.Click += new System.EventHandler(this.label5_Click);
@@ -555,7 +557,7 @@
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(535, 128);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(66, 16);
+            this.label7.Size = new System.Drawing.Size(65, 16);
             this.label7.TabIndex = 266;
             this.label7.Text = "Pregledao:";
             // 
@@ -575,7 +577,7 @@
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(538, 202);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(50, 16);
+            this.label8.Size = new System.Drawing.Size(49, 16);
             this.label8.TabIndex = 268;
             this.label8.Text = "Predao:";
             // 
@@ -596,7 +598,7 @@
             this.chkPrijem.Location = new System.Drawing.Point(211, 109);
             this.chkPrijem.Name = "chkPrijem";
             this.chkPrijem.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkPrijem.Size = new System.Drawing.Size(63, 20);
+            this.chkPrijem.Size = new System.Drawing.Size(62, 20);
             this.chkPrijem.TabIndex = 269;
             this.chkPrijem.Text = "Prijem";
             this.chkPrijem.UseVisualStyleBackColor = true;
@@ -618,7 +620,7 @@
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(219, 41);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(26, 16);
+            this.label9.Size = new System.Drawing.Size(25, 16);
             this.label9.TabIndex = 271;
             this.label9.Text = "ID:";
             // 
@@ -643,7 +645,7 @@
             this.label16.ForeColor = System.Drawing.Color.Black;
             this.label16.Location = new System.Drawing.Point(197, 549);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(144, 16);
+            this.label16.Size = new System.Drawing.Size(143, 16);
             this.label16.TabIndex = 251;
             this.label16.Text = "Datum prijema/otpreme:";
             // 
@@ -668,7 +670,7 @@
             this.label10.ForeColor = System.Drawing.Color.Black;
             this.label10.Location = new System.Drawing.Point(743, 43);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(65, 16);
+            this.label10.Size = new System.Drawing.Size(64, 16);
             this.label10.TabIndex = 274;
             this.label10.Text = "Oštećenja:";
             // 
@@ -714,12 +716,13 @@
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource1.Name = "DataSet1";
-            reportDataSource1.Value = null;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            reportDataSource2.Name = "DataSet1";
+            reportDataSource2.Value = null;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(362, 276);
             this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(873, 414);
             this.reportViewer1.TabIndex = 277;
             // 
@@ -746,7 +749,7 @@
             this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(12, 178);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(43, 16);
+            this.label12.Size = new System.Drawing.Size(42, 16);
             this.label12.TabIndex = 281;
             this.label12.Text = "Širina:";
             // 
@@ -773,7 +776,7 @@
             this.label13.ForeColor = System.Drawing.Color.Black;
             this.label13.Location = new System.Drawing.Point(12, 148);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(50, 16);
+            this.label13.Size = new System.Drawing.Size(49, 16);
             this.label13.TabIndex = 279;
             this.label13.Text = "Dužina:";
             // 
@@ -800,7 +803,7 @@
             this.label14.ForeColor = System.Drawing.Color.Black;
             this.label14.Location = new System.Drawing.Point(12, 206);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(44, 16);
+            this.label14.Size = new System.Drawing.Size(43, 16);
             this.label14.TabIndex = 283;
             this.label14.Text = "Visina:";
             // 
@@ -820,7 +823,7 @@
             this.label15.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label15.Location = new System.Drawing.Point(921, 43);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(34, 16);
+            this.label15.Size = new System.Drawing.Size(33, 16);
             this.label15.TabIndex = 286;
             this.label15.Text = "Deo:";
             // 
@@ -832,7 +835,7 @@
             this.chkPrazan.Location = new System.Drawing.Point(12, 262);
             this.chkPrazan.Name = "chkPrazan";
             this.chkPrazan.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkPrazan.Size = new System.Drawing.Size(65, 20);
+            this.chkPrazan.Size = new System.Drawing.Size(64, 20);
             this.chkPrazan.TabIndex = 287;
             this.chkPrazan.Text = "Prazan";
             this.chkPrazan.UseVisualStyleBackColor = true;
@@ -845,7 +848,7 @@
             this.label17.ForeColor = System.Drawing.Color.Black;
             this.label17.Location = new System.Drawing.Point(12, 347);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(38, 16);
+            this.label17.Size = new System.Drawing.Size(37, 16);
             this.label17.TabIndex = 289;
             this.label17.Text = "Neto:";
             // 
@@ -872,7 +875,7 @@
             this.label18.ForeColor = System.Drawing.Color.Black;
             this.label18.Location = new System.Drawing.Point(12, 441);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(37, 16);
+            this.label18.Size = new System.Drawing.Size(36, 16);
             this.label18.TabIndex = 291;
             this.label18.Text = "BRK:";
             // 
@@ -918,7 +921,7 @@
             this.label19.ForeColor = System.Drawing.Color.Black;
             this.label19.Location = new System.Drawing.Point(5, 621);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(50, 16);
+            this.label19.Size = new System.Drawing.Size(49, 16);
             this.label19.TabIndex = 294;
             this.label19.Text = "Plomba";
             // 
@@ -929,7 +932,7 @@
             this.label20.ForeColor = System.Drawing.Color.Black;
             this.label20.Location = new System.Drawing.Point(192, 621);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(61, 16);
+            this.label20.Size = new System.Drawing.Size(60, 16);
             this.label20.TabIndex = 295;
             this.label20.Text = "Plomba 2";
             // 
@@ -963,7 +966,7 @@
             this.label21.ForeColor = System.Drawing.Color.Black;
             this.label21.Location = new System.Drawing.Point(355, 72);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(115, 16);
+            this.label21.Size = new System.Drawing.Size(114, 16);
             this.label21.TabIndex = 299;
             this.label21.Text = "Kvalitet kontejnera:";
             // 
@@ -999,7 +1002,7 @@
             this.label23.ForeColor = System.Drawing.Color.Black;
             this.label23.Location = new System.Drawing.Point(355, 128);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(68, 16);
+            this.label23.Size = new System.Drawing.Size(67, 16);
             this.label23.TabIndex = 301;
             this.label23.Text = "Oštećenje::";
             // 
@@ -1011,7 +1014,7 @@
             this.chkInterni.Location = new System.Drawing.Point(211, 133);
             this.chkInterni.Name = "chkInterni";
             this.chkInterni.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkInterni.Size = new System.Drawing.Size(68, 20);
+            this.chkInterni.Size = new System.Drawing.Size(67, 20);
             this.chkInterni.TabIndex = 302;
             this.chkInterni.Text = "Imterni";
             this.chkInterni.UseVisualStyleBackColor = true;
@@ -1023,7 +1026,7 @@
             this.label24.ForeColor = System.Drawing.Color.Black;
             this.label24.Location = new System.Drawing.Point(13, 490);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(61, 16);
+            this.label24.Size = new System.Drawing.Size(60, 16);
             this.label24.TabIndex = 304;
             this.label24.Text = "Nosivost:";
             // 
@@ -1042,6 +1045,16 @@
             this.txtNosivost.Size = new System.Drawing.Size(100, 22);
             this.txtNosivost.TabIndex = 303;
             this.txtNosivost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(198, 24);
+            this.toolStripButton2.Text = "ODREDI PRIVREMENU POZICIJU";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // frmCIR
             // 
@@ -1221,5 +1234,6 @@
         private System.Windows.Forms.CheckBox chkInterni;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.NumericUpDown txtNosivost;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
     }
 }

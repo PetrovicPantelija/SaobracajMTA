@@ -32,6 +32,7 @@ namespace Saobracaj.RadniNalozi
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAnalizaRadnihNaloga));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button20 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.button19 = new System.Windows.Forms.Button();
@@ -55,7 +56,6 @@ namespace Saobracaj.RadniNalozi
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.gridGroupingControl2 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.button20 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -103,6 +103,17 @@ namespace Saobracaj.RadniNalozi
             this.splitContainer1.Size = new System.Drawing.Size(1396, 674);
             this.splitContainer1.SplitterDistance = 367;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // button20
+            // 
+            this.button20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(230)))), ((int)(((byte)(90)))));
+            this.button20.Location = new System.Drawing.Point(13, 69);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(152, 23);
+            this.button20.TabIndex = 27;
+            this.button20.Text = "OTVORI RN";
+            this.button20.UseVisualStyleBackColor = false;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
             // button18
             // 
@@ -360,21 +371,11 @@ namespace Saobracaj.RadniNalozi
             this.gridGroupingControl2.Text = "gridGroupingControl2";
             this.gridGroupingControl2.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl2.VersionInfo = "18.4460.0.34";
+            this.gridGroupingControl2.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl2_TableControlCellClick);
             // 
             // toolTip1
             // 
             this.toolTip1.Tag = "Prikazuje posle prijema kontejnera";
-            // 
-            // button20
-            // 
-            this.button20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(155)))), ((int)(((byte)(230)))), ((int)(((byte)(90)))));
-            this.button20.Location = new System.Drawing.Point(13, 69);
-            this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(152, 23);
-            this.button20.TabIndex = 27;
-            this.button20.Text = "OTVORI RN";
-            this.button20.UseVisualStyleBackColor = false;
-            this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
             // frmAnalizaRadnihNaloga
             // 

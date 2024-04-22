@@ -1,9 +1,16 @@
 ﻿using System;
-using System.Configuration;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Configuration;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
+using Saobracaj.Dokumenta;
 //
 namespace Saobracaj.RadniNalozi
 {
@@ -33,6 +40,7 @@ namespace Saobracaj.RadniNalozi
             {
                 chkUvoz.Checked = true;
                 chkIzvoz.Checked = false;
+                
             }
             if (Uvoz == 1)
             {
@@ -40,12 +48,12 @@ namespace Saobracaj.RadniNalozi
                 chkIzvoz.Checked = true;
             }
             // cboUsluga.SelectedValue = Usluga;
-            //  FillGV();
+             FillGV();
 
         }
         private void VratiPodatkeVrstaMan(string IDUsluge)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -99,6 +107,8 @@ namespace Saobracaj.RadniNalozi
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
         }
+
+
         private void FillCombo()
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -229,14 +239,18 @@ namespace Saobracaj.RadniNalozi
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                txtID.Text = row.Cells[0].Value.ToString();
-                VratiPodatkeStavka();
+                if (row.Selected == true)
+                {
+                    txtID.Text = row.Cells[0].Value.ToString();
+                    VratiPodatkeStavka();
+                }
+                 
             }
         }
 
         private void VratiPodatkeStavka()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -260,20 +274,20 @@ namespace Saobracaj.RadniNalozi
                 txtNalogRealizovao.Text = dr["NalogRealizovao"].ToString();
                 txtNalogIzdao.Text = dr["NalogIzdao"].ToString();
                 txtDatumRealizacije.Value = Convert.ToDateTime(dr["DatumRealizacije"].ToString());
-                txtPrijemID.Text = dr["PrijemID"].ToString();
+                txtPrijemID.Text = dr["PrijemID"].ToString(); 
                 //cboIzvoznik.SelectedValue = Convert.ToInt32(dr["Izvoznik"].ToString());
                 txtBrojPlombe.Text = dr["BrojPlombe"].ToString();
                 txtNalogID.Text = dr["NalogID"].ToString();
                 cboBrodar.SelectedValue = Convert.ToInt32(dr["NazivBrodara"].ToString());
-                cboVrstaRobe.SelectedValue = Convert.ToInt32(dr["VrstaRobe"].ToString());
+               cboVrstaRobe.SelectedValue = Convert.ToInt32(dr["VrstaRobe"].ToString());
 
                 cboNaPoz.SelectedValue = Convert.ToInt32(dr["UPozicijaSklad"].ToString());
 
                 cboNaSklad.SelectedValue = Convert.ToInt32(dr["USkladiste"].ToString());
                 txtKamion.Text = dr["Kamion"].ToString();
-                //NIJE DOBRO null   cboPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
+             //NIJE DOBRO null   cboPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
                 txtNapomena.Text = dr["Napomena"].ToString();
-                //NIJE DOBR NULL   cboInspekcijski.SelectedValue = Convert.ToInt32(dr["InspekcijskiPregled"].ToString());
+             //NIJE DOBR NULL   cboInspekcijski.SelectedValue = Convert.ToInt32(dr["InspekcijskiPregled"].ToString());
 
                 if (dr["Zavrsen"].ToString() == "1")
                 { chkZavrsen.Checked = true; }
@@ -321,7 +335,7 @@ namespace Saobracaj.RadniNalozi
                 ir.InsRNPrijemPlatformeKamIzvoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text);
                 FillGV();
             }
-
+           
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -332,7 +346,48 @@ namespace Saobracaj.RadniNalozi
             {
                 if (row.Selected == true)
                 {
+                    up.PotvrdiUradjenRN4Premesten(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                }
+
+            }
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmCIR cir = new frmCIR(Convert.ToInt32(txtID.Text));
+            cir.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //Dodeljuje se skladiste na koje Kalmarista spusta kontejner
+            Saobracaj.RadniNalozi.frmDodelaSkladista ds = new frmDodelaSkladista(txtPrijemID.Text, 2);
+            ds.Show();
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            InsertRN up = new InsertRN();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected == true)
+                {
                     up.PotvrdiUradjenRN4(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                }
+
+            }
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            InsertRN up = new InsertRN();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    up.PotvrdiUradjenRN4CIR(Convert.ToInt32(row.Cells[0].Value.ToString()));
                 }
 
             }

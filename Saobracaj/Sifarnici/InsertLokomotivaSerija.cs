@@ -10,7 +10,7 @@ namespace Saobracaj.Sifarnici
     {
         public void InsLokomotivaSerija(string Oznaka, string Opis, double Tezina, double Snaga)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertLokomotivaSerija";
@@ -84,7 +84,7 @@ namespace Saobracaj.Sifarnici
 
         public void UpdLokomotivaSerija(int ID, string Oznaka, string Opis, double Tezina, double Snaga)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateLokomotivaSerija";
@@ -166,7 +166,7 @@ namespace Saobracaj.Sifarnici
 
         public void DeleteLokomotivaSerija(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteLokomotivaSerija";

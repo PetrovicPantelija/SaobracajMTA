@@ -1,8 +1,12 @@
 ﻿using System;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.IO;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+using System.Data;
+using System.Configuration;
 
 namespace Testiranje.Dokumeta
 {
@@ -14,7 +18,7 @@ namespace Testiranje.Dokumeta
             DateTime PlOtpreme, DateTime PLFormiranja, DateTime IzvlacenjeSaTerminala, DateTime PreuzimanjeSM, DateTime PolazakSid, DateTime PredajaHR, DateTime PrispeceRijeka, DateTime IskrcajRijeka, DateTime PristizanjaUSid, DateTime Sazeta)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertVoz";
@@ -389,7 +393,7 @@ namespace Testiranje.Dokumeta
             parameter46.Value = Sazeta;
             myCommand.Parameters.Add(parameter46);
 
-            // DateTime PristizanjaUSid, DateTime Sazeta
+           // DateTime PristizanjaUSid, DateTime Sazeta
 
 
 
@@ -436,19 +440,19 @@ namespace Testiranje.Dokumeta
 
             }
         }
-
+    
         public void UpdVoz(int ID, int BrVoza, string Relacija, string KalendarSaobracaja, DateTime VremePolaska, DateTime VremeDolaska,
             double MaksimalnaBruto, double MaksimalnaDuzina, double MaksimalanBrojKola, DateTime VremeZavrsetkaUtovara,
-            DateTime VremeZavrsetkaKP, DateTime VremePrimopredaje, string Napomena, DateTime Datum, string Korisnik, int Dolazeci,
-            int PostNaTerminalD, int KontrolniPregledD, int VremeIstovaraD, int VremePrimopredajeD
-            , int Ponedeljak, int Utorak, int Sreda, int Cetvrtak, int Petak, int Subota, int Nedelja, int PostNaTerminalO,
-            int VremeUtovaraO, int VremeKontrolnogO, int VremeIzvlacenjaO, DateTime VremePolaskaO, DateTime VremeDolaskaO,
-            int StanicaOd, int StanicaDo, int Operater, int Vlasnik, int OperaterSrbija, int OperaterHR, DateTime PlOtpreme,
-            DateTime PLFormiranja, DateTime IzvlacenjeSaTerminala, DateTime PreuzimanjeSM, DateTime PolazakSid, DateTime PredajaHR,
+            DateTime VremeZavrsetkaKP, DateTime VremePrimopredaje, string Napomena, DateTime Datum, string Korisnik, int Dolazeci, 
+            int PostNaTerminalD, int KontrolniPregledD, int VremeIstovaraD, int VremePrimopredajeD           
+            ,int Ponedeljak, int Utorak, int Sreda, int Cetvrtak, int Petak, int Subota, int Nedelja, int PostNaTerminalO ,
+            int VremeUtovaraO,int VremeKontrolnogO, int VremeIzvlacenjaO,DateTime VremePolaskaO, DateTime VremeDolaskaO, 
+            int StanicaOd, int StanicaDo, int Operater, int Vlasnik, int OperaterSrbija, int OperaterHR, DateTime PlOtpreme, 
+            DateTime PLFormiranja, DateTime IzvlacenjeSaTerminala, DateTime PreuzimanjeSM, DateTime PolazakSid, DateTime PredajaHR, 
             DateTime PrispeceRijeka, DateTime IskrcajRijeka, DateTime PristizanjaUSid, DateTime Sazeta)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateVoz";
@@ -569,7 +573,7 @@ namespace Testiranje.Dokumeta
             parameter12.Value = Korisnik;
             myCommand.Parameters.Add(parameter12);
 
-            SqlParameter parameter13 = new SqlParameter();
+              SqlParameter parameter13 = new SqlParameter();
             parameter13.ParameterName = "@Dolazeci";
             parameter13.SqlDbType = SqlDbType.TinyInt;
             parameter13.Direction = ParameterDirection.Input;
@@ -610,7 +614,7 @@ namespace Testiranje.Dokumeta
             parameter18.Direction = ParameterDirection.Input;
             parameter18.Value = Ponedeljak;
             myCommand.Parameters.Add(parameter18);
-
+           
             SqlParameter parameter19 = new SqlParameter();
             parameter19.ParameterName = "@Utorak";
             parameter19.SqlDbType = SqlDbType.TinyInt;
@@ -666,7 +670,7 @@ namespace Testiranje.Dokumeta
             parameter26.Direction = ParameterDirection.Input;
             parameter26.Value = VremeUtovaraO;
             myCommand.Parameters.Add(parameter26);
-
+           
             SqlParameter parameter27 = new SqlParameter();
             parameter27.ParameterName = "@VremeKontrolnogO";
             parameter27.SqlDbType = SqlDbType.Int;
@@ -846,117 +850,117 @@ namespace Testiranje.Dokumeta
             }
         }
 
-        public void DeleteVoz(int ID)
-        {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            SqlCommand myCommand = myConnection.CreateCommand();
-            myCommand.CommandText = "DeleteVoz";
-            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+          public void DeleteVoz(int ID)
+          {
+              var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+              SqlConnection myConnection = new SqlConnection(s_connection);
+              SqlCommand myCommand = myConnection.CreateCommand();
+              myCommand.CommandText = "DeleteVoz";
+              myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-            SqlParameter parameter = new SqlParameter();
-            parameter.ParameterName = "@ID";
-            parameter.SqlDbType = SqlDbType.Int;
-            parameter.Direction = ParameterDirection.Input;
-            parameter.Value = ID;
-            myCommand.Parameters.Add(parameter);
+              SqlParameter parameter = new SqlParameter();
+              parameter.ParameterName = "@ID";
+              parameter.SqlDbType = SqlDbType.Int;
+              parameter.Direction = ParameterDirection.Input;
+              parameter.Value = ID;
+              myCommand.Parameters.Add(parameter);
 
-            myConnection.Open();
-            SqlTransaction myTransaction = myConnection.BeginTransaction();
-            myCommand.Transaction = myTransaction;
-            bool error = true;
-            try
-            {
-                myCommand.ExecuteNonQuery();
-                myTransaction.Commit();
-                myTransaction = myConnection.BeginTransaction();
-                myCommand.Transaction = myTransaction;
-            }
+              myConnection.Open();
+              SqlTransaction myTransaction = myConnection.BeginTransaction();
+              myCommand.Transaction = myTransaction;
+              bool error = true;
+              try
+              {
+                  myCommand.ExecuteNonQuery();
+                  myTransaction.Commit();
+                  myTransaction = myConnection.BeginTransaction();
+                  myCommand.Transaction = myTransaction;
+              }
 
-            catch (SqlException)
-            {
-                throw new Exception("Brisanje neuspešno");
-            }
+              catch (SqlException)
+              {
+                  throw new Exception("Brisanje neuspešno");
+              }
 
-            finally
-            {
-                if (!error)
-                {
-                    myTransaction.Commit();
-                    MessageBox.Show("Brisanje Voza uspešno završeno", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+              finally
+              {
+                  if (!error)
+                  {
+                      myTransaction.Commit();
+                      MessageBox.Show("Brisanje Voza uspešno završeno", "",
+                      MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                }
-                myConnection.Close();
+                  }
+                  myConnection.Close();
 
-                if (error)
-                {
-                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-                }
-            }
-        }
+                  if (error)
+                  {
+                      // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                  }
+              }
+          }
 
-        public void PrekopirajVoz(int ID)
-        {
+          public void PrekopirajVoz(int ID)
+          {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            SqlCommand myCommand = myConnection.CreateCommand();
-            myCommand.CommandText = "PrekopirajVoz";
-            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+              var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+              SqlConnection myConnection = new SqlConnection(s_connection);
+              SqlCommand myCommand = myConnection.CreateCommand();
+              myCommand.CommandText = "PrekopirajVoz";
+              myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+           
+
+              SqlParameter parameter = new SqlParameter();
+              parameter.ParameterName = "@IDStari";
+              parameter.SqlDbType = SqlDbType.Int;
+              parameter.Direction = ParameterDirection.Input;
+              parameter.Value = ID;
+              myCommand.Parameters.Add(parameter);
+
+             
+             
+              myConnection.Open();
+              SqlTransaction myTransaction = myConnection.BeginTransaction();
+              myCommand.Transaction = myTransaction;
+              bool error = true;
+              try
+              {
+                  myCommand.ExecuteNonQuery();
+                  myTransaction.Commit();
+                  myTransaction = myConnection.BeginTransaction();
+                  myCommand.Transaction = myTransaction;
+              }
+
+              catch (SqlException ex)
+              {
+                  throw new Exception("Neuspešan upis  u bazu" + ex.ErrorCode);
+              }
+
+              finally
+              {
+                  if (!error)
+                  {
+                      myTransaction.Commit();
+                      MessageBox.Show("Nije uspeo upis ", "",
+                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                  }
+                  myConnection.Close();
+
+                  if (error)
+                  {
+                      // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                  }
 
 
-
-            SqlParameter parameter = new SqlParameter();
-            parameter.ParameterName = "@IDStari";
-            parameter.SqlDbType = SqlDbType.Int;
-            parameter.Direction = ParameterDirection.Input;
-            parameter.Value = ID;
-            myCommand.Parameters.Add(parameter);
-
-
-
-            myConnection.Open();
-            SqlTransaction myTransaction = myConnection.BeginTransaction();
-            myCommand.Transaction = myTransaction;
-            bool error = true;
-            try
-            {
-                myCommand.ExecuteNonQuery();
-                myTransaction.Commit();
-                myTransaction = myConnection.BeginTransaction();
-                myCommand.Transaction = myTransaction;
-            }
-
-            catch (SqlException ex)
-            {
-                throw new Exception("Neuspešan upis  u bazu" + ex.ErrorCode);
-            }
-
-            finally
-            {
-                if (!error)
-                {
-                    myTransaction.Commit();
-                    MessageBox.Show("Nije uspeo upis ", "",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                }
-                myConnection.Close();
-
-                if (error)
-                {
-                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
-                }
-
-
-            }
-        }
+              }
+          }
 
         public void InsSerijeKola(int IDVoza, int TipKontejnera, int BrojSerija)
         {
             //TipKontejnera je serija kola 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertVozSerijeKola";
@@ -1027,7 +1031,7 @@ namespace Testiranje.Dokumeta
         public void DelSerijeKola(int ID)
         {
             //TipKontejnera je serija kola 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteVozSerijeKola";

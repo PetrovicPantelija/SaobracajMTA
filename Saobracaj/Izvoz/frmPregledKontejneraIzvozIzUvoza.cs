@@ -9,7 +9,7 @@ namespace Saobracaj.Izvoz
 {
     public partial class frmPregledKontejneraIzvozIzUvoza : Form
     {
-        public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
         public frmPregledKontejneraIzvozIzUvoza()
         {
@@ -21,7 +21,7 @@ namespace Saobracaj.Izvoz
         int VratiBrojPlanova()
         {
             int BrPor = 0;
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
 

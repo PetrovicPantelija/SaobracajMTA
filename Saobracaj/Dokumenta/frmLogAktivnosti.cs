@@ -30,7 +30,7 @@ namespace Saobracaj.Dokumenta
         {
             var select = " select * from LogAktivnosti where IDAktivnosti =   " + Convert.ToInt32(txtSifra.Text) + " order by ID desc ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

@@ -10,7 +10,7 @@ namespace Saobracaj.Izvoz
         bool status = false;
         string KorisnikCene = Sifarnici.frmLogovanje.user;
         int KonkretnaUsluga = 0;
-        public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         public frmOtpremaKontejneraKamionomIzKontejnera()
         {
             InitializeComponent();
@@ -24,7 +24,7 @@ namespace Saobracaj.Izvoz
         int VratiKonkretanIDUsluge()
         {
             int Konkretan = 0;
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -66,7 +66,7 @@ namespace Saobracaj.Izvoz
 
         private void VratiOstalePodatkeIzUsluge(int ID, int Modul)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -133,7 +133,7 @@ namespace Saobracaj.Izvoz
         }
         private void VratiPodatkeMax()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
