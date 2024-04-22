@@ -56,7 +56,7 @@ namespace Saobracaj.Dokumenta
                 " group by RadniNalog.ID,Trase.Voz, IDTeretnice,st.Opis, RadniNalogTrase.Rezi,RAdniNalog.ID,prijemna, prevozna, predajna, IDNajave, RadniNalogLokNaTrasi.SMSifra " +
                 " , Teretnica.VremeOd , Teretnica.VremeDo ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -150,7 +150,7 @@ namespace Saobracaj.Dokumenta
                 " group by RadniNalog.ID,Trase.Voz, IDTeretnice,st.Opis, RadniNalogTrase.Rezi,RAdniNalog.ID,prijemna, prevozna, predajna, IDNajave, RadniNalogLokNaTrasi.SMSifra " +
                 " , Teretnica.VremeOd , Teretnica.VremeDo ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -233,7 +233,7 @@ namespace Saobracaj.Dokumenta
    " inner join Najava on Najava.ID = ts.IDNajave ) f1 " +
    " group by Iskljucena, IDNajave";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -329,7 +329,7 @@ namespace Saobracaj.Dokumenta
           "  INNER JOIN  stanice AS stanice_1 ON Najava.Otpravna = stanice_1.ID  " +
           " WHERE (Status = 1 ) or (Status = 2) order by  stanice_1.Opis, Najava.PredvidjenoPrimanje desc";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

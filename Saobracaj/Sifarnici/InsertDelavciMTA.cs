@@ -10,7 +10,7 @@ namespace Saobracaj.Sifarnici
     {
         public void InsDelavciMTA(string DePriimek, string DeIme, string DeTelefon1, string DeTelefon2, string DeEMail, string DeUlHisStBivS, string DeKrajBivS, int DeSifDelMes, string DeSifStat, int PomManevrista, int PomPomocnik, int PomVozovodja, int PomPregledacKola, int PomMasinovodja)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertDelavciMTA";
@@ -189,7 +189,7 @@ namespace Saobracaj.Sifarnici
 
         public void InsDelavciStariMTA(int DeSIfra, string DePriimek, string DeIme, string DeTelefon1, string DeTelefon2, string DeEMail, string DeUlHisStBivS, string DeKrajBivS, int DeSifDelMes, string DeSifStat, int PomManevrista, int PomPomocnik, int PomVozovodja, int PomPregledacKola, int PomMasinovodja)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertDelavciStariMTA";
@@ -375,7 +375,7 @@ namespace Saobracaj.Sifarnici
         }
         public void UpdDelavciMTA(int DeSifra, string DePriimek, string DeIme, string DeTelefon1, string DeTelefon2, string DeEMail, string DeUlHisStBivS, string DeKrajBivS, int DeSifDelMes, string DeSifStat, int PomManevrista, int PomPomocnik, int PomVozovodja, int PomPregledacKola, int PomMasinovodja)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateDelavciMTA";
@@ -543,7 +543,7 @@ namespace Saobracaj.Sifarnici
 
         public void DelDelavciMTA(int DeSifra)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteDelavciMTA";

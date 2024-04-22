@@ -35,7 +35,7 @@ namespace Saobracaj.Servis
              " inner join StatusKvara on EvidencijaKvarova.StatusKvara = StatusKvara.ID " +
              " inner join GrupaKvarova on Kvarovi.GrupaKvarovaID = GrupaKvarova.ID ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -89,7 +89,7 @@ namespace Saobracaj.Servis
              " inner join GrupaKvarova on Kvarovi.GrupaKvarovaID = GrupaKvarova.ID " +
              " where StatusKvara = " + cboStatusi.SelectedValue;
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -140,7 +140,7 @@ namespace Saobracaj.Servis
         private void frmEvidencijaKvarova_Load(object sender, EventArgs e)
         {
             var select3 = " select ID, naziv from StatusKvara";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -154,7 +154,7 @@ namespace Saobracaj.Servis
 
 
             var select4 = " select SmSifra, SmNaziv from Mesta where Lokomotiva = 1";
-            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
             var dataAdapter4 = new SqlDataAdapter(select4, c4);
@@ -167,7 +167,7 @@ namespace Saobracaj.Servis
             cboLokomotiva.ValueMember = "SmSifra";
 
             var select5 = " Select DeSifra, Rtrim(DeIme) + ' ' + Rtrim(DePriimek) as Zaposleni From Delavci Order By DeIme";
-            var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection5 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection5);
             var dataAdapter5 = new SqlDataAdapter(select5, c5);
@@ -180,7 +180,7 @@ namespace Saobracaj.Servis
             cboZaposleni.ValueMember = "DeSifra";
 
             var select6 = " Select ID, Naziv from GrupaKvarova";
-            var s_connection6 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection6 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection6 = new SqlConnection(s_connection6);
             var c6 = new SqlConnection(s_connection6);
             var dataAdapter6 = new SqlDataAdapter(select6, c6);
@@ -204,7 +204,7 @@ namespace Saobracaj.Servis
              " inner join StatusKvara on EvidencijaKvarova.StatusKvara = StatusKvara.ID " +
              " inner join GrupaKvarova on Kvarovi.GrupaKvarovaID = GrupaKvarova.ID where EvidencijaKvarova.Lokomotiva = '" + cboLokomotiva.SelectedValue + "'";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -396,7 +396,7 @@ namespace Saobracaj.Servis
             if (usao == 1)
             {
                 var select7 = " Select ID, Naziv from Kvarovi where GrupaKvarovaID = " + cboGrupaKvara.SelectedValue;
-                var s_connection7 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection7 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection7 = new SqlConnection(s_connection7);
                 var c7 = new SqlConnection(s_connection7);
                 var dataAdapter7 = new SqlDataAdapter(select7, c7);

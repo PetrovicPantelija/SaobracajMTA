@@ -35,7 +35,7 @@ namespace Saobracaj.Sifarnici
             RefreshDataGrid();
 
             var select2 = " Select SmSifra, SmSifra as Opis from Mesta where Lokomotiva=1";
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
             var dataAdapter2 = new SqlDataAdapter(select2, c2);
@@ -48,7 +48,7 @@ namespace Saobracaj.Sifarnici
             cboLokomotiva.ValueMember = "SmSifra";
 
             var select3 = " select ID, (Rtrim(Oznaka) + '-' + Rtrim(opis)) as Opis from Pruga";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -141,7 +141,7 @@ namespace Saobracaj.Sifarnici
 
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -244,7 +244,7 @@ namespace Saobracaj.Sifarnici
         {
             var select = " select * from DelavciLokMasin where DeSifra = " + Convert.ToInt32(cboPartneri.SelectedValue);
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -273,7 +273,7 @@ namespace Saobracaj.Sifarnici
             var select = " select * from DelavciPrugaMasin inner join Pruga on DelavciPrugaMasin.Pruga = Pruga.ID " +
             " where DeSifra = " + Convert.ToInt32(cboPartneri.SelectedValue);
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

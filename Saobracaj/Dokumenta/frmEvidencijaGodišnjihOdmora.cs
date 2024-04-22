@@ -64,7 +64,7 @@ namespace Saobracaj.Dokumenta
         {
             if (cboGodina.Text != "")
             {
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection con = new SqlConnection(s_connection);
 
                 con.Open();
@@ -88,7 +88,7 @@ namespace Saobracaj.Dokumenta
         {
             if (cboGodina.Text != "")
             {
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection con = new SqlConnection(s_connection);
 
                 con.Open();
@@ -125,7 +125,7 @@ namespace Saobracaj.Dokumenta
         private void frmEvidencijaGodišnjihOdmora_Load(object sender, EventArgs e)
         {
             var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci where DeSifStat <> 'P' order by opis";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -138,7 +138,7 @@ namespace Saobracaj.Dokumenta
             cboZaposleni.ValueMember = "ID";
 
             var select4 = " select Distinct(DoLeto) as Godina from Dopust";
-            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
             var dataAdapter4 = new SqlDataAdapter(select4, c4);
@@ -152,7 +152,7 @@ namespace Saobracaj.Dokumenta
 
 
             var select5 = " select DeSifra as ID, (RTrim(DeIme) + ' ' +Rtrim(DePriimek) ) as Opis from Delavci where DeSifStat <> 'P' order by opis";
-            var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection5 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection5);
             var dataAdapter5 = new SqlDataAdapter(select5, c5);
@@ -238,7 +238,7 @@ namespace Saobracaj.Dokumenta
         {
             if (cboGodina.Text != "")
             {
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection con = new SqlConnection(s_connection);
 
                 con.Open();
@@ -260,7 +260,7 @@ namespace Saobracaj.Dokumenta
         int IspitajDaLiPostoji(int Godina, int Zaposleni)
         {
             int BrojU = 0;
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -290,7 +290,7 @@ namespace Saobracaj.Dokumenta
                 txtSumKorisceno.Text = "0";
                 return;
             }
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -318,7 +318,7 @@ namespace Saobracaj.Dokumenta
                  " inner join Delavci on DopustStavke.Odobrio = Delavci.DeSifra " +
                 " where  + " + " Dopust.DoLeto = " + Convert.ToInt32(cboGodina.Text) + " And Dopust.DoSifDe = " + Convert.ToInt32(cboZaposleni.SelectedValue);
 
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -406,7 +406,7 @@ namespace Saobracaj.Dokumenta
                 " where Status = 2 and EvidencujaZahtevaVrsta.Naziv = 'Slobodni dani' and Zaposleni = " + cboZaposleni.SelectedValue + " and Year(DatumOd) =  " + cboGodina.SelectedValue +
                 " order by EvidencijaZahteva.ID desc";
 
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);
@@ -532,7 +532,7 @@ where RzSifDe =
 order by RzStZapisa desc
 */
             string JMBG = "";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -566,7 +566,7 @@ where RzSifDe =
 order by RzStZapisa desc
 */
             string Prebivaliste = "";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -601,7 +601,7 @@ where RzSifDe =
 order by RzStZapisa desc
 */
             string RadnoMesto = "";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -628,7 +628,7 @@ order by RzStZapisa desc
         {
 
             string DeEmail = "";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -703,7 +703,7 @@ order by RzStZapisa desc
       " ,[DatumOd] ,[DatumDo],[DatumPovratka] ,[DanaGodisnjeg] " +
       " ,[DanaIskoristio] ,[DatumZahteva]   FROM [TESTIRANJE].[dbo].[1ReportGO]";
 
-                var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                 SqlConnection myConnection = new SqlConnection(s_connection);
                 var c = new SqlConnection(s_connection);
                 var dataAdapter = new SqlDataAdapter(select, c);

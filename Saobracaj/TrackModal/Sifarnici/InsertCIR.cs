@@ -13,7 +13,7 @@ namespace Testiranje.Sifarnici
         public void InsCIR(int Size, int TiKontejnera, int MaterijalCelik, int MaterijalAlumini, int incoming, int Pun, double Tezina, string BrKontejnera, int Plomba1, int Plomba2, DateTime DatumIn, string Vagon, string TruckNo, int Damaged, int Ispravan, int Prevoz, string Containerresponsible, string primedbe, string Received, string Inspected, string Delivery, DateTime Datum, string Korisnik, int Prijem, int Dokumenta, double Duzina, double Sirina, double Visina, string sPlomba, string sPlomba2)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertCIR";
@@ -296,7 +296,7 @@ namespace Testiranje.Sifarnici
         public void UpdateCIRPrijem(int ID)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdatePrijemKontejneraVozCIR";
@@ -349,7 +349,7 @@ namespace Testiranje.Sifarnici
         public void UpdateCIROtprema(int ID)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateOtpremaKontejneraCIR";
@@ -402,7 +402,7 @@ namespace Testiranje.Sifarnici
         public void UpdCIR(int Id, int Size, int TiKontejnera, int MaterijalCelik, int MaterijalAlumini, int incoming, int Pun, double Tezina, string BrKontejnera, int Plomba1, int Plomba2, DateTime DatumIn, string Vagon, string TruckNo, int Damaged, int Ispravan, int Prevoz, string Containerresponsible, string primedbe, string Received, string Inspected, string Delivery, DateTime Datum, string Korisnik, int Prijem, int Dokumenta, double Duzina, double Sirina, double Visina, string sPlomba, string sPlomba2)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateCIR";
@@ -702,7 +702,7 @@ namespace Testiranje.Sifarnici
              * int Pun ,double Tezina , string BrKontejnera ,int Plomba1 , int Plomba2 , DateTime DatumIn , string Vagon ,string TruckNo , int Damaged ,int Ispravan ,int Prevoz ,string Containerresponsible , string primedbe ,string Received ,string Inspected, string Delivery , DateTime Datum datetime,  string Korisnik
 */
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertCIRGreske";
@@ -806,7 +806,7 @@ namespace Testiranje.Sifarnici
              * int Pun ,double Tezina , string BrKontejnera ,int Plomba1 , int Plomba2 , DateTime DatumIn , string Vagon ,string TruckNo , int Damaged ,int Ispravan ,int Prevoz ,string Containerresponsible , string primedbe ,string Received ,string Inspected, string Delivery , DateTime Datum datetime,  string Korisnik
 */
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteCIRGreske";

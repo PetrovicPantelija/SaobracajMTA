@@ -12,7 +12,7 @@ namespace Saobracaj.Dokumenta
         public void InsZar(int Zaposleni, double Ciljna, double Minimalna, int Smena, int Parametar1, int Parametar2, double PrviDeo, double DrugiDeo, int Fiksna, int Benificirani, string TipRadnika)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertZarada";
@@ -135,7 +135,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdZar(int Zaposleni, double Ciljna, double Minimalna, int Smena, int Parametar1, int Parametar2, double PrviDeo, double DrugiDeo, int Fiksna, int Benificirani, string TipRadnika)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateZarada";
@@ -259,7 +259,7 @@ namespace Saobracaj.Dokumenta
 
         public void DeleteZar(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteZarada";
@@ -309,7 +309,7 @@ namespace Saobracaj.Dokumenta
 
         public void PrebaciIzPlata()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "PrebaciIzPlata";
@@ -352,7 +352,7 @@ namespace Saobracaj.Dokumenta
 
         public void PostaviPrviDeo(double PrviDeo)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateZaradaPostaviPrviDeo";
@@ -402,7 +402,7 @@ namespace Saobracaj.Dokumenta
 
         public void PostaviDrugiDeo()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateZaradePostaviDrugiDeo";
@@ -446,7 +446,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateZaradePrvideoSvi()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateZaradePrvideoSvi";
@@ -491,7 +491,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateZaradePrvideoSviMinimalna(double MinimalnaDrzavna)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateZaradePrvideoSviMinimalna";
@@ -541,7 +541,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateZaradeDrugideoSvi()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateZaradeDrugideoSvi";
@@ -587,7 +587,7 @@ namespace Saobracaj.Dokumenta
 
         public void Plate22222()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "222Plate";

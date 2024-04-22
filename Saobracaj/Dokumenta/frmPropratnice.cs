@@ -35,7 +35,7 @@ namespace Saobracaj.Dokumenta
         }
         private void FillCombo()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             var query = "Select PaSifra,PaNaziv From Partnerji Where Posiljalac=1 order by PaSifra";
             SqlConnection conn = new SqlConnection(s_connection);
             SqlDataAdapter da = new SqlDataAdapter(query, conn);
@@ -66,7 +66,7 @@ namespace Saobracaj.Dokumenta
                 "Inner Join Delavci on Propratnica.Zaduzen = Delavci.DeSifra " +
                 "Inner Join Partnerji on Propratnica.ZaduzenaFirma = Partnerji.PaSifra " +
                 "Order by ID desc";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
             var ds = new DataSet();
@@ -95,7 +95,7 @@ namespace Saobracaj.Dokumenta
                 "inner join Korisnici on PropratnicaZaduzenje.ZaposleniId = Korisnici.DeSifra " +
                 "Inner join PropratniceZaduzivanjeSlike on PropratnicaZaduzenje.ID = PropratniceZaduzivanjeSlike.PropratnicaZaduzivanjeId " +
                 "order by IdPropratnica desc";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
 
@@ -123,7 +123,7 @@ namespace Saobracaj.Dokumenta
                 "Inner join PropratniceZaduzivanjeSlike on PropratnicaZaduzenje.ID = PropratniceZaduzivanjeSlike.PropratnicaZaduzivanjeId Where Propratnica.IdNajave=" + najava +
                 "order by IdPropratnica desc";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
 
@@ -151,7 +151,7 @@ namespace Saobracaj.Dokumenta
                 "inner join Korisnici on PropratnicaRazduzenje.ZaposleniId = Korisnici.DeSifra " +
                 "Inner join PropratniceRazduzivanjeSlike on PropratnicaRazduzenje.ID = PropratniceRazduzivanjeSlike.PropratnicaRazduzivanjeId " +
                 "order by IdPropratnica desc";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
 
@@ -180,7 +180,7 @@ namespace Saobracaj.Dokumenta
                  "Where Propratnica.IDNajave=" + najava +
                  "order by IdPropratnica desc";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
 
@@ -267,7 +267,7 @@ namespace Saobracaj.Dokumenta
                     pom.Text = row.Cells[0].Value.ToString().TrimEnd();
 
                     string query = "Select Slika from PropratniceZaduzivanjeSlike Where PropratnicaZaduzivanjeId=" + Convert.ToInt32(pom.Text.ToString());
-                    var connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                    var connect = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection conn = new SqlConnection(connect);
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(query, conn);
@@ -302,7 +302,7 @@ namespace Saobracaj.Dokumenta
                     TextBox pom = new TextBox();
                     pom.Text = row.Cells[0].Value.ToString().TrimEnd();
                     string query = "Select Slika from PropratniceRazduzivanjeSlike Where PropratnicaRazduzivanjeId=" + Convert.ToInt32(pom.Text);
-                    var connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+                    var connect = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection conn = new SqlConnection(connect);
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(query, conn);
@@ -330,7 +330,7 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            var connect = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var connect = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             DialogResult dr = MessageBox.Show("Da li želite da dodate prilog uz mail?", "Attachment", MessageBoxButtons.YesNoCancel);
             if (dr == DialogResult.Yes)
             {

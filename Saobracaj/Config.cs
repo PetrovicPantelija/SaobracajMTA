@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Saobracaj
 {
@@ -17,8 +13,8 @@ namespace Saobracaj
         public string Grad_Value { get; set; }
         public string PostanskiBroj_Value { get; set; }
         public string Line_Value { get; set; }
-        public string CompanyID_Value { get; set; } 
-        public string MB_Value { get; set; }    
+        public string CompanyID_Value { get; set; }
+        public string MB_Value { get; set; }
         public string EmailSender_Value { get; set; }
         public string OsnovnoSkladiste { get; set; }
         public string OsnovnaLokacija { get; set; }
@@ -46,15 +42,15 @@ namespace Saobracaj
                         MB_Value = "08039534",
                         EmailSender_Value = "office@leget.rs",
                         OsnovnoSkladiste = "1",
-                        OsnovnaLokacija="1"
+                        OsnovnaLokacija = "1"
 
                     };
                 case "TA":
                     return new CompanyConfiguration
                     {
                         Naziv = "TA",
-                        DB = @"Data Source=192.168.129.7\;Initial Catalog=Testiranje;User ID=sa;Password=duki7990",
-                        Dokumenta= @"\\192.168.129.7\TA\",
+                        DB = @"Data Source=192.168.129.7\;Initial Catalog=TESTIRANJE;User ID=sa;Password=duki7990",
+                        Dokumenta= @"\\192.168.99.10\TA\",
                         PIB = "108430447",
                         Name_Value = "TRANSAGENT OPERATOR DOO BEOGRAD\r\n",
                         Ulica_Value = "Uzun Mirkova 3",
@@ -64,8 +60,8 @@ namespace Saobracaj
                         CompanyID_Value = "RS108430447",
                         MB_Value = "20997923",
                         EmailSender_Value = "office@transagent.rs",
-                        OsnovnoSkladiste= "9",
-                        OsnovnaLokacija= "1044"
+                        OsnovnoSkladiste= "1",
+                        OsnovnaLokacija= "1"
                         
                     };
                

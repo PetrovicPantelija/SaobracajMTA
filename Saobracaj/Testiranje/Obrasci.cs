@@ -27,7 +27,7 @@ namespace Saobracaj.Testiranje
         {
             var select2 = "Select DeSifra, (Rtrim(DeIme) + ' ' + Rtrim(DePriimek)) as Korisnik from Delavci order by Rtrim(DeIme)";
 
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
             var dataAdapter2 = new SqlDataAdapter(select2, c2);

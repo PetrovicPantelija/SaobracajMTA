@@ -28,7 +28,7 @@ namespace Saobracaj.Testiranje
             var select = "  SELECT ID, Naziv,Datum, BrojTacnih,BrResenja, Mesto, Komisija1,Komisija2,komisija3 from testovi ";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -82,7 +82,7 @@ namespace Saobracaj.Testiranje
 
             var select = "   SELECT ID, [IDNadredjenog] ,[Opis] ,[RBBroj] FROM [TESTIRANJE].[dbo].[TestoviPitanjaOdgovor] where IDNadredjenog =  " + Convert.ToInt32(txtIDStavke.Text);
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -116,7 +116,7 @@ namespace Saobracaj.Testiranje
             var select = "  SELECT * from testovipitanja where IdStavke =  " + Convert.ToInt32(txtSifra.Text);
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -151,7 +151,7 @@ namespace Saobracaj.Testiranje
             GrupeTestova();
 
             var select3 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci order by opis";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -165,7 +165,7 @@ namespace Saobracaj.Testiranje
 
 
             var select4 = " select DeSifra as ID, (RTrim(DeIme) + ' ' + Rtrim(DePriimek)) as Opis from Delavci order by opis";
-            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
             var dataAdapter4 = new SqlDataAdapter(select4, c4);
@@ -178,7 +178,7 @@ namespace Saobracaj.Testiranje
             cboClanKomisije2.ValueMember = "ID";
 
             var select5 = " select DeSifra as ID, (RTrim(DeIme)+ ' ' +Rtrim(DePriimek)  ) as Opis from Delavci order by opis";
-            var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection5 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection5);
             var dataAdapter5 = new SqlDataAdapter(select5, c5);

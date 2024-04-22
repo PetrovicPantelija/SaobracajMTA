@@ -137,7 +137,7 @@ namespace TrackModal.Dokumeta
 
         private void VratiPodatkeMax()
         {
-            var s_connection = frmLogovanje.connectionString;;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -237,7 +237,7 @@ namespace TrackModal.Dokumeta
        "       Left JOIN  Voz ON PrijemKontejneraVozStavke.IdVoza = Voz.ID " +
                            " where IdNadredjenog = " + txtSifra.Text + " order by RB";
 
-            var s_connection = frmLogovanje.connectionString;;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -364,7 +364,7 @@ namespace TrackModal.Dokumeta
         private void VratiPodatke(int ID)
         {
             
-            var s_connection = frmLogovanje.connectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -475,7 +475,7 @@ namespace TrackModal.Dokumeta
         private void frmPrijemKontejneraVoz_Load_1(object sender, EventArgs e)
         {
             var select = " Select Distinct ID, (Broj + '-' + Naziv) as NHM  From NHM ORDER BY ID";
-            var s_connection = frmLogovanje.connectionString;;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -670,7 +670,7 @@ namespace TrackModal.Dokumeta
                 " inner join Stanice on Voz.StanicaOd = Stanice.Id " +
                 " where IDNadredjenog = " + Convert.ToInt32(txtSifra.Text) + " and Primalac =  " + myRow2["Primalac"].ToString();
 
-                    var s_connection = frmLogovanje.connectionString;
+                    var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -769,7 +769,7 @@ namespace TrackModal.Dokumeta
                 " inner join Stanice on Voz.StanicaOd = Stanice.Id " +
                 " where IDNadredjenog = " + Convert.ToInt32(txtSifra.Text) + " and Posiljalac =  " + myRow2["Posiljalac"].ToString();
 
-                    var s_connection = frmLogovanje.connectionString;
+                    var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -860,7 +860,7 @@ namespace TrackModal.Dokumeta
                 " inner join Stanice on Voz.StanicaOd = Stanice.Id " +
                 " where IDNadredjenog = " + Convert.ToInt32(txtSifra.Text) + " and VlasnikKontejnera =  " + myRow2["VlasnikKontejnera"].ToString();
 
-                    var s_connection = frmLogovanje.connectionString;
+                    var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -951,7 +951,7 @@ namespace TrackModal.Dokumeta
                 " inner join Stanice on Voz.StanicaOd = Stanice.Id " +
                 " where IDNadredjenog = " + Convert.ToInt32(txtSifra.Text) + " and Organizator =  " + myRow2["Organizator"].ToString();
 
-                    var s_connection = frmLogovanje.connectionString;
+                    var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -1042,7 +1042,7 @@ namespace TrackModal.Dokumeta
                 " inner join Stanice on Voz.StanicaOd = Stanice.Id " +
                 " where IDNadredjenog = " + Convert.ToInt32(txtSifra.Text) + " and Primalac =  " + myRow2["Primalac"].ToString();
 
-                    var s_connection = frmLogovanje.connectionString;
+                    var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -1129,7 +1129,7 @@ namespace TrackModal.Dokumeta
                 " inner join Stanice on Voz.StanicaOd = Stanice.Id " +
                 " where IDNadredjenog = " + Convert.ToInt32(txtSifra.Text) + " and Posiljalac =  " + myRow2["Posiljalac"].ToString();
 
-                    var s_connection = frmLogovanje.connectionString;
+                    var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -1215,7 +1215,7 @@ namespace TrackModal.Dokumeta
                 " inner join Stanice on Voz.StanicaOd = Stanice.Id " +
                 " where IDNadredjenog = " + Convert.ToInt32(txtSifra.Text) + " and VlasnikKontejnera =  " + myRow2["VlasnikKontejnera"].ToString();
 
-                    var s_connection = frmLogovanje.connectionString;
+                    var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -1302,7 +1302,7 @@ namespace TrackModal.Dokumeta
                 " inner join Stanice on Voz.StanicaOd = Stanice.Id " +
                 " where IDNadredjenog = " + Convert.ToInt32(txtSifra.Text) + " and Organizator =  " + myRow2["Organizator"].ToString();
 
-                    var s_connection = frmLogovanje.connectionString;
+                    var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -1390,7 +1390,7 @@ namespace TrackModal.Dokumeta
                 " inner join PrijemKontejneraVoz on PrijemKontejneraVozStavke.IDNadredjenog = PrijemKontejneraVoz.Id " +
                 " where IDNadredjenog = " + Convert.ToInt32(txtSifra.Text) + " and Primalac =  " + myRow2["Primalac"].ToString();
 
-                    var s_connection = frmLogovanje.connectionString;
+                    var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -1480,7 +1480,7 @@ namespace TrackModal.Dokumeta
                " inner join PrijemKontejneraVoz on PrijemKontejneraVozStavke.IDNadredjenog = PrijemKontejneraVoz.Id " +
                " where IDNadredjenog = " + Convert.ToInt32(txtSifra.Text) + " and Posiljalac =  " + myRow2["Posiljalac"].ToString();
 
-                    var s_connection = frmLogovanje.connectionString;
+                    var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -1569,7 +1569,7 @@ namespace TrackModal.Dokumeta
                " inner join PrijemKontejneraVoz on PrijemKontejneraVozStavke.IDNadredjenog = PrijemKontejneraVoz.Id " +
                " where IDNadredjenog = " + Convert.ToInt32(txtSifra.Text) + " and VlasnikKontejnera =  " + myRow2["VlasnikKontejnera"].ToString();
 
-                    var s_connection = frmLogovanje.connectionString;
+                    var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -1658,7 +1658,7 @@ namespace TrackModal.Dokumeta
                 " inner join PrijemKontejneraVoz on PrijemKontejneraVozStavke.IDNadredjenog = PrijemKontejneraVoz.Id " +
                 " where IDNadredjenog = " + Convert.ToInt32(txtSifra.Text) + " and Organizator =  " + myRow2["Organizator"].ToString();
 
-                    var s_connection = frmLogovanje.connectionString;
+                    var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -1747,7 +1747,7 @@ namespace TrackModal.Dokumeta
                  " inner join PrijemKontejneraVoz on PrijemKontejneraVozStavke.IDNadredjenog = PrijemKontejneraVoz.Id " +
                  " where IDNadredjenog = " + Convert.ToInt32(txtSifra.Text) + " and Primalac =  " + myRow2["Primalac"].ToString();
 
-                    var s_connection = frmLogovanje.connectionString;
+                    var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -1836,7 +1836,7 @@ namespace TrackModal.Dokumeta
              " inner join PrijemKontejneraVoz on PrijemKontejneraVozStavke.IDNadredjenog = PrijemKontejneraVoz.Id " +
              " where IDNadredjenog = " + Convert.ToInt32(txtSifra.Text) + " and Posiljalac =  " + myRow2["Posiljalac"].ToString();
 
-                    var s_connection = frmLogovanje.connectionString;
+                    var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -1927,7 +1927,7 @@ namespace TrackModal.Dokumeta
              " inner join PrijemKontejneraVoz on PrijemKontejneraVozStavke.IDNadredjenog = PrijemKontejneraVoz.Id " +
              " where IDNadredjenog = " + Convert.ToInt32(txtSifra.Text) + " and VlasnikKontejnera =  " + myRow2["VlasnikKontejnera"].ToString();
 
-                    var s_connection = frmLogovanje.connectionString;
+                    var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -2019,7 +2019,7 @@ namespace TrackModal.Dokumeta
              " inner join PrijemKontejneraVoz on PrijemKontejneraVozStavke.IDNadredjenog = PrijemKontejneraVoz.Id " +
              " where IDNadredjenog = " + Convert.ToInt32(txtSifra.Text) + " and Organizator =  " + myRow2["Organizator"].ToString();
 
-                    var s_connection = frmLogovanje.connectionString;
+                    var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                     SqlConnection myConnection = new SqlConnection(s_connection);
                     var c = new SqlConnection(s_connection);
                     var dataAdapter = new SqlDataAdapter(select, c);
@@ -2086,7 +2086,7 @@ namespace TrackModal.Dokumeta
         string VratiPodatkeEmailPrimalac()
         {
             string emailovi = "";
-            var s_connection = frmLogovanje.connectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -2109,7 +2109,7 @@ namespace TrackModal.Dokumeta
         string VratiPodatkeEmailPosiljalac()
         {
             string emailovi = "";
-            var s_connection = frmLogovanje.connectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -2132,7 +2132,7 @@ namespace TrackModal.Dokumeta
         string VratiPodatkeEmailOrganizator()
         {
             string emailovi = "";
-            var s_connection = frmLogovanje.connectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -2155,7 +2155,7 @@ namespace TrackModal.Dokumeta
         string VratiPodatkeEmailVlasnikKontejnera()
         {
             string emailovi = "";
-            var s_connection = frmLogovanje.connectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -2634,7 +2634,7 @@ namespace TrackModal.Dokumeta
       
         private void VratiPodatkeStavke(string IdNadredjenog, int RB)
         {
-            var s_connection = frmLogovanje.connectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -2718,7 +2718,7 @@ namespace TrackModal.Dokumeta
 
         private void VratiPodatkeVoz(int id)
         {
-            var s_connection = frmLogovanje.connectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -2840,7 +2840,7 @@ namespace TrackModal.Dokumeta
 
         private void VratiPodatkeStavkeKontejnerSaPrijemnice(string BrojKontejnera)
         {
-            var s_connection = frmLogovanje.connectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -2880,7 +2880,7 @@ namespace TrackModal.Dokumeta
 
         private void VratiPodatkeStavkeVagonSaPrijemnice(string BrojVagona)
         {
-            var s_connection = frmLogovanje.connectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -2921,7 +2921,7 @@ namespace TrackModal.Dokumeta
 
         private int VratiPodatkeMaxPromet()
         {
-            var s_connection = frmLogovanje.connectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -2948,7 +2948,7 @@ namespace TrackModal.Dokumeta
 
         private void VratiPodatkeTara()
         {
-            var s_connection = frmLogovanje.connectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();

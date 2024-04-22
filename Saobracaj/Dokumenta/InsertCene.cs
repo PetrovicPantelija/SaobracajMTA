@@ -13,7 +13,7 @@ namespace Projekat
         public void InsCene(int TipCenovnika, int Komitent, double Cena, int VrstaManipulacije, DateTime Datum, string Korisnik)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertCene";
@@ -108,7 +108,7 @@ namespace Projekat
         public void UpdCene(int ID, int TipCenovnika, int Komitent, double Cena, int VrstaManipulacije, DateTime Datum, string Korisnik)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateCene";
@@ -206,7 +206,7 @@ namespace Projekat
 
         public void DeleteCene(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteAktivnosti";
@@ -256,7 +256,7 @@ namespace Projekat
 
         public void KopirajCene(int ID, int Komitent)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "KopirajCene";
@@ -313,7 +313,7 @@ namespace Projekat
 
         public void KopirajCeneTip(int TipCenovnika1, int TipCenovnika2, int Partner1, int Partner2, string Naziv)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "KopirajCeneTip";
@@ -393,7 +393,7 @@ namespace Projekat
 
         public void KopirajCenePartneri(int ID, int Partner1, int Partner2)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "KopirajCenePartneri";

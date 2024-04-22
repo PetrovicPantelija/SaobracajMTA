@@ -99,7 +99,7 @@ namespace Testiranje.Sifarnici
              " FROM [dbo].[VrstaManipulacije] " +
              " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = VrstaManipulacije.OrgJed" +
              " order by VrstaManipulacije.[ID]";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -177,7 +177,7 @@ namespace Testiranje.Sifarnici
 
         private void VratiPodatke(string ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -241,7 +241,7 @@ namespace Testiranje.Sifarnici
             RefreshDataGrid();
 
             var select = " Select ID, Naziv From TipManipulacije";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -256,7 +256,7 @@ namespace Testiranje.Sifarnici
             // SELECT ID, Naziv from OrganizacioneJedinice
 
             var select2 = " SELECT ID, Naziv from OrganizacioneJedinice order by ID";
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
             var dataAdapter2 = new SqlDataAdapter(select2, c2);
@@ -270,7 +270,7 @@ namespace Testiranje.Sifarnici
 
 
             var select3 = " SELECT ID, Naziv from GrupaVrsteManipulacije order by ID";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -292,7 +292,7 @@ namespace Testiranje.Sifarnici
         private void tsPrvi_Click(object sender, EventArgs e)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -313,7 +313,7 @@ namespace Testiranje.Sifarnici
         {
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -334,7 +334,7 @@ namespace Testiranje.Sifarnici
 
         private void tsNazad_Click(object sender, EventArgs e)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
             int prvi = 0;
             con.Open();
@@ -357,7 +357,7 @@ namespace Testiranje.Sifarnici
 
         private void VratiPodatkeMax()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -375,7 +375,7 @@ namespace Testiranje.Sifarnici
 
         private void tsNapred_Click(object sender, EventArgs e)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
             int zadnji = 0;
             con.Open();

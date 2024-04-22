@@ -10,7 +10,7 @@ namespace Saobracaj.Uvoz
     public partial class Brodovi : Form
     {
         bool status = false;
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
         public Brodovi()
         {

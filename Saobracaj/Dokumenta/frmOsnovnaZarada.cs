@@ -36,7 +36,7 @@ namespace Saobracaj.Dokumenta
             }
             var select = " select Zarada.Zaposleni, (Rtrim(Delavci.DePriimek) + ' ' + RTrim(DeIme)) as Zaposleni,Zarada.Osnovna,Zarada.Minimalna ,  Smena, Parametar1, Parametar2, Zarada.PrviDeo, Zarada.DrugiDeo, Zarada.Fiksna,  Zarada.Benificirani,  Zarada.TipRadnika from Zarada " +
             " inner join Delavci on Zarada.Zaposleni = DElavci.DeSifra order by Zarada.Zaposleni";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -122,7 +122,7 @@ namespace Saobracaj.Dokumenta
             " inner join Delavci on Zarada.Zaposleni = DElavci.DeSifra " +
              " where Fiksna = 1 " +
             " order by Zarada.Zaposleni";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -195,7 +195,7 @@ namespace Saobracaj.Dokumenta
             " inner join Delavci on Zarada.Zaposleni = DElavci.DeSifra " +
              " where Fiksna = 0 " +
             " order by Zarada.Zaposleni";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -260,7 +260,7 @@ namespace Saobracaj.Dokumenta
         private void frmOsnovnaZarada_Load(object sender, EventArgs e)
         {
             var select3 = " select DeSifra as ID, (Rtrim(DePriimek) + ' ' + RTrim(DeIme)) as Opis from Delavci order by opis";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);

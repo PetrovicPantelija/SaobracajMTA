@@ -31,7 +31,7 @@ namespace Saobracaj.Dokumenta
         {
             var select = " SELECT IDRadnogNaloga, IDTrase, SmSifra,  CASE WHEN Vucna > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Vucna , Komentar FROM RadniNalogLokNaTrasi where IDRadnogNaloga =" + Convert.ToInt32(IDRadnogNaloga) + " and IDTrase = " + IDTrase;
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -86,7 +86,7 @@ namespace Saobracaj.Dokumenta
         private void frmRadniNalogTraseLok_Load(object sender, EventArgs e)
         {
             var select = " Select ID, (Rtrim(Voz) + '-' + Rtrim(Relacija)) as Opis from Trase where Godina = 2024";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -101,7 +101,7 @@ namespace Saobracaj.Dokumenta
             cboTrase.SelectedValue = pomTrasa;
 
             var select2 = " Select SmSifra, SmSifra as Opis from Mesta";
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
             var dataAdapter2 = new SqlDataAdapter(select2, c2);
@@ -115,13 +115,13 @@ namespace Saobracaj.Dokumenta
             cboLokomotiva.ValueMember = "SmSifra";
             */
             var select9 = " Select Distinct ID, RTrim(Opis) as Razlog From Razlozi";
-            var s_connection9 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection9 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection9 = new SqlConnection(s_connection9);
             var c9 = new SqlConnection(s_connection9);
             var dataAdapter9 = new SqlDataAdapter(select9, c9);
 
             var select6 = " Select ID, RTrim(Opis) as Stanica From Stanice order by opis";
-            var s_connection6 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection6 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection6 = new SqlConnection(s_connection6);
             var c6 = new SqlConnection(s_connection6);
             var dataAdapter6 = new SqlDataAdapter(select6, c6);
@@ -134,7 +134,7 @@ namespace Saobracaj.Dokumenta
             cboStanicaOd.ValueMember = "ID";
 
             var select7 = " Select ID, RTrim(Opis) as Stanica From Stanice order by opis";
-            var s_connection7 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection7 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection7 = new SqlConnection(s_connection7);
             var c7 = new SqlConnection(s_connection7);
             var dataAdapter7 = new SqlDataAdapter(select7, c7);
@@ -147,7 +147,7 @@ namespace Saobracaj.Dokumenta
             cboStanicaDo.ValueMember = "ID";
 
             var select8 = " Select ID, RTrim(Opis) as Opis From StatusTrasa order by ID";
-            var s_connection8 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection8 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection8 = new SqlConnection(s_connection8);
             var c8 = new SqlConnection(s_connection8);
             var dataAdapter8 = new SqlDataAdapter(select8, c8);
@@ -167,7 +167,7 @@ namespace Saobracaj.Dokumenta
         private void VratiPodatke(int trasa, string RN)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -230,7 +230,7 @@ namespace Saobracaj.Dokumenta
                     " FROM         Trase INNER JOIN " +
                     "  RadniNalogTraseLok INNER JOIN " +
                     "  Mesta ON RadniNalogTraseLok.SMSifra = Mesta.SmSifra ON Trase.ID = RadniNalogTraseLok.IDTrase where RadniNalogTraseLok.IDRadnogNaloga =  " + Convert.ToInt32(txtSifraRN.Text) + " and IDTrase = " + Convert.ToInt32(cboTrase.SelectedValue) + " order by rb";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -287,7 +287,7 @@ namespace Saobracaj.Dokumenta
                " inner join stanice as stanice_2 ON RadniNalogTrase.StanicaOd = stanice_2.ID INNER JOIN  stanice AS stanice_3 ON RadniNalogTrase.StanicaDo = stanice_3.ID " +
                " INNER JOIN  StatusTrasa  ON RadniNalogTrase.StatusTrase = StatusTrasa.ID " +
                " where RadniNalogTrase.IDRadnogNaloga = " + Convert.ToInt32(txtSifraRN.Text) + " order by IDRadnogNaloga, RadniNalogTrase.RB";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -457,7 +457,7 @@ namespace Saobracaj.Dokumenta
         private void VratiPodatkeTrasa(int Trasa, int RB)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -512,7 +512,7 @@ namespace Saobracaj.Dokumenta
 
         private void VratiPodatkeTrasa()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -531,7 +531,7 @@ namespace Saobracaj.Dokumenta
             con.Close();
 
 
-            var s_connection2 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con2 = new SqlConnection(s_connection2);
 
             con2.Open();
@@ -569,7 +569,7 @@ namespace Saobracaj.Dokumenta
         private void button3_Click(object sender, EventArgs e)
         {
             var select = " Select ID, (Rtrim(Voz) + '-' + Rtrim(Relacija)) as Opis from Trase where Godina <> 2024";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -587,7 +587,7 @@ namespace Saobracaj.Dokumenta
         private void button7_Click(object sender, EventArgs e)
         {
             var select = " Select ID, (Rtrim(Voz) + '-' + Rtrim(Relacija)) as Opis from Trase where Godina = 2024";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

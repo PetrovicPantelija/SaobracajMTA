@@ -22,9 +22,6 @@ namespace Saobracaj.Administracija
             FillCombo();
 
         }
-
-
-
         public void RefreshGV()
         {
             var query = "select k.Korisnik,Rtrim(DeIme) + ' ' +Rtrim(DePriimek)as Zaposleni,k.IdGrupe,g.Naziv as 'Naziv Grupe' " +

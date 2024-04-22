@@ -25,7 +25,7 @@ namespace TrackModal.Izvestaji
         private void frmPregledManipulacijaPoPartneru_Load(object sender, EventArgs e)
         {
             var select3 = " Select Distinct ID, Naziv From Komitenti order by Naziv";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -52,7 +52,7 @@ namespace TrackModal.Izvestaji
            " inner join Komitenti on NaruceneManipulacije.Platilac = Komitenti.ID " +
            " where NaruceneManipulacije.Platilac = " + Convert.ToInt32(cboPlatilac.SelectedValue) + " and  NaruceneManipulacije.DatumOd >= '" + dtpDatumOd.Text + "' and NaruceneManipulacije.DatumDo <= '" + dtpDatumDo.Text + "'";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -136,7 +136,7 @@ namespace TrackModal.Izvestaji
            " inner join Komitenti on NaruceneManipulacije.Platilac = Komitenti.ID " +
            " where NaruceneManipulacije.Platilac = " + Convert.ToInt32(cboPlatilac.SelectedValue) + " and  NaruceneManipulacije.DatumOd >= '" + dtpDatumOd.Text + "' and NaruceneManipulacije.DatumDo <= '" + dtpDatumDo.Text + "' and NaruceneManipulacije.BrojKontejnera = '" + txtBrojKontejnera.Text + "'";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

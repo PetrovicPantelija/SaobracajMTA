@@ -14,7 +14,7 @@ namespace Testiranje.Sifarnici
         public void InsNacinDolaskaOdlaska(string Naziv, DateTime Datum, string Korisnik)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertNacinDoOd";
@@ -85,7 +85,7 @@ namespace Testiranje.Sifarnici
         public void UpdNacinDolaskaOdlaska(int ID, string Naziv, DateTime Datum, string Korisnik)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateNacinDoOd";
@@ -161,7 +161,7 @@ namespace Testiranje.Sifarnici
 
         public void DeleteNacinDolaskaOdlaska(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteNacinDoOd";

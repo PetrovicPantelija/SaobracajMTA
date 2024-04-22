@@ -20,7 +20,7 @@ namespace Saobracaj.Uvoz
         string niz = "";
 
         bool status = false;
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
         public frmVrstaRobeHS()
         {
@@ -145,7 +145,7 @@ namespace Saobracaj.Uvoz
 
         private void frmVrstaRobeHS_Load(object sender, EventArgs e)
         {
-            var conn = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var conn = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
 
             var adr = "Select ID, (Naziv + ' - ' + UNKod) as Naziv From VrstaRobeADR order by (UNKod + ' ' + Naziv)";

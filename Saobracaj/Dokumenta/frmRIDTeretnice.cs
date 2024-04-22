@@ -29,7 +29,7 @@ namespace Saobracaj.Dokumenta
             " inner join TeretnicaStavke ts on Najava.ID = ts.IDNajave " +
             " where Najava.RID = 1 and [Status] not in (7,8) and ts.RID  = ''";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

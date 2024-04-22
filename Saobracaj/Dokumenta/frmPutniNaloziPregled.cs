@@ -53,7 +53,7 @@ namespace Saobracaj.Dokumenta
               " inner Join  VrstaAktivnosti on AktivnostiStavke.VrstaAktivnostiID = VrstaAktivnosti.ID " +
               "  where  KrNaziv<>'0' and  Aktivnosti.PNKreiran = 0  and Ukupno>0 and VremeOd > '2020-01-01 00:00:00.000' and VrstaAktivnosti.ID<>41 order by Zaposleni, Aktivnosti.ID desc";
             }
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -175,7 +175,7 @@ namespace Saobracaj.Dokumenta
              " inner join Kraji on Kraji.KrSifra = Aktivnosti.MestoUpucivanja" +
             " where Smederevo = 1 and VremeOd > '2020-01-01 00:00:00.000' and VrstaAktivnosti.ID<>41";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -250,7 +250,7 @@ namespace Saobracaj.Dokumenta
              " inner join Kraji on Kraji.KrSifra = Aktivnosti.MestoUpucivanja" +
             " where Kragujevac = 1 and VremeOd > '2020-01-01 00:00:00.000' and VrstaAktivnosti.ID<>41";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -325,7 +325,7 @@ namespace Saobracaj.Dokumenta
              " inner join Kraji on Kraji.KrSifra = Aktivnosti.MestoUpucivanja" +
             " where CG = 1 and VremeOd > '2020-01-01 00:00:00.000' and VrstaAktivnosti.ID<>41";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -400,7 +400,7 @@ namespace Saobracaj.Dokumenta
              " inner join Kraji on Kraji.KrSifra = Aktivnosti.MestoUpucivanja" +
             " where Remont = 1 and VremeOd > '2020-01-01 00:00:00.000' and VrstaAktivnosti.ID<>41";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -511,7 +511,7 @@ namespace Saobracaj.Dokumenta
              " inner join Kraji on Kraji.KrSifra = Aktivnosti.MestoUpucivanja" +
             " where VremeOd > '2020-01-01 00:00:00.000' and VrstaAktivnosti.ID=41";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

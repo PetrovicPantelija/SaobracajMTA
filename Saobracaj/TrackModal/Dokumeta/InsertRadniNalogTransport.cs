@@ -21,7 +21,7 @@ namespace Testiranje.Dokumeta
             @DatumIstovara DateTime
            */
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertRadniNalogTransport";
@@ -211,7 +211,7 @@ namespace Testiranje.Dokumeta
         public void UpdRadniNalogZaTransport(int ID, int IdNalogZaPrevoz, int IDPutniNalog, int IDAutoprevozniList, int Vozilo, DateTime Dana, int TransportniDispecer, string MestoIzdavanja, DateTime DatumPrevoza, DateTime Datum, string Korisnik, int PrikljucnoVoziloID, string RelacijaOd, string RelacijaDo, string BrojOtpravljanja, double BrojVagona, double NetoMasa, DateTime DatumIstovara, string BrVoza)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateRadniNalogZaTransport";
@@ -401,7 +401,7 @@ namespace Testiranje.Dokumeta
 
         public void DelRadniNalogZaTransport(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteRadniNalogZaTransport";

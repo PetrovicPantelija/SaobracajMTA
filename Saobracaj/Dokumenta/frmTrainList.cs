@@ -347,7 +347,7 @@ namespace Saobracaj.Dokumenta
         private void VratiTrainListID()
         {
             //Panta 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -367,7 +367,7 @@ namespace Saobracaj.Dokumenta
         /*  private void VratiTara()
           {
               //Panta 
-              var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+              var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
               SqlConnection con = new SqlConnection(s_connection);
 
               con.Open();
@@ -513,7 +513,7 @@ namespace Saobracaj.Dokumenta
         string VratiTrainNo(string IDTraina)
         {
             string TON = "";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -635,7 +635,7 @@ namespace Saobracaj.Dokumenta
 
         int ProveraPostojiTrainList()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             //Sifarnici.frmLogovanje frm = new Sifarnici.frmLogovanje();         
             string query = "select Count(*) as Broj from TrainList where KomOznaka = " + "'" + txt_trainNo.Text + "'";
             SqlConnection conn = new SqlConnection(s_connection);
@@ -736,7 +736,7 @@ namespace Saobracaj.Dokumenta
 " left join TipKontenjera on TipKontenjera.Naziv = TrainListStavke.KontTip Where TrainListId = " + Convert.ToInt32(textBoxSearch.Text);
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -763,7 +763,7 @@ namespace Saobracaj.Dokumenta
             var select = " Select * from ATrainListStavke";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -831,7 +831,7 @@ namespace Saobracaj.Dokumenta
             " group by OznakaKola ";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -855,7 +855,7 @@ namespace Saobracaj.Dokumenta
 
         private void VratiSumuTaraKola()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -878,7 +878,7 @@ namespace Saobracaj.Dokumenta
 
         private void VratiSumuNetoDuzinaKola()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -909,7 +909,7 @@ namespace Saobracaj.Dokumenta
 
         private void VratiBrojKontejnera()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();

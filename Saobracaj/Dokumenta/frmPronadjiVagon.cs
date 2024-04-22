@@ -29,7 +29,7 @@ namespace Saobracaj.Dokumenta
             "  from TeretnicaStavke t2 " +
             " where t2.BrojKola  = '" + txtSifra.Text + "'";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -55,7 +55,7 @@ namespace Saobracaj.Dokumenta
                 " stanice AS stanice_2 ON ts.Uputna = stanice_2.ID " +
                 " where ts.BrojKola = '" + txtSifra.Text + "' and TIV.StatusVagona in (1,2,3,4)";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -179,7 +179,7 @@ namespace Saobracaj.Dokumenta
             " inner join Najava on TeretnicaStavke.IDNajave = Najava.ID " +
             " Where Najava.Status = 9 and TeretnicaStavke.BrojKola = '" + txtSifra.Text;
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -196,7 +196,7 @@ namespace Saobracaj.Dokumenta
         private void frmPronadjiVagon_Load(object sender, EventArgs e)
         {
             var select12 = " Select PaSifra, RTrim(PaNaziv) as Partner From Partnerji where Primalac = 1 order By PaNaziv";
-            var s_connection12 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection12 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection12 = new SqlConnection(s_connection12);
             var c12 = new SqlConnection(s_connection12);
             var dataAdapter12 = new SqlDataAdapter(select12, c12);

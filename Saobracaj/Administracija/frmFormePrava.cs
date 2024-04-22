@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,15 +11,7 @@ namespace Saobracaj.Administracija
     public partial class frmFormePrava : Form
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
-        public static string code = "frmFormePrava";
-        public bool Pravo;
-        private int idGrupe;
-        private int idForme;
-        private bool insert;
-        private bool update;
-        private bool delete;
         private string Kor = Sifarnici.frmLogovanje.user.ToString();
-        private bool status = false;
 
         public frmFormePrava()
         {
@@ -67,7 +60,7 @@ namespace Saobracaj.Administracija
         private void NapiniComboBox()
         {
             var select = " Select ID, ( Naziv) as Naziv From GrupeKorisnik";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

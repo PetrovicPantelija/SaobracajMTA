@@ -30,7 +30,7 @@ namespace Saobracaj.Sifarnici
             var select = " Select NHM.ID,NHM.Broj, NHM.Naziv, CASE WHEN NHM.RID > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as RID, ADRID, Uvozni, Interni " +
 " , VrstaRobeADR.NAziv, VrstaRobeADR.Klasa, VrstaRobeADR.Grupa from NHM " +
 "  left join VrstaRobeADR on NHM.ADRID = VrstaRobeADR.ID";
-            var s_connection = frmLogovanje.connectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

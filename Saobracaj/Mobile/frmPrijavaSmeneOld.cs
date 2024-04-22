@@ -38,7 +38,7 @@ namespace Saobracaj.Mobile
             " inner join Delavci on DeSifra = ZaposleniPrijava.Zaposleni " +
             " order by ZaposleniPrijava.ID desc";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -140,7 +140,7 @@ namespace Saobracaj.Mobile
             var select = "Select distinct top 300 ZaposleniPrijava.ID,'' as OznakaPosla ,ZaposleniPrijava.Zaposleni as ZaposleniID, Rtrim(DeIme) + ' ' +Rtrim(DePriimek)  as Zaposleni,DatumPrijave, DatumOdjave, AktivnostId, LongPrijave, LatPrijave, LongOdjave, LatOdjave,   DateDiff(minute, DatumPrijave,DatumOdjave) as Minuta from ZaposleniPrijava " +
             "inner join Delavci on DeSifra = ZaposleniPrijava.Zaposleni where ZaposleniPrijava.DatumOdjave is null order by ZaposleniPrijava.ID desc";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

@@ -18,7 +18,7 @@ StanicaOtpreme nvarchar(100),
 [Datum] [datetime] NULL,
 [Korisnik] [nvarchar](20) NULL*/
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertBukingVoza";
@@ -124,7 +124,7 @@ StanicaOtpreme nvarchar(100),
         public void UpdVoz(int ID, int IdVoza, DateTime DatumOtpreme, string StanicaOtpreme, DateTime Datum, string Korisnik, int BrojVagona, double SopstvenaMasa)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateBukingVoza";
@@ -234,7 +234,7 @@ StanicaOtpreme nvarchar(100),
 
         public void DeleteVoz(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteBukingVoza";

@@ -35,7 +35,7 @@ namespace Saobracaj.Dokumenta
 
             */
 
-            var s_connection = frmLogovanje.connectionString;;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertPromet";
@@ -219,7 +219,7 @@ namespace Saobracaj.Dokumenta
 
        public void InsPromMan( int PRStDokumenta  , string BrojKontejnera  ,int ManipulacijaID ,int NajavaID ,int SredstvoRada ,int Zaposleni ,DateTime Datum,string @Korisnik, string SkladisteIz, string PozicijaIz, string SkladisteU, string PozicijaU)
        {
-           var s_connection = frmLogovanje.connectionString;;
+           var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;;
            SqlConnection myConnection = new SqlConnection(s_connection);
            SqlCommand myCommand = myConnection.CreateCommand();
            myCommand.CommandText = "InsertPrometManipulacije";
@@ -364,7 +364,7 @@ namespace Saobracaj.Dokumenta
        public void UpdProm(int ID, string Naziv, string IndividualniBroj, string LicencaBroj, DateTime LicencaVaziDo, string Namena, string Vrsta, int BrojOsovina, string RegistarskaOznaka, DateTime GodinaProizvodnje, double SopstvenaTezina, DateTime NarednaREgistracija, DateTime SetomesecniTehnicki, DateTime GodisnjiTehnicki, DateTime TahografSertifikat, DateTime PPAparat, DateTime Servis, DateTime Atest, double Nosivost, string Napomena, string SifraERP, DateTime Datum, string Korisnik, int UradjenTromesecni, int UradjenSetomesecni, int UradjenServis, DateTime DatumUradjenTromesecni, DateTime DatumUradjenSetomesecni, DateTime DatumUradjenServis, DateTime DatumUradjenGodisnji, DateTime TromesecniTehnicki, int UradjenGodisnji)
         {
 
-            var s_connection = frmLogovanje.connectionString;;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateVozila";
@@ -652,7 +652,7 @@ namespace Saobracaj.Dokumenta
 
        public void DeleteProm(int ID)
           {
-              var s_connection = frmLogovanje.connectionString;;
+              var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;;
               SqlConnection myConnection = new SqlConnection(s_connection);
               SqlCommand myCommand = myConnection.CreateCommand();
               myCommand.CommandText = "DeletePromet";
@@ -702,7 +702,7 @@ namespace Saobracaj.Dokumenta
 
         public void DeletePromManipulacije(int ID)
         {
-            var s_connection = frmLogovanje.connectionString;;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeletePrometManipulacije";
@@ -752,7 +752,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateZatvoren(int ID)
        {
-           var s_connection = frmLogovanje.connectionString;;
+           var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;;
            SqlConnection myConnection = new SqlConnection(s_connection);
            SqlCommand myCommand = myConnection.CreateCommand();
            myCommand.CommandText = "UpdateZatvoren";
@@ -802,7 +802,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateZatvorenPoBrojuKontejnera(string BrojKontejnera)
         {
-            var s_connection = frmLogovanje.connectionString; ;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString; ;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateZatvorenOtpremaPBRK";
@@ -855,7 +855,7 @@ namespace Saobracaj.Dokumenta
 
         public void UpdateZatvorenOtprema(string ID, DateTime DatumOtpreme, int BrojOtpremnice)
        {
-           var s_connection = frmLogovanje.connectionString;;
+           var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;;
            SqlConnection myConnection = new SqlConnection(s_connection);
            SqlCommand myCommand = myConnection.CreateCommand();
            myCommand.CommandText = "UpdateZatvorenOtprema";

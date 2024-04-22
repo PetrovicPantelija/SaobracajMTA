@@ -128,7 +128,7 @@ namespace Saobracaj.Administracija
         }
         public void InsertPravo(string Korisnik, int Main, int Kartica, int Forma)
         {
-            var s_connection = frmLogovanje.connectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertPravo";
@@ -197,7 +197,7 @@ namespace Saobracaj.Administracija
         }
         public void DeletePravo(string Korisnik)
         {
-            var s_connection = frmLogovanje.connectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeletePravo";

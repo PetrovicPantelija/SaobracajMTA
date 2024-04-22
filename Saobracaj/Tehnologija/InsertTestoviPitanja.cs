@@ -10,7 +10,7 @@ namespace Saobracaj.Tehnologija
     {
         public void InsTestoviPitanja(int IDNadredjenog, string Pitanje, int Tacan)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertTestoviPitanja";
@@ -78,7 +78,7 @@ namespace Saobracaj.Tehnologija
 
         public void UpdTestoviPitanja(int ID, int IDNadredjenog, string Pitanje, int Tacan)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "UpdateTestoviPitanja";
@@ -153,7 +153,7 @@ namespace Saobracaj.Tehnologija
 
         public void DeleteTestoviPitanja(int ID)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteTestoviPitanja";
@@ -204,7 +204,7 @@ namespace Saobracaj.Tehnologija
         public void InsGenerisaniTestoviPitanja(string Korisnik, int Test, int Pitanje, int KorisnikOdgovor)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "InsertGenerisaniTestoviPitanja";
@@ -279,7 +279,7 @@ namespace Saobracaj.Tehnologija
         public void DelGenerisaniTestoviPitanja(string Korisnik, int Test)
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
             myCommand.CommandText = "DeleteGenerisaniTestoviPitanja";

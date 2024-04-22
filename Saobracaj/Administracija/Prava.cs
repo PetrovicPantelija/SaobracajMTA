@@ -166,7 +166,29 @@ namespace Saobracaj.Administracija
             GetNodes(treeView1.Nodes);
             InsertKorisnici ins = new InsertKorisnici();
 
+            string obavestenje = "Dodela prava Korisniku:"+comboBox1.SelectedValue.ToString();
+            Obavestenje frm = new Obavestenje(obavestenje);
+            frm.Show();
+            Application.DoEvents();
+
+            int max=0;
+            string queryMax = "select Count(ID) From KarticeForme";
+            string connect = frmLogovanje.connectionString;
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                SqlCommand cmd = new SqlCommand(queryMax, conn);
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while(dr.Read())
+                {
+                    max = Convert.ToInt32(dr[0].ToString());
+                }
+                conn.Close();
+            }
+            frm.SetProgressBarMaximum(max);
+
             ins.DeletePravo(comboBox1.SelectedValue.ToString().TrimEnd());
+
             foreach (var i in formeList)
             {
                 int main = 0, kartica = 0;
@@ -195,6 +217,7 @@ namespace Saobracaj.Administracija
                     conn.Close();
                 }
                 ins.InsertPravo(comboBox1.SelectedValue.ToString().Trim(), main, kartica, Convert.ToInt32(i));
+                frm.IncrementProgressBar();
             }
             mainList.Clear();
             karticeList.Clear();
@@ -202,6 +225,7 @@ namespace Saobracaj.Administracija
 
 
             PravoKorisnik();
+            frm.Close();
         }
     }
 }

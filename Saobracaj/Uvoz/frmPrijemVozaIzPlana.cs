@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -12,7 +13,7 @@ namespace Saobracaj.Uvoz
         string KorisnikCene = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
         int IzRNI = 0;
         int trnI = 0;
-        public string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+        public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
         public frmPrijemVozaIzPlana()
         {
@@ -40,7 +41,7 @@ namespace Saobracaj.Uvoz
         int ProveriDaLIPostojiVoz(int Voz)
         {
             int Postoji = 0;
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -92,7 +93,7 @@ namespace Saobracaj.Uvoz
         }
         private void VratiIDPrijemnice(int Voz)
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -109,7 +110,7 @@ namespace Saobracaj.Uvoz
         }
         private void VratiPodatkeMax()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -127,7 +128,7 @@ namespace Saobracaj.Uvoz
 
         private void VratiVozIzPlana()
         {
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -159,7 +160,7 @@ namespace Saobracaj.Uvoz
         int VratiPlan()
         {
             int PlanID = 0;
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -189,7 +190,7 @@ namespace Saobracaj.Uvoz
             cboPlanUtovara.ValueMember = "ID";
 
             var select8 = "  Select Distinct ID, (Cast(BrVoza as nvarchar(10)) + '-' + Relacija) as IdVoza   From Voz ";
-            var s_connection8 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection8 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection8 = new SqlConnection(s_connection8);
             var c8 = new SqlConnection(s_connection8);
             var dataAdapter8 = new SqlDataAdapter(select8, c8);
@@ -203,7 +204,7 @@ namespace Saobracaj.Uvoz
 
 
             var select4 = "  select PaSifra, PaNaziv from Partnerji order by PaNaziv";
-            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
             var dataAdapter4 = new SqlDataAdapter(select4, c4);
@@ -217,7 +218,7 @@ namespace Saobracaj.Uvoz
 
 
             var select5 = "  select PaSifra, PaNaziv from Partnerji order by PaNaziv";
-            var s_connection5 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection5 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection4);
             var c5 = new SqlConnection(s_connection5);
             var dataAdapter5 = new SqlDataAdapter(select5, c5);
@@ -285,7 +286,7 @@ namespace Saobracaj.Uvoz
 " INNER JOIN VrstePostupakaUvoz ON VrstePostupakaUvoz.id = PrijemKontejneraVozStavke.PostupakSaRobom where IdNadredjenog =  " + txtSifra.Text + " order by RB";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

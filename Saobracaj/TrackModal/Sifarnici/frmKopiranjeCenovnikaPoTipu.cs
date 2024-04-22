@@ -17,7 +17,7 @@ namespace Saobracaj.TrackModal.Sifarnici
         private void frmKopiranjeCenovnikaPoTipu_Load(object sender, EventArgs e)
         {
             var select3 = " select ID, Naziv from TipCenovnika";
-            var s_connection3 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
             var dataAdapter3 = new SqlDataAdapter(select3, c3);
@@ -30,7 +30,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             cboTipCenovnika1.ValueMember = "ID";
 
             var select4 = " select ID, Naziv from TipCenovnika";
-            var s_connection4 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection4 = new SqlConnection(s_connection4);
             var c4 = new SqlConnection(s_connection4);
             var dataAdapter4 = new SqlDataAdapter(select4, c4);
@@ -44,7 +44,7 @@ namespace Saobracaj.TrackModal.Sifarnici
 
 
             var select6 = " Select PaSifra,PaNaziv from Partnerji order by PaNaziv ";
-            var s_connection6 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection6 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection6 = new SqlConnection(s_connection6);
             var c6 = new SqlConnection(s_connection6);
             var dataAdapter6 = new SqlDataAdapter(select6, c6);
@@ -57,7 +57,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             cboPartner1.ValueMember = "PaSifra";
 
             var select7 = " Select PaSifra,PaNaziv from Partnerji order by PaNaziv ";
-            var s_connection7 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection7 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection7 = new SqlConnection(s_connection7);
             var c7 = new SqlConnection(s_connection7);
             var dataAdapter7 = new SqlDataAdapter(select7, c7);
@@ -97,7 +97,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             " inner join VrstePostupakaUvoz  on VrstePostupakaUvoz.ID = Cene.PostupakSaRobom " +
            " inner join VrstaManipulacije on VrstaManipulacije.Id = Cene.VrstaManipulacije  where Razred = '" + cboRazred.Text + "'" +
            " order by Cene.ID desc";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -150,7 +150,7 @@ namespace Saobracaj.TrackModal.Sifarnici
              " inner join VrstePostupakaUvoz  on VrstePostupakaUvoz.ID = Cene.PostupakSaRobom " +
             " inner join VrstaManipulacije on VrstaManipulacije.Id = Cene.VrstaManipulacije  where TipCenovnika = " + cboTipCenovnika2.SelectedValue + " and Cene.Komitent =  " + Convert.ToInt32(cboPartner2.SelectedValue) +
             " order by Cene.ID desc";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -198,7 +198,7 @@ namespace Saobracaj.TrackModal.Sifarnici
              " inner join VrstePostupakaUvoz  on VrstePostupakaUvoz.ID = Cene.PostupakSaRobom " +
             " inner join VrstaManipulacije on VrstaManipulacije.Id = Cene.VrstaManipulacije  where TipCenovnika = " + cboTipCenovnika1.SelectedValue + " and Cene.Komitent =  " + Convert.ToInt32(cboPartner1.SelectedValue) +
             " order by Cene.ID desc";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

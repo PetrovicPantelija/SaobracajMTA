@@ -68,7 +68,7 @@ namespace Saobracaj.Sifarnici
         {
             bool temp = false;
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
@@ -149,7 +149,7 @@ namespace Saobracaj.Sifarnici
         private void frmPruge_Load(object sender, EventArgs e)
         {
             var select6 = " Select Distinct ID, RTrim(Opis) as Stanica From Stanice";
-            var s_connection6 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection6 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection6 = new SqlConnection(s_connection6);
             var c6 = new SqlConnection(s_connection6);
             var dataAdapter6 = new SqlDataAdapter(select6, c6);
@@ -162,7 +162,7 @@ namespace Saobracaj.Sifarnici
             StanicaOD.ValueMember = "ID";
 
             var select7 = " Select Distinct ID, RTrim(Opis) as Stanica From Stanice";
-            var s_connection7 = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection7 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection7 = new SqlConnection(s_connection7);
             var c7 = new SqlConnection(s_connection7);
             var dataAdapter7 = new SqlDataAdapter(select7, c7);
@@ -183,7 +183,7 @@ namespace Saobracaj.Sifarnici
                     " PrugaStavke ON Pruga.Oznaka = PrugaStavke.IDPruge left JOIN" +
                     " stanice ON PrugaStavke.StanicaOd = stanice.ID left JOIN" +
                     " stanice AS stanice_1 ON PrugaStavke.StanicaDo = stanice_1.ID where Pruga.Oznaka ='" + txtOznaka.Text + "'";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -267,7 +267,7 @@ namespace Saobracaj.Sifarnici
                      " PrugaStavke ON Pruga.Oznaka = PrugaStavke.IDPruge INNER JOIN" +
                      " stanice ON PrugaStavke.StanicaOd = stanice.ID INNER JOIN" +
                      " stanice AS stanice_1 ON PrugaStavke.StanicaDo = stanice_1.ID where Pruga.Oznaka ='" + txtOznaka.Text + "'";
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -358,7 +358,7 @@ namespace Saobracaj.Sifarnici
         {
             bool temp = false;
 
-            var s_connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.NedraConnectionString"].ConnectionString;
+            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
