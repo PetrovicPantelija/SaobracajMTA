@@ -3626,6 +3626,11 @@ fiksniobr.Show();
             frmKalmarGateINKaminonPreneseno kgikp = new frmKalmarGateINKaminonPreneseno();
             kgikp.Show();
         }
+
+        private void toolStripEx40_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
     }
 
