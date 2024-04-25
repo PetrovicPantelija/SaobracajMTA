@@ -873,8 +873,6 @@ namespace Saobracaj.Tehnologija
                     if (row.Selected)
                     {
                         txtAktivnostiID.Text = row.Cells[0].Value.ToString();
-                        // VratiPodatke(txtSifra.Text);
-                        // txtOpis.Text = row.Cells[1].Value.ToString();
                     }
                 }
 
