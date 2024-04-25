@@ -18,12 +18,15 @@ namespace Saobracaj.Pantheon_Export
         private void PrihodiPosla_Load(object sender, EventArgs e)
         {
             FillCombo();
+            label6.Visible = false;
+            label11.Visible = false;
+            txtAktivnosti.Visible = false;
         }
         private void FillCombo()
         {
             SqlConnection conn = new SqlConnection(connect);
 
-            var query = "Select ID,Oznaka From Najava Where Status=7 order by ID desc";
+            var query = "Select ID,Oznaka From Najava Where Status=7 or Status=5 order by ID desc";
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();
             da.Fill(ds);
@@ -34,7 +37,7 @@ namespace Saobracaj.Pantheon_Export
         decimal trase, predvidjanja, aktivnosti,faktura,vuca;
         private void Trase()
         {
-            var select = "select RadniNalogVezaNajave.*,Najava.Oznaka,RTrim(stanice.opis),RTrim(s.Opis),RTrim(Trase.OpisRelacije),Cast((Trase.Cena/117.2) as decimal(18,2))as Cena " +
+            var select = "select RadniNalogVezaNajave.*,Najava.Oznaka,RTrim(stanice.opis),RTrim(s.Opis),RTrim(Trase.OpisRelacije),Cast((Cena) as decimal(18,2)) as Cena,Cast((Trase.Cena/117.2) as decimal(18,2))as CenaEUR " +
                 "from RadniNalogVezaNajave " +
                 "left join Najava on RadniNalogVezaNajave.IDNajave = Najava.ID " +
                 "inner join RadniNalogTrase on RadniNalogVezaNajave.IDRadnogNaloga = RadniNalogTrase.IDRadnogNaloga " +
@@ -74,7 +77,7 @@ namespace Saobracaj.Pantheon_Export
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
-            trase = dataGridView1.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDecimal(t.Cells["Cena"].Value));
+            trase = dataGridView1.Rows.Cast<DataGridViewRow>().Sum(t => Convert.ToDecimal(t.Cells["CenaEUR"].Value));
             txtTrase.Text = trase.ToString();
         }
         private void Predvidjanja()
@@ -138,7 +141,7 @@ namespace Saobracaj.Pantheon_Export
         }
         private void Vuca()
         {
-            var select = "Select 'VUCA' as Aktivnost,Round(Sum(Sati),0) as Sati,Cena,Lokomotiva " +
+            var select = "Select 'VUCA' as Aktivnost,Sum(Sati) as [Sati Ukupno],Ceiling(Sum(Sati)) as Sati,Cena,Lokomotiva " +
                 "From AktivnostiStavke " +
                 "INNER JOIN VrstaAktivnosti ON AktivnostiStavke.VrstaAktivnostiID = VrstaAktivnosti.ID " +
                 "Where VrstaAktivnostiID = 61 and Posao=" + Convert.ToInt32(comboBox1.SelectedValue) +
@@ -165,6 +168,7 @@ namespace Saobracaj.Pantheon_Export
 
             dataGridView5.Columns["Aktivnost"].Width = 80;
             dataGridView5.Columns["Sati"].Width = 70;
+            dataGridView5.Columns["Sati ukupno"].Width = 65;
             dataGridView5.Columns["Cena"].Width = 60;
 
             vuca = 0;
@@ -267,7 +271,7 @@ namespace Saobracaj.Pantheon_Export
         }
         private void Prihodi()
         {
-            decimal ukupnoEur = predvidjanja + aktivnosti;
+            decimal ukupnoEur = predvidjanja;
             txtUeur.Text = ukupnoEur.ToString();
 
             decimal bilans = Convert.ToDecimal(txtFaktura.Text) - Convert.ToDecimal(txtUeur.Text);

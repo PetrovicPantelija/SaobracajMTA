@@ -20,10 +20,13 @@ namespace Saobracaj.Pantheon_Export
         {
             InitializeComponent();
             FillGV();
+            FillCombo();
         }
         private void FillGV()
         {
-            var select = "Select UlFak.ID as ID,(Select MAX(RTrim(NosiociTroskova.NazivNosiocaTroska)) from UlFakPostav inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID where UlFakPostav.IDFak = UlFak.ID) as [NT Naziv]," +
+            var select = "Select UlFak.ID as ID," +
+                "(Select MAX(RTrim(NosiociTroskova.NosilacTroska)) from UlFakPostav inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID where UlFakPostav.IDFak = UlFak.ID) as [NT]," +
+                "(Select MAX(RTrim(NosiociTroskova.NazivNosiocaTroska)) from UlFakPostav inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID where UlFakPostav.IDFak = UlFak.ID) as [NT Naziv]," +
                 "UlFak.Status as Status,RTrim(Predvidjanje.PredvidjanjeId) as PredvidjanjeID,VrstaDokumenta as [Vrsta Dokumenta],Tip as [Tip]," +
                 "Format(DatumPrijema,'dd.MM.yyyy') as [Datum prijema],RTrim(UlFak.Valuta) as Valuta,UlFak.Kurs as Kurs,FakturaBr as [Faktura BR],RTrim(PaNaziv) as Dobavljac," +
                 "RTrim(RacunDobavljaca) as RacunDobavljaca,Format(DatumIzdavanja,'dd.MM.yyy') as [Datum Izdavanja],Format(DatumPDVa,'dd.MM.yyyy') as [Datum PDVa]," +
@@ -136,6 +139,8 @@ namespace Saobracaj.Pantheon_Export
         decimal Iznos;
         string ValutaResponse;
         DateTime DatumPlacanja;
+
+
         private void btnGetPlacanja_Click(object sender, EventArgs e)
         {
             var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:3333/api/PlacanjaDobavljacima/GetPlacanjaDobavljacima");
@@ -180,6 +185,7 @@ namespace Saobracaj.Pantheon_Export
             }
             FillGV();
         }
+
         private void btnObrisi_Click(object sender, EventArgs e)
         {
             InsertPatheonExport ins = new InsertPatheonExport();
@@ -192,7 +198,7 @@ namespace Saobracaj.Pantheon_Export
             }
             FillGV();
         }
-        int crm; 
+        int crm;
         int status;
         private void btnExportProd_Click(object sender, EventArgs e)
         {
@@ -359,6 +365,162 @@ namespace Saobracaj.Pantheon_Export
         {
             UlazneFakture frm = new UlazneFakture();
             frm.Show();
+        }
+        private void FillCombo()
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            var nt = "Select ID,RTrim(NosilacTroska) as NT from NosiociTroskova order by ID desc";
+            var ntDa = new SqlDataAdapter(nt, conn);
+            var ntDS = new DataSet();
+            ntDa.Fill(ntDS);
+            comboBox1.DataSource = ntDS.Tables[0];
+            comboBox1.DisplayMember = "NT";
+            comboBox1.ValueMember = "ID";
+
+            var ntNaziv = "Select ID,RTrim(NazivNosiocaTroska) as NT from NosiociTroskova order by ID desc";
+            var ntNazivDa = new SqlDataAdapter(ntNaziv, conn);
+            var ntNazivDS = new DataSet();
+            ntNazivDa.Fill(ntNazivDS);
+            comboBox2.DataSource = ntNazivDS.Tables[0];
+            comboBox2.DisplayMember = "NT";
+            comboBox2.ValueMember = "ID";
+
+            var partner = "Select ID,RTrim(PredvidjanjeID) as Naziv from Predvidjanje order by ID desc";
+            var parterDa = new SqlDataAdapter(partner, conn);
+            var partnerDS = new DataSet();
+            parterDa.Fill(partnerDS);
+            comboBox3.DataSource = partnerDS.Tables[0];
+            comboBox3.DisplayMember = "Naziv";
+            comboBox3.ValueMember = "ID";
+        }
+        private void Filter(string query)
+        {
+            string select = query;
+            SqlConnection conn = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, conn);
+            var ds = new System.Data.DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            dataGridView1.BorderStyle = BorderStyle.FixedSingle;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            dataGridView1.Columns["ID"].Width = 50;
+            dataGridView1.Columns["NT Naziv"].Width = 120;
+            dataGridView1.Columns["Status"].Width = 45;
+            dataGridView1.Columns["PredvidjanjeID"].Width = 90;
+            dataGridView1.Columns["Vrsta Dokumenta"].Visible = false;
+            dataGridView1.Columns["Tip"].Width = 55;
+            dataGridView1.Columns["Valuta"].Width = 55;
+            dataGridView1.Columns["Kurs"].Width = 60;
+            dataGridView1.Columns["Dobavljac"].Width = 150;
+            dataGridView1.Columns["RacunDobavljaca"].Visible = false;
+            dataGridView1.Columns["Referent"].Visible = false;
+            dataGridView1.Columns["Iznos"].Width = 80;
+            dataGridView1.Columns["IznosRSD"].Visible = false;
+            dataGridView1.Columns["Napomena"].Width = 280;
+            dataGridView1.Columns["CRMID"].Width = 80;
+            dataGridView1.Columns["Predvidjanje"].Visible = false;
+            dataGridView1.Columns["IDDobavljaca"].Visible = false;
+            dataGridView1.Columns["Referent1"].Visible = false;
+        }
+
+
+        private void btnFilterNT_Click(object sender, EventArgs e)
+        {
+            var select = "Select UlFak.ID as ID," +
+                "(Select MAX(RTrim(NosiociTroskova.NosilacTroska)) from UlFakPostav inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID where UlFakPostav.IDFak = UlFak.ID) as [NT]," +
+                "(Select MAX(RTrim(NosiociTroskova.NazivNosiocaTroska)) from UlFakPostav inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID where UlFakPostav.IDFak = UlFak.ID) as [NT Naziv]," +
+                "UlFak.Status as Status,RTrim(Predvidjanje.PredvidjanjeId) as PredvidjanjeID,VrstaDokumenta as [Vrsta Dokumenta],Tip as [Tip]," +
+                "Format(DatumPrijema,'dd.MM.yyyy') as [Datum prijema],RTrim(UlFak.Valuta) as Valuta,UlFak.Kurs as Kurs,FakturaBr as [Faktura BR],RTrim(PaNaziv) as Dobavljac," +
+                "RTrim(RacunDobavljaca) as RacunDobavljaca,Format(DatumIzdavanja,'dd.MM.yyy') as [Datum Izdavanja],Format(DatumPDVa,'dd.MM.yyyy') as [Datum PDVa]," +
+                "Format(DatumValute,'dd.MM.yyyy') as [Datum Valute],(RTrim(DeIMe) + ' ' + RTrim(DePriimek)) as Referent,(Select Sum(Cena) from UlFakPostav Where UlFakPostav.IDFak = UlFak.ID) as Iznos," +
+                "(Select Sum(IznosRSD) from UlFakPostav Where UlFakPostav.IDFak = UlFak.ID) as IznosRSD, UlFak.Napomena as Napomena,UlFak.CRMID as CRMID," +
+                "Predvidjanje as Predvidjanje,IDDobavljaca as IDDobavljaca," +
+                "UlFak.Referent as Referent," +
+                "RTrim(UlFak.Korisnik) as Korisnik,PantheonID " +
+                "From UlFak " +
+                "Inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID " +
+                "inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
+                "inner join Delavci on UlFak.Referent = Delavci.DeSifra " +
+                "inner join UlFakPostav on UlFak.ID=UlFakPostav.IDFak " +
+                "Where UlFakPostav.NosilacTroska="+Convert.ToInt32(comboBox1.SelectedValue)+" Order by UlFak.ID desc";
+
+            Filter(select);
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var select = "Select UlFak.ID as ID," +
+                "(Select MAX(RTrim(NosiociTroskova.NosilacTroska)) from UlFakPostav inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID where UlFakPostav.IDFak = UlFak.ID) as [NT]," +
+                "(Select MAX(RTrim(NosiociTroskova.NazivNosiocaTroska)) from UlFakPostav inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID where UlFakPostav.IDFak = UlFak.ID) as [NT Naziv]," +
+                "UlFak.Status as Status,RTrim(Predvidjanje.PredvidjanjeId) as PredvidjanjeID,VrstaDokumenta as [Vrsta Dokumenta],Tip as [Tip]," +
+                "Format(DatumPrijema,'dd.MM.yyyy') as [Datum prijema],RTrim(UlFak.Valuta) as Valuta,UlFak.Kurs as Kurs,FakturaBr as [Faktura BR],RTrim(PaNaziv) as Dobavljac," +
+                "RTrim(RacunDobavljaca) as RacunDobavljaca,Format(DatumIzdavanja,'dd.MM.yyy') as [Datum Izdavanja],Format(DatumPDVa,'dd.MM.yyyy') as [Datum PDVa]," +
+                "Format(DatumValute,'dd.MM.yyyy') as [Datum Valute],(RTrim(DeIMe) + ' ' + RTrim(DePriimek)) as Referent,(Select Sum(Cena) from UlFakPostav Where UlFakPostav.IDFak = UlFak.ID) as Iznos," +
+                "(Select Sum(IznosRSD) from UlFakPostav Where UlFakPostav.IDFak = UlFak.ID) as IznosRSD, UlFak.Napomena as Napomena,UlFak.CRMID as CRMID," +
+                "Predvidjanje as Predvidjanje,IDDobavljaca as IDDobavljaca," +
+                "UlFak.Referent as Referent," +
+                "RTrim(UlFak.Korisnik) as Korisnik,PantheonID " +
+                "From UlFak " +
+                "Inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID " +
+                "inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
+                "inner join Delavci on UlFak.Referent = Delavci.DeSifra " +
+                "inner join UlFakPostav on UlFak.ID=UlFakPostav.IDFak " +
+                "Where UlFakPostav.NosilacTroska=" + Convert.ToInt32(comboBox2.SelectedValue) + " Order by UlFak.ID desc";
+
+            Filter(select);
+        }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var select = "Select UlFak.ID as ID," +
+            "(Select MAX(RTrim(NosiociTroskova.NosilacTroska)) from UlFakPostav inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID where UlFakPostav.IDFak = UlFak.ID) as [NT]," +
+            "(Select MAX(RTrim(NosiociTroskova.NazivNosiocaTroska)) from UlFakPostav inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID where UlFakPostav.IDFak = UlFak.ID) as [NT Naziv]," +
+            "UlFak.Status as Status,RTrim(Predvidjanje.PredvidjanjeId) as PredvidjanjeID,VrstaDokumenta as [Vrsta Dokumenta],Tip as [Tip]," +
+            "Format(DatumPrijema,'dd.MM.yyyy') as [Datum prijema],RTrim(UlFak.Valuta) as Valuta,UlFak.Kurs as Kurs,FakturaBr as [Faktura BR],RTrim(PaNaziv) as Dobavljac," +
+            "RTrim(RacunDobavljaca) as RacunDobavljaca,Format(DatumIzdavanja,'dd.MM.yyy') as [Datum Izdavanja],Format(DatumPDVa,'dd.MM.yyyy') as [Datum PDVa]," +
+            "Format(DatumValute,'dd.MM.yyyy') as [Datum Valute],(RTrim(DeIMe) + ' ' + RTrim(DePriimek)) as Referent,(Select Sum(Cena) from UlFakPostav Where UlFakPostav.IDFak = UlFak.ID) as Iznos," +
+            "(Select Sum(IznosRSD) from UlFakPostav Where UlFakPostav.IDFak = UlFak.ID) as IznosRSD, UlFak.Napomena as Napomena,UlFak.CRMID as CRMID," +
+            "Predvidjanje as Predvidjanje,IDDobavljaca as IDDobavljaca," +
+            "UlFak.Referent as Referent," +
+            "RTrim(UlFak.Korisnik) as Korisnik,PantheonID " +
+            "From UlFak " +
+            "Inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID " +
+            "inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
+            "inner join Delavci on UlFak.Referent = Delavci.DeSifra " +
+            "Where UlFak.Predvidjanje=" + Convert.ToInt32(comboBox3.SelectedValue) + " Order by UlFak.ID desc";
+
+            Filter(select);
+        }
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var select = "Select UlFak.ID as ID," +
+            "(Select MAX(RTrim(NosiociTroskova.NosilacTroska)) from UlFakPostav inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID where UlFakPostav.IDFak = UlFak.ID) as [NT]," +
+            "(Select MAX(RTrim(NosiociTroskova.NazivNosiocaTroska)) from UlFakPostav inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID where UlFakPostav.IDFak = UlFak.ID) as [NT Naziv]," +
+            "UlFak.Status as Status,RTrim(Predvidjanje.PredvidjanjeId) as PredvidjanjeID,VrstaDokumenta as [Vrsta Dokumenta],Tip as [Tip]," +
+            "Format(DatumPrijema,'dd.MM.yyyy') as [Datum prijema],RTrim(UlFak.Valuta) as Valuta,UlFak.Kurs as Kurs,FakturaBr as [Faktura BR],RTrim(PaNaziv) as Dobavljac," +
+            "RTrim(RacunDobavljaca) as RacunDobavljaca,Format(DatumIzdavanja,'dd.MM.yyy') as [Datum Izdavanja],Format(DatumPDVa,'dd.MM.yyyy') as [Datum PDVa]," +
+            "Format(DatumValute,'dd.MM.yyyy') as [Datum Valute],(RTrim(DeIMe) + ' ' + RTrim(DePriimek)) as Referent,(Select Sum(Cena) from UlFakPostav Where UlFakPostav.IDFak = UlFak.ID) as Iznos," +
+            "(Select Sum(IznosRSD) from UlFakPostav Where UlFakPostav.IDFak = UlFak.ID) as IznosRSD, UlFak.Napomena as Napomena,UlFak.CRMID as CRMID," +
+            "Predvidjanje as Predvidjanje,IDDobavljaca as IDDobavljaca," +
+            "UlFak.Referent as Referent," +
+            "RTrim(UlFak.Korisnik) as Korisnik,PantheonID " +
+            "From UlFak " +
+            "Inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID " +
+            "inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
+            "inner join Delavci on UlFak.Referent = Delavci.DeSifra " +
+            "Order by UlFak.ID desc";
+
+            Filter(select);
         }
     }
 }
