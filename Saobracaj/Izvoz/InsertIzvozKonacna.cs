@@ -9,7 +9,7 @@ namespace Saobracaj.Izvoz
 
     class InsertIzvozKonacna
     {
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
+        string connection = Sifarnici.frmLogovanje.connectionString;
 
 
         public void PrenesiIzPlanUtovaraUPlanUtovara(int ID, int PlanIz, int PlanU)

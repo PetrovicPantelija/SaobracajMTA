@@ -26,7 +26,7 @@ namespace Saobracaj.SyncForm
     " inner     join VrstaAktivnosti on VrstaAktivnosti.ID = AktivnostiStavke.VrstaAktivnostiID " +
     " order by Aktivnosti.ID desc";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

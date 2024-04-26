@@ -26,7 +26,7 @@ namespace Saobracaj.RadniNalozi
             var select = "";
             select = "   select ID, TipRN, IDRadnogNaloga, IDUsluge, BrojKontejnera, Uradjen from TerminalRadniNalozi";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -70,7 +70,7 @@ namespace Saobracaj.RadniNalozi
 " inner join PArtnerji as P4 On P4.PaSifra = UvozKonacna.Nalogodavac3" +
 " where TerminalRadniNalozi.TIPRN = '1-Prijem kontejnera VOZ'";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -116,7 +116,7 @@ namespace Saobracaj.RadniNalozi
 " inner join PArtnerji as P4 On P4.PaSifra = UvozKonacna.Nalogodavac3" +
 " where TerminalRadniNalozi.TIPRN = '2-Prijem Voz pretovar'";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -160,7 +160,7 @@ namespace Saobracaj.RadniNalozi
 "  inner join PArtnerji as P4 On P4.PaSifra = IzvozKonacna.Klijent3 " +
 "  where TerminalRadniNalozi.TIPRN = '3-Otprema voza - IZ'";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -205,7 +205,7 @@ namespace Saobracaj.RadniNalozi
 " inner join PArtnerji as P4 On P4.PaSifra = Izvoz.Klijent3 " +
 " where TerminalRadniNalozi.TIPRN = '4-Prijem platforma kam IZ'";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -254,7 +254,7 @@ namespace Saobracaj.RadniNalozi
   " left JOIN TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
  " where TerminalRadniNalozi.TIPRN = '6-Otprema Platforme UV'";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -291,7 +291,7 @@ namespace Saobracaj.RadniNalozi
  "  left JOIN TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
  " where TerminalRadniNalozi.TIPRN = '7-Otprema Platforme BRODAR'";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -328,7 +328,7 @@ namespace Saobracaj.RadniNalozi
 " left JOIN TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
 " where TerminalRadniNalozi.TIPRN = '8-Otprema Cirade'";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -365,7 +365,7 @@ namespace Saobracaj.RadniNalozi
 " Inner JOIN TipKontenjera ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
 " where TerminalRadniNalozi.TIPRN = '9-Prijem Cirade'";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -403,7 +403,7 @@ namespace Saobracaj.RadniNalozi
 " Inner JOIN TipKontenjera ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
 " where TerminalRadniNalozi.TIPRN = '10-PREGLED ISPRAŽNJENOG KONTEJNERA'";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -440,7 +440,7 @@ namespace Saobracaj.RadniNalozi
 " Inner JOIN TipKontenjera ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
 " where TerminalRadniNalozi.TIPRN = '11-PREGLED I POSTAVKA  KONTEJNERA  ' ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -489,7 +489,7 @@ namespace Saobracaj.RadniNalozi
 " inner join Skladista s1 on s1.Id = KontejnerTekuce.Skladiste  inner join Pozicija po1 on po1.Id = KontejnerTekuce.Pozicija " +
 " where TerminalRadniNalozi.TIPRN = '1-Prijem kontejnera VOZ' and PrijemKontejneraVoz.Vozom = 1";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

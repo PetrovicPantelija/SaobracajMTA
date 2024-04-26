@@ -33,7 +33,7 @@ namespace Saobracaj.SyncForm
                 " inner join Delavci on Delavci.DeSifra = LokomotivaPrijava.Zaposleni " +
                 " inner join Stanice on Stanice.ID = LokomotivaPrijava.Stanica order by LokomotivaPrijava.ID desc ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

@@ -8,7 +8,7 @@ namespace Saobracaj.Izvoz
 {
     class InsertInspekciskiTretman
     {
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
+        string connection = Sifarnici.frmLogovanje.connectionString;
 
         public void InsInspekciskiTretman(string Naziv)
         {

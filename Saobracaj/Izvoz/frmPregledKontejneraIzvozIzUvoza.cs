@@ -88,7 +88,7 @@ namespace Saobracaj.Izvoz
 " left join partnerjiKontOsebaMU on Uvoz.KontaktOsoba = partnerjiKontOsebaMU.PaKOSifra " +
 " left join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja  left join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija  order by Uvoz.ID desc ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -142,7 +142,7 @@ namespace Saobracaj.Izvoz
 " Partnerji AS Partnerji_6 ON Izvoz.SpediterRijeka = Partnerji_6.PaSifra " +
 " LEFT JOIN         uvNacinPakovanja ON Izvoz.NacinPakovanja = uvNacinPakovanja.ID order by Izvoz.ID desc  ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

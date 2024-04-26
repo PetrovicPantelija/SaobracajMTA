@@ -35,7 +35,7 @@ namespace Saobracaj.RadniNalozi
 " inner join TipKontenjera on TipKontenjera.Id = VrstaKontejnera " +
 " where ZavrsenCIR =1  AND Zavrsen = 1 ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -63,7 +63,7 @@ namespace Saobracaj.RadniNalozi
 " inner join TipKontenjera on TipKontenjera.Id = VrstaKontejnera " +
 " where ZavrsenKalmarista = 1 ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

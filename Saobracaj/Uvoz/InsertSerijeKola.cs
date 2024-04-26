@@ -8,7 +8,7 @@ namespace Saobracaj.Uvoz
 {
     class InsertSerijeKola
     {
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
+        string connection = Sifarnici.frmLogovanje.connectionString;
         public void InsSerijeKola(string Naziv, int Broj20)
         {
             SqlConnection conn = new SqlConnection(connection);

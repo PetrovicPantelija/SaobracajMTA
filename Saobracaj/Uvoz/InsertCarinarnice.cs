@@ -9,7 +9,7 @@ namespace Saobracaj.Uvoz
 {
     class InsertCarinarnice
     {
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
+        string connection = Sifarnici.frmLogovanje.connectionString;
         public void InsCarinarnice(string Naziv, string CINaziv, string CIOznaka, string CIEmail, string CITelefon)
         {
             SqlConnection conn = new SqlConnection(connection);

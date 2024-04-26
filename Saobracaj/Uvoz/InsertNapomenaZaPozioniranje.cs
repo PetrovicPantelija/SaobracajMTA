@@ -8,7 +8,7 @@ namespace Saobracaj.Uvoz
 {
     class InsertNapomenaZaPozioniranje
     {
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
+        string connection = Sifarnici.frmLogovanje.connectionString;
         public void InsNapomenaZaPozicioniranje(string Naziv)
         {
             SqlConnection conn = new SqlConnection(connection);

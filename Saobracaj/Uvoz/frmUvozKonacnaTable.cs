@@ -1031,7 +1031,7 @@ Koleta
                " where UvozKonacna.IdNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text) + " order by UvozKonacna.ID desc";
 
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

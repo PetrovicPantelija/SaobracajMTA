@@ -8,7 +8,7 @@ namespace Saobracaj.Uvoz
 {
     class InsertRadniNalogInterni
     {
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
+        string connection = Sifarnici.frmLogovanje.connectionString;
 
         public void InsRadniNalogInterni(int OJIzdavanja, int OJRealizacije, DateTime DatumIzdavanja, DateTime DatumRealizacije, string Napomena, int Uradjen, string Osnov, int BrojOsnov, string KorisnikIzdao, string KorisnikZavrsio)
         {

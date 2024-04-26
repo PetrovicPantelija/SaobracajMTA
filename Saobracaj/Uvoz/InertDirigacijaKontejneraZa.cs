@@ -8,7 +8,7 @@ namespace Saobracaj.Uvoz
 {
     class InertDirigacijaKontejneraZa
     {
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
+        string connection = Sifarnici.frmLogovanje.connectionString;
         public void InsDirigacijaKontejneraZa(string Naziv)
         {
             SqlConnection conn = new SqlConnection(connection);

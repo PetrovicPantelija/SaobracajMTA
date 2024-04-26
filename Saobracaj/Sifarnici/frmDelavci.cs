@@ -135,7 +135,7 @@ namespace Saobracaj.Sifarnici
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
-            txtDeSifra.Enabled = false;
+            //txtDeSifra.Enabled = false;
             txtDeSifra.Text = "";
             txtDePriimek.Text = "";
             txtDeIme.Text = "";
@@ -206,12 +206,12 @@ namespace Saobracaj.Sifarnici
                 // txtDeSifra.Text,  txtDePriimek.Text,  txtDeIme.Text, txtDeTelefon1.Text,  txtDeTelefon2.Text ,  txtDeEMail.Text , txtDeUlHisStBivS.Text , txtDeKrajBivS.Text , txtDeSifDelMes.Text ,  txtDeSifStat.Text ,  PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja)
                 //  txtNaziv.Text,  txtUlica.Text,  txtMesto.Text,  txtOblast.Text, txtPosta.Text ,txtDrzava.Text, txtTelefon.Text, txtTR.Text ,  txtNapomena.Text,txtMaticniBroj.Text,  txtEmail.Text,  txtPIB.Text
                 InsertDelavciMTA ins = new InsertDelavciMTA();
-                ins.InsDelavciMTA(txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.SelectedValue), txtDeSifStat.Text, PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja);
+                ins.InsDelavciMTA(txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.SelectedValue), txtDeSifStat.Text, PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja, txtERPID.Text);
             }
             else
             {
                 InsertDelavciMTA upd = new InsertDelavciMTA();
-                upd.UpdDelavciMTA(Convert.ToInt32(txtDeSifra.Text), txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.SelectedValue), txtDeSifStat.Text, PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja);
+                upd.UpdDelavciMTA(Convert.ToInt32(txtDeSifra.Text), txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.SelectedValue), txtDeSifStat.Text, PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja, txtERPID.Text);
             }
             RefreshDataGrid();
         }
@@ -404,7 +404,7 @@ namespace Saobracaj.Sifarnici
             // txtDeSifra.Text,  txtDePriimek.Text,  txtDeIme.Text, txtDeTelefon1.Text,  txtDeTelefon2.Text ,  txtDeEMail.Text , txtDeUlHisStBivS.Text , txtDeKrajBivS.Text , txtDeSifDelMes.Text ,  txtDeSifStat.Text ,  PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja)
             //  txtNaziv.Text,  txtUlica.Text,  txtMesto.Text,  txtOblast.Text, txtPosta.Text ,txtDrzava.Text, txtTelefon.Text, txtTR.Text ,  txtNapomena.Text,txtMaticniBroj.Text,  txtEmail.Text,  txtPIB.Text
             InsertDelavciMTA ins = new InsertDelavciMTA();
-            ins.InsDelavciStariMTA(Convert.ToInt32(txtDeSifra.Text), txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.SelectedValue), txtDeSifStat.Text, PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja);
+            ins.InsDelavciStariMTA(Convert.ToInt32(txtDeSifra.Text), txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.SelectedValue), txtDeSifStat.Text, PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja, txtERPID.Text);
 
 
             RefreshDataGrid();

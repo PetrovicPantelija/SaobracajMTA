@@ -40,7 +40,7 @@ namespace Saobracaj.RadniNalozi
       "       join Voz on Voz.ID = SaVoznogSredstva " +
 "  where ZavrsenVP is null";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -75,7 +75,7 @@ namespace Saobracaj.RadniNalozi
       "       join Voz on Voz.ID = SaVoznogSredstva " +
 "  where ZavrsenVP = 1 ";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

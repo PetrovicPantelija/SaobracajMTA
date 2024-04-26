@@ -9,7 +9,7 @@ namespace Saobracaj.Izvoz
 
     class InsertMestaUtovara
     {
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
+        string connection = Sifarnici.frmLogovanje.connectionString;
 
         public void InsMestaUtovara(string Naziv)
         {
