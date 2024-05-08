@@ -129,7 +129,7 @@ namespace Testiranje.Izvestaji
             this.Controls.Add(this.dataGridView3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmManipulacijeGrupno";
-            this.Text = "USluge ukupno";
+            this.Text = "Usluge ukupno";
             this.Load += new System.EventHandler(this.frmManipulacijeGrupno_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);

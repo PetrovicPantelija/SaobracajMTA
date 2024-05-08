@@ -19,7 +19,7 @@ using Saobracaj.Sifarnici;
 
 namespace TrackModal.Promet
 {
-    public partial class frmPrometKontejnera : Form
+    public partial class frmPrometKontejnera : Syncfusion.Windows.Forms.Office2010Form
     {
         string KorisnikCene;
         public static string code = "frmPrometKontejnera";
@@ -51,7 +51,7 @@ namespace TrackModal.Promet
 
         private void btnPregled_Click(object sender, EventArgs e)
         {
-             var select = " SELECT DISTINCT Promet.[Id], Promet.[DatumTransakcije], Promet.[VrstaDokumenta],   " +
+             var select = " SELECT DISTINCT Promet.[Id], Promet.[DatumTransakcije], Promet.[VrstaDokumenta]   " +
          " ,Promet.[PrStDokumenta],Promet.[PrSifVrstePrometa],Promet.[BrojKontejnera] " +
          " ,Promet.[PrPrimKol],Promet.[PrIzdKol] , Skladista.Naziv as Skladiste  , Pozicija.Oznaka, Skladista1.Naziv as SkaldisteIz, pozicija1.Oznaka as LokacijaIz, " +
          " Promet.[PrOznSled]  ,Zatvoren, DatumOtpreme, BrojOtpremnice, Promet.[Datum] ,Promet.[Korisnik]  FROM [dbo].[Promet] inner join Skladista on Promet.SkladisteU = Skladista.ID " +

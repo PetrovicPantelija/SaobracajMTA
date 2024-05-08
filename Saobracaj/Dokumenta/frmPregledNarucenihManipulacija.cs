@@ -200,7 +200,7 @@ namespace Saobracaj.Dokumenta
                      " CASE WHEN NaruceneManipulacije.Uradjeno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Uradjeno, " +
                      " NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik,  NaruceneManipulacije.ID, NaruceneManipulacije.Broj from NaruceneManipulacije " +
                      " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
-                     " inner join Komitenti on NaruceneManipulacije.Platilac = Komitenti.ID " +
+                     " inner join Partnerji on NaruceneManipulacije.Platilac = Partnerji.PaSifra " +
                      " where NaruceneManipulacije.IzPrijema = 1 and NaruceneManipulacije.IDPrijemaVoza = " + Convert.ToInt32(cboPrijemVozom.SelectedValue);
 
                     var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -360,7 +360,7 @@ namespace Saobracaj.Dokumenta
                  " CASE WHEN NaruceneManipulacije.Uradjeno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Uradjeno, " +
                  " NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik,  NaruceneManipulacije.ID, NaruceneManipulacije.Broj from NaruceneManipulacije " +
                  " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
-                 " inner join Komitenti on NaruceneManipulacije.Platilac = Komitenti.ID " +
+                 " inner join Partnerji on NaruceneManipulacije.Platilac = Partnerji.PaSifra " +
                  " where NaruceneManipulacije.IzPrijema = 0 and NaruceneManipulacije.IDPrijemaVoza = " + Convert.ToInt32(cboPrijemVozom.SelectedValue);
 
                 var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -518,7 +518,7 @@ namespace Saobracaj.Dokumenta
                  " CASE WHEN NaruceneManipulacije.Uradjeno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Uradjeno, " +
                  " NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik,  NaruceneManipulacije.ID, NaruceneManipulacije.Broj from NaruceneManipulacije " +
                  " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
-                 " inner join Komitenti on NaruceneManipulacije.Platilac = Komitenti.ID " +
+                 " inner join Partnerji on NaruceneManipulacije.Platilac = Partnerji.PaSifra " +
                  " where NaruceneManipulacije.IzPrijema = 1 and NaruceneManipulacije.IDPrijemaVoza = " + Convert.ToInt32(cboPrijemVozom.SelectedValue) + " and NaruceneManipulacije.BrojKontejnera = '" + txtBrojKontejnera.Text + "'"; ;
 
                 var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -676,7 +676,7 @@ namespace Saobracaj.Dokumenta
                  " CASE WHEN NaruceneManipulacije.Uradjeno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Uradjeno, " +
                  " NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik,  NaruceneManipulacije.ID, NaruceneManipulacije.Broj from NaruceneManipulacije " +
                  " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
-                 " inner join Komitenti on NaruceneManipulacije.Platilac = Komitenti.ID " +
+                 " inner join Partnerji on NaruceneManipulacije.Platilac = Partnerji.PaSifra " +
                  " where NaruceneManipulacije.IzPrijema = 0 and NaruceneManipulacije.IDPrijemaVoza = " + Convert.ToInt32(cboPrijemVozom.SelectedValue) + " and NaruceneManipulacije.BrojKontejnera = '" + txtBrojKontejnera.Text + "'"; ;
 
                 var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;

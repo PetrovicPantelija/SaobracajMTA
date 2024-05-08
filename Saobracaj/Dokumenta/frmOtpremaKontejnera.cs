@@ -177,6 +177,9 @@ namespace Saobracaj.Dokumeta
         private void tsNew_Click(object sender, System.EventArgs e)
         {
             status = true;
+            txtSifra.Text = "0";
+            RefreshDataGrid();
+            txtSifra.Text = "";
             txtSifra.Enabled = false;
             dtpVremeOdlaska.Value = DateTime.Now;
             dtpDatumOtpreme.Value = DateTime.Now;
@@ -247,9 +250,9 @@ namespace Saobracaj.Dokumeta
         private void RefreshDataGrid()
         {
             var select = "  SELECT OtpremaKontejneraVozStavke.ID, OtpremaKontejneraVozStavke.RB, OtpremaKontejneraVozStavke.IDNadredjenog,  OtpremaKontejneraVozStavke.BrojKontejnera, OtpremaKontejneraVozStavke.Granica, "
-                        + " OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, Partnerji.Naziv AS Posiljalac, Komitenti_1.Naziv AS primalac, "
-                        + " Komitenti_2.Naziv AS Vlasnikkontejnera, " +
-                          " Komitenti_3.Naziv AS Organizator, " +
+                        + " OtpremaKontejneraVozStavke.BrojOsovina, OtpremaKontejneraVozStavke.SopstvenaMasa, OtpremaKontejneraVozStavke.Tara, OtpremaKontejneraVozStavke.Neto, Partnerji.PaNaziv AS Posiljalac, Komitenti_1.PaNaziv AS primalac, "
+                        + " Komitenti_2.PaNaziv AS Vlasnikkontejnera, " +
+                          " Komitenti_3.PaNaziv AS Organizator, " +
                         "  TipKontenjera.Naziv AS TipKontejnera, VrstaRobe.Naziv AS VrstaRobe, OtpremaKontejneraVozStavke.Buking , OtpremaKontejneraVozStavke.StatusKontejnera, "
                         + " OtpremaKontejneraVozStavke.BrojPlombe, OtpremaKontejneraVozStavke.BrojPlombe2, OtpremaKontejneraVozStavke.PlaniraniLager,"
                          + " OtpremaKontejneraVozStavke.BrojVagona, "
@@ -936,10 +939,9 @@ namespace Saobracaj.Dokumeta
             */
 
         }
-
-        private void frmOtpremaKontejnera_Load(object sender, System.EventArgs e)
+        private void FillCB()
         {
-            var select = " Select Distinct ID, (Broj + '-' + Naziv) as NHM  From NHM";
+            var select = " Select Distinct ID, (Rtrim(Broj) + '-' + Naziv) as NHM  From NHM";
             var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -1006,6 +1008,13 @@ namespace Saobracaj.Dokumeta
             cboTipKontejnera.DisplayMember = "Naziv";
             cboTipKontejnera.ValueMember = "ID";
 
+
+        }
+
+        private void frmOtpremaKontejnera_Load(object sender, System.EventArgs e)
+        {
+           
+            FillCB();
             var select5 = " Select Distinct ID, (Cast(id as nvarchar(5)) + '-' + Cast(BrVoza as nvarchar(10)) + '-' + Cast(Relacija as nvarchar(100)) + '- '  + Cast(Convert(nvarchar(10),VremeDolaskaO,105) as Nvarchar(10))) as Naziv  From Voz where dolazeci = 0 ";
             var s_connection5 = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
@@ -1203,22 +1212,55 @@ namespace Saobracaj.Dokumeta
 
             con.Close();
         }
+        private int VratiPostojiPrijemKontejnera(string Kontejner)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" Select Count(*) as Broj from Promet where BRojKontejnera =  '" + Kontejner + "' and Zatvoren = 0", con);
+
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            int SledeciBroj = 0;
+            while (dr.Read())
+            {
+                SledeciBroj = Convert.ToInt32(dr["Broj"].ToString());
+
+            }
+            con.Close();
+            return SledeciBroj;
+        }
 
         private void toolStripButton1_Click(object sender, System.EventArgs e)
         {
             DialogResult result = MessageBox.Show("Zatvaranje uraditi po broju kontejnera?", "Potvrda", MessageBoxButtons.YesNoCancel);
             if (result == DialogResult.Yes)
             {
-                foreach (DataGridViewRow row in dataGridView2.Rows)
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
-                    ins.UpdateZatvorenPoBrojuKontejnera(row.Cells[2].Value.ToString());
+                    int VecPostoji = VratiPostojiPrijemKontejnera(row.Cells[2].Value.ToString());
+                    if (VecPostoji == 0)
+                    {
+                        Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
+                        ins.UpdateZatvorenPoBrojuKontejnera(row.Cells[3].Value.ToString());
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Nw postoji kontejner" + row.Cells[3].Value.ToString() + " koji nije zatvoren!!! ");
+                    }
+
+
+                   
                 }
             }
             else if (result == DialogResult.No)
             {
                 foreach (DataGridViewRow row in dataGridView2.Rows)
                 {
+                    MessageBox.Show("FUNKCIJA ZATVARA SVE KONTEJNERE, POSTOJI RIZIK DA JE NEKI KONTEJNER VEĆ ZATVOREN DRUGIM DOKUMENTOM");
                     Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
                     ins.UpdateZatvorenOtprema(row.Cells[1].Value.ToString(), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToInt32(txtSifra.Text));
                 }
@@ -1332,13 +1374,15 @@ namespace Saobracaj.Dokumeta
         {
             if (cboStatusOtpreme.Text == "2-Otpremljen" && usao == 1)
             {
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    dtpVremeOdlaska.Value = DateTime.Now;
-                    Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
-                    ins.UpdateZatvorenOtprema(row.Cells[3].Value.ToString(), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToInt32(txtSifra.Text));
-                }
+                //   foreach (DataGridViewRow row in dataGridView1.Rows)
+                //   {
+
+                dtpVremeOdlaska.Value = DateTime.Now;
+
+                //      Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
+                //   ins.UpdateZatvorenOtprema(row.Cells[3].Value.ToString(), Convert.ToDateTime(dtpVremeOdlaska.Value), Convert.ToInt32(txtSifra.Text));
             }
+       
 
         }
 

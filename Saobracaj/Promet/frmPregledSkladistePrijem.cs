@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace TrackModal.Promet
 {
-    public partial class frmPregledSkladistePrijem : Form
+    public partial class frmPregledSkladistePrijem : Syncfusion.Windows.Forms.Office2010Form
     {
         string KorisnikCene;
         public frmPregledSkladistePrijem()

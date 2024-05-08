@@ -24,7 +24,7 @@ namespace TrackModal.Izvestaji
         }
         private void frmPregledManipulacijaPoPartneru_Load(object sender, EventArgs e)
         {
-            var select3 = " Select Distinct ID, Naziv From Komitenti order by Naziv";
+            var select3 = " Select Distinct PaSifra, PaNaziv From Partnerji order by PaNaziv";
             var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
@@ -34,8 +34,8 @@ namespace TrackModal.Izvestaji
             var ds3 = new DataSet();
             dataAdapter3.Fill(ds3);
             cboPlatilac.DataSource = ds3.Tables[0];
-            cboPlatilac.DisplayMember = "Naziv";
-            cboPlatilac.ValueMember = "ID";
+            cboPlatilac.DisplayMember = "PaNaziv";
+            cboPlatilac.ValueMember = "PaSifra";
         }
 
         private void RefreshDataGrid3()
@@ -49,7 +49,7 @@ namespace TrackModal.Izvestaji
             " NaruceneManipulacije.ID, NaruceneManipulacije.IzPrijema " +
             " from NaruceneManipulacije " +
             " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
-           " inner join Komitenti on NaruceneManipulacije.Platilac = Komitenti.ID " +
+           " inner join Partnerji on NaruceneManipulacije.Platilac = Partnerji.PaSifra " +
            " where NaruceneManipulacije.Platilac = " + Convert.ToInt32(cboPlatilac.SelectedValue) + " and  NaruceneManipulacije.DatumOd >= '" + dtpDatumOd.Text + "' and NaruceneManipulacije.DatumDo <= '" + dtpDatumDo.Text + "'";
 
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -133,7 +133,7 @@ namespace TrackModal.Izvestaji
             " NaruceneManipulacije.ID, NaruceneManipulacije.IzPrijema " +
             " from NaruceneManipulacije " +
             " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
-           " inner join Komitenti on NaruceneManipulacije.Platilac = Komitenti.ID " +
+           " inner join Partnerji on NaruceneManipulacije.Platilac = Partnerji.PaSifra " +
            " where NaruceneManipulacije.Platilac = " + Convert.ToInt32(cboPlatilac.SelectedValue) + " and  NaruceneManipulacije.DatumOd >= '" + dtpDatumOd.Text + "' and NaruceneManipulacije.DatumDo <= '" + dtpDatumDo.Text + "' and NaruceneManipulacije.BrojKontejnera = '" + txtBrojKontejnera.Text + "'";
 
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;

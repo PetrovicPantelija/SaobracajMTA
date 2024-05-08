@@ -648,7 +648,7 @@ namespace Saobracaj.Sifarnici
             sqlParameter1.Direction = ParameterDirection.Input;
             sqlParameter1.Value = Dobavljac;
             myCommand.Parameters.Add(sqlParameter1);
-
+            /*
             SqlParameter sqlParameter3 = new SqlParameter();
             sqlParameter3.ParameterName = "@Valuta";
             sqlParameter3.SqlDbType = SqlDbType.Char;
@@ -656,7 +656,7 @@ namespace Saobracaj.Sifarnici
             sqlParameter3.Direction = ParameterDirection.Input;
             sqlParameter3.Value = Valuta;
             myCommand.Parameters.Add(sqlParameter3);
-
+            */
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;

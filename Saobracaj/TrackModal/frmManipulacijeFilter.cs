@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Testiranje
 {
-    public partial class frmManipulacijeFilter : Form
+    public partial class frmManipulacijeFilter : Syncfusion.Windows.Forms.Office2010Form
     {
         public frmManipulacijeFilter()
         {
