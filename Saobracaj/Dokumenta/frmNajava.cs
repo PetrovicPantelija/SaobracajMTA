@@ -274,7 +274,7 @@ namespace Saobracaj.Dokumenta
             dataGridView4.Columns[2].HeaderText = "Šifra MP";
             dataGridView4.Columns[2].Width = 70;
 
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            DataGridViewColumn column4 = dataGridView4.Columns[3];
             dataGridView1.Columns[3].HeaderText = "Usluga";
             dataGridView1.Columns[3].Width = 150;
 
@@ -328,9 +328,9 @@ namespace Saobracaj.Dokumenta
             dataGridView4.Columns[2].HeaderText = "Šifra MP";
             dataGridView4.Columns[2].Width = 70;
 
-            DataGridViewColumn column4 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Usluga";
-            dataGridView1.Columns[3].Width = 150;
+            DataGridViewColumn column4 = dataGridView4.Columns[3];
+            dataGridView4.Columns[3].HeaderText = "Usluga";
+            dataGridView4.Columns[3].Width = 150;
 
 
 

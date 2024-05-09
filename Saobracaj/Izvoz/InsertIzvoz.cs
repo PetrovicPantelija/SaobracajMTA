@@ -8,7 +8,7 @@ namespace Saobracaj.Izvoz
 {
     class InsertIzvoz
     {
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
+        string connection = Sifarnici.frmLogovanje.connectionString;
 
         public void InsIzvozNHM(int IDNadredjena, int idNHM)
         {

@@ -16,7 +16,7 @@ using System.Net.Mail;
 
 namespace TrackModal.Promet
 {
-    public partial class frmMedjuskladisniPrenos : Form
+    public partial class frmMedjuskladisniPrenos : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmMedjuskladisniPrenos";
         public bool Pravo;
@@ -111,7 +111,7 @@ namespace TrackModal.Promet
             cboZaposleni.ValueMember = "ID";
 
             //Dodato za pretragu
-            var select = " Select Distinct ID, (NKM + '-' + Naziv) as NKM  From VrstaRobe";
+            var select = " Select Distinct ID, (Rtrim(Broj) + '-' + Naziv) as NHM  From NHM ORDER BY ID";
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -121,10 +121,10 @@ namespace TrackModal.Promet
             var ds = new DataSet();
             dataAdapter.Fill(ds);
             cboVrstaRobe.DataSource = ds.Tables[0];
-            cboVrstaRobe.DisplayMember = "NKM";
+            cboVrstaRobe.DisplayMember = "NHM";
             cboVrstaRobe.ValueMember = "ID";
 
-            var select2 = " Select Distinct ID, Naziv From Komitenti where Vlasnik =1  order by Naziv";
+            var select2 = " Select Distinct PaSifra, PaNaziv From PArtnerji  order by PaNaziv";
             var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
@@ -134,8 +134,8 @@ namespace TrackModal.Promet
             var ds2 = new DataSet();
             dataAdapter2.Fill(ds2);
             cboVlasnikKontejnera.DataSource = ds2.Tables[0];
-            cboVlasnikKontejnera.DisplayMember = "Naziv";
-            cboVlasnikKontejnera.ValueMember = "ID";
+            cboVlasnikKontejnera.DisplayMember = "PaNaziv";
+            cboVlasnikKontejnera.ValueMember = "PaSifra";
 
             /*
             var select9 = " Select Distinct ID, Naziv From TipKontenjera order by Naziv";
@@ -263,12 +263,12 @@ namespace TrackModal.Promet
           " ,Promet.[PrStDokumenta],Promet.[PrSifVrstePrometa],Promet.[BrojKontejnera] " +
           " ,Promet.[PrPrimKol] ,Promet.[SkladisteU], Skladista.Naziv as Skladiste " +
           " ,Promet.[LokacijaU] as LokacijaU,Pozicija.Oznaka ,Promet.[PrOznSled] " +
-          " ,Promet.[Datum] ,Promet.[Korisnik], TipKontenjera.Naziv, VrstaRobe.Nkm as NHM, VrstaRobe.Naziv  " +
+          " ,Promet.[Datum] ,Promet.[Korisnik], TipKontenjera.Naziv, NHM.Broj as NHM, NHM.Naziv  " +
           " FROM [dbo].[Promet] inner join Skladista on Promet.SkladisteU = Skladista.ID " +
           " inner join Pozicija on Promet.LokacijaU = Pozicija.ID " +
          "   inner join PrijemKontejneraVozStavke on Promet.[PrOznSled] = PrijemKontejneraVozStavke.Id " +
          " inner join TipKontenjera on TipKontenjera.Id = PrijemKontejneraVozStavke.TipKontejnera " +
-         " inner join VrstaRobe on VrstaRobe.Id = PrijemKontejneraVozStavke.VrstaRobe" +
+         " inner join NHM on NHM.Id = PrijemKontejneraVozStavke.VrstaRobe" +
           "  where Zatvoren = 0 and SkladisteU = " + Convert.ToInt32(cboSkladisteIzbor.SelectedValue);
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -407,15 +407,15 @@ namespace TrackModal.Promet
                 if (row.Selected == true)
                 {
 
-                    var select = "  select BrojKontejnera, VrstaManipulacije.Naziv, Komitenti.Naziv,NaruceneManipulacije.ID as NM, NaruceneManipulacije.IDPrijemaVoza,0 as IDPrijemaKamionom, VrstaManipulacije.ID from NaruceneManipulacije " +
+                    var select = "  select BrojKontejnera, VrstaManipulacije.Naziv, Partnerji.PaNaziv,NaruceneManipulacije.ID as NM, NaruceneManipulacije.IDPrijemaVoza,0 as IDPrijemaKamionom, VrstaManipulacije.ID from NaruceneManipulacije " +
                     " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
-                    " inner join Komitenti on  NaruceneManipulacije.Platilac = Komitenti.ID " +
+                    " inner join Partnerji on  NaruceneManipulacije.Platilac = Partnerji.PaSifra " +
                     " where NaruceneManipulacije.IDPrijemaVoza = (select IDNadredjenog from PrijemKontejneraVozStavke where ID=" + Convert.ToInt32(row.Cells[11].Value.ToString()) + ") " + " and BrojKontejnera = '" + row.Cells[5].Value.ToString() + "'" +
                     " union "  +
-                    " select BrojKontejnera, VrstaManipulacije.Naziv, Komitenti.Naziv,NaruceneManipulacije.ID as NM, " +
+                    " select BrojKontejnera, VrstaManipulacije.Naziv, Partnerji.PaNaziv,NaruceneManipulacije.ID as NM, " +
                      " NaruceneManipulacije.IDPrijemaVoza, NaruceneManipulacije.IDPrijemaKamionom,  VrstaManipulacije.ID from NaruceneManipulacije inner join VrstaManipulacije " +
-                     " on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID  inner join Komitenti on " +
-                     " NaruceneManipulacije.Platilac = Komitenti.ID  where NaruceneManipulacije.IDPrijemaKamionom =  " +
+                     " on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID  inner join Partnerji on " +
+                     " NaruceneManipulacije.Platilac = Partnerji.PaSifra  where NaruceneManipulacije.IDPrijemaKamionom =  " +
                      "  (select IDNadredjenog from PrijemKontejneraVozStavke where ID =" + Convert.ToInt32(row.Cells[11].Value.ToString()) + ") " + " and BrojKontejnera = '" + row.Cells[5].Value.ToString() + "'";
 
                     //NaruceneManipulacije.IdPrijemaVoza =" + Convert.ToInt32(row.Cells[11].Value.ToString()) + "" + " and
@@ -735,12 +735,12 @@ namespace TrackModal.Promet
          " ,Promet.[PrStDokumenta],Promet.[PrSifVrstePrometa],Promet.[BrojKontejnera] " +
          " ,Promet.[PrPrimKol] ,Promet.[SkladisteU], Skladista.Naziv as Skladiste " +
          " ,Promet.[LokacijaU] as LokacijaU,Pozicija.Oznaka ,Promet.[PrOznSled] " +
-         " ,Promet.[Datum] ,Promet.[Korisnik], TipKontenjera.Naziv, VrstaRobe.Nkm as NHM, VrstaRobe.Naziv  " +
+         " ,Promet.[Datum] ,Promet.[Korisnik], TipKontenjera.Naziv, NHM.Broj as NHM, NHM.Naziv  " +
          " FROM [dbo].[Promet] inner join Skladista on Promet.SkladisteU = Skladista.ID " +
          " inner join Pozicija on Promet.LokacijaU = Pozicija.ID " +
         "   inner join PrijemKontejneraVozStavke on Promet.[PrOznSled] = PrijemKontejneraVozStavke.Id " +
         " inner join TipKontenjera on TipKontenjera.Id = PrijemKontejneraVozStavke.TipKontejnera " +
-        " inner join VrstaRobe on VrstaRobe.Id = PrijemKontejneraVozStavke.VrstaRobe" +
+        " inner join NHM on NHM.Id = PrijemKontejneraVozStavke.VrstaRobe" +
          "  where Zatvoren = 0 and SkladisteU = " + Convert.ToInt32(cboSkladisteIzbor.SelectedValue) + " and PrijemKontejneraVozStavke.VrstaRobe = " + Convert.ToInt32(cboVrstaRobe.SelectedValue);
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -830,12 +830,12 @@ namespace TrackModal.Promet
        " ,Promet.[PrStDokumenta],Promet.[PrSifVrstePrometa],Promet.[BrojKontejnera] " +
        " ,Promet.[PrPrimKol] ,Promet.[SkladisteU], Skladista.Naziv as Skladiste " +
        " ,Promet.[LokacijaU] as LokacijaU,Pozicija.Oznaka ,Promet.[PrOznSled] " +
-       " ,Promet.[Datum] ,Promet.[Korisnik], TipKontenjera.Naziv, VrstaRobe.Nkm as NHM, VrstaRobe.Naziv  " +
+       " ,Promet.[Datum] ,Promet.[Korisnik], TipKontenjera.Naziv, NHM.Broj as NHM, NHM.Naziv  " +
        " FROM [dbo].[Promet] inner join Skladista on Promet.SkladisteU = Skladista.ID " +
        " inner join Pozicija on Promet.LokacijaU = Pozicija.ID " +
       "   inner join PrijemKontejneraVozStavke on Promet.[PrOznSled] = PrijemKontejneraVozStavke.Id " +
       " inner join TipKontenjera on TipKontenjera.Id = PrijemKontejneraVozStavke.TipKontejnera " +
-      " inner join VrstaRobe on VrstaRobe.Id = PrijemKontejneraVozStavke.VrstaRobe" +
+      " inner join NHM on NHM.Id = PrijemKontejneraVozStavke.VrstaRobe" +
        "  where Zatvoren = 0 and SkladisteU = " + Convert.ToInt32(cboSkladisteIzbor.SelectedValue) + " and PrijemKontejneraVozStavke.VrstaRobe = " + Convert.ToInt32(cboVrstaRobe.SelectedValue) +  " and PrijemKontejneraVozStavke.BrojKontejnera = '" + txtBrojKontejnera.Text + "'" ;
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -925,12 +925,12 @@ namespace TrackModal.Promet
            " ,Promet.[PrStDokumenta],Promet.[PrSifVrstePrometa],Promet.[BrojKontejnera] " +
            " ,Promet.[PrPrimKol] ,Promet.[SkladisteU], Skladista.Naziv as Skladiste " +
            " ,Promet.[LokacijaU] as LokacijaU,Pozicija.Oznaka ,Promet.[PrOznSled] " +
-           " ,Promet.[Datum] ,Promet.[Korisnik], TipKontenjera.Naziv, VrstaRobe.Nkm as NHM, VrstaRobe.Naziv  " +
+           " ,Promet.[Datum] ,Promet.[Korisnik], TipKontenjera.Naziv, NHM.ID as NHM, NHM.Naziv  " +
            " FROM [dbo].[Promet] inner join Skladista on Promet.SkladisteU = Skladista.ID " +
            " inner join Pozicija on Promet.LokacijaU = Pozicija.ID " +
            " inner join PrijemKontejneraVozStavke on Promet.[PrOznSled] = PrijemKontejneraVozStavke.Id " +
            " inner join TipKontenjera on TipKontenjera.Id = PrijemKontejneraVozStavke.TipKontejnera " +
-           " inner join VrstaRobe on VrstaRobe.Id = PrijemKontejneraVozStavke.VrstaRobe" +
+           " inner join NHM on NHM.Id = PrijemKontejneraVozStavke.VrstaRobe" +
            "  where Zatvoren = 0 and SkladisteU = " + Convert.ToInt32(cboSkladisteIzbor.SelectedValue) + " and PrijemKontejneraVozStavke.VrstaRobe = " + Convert.ToInt32(cboVrstaRobe.SelectedValue) +" and PrijemKontejneraVozStavke.BrojKontejnera = '" + txtBrojKontejnera.Text + "'" + " and PrijemKontejneraVozStavke.VlasnikKontejnera = " + Convert.ToInt32(cboVlasnikKontejnera.SelectedValue);
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

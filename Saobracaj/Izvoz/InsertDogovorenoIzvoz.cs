@@ -9,7 +9,7 @@ namespace Saobracaj.Izvoz
 
     class InsertDogovorenoIzvoz
     {
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
+        string connection = Sifarnici.frmLogovanje.connectionString;
         public void InsDogovorenoIzvoz(int Partner, DateTime PeriodOd, DateTime PeriodDo, int BrojUgovorenih, int BrojUradjenih, string Napomena, int Zatvoren)
         {
             SqlConnection conn = new SqlConnection(connection);

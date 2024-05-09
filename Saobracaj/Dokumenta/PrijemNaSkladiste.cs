@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class PrijemNaSkladiste : Form
+    public partial class PrijemNaSkladiste : Syncfusion.Windows.Forms.Office2010Form
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
         int ID;
@@ -222,6 +222,26 @@ namespace Saobracaj.Dokumenta
             con.Close();
             return SledeciBroj;
         }
+        private int VratiPostojiPrijemKontejnera(string Kontejner)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" Select Count(*) as Broj from Promet where BRojKontejnera =  '" + Kontejner + "' and Zatvoren = 0", con);
+
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            int SledeciBroj = 0;
+            while (dr.Read())
+            {
+                SledeciBroj = Convert.ToInt32(dr["Broj"].ToString());
+
+            }
+            con.Close();
+            return SledeciBroj;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Prijem na skladiste " + skladisteNaziv);
@@ -236,7 +256,17 @@ namespace Saobracaj.Dokumenta
                     int pom3 = 1;
                     string s1 = "PRI";
                     string s2 = "PRV";
-                    ins.InsProm(VremeDolaska, s1, SledeciBroj, row.Cells[3].Value.ToString().TrimEnd(), s2, pom3, pom2, skladiste, pozicija, pom2, pom1, row.Cells[0].Value.ToString(), Convert.ToDateTime(DateTime.Now), Korisnik, 0, 0, Convert.ToDateTime(DateTime.Now));
+                    int VecPostoji = VratiPostojiPrijemKontejnera(row.Cells[3].Value.ToString());
+                    if (VecPostoji == 0)
+                    {
+                        ins.InsProm(VremeDolaska, s1, SledeciBroj, row.Cells[3].Value.ToString().TrimEnd(), s2, pom3, pom2, skladiste, pozicija, pom2, pom1, row.Cells[0].Value.ToString(), Convert.ToDateTime(DateTime.Now), Korisnik, 0, 0, Convert.ToDateTime(DateTime.Now));
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Postoji kontejner" + row.Cells[3].Value.ToString() + " koji nije zatvoren ");
+                    }
+                   
                 }
             }
         }

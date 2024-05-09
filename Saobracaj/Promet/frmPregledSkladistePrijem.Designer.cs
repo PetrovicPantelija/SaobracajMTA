@@ -48,21 +48,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(15, 95);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView2.Location = new System.Drawing.Point(11, 77);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(1512, 325);
+            this.dataGridView2.Size = new System.Drawing.Size(1068, 264);
             this.dataGridView2.TabIndex = 212;
             // 
             // chkVoz
             // 
             this.chkVoz.AutoSize = true;
             this.chkVoz.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkVoz.Location = new System.Drawing.Point(593, 57);
-            this.chkVoz.Margin = new System.Windows.Forms.Padding(4);
+            this.chkVoz.Location = new System.Drawing.Point(445, 46);
             this.chkVoz.Name = "chkVoz";
-            this.chkVoz.Size = new System.Drawing.Size(18, 17);
+            this.chkVoz.Size = new System.Drawing.Size(15, 14);
             this.chkVoz.TabIndex = 219;
             this.chkVoz.UseVisualStyleBackColor = true;
             // 
@@ -72,10 +70,9 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(1331, 44);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Location = new System.Drawing.Point(951, 31);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(196, 43);
+            this.button1.Size = new System.Drawing.Size(124, 35);
             this.button1.TabIndex = 218;
             this.button1.Text = "Pretraži";
             this.button1.UseVisualStyleBackColor = false;
@@ -85,10 +82,9 @@
             // 
             this.cboPrijemKamionom.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboPrijemKamionom.FormattingEnabled = true;
-            this.cboPrijemKamionom.Location = new System.Drawing.Point(825, 52);
-            this.cboPrijemKamionom.Margin = new System.Windows.Forms.Padding(4);
+            this.cboPrijemKamionom.Location = new System.Drawing.Point(572, 42);
             this.cboPrijemKamionom.Name = "cboPrijemKamionom";
-            this.cboPrijemKamionom.Size = new System.Drawing.Size(496, 27);
+            this.cboPrijemKamionom.Size = new System.Drawing.Size(373, 24);
             this.cboPrijemKamionom.TabIndex = 217;
             // 
             // label6
@@ -96,10 +92,9 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(821, 28);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(572, 26);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(119, 17);
+            this.label6.Size = new System.Drawing.Size(89, 13);
             this.label6.TabIndex = 216;
             this.label6.Text = "Prijem kamionom:";
             // 
@@ -109,10 +104,9 @@
             this.btnPretrazi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPretrazi.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnPretrazi.ForeColor = System.Drawing.Color.White;
-            this.btnPretrazi.Location = new System.Drawing.Point(621, 44);
-            this.btnPretrazi.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPretrazi.Location = new System.Drawing.Point(466, 36);
             this.btnPretrazi.Name = "btnPretrazi";
-            this.btnPretrazi.Size = new System.Drawing.Size(196, 43);
+            this.btnPretrazi.Size = new System.Drawing.Size(100, 35);
             this.btnPretrazi.TabIndex = 215;
             this.btnPretrazi.Text = "Pretraži";
             this.btnPretrazi.UseVisualStyleBackColor = false;
@@ -122,10 +116,9 @@
             // 
             this.cboPrijemVozom.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboPrijemVozom.FormattingEnabled = true;
-            this.cboPrijemVozom.Location = new System.Drawing.Point(15, 52);
-            this.cboPrijemVozom.Margin = new System.Windows.Forms.Padding(4);
+            this.cboPrijemVozom.Location = new System.Drawing.Point(11, 42);
             this.cboPrijemVozom.Name = "cboPrijemVozom";
-            this.cboPrijemVozom.Size = new System.Drawing.Size(569, 27);
+            this.cboPrijemVozom.Size = new System.Drawing.Size(428, 24);
             this.cboPrijemVozom.TabIndex = 214;
             // 
             // label5
@@ -133,19 +126,18 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F);
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(15, 25);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(11, 20);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 17);
+            this.label5.Size = new System.Drawing.Size(72, 13);
             this.label5.TabIndex = 213;
             this.label5.Text = "Prijem vozom:";
             // 
             // frmPregledSkladistePrijem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1545, 434);
+            this.ClientSize = new System.Drawing.Size(1087, 353);
             this.Controls.Add(this.chkVoz);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.cboPrijemKamionom);
@@ -155,7 +147,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dataGridView2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmPregledSkladistePrijem";
             this.Text = "Pregled skladište prijem";
             this.Load += new System.EventHandler(this.frmPregledSkladistePrijem_Load);

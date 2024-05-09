@@ -15,7 +15,7 @@ using System.Net.Mail;
 
 namespace Saobracaj.Promet
 {
-    public partial class frmLagerOperater : Form
+    public partial class frmLagerOperater : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmLagerOperater";
         public bool Pravo;
@@ -119,7 +119,7 @@ namespace Saobracaj.Promet
 
         private void frmLagerOperater_Load(object sender, EventArgs e)
         {
-            var select = " Select Distinct ID, (NKM + '-' + Naziv) as NKM  From VrstaRobe";
+            var select = " Select Distinct ID, (Rtrim(Broj) + '-' + Naziv) as NHM  From NHM ORDER BY ID";
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -129,10 +129,10 @@ namespace Saobracaj.Promet
             var ds = new DataSet();
             dataAdapter.Fill(ds);
             cboVrstaRobe.DataSource = ds.Tables[0];
-            cboVrstaRobe.DisplayMember = "NKM";
+            cboVrstaRobe.DisplayMember = "NHM";
             cboVrstaRobe.ValueMember = "ID";
 
-            var select2 = " Select Distinct ID, Naziv From Komitenti where Vlasnik =1  order by Naziv";
+            var select2 = " Select Distinct PaSifra, PaNaziv From Partnerji  order by PaNaziv";
             var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
             var c2 = new SqlConnection(s_connection2);
@@ -142,8 +142,8 @@ namespace Saobracaj.Promet
             var ds2 = new DataSet();
             dataAdapter2.Fill(ds2);
             cboVlasnikKontejnera.DataSource = ds2.Tables[0];
-            cboVlasnikKontejnera.DisplayMember = "Naziv";
-            cboVlasnikKontejnera.ValueMember = "ID";
+            cboVlasnikKontejnera.DisplayMember = "PaNaziv";
+            cboVlasnikKontejnera.ValueMember = "PaSifra";
 
             var select3 = " Select Distinct ID, Naziv   From Skladista";
             var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;

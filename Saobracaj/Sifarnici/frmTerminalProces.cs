@@ -55,7 +55,8 @@ namespace Saobracaj.Sifarnici
         private void RefreshDataGrid()
         {
             var select = "";
-            select = " SELECT[ID] ,[RB] ,[ScenarioID] ,[TerminalOperacijaID]  FROM [dbo].[TerminalProces] ";
+            select = " SELECT TerminalProces.[ID] ,[RB] ,[ScenarioID] ,[TerminalOperacijaID], TerminalOperacije.Naziv  FROM [dbo].[TerminalProces] " +
+                "    inner join TerminalOperacije on TerminalOperacije.ID = TerminalOperacijaID ";
 
             //  "  where  Aktivnosti.Masinovodja = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) + " order by Aktivnosti.ID desc";
 
@@ -93,13 +94,17 @@ namespace Saobracaj.Sifarnici
 
             DataGridViewColumn column2 = dataGridView1.Columns[2];
             dataGridView1.Columns[2].HeaderText = "Scenario";
-            dataGridView1.Columns[2].Width = 130;
+            dataGridView1.Columns[2].Width = 80;
 
             DataGridViewColumn column3 = dataGridView1.Columns[3];
-            dataGridView1.Columns[3].HeaderText = "Terminalska operacija";
+            dataGridView1.Columns[3].HeaderText = "Terminalska operacija ID";
             dataGridView1.Columns[3].Width = 30;
 
-            
+            DataGridViewColumn column4 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Terminalska operacija ";
+            dataGridView1.Columns[4].Width = 130;
+
+
         }
 
 

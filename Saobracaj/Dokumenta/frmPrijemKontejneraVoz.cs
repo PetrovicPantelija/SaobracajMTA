@@ -127,11 +127,14 @@ namespace TrackModal.Dokumeta
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
+            txtSifra.Text = "0";
+            RefreshDataGrid();
+            txtSifra.Text = "";
             txtSifra.Enabled = false;
             dtpVremeOdlaska.Value = DateTime.Now;
             dtpDatumPrijema.Value = DateTime.Now;
             dtpDatumPrijema.Enabled = true;
-
+           
 
         }
 
@@ -472,10 +475,10 @@ namespace TrackModal.Dokumeta
            
         }
 
-        private void frmPrijemKontejneraVoz_Load_1(object sender, EventArgs e)
+        private void FillCB()
         {
-            var select = " Select Distinct ID, (Broj + '-' + Naziv) as NHM  From NHM ORDER BY ID";
-            var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;;
+            var select = " Select Distinct ID, (Rtrim(Broj) + '-' + Naziv) as NHM  From NHM ORDER BY ID";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString; ;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -487,7 +490,6 @@ namespace TrackModal.Dokumeta
             cboVrstaRobe.DisplayMember = "NHM";
             cboVrstaRobe.ValueMember = "ID";
 
-            //where Posiljalac = 1
             var select1 = " Select Distinct PaSifra as ID, PaNaziv as Naziv From Partnerji  order by PaNaziv";
             var s_connection1 = frmLogovanje.connectionString;
             SqlConnection myConnection1 = new SqlConnection(s_connection1);
@@ -541,6 +543,27 @@ namespace TrackModal.Dokumeta
             cboTipKontejnera.DisplayMember = "Naziv";
             cboTipKontejnera.ValueMember = "ID";
 
+            var select9 = " Select Distinct PaSifra as ID, PaNaziv as Naziv From Partnerji  order by PaNaziv";
+            var s_connection9 = frmLogovanje.connectionString;
+            SqlConnection myConnection9 = new SqlConnection(s_connection9);
+            var c9 = new SqlConnection(s_connection9);
+            var dataAdapter9 = new SqlDataAdapter(select9, c9);
+
+            var commandBuilder9 = new SqlCommandBuilder(dataAdapter9);
+            var ds9 = new DataSet();
+            dataAdapter9.Fill(ds9);
+            cboOrganizator.DataSource = ds9.Tables[0];
+            cboOrganizator.DisplayMember = "Naziv";
+            cboOrganizator.ValueMember = "ID";
+        }
+
+        private void frmPrijemKontejneraVoz_Load_1(object sender, EventArgs e)
+        {
+            
+            FillCB();
+            //where Posiljalac = 1
+           
+
             var select5 = " Select Distinct ID, (Cast(BrVoza as nvarchar(6)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12))) as IDVoza From Voz where dolazeci = 0";
             var s_connection5 = frmLogovanje.connectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
@@ -593,18 +616,7 @@ namespace TrackModal.Dokumeta
             cboBukingPrijema.DisplayMember = "IdVoza";
             cboBukingPrijema.ValueMember = "ID";
             //where Organizator = 1
-            var select9 = " Select Distinct PaSifra as ID, PaNaziv as Naziv From Partnerji  order by PaNaziv";
-            var s_connection9 = frmLogovanje.connectionString;
-            SqlConnection myConnection9 = new SqlConnection(s_connection9);
-            var c9 = new SqlConnection(s_connection9);
-            var dataAdapter9 = new SqlDataAdapter(select9, c9);
-
-            var commandBuilder9 = new SqlCommandBuilder(dataAdapter9);
-            var ds9 = new DataSet();
-            dataAdapter9.Fill(ds9);
-            cboOrganizator.DataSource = ds9.Tables[0];
-            cboOrganizator.DisplayMember = "Naziv";
-            cboOrganizator.ValueMember = "ID";
+        
 
 
             var select10 = " Select Distinct ID, Naziv  From PredefinisanePoruke order by ID";
@@ -2919,6 +2931,27 @@ namespace TrackModal.Dokumeta
 
         }
 
+        private int VratiPostojiPrijemKontejnera(string Kontejner)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" Select Count(*) as Broj from Promet where BRojKontejnera =  '" + Kontejner + "' and Zatvoren = 0", con);
+
+
+            SqlDataReader dr = cmd.ExecuteReader();
+            int SledeciBroj = 0;
+            while (dr.Read())
+            {
+                SledeciBroj = Convert.ToInt32(dr["Broj"].ToString());
+
+            }
+            con.Close();
+            return SledeciBroj;
+        }
+
         private int VratiPodatkeMaxPromet()
         {
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -2990,7 +3023,17 @@ namespace TrackModal.Dokumeta
                     int pom3 = 1;
                     string s1 = "PRI";
                     string s2 = "PRV";
-                    ins.InsProm(Convert.ToDateTime(dtpVremeDolaska.Value), s1, SledeciBroj, row.Cells[3].Value.ToString(), s2, pom3, pom2, Convert.ToInt32(frmLogovanje.Skladiste), Convert.ToInt32(frmLogovanje.Lokacija), pom2, pom1, row.Cells[0].Value.ToString(), Convert.ToDateTime(DateTime.Now), KorisnikCene, 0, 0, Convert.ToDateTime(DateTime.Now));
+                    int VecPostoji = VratiPostojiPrijemKontejnera(row.Cells[3].Value.ToString());
+                    if (VecPostoji == 0)
+                    {
+                        ins.InsProm(Convert.ToDateTime(dtpVremeDolaska.Value), s1, SledeciBroj, row.Cells[3].Value.ToString(), s2, pom3, pom2, Convert.ToInt32(frmLogovanje.Skladiste), Convert.ToInt32(frmLogovanje.Lokacija), pom2, pom1, row.Cells[0].Value.ToString(), Convert.ToDateTime(DateTime.Now), KorisnikCene, 0, 0, Convert.ToDateTime(DateTime.Now));
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Postoji kontejner" + row.Cells[3].Value.ToString() + " koji nije zatvoren ");
+                    }
+                   
                 }
             }
             else
@@ -3007,20 +3050,20 @@ namespace TrackModal.Dokumeta
             if (cboStatusPrijema.Text == "2-Primljeno" && usao == 1)
             { 
 
-            MessageBox.Show("Prijem na Centralno skladište, ATA je podešen");
+           // MessageBox.Show("Prijem na Centralno skladište, ATA je podešen");
                 dtpVremeDolaska.Value = DateTime.Now;
                 int SledeciBroj = VratiPodatkeMaxPromet();
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
-                int pom1 = 0;
-                int pom2 = 0;
-                int pom3 = 1;
-                string s1 = "PRI";
-                string s2 = "PRV";
-                ins.InsProm(Convert.ToDateTime(dtpVremeDolaska.Value), s1, SledeciBroj, row.Cells[3].Value.ToString(), s2, pom3, pom2, 9, 1366, pom2, pom1, row.Cells[0].Value.ToString(), Convert.ToDateTime(DateTime.Now), KorisnikCene, 0, 0, Convert.ToDateTime(DateTime.Now));
-              }
+                //  foreach (DataGridViewRow row in dataGridView1.Rows)
+                //   {
+                //     Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
+                //   int pom1 = 0;
+                //   int pom2 = 0;
+                //   int pom3 = 1;
+                //   string s1 = "PRI";
+                //   string s2 = "PRV";
+                //   ins.InsProm(Convert.ToDateTime(dtpVremeDolaska.Value), s1, SledeciBroj, row.Cells[3].Value.ToString(), s2, pom3, pom2, 9, 1366, pom2, pom1, row.Cells[0].Value.ToString(), Convert.ToDateTime(DateTime.Now), KorisnikCene, 0, 0, Convert.ToDateTime(DateTime.Now));
             }
+      
         }
 
         private void toolStripButton8_Click(object sender, EventArgs e)

@@ -8,7 +8,7 @@ namespace Saobracaj
 {
     class InsertVoziloUsluga
     {
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
+        string connection = Sifarnici.frmLogovanje.connectionString;
         public void InsVoziloUsluga(string RegBr, DateTime Datum, string Vozac, string BrojTelefona, string Napomena, int Modul, int IDUsluge)
         {
             /*  @ID int,

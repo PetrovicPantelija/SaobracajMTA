@@ -34,10 +34,6 @@
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsPrvi = new System.Windows.Forms.ToolStripButton();
-            this.tsNazad = new System.Windows.Forms.ToolStripButton();
-            this.tsNapred = new System.Windows.Forms.ToolStripButton();
-            this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -83,10 +79,6 @@
             this.tsSave,
             this.tsDelete,
             this.toolStripSeparator1,
-            this.tsPrvi,
-            this.tsNazad,
-            this.tsNapred,
-            this.tsPoslednja,
             this.toolStripSeparator2,
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -128,46 +120,6 @@
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
-            // tsPrvi
-            // 
-            this.tsPrvi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
-            this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(24, 24);
-            this.tsPrvi.Text = "toolStripButton1";
-            this.tsPrvi.Click += new System.EventHandler(this.tsPrvi_Click);
-            // 
-            // tsNazad
-            // 
-            this.tsNazad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
-            this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(24, 24);
-            this.tsNazad.Text = "toolStripButton1";
-            this.tsNazad.Click += new System.EventHandler(this.tsNazad_Click);
-            // 
-            // tsNapred
-            // 
-            this.tsNapred.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
-            this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(24, 24);
-            this.tsNapred.Text = "toolStripButton1";
-            this.tsNapred.Click += new System.EventHandler(this.tsNapred_Click);
-            // 
-            // tsPoslednja
-            // 
-            this.tsPoslednja.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
-            this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(24, 24);
-            this.tsPoslednja.Text = "toolStripButton1";
-            this.tsPoslednja.Click += new System.EventHandler(this.tsPoslednja_Click);
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -205,7 +157,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(9, 131);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(65, 16);
+            this.label2.Size = new System.Drawing.Size(64, 16);
             this.label2.TabIndex = 175;
             this.label2.Text = "Kontejner:";
             // 
@@ -230,7 +182,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(278, 139);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(81, 16);
+            this.label3.Size = new System.Drawing.Size(80, 16);
             this.label3.TabIndex = 177;
             this.label3.Text = "Manipulacija:";
             // 
@@ -285,7 +237,7 @@
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(792, 125);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(65, 16);
+            this.label15.Size = new System.Drawing.Size(64, 16);
             this.label15.TabIndex = 187;
             this.label15.Text = "Period do:";
             // 
@@ -309,7 +261,7 @@
             this.label21.ForeColor = System.Drawing.Color.Black;
             this.label21.Location = new System.Drawing.Point(567, 125);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(65, 16);
+            this.label21.Size = new System.Drawing.Size(64, 16);
             this.label21.TabIndex = 186;
             this.label21.Text = "Period od:";
             this.label21.Click += new System.EventHandler(this.label21_Click);
@@ -321,7 +273,7 @@
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(1040, 33);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(102, 16);
+            this.label7.Size = new System.Drawing.Size(101, 16);
             this.label7.TabIndex = 183;
             this.label7.Text = "Dodatne beleške:";
             // 
@@ -350,7 +302,7 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(12, 55);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(46, 16);
+            this.label5.Size = new System.Drawing.Size(45, 16);
             this.label5.TabIndex = 188;
             this.label5.Text = "Vozom";
             // 
@@ -399,7 +351,7 @@
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(12, 93);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 16);
+            this.label6.Size = new System.Drawing.Size(64, 16);
             this.label6.TabIndex = 191;
             this.label6.Text = "Kaminom:";
             // 
@@ -421,7 +373,7 @@
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(721, 68);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(51, 16);
+            this.label8.Size = new System.Drawing.Size(50, 16);
             this.label8.TabIndex = 196;
             this.label8.Text = "Platilac:";
             this.label8.Click += new System.EventHandler(this.label8_Click);
@@ -451,7 +403,7 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(721, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 16);
+            this.label1.Size = new System.Drawing.Size(37, 16);
             this.label1.TabIndex = 198;
             this.label1.Text = "Šifra:";
             // 
@@ -491,7 +443,7 @@
             this.chkOtprema.ForeColor = System.Drawing.Color.Black;
             this.chkOtprema.Location = new System.Drawing.Point(157, 32);
             this.chkOtprema.Name = "chkOtprema";
-            this.chkOtprema.Size = new System.Drawing.Size(76, 20);
+            this.chkOtprema.Size = new System.Drawing.Size(75, 20);
             this.chkOtprema.TabIndex = 201;
             this.chkOtprema.Text = "Otprema";
             this.chkOtprema.UseVisualStyleBackColor = false;
@@ -507,7 +459,7 @@
             this.chkPrijem.ForeColor = System.Drawing.Color.Black;
             this.chkPrijem.Location = new System.Drawing.Point(256, 32);
             this.chkPrijem.Name = "chkPrijem";
-            this.chkPrijem.Size = new System.Drawing.Size(63, 20);
+            this.chkPrijem.Size = new System.Drawing.Size(62, 20);
             this.chkPrijem.TabIndex = 202;
             this.chkPrijem.Text = "Prijem";
             this.chkPrijem.UseVisualStyleBackColor = false;
@@ -521,7 +473,7 @@
             this.chkDirektna.ForeColor = System.Drawing.Color.Black;
             this.chkDirektna.Location = new System.Drawing.Point(784, 95);
             this.chkDirektna.Name = "chkDirektna";
-            this.chkDirektna.Size = new System.Drawing.Size(115, 20);
+            this.chkDirektna.Size = new System.Drawing.Size(114, 20);
             this.chkDirektna.TabIndex = 203;
             this.chkDirektna.Text = "Direktna usluga";
             this.chkDirektna.UseVisualStyleBackColor = false;
@@ -583,10 +535,6 @@
         private System.Windows.Forms.ToolStripButton tsSave;
         private System.Windows.Forms.ToolStripButton tsDelete;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton tsPrvi;
-        private System.Windows.Forms.ToolStripButton tsNazad;
-        private System.Windows.Forms.ToolStripButton tsNapred;
-        private System.Windows.Forms.ToolStripButton tsPoslednja;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView1;

@@ -8,7 +8,7 @@ namespace Saobracaj.Uvoz
 {
     class InsertuvNacinPakovanja
     {
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
+        string connection = Sifarnici.frmLogovanje.connectionString;
         public void InsuvNacinPakovanja(string Naziv, string Oznaka)
         {
             SqlConnection conn = new SqlConnection(connection);

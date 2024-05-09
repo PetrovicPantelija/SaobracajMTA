@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmAutomobili : Form
+    public partial class frmAutomobili : Syncfusion.Windows.Forms.Office2010Form
     {
         string Poruka = "";
         bool status = false;

@@ -8,7 +8,7 @@ namespace Saobracaj.Uvoz
 {
     class insertVrstaRobeADR
     {
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
+        string connection = Sifarnici.frmLogovanje.connectionString;
         public void InsVrstaRobeADR(string Naziv, string UNKod, string Klasa, string Grupa)
         {
             SqlConnection conn = new SqlConnection(connection);

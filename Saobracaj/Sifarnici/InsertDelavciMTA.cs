@@ -8,7 +8,7 @@ namespace Saobracaj.Sifarnici
 {
     class InsertDelavciMTA
     {
-        public void InsDelavciMTA(string DePriimek, string DeIme, string DeTelefon1, string DeTelefon2, string DeEMail, string DeUlHisStBivS, string DeKrajBivS, int DeSifDelMes, string DeSifStat, int PomManevrista, int PomPomocnik, int PomVozovodja, int PomPregledacKola, int PomMasinovodja)
+        public void InsDelavciMTA(string DePriimek, string DeIme, string DeTelefon1, string DeTelefon2, string DeEMail, string DeUlHisStBivS, string DeKrajBivS, int DeSifDelMes, string DeSifStat, int PomManevrista, int PomPomocnik, int PomVozovodja, int PomPregledacKola, int PomMasinovodja, string ERPID)
         {
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -149,6 +149,14 @@ namespace Saobracaj.Sifarnici
             parameter14.Value = DeSifDelMes;
             myCommand.Parameters.Add(parameter14);
 
+            SqlParameter parameter15 = new SqlParameter();
+            parameter15.ParameterName = "@ERPID";
+            parameter15.SqlDbType = SqlDbType.Char;
+            parameter15.Size = 17;
+            parameter15.Direction = ParameterDirection.Input;
+            parameter15.Value = ERPID;
+            myCommand.Parameters.Add(parameter15);
+
 
 
 
@@ -187,7 +195,7 @@ namespace Saobracaj.Sifarnici
             }
         }
 
-        public void InsDelavciStariMTA(int DeSIfra, string DePriimek, string DeIme, string DeTelefon1, string DeTelefon2, string DeEMail, string DeUlHisStBivS, string DeKrajBivS, int DeSifDelMes, string DeSifStat, int PomManevrista, int PomPomocnik, int PomVozovodja, int PomPregledacKola, int PomMasinovodja)
+        public void InsDelavciStariMTA(int DeSIfra, string DePriimek, string DeIme, string DeTelefon1, string DeTelefon2, string DeEMail, string DeUlHisStBivS, string DeKrajBivS, int DeSifDelMes, string DeSifStat, int PomManevrista, int PomPomocnik, int PomVozovodja, int PomPregledacKola, int PomMasinovodja, string ERPID)
         {
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -337,6 +345,15 @@ namespace Saobracaj.Sifarnici
             myCommand.Parameters.Add(parameter14);
 
 
+            SqlParameter parameter15 = new SqlParameter();
+            parameter15.ParameterName = "@ERPID";
+            parameter15.SqlDbType = SqlDbType.Char;
+               parameter15.Size = 17;
+            parameter15.Direction = ParameterDirection.Input;
+            parameter15.Value = ERPID;
+            myCommand.Parameters.Add(parameter15);
+
+
 
 
             myConnection.Open();
@@ -373,7 +390,7 @@ namespace Saobracaj.Sifarnici
                 }
             }
         }
-        public void UpdDelavciMTA(int DeSifra, string DePriimek, string DeIme, string DeTelefon1, string DeTelefon2, string DeEMail, string DeUlHisStBivS, string DeKrajBivS, int DeSifDelMes, string DeSifStat, int PomManevrista, int PomPomocnik, int PomVozovodja, int PomPregledacKola, int PomMasinovodja)
+        public void UpdDelavciMTA(int DeSifra, string DePriimek, string DeIme, string DeTelefon1, string DeTelefon2, string DeEMail, string DeUlHisStBivS, string DeKrajBivS, int DeSifDelMes, string DeSifStat, int PomManevrista, int PomPomocnik, int PomVozovodja, int PomPregledacKola, int PomMasinovodja, string ERPID)
         {
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -502,6 +519,14 @@ namespace Saobracaj.Sifarnici
             parameter14.Direction = ParameterDirection.Input;
             parameter14.Value = DeSifDelMes;
             myCommand.Parameters.Add(parameter14);
+
+            SqlParameter parameter15 = new SqlParameter();
+            parameter15.ParameterName = "@ERPID";
+            parameter15.SqlDbType = SqlDbType.Char;
+            parameter15.Size = 17;
+            parameter15.Direction = ParameterDirection.Input;
+            parameter15.Value = ERPID;
+            myCommand.Parameters.Add(parameter15);
 
 
             myConnection.Open();

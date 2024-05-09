@@ -31,7 +31,7 @@ namespace Saobracaj.Sifarnici
             " inner join stanice on Trase.Pocetna = stanice.ID " +
             " inner join stanice st2 on Trase.Krajnja = st2.ID";
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

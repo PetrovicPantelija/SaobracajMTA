@@ -47,7 +47,7 @@ namespace Saobracaj.SyncForm
         private void ReadData()
         {
 
-            var s_connection = ConfigurationManager.ConnectionStrings["Saobracaj.Properties.Settings.TESTIRANJEConnectionString"].ConnectionString;
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
             string sql = "SELECT * FROM Appointments";
             con.Open();

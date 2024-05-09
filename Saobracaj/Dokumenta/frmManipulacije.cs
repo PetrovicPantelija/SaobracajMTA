@@ -142,7 +142,7 @@ namespace Saobracaj.Dokumenta
                     cboPrijemVozom.DataSource = ds.Tables[0];
                     cboPrijemVozom.DisplayMember = "Naziv";
                     cboPrijemVozom.ValueMember = "ID";
-
+                    cboPrijemVozom.SelectedValue = pomPrijemnica;
                     PretraziKontejnereVozomIzOtpremnice();
                 }
                 else
@@ -163,7 +163,7 @@ namespace Saobracaj.Dokumenta
                     cboPrijemKamionom.DataSource = ds2.Tables[0];
                     cboPrijemKamionom.DisplayMember = "Naziv";
                     cboPrijemKamionom.ValueMember = "ID";
-
+                    cboPrijemKamionom.SelectedValue = pomPrijemnica;
                     PretraziKontejnereKamionomIzOtpremnice();
                 }
               
@@ -385,6 +385,8 @@ namespace Saobracaj.Dokumenta
                 dataGridView1.Columns[1].Width = 100;
 
             }
+
+            RefreshDataGrid3();
         }
 
         private void PovuciPodatkeSaPrijema()
@@ -590,7 +592,9 @@ namespace Saobracaj.Dokumenta
                 }
                 else
                 {
-                    var select = "  select NaruceneManipulacije.IDPrijemaKamionom, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv, NaruceneManipulacije.Uradjeno, NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik, NaruceneManipulacije.ID from NaruceneManipulacije " +
+                    var select = "  select NaruceneManipulacije.IDPrijemaKamionom, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, " +
+                    "VrstaManipulacije.Naziv, NaruceneManipulacije.Uradjeno, NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, " +
+                    "NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik, NaruceneManipulacije.ID from NaruceneManipulacije " +
                 " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
                  " where IDPrijemaKamionom = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue);
 
@@ -760,6 +764,8 @@ namespace Saobracaj.Dokumenta
                 dataGridView1.Columns[1].HeaderText = "Dokument otpreme";
                 dataGridView1.Columns[1].Width = 100;
             }
+
+            RefreshDataGrid3();
         }
 
         private void btnUnesi_Click(object sender, EventArgs e)
@@ -1056,7 +1062,7 @@ namespace Saobracaj.Dokumenta
             cboPrijemVozom.DataSource = ds.Tables[0];
             cboPrijemVozom.DisplayMember = "Naziv";
             cboPrijemVozom.ValueMember = "ID";
-          
+            cboPrijemVozom.SelectedValue = pomPrijemnica;
             var select2 = "SELECT OtpremaKontejnera.[ID], (CAst(OtpremaKontejnera.[ID] as nvarchar(5)) + '-' + (CAst(OtpremaKontejnera.[ID] as nvarchar(5)) + '-' + OtpremaKontejnera.RegBrKamiona + ' ' + OtpremaKontejnera.ImeVozaca +  ' ' + " +
  " CONVERT(varchar, OtpremaKontejnera.[DatumOtpreme], 104) + ' ' + " +
  " SUBSTRING(CONVERT(varchar, OtpremaKontejnera.[DatumOtpreme], 108), 1, 5))) as Naziv " +
@@ -1073,7 +1079,7 @@ namespace Saobracaj.Dokumenta
             cboPrijemKamionom.DataSource = ds2.Tables[0];
             cboPrijemKamionom.DisplayMember = "Naziv";
             cboPrijemKamionom.ValueMember = "ID";
-
+            cboPrijemKamionom.SelectedValue = pomPrijemnica;
             var select3 = " Select Distinct PaSifra, PaNaziv From Partnerji order by PaNaziv";
             var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);

@@ -10,7 +10,7 @@ namespace Saobracaj.Izvoz
     class InsertIzvozKonacnaZaglavlje
     {
 
-        string connection = ConfigurationManager.ConnectionStrings["WindowsFormsApplication1.Properties.Settings.TestiranjeConnectionString"].ConnectionString;
+        string connection = Sifarnici.frmLogovanje.connectionString;
         public void InsIzvozKonacnaZaglavlje(int Voz, string Napomena, int Vozom, string VoziloOznaka, DateTime VoziloDatum, string VoziloVozac, string BrojTelefona)
         {
             SqlConnection conn = new SqlConnection(connection);
