@@ -102,6 +102,7 @@
             this.cbObveznik = new System.Windows.Forms.CheckBox();
             this.label21 = new System.Windows.Forms.Label();
             this.cboValuta = new System.Windows.Forms.ComboBox();
+            this.cboKupac = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -815,6 +816,16 @@
             this.cboValuta.Size = new System.Drawing.Size(169, 21);
             this.cboValuta.TabIndex = 220;
             // 
+            // cboKupac
+            // 
+            this.cboKupac.AutoSize = true;
+            this.cboKupac.Location = new System.Drawing.Point(277, 172);
+            this.cboKupac.Name = "cboKupac";
+            this.cboKupac.Size = new System.Drawing.Size(57, 17);
+            this.cboKupac.TabIndex = 218;
+            this.cboKupac.Text = "Kupac";
+            this.cboKupac.UseVisualStyleBackColor = true;
+            // 
             // frmPartnerji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -822,6 +833,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1365, 796);
             this.Controls.Add(this.cbObveznik);
+            this.Controls.Add(this.cboKupac);
             this.Controls.Add(this.cbDobavljac);
             this.Controls.Add(this.cboValuta);
             this.Controls.Add(this.panel1);
@@ -973,5 +985,6 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox cboValuta;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.CheckBox cboKupac;
     }
 }
