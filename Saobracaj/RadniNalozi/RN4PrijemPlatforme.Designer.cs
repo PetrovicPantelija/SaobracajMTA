@@ -69,6 +69,8 @@ namespace Saobracaj.RadniNalozi
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtNalogIzdao = new System.Windows.Forms.TextBox();
@@ -86,19 +88,17 @@ namespace Saobracaj.RadniNalozi
             this.button2 = new System.Windows.Forms.Button();
             this.chkIzvoz = new System.Windows.Forms.CheckBox();
             this.nedraDataSet1 = new Saobracaj.NedraDataSet();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.chkZavrsenCIR = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.chkZavrsenKalmarista = new System.Windows.Forms.CheckBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.txtNalogRealizovaoCIR = new System.Windows.Forms.TextBox();
+            this.dtpNalogRealizovaoCIR = new System.Windows.Forms.DateTimePicker();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.txtNalogRealizovaoKal = new System.Windows.Forms.TextBox();
+            this.dtpNalogRealizovaoKal = new System.Windows.Forms.DateTimePicker();
             this.label14 = new System.Windows.Forms.Label();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nedraDataSet1)).BeginInit();
@@ -502,6 +502,30 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton1.Text = "FORMIRAJ RADNI NALOG PLATFORMA";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.BackColor = System.Drawing.Color.SeaGreen;
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton3.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(91, 24);
+            this.toolStripButton3.Text = "Potvrdi završen";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.BackColor = System.Drawing.Color.LimeGreen;
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton4.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(112, 24);
+            this.toolStripButton4.Text = "Potvrdi završen CIR";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
             // toolStripButton2
             // 
             this.toolStripButton2.BackColor = System.Drawing.Color.DarkCyan;
@@ -521,12 +545,12 @@ namespace Saobracaj.RadniNalozi
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 376);
+            this.dataGridView1.Location = new System.Drawing.Point(16, 374);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1116, 272);
+            this.dataGridView1.Size = new System.Drawing.Size(1117, 208);
             this.dataGridView1.TabIndex = 318;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -672,15 +696,16 @@ namespace Saobracaj.RadniNalozi
             this.nedraDataSet1.DataSetName = "NedraDataSet";
             this.nedraDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // checkBox1
+            // chkZavrsenCIR
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(733, 340);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(86, 17);
-            this.checkBox1.TabIndex = 331;
-            this.checkBox1.Text = "Završen CIR";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chkZavrsenCIR.AutoSize = true;
+            this.chkZavrsenCIR.Location = new System.Drawing.Point(733, 340);
+            this.chkZavrsenCIR.Name = "chkZavrsenCIR";
+            this.chkZavrsenCIR.Size = new System.Drawing.Size(86, 17);
+            this.chkZavrsenCIR.TabIndex = 331;
+            this.chkZavrsenCIR.Text = "Završen CIR";
+            this.chkZavrsenCIR.UseVisualStyleBackColor = true;
+            this.chkZavrsenCIR.CheckedChanged += new System.EventHandler(this.chkZavrsenCIR_CheckedChanged);
             // 
             // button1
             // 
@@ -694,15 +719,15 @@ namespace Saobracaj.RadniNalozi
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // checkBox2
+            // chkZavrsenKalmarista
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(948, 335);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(117, 17);
-            this.checkBox2.TabIndex = 333;
-            this.checkBox2.Text = "Postavio kalmarista";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.chkZavrsenKalmarista.AutoSize = true;
+            this.chkZavrsenKalmarista.Location = new System.Drawing.Point(948, 335);
+            this.chkZavrsenKalmarista.Name = "chkZavrsenKalmarista";
+            this.chkZavrsenKalmarista.Size = new System.Drawing.Size(117, 17);
+            this.chkZavrsenKalmarista.TabIndex = 333;
+            this.chkZavrsenKalmarista.Text = "Postavio kalmarista";
+            this.chkZavrsenKalmarista.UseVisualStyleBackColor = true;
             // 
             // label11
             // 
@@ -710,28 +735,31 @@ namespace Saobracaj.RadniNalozi
             this.label11.Location = new System.Drawing.Point(733, 245);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(86, 13);
+            this.label11.Size = new System.Drawing.Size(107, 13);
             this.label11.TabIndex = 337;
-            this.label11.Text = "Nalog realizovao";
+            this.label11.Text = "Nalog realizovao CIR";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
-            // textBox1
+            // txtNalogRealizovaoCIR
             // 
-            this.textBox1.Location = new System.Drawing.Point(732, 263);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(136, 20);
-            this.textBox1.TabIndex = 336;
+            this.txtNalogRealizovaoCIR.Location = new System.Drawing.Point(732, 263);
+            this.txtNalogRealizovaoCIR.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNalogRealizovaoCIR.Name = "txtNalogRealizovaoCIR";
+            this.txtNalogRealizovaoCIR.Size = new System.Drawing.Size(136, 20);
+            this.txtNalogRealizovaoCIR.TabIndex = 336;
+            this.txtNalogRealizovaoCIR.TextChanged += new System.EventHandler(this.txtNalogRealizovaoCIR_TextChanged);
             // 
-            // dateTimePicker1
+            // dtpNalogRealizovaoCIR
             // 
-            this.dateTimePicker1.CustomFormat = "dd.MM.yyyy HH:mm";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(732, 308);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(2);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(122, 20);
-            this.dateTimePicker1.TabIndex = 335;
-            this.dateTimePicker1.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
+            this.dtpNalogRealizovaoCIR.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dtpNalogRealizovaoCIR.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpNalogRealizovaoCIR.Location = new System.Drawing.Point(732, 308);
+            this.dtpNalogRealizovaoCIR.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpNalogRealizovaoCIR.Name = "dtpNalogRealizovaoCIR";
+            this.dtpNalogRealizovaoCIR.Size = new System.Drawing.Size(122, 20);
+            this.dtpNalogRealizovaoCIR.TabIndex = 335;
+            this.dtpNalogRealizovaoCIR.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
+            this.dtpNalogRealizovaoCIR.ValueChanged += new System.EventHandler(this.dtpNalogRealizovaoCIR_ValueChanged);
             // 
             // label12
             // 
@@ -742,6 +770,7 @@ namespace Saobracaj.RadniNalozi
             this.label12.Size = new System.Drawing.Size(87, 13);
             this.label12.TabIndex = 334;
             this.label12.Text = "Datum realizacije";
+            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // label13
             // 
@@ -749,28 +778,28 @@ namespace Saobracaj.RadniNalozi
             this.label13.Location = new System.Drawing.Point(945, 229);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(86, 13);
+            this.label13.Size = new System.Drawing.Size(136, 13);
             this.label13.TabIndex = 341;
-            this.label13.Text = "Nalog realizovao";
+            this.label13.Text = "Nalog realizovao kalmarista";
             // 
-            // textBox2
+            // txtNalogRealizovaoKal
             // 
-            this.textBox2.Location = new System.Drawing.Point(945, 247);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(136, 20);
-            this.textBox2.TabIndex = 340;
+            this.txtNalogRealizovaoKal.Location = new System.Drawing.Point(945, 247);
+            this.txtNalogRealizovaoKal.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNalogRealizovaoKal.Name = "txtNalogRealizovaoKal";
+            this.txtNalogRealizovaoKal.Size = new System.Drawing.Size(164, 20);
+            this.txtNalogRealizovaoKal.TabIndex = 340;
             // 
-            // dateTimePicker2
+            // dtpNalogRealizovaoKal
             // 
-            this.dateTimePicker2.CustomFormat = "dd.MM.yyyy HH:mm";
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker2.Location = new System.Drawing.Point(948, 292);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(2);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(122, 20);
-            this.dateTimePicker2.TabIndex = 339;
-            this.dateTimePicker2.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
+            this.dtpNalogRealizovaoKal.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dtpNalogRealizovaoKal.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpNalogRealizovaoKal.Location = new System.Drawing.Point(948, 292);
+            this.dtpNalogRealizovaoKal.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpNalogRealizovaoKal.Name = "dtpNalogRealizovaoKal";
+            this.dtpNalogRealizovaoKal.Size = new System.Drawing.Size(122, 20);
+            this.dtpNalogRealizovaoKal.TabIndex = 339;
+            this.dtpNalogRealizovaoKal.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
             // 
             // label14
             // 
@@ -782,30 +811,6 @@ namespace Saobracaj.RadniNalozi
             this.label14.TabIndex = 338;
             this.label14.Text = "Datum realizacije";
             // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.BackColor = System.Drawing.Color.SeaGreen;
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton3.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(91, 24);
-            this.toolStripButton3.Text = "Potvrdi završen";
-            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
-            // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.BackColor = System.Drawing.Color.LimeGreen;
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton4.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(112, 24);
-            this.toolStripButton4.Text = "Potvrdi završen CIR";
-            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
-            // 
             // RN4PrijemPlatforme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -813,16 +818,16 @@ namespace Saobracaj.RadniNalozi
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1144, 647);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.dateTimePicker2);
+            this.Controls.Add(this.txtNalogRealizovaoKal);
+            this.Controls.Add(this.dtpNalogRealizovaoKal);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.txtNalogRealizovaoCIR);
+            this.Controls.Add(this.dtpNalogRealizovaoCIR);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.chkZavrsenKalmarista);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.chkZavrsenCIR);
             this.Controls.Add(this.chkIzvoz);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.chkZavrsen);
@@ -943,16 +948,16 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.CheckBox chkIzvoz;
         private NedraDataSet nedraDataSet1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox chkZavrsenCIR;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox chkZavrsenKalmarista;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TextBox txtNalogRealizovaoCIR;
+        private System.Windows.Forms.DateTimePicker dtpNalogRealizovaoCIR;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.TextBox txtNalogRealizovaoKal;
+        private System.Windows.Forms.DateTimePicker dtpNalogRealizovaoKal;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;

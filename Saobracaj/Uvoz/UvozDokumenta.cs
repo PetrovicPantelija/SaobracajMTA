@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class UvozDokumenta : Form
+    public partial class UvozDokumenta : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         public UvozDokumenta()

@@ -227,6 +227,8 @@ namespace Saobracaj.Izvoz
             this.label62 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkInterni = new System.Windows.Forms.CheckBox();
+            this.txtUvozniID = new System.Windows.Forms.TextBox();
+            this.label63 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNetoR)).BeginInit();
@@ -2420,12 +2422,35 @@ namespace Saobracaj.Izvoz
             this.chkInterni.Text = "Interni";
             this.chkInterni.UseVisualStyleBackColor = true;
             // 
+            // txtUvozniID
+            // 
+            this.txtUvozniID.BackColor = System.Drawing.Color.PeachPuff;
+            this.txtUvozniID.Enabled = false;
+            this.txtUvozniID.Location = new System.Drawing.Point(75, 51);
+            this.txtUvozniID.Margin = new System.Windows.Forms.Padding(2);
+            this.txtUvozniID.Name = "txtUvozniID";
+            this.txtUvozniID.Size = new System.Drawing.Size(62, 20);
+            this.txtUvozniID.TabIndex = 452;
+            this.txtUvozniID.Text = "0";
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(73, 36);
+            this.label63.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(54, 13);
+            this.label63.TabIndex = 451;
+            this.label63.Text = "Uvozni ID";
+            // 
             // frmIzvoz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1312, 628);
+            this.Controls.Add(this.txtUvozniID);
+            this.Controls.Add(this.label63);
             this.Controls.Add(this.chkInterni);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label62);
@@ -2797,5 +2822,7 @@ namespace Saobracaj.Izvoz
         private System.Windows.Forms.ToolStripLabel tslKreirao;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.TextBox txtUvozniID;
+        private System.Windows.Forms.Label label63;
     }
 }

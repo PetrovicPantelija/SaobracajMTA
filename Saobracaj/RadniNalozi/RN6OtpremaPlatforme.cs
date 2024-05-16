@@ -37,6 +37,7 @@ namespace Saobracaj.RadniNalozi
                 VratiPodatkeVrstaMan(Usluga.ToString());
                 chkUvoz.Checked = true;
                 chkIzvoz.Checked = false;
+               
 
             }
             else
@@ -372,13 +373,13 @@ namespace Saobracaj.RadniNalozi
 
             SqlCommand cmd = new SqlCommand(" SELECT       Skladiste " +
   "  FROM  KontejnerTekuce " +
-             " where Kontejner = " + ID, con);
+             " where Kontejner = '" + ID + "'", con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
-                cboSaSklad.SelectedValue = Convert.ToInt32(dr["Skladiste"].ToString());
+                cboSaSklad.SelectedValue = Convert.ToString(dr["Skladiste"].ToString());
 
 
 

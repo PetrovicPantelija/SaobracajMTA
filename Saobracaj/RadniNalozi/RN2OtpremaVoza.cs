@@ -27,10 +27,10 @@ namespace Saobracaj.RadniNalozi
             cboNaSredstvo.SelectedValue = Convert.ToInt32(IDVOza);
             cboUsluga.SelectedValue = Convert.ToInt32(IDUsluge);
             txtOtpremaID.Text = OtpremaID;
-            RefreshStavkeVoza(OtpremaID);
+           // RefreshStavkeVoza(OtpremaID);
 
         }
-
+        /*
         private void RefreshStavkeVoza(string OtpremaID)
         {
             if (cboUsluga.SelectedValue is null)
@@ -38,7 +38,7 @@ namespace Saobracaj.RadniNalozi
                 MessageBox.Show("Izaberite uslugu");
                 return;
             }
-            /*
+            
             Select BookingBrodara, BrodskaPlomba, Brodar, PeriodSkladistenjaOd, PeriodSkladistenjaDo, NetoRobe, BrutoRobe, BrutoRobeO, CBMO, BrojKoletaO, OstalePlombe, Tara, VGMBrod2 from IzvozKonacna Where ID = " + txtKOntejnerID.Text , con);
                                                                                                                                                                                        select IzvozKonacnaVrstaManipulacije.ID as ID, IzvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID," +
                 " IzvozKonacna.BrojKontejnera," +
@@ -51,7 +51,7 @@ namespace Saobracaj.RadniNalozi
 " join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozKonacnaVrstaManipulacije.OrgJed " +
 " inner " +
 " join IzvozKonacna on IzvozKonacnaVrstaManipulacije.IDNadredjena = IzvozKonacna.ID where IzvozKonacna.ID = " + Convert.ToInt32(txtKOntejnerID.Text);
-            */
+            
             var select = "  SELECT OtpremaKontejneraVozStavke.[ID],[IDNadredjenog]       ,[BrojKontejnera],[BrojVagona], " +
              "  KontejnerID " +
              " FROM [dbo].[OtpremaKontejneraVozStavke] " +
@@ -82,7 +82,7 @@ namespace Saobracaj.RadniNalozi
             dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
         }
-
+        */
 
         private void FillGV()
         {
@@ -248,16 +248,38 @@ namespace Saobracaj.RadniNalozi
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
-        {
+        {  DialogResult dialogResult = MessageBox.Show("Formirace se RN za sve Interne Naloge po Vrsti usluge ", "Some Title", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
             RadniNalozi.InsertRN ir = new InsertRN();
             //PANTA
             ir.InsRNOtpremaVozaCeoVoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboNaSredstvo.SelectedValue), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtOtpremaID.Text));
             FillGV();
+   }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
         }
+          
+         
 
         private void RN2OtpremaVoza_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            InsertRN up = new InsertRN();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    up.PotvrdiUradjenRN2(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                }
+
+            }
         }
     }
 }

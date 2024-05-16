@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
 {
-    public partial class frmIzvozKonacna : Form
+    public partial class frmIzvozKonacna : Syncfusion.Windows.Forms.Office2010Form
     {
         float firstWidth;
         float firstHeight;
@@ -913,7 +913,7 @@ namespace Saobracaj.Izvoz
                 Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text, Convert.ToInt32(txtADR.SelectedValue),
                 Convert.ToInt32(txtNadredjeni.Text), txtVozilo.Text, txtVozac.Text, Convert.ToInt32(cboSpedicijaJ.SelectedValue),
                 Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToInt32(cboVrstaPlombe.SelectedValue),
-                 txtNapomenaZaRobu.Text, Convert.ToDecimal(txtVGMBrod.Value), txtKontaktSpeditera.Text, txtKontaktOsobe.Text);
+                 txtNapomenaZaRobu.Text, Convert.ToDecimal(txtVGMBrod.Value), txtKontaktSpeditera.Text, txtKontaktOsobe.Text, Convert.ToInt32(txtUvozniID.Text));
             //Fale ostale plombe
             // Convert.ToDecimal(txtDodatneNapomene.Text -- treba staviti nvarchar
 
@@ -1237,12 +1237,15 @@ namespace Saobracaj.Izvoz
     "     ,[Vaganje],[VGMTezina],[Tara],[VGMBrod] " +
    "      ,[Izvoznik],[Klijent1],[Napomena1REf],[DodatneNapomeneDrumski] " +
    "      ,[Klijent2],[Napomena2REf],[Klijent3],[Napomena3REf] " +
-   "      ,[SpediterRijeka],[OstalePlombe],[ADR],[Vozilo],[Vozac], SpedicijaJ, PeriodSkladistenjaOd, PeriodSkladistenjaDo , VrstaBrodskePlombe, NapomenaZaRobu, VGMBrod2 " +
+   "      ,[SpediterRijeka],[OstalePlombe],[ADR],[Vozilo],[Vozac], SpedicijaJ, PeriodSkladistenjaOd, PeriodSkladistenjaDo , VrstaBrodskePlombe, NapomenaZaRobu, VGMBrod2,KontaktSpeditera" +
+   " KontaktOsobe, UvozID" +
  "  FROM [IzvozKonacna] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
+                txtUvozniID.Text = dr["UvozID"].ToString();
+                txtKontaktOsobe.Text = dr["KontaktOsobe"].ToString();
                 txtVozilo.Text = dr["Vozilo"].ToString();
                 txtVozac.Text = dr["Vozac"].ToString();
                 txtOstalePlombe.Text = dr["OstalePlombe"].ToString();
@@ -1339,6 +1342,7 @@ namespace Saobracaj.Izvoz
                 txtBrojVagona.Text = dr["BrojVagona"].ToString();
                 cboVrstaPlombe.SelectedValue = Convert.ToInt32(dr["VrstaBrodskePlombe"].ToString());
                 txtNapomenaZaRobu.Text = dr["NapomenaZaRobu"].ToString();
+                //txtKontaktSpeditera.Text = dr["KontaktSpeditera"].ToString();
 
                 /*
 
@@ -1402,7 +1406,7 @@ namespace Saobracaj.Izvoz
 
 
             con.Close();
-
+            FillDGUsluge();
 
         }
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -1681,17 +1685,35 @@ namespace Saobracaj.Izvoz
             var select = "";
 
             select = "select  IzvozKonacnaVrstaManipulacije.ID as ID, IzvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, IzvozKonacna.BrojKontejnera, " +
-" IzvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
-" IzvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
-" Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac " +
-" from IzvozKonacnaVrstaManipulacije " +
-" Inner    join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
-" inner " +
-" join PArtnerji on IzvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
-" inner " +
-" join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozKonacnaVrstaManipulacije.OrgJed " +
-" inner " +
-" join IzvozKonacna on IzvozKonacnaVrstaManipulacije.IDNadredjena = IzvozKonacna.ID where IzvozKonacna.ID = " + Convert.ToInt32(txtID.Text);
+  " IzvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
+  " IzvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica, " +
+  " Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, SaPDV,IzvozKonacnaVrstaManipulacije.Pokret, KontejnerStatus.Naziv , 'IZVOZNA' " +
+  " from IzvozKonacnaVrstaManipulacije " +
+  " Inner    join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
+  "  inner " +
+  " join PArtnerji on IzvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
+  " inner " +
+  " join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozKonacnaVrstaManipulacije.OrgJed " +
+  "  inner " +
+  " join IzvozKonacna on IzvozKonacnaVrstaManipulacije.IDNadredjena = IzvozKonacna.ID " +
+  " left " +
+  " join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera" +
+  " where IzvozKonacna.ID = " + Convert.ToInt32(txtID.Text) +
+              " union" +
+  " select  UvozKonacnaVrstaManipulacije.ID as ID, UvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, UvozKonacna.BrojKontejnera, " +
+  " UvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
+  " UvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
+  " Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, SaPDV,UvozKonacnaVrstaManipulacije.Pokret, KontejnerStatus.Naziv,  'UVOZNA'" +
+  " from UvozKonacnaVrstaManipulacije" +
+  " Inner    join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije" +
+  " inner" +
+  " join PArtnerji on UvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra" +
+  " inner" +
+  " join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozKonacnaVrstaManipulacije.OrgJed" +
+  " inner" +
+  " join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID" +
+  " left" +
+  " join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera where UvozKonacna.ID  = " + Convert.ToInt32(txtUvozniID.Text);
 
 
 

@@ -1029,7 +1029,7 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
         {
             //Zatvaranje kontejnera
             //
-            foreach (DataGridViewRow row in dataGridView2.Rows)
+            foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();
 
@@ -1300,7 +1300,7 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
                 " IzvozKonacna.BrojKontejnera," +
 " IzvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
 " IzvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
- "  Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac" +
+ "  Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, UvozniRNI" +
 " from IzvozKonacnaVrstaManipulacije Inner    join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije" +
 " inner" +
 " join PArtnerji on IzvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra  inner " +
@@ -1464,6 +1464,21 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
         {
             RadniNalozi.RN11PreglediPostavkaKontejnera pik = new RadniNalozi.RN11PreglediPostavkaKontejnera(KorisnikCene, Convert.ToInt32(cboVozBuking.SelectedValue), "0", txtSifra.Text);
             pik.Show();
+        }
+
+        private void dataGridView8_SelectionChanged(object sender, EventArgs e)
+        {
+            string IDUsluge = "0";
+            foreach (DataGridViewRow row in dataGridView8.Rows)
+            {
+
+                if (row.Selected == true)
+                {
+                    IDUsluge = row.Cells[0].Value.ToString();
+                    txtNalogID.Text = IDUsluge;
+
+                }
+            }
         }
     }
 }

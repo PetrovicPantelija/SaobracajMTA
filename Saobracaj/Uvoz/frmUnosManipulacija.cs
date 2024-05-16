@@ -736,8 +736,8 @@ namespace Saobracaj.Uvoz
             dataGridView7.Columns[10].HeaderText = "Platilac";
             dataGridView7.Columns[10].Width = 140;
 
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.SelectAll();
+            //dataGridView7.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //dataGridView7.SelectAll();
             /*
                         DataGridViewColumn column12 = dataGridView7.Columns[11];
                         dataGridView7.Columns[11].HeaderText = "SaPDV";

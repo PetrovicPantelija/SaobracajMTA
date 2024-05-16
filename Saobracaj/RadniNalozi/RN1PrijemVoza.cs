@@ -9,6 +9,7 @@ using System.Net.Mail;
 using System.Diagnostics.CodeAnalysis;
 using Saobracaj;
 using System.Drawing;
+using Saobracaj.Dokumenta;
 
 //
 namespace Saobracaj.RadniNalozi
@@ -456,7 +457,7 @@ namespace Saobracaj.RadniNalozi
             SqlCommand cmd = new SqlCommand(" select RNPrijemVoza.ID, RNPrijemVoza.BrojKontejnera, TipKontenjera.ID as VrstaKontejnera, DatumRasporeda," +
                 " NalogIzdao, Voz.BrVoza, NaSkladiste, NaPozicijuSklad,  PArtnerji.PaSifra as Uvoznik, p2.PaSifra as Brodar, VrstaManipulacije.ID as Usluga, " +
                 "BrojPlombe, RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID, RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, " +
-                "Zavrsen, NalogRealizovaoVP, ZavrsenVP, NapomenaVP, DatumRealizacijeVP from RNPrijemVoza " +
+                "Zavrsen, NalogRealizovaoVP, ZavrsenVP, NapomenaVP, DatumRealizacijeVP, PotrebanCIR, NalogRealizovaoCIR, DatumRealizacijeCIR, ZavrsenCIR from RNPrijemVoza " +
 " inner join TipKontenjera on TipKontenjera.ID = RNPrijemVoza.VrstaKontejnera " +
 " inner join Voz on RNPrijemVoza.SaVoznogSredstva = Voz.ID " +
 " inner join Skladista on Skladista.ID = NaSkladiste " +
@@ -514,6 +515,30 @@ namespace Saobracaj.RadniNalozi
                 {
                     chkZavrsenVP.Checked = false;
                 }
+
+                if (dr["PotrebanCIR"].ToString() == "1")
+                { 
+                    chkPotrebanCIR.Checked = true; 
+                
+                
+                }
+                else
+                {
+                    chkPotrebanCIR.Checked = false;
+                }
+
+                if (dr["ZavrsenCIR"].ToString() == "1")
+                {
+                    chkZavrsenCIR.Checked = true;
+                    txtNalogRealizovaoCIR.Text = dr["NalogRealizovaoCIR"].ToString();
+                    //dtpNalogRealizovaoCIR.Value = Convert.ToDateTime(dr["DatumRealizacijeCIR"].ToString());
+                }
+                else
+                {
+                    chkZavrsenCIR.Checked = false;
+                }
+
+               
             }
 
             con.Close();
@@ -570,6 +595,42 @@ namespace Saobracaj.RadniNalozi
                 if (row.Selected == true)
                 {
                     up.PotvrdiUradjenRN1VP(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                }
+
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            frmCIR cir = new frmCIR(Convert.ToInt32(txtID.Text));
+            cir.Show();
+        }
+
+        private void chkPotrebanCIR_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkPotrebanCIR.Checked == true)
+            {
+                chkZavrsenCIR.Enabled = true;
+                txtNalogRealizovaoCIR.Enabled = true;
+                dtpNalogRealizovaoCIR.Enabled = true;
+
+            }
+            else
+            {
+                chkZavrsenCIR.Enabled = false;
+                txtNalogRealizovaoCIR.Enabled = false;
+                dtpNalogRealizovaoCIR.Enabled = false;
+            }
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            InsertRN up = new InsertRN();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    up.PotvrdiUradjenRN1CIr(Convert.ToInt32(row.Cells[0].Value.ToString()));
                 }
 
             }

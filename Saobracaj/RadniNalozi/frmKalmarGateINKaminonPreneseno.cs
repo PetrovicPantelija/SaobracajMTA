@@ -33,7 +33,7 @@ namespace Saobracaj.RadniNalozi
             select = "Select RNPrijemPlatforme.ID, BrojKontejnera, DATUMRAsporeda, TipKontenjera.Naziv as TipKOntejnera, NalogIZdao, USkladiste, Skladista.Naziv,Kamion, NalogID, PrijemID from RNPrijemPlatforme " +
 " inner join Skladista on Skladista.ID = USkladiste " +
 " inner join TipKontenjera on TipKontenjera.Id = VrstaKontejnera " +
-" where ZavrsenCIR =1  AND Zavrsen = 1 ";
+" where ZavrsenCIR =1  AND Zavrsen = 1 and ZavrsenKalmarista is null";
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

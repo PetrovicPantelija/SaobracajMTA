@@ -790,7 +790,7 @@ namespace Saobracaj.Izvoz
                 Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(txtRef3.Text),
                  Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text,
                  Convert.ToInt32(txtADR.SelectedValue), txtVozilo.Text, txtVozac.Text, Convert.ToInt32(cboSpedicijaJ.SelectedValue), 
-                 Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToInt32(cboVrstaPlombe.SelectedValue), txtNapomenaZaRobu.Text, Convert.ToDecimal(txtVGMBrod.Value), txtKontaktSpeditera.Text, txtKontaktOsobe.Text);
+                 Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToInt32(cboVrstaPlombe.SelectedValue), txtNapomenaZaRobu.Text, Convert.ToDecimal(txtVGMBrod.Value), txtKontaktSpeditera.Text, txtKontaktOsobe.Text, Convert.ToInt32(txtUvozniID.Text));
             //Fale ostale plombe
             // Convert.ToDecimal(txtDodatneNapomene.Text -- treba staviti nvarchar
 
@@ -1149,12 +1149,13 @@ namespace Saobracaj.Izvoz
    "      ,[Izvoznik],[Klijent1],[Napomena1REf],[DodatneNapomeneDrumski] " +
    "      ,[Klijent2],[Napomena2REf],[Klijent3],[Napomena3REf] " +
    "      ,[SpediterRijeka],[OstalePlombe],[ADR],[Vozilo],[Vozac], SpedicijaJ, PeriodSkladistenjaOd, PeriodSkladistenjaDo, VrstaBrodskePlombe, NapomenaZaRobu, VGMBrod2  ,[KontaktSpeditera] " +
-      " ,[KontaktOsobe]      ,[Korisnik]      ,[DatumKreiranja] " +
+      " ,[KontaktOsobe]      ,[Korisnik]      ,[DatumKreiranja], UvozID " +
  "  FROM [Izvoz] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
+                txtUvozniID.Text = dr["UvozID"].ToString();
                 txtVozilo.Text = dr["Vozilo"].ToString();
                 txtVozac.Text = dr["Vozac"].ToString();
                 txtOstalePlombe.Text = dr["OstalePlombe"].ToString();
@@ -1803,10 +1804,10 @@ namespace Saobracaj.Izvoz
         {
             using (var detailForm = new frmIzvozTable())
             {
+                detailForm.ShowDialog();
+                txtID.Text = detailForm.GetID();
                 if (txtID.Text !=  "")
-                     {
-                    detailForm.ShowDialog();
-                    txtID.Text = detailForm.GetID();
+                {
                     VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
                 }
                 
@@ -2081,6 +2082,7 @@ namespace Saobracaj.Izvoz
             {
                 detailForm.ShowDialog();
                 txtBrKont.Text = detailForm.GetBrojKontejnera();
+                txtUvozniID.Text = detailForm.GetUvozniID();
                 InsertIzvoz ins = new InsertIzvoz();
                 ins.IzvozOpredelio(txtBrKont.Text);
                 MessageBox.Show("Kontejner je opredeljen");

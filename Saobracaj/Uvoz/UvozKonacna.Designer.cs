@@ -57,7 +57,6 @@ namespace Saobracaj.Uvoz
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
@@ -227,6 +226,7 @@ namespace Saobracaj.Uvoz
             this.button14 = new System.Windows.Forms.Button();
             this.txtAdresaMestaUtovara = new System.Windows.Forms.ComboBox();
             this.label65 = new System.Windows.Forms.Label();
+            this.chkTerminalski = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaraK)).BeginInit();
@@ -262,7 +262,6 @@ namespace Saobracaj.Uvoz
             this.toolStripButton6,
             this.toolStripButton3,
             this.toolStripButton4,
-            this.toolStripButton7,
             this.toolStripButton10,
             this.toolStripButton1,
             this.toolStripButton5,
@@ -401,16 +400,6 @@ namespace Saobracaj.Uvoz
             this.toolStripButton4.Size = new System.Drawing.Size(95, 24);
             this.toolStripButton4.Text = "Usluge-SHU";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click_1);
-            // 
-            // toolStripButton7
-            // 
-            this.toolStripButton7.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
-            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton7.Name = "toolStripButton7";
-            this.toolStripButton7.Size = new System.Drawing.Size(198, 24);
-            this.toolStripButton7.Text = "Prijem kontejnera VOZ Terminal";
-            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
             // 
             // toolStripButton10
             // 
@@ -1276,6 +1265,7 @@ namespace Saobracaj.Uvoz
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.groupBox1.Controls.Add(this.chkTerminalski);
             this.groupBox1.Controls.Add(this.dataGridView5);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.button2);
@@ -1373,11 +1363,12 @@ namespace Saobracaj.Uvoz
             // cboVoz
             // 
             this.cboVoz.FormattingEnabled = true;
-            this.cboVoz.Location = new System.Drawing.Point(33, 45);
+            this.cboVoz.Location = new System.Drawing.Point(70, 45);
             this.cboVoz.Margin = new System.Windows.Forms.Padding(2);
             this.cboVoz.Name = "cboVoz";
-            this.cboVoz.Size = new System.Drawing.Size(296, 21);
+            this.cboVoz.Size = new System.Drawing.Size(259, 21);
             this.cboVoz.TabIndex = 93;
+            this.cboVoz.SelectedIndexChanged += new System.EventHandler(this.cboVoz_SelectedIndexChanged);
             // 
             // label43
             // 
@@ -2241,7 +2232,7 @@ namespace Saobracaj.Uvoz
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(353, 102);
+            this.tabPage1.Size = new System.Drawing.Size(628, 102);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Napomene";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -2419,6 +2410,18 @@ namespace Saobracaj.Uvoz
             this.label65.Size = new System.Drawing.Size(79, 13);
             this.label65.TabIndex = 449;
             this.label65.Text = "Adresa utovara";
+            // 
+            // chkTerminalski
+            // 
+            this.chkTerminalski.AutoSize = true;
+            this.chkTerminalski.Enabled = false;
+            this.chkTerminalski.Location = new System.Drawing.Point(261, 14);
+            this.chkTerminalski.Margin = new System.Windows.Forms.Padding(2);
+            this.chkTerminalski.Name = "chkTerminalski";
+            this.chkTerminalski.Size = new System.Drawing.Size(79, 17);
+            this.chkTerminalski.TabIndex = 451;
+            this.chkTerminalski.Text = "Terminalski";
+            this.chkTerminalski.UseVisualStyleBackColor = true;
             // 
             // frmUvozKonacna
             // 
@@ -2712,7 +2715,6 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.ComboBox txtADR;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.ToolStripButton toolStripButton7;
         private System.Windows.Forms.ComboBox cboRLTerminal;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.TextBox txtNapomenaPoz;
@@ -2791,5 +2793,6 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.Label label65;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.CheckBox chkTerminalski;
     }
 }

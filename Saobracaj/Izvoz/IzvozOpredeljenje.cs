@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace Saobracaj.Izvoz
 {
 
-    public partial class IzvozOpredeljenje : Form
+    public partial class IzvozOpredeljenje : Syncfusion.Windows.Forms.Office2010Form
     {
         int Selektovani = 0;
         private Keys keyData;
@@ -24,10 +24,14 @@ namespace Saobracaj.Izvoz
         {
             return txtBrojKontejnera.Text;
         }
+        public string GetUvozniID()
+        {
+            return txtUvozniID.Text;
+        }
 
         private void RefreshGV()
         {
-            var select = " Select Kontejner, KontejnerStatus.Naziv as Kontejner_Status, Skladista.Naziv as Skladiste, Pokret, KontejnerTekuce.Stanje, KontejnerTekuce.RLSRB, KontejnerTekuce.StatusIZvoz from KontejnerTekuce " +
+            var select = " Select Kontejner, KontejnerStatus.Naziv as Kontejner_Status, Skladista.Naziv as Skladiste, Pokret, KontejnerTekuce.Stanje, KontejnerTekuce.RLSRB, KontejnerTekuce.StatusIZvoz, KontejnerTekuce.UlazniBroj from KontejnerTekuce " +
             " inner join KontejnerStatus on KontejnerStatus.ID = KontejnerTekuce.StatusKontejnera " +
             " inner join Skladista on Skladista.ID = KontejnerTekuce.Skladiste  ";
 
@@ -57,6 +61,7 @@ namespace Saobracaj.Izvoz
                 if (gridGroupingControl1.Table.CurrentRecord != null)
                 {
                     txtBrojKontejnera.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("Kontejner").ToString();
+                    txtUvozniID.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("UlazniBroj").ToString();
 
                     // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
                 }

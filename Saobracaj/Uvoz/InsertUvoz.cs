@@ -15,7 +15,7 @@ namespace Saobracaj.Uvoz
             int MestoIstovara, int KontaktOsoba, string Mail, string Plomba1, string Plomba2, decimal NetoRoba, decimal BrutoRoba, decimal TaraKont, decimal BrutoKont,
             int NapomenaPoz, DateTime ATAOtpreme, int BrojVoza, string Relacija, DateTime ATADolazak, decimal Koleta, int RLTerminali
             , string Napomena1, int VrstaPregleda, int Nalogodavac1, string Ref1, int Nalogodavac2,
-string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet, int AdresaMestaUtovara, string KontaktOsobe)
+string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet, int AdresaMestaUtovara, string KontaktOsobe, int Terminalska)
         {
 
 
@@ -457,6 +457,14 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             kontaktosobe.Direction = ParameterDirection.Input;
             kontaktosobe.Value = KontaktOsobe;
             cmd.Parameters.Add(kontaktosobe);
+
+            SqlParameter terminalska = new SqlParameter();
+            terminalska.ParameterName = "@Terminalska";
+            terminalska.SqlDbType = SqlDbType.Int;
+            terminalska.Direction = ParameterDirection.Input;
+            terminalska.Value = Terminalska;
+            cmd.Parameters.Add(terminalska);
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syncfusion.Grouping;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -45,6 +46,20 @@ namespace Saobracaj.Uvoz
             KorisnikTekuci = Korisnik;
             //  RefreshDataGridColor();
         }
+
+        public Uvoz(int Terminalski)
+        {
+            InitializeComponent();
+            //  FillGV();
+            //  FillCheck();
+            //  UcitajNHMoveCombo();
+            FillCombo();
+            chkTerminalski.Checked = true;
+            this.Text = "Primljeni kontejneri od strane terminala";
+         
+            //  RefreshDataGridColor();
+        }
+
 
         private void UcitajNHMoveCombo()
 
@@ -483,10 +498,10 @@ namespace Saobracaj.Uvoz
 
 
 
+            //OVde mi trebaju terminalski planovi utovara
 
-
-            var planutovara = "select UvozKonacnaZaglavlje.ID,(Cast(BrVoza as nvarchar(15)) + ' '  + Relacija) as Naziv from UvozKonacnaZaglavlje " +
-            " inner join Voz on Voz.Id = UvozKonacnaZaglavlje.IdVoza order by UvozKonacnaZaglavlje.ID desc";
+            var planutovara = "select top 1 UvozKonacnaZaglavlje.ID,(Cast(BrVoza as nvarchar(15)) + ' '  + Relacija) as Naziv from UvozKonacnaZaglavlje " +
+            " inner join Voz on Voz.Id = UvozKonacnaZaglavlje.IdVoza where  UvozKonacnaZaglavlje.Terminal = 1 order by UvozKonacnaZaglavlje.ID desc";
             var planutovaraSAD = new SqlDataAdapter(planutovara, conn);
             var planutovaraSDS = new DataSet();
             planutovaraSAD.Fill(planutovaraSDS);
@@ -601,13 +616,17 @@ namespace Saobracaj.Uvoz
             }
             int tDobijenBZ = 0;
             int tPrioritet = 0;
-
+            int Terminalska = 0;
 
             if (chkDobijenBZ.Checked == true)
             { tDobijenBZ = 1; };
             if (chkPrioritet.Checked == true)
             { tPrioritet = 1; };
-
+            if (chkDobijenBZ.Checked == true)
+            { tDobijenBZ = 1; };
+            if (chkTerminalski.Checked == true)
+            { Terminalska = 1; };
+            
 
             try
             {
@@ -686,7 +705,7 @@ namespace Saobracaj.Uvoz
                 Convert.ToInt32(txtBrojVoza.Text), txtRelacija.Text.ToString().TrimEnd(), Convert.ToDateTime(dtAtaDolazak.Value.ToString()), Convert.ToDecimal(txtKoleta.Value), Convert.ToInt32(cboRLTerminal.SelectedValue), txtNapomena1.Text, Convert.ToInt32(txtVrstaPregleda.SelectedValue),
                 Convert.ToInt32(cboNalogodavac1.SelectedValue), txtRef1.Text,
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
-                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text);
+                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska);
             //  FillGV();
             //  RefreshDataGridColor();
             tsNew.Enabled = true;
@@ -2066,18 +2085,37 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton1_Click_1(object sender, EventArgs e)
         {
-            using (var detailForm = new UvozTable())
+            if (chkTerminalski.Checked == false)
             {
-                detailForm.ShowDialog();
-                txtID.Text = detailForm.GetID();
-                if (txtID.Text == "")
+                using (var detailForm = new UvozTable())
                 {
-                    MessageBox.Show("Morate izabrati barem jednu stavku");
-                    return;
+                    detailForm.ShowDialog();
+                    txtID.Text = detailForm.GetID();
+                    if (txtID.Text == "")
+                    {
+                        MessageBox.Show("Morate izabrati barem jednu stavku");
+                        return;
 
+                    }
+                    VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
                 }
-                VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
             }
+            else
+            {
+                using (var detailForm = new UvozTable(1))
+                {
+                    detailForm.ShowDialog();
+                    txtID.Text = detailForm.GetID();
+                    if (txtID.Text == "")
+                    {
+                        MessageBox.Show("Morate izabrati barem jednu stavku");
+                        return;
+
+                    }
+                    VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+                }
+            }
+           
         }
 
         private void Uvoz_KeyDown(object sender, KeyEventArgs e)
@@ -2209,6 +2247,19 @@ namespace Saobracaj.Uvoz
         private void txtTipKont_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            InsertUvozKonacna uvK = new InsertUvozKonacna();
+            uvK.InsUbaciUslugu(Convert.ToInt32(txtID.Text), 69, 0, 1, 4, Convert.ToInt32(cboBrodar.SelectedValue), 0, "GATE IN EMPTY", 13, KorisnikTekuci, "GATE IN KAMION");
+            FillDGUsluge();
+        }
+
+        private void toolStripButton8_Click(object sender, EventArgs e)
+        {
+            InsertUvozKonacna ins = new InsertUvozKonacna();
+            ins.PrenesiUPlanUtovara(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
         }
     }
 }

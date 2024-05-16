@@ -1848,6 +1848,23 @@ namespace Saobracaj.Izvoz
         {
             FillDG6Scenario();
         }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            if (txtNadredjeni.Text != "0")
+            {
+                InsertIzvoz uvK = new InsertIzvoz();
+                uvK.InsUbaciUsluguKonacnaPlan(Convert.ToInt32(txtNadredjeni.Text));
+                FillDG8();
+            }
+            else
+            {
+               // InsertIzvoz uvK = new InsertIzvoz();
+              //  uvK.InsUbaciUslugu(ID, Manipulacija, Cena, Kolicina, OrgJed, Platilac, 0, PomPokret, PomStatusKOntejnera);
+              //  FillDG8();
+
+            }
+        }
     }
     }
 

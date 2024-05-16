@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
@@ -79,7 +80,7 @@ namespace Saobracaj.Uvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("select ID, idVoza,Napomena from UvozKonacnaZaglavlje where ID=" + Sifra, con);
+            SqlCommand cmd = new SqlCommand("select ID, idVoza,Napomena, Terminal from UvozKonacnaZaglavlje where ID=" + Sifra, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -87,7 +88,10 @@ namespace Saobracaj.Uvoz
                 txtNadredjeni.Text = dr["ID"].ToString();
                 cboVoz.SelectedValue = Convert.ToInt32(dr["idVoza"].ToString());
                 txtNapomenaZaglavlje.Text = dr["Napomena"].ToString();
-
+                if (dr["Terminal"].ToString() == "1")
+                { 
+                    chkTerminalski.Checked = true;
+                }
             }
             con.Close();
             VratiVoz();
@@ -115,7 +119,7 @@ namespace Saobracaj.Uvoz
             dataGridView5.ReadOnly = true;
             dataGridView5.DataSource = ds.Tables[0];
 
-            dataGridView5.BorderStyle = BorderStyle.None;
+           // dataGridView5.BorderStyle = BorderStyle.None;
             dataGridView5.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView5.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView5.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
@@ -216,7 +220,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
 
-            dataGridView1.BorderStyle = BorderStyle.None;
+          //  dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
@@ -696,16 +700,20 @@ namespace Saobracaj.Uvoz
             }
             var select = "";
 
-            select = "select  UvozKonacnaVrstaManipulacije.ID as ID, UvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, UvozKonacna.BrojKontejnera, " +
+            select = " select  UvozKonacnaVrstaManipulacije.ID as ID, UvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, UvozKonacna.BrojKontejnera, " +
 " UvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
-"  UvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,   " +
-"  Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, SaPDV,UvozKonacnaVrstaManipulacije.Pokret, KontejnerStatus.Naziv " +
-"  from UvozKonacnaVrstaManipulacije " +
-"  Inner    join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
-"   inner join PArtnerji on UvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
-"  inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozKonacnaVrstaManipulacije.OrgJed " +
-"  inner join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID " +
-"  left join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera where UvozKonacna.ID  = " + Convert.ToInt32(txtID.Text) + " Order by UvozKonacnaVrstaManipulacije.ID";
+" UvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  "+ 
+" Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, SaPDV,UvozKonacnaVrstaManipulacije.Pokret, KontejnerStatus.Naziv,  'UVOZNA'" +
+" from UvozKonacnaVrstaManipulacije" +
+" Inner    join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije" +
+" inner" +
+" join PArtnerji on UvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra" +
+" inner" +
+" join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozKonacnaVrstaManipulacije.OrgJed" +
+" inner" +
+" join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID" +
+" left" +
+" join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera where UvozKonacna.ID  = " + Convert.ToInt32(txtID.Text) ;
 
 
 
@@ -717,7 +725,7 @@ namespace Saobracaj.Uvoz
             dataGridView8.DataSource = ds.Tables[0];
 
 
-            dataGridView8.BorderStyle = BorderStyle.None;
+          //  dataGridView8.BorderStyle = BorderStyle.None;
             dataGridView8.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView8.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView8.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
@@ -1097,7 +1105,7 @@ namespace Saobracaj.Uvoz
             dataGridView2.ReadOnly = true;
             dataGridView2.DataSource = ds.Tables[0];
 
-            dataGridView2.BorderStyle = BorderStyle.None;
+          //  dataGridView2.BorderStyle = BorderStyle.None;
             dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
@@ -1141,7 +1149,7 @@ namespace Saobracaj.Uvoz
             dataGridView3.DataSource = ds.Tables[0];
 
 
-            dataGridView3.BorderStyle = BorderStyle.None;
+           // dataGridView3.BorderStyle = BorderStyle.None;
             dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
@@ -1642,7 +1650,7 @@ namespace Saobracaj.Uvoz
             dataGridView4.ReadOnly = true;
             dataGridView4.DataSource = ds.Tables[0];
 
-            dataGridView4.BorderStyle = BorderStyle.None;
+          //  dataGridView4.BorderStyle = BorderStyle.None;
             dataGridView4.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView4.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView4.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
@@ -1733,7 +1741,7 @@ namespace Saobracaj.Uvoz
             dataGridView6.DataSource = ds.Tables[0];
 
 
-            dataGridView6.BorderStyle = BorderStyle.None;
+          //  dataGridView6.BorderStyle = BorderStyle.None;
             dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
@@ -1783,7 +1791,7 @@ namespace Saobracaj.Uvoz
             dataGridView6.DataSource = ds.Tables[0];
 
 
-            dataGridView6.BorderStyle = BorderStyle.None;
+           // dataGridView6.BorderStyle = BorderStyle.None;
             dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
@@ -1839,7 +1847,7 @@ namespace Saobracaj.Uvoz
             dataGridView5.DataSource = ds.Tables[0];
 
 
-            dataGridView5.BorderStyle = BorderStyle.None;
+           // dataGridView5.BorderStyle = BorderStyle.None;
             dataGridView5.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView5.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView5.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
@@ -2214,20 +2222,44 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton10_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Pokrenuli ste proceduru pravljenja naloga za službu terminal", "Radni nalog", MessageBoxButtons.YesNo);
-            int PostojeRn = 0;
-            PostojeRn = VratiPostojeceRN();
-            if (dialogResult == DialogResult.Yes)
+            if (chkTerminalski.Checked == false)
             {
+                DialogResult dialogResult = MessageBox.Show("Pokrenuli ste proceduru pravljenja naloga za službu terminal", "Radni nalog", MessageBoxButtons.YesNo);
+                int PostojeRn = 0;
+                PostojeRn = VratiPostojeceRN();
+                if (dialogResult == DialogResult.Yes)
+                {
 
-                InsertRadniNalogInterni ins = new InsertRadniNalogInterni();
-                ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
+                    InsertRadniNalogInterni ins = new InsertRadniNalogInterni();
+                    ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
 
+                }
+                else
+                {
+                    // FormirajOpstiExcel();
+                }
             }
-            else
+
+            ///Ako je plan Terminalski onda izdajemi terminalske naloge
+            ///
+            if (chkTerminalski.Checked == true)
             {
-                // FormirajOpstiExcel();
+                DialogResult dialogResult = MessageBox.Show("Pokrenuli ste proceduru pravljenja Terminalskog naloga ", "Radni nalog", MessageBoxButtons.YesNo);
+                int PostojeRn = 0;
+                PostojeRn = VratiPostojeceRN();
+                if (dialogResult == DialogResult.Yes)
+                {
+
+                    InsertRadniNalogInterni ins = new InsertRadniNalogInterni();
+                    ins.InsRadniNalogInterni(Convert.ToInt32(4), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
+
+                }
+                else
+                {
+                    // FormirajOpstiExcel();
+                }
             }
+
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -2854,6 +2886,11 @@ namespace Saobracaj.Uvoz
             FillDGUsluge();
             FillDG2();
             FillDG4();
+        }
+
+        private void cboVoz_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

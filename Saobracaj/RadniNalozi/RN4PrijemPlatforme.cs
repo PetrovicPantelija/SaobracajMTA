@@ -260,13 +260,19 @@ namespace Saobracaj.RadniNalozi
      "  ,[BrojPlombe]      ,[Izvoznik]      ,[NazivBrodara]      ,[CarinskiPostupak] " +
      "  ,[InspekcijskiPregled]      ,[VrstaRobe]      ,[USkladiste]      ,[UPozicijaSklad] " +
      "  ,[IdUsluge]      ,[NalogRealizovao]      ,[Napomena]      ,[Kamion] " +
-     "  ,[PrijemID]      ,[NalogID]      ,[Zavrsen]  FROM [dbo].[RNPrijemPlatforme]" +
+     "  ,[PrijemID]      ,[NalogID]      ,[Zavrsen]," +
+     "  [ZavrsenCIR]     ,[NalogRealizovaoCIR]      ,[DatumRealizacijeCIR]      ,[USkladisteCIR]     ,[ZavrsenKalmarista]" +
+     "     ,[NalogRealizovaoKal]      ,IsNull(GetDate(),[DatumRealizacijeKal]) as DatumRealizacijeKal FROM [dbo].[RNPrijemPlatforme]" +
              " where ID = " + txtID.Text, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
+                txtNalogRealizovaoCIR.Text = dr["NalogRealizovaoCIR"].ToString();
+              //  dtpNalogRealizovaoCIR.Value = Convert.ToDateTime(dr["DatumRealizacijeCIR"].ToString());
+                txtNalogRealizovaoKal.Text = dr["NalogRealizovaoKal"].ToString();
+                dtpNalogRealizovaoKal.Value = Convert.ToDateTime(dr["DatumRealizacijeKal"].ToString());
                 txtDatumRasporeda.Value = Convert.ToDateTime(dr["DatumRasporeda"].ToString());
                 txtbrojkontejnera.Text = dr["BrojKontejnera"].ToString();
                 cboVrstaKontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
@@ -294,6 +300,20 @@ namespace Saobracaj.RadniNalozi
                 else
                 {
                     chkZavrsen.Checked = false;
+                }
+
+                if (dr["ZavrsenCIR"].ToString() == "1")
+                { chkZavrsenCIR.Checked = true; }
+                else
+                {
+                    chkZavrsenCIR.Checked = false;
+                }
+
+                if (dr["ZavrsenKalmarista"].ToString() == "1")
+                { chkZavrsenKalmarista.Checked = true; }
+                else
+                {
+                    chkZavrsenKalmarista.Checked = false;
                 }
             }
 
@@ -391,6 +411,31 @@ namespace Saobracaj.RadniNalozi
                 }
 
             }
+        }
+
+        private void txtNalogRealizovaoCIR_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtpNalogRealizovaoCIR_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkZavrsenCIR_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
