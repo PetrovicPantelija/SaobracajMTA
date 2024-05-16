@@ -13,16 +13,7 @@ namespace Saobracaj.Sifarnici
 {
     public partial class frmPartnerji : Form
     {
-        public static string code = "frmPartnerji";
-        public bool Pravo;
-        int idGrupe;
-        int idForme;
-        bool insert;
-        bool update;
-        bool delete;
         int PomBrodar = 0;
-        int PomPosiljalac = 0;
-        int PomPrimalac = 0;
         int PomPlatilac = 0;
         int PomOrganizator = 0;
         int PomVlasnik = 0;
@@ -36,7 +27,6 @@ namespace Saobracaj.Sifarnici
 
         bool status = false;
         string Kor = Sifarnici.frmLogovanje.user.ToString();
-        string niz = "";
         private string connect = Sifarnici.frmLogovanje.connectionString;
         string Dobavljac = "";
         string Kupac = "";
@@ -132,6 +122,7 @@ namespace Saobracaj.Sifarnici
                     cbDobavljac.Visible = true;
                     cbObveznik.Visible = true;
                     //cboValuta.Visible = false;
+                    cboKupac.Visible = true;
                     break;
 
                 case "DPT":
@@ -151,6 +142,7 @@ namespace Saobracaj.Sifarnici
                     cbDobavljac.Visible = true;
                     cbObveznik.Visible = true;
                     //cboValuta.Visible = false;
+                    cboKupac.Visible = true;
                     break;
             }
         }
@@ -244,6 +236,8 @@ namespace Saobracaj.Sifarnici
                         if (row.Cells[29].Value.ToString() == "1") { chkKamioner.Checked = true; } else { chkKamioner.Checked = false; }
                         if (row.Cells[30].Value.ToString() == "1") { chkAgentBrodara.Checked = true; } else { chkAgentBrodara.Checked = false; }
                         if (row.Cells["Supplier"].Value.ToString() == "T") { cbDobavljac.Checked = true; } else { cbDobavljac.Checked = false; }
+                        if (row.Cells["Buyer"].Value.ToString() == "T") { cboKupac.Checked = true; } else { cboKupac.Checked= false; }
+                        
                         if (row.Cells["WayOfSale"].Value.ToString() == "Z") { cbObveznik.Checked = true; } else { cbObveznik.Checked = false; }
 
                         cboValuta.SelectedValue = row.Cells["Currency"].Value;
@@ -267,7 +261,7 @@ namespace Saobracaj.Sifarnici
         {
             var select = " Select PaSifra, Rtrim(PaNaziv) as PaNaziv, PaUlicaHisnaSt , PaKraj, PaDelDrzave, PaPostnaSt, PaSifDrzave, PaTelefon1, PaZiroRac, " +
                 " PaOpomba, PaDMatSt, PaEMail, PaEMatSt1, Rtrim(UIC) as UIC, (CASE WHEN Prevoznik > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Prevoznik, (CASE WHEN Posiljalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Posiljalac, (CASE WHEN Primalac > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END)  as Primalac ,  Brodar " +
-            " , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik,Logisticar,Kamioner,AgentBrodara,Buyer,Supplier,WayOfSale,Currency from Partnerji";
+            " , Vlasnik , Spediter , Platilac , Organizator, NalogodavacCH, UvoznikCH, UICDrzava,TR2, Faks, PomIzvoznik,Logisticar,Kamioner,AgentBrodara,Buyer,Supplier,WayOfSale,Currency from Partnerji order by PaSifra desc";
             SqlConnection myConnection = new SqlConnection(connect);
             var c = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, c);
@@ -519,6 +513,8 @@ namespace Saobracaj.Sifarnici
             chkLogisitcar.Checked = false;
             chkKamioner.Checked = false;
             chkAgentBrodara.Checked = false;
+            cboKupac.Checked = false;
+            cbDobavljac.Checked= false;
 
         }
         int referent;
@@ -631,7 +627,8 @@ namespace Saobracaj.Sifarnici
             if (chkKamioner.Checked) { PomKamioner = 1; } else { PomKamioner = 0; }
             if (chkAgentBrodara.Checked) { PomAgentBrodara = 1; } else { PomAgentBrodara = 0; }
 
-            if (cbDobavljac.Checked) { Dobavljac = "T"; Kupac = "F"; } else { Dobavljac = "F"; Kupac = "T"; }
+            if (cbDobavljac.Checked) { Dobavljac = "T"; } else{ Dobavljac = "F"; }
+            if (cboKupac.Checked) { Kupac = "T"; }else{ Kupac = "F"; }
             if (cbObveznik.Checked) { Obveznik = "Z"; } else { Obveznik = "I"; }
 
             if (status == true)

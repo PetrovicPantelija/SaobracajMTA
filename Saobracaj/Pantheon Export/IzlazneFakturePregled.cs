@@ -22,7 +22,7 @@ namespace Saobracaj.Pantheon_Export
         }
         private void FillGV()
         {
-            var select = "Select FaStFak as ID," +
+            var select = "Select distinct FaStFak as ID," +
                 "(Select MAX(RTrim(NosiociTroskova.NosilacTroska)) from FakturaPostav inner join NosiociTroskova on FakturaPostav.NosilacTroska = NosiociTroskova.ID where FakturaPostav.FaPStFak = Faktura.FaStFak) as [NT]," +
                 "(Select MAX(RTrim(NosiociTroskova.NazivNosiocaTroska)) from FakturaPostav inner join NosiociTroskova on FakturaPostav.NosilacTroska = NosiociTroskova.ID where FakturaPostav.FaPStFak = Faktura.FaStFak) as [NT Naziv]," +
                 "Faktura.Status as Status,Format(FaDatFak, 'dd.MM.yyyy') as Datum,FaStatus as FaStatus,FaModul as FaModul,RTrim(PaNaziv) as Kupac,Format(FaDatVal, 'dd.MM.yyyy') as [Datum Valute],Kurs as Kurs," +
@@ -315,7 +315,7 @@ namespace Saobracaj.Pantheon_Export
                                 if (response.Contains("ERROR") == true || response.Contains("Greška") == true || response.Contains("Error") == true || response.Contains("Duplikat") == true)
                                 {
                                     MessageBox.Show("Slanje nije uspelo\n" + response.ToString());
-                                    ins.InsApiLog("IzlFak-" + ID.ToString(), jsonOutput, response);
+                                    ins.InsApiLog("IzlFak-" + FaStFak.ToString(), jsonOutput, response);
                                     return;
                                 }
                                 else
@@ -341,7 +341,7 @@ namespace Saobracaj.Pantheon_Export
                                     }
                                 }
                             }
-                            ins.InsApiLog("IzlFak-" + ID.ToString(), jsonOutput, response);
+                            ins.InsApiLog("IzlFak-" + FaStFak.ToString(), jsonOutput, response);
                         }
 
                     }
@@ -452,7 +452,7 @@ namespace Saobracaj.Pantheon_Export
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            string query = "Select FaStFak as ID," +
+            string query = "Select distinct FaStFak as ID," +
                 "(Select MAX(RTrim(NosiociTroskova.NosilacTroska)) from FakturaPostav inner join NosiociTroskova on FakturaPostav.NosilacTroska = NosiociTroskova.ID where FakturaPostav.FaPStFak = Faktura.FaStFak) as [NT]," +
                 "(Select MAX(RTrim(NosiociTroskova.NazivNosiocaTroska)) from FakturaPostav inner join NosiociTroskova on FakturaPostav.NosilacTroska = NosiociTroskova.ID where FakturaPostav.FaPStFak = Faktura.FaStFak) as [NT Naziv]," +
                 "Faktura.Status as Status,Format(FaDatFak, 'dd.MM.yyyy') as Datum,FaStatus as FaStatus,FaModul as FaModul,RTrim(PaNaziv) as Kupac,Format(FaDatVal, 'dd.MM.yyyy') as [Datum Valute],Kurs as Kurs," +
@@ -471,7 +471,7 @@ namespace Saobracaj.Pantheon_Export
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            string query = "Select FaStFak as ID," +
+            string query = "Select distinct FaStFak as ID," +
                 "(Select MAX(RTrim(NosiociTroskova.NosilacTroska)) from FakturaPostav inner join NosiociTroskova on FakturaPostav.NosilacTroska = NosiociTroskova.ID where FakturaPostav.FaPStFak = Faktura.FaStFak) as [NT]," +
                 "(Select MAX(RTrim(NosiociTroskova.NazivNosiocaTroska)) from FakturaPostav inner join NosiociTroskova on FakturaPostav.NosilacTroska = NosiociTroskova.ID where FakturaPostav.FaPStFak = Faktura.FaStFak) as [NT Naziv]," +
                 "Faktura.Status as Status,Format(FaDatFak, 'dd.MM.yyyy') as Datum,FaStatus as FaStatus,FaModul as FaModul,RTrim(PaNaziv) as Kupac,Format(FaDatVal, 'dd.MM.yyyy') as [Datum Valute],Kurs as Kurs," +
@@ -490,7 +490,7 @@ namespace Saobracaj.Pantheon_Export
         }
         private void btnFilterNT_Click(object sender, EventArgs e)
         {
-            string query = "Select FaStFak as ID," +
+            string query = "Select distinct FaStFak as ID," +
                 "(Select MAX(RTrim(NosiociTroskova.NosilacTroska)) from FakturaPostav inner join NosiociTroskova on FakturaPostav.NosilacTroska = NosiociTroskova.ID where FakturaPostav.FaPStFak = Faktura.FaStFak) as [NT]," +
                 "(Select MAX(RTrim(NosiociTroskova.NazivNosiocaTroska)) from FakturaPostav inner join NosiociTroskova on FakturaPostav.NosilacTroska = NosiociTroskova.ID where FakturaPostav.FaPStFak = Faktura.FaStFak) as [NT Naziv]," +
                 "Faktura.Status as Status,Format(FaDatFak, 'dd.MM.yyyy') as Datum,FaStatus as FaStatus,FaModul as FaModul,RTrim(PaNaziv) as Kupac,Format(FaDatVal, 'dd.MM.yyyy') as [Datum Valute],Kurs as Kurs," +
@@ -509,7 +509,7 @@ namespace Saobracaj.Pantheon_Export
         }
         private void button5_Click(object sender, EventArgs e)
         {
-            string query = "Select FaStFak as ID," +
+            string query = "Select distinct FaStFak as ID," +
                 "(Select MAX(RTrim(NosiociTroskova.NosilacTroska)) from FakturaPostav inner join NosiociTroskova on FakturaPostav.NosilacTroska = NosiociTroskova.ID where FakturaPostav.FaPStFak = Faktura.FaStFak) as [NT]," +
                 "(Select MAX(RTrim(NosiociTroskova.NazivNosiocaTroska)) from FakturaPostav inner join NosiociTroskova on FakturaPostav.NosilacTroska = NosiociTroskova.ID where FakturaPostav.FaPStFak = Faktura.FaStFak) as [NT Naziv]," +
                 "Faktura.Status as Status,Format(FaDatFak, 'dd.MM.yyyy') as Datum,FaStatus as FaStatus,FaModul as FaModul,RTrim(PaNaziv) as Kupac,Format(FaDatVal, 'dd.MM.yyyy') as [Datum Valute],Kurs as Kurs," +
