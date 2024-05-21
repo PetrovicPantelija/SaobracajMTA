@@ -28,6 +28,7 @@ using frmCIRPregled = Testiranje.Dokumeta.frmCIRPregled;
 using Saobracaj.Tehnologija;
 using Syncfusion.Windows.Forms.Tools;
 using Saobracaj.Administracija;
+using Saobracaj.Uvoz;
 namespace Saobracaj
 {
     public partial class MainP : Syncfusion.Windows.Forms.Tools.RibbonForm
@@ -62,7 +63,7 @@ namespace Saobracaj
                 toolStripButton139.Text = "GATE IN KAMION";
                 toolStripButton142.Text = "GATE OUT VOZ";
                 toolStripButton143.Text = "GATE OUT KAMION";
-             
+
             }
 
             if (Sifarnici.frmLogovanje.Firma == "TA")
@@ -288,7 +289,7 @@ namespace Saobracaj
 
 
 
-           
+
         }
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
@@ -308,7 +309,7 @@ namespace Saobracaj
             {
 
                 Sifarnici.frmLokomotive lokomotive = new Sifarnici.frmLokomotive();
-                 lokomotive.Show();
+                lokomotive.Show();
             }
         }
         private void toolStripButton5_Click(object sender, EventArgs e)
@@ -349,7 +350,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Sifarnici.frmStatusVoza statvoz = new Sifarnici.frmStatusVoza();
-                 statvoz.Show();
+                statvoz.Show();
             }
 
         }
@@ -370,7 +371,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Sifarnici.frmRazlozi raz = new Sifarnici.frmRazlozi();
-                 raz.Show();
+                raz.Show();
             }
         }
         private void toolStripButton7_Click(object sender, EventArgs e)
@@ -447,7 +448,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Dokumenta.frmNajava frmNaj = new Dokumenta.frmNajava(Korisnik, 0);
-                 frmNaj.Show();
+                frmNaj.Show();
             }
         }
         private void toolStripButton16_Click(object sender, EventArgs e)
@@ -488,7 +489,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Dokumenta.frmNajava20 naj = new Dokumenta.frmNajava20();
-                 naj.Show();
+                naj.Show();
             }
         }
         private void toolStripButton18_Click(object sender, EventArgs e)
@@ -508,7 +509,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 SyncForm.frmNajavaArhivaAnaliza sNA = new SyncForm.frmNajavaArhivaAnaliza();
-                 sNA.Show();
+                sNA.Show();
             }
         }
         private void toolStripButton14_Click(object sender, EventArgs e)
@@ -571,7 +572,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Dokumenta.frmIskljuceniVagoni iv = new Dokumenta.frmIskljuceniVagoni();
-                iv.Show(); 
+                iv.Show();
             }
         }
         private void toolStripButton21_Click(object sender, EventArgs e)
@@ -592,7 +593,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Dokumenta.frmNajaveBezTeretnice nbt = new Dokumenta.frmNajaveBezTeretnice();
-                 nbt.Show();
+                nbt.Show();
             }
         }
         private void toolStripButton22_Click(object sender, EventArgs e)
@@ -617,7 +618,7 @@ namespace Saobracaj
 
 
 
-            
+
         }
         private void toolStripButton23_Click(object sender, EventArgs e)
         {
@@ -665,7 +666,7 @@ namespace Saobracaj
             }
 
 
-           
+
         }
         private void toolStripButton25_Click(object sender, EventArgs e)
         {
@@ -733,7 +734,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Dokumenta.frmRadniNalogPregled frmp2 = new Dokumenta.frmRadniNalogPregled();
-                 frmp2.Show();
+                frmp2.Show();
             }
 
 
@@ -758,7 +759,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Dokumenta.frmRAdniNalogPregledPoLokomotivama rnpl = new Dokumenta.frmRAdniNalogPregledPoLokomotivama();
-                 rnpl.Show();
+                rnpl.Show();
             }
         }
         private void toolStripButton31_Click(object sender, EventArgs e)
@@ -781,7 +782,7 @@ namespace Saobracaj
                 srn.Show();
             }
 
-           
+
         }
         private void toolStripButton33_Click(object sender, EventArgs e)
         {
@@ -802,7 +803,7 @@ namespace Saobracaj
                 Dokumenta.frmRaspustiVagone frv = new Dokumenta.frmRaspustiVagone();
                 frv.Show();
             }
-          
+
         }
         private void toolStripButton34_Click(object sender, EventArgs e)
         {
@@ -839,7 +840,7 @@ namespace Saobracaj
                 Administracija.frmKorisnici kor = new Administracija.frmKorisnici();
                 kor.Show();
             }
-           
+
         }
 
         private void toolStripButton36_Click(object sender, EventArgs e)
@@ -946,7 +947,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Servis.frmLokomotivaVrstaPopisa lokvp = new Servis.frmLokomotivaVrstaPopisa();
-                 lokvp.Show();
+                lokvp.Show();
             }
         }
 
@@ -1034,7 +1035,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Servis.frmEvidencijaKvarovaAnaliza evkva = new Servis.frmEvidencijaKvarovaAnaliza();
-                 evkva.Show(); 
+                evkva.Show();
             }
 
 
@@ -1061,7 +1062,7 @@ namespace Saobracaj
                 sistem.Show();
             }
 
-        
+
         }
 
         private void toolStripButton51_Click(object sender, EventArgs e)
@@ -1086,7 +1087,7 @@ namespace Saobracaj
 
 
 
-          
+
         }
 
         private void toolStripButton52_Click(object sender, EventArgs e)
@@ -1182,7 +1183,7 @@ namespace Saobracaj
         private void toolStripButton73_Click(object sender, EventArgs e)
         {
             Dokumenta.frmPlacenoNeplaceno pln = new Dokumenta.frmPlacenoNeplaceno();
-             pln.Show();
+            pln.Show();
         }
 
         private void toolStripButton74_Click(object sender, EventArgs e)
@@ -1218,7 +1219,7 @@ namespace Saobracaj
             }
 
 
-          
+
         }
 
         private void toolStripButton60_Click(object sender, EventArgs e)
@@ -1321,7 +1322,7 @@ namespace Saobracaj
                 {
                     bFormNameOpen = true;
                     frm.Activate();
-                    frm.WindowState= FormWindowState.Normal;
+                    frm.WindowState = FormWindowState.Normal;
                 }
             }
             if (bFormNameOpen == false)
@@ -1342,7 +1343,7 @@ namespace Saobracaj
                 {
                     bFormNameOpen = true;
                     frm.Activate();
-                        frm.WindowState = FormWindowState.Normal;
+                    frm.WindowState = FormWindowState.Normal;
                 }
             }
             if (bFormNameOpen == false)
@@ -1379,7 +1380,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Mobile.frmSlobodniDani slob = new Mobile.frmSlobodniDani(Korisnik);
-                 slob.Show();
+                slob.Show();
             }
         }
 
@@ -1399,7 +1400,7 @@ namespace Saobracaj
         private void toolStripButton79_Click(object sender, EventArgs e)
         {
             Dokumenta.frmEvidencijaRAdaNeplaceno nepl = new Dokumenta.frmEvidencijaRAdaNeplaceno();
-            nepl.Show(); 
+            nepl.Show();
         }
 
         private void toolStripButton80_Click(object sender, EventArgs e)
@@ -1433,7 +1434,7 @@ namespace Saobracaj
                 Dokumenta.frmEvidencijaRada erM = new Dokumenta.frmEvidencijaRada(Korisnik);
                 erM.Show();
             }
-           
+
         }
 
         private void toolStripButton68_Click(object sender, EventArgs e)
@@ -1469,7 +1470,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 SyncForm.frmAnalizaAktivnosti aAktiv = new SyncForm.frmAnalizaAktivnosti();
-                 aAktiv.Show();
+                aAktiv.Show();
             }
         }
         private void toolStripButton75_Click(object sender, EventArgs e)
@@ -1663,7 +1664,7 @@ namespace Saobracaj
             }
 
 
-           
+
         }
         private void toolStripButton91_Click(object sender, EventArgs e)
         {
@@ -1682,7 +1683,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Servis.frmPregledPopisa1 pp = new Servis.frmPregledPopisa1();
-               pp.Show(); 
+                pp.Show();
             }
         }
         private void toolStripButton92_Click(object sender, EventArgs e)
@@ -1703,7 +1704,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 SyncForm.frmPregledPopisa2 ppp = new SyncForm.frmPregledPopisa2();
-               ppp.Show();
+                ppp.Show();
             }
         }
 
@@ -1724,7 +1725,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Dokumenta.frmPredjenaKilometrazaLokomotiva predjKM = new Dokumenta.frmPredjenaKilometrazaLokomotiva();
-                 predjKM.Show();
+                predjKM.Show();
             }
         }
 
@@ -1751,7 +1752,7 @@ namespace Saobracaj
 
 
 
-        
+
         }
 
         private void toolStripButton95_Click(object sender, EventArgs e)
@@ -1771,7 +1772,7 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Servis.frmGrupaKvarovaAuto gka = new Servis.frmGrupaKvarovaAuto();
-                 gka.Show();
+                gka.Show();
             }
         }
 
@@ -1792,14 +1793,14 @@ namespace Saobracaj
             if (bFormNameOpen == false)
             {
                 Servis.frmKvaroviAuto kvaut = new Servis.frmKvaroviAuto();
-               kvaut.Show();
+                kvaut.Show();
             }
         }
 
         private void toolStripButton99_Click(object sender, EventArgs e)
         {
             Dokumenta.frmEvidencijaRadaPromene prom = new Dokumenta.frmEvidencijaRadaPromene();
-            prom.Show(); 
+            prom.Show();
         }
 
         private void toolStripButton100_Click(object sender, EventArgs e)
@@ -1815,7 +1816,7 @@ namespace Saobracaj
         private void toolStripButton103_Click(object sender, EventArgs e)
         {
             Dokumenta.frmObracunFiksni fiksniobr = new Dokumenta.frmObracunFiksni();
-fiksniobr.Show();
+            fiksniobr.Show();
         }
 
         private void toolStripButton104_Click(object sender, EventArgs e)
@@ -1905,7 +1906,7 @@ fiksniobr.Show();
             }
 
 
-           
+
         }
 
         private void toolStripButton108_Click(object sender, EventArgs e)
@@ -1946,7 +1947,7 @@ fiksniobr.Show();
             if (bFormNameOpen == false)
             {
                 Dokumenta.frmAutomobiliPregledPrijava prijaveautomobili = new Dokumenta.frmAutomobiliPregledPrijava();
-                 prijaveautomobili.Show();
+                prijaveautomobili.Show();
             }
         }
 
@@ -2164,7 +2165,7 @@ fiksniobr.Show();
             if (bFormNameOpen == false)
             {
                 Dokumenta.frmPropratnice propratnice = new Dokumenta.frmPropratnice();
-                    propratnice.Show();
+                propratnice.Show();
 
             }
         }
@@ -2187,7 +2188,7 @@ fiksniobr.Show();
                 Administracija.frmPolozenePruge pruge = new Administracija.frmPolozenePruge();
                 pruge.Show();
 
-            }     
+            }
         }
         private void toolStripButton118_Click(object sender, EventArgs e)
         {
@@ -2339,7 +2340,7 @@ fiksniobr.Show();
 
 
 
-          
+
         }
 
         private void toolStripButton124_Click(object sender, EventArgs e)
@@ -2939,7 +2940,7 @@ fiksniobr.Show();
             }
 
 
-         
+
         }
 
         private void toolStripButton153_Click(object sender, EventArgs e)
@@ -3195,7 +3196,7 @@ fiksniobr.Show();
             }
 
 
-           
+
         }
 
         private void toolStripButton164_Click(object sender, EventArgs e)
@@ -3219,7 +3220,7 @@ fiksniobr.Show();
             }
 
 
-         
+
         }
 
         private void toolStripButton165_Click(object sender, EventArgs e)
@@ -3244,7 +3245,7 @@ fiksniobr.Show();
 
 
 
-           
+
         }
 
         private void toolStripButton166_Click(object sender, EventArgs e)
@@ -3292,7 +3293,7 @@ fiksniobr.Show();
             }
 
 
-        
+
         }
 
         private void VozaciPoRutama_Click(object sender, EventArgs e)
@@ -3422,7 +3423,7 @@ fiksniobr.Show();
 
 
 
-         
+
         }
 
         private void prodajnegrupe_Click(object sender, EventArgs e)
@@ -3446,7 +3447,7 @@ fiksniobr.Show();
             }
 
 
-         
+
         }
 
         private void toolStripButton171_Click(object sender, EventArgs e)
@@ -3470,7 +3471,7 @@ fiksniobr.Show();
             }
 
 
-         
+
         }
 
         private void toolStripButton172_Click(object sender, EventArgs e)
@@ -3540,7 +3541,7 @@ fiksniobr.Show();
             }
 
 
-          
+
         }
 
         private void toolStripButton174_Click(object sender, EventArgs e)
@@ -3564,7 +3565,7 @@ fiksniobr.Show();
             }
 
 
-         
+
         }
 
         private void toolStripButton175_Click(object sender, EventArgs e)
@@ -3640,7 +3641,7 @@ fiksniobr.Show();
             }
 
 
-           
+
 
         }
 
@@ -3710,7 +3711,7 @@ fiksniobr.Show();
             }
 
 
-            
+
         }
 
         private void toolStripButton51_Click_1(object sender, EventArgs e)
@@ -3733,7 +3734,7 @@ fiksniobr.Show();
                 evgo.Show();
             }
 
-          
+
         }
 
         private void toolStripButton56_Click_1(object sender, EventArgs e)
@@ -3815,7 +3816,7 @@ fiksniobr.Show();
         private void toolStripButton101_Click_1(object sender, EventArgs e)
         {
             Testiranje.frmGenerisanjeTestaKorisnik generisanje = new Testiranje.frmGenerisanjeTestaKorisnik();
-            generisanje.Show(); 
+            generisanje.Show();
         }
 
         private void toolStripButton177_Click(object sender, EventArgs e)
@@ -3851,7 +3852,7 @@ fiksniobr.Show();
         private void toolStripButton26_Click_1(object sender, EventArgs e)
         {
             Servis.frmPlombe pl = new Servis.frmPlombe();
-                pl.Show();
+            pl.Show();
         }
 
         private void toolStripButton28_Click_1(object sender, EventArgs e)
@@ -3970,21 +3971,21 @@ fiksniobr.Show();
         private void toolStripButton188_Click(object sender, EventArgs e)
         {
             frmTipKontejnera tkon = new frmTipKontejnera();
-                tkon.Show();
+            tkon.Show();
 
         }
 
         private void toolStripButton189_Click(object sender, EventArgs e)
         {
             frmVrstaManipulacije vm = new frmVrstaManipulacije();
-                vm.Show();
+            vm.Show();
 
         }
 
         private void toolStripButton190_Click(object sender, EventArgs e)
         {
             frmVoz voz = new frmVoz();
-                voz.Show();
+            voz.Show();
 
         }
 
@@ -4028,7 +4029,7 @@ fiksniobr.Show();
         private void toolStripButton197_Click(object sender, EventArgs e)
         {
             frmPregledVozova pvozo = new frmPregledVozova();
-                pvozo.Show();
+            pvozo.Show();
 
         }
 
@@ -4143,7 +4144,7 @@ fiksniobr.Show();
         private void toolStripButton217_Click(object sender, EventArgs e)
         {
             frmTipCenovnika frmTC = new frmTipCenovnika(Korisnik);
-                frmTC.Show();
+            frmTC.Show();
 
         }
 
@@ -4151,14 +4152,14 @@ fiksniobr.Show();
         {
             frmCene frmcen = new frmCene(Korisnik);
 
-                frmcen.Show();
+            frmcen.Show();
 
         }
 
         private void toolStripButton107_Click_2(object sender, EventArgs e)
         {
             frmOrganizacionaJedinica otg = new frmOrganizacionaJedinica();
-                otg.Show();
+            otg.Show();
 
         }
 
@@ -4215,7 +4216,7 @@ fiksniobr.Show();
 
 
 
-          
+
 
         }
 
@@ -4240,7 +4241,7 @@ fiksniobr.Show();
             }
 
 
-         
+
         }
 
         private void toolStripButton222_Click(object sender, EventArgs e)
@@ -4265,7 +4266,7 @@ fiksniobr.Show();
 
 
 
-        
+
 
         }
 
@@ -4303,7 +4304,7 @@ fiksniobr.Show();
 
 
 
-           
+
         }
 
         private void toolStripButton227_Click(object sender, EventArgs e)
@@ -4369,7 +4370,7 @@ fiksniobr.Show();
             }
 
 
-      
+
         }
 
         private void toolStripButton230_Click(object sender, EventArgs e)
@@ -4393,7 +4394,7 @@ fiksniobr.Show();
             }
 
 
-           
+
         }
 
         private void toolStripButton231_Click(object sender, EventArgs e)
@@ -4417,7 +4418,7 @@ fiksniobr.Show();
             }
 
 
-      
+
         }
 
         private void toolStripTabItem10_Click(object sender, EventArgs e)
@@ -4482,7 +4483,7 @@ fiksniobr.Show();
             }
 
 
-          
+
         }
 
         private void toolStripButton234_Click(object sender, EventArgs e)
@@ -4566,7 +4567,7 @@ fiksniobr.Show();
                 otg.Show();
             }
 
- 
+
 
         }
 
@@ -4601,7 +4602,7 @@ fiksniobr.Show();
                 Mobile.frmPrijavaSmeneOld pso = new Mobile.frmPrijavaSmeneOld();
                 pso.Show();
             }
-       
+
         }
 
         private void toolStripButton243_Click(object sender, EventArgs e)
@@ -4626,7 +4627,7 @@ fiksniobr.Show();
 
 
 
-           
+
         }
 
         private void toolStripButton253_Click(object sender, EventArgs e)
@@ -4662,7 +4663,7 @@ fiksniobr.Show();
             }
 
 
-           
+
 
         }
 
@@ -4803,7 +4804,7 @@ fiksniobr.Show();
             }
 
 
-          
+
 
         }
 
@@ -4896,7 +4897,7 @@ fiksniobr.Show();
                 Uvoz.Carinarnice car = new Uvoz.Carinarnice();
                 car.Show();
             }
-         
+
         }
 
         private void toolStripButton249_Click(object sender, EventArgs e)
@@ -5005,13 +5006,13 @@ fiksniobr.Show();
         private void toolStripButton104_Click_2(object sender, EventArgs e)
         {
             frmNHM nhm = new frmNHM();
-                nhm.Show();
+            nhm.Show();
         }
 
         private void toolStripButton34_Click_2(object sender, EventArgs e)
         {
             frmNHM nhm = new frmNHM();
-                nhm.Show();
+            nhm.Show();
 
         }
 
@@ -5054,7 +5055,7 @@ fiksniobr.Show();
         private void toolStripButton258_Click(object sender, EventArgs e)
         {
             frmTipKontejnera tk = new frmTipKontejnera();
-                tk.Show();
+            tk.Show();
 
         }
 
@@ -5062,7 +5063,7 @@ fiksniobr.Show();
         {
             frmTipKontejnera tk = new frmTipKontejnera();
 
-                tk.Show();
+            tk.Show();
 
         }
 
@@ -5085,7 +5086,7 @@ fiksniobr.Show();
 
             frmPregledVozova pv = new frmPregledVozova();
 
-                pv.Show();
+            pv.Show();
 
         }
 
@@ -5093,7 +5094,7 @@ fiksniobr.Show();
         {
             frmPregledVozova pv = new frmPregledVozova();
 
-                pv.Show();
+            pv.Show();
 
         }
 
@@ -5125,14 +5126,14 @@ fiksniobr.Show();
         {
             frmOrganizacionaJedinica oj = new frmOrganizacionaJedinica();
 
-                oj.Show();
+            oj.Show();
 
         }
 
         private void toolStripButton263_Click(object sender, EventArgs e)
         {
             frmOrganizacionaJedinica oj = new frmOrganizacionaJedinica();
-                oj.Show();
+            oj.Show();
 
         }
 
@@ -5247,7 +5248,7 @@ fiksniobr.Show();
         private void toolStripButton222_Click_1(object sender, EventArgs e)
         {
             frmVoz voz = new frmVoz();
-                voz.Show();
+            voz.Show();
         }
 
         private void toolStripButton214_Click_1(object sender, EventArgs e)
@@ -5314,7 +5315,7 @@ fiksniobr.Show();
             }
 
 
-           
+
         }
 
         private void toolStripButton295_Click(object sender, EventArgs e)
@@ -5340,7 +5341,7 @@ fiksniobr.Show();
 
 
 
-           
+
         }
 
         private void toolStripButton128_Click(object sender, EventArgs e)
@@ -5380,7 +5381,7 @@ fiksniobr.Show();
             }
 
 
-           
+
         }
 
         private void toolStripButton279_Click_2(object sender, EventArgs e)
@@ -5405,7 +5406,7 @@ fiksniobr.Show();
             }
 
 
-          
+
         }
 
         private void toolStripButton296_Click(object sender, EventArgs e)
@@ -5430,7 +5431,7 @@ fiksniobr.Show();
             }
 
 
-          
+
         }
 
         private void toolStripButton297_Click(object sender, EventArgs e)
@@ -5562,7 +5563,7 @@ fiksniobr.Show();
 
             }
 
-          
+
         }
 
         private void toolStripButton316_Click(object sender, EventArgs e)
@@ -5586,7 +5587,7 @@ fiksniobr.Show();
 
             }
 
-          
+
         }
 
         private void toolStripButton317_Click(object sender, EventArgs e)
@@ -5611,7 +5612,7 @@ fiksniobr.Show();
             }
 
 
-           
+
         }
 
         private void toolStripButton285_Click(object sender, EventArgs e)
@@ -5669,7 +5670,7 @@ fiksniobr.Show();
                 Dokumenta.frmPrijemKontejneraKamionLegetUvoz uv1 = new Dokumenta.frmPrijemKontejneraKamionLegetUvoz();
                 uv1.Show();
             }
-          
+
         }
 
         private void toolStripButton322_Click(object sender, EventArgs e)
@@ -5714,7 +5715,7 @@ fiksniobr.Show();
             }
 
 
-           
+
         }
 
         private void toolStripButton324_Click(object sender, EventArgs e)
@@ -5780,7 +5781,7 @@ fiksniobr.Show();
             }
 
 
-         
+
         }
 
         private void toolStripButton327_Click(object sender, EventArgs e)
@@ -5828,7 +5829,7 @@ fiksniobr.Show();
             }
 
 
-          
+
         }
 
         private void toolStripButton329_Click(object sender, EventArgs e)
@@ -5852,7 +5853,7 @@ fiksniobr.Show();
             }
 
 
-         
+
 
         }
 
@@ -5877,7 +5878,7 @@ fiksniobr.Show();
             }
 
 
-           
+
         }
 
         private void toolStripButton331_Click(object sender, EventArgs e)
@@ -5922,7 +5923,7 @@ fiksniobr.Show();
             }
 
 
-        
+
         }
 
         private void toolStripButton333_Click(object sender, EventArgs e)
@@ -5946,7 +5947,7 @@ fiksniobr.Show();
             }
 
 
-        
+
         }
 
         private void toolStripEx47_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -5980,7 +5981,7 @@ fiksniobr.Show();
 
 
 
-           
+
         }
 
         private void toolStripButton335_Click(object sender, EventArgs e)
@@ -6026,7 +6027,7 @@ fiksniobr.Show();
             }
 
 
-          
+
         }
 
         private void toolStripButton338_Click(object sender, EventArgs e)
@@ -6049,7 +6050,7 @@ fiksniobr.Show();
                 pkam.Show();
             }
 
-     
+
         }
 
         private void toolStripButton339_Click(object sender, EventArgs e)
@@ -6073,7 +6074,7 @@ fiksniobr.Show();
             }
 
 
-       
+
         }
 
         private void toolStripButton340_Click(object sender, EventArgs e)
@@ -6096,7 +6097,7 @@ fiksniobr.Show();
                 Pantheon_Export.PrihodiPosla pp = new Pantheon_Export.PrihodiPosla();
                 pp.Show();
             }
-         
+
         }
 
         private void toolStripButton341_Click(object sender, EventArgs e)
@@ -6120,7 +6121,7 @@ fiksniobr.Show();
             }
 
 
-           
+
         }
 
         private void toolStripButton342_Click(object sender, EventArgs e)
@@ -6144,7 +6145,7 @@ fiksniobr.Show();
             }
 
 
-          
+
         }
 
         private void toolStripButton343_Click(object sender, EventArgs e)
@@ -6168,12 +6169,12 @@ fiksniobr.Show();
             }
 
 
-           
+
         }
 
         private void toolStripEx34_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-            
+
         }
 
         private void toolStripButton345_Click(object sender, EventArgs e)
@@ -6196,7 +6197,7 @@ fiksniobr.Show();
                 kt.Show();
             }
 
-           
+
         }
 
         private void toolStripButton344_Click(object sender, EventArgs e)
@@ -6220,7 +6221,7 @@ fiksniobr.Show();
             }
 
 
-           
+
         }
 
         private void toolStripButton347_Click(object sender, EventArgs e)
@@ -6244,7 +6245,7 @@ fiksniobr.Show();
             }
 
 
-          
+
         }
 
         private void toolStripButton348_Click(object sender, EventArgs e)
@@ -6268,7 +6269,7 @@ fiksniobr.Show();
             }
 
 
-           
+
         }
 
         private void toolStripButton349_Click(object sender, EventArgs e)
@@ -6291,7 +6292,8 @@ fiksniobr.Show();
             foreach (Form frm in fc)
             {
                 //iterate through
-                if (frm.Name == "TerminalOpredeljenje")
+               // if (frm.Name == "TerminalOpredeljenje")
+                    if (frm.Name == "frmIzvozTerminalPovezi")
                 {
                     bFormNameOpen = true;
                     frm.Activate();
@@ -6300,14 +6302,14 @@ fiksniobr.Show();
             }
             if (bFormNameOpen == false)
             {
-                Izvoz.TerminalOpredeljenje to = new Izvoz.TerminalOpredeljenje();
+                Izvoz.frmIzvozTerminalPovezi to = new Izvoz.frmIzvozTerminalPovezi();
                 to.Show();
 
             }
 
 
 
-         
+
         }
 
         private void toolStripButton352_Click(object sender, EventArgs e)
@@ -6331,7 +6333,7 @@ fiksniobr.Show();
             }
 
 
-         
+
         }
 
         private void toolStripButton353_Click(object sender, EventArgs e)
@@ -6355,7 +6357,7 @@ fiksniobr.Show();
             }
 
 
-         
+
         }
 
         private void toolStripButton354_Click(object sender, EventArgs e)
@@ -6379,7 +6381,7 @@ fiksniobr.Show();
             }
 
 
-       
+
         }
 
         private void toolStripButton355_Click(object sender, EventArgs e)
@@ -6404,7 +6406,7 @@ fiksniobr.Show();
             }
 
 
-           
+
         }
 
         private void toolStripButton356_Click(object sender, EventArgs e)
@@ -6430,7 +6432,7 @@ fiksniobr.Show();
 
 
 
-            frmKalmarGateIN kgi = new frmKalmarGateIN();    
+            frmKalmarGateIN kgi = new frmKalmarGateIN();
             kgi.Show();
         }
 
@@ -6441,19 +6443,101 @@ fiksniobr.Show();
 
         private void toolStripButton361_Click(object sender, EventArgs e)
         {
-            frmCIRPregledac cIRPregledac = new frmCIRPregledac();   
+            frmCIRPregledac cIRPregledac = new frmCIRPregledac();
             cIRPregledac.Show();
         }
 
         private void toolStripButton360_Click_1(object sender, EventArgs e)
         {
-            frmKalmarGateINKaminonPreneseno kgikp = new frmKalmarGateINKaminonPreneseno();
-            kgikp.Show();
+            frmKalmarGateOutVoz gov = new frmKalmarGateOutVoz();
+            gov.Show();
         }
 
         private void toolStripEx40_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void toolStripButton362_Click(object sender, EventArgs e)
+        {
+            frmKalmarGateINKaminonPreneseno kgikp = new frmKalmarGateINKaminonPreneseno();
+            kgikp.Show();
+        }
+
+        private void toolStripButton112_Click_1(object sender, EventArgs e)
+        {
+            Uvoz.Uvoz uv = new Uvoz.Uvoz();
+            uv.Show();
+        }
+
+        private void toolStripButton113_Click_1(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPredefinisanePoruke")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                frmPredefinisanePoruke to = new frmPredefinisanePoruke();
+                to.Show();
+
+            }
+        }
+
+        private void toolStripButton363_Click(object sender, EventArgs e)
+        {
+            frmPlanoviIzvoza pi = new frmPlanoviIzvoza(1);
+            pi.Show();
+        }
+
+        private void toolStripButton114_Click_1(object sender, EventArgs e)
+        {
+            Uvoz.frmPregledPlanovaUtovara fppp = new Uvoz.frmPregledPlanovaUtovara(1);
+            fppp.Show();
+        }
+
+        private void toolStripButton364_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton364_Click_1(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPrebacivanjeIzPlanaUPlan")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Izvoz.frmPrebacivanjeIzPlanaUPlan to = new Izvoz.frmPrebacivanjeIzPlanaUPlan();
+                to.Show();
+
+            }
+
+
+           
+        }
+
+        private void toolStripButton364_Click_2(object sender, EventArgs e)
+        {
+            Izvoz.frmDopunaPlanaPraznimIzvoz ddd = new frmDopunaPlanaPraznimIzvoz();    
+            ddd.Show();
         }
     }
     }

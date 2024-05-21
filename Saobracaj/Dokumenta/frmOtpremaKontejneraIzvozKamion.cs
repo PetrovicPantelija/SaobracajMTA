@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net.Mail;
 using System.Windows.Forms;
+using static Syncfusion.WinForms.Core.NativeScroll;
 
 namespace Saobracaj.Dokumenta
 {
@@ -29,6 +30,21 @@ namespace Saobracaj.Dokumenta
             FillCombo();
             txtNalogID.Text = RadniNalogInterni;
             VratiPodatkeIzvoznePoNalogu(RadniNalogInterni);
+
+         
+          //  txtSifra.Text = sifra.ToString();
+          //  VratiPodatke(sifra);
+            RefreshDataGrid2();
+            if (chkVoz.Checked == true)
+            {
+                //  toolStripButton3.Visible = false;
+                toolStripLabel1.Visible = true;
+            }
+            else
+            {
+                //  toolStripButton3.Visible = true;
+                toolStripLabel1.Visible = false;
+            }
         }
 
         private void FillCombo()
@@ -824,7 +840,7 @@ Convert.ToDouble(bttoRobeKontejner.Value), txtPLOMBAVLASN.Text, txtCBMOTP.Text, 
 
             // SqlCommand cmd = new SqlCommand("select [ID] ,[DatumOtpreme],[StatusOtpreme],[IdVoza],[VremeOdlaska], [RegBrKamiona], [ImeVozaca], NacinOtpreme, Napomena, NajavaEmail, OtpremaEmail, Zatvoren, CIRUradjen, PredefinisanePorukeID from OtpremaKontejnera where ID = " + ID, con);
 
-            SqlCommand cmd = new SqlCommand("select [ID] ,[DatumOtpreme],[StatusOtpreme],[IdVoza],[VremeOdlaska], [RegBrKamiona], [ImeVozaca], NacinOtpreme, Napomena, NajavaEmail, OtpremaEmail, Zatvoren, CIRUradjen from OtpremaKontejnera where ID = " + ID, con);
+            SqlCommand cmd = new SqlCommand("select [ID] ,[DatumOtpreme],[StatusOtpreme],[IdVoza],[VremeOdlaska], [RegBrKamiona], [ImeVozaca], NacinOtpreme, Napomena, NajavaEmail, OtpremaEmail, Zatvoren, CIRUradjen, Operater, VrstaKamiona, Poreklo from OtpremaKontejnera where ID = " + ID, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -882,6 +898,24 @@ Convert.ToDouble(bttoRobeKontejner.Value), txtPLOMBAVLASN.Text, txtCBMOTP.Text, 
                 {
                     chkCIRUradjen.Checked = true;
                 }
+
+                if (Convert.ToInt32(dr["VrstaKamiona"].ToString()) == 1)
+                {
+                    chkCirada.Checked = true;
+                    chkPlatforma.Checked = false;
+                }
+                else
+                {
+                    chkCirada.Checked = false;
+                    chkPlatforma.Checked = true;
+                }
+
+                if (Convert.ToInt32(dr["Poreklo"].ToString()) == 2)
+                {
+                   // chkUvoz.Checked = true;
+                    chkIzvoz.Checked = true;
+                }
+              
 
             }
 
@@ -1342,7 +1376,7 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
              " ,[TipKontejnera],[VrstaRobe],[Buking],[StatusKontejnera] " +
              " ,[BrojPlombe],[PlaniraniLager],[IdVoza] " +
              " ,[VremePripremljen],[VremeOdlaska],[Datum],[Korisnik] " +
-             " ,[RB],[BrojPlombe2],[Organizator], NapomenaS " +
+             " ,[RB],[BrojPlombe2],[Organizator], NapomenaS, KontejnerID " +
              " FROM [dbo].[OtpremaKontejneraVozStavke] " +
              " where IdNadredjenog = " + txtSifra.Text + " and RB = " + RB, con);
 
@@ -1375,10 +1409,13 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
                 txtBrojPlombe.Text = dr["BrojPlombe"].ToString();
                 txtBrojPlombe2.Text = dr["BrojPlombe2"].ToString();
                 txtNapomenaS.Text = dr["NapomenaS"].ToString();
+                txtKOntejnerID.Text = dr["KontejnerID"].ToString();
             }
 
             con.Close();
         }
+
+
 
         int VratiNalogID(string ID)
         {
@@ -1408,6 +1445,8 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
         }
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
+
+
             int NalogID = 0;
             try
             {
@@ -1417,7 +1456,9 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
                     {
                         txtSifra.Text = row.Cells[2].Value.ToString();
                         NalogID = VratiNalogID(row.Cells[0].Value.ToString());
+                        VratiPodatkeStavke(txtSifra.Text, Convert.ToInt32(row.Cells[1].Value.ToString())); // Standarna verzija
                         VratiPodatkeIzvoznePoID(NalogID.ToString());
+
                     }
                 }
             }

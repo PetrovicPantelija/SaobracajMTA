@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmAutomobiliKvarovi : Form
+    public partial class frmAutomobiliKvarovi : Syncfusion.Windows.Forms.Office2010Form
     {
         public frmAutomobiliKvarovi()
         {

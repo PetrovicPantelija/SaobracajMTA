@@ -37,7 +37,7 @@ namespace TrackModal.Dokumeta
             {
                 case "Leget":
                     {
-
+                        toolStripButton1.Visible = true;
                         toolStripButton5.Visible = true;
                         toolStripButton3.Visible = true;
                         toolStripButton7.Visible = false;
@@ -62,7 +62,7 @@ namespace TrackModal.Dokumeta
             {
                 case "Leget":
                     {
-
+                        toolStripButton1.Visible = true;
                         toolStripButton5.Visible = true;
                         toolStripButton3.Visible = true;
                         toolStripButton7.Visible = false;

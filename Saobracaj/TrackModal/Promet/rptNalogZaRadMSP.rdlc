@@ -2,14 +2,14 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="TestiranjeDataSet7">
+    <DataSource Name="TrackModalDataSet7">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
       <rd:DataSourceID>683922a9-4b15-44e6-b800-30b0377dc528</rd:DataSourceID>
     </DataSource>
-    <DataSource Name="TestiranjeDataSet6">
+    <DataSource Name="TrackModalDataSet6">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
@@ -20,7 +20,7 @@
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>TestiranjeDataSet7</DataSourceName>
+        <DataSourceName>TrackModalDataSet7</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -66,8 +66,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>TestiranjeDataSet7</rd:DataSetName>
-        <rd:SchemaPath>D:\Testiranje\vs2019\Testiranje\TestiranjeDataSet7.xsd</rd:SchemaPath>
+        <rd:DataSetName>TrackModalDataSet7</rd:DataSetName>
+        <rd:SchemaPath>D:\TrackModal\vs2019\TrackModal\TrackModalDataSet7.xsd</rd:SchemaPath>
         <rd:TableName>SelectNalogZaRAdPrometMSP</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -76,7 +76,7 @@
     </DataSet>
     <DataSet Name="DataSet2">
       <Query>
-        <DataSourceName>TestiranjeDataSet6</DataSourceName>
+        <DataSourceName>TrackModalDataSet6</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
@@ -110,8 +110,8 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>TestiranjeDataSet6</rd:DataSetName>
-        <rd:SchemaPath>D:\Testiranje\vs2019\Testiranje\TestiranjeDataSet6.xsd</rd:SchemaPath>
+        <rd:DataSetName>TrackModalDataSet6</rd:DataSetName>
+        <rd:SchemaPath>D:\TrackModal\vs2019\TrackModal\TrackModalDataSet6.xsd</rd:SchemaPath>
         <rd:TableName>SelectNalogZaRadPrometM</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -1227,7 +1227,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>TERMINAL - MEĐUSKLADIŠNI PRENOS</Value>
+                      <Value>MEĐUSKLADIŠNI PRENOS</Value>
                       <Style>
                         <FontSize>12pt</FontSize>
                         <FontWeight>Bold</FontWeight>
@@ -1239,7 +1239,6 @@
               </Paragraphs>
               <rd:DefaultName>Textbox48</rd:DefaultName>
               <Top>0.28491cm</Top>
-              <Left>2.68049cm</Left>
               <Height>0.6cm</Height>
               <Width>9.17005cm</Width>
               <Style>
@@ -1278,8 +1277,8 @@
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
-      <NumberOfColumns>4</NumberOfColumns>
-      <NumberOfRows>2</NumberOfRows>
+      <NumberOfColumns>1</NumberOfColumns>
+      <NumberOfRows>1</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>

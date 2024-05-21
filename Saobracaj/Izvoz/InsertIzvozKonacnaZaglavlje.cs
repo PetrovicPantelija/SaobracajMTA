@@ -11,7 +11,7 @@ namespace Saobracaj.Izvoz
     {
 
         string connection = Sifarnici.frmLogovanje.connectionString;
-        public void InsIzvozKonacnaZaglavlje(int Voz, string Napomena, int Vozom, string VoziloOznaka, DateTime VoziloDatum, string VoziloVozac, string BrojTelefona)
+        public void InsIzvozKonacnaZaglavlje(int Voz, string Napomena, int Vozom, string VoziloOznaka, DateTime VoziloDatum, string VoziloVozac, string BrojTelefona, int Terminal)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -73,6 +73,13 @@ namespace Saobracaj.Izvoz
             brojtelefona.Value = BrojTelefona;
             cmd.Parameters.Add(brojtelefona);
 
+            SqlParameter terminal = new SqlParameter();
+            terminal.ParameterName = "@Terminal";
+            terminal.SqlDbType = SqlDbType.Int;
+            terminal.Direction = ParameterDirection.Input;
+            terminal.Value = Terminal;
+            cmd.Parameters.Add(terminal);
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -108,7 +115,7 @@ namespace Saobracaj.Izvoz
                 }
             }
         }
-        public void UpdIzvozKonacnaZaglavlje(int ID, int Voz, string Napomena, int Vozom, string VoziloOznaka, DateTime VoziloDatum, string VoziloVozac, string BrojTelefona)
+        public void UpdIzvozKonacnaZaglavlje(int ID, int Voz, string Napomena, int Vozom, string VoziloOznaka, DateTime VoziloDatum, string VoziloVozac, string BrojTelefona, int Terminal)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -176,6 +183,13 @@ namespace Saobracaj.Izvoz
             brojtelefona.Direction = ParameterDirection.Input;
             brojtelefona.Value = BrojTelefona;
             cmd.Parameters.Add(brojtelefona);
+
+            SqlParameter terminal = new SqlParameter();
+            terminal.ParameterName = "@Terminal";
+            terminal.SqlDbType = SqlDbType.Int;
+            terminal.Direction = ParameterDirection.Input;
+            terminal.Value = Terminal;
+            cmd.Parameters.Add(terminal);
 
 
             conn.Open();

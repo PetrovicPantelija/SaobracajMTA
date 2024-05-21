@@ -1235,6 +1235,11 @@ namespace Saobracaj.Dokumeta
 
         private void toolStripButton1_Click(object sender, System.EventArgs e)
         {
+            if (cboStatusOtpreme.Text != "2-Otpremljen")
+            {
+                MessageBox.Show("Otpremnica mora biti u statusu Otpremljen");
+                return;
+            }
             DialogResult result = MessageBox.Show("Zatvaranje uraditi po broju kontejnera?", "Potvrda", MessageBoxButtons.YesNoCancel);
             if (result == DialogResult.Yes)
             {

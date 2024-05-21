@@ -34,7 +34,7 @@ namespace Saobracaj.RadniNalozi
                 " NalogID, Uvoz, OtpremaID, Zatvoren from RNOtpremaPlatforme " +
 " inner join Skladista on Skladista.ID = SaSkladista " +
 " inner join TipKontenjera on TipKontenjera.Id = VrstaKontejnera" +
-" where Zatvoren is null ";
+" where Zavrsen is null ";
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

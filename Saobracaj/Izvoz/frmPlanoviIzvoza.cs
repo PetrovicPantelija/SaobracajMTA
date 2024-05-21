@@ -7,8 +7,9 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
 {
-    public partial class frmPlanoviIzvoza : Form
+    public partial class frmPlanoviIzvoza : Syncfusion.Windows.Forms.Office2010Form
     {
+        int Terminal = 0;
 
         public frmPlanoviIzvoza()
         {
@@ -16,13 +17,21 @@ namespace Saobracaj.Izvoz
 
         }
 
+        public frmPlanoviIzvoza(int Ter)
+        {
+            InitializeComponent();
+            Terminal = Ter;
+        }
+
         private void RefreshDataGrid()
         {
+
+
             var select = "Select IzvozKonacnaZaglavlje.ID, IzvozKonacnaZaglavlje.IDVoza, Voz.BrVoza, Voz.VremePolaska, Voz.VremeDolaska, s1.Opis as StanicaOd, s2.Opis as StanicaDo, Voz.Relacija, IzvozKonacnaZaglavlje.Napomena from IzvozKonacnaZaglavlje " +
                 " inner join Voz on Voz.ID = IzvozKonacnaZaglavlje.IDVoza " +
                 " inner join stanice s1 on s1.ID = Voz.StanicaOd " +
                 " inner join stanice s2 on s2.ID = Voz.StanicaDo " +
-                " where IzvozKonacnaZaglavlje.Vozom = 1" +
+                " where IzvozKonacnaZaglavlje.Vozom = 1 and Terminal = " + Terminal +
                 " order by IzvozKonacnaZaglavlje.ID desc";
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -127,6 +136,13 @@ namespace Saobracaj.Izvoz
         {
             frmIzvozKonacnaZaglavlje fukz = new frmIzvozKonacnaZaglavlje();
             fukz.Show();
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            //Otvaranje forme za Terminal, sa Planom
+            frmIzvoz ik = new frmIzvoz(1, Convert.ToInt32(txtSifra.Text));
+            ik.Show();
         }
     }
 }

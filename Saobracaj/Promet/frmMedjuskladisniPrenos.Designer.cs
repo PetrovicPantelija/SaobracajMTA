@@ -60,6 +60,7 @@
             this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.button1 = new System.Windows.Forms.Button();
             this.cboZaposleni = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -78,13 +79,27 @@
             this.label14 = new System.Windows.Forms.Label();
             this.cboVrstaRobe = new System.Windows.Forms.ComboBox();
             this.txtBrojKontejnera = new System.Windows.Forms.TextBox();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
             this.SuspendLayout();
             // 
             // dtpDatumPrijema
@@ -92,7 +107,7 @@
             this.dtpDatumPrijema.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpDatumPrijema.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpDatumPrijema.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDatumPrijema.Location = new System.Drawing.Point(656, 150);
+            this.dtpDatumPrijema.Location = new System.Drawing.Point(14, 25);
             this.dtpDatumPrijema.Name = "dtpDatumPrijema";
             this.dtpDatumPrijema.Size = new System.Drawing.Size(152, 22);
             this.dtpDatumPrijema.TabIndex = 224;
@@ -103,9 +118,9 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(655, 131);
+            this.label4.Location = new System.Drawing.Point(13, 6);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(145, 16);
+            this.label4.Size = new System.Drawing.Size(144, 16);
             this.label4.TabIndex = 223;
             this.label4.Text = "Datum i vreme prometa:";
             // 
@@ -113,7 +128,7 @@
             // 
             this.cboPozicija.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboPozicija.FormattingEnabled = true;
-            this.cboPozicija.Location = new System.Drawing.Point(654, 260);
+            this.cboPozicija.Location = new System.Drawing.Point(12, 135);
             this.cboPozicija.Name = "cboPozicija";
             this.cboPozicija.Size = new System.Drawing.Size(156, 24);
             this.cboPozicija.TabIndex = 222;
@@ -123,9 +138,9 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(655, 241);
+            this.label3.Location = new System.Drawing.Point(13, 116);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 16);
+            this.label3.Size = new System.Drawing.Size(64, 16);
             this.label3.TabIndex = 221;
             this.label3.Text = "Pozicija u:";
             // 
@@ -134,7 +149,7 @@
             this.cboSkladiste.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboSkladiste.ForeColor = System.Drawing.Color.Black;
             this.cboSkladiste.FormattingEnabled = true;
-            this.cboSkladiste.Location = new System.Drawing.Point(654, 204);
+            this.cboSkladiste.Location = new System.Drawing.Point(12, 79);
             this.cboSkladiste.Name = "cboSkladiste";
             this.cboSkladiste.Size = new System.Drawing.Size(156, 24);
             this.cboSkladiste.TabIndex = 220;
@@ -145,22 +160,23 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(655, 186);
+            this.label1.Location = new System.Drawing.Point(13, 61);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 16);
+            this.label1.Size = new System.Drawing.Size(70, 16);
             this.label1.TabIndex = 219;
             this.label1.Text = "Skladište u:";
             // 
             // dataGridView1
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 150);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 25);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(295, 432);
+            this.dataGridView1.Size = new System.Drawing.Size(217, 474);
             this.dataGridView1.TabIndex = 218;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -168,7 +184,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(12, 131);
+            this.label2.Location = new System.Drawing.Point(10, 8);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 217;
@@ -231,7 +247,7 @@
             this.btnUbaci.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUbaci.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnUbaci.ForeColor = System.Drawing.Color.White;
-            this.btnUbaci.Location = new System.Drawing.Point(659, 290);
+            this.btnUbaci.Location = new System.Drawing.Point(17, 165);
             this.btnUbaci.Name = "btnUbaci";
             this.btnUbaci.Size = new System.Drawing.Size(156, 74);
             this.btnUbaci.TabIndex = 232;
@@ -242,15 +258,14 @@
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(821, 131);
+            this.dataGridView2.Location = new System.Drawing.Point(12, 18);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(445, 233);
+            this.dataGridView2.Size = new System.Drawing.Size(484, 201);
             this.dataGridView2.TabIndex = 234;
             // 
             // label7
@@ -273,21 +288,22 @@
             // 
             // dataGridView3
             // 
-            this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(313, 150);
+            this.dataGridView3.Location = new System.Drawing.Point(3, 25);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.Size = new System.Drawing.Size(335, 432);
+            this.dataGridView3.Size = new System.Drawing.Size(366, 474);
             this.dataGridView3.TabIndex = 235;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(310, 131);
+            this.label9.Location = new System.Drawing.Point(9, 6);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(69, 13);
             this.label9.TabIndex = 236;
@@ -325,7 +341,7 @@
             this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1278, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1341, 27);
             this.toolStrip1.TabIndex = 238;
             this.toolStrip1.Text = "Štampaj izveštaj";
             // 
@@ -424,6 +440,18 @@
             this.toolStripButton3.Text = "Nalog po sredstvima rada";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.BackColor = System.Drawing.Color.White;
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(145, 24);
+            this.toolStripButton2.Text = "RN Međuskladisni prenos";
+            this.toolStripButton2.Visible = false;
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -432,9 +460,9 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(654, 473);
+            this.button1.Location = new System.Drawing.Point(12, 348);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(156, 108);
+            this.button1.Size = new System.Drawing.Size(156, 140);
             this.button1.TabIndex = 243;
             this.button1.Text = ">>>>";
             this.button1.UseVisualStyleBackColor = false;
@@ -444,7 +472,7 @@
             // 
             this.cboZaposleni.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboZaposleni.FormattingEnabled = true;
-            this.cboZaposleni.Location = new System.Drawing.Point(654, 439);
+            this.cboZaposleni.Location = new System.Drawing.Point(12, 314);
             this.cboZaposleni.Name = "cboZaposleni";
             this.cboZaposleni.Size = new System.Drawing.Size(156, 24);
             this.cboZaposleni.TabIndex = 242;
@@ -454,9 +482,9 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(655, 421);
+            this.label11.Location = new System.Drawing.Point(13, 296);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(64, 16);
+            this.label11.Size = new System.Drawing.Size(63, 16);
             this.label11.TabIndex = 241;
             this.label11.Text = "Zaposleni:";
             // 
@@ -464,7 +492,7 @@
             // 
             this.cboSredstvoRada.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboSredstvoRada.FormattingEnabled = true;
-            this.cboSredstvoRada.Location = new System.Drawing.Point(654, 385);
+            this.cboSredstvoRada.Location = new System.Drawing.Point(12, 260);
             this.cboSredstvoRada.Name = "cboSredstvoRada";
             this.cboSredstvoRada.Size = new System.Drawing.Size(156, 24);
             this.cboSredstvoRada.TabIndex = 240;
@@ -474,9 +502,9 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(655, 367);
+            this.label10.Location = new System.Drawing.Point(13, 242);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(89, 16);
+            this.label10.Size = new System.Drawing.Size(88, 16);
             this.label10.TabIndex = 239;
             this.label10.Text = "Sredstvo rada:";
             // 
@@ -487,10 +515,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView4.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView4.Location = new System.Drawing.Point(821, 370);
+            this.dataGridView4.Location = new System.Drawing.Point(12, 225);
             this.dataGridView4.Name = "dataGridView4";
             this.dataGridView4.RowHeadersWidth = 51;
-            this.dataGridView4.Size = new System.Drawing.Size(445, 211);
+            this.dataGridView4.Size = new System.Drawing.Size(484, 263);
             this.dataGridView4.TabIndex = 244;
             // 
             // button3
@@ -626,23 +654,82 @@
             this.txtBrojKontejnera.Size = new System.Drawing.Size(214, 22);
             this.txtBrojKontejnera.TabIndex = 257;
             // 
-            // toolStripButton2
+            // splitContainer1
             // 
-            this.toolStripButton2.BackColor = System.Drawing.Color.White;
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(145, 24);
-            this.toolStripButton2.Text = "RN Međuskladisni prenos";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer1.Location = new System.Drawing.Point(9, 144);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer3);
+            this.splitContainer1.Size = new System.Drawing.Size(1327, 504);
+            this.splitContainer1.SplitterDistance = 612;
+            this.splitContainer1.TabIndex = 258;
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.dataGridView1);
+            this.splitContainer2.Panel1.Controls.Add(this.label2);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.dataGridView3);
+            this.splitContainer2.Panel2.Controls.Add(this.label9);
+            this.splitContainer2.Size = new System.Drawing.Size(610, 502);
+            this.splitContainer2.SplitterDistance = 234;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.label4);
+            this.splitContainer3.Panel1.Controls.Add(this.label1);
+            this.splitContainer3.Panel1.Controls.Add(this.cboSkladiste);
+            this.splitContainer3.Panel1.Controls.Add(this.label3);
+            this.splitContainer3.Panel1.Controls.Add(this.cboPozicija);
+            this.splitContainer3.Panel1.Controls.Add(this.dtpDatumPrijema);
+            this.splitContainer3.Panel1.Controls.Add(this.btnUbaci);
+            this.splitContainer3.Panel1.Controls.Add(this.label10);
+            this.splitContainer3.Panel1.Controls.Add(this.cboSredstvoRada);
+            this.splitContainer3.Panel1.Controls.Add(this.label11);
+            this.splitContainer3.Panel1.Controls.Add(this.cboZaposleni);
+            this.splitContainer3.Panel1.Controls.Add(this.button1);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.dataGridView2);
+            this.splitContainer3.Panel2.Controls.Add(this.dataGridView4);
+            this.splitContainer3.Size = new System.Drawing.Size(711, 504);
+            this.splitContainer3.SplitterDistance = 202;
+            this.splitContainer3.TabIndex = 0;
             // 
             // frmMedjuskladisniPrenos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1278, 593);
+            this.ClientSize = new System.Drawing.Size(1341, 660);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.txtBrojKontejnera);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button5);
@@ -655,33 +742,15 @@
             this.Controls.Add(this.dtpDatumRasporeda);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.dataGridView4);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.cboZaposleni);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.cboSredstvoRada);
-            this.Controls.Add(this.label10);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.btnUbaci);
             this.Controls.Add(this.btnOsvezi);
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.cboSkladisteIzbor);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.dtpDatumPrijema);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.cboPozicija);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.cboSkladiste);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMedjuskladisniPrenos";
@@ -696,6 +765,21 @@
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel1.PerformLayout();
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -753,5 +837,8 @@
         private System.Windows.Forms.ComboBox cboVrstaRobe;
         private System.Windows.Forms.TextBox txtBrojKontejnera;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.SplitContainer splitContainer3;
     }
 }

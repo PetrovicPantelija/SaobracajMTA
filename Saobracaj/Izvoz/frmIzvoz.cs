@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using Syncfusion.Grouping;
 
 namespace Saobracaj.Izvoz
 {
@@ -19,6 +20,7 @@ namespace Saobracaj.Izvoz
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         string tKorisnik = "";
         int NHMObrni = 0;
+        int PlanZaPrebacivanje = 0;
 
         public frmIzvoz()
         {
@@ -29,6 +31,19 @@ namespace Saobracaj.Izvoz
             InitializeComponent();
             tslKreirao.Text = Korisnik;
             tKorisnik = Korisnik;
+        }
+
+        public frmIzvoz(int Terminal, int PlanTerminala)
+        {
+            InitializeComponent();
+            // FillDG();
+
+            FillCombo();
+            chkTerminal.Checked = true;
+            PlanZaPrebacivanje = PlanTerminala;
+
+            //  FillDG4();
+
         }
 
         public frmIzvoz(int ID)
@@ -773,6 +788,11 @@ namespace Saobracaj.Izvoz
             {
                 pomDobijenNalog = 1;
             }
+            int pomTerminal = 0;
+            if (chkTerminal.Checked == true)
+            {
+                pomTerminal= 1;
+            }
 
             ins.UpdIzvoz(Convert.ToInt32(txtID.Text), txtBrojVagona.Text, txtBrKont.Text, Convert.ToInt32(txtTipKont.SelectedValue),
                 txtBrodskaPlomba.Text, Convert.ToInt32(txtBokingBrodara.Text), Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToDateTime(dtpCutOffPort.Value),
@@ -790,7 +810,7 @@ namespace Saobracaj.Izvoz
                 Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(txtRef3.Text),
                  Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text,
                  Convert.ToInt32(txtADR.SelectedValue), txtVozilo.Text, txtVozac.Text, Convert.ToInt32(cboSpedicijaJ.SelectedValue), 
-                 Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToInt32(cboVrstaPlombe.SelectedValue), txtNapomenaZaRobu.Text, Convert.ToDecimal(txtVGMBrod.Value), txtKontaktSpeditera.Text, txtKontaktOsobe.Text);
+                 Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToInt32(cboVrstaPlombe.SelectedValue), txtNapomenaZaRobu.Text, Convert.ToDecimal(txtVGMBrod.Value), txtKontaktSpeditera.Text, txtKontaktOsobe.Text, Convert.ToInt32(txtUvozniID.Text), pomTerminal);
             //Fale ostale plombe
             // Convert.ToDecimal(txtDodatneNapomene.Text -- treba staviti nvarchar
 
@@ -1149,12 +1169,13 @@ namespace Saobracaj.Izvoz
    "      ,[Izvoznik],[Klijent1],[Napomena1REf],[DodatneNapomeneDrumski] " +
    "      ,[Klijent2],[Napomena2REf],[Klijent3],[Napomena3REf] " +
    "      ,[SpediterRijeka],[OstalePlombe],[ADR],[Vozilo],[Vozac], SpedicijaJ, PeriodSkladistenjaOd, PeriodSkladistenjaDo, VrstaBrodskePlombe, NapomenaZaRobu, VGMBrod2  ,[KontaktSpeditera] " +
-      " ,[KontaktOsobe]      ,[Korisnik]      ,[DatumKreiranja] " +
+      " ,[KontaktOsobe]      ,[Korisnik]      ,[DatumKreiranja], UvozID " +
  "  FROM [Izvoz] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
+                txtUvozniID.Text = dr["UvozID"].ToString();
                 txtVozilo.Text = dr["Vozilo"].ToString();
                 txtVozac.Text = dr["Vozac"].ToString();
                 txtOstalePlombe.Text = dr["OstalePlombe"].ToString();
@@ -1803,16 +1824,13 @@ namespace Saobracaj.Izvoz
         {
             using (var detailForm = new frmIzvozTable())
             {
+                detailForm.ShowDialog();
+                txtID.Text = detailForm.GetID();
                 if (txtID.Text !=  "")
-                     {
-                    detailForm.ShowDialog();
-                    txtID.Text = detailForm.GetID();
+                {
                     VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
                 }
-                
             }
-
-
         }
 
         private void frmIzvoz_Activated(object sender, EventArgs e)
@@ -2081,11 +2099,22 @@ namespace Saobracaj.Izvoz
             {
                 detailForm.ShowDialog();
                 txtBrKont.Text = detailForm.GetBrojKontejnera();
+                txtUvozniID.Text = detailForm.GetUvozniID();
                 InsertIzvoz ins = new InsertIzvoz();
                 ins.IzvozOpredelio(txtBrKont.Text);
                 MessageBox.Show("Kontejner je opredeljen");
                 // VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
             }
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            InsertIzvozKonacna ins = new InsertIzvozKonacna();
+            ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(txtID.Text), PlanZaPrebacivanje);
+
+            Uvoz.InsertRadniNalogInterni ins2 = new Uvoz.InsertRadniNalogInterni();
+            //ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
+            ins2.InsRadniNalogInterniIzvoz(Convert.ToInt32(4), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovaraT", Convert.ToInt32(PlanZaPrebacivanje), tKorisnik, "");
         }
     }
     }

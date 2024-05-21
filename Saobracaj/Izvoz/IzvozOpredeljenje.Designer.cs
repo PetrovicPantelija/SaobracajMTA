@@ -33,6 +33,8 @@ namespace Saobracaj.Izvoz
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.txtBrojKontejnera = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.txtUvozniID = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,11 +48,11 @@ namespace Saobracaj.Izvoz
             this.gridGroupingControl1.ColorStyles = Syncfusion.Windows.Forms.ColorStyles.Office2010Blue;
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2010Blue;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(12, 62);
+            this.gridGroupingControl1.Location = new System.Drawing.Point(12, 38);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(776, 376);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1031, 400);
             this.gridGroupingControl1.TabIndex = 237;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -67,37 +69,57 @@ namespace Saobracaj.Izvoz
             // 
             // txtBrojKontejnera
             // 
-            this.txtBrojKontejnera.Location = new System.Drawing.Point(107, 12);
+            this.txtBrojKontejnera.Location = new System.Drawing.Point(68, 12);
             this.txtBrojKontejnera.Name = "txtBrojKontejnera";
             this.txtBrojKontejnera.Size = new System.Drawing.Size(153, 20);
             this.txtBrojKontejnera.TabIndex = 238;
-            this.txtBrojKontejnera.Visible = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.RoyalBlue;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(9, 12);
+            this.label1.Location = new System.Drawing.Point(11, 12);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 13);
             this.label1.TabIndex = 239;
             this.label1.Text = "Kontejner";
-            this.label1.Visible = false;
+            // 
+            // txtUvozniID
+            // 
+            this.txtUvozniID.Location = new System.Drawing.Point(285, 12);
+            this.txtUvozniID.Name = "txtUvozniID";
+            this.txtUvozniID.Size = new System.Drawing.Size(136, 20);
+            this.txtUvozniID.TabIndex = 240;
+            this.txtUvozniID.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.RoyalBlue;
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(226, 12);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(54, 13);
+            this.label3.TabIndex = 242;
+            this.label3.Text = "Uvozni ID";
             // 
             // IzvozOpredeljenje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1055, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtUvozniID);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBrojKontejnera);
             this.Controls.Add(this.gridGroupingControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "IzvozOpredeljenje";
-            this.Text = "Izvoz opredeljen";
+            this.Text = "Kontejneri sa skladista - Izvoz opredeljenje";
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.IzvozOpredeljenje_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             this.ResumeLayout(false);
@@ -110,5 +132,7 @@ namespace Saobracaj.Izvoz
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
         private System.Windows.Forms.TextBox txtBrojKontejnera;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtUvozniID;
+        private System.Windows.Forms.Label label3;
     }
 }

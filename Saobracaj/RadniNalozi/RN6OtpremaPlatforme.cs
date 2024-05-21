@@ -37,6 +37,7 @@ namespace Saobracaj.RadniNalozi
                 VratiPodatkeVrstaMan(Usluga.ToString());
                 chkUvoz.Checked = true;
                 chkIzvoz.Checked = false;
+               
 
             }
             else
@@ -132,17 +133,19 @@ namespace Saobracaj.RadniNalozi
         private void FillGVIzvozni()
         {
 
-            var select = "  SELECT  [RNOtpremaPlatforme].ID, [Kamion] ,[Zavrsen] ,[DatumRasporeda]  " +
-" ,[BrojKontejnera], TipKontenjera.NAziv as [VrstaKontejnera]      ,[NalogIzdao] " +
-" ,[DatumRealizacije], Komitenti_2.PaNaziv as Izvoznik    ,    " +
-" Komitenti_1.PaNaziv as [NazivBrodara]      ,[VrstaRobe]    ,[SaSkladista]      ,[SaPozicijeSklad] " +
-"  ,[IdUsluge]      ,[NalogRealizovao]    ,[OtpremaID] " +
-" ,[NalogID]   FROM[dbo].[RNOtpremaPlatforme] " +
-" INNER JOIN  Partnerji AS Komitenti_1 ON[RNOtpremaPlatforme].NazivBrodara = Komitenti_1.PaSifra " +
-" INNER JOIN  Partnerji AS Komitenti_2 ON[RNOtpremaPlatforme].Izvoznik = Komitenti_2.PaSifra " +
-" inner join  Skladista on[RNOtpremaPlatforme].[SaSkladista] = Skladista.ID " +
-" inner join TipKontenjera on TipKontenjera.ID = [RNOtpremaPlatforme].[VrstaKontejnera] order by [RNOtpremaPlatforme].ID desc" +
-" where Uvoz = 1";
+            var select = " SELECT       [RNOtpremaPlatforme].ID, [Kamion] ,[Zavrsen] ,[DatumRasporeda]   " +
+                 "   ,[BrojKontejnera]  ,TipKontenjera.NAziv as [VrstaKontejnera]      ,[NalogIzdao]   " +
+ " ,[DatumRealizacije], Komitenti_3.PaNaziv as [Uvoznik]    ,VrstaCarinskogPostupka.[Naziv] as CarinskiPostupak        , Komitenti_2.PaNaziv as [SpedicijaRTC] " +
+ " ,Komitenti_1.PaNaziv as [NazivBrodara]      ,[VrstaRobe]    ,[SaSkladista]      ,[SaPozicijeSklad] " +
+ " ,[IdUsluge]      ,[NalogRealizovao]    ,[OtpremaID] " +
+ " ,[NalogID]   FROM[dbo].[RNOtpremaPlatforme] " +
+ " INNER JOIN  Partnerji AS Komitenti_1 ON [RNOtpremaPlatforme].NazivBrodara = Komitenti_1.PaSifra " +
+ " INNER JOIN  Partnerji AS Komitenti_2 ON [RNOtpremaPlatforme].SpedicijaRTC = Komitenti_2.PaSifra " +
+ " INNER JOIN  Partnerji AS Komitenti_3 ON [RNOtpremaPlatforme].Uvoznik = Komitenti_3.PaSifra " +
+ " inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.id = [RNOtpremaPlatforme].CarinskiPostupak " +
+ " inner join  Skladista on[RNOtpremaPlatforme].[SaSkladista] = Skladista.ID " +
+ " inner join TipKontenjera on TipKontenjera.ID = [RNOtpremaPlatforme].[VrstaKontejnera] " +
+ " where Uvoz = 1 order by [RNOtpremaPlatforme].ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -372,13 +375,13 @@ namespace Saobracaj.RadniNalozi
 
             SqlCommand cmd = new SqlCommand(" SELECT       Skladiste " +
   "  FROM  KontejnerTekuce " +
-             " where Kontejner = " + ID, con);
+             " where Kontejner = '" + ID + "'", con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
-                cboSaSklad.SelectedValue = Convert.ToInt32(dr["Skladiste"].ToString());
+                cboSaSklad.SelectedValue = Convert.ToString(dr["Skladiste"].ToString());
 
 
 

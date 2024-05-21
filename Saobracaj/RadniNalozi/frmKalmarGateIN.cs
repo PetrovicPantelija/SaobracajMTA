@@ -14,6 +14,7 @@ using Syncfusion.Drawing;
 using Syncfusion.Windows.Forms.Grid;
 using Syncfusion.Grouping;
 using Saobracaj.Uvoz;
+using System.Web.UI.WebControls;
 
 namespace Saobracaj.RadniNalozi
 {
@@ -30,8 +31,13 @@ namespace Saobracaj.RadniNalozi
             gridGroupingControl2.ResetTableDescriptor();
             gridGroupingControl2.Refresh();
             var select = "";
-            select = "Select RNPrijemPlatforme.ID, BrojKontejnera, DATUMRAsporeda, TipKontenjera.Naziv as TipKOntejnera,  NalogIZdao, USkladiste, Skladista.Naziv,Kamion, NalogID, PrijemID from RNPrijemPlatforme " +
+            select = "Select RNPrijemPlatforme.ID, BrojKontejnera, DATUMRAsporeda, TipKontenjera.Naziv as TipKOntejnera,  NalogIZdao, USkladiste, Skladista.Naziv,Kamion, NalogID, PrijemID, 'SC1' from RNPrijemPlatforme " +
 " inner join Skladista on Skladista.ID = USkladiste " +
+" inner join TipKontenjera on TipKontenjera.Id = VrstaKontejnera " +
+" where Zavrsen is null " +
+" union " +
+" Select RNPrijemPlatforme2.ID, BrojKontejnera, DATUMRAsporeda, TipKontenjera.Naziv as TipKOntejnera,  NalogIZdao, USkladiste, Skladista.Naziv,Kamion, NalogID, PrijemID, 'SC15' from RNPrijemPlatforme2 " +
+"  inner join Skladista on Skladista.ID = USkladiste " +
 " inner join TipKontenjera on TipKontenjera.Id = VrstaKontejnera " +
 " where Zavrsen is null ";
 

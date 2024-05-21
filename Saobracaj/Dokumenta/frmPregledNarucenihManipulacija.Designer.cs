@@ -103,7 +103,7 @@
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(26, 95);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(72, 16);
+            this.label6.Size = new System.Drawing.Size(71, 16);
             this.label6.TabIndex = 198;
             this.label6.Text = "Kamionom:";
             // 
@@ -137,7 +137,7 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(26, 54);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(49, 16);
+            this.label5.Size = new System.Drawing.Size(48, 16);
             this.label5.TabIndex = 195;
             this.label5.Text = "Vozom:";
             // 
@@ -193,7 +193,7 @@
             this.chkPrijem.ForeColor = System.Drawing.Color.Black;
             this.chkPrijem.Location = new System.Drawing.Point(132, 12);
             this.chkPrijem.Name = "chkPrijem";
-            this.chkPrijem.Size = new System.Drawing.Size(63, 20);
+            this.chkPrijem.Size = new System.Drawing.Size(62, 20);
             this.chkPrijem.TabIndex = 206;
             this.chkPrijem.Text = "Prijem";
             this.chkPrijem.UseVisualStyleBackColor = false;
@@ -207,7 +207,7 @@
             this.chkOtprema.ForeColor = System.Drawing.Color.Black;
             this.chkOtprema.Location = new System.Drawing.Point(33, 13);
             this.chkOtprema.Name = "chkOtprema";
-            this.chkOtprema.Size = new System.Drawing.Size(76, 20);
+            this.chkOtprema.Size = new System.Drawing.Size(75, 20);
             this.chkOtprema.TabIndex = 205;
             this.chkOtprema.Text = "Otprema";
             this.chkOtprema.UseVisualStyleBackColor = false;
@@ -248,7 +248,7 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(520, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 16);
+            this.label1.Size = new System.Drawing.Size(95, 16);
             this.label1.TabIndex = 275;
             this.label1.Text = "Broj kontejnera:";
             // 
@@ -285,7 +285,7 @@
             this.Controls.Add(this.dataGridView3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPregledNarucenihManipulacija";
-            this.Text = "Naručene manipulacije po prevozu";
+            this.Text = "Naručene usluga po prevozu";
             this.Load += new System.EventHandler(this.frmPregledNarucenihManipulacija_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);

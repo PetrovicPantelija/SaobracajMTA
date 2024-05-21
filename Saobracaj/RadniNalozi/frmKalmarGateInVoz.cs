@@ -65,7 +65,7 @@ namespace Saobracaj.RadniNalozi
             select = "SELECT RNPrijemVoza.[ID]      ,[DatumRasporeda]      ,[BrojKontejnera]      ,TipKontenjera.Naziv, " +
      " [NalogIzdao]      ,[DatumRealizacije]      ,[SaVoznogSredstva]	  , VOZ.BrVoza " +
      "  , Skladista.Naziv as Skladiste      ,[BrojPlombe]      ,[NalogRealizovao]	  , NaSkladiste " +
-     "  ,[Zavrsen]      ,[Napomena]      ,[DatumRealizacije]      ,[PrijemID] " +
+     "  ,[Zavrsen]      ,RNPrijemVoza.[Napomena]      ,[DatumRealizacije]      ,[PrijemID] " +
      "  ,[NalogID]            from RNPrijemVoza " +
      "        inner join TipKontenjera on TipKontenjera.ID = [VrstaKontejnera] " +
      "        inner             join Voz on Voz.ID = SaVoznogSredstva " +

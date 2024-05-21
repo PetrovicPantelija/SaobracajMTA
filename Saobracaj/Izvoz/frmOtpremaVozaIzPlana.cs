@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Uvoz;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -11,9 +12,19 @@ namespace Saobracaj.Izvoz
         bool status = false;
         string KorisnikCene = "Panta";
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+        int IzRNI = 0;
+        int trnI = 0;
         public frmOtpremaVozaIzPlana()
         {
             InitializeComponent();
+
+        }
+
+        public frmOtpremaVozaIzPlana(string NAlogID)
+        {
+            InitializeComponent();
+            IzRNI = 1;
+            trnI = Convert.ToInt32(NAlogID);
         }
 
         private void frmOtpremaVozaIzPlana_Load(object sender, EventArgs e)
@@ -28,7 +39,7 @@ namespace Saobracaj.Izvoz
             cboPlanUtovara.ValueMember = "ID";
 
 
-            var select8 = "  Select Distinct ID, (Cast(BrVoza as nvarchar(6)) + '-' + Relacija) as IdVoza   From Voz ";
+            var select8 = "  Select Distinct ID, (Cast(BrVoza as nvarchar(10)) + '-' + Relacija) as IdVoza   From Voz ";
             var s_connection8 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection8 = new SqlConnection(s_connection8);
             var c8 = new SqlConnection(s_connection8);
@@ -54,6 +65,35 @@ namespace Saobracaj.Izvoz
             cboOperater.DataSource = ds4.Tables[0];
             cboOperater.DisplayMember = "PaNaziv";
             cboOperater.ValueMember = "PaSifra";
+
+
+            if (IzRNI == 1)
+            {
+                int voz = VratiPlan();
+                cboPlanUtovara.SelectedValue = voz;
+                VratiVozIzPlana();
+            }
+        }
+
+        int VratiPlan()
+        {
+            int PlanID = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select PlanID from RadniNalogInterni where OjIzdavanja = 2 and ID = " + trnI, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                PlanID = Convert.ToInt32(dr["PlanID"].ToString());
+            }
+            con.Close();
+            return PlanID;
+
+
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -139,9 +179,19 @@ namespace Saobracaj.Izvoz
 
         private void button1_Click(object sender, EventArgs e)
         {
-            InsertIzvozKonacna ins = new InsertIzvozKonacna();
-            ins.PrenesiIzPlanUtovaraUOtpremaVoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
-            RefreshDataGrid();
+            if (txtSifra.Text == "")
+            { return; }
+            else
+            {
+                InsertIzvozKonacna ins = new InsertIzvozKonacna();
+                ins.PrenesiIzPlanUtovaraUOtpremaVoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+                VratiPodatkeMax();
+                RefreshDataGrid();
+
+            }
+            MessageBox.Show("Uspešno ste formirali Otpremnicu za Plan");
+
+
         }
 
         private void RefreshDataGrid()

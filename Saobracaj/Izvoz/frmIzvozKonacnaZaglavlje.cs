@@ -71,17 +71,19 @@ namespace Saobracaj.Izvoz
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            int Terminal = 0;
+            if (chkTerminal.Checked == true ) { Terminal = 1; }
             if (status == true)
             {
                 InsertIzvozKonacnaZaglavlje ins = new InsertIzvozKonacnaZaglavlje();
-                ins.InsIzvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "");
+                ins.InsIzvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "", Terminal);
                 RefreshDataGrid();
                 status = false;
             }
             else
             {
                 InsertIzvozKonacnaZaglavlje ins = new InsertIzvozKonacnaZaglavlje();
-                ins.UpdIzvozKonacnaZaglavlje(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "");
+                ins.UpdIzvozKonacnaZaglavlje(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "", Terminal);
                 RefreshDataGrid();
                 status = false;
             }

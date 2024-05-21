@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
 {
-    public partial class frmIzvozKonacna : Form
+    public partial class frmIzvozKonacna : Syncfusion.Windows.Forms.Office2010Form
     {
         float firstWidth;
         float firstHeight;
@@ -896,6 +896,13 @@ namespace Saobracaj.Izvoz
                 pomDobijenNalog = 1;
             }
 
+            int pomTerminal = 0;
+
+            if (chkTerminal.Checked == true)
+            {
+                pomTerminal = 1;
+            }
+
             ins.UpdIzvozKonacna(Convert.ToInt32(txtID.Text), txtBrojVagona.Text, txtBrKont.Text, Convert.ToInt32(txtTipKont.SelectedValue),
                 txtBrodskaPlomba.Text, Convert.ToInt32(txtBokingBrodara.Text), Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToDateTime(dtpCutOffPort.Value),
                 Convert.ToDecimal(txtNetoR.Value), Convert.ToDecimal(txtBrutoR.Value), Convert.ToDecimal(txtBrutoO.Value), Convert.ToInt32(txtKoleta.Value),
@@ -913,7 +920,7 @@ namespace Saobracaj.Izvoz
                 Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text, Convert.ToInt32(txtADR.SelectedValue),
                 Convert.ToInt32(txtNadredjeni.Text), txtVozilo.Text, txtVozac.Text, Convert.ToInt32(cboSpedicijaJ.SelectedValue),
                 Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToInt32(cboVrstaPlombe.SelectedValue),
-                 txtNapomenaZaRobu.Text, Convert.ToDecimal(txtVGMBrod.Value), txtKontaktSpeditera.Text, txtKontaktOsobe.Text);
+                 txtNapomenaZaRobu.Text, Convert.ToDecimal(txtVGMBrod.Value), txtKontaktSpeditera.Text, txtKontaktOsobe.Text, Convert.ToInt32(txtUvozniID.Text), pomTerminal);
             //Fale ostale plombe
             // Convert.ToDecimal(txtDodatneNapomene.Text -- treba staviti nvarchar
 
@@ -1203,14 +1210,14 @@ namespace Saobracaj.Izvoz
         private void button7_Click(object sender, EventArgs e)
         {
             InsertIzvozKonacnaZaglavlje ins = new InsertIzvozKonacnaZaglavlje();
-            ins.InsIzvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "");
+            ins.InsIzvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "",1);
             //refreshStavke(); - Dodati
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
             InsertIzvozKonacnaZaglavlje upd = new InsertIzvozKonacnaZaglavlje();
-            upd.UpdIzvozKonacnaZaglavlje(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "");
+            upd.UpdIzvozKonacnaZaglavlje(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "",1);
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -1237,12 +1244,15 @@ namespace Saobracaj.Izvoz
     "     ,[Vaganje],[VGMTezina],[Tara],[VGMBrod] " +
    "      ,[Izvoznik],[Klijent1],[Napomena1REf],[DodatneNapomeneDrumski] " +
    "      ,[Klijent2],[Napomena2REf],[Klijent3],[Napomena3REf] " +
-   "      ,[SpediterRijeka],[OstalePlombe],[ADR],[Vozilo],[Vozac], SpedicijaJ, PeriodSkladistenjaOd, PeriodSkladistenjaDo , VrstaBrodskePlombe, NapomenaZaRobu, VGMBrod2 " +
+   "      ,[SpediterRijeka],[OstalePlombe],[ADR],[Vozilo],[Vozac], SpedicijaJ, PeriodSkladistenjaOd, PeriodSkladistenjaDo , VrstaBrodskePlombe, NapomenaZaRobu, VGMBrod2,KontaktSpeditera" +
+   " KontaktOsobe, UvozID" +
  "  FROM [IzvozKonacna] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
+                txtUvozniID.Text = dr["UvozID"].ToString();
+                txtKontaktOsobe.Text = dr["KontaktOsobe"].ToString();
                 txtVozilo.Text = dr["Vozilo"].ToString();
                 txtVozac.Text = dr["Vozac"].ToString();
                 txtOstalePlombe.Text = dr["OstalePlombe"].ToString();
@@ -1339,6 +1349,7 @@ namespace Saobracaj.Izvoz
                 txtBrojVagona.Text = dr["BrojVagona"].ToString();
                 cboVrstaPlombe.SelectedValue = Convert.ToInt32(dr["VrstaBrodskePlombe"].ToString());
                 txtNapomenaZaRobu.Text = dr["NapomenaZaRobu"].ToString();
+                //txtKontaktSpeditera.Text = dr["KontaktSpeditera"].ToString();
 
                 /*
 
@@ -1402,7 +1413,8 @@ namespace Saobracaj.Izvoz
 
 
             con.Close();
-
+            FillDGUsluge();
+            FillDGUslugeUvozne();
 
         }
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -1429,10 +1441,19 @@ namespace Saobracaj.Izvoz
             PostojeRn = VratiPostojeceRN();
             if (dialogResult == DialogResult.Yes)
             {
-
-                Uvoz.InsertRadniNalogInterni ins = new Uvoz.InsertRadniNalogInterni();
-                //ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
-                ins.InsRadniNalogInterniIzvoz(Convert.ToInt32(2), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovaraIZ", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
+                if (chkTerminal.Checked == true)
+                {
+                    Uvoz.InsertRadniNalogInterni ins = new Uvoz.InsertRadniNalogInterni();
+                    //ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
+                    ins.InsRadniNalogInterniIzvoz(Convert.ToInt32(4), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovaraIZ", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
+                }
+                else
+                {
+                    Uvoz.InsertRadniNalogInterni ins = new Uvoz.InsertRadniNalogInterni();
+                    //ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
+                    ins.InsRadniNalogInterniIzvoz(Convert.ToInt32(2), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovaraIZ", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
+                }
+                
             }
             else
             {
@@ -1681,17 +1702,21 @@ namespace Saobracaj.Izvoz
             var select = "";
 
             select = "select  IzvozKonacnaVrstaManipulacije.ID as ID, IzvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, IzvozKonacna.BrojKontejnera, " +
-" IzvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
-" IzvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
-" Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac " +
-" from IzvozKonacnaVrstaManipulacije " +
-" Inner    join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
-" inner " +
-" join PArtnerji on IzvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
-" inner " +
-" join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozKonacnaVrstaManipulacije.OrgJed " +
-" inner " +
-" join IzvozKonacna on IzvozKonacnaVrstaManipulacije.IDNadredjena = IzvozKonacna.ID where IzvozKonacna.ID = " + Convert.ToInt32(txtID.Text);
+  " IzvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
+  " IzvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica, " +
+  " Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, SaPDV,IzvozKonacnaVrstaManipulacije.Pokret, KontejnerStatus.Naziv , 'IZVOZNA' " +
+  " from IzvozKonacnaVrstaManipulacije " +
+  " Inner    join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
+  "  inner " +
+  " join PArtnerji on IzvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
+  " inner " +
+  " join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozKonacnaVrstaManipulacije.OrgJed " +
+  "  inner " +
+  " join IzvozKonacna on IzvozKonacnaVrstaManipulacije.IDNadredjena = IzvozKonacna.ID " +
+  " left " +
+  " join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera" +
+  " where IzvozKonacna.ID = " + Convert.ToInt32(txtID.Text);
+            
 
 
 
@@ -1727,6 +1752,63 @@ namespace Saobracaj.Izvoz
             DataGridViewColumn column3 = dataGridView8.Columns[2];
             dataGridView8.Columns[2].HeaderText = "Kontejner";
             dataGridView8.Columns[2].Width = 50;
+
+        }
+
+        private void FillDGUslugeUvozne()
+        {
+            var select = "";
+
+            select =
+  " select  UvozKonacnaVrstaManipulacije.ID as ID, UvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, UvozKonacna.BrojKontejnera, " +
+  " UvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
+  " UvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
+  " Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, SaPDV,UvozKonacnaVrstaManipulacije.Pokret, KontejnerStatus.Naziv,  'UVOZNA'" +
+  " from UvozKonacnaVrstaManipulacije" +
+  " Inner    join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije" +
+  " inner" +
+  " join PArtnerji on UvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra" +
+  " inner" +
+  " join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozKonacnaVrstaManipulacije.OrgJed" +
+  " inner" +
+  " join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID" +
+  " left" +
+  " join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera where UvozKonacna.ID  = " + Convert.ToInt32(txtUvozniID.Text);
+
+
+
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView9.ReadOnly = true;
+            dataGridView9.DataSource = ds.Tables[0];
+
+
+            dataGridView9.BorderStyle = BorderStyle.None;
+            dataGridView9.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView9.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView9.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView9.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView9.BackgroundColor = Color.White;
+
+            dataGridView9.EnableHeadersVisualStyles = false;
+            dataGridView9.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView9.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView9.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView9.Columns[0];
+            dataGridView9.Columns[0].HeaderText = "ID";
+            dataGridView9.Columns[0].Width = 20;
+
+            DataGridViewColumn column2 = dataGridView9.Columns[1];
+            dataGridView9.Columns[1].HeaderText = "IDU";
+            dataGridView9.Columns[1].Width = 30;
+
+            DataGridViewColumn column3 = dataGridView9.Columns[2];
+            dataGridView9.Columns[2].HeaderText = "Kontejner";
+            dataGridView9.Columns[2].Width = 50;
 
         }
 
@@ -2148,9 +2230,15 @@ namespace Saobracaj.Izvoz
         private void txtID_TextChanged(object sender, EventArgs e)
         {
             FillDGUsluge();
+            FillDGUslugeUvozne();
         }
 
         private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
         }

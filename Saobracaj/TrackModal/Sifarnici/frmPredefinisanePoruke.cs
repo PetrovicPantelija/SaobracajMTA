@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Testiranje.Sifarnici
 {
-    public partial class frmPredefinisanePoruke : Form
+    public partial class frmPredefinisanePoruke : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         public frmPredefinisanePoruke()
@@ -147,6 +147,11 @@ namespace Testiranje.Sifarnici
         private void frmPredefinisanePoruke_Load(object sender, EventArgs e)
         {
             RefreshDataGrid();
+        }
+
+        private void tsPrvi_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
