@@ -694,6 +694,60 @@ namespace Saobracaj.RadniNalozi
                 { }
             }
         }
+        public void PotvrdiUradjenRN9(int RN,string Korisnik)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRN9Uradjen";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter rn = new SqlParameter();
+            rn.ParameterName = "@RN";
+            rn.SqlDbType = SqlDbType.Int;
+            rn.Direction = ParameterDirection.Input;
+            rn.Value = RN;
+            cmd.Parameters.Add(rn);
+
+            SqlParameter kor = new SqlParameter();
+            kor.ParameterName = "@Korisnik";
+            kor.SqlDbType = SqlDbType.NVarChar;
+            kor.Size = 50;
+            kor.Direction = ParameterDirection.Input;
+            kor.Value = Korisnik;
+            cmd.Parameters.Add(kor);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis cena u bazu");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Nije uspeo upis cena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                { }
+            }
+        }
 
         public void UpdateKontejnerIzCira(string BrojKontejnera, string Stanje, string Ostecenje, int Kvalitet, int CIR)
         {
@@ -2274,7 +2328,7 @@ namespace Saobracaj.RadniNalozi
         }
 
         public void InsRN9PrijmCiradeKam(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaVoznogSredstva, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, int OtpremaID, string Kamion, int CarinskiPostupak
-            , int InspekciskiPregled, int SpedicijaRTC, int Brodar, string BrojPlombe)
+            , int InspekciskiPregled, int SpedicijaRTC, int Brodar, string BrojPlombe,int NalogID)
         {
 
             SqlConnection conn = new SqlConnection(connect);
@@ -2402,6 +2456,13 @@ namespace Saobracaj.RadniNalozi
             brojplombe.Direction = ParameterDirection.Input;
             brojplombe.Value = BrojPlombe;
             cmd.Parameters.Add(brojplombe);
+
+            SqlParameter nalogID = new SqlParameter();
+            nalogID.ParameterName = "@NalogID";
+            nalogID.SqlDbType= SqlDbType.Int;
+            nalogID.Direction = ParameterDirection.Input;
+            nalogID.Value = NalogID;
+            cmd.Parameters.Add(nalogID);
 
             // , @InspekciskiPregled int, @SpedicijaRTC int, @Brodar int, @BrojPlombe nvarchar(50)
 

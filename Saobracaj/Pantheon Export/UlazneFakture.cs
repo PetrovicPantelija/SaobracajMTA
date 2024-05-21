@@ -126,10 +126,11 @@ namespace Saobracaj.Pantheon_Export
             cboJM.DisplayMember = "MeNaziv";
             cboJM.ValueMember = "MeNaziv";
         }
+        decimal uValuti;
         private void FillGV()
         {
             ID = Convert.ToInt32(txtID.Text);
-            var select = "select UlFakPostav.ID,IDFak,RB,MP,Rtrim(MpStaraSif) as Ident,Kolicina,Cena,UlFakPostav.NosilacTroska as NT,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska,JM,Proizvod,Oznaka from UlFakPostav inner join UlFak on UlFakPostav.IDFak=UlFak.ID inner join MaticniPodatki on UlFakPostav.Mp=MaticniPodatki.MpSifra inner join NosiociTroskova on UlFakPostav.NosilacTroska=NosiociTroskova.ID inner join Najava on UlFakPostav.NajavaID=Najava.ID Where IDFak=" + txtID.Text;
+            var select = "select UlFakPostav.ID,IDFak,RB,MP,Rtrim(MpStaraSif) as Ident,Kolicina,Cena,UlFakPostav.NosilacTroska as NT,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska,JM,Proizvod,Oznaka,Valuta from UlFakPostav inner join UlFak on UlFakPostav.IDFak=UlFak.ID inner join MaticniPodatki on UlFakPostav.Mp=MaticniPodatki.MpSifra inner join NosiociTroskova on UlFakPostav.NosilacTroska=NosiociTroskova.ID inner join Najava on UlFakPostav.NajavaID=Najava.ID Where IDFak=" + txtID.Text;
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -158,10 +159,10 @@ namespace Saobracaj.Pantheon_Export
             dataGridView1.Columns[5].Width = 100;
             dataGridView1.Columns[8].Width = 200;
             dataGridView1.Columns[7].Visible = false;
+            //dataGridView1.Columns["Valuta"].Visible = false;
 
             if (dataGridView1.Rows.Count == 0) { rb = 1; } else { rb = dataGridView1.Rows.Count + 1; }
             txtRB.Text = rb.ToString();
-
         }
 
         private void dataGridView1_AllowUserToAddRowsChanged(object sender, EventArgs e)
@@ -249,6 +250,17 @@ namespace Saobracaj.Pantheon_Export
 
 
         }
+
+        private void numericUpDown1_Leave(object sender, EventArgs e)
+        {
+            txtCena.Value = Convert.ToDecimal(txtKolicina.Value) * Convert.ToDecimal(numericUpDown1.Value);
+        }
+
+        private void txtCena_Leave(object sender, EventArgs e)
+        {
+            numericUpDown1.Value = Convert.ToDecimal(txtCena.Value) / Convert.ToDecimal(txtKolicina.Value);
+        }
+
         int posao;
         private void button1_Click(object sender, EventArgs e)
         {
@@ -352,7 +364,9 @@ namespace Saobracaj.Pantheon_Export
                         cboMP.SelectedValue = Convert.ToInt32(row.Cells["MP"].Value);
                         txtKolicina.Value = Convert.ToDecimal(row.Cells["Kolicina"].Value);
                         txtCena.Value = Convert.ToDecimal(row.Cells["Cena"].Value);
-                        cboNosilac.SelectedValue = Convert.ToInt32(row.Cells["NosilacTroska"].Value);
+                        cboNosilac.SelectedValue = Convert.ToInt32(row.Cells["NT"].Value);
+                        cboJM.SelectedValue = row.Cells["JM"].Value.ToString();
+                        numericUpDown1.Value = Convert.ToDecimal(txtCena.Value) / Convert.ToDecimal(txtKolicina.Value);
                     }
                 }
             }

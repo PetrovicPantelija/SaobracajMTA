@@ -3542,6 +3542,12 @@
     <Compile Include="Uvoz\Nalogodavci.designer.cs">
       <DependentUpon>Nalogodavci.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\PlaniraniPretovar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\PlaniraniPretovar.Designer.cs">
+      <DependentUpon>PlaniraniPretovar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\Uvoz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4928,6 +4934,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\Nalogodavci.resx">
       <DependentUpon>Nalogodavci.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\PlaniraniPretovar.resx">
+      <DependentUpon>PlaniraniPretovar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\Uvoz.resx">
       <DependentUpon>Uvoz.cs</DependentUpon>

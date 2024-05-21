@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -10,7 +11,7 @@ namespace Saobracaj.RadniNalozi
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
-
+        string kor = frmLogovanje.user;
 
         public RN9PrijemCirade()
         {
@@ -205,7 +206,7 @@ namespace Saobracaj.RadniNalozi
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             RadniNalozi.InsertRN ir = new InsertRN();
-            ir.InsRN9PrijmCiradeKam(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboSaSredstva.SelectedValue), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text, Convert.ToInt32(cboPostupak.SelectedValue), Convert.ToInt32(cboInspekcijski.SelectedValue), Convert.ToInt32(cboSpedicija.SelectedValue), Convert.ToInt32(cboBrodar.SelectedValue), txtBrojPlombe.Text);
+            ir.InsRN9PrijmCiradeKam(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboSaSredstva.SelectedValue), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text, Convert.ToInt32(cboPostupak.SelectedValue), Convert.ToInt32(cboInspekcijski.SelectedValue), Convert.ToInt32(cboSpedicija.SelectedValue), Convert.ToInt32(cboBrodar.SelectedValue), txtBrojPlombe.Text,Convert.ToInt32(txtNalogID.Text));
             FillGV();
         }
 
@@ -224,6 +225,12 @@ namespace Saobracaj.RadniNalozi
         {
             PrijemnicaPregled pp = new PrijemnicaPregled();
             pp.Show();
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            RadniNalozi.InsertRN rn = new InsertRN();
+            rn.PotvrdiUradjenRN9(Convert.ToInt32(txtID.Text), kor);
         }
     }
 }

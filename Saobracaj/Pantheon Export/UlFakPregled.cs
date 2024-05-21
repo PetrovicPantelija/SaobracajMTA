@@ -223,7 +223,7 @@ namespace Saobracaj.Pantheon_Export
                                     "Inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
                                     "inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID Where UlFak.Status=0 and CRMID=" + crm;
 
-                            query2 = "select RB as No,Rtrim(MpStaraSif) as Ident,CAST(Kolicina AS DECIMAL(10, 2)) as Qty,CAST(IznosRSD AS DECIMAL(10, 2)) as Price,Rtrim(NosiociTroskova.NosilacTroska) as CostDrv,RTrim(JM) as JNT,'' as Proizvod,IDFak " +
+                            query2 = "select RB as No,Rtrim(MpStaraSif) as Ident,CAST(Kolicina AS DECIMAL(10, 2)) as Qty,CAST(IznosRSD/Kolicina AS DECIMAL(10, 2)) as Price,Rtrim(NosiociTroskova.NosilacTroska) as CostDrv,RTrim(JM) as JNT,'' as Proizvod,IDFak " +
                                 "From UlFakPostav " +
                                 "inner join MaticniPodatki on UlFakPostav.Mp = MaticniPodatki.MpSifra " +
                                 "inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID " +
@@ -238,7 +238,7 @@ namespace Saobracaj.Pantheon_Export
                             "Inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
                             "inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID Where UlFak.Status=0 and CRMID=" + crm;
 
-                            query2 = "select RB as No,Rtrim(MpStaraSif) as Ident,CAST(Kolicina AS DECIMAL(10, 2)) as Qty,CAST(Cena AS DECIMAL(10, 2)) as Price,Rtrim(NosiociTroskova.NosilacTroska) as CostDrv,RTrim(JM) as JNT,'' as Proizvod,IDFak " +
+                            query2 = "select RB as No,Rtrim(MpStaraSif) as Ident,CAST(Kolicina AS DECIMAL(10, 2)) as Qty,CAST(Cena/Kolicina AS DECIMAL(10, 2)) as Price,Rtrim(NosiociTroskova.NosilacTroska) as CostDrv,RTrim(JM) as JNT,'' as Proizvod,IDFak " +
                                 "From UlFakPostav " +
                                 "inner join MaticniPodatki on UlFakPostav.Mp = MaticniPodatki.MpSifra " +
                                 "inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID " +
