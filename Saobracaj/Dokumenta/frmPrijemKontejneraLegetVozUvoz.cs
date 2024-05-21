@@ -1566,7 +1566,8 @@ namespace Saobracaj.Dokumenta
                 }
             }
 
-            //Zadnja nula oznacava platformu
+            //Prezadnja nula oznacava platformu
+            //Zadnji broj Oznacava Org Jed
 
             if (IDUsluge == "0")
 
@@ -1574,7 +1575,7 @@ namespace Saobracaj.Dokumenta
                 DialogResult dialogResult = MessageBox.Show("Niste obeležili ni jednu uslugu", "Usluga?", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(txtKontejnerID.Text, IDUsluge, KorisnikCene, 0);
+                    Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(txtKontejnerID.Text, IDUsluge, KorisnikCene, 0,1);
                     okk.Show();
                 }
                 else if (dialogResult == DialogResult.No)
@@ -1585,7 +1586,7 @@ namespace Saobracaj.Dokumenta
             }
             else
             {
-                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(txtKontejnerID.Text, IDUsluge, KorisnikCene,0);
+                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(txtKontejnerID.Text, IDUsluge, KorisnikCene,0,1);
                 okk.Show();
             }
            

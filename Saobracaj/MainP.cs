@@ -28,6 +28,7 @@ using frmCIRPregled = Testiranje.Dokumeta.frmCIRPregled;
 using Saobracaj.Tehnologija;
 using Syncfusion.Windows.Forms.Tools;
 using Saobracaj.Administracija;
+using Saobracaj.Uvoz;
 namespace Saobracaj
 {
     public partial class MainP : Syncfusion.Windows.Forms.Tools.RibbonForm
@@ -6291,7 +6292,8 @@ namespace Saobracaj
             foreach (Form frm in fc)
             {
                 //iterate through
-                if (frm.Name == "TerminalOpredeljenje")
+               // if (frm.Name == "TerminalOpredeljenje")
+                    if (frm.Name == "frmIzvozTerminalPovezi")
                 {
                     bFormNameOpen = true;
                     frm.Activate();
@@ -6300,7 +6302,7 @@ namespace Saobracaj
             }
             if (bFormNameOpen == false)
             {
-                Izvoz.TerminalOpredeljenje to = new Izvoz.TerminalOpredeljenje();
+                Izvoz.frmIzvozTerminalPovezi to = new Izvoz.frmIzvozTerminalPovezi();
                 to.Show();
 
             }
@@ -6447,7 +6449,8 @@ namespace Saobracaj
 
         private void toolStripButton360_Click_1(object sender, EventArgs e)
         {
-           
+            frmKalmarGateOutVoz gov = new frmKalmarGateOutVoz();
+            gov.Show();
         }
 
         private void toolStripEx40_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -6463,8 +6466,78 @@ namespace Saobracaj
 
         private void toolStripButton112_Click_1(object sender, EventArgs e)
         {
-            Uvoz.Uvoz uv = new Uvoz.Uvoz(1);
+            Uvoz.Uvoz uv = new Uvoz.Uvoz();
             uv.Show();
+        }
+
+        private void toolStripButton113_Click_1(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPredefinisanePoruke")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                frmPredefinisanePoruke to = new frmPredefinisanePoruke();
+                to.Show();
+
+            }
+        }
+
+        private void toolStripButton363_Click(object sender, EventArgs e)
+        {
+            frmPlanoviIzvoza pi = new frmPlanoviIzvoza(1);
+            pi.Show();
+        }
+
+        private void toolStripButton114_Click_1(object sender, EventArgs e)
+        {
+            Uvoz.frmPregledPlanovaUtovara fppp = new Uvoz.frmPregledPlanovaUtovara(1);
+            fppp.Show();
+        }
+
+        private void toolStripButton364_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton364_Click_1(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPrebacivanjeIzPlanaUPlan")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Izvoz.frmPrebacivanjeIzPlanaUPlan to = new Izvoz.frmPrebacivanjeIzPlanaUPlan();
+                to.Show();
+
+            }
+
+
+           
+        }
+
+        private void toolStripButton364_Click_2(object sender, EventArgs e)
+        {
+            Izvoz.frmDopunaPlanaPraznimIzvoz ddd = new frmDopunaPlanaPraznimIzvoz();    
+            ddd.Show();
         }
     }
     }

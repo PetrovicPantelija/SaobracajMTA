@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace TrackModal.Izvestaji
 {
-    public partial class frmPregledManipulacijaPoPartneru : Form
+    public partial class frmPregledManipulacijaPoPartneru : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmPregledManipulacijaPoPartneru";
         public bool Pravo;

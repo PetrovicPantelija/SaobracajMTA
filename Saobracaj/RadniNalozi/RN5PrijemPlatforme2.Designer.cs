@@ -60,6 +60,7 @@ namespace Saobracaj.RadniNalozi
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtNalogIzdao = new System.Windows.Forms.TextBox();
@@ -81,7 +82,7 @@ namespace Saobracaj.RadniNalozi
             this.label12 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.chkZavrsenCIR = new System.Windows.Forms.CheckBox();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -340,6 +341,7 @@ namespace Saobracaj.RadniNalozi
             this.tsDelete,
             this.toolStripSeparator1,
             this.toolStripButton1,
+            this.toolStripButton4,
             this.toolStripButton3,
             this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
@@ -394,6 +396,18 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton1.Size = new System.Drawing.Size(267, 24);
             this.toolStripButton1.Text = "FORMIRAJ RADNI NALOG PLATFORMA BRODAR";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.BackColor = System.Drawing.Color.SeaGreen;
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton3.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(112, 24);
+            this.toolStripButton3.Text = "Potvrdi završen CIR";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // toolStripButton2
             // 
@@ -611,17 +625,16 @@ namespace Saobracaj.RadniNalozi
             this.chkZavrsenCIR.Text = "Završen CIR";
             this.chkZavrsenCIR.UseVisualStyleBackColor = true;
             // 
-            // toolStripButton3
+            // toolStripButton4
             // 
-            this.toolStripButton3.BackColor = System.Drawing.Color.SeaGreen;
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton3.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(112, 24);
-            this.toolStripButton3.Text = "Potvrdi završen CIR";
-            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            this.toolStripButton4.BackColor = System.Drawing.Color.Gold;
+            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(89, 24);
+            this.toolStripButton4.Text = "Ubaci u tekuce";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // RN5PrijemPlatforme2
             // 
@@ -737,5 +750,6 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.CheckBox chkZavrsenCIR;
+        private System.Windows.Forms.ToolStripButton toolStripButton4;
     }
 }

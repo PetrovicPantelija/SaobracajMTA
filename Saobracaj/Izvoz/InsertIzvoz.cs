@@ -816,7 +816,7 @@ namespace Saobracaj.Izvoz
                 }
             }
         }
-        public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV, string Pokret, int StatusKontejnera)
+        public void InsUbaciUslugu(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV, string Pokret, int StatusKontejnera, string Forma)
         {
             //  @IdNadredjena int,
             //@IDVrstaManipulacije int,
@@ -891,6 +891,14 @@ namespace Saobracaj.Izvoz
             statuskontejnera.Direction = ParameterDirection.Input;
             statuskontejnera.Value = StatusKontejnera;
             cmd.Parameters.Add(statuskontejnera);
+
+            SqlParameter forma = new SqlParameter();
+            forma.ParameterName = "@Forma";
+            forma.SqlDbType = SqlDbType.NVarChar;
+            forma.Size = 50;
+            forma.Direction = ParameterDirection.Input;
+            forma.Value = Forma;
+            cmd.Parameters.Add(forma);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -980,7 +988,7 @@ namespace Saobracaj.Izvoz
             }
         }
 
-        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV, string Pokret, int StatusKontejnera)
+        public void InsUbaciUsluguKonacna(int IDNadredjena, int IDVrstaManipulacije, double Cena, double Kolicina, int OrgJed, int Platilac, int SaPDV, string Pokret, int StatusKontejnera, string Forma)
         {
             //  @IdNadredjena int,
             //@IDVrstaManipulacije int,
@@ -1056,6 +1064,15 @@ namespace Saobracaj.Izvoz
             statuskontejnera.Direction = ParameterDirection.Input;
             statuskontejnera.Value = StatusKontejnera;
             cmd.Parameters.Add(statuskontejnera);
+
+            SqlParameter forma = new SqlParameter();
+            forma.ParameterName = "@Forma";
+            forma.SqlDbType = SqlDbType.NVarChar;
+            forma.Size = 50;
+            forma.Direction = ParameterDirection.Input;
+            forma.Value = Forma;
+            cmd.Parameters.Add(forma);
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -1314,7 +1331,7 @@ namespace Saobracaj.Izvoz
                             decimal VGMTezina, decimal Tara, decimal VGMBrod, int Izvoznik,
                             int Klijent1, int Napomena1REf, int DobijenNalogKlijent1, int Klijent2,
                             int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR,
-                            string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, int VrstaBrodskePlombe, string NapomenaZaRobu, decimal VGMBrod2, string KontaktSpeditera, string KontaktOsobe, int UvozniID)
+                            string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, int VrstaBrodskePlombe, string NapomenaZaRobu, decimal VGMBrod2, string KontaktSpeditera, string KontaktOsobe, int UvozniID, int Terminal)
         {
 
 
@@ -1773,15 +1790,24 @@ namespace Saobracaj.Izvoz
             kontaktosobe.Direction = ParameterDirection.Input;
             kontaktosobe.Value = KontaktOsobe;
             cmd.Parameters.Add(kontaktosobe);
-
-
-
+           
             SqlParameter uvozniid = new SqlParameter();
             uvozniid.ParameterName = "@UvozniID";
             uvozniid.SqlDbType = SqlDbType.Int;
             uvozniid.Direction = ParameterDirection.Input;
             uvozniid.Value = UvozniID;
             cmd.Parameters.Add(uvozniid);
+
+            SqlParameter terminal = new SqlParameter();
+            terminal.ParameterName = "@Terminal";
+            terminal.SqlDbType = SqlDbType.Int;
+            terminal.Direction = ParameterDirection.Input;
+            terminal.Value = Terminal;
+            cmd.Parameters.Add(terminal);
+
+
+
+           
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -1829,7 +1855,7 @@ namespace Saobracaj.Izvoz
                            int NacinPakovanja, int NacinPretovara, string DodatneNapomeneDrumski, int Vaganje,
                            decimal VGMTezina, decimal Tara, decimal VGMBrod, int Izvoznik,
                            int Klijent1, int Napomena1REf, int DobijenNalogKlijent1, int Klijent2,
-                           int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, int IDNadredjena, string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, int VrstaBrodskePlombe, string NapomenaZaRobu, decimal VGMBrod2, string KontaktSpeditera, string KontaktOsobe, int UvozniID)
+                           int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, int IDNadredjena, string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, int VrstaBrodskePlombe, string NapomenaZaRobu, decimal VGMBrod2, string KontaktSpeditera, string KontaktOsobe, int UvozniID, int Terminal)
         {
 
 
@@ -2296,11 +2322,17 @@ namespace Saobracaj.Izvoz
 
             SqlParameter uvozniid = new SqlParameter();
             uvozniid.ParameterName = "@UvozniID";
-            uvozniid.SqlDbType = SqlDbType.NVarChar;
-            uvozniid.Size = 500;
+            uvozniid.SqlDbType = SqlDbType.Int;
             uvozniid.Direction = ParameterDirection.Input;
             uvozniid.Value = UvozniID;
             cmd.Parameters.Add(uvozniid);
+
+            SqlParameter terminal = new SqlParameter();
+            terminal.ParameterName = "@Terminal";
+            terminal.SqlDbType = SqlDbType.Int;
+            terminal.Direction = ParameterDirection.Input;
+            terminal.Value = Terminal;
+            cmd.Parameters.Add(terminal);
 
 
             conn.Open();

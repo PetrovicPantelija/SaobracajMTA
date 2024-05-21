@@ -47,13 +47,11 @@ namespace Saobracaj.Uvoz
             //  RefreshDataGridColor();
         }
 
-        public Uvoz(int Terminalski)
+        public Uvoz(int Terminalski, int Plan)
         {
             InitializeComponent();
-            //  FillGV();
-            //  FillCheck();
-            //  UcitajNHMoveCombo();
             FillCombo();
+            cboPlanUtovara.SelectedValue = Plan;
             chkTerminalski.Checked = true;
             this.Text = "Primljeni kontejneri od strane terminala";
          

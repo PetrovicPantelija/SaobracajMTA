@@ -305,5 +305,18 @@ namespace Saobracaj.RadniNalozi
 
             }
         }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            InsertRN up = new InsertRN();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    up.PotvrdiUradjenRN5S(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                }
+
+            }
+        }
     }
 }

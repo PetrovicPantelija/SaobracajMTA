@@ -20,12 +20,21 @@ namespace Saobracaj.Uvoz
         string Kor = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
         string niz = "";
         string KorisnikF = "";
+        int pomTerminal = 0;
         public frmPregledPlanovaUtovara(string Korisnik)
         {
             InitializeComponent();
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
 
             KorisnikF = Korisnik;
+        }
+        public frmPregledPlanovaUtovara(int Terminal)
+        {
+            InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+            pomTerminal = Terminal;
+            KorisnikF = Saobracaj.Sifarnici.frmLogovanje.user.ToString(); 
+          
         }
         private void RefreshDataGrid()
         {
@@ -51,7 +60,7 @@ namespace Saobracaj.Uvoz
                          " Left join UvozKonacnaZaglavlje On Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
                          " inner join Partnerji p1 on p1.PaSifra = OperaterSrbija " +
                           " inner join Partnerji p2 on p2.PaSifra = OperaterHR " +
-                         " where Dolazeci = 1 Order by [Voz].[ID] desc";
+                         " where Dolazeci = 1 and Terminal = " + pomTerminal + "Order by [Voz].[ID] desc";
                         break;
 
                     }
@@ -141,6 +150,12 @@ namespace Saobracaj.Uvoz
         private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            Saobracaj.Uvoz.Uvoz uv = new Saobracaj.Uvoz.Uvoz(1, Convert.ToInt32(txtSifra.Text));
+            uv.Show();
         }
     }
 }

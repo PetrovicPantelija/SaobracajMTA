@@ -25,12 +25,13 @@ namespace Saobracaj.RadniNalozi
             FillCombo();
         }
 
-        public RN4PrijemPlatforme(string PrijemID, string RegBr, string KorisnikCene, string Usluga, int Uvoz)
+        public RN4PrijemPlatforme(string PrijemID, string RegBr, string KorisnikCene, string Usluga, int Uvoz, string NalogID)
         {
             InitializeComponent();
             txtNalogIzdao.Text = KorisnikCene;
             txtPrijemID.Text = PrijemID;
             txtKamion.Text = RegBr;
+            
             NapuniVrstuUsluge(Usluga);
 
             txtNalogID.Text = Usluga;
@@ -345,14 +346,14 @@ namespace Saobracaj.RadniNalozi
             {
                 //
                 RadniNalozi.InsertRN ir = new InsertRN();
-                ir.InsRNPrijemPlatformeKamUvoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text);
+                ir.InsRNPrijemPlatformeKamUvoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text, Convert.ToInt32(txtNalogID.Text));
                 FillGV();
 
             }
             else
             {
                 RadniNalozi.InsertRN ir = new InsertRN();
-                ir.InsRNPrijemPlatformeKamIzvoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text);
+                ir.InsRNPrijemPlatformeKamIzvoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text, Convert.ToInt32(txtNalogID.Text));
                 FillGV();
             }
            

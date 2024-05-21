@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmBolovanja : Form
+    public partial class frmBolovanja : Syncfusion.Windows.Forms.Office2010Form
     {
         Boolean status = false;
         public frmBolovanja()

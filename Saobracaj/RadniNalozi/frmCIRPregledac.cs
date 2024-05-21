@@ -38,6 +38,12 @@ namespace Saobracaj.RadniNalozi
             " inner join TipKontenjera on TipKontenjera.Id = VrstaKontejnera " +
             " where ZavrsenCIR is null AND Zavrsen = 1 " +
             " union " +
+            "Select RNPrijemPlatforme2.ID,  'PRIJEM PLATFORMA TERMINAL' as Vrsta, BrojKontejnera, DATUMRAsporeda, TipKontenjera.Naziv as TipKOntejnera, " +
+            " NalogIZdao, USkladiste, Skladista.Naziv,Kamion as PrevoznoSredstvo, NalogID, PrijemID from RNPrijemPlatforme2 " +
+            " inner join Skladista on Skladista.ID = USkladiste " +
+            " inner join TipKontenjera on TipKontenjera.Id = VrstaKontejnera " +
+            " where ZavrsenCIR is null  " +
+            " union " +
             " Select RNPrijemVoza.ID,  'PRIJEM VOZ' as Vrsta, RNPrijemVoza.BrojKontejnera, RNPrijemVoza.DatumRasporeda, TipKontenjera.Naziv as TipKOntejnera,  " +
             " NalogIzdao, Skladista.ID , Skladista.Naziv, (RTRIM(Voz.BrVoza) + ' ' + RTRIM(Voz.Relacija)) as PrevoznoSredstvo, NalogID, PRijemID " +
             " from RNPrijemVoza " +

@@ -281,5 +281,77 @@ namespace Saobracaj.RadniNalozi
 
             }
         }
+
+        private void VratiPodatkeStavka()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" SELECT [ID]      , [DatumRasporeda]      , [BrojKontejnera] " +
+      " , [VrstaKontejnera]      , [NalogIzdao]      , [DatumRealizacije] " +
+      " , [NaVoznoSredstvo]      , [BrojPlombe]      , [BrojVagona] " +
+      " , [NazivBrodara]      , [VrstaRobe]      , [SaSkladista] " +
+      " , [SaPozicijeSklad]      , [IdUsluge]      , [NalogRealizovao] " +
+      " , [Napomena]      , [OtpremaID]      , [NalogID] " +
+      " , [Zavrsen]   FROM [dbo].[RNOtpremaVoza]" +
+             " where ID = " + txtID.Text, con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+             
+                txtDatumRasporeda.Value = Convert.ToDateTime(dr["DatumRasporeda"].ToString());
+                txtbrojkontejnera.Text = dr["BrojKontejnera"].ToString();
+                cboVrstaKontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
+                cboUsluga.SelectedValue = Convert.ToInt32(dr["IdUsluge"].ToString());
+                txtNalogRealizovao.Text = dr["NalogRealizovao"].ToString();
+                txtNalogIzdao.Text = dr["NalogIzdao"].ToString();
+                txtDatumRealizacije.Value = Convert.ToDateTime(dr["DatumRealizacije"].ToString());
+                txtOtpremaID.Text = dr["OtpremaID"].ToString();
+                //cboIzvoznik.SelectedValue = Convert.ToInt32(dr["Izvoznik"].ToString());
+                txtBrojPlombe.Text = dr["BrojPlombe"].ToString();
+                txtNalogID.Text = dr["NalogID"].ToString();
+                cboBrodar.SelectedValue = Convert.ToInt32(dr["NazivBrodara"].ToString());
+
+                txtNapomena.Text = dr["Napomena"].ToString();
+                cboSaPoz.SelectedValue = Convert.ToInt32(dr["SaPozicijeSklad"].ToString());
+
+                cboSaSklad.SelectedValue = Convert.ToInt32(dr["SaSkladista"].ToString());
+              
+                //NIJE DOBRO null   cboPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
+                txtNapomena.Text = dr["Napomena"].ToString();
+                //NIJE DOBR NULL   cboInspekcijski.SelectedValue = Convert.ToInt32(dr["InspekcijskiPregled"].ToString());
+
+                if (dr["Zavrsen"].ToString() == "1")
+                { chkZavrsen.Checked = true; }
+                else
+                {
+                    chkZavrsen.Checked = false;
+                }
+
+              
+
+               
+            }
+
+            con.Close();
+
+        }
+
+        private void dataGridView1_SelectionChanged_1(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    txtID.Text = row.Cells[0].Value.ToString();
+                    VratiPodatkeStavka();
+                }
+
+            }
+        }
     }
 }

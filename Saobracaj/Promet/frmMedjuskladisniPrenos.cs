@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Net;
 using System.Net.Mail;
+using Syncfusion.Windows.Forms.Tools;
 
 
 namespace TrackModal.Promet
@@ -33,6 +34,10 @@ namespace TrackModal.Promet
         public frmMedjuskladisniPrenos()
         {
             InitializeComponent();
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                toolStripButton2.Visible = true;
+            }
 
         }
 
@@ -97,7 +102,7 @@ namespace TrackModal.Promet
             cboSredstvoRada.ValueMember = "ID";
 
 
-            var select5 = " Select Distinct ID, (Cast(ID as nvarchar(5)) + ' ' + Rtrim(Prezime) + ' ' + Rtrim(Ime)) as Naziv   From Zaposleni";
+            var select5 = " Select Distinct DeSifra, (Cast(DeSifra as nvarchar(5)) + ' ' + Rtrim(DePriimek) + ' ' + Rtrim(DeIme)) as Naziv   From Delavci";
             var s_connection5 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection5);
@@ -108,7 +113,7 @@ namespace TrackModal.Promet
             dataAdapter5.Fill(ds5);
             cboZaposleni.DataSource = ds5.Tables[0];
             cboZaposleni.DisplayMember = "Naziv";
-            cboZaposleni.ValueMember = "ID";
+            cboZaposleni.ValueMember = "DeSifra";
 
             //Dodato za pretragu
             var select = " Select Distinct ID, (Rtrim(Broj) + '-' + Naziv) as NHM  From NHM ORDER BY ID";
@@ -368,6 +373,9 @@ namespace TrackModal.Promet
                 {
                     string poms = row.Cells[2].Value.ToString();
                     int pozicija = Convert.ToInt32(cboPozicija.SelectedValue);
+                    int ProveriStatusPrijemnice = 0;
+
+                    ProveriStatusPrijemnice = VratiStatusPrijemnice(Convert.ToInt32(row.Cells[11].Value.ToString()));
                     /*
                       SELECT Promet.[Id], Promet.[DatumTransakcije], Promet.[VrstaDokumenta] " + 
             " ,Promet.[PrStDokumenta],Promet.[PrSifVrstePrometa],Promet.[BrojKontejnera] " +
@@ -375,9 +383,17 @@ namespace TrackModal.Promet
             " ,Promet.[LokacijaU] as LokacijaU,Pozicija.Oznaka ,Promet.[PrOznSled] " +
             " ,Promet.[Datum] ,Promet.[Korisnik]
                       */
-                   // ins.InsProm(Convert.ToDateTime(dtpDatumPrijema.Value), s1, Convert.ToInt32(txtSifra.Text), row.Cells[0].Value.ToString(), s2, pom3, Convert.ToDouble(pom1), Convert.ToInt32(cboSkladiste.SelectedValue), pozicija, pom2, pom1, poms, Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(cboSredstvoRada.SelectedValue), Convert.ToInt32(cboZaposleni.SelectedValue), Convert.ToDateTime(dtpDatumRasporeda.Value));
-                    ins.InsProm(Convert.ToDateTime(dtpDatumPrijema.Value), s1, Convert.ToInt32(txtSifra.Text), row.Cells[5].Value.ToString(), s2, pom3, pom1,                   Convert.ToInt32(cboSkladiste.SelectedValue), pozicija, Convert.ToInt32(row.Cells[7].Value.ToString()), Convert.ToInt32(row.Cells[9].Value.ToString()), row.Cells[11].Value.ToString(), Convert.ToDateTime(DateTime.Now), KorisnikCene,0,0, Convert.ToDateTime(dtpDatumRasporeda.Value));
-                    ins.UpdateZatvoren(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                    // ins.InsProm(Convert.ToDateTime(dtpDatumPrijema.Value), s1, Convert.ToInt32(txtSifra.Text), row.Cells[0].Value.ToString(), s2, pom3, Convert.ToDouble(pom1), Convert.ToInt32(cboSkladiste.SelectedValue), pozicija, pom2, pom1, poms, Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(cboSredstvoRada.SelectedValue), Convert.ToInt32(cboZaposleni.SelectedValue), Convert.ToDateTime(dtpDatumRasporeda.Value));
+                    if (ProveriStatusPrijemnice == 0)
+                    {
+                        MessageBox.Show("Kontejner u statusu najava" + row.Cells[2].Value.ToString());
+                    }
+                    else
+                    {
+                        ins.InsProm(Convert.ToDateTime(dtpDatumPrijema.Value), s1, Convert.ToInt32(txtSifra.Text), row.Cells[5].Value.ToString(), s2, pom3, pom1, Convert.ToInt32(cboSkladiste.SelectedValue), pozicija, Convert.ToInt32(row.Cells[7].Value.ToString()), Convert.ToInt32(row.Cells[9].Value.ToString()), row.Cells[11].Value.ToString(), Convert.ToDateTime(DateTime.Now), KorisnikCene, 0, 0, Convert.ToDateTime(dtpDatumRasporeda.Value));
+                        ins.UpdateZatvoren(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                    }
+                   
                 }
             }
             RefreshDataGrid2();
@@ -554,6 +570,26 @@ namespace TrackModal.Promet
 
         }
 
+       int VratiStatusPrijemnice(int OznSled)
+        {
+            int sp = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select StatusPrijema from PrijemKontejneraVoz inner join PrijemKontejneraVozStavke on PrijemKontejneraVozStavke.IDNadredjenog  =  PrijemKontejneraVoz.ID where PrijemKontejneraVozStavke.ID = " + OznSled, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+              sp =  Convert.ToInt32(dr["StatusPrijema"].ToString());
+            }
+
+            con.Close();
+            return sp;
+        }
+
         private void VratiPodatkeMax()
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -601,9 +637,9 @@ namespace TrackModal.Promet
         private void RefreshDataGrid4()
         {
             var select = "SELECT PrometManipulacije.Id AS ID, PrometManipulacije.PRStDokumenta, PrometManipulacije.BrojKontejnera AS BrojKontrejnera, PrometManipulacije.ManipulacijaID, PrometManipulacije.NajavaID, " +
-                       " PrometManipulacije.Datum AS Datum, PrometManipulacije.Korisnik AS Korisnik, Zaposleni.Prezime, Zaposleni.Ime, Vozila.Naziv " +
+                       " PrometManipulacije.Datum AS Datum, PrometManipulacije.Korisnik AS Korisnik, Delavci.DePriimek, Delavci.DeIme, Vozila.Naziv " +
                        " FROM  PrometManipulacije INNER JOIN " +
-                      "  Zaposleni ON PrometManipulacije.Zaposleni = Zaposleni.ID INNER JOIN " +
+                      "  Delavci  ON PrometManipulacije.Zaposleni = Delavci.DeSifra INNER JOIN " +
                        " Vozila ON PrometManipulacije.SredstvoRada = Vozila.ID  and PrStDokumenta =  " + Convert.ToInt32(txtSifra.Text);
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;

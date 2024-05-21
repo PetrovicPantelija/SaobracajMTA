@@ -14,6 +14,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Diagnostics.CodeAnalysis;
 using Saobracaj;
+using Saobracaj.RadniNalozi;
 
 namespace Saobracaj.Dokumenta
 {
@@ -149,7 +150,7 @@ namespace Saobracaj.Dokumenta
 
         }
 
-        public frmPrijemKontejneraKamionLegetIzvoz(string Korisnik, int Vozom, string NalogID)
+        public frmPrijemKontejneraKamionLegetIzvoz(string Korisnik, int Vozom, string NalogID, int Cirada, int Poreklo)
         {
             InitializeComponent();
             FillCombo();
@@ -158,6 +159,13 @@ namespace Saobracaj.Dokumenta
             chkIzvoz.Checked = true;
             txtNalogID.Text = NalogID;
             VratiPodatkeIzvoznePoNalogu(NalogID);
+            if (Cirada == 1)
+            { chkPlatforma.Checked = false;
+                chkCirada.Checked = true;
+            
+            }
+            else 
+            { chkPlatforma.Checked = true; chkCirada.Checked = false;}
 
             if (Vozom == 1)
             {
@@ -664,7 +672,7 @@ namespace Saobracaj.Dokumenta
             cboBukingOtpreme.DisplayMember = "IdVoza";
             cboBukingOtpreme.ValueMember = "ID";
             */
-            var select8 = "  Select Distinct ID, (Cast(BrVoza as nvarchar(6)) + '-' + Relacija) as IdVoza   From Voz ";
+            var select8 = "  Select Distinct ID, (Cast(BrVoza as nvarchar(10)) + '-' + Relacija) as IdVoza   From Voz ";
             var s_connection8 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection8 = new SqlConnection(s_connection8);
             var c8 = new SqlConnection(s_connection8);
@@ -764,7 +772,7 @@ namespace Saobracaj.Dokumenta
             cboTipKontejnera.DisplayMember = "Naziv";
             cboTipKontejnera.ValueMember = "ID";
 
-            var select5 = " Select Distinct ID, (Cast(BrVoza as nvarchar(6)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12))) as IDVoza From Voz where dolazeci = 0";
+            var select5 = " Select Distinct ID, (Cast(BrVoza as nvarchar(10)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12))) as IDVoza From Voz where dolazeci = 0";
             var s_connection5 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection5 = new SqlConnection(s_connection5);
             var c5 = new SqlConnection(s_connection5);
@@ -814,7 +822,7 @@ namespace Saobracaj.Dokumenta
             cboBukingOtpreme.DisplayMember = "IdVoza";
             cboBukingOtpreme.ValueMember = "ID";
             */
-            var select8 = "  Select Distinct ID, (Cast(BrVoza as nvarchar(6)) + '-' + Relacija) as IdVoza   From Voz ";
+            var select8 = "  Select Distinct ID, (Cast(BrVoza as nvarchar(10)) + '-' + Relacija) as IdVoza   From Voz ";
             var s_connection8 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection8 = new SqlConnection(s_connection8);
             var c8 = new SqlConnection(s_connection8);
@@ -972,7 +980,8 @@ namespace Saobracaj.Dokumenta
                 DialogResult dialogResult = MessageBox.Show("Niste obeležili ni jednu uslugu, da li nastavljate dalje", "Usluga?", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    RadniNalozi.RN4PrijemPlatforme ppl = new RadniNalozi.RN4PrijemPlatforme(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene, IDUsluge, 1);
+                    //Zadnji je 
+                    RadniNalozi.RN4PrijemPlatforme ppl = new RadniNalozi.RN4PrijemPlatforme(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene, IDUsluge, 2, txtNalogID.Text);
                     ppl.Show();
                 }
                 else if (dialogResult == DialogResult.No)
@@ -983,7 +992,7 @@ namespace Saobracaj.Dokumenta
             }
             else
             {
-                RadniNalozi.RN4PrijemPlatforme ppl = new RadniNalozi.RN4PrijemPlatforme(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene, IDUsluge, 1);
+                RadniNalozi.RN4PrijemPlatforme ppl = new RadniNalozi.RN4PrijemPlatforme(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene, IDUsluge, 1, txtNalogID.Text);
                 ppl.Show();
             }
         }
@@ -1147,6 +1156,11 @@ namespace Saobracaj.Dokumenta
         }
 
         private void txtNalogID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
         {
 
         }

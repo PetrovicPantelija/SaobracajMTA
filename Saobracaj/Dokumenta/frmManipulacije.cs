@@ -395,7 +395,7 @@ namespace Saobracaj.Dokumenta
             {
                 var select = "   select  NaruceneManipulacije.IDPrijemaVoza, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv, " +
  " CASE WHEN NaruceneManipulacije.Uradjeno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Uradjeno, " +
- " NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik,  NaruceneManipulacije.ID from NaruceneManipulacije " +
+ " NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik,  NaruceneManipulacije.ID, Partnerji.PaNaziv As Platilac from NaruceneManipulacije " +
 " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
 " inner join Partnerji on NaruceneManipulacije.Platilac = Partnerji.PaSifra " +
                " where IDPrijemaVoza = " + Convert.ToInt32(cboPrijemVozom.SelectedValue);
@@ -460,8 +460,9 @@ namespace Saobracaj.Dokumenta
             }
             else
             {
-                var select = "  select NaruceneManipulacije.IDPrijemaKamionom, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv, NaruceneManipulacije.Uradjeno, NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik, NaruceneManipulacije.ID from NaruceneManipulacije " +
+                var select = "  select NaruceneManipulacije.IDPrijemaKamionom, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv, NaruceneManipulacije.Uradjeno, NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik, NaruceneManipulacije.ID, Partnerji.PaNaziv  as Platilac from NaruceneManipulacije " +
             " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
+            " inner join Partnerji on NaruceneManipulacije.Platilac = Partnerji.PaSifra " +
              " where IDPrijemaKamionom = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue);
 
                 var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -527,7 +528,7 @@ namespace Saobracaj.Dokumenta
                 {
                     var select = "   select  NaruceneManipulacije.IDPrijemaVoza, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv, " +
      " CASE WHEN NaruceneManipulacije.Uradjeno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Uradjeno, " +
-     " NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik,  NaruceneManipulacije.ID from NaruceneManipulacije " +
+     " NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik,  NaruceneManipulacije.ID, Partnerji.PaNaziv as Platilac from NaruceneManipulacije " +
     " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
     " inner join Partnerji on NaruceneManipulacije.Platilac = Partnerji.PaSifra " +
                    " where IDPrijemaVoza = " + Convert.ToInt32(cboPrijemVozom.SelectedValue);
@@ -594,8 +595,9 @@ namespace Saobracaj.Dokumenta
                 {
                     var select = "  select NaruceneManipulacije.IDPrijemaKamionom, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, " +
                     "VrstaManipulacije.Naziv, NaruceneManipulacije.Uradjeno, NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, " +
-                    "NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik, NaruceneManipulacije.ID from NaruceneManipulacije " +
+                    "NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik, NaruceneManipulacije.ID, PaNaziv As Platilac from NaruceneManipulacije " +
                 " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
+                    " inner join Partnerji on NaruceneManipulacije.Platilac = Partnerji.PaSifra " +
                  " where IDPrijemaKamionom = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue);
 
                     var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;

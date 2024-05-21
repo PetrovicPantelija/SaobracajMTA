@@ -380,7 +380,8 @@ namespace Saobracaj.Uvoz
                 DialogResult dialogResult = MessageBox.Show("Formirate prijem platforme Kamionom", "Usluga?", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz okk = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz(Korisnik, 0, txtNALOGID.Text);
+                    // Zadnja dva parametra CIRADA/PLATFORMA, POreklo je OJ
+                    Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz okk = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz(Korisnik, 0, txtNALOGID.Text, 0,4);
                     okk.Show();
                 }
                 else if (dialogResult == DialogResult.No)
@@ -443,6 +444,7 @@ namespace Saobracaj.Uvoz
         {
             string Forma = VratiFormu();
             int KISUsl = 0;
+            int OJ = VratiOJIzdavanja();
             if (Forma == "GATE IN VOZ")
             {
                 MessageBox.Show("Formirate Prijem vozom");
@@ -451,16 +453,18 @@ namespace Saobracaj.Uvoz
             }
             if (Forma == "GATE OUT KAMION")
             {
+                
                 MessageBox.Show("Formirate Otpremu kamionom Platforma");
                 KISUsl = VratiKonkretanIDUsluge();
-                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 0);
+                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 0 ,OJ);
                 okk.Show();
+
 
             }
 
             if (Forma == "GATE IN KAMION")
             {
-                int OJ = VratiOJIzdavanja();
+                
                 //ZAdnja nula je Uvoz
                 if (OJ == 4)
                 {
@@ -468,10 +472,17 @@ namespace Saobracaj.Uvoz
                     Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 2);
                     prijemplat.Show();
                 }
-                else
+                else if (OJ ==2)
                 {
-                    MessageBox.Show("Formirate Prijem kamionom Platforma");
-                    Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 0);
+                    MessageBox.Show("Formirate Prijem kamionom Platforma Izvoz");
+                    Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz(Korisnik, 0, txtNALOGID.Text,0, 2);
+                    prijemplat.Show();
+                }
+                else if (OJ == 1)
+                {
+
+                    MessageBox.Show("Formirate Prijem kamionom Platforma Uvoz");
+                    Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 1);
                     prijemplat.Show();
 
                 }
@@ -490,7 +501,7 @@ namespace Saobracaj.Uvoz
             if (Forma == "GATE IN PRETOVAR")
             {
                 MessageBox.Show("Formirate Otprema kamionom Cirada");
-                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 1);
+                Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 1,OJ);
                 okk.Show();
             }
 

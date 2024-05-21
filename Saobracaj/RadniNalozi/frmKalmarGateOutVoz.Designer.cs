@@ -1,6 +1,6 @@
 ﻿namespace Saobracaj.RadniNalozi
 {
-    partial class frmKalmarGateOut
+    partial class frmKalmarGateOutVoz
     {
         /// <summary>
         /// Required designer variable.
@@ -37,10 +37,10 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button1.Location = new System.Drawing.Point(246, 12);
+            this.button1.Location = new System.Drawing.Point(229, 12);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(241, 23);
-            this.button1.TabIndex = 21;
+            this.button1.TabIndex = 24;
             this.button1.Text = "2: URAĐENI";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -54,12 +54,12 @@
             this.gridGroupingControl2.BackColor = System.Drawing.SystemColors.Window;
             this.gridGroupingControl2.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl2.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2010Blue;
-            this.gridGroupingControl2.Location = new System.Drawing.Point(17, 50);
+            this.gridGroupingControl2.Location = new System.Drawing.Point(12, 41);
             this.gridGroupingControl2.Name = "gridGroupingControl2";
             this.gridGroupingControl2.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
             this.gridGroupingControl2.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl2.Size = new System.Drawing.Size(1010, 479);
-            this.gridGroupingControl2.TabIndex = 20;
+            this.gridGroupingControl2.Size = new System.Drawing.Size(1124, 560);
+            this.gridGroupingControl2.TabIndex = 23;
             this.gridGroupingControl2.TableDescriptor.AllowNew = false;
             this.gridGroupingControl2.TableDescriptor.TableOptions.CaptionRowHeight = 22;
             this.gridGroupingControl2.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
@@ -73,24 +73,24 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.button2.Location = new System.Drawing.Point(29, 12);
+            this.button2.Location = new System.Drawing.Point(12, 12);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(200, 23);
-            this.button2.TabIndex = 19;
+            this.button2.TabIndex = 22;
             this.button2.Text = "1: AKTIVNI";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // frmKalmarGateOut
+            // frmKalmarGateOutVoz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1039, 541);
+            this.ClientSize = new System.Drawing.Size(1148, 613);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.gridGroupingControl2);
             this.Controls.Add(this.button2);
-            this.Name = "frmKalmarGateOut";
-            this.Text = "KALMAR GATE OUT KAMION";
+            this.Name = "frmKalmarGateOutVoz";
+            this.Text = "KALMAR GATE OUT TRAIN";
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl2)).EndInit();
             this.ResumeLayout(false);
 

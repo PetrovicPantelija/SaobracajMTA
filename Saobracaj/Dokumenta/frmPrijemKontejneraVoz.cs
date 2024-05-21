@@ -161,6 +161,10 @@ namespace TrackModal.Dokumeta
             string sp = cboStatusPrijema.Text;
             int ini = cboStatusPrijema.SelectedIndex;
             int ini2 = Convert.ToInt32(cboStatusPrijema.SelectedValue);
+            if (ini2 == 1)
+            {
+                dtpVremeDolaska.Value = DateTime.Now;
+            }
             if (chkVoz.Checked == true)
             {
                 if (status == true)
@@ -3008,6 +3012,12 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
+            if (cboStatusPrijema.Text != "2 - Primljeno")
+            {
+                MessageBox.Show("Prijemnica mora biti u statusu Primljeno");
+                return;
+            }
+
             DialogResult dr = MessageBox.Show("Da li želite da sačuvate na predefinisano skladište?", "Skladište", MessageBoxButtons.YesNo);
             if (dr == DialogResult.Yes)
             {

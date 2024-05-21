@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
 {
-    public partial class frmPrebacivanjeIzPlanaUPlan : Form
+    public partial class frmPrebacivanjeIzPlanaUPlan : Syncfusion.Windows.Forms.Office2010Form
     {
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         public frmPrebacivanjeIzPlanaUPlan()

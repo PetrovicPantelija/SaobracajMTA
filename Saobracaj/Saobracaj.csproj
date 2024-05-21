@@ -1532,6 +1532,12 @@
     <Compile Include="Izvoz\frmAdresaStatusVozila.Designer.cs">
       <DependentUpon>frmAdresaStatusVozila.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\frmDopunaPlanaPraznimIzvoz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmDopunaPlanaPraznimIzvoz.Designer.cs">
+      <DependentUpon>frmDopunaPlanaPraznimIzvoz.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmFormiranjePlanaIzvoz.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1585,6 +1591,12 @@
     </Compile>
     <Compile Include="Izvoz\frmIzvozTable.Designer.cs">
       <DependentUpon>frmIzvozTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvoz\frmIzvozTerminalPovezi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmIzvozTerminalPovezi.Designer.cs">
+      <DependentUpon>frmIzvozTerminalPovezi.cs</DependentUpon>
     </Compile>
     <Compile Include="Izvoz\frmIzvozUnosManipulacije.cs">
       <SubType>Form</SubType>
@@ -2101,6 +2113,12 @@
     </Compile>
     <Compile Include="RadniNalozi\frmKalmarGateOut.Designer.cs">
       <DependentUpon>frmKalmarGateOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadniNalozi\frmKalmarGateOutVoz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalozi\frmKalmarGateOutVoz.Designer.cs">
+      <DependentUpon>frmKalmarGateOutVoz.cs</DependentUpon>
     </Compile>
     <Compile Include="RadniNalozi\frmPregledSkladistaNovi.cs">
       <SubType>Form</SubType>
@@ -4100,6 +4118,9 @@
     <EmbeddedResource Include="Izvoz\frmAdresaStatusVozila.resx">
       <DependentUpon>frmAdresaStatusVozila.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmDopunaPlanaPraznimIzvoz.resx">
+      <DependentUpon>frmDopunaPlanaPraznimIzvoz.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmFormiranjePlanaIzvoz.resx">
       <DependentUpon>frmFormiranjePlanaIzvoz.cs</DependentUpon>
     </EmbeddedResource>
@@ -4126,6 +4147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmIzvozTable.resx">
       <DependentUpon>frmIzvozTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmIzvozTerminalPovezi.resx">
+      <DependentUpon>frmIzvozTerminalPovezi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmIzvozUnosManipulacije.resx">
       <DependentUpon>frmIzvozUnosManipulacije.cs</DependentUpon>
@@ -4329,6 +4353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\frmKalmarGateOut.resx">
       <DependentUpon>frmKalmarGateOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalozi\frmKalmarGateOutVoz.resx">
+      <DependentUpon>frmKalmarGateOutVoz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\frmPregledSkladista.resx">
       <DependentUpon>frmPregledSkladista.cs</DependentUpon>
