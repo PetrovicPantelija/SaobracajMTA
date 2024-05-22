@@ -18,7 +18,7 @@ using Microsoft.Reporting.WinForms;
 
 namespace TrackModal.Dokumeta
 {
-    public partial class frmSkladistePrijem : Form
+    public partial class frmSkladistePrijem : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmSkladistePrijem";
         public bool Pravo;
@@ -225,7 +225,9 @@ namespace TrackModal.Dokumeta
         private void btnPretrazi_Click(object sender, EventArgs e)
         {
             chkVoz.Checked = true;
-            var select = "   Select BrojKontejnera, IDNAdredjenog as Dokument, PrijemKontejneraVozStavke.ID as RB, TipKontenjera.Naziv,  PrijemKontejneraVozStavke.SopstvenaMasa, PrijemKontejneraVozStavke.Tara, PrijemKontejneraVozStavke.Neto, (PrijemKontejneraVozStavke.Tara + PrijemKontejneraVozStavke.Neto) as Bruto   From PrijemKontejneraVozStavke " +
+            var select = "   Select BrojKontejnera, IDNAdredjenog as Dokument, PrijemKontejneraVozStavke.ID as RB, TipKontenjera.Naziv,  " +
+                "PrijemKontejneraVozStavke.SopstvenaMasa, PrijemKontejneraVozStavke.Tara, PrijemKontejneraVozStavke.Neto, " +
+                " (PrijemKontejneraVozStavke.Tara + PrijemKontejneraVozStavke.Neto) as Bruto   From PrijemKontejneraVozStavke " +
  " inner join TipKontenjera on TipKontenjera.Id = PrijemKontejneraVozStavke.TipKontejnera " +
  " inner join PrijemKontejneraVoz on PrijemKontejneraVoz.Id = PrijemKontejneraVozStavke.IDNadredjenog " +
  "  where PrijemKontejneraVoz.Vozom = 1 and IDNadredjenog = " + Convert.ToInt32(cboPrijemVozom.SelectedValue);
@@ -287,10 +289,10 @@ namespace TrackModal.Dokumeta
             */
 
             chkVoz.Checked = false;
-            var select = "   Select BrojKontejnera, IDNAdredjenog as Dokument, PrijemKontejneraVozStavke.ID as RB, TipKontenjera.Naziv, VrstaRobe.Nkm as NHM, VrstaRobe.Naziv as BrojStavka, PrijemKontejneraVozStavke.SopstvenaMasa, PrijemKontejneraVozStavke.Tara, PrijemKontejneraVozStavke.Neto, (PrijemKontejneraVozStavke.Tara + PrijemKontejneraVozStavke.Neto) as Bruto    From PrijemKontejneraVozStavke " +
+            var select = "   Select BrojKontejnera, IDNAdredjenog as Dokument, PrijemKontejneraVozStavke.ID as RB, TipKontenjera.Naziv, NHM.Broj as NHM, NHM.Naziv as NazivNHM, PrijemKontejneraVozStavke.SopstvenaMasa, PrijemKontejneraVozStavke.Tara, PrijemKontejneraVozStavke.Neto, (PrijemKontejneraVozStavke.Tara + PrijemKontejneraVozStavke.Neto) as Bruto    From PrijemKontejneraVozStavke " +
              " inner join TipKontenjera on TipKontenjera.Id = PrijemKontejneraVozStavke.TipKontejnera " +
              " inner join PrijemKontejneraVoz on PrijemKontejneraVoz.Id = PrijemKontejneraVozStavke.IDNadredjenog " +
-             " inner join VrstaRobe on VrstaRobe.Id = PrijemKontejneraVozStavke.VrstaRobe where PrijemKontejneraVoz.Vozom = 0 and IDNadredjenog = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue);
+             " inner join NHM on NHM.Id = PrijemKontejneraVozStavke.VrstaRobe where PrijemKontejneraVoz.Vozom = 0 and IDNadredjenog = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue);
                         var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
            // var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -496,16 +498,16 @@ namespace TrackModal.Dokumeta
                     var select = "";
                     if (chkVoz.Checked == true)
                     {
-                        select = "  select BrojKontejnera, VrstaManipulacije.Naziv, Komitenti.Naziv, NaruceneManipulacije.ID as NM, NaruceneManipulacije.IDPrijemaVoza from NaruceneManipulacije " +
+                        select = "  select BrojKontejnera, VrstaManipulacije.Naziv, PArtnerji.PaNaziv, NaruceneManipulacije.ID as NM, NaruceneManipulacije.IDPrijemaVoza from NaruceneManipulacije " +
             " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
-            " inner join Komitenti on  NaruceneManipulacije.Platilac = Komitenti.ID " +
+            " inner join Partnerji on  NaruceneManipulacije.Platilac = Partnerji.PaSifra " +
             " where NaruceneManipulacije.IzPrijema = 1 and  NaruceneManipulacije.IDPrijemaVoza = " + Convert.ToInt32(cboPrijemVozom.SelectedValue) + " and BrojKontejnera = '" + row.Cells[0].Value.ToString() + "'";
                     }
                     else
                     {
-                        select = "  select BrojKontejnera, VrstaManipulacije.Naziv, Komitenti.Naziv, NaruceneManipulacije.ID as NM, NaruceneManipulacije.IDPrijemaVoza from NaruceneManipulacije " +
+                        select = "  select BrojKontejnera, VrstaManipulacije.Naziv, PArtnerji.PaNaziv, NaruceneManipulacije.ID as NM, NaruceneManipulacije.IDPrijemaVoza from NaruceneManipulacije " +
                " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
-               " inner join Komitenti on  NaruceneManipulacije.Platilac = Komitenti.ID " +
+               " inner join Partnerji on  NaruceneManipulacije.Platilac = Partnerji.PaSifra " +
                " where NaruceneManipulacije.IzPrijema = 1 and IdPrijemaKamionom = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue) + " and BrojKontejnera = '" + row.Cells[0].Value.ToString() + "'";
                     }
                         var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -551,10 +553,19 @@ namespace TrackModal.Dokumeta
 
                 if (row.Selected)
                 {
-                    //Panta1
-                    txtTara.Text = (Convert.ToDecimal(txtTara.Text) + Convert.ToDecimal(row.Cells[5].Value.ToString())).ToString();
-                    txtNeto.Text = (Convert.ToDecimal(txtNeto.Text) + Convert.ToDecimal(row.Cells[6].Value.ToString())).ToString();
-                    txtBruto.Text = (Convert.ToDecimal(txtBruto.Text) + Convert.ToDecimal(row.Cells[7].Value.ToString())).ToString();
+                    if (chkVoz.Checked == false)
+                    {
+                        txtTara.Text = (Convert.ToDecimal(txtTara.Text) + Convert.ToDecimal(row.Cells[7].Value.ToString())).ToString();
+                        txtNeto.Text = (Convert.ToDecimal(txtNeto.Text) + Convert.ToDecimal(row.Cells[8].Value.ToString())).ToString();
+                        txtBruto.Text = (Convert.ToDecimal(txtBruto.Text) + Convert.ToDecimal(row.Cells[9].Value.ToString())).ToString();
+                    }
+                    else
+                    {
+                        txtTara.Text = (Convert.ToDecimal(txtTara.Text) + Convert.ToDecimal(row.Cells[4].Value.ToString())).ToString();
+                        txtNeto.Text = (Convert.ToDecimal(txtNeto.Text) + Convert.ToDecimal(row.Cells[5].Value.ToString())).ToString();
+                        txtBruto.Text = (Convert.ToDecimal(txtBruto.Text) + Convert.ToDecimal(row.Cells[6].Value.ToString())).ToString();
+                    }
+                   
                 }
             }
         }
@@ -681,9 +692,9 @@ namespace TrackModal.Dokumeta
         private void RefreshDataGrid4()
         {
             var select = "SELECT PrometManipulacije.Id AS ID, PrometManipulacije.PRStDokumenta, PrometManipulacije.BrojKontejnera AS BrojKontrejnera, PrometManipulacije.ManipulacijaID, PrometManipulacije.NajavaID, " +
-                       " PrometManipulacije.Datum AS Datum, PrometManipulacije.Korisnik AS Korisnik, Zaposleni.Prezime, Zaposleni.Ime, Vozila.Naziv " +
+                       " PrometManipulacije.Datum AS Datum, PrometManipulacije.Korisnik AS Korisnik, Delavci.DePriimek as Prezime, Delavci.DeIme as Ime, Vozila.Naziv " +
                        " FROM  PrometManipulacije INNER JOIN " +
-                      "  Zaposleni ON PrometManipulacije.Zaposleni = Zaposleni.ID INNER JOIN " + 
+                      "  Delavci ON PrometManipulacije.Zaposleni = Delavci.DeSifra INNER JOIN " + 
                        " Vozila ON PrometManipulacije.SredstvoRada = Vozila.ID  and PrStDokumenta =  " + Convert.ToInt32(txtSifra.Text) ;
            
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -878,6 +889,16 @@ namespace TrackModal.Dokumeta
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
         {
 
         }

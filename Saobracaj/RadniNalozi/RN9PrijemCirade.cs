@@ -25,9 +25,11 @@ namespace Saobracaj.RadniNalozi
             InitializeComponent();
             FillGV();
             FillCombo();
+            //POOOOOO
             txtPrijemID.Text = PrijemID;
             txtKamion.Text = Kamion;
             txtNalogIzdao.Text = Korisnik;
+          
 
         }
         private void FillGV()

@@ -13,7 +13,7 @@ using System.Configuration;
 
 namespace TrackModal.Promet
 {
-    public partial class frmPopisUporedniPrikaz2 : Form
+    public partial class frmPopisUporedniPrikaz2 : Syncfusion.Windows.Forms.Office2010Form
     {
         public frmPopisUporedniPrikaz2()
         {

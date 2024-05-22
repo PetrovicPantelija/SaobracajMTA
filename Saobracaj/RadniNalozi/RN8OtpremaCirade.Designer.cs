@@ -64,6 +64,8 @@ namespace Saobracaj.RadniNalozi
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.cboSaSklad = new System.Windows.Forms.ComboBox();
             this.cboSaPoz = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -79,8 +81,6 @@ namespace Saobracaj.RadniNalozi
             this.label41 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.chkZavrsen = new System.Windows.Forms.CheckBox();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -343,7 +343,7 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton5});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(842, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(872, 27);
             this.toolStrip1.TabIndex = 435;
             this.toolStrip1.Text = "FORMIRAJ RN OTPREMA CIRADE";
             // 
@@ -405,6 +405,28 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton2.Size = new System.Drawing.Size(91, 24);
             this.toolStripButton2.Text = "Potvrdi završen";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton3.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(116, 24);
+            this.toolStripButton3.Text = "OTPREMNICA ROBE";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton5.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(167, 24);
+            this.toolStripButton5.Text = "OTPREMNICA ROBE PREGLED";
+            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // cboSaSklad
             // 
@@ -577,41 +599,19 @@ namespace Saobracaj.RadniNalozi
             // chkZavrsen
             // 
             this.chkZavrsen.AutoSize = true;
-            this.chkZavrsen.Location = new System.Drawing.Point(605, 35);
+            this.chkZavrsen.Location = new System.Drawing.Point(620, 250);
             this.chkZavrsen.Name = "chkZavrsen";
             this.chkZavrsen.Size = new System.Drawing.Size(65, 17);
             this.chkZavrsen.TabIndex = 443;
             this.chkZavrsen.Text = "Zavrsen";
             this.chkZavrsen.UseVisualStyleBackColor = true;
             // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton3.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(116, 24);
-            this.toolStripButton3.Text = "OTPREMNICA ROBE";
-            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
-            // 
-            // toolStripButton5
-            // 
-            this.toolStripButton5.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton5.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(167, 24);
-            this.toolStripButton5.Text = "OTPREMNICA ROBE PREGLED";
-            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
-            // 
             // RN8OtpremaCirade
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(842, 648);
+            this.ClientSize = new System.Drawing.Size(872, 648);
             this.Controls.Add(this.label41);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.chkZavrsen);

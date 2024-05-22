@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace TrackModal.Promet
 {
-    public partial class frmPopisStampa : Form
+    public partial class frmPopisStampa : Syncfusion.Windows.Forms.Office2010Form
     {
         public frmPopisStampa()
         {
