@@ -10,10 +10,20 @@ namespace Saobracaj.RadniNalozi
     public partial class Prijemnica : Syncfusion.Windows.Forms.Office2010Form
     {
         string connect = frmLogovanje.connectionString;
-        string korisnik;
+        string korisnik,kontejner;
+        int nalog,sklad,poz;
         public Prijemnica()
         {
             InitializeComponent();
+        }
+        public Prijemnica(int NalogID,string Kontejner,int Sklad,int Poz)
+        {
+            InitializeComponent();
+            nalog = NalogID;
+            
+            kontejner=Kontejner;
+            sklad = Sklad;
+            poz = Poz;
         }
 
         private void Prijemnica_Load(object sender, EventArgs e)
@@ -22,19 +32,25 @@ namespace Saobracaj.RadniNalozi
             FillCombo();
             DGVCombo();
             panel1.Visible = false;
+            if (frmLogovanje.Firma == "Leget")
+            {
+                btn_Povuci.Visible = false;
+                cbo_Skladiste.SelectedValue = sklad;
+                cbo_Lokacija.SelectedValue = poz;
+                txtBrojKontejnera.Text = kontejner;
+                korisnik = frmLogovanje.user;
+            }
         }
         private void FillCombo()
         {
-            var query = "select skSifra,SkNaziv from Sklad";
+            var query = "select ID,Naziv from Skladista";
             SqlConnection conn = new SqlConnection(connect);
             SqlDataAdapter da = new SqlDataAdapter(query, conn);
             DataSet ds = new DataSet();
             da.Fill(ds);
             cbo_Skladiste.DataSource = ds.Tables[0];
-            cbo_Skladiste.DisplayMember = "SkNaziv";
-            cbo_Skladiste.ValueMember = "SkSifra";
-
-
+            cbo_Skladiste.DisplayMember = "Naziv";
+            cbo_Skladiste.ValueMember = "ID";
 
             var query3 = "Select PaSifra,PaNaziv from Partnerji order by PaNaziv";
             SqlDataAdapter da3 = new SqlDataAdapter(query3, conn);
@@ -68,6 +84,17 @@ namespace Saobracaj.RadniNalozi
             cbo_Lokacija.DisplayMember = "LokOpis";
             cbo_Lokacija.ValueMember = "LokSifra";
 
+            if (frmLogovanje.Firma == "Leget")
+            {
+                var query8 = "Select ID,Oznaka from Pozicija";
+                SqlDataAdapter da8 = new SqlDataAdapter(query8, conn);
+                DataSet ds8 = new DataSet();
+                da8.Fill(ds8);
+                cbo_Lokacija.DataSource = ds8.Tables[0];
+                cbo_Lokacija.DisplayMember = "Oznaka";
+                cbo_Lokacija.ValueMember = "ID";
+            }
+
 
             var query2 = "Select SmNaziv,SmSifra From Mesta";
             SqlDataAdapter da2 = new SqlDataAdapter(query2, conn);
@@ -97,9 +124,39 @@ namespace Saobracaj.RadniNalozi
 
             cbo.Width = 450;
             cbo2.Width = 150;
-
             dataGridView1.Columns.Add(cbo);
             dataGridView1.Columns.Add(cbo2);
+            if (frmLogovanje.Firma == "Leget")
+            {
+
+                var queryMP = "Select ID as MpSifra,(RTrim(Broj)+'-'+RTrim(Naziv)) as MpNaziv from NHM order by ID";
+                SqlDataAdapter daMP = new SqlDataAdapter(queryMP, conn);
+                DataSet dsMP = new DataSet();
+                daMP.Fill(dsMP);
+                cbo.DataSource = dsMP.Tables[0];
+                cbo.DisplayMember = "MpNaziv";
+                cbo.ValueMember = "MpSifra";
+
+                DataGridViewComboBoxColumn cbo3 = new DataGridViewComboBoxColumn();
+                cbo3.HeaderText = "JedinicaMere";
+                cbo3.Name = "JM";
+                var query2 = "Select MeSifra,MeNaziv from MerskeEnote";
+                SqlDataAdapter da2 = new SqlDataAdapter(query2, conn);
+                DataSet ds2 = new DataSet();
+                da2.Fill(ds2);
+                cbo3.DataSource = ds2.Tables[0];
+                cbo3.DisplayMember = "MeNaziv";
+                cbo3.ValueMember = "MeSifra";
+                cbo3.Width = 90;
+
+                DataGridViewTextBoxColumn cbo4 = new DataGridViewTextBoxColumn();
+                cbo4.HeaderText = "LOT";
+                cbo4.Name = "Lot";
+
+
+                dataGridView1.Columns.Add(cbo3);
+                dataGridView1.Columns.Add(cbo4);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -111,36 +168,64 @@ namespace Saobracaj.RadniNalozi
         {
 
         }
-
+        int prStDokumenta;
+        
         private void button1_Click_1(object sender, EventArgs e)
         {
-            InsertIsporuka isporuka = new InsertIsporuka();
-            isporuka.InsertPrijemnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(), Convert.ToInt32(cbo_Referent.SelectedValue), Convert.ToInt32(cboPrimio.SelectedValue), Convert.ToDateTime(dtpVreme.Value), txtBrojKontejnera.Text.ToString().TrimEnd());
-
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            if (frmLogovanje.Firma == "Leget")
             {
-                if (status == 0)
+                var query = "Select (Max(PrStDokumenta)+1) From Promet";
+                SqlConnection conn = new SqlConnection(connect);
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    prStDokumenta = Convert.ToInt32(dr[0].ToString());
+                }
+                conn.Close();
+                InsertIsporuka ins = new InsertIsporuka();
+                foreach(DataGridViewRow row in dataGridView1.Rows)
                 {
                     if (row != null && row.Cells[0].Value != null)
                     {
-                        isporuka.InsertPrijemnicaPostav(Convert.ToInt32(row.Cells[0].Value), Convert.ToDecimal(row.Cells[1].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
+                        ins.InsertPromet(Convert.ToDateTime(dtpVreme.Value), "PRI", prStDokumenta, txtBrojKontejnera.Text.ToString().TrimEnd(), "PRV", Convert.ToDecimal(row.Cells["Kolicina"].Value), 0, Convert.ToInt32(cbo_Skladiste.SelectedValue),
+                            Convert.ToInt32(cbo_Lokacija.SelectedValue), 0, 0, Convert.ToDateTime(DateTime.Now), korisnik, 0, Convert.ToInt32(cbo_Referent.SelectedValue), Convert.ToDateTime(dtpVreme.Value.ToString()), row.Cells["JM"].Value.ToString(),
+                            row.Cells["Lot"].Value.ToString(), nalog, Convert.ToInt32(row.Cells["MpNaziv"].Value));
+                        //isporuka.InsertPrijemnicaPostav(Convert.ToInt32(row.Cells[0].Value), Convert.ToDecimal(row.Cells[1].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
                         // progressBar1.Value = progressBar1.Value + 1;
                     }
                 }
-                if (status == 1)
+            }
+            else
+            {
+                InsertIsporuka isporuka = new InsertIsporuka();
+                isporuka.InsertPrijemnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(), Convert.ToInt32(cbo_Referent.SelectedValue), Convert.ToInt32(cboPrimio.SelectedValue), Convert.ToDateTime(dtpVreme.Value), txtBrojKontejnera.Text.ToString().TrimEnd());
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    if (row != null && row.Cells[2].Value != null)
+                    if (status == 0)
                     {
-                        isporuka.InsertPrijemnicaPostav(Convert.ToInt32(row.Cells[2].Value), Convert.ToDecimal(row.Cells[4].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
-                        isporuka.UpdPorudzbenica(brPor, Convert.ToInt32(row.Cells[2].Value), Convert.ToDecimal(row.Cells[4].Value));
+                        if (row != null && row.Cells[0].Value != null)
+                        {
+                            isporuka.InsertPrijemnicaPostav(Convert.ToInt32(row.Cells[0].Value), Convert.ToDecimal(row.Cells[1].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
+                            // progressBar1.Value = progressBar1.Value + 1;
+                        }
+                    }
+                    if (status == 1)
+                    {
+                        if (row != null && row.Cells[2].Value != null)
+                        {
+                            isporuka.InsertPrijemnicaPostav(Convert.ToInt32(row.Cells[2].Value), Convert.ToDecimal(row.Cells[4].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
+                            isporuka.UpdPorudzbenica(brPor, Convert.ToInt32(row.Cells[2].Value), Convert.ToDecimal(row.Cells[4].Value));
+                        }
                     }
                 }
+                MessageBox.Show("Formirana je prijemnica u centralnoj bazi podataka");
+                PrijemnicaPregled frm = new PrijemnicaPregled();
+                frm.Show();
             }
-            MessageBox.Show("Formirana je prijemnica u centralnoj bazi podataka");
-            PrijemnicaPregled frm = new PrijemnicaPregled();
-            frm.Show();
         }
-
         private void btn_Povuci_Click(object sender, EventArgs e)
         {
             panel1.Location = new Point(this.ClientSize.Width / 2 - panel1.Size.Width / 2, this.ClientSize.Height / 2 - panel1.Size.Height / 2);

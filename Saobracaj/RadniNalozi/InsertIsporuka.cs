@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Saobracaj.Pantheon_Export;
+using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography.Xml;
 using System.Windows.Forms;
 
 namespace Saobracaj.RadniNalozi
@@ -224,7 +226,7 @@ namespace Saobracaj.RadniNalozi
             SqlParameter parameter6 = new SqlParameter();
             parameter6.ParameterName = "@Datum";
             parameter6.SqlDbType = SqlDbType.DateTime;
-            //   parameter6.Size = 150;
+            //   parameter6.Size =F 150;
             parameter6.Direction = ParameterDirection.Input;
             parameter6.Value = Datum;
             myCommand.Parameters.Add(parameter6);
@@ -562,6 +564,58 @@ namespace Saobracaj.RadniNalozi
                 {
                     // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
                 }
+            }
+        }
+        public void InsertPromet(DateTime DatumTransakcije,string VrstaDokumenta,int PrStDokumenta,string BrojKontejnera,string PrSifVrstePrometa,decimal PrPrimKol,decimal PrIzdKol,int SkladisteU,int LokacijaU,int SkladisteIz,int LokacijaIz,
+            DateTime Datum,string Korisnik,int SredstvoRada,int Zaposleni,DateTime DatumRasporeda,string JM,string Lot,int NalogID,int MpSifra)
+        {
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "InsertPromet";
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.Add(new SqlParameter("@DatumTransakcije", SqlDbType.DateTime) { Value = DatumTransakcije });
+                            cmd.Parameters.Add(new SqlParameter("@VrstaDokumenta", SqlDbType.Char,3) { Value = VrstaDokumenta });
+                            cmd.Parameters.Add(new SqlParameter("@PrStDokumenta", SqlDbType.Int) { Value = PrStDokumenta });
+                            cmd.Parameters.Add(new SqlParameter("@BrojKontejnera", SqlDbType.NVarChar,20) { Value = BrojKontejnera });
+                            cmd.Parameters.Add(new SqlParameter("@PrSifVrstePrometa", SqlDbType.Char,3) { Value = PrSifVrstePrometa });
+                            cmd.Parameters.Add(new SqlParameter("@PrPrimKol", SqlDbType.Decimal) { Value = PrPrimKol });
+                            cmd.Parameters.Add(new SqlParameter("@PrIzdKol", SqlDbType.Decimal) { Value = PrIzdKol });
+                            cmd.Parameters.Add(new SqlParameter("@SkladisteU", SqlDbType.Int) { Value = SkladisteU });
+                            cmd.Parameters.Add(new SqlParameter("@LokacijaU", SqlDbType.Int) { Value = LokacijaU });
+                            cmd.Parameters.Add(new SqlParameter("@SkladisteIz", SqlDbType.Int) { Value = SkladisteIz });
+                            cmd.Parameters.Add(new SqlParameter("@LokacijaIz", SqlDbType.Int) { Value = LokacijaIz });
+                            cmd.Parameters.Add(new SqlParameter("@Datum", SqlDbType.DateTime) { Value = Datum });
+                            cmd.Parameters.Add(new SqlParameter("@Korisnik", SqlDbType.NVarChar,20) { Value = Korisnik });
+                            cmd.Parameters.Add(new SqlParameter("@SredstvoRada", SqlDbType.Int) { Value = SredstvoRada });
+                            cmd.Parameters.Add(new SqlParameter("@Zaposleni", SqlDbType.Int) { Value = Zaposleni });
+                            cmd.Parameters.Add(new SqlParameter("@DatumRAsporeda", SqlDbType.DateTime) { Value = DatumRasporeda });
+                            cmd.Parameters.Add(new SqlParameter("@JM", SqlDbType.NVarChar,10) { Value = JM });
+                            cmd.Parameters.Add(new SqlParameter("@Lot", SqlDbType.NVarChar,50) { Value = Lot });
+                            cmd.Parameters.Add(new SqlParameter("@NalogID", SqlDbType.Int) { Value = NalogID });
+                            cmd.Parameters.Add(new SqlParameter("@MpSifra", SqlDbType.Int) { Value = MpSifra });
+
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Neuspešan upis cena u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                conn.Close();
+
             }
         }
     }
