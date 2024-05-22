@@ -61,10 +61,13 @@ namespace Saobracaj.RadniNalozi
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.txtBrojKontejnera = new System.Windows.Forms.TextBox();
+            this.btnDodeli = new System.Windows.Forms.Button();
+            this.dataGridView4 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -80,7 +83,7 @@ namespace Saobracaj.RadniNalozi
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(572, 13);
+            this.label2.Location = new System.Drawing.Point(825, 13);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(68, 13);
@@ -90,7 +93,7 @@ namespace Saobracaj.RadniNalozi
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(790, 13);
+            this.label3.Location = new System.Drawing.Point(542, 13);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 13);
@@ -111,7 +114,7 @@ namespace Saobracaj.RadniNalozi
             // cbo_MestoTroska
             // 
             this.cbo_MestoTroska.FormattingEnabled = true;
-            this.cbo_MestoTroska.Location = new System.Drawing.Point(575, 29);
+            this.cbo_MestoTroska.Location = new System.Drawing.Point(828, 29);
             this.cbo_MestoTroska.Margin = new System.Windows.Forms.Padding(2);
             this.cbo_MestoTroska.Name = "cbo_MestoTroska";
             this.cbo_MestoTroska.Size = new System.Drawing.Size(151, 21);
@@ -120,7 +123,7 @@ namespace Saobracaj.RadniNalozi
             // cbo_Partner
             // 
             this.cbo_Partner.FormattingEnabled = true;
-            this.cbo_Partner.Location = new System.Drawing.Point(793, 28);
+            this.cbo_Partner.Location = new System.Drawing.Point(545, 28);
             this.cbo_Partner.Margin = new System.Windows.Forms.Padding(2);
             this.cbo_Partner.Name = "cbo_Partner";
             this.cbo_Partner.Size = new System.Drawing.Size(253, 21);
@@ -128,8 +131,8 @@ namespace Saobracaj.RadniNalozi
             // 
             // dataGridView1
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(11, 124);
@@ -137,7 +140,7 @@ namespace Saobracaj.RadniNalozi
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1138, 503);
+            this.dataGridView1.Size = new System.Drawing.Size(1315, 387);
             this.dataGridView1.TabIndex = 2;
             // 
             // button1
@@ -227,10 +230,10 @@ namespace Saobracaj.RadniNalozi
             this.panel1.Controls.Add(this.txt_ID);
             this.panel1.Controls.Add(this.btn_Izaberi);
             this.panel1.Controls.Add(this.dataGridView2);
-            this.panel1.Location = new System.Drawing.Point(22, 161);
+            this.panel1.Location = new System.Drawing.Point(185, 169);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1081, 502);
+            this.panel1.Size = new System.Drawing.Size(1081, 294);
             this.panel1.TabIndex = 9;
             // 
             // button2
@@ -248,13 +251,15 @@ namespace Saobracaj.RadniNalozi
             // 
             // dataGridView3
             // 
+            this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView3.Location = new System.Drawing.Point(571, 54);
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
             this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(497, 446);
+            this.dataGridView3.Size = new System.Drawing.Size(497, 234);
             this.dataGridView3.TabIndex = 4;
             // 
             // txt_ID
@@ -282,13 +287,15 @@ namespace Saobracaj.RadniNalozi
             // 
             // dataGridView2
             // 
+            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Location = new System.Drawing.Point(9, 54);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(548, 446);
+            this.dataGridView2.Size = new System.Drawing.Size(548, 234);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
@@ -398,17 +405,42 @@ namespace Saobracaj.RadniNalozi
             this.txtBrojKontejnera.Size = new System.Drawing.Size(158, 20);
             this.txtBrojKontejnera.TabIndex = 21;
             // 
+            // btnDodeli
+            // 
+            this.btnDodeli.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDodeli.Location = new System.Drawing.Point(750, 516);
+            this.btnDodeli.Name = "btnDodeli";
+            this.btnDodeli.Size = new System.Drawing.Size(254, 23);
+            this.btnDodeli.TabIndex = 22;
+            this.btnDodeli.Text = "^ ^ ^ ^\r\n";
+            this.btnDodeli.UseVisualStyleBackColor = true;
+            this.btnDodeli.Click += new System.EventHandler(this.btnDodeli_Click);
+            // 
+            // dataGridView4
+            // 
+            this.dataGridView4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView4.Location = new System.Drawing.Point(12, 545);
+            this.dataGridView4.Name = "dataGridView4";
+            this.dataGridView4.Size = new System.Drawing.Size(1311, 80);
+            this.dataGridView4.TabIndex = 23;
+            // 
             // Otpremnica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1158, 637);
+            this.ClientSize = new System.Drawing.Size(1335, 637);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.txtBrojKontejnera);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.dtpVreme);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.btn_Povuci);
+            this.Controls.Add(this.cbo_MestoTroska);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.cboVozac);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label9);
@@ -421,26 +453,27 @@ namespace Saobracaj.RadniNalozi
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.cbo_Partner);
             this.Controls.Add(this.cbo_Lokacija);
-            this.Controls.Add(this.cbo_MestoTroska);
             this.Controls.Add(this.cbo_Skladiste);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtVozilo);
             this.Controls.Add(this.txtVozac);
             this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.btnDodeli);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Otpremnica";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Otpremnica";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Otpremnica_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -480,5 +513,7 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtBrojKontejnera;
+        private System.Windows.Forms.Button btnDodeli;
+        private System.Windows.Forms.DataGridView dataGridView4;
     }
 }

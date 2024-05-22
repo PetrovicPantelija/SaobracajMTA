@@ -52,6 +52,11 @@
             this.txtSAPozicijeskladista = new System.Windows.Forms.Label();
             this.txtSASkladista = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.btnOtpremnica = new System.Windows.Forms.Button();
+            this.btnOtpremnicaRoba = new System.Windows.Forms.Button();
+            this.chkPlatforma = new System.Windows.Forms.CheckBox();
+            this.chkCirada = new System.Windows.Forms.CheckBox();
+            this.chkUvoz = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -243,12 +248,14 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1138, 9);
+            this.button1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button1.Location = new System.Drawing.Point(1104, 7);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(162, 32);
+            this.button1.Size = new System.Drawing.Size(101, 42);
             this.button1.TabIndex = 13;
             this.button1.Text = "Formiraj prijem";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // cboSaPoz
@@ -293,13 +300,78 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1138, 55);
+            this.button2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button2.Location = new System.Drawing.Point(1211, 7);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(162, 32);
+            this.button2.Size = new System.Drawing.Size(89, 42);
             this.button2.TabIndex = 462;
             this.button2.Text = "Formiraj prijemnicu";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnOtpremnica
+            // 
+            this.btnOtpremnica.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnOtpremnica.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnOtpremnica.Location = new System.Drawing.Point(1104, 59);
+            this.btnOtpremnica.Name = "btnOtpremnica";
+            this.btnOtpremnica.Size = new System.Drawing.Size(101, 57);
+            this.btnOtpremnica.TabIndex = 462;
+            this.btnOtpremnica.Text = "Formiraj otpremnicu kontejnera";
+            this.btnOtpremnica.UseVisualStyleBackColor = false;
+            this.btnOtpremnica.Click += new System.EventHandler(this.btnOtpremnica_Click);
+            // 
+            // btnOtpremnicaRoba
+            // 
+            this.btnOtpremnicaRoba.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnOtpremnicaRoba.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btnOtpremnicaRoba.Location = new System.Drawing.Point(1211, 59);
+            this.btnOtpremnicaRoba.Name = "btnOtpremnicaRoba";
+            this.btnOtpremnicaRoba.Size = new System.Drawing.Size(89, 57);
+            this.btnOtpremnicaRoba.TabIndex = 463;
+            this.btnOtpremnicaRoba.Text = "Formiraj otpremnicu robe";
+            this.btnOtpremnicaRoba.UseVisualStyleBackColor = false;
+            this.btnOtpremnicaRoba.Click += new System.EventHandler(this.btnOtpremnicaRoba_Click);
+            // 
+            // chkPlatforma
+            // 
+            this.chkPlatforma.AutoSize = true;
+            this.chkPlatforma.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.chkPlatforma.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkPlatforma.ForeColor = System.Drawing.Color.Transparent;
+            this.chkPlatforma.Location = new System.Drawing.Point(1011, 99);
+            this.chkPlatforma.Name = "chkPlatforma";
+            this.chkPlatforma.Size = new System.Drawing.Size(70, 17);
+            this.chkPlatforma.TabIndex = 466;
+            this.chkPlatforma.Text = "Platforma";
+            this.chkPlatforma.UseVisualStyleBackColor = false;
+            // 
+            // chkCirada
+            // 
+            this.chkCirada.AutoSize = true;
+            this.chkCirada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.chkCirada.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkCirada.ForeColor = System.Drawing.Color.Transparent;
+            this.chkCirada.Location = new System.Drawing.Point(949, 99);
+            this.chkCirada.Name = "chkCirada";
+            this.chkCirada.Size = new System.Drawing.Size(56, 17);
+            this.chkCirada.TabIndex = 465;
+            this.chkCirada.Text = "Cirada";
+            this.chkCirada.UseVisualStyleBackColor = false;
+            // 
+            // chkUvoz
+            // 
+            this.chkUvoz.AutoSize = true;
+            this.chkUvoz.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.chkUvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkUvoz.ForeColor = System.Drawing.Color.Transparent;
+            this.chkUvoz.Location = new System.Drawing.Point(892, 99);
+            this.chkUvoz.Name = "chkUvoz";
+            this.chkUvoz.Size = new System.Drawing.Size(51, 17);
+            this.chkUvoz.TabIndex = 464;
+            this.chkUvoz.Text = "Uvoz";
+            this.chkUvoz.UseVisualStyleBackColor = false;
             // 
             // PlaniraniPretovar
             // 
@@ -307,6 +379,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1312, 628);
+            this.Controls.Add(this.chkPlatforma);
+            this.Controls.Add(this.chkCirada);
+            this.Controls.Add(this.chkUvoz);
+            this.Controls.Add(this.btnOtpremnicaRoba);
+            this.Controls.Add(this.btnOtpremnica);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.cboSaPoz);
             this.Controls.Add(this.cboSaSklad);
@@ -360,5 +437,10 @@
         private System.Windows.Forms.Label txtSAPozicijeskladista;
         private System.Windows.Forms.Label txtSASkladista;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnOtpremnica;
+        private System.Windows.Forms.Button btnOtpremnicaRoba;
+        private System.Windows.Forms.CheckBox chkPlatforma;
+        private System.Windows.Forms.CheckBox chkCirada;
+        private System.Windows.Forms.CheckBox chkUvoz;
     }
 }

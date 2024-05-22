@@ -567,7 +567,7 @@ namespace Saobracaj.RadniNalozi
             }
         }
         public void InsertPromet(DateTime DatumTransakcije,string VrstaDokumenta,int PrStDokumenta,string BrojKontejnera,string PrSifVrstePrometa,decimal PrPrimKol,decimal PrIzdKol,int SkladisteU,int LokacijaU,int SkladisteIz,int LokacijaIz,
-            DateTime Datum,string Korisnik,int SredstvoRada,int Zaposleni,DateTime DatumRasporeda,string JM,string Lot,int NalogID,int MpSifra)
+            DateTime Datum,string Korisnik,int SredstvoRada,int Zaposleni,DateTime DatumRasporeda,string JM,string Lot,int NalogID,int MpSifra,int Skladisteno)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -602,6 +602,7 @@ namespace Saobracaj.RadniNalozi
                             cmd.Parameters.Add(new SqlParameter("@Lot", SqlDbType.NVarChar,50) { Value = Lot });
                             cmd.Parameters.Add(new SqlParameter("@NalogID", SqlDbType.Int) { Value = NalogID });
                             cmd.Parameters.Add(new SqlParameter("@MpSifra", SqlDbType.Int) { Value = MpSifra });
+                            cmd.Parameters.Add(new SqlParameter("@Skladisteno", SqlDbType.Int) { Value = Skladisteno });
 
 
                             cmd.ExecuteNonQuery();

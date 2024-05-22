@@ -11,31 +11,109 @@ namespace Saobracaj.RadniNalozi
     {
         string connect = frmLogovanje.connectionString;
         string korisnik;
+        bool dgvComboEnabled = true;
         public Otpremnica()
         {
             InitializeComponent();
+        }
+        int nalog;
+        string kontejner,korisink;
+        public Otpremnica(int NalogID, string Kontejner,string Registracija,string Vozac)
+        {
+            InitializeComponent();
+            nalog = NalogID;
+            kontejner = Kontejner;
+            txtBrojKontejnera.Text = kontejner;
+            txtVozilo.Text = Registracija;
+            txtVozac.Text = Vozac;
+            btn_Povuci.Visible = false;
+            cbo_MestoTroska.Visible = false;
         }
 
         private void Otpremnica_Load(object sender, EventArgs e)
         {
             korisnik = frmLogovanje.user;
             FillCombo();
-            DGVCombo();
             panel1.Visible = false;
-            //panel2.Visible = false;
+            if (frmLogovanje.Firma == "Leget")
+            {
+                var query = "select top 1 SkladisteU,LokacijaU From Promet Where VrstaDokumenta='PRI' and PrSifVrstePrometa='PRV' and BrojKontejnera='" + kontejner + "'";
+                SqlConnection conn = new SqlConnection(connect);
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    cbo_Skladiste.SelectedValue = Convert.ToInt32(dr[0].ToString());
+                    cbo_Lokacija.SelectedValue = Convert.ToInt32(dr[1].ToString());
+                }
+                conn.Close();
+                korisink = frmLogovanje.user;
+
+                dgvComboEnabled = false;
+
+                PovuciIzPrijemnice();
+                var selectSvi = "Select BrojKontejnera,DatumTransakcije,VrstaDokumenta,PrStDokumenta,PrOznSled,PrPrimKol,PrIzdKol,SkladisteU,LokacijaU,SkladisteIz,LokacijaIz,MpSifra," +
+                   "RTrim(Naziv) as MpNaziv,JedinicaMere,Lot,Skladisteno " +
+                   "From Promet " +
+                   "Inner Join NHM on Promet.MpSifra=NHM.ID " +
+                   "Where PrIzdKol<PrPrimKol and BrojKontejnera<>'" + kontejner + "'";
+                var da2 = new SqlDataAdapter(selectSvi, conn);
+                var ds2 = new System.Data.DataSet();
+                da2.Fill(ds2);
+                dataGridView4.ReadOnly = true;
+                dataGridView4.DataSource = ds2.Tables[0];
+            }
+            DGVCombo();
+
+        }
+        DataTable dt=new DataTable();
+        private void PovuciIzPrijemnice()
+        {
+            var select = "Select BrojKontejnera,DatumTransakcije,VrstaDokumenta,PrStDokumenta,PrOznSled,PrPrimKol,PrIzdKol,SkladisteU,LokacijaU,SkladisteIz,LokacijaIz,MpSifra," +
+                "RTrim(Naziv) as MpNaziv,JedinicaMere,Lot,Skladisteno " +
+                "From Promet " +
+                "Inner Join NHM on Promet.MpSifra=NHM.ID " +
+                "Where PrIzdKol<PrPrimKol and BrojKontejnera='" + kontejner + "'";
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            SqlCommand cmd=new SqlCommand(select, conn);
+            dt.Load(cmd.ExecuteReader());
+            conn.Close();
+            dataGridView1.DataSource = dt;
+        }
+        private void RefreshGV()
+        {
+            dataGridView1.DataSource = dt;
         }
         private void FillCombo()
         {
-            var query = "select skSifra,SkNaziv from Sklad";/* Where SkSifra in (Select Sif_Skladiste From Skladiste_Korisnik Where Korisnik='"+korisnik.ToString()+"')";*/
+            string query, display, value,query7,display7,value7;
+            if (frmLogovanje.Firma == "Leget")
+            {
+                query = "select ID,Naziv from Skladista";
+                display = "Naziv";
+                value = "ID";
+                query7 = "Select ID,Oznaka from Pozicija";
+                display7 = "Oznaka";
+                value7 = "ID";
+            }
+            else
+            {
+                query = "select skSifra,SkNaziv from Sklad";
+                display = "SkNaziv";
+                value = "SkSifra";
+                query7 = "select LokSifra,LokOpis from Lokac";
+                display7 = "LokOpis";
+                value7 = "LokSifra";
+            }
             SqlConnection conn = new SqlConnection(connect);
             SqlDataAdapter da = new SqlDataAdapter(query, conn);
             DataSet ds = new DataSet();
             da.Fill(ds);
             cbo_Skladiste.DataSource = ds.Tables[0];
-            cbo_Skladiste.DisplayMember = "SkNaziv";
-            cbo_Skladiste.ValueMember = "SkSifra";
-
-
+            cbo_Skladiste.DisplayMember = display;
+            cbo_Skladiste.ValueMember = value;
 
             var query3 = "Select PaSifra,PaNaziv from Partnerji order by PaNaziv";
             SqlDataAdapter da3 = new SqlDataAdapter(query3, conn);
@@ -70,13 +148,12 @@ namespace Saobracaj.RadniNalozi
             cboVozilo.ValueMember = "Naziv";
 
 
-            var query7 = "select LokSifra,LokOpis from Lokac";
             SqlDataAdapter da7 = new SqlDataAdapter(query7, conn);
             DataSet ds7 = new DataSet();
             da7.Fill(ds7);
             cbo_Lokacija.DataSource = ds7.Tables[0];
-            cbo_Lokacija.DisplayMember = "LokOpis";
-            cbo_Lokacija.ValueMember = "LokSifra";
+            cbo_Lokacija.DisplayMember = display7;
+            cbo_Lokacija.ValueMember = value7;
 
             var query2 = "Select SmNaziv,SmSifra From Mesta";
             SqlDataAdapter da2 = new SqlDataAdapter(query2, conn);
@@ -93,70 +170,107 @@ namespace Saobracaj.RadniNalozi
 
         private void DGVCombo()
         {
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
-            DataGridViewTextBoxColumn cbo2 = new DataGridViewTextBoxColumn();
+            if (dgvComboEnabled == true)
+            {
+                DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+                DataGridViewTextBoxColumn cbo2 = new DataGridViewTextBoxColumn();
 
-            cbo.HeaderText = "MPNaziv";
-            cbo.Name = "MPNaziv";
-            var query = "Select MpSifra,MpNaziv from MaticniPodatki order by MpNaziv";
-            SqlConnection conn = new SqlConnection(connect);
-            SqlDataAdapter da = new SqlDataAdapter(query, conn);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            cbo.DataSource = ds.Tables[0];
-            cbo.DisplayMember = "MpNaziv";
-            cbo.ValueMember = "MpSifra";
-
-
-            cbo2.HeaderText = "Kolicina";
-            cbo2.Name = "Kolicina";
-
-            cbo.Width = 450;
-            cbo2.Width = 120;
+                cbo.HeaderText = "MPNaziv";
+                cbo.Name = "MPNaziv";
+                var query = "Select MpSifra,MpNaziv from MaticniPodatki order by MpNaziv";
+                SqlConnection conn = new SqlConnection(connect);
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                cbo.DataSource = ds.Tables[0];
+                cbo.DisplayMember = "MpNaziv";
+                cbo.ValueMember = "MpSifra";
 
 
-            dataGridView1.Columns.Add(cbo);
-            dataGridView1.Columns.Add(cbo2);
+                cbo2.HeaderText = "Kolicina";
+                cbo2.Name = "Kolicina";
+
+                cbo.Width = 450;
+                cbo2.Width = 120;
+
+
+                dataGridView1.Columns.Add(cbo);
+                dataGridView1.Columns.Add(cbo2);
+            }
         }
-
+        int prStDokumenta;
+        int skladisteno;
         private void button1_Click(object sender, EventArgs e)
         {
-            InsertIsporuka isporuka = new InsertIsporuka();
-            if (checkBox1.Checked == true)
+            if (frmLogovanje.Firma == "Leget")
             {
-                isporuka.InsertDobavnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(), Convert.ToInt32(comboBox1.SelectedValue), txtVozac.Text.ToString().TrimEnd(), txtVozilo.Text.ToString().TrimEnd(), Convert.ToDateTime(dtpVreme.Value), txtBrojKontejnera.Text.ToString().TrimEnd());
-            }
-            else
-            {
-                isporuka.InsertDobavnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(), Convert.ToInt32(comboBox1.SelectedValue), cboVozac.SelectedValue.ToString(), cboVozilo.SelectedValue.ToString(), Convert.ToDateTime(dtpVreme.Value), txtBrojKontejnera.ToString().TrimEnd());
-            }
-
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                //Status proverava da li je iz porudzbenice ili se pravi nova od nule. Ako je status 1 vuce podatke iz narudzbenice
-                if (status == 0)
+                var query = "Select (Max(PrStDokumenta)+1) From Promet";
+                SqlConnection conn = new SqlConnection(connect);
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
                 {
-                    if (row != null && row.Cells[0].Value != null)
+                    prStDokumenta = Convert.ToInt32(dr[0].ToString());
+                }
+                conn.Close();
+                InsertIsporuka ins = new InsertIsporuka();
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row != null && row.Cells[0].Value != null && Convert.ToDecimal(row.Cells["PrIzdKol"].Value)!=0)
                     {
-                        isporuka.InsertDobavnicaPostav(Convert.ToInt32(row.Cells[0].Value), Convert.ToDecimal(row.Cells[1].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
+                        if (row.Cells["Skladisteno"].Value == null || Convert.ToInt32(row.Cells["Skladisteno"].Value)==0)
+                        {
+                            skladisteno = 0;
+                        }
+                        else { skladisteno = 1; }
+                        ins.InsertPromet(Convert.ToDateTime(dtpVreme.Value), "OTP", prStDokumenta, txtBrojKontejnera.Text.ToString().TrimEnd(), "OTP", Convert.ToDecimal(row.Cells["PrPrimKol"].Value), Convert.ToDecimal(row.Cells["PrIzdKol"].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue),
+                            Convert.ToInt32(cbo_Lokacija.SelectedValue), 0, 0, Convert.ToDateTime(DateTime.Now), korisnik, 0, Convert.ToInt32(comboBox1.SelectedValue), Convert.ToDateTime(dtpVreme.Value.ToString()), row.Cells["JedinicaMere"].Value.ToString(),
+                            row.Cells["Lot"].Value.ToString(), nalog, Convert.ToInt32(row.Cells["MpSifra"].Value), skladisteno);
+                        //isporuka.InsertPrijemnicaPostav(Convert.ToInt32(row.Cells[0].Value), Convert.ToDecimal(row.Cells[1].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
                         // progressBar1.Value = progressBar1.Value + 1;
                     }
                 }
-                if (status == 1)
+            }
+            else
+            {
+                InsertIsporuka isporuka = new InsertIsporuka();
+                if (checkBox1.Checked == true)
                 {
-                    if (row != null && row.Cells[2].Value != null)
+                    isporuka.InsertDobavnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(), Convert.ToInt32(comboBox1.SelectedValue), txtVozac.Text.ToString().TrimEnd(), txtVozilo.Text.ToString().TrimEnd(), Convert.ToDateTime(dtpVreme.Value), txtBrojKontejnera.Text.ToString().TrimEnd());
+                }
+                else
+                {
+                    isporuka.InsertDobavnica(Convert.ToInt32(cbo_Partner.SelectedValue), cbo_MestoTroska.SelectedValue.ToString(), Convert.ToInt32(comboBox1.SelectedValue), cboVozac.SelectedValue.ToString(), cboVozilo.SelectedValue.ToString(), Convert.ToDateTime(dtpVreme.Value), txtBrojKontejnera.ToString().TrimEnd());
+                }
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    //Status proverava da li je iz porudzbenice ili se pravi nova od nule. Ako je status 1 vuce podatke iz narudzbenice
+                    if (status == 0)
                     {
-                        isporuka.InsertDobavnicaPostav(Convert.ToInt32(row.Cells[2].Value), Convert.ToDecimal(row.Cells[4].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
+                        if (row != null && row.Cells[0].Value != null)
+                        {
+                            isporuka.InsertDobavnicaPostav(Convert.ToInt32(row.Cells[0].Value), Convert.ToDecimal(row.Cells[1].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
+                            // progressBar1.Value = progressBar1.Value + 1;
+                        }
+                    }
+                    if (status == 1)
+                    {
+                        if (row != null && row.Cells[2].Value != null)
+                        {
+                            isporuka.InsertDobavnicaPostav(Convert.ToInt32(row.Cells[2].Value), Convert.ToDecimal(row.Cells[4].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
+                        }
                     }
                 }
+                MessageBox.Show("Formirana je otpremnica u centralnoj bazi podataka");
+                OtpremnicaPregled frm = new OtpremnicaPregled();
+                frm.Show();
+
+
+                //foreach(DataGridViewRow row in datagridview1){ int sifra=cbo.SelectedValue; int kolicina=cbo2.value }
+                //Posto je dozvoljeno dodavanje kroz dgv rucno, kad radi upis u bazu trebalo bi da petlja ide do n-1 jer gleda i poslednji red koji je po default-u prazan
             }
-            MessageBox.Show("Formirana je otpremnica u centralnoj bazi podataka");
-            OtpremnicaPregled frm = new OtpremnicaPregled();
-            frm.Show();
-
-
-            //foreach(DataGridViewRow row in datagridview1){ int sifra=cbo.SelectedValue; int kolicina=cbo2.value }
-            //Posto je dozvoljeno dodavanje kroz dgv rucno, kad radi upis u bazu trebalo bi da petlja ide do n-1 jer gleda i poslednji red koji je po default-u prazan
         }
 
         private void cbo_Skladiste_SelectionChangeCommitted(object sender, EventArgs e)
@@ -273,6 +387,36 @@ namespace Saobracaj.RadniNalozi
         private void button3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnDodeli_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView4.Rows)
+            {
+                if (row.Selected)
+                {
+                    DataRow dr = dt.NewRow();
+                    dr[0] = row.Cells[0].Value;
+                    dr[1] = row.Cells[1].Value;
+                    dr[2] = row.Cells[2].Value;
+                    dr[3] = row.Cells[3].Value;
+                    dr[4] = row.Cells[4].Value;
+                    dr[5] = row.Cells[5].Value;
+                    dr[6] = row.Cells[6].Value;
+                    dr[7] = row.Cells[7].Value;
+                    dr[8] = row.Cells[8].Value;
+                    dr[9] = row.Cells[9].Value;
+                    dr[10] = row.Cells[10].Value;
+                    dr[11] = row.Cells[11].Value;
+                    dr[12] = row.Cells[12].Value;
+                    dr[13] = row.Cells[13].Value;
+                    dr[14] = row.Cells[14].Value;
+                    dr[15] = row.Cells[15].Value;
+
+                    dt.Rows.Add(dr);
+                }
+            }
+            RefreshGV();
         }
 
         private void button2_Click_1(object sender, EventArgs e)

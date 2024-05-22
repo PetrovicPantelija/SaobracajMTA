@@ -41,7 +41,7 @@ namespace Saobracaj.Uvoz
 
             FillZaglavlje(Sifra);
             txtNadredjeni.Text = Sifra.ToString();
-            FillCheck();
+            //FillCheck();
 
             // FillGV();
             KorisnikTekuci = Korisnik;
@@ -526,7 +526,7 @@ namespace Saobracaj.Uvoz
         }
         private void FillCheck()
         {
-            var query = "Select PaSifra,PaNaziv From Nalogodavci";
+            var query = "Select PaSifra,PaNaziv From Partnerji";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(query, conn);
             var ds = new DataSet();

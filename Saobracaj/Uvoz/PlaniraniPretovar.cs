@@ -1,4 +1,6 @@
-﻿using Saobracaj.RadniNalozi;
+﻿using Microsoft.ReportingServices.Diagnostics.Internal;
+using Saobracaj.Izvoz;
+using Saobracaj.RadniNalozi;
 using Saobracaj.Sifarnici;
 using System;
 using System.Collections.Generic;
@@ -37,13 +39,13 @@ namespace Saobracaj.Uvoz
                 "inner join Partnerji uv on uv.PaSifra = UvozKonacnaVrstaManipulacije.Platilac  " +
                 " Inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera  " +
                 "Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera  " +
-                "Where KontejnerStatus.ID=3 or KontejnerStatus.ID=4 order by KontejnerStatus.ID asc";
+                "Where KontejnerStatus.ID=3 or KontejnerStatus.ID=4 or KontejnerSTATUS.id=6 order by KontejnerStatus.ID asc";
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            var ds = new System.Data.DataSet();
             dataAdapter.Fill(ds);
             gridGroupingControl1.DataSource = ds.Tables[0];
             gridGroupingControl1.ShowGroupDropArea = true;
@@ -54,7 +56,7 @@ namespace Saobracaj.Uvoz
             SqlConnection conn = new SqlConnection(s_connection);
             var sklad = "select ID,naziv from Skladista";
             var daSklad = new SqlDataAdapter(sklad, conn);
-            var dsSklad = new DataSet();
+            var dsSklad = new System.Data.DataSet();
             daSklad.Fill(dsSklad);
             cboSaSklad.DataSource = dsSklad.Tables[0];
             cboSaSklad.DisplayMember = "Naziv";
@@ -62,7 +64,7 @@ namespace Saobracaj.Uvoz
 
             var pozicija = "Select Id,Opis from Pozicija";
             var daPoz = new SqlDataAdapter(pozicija, conn);
-            var dsPoz = new DataSet();
+            var dsPoz = new System.Data.DataSet();
             daPoz.Fill(dsPoz);
             cboSaPoz.DataSource = dsPoz.Tables[0];
             cboSaPoz.DisplayMember = "Opis";
@@ -129,6 +131,66 @@ namespace Saobracaj.Uvoz
             frm.Show();
         }
 
+        private void btnOtpremnica_Click(object sender, EventArgs e)
+        {
+            int Ciradatmp = 0;
+            int ModulPorekla = 0;
+            if (chkUvoz.Checked == true)
+            {
+                ModulPorekla = 1;
+            }
+            if (chkCirada.Checked == true)
+                Ciradatmp = 1;
+
+            Dokumenta.InsertOtprema ins = new Dokumenta.InsertOtprema();
+            ins.InsertOtp(Convert.ToDateTime(dateTimePicker1.Value),0,0, txtReg.Text.ToString().TrimEnd(), txtVozac.Text.ToString().TrimEnd(), Convert.ToDateTime(dateTimePicker1.MinDate), 0, Convert.ToDateTime(DateTime.Now), korisnik, txtNapomena.Text, 0, 0, Ciradatmp, ModulPorekla);
+            VratiPodatkeMax();
+            if (chkUvoz.Checked == true)
+            {
+                InsertIzvozKonacna ins2 = new InsertIzvozKonacna();
+                ins2.PrenesiKontejnerUOtpremuKamionomUvoz(Convert.ToInt32(txtOsnov.Text), Convert.ToInt32(txtID.Text));
+                MessageBox.Show("Uspešno ste formirali Otpremu kamionom");
+            }
+            else
+            {
+                MessageBox.Show("Mora se obeležiti uvoz!");
+            }
+            RadniNalozi.InsertRN ir = new InsertRN();
+            if (chkPlatforma.Checked)
+            {
+                ir.InsRN6OtpremaPlatformeKam(Convert.ToDateTime(dateTimePicker1.Value), korisnik, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(0), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(Usluga), "", "", OtpremaKontejneraID, txtReg.Text, Convert.ToInt32(txtID.Text), 1, 0);
+            }
+            if (chkCirada.Checked)
+            {
+                ir.InsRN8OtpremaCiradeKam(Convert.ToDateTime(dateTimePicker1.Value), korisnik, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(0), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(Usluga), "", "", OtpremaKontejneraID, txtReg.Text,0,txtID.Text);
+            }
+
+        }
+        int OtpremaKontejneraID;
+        private void VratiPodatkeMax()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Max([ID]) as ID from OtpremaKontejnera", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                OtpremaKontejneraID = Convert.ToInt32(dr["ID"].ToString());
+            }
+
+            con.Close();
+        }
+
+        private void btnOtpremnicaRoba_Click(object sender, EventArgs e)
+        {
+            RadniNalozi.Otpremnica frm = new Otpremnica(Convert.ToInt32(txtID.Text), txtKontejner.Text.ToString().TrimEnd(),txtReg.Text,txtVozac.Text);
+            frm.Show();
+        }
+        
         int PrijemID;
         private void VratiPrijemID()
         {

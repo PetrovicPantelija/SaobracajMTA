@@ -214,7 +214,7 @@ namespace Saobracaj.Izvoz
                 foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
                 {
                     InsertIzvozKonacna ins = new InsertIzvozKonacna();
-                    ins.PrenesiUPlanUtovaraPrazan(Convert.ToInt32(selectedRecord.Record.GetValue("Kontejner").ToString()), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+                    ins.PrenesiUPlanUtovaraPrazan(selectedRecord.Record.GetValue("Kontejner").ToString(), Convert.ToInt32(cboPlanUtovara.SelectedValue));
 
                     //To get the cell value of particular column of selected records   
                     //  string cellValue = selectedRecord.Record.GetValue("ID").ToString();

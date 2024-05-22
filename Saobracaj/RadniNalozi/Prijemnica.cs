@@ -43,14 +43,26 @@ namespace Saobracaj.RadniNalozi
         }
         private void FillCombo()
         {
-            var query = "select ID,Naziv from Skladista";
+            string query,display,value;
+            if (frmLogovanje.Firma == "Leget")
+            {
+                query = "select ID,Naziv from Skladista";
+                display = "Naziv";
+                value = "ID";
+            }
+            else
+            {
+                query = "select skSifra,SkNaziv from Sklad";
+                display = "SkNaziv";
+                value = "SkSifra";
+            }
             SqlConnection conn = new SqlConnection(connect);
             SqlDataAdapter da = new SqlDataAdapter(query, conn);
             DataSet ds = new DataSet();
             da.Fill(ds);
             cbo_Skladiste.DataSource = ds.Tables[0];
-            cbo_Skladiste.DisplayMember = "Naziv";
-            cbo_Skladiste.ValueMember = "ID";
+            cbo_Skladiste.DisplayMember = display;
+            cbo_Skladiste.ValueMember = value;
 
             var query3 = "Select PaSifra,PaNaziv from Partnerji order by PaNaziv";
             SqlDataAdapter da3 = new SqlDataAdapter(query3, conn);
@@ -152,7 +164,9 @@ namespace Saobracaj.RadniNalozi
                 DataGridViewTextBoxColumn cbo4 = new DataGridViewTextBoxColumn();
                 cbo4.HeaderText = "LOT";
                 cbo4.Name = "Lot";
-
+                DataGridViewCheckBoxColumn cbo5=new DataGridViewCheckBoxColumn();
+                cbo5.HeaderText = "Skladisteno";
+                cbo5.Name = "Skladisteno";
 
                 dataGridView1.Columns.Add(cbo3);
                 dataGridView1.Columns.Add(cbo4);
@@ -189,9 +203,14 @@ namespace Saobracaj.RadniNalozi
                 {
                     if (row != null && row.Cells[0].Value != null)
                     {
+                        int skladisteno = 0;
+                        if ((bool)row.Cells["Skladisteno"].Value == true)
+                        {
+                            skladisteno = 1;
+                        }
                         ins.InsertPromet(Convert.ToDateTime(dtpVreme.Value), "PRI", prStDokumenta, txtBrojKontejnera.Text.ToString().TrimEnd(), "PRV", Convert.ToDecimal(row.Cells["Kolicina"].Value), 0, Convert.ToInt32(cbo_Skladiste.SelectedValue),
                             Convert.ToInt32(cbo_Lokacija.SelectedValue), 0, 0, Convert.ToDateTime(DateTime.Now), korisnik, 0, Convert.ToInt32(cbo_Referent.SelectedValue), Convert.ToDateTime(dtpVreme.Value.ToString()), row.Cells["JM"].Value.ToString(),
-                            row.Cells["Lot"].Value.ToString(), nalog, Convert.ToInt32(row.Cells["MpNaziv"].Value));
+                            row.Cells["Lot"].Value.ToString(), nalog, Convert.ToInt32(row.Cells["MpNaziv"].Value),skladisteno);
                         //isporuka.InsertPrijemnicaPostav(Convert.ToInt32(row.Cells[0].Value), Convert.ToDecimal(row.Cells[1].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
                         // progressBar1.Value = progressBar1.Value + 1;
                     }

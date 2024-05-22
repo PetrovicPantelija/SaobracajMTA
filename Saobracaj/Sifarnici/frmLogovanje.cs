@@ -18,6 +18,7 @@ using MetroFramework.Forms;
 using System.IO;
 using Saobracaj.Pantheon_Export;
 using Microsoft.Identity.Client;
+using Saobracaj.Uvoz;
 
 namespace Saobracaj.Sifarnici
 {
@@ -241,6 +242,10 @@ namespace Saobracaj.Sifarnici
 
         }
 
-
+        private void label1_Click(object sender, EventArgs e)
+        {
+            PlaniraniPretovar frm = new PlaniraniPretovar();
+            frm.Show();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 
@@ -11,10 +12,23 @@ namespace Saobracaj.Izvoz
         string KorisnikCene = Sifarnici.frmLogovanje.user;
         int KonkretnaUsluga = 0;
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+        bool pomOtprema = false;
+        string kontejner;
         public frmOtpremaKontejneraKamionomIzKontejnera()
         {
             InitializeComponent();
         }
+        public frmOtpremaKontejneraKamionomIzKontejnera(int Osnov,string Registracija, string Vozac, string Kontejner, int NalogID)
+        {
+            InitializeComponent();
+            txtRegBrKamiona.Text= Registracija;
+            txtImeVozaca.Text = Vozac;
+            txtKontejnerID.Text = Osnov.ToString();
+            txtNalogID.Text = NalogID.ToString();
+            kontejner = Kontejner;
+           // PovuciIzPrijemnice();
+        }
+
 
         public frmOtpremaKontejneraKamionomIzKontejnera(string KontejnerID)
         {
@@ -179,8 +193,6 @@ namespace Saobracaj.Izvoz
                     ins.PrenesiKontejnerUOtpremuKamionomIzvoz(Convert.ToInt32(txtSifra.Text),Convert.ToInt32(txtKontejnerID.Text), Convert.ToInt32(txtNalogID.Text));
                     // RefreshDataGrid();
                     MessageBox.Show("Uspešno ste formirali Otpremu kamionom");
-
-                   
                 }
               
 

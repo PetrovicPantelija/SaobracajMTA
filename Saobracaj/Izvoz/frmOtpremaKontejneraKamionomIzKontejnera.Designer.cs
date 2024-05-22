@@ -31,8 +31,14 @@ namespace Saobracaj.Izvoz
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOtpremaKontejneraKamionomIzKontejnera));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsNew = new System.Windows.Forms.ToolStripButton();
+            this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.chkTerminal = new System.Windows.Forms.CheckBox();
+            this.chkPlatforma = new System.Windows.Forms.CheckBox();
+            this.chkIzvoz = new System.Windows.Forms.CheckBox();
             this.chkCirada = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -66,12 +72,7 @@ namespace Saobracaj.Izvoz
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.tsNew = new System.Windows.Forms.ToolStripButton();
-            this.tsSave = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.chkIzvoz = new System.Windows.Forms.CheckBox();
-            this.chkPlatforma = new System.Windows.Forms.CheckBox();
-            this.chkTerminal = new System.Windows.Forms.CheckBox();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -90,17 +91,48 @@ namespace Saobracaj.Izvoz
             this.tsNew,
             this.tsSave,
             this.toolStripSeparator1,
-            this.toolStripButton1});
+            this.toolStripButton1,
+            this.toolStripButton2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1087, 27);
             this.toolStrip1.TabIndex = 246;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // tsNew
+            // 
+            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
+            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNew.Name = "tsNew";
+            this.tsNew.Size = new System.Drawing.Size(24, 24);
+            this.tsNew.Text = "Novi";
+            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
+            // 
+            // tsSave
+            // 
+            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
+            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsSave.Name = "tsSave";
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
+            this.tsSave.Text = "tsSave";
+            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(74, 24);
+            this.toolStripButton1.Text = "OTVORI ";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // splitContainer1
             // 
@@ -143,11 +175,50 @@ namespace Saobracaj.Izvoz
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.txtNapomena);
             this.splitContainer1.Panel2.Controls.Add(this.label31);
+            this.splitContainer1.Panel2.Controls.Add(this.txtNapomena);
             this.splitContainer1.Size = new System.Drawing.Size(1065, 263);
             this.splitContainer1.SplitterDistance = 677;
             this.splitContainer1.TabIndex = 294;
+            // 
+            // chkTerminal
+            // 
+            this.chkTerminal.AutoSize = true;
+            this.chkTerminal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.chkTerminal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkTerminal.ForeColor = System.Drawing.Color.Transparent;
+            this.chkTerminal.Location = new System.Drawing.Point(293, 173);
+            this.chkTerminal.Name = "chkTerminal";
+            this.chkTerminal.Size = new System.Drawing.Size(66, 17);
+            this.chkTerminal.TabIndex = 299;
+            this.chkTerminal.Text = "Terminal";
+            this.chkTerminal.UseVisualStyleBackColor = false;
+            // 
+            // chkPlatforma
+            // 
+            this.chkPlatforma.AutoSize = true;
+            this.chkPlatforma.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.chkPlatforma.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkPlatforma.ForeColor = System.Drawing.Color.Transparent;
+            this.chkPlatforma.Location = new System.Drawing.Point(224, 212);
+            this.chkPlatforma.Name = "chkPlatforma";
+            this.chkPlatforma.Size = new System.Drawing.Size(70, 17);
+            this.chkPlatforma.TabIndex = 298;
+            this.chkPlatforma.Text = "Platforma";
+            this.chkPlatforma.UseVisualStyleBackColor = false;
+            // 
+            // chkIzvoz
+            // 
+            this.chkIzvoz.AutoSize = true;
+            this.chkIzvoz.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.chkIzvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkIzvoz.ForeColor = System.Drawing.Color.Transparent;
+            this.chkIzvoz.Location = new System.Drawing.Point(224, 173);
+            this.chkIzvoz.Name = "chkIzvoz";
+            this.chkIzvoz.Size = new System.Drawing.Size(51, 17);
+            this.chkIzvoz.TabIndex = 297;
+            this.chkIzvoz.Text = "Izvoz";
+            this.chkIzvoz.UseVisualStyleBackColor = false;
             // 
             // chkCirada
             // 
@@ -530,74 +601,15 @@ namespace Saobracaj.Izvoz
             this.dataGridView1.Size = new System.Drawing.Size(1045, 160);
             this.dataGridView1.TabIndex = 168;
             // 
-            // tsNew
+            // toolStripButton2
             // 
-            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
-            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(24, 24);
-            this.tsNew.Text = "Novi";
-            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
-            // 
-            // tsSave
-            // 
-            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
-            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(24, 24);
-            this.tsSave.Text = "tsSave";
-            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(74, 24);
-            this.toolStripButton1.Text = "OTVORI ";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // chkIzvoz
-            // 
-            this.chkIzvoz.AutoSize = true;
-            this.chkIzvoz.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
-            this.chkIzvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkIzvoz.ForeColor = System.Drawing.Color.Transparent;
-            this.chkIzvoz.Location = new System.Drawing.Point(224, 173);
-            this.chkIzvoz.Name = "chkIzvoz";
-            this.chkIzvoz.Size = new System.Drawing.Size(51, 17);
-            this.chkIzvoz.TabIndex = 297;
-            this.chkIzvoz.Text = "Izvoz";
-            this.chkIzvoz.UseVisualStyleBackColor = false;
-            // 
-            // chkPlatforma
-            // 
-            this.chkPlatforma.AutoSize = true;
-            this.chkPlatforma.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
-            this.chkPlatforma.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkPlatforma.ForeColor = System.Drawing.Color.Transparent;
-            this.chkPlatforma.Location = new System.Drawing.Point(224, 212);
-            this.chkPlatforma.Name = "chkPlatforma";
-            this.chkPlatforma.Size = new System.Drawing.Size(70, 17);
-            this.chkPlatforma.TabIndex = 298;
-            this.chkPlatforma.Text = "Platforma";
-            this.chkPlatforma.UseVisualStyleBackColor = false;
-            // 
-            // chkTerminal
-            // 
-            this.chkTerminal.AutoSize = true;
-            this.chkTerminal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
-            this.chkTerminal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkTerminal.ForeColor = System.Drawing.Color.Transparent;
-            this.chkTerminal.Location = new System.Drawing.Point(293, 173);
-            this.chkTerminal.Name = "chkTerminal";
-            this.chkTerminal.Size = new System.Drawing.Size(66, 17);
-            this.chkTerminal.TabIndex = 299;
-            this.chkTerminal.Text = "Terminal";
-            this.chkTerminal.UseVisualStyleBackColor = false;
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(117, 24);
+            this.toolStripButton2.Text = "Povuci iz prijemnice";
             // 
             // frmOtpremaKontejneraKamionomIzKontejnera
             // 
@@ -672,5 +684,6 @@ namespace Saobracaj.Izvoz
         private System.Windows.Forms.CheckBox chkIzvoz;
         private System.Windows.Forms.CheckBox chkTerminal;
         private System.Windows.Forms.CheckBox chkPlatforma;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
     }
 }
