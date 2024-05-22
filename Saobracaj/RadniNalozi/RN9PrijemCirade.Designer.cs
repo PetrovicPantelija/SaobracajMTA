@@ -424,6 +424,7 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.Size = new System.Drawing.Size(91, 24);
             this.toolStripButton4.Text = "Potvrdi završen";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // toolStripButton5
             // 

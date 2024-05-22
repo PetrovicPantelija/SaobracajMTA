@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -10,7 +11,7 @@ namespace Saobracaj.RadniNalozi
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
-
+        string kor = frmLogovanje.user;
 
         public RN9PrijemCirade()
         {
@@ -24,9 +25,11 @@ namespace Saobracaj.RadniNalozi
             InitializeComponent();
             FillGV();
             FillCombo();
+            //POOOOOO
             txtPrijemID.Text = PrijemID;
             txtKamion.Text = Kamion;
             txtNalogIzdao.Text = Korisnik;
+          
 
         }
         private void FillGV()
@@ -224,6 +227,12 @@ namespace Saobracaj.RadniNalozi
         {
             PrijemnicaPregled pp = new PrijemnicaPregled();
             pp.Show();
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            RadniNalozi.InsertRN rn = new InsertRN();
+            rn.PotvrdiUradjenRN9(Convert.ToInt32(txtID.Text), kor);
         }
     }
 }

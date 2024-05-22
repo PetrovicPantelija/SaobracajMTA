@@ -13,7 +13,7 @@ using System.Configuration;
 
 namespace TrackModal.Promet
 {
-    public partial class frmPopisPregled : Form
+    public partial class frmPopisPregled : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmPopisPregled";
         public bool Pravo;

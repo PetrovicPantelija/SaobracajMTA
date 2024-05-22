@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace TrackModal.Promet
 {
-    public partial class frmPopisUporedniPrikaz : Form
+    public partial class frmPopisUporedniPrikaz : Syncfusion.Windows.Forms.Office2010Form
     {
         public frmPopisUporedniPrikaz()
         {

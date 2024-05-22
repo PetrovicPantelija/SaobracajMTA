@@ -17,7 +17,7 @@ using Microsoft.Reporting.WinForms;
 
 namespace TrackModal.Promet
 {
-    public partial class frmPopis : Form
+    public partial class frmPopis : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmPopis";
         public bool Pravo;
