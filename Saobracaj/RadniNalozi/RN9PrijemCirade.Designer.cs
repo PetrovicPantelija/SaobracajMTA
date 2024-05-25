@@ -422,8 +422,8 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(91, 24);
-            this.toolStripButton4.Text = "Potvrdi završen";
+            this.toolStripButton4.Size = new System.Drawing.Size(109, 24);
+            this.toolStripButton4.Text = "POTVRDI ZAVRŠEN";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // toolStripButton5
@@ -435,6 +435,7 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(94, 24);
             this.toolStripButton5.Text = "Prijemnica robe";
+            this.toolStripButton5.Visible = false;
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // toolStripButton3
@@ -446,6 +447,7 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(121, 24);
             this.toolStripButton3.Text = "Pregled prijema robe";
+            this.toolStripButton3.Visible = false;
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // cboVrstaKontejnera
@@ -563,7 +565,7 @@ namespace Saobracaj.RadniNalozi
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(13, 233);
+            this.label5.Location = new System.Drawing.Point(13, 228);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(46, 13);

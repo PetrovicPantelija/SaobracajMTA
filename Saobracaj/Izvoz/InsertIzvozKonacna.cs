@@ -79,6 +79,7 @@ namespace Saobracaj.Izvoz
 
         public void PrenesiUPlanUtovaraIzvoz(int ID, int IDNadredjena)
         {
+            //Prenesi u Plan Selektovano izvoz prenosi sa Skladista, fali drugi prenos obicno Iz Nerasporedjenih u rasporedjene
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "PrenesiUPlanUtovaraSelektovanoIzvoz";
@@ -658,9 +659,11 @@ namespace Saobracaj.Izvoz
 
         public void PrenesiUPlanUtovaraPrazan(string Kontejner, int PlanID)
         {
+            //Ovde izgleda iz Kontejner tekuce se biraju prazni kontejneri 
+            //PrenesiUPlanUtovaraPrazan
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = "PrenesiUPlanUtovaraPrazan";
+            cmd.CommandText = "PrenesiUPlanUtovaraSelektovanoIzvozTErminal";
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter kontejner = new SqlParameter();

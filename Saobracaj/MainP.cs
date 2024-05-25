@@ -5484,7 +5484,7 @@ namespace Saobracaj
 
         private void toolStripButton305_Click(object sender, EventArgs e)
         {
-            RN3PrijemVoza2 frm = new RN3PrijemVoza2();
+            RN1PrijemVoza frm = new RN1PrijemVoza();
             frm.Show();
         }
 
@@ -6013,7 +6013,7 @@ namespace Saobracaj
             foreach (Form frm in fc)
             {
                 //iterate through
-                if (frm.Name == "frmRadniNalogInterniPregled")
+                if (frm.Name == "PlaniraniPretovar")
                 {
                     bFormNameOpen = true;
                     frm.Activate();
@@ -6022,9 +6022,11 @@ namespace Saobracaj
             }
             if (bFormNameOpen == false)
             {
-                Uvoz.frmRadniNalogInterniPregled RNIP = new Uvoz.frmRadniNalogInterniPregled(Korisnik);
-                RNIP.Show();
+                PlaniraniPretovar frm = new PlaniraniPretovar();
+                frm.Show();
             }
+
+           
 
 
 
@@ -6538,6 +6540,27 @@ namespace Saobracaj
         {
             Izvoz.frmDopunaPlanaPraznimIzvoz ddd = new frmDopunaPlanaPraznimIzvoz();    
             ddd.Show();
+        }
+
+        private void toolStripButton365_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmRadniNalogInterniPregled")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Uvoz.frmRadniNalogInterniPregled RNIP = new Uvoz.frmRadniNalogInterniPregled(Korisnik);
+                RNIP.Show();
+            }
         }
     }
     }

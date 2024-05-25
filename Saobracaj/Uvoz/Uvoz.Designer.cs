@@ -261,7 +261,7 @@ namespace Saobracaj.Uvoz
             this.toolStripButton9});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1274, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1268, 27);
             this.toolStrip1.TabIndex = 50;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -673,12 +673,13 @@ namespace Saobracaj.Uvoz
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(630, 534);
+            this.label29.Location = new System.Drawing.Point(759, 446);
             this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(76, 13);
             this.label29.TabIndex = 51;
             this.label29.Text = "Kontakt osoba";
+            this.label29.Visible = false;
             // 
             // label30
             // 
@@ -1248,7 +1249,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(120, 82);
+            this.dataGridView1.Size = new System.Drawing.Size(114, 49);
             this.dataGridView1.TabIndex = 52;
             this.dataGridView1.Visible = false;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -2047,11 +2048,12 @@ namespace Saobracaj.Uvoz
             this.txtKontaktOsoba.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txtKontaktOsoba.FormattingEnabled = true;
             this.txtKontaktOsoba.ItemHeight = 13;
-            this.txtKontaktOsoba.Location = new System.Drawing.Point(631, 548);
+            this.txtKontaktOsoba.Location = new System.Drawing.Point(760, 460);
             this.txtKontaktOsoba.Margin = new System.Windows.Forms.Padding(2);
             this.txtKontaktOsoba.Name = "txtKontaktOsoba";
             this.txtKontaktOsoba.Size = new System.Drawing.Size(186, 21);
             this.txtKontaktOsoba.TabIndex = 38;
+            this.txtKontaktOsoba.Visible = false;
             // 
             // button12
             // 
@@ -2081,12 +2083,13 @@ namespace Saobracaj.Uvoz
             // 
             this.button16.BackColor = System.Drawing.Color.Maroon;
             this.button16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button16.Location = new System.Drawing.Point(817, 546);
+            this.button16.Location = new System.Drawing.Point(946, 458);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(21, 21);
             this.button16.TabIndex = 224;
             this.button16.Text = "E";
             this.button16.UseVisualStyleBackColor = false;
+            this.button16.Visible = false;
             this.button16.Click += new System.EventHandler(this.button16_Click);
             // 
             // txtBZ
@@ -2340,10 +2343,11 @@ namespace Saobracaj.Uvoz
             // 
             // Uvoz
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1274, 549);
+            this.ClientSize = new System.Drawing.Size(1268, 516);
             this.Controls.Add(this.label61);
             this.Controls.Add(this.chkTerminalski);
             this.Controls.Add(this.label62);

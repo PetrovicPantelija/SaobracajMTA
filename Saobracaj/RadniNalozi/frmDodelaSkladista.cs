@@ -252,6 +252,8 @@ namespace Saobracaj.RadniNalozi
             if (TipRadnogNaloga == 1)
             FillDGRN1();
 
+            if (TipRadnogNaloga == 2)
+                FillDGRN2();
             if (TipRadnogNaloga == 6)
                 FillDGRN6();
         }

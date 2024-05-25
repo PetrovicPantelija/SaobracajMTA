@@ -52,9 +52,9 @@ namespace Saobracaj.Uvoz
             var select = "";
             if (cboIzdatOd.Text == "Uvoz")
             {
-                select = "  SELECT RadniNalogInterni.[ID]  ,RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]     " +
+                select = "  SELECT RadniNalogInterni.[ID]  ,UvozKonacna.BrojKontejnera, RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]     " +
   "  ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena]  , UvozKonacnaVrstaManipulacije.IDVrstaManipulacije, " +
-   " VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov] , PlanID as PlanUtovara  ,[BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]  ,UvozKonacna.BrojKontejnera      , uv.PaNaziv as Platilac  , " +
+   " VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov] , PlanID as PlanUtovara  ,[BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac  , " +
    " TipKontenjera.Naziv as Tipkontejnera, RadniNalogInterni.Pokret, KontejnerStatus.Naziv  FROM[RadniNalogInterni] " +
    " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
    " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
@@ -69,11 +69,11 @@ namespace Saobracaj.Uvoz
             }
             else if (cboIzdatOd.Text == "Izvoz")
             {
-                select = "   SELECT RadniNalogInterni.[ID]  ,RadniNalogInterni.[StatusIzdavanja], [OJIzdavanja]      " +
+                select = "   SELECT RadniNalogInterni.[ID]  ,IzvozKonacna.BrojKontejnera ,RadniNalogInterni.[StatusIzdavanja], [OJIzdavanja]      " +
                     ", o1.Naziv as Izdao  ,[OJRealizacije]      ,o2.Naziv as Realizuje  ,[DatumIzdavanja]   " +
                     "   ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena] " +
       " , IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije, VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov], PlanID as PlanUtovara " +
-      " ,[BrojOsnov] as BrojOsnov ,  VezniNalogID ,[KorisnikIzdao]      ,[KorisnikZavrsio]  ,IzvozKonacna.BrojKontejnera      , uv.PaNaziv as Platilac " +
+      " ,[BrojOsnov] as BrojOsnov ,  VezniNalogID ,[KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac " +
       " , TipKontenjera.Naziv as Tipkontejnera, RadniNalogInterni.Pokret, KontejnerStatus.Naziv   FROM [RadniNalogInterni] " +
       " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
       " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
@@ -90,9 +90,9 @@ namespace Saobracaj.Uvoz
 
             else if (cboIzdatOd.Text == "Terminal")
             {
-                select = "  SELECT RadniNalogInterni.[ID]  ,RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]     " +
+                select = "  SELECT RadniNalogInterni.[ID] ,UvozKonacna.BrojKontejnera ,RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]     " +
   "  ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena]  , UvozKonacnaVrstaManipulacije.IDVrstaManipulacije," +
-   " VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov]  ,[BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]  ,UvozKonacna.BrojKontejnera    " +
+   " VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov]  ,[BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]      " +
    "  , uv.PaNaziv as Platilac  , " +
    " TipKontenjera.Naziv as Tipkontejnera, PlanID as PlanUtovara, RadniNalogInterni.Pokret, KontejnerStatus.Naziv  FROM[RadniNalogInterni] " +
    " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
@@ -468,8 +468,9 @@ namespace Saobracaj.Uvoz
                 //ZAdnja nula je Uvoz
                 if (OJ == 4)
                 {
+                    //
                     MessageBox.Show("Formirate Prijem kamionom Platforma");
-                    Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 2);
+                    Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 0,2);
                     prijemplat.Show();
                 }
                 else if (OJ ==2)
@@ -480,9 +481,9 @@ namespace Saobracaj.Uvoz
                 }
                 else if (OJ == 1)
                 {
-
+                    //Prijem platforme //Uvoz SC1
                     MessageBox.Show("Formirate Prijem kamionom Platforma Uvoz");
-                    Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 1);
+                    Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 0, 1);
                     prijemplat.Show();
 
                 }
@@ -492,8 +493,9 @@ namespace Saobracaj.Uvoz
 
             if (Forma == "GATE OUT PRETOVAR")
             {
+                //
                 MessageBox.Show("Formirate Prijem kamionom Cirada");
-                Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 1);
+                Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text,1, 1);
                 prijemplat.Show();
 
             }

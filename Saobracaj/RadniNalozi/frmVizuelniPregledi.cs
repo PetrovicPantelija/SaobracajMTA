@@ -30,8 +30,8 @@ namespace Saobracaj.RadniNalozi
             gridGroupingControl2.ResetTableDescriptor();
             gridGroupingControl2.Refresh();
             var select = "";
-            select = "SELECT RNPrijemVoza.[ID]      ,[DatumRasporeda]      ,[BrojKontejnera]      ,TipKontenjera.Naziv, " +
-     " [NalogIzdao]      ,[DatumRealizacije]      ,[SaVoznogSredstva]	  , VOZ.BrVoza " +
+            select = "SELECT RNPrijemVoza.[ID] , VOZ.BrVoza , Voz.Relacija    ,[BrojKontejnera], TipKontenjera.Naziv,DatumRasporeda]           , " +
+     " [NalogIzdao]      ,[DatumRealizacije]      ,[SaVoznogSredstva]	   " +
      "  ,[BrojPlombe]      ,[NalogRealizovaoVP]      ,[ZavrsenVP]      ,[NapomenaVP] " +
      "  ,[DatumRealizacijeVP]      ,[PrijemID] " +
      "  ,[NalogID]            from RNPrijemVoza " +

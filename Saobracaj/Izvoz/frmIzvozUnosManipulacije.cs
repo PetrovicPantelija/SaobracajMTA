@@ -13,7 +13,7 @@ using Microsoft.Office.Interop.Excel;
 
 namespace Saobracaj.Izvoz
 {
-    public partial class frmIzvozUnosManipulacije : Form
+    public partial class frmIzvozUnosManipulacije : Syncfusion.Windows.Forms.Office2010Form
     {
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         int pIDPlana = 0;

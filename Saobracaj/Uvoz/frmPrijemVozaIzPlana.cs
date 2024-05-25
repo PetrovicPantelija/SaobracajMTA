@@ -1,4 +1,5 @@
-﻿using Saobracaj.Sifarnici;
+﻿using Saobracaj.RadniNalozi;
+using Saobracaj.Sifarnici;
 using System;
 using System.Configuration;
 using System.Data;
@@ -267,7 +268,17 @@ namespace Saobracaj.Uvoz
                 RefreshDataGrid();
                 ProglasiObradjenimRNIVOZ(Convert.ToInt32(cboPlanUtovara.SelectedValue));
             }
-            MessageBox.Show("Uspešno ste formirali prijemnicu za Plan");
+            MessageBox.Show("Uspešno ste formirali prijemnicu za izabrani plan");
+            DialogResult dialogResult = MessageBox.Show("Da li želite da formirate RN za Vizuelni pregled i Kalmaristu", "Radni nalozi?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                RadniNalozi.RN1PrijemVoza rnpv = new RadniNalozi.RN1PrijemVoza(KorisnikCene, cboBukingPrijema.SelectedValue.ToString(), "72", txtSifra.Text);
+                rnpv.Show();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
 
         }
 

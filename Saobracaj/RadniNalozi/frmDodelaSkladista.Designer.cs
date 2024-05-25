@@ -102,7 +102,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(650, 9);
+            this.textBox1.Location = new System.Drawing.Point(711, 8);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(114, 20);
             this.textBox1.TabIndex = 194;

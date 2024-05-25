@@ -120,35 +120,46 @@ namespace Saobracaj.Dokumenta
             con.Close();
         }
 
-        public frmPrijemKontejneraKamionLegetUvoz(string Korisnik, int Vozom, string NalogID, int Cirada)
+        public frmPrijemKontejneraKamionLegetUvoz(string Korisnik, int Vozom, string NalogID,  int Cirada, int Modul)
         {
            //Automatski prenos iz naloga
             
             InitializeComponent();
             KorisnikCene = Korisnik;
-            OJ = Cirada;
-            txtNalogID.Text = NalogID;
-            FormiranjeNovog = 1;
-            if (OJ == 1)
+            OJ = Modul;
+            if (Cirada == 1)
             {
                 chkCirada.Checked = true;
                 chkPlatforma.Checked = false;
-                chkTerminal.Checked = false;
-            }
-
-            else if (OJ == 2)
-            {
-                //KADA TERMINAL PRIMA KONTEJNER OD BRODARA
-                chkCirada.Checked = false;
-                chkPlatforma.Checked = true;
-                chkTerminal.Checked = true;
-                VratiPodatkePoNalogu(NalogID);
             }
             else
             {
                 chkCirada.Checked = false;
                 chkPlatforma.Checked = true;
+            }
+            txtNalogID.Text = NalogID;
+            FormiranjeNovog = 1;
+            if (OJ == 1)
+            {
+               
                 chkTerminal.Checked = false;
+                chkIzvoz.Checked = false;
+                chkUvoz.Checked = true;
+            }
+
+            else if (OJ == 2)
+            {
+                //KADA TERMINAL PRIMA KONTEJNER OD BRODARA
+                chkTerminal.Checked = false;
+                chkIzvoz.Checked = true;
+                chkUvoz.Checked = false;
+                VratiPodatkePoNalogu(NalogID);
+            }
+            else
+            {
+                chkTerminal.Checked = false;
+                chkIzvoz.Checked = false;
+                chkUvoz.Checked = true;
             }
 
 

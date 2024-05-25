@@ -86,7 +86,13 @@ namespace Saobracaj.RadniNalozi
 
         private void FillGV()
         {
-            var select = "Select * From RNOtpremaVoza order by ID desc";
+            var select = "SELECT RNOtpremaVoza.ID, RNOtpremaVoza.DatumRasporeda, RNOtpremaVoza.BrojKontejnera, RNOtpremaVoza.VrstaKontejnera," +
+                " TipKontenjera.ID AS TKID, TipKontenjera.Naziv, RNOtpremaVoza.NalogIzdao, " +
+                " RNOtpremaVoza.DatumRealizacije, RNOtpremaVoza.NaVoznoSredstvo, Voz.BrVoza, Voz.Relacija, RNOtpremaVoza.BrojPlombe, RNOtpremaVoza.BrojVagona, " +
+                "RNOtpremaVoza.Zavrsen,   RNOtpremaVoza.IdUsluge, RNOtpremaVoza.NalogRealizovao, RNOtpremaVoza.Napomena, RNOtpremaVoza.OtpremaID, " +
+                "RNOtpremaVoza.NalogID, RNOtpremaVoza.SaSkladista, Skladista.Naziv AS SkladisteNaziv FROM           RNOtpremaVoza INNER JOIN" +
+                "                        TipKontenjera ON RNOtpremaVoza.VrstaKontejnera = TipKontenjera.ID INNER JOIN   " +
+                "  Voz ON RNOtpremaVoza.NaVoznoSredstvo = Voz.ID INNER JOIN  Skladista ON RNOtpremaVoza.SaSkladista = Skladista.ID order by RNOtpremaVoza.ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -352,6 +358,20 @@ namespace Saobracaj.RadniNalozi
                 }
 
             }
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            InsertRN up = new InsertRN();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    up.ArhivirajKontejner(row.Cells[0].Value.ToString());
+                }
+
+            }
+
         }
     }
 }

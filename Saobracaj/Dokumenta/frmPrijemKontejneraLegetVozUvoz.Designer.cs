@@ -42,8 +42,6 @@ namespace Saobracaj.Dokumenta
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.formirajRadneNalogePrijemVozaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.formirajRadneNalogePunjenjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.formirajRadneNalogePREGLEDUVOZToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
@@ -290,9 +288,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.toolStripDropDownButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.formirajRadneNalogePrijemVozaToolStripMenuItem,
-            this.formirajRadneNalogePunjenjeToolStripMenuItem,
-            this.formirajRadneNalogePREGLEDUVOZToolStripMenuItem});
+            this.formirajRadneNalogePrijemVozaToolStripMenuItem});
             this.toolStripDropDownButton1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripDropDownButton1.ForeColor = System.Drawing.Color.Black;
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
@@ -305,23 +301,9 @@ namespace Saobracaj.Dokumenta
             // formirajRadneNalogePrijemVozaToolStripMenuItem
             // 
             this.formirajRadneNalogePrijemVozaToolStripMenuItem.Name = "formirajRadneNalogePrijemVozaToolStripMenuItem";
-            this.formirajRadneNalogePrijemVozaToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
+            this.formirajRadneNalogePrijemVozaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.formirajRadneNalogePrijemVozaToolStripMenuItem.Text = "RN - Prijem voza";
             this.formirajRadneNalogePrijemVozaToolStripMenuItem.Click += new System.EventHandler(this.formirajRadneNalogePrijemVozaToolStripMenuItem_Click);
-            // 
-            // formirajRadneNalogePunjenjeToolStripMenuItem
-            // 
-            this.formirajRadneNalogePunjenjeToolStripMenuItem.Name = "formirajRadneNalogePunjenjeToolStripMenuItem";
-            this.formirajRadneNalogePunjenjeToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.formirajRadneNalogePunjenjeToolStripMenuItem.Text = "RN - Pretovar";
-            this.formirajRadneNalogePunjenjeToolStripMenuItem.Click += new System.EventHandler(this.formirajRadneNalogePunjenjeToolStripMenuItem_Click);
-            // 
-            // formirajRadneNalogePREGLEDUVOZToolStripMenuItem
-            // 
-            this.formirajRadneNalogePREGLEDUVOZToolStripMenuItem.Name = "formirajRadneNalogePREGLEDUVOZToolStripMenuItem";
-            this.formirajRadneNalogePREGLEDUVOZToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
-            this.formirajRadneNalogePREGLEDUVOZToolStripMenuItem.Text = "RN - Pregled Kontejnera";
-            this.formirajRadneNalogePREGLEDUVOZToolStripMenuItem.Click += new System.EventHandler(this.formirajRadneNalogePREGLEDUVOZToolStripMenuItem_Click);
             // 
             // toolStripButton7
             // 
@@ -402,6 +384,7 @@ namespace Saobracaj.Dokumenta
             this.chkCIRUradjen.TabIndex = 245;
             this.chkCIRUradjen.Text = "CIR urađen";
             this.chkCIRUradjen.UseVisualStyleBackColor = false;
+            this.chkCIRUradjen.Visible = false;
             // 
             // label31
             // 
@@ -429,7 +412,7 @@ namespace Saobracaj.Dokumenta
             this.chkPoslatEmailPrijem.AutoSize = true;
             this.chkPoslatEmailPrijem.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPoslatEmailPrijem.ForeColor = System.Drawing.Color.Black;
-            this.chkPoslatEmailPrijem.Location = new System.Drawing.Point(224, 88);
+            this.chkPoslatEmailPrijem.Location = new System.Drawing.Point(221, 86);
             this.chkPoslatEmailPrijem.Name = "chkPoslatEmailPrijem";
             this.chkPoslatEmailPrijem.Size = new System.Drawing.Size(84, 17);
             this.chkPoslatEmailPrijem.TabIndex = 242;
@@ -448,6 +431,7 @@ namespace Saobracaj.Dokumenta
             this.chkPoslatEmailNajava.TabIndex = 241;
             this.chkPoslatEmailNajava.Text = "POSLAT E-MAIL PRIJEMA VOZA NA UVOZ";
             this.chkPoslatEmailNajava.UseVisualStyleBackColor = false;
+            this.chkPoslatEmailNajava.Visible = false;
             // 
             // chkTransport
             // 
@@ -460,6 +444,7 @@ namespace Saobracaj.Dokumenta
             this.chkTransport.TabIndex = 240;
             this.chkTransport.Text = "Predato transportu";
             this.chkTransport.UseVisualStyleBackColor = true;
+            this.chkTransport.Visible = false;
             // 
             // chkVoz
             // 
@@ -866,7 +851,7 @@ namespace Saobracaj.Dokumenta
             this.dataGridView8.Location = new System.Drawing.Point(5, 5);
             this.dataGridView8.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView8.Name = "dataGridView8";
-            this.dataGridView8.RowHeadersWidth = 11;
+            this.dataGridView8.RowHeadersWidth = 20;
             this.dataGridView8.RowTemplate.Height = 24;
             this.dataGridView8.Size = new System.Drawing.Size(750, 156);
             this.dataGridView8.TabIndex = 158;
@@ -2160,8 +2145,6 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.DataGridView dataGridView8;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem formirajRadneNalogePrijemVozaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem formirajRadneNalogePunjenjeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem formirajRadneNalogePREGLEDUVOZToolStripMenuItem;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.ComboBox cboOperaterHR;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
