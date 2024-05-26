@@ -502,8 +502,8 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(89, 24);
-            this.toolStripButton3.Text = "Ubaci u tekuce";
+            this.toolStripButton3.Size = new System.Drawing.Size(130, 24);
+            this.toolStripButton3.Text = "AKTIVIRAJ KONTEJNER";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // toolStripButton5
@@ -886,6 +886,7 @@ namespace Saobracaj.RadniNalozi
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button4.Enabled = false;
             this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Location = new System.Drawing.Point(811, 69);
             this.button4.Name = "button4";

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Sifarnici;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -11,6 +12,7 @@ namespace Saobracaj.RadniNalozi
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
+        string KorisnikTekuce = frmLogovanje.user;
         public RN2OtpremaVoza()
         {
             InitializeComponent();
@@ -282,7 +284,7 @@ namespace Saobracaj.RadniNalozi
             {
                 if (row.Selected == true)
                 {
-                    up.PotvrdiUradjenRN2(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                    up.PotvrdiUradjenRN2(Convert.ToInt32(row.Cells[0].Value.ToString()), KorisnikTekuce);
                 }
 
             }

@@ -541,7 +541,7 @@ namespace Saobracaj.Izvoz
  " inner   join PArtnerji on PArtnerji.PaSifra = IzvozKonacnaVrstaManipulacije.Platilac " +
 " inner   join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozKonacnaVrstaManipulacije.OrgJed " +
 " inner    join KontejnerStatus on IzvozKonacnaVrstaManipulacije.StatusKontejnera = KontejnerStatus.ID " +
-" where IzvozKonacna.IDNadredjena = " + Convert.ToInt32(txtNadredjeni.Text);
+" where IzvozKonacna.IDNadredjena = " + Convert.ToInt32(txtNadredjeni.Text) + " Order by IzvozKonacnaVrstaManipulacije.ID asc";
             }
 
             SqlConnection conn = new SqlConnection(connection);

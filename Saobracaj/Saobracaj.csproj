@@ -2120,6 +2120,12 @@
     <Compile Include="RadniNalozi\frmKalmarGateOutVoz.Designer.cs">
       <DependentUpon>frmKalmarGateOutVoz.cs</DependentUpon>
     </Compile>
+    <Compile Include="RadniNalozi\frmKontejnerTekuceOperacijeLog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadniNalozi\frmKontejnerTekuceOperacijeLog.Designer.cs">
+      <DependentUpon>frmKontejnerTekuceOperacijeLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="RadniNalozi\frmPregledSkladistaNovi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4362,6 +4368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\frmKalmarGateOutVoz.resx">
       <DependentUpon>frmKalmarGateOutVoz.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadniNalozi\frmKontejnerTekuceOperacijeLog.resx">
+      <DependentUpon>frmKontejnerTekuceOperacijeLog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RadniNalozi\frmPregledSkladista.resx">
       <DependentUpon>frmPregledSkladista.cs</DependentUpon>

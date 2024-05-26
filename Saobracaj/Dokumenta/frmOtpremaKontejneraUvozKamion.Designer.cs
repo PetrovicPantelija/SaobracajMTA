@@ -29,6 +29,7 @@ namespace Saobracaj.Dokumenta
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOtpremaKontejneraUvozKamion));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -38,11 +39,19 @@ namespace Saobracaj.Dokumenta
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmOtpremaKontejneraUvozKamion));
             this.btnManipulacija = new System.Windows.Forms.ToolStrip();
+            this.tsNew = new System.Windows.Forms.ToolStripButton();
+            this.tsSave = new System.Windows.Forms.ToolStripButton();
+            this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.oTPREMAPLATFORMEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oTPREMAPLATFORMEToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.oTPREMACIRADEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.chkCIRUradjen = new System.Windows.Forms.CheckBox();
             this.chkZatvoren = new System.Windows.Forms.CheckBox();
@@ -153,15 +162,6 @@ namespace Saobracaj.Dokumenta
             this.chkIzvoz = new System.Windows.Forms.CheckBox();
             this.chkTerminal = new System.Windows.Forms.CheckBox();
             this.chkPlatforma = new System.Windows.Forms.CheckBox();
-            this.tsNew = new System.Windows.Forms.ToolStripButton();
-            this.tsSave = new System.Windows.Forms.ToolStripButton();
-            this.tsDelete = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.oTPREMAPLATFORMEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.oTPREMAPLATFORMEToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.oTPREMACIRADEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.btnManipulacija.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -204,6 +204,36 @@ namespace Saobracaj.Dokumenta
             this.btnManipulacija.TabIndex = 115;
             this.btnManipulacija.Text = "Manipulacije kontejnerom";
             // 
+            // tsNew
+            // 
+            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
+            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNew.Name = "tsNew";
+            this.tsNew.Size = new System.Drawing.Size(24, 25);
+            this.tsNew.Text = "Novi";
+            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
+            // 
+            // tsSave
+            // 
+            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
+            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsSave.Name = "tsSave";
+            this.tsSave.Size = new System.Drawing.Size(24, 25);
+            this.tsSave.Text = "tsSave";
+            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
+            // 
+            // tsDelete
+            // 
+            this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
+            this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsDelete.Name = "tsDelete";
+            this.tsDelete.Size = new System.Drawing.Size(24, 25);
+            this.tsDelete.Text = "toolStripButton1";
+            this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -221,6 +251,17 @@ namespace Saobracaj.Dokumenta
             this.toolStripButton1.Visible = false;
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.toolStripButton2.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(183, 25);
+            this.toolStripButton2.Text = "DOKUMENTA OTPREME";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
             // toolStripLabel2
             // 
             this.toolStripLabel2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -229,6 +270,53 @@ namespace Saobracaj.Dokumenta
             this.toolStripLabel2.Size = new System.Drawing.Size(99, 25);
             this.toolStripLabel2.Text = "POŠALJI MAIL";
             this.toolStripLabel2.Click += new System.EventHandler(this.toolStripLabel2_Click);
+            // 
+            // toolStripDropDownButton1
+            // 
+            this.toolStripDropDownButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.oTPREMAPLATFORMEToolStripMenuItem,
+            this.oTPREMAPLATFORMEToolStripMenuItem1,
+            this.oTPREMACIRADEToolStripMenuItem});
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(128, 25);
+            this.toolStripDropDownButton1.Text = "Radni nalozi";
+            this.toolStripDropDownButton1.Click += new System.EventHandler(this.toolStripDropDownButton1_Click);
+            // 
+            // oTPREMAPLATFORMEToolStripMenuItem
+            // 
+            this.oTPREMAPLATFORMEToolStripMenuItem.Name = "oTPREMAPLATFORMEToolStripMenuItem";
+            this.oTPREMAPLATFORMEToolStripMenuItem.Size = new System.Drawing.Size(320, 26);
+            this.oTPREMAPLATFORMEToolStripMenuItem.Text = "OTPREMA PLATFORME";
+            this.oTPREMAPLATFORMEToolStripMenuItem.Click += new System.EventHandler(this.oTPREMAPLATFORMEToolStripMenuItem_Click);
+            // 
+            // oTPREMAPLATFORMEToolStripMenuItem1
+            // 
+            this.oTPREMAPLATFORMEToolStripMenuItem1.Name = "oTPREMAPLATFORMEToolStripMenuItem1";
+            this.oTPREMAPLATFORMEToolStripMenuItem1.Size = new System.Drawing.Size(320, 26);
+            this.oTPREMAPLATFORMEToolStripMenuItem1.Text = "OTPREMA PLATFORME - BRODAR ";
+            this.oTPREMAPLATFORMEToolStripMenuItem1.Click += new System.EventHandler(this.oTPREMAPLATFORMEToolStripMenuItem1_Click);
+            // 
+            // oTPREMACIRADEToolStripMenuItem
+            // 
+            this.oTPREMACIRADEToolStripMenuItem.Name = "oTPREMACIRADEToolStripMenuItem";
+            this.oTPREMACIRADEToolStripMenuItem.Size = new System.Drawing.Size(320, 26);
+            this.oTPREMACIRADEToolStripMenuItem.Text = "OTPREMA CIRADE";
+            this.oTPREMACIRADEToolStripMenuItem.Click += new System.EventHandler(this.oTPREMACIRADEToolStripMenuItem_Click);
+            // 
+            // toolStripButton5
+            // 
+            this.toolStripButton5.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.toolStripButton5.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
+            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton5.MergeAction = System.Windows.Forms.MergeAction.Remove;
+            this.toolStripButton5.Name = "toolStripButton5";
+            this.toolStripButton5.Size = new System.Drawing.Size(54, 25);
+            this.toolStripButton5.Text = "CIR";
+            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // toolStripButton6
             // 
@@ -715,7 +803,7 @@ namespace Saobracaj.Dokumenta
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView8.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridView8.RowHeadersWidth = 11;
+            this.dataGridView8.RowHeadersWidth = 25;
             this.dataGridView8.RowTemplate.Height = 24;
             this.dataGridView8.Size = new System.Drawing.Size(747, 172);
             this.dataGridView8.TabIndex = 158;
@@ -1688,94 +1776,6 @@ namespace Saobracaj.Dokumenta
             this.chkPlatforma.Text = "PLATFORMA";
             this.chkPlatforma.UseVisualStyleBackColor = false;
             this.chkPlatforma.CheckedChanged += new System.EventHandler(this.chkPlatforma_CheckedChanged);
-            // 
-            // tsNew
-            // 
-            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
-            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(24, 25);
-            this.tsNew.Text = "Novi";
-            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
-            // 
-            // tsSave
-            // 
-            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
-            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(24, 25);
-            this.tsSave.Text = "tsSave";
-            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
-            // 
-            // tsDelete
-            // 
-            this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
-            this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(24, 25);
-            this.tsDelete.Text = "toolStripButton1";
-            this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.toolStripButton2.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(183, 25);
-            this.toolStripButton2.Text = "DOKUMENTA OTPREME";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
-            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.oTPREMAPLATFORMEToolStripMenuItem,
-            this.oTPREMAPLATFORMEToolStripMenuItem1,
-            this.oTPREMACIRADEToolStripMenuItem});
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(128, 25);
-            this.toolStripDropDownButton1.Text = "Radni nalozi";
-            this.toolStripDropDownButton1.Click += new System.EventHandler(this.toolStripDropDownButton1_Click);
-            // 
-            // oTPREMAPLATFORMEToolStripMenuItem
-            // 
-            this.oTPREMAPLATFORMEToolStripMenuItem.Name = "oTPREMAPLATFORMEToolStripMenuItem";
-            this.oTPREMAPLATFORMEToolStripMenuItem.Size = new System.Drawing.Size(320, 26);
-            this.oTPREMAPLATFORMEToolStripMenuItem.Text = "OTPREMA PLATFORME";
-            this.oTPREMAPLATFORMEToolStripMenuItem.Click += new System.EventHandler(this.oTPREMAPLATFORMEToolStripMenuItem_Click);
-            // 
-            // oTPREMAPLATFORMEToolStripMenuItem1
-            // 
-            this.oTPREMAPLATFORMEToolStripMenuItem1.Name = "oTPREMAPLATFORMEToolStripMenuItem1";
-            this.oTPREMAPLATFORMEToolStripMenuItem1.Size = new System.Drawing.Size(320, 26);
-            this.oTPREMAPLATFORMEToolStripMenuItem1.Text = "OTPREMA PLATFORME - BRODAR ";
-            this.oTPREMAPLATFORMEToolStripMenuItem1.Click += new System.EventHandler(this.oTPREMAPLATFORMEToolStripMenuItem1_Click);
-            // 
-            // oTPREMACIRADEToolStripMenuItem
-            // 
-            this.oTPREMACIRADEToolStripMenuItem.Name = "oTPREMACIRADEToolStripMenuItem";
-            this.oTPREMACIRADEToolStripMenuItem.Size = new System.Drawing.Size(320, 26);
-            this.oTPREMACIRADEToolStripMenuItem.Text = "OTPREMA CIRADE";
-            this.oTPREMACIRADEToolStripMenuItem.Click += new System.EventHandler(this.oTPREMACIRADEToolStripMenuItem_Click);
-            // 
-            // toolStripButton5
-            // 
-            this.toolStripButton5.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.toolStripButton5.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton5.Image")));
-            this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton5.MergeAction = System.Windows.Forms.MergeAction.Remove;
-            this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(54, 25);
-            this.toolStripButton5.Text = "CIR";
-            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // frmOtpremaKontejneraUvozKamion
             // 

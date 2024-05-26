@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmDelavci : Form
+    public partial class frmDelavci : Syncfusion.Windows.Forms.Office2010Form
     {
 
 

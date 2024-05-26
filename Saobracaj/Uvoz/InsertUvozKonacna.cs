@@ -2528,7 +2528,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
 
         }
 
-        public void PrenesiKontejnerIzPlanaNaPrijemnicu(int KontejnerID)
+        public void PrenesiKontejnerIzPlanaNaPrijemnicu(int KontejnerID, int NalogID)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -2542,6 +2542,12 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             id.Value = KontejnerID;
             cmd.Parameters.Add(id);
 
+            SqlParameter nalogid = new SqlParameter();
+            nalogid.ParameterName = "@NalogID";
+            nalogid.SqlDbType = SqlDbType.Int;
+            nalogid.Direction = ParameterDirection.Input;
+            nalogid.Value = NalogID;
+            cmd.Parameters.Add(nalogid);
 
 
             conn.Open();

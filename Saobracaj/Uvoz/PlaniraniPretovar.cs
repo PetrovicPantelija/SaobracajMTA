@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class PlaniraniPretovar : Form
+    public partial class PlaniraniPretovar : Syncfusion.Windows.Forms.Office2010Form
     {
         string korisnik = frmLogovanje.user;
         string s_connection = Sifarnici.frmLogovanje.connectionString;
@@ -190,7 +190,20 @@ namespace Saobracaj.Uvoz
             RadniNalozi.Otpremnica frm = new Otpremnica(Convert.ToInt32(txtID.Text), txtKontejner.Text.ToString().TrimEnd(),txtReg.Text,txtVozac.Text);
             frm.Show();
         }
-        
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            InsertRN up = new InsertRN();
+            up.ZatvoriSkladisninuKontejnera(Convert.ToInt32(txtID.Text), korisnik);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            InsertRN up = new InsertRN();
+            up.PokreniSkladisninuKontejnera(Convert.ToInt32(txtID.Text), korisnik);
+            
+        }
+
         int PrijemID;
         private void VratiPrijemID()
         {
@@ -210,9 +223,9 @@ namespace Saobracaj.Uvoz
             VratiUvozKonacna();
             Dokumeta.InsertPrijemKontejneraVoz ins = new Dokumeta.InsertPrijemKontejneraVoz();
             ins.InsertPrijemKontVoz(Convert.ToDateTime(dateTimePicker1.Value.ToString()), 0, 0, Convert.ToDateTime(dateTimePicker1.MinDate.ToString()), DateTime.Now, korisnik, txtReg.Text.ToString(), txtVozac.Text.ToString(),
-                0, txtNapomena.Text.ToString(), 0, 0, 1, 0, 0, 0);
+                0, txtNapomena.Text.ToString(), 0, 0, 1, 1, 0, 1);
             InsertUvozKonacna ins2 = new InsertUvozKonacna();
-            ins2.PrenesiKontejnerIzPlanaNaPrijemnicu(Convert.ToInt32(txtOsnov.Text));
+            ins2.PrenesiKontejnerIzPlanaNaPrijemnicu(Convert.ToInt32(txtOsnov.Text), Convert.ToInt32(txtID.Text));
             VratiPrijemID();
             RadniNalozi.InsertRN rn = new RadniNalozi.InsertRN();
             rn.InsRN9PrijmCiradeKam(Convert.ToDateTime(dateTimePicker1.Value), korisnik, Convert.ToDateTime(dateTimePicker1.MinDate), 0, Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue)

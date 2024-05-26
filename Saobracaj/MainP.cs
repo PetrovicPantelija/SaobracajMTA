@@ -6562,6 +6562,12 @@ namespace Saobracaj
                 RNIP.Show();
             }
         }
+
+        private void toolStripButton366_Click(object sender, EventArgs e)
+        {
+            frmKontejnerTekuceOperacijeLog lo = new frmKontejnerTekuceOperacijeLog();
+            lo.Show();
+        }
     }
     }
 

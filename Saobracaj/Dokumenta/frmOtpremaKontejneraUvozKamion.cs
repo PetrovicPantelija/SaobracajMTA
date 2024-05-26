@@ -3124,7 +3124,7 @@ namespace Saobracaj.Dokumenta
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView8.Columns[0];
             dataGridView8.Columns[0].HeaderText = "RNID";
-            dataGridView8.Columns[0].Width = 20;
+            dataGridView8.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView8.Columns[1];
             dataGridView8.Columns[1].HeaderText = "STATUS";

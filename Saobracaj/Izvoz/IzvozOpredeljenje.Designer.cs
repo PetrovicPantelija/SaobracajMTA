@@ -118,6 +118,7 @@ namespace Saobracaj.Izvoz
             this.Controls.Add(this.txtBrojKontejnera);
             this.Controls.Add(this.gridGroupingControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.Name = "IzvozOpredeljenje";
             this.Text = "Kontejneri sa skladista - Izvoz opredeljenje";
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.IzvozOpredeljenje_KeyUp);

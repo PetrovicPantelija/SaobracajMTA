@@ -85,16 +85,17 @@ namespace Saobracaj.RadniNalozi
             this.dataGridView2.Location = new System.Drawing.Point(551, 65);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(450, 729);
+            this.dataGridView2.Size = new System.Drawing.Size(864, 729);
             this.dataGridView2.TabIndex = 181;
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Enabled = false;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(548, 9);
+            this.label5.Location = new System.Drawing.Point(1152, 6);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(97, 16);
             this.label5.TabIndex = 191;
@@ -102,7 +103,8 @@ namespace Saobracaj.RadniNalozi
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(711, 8);
+            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox1.Location = new System.Drawing.Point(1297, 5);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(114, 20);
             this.textBox1.TabIndex = 194;
@@ -135,7 +137,7 @@ namespace Saobracaj.RadniNalozi
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(297, 9);
+            this.button1.Location = new System.Drawing.Point(504, 9);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(173, 23);
             this.button1.TabIndex = 197;
@@ -178,7 +180,7 @@ namespace Saobracaj.RadniNalozi
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1009, 806);
+            this.ClientSize = new System.Drawing.Size(1423, 806);
             this.Controls.Add(this.chkCIR);
             this.Controls.Add(this.chkGAteInKamion);
             this.Controls.Add(this.chkGateInVoz);
@@ -192,7 +194,7 @@ namespace Saobracaj.RadniNalozi
             this.Controls.Add(this.dataGridView1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDodelaSkladista";
-            this.Text = "Dodela skladišta i pozicija";
+            this.Text = "ODREDI POZICIJU";
             this.Load += new System.EventHandler(this.frmDodelaSkladista_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();

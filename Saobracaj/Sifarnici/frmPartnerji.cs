@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmPartnerji : Form
+    public partial class frmPartnerji : Syncfusion.Windows.Forms.Office2010Form
     {
         int PomBrodar = 0;
         int PomPlatilac = 0;

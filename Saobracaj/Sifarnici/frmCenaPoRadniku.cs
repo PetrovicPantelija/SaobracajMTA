@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmCenaPoRadniku : Form
+    public partial class frmCenaPoRadniku : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         public frmCenaPoRadniku()

@@ -1169,7 +1169,7 @@ namespace Saobracaj.Izvoz
    "      ,[Izvoznik],[Klijent1],[Napomena1REf],[DodatneNapomeneDrumski] " +
    "      ,[Klijent2],[Napomena2REf],[Klijent3],[Napomena3REf] " +
    "      ,[SpediterRijeka],[OstalePlombe],[ADR],[Vozilo],[Vozac], SpedicijaJ, PeriodSkladistenjaOd, PeriodSkladistenjaDo, VrstaBrodskePlombe, NapomenaZaRobu, VGMBrod2  ,[KontaktSpeditera] " +
-      " ,[KontaktOsobe]      ,[Korisnik]      ,[DatumKreiranja], UvozID " +
+      " ,[KontaktOsobe]      ,[Korisnik]      ,[DatumKreiranja], UvozID, Terminal " +
  "  FROM [Izvoz] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -1187,6 +1187,15 @@ namespace Saobracaj.Izvoz
                 else
                 {
                     cboDobijenNalog.Checked = false;
+                }
+
+                if (dr["Terminal"].ToString() == "1")
+                {
+                    chkTerminal.Checked = true;
+                }
+                else
+                {
+                    chkTerminal.Checked = false;
                 }
                 txtRef3.Text = dr["Napomena3REf"].ToString();
                 txtRef2.Text = dr["Napomena2REf"].ToString();

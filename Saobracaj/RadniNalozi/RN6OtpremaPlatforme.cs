@@ -533,7 +533,7 @@ namespace Saobracaj.RadniNalozi
             {
                 if (row.Selected == true)
                 {
-                    up.PotvrdiUradjenRN6(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                    up.PotvrdiUradjenRN6(Convert.ToInt32(row.Cells[0].Value.ToString()), KorisnikTekuci);
                 }
 
             }

@@ -177,6 +177,7 @@ namespace Saobracaj.RadniNalozi
             this.txtSAPozicijeskladista.Size = new System.Drawing.Size(104, 13);
             this.txtSAPozicijeskladista.TabIndex = 414;
             this.txtSAPozicijeskladista.Text = "SA Pozicija skladista";
+            this.txtSAPozicijeskladista.Visible = false;
             // 
             // txtSASkladista
             // 
@@ -187,6 +188,7 @@ namespace Saobracaj.RadniNalozi
             this.txtSASkladista.Size = new System.Drawing.Size(65, 13);
             this.txtSASkladista.TabIndex = 413;
             this.txtSASkladista.Text = "SA Skadista";
+            this.txtSASkladista.Visible = false;
             // 
             // cboVrstaRobe
             // 
@@ -343,7 +345,7 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton5});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(872, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1068, 27);
             this.toolStrip1.TabIndex = 435;
             this.toolStrip1.Text = "FORMIRAJ RN OTPREMA CIRADE";
             // 
@@ -439,6 +441,7 @@ namespace Saobracaj.RadniNalozi
             this.cboSaSklad.Name = "cboSaSklad";
             this.cboSaSklad.Size = new System.Drawing.Size(156, 21);
             this.cboSaSklad.TabIndex = 421;
+            this.cboSaSklad.Visible = false;
             this.cboSaSklad.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
             // cboSaPoz
@@ -450,10 +453,14 @@ namespace Saobracaj.RadniNalozi
             this.cboSaPoz.Name = "cboSaPoz";
             this.cboSaPoz.Size = new System.Drawing.Size(156, 21);
             this.cboSaPoz.TabIndex = 421;
+            this.cboSaPoz.Visible = false;
             this.cboSaPoz.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(9, 392);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
@@ -534,7 +541,7 @@ namespace Saobracaj.RadniNalozi
             // txtNalogID
             // 
             this.txtNalogID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.txtNalogID.Location = new System.Drawing.Point(191, 147);
+            this.txtNalogID.Location = new System.Drawing.Point(9, 211);
             this.txtNalogID.Margin = new System.Windows.Forms.Padding(2);
             this.txtNalogID.Name = "txtNalogID";
             this.txtNalogID.Size = new System.Drawing.Size(101, 20);
@@ -543,7 +550,7 @@ namespace Saobracaj.RadniNalozi
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(188, 132);
+            this.label19.Location = new System.Drawing.Point(14, 198);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(49, 13);
@@ -601,11 +608,11 @@ namespace Saobracaj.RadniNalozi
             // chkZavrsen
             // 
             this.chkZavrsen.AutoSize = true;
-            this.chkZavrsen.Location = new System.Drawing.Point(620, 250);
+            this.chkZavrsen.Location = new System.Drawing.Point(839, 214);
             this.chkZavrsen.Name = "chkZavrsen";
             this.chkZavrsen.Size = new System.Drawing.Size(65, 17);
             this.chkZavrsen.TabIndex = 443;
-            this.chkZavrsen.Text = "Zavrsen";
+            this.chkZavrsen.Text = "Završen";
             this.chkZavrsen.UseVisualStyleBackColor = true;
             // 
             // RN8OtpremaCirade
@@ -613,7 +620,7 @@ namespace Saobracaj.RadniNalozi
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(872, 648);
+            this.ClientSize = new System.Drawing.Size(1068, 648);
             this.Controls.Add(this.label41);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.chkZavrsen);

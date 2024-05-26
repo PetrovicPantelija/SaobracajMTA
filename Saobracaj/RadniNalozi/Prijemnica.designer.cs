@@ -29,6 +29,7 @@ namespace Saobracaj.RadniNalozi
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Prijemnica));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.cbo_Partner = new System.Windows.Forms.ComboBox();
             this.cbo_MestoTroska = new System.Windows.Forms.ComboBox();
@@ -54,6 +55,8 @@ namespace Saobracaj.RadniNalozi
             this.dtpVreme = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.txtBrojKontejnera = new System.Windows.Forms.TextBox();
+            this.txtNalogID = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -134,12 +137,12 @@ namespace Saobracaj.RadniNalozi
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(897, 14);
+            this.button1.Location = new System.Drawing.Point(952, 18);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 42);
+            this.button1.Size = new System.Drawing.Size(114, 42);
             this.button1.TabIndex = 10;
-            this.button1.Text = "Sacuvaj prijemnicu";
+            this.button1.Text = "POTVRDA PRETOVARA";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -183,7 +186,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // btn_Povuci
             // 
-            this.btn_Povuci.Location = new System.Drawing.Point(897, 67);
+            this.btn_Povuci.Location = new System.Drawing.Point(962, 64);
             this.btn_Povuci.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Povuci.Name = "btn_Povuci";
             this.btn_Povuci.Size = new System.Drawing.Size(100, 40);
@@ -322,12 +325,31 @@ namespace Saobracaj.RadniNalozi
             this.txtBrojKontejnera.Size = new System.Drawing.Size(132, 20);
             this.txtBrojKontejnera.TabIndex = 23;
             // 
+            // txtNalogID
+            // 
+            this.txtNalogID.Location = new System.Drawing.Point(815, 83);
+            this.txtNalogID.Name = "txtNalogID";
+            this.txtNalogID.Size = new System.Drawing.Size(132, 20);
+            this.txtNalogID.TabIndex = 24;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(812, 68);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 13);
+            this.label8.TabIndex = 25;
+            this.label8.Text = "Nalog ID";
+            // 
             // Prijemnica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1073, 646);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtNalogID);
             this.Controls.Add(this.txtBrojKontejnera);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.dtpVreme);
@@ -348,6 +370,7 @@ namespace Saobracaj.RadniNalozi
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Prijemnica";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -390,5 +413,7 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.DateTimePicker dtpVreme;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtBrojKontejnera;
+        private System.Windows.Forms.TextBox txtNalogID;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -1715,7 +1715,7 @@ namespace Saobracaj.Izvoz
   " join IzvozKonacna on IzvozKonacnaVrstaManipulacije.IDNadredjena = IzvozKonacna.ID " +
   " left " +
   " join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera" +
-  " where IzvozKonacna.ID = " + Convert.ToInt32(txtID.Text);
+  " where IzvozKonacna.ID = " + Convert.ToInt32(txtID.Text) + " Order by IzvozKonacnaVrstaManipulacije.ID asc";
             
 
 
@@ -1773,7 +1773,7 @@ namespace Saobracaj.Izvoz
   " inner" +
   " join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID" +
   " left" +
-  " join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera where UvozKonacna.ID  = " + Convert.ToInt32(txtUvozniID.Text);
+  " join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera where UvozKonacna.ID  = " + Convert.ToInt32(txtUvozniID.Text) + " Order by UvozKonacnaVrstaManipulacije.ID asc";
 
 
 

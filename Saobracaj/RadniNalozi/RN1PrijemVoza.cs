@@ -518,13 +518,15 @@ namespace Saobracaj.RadniNalozi
 
                 if (dr["PotrebanCIR"].ToString() == "1")
                 { 
-                    chkPotrebanCIR.Checked = true; 
-                
-                
+                    chkPotrebanCIR.Checked = true;
+                    button4.Enabled = true;    
+
+
                 }
                 else
                 {
                     chkPotrebanCIR.Checked = false;
+                    button4.Enabled = false;
                 }
 
                 if (dr["ZavrsenCIR"].ToString() == "1")
@@ -552,7 +554,7 @@ namespace Saobracaj.RadniNalozi
             {
                 if (row.Selected == true)
                 {
-                    up.PotvrdiUradjenRN1(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                    up.PotvrdiUradjenRN1(Convert.ToInt32(row.Cells[0].Value.ToString()), KorisnikTekuci);
                 }
                     
             }
@@ -570,7 +572,7 @@ namespace Saobracaj.RadniNalozi
             {
                 if (row.Selected == true)
                 {
-                    up.PotvrdiUradjenRN1S(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                    up.PotvrdiUradjenRN1S(Convert.ToInt32(row.Cells[0].Value.ToString()), KorisnikTekuci);
                 }
 
             }
@@ -594,7 +596,7 @@ namespace Saobracaj.RadniNalozi
             {
                 if (row.Selected == true)
                 {
-                    up.PotvrdiUradjenRN1VP(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                    up.PotvrdiUradjenRN1VP(Convert.ToInt32(row.Cells[0].Value.ToString()), KorisnikTekuci);
                 }
 
             }
@@ -625,15 +627,24 @@ namespace Saobracaj.RadniNalozi
 
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
-            InsertRN up = new InsertRN();
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            if (chkPotrebanCIR.Checked == true)
             {
-                if (row.Selected == true)
+                InsertRN up = new InsertRN();
+                foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    up.PotvrdiUradjenRN1CIr(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                    if (row.Selected == true)
+                    {
+                        up.PotvrdiUradjenRN1CIr(Convert.ToInt32(row.Cells[0].Value.ToString()), KorisnikTekuci);
+                    }
+
                 }
 
             }
+            else
+            {
+                MessageBox.Show("Operacija se izvrsava samo ako je potreban CIR");
+            }
+           
         }
     }
 }

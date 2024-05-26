@@ -713,7 +713,7 @@ namespace Saobracaj.Uvoz
 " inner" +
 " join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID" +
 " left" +
-" join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera where UvozKonacna.ID  = " + Convert.ToInt32(txtID.Text) ;
+" join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera where UvozKonacna.ID  = " + Convert.ToInt32(txtID.Text) + " order by UvozKonacnaVrstaManipulacije.ID asc";
 
 
 
