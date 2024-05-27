@@ -26,30 +26,52 @@ namespace Saobracaj.RadniNalozi
 
         private void FillGV()
         {
-            var query = "select distinct DoStDob,DoStatus,DoDatDob,Partnerji.PaNaziv,p1.PaNaziv,DoSmSifra,DOZnes " +
-                "From DObavnica " +
-                "Inner join DobavnicaPostav on Dobavnica.DoStDob = DobavnicaPostav.DoPStDob " +
-
-                "Inner join Partnerji on Dobavnica.DoPartPlac = Partnerji.PaSifra " +
-                "Inner join Partnerji as p1 on Dobavnica.DoPartPrjm = p1.PaSifra " +
-
-                "order by DoStDob desc";
+            string query;
             SqlConnection conn = new SqlConnection(connect);
-            SqlDataAdapter da = new SqlDataAdapter(query, conn);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            dataGridView1.DataSource = ds.Tables[0];
+            if (frmLogovanje.Firma == "Leget")
+            {
+                query = "select distinct PrStDokumenta,DatumTransakcije,Skladista.Naziv,Pozicija.Oznaka,BrojKontejnera,NalogID " +
+                    "From Promet " +
+                    "inner join Skladista on Promet.SkladisteIz=Skladista.ID " +
+                    "inner join Pozicija on Promet.LokacijaIz=Pozicija.ID " +
+                    "Where VrstaDokumenta='OTP' " +
+                    "order by PrStDokumenta desc";
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                dataGridView1.DataSource = ds.Tables[0];
+                dataGridView1.Columns[0].HeaderText = "ID Otpremnice";
+                dataGridView1.Columns[2].HeaderText = "Skladište";
+                dataGridView1.Columns[3].HeaderText = "Pozicija";
 
-            dataGridView1.Columns[0].HeaderText = "Broj Otpremnice";
-            dataGridView1.Columns[1].HeaderText = "Status";
-            dataGridView1.Columns[1].Width = 60;
-            dataGridView1.Columns[2].HeaderText = "Datum";
-            dataGridView1.Columns[3].HeaderText = "Platilac";
-            dataGridView1.Columns[3].Width = 300;
-            dataGridView1.Columns[4].Width = 300;
-            dataGridView1.Columns[4].HeaderText = "Primalac";
-            dataGridView1.Columns[5].HeaderText = "Mesto";
-            dataGridView1.Columns[6].HeaderText = "Iznos";
+            }
+            else
+            {
+                query = "select distinct DoStDob,DoStatus,DoDatDob,Partnerji.PaNaziv,p1.PaNaziv,DoSmSifra,DOZnes " +
+                               "From DObavnica " +
+                               "Inner join DobavnicaPostav on Dobavnica.DoStDob = DobavnicaPostav.DoPStDob " +
+
+                               "Inner join Partnerji on Dobavnica.DoPartPlac = Partnerji.PaSifra " +
+                               "Inner join Partnerji as p1 on Dobavnica.DoPartPrjm = p1.PaSifra " +
+
+                               "order by DoStDob desc";
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                dataGridView1.DataSource = ds.Tables[0];
+
+                dataGridView1.Columns[0].HeaderText = "Broj Otpremnice";
+                dataGridView1.Columns[1].HeaderText = "Status";
+                dataGridView1.Columns[1].Width = 60;
+                dataGridView1.Columns[2].HeaderText = "Datum";
+                dataGridView1.Columns[3].HeaderText = "Platilac";
+                dataGridView1.Columns[3].Width = 300;
+                dataGridView1.Columns[4].Width = 300;
+                dataGridView1.Columns[4].HeaderText = "Primalac";
+                dataGridView1.Columns[5].HeaderText = "Mesto";
+                dataGridView1.Columns[6].HeaderText = "Iznos";
+            }
+
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
