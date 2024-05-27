@@ -330,6 +330,8 @@ namespace Saobracaj
             this.toolStripButton157 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton158 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton159 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton367 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton368 = new System.Windows.Forms.ToolStripButton();
             this.toolStripEx38 = new Syncfusion.Windows.Forms.Tools.ToolStripEx();
             this.toolStripButton160 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton161 = new System.Windows.Forms.ToolStripButton();
@@ -476,8 +478,6 @@ namespace Saobracaj
             this.toolStripButton90 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton102 = new System.Windows.Forms.ToolStripButton();
             this.imageListAdv1 = new Syncfusion.Windows.Forms.Tools.ImageListAdv(this.components);
-            this.toolStripButton367 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton368 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlAdv1)).BeginInit();
             this.ribbonControlAdv1.SuspendLayout();
             this.toolStripTabItem1.Panel.SuspendLayout();
@@ -4028,6 +4028,7 @@ namespace Saobracaj
             // 
             this.toolStripButton139.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton139.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton139.ForeColor = System.Drawing.Color.Maroon;
             this.toolStripButton139.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton139.Image")));
             this.toolStripButton139.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton139.Name = "toolStripButton139";
@@ -4039,6 +4040,7 @@ namespace Saobracaj
             // 
             this.toolStripButton140.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton140.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton140.ForeColor = System.Drawing.Color.Maroon;
             this.toolStripButton140.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton140.Image")));
             this.toolStripButton140.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton140.Name = "toolStripButton140";
@@ -4050,6 +4052,7 @@ namespace Saobracaj
             // 
             this.toolStripButton142.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton142.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton142.ForeColor = System.Drawing.Color.Maroon;
             this.toolStripButton142.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton142.Image")));
             this.toolStripButton142.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton142.Name = "toolStripButton142";
@@ -4061,6 +4064,7 @@ namespace Saobracaj
             // 
             this.toolStripButton143.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton143.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton143.ForeColor = System.Drawing.Color.Maroon;
             this.toolStripButton143.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton143.Image")));
             this.toolStripButton143.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton143.Name = "toolStripButton143";
@@ -4072,6 +4076,7 @@ namespace Saobracaj
             // 
             this.toolStripButton366.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton366.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton366.ForeColor = System.Drawing.Color.Green;
             this.toolStripButton366.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton366.Image")));
             this.toolStripButton366.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton366.Name = "toolStripButton366";
@@ -4083,6 +4088,7 @@ namespace Saobracaj
             // 
             this.toolStripButton357.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton357.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton357.ForeColor = System.Drawing.Color.Green;
             this.toolStripButton357.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton357.Image")));
             this.toolStripButton357.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton357.Name = "toolStripButton357";
@@ -4094,6 +4100,7 @@ namespace Saobracaj
             // 
             this.toolStripButton356.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton356.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton356.ForeColor = System.Drawing.Color.Green;
             this.toolStripButton356.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton356.Image")));
             this.toolStripButton356.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton356.Name = "toolStripButton356";
@@ -4105,6 +4112,7 @@ namespace Saobracaj
             // 
             this.toolStripButton358.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton358.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton358.ForeColor = System.Drawing.Color.Green;
             this.toolStripButton358.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton358.Image")));
             this.toolStripButton358.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton358.Name = "toolStripButton358";
@@ -4116,6 +4124,7 @@ namespace Saobracaj
             // 
             this.toolStripButton359.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton359.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton359.ForeColor = System.Drawing.Color.Green;
             this.toolStripButton359.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton359.Image")));
             this.toolStripButton359.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton359.Name = "toolStripButton359";
@@ -4127,6 +4136,7 @@ namespace Saobracaj
             // 
             this.toolStripButton361.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton361.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton361.ForeColor = System.Drawing.Color.Green;
             this.toolStripButton361.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton361.Image")));
             this.toolStripButton361.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton361.Name = "toolStripButton361";
@@ -4138,6 +4148,7 @@ namespace Saobracaj
             // 
             this.toolStripButton362.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton362.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton362.ForeColor = System.Drawing.Color.Green;
             this.toolStripButton362.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton362.Image")));
             this.toolStripButton362.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton362.Name = "toolStripButton362";
@@ -4149,6 +4160,7 @@ namespace Saobracaj
             // 
             this.toolStripButton360.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButton360.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton360.ForeColor = System.Drawing.Color.Green;
             this.toolStripButton360.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton360.Image")));
             this.toolStripButton360.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton360.Name = "toolStripButton360";
@@ -4636,6 +4648,30 @@ namespace Saobracaj
             this.toolStripButton159.Size = new System.Drawing.Size(223, 23);
             this.toolStripButton159.Text = "Pregled stanja zaliha - Magacioner";
             this.toolStripButton159.Click += new System.EventHandler(this.toolStripButton159_Click);
+            // 
+            // toolStripButton367
+            // 
+            this.toolStripButton367.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton367.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton367.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.toolStripButton367.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton367.Image")));
+            this.toolStripButton367.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton367.Name = "toolStripButton367";
+            this.toolStripButton367.Size = new System.Drawing.Size(169, 23);
+            this.toolStripButton367.Text = "PRIJEMI ROBE PRETOVAR";
+            this.toolStripButton367.Click += new System.EventHandler(this.toolStripButton367_Click);
+            // 
+            // toolStripButton368
+            // 
+            this.toolStripButton368.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton368.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton368.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.toolStripButton368.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton368.Image")));
+            this.toolStripButton368.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton368.Name = "toolStripButton368";
+            this.toolStripButton368.Size = new System.Drawing.Size(182, 23);
+            this.toolStripButton368.Text = "OTPREMA ROBE PRETOVAR";
+            this.toolStripButton368.Click += new System.EventHandler(this.toolStripButton368_Click);
             // 
             // toolStripEx38
             // 
@@ -6383,30 +6419,6 @@ namespace Saobracaj
             this.toolStripButton102.Name = "toolStripButton102";
             this.toolStripButton102.Size = new System.Drawing.Size(31, 20);
             this.toolStripButton102.Text = "toolStripButton15";
-            // 
-            // toolStripButton367
-            // 
-            this.toolStripButton367.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton367.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.toolStripButton367.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.toolStripButton367.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton367.Image")));
-            this.toolStripButton367.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton367.Name = "toolStripButton367";
-            this.toolStripButton367.Size = new System.Drawing.Size(197, 23);
-            this.toolStripButton367.Text = "PREGLED PRIJEMA PRETOVAR";
-            this.toolStripButton367.Click += new System.EventHandler(this.toolStripButton367_Click);
-            // 
-            // toolStripButton368
-            // 
-            this.toolStripButton368.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton368.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.toolStripButton368.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.toolStripButton368.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton368.Image")));
-            this.toolStripButton368.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton368.Name = "toolStripButton368";
-            this.toolStripButton368.Size = new System.Drawing.Size(205, 23);
-            this.toolStripButton368.Text = "PREGLED OTPREMA PRETOVAR";
-            this.toolStripButton368.Click += new System.EventHandler(this.toolStripButton368_Click);
             // 
             // MainP
             // 
