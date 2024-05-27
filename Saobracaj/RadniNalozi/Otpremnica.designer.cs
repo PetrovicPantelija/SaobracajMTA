@@ -64,6 +64,7 @@ namespace Saobracaj.RadniNalozi
             this.txtBrojKontejnera = new System.Windows.Forms.TextBox();
             this.btnDodeli = new System.Windows.Forms.Button();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -428,12 +429,23 @@ namespace Saobracaj.RadniNalozi
             this.dataGridView4.Size = new System.Drawing.Size(1311, 80);
             this.dataGridView4.TabIndex = 23;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1169, 13);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(84, 40);
+            this.button3.TabIndex = 24;
+            this.button3.Text = "OTPREMNICE PREGLED";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
             // Otpremnica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1335, 637);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView4);
             this.Controls.Add(this.txtBrojKontejnera);
@@ -517,5 +529,6 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.TextBox txtBrojKontejnera;
         private System.Windows.Forms.Button btnDodeli;
         private System.Windows.Forms.DataGridView dataGridView4;
+        private System.Windows.Forms.Button button3;
     }
 }

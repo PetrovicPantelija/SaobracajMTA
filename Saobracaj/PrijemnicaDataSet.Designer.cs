@@ -311,6 +311,34 @@ namespace Saobracaj {
             
             private global::System.Data.DataColumn columnNPrPZnesPost;
             
+            private global::System.Data.DataColumn columnID;
+            
+            private global::System.Data.DataColumn columnDatumTransakcije;
+            
+            private global::System.Data.DataColumn columnPrStDokumenta;
+            
+            private global::System.Data.DataColumn columnKolicina;
+            
+            private global::System.Data.DataColumn columnSkladiste;
+            
+            private global::System.Data.DataColumn columnOznaka;
+            
+            private global::System.Data.DataColumn columnKorisnik;
+            
+            private global::System.Data.DataColumn columnBrojKontejnera;
+            
+            private global::System.Data.DataColumn columnNalogID;
+            
+            private global::System.Data.DataColumn columnRB;
+            
+            private global::System.Data.DataColumn columnStavka;
+            
+            private global::System.Data.DataColumn columnJedinicaMere;
+            
+            private global::System.Data.DataColumn columnLot;
+            
+            private global::System.Data.DataColumn columnSkladisteno;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public NPreRptDataTable() {
@@ -474,6 +502,118 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn IDColumn {
+                get {
+                    return this.columnID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn DatumTransakcijeColumn {
+                get {
+                    return this.columnDatumTransakcije;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PrStDokumentaColumn {
+                get {
+                    return this.columnPrStDokumenta;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn KolicinaColumn {
+                get {
+                    return this.columnKolicina;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SkladisteColumn {
+                get {
+                    return this.columnSkladiste;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn OznakaColumn {
+                get {
+                    return this.columnOznaka;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn KorisnikColumn {
+                get {
+                    return this.columnKorisnik;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn BrojKontejneraColumn {
+                get {
+                    return this.columnBrojKontejnera;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn NalogIDColumn {
+                get {
+                    return this.columnNalogID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn RBColumn {
+                get {
+                    return this.columnRB;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn StavkaColumn {
+                get {
+                    return this.columnStavka;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn JedinicaMereColumn {
+                get {
+                    return this.columnJedinicaMere;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn LotColumn {
+                get {
+                    return this.columnLot;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SkladistenoColumn {
+                get {
+                    return this.columnSkladisteno;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -525,7 +665,21 @@ namespace Saobracaj {
                         string NPrPem, 
                         decimal NPrPKolPre, 
                         decimal NPrpCenaem, 
-                        decimal NPrPZnesPost) {
+                        decimal NPrPZnesPost, 
+                        int ID, 
+                        System.DateTime DatumTransakcije, 
+                        int PrStDokumenta, 
+                        decimal Kolicina, 
+                        string Skladiste, 
+                        string Oznaka, 
+                        string Korisnik, 
+                        string BrojKontejnera, 
+                        int NalogID, 
+                        string RB, 
+                        string Stavka, 
+                        string JedinicaMere, 
+                        string Lot, 
+                        int Skladisteno) {
                 NPreRptRow rowNPreRptRow = ((NPreRptRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         NPrStPre,
@@ -543,7 +697,21 @@ namespace Saobracaj {
                         NPrPem,
                         NPrPKolPre,
                         NPrpCenaem,
-                        NPrPZnesPost};
+                        NPrPZnesPost,
+                        ID,
+                        DatumTransakcije,
+                        PrStDokumenta,
+                        Kolicina,
+                        Skladiste,
+                        Oznaka,
+                        Korisnik,
+                        BrojKontejnera,
+                        NalogID,
+                        RB,
+                        Stavka,
+                        JedinicaMere,
+                        Lot,
+                        Skladisteno};
                 rowNPreRptRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowNPreRptRow);
                 return rowNPreRptRow;
@@ -582,6 +750,20 @@ namespace Saobracaj {
                 this.columnNPrPKolPre = base.Columns["NPrPKolPre"];
                 this.columnNPrpCenaem = base.Columns["NPrpCenaem"];
                 this.columnNPrPZnesPost = base.Columns["NPrPZnesPost"];
+                this.columnID = base.Columns["ID"];
+                this.columnDatumTransakcije = base.Columns["DatumTransakcije"];
+                this.columnPrStDokumenta = base.Columns["PrStDokumenta"];
+                this.columnKolicina = base.Columns["Kolicina"];
+                this.columnSkladiste = base.Columns["Skladiste"];
+                this.columnOznaka = base.Columns["Oznaka"];
+                this.columnKorisnik = base.Columns["Korisnik"];
+                this.columnBrojKontejnera = base.Columns["BrojKontejnera"];
+                this.columnNalogID = base.Columns["NalogID"];
+                this.columnRB = base.Columns["RB"];
+                this.columnStavka = base.Columns["Stavka"];
+                this.columnJedinicaMere = base.Columns["JedinicaMere"];
+                this.columnLot = base.Columns["Lot"];
+                this.columnSkladisteno = base.Columns["Skladisteno"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -619,6 +801,34 @@ namespace Saobracaj {
                 base.Columns.Add(this.columnNPrpCenaem);
                 this.columnNPrPZnesPost = new global::System.Data.DataColumn("NPrPZnesPost", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNPrPZnesPost);
+                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnID);
+                this.columnDatumTransakcije = new global::System.Data.DataColumn("DatumTransakcije", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDatumTransakcije);
+                this.columnPrStDokumenta = new global::System.Data.DataColumn("PrStDokumenta", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPrStDokumenta);
+                this.columnKolicina = new global::System.Data.DataColumn("Kolicina", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKolicina);
+                this.columnSkladiste = new global::System.Data.DataColumn("Skladiste", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSkladiste);
+                this.columnOznaka = new global::System.Data.DataColumn("Oznaka", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOznaka);
+                this.columnKorisnik = new global::System.Data.DataColumn("Korisnik", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKorisnik);
+                this.columnBrojKontejnera = new global::System.Data.DataColumn("BrojKontejnera", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBrojKontejnera);
+                this.columnNalogID = new global::System.Data.DataColumn("NalogID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNalogID);
+                this.columnRB = new global::System.Data.DataColumn("RB", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRB);
+                this.columnStavka = new global::System.Data.DataColumn("Stavka", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStavka);
+                this.columnJedinicaMere = new global::System.Data.DataColumn("JedinicaMere", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnJedinicaMere);
+                this.columnLot = new global::System.Data.DataColumn("Lot", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLot);
+                this.columnSkladisteno = new global::System.Data.DataColumn("Skladisteno", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSkladisteno);
                 this.columnNPrStPre.AllowDBNull = false;
                 this.columnNPRSmSifra.MaxLength = 8;
                 this.columnPaNaziv.AllowDBNull = false;
@@ -631,6 +841,18 @@ namespace Saobracaj {
                 this.columnNPrPPreZap.AllowDBNull = false;
                 this.columnNPrPNaziv.MaxLength = 70;
                 this.columnNPrPem.MaxLength = 3;
+                this.columnID.AllowDBNull = false;
+                this.columnDatumTransakcije.AllowDBNull = false;
+                this.columnPrStDokumenta.AllowDBNull = false;
+                this.columnKolicina.AllowDBNull = false;
+                this.columnSkladiste.MaxLength = 100;
+                this.columnOznaka.MaxLength = 20;
+                this.columnKorisnik.MaxLength = 20;
+                this.columnBrojKontejnera.MaxLength = 20;
+                this.columnRB.MaxLength = 35;
+                this.columnStavka.MaxLength = 1000;
+                this.columnJedinicaMere.MaxLength = 10;
+                this.columnLot.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1014,6 +1236,210 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int ID {
+                get {
+                    return ((int)(this[this.tableNPreRpt.IDColumn]));
+                }
+                set {
+                    this[this.tableNPreRpt.IDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime DatumTransakcije {
+                get {
+                    return ((global::System.DateTime)(this[this.tableNPreRpt.DatumTransakcijeColumn]));
+                }
+                set {
+                    this[this.tableNPreRpt.DatumTransakcijeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int PrStDokumenta {
+                get {
+                    return ((int)(this[this.tableNPreRpt.PrStDokumentaColumn]));
+                }
+                set {
+                    this[this.tableNPreRpt.PrStDokumentaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public decimal Kolicina {
+                get {
+                    return ((decimal)(this[this.tableNPreRpt.KolicinaColumn]));
+                }
+                set {
+                    this[this.tableNPreRpt.KolicinaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Skladiste {
+                get {
+                    try {
+                        return ((string)(this[this.tableNPreRpt.SkladisteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Skladiste\' in table \'NPreRpt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableNPreRpt.SkladisteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Oznaka {
+                get {
+                    try {
+                        return ((string)(this[this.tableNPreRpt.OznakaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Oznaka\' in table \'NPreRpt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableNPreRpt.OznakaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Korisnik {
+                get {
+                    try {
+                        return ((string)(this[this.tableNPreRpt.KorisnikColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Korisnik\' in table \'NPreRpt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableNPreRpt.KorisnikColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string BrojKontejnera {
+                get {
+                    try {
+                        return ((string)(this[this.tableNPreRpt.BrojKontejneraColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'BrojKontejnera\' in table \'NPreRpt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableNPreRpt.BrojKontejneraColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int NalogID {
+                get {
+                    try {
+                        return ((int)(this[this.tableNPreRpt.NalogIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'NalogID\' in table \'NPreRpt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableNPreRpt.NalogIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string RB {
+                get {
+                    try {
+                        return ((string)(this[this.tableNPreRpt.RBColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RB\' in table \'NPreRpt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableNPreRpt.RBColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Stavka {
+                get {
+                    try {
+                        return ((string)(this[this.tableNPreRpt.StavkaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Stavka\' in table \'NPreRpt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableNPreRpt.StavkaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string JedinicaMere {
+                get {
+                    try {
+                        return ((string)(this[this.tableNPreRpt.JedinicaMereColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'JedinicaMere\' in table \'NPreRpt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableNPreRpt.JedinicaMereColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Lot {
+                get {
+                    try {
+                        return ((string)(this[this.tableNPreRpt.LotColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Lot\' in table \'NPreRpt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableNPreRpt.LotColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int Skladisteno {
+                get {
+                    try {
+                        return ((int)(this[this.tableNPreRpt.SkladistenoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Skladisteno\' in table \'NPreRpt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableNPreRpt.SkladistenoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsNprDatPreNull() {
                 return this.IsNull(this.tableNPreRpt.NprDatPreColumn);
             }
@@ -1166,6 +1592,126 @@ namespace Saobracaj {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetNPrPZnesPostNull() {
                 this[this.tableNPreRpt.NPrPZnesPostColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsSkladisteNull() {
+                return this.IsNull(this.tableNPreRpt.SkladisteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetSkladisteNull() {
+                this[this.tableNPreRpt.SkladisteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsOznakaNull() {
+                return this.IsNull(this.tableNPreRpt.OznakaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetOznakaNull() {
+                this[this.tableNPreRpt.OznakaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsKorisnikNull() {
+                return this.IsNull(this.tableNPreRpt.KorisnikColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetKorisnikNull() {
+                this[this.tableNPreRpt.KorisnikColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsBrojKontejneraNull() {
+                return this.IsNull(this.tableNPreRpt.BrojKontejneraColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetBrojKontejneraNull() {
+                this[this.tableNPreRpt.BrojKontejneraColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsNalogIDNull() {
+                return this.IsNull(this.tableNPreRpt.NalogIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetNalogIDNull() {
+                this[this.tableNPreRpt.NalogIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsRBNull() {
+                return this.IsNull(this.tableNPreRpt.RBColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetRBNull() {
+                this[this.tableNPreRpt.RBColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsStavkaNull() {
+                return this.IsNull(this.tableNPreRpt.StavkaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetStavkaNull() {
+                this[this.tableNPreRpt.StavkaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsJedinicaMereNull() {
+                return this.IsNull(this.tableNPreRpt.JedinicaMereColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetJedinicaMereNull() {
+                this[this.tableNPreRpt.JedinicaMereColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsLotNull() {
+                return this.IsNull(this.tableNPreRpt.LotColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetLotNull() {
+                this[this.tableNPreRpt.LotColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsSkladistenoNull() {
+                return this.IsNull(this.tableNPreRpt.SkladistenoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetSkladistenoNull() {
+                this[this.tableNPreRpt.SkladistenoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1344,6 +1890,20 @@ namespace Saobracaj.PrijemnicaDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("NPrPKolPre", "NPrPKolPre");
             tableMapping.ColumnMappings.Add("NPrpCenaem", "NPrpCenaem");
             tableMapping.ColumnMappings.Add("NPrPZnesPost", "NPrPZnesPost");
+            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add("DatumTransakcije", "DatumTransakcije");
+            tableMapping.ColumnMappings.Add("PrStDokumenta", "PrStDokumenta");
+            tableMapping.ColumnMappings.Add("Kolicina", "Kolicina");
+            tableMapping.ColumnMappings.Add("Skladiste", "Skladiste");
+            tableMapping.ColumnMappings.Add("Oznaka", "Oznaka");
+            tableMapping.ColumnMappings.Add("Korisnik", "Korisnik");
+            tableMapping.ColumnMappings.Add("BrojKontejnera", "BrojKontejnera");
+            tableMapping.ColumnMappings.Add("NalogID", "NalogID");
+            tableMapping.ColumnMappings.Add("RB", "RB");
+            tableMapping.ColumnMappings.Add("Stavka", "Stavka");
+            tableMapping.ColumnMappings.Add("JedinicaMere", "JedinicaMere");
+            tableMapping.ColumnMappings.Add("Lot", "Lot");
+            tableMapping.ColumnMappings.Add("Skladisteno", "Skladisteno");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

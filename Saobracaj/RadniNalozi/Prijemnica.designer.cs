@@ -57,6 +57,7 @@ namespace Saobracaj.RadniNalozi
             this.txtBrojKontejnera = new System.Windows.Forms.TextBox();
             this.txtNalogID = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -137,7 +138,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(952, 18);
+            this.button1.Location = new System.Drawing.Point(865, 14);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(114, 42);
@@ -342,12 +343,24 @@ namespace Saobracaj.RadniNalozi
             this.label8.TabIndex = 25;
             this.label8.Text = "Nalog ID";
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(983, 11);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(81, 42);
+            this.button3.TabIndex = 26;
+            this.button3.Text = "PRETOVAR PREGLED";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
             // Prijemnica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1073, 646);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtNalogID);
             this.Controls.Add(this.txtBrojKontejnera);
@@ -415,5 +428,6 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.TextBox txtBrojKontejnera;
         private System.Windows.Forms.TextBox txtNalogID;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button3;
     }
 }

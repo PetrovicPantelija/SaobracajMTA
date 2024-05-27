@@ -2,14 +2,15 @@
 <xs:schema id="OtpremnicaDataSet" targetNamespace="http://tempuri.org/OtpremnicaDataSet.xsd" xmlns:mstns="http://tempuri.org/OtpremnicaDataSet.xsd" xmlns="http://tempuri.org/OtpremnicaDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="TESTIRANJEConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TESTIRANJEConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.NedraConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="NedraConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="NedraConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.NedraConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DobavnicaRptTableAdapter" GeneratorDataComponentClassName="DobavnicaRptTableAdapter" Name="DobavnicaRpt" UserDataComponentName="DobavnicaRptTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="TESTIRANJEConnectionString (Settings)" DbObjectName="Testiranje.dbo.DobavnicaRpt" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="NedraConnectionString (Settings)" DbObjectName="Testiranje.dbo.DobavnicaRpt" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.DobavnicaRpt</CommandText>
@@ -44,6 +45,20 @@
               <Mapping SourceColumn="DoPZnesPost" DataSetColumn="DoPZnesPost" />
               <Mapping SourceColumn="Ref" DataSetColumn="Ref" />
               <Mapping SourceColumn="DoOpomba1" DataSetColumn="DoOpomba1" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="DatumTransakcije" DataSetColumn="DatumTransakcije" />
+              <Mapping SourceColumn="PrStDokumenta" DataSetColumn="PrStDokumenta" />
+              <Mapping SourceColumn="Kolicina" DataSetColumn="Kolicina" />
+              <Mapping SourceColumn="Skladiste" DataSetColumn="Skladiste" />
+              <Mapping SourceColumn="Oznaka" DataSetColumn="Oznaka" />
+              <Mapping SourceColumn="Korisnik" DataSetColumn="Korisnik" />
+              <Mapping SourceColumn="BrojKontejnera" DataSetColumn="BrojKontejnera" />
+              <Mapping SourceColumn="NalogID" DataSetColumn="NalogID" />
+              <Mapping SourceColumn="RB" DataSetColumn="RB" />
+              <Mapping SourceColumn="Stavka" DataSetColumn="Stavka" />
+              <Mapping SourceColumn="JedinicaMere" DataSetColumn="JedinicaMere" />
+              <Mapping SourceColumn="Lot" DataSetColumn="Lot" />
+              <Mapping SourceColumn="Skladisteno" DataSetColumn="Skladisteno" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -52,118 +67,180 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="OtpremnicaDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="OtpremnicaDataSet" msprop:Generator_DataSetName="OtpremnicaDataSet">
+  <xs:element name="OtpremnicaDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="OtpremnicaDataSet" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="OtpremnicaDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DobavnicaRpt" msprop:Generator_RowEvHandlerName="DobavnicaRptRowChangeEventHandler" msprop:Generator_RowDeletedName="DobavnicaRptRowDeleted" msprop:Generator_RowDeletingName="DobavnicaRptRowDeleting" msprop:Generator_RowEvArgName="DobavnicaRptRowChangeEvent" msprop:Generator_TablePropName="DobavnicaRpt" msprop:Generator_RowChangedName="DobavnicaRptRowChanged" msprop:Generator_RowChangingName="DobavnicaRptRowChanging" msprop:Generator_TableClassName="DobavnicaRptDataTable" msprop:Generator_RowClassName="DobavnicaRptRow" msprop:Generator_TableVarName="tableDobavnicaRpt" msprop:Generator_UserTableName="DobavnicaRpt">
+        <xs:element name="DobavnicaRpt" msprop:Generator_RowClassName="DobavnicaRptRow" msprop:Generator_RowEvHandlerName="DobavnicaRptRowChangeEventHandler" msprop:Generator_RowDeletedName="DobavnicaRptRowDeleted" msprop:Generator_RowDeletingName="DobavnicaRptRowDeleting" msprop:Generator_RowEvArgName="DobavnicaRptRowChangeEvent" msprop:Generator_TablePropName="DobavnicaRpt" msprop:Generator_RowChangedName="DobavnicaRptRowChanged" msprop:Generator_UserTableName="DobavnicaRpt" msprop:Generator_RowChangingName="DobavnicaRptRowChanging" msprop:Generator_TableClassName="DobavnicaRptDataTable" msprop:Generator_TableVarName="tableDobavnicaRpt">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="DoStDob" msprop:Generator_ColumnPropNameInRow="DoStDob" msprop:Generator_ColumnPropNameInTable="DoStDobColumn" msprop:Generator_ColumnVarNameInTable="columnDoStDob" msprop:Generator_UserColumnName="DoStDob" type="xs:int" />
-              <xs:element name="DoDatDob" msprop:Generator_ColumnPropNameInRow="DoDatDob" msprop:Generator_ColumnPropNameInTable="DoDatDobColumn" msprop:Generator_ColumnVarNameInTable="columnDoDatDob" msprop:Generator_UserColumnName="DoDatDob" type="xs:dateTime" />
-              <xs:element name="DoPStPos" msprop:Generator_ColumnPropNameInRow="DoPStPos" msprop:Generator_ColumnPropNameInTable="DoPStPosColumn" msprop:Generator_ColumnVarNameInTable="columnDoPStPos" msprop:Generator_UserColumnName="DoPStPos" type="xs:int" minOccurs="0" />
-              <xs:element name="DoSmSifra" msprop:Generator_ColumnPropNameInRow="DoSmSifra" msprop:Generator_ColumnPropNameInTable="DoSmSifraColumn" msprop:Generator_ColumnVarNameInTable="columnDoSmSifra" msprop:Generator_UserColumnName="DoSmSifra" minOccurs="0">
+              <xs:element name="DoStDob" msprop:Generator_UserColumnName="DoStDob" msprop:Generator_ColumnPropNameInTable="DoStDobColumn" msprop:Generator_ColumnPropNameInRow="DoStDob" msprop:Generator_ColumnVarNameInTable="columnDoStDob" type="xs:int" />
+              <xs:element name="DoDatDob" msprop:Generator_UserColumnName="DoDatDob" msprop:Generator_ColumnPropNameInTable="DoDatDobColumn" msprop:Generator_ColumnPropNameInRow="DoDatDob" msprop:Generator_ColumnVarNameInTable="columnDoDatDob" type="xs:dateTime" />
+              <xs:element name="DoPStPos" msprop:Generator_UserColumnName="DoPStPos" msprop:Generator_ColumnPropNameInTable="DoPStPosColumn" msprop:Generator_ColumnPropNameInRow="DoPStPos" msprop:Generator_ColumnVarNameInTable="columnDoPStPos" type="xs:int" minOccurs="0" />
+              <xs:element name="DoSmSifra" msprop:Generator_UserColumnName="DoSmSifra" msprop:Generator_ColumnPropNameInTable="DoSmSifraColumn" msprop:Generator_ColumnPropNameInRow="DoSmSifra" msprop:Generator_ColumnVarNameInTable="columnDoSmSifra" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="8" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Primalac" msprop:Generator_ColumnPropNameInRow="Primalac" msprop:Generator_ColumnPropNameInTable="PrimalacColumn" msprop:Generator_ColumnVarNameInTable="columnPrimalac" msprop:Generator_UserColumnName="Primalac" type="xs:int" minOccurs="0" />
-              <xs:element name="DoNaziv" msprop:Generator_ColumnPropNameInRow="DoNaziv" msprop:Generator_ColumnPropNameInTable="DoNazivColumn" msprop:Generator_ColumnVarNameInTable="columnDoNaziv" msprop:Generator_UserColumnName="DoNaziv" minOccurs="0">
+              <xs:element name="Primalac" msprop:Generator_UserColumnName="Primalac" msprop:Generator_ColumnPropNameInTable="PrimalacColumn" msprop:Generator_ColumnPropNameInRow="Primalac" msprop:Generator_ColumnVarNameInTable="columnPrimalac" type="xs:int" minOccurs="0" />
+              <xs:element name="DoNaziv" msprop:Generator_UserColumnName="DoNaziv" msprop:Generator_ColumnPropNameInTable="DoNazivColumn" msprop:Generator_ColumnPropNameInRow="DoNaziv" msprop:Generator_ColumnVarNameInTable="columnDoNaziv" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="40" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DoUlicaHisnaSt" msprop:Generator_ColumnPropNameInRow="DoUlicaHisnaSt" msprop:Generator_ColumnPropNameInTable="DoUlicaHisnaStColumn" msprop:Generator_ColumnVarNameInTable="columnDoUlicaHisnaSt" msprop:Generator_UserColumnName="DoUlicaHisnaSt" minOccurs="0">
+              <xs:element name="DoUlicaHisnaSt" msprop:Generator_UserColumnName="DoUlicaHisnaSt" msprop:Generator_ColumnPropNameInTable="DoUlicaHisnaStColumn" msprop:Generator_ColumnPropNameInRow="DoUlicaHisnaSt" msprop:Generator_ColumnVarNameInTable="columnDoUlicaHisnaSt" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="35" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DoKraj" msprop:Generator_ColumnPropNameInRow="DoKraj" msprop:Generator_ColumnPropNameInTable="DoKrajColumn" msprop:Generator_ColumnVarNameInTable="columnDoKraj" msprop:Generator_UserColumnName="DoKraj" minOccurs="0">
+              <xs:element name="DoKraj" msprop:Generator_UserColumnName="DoKraj" msprop:Generator_ColumnPropNameInTable="DoKrajColumn" msprop:Generator_ColumnPropNameInRow="DoKraj" msprop:Generator_ColumnVarNameInTable="columnDoKraj" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="35" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="PIB" msprop:Generator_ColumnPropNameInRow="PIB" msprop:Generator_ColumnPropNameInTable="PIBColumn" msprop:Generator_ColumnVarNameInTable="columnPIB" msprop:Generator_UserColumnName="PIB" minOccurs="0">
+              <xs:element name="PIB" msprop:Generator_UserColumnName="PIB" msprop:Generator_ColumnPropNameInTable="PIBColumn" msprop:Generator_ColumnPropNameInRow="PIB" msprop:Generator_ColumnVarNameInTable="columnPIB" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="35" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="MB" msprop:Generator_ColumnPropNameInRow="MB" msprop:Generator_ColumnPropNameInTable="MBColumn" msprop:Generator_ColumnVarNameInTable="columnMB" msprop:Generator_UserColumnName="MB" minOccurs="0">
+              <xs:element name="MB" msprop:Generator_UserColumnName="MB" msprop:Generator_ColumnPropNameInTable="MBColumn" msprop:Generator_ColumnPropNameInRow="MB" msprop:Generator_ColumnVarNameInTable="columnMB" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="35" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Telefon" msprop:Generator_ColumnPropNameInRow="Telefon" msprop:Generator_ColumnPropNameInTable="TelefonColumn" msprop:Generator_ColumnVarNameInTable="columnTelefon" msprop:Generator_UserColumnName="Telefon" minOccurs="0">
+              <xs:element name="Telefon" msprop:Generator_UserColumnName="Telefon" msprop:Generator_ColumnPropNameInTable="TelefonColumn" msprop:Generator_ColumnPropNameInRow="Telefon" msprop:Generator_ColumnVarNameInTable="columnTelefon" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="17" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Registracija" msprop:Generator_ColumnPropNameInRow="Registracija" msprop:Generator_ColumnPropNameInTable="RegistracijaColumn" msprop:Generator_ColumnVarNameInTable="columnRegistracija" msprop:Generator_UserColumnName="Registracija" minOccurs="0">
+              <xs:element name="Registracija" msprop:Generator_UserColumnName="Registracija" msprop:Generator_ColumnPropNameInTable="RegistracijaColumn" msprop:Generator_ColumnPropNameInRow="Registracija" msprop:Generator_ColumnVarNameInTable="columnRegistracija" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="35" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DoVoznikIme" msprop:Generator_ColumnPropNameInRow="DoVoznikIme" msprop:Generator_ColumnPropNameInTable="DoVoznikImeColumn" msprop:Generator_ColumnVarNameInTable="columnDoVoznikIme" msprop:Generator_UserColumnName="DoVoznikIme" minOccurs="0">
+              <xs:element name="DoVoznikIme" msprop:Generator_UserColumnName="DoVoznikIme" msprop:Generator_ColumnPropNameInTable="DoVoznikImeColumn" msprop:Generator_ColumnPropNameInRow="DoVoznikIme" msprop:Generator_ColumnVarNameInTable="columnDoVoznikIme" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="35" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DoPDobZap" msprop:Generator_ColumnPropNameInRow="DoPDobZap" msprop:Generator_ColumnPropNameInTable="DoPDobZapColumn" msprop:Generator_ColumnVarNameInTable="columnDoPDobZap" msprop:Generator_UserColumnName="DoPDobZap" type="xs:int" />
-              <xs:element name="DoPSifMpPopa" msprop:Generator_ColumnPropNameInRow="DoPSifMpPopa" msprop:Generator_ColumnPropNameInTable="DoPSifMpPopaColumn" msprop:Generator_ColumnVarNameInTable="columnDoPSifMpPopa" msprop:Generator_UserColumnName="DoPSifMpPopa" minOccurs="0">
+              <xs:element name="DoPDobZap" msprop:Generator_UserColumnName="DoPDobZap" msprop:Generator_ColumnPropNameInTable="DoPDobZapColumn" msprop:Generator_ColumnPropNameInRow="DoPDobZap" msprop:Generator_ColumnVarNameInTable="columnDoPDobZap" type="xs:int" />
+              <xs:element name="DoPSifMpPopa" msprop:Generator_UserColumnName="DoPSifMpPopa" msprop:Generator_ColumnPropNameInTable="DoPSifMpPopaColumn" msprop:Generator_ColumnPropNameInRow="DoPSifMpPopa" msprop:Generator_ColumnVarNameInTable="columnDoPSifMpPopa" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="18" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DoPNaziv" msprop:Generator_ColumnPropNameInRow="DoPNaziv" msprop:Generator_ColumnPropNameInTable="DoPNazivColumn" msprop:Generator_ColumnVarNameInTable="columnDoPNaziv" msprop:Generator_UserColumnName="DoPNaziv" minOccurs="0">
+              <xs:element name="DoPNaziv" msprop:Generator_UserColumnName="DoPNaziv" msprop:Generator_ColumnPropNameInTable="DoPNazivColumn" msprop:Generator_ColumnPropNameInRow="DoPNaziv" msprop:Generator_ColumnVarNameInTable="columnDoPNaziv" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="70" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DoPEM" msprop:Generator_ColumnPropNameInRow="DoPEM" msprop:Generator_ColumnPropNameInTable="DoPEMColumn" msprop:Generator_ColumnVarNameInTable="columnDoPEM" msprop:Generator_UserColumnName="DoPEM" minOccurs="0">
+              <xs:element name="DoPEM" msprop:Generator_UserColumnName="DoPEM" msprop:Generator_ColumnPropNameInTable="DoPEMColumn" msprop:Generator_ColumnPropNameInRow="DoPEM" msprop:Generator_ColumnVarNameInTable="columnDoPEM" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="3" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DOPKolOdpr" msprop:Generator_ColumnPropNameInRow="DOPKolOdpr" msprop:Generator_ColumnPropNameInTable="DOPKolOdprColumn" msprop:Generator_ColumnVarNameInTable="columnDOPKolOdpr" msprop:Generator_UserColumnName="DOPKolOdpr" type="xs:decimal" minOccurs="0" />
-              <xs:element name="DoPCenaEM" msprop:Generator_ColumnPropNameInRow="DoPCenaEM" msprop:Generator_ColumnPropNameInTable="DoPCenaEMColumn" msprop:Generator_ColumnVarNameInTable="columnDoPCenaEM" msprop:Generator_UserColumnName="DoPCenaEM" type="xs:decimal" minOccurs="0" />
-              <xs:element name="DoPZnesPost" msprop:Generator_ColumnPropNameInRow="DoPZnesPost" msprop:Generator_ColumnPropNameInTable="DoPZnesPostColumn" msprop:Generator_ColumnVarNameInTable="columnDoPZnesPost" msprop:Generator_UserColumnName="DoPZnesPost" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Ref" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="Ref" msprop:Generator_ColumnPropNameInTable="RefColumn" msprop:Generator_ColumnVarNameInTable="columnRef" msprop:Generator_UserColumnName="Ref" minOccurs="0">
+              <xs:element name="DOPKolOdpr" msprop:Generator_UserColumnName="DOPKolOdpr" msprop:Generator_ColumnPropNameInTable="DOPKolOdprColumn" msprop:Generator_ColumnPropNameInRow="DOPKolOdpr" msprop:Generator_ColumnVarNameInTable="columnDOPKolOdpr" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DoPCenaEM" msprop:Generator_UserColumnName="DoPCenaEM" msprop:Generator_ColumnPropNameInTable="DoPCenaEMColumn" msprop:Generator_ColumnPropNameInRow="DoPCenaEM" msprop:Generator_ColumnVarNameInTable="columnDoPCenaEM" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DoPZnesPost" msprop:Generator_UserColumnName="DoPZnesPost" msprop:Generator_ColumnPropNameInTable="DoPZnesPostColumn" msprop:Generator_ColumnPropNameInRow="DoPZnesPost" msprop:Generator_ColumnVarNameInTable="columnDoPZnesPost" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Ref" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Ref" msprop:Generator_ColumnPropNameInTable="RefColumn" msprop:Generator_ColumnPropNameInRow="Ref" msprop:Generator_ColumnVarNameInTable="columnRef" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="71" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="DoOpomba1" msprop:Generator_ColumnPropNameInRow="DoOpomba1" msprop:Generator_ColumnPropNameInTable="DoOpomba1Column" msprop:Generator_ColumnVarNameInTable="columnDoOpomba1" msprop:Generator_UserColumnName="DoOpomba1" minOccurs="0">
+              <xs:element name="DoOpomba1" msprop:Generator_UserColumnName="DoOpomba1" msprop:Generator_ColumnPropNameInTable="DoOpomba1Column" msprop:Generator_ColumnPropNameInRow="DoOpomba1" msprop:Generator_ColumnVarNameInTable="columnDoOpomba1" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="255" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="ID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name="DatumTransakcije" msprop:Generator_ColumnPropNameInRow="DatumTransakcije" msprop:Generator_ColumnPropNameInTable="DatumTransakcijeColumn" msprop:Generator_ColumnVarNameInTable="columnDatumTransakcije" msprop:Generator_UserColumnName="DatumTransakcije" type="xs:dateTime" />
+              <xs:element name="PrStDokumenta" msprop:Generator_ColumnPropNameInRow="PrStDokumenta" msprop:Generator_ColumnPropNameInTable="PrStDokumentaColumn" msprop:Generator_ColumnVarNameInTable="columnPrStDokumenta" msprop:Generator_UserColumnName="PrStDokumenta" type="xs:int" />
+              <xs:element name="Kolicina" msprop:Generator_ColumnPropNameInRow="Kolicina" msprop:Generator_ColumnPropNameInTable="KolicinaColumn" msprop:Generator_ColumnVarNameInTable="columnKolicina" msprop:Generator_UserColumnName="Kolicina" type="xs:decimal" />
+              <xs:element name="Skladiste" msprop:Generator_ColumnPropNameInRow="Skladiste" msprop:Generator_ColumnPropNameInTable="SkladisteColumn" msprop:Generator_ColumnVarNameInTable="columnSkladiste" msprop:Generator_UserColumnName="Skladiste" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Oznaka" msprop:Generator_ColumnPropNameInRow="Oznaka" msprop:Generator_ColumnPropNameInTable="OznakaColumn" msprop:Generator_ColumnVarNameInTable="columnOznaka" msprop:Generator_UserColumnName="Oznaka" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Korisnik" msprop:Generator_ColumnPropNameInRow="Korisnik" msprop:Generator_ColumnPropNameInTable="KorisnikColumn" msprop:Generator_ColumnVarNameInTable="columnKorisnik" msprop:Generator_UserColumnName="Korisnik" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BrojKontejnera" msprop:Generator_ColumnPropNameInRow="BrojKontejnera" msprop:Generator_ColumnPropNameInTable="BrojKontejneraColumn" msprop:Generator_ColumnVarNameInTable="columnBrojKontejnera" msprop:Generator_UserColumnName="BrojKontejnera" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NalogID" msprop:Generator_ColumnPropNameInRow="NalogID" msprop:Generator_ColumnPropNameInTable="NalogIDColumn" msprop:Generator_ColumnVarNameInTable="columnNalogID" msprop:Generator_UserColumnName="NalogID" type="xs:int" minOccurs="0" />
+              <xs:element name="RB" msprop:Generator_ColumnPropNameInRow="RB" msprop:Generator_ColumnPropNameInTable="RBColumn" msprop:Generator_ColumnVarNameInTable="columnRB" msprop:Generator_UserColumnName="RB" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="35" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Stavka" msprop:Generator_ColumnPropNameInRow="Stavka" msprop:Generator_ColumnPropNameInTable="StavkaColumn" msprop:Generator_ColumnVarNameInTable="columnStavka" msprop:Generator_UserColumnName="Stavka" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="JedinicaMere" msprop:Generator_ColumnPropNameInRow="JedinicaMere" msprop:Generator_ColumnPropNameInTable="JedinicaMereColumn" msprop:Generator_ColumnVarNameInTable="columnJedinicaMere" msprop:Generator_UserColumnName="JedinicaMere" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Lot" msprop:Generator_ColumnPropNameInRow="Lot" msprop:Generator_ColumnPropNameInTable="LotColumn" msprop:Generator_ColumnVarNameInTable="columnLot" msprop:Generator_UserColumnName="Lot" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Skladisteno" msprop:Generator_ColumnPropNameInRow="Skladisteno" msprop:Generator_ColumnPropNameInTable="SkladistenoColumn" msprop:Generator_ColumnVarNameInTable="columnSkladisteno" msprop:Generator_UserColumnName="Skladisteno" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

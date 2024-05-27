@@ -206,11 +206,11 @@ namespace Saobracaj.RadniNalozi
                     if (row != null && row.Cells[0].Value != null)
                     {
                         int skladisteno = 0;
-                        if ((bool)row.Cells["Skladisteno"].Value == true)
+                        if (Convert.ToBoolean(row.Cells["Skladisteno"].Value )== true)
                         {
                             skladisteno = 1;
                         }
-                        */
+                       
                         ins.InsertPromet(Convert.ToDateTime(dtpVreme.Value), "PRI", prStDokumenta, txtBrojKontejnera.Text.ToString().TrimEnd(), "PRV", Convert.ToDecimal(row.Cells["Kolicina"].Value), 0, Convert.ToInt32(cbo_Skladiste.SelectedValue),
                             Convert.ToInt32(cbo_Lokacija.SelectedValue), 0, 0, Convert.ToDateTime(DateTime.Now), korisnik, 0, Convert.ToInt32(cbo_Referent.SelectedValue), Convert.ToDateTime(dtpVreme.Value.ToString()), row.Cells["JM"].Value.ToString(),
                             row.Cells["Lot"].Value.ToString(), nalog, Convert.ToInt32(row.Cells["MpNaziv"].Value),skladisteno);
@@ -356,6 +356,12 @@ namespace Saobracaj.RadniNalozi
         {
 
 
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            PrijemnicaPregled pp = new PrijemnicaPregled();
+            pp.Show();
         }
 
         private void button3_Click(object sender, EventArgs e)

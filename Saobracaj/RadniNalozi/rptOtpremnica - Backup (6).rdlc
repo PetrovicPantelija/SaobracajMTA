@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
     <DataSource Name="OtpremnicaDataSet">
@@ -16,6 +16,96 @@
         <DataSourceName>OtpremnicaDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
+      <Fields>
+        <Field Name="DoStDob">
+          <DataField>DoStDob</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DoDatDob">
+          <DataField>DoDatDob</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="DoPStPos">
+          <DataField>DoPStPos</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DoSmSifra">
+          <DataField>DoSmSifra</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Primalac">
+          <DataField>Primalac</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DoNaziv">
+          <DataField>DoNaziv</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DoUlicaHisnaSt">
+          <DataField>DoUlicaHisnaSt</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DoKraj">
+          <DataField>DoKraj</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PIB">
+          <DataField>PIB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MB">
+          <DataField>MB</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Telefon">
+          <DataField>Telefon</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Registracija">
+          <DataField>Registracija</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DoVoznikIme">
+          <DataField>DoVoznikIme</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DoPDobZap">
+          <DataField>DoPDobZap</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="DoPSifMpPopa">
+          <DataField>DoPSifMpPopa</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DoPNaziv">
+          <DataField>DoPNaziv</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DoPEM">
+          <DataField>DoPEM</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DOPKolOdpr">
+          <DataField>DOPKolOdpr</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="DoPCenaEM">
+          <DataField>DoPCenaEM</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="DoPZnesPost">
+          <DataField>DoPZnesPost</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Ref">
+          <DataField>Ref</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="DoOpomba1">
+          <DataField>DoOpomba1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>OtpremnicaDataSet</rd:DataSetName>
         <rd:SchemaPath>C:\Users\Stefan Obradovic\source\repos\PetrovicPantelija\SaobracajMTA\Saobracaj\OtpremnicaDataSet.xsd</rd:SchemaPath>
@@ -1096,19 +1186,7 @@
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
   </ReportParameters>
-  <ReportParametersLayout>
-    <GridLayoutDefinition>
-      <NumberOfColumns>1</NumberOfColumns>
-      <NumberOfRows>1</NumberOfRows>
-      <CellDefinitions>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>ID</ParameterName>
-        </CellDefinition>
-      </CellDefinitions>
-    </GridLayoutDefinition>
-  </ReportParametersLayout>
+
   <EmbeddedImages>
     <EmbeddedImage Name="Logo1">
       <MIMEType>image/jpeg</MIMEType>

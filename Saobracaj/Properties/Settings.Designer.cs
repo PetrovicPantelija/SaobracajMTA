@@ -26,8 +26,8 @@ namespace Saobracaj.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.129.7\\;Initial Catalog=TESTIRANJE;User ID=sa;Password=duki799" +
-            "0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.99.10\\SQLEXPRESS2019;Initial Catalog=TESTIRANJE;Trusted_Conne" +
+            "ction=True;User ID=sa;Password=duki7990")]
         public string NedraConnectionString {
             get {
                 return ((string)(this["NedraConnectionString"]));
@@ -37,8 +37,8 @@ namespace Saobracaj.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.129.7\\;Initial Catalog=TESTIRANJE;User ID=sa;Password=duki799" +
-            "0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.99.10\\SQLEXPRESS2019;Initial Catalog=TESTIRANJE;Trusted_Conne" +
+            "ction=True;User ID=sa;Password=duki7990")]
         public string TESTIRANJEConnectionString {
             get {
                 return ((string)(this["TESTIRANJEConnectionString"]));
@@ -48,23 +48,11 @@ namespace Saobracaj.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.129.7\\;Initial Catalog=TESTIRANJE;User ID=sa;Password=duki799" +
-            "0")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.99.10\\SQLEXPRESS2019;Initial Catalog=TESTIRANJE;Trusted_Conne" +
+            "ction=True;User ID=sa;Password=duki7990")]
         public string Perftech_BeogradConnectionString {
             get {
                 return ((string)(this["Perftech_BeogradConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string T {
-            get {
-                return ((string)(this["T"]));
-            }
-            set {
-                this["T"] = value;
             }
         }
     }

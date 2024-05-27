@@ -6568,6 +6568,17 @@ namespace Saobracaj
             frmKontejnerTekuceOperacijeLog lo = new frmKontejnerTekuceOperacijeLog();
             lo.Show();
         }
+
+        private void toolStripButton367_Click(object sender, EventArgs e)
+        {
+            PrijemnicaPregled pp = new PrijemnicaPregled();
+            pp.Show();
+        }
+
+        private void toolStripButton368_Click(object sender, EventArgs e)
+        {
+            OtpremnicaPregled op = new OtpremnicaPregled(); op.Show();
+        }
     }
     }
 
