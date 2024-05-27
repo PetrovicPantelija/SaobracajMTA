@@ -171,6 +171,7 @@ namespace Saobracaj.RadniNalozi
 
                 dataGridView1.Columns.Add(cbo3);
                 dataGridView1.Columns.Add(cbo4);
+                dataGridView1.Columns.Add(cbo5);
             }
         }
 
@@ -205,7 +206,6 @@ namespace Saobracaj.RadniNalozi
                     if (row != null && row.Cells[0].Value != null)
                     {
                         int skladisteno = 0;
-                        /*
                         if ((bool)row.Cells["Skladisteno"].Value == true)
                         {
                             skladisteno = 1;
