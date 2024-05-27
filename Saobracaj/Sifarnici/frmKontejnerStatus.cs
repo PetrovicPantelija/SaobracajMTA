@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmKontejnerStatus : Form
+    public partial class frmKontejnerStatus : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         public frmKontejnerStatus()

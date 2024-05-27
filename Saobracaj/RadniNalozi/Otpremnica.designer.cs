@@ -29,6 +29,7 @@ namespace Saobracaj.RadniNalozi
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Otpremnica));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -462,10 +463,11 @@ namespace Saobracaj.RadniNalozi
             this.Controls.Add(this.txtVozac);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.btnDodeli);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Otpremnica";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Otpremnica";
+            this.Text = "Otpremnica robe";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Otpremnica_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

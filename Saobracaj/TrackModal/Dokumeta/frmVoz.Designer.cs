@@ -243,8 +243,8 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(158, 24);
-            this.toolStripButton2.Text = "OTVARANJE PLANA IZVOZA";
+            this.toolStripButton2.Size = new System.Drawing.Size(169, 24);
+            this.toolStripButton2.Text = "IZVOZ - FORMIRANJE PLANA ";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // txtBrVoza
@@ -474,7 +474,7 @@
             this.label17.Location = new System.Drawing.Point(635, 171);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(98, 16);
+            this.label17.Size = new System.Drawing.Size(97, 16);
             this.label17.TabIndex = 85;
             this.label17.Text = "Vreme završ kp:";
             this.label17.Visible = false;
@@ -503,7 +503,7 @@
             this.label3.Location = new System.Drawing.Point(635, 140);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(124, 16);
+            this.label3.Size = new System.Drawing.Size(123, 16);
             this.label3.TabIndex = 84;
             this.label3.Text = "Vreme zavr. utovara:";
             this.label3.Visible = false;
@@ -547,7 +547,7 @@
             this.label4.Location = new System.Drawing.Point(635, 196);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(124, 16);
+            this.label4.Size = new System.Drawing.Size(123, 16);
             this.label4.TabIndex = 83;
             this.label4.Text = "Vreme primopredaje:";
             this.label4.Visible = false;
@@ -570,7 +570,7 @@
             this.label28.Location = new System.Drawing.Point(265, 327);
             this.label28.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(71, 16);
+            this.label28.Size = new System.Drawing.Size(70, 16);
             this.label28.TabIndex = 111;
             this.label28.Text = "Napomena:";
             // 
@@ -964,7 +964,7 @@
             this.chkPonedeljak.Margin = new System.Windows.Forms.Padding(4);
             this.chkPonedeljak.Name = "chkPonedeljak";
             this.chkPonedeljak.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkPonedeljak.Size = new System.Drawing.Size(87, 20);
+            this.chkPonedeljak.Size = new System.Drawing.Size(86, 20);
             this.chkPonedeljak.TabIndex = 237;
             this.chkPonedeljak.Text = "Ponedeljak";
             this.chkPonedeljak.UseVisualStyleBackColor = true;
@@ -978,7 +978,7 @@
             this.chkUtorak.Margin = new System.Windows.Forms.Padding(4);
             this.chkUtorak.Name = "chkUtorak";
             this.chkUtorak.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkUtorak.Size = new System.Drawing.Size(65, 20);
+            this.chkUtorak.Size = new System.Drawing.Size(64, 20);
             this.chkUtorak.TabIndex = 238;
             this.chkUtorak.Text = "Utorak";
             this.chkUtorak.UseVisualStyleBackColor = true;
@@ -992,7 +992,7 @@
             this.chkSreda.Margin = new System.Windows.Forms.Padding(4);
             this.chkSreda.Name = "chkSreda";
             this.chkSreda.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkSreda.Size = new System.Drawing.Size(59, 20);
+            this.chkSreda.Size = new System.Drawing.Size(58, 20);
             this.chkSreda.TabIndex = 239;
             this.chkSreda.Text = "Sreda";
             this.chkSreda.UseVisualStyleBackColor = true;
@@ -1006,7 +1006,7 @@
             this.chkCetvrtak.Margin = new System.Windows.Forms.Padding(4);
             this.chkCetvrtak.Name = "chkCetvrtak";
             this.chkCetvrtak.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkCetvrtak.Size = new System.Drawing.Size(75, 20);
+            this.chkCetvrtak.Size = new System.Drawing.Size(74, 20);
             this.chkCetvrtak.TabIndex = 240;
             this.chkCetvrtak.Text = "Četvrtak";
             this.chkCetvrtak.UseVisualStyleBackColor = true;
@@ -1020,7 +1020,7 @@
             this.chkPetak.Margin = new System.Windows.Forms.Padding(4);
             this.chkPetak.Name = "chkPetak";
             this.chkPetak.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkPetak.Size = new System.Drawing.Size(58, 20);
+            this.chkPetak.Size = new System.Drawing.Size(57, 20);
             this.chkPetak.TabIndex = 241;
             this.chkPetak.Text = "Petak";
             this.chkPetak.UseVisualStyleBackColor = true;
@@ -1034,7 +1034,7 @@
             this.chkSubota.Margin = new System.Windows.Forms.Padding(4);
             this.chkSubota.Name = "chkSubota";
             this.chkSubota.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkSubota.Size = new System.Drawing.Size(66, 20);
+            this.chkSubota.Size = new System.Drawing.Size(65, 20);
             this.chkSubota.TabIndex = 242;
             this.chkSubota.Text = "Subota";
             this.chkSubota.UseVisualStyleBackColor = true;
@@ -1048,7 +1048,7 @@
             this.chkNedelja.Margin = new System.Windows.Forms.Padding(4);
             this.chkNedelja.Name = "chkNedelja";
             this.chkNedelja.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.chkNedelja.Size = new System.Drawing.Size(68, 20);
+            this.chkNedelja.Size = new System.Drawing.Size(67, 20);
             this.chkNedelja.TabIndex = 243;
             this.chkNedelja.Text = "Nedelja";
             this.chkNedelja.UseVisualStyleBackColor = true;

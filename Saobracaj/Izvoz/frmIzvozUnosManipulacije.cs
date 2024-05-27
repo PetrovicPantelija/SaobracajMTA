@@ -13,7 +13,7 @@ using Microsoft.Office.Interop.Excel;
 
 namespace Saobracaj.Izvoz
 {
-    public partial class frmIzvozUnosManipulacije : Form
+    public partial class frmIzvozUnosManipulacije : Syncfusion.Windows.Forms.Office2010Form
     {
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         int pIDPlana = 0;
@@ -541,7 +541,7 @@ namespace Saobracaj.Izvoz
  " inner   join PArtnerji on PArtnerji.PaSifra = IzvozKonacnaVrstaManipulacije.Platilac " +
 " inner   join OrganizacioneJedinice on OrganizacioneJedinice.ID = IzvozKonacnaVrstaManipulacije.OrgJed " +
 " inner    join KontejnerStatus on IzvozKonacnaVrstaManipulacije.StatusKontejnera = KontejnerStatus.ID " +
-" where IzvozKonacna.IDNadredjena = " + Convert.ToInt32(txtNadredjeni.Text);
+" where IzvozKonacna.IDNadredjena = " + Convert.ToInt32(txtNadredjeni.Text) + " Order by IzvozKonacnaVrstaManipulacije.ID asc";
             }
 
             SqlConnection conn = new SqlConnection(connection);

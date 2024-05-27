@@ -2,7 +2,7 @@
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmVozila : Form
+    public partial class frmVozila : Syncfusion.Windows.Forms.Office2010Form
     {
         public frmVozila()
         {

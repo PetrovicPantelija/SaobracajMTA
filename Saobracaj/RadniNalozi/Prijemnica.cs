@@ -24,6 +24,7 @@ namespace Saobracaj.RadniNalozi
             kontejner=Kontejner;
             sklad = Sklad;
             poz = Poz;
+            txtNalogID.Text = nalog.ToString();
         }
 
         private void Prijemnica_Load(object sender, EventArgs e)
@@ -170,7 +171,6 @@ namespace Saobracaj.RadniNalozi
 
                 dataGridView1.Columns.Add(cbo3);
                 dataGridView1.Columns.Add(cbo4);
-                dataGridView1.Columns.Add(cbo5);
             }
         }
 
@@ -205,18 +205,25 @@ namespace Saobracaj.RadniNalozi
                     if (row != null && row.Cells[0].Value != null)
                     {
                         int skladisteno = 0;
-                        if (Convert.ToBoolean(row.Cells["Skladisteno"].Value) == true)
+                        /*
+                        if ((bool)row.Cells["Skladisteno"].Value == true)
                         {
                             skladisteno = 1;
                         }
+                        */
                         ins.InsertPromet(Convert.ToDateTime(dtpVreme.Value), "PRI", prStDokumenta, txtBrojKontejnera.Text.ToString().TrimEnd(), "PRV", Convert.ToDecimal(row.Cells["Kolicina"].Value), 0, Convert.ToInt32(cbo_Skladiste.SelectedValue),
                             Convert.ToInt32(cbo_Lokacija.SelectedValue), 0, 0, Convert.ToDateTime(DateTime.Now), korisnik, 0, Convert.ToInt32(cbo_Referent.SelectedValue), Convert.ToDateTime(dtpVreme.Value.ToString()), row.Cells["JM"].Value.ToString(),
                             row.Cells["Lot"].Value.ToString(), nalog, Convert.ToInt32(row.Cells["MpNaziv"].Value),skladisteno);
+
+                    
                         //isporuka.InsertPrijemnicaPostav(Convert.ToInt32(row.Cells[0].Value), Convert.ToDecimal(row.Cells[1].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
                         // progressBar1.Value = progressBar1.Value + 1;
                     }
                 }
-            }
+            InsertRN up = new InsertRN();
+
+           up.PotvrdiUradjenPretovarCirade(nalog, korisnik);
+        }
             else
             {
                 InsertIsporuka isporuka = new InsertIsporuka();

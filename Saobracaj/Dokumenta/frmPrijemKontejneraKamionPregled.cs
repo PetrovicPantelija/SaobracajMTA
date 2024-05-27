@@ -41,6 +41,8 @@ namespace TrackModal.Dokumeta
                         toolStripButton5.Visible = true;
                         toolStripButton3.Visible = true;
                         toolStripButton7.Visible = false;
+                        panelLeget.Visible = true;
+
                         break;
                     }
                 default:
@@ -66,6 +68,7 @@ namespace TrackModal.Dokumeta
                         toolStripButton5.Visible = true;
                         toolStripButton3.Visible = true;
                         toolStripButton7.Visible = false;
+                        panelLeget.Visible = true;
                         break;
                     }
                 default:
@@ -180,8 +183,345 @@ namespace TrackModal.Dokumeta
 " (  SELECT  STUFF((SELECT distinct   '/ ' + Cast(ts.BrojKontejnera as nvarchar(20)) " +
  "  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
  " FOR XML PATH('')), 1, 1, ''  ) As Skupljen) " +
- " as Kontejner " +
+ " as Kontejner  " +
                "FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 and n1.StatusPrijema = 0 Order by ID Desc";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "ETA";
+            dataGridView1.Columns[1].Width = 150;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Status prijema";
+            dataGridView1.Columns[2].Width = 100;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Reg. br. vozila";
+            dataGridView1.Columns[3].Width = 200;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Ime vozača";
+            dataGridView1.Columns[4].Width = 300;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "ATA";
+            dataGridView1.Columns[5].Width = 100;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Datum unosa";
+            dataGridView1.Columns[6].Width = 100;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Korisnik";
+            dataGridView1.Columns[7].Width = 100;
+
+
+        }
+
+        private void RefreshDataGridLeget()
+        {
+            string pomPoreklo = "";
+            int uslov = 0;
+
+            string pomModul = "";
+            int uslovModul = 0;
+            if (chkUvoz.Checked == true)
+            {
+                pomModul = "1";
+                uslovModul = 1;
+
+            }
+            if (chkIzvoz.Checked == true && uslovModul == 1)
+            {
+                pomModul = pomModul + ",2";
+                uslovModul = 1;
+            }
+            if (chkIzvoz.Checked == true && uslovModul == 0)
+            {
+                pomModul = pomModul + "2";
+            }
+            if (chkTerminal.Checked == true && uslovModul == 1)
+            {
+                pomModul = pomModul + ",4";
+            }
+            if (chkTerminal.Checked == true && uslovModul == 0)
+            {
+                pomModul = pomModul + "4";
+            }
+
+
+            if (chkPlatforma.Checked == true)
+            {
+                pomPoreklo = "0";
+                uslov = 1;
+
+            }
+            if (chkCirada.Checked == true && uslov == 1)
+            {
+                pomPoreklo = pomPoreklo + ",1";
+                uslov = 1;
+            }
+            if (chkCirada.Checked == true && uslov == 0)
+            {
+                pomPoreklo = pomPoreklo + "1";
+            }
+            /*
+            var select = "SELECT [ID]," +
+                 " CONVERT(varchar,DatumPrijema,104)      + ' '      + SUBSTRING(CONVERT(varchar,DatumPrijema,108),1,5) as DatumPrijema, " +
+                 " CASE WHEN n1.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status, " +
+                " REgBrKamiona, ImeVozaca, " +
+                " CONVERT(varchar,VremeDolaska,104)      + ' '      + SUBSTRING(CONVERT(varchar,VremeDolaska,108),1,5) as VremeDolaska, " +
+               " [Datum] ,[Korisnik]," +
+               
+" (  SELECT  STUFF((SELECT distinct   '/ ' + Cast(ts.BrojKontejnera as nvarchar(20)) " +
+ "  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
+ " FOR XML PATH('')), 1, 1, ''  ) As Skupljen) " +
+ " as Kontejner "+
+               " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0";
+            */
+
+            var select = "SELECT [ID]," +
+                " DatumPrijema as DatumPrijema, " +
+                " CASE WHEN n1.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status, " +
+               " REgBrKamiona, ImeVozaca, " +
+               " VremeDolaska as VremeDolaska, " +
+              " [Datum] ,[Korisnik]," +
+
+" (  SELECT  STUFF((SELECT distinct   '/ ' + Cast(ts.BrojKontejnera as nvarchar(20)) " +
+"  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
+" FOR XML PATH('')), 1, 1, ''  ) As Skupljen) " +
+" as Kontejner , Poreklo, Modul" +
+              " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 and Modul in ( " + pomModul + ") and Poreklo in ( " + pomPoreklo + ") order by ID desc";
+
+
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "ETA";
+            dataGridView1.Columns[1].Width = 100;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Status prijema";
+            dataGridView1.Columns[2].Width = 80;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Reg. br. vozila";
+            dataGridView1.Columns[3].Width = 150;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Ime vozača";
+            dataGridView1.Columns[4].Width = 150;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "ATA";
+            dataGridView1.Columns[5].Width = 80;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Datum unosa";
+            dataGridView1.Columns[6].Width = 80;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Korisnik";
+            dataGridView1.Columns[7].Width = 100;
+
+            DataGridViewColumn column9 = dataGridView1.Columns[8];
+            dataGridView1.Columns[8].HeaderText = "Kontejneri";
+            dataGridView1.Columns[8].Width = 200;
+
+
+        }
+        private void RefreshDataGridNajaveLeget()
+        {
+            string pomPoreklo = "";
+            int uslov = 0;
+
+            string pomModul = "";
+            int uslovModul = 0;
+            if (chkUvoz.Checked == true)
+            {
+                pomModul = "1";
+                uslovModul = 1;
+                
+            }
+            if (chkIzvoz.Checked == true && uslovModul == 1)
+            {
+                pomModul = pomModul + ",2";
+                uslovModul = 1;
+            }
+            if (chkIzvoz.Checked == true && uslovModul == 0)
+            {
+                pomModul = pomModul + "2";
+            }
+            if (chkTerminal.Checked == true && uslovModul == 1)
+            {
+                pomModul = pomModul + ",4";
+            }
+            if (chkTerminal.Checked == true && uslovModul == 0)
+            {
+                pomModul = pomModul + "4";
+            }
+
+
+            if (chkPlatforma.Checked == true)
+            {
+                pomPoreklo = "0";
+                uslov = 1;
+
+            }
+            if (chkCirada.Checked == true && uslov == 1)
+            {
+                pomPoreklo = pomPoreklo + ",1";
+                uslov = 1;
+            }
+            if (chkCirada.Checked == true && uslov == 0)
+            {
+                pomPoreklo = pomPoreklo + "1";
+            }
+            var select = "SELECT [ID]," +
+                 " CONVERT(varchar,DatumPrijema,104)      + ' '      + SUBSTRING(CONVERT(varchar,DatumPrijema,108),1,5) as DatumPrijema, " +
+                 " CASE WHEN n1.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status, " +
+                " REgBrKamiona, ImeVozaca, " +
+                " CONVERT(varchar,VremeDolaska,104)      + ' '      + SUBSTRING(CONVERT(varchar,VremeDolaska,108),1,5) as VremeDolaska, " +
+               " [Datum] ,[Korisnik] ," +
+
+
+" (  SELECT  STUFF((SELECT distinct   '/ ' + Cast(ts.BrojKontejnera as nvarchar(20)) " +
+ "  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
+ " FOR XML PATH('')), 1, 1, ''  ) As Skupljen) " +
+ " as Kontejner, Poreklo, Modul  " +
+               "FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 and n1.StatusPrijema = 0 and Modul in ( " + pomModul + ") and Poreklo in ( " + pomPoreklo + ") Order by ID Desc";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "ETA";
+            dataGridView1.Columns[1].Width = 150;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Status prijema";
+            dataGridView1.Columns[2].Width = 100;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Reg. br. vozila";
+            dataGridView1.Columns[3].Width = 200;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Ime vozača";
+            dataGridView1.Columns[4].Width = 300;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "ATA";
+            dataGridView1.Columns[5].Width = 100;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Datum unosa";
+            dataGridView1.Columns[6].Width = 100;
+
+            DataGridViewColumn column8 = dataGridView1.Columns[7];
+            dataGridView1.Columns[7].HeaderText = "Korisnik";
+            dataGridView1.Columns[7].Width = 100;
+
+
+        }
+
+        private void RefreshDataGridPrijemiLeget()
+        {
+
+            string pomPoreklo = "";
+            int uslov = 0;
+
+            string pomModul = "";
+            int uslovModul = 0;
+            if (chkUvoz.Checked == true)
+            {
+                pomModul = "0";
+                uslovModul = 1;
+
+            }
+            if (chkIzvoz.Checked == true && uslovModul == 1)
+            {
+                pomModul = pomModul + ",2";
+                uslovModul = 1;
+            }
+            if (chkIzvoz.Checked == true && uslovModul == 0)
+            {
+                pomModul = pomModul + "2";
+            }
+            if (chkTerminal.Checked == true && uslovModul == 1)
+            {
+                pomModul = pomModul + ",4";
+            }
+            if (chkTerminal.Checked == true && uslovModul == 0)
+            {
+                pomModul = pomModul + "4";
+            }
+
+
+            if (chkPlatforma.Checked == true)
+            {
+                pomPoreklo = "0";
+                uslov = 1;
+
+            }
+            if (chkCirada.Checked == true && uslov == 1)
+            {
+                pomPoreklo = pomPoreklo + ",1";
+                uslov = 1;
+            }
+            if (chkCirada.Checked == true && uslov == 0)
+            {
+                pomPoreklo = pomPoreklo + "1";
+            }
+            var select = "SELECT [ID]," +
+                 " CONVERT(varchar,DatumPrijema,104)      + ' '      + SUBSTRING(CONVERT(varchar,DatumPrijema,108),1,5) as DatumPrijema, " +
+                 " CASE WHEN n1.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status, " +
+                " REgBrKamiona, ImeVozaca, " +
+                " CONVERT(varchar,VremeDolaska,104)      + ' '      + SUBSTRING(CONVERT(varchar,VremeDolaska,108),1,5) as VremeDolaska, " +
+               " [Datum] ,[Korisnik] ," +
+" (  SELECT  STUFF((SELECT distinct   '/ ' + Cast(ts.BrojKontejnera as nvarchar(20)) " +
+ "  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
+ " FOR XML PATH('')), 1, 1, ''  ) As Skupljen) " +
+ " as Kontejner , Poreklo, Modul" +
+               " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 and n1.StatusPrijema = 1 and Modul in ( " + pomModul + ") and Poreklo in ( " + pomPoreklo + ") Order by ID Desc";
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -340,7 +680,27 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            RefreshDataGrid();
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        RefreshDataGridLeget();
+                        return;
+
+                    }
+                default:
+                    {
+
+                        RefreshDataGrid();
+                        return;
+
+                    }
+                    break;
+            }
+
+
+           
         }
 
         private void frmPrijemKontejneraKamionPregled_Load(object sender, EventArgs e)
@@ -382,12 +742,49 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton6_Click(object sender, EventArgs e)
         {
-            RefreshDataGridPrijemi();
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        RefreshDataGridPrijemiLeget();
+                        return;
+
+                    }
+                default:
+                    {
+                        RefreshDataGridPrijemi();
+                        return;
+
+                    }
+                    break;
+            }
+
+           
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            RefreshDataGridNajave();
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        RefreshDataGridNajaveLeget();
+                        return;
+
+                    }
+                default:
+                    {
+                        RefreshDataGridNajave();
+                        return;
+
+                    }
+                    break;
+            }
+
+
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

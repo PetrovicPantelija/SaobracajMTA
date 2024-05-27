@@ -8,7 +8,7 @@ using System.Windows.Forms;
 namespace Saobracaj.Sifarnici
 {
 
-    public partial class frmRazlozi : Form
+    public partial class frmRazlozi : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmRazlozi";
         public bool Pravo;

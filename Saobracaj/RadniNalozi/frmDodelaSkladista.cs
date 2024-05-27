@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Net;
 using System.Net.Mail;
+using System.Windows.Controls;
 
 namespace Saobracaj.RadniNalozi
 {
@@ -95,7 +96,7 @@ namespace Saobracaj.RadniNalozi
 
         private void FillDGRN1()
         {
-            var select = "select RNPrijemVoza.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, DatumRasporeda, NalogIzdao, Voz.BrVoza, NaSkladiste,Skladista.Naziv as Sklad,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, VrstaManipulacije.Naziv as Usliga, BrojPlombe, RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID,RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, Zavrsen  from RNPrijemVoza " +
+            var select = "select RNPrijemVoza.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, NaSkladiste,Skladista.Naziv as Sklad, DatumRasporeda, NalogIzdao, Voz.BrVoza,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, VrstaManipulacije.Naziv as Usliga, BrojPlombe, RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID,RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, Zavrsen  from RNPrijemVoza " +
    " inner join TipKontenjera on TipKontenjera.ID = RNPrijemVoza.VrstaKontejnera " +
    " inner join Voz on RNPrijemVoza.SaVoznogSredstva = Voz.ID " +
    " inner join Skladista on Skladista.ID = NaSkladiste " +
@@ -126,6 +127,8 @@ namespace Saobracaj.RadniNalozi
             dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            dataGridView2.Columns["Sklad"].DefaultCellStyle.BackColor = Color.LightBlue;
 
         }
 
@@ -252,6 +255,8 @@ namespace Saobracaj.RadniNalozi
             if (TipRadnogNaloga == 1)
             FillDGRN1();
 
+            if (TipRadnogNaloga == 2)
+                FillDGRN2();
             if (TipRadnogNaloga == 6)
                 FillDGRN6();
         }

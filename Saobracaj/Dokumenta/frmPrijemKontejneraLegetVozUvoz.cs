@@ -14,6 +14,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Diagnostics.CodeAnalysis;
 using Saobracaj;
+//using System.Windows;
 
 namespace Saobracaj.Dokumenta
 {
@@ -1081,6 +1082,17 @@ namespace Saobracaj.Dokumenta
 
             con.Close();
         }
+        private void SelektujUslugu()
+        {
+           // dataGridView8.SelectedRows.Clear();
+            foreach (DataGridViewRow row in dataGridView8.Rows)
+            {
+                if (Convert.ToInt32(row.Cells[6].Value.ToString()) == 72)
+                     row.Selected = true;
+            }
+
+
+        }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
@@ -1093,6 +1105,7 @@ namespace Saobracaj.Dokumenta
                         txtSifra.Text = row.Cells[2].Value.ToString();
                         //VratiPodatkeStavke(txtSifra.Text, Convert.ToInt32(row.Cells[1].Value.ToString()));
                         PopuniPolja(txtSifra.Text, Convert.ToInt32(row.Cells[1].Value.ToString()));
+                        SelektujUslugu();
                     }
                 }
             }
@@ -1609,7 +1622,8 @@ namespace Saobracaj.Dokumenta
         private void toolStripButton9_Click_1(object sender, EventArgs e)
         {
             //Proveriti da li je OK zadnji parametar Cirada
-            frmPrijemKontejneraKamionLegetUvoz prijemplat = new frmPrijemKontejneraKamionLegetUvoz(KorisnikCene, 0, txtNalogID.Text, 0);
+            //Ovde da stane kad se pojavi
+            frmPrijemKontejneraKamionLegetUvoz prijemplat = new frmPrijemKontejneraKamionLegetUvoz(KorisnikCene, 0, txtNalogID.Text,1, 0);
             prijemplat.Show();
         }
 

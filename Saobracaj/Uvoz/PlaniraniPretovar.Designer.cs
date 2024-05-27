@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlaniraniPretovar));
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtKontejner = new System.Windows.Forms.TextBox();
@@ -57,6 +58,8 @@
             this.chkPlatforma = new System.Windows.Forms.CheckBox();
             this.chkCirada = new System.Windows.Forms.CheckBox();
             this.chkUvoz = new System.Windows.Forms.CheckBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -70,11 +73,11 @@
             this.gridGroupingControl1.BackColor = System.Drawing.SystemColors.Window;
             this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
             this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2010Blue;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(12, 122);
+            this.gridGroupingControl1.Location = new System.Drawing.Point(12, 157);
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1288, 494);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1288, 459);
             this.gridGroupingControl1.TabIndex = 10;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -252,9 +255,9 @@
             this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button1.Location = new System.Drawing.Point(1104, 7);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(101, 42);
+            this.button1.Size = new System.Drawing.Size(101, 46);
             this.button1.TabIndex = 13;
-            this.button1.Text = "Formiraj prijem";
+            this.button1.Text = "PRIJEM Vi RN";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -304,9 +307,9 @@
             this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.button2.Location = new System.Drawing.Point(1211, 7);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(89, 42);
+            this.button2.Size = new System.Drawing.Size(89, 46);
             this.button2.TabIndex = 462;
-            this.button2.Text = "Formiraj prijemnicu";
+            this.button2.Text = "PRETOVAR ROBE";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -351,6 +354,8 @@
             // 
             this.chkCirada.AutoSize = true;
             this.chkCirada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.chkCirada.Checked = true;
+            this.chkCirada.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkCirada.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkCirada.ForeColor = System.Drawing.Color.Transparent;
             this.chkCirada.Location = new System.Drawing.Point(949, 99);
@@ -364,6 +369,8 @@
             // 
             this.chkUvoz.AutoSize = true;
             this.chkUvoz.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.chkUvoz.Checked = true;
+            this.chkUvoz.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkUvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkUvoz.ForeColor = System.Drawing.Color.Transparent;
             this.chkUvoz.Location = new System.Drawing.Point(892, 99);
@@ -373,12 +380,39 @@
             this.chkUvoz.Text = "Uvoz";
             this.chkUvoz.UseVisualStyleBackColor = false;
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.LimeGreen;
+            this.button3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button3.Location = new System.Drawing.Point(317, 99);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(101, 52);
+            this.button3.TabIndex = 467;
+            this.button3.Text = "Skladisnina pokreni";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.LimeGreen;
+            this.button4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button4.Location = new System.Drawing.Point(442, 99);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(89, 52);
+            this.button4.TabIndex = 468;
+            this.button4.Text = "Skladisnina zatvori";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
             // PlaniraniPretovar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1312, 628);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.chkPlatforma);
             this.Controls.Add(this.chkCirada);
             this.Controls.Add(this.chkUvoz);
@@ -400,8 +434,9 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PlaniraniPretovar";
-            this.Text = "PlaniraniPretovar";
+            this.Text = "PLANIRANI PRETOVARI KONTEJNERA";
             this.Load += new System.EventHandler(this.PlaniraniPretovar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -442,5 +477,7 @@
         private System.Windows.Forms.CheckBox chkPlatforma;
         private System.Windows.Forms.CheckBox chkCirada;
         private System.Windows.Forms.CheckBox chkUvoz;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }

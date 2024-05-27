@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmUvozKonacnaTable : Form
+    public partial class frmUvozKonacnaTable : Syncfusion.Windows.Forms.Office2010Form
     {
         int Selektovani = 0;
         private Keys keyData;

@@ -1451,7 +1451,7 @@ namespace Saobracaj.Izvoz
                 {
                     Uvoz.InsertRadniNalogInterni ins = new Uvoz.InsertRadniNalogInterni();
                     //ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
-                    ins.InsRadniNalogInterniIzvoz(Convert.ToInt32(2), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovaraIZ", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
+                    ins.InsRadniNalogInterniIzvoz(Convert.ToInt32(2), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), " ", Convert.ToInt32(0), "PlanUtovaraIZ", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, " ");
                 }
                 
             }
@@ -1715,7 +1715,7 @@ namespace Saobracaj.Izvoz
   " join IzvozKonacna on IzvozKonacnaVrstaManipulacije.IDNadredjena = IzvozKonacna.ID " +
   " left " +
   " join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera" +
-  " where IzvozKonacna.ID = " + Convert.ToInt32(txtID.Text);
+  " where IzvozKonacna.ID = " + Convert.ToInt32(txtID.Text) + " Order by IzvozKonacnaVrstaManipulacije.ID asc";
             
 
 
@@ -1773,7 +1773,7 @@ namespace Saobracaj.Izvoz
   " inner" +
   " join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID" +
   " left" +
-  " join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera where UvozKonacna.ID  = " + Convert.ToInt32(txtUvozniID.Text);
+  " join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera where UvozKonacna.ID  = " + Convert.ToInt32(txtUvozniID.Text) + " Order by UvozKonacnaVrstaManipulacije.ID asc";
 
 
 

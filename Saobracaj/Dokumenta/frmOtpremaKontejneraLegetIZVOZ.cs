@@ -967,7 +967,7 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
              " ,[TipKontejnera],[VrstaRobe],[Buking],[StatusKontejnera] " +
              " ,[BrojPlombe],[PlaniraniLager],[IdVoza] " +
              " ,[VremePripremljen],[VremeOdlaska],[Datum],[Korisnik] " +
-             " ,[RB],[BrojPlombe2],[Organizator], NapomenaS, KontejnerID " +
+             " ,[RB],[BrojPlombe2],[Organizator], NapomenaS, KontejnerID, NalogID " +
              " FROM [dbo].[OtpremaKontejneraVozStavke] " +
              " where IdNadredjenog = " + txtSifra.Text + " and RB = " + RB, con);
 
@@ -1001,6 +1001,7 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
                 txtBrojPlombe2.Text = dr["BrojPlombe2"].ToString();
                 txtNapomenaS.Text = dr["NapomenaS"].ToString();
                 txtKOntejnerID.Text = dr["KontejnerID"].ToString();
+                txtNalogID.Text = dr["NalogID"].ToString();
             }
 
             con.Close();
@@ -1256,6 +1257,8 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
             cboPostupak.ValueMember = "ID";
         }
 
+
+
         private void VratiPodatkeSaIzvozKonacna()
         {
 
@@ -1430,9 +1433,16 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
 
         }
 
+        private void VratiNaloge()
+        {
+        
+        
+        }
+
         private void txtKOntejnerID_TextChanged(object sender, EventArgs e)
         {
             VratiPodatkeSaIzvozKonacna();
+            VratiNaloge();
             FillDGUsluge();
             FillDG2();
         }

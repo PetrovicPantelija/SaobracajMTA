@@ -1,4 +1,5 @@
-﻿using Syncfusion.Grouping;
+﻿using Saobracaj.Sifarnici;
+using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
 using System.Configuration;
@@ -13,6 +14,7 @@ namespace Saobracaj.Uvoz
     {
         int pomPostojiPlan = 0;
         int pomPlan = 0;
+        string kor = frmLogovanje.user;
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         public frmFormiranjePlana()
         {
@@ -493,6 +495,12 @@ namespace Saobracaj.Uvoz
         private void button4_Click(object sender, EventArgs e)
         {
             RefreshSync();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            frmUvozKonacna pUvoz = new frmUvozKonacna(Convert.ToInt32(cboPlanUtovara.SelectedValue), kor);
+            pUvoz.Show();
         }
     }
 }

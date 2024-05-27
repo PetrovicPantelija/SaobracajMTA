@@ -647,7 +647,7 @@ namespace Saobracaj.Uvoz
 " inner " +
 " join Uvoz on UvozVrstaManipulacije.IDNadredjena = Uvoz.ID" +
 " left join KontejnerStatus on  UvozVrstaManipulacije.StatusKontejnera = KontejnerStatus.ID " +
-" where Uvoz.ID = " + Convert.ToInt32(txtID.Text);
+" where Uvoz.ID = " + Convert.ToInt32(txtID.Text) + " order by UvozVrstaManipulacije.ID";
 
 
             }
@@ -667,7 +667,7 @@ namespace Saobracaj.Uvoz
 " join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID  " +
 " inner " +
 " join KontejnerStatus on UvozKonacnaVrstaManipulacije.StatusKOntejnera = KontejnerStatus.ID  " +
-"where UvozKonacna.IDNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text);
+"where UvozKonacna.IDNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text) + " order by UvozKonacnaVrstaManipulacije.ID";
             }
 
             SqlConnection conn = new SqlConnection(connection);
@@ -693,7 +693,7 @@ namespace Saobracaj.Uvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView7.Columns[0];
             dataGridView7.Columns[0].HeaderText = "ID";
-            dataGridView7.Columns[0].Width = 20;
+            dataGridView7.Columns[0].Width = 50;
 
             DataGridViewColumn column2 = dataGridView7.Columns[1];
             dataGridView7.Columns[1].HeaderText = "USL ID";
@@ -713,7 +713,7 @@ namespace Saobracaj.Uvoz
 
             DataGridViewColumn column6 = dataGridView7.Columns[5];
             dataGridView7.Columns[5].HeaderText = "Usluga";
-            dataGridView7.Columns[5].Width = 150;
+            dataGridView7.Columns[5].Width = 250;
 
             DataGridViewColumn column7 = dataGridView7.Columns[6];
             dataGridView7.Columns[6].HeaderText = "Cena";
@@ -1571,6 +1571,7 @@ namespace Saobracaj.Uvoz
                 if (row.Selected)
                 {
                     txtID.Text = row.Cells[0].Value.ToString();
+                    FillDG8();
                     //  VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
 
                 }
@@ -1950,16 +1951,17 @@ namespace Saobracaj.Uvoz
                         //  pomCena = Convert.ToDouble(row.Cells[2].Value.ToString());
                         // pomkolicina= Convert.ToDouble(row.Cells[4].Value.ToString());
                         //   pomOrgJed = Convert.ToInt32(row.Cells[5].Value.ToString());
-                        foreach (DataGridViewRow row2 in dataGridView1.Rows)
+                    
+
+
+                    }
+                    foreach (DataGridViewRow row2 in dataGridView1.Rows)
+                    {
+                        if (row2.Selected)
                         {
-                            if (row2.Selected)
-                            {
-                                pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
-                                UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed, pomPlatilac, pomPokret, pomStatusKontejnera, pomForma);
-                            }
+                            pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                            UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed, pomPlatilac, pomPokret, pomStatusKontejnera, pomForma);
                         }
-
-
                     }
                 }
                 FillDG8();

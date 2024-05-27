@@ -21,16 +21,16 @@ namespace Saobracaj.Izvoz
         }
         private void RefreshSync()
         {
-            var select = " SELECT        KontejnerTekuce.Kontejner, KontejnerTekuce.StatusKontejnera, KontejnerStatus.Naziv, KontejnerTekuce.Skladiste, Skladista.Naziv AS Expr1, KontejnerTekuce.Pokret, KontejnerTekuce.Stanje, " +
-                      "   KontejnerTekuce.OSTECENJA, KontejnerTekuce.RLSRB, KontejnerTekuce.Kvalitet, KontejnerTekuce.CIR, KontejnerTekuce.StatusIzvoz, KontejnerTekuce.DatumGIN, KontejnerTekuce.TipKontejnera, " +
-                       "     TipKontenjera.Naziv AS Expr2, KontejnerTekuce.Brodar, Partnerji.PaNaziv as BrodarNAziv, Partnerji_1.PaSifra, Partnerji_1.PaNaziv AS Expr3, KontejnerTekuce.UlazniBroj, KontejnerTekuce.DatumOtpremaPlat, " +
-                        "    KontejnerTekuce.DatumPrijemaPLat, KontejnerTekuce.OperacijaUradjena " +
- "  FROM            KontejnerTekuce INNER JOIN " +
-                       "     KontejnerStatus ON KontejnerTekuce.StatusKontejnera = KontejnerStatus.ID INNER JOIN " +
-                       "     TipKontenjera ON KontejnerTekuce.TipKontejnera = TipKontenjera.ID INNER JOIN " +
-                        "    Partnerji ON KontejnerTekuce.Brodar = Partnerji.PaSifra INNER JOIN " +
-                       "     Partnerji AS Partnerji_1 ON KontejnerTekuce.Uvoznik = Partnerji_1.PaSifra CROSS JOIN " +
-                       "     Skladista where KontejnerTekuce.StatusKontejnera = 13";
+            var select = " SELECT        KontejnerTekuce.Kontejner, KontejnerTekuce.StatusKontejnera, KontejnerStatus.Naziv, KontejnerTekuce.Skladiste, Skladista.Naziv AS SkladisteNaziv, "+ 
+" KontejnerTekuce.Pokret, KontejnerTekuce.Stanje,    KontejnerTekuce.OSTECENJA, KontejnerTekuce.RLSRB, KontejnerTekuce.Kvalitet, KontejnerTekuce.CIR, "+
+" KontejnerTekuce.StatusIzvoz, KontejnerTekuce.DatumGIN, KontejnerTekuce.TipKontejnera,      TipKontenjera.Naziv AS TipKontejnera, KontejnerTekuce.Brodar, " +
+" Partnerji.PaNaziv as BrodarNAziv, Partnerji_1.PaSifra, Partnerji_1.PaNaziv AS Uvoznik, KontejnerTekuce.UlazniBroj, KontejnerTekuce.DatumOtpremaPlat,  " +
+" KontejnerTekuce.DatumPrijemaPLat, KontejnerTekuce.OperacijaUradjena FROM            KontejnerTekuce" +
+" INNER JOIN KontejnerStatus ON KontejnerTekuce.StatusKontejnera = KontejnerStatus.ID" +
+" INNER JOIN      TipKontenjera ON KontejnerTekuce.TipKontejnera = TipKontenjera.ID" +
+" INNER JOIN     Partnerji ON KontejnerTekuce.Brodar = Partnerji.PaSifra" +
+" inner JOIN      Skladista on KontejnerTekuce.Skladiste = Skladista.ID" +
+" INNER JOIN      Partnerji AS Partnerji_1 ON KontejnerTekuce.Uvoznik = Partnerji_1.PaSifra  where KontejnerTekuce.StatusKontejnera = 13";
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -323,7 +323,7 @@ namespace Saobracaj.Izvoz
             {
                 if (gridGroupingControl1.Table.CurrentRecord != null)
                 {
-                    txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                    txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("Kontejner").ToString();
                 }
 
             }

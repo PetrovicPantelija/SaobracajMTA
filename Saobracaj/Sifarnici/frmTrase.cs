@@ -14,7 +14,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmTrase : Form
+    public partial class frmTrase : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmTrase";
         public bool Pravo;

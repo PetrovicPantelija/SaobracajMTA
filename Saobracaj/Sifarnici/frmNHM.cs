@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmNHM : Form
+    public partial class frmNHM : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmNHM";
         public bool Pravo;

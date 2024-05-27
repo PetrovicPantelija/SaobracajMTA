@@ -713,7 +713,7 @@ namespace Saobracaj.Uvoz
 " inner" +
 " join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID" +
 " left" +
-" join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera where UvozKonacna.ID  = " + Convert.ToInt32(txtID.Text) ;
+" join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera where UvozKonacna.ID  = " + Convert.ToInt32(txtID.Text) + " order by UvozKonacnaVrstaManipulacije.ID asc";
 
 
 
@@ -748,7 +748,7 @@ namespace Saobracaj.Uvoz
 
             DataGridViewColumn column3 = dataGridView8.Columns[2];
             dataGridView8.Columns[2].HeaderText = "Kontejner";
-            dataGridView8.Columns[2].Width = 120;
+            dataGridView8.Columns[2].Width = 100;
 
             DataGridViewColumn column4 = dataGridView8.Columns[3];
             dataGridView8.Columns[3].HeaderText = "KOL";
@@ -763,7 +763,7 @@ namespace Saobracaj.Uvoz
 
             DataGridViewColumn column6 = dataGridView8.Columns[5];
             dataGridView8.Columns[5].HeaderText = "MAN";
-            dataGridView8.Columns[5].Width = 300;
+            dataGridView8.Columns[5].Width = 200;
 
 
             DataGridViewColumn column7 = dataGridView8.Columns[6];
@@ -781,7 +781,7 @@ namespace Saobracaj.Uvoz
             DataGridViewColumn column9 = dataGridView8.Columns[8];
             dataGridView8.Columns[8].HeaderText = "OJN";
             dataGridView8.Columns[8].Visible = false;
-            dataGridView8.Columns[8].Width = 30;
+            dataGridView8.Columns[8].Width = 60;
 
             DataGridViewColumn column10 = dataGridView8.Columns[9];
             dataGridView8.Columns[9].HeaderText = "PID";
@@ -2224,7 +2224,7 @@ namespace Saobracaj.Uvoz
         {
             if (chkTerminalski.Checked == false)
             {
-                DialogResult dialogResult = MessageBox.Show("Pokrenuli ste proceduru pravljenja naloga za službu terminal", "Radni nalog", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Pokrenuli ste proceduru pravljenja naloga za službu terminal, nalozi se neće izdati za Administrativne usluge", "Radni nalog", MessageBoxButtons.YesNo);
                 int PostojeRn = 0;
                 PostojeRn = VratiPostojeceRN();
                 if (dialogResult == DialogResult.Yes)
@@ -2768,13 +2768,13 @@ namespace Saobracaj.Uvoz
 
         private void frmUvozKonacna_KeyDown(object sender, KeyEventArgs e)
         {
-            if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.D)
+            if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.F1)
             {
 
                 UvozDokumenta uvdok = new UvozDokumenta(txtID.Text);
                 uvdok.Show();
             }
-            else if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.T)
+            else if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.F2)
             {
                 using (var detailForm = new frmUvozKonacnaTable())
                 {
@@ -2783,7 +2783,7 @@ namespace Saobracaj.Uvoz
                     VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
                 }
             }
-            else if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.U)
+            else if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.F3)
             {
                 if (txtID.Text == "")
                 { txtID.Text = "0"; }
@@ -2889,6 +2889,16 @@ namespace Saobracaj.Uvoz
         }
 
         private void cboVoz_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void toolStripButton2_Click_2(object sender, EventArgs e)
         {
 
         }

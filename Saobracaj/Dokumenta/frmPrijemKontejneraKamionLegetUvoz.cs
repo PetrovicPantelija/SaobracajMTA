@@ -120,35 +120,46 @@ namespace Saobracaj.Dokumenta
             con.Close();
         }
 
-        public frmPrijemKontejneraKamionLegetUvoz(string Korisnik, int Vozom, string NalogID, int Cirada)
+        public frmPrijemKontejneraKamionLegetUvoz(string Korisnik, int Vozom, string NalogID,  int Cirada, int Modul)
         {
            //Automatski prenos iz naloga
             
             InitializeComponent();
             KorisnikCene = Korisnik;
-            OJ = Cirada;
-            txtNalogID.Text = NalogID;
-            FormiranjeNovog = 1;
-            if (OJ == 1)
+            OJ = Modul;
+            if (Cirada == 1)
             {
                 chkCirada.Checked = true;
                 chkPlatforma.Checked = false;
-                chkTerminal.Checked = false;
-            }
-
-            else if (OJ == 2)
-            {
-                //KADA TERMINAL PRIMA KONTEJNER OD BRODARA
-                chkCirada.Checked = false;
-                chkPlatforma.Checked = true;
-                chkTerminal.Checked = true;
-                VratiPodatkePoNalogu(NalogID);
             }
             else
             {
                 chkCirada.Checked = false;
                 chkPlatforma.Checked = true;
+            }
+            txtNalogID.Text = NalogID;
+            FormiranjeNovog = 1;
+            if (OJ == 1)
+            {
+               
                 chkTerminal.Checked = false;
+                chkIzvoz.Checked = false;
+                chkUvoz.Checked = true;
+            }
+
+            else if (OJ == 2)
+            {
+                //KADA TERMINAL PRIMA KONTEJNER OD BRODARA
+                chkTerminal.Checked = false;
+                chkIzvoz.Checked = true;
+                chkUvoz.Checked = false;
+                VratiPodatkePoNalogu(NalogID);
+            }
+            else
+            {
+                chkTerminal.Checked = false;
+                chkIzvoz.Checked = false;
+                chkUvoz.Checked = true;
             }
 
 
@@ -1009,7 +1020,7 @@ namespace Saobracaj.Dokumenta
 
             //VR SqlCommand cmd = new SqlCommand("select [ID] ,[DatumPrijema],[StatusPrijema],[IdVoza],[VremeDolaska],RegBrKamiona, ImeVozaca, NajavaEmail, PrijemEmail, Napomena, CIRUradjen, PredefinisanaPorukaID from PrijemKontejneraVoz where ID=" + ID, con);
 
-            SqlCommand cmd = new SqlCommand("select [ID] ,[DatumPrijema],[StatusPrijema],[IdVoza],[VremeDolaska],RegBrKamiona, ImeVozaca, NajavaEmail, PrijemEmail, Napomena, CIRUradjen from PrijemKontejneraVoz where ID=" + ID, con);
+            SqlCommand cmd = new SqlCommand("select [ID] ,[DatumPrijema],[StatusPrijema],[IdVoza],[VremeDolaska],RegBrKamiona, ImeVozaca, NajavaEmail, PrijemEmail, Napomena, CIRUradjen, Poreklo, Modul from PrijemKontejneraVoz where ID=" + ID, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -1048,6 +1059,33 @@ namespace Saobracaj.Dokumenta
                 else
                 {
                     chkCIRUradjen.Checked = true;
+                }
+
+                if (Convert.ToInt32(dr["Poreklo"].ToString()) == 0)
+                {
+                    chkPlatforma.Checked = true;
+                    chkCirada.Checked = false;
+                }
+                else
+                {
+                    chkPlatforma.Checked = false;
+                    chkCirada.Checked = true;
+                }
+
+                if (Convert.ToInt32(dr["Modul"].ToString()) == 1)
+                {
+                    chkUvoz.Checked = true;
+                 
+                }
+                else if (Convert.ToInt32(dr["Modul"].ToString()) == 2)
+                {
+                    chkIzvoz.Checked = true;
+                   
+                }
+                else if (Convert.ToInt32(dr["Modul"].ToString()) == 4)
+                {
+                    chkTerminal.Checked = true;
+
                 }
 
 
@@ -1319,6 +1357,7 @@ namespace Saobracaj.Dokumenta
                         txtSifra.Text = row.Cells[2].Value.ToString();
                         PopuniPolja();
                         VratiPodatkeStavke(txtSifra.Text, Convert.ToInt32(row.Cells[1].Value.ToString()));
+                        FillDGUsluge();
                     }
                 }
             }
@@ -1600,7 +1639,7 @@ namespace Saobracaj.Dokumenta
 " inner join UvozKonacna on UvozKonacna.ID = RadniNalogInterni.BrojOsnov " +
 " inner join PArtnerji on UvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
 " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = RadniNalogInterni.OjIzdavanja " +
-" inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera where RadniNalogInterni.BrojOsnov = " + Convert.ToInt32(txtKontejnerID.Text);
+" inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera where RadniNalogInterni.BrojOsnov = " + Convert.ToInt32(txtKontejnerID.Text) + " order by RadniNalogInterni.ID  asc";
 
 
 

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmOsoblje : Form
+    public partial class frmOsoblje : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmOsoblje";
         public bool Pravo;

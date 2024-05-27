@@ -83,7 +83,7 @@ namespace Saobracaj.RadniNalozi
 " ,[NalogID]   FROM[dbo].[RNOtpremaCirade] " +
 " INNER JOIN  Partnerji AS Komitenti_1 ON [RNOtpremaCirade].NazivBrodara = Komitenti_1.PaSifra " +
 " inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.id = [RNOtpremaCirade].CarinskiPostupak " +
-" inner join  Skladista on [RNOtpremaCirade].[SaSkladista] = Skladista.ID ";
+" inner join  Skladista on [RNOtpremaCirade].[SaSkladista] = Skladista.ID  Order by RNOtpremaCirade.ID desc ";
 
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
@@ -306,7 +306,7 @@ namespace Saobracaj.RadniNalozi
     "     ,[SaPozicijeSklad]      ,[IdUsluge]      ,[NalogRealizovao]      ,[Napomena] " +
      "    ,[OtpremaID]      ,[Kamion]      ,[Zavrsen]      ,[NalogID] " +
   "   FROM [dbo].[RNOtpremaCirade] " +
-             " where ID = " + txtID.Text, con);
+             " where ID = " + txtID.Text, con );
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -352,7 +352,7 @@ namespace Saobracaj.RadniNalozi
             {
                 if (row.Selected == true)
                 {
-                    up.PotvrdiUradjenRN8(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                    up.PotvrdiUradjenRN8(Convert.ToInt32(row.Cells[0].Value.ToString()), KorisnikTekuci);
                 }
 
             }

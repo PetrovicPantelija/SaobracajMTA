@@ -1259,9 +1259,9 @@ namespace Saobracaj.Uvoz
 
         private void Uvoz_Load(object sender, EventArgs e)
         {
-            // RefreshDataGridColor();
-            firstWidth = this.Size.Width;
-            firstHeight = this.Size.Height;
+            //--- RefreshDataGridColor();
+          //  firstWidth = this.Size.Width;
+         //   firstHeight = this.Size.Height;
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -2054,6 +2054,7 @@ namespace Saobracaj.Uvoz
 
         private void Uvoz_SizeChanged(object sender, EventArgs e)
         {
+            /*
             float size1 = this.Size.Width / firstWidth;
             float size2 = this.Size.Height / firstHeight;
 
@@ -2079,6 +2080,7 @@ namespace Saobracaj.Uvoz
 
 
             }
+            */
         }
 
         private void toolStripButton1_Click_1(object sender, EventArgs e)
@@ -2118,6 +2120,7 @@ namespace Saobracaj.Uvoz
 
         private void Uvoz_KeyDown(object sender, KeyEventArgs e)
         {
+            /*
             if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.D)
             {
                 UvozDokumenta uvdok = new UvozDokumenta(txtID.Text);
@@ -2133,6 +2136,30 @@ namespace Saobracaj.Uvoz
                 }
             }
             else if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.U)
+            {
+                if (txtID.Text == "")
+                { txtID.Text = "0"; }
+                // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
+                frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci);
+                um.Show();
+
+            }
+            */
+            if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.F1)
+            {
+                UvozDokumenta uvdok = new UvozDokumenta(txtID.Text);
+                uvdok.Show();
+            }
+            else if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.F2 )
+            {
+                using (var detailForm = new UvozTable())
+                {
+                    detailForm.ShowDialog();
+                    txtID.Text = detailForm.GetID();
+                    VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+                }
+            }
+            else if (Control.ModifierKeys == Keys.Shift && e.KeyCode == Keys.F3)
             {
                 if (txtID.Text == "")
                 { txtID.Text = "0"; }

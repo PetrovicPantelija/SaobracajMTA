@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using Saobracaj.Dokumenta;
+using Saobracaj.Sifarnici;
 //
 namespace Saobracaj.RadniNalozi
 {
@@ -18,6 +19,7 @@ namespace Saobracaj.RadniNalozi
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
+        string KorisnikTekuci = frmLogovanje.user;
         public RN4PrijemPlatforme()
         {
             InitializeComponent();
@@ -367,7 +369,7 @@ namespace Saobracaj.RadniNalozi
             {
                 if (row.Selected == true)
                 {
-                    up.PotvrdiUradjenRN4Premesten(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                    up.PotvrdiUradjenRN4Premesten(Convert.ToInt32(row.Cells[0].Value.ToString()),KorisnikTekuci);
                 }
 
             }
@@ -395,7 +397,7 @@ namespace Saobracaj.RadniNalozi
             {
                 if (row.Selected == true)
                 {
-                    up.PotvrdiUradjenRN4(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                    up.PotvrdiUradjenRN4(Convert.ToInt32(row.Cells[0].Value.ToString()), KorisnikTekuci );
                 }
 
             }
@@ -408,7 +410,7 @@ namespace Saobracaj.RadniNalozi
             {
                 if (row.Selected == true)
                 {
-                    up.PotvrdiUradjenRN4CIR(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                    up.PotvrdiUradjenRN4CIR(Convert.ToInt32(row.Cells[0].Value.ToString()), KorisnikTekuci);
                 }
 
             }

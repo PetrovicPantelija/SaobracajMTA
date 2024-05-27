@@ -185,6 +185,7 @@ namespace Saobracaj.Izvoz
                     ins.PrenesiKontejnerUOtpremuKamionomUvoz(Convert.ToInt32(txtKontejnerID.Text), Convert.ToInt32(txtNalogID.Text));
                     // RefreshDataGrid();
                     MessageBox.Show("Uspešno ste formirali Otpremu kamionom");
+                    //FORMIRATI RADNI NALOG
                 }
                 else if (chkIzvoz.Checked == true)
                 {

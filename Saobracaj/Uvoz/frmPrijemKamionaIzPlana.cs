@@ -51,8 +51,9 @@ namespace Saobracaj.Uvoz
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Ovaj prenos je koriscen iz SC2 ovde ne znam svrhu verovatno ce doci drugim scenarijom
             InsertUvozKonacna ins = new InsertUvozKonacna();
-            ins.PrenesiKontejnerIzPlanaNaPrijemnicu(Convert.ToInt32(txtKontejnerID.Text));
+            ins.PrenesiKontejnerIzPlanaNaPrijemnicu(Convert.ToInt32(txtKontejnerID.Text), Convert.ToInt32(txtNalogID.Text));
             RefreshDataGrid();
         }
 

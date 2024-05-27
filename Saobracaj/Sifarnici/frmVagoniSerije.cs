@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmVagoniSerije : Form
+    public partial class frmVagoniSerije : Syncfusion.Windows.Forms.Office2010Form
     {
         string Kor = Sifarnici.frmLogovanje.user.ToString();
         public string connect = frmLogovanje.connectionString;

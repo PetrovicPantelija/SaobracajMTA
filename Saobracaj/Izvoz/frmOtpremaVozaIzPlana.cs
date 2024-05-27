@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
 {
-    public partial class frmOtpremaVozaIzPlana : Form
+    public partial class frmOtpremaVozaIzPlana : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         string KorisnikCene = "Panta";
@@ -332,5 +332,9 @@ namespace Saobracaj.Izvoz
 
         }
 
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
