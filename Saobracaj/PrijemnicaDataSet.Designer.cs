@@ -279,38 +279,6 @@ namespace Saobracaj {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class NPreRptDataTable : global::System.Data.TypedTableBase<NPreRptRow> {
             
-            private global::System.Data.DataColumn columnNPrStPre;
-            
-            private global::System.Data.DataColumn columnNprDatPre;
-            
-            private global::System.Data.DataColumn columnNPRSmSifra;
-            
-            private global::System.Data.DataColumn columnPaNaziv;
-            
-            private global::System.Data.DataColumn columnPaUlicaHisnaSt;
-            
-            private global::System.Data.DataColumn columnPaKraj;
-            
-            private global::System.Data.DataColumn columnPIB;
-            
-            private global::System.Data.DataColumn columnMB;
-            
-            private global::System.Data.DataColumn columnTelefon;
-            
-            private global::System.Data.DataColumn columnNPrPPreZap;
-            
-            private global::System.Data.DataColumn columnNPrPSifra;
-            
-            private global::System.Data.DataColumn columnNPrPNaziv;
-            
-            private global::System.Data.DataColumn columnNPrPem;
-            
-            private global::System.Data.DataColumn columnNPrPKolPre;
-            
-            private global::System.Data.DataColumn columnNPrpCenaem;
-            
-            private global::System.Data.DataColumn columnNPrPZnesPost;
-            
             private global::System.Data.DataColumn columnID;
             
             private global::System.Data.DataColumn columnDatumTransakcije;
@@ -370,134 +338,6 @@ namespace Saobracaj {
             protected NPreRptDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn NPrStPreColumn {
-                get {
-                    return this.columnNPrStPre;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn NprDatPreColumn {
-                get {
-                    return this.columnNprDatPre;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn NPRSmSifraColumn {
-                get {
-                    return this.columnNPRSmSifra;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn PaNazivColumn {
-                get {
-                    return this.columnPaNaziv;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn PaUlicaHisnaStColumn {
-                get {
-                    return this.columnPaUlicaHisnaSt;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn PaKrajColumn {
-                get {
-                    return this.columnPaKraj;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn PIBColumn {
-                get {
-                    return this.columnPIB;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn MBColumn {
-                get {
-                    return this.columnMB;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn TelefonColumn {
-                get {
-                    return this.columnTelefon;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn NPrPPreZapColumn {
-                get {
-                    return this.columnNPrPPreZap;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn NPrPSifraColumn {
-                get {
-                    return this.columnNPrPSifra;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn NPrPNazivColumn {
-                get {
-                    return this.columnNPrPNaziv;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn NPrPemColumn {
-                get {
-                    return this.columnNPrPem;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn NPrPKolPreColumn {
-                get {
-                    return this.columnNPrPKolPre;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn NPrpCenaemColumn {
-                get {
-                    return this.columnNPrpCenaem;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn NPrPZnesPostColumn {
-                get {
-                    return this.columnNPrPZnesPost;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -649,55 +489,9 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public NPreRptRow AddNPreRptRow(
-                        int NPrStPre, 
-                        System.DateTime NprDatPre, 
-                        string NPRSmSifra, 
-                        string PaNaziv, 
-                        string PaUlicaHisnaSt, 
-                        string PaKraj, 
-                        string PIB, 
-                        string MB, 
-                        string Telefon, 
-                        int NPrPPreZap, 
-                        int NPrPSifra, 
-                        string NPrPNaziv, 
-                        string NPrPem, 
-                        decimal NPrPKolPre, 
-                        decimal NPrpCenaem, 
-                        decimal NPrPZnesPost, 
-                        int ID, 
-                        System.DateTime DatumTransakcije, 
-                        int PrStDokumenta, 
-                        decimal Kolicina, 
-                        string Skladiste, 
-                        string Oznaka, 
-                        string Korisnik, 
-                        string BrojKontejnera, 
-                        int NalogID, 
-                        string RB, 
-                        string Stavka, 
-                        string JedinicaMere, 
-                        string Lot, 
-                        int Skladisteno) {
+            public NPreRptRow AddNPreRptRow(int ID, System.DateTime DatumTransakcije, int PrStDokumenta, decimal Kolicina, string Skladiste, string Oznaka, string Korisnik, string BrojKontejnera, int NalogID, string RB, string Stavka, string JedinicaMere, string Lot, int Skladisteno) {
                 NPreRptRow rowNPreRptRow = ((NPreRptRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        NPrStPre,
-                        NprDatPre,
-                        NPRSmSifra,
-                        PaNaziv,
-                        PaUlicaHisnaSt,
-                        PaKraj,
-                        PIB,
-                        MB,
-                        Telefon,
-                        NPrPPreZap,
-                        NPrPSifra,
-                        NPrPNaziv,
-                        NPrPem,
-                        NPrPKolPre,
-                        NPrpCenaem,
-                        NPrPZnesPost,
                         ID,
                         DatumTransakcije,
                         PrStDokumenta,
@@ -719,6 +513,13 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public NPreRptRow FindByID(int ID) {
+                return ((NPreRptRow)(this.Rows.Find(new object[] {
+                            ID})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 NPreRptDataTable cln = ((NPreRptDataTable)(base.Clone()));
                 cln.InitVars();
@@ -734,22 +535,6 @@ namespace Saobracaj {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnNPrStPre = base.Columns["NPrStPre"];
-                this.columnNprDatPre = base.Columns["NprDatPre"];
-                this.columnNPRSmSifra = base.Columns["NPRSmSifra"];
-                this.columnPaNaziv = base.Columns["PaNaziv"];
-                this.columnPaUlicaHisnaSt = base.Columns["PaUlicaHisnaSt"];
-                this.columnPaKraj = base.Columns["PaKraj"];
-                this.columnPIB = base.Columns["PIB"];
-                this.columnMB = base.Columns["MB"];
-                this.columnTelefon = base.Columns["Telefon"];
-                this.columnNPrPPreZap = base.Columns["NPrPPreZap"];
-                this.columnNPrPSifra = base.Columns["NPrPSifra"];
-                this.columnNPrPNaziv = base.Columns["NPrPNaziv"];
-                this.columnNPrPem = base.Columns["NPrPem"];
-                this.columnNPrPKolPre = base.Columns["NPrPKolPre"];
-                this.columnNPrpCenaem = base.Columns["NPrpCenaem"];
-                this.columnNPrPZnesPost = base.Columns["NPrPZnesPost"];
                 this.columnID = base.Columns["ID"];
                 this.columnDatumTransakcije = base.Columns["DatumTransakcije"];
                 this.columnPrStDokumenta = base.Columns["PrStDokumenta"];
@@ -769,38 +554,6 @@ namespace Saobracaj {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnNPrStPre = new global::System.Data.DataColumn("NPrStPre", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNPrStPre);
-                this.columnNprDatPre = new global::System.Data.DataColumn("NprDatPre", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNprDatPre);
-                this.columnNPRSmSifra = new global::System.Data.DataColumn("NPRSmSifra", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNPRSmSifra);
-                this.columnPaNaziv = new global::System.Data.DataColumn("PaNaziv", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPaNaziv);
-                this.columnPaUlicaHisnaSt = new global::System.Data.DataColumn("PaUlicaHisnaSt", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPaUlicaHisnaSt);
-                this.columnPaKraj = new global::System.Data.DataColumn("PaKraj", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPaKraj);
-                this.columnPIB = new global::System.Data.DataColumn("PIB", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPIB);
-                this.columnMB = new global::System.Data.DataColumn("MB", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnMB);
-                this.columnTelefon = new global::System.Data.DataColumn("Telefon", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTelefon);
-                this.columnNPrPPreZap = new global::System.Data.DataColumn("NPrPPreZap", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNPrPPreZap);
-                this.columnNPrPSifra = new global::System.Data.DataColumn("NPrPSifra", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNPrPSifra);
-                this.columnNPrPNaziv = new global::System.Data.DataColumn("NPrPNaziv", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNPrPNaziv);
-                this.columnNPrPem = new global::System.Data.DataColumn("NPrPem", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNPrPem);
-                this.columnNPrPKolPre = new global::System.Data.DataColumn("NPrPKolPre", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNPrPKolPre);
-                this.columnNPrpCenaem = new global::System.Data.DataColumn("NPrpCenaem", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNPrpCenaem);
-                this.columnNPrPZnesPost = new global::System.Data.DataColumn("NPrPZnesPost", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNPrPZnesPost);
                 this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
                 this.columnDatumTransakcije = new global::System.Data.DataColumn("DatumTransakcije", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -829,19 +582,10 @@ namespace Saobracaj {
                 base.Columns.Add(this.columnLot);
                 this.columnSkladisteno = new global::System.Data.DataColumn("Skladisteno", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSkladisteno);
-                this.columnNPrStPre.AllowDBNull = false;
-                this.columnNPRSmSifra.MaxLength = 8;
-                this.columnPaNaziv.AllowDBNull = false;
-                this.columnPaNaziv.MaxLength = 35;
-                this.columnPaUlicaHisnaSt.MaxLength = 35;
-                this.columnPaKraj.MaxLength = 35;
-                this.columnPIB.MaxLength = 35;
-                this.columnMB.MaxLength = 35;
-                this.columnTelefon.MaxLength = 17;
-                this.columnNPrPPreZap.AllowDBNull = false;
-                this.columnNPrPNaziv.MaxLength = 70;
-                this.columnNPrPem.MaxLength = 3;
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
                 this.columnID.AllowDBNull = false;
+                this.columnID.Unique = true;
                 this.columnDatumTransakcije.AllowDBNull = false;
                 this.columnPrStDokumenta.AllowDBNull = false;
                 this.columnKolicina.AllowDBNull = false;
@@ -991,247 +735,6 @@ namespace Saobracaj {
             internal NPreRptRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tableNPreRpt = ((NPreRptDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int NPrStPre {
-                get {
-                    return ((int)(this[this.tableNPreRpt.NPrStPreColumn]));
-                }
-                set {
-                    this[this.tableNPreRpt.NPrStPreColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime NprDatPre {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableNPreRpt.NprDatPreColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NprDatPre\' in table \'NPreRpt\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNPreRpt.NprDatPreColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string NPRSmSifra {
-                get {
-                    try {
-                        return ((string)(this[this.tableNPreRpt.NPRSmSifraColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NPRSmSifra\' in table \'NPreRpt\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNPreRpt.NPRSmSifraColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string PaNaziv {
-                get {
-                    return ((string)(this[this.tableNPreRpt.PaNazivColumn]));
-                }
-                set {
-                    this[this.tableNPreRpt.PaNazivColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string PaUlicaHisnaSt {
-                get {
-                    try {
-                        return ((string)(this[this.tableNPreRpt.PaUlicaHisnaStColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PaUlicaHisnaSt\' in table \'NPreRpt\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNPreRpt.PaUlicaHisnaStColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string PaKraj {
-                get {
-                    try {
-                        return ((string)(this[this.tableNPreRpt.PaKrajColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PaKraj\' in table \'NPreRpt\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNPreRpt.PaKrajColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string PIB {
-                get {
-                    try {
-                        return ((string)(this[this.tableNPreRpt.PIBColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PIB\' in table \'NPreRpt\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNPreRpt.PIBColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string MB {
-                get {
-                    try {
-                        return ((string)(this[this.tableNPreRpt.MBColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MB\' in table \'NPreRpt\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNPreRpt.MBColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Telefon {
-                get {
-                    try {
-                        return ((string)(this[this.tableNPreRpt.TelefonColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Telefon\' in table \'NPreRpt\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNPreRpt.TelefonColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int NPrPPreZap {
-                get {
-                    return ((int)(this[this.tableNPreRpt.NPrPPreZapColumn]));
-                }
-                set {
-                    this[this.tableNPreRpt.NPrPPreZapColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int NPrPSifra {
-                get {
-                    try {
-                        return ((int)(this[this.tableNPreRpt.NPrPSifraColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NPrPSifra\' in table \'NPreRpt\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNPreRpt.NPrPSifraColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string NPrPNaziv {
-                get {
-                    try {
-                        return ((string)(this[this.tableNPreRpt.NPrPNazivColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NPrPNaziv\' in table \'NPreRpt\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNPreRpt.NPrPNazivColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string NPrPem {
-                get {
-                    try {
-                        return ((string)(this[this.tableNPreRpt.NPrPemColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NPrPem\' in table \'NPreRpt\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNPreRpt.NPrPemColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal NPrPKolPre {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableNPreRpt.NPrPKolPreColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NPrPKolPre\' in table \'NPreRpt\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNPreRpt.NPrPKolPreColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal NPrpCenaem {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableNPreRpt.NPrpCenaemColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NPrpCenaem\' in table \'NPreRpt\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNPreRpt.NPrpCenaemColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal NPrPZnesPost {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableNPreRpt.NPrPZnesPostColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NPrPZnesPost\' in table \'NPreRpt\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableNPreRpt.NPrPZnesPostColumn] = value;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1436,162 +939,6 @@ namespace Saobracaj {
                 set {
                     this[this.tableNPreRpt.SkladistenoColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsNprDatPreNull() {
-                return this.IsNull(this.tableNPreRpt.NprDatPreColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetNprDatPreNull() {
-                this[this.tableNPreRpt.NprDatPreColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsNPRSmSifraNull() {
-                return this.IsNull(this.tableNPreRpt.NPRSmSifraColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetNPRSmSifraNull() {
-                this[this.tableNPreRpt.NPRSmSifraColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsPaUlicaHisnaStNull() {
-                return this.IsNull(this.tableNPreRpt.PaUlicaHisnaStColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetPaUlicaHisnaStNull() {
-                this[this.tableNPreRpt.PaUlicaHisnaStColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsPaKrajNull() {
-                return this.IsNull(this.tableNPreRpt.PaKrajColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetPaKrajNull() {
-                this[this.tableNPreRpt.PaKrajColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsPIBNull() {
-                return this.IsNull(this.tableNPreRpt.PIBColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetPIBNull() {
-                this[this.tableNPreRpt.PIBColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsMBNull() {
-                return this.IsNull(this.tableNPreRpt.MBColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetMBNull() {
-                this[this.tableNPreRpt.MBColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsTelefonNull() {
-                return this.IsNull(this.tableNPreRpt.TelefonColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetTelefonNull() {
-                this[this.tableNPreRpt.TelefonColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsNPrPSifraNull() {
-                return this.IsNull(this.tableNPreRpt.NPrPSifraColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetNPrPSifraNull() {
-                this[this.tableNPreRpt.NPrPSifraColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsNPrPNazivNull() {
-                return this.IsNull(this.tableNPreRpt.NPrPNazivColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetNPrPNazivNull() {
-                this[this.tableNPreRpt.NPrPNazivColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsNPrPemNull() {
-                return this.IsNull(this.tableNPreRpt.NPrPemColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetNPrPemNull() {
-                this[this.tableNPreRpt.NPrPemColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsNPrPKolPreNull() {
-                return this.IsNull(this.tableNPreRpt.NPrPKolPreColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetNPrPKolPreNull() {
-                this[this.tableNPreRpt.NPrPKolPreColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsNPrpCenaemNull() {
-                return this.IsNull(this.tableNPreRpt.NPrpCenaemColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetNPrpCenaemNull() {
-                this[this.tableNPreRpt.NPrpCenaemColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsNPrPZnesPostNull() {
-                return this.IsNull(this.tableNPreRpt.NPrPZnesPostColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetNPrPZnesPostNull() {
-                this[this.tableNPreRpt.NPrPZnesPostColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1874,22 +1221,6 @@ namespace Saobracaj.PrijemnicaDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "NPreRpt";
-            tableMapping.ColumnMappings.Add("NPrStPre", "NPrStPre");
-            tableMapping.ColumnMappings.Add("NprDatPre", "NprDatPre");
-            tableMapping.ColumnMappings.Add("NPRSmSifra", "NPRSmSifra");
-            tableMapping.ColumnMappings.Add("PaNaziv", "PaNaziv");
-            tableMapping.ColumnMappings.Add("PaUlicaHisnaSt", "PaUlicaHisnaSt");
-            tableMapping.ColumnMappings.Add("PaKraj", "PaKraj");
-            tableMapping.ColumnMappings.Add("PIB", "PIB");
-            tableMapping.ColumnMappings.Add("MB", "MB");
-            tableMapping.ColumnMappings.Add("Telefon", "Telefon");
-            tableMapping.ColumnMappings.Add("NPrPPreZap", "NPrPPreZap");
-            tableMapping.ColumnMappings.Add("NPrPSifra", "NPrPSifra");
-            tableMapping.ColumnMappings.Add("NPrPNaziv", "NPrPNaziv");
-            tableMapping.ColumnMappings.Add("NPrPem", "NPrPem");
-            tableMapping.ColumnMappings.Add("NPrPKolPre", "NPrPKolPre");
-            tableMapping.ColumnMappings.Add("NPrpCenaem", "NPrpCenaem");
-            tableMapping.ColumnMappings.Add("NPrPZnesPost", "NPrPZnesPost");
             tableMapping.ColumnMappings.Add("ID", "ID");
             tableMapping.ColumnMappings.Add("DatumTransakcije", "DatumTransakcije");
             tableMapping.ColumnMappings.Add("PrStDokumenta", "PrStDokumenta");
