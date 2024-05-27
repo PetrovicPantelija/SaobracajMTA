@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmTipTelegrama : Form
+    public partial class frmTipTelegrama : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmTipTelegrama";
         public bool Pravo;

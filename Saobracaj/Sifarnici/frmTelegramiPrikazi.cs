@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmTelegramiPrikazi : Form
+    public partial class frmTelegramiPrikazi : Syncfusion.Windows.Forms.Office2010Form
     {
         public string connect = frmLogovanje.connectionString;
         public frmTelegramiPrikazi()

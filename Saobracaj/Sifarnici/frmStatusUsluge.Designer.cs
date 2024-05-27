@@ -31,10 +31,10 @@ namespace Saobracaj.Sifarnici
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmStatusUsluge));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.txtMeSifra = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -58,11 +58,6 @@ namespace Saobracaj.Sifarnici
             this.toolStrip1.Size = new System.Drawing.Size(587, 27);
             this.toolStrip1.TabIndex = 200;
             this.toolStrip1.Text = "Osveži";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // tsNew
             // 
@@ -93,6 +88,11 @@ namespace Saobracaj.Sifarnici
             this.tsDelete.Size = new System.Drawing.Size(24, 24);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // dataGridView1
             // 
@@ -152,6 +152,7 @@ namespace Saobracaj.Sifarnici
             this.Controls.Add(this.txtMeNaziv);
             this.Controls.Add(this.lblNaziv);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmStatusUsluge";
             this.Text = "Statusi uslluga";
             this.Load += new System.EventHandler(this.frmStatusUsluge_Load);

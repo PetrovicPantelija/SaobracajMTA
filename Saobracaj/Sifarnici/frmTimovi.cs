@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Sifarnici
 {
-    public partial class frmTimovi : Form
+    public partial class frmTimovi : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         public frmTimovi()
