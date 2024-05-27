@@ -685,7 +685,7 @@ namespace TrackModal.Promet
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
-            myCommand.CommandText = "InsertPromet";
+            myCommand.CommandText = "InsertPrometPopis";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
             SqlParameter dT = new SqlParameter();
