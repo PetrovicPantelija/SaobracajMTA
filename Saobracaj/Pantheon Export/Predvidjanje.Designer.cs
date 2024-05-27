@@ -312,9 +312,9 @@
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.dataGridView2);
-            this.panel1.Location = new System.Drawing.Point(12, 77);
+            this.panel1.Location = new System.Drawing.Point(12, 50);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1586, 679);
+            this.panel1.Size = new System.Drawing.Size(1586, 706);
             this.panel1.TabIndex = 204;
             // 
             // btnRefresh
@@ -448,7 +448,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(3, 48);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(1580, 628);
+            this.dataGridView2.Size = new System.Drawing.Size(1580, 655);
             this.dataGridView2.TabIndex = 0;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 

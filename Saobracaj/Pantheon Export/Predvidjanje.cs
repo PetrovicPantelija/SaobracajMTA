@@ -174,6 +174,8 @@ namespace Saobracaj.Pantheon_Export
                     txtKolicina.Value = Convert.ToDecimal(row.Cells["Kolicina"].Value);
                     cboIdent.SelectedValue = Convert.ToInt32(row.Cells["Ident1"].Value);
                     numericUpDown1.Value = Convert.ToDecimal(row.Cells["Iznos"].Value) / Convert.ToDecimal(row.Cells["Kolicina"].Value);
+
+                    //ovde upisati da kada se unese kolicina racuna odmah iznos umesto jedinicne
                 }
             }
         }

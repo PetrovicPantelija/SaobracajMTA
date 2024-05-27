@@ -23,30 +23,51 @@ namespace Saobracaj.RadniNalozi
         }
         private void FillGV()
         {
-            var query = "select distinct NPrStPre,NPrStatus,NPrDatPre,Partnerji.PaNaziv,p1.PaNaziv,NprSMSifra,NPrZnes,RTRim(RTrim(DeIme)+' '+RTrim(DePriimek)) " +
-                "From NPre " +
-                "inner join NpreP on NPre.NPrStPre = Nprep.NPrPStPre " +
-                "inner join Partnerji on NPre.NPrPartPlac = Partnerji.PaSifra " +
-                "Inner join Partnerji as p1 on NPre.NPrPartDob = p1.PaSifra " +
-                "inner join Delavci on NPre.NPrStDelPre=Delavci.DeSifra " +
-                "order by NPRStPre desc";
+            string query;
             SqlConnection conn = new SqlConnection(connect);
-            SqlDataAdapter da = new SqlDataAdapter(query, conn);
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            dataGridView1.DataSource = ds.Tables[0];
-            dataGridView1.Columns[0].HeaderText = "Broj Prijemnice";
-            dataGridView1.Columns[1].HeaderText = "Status";
-            dataGridView1.Columns[1].Width = 60;
-            dataGridView1.Columns[2].HeaderText = "Datum";
-            dataGridView1.Columns[3].HeaderText = "Platilac";
-            dataGridView1.Columns[3].Width = 300;
-            dataGridView1.Columns[4].Width = 300;
-            dataGridView1.Columns[4].HeaderText = "Primalac";
-            dataGridView1.Columns[5].HeaderText = "Mesto";
-            dataGridView1.Columns[6].HeaderText = "Iznos";
-            dataGridView1.Columns[6].Visible = false;
-            dataGridView1.Columns[7].HeaderText = "Primio";
+            if (frmLogovanje.Firma == "Leget")
+            {
+                query = "select distinct PrStDokumenta,DatumTransakcije,Skladista.Naziv,Pozicija.Oznaka,BrojKontejnera,NalogID " +
+                    "From Promet " +
+                    "inner join Skladista on Promet.SkladisteU=Skladista.ID " +
+                    "inner join Pozicija on Promet.LokacijaU=Pozicija.ID " +
+                    "Where VrstaDokumenta='PRI' " +
+                    "order by PrStDokumenta desc";
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                dataGridView1.DataSource = ds.Tables[0];
+                dataGridView1.Columns[0].HeaderText = "ID Prijemnice";
+                dataGridView1.Columns[2].HeaderText = "Skladište";
+                dataGridView1.Columns[3].HeaderText = "Pozicija";
+
+            }
+            else
+            {
+                query = "select distinct NPrStPre,NPrStatus,NPrDatPre,Partnerji.PaNaziv,p1.PaNaziv,NprSMSifra,NPrZnes,RTRim(RTrim(DeIme)+' '+RTrim(DePriimek)) " +
+                    "From NPre " +
+                    "inner join NpreP on NPre.NPrStPre = Nprep.NPrPStPre " +
+                    "inner join Partnerji on NPre.NPrPartPlac = Partnerji.PaSifra " +
+                    "Inner join Partnerji as p1 on NPre.NPrPartDob = p1.PaSifra " +
+                    "inner join Delavci on NPre.NPrStDelPre=Delavci.DeSifra " +
+                    "order by NPRStPre desc";
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                dataGridView1.DataSource = ds.Tables[0];
+                dataGridView1.Columns[0].HeaderText = "Broj Prijemnice";
+                dataGridView1.Columns[1].HeaderText = "Status";
+                dataGridView1.Columns[1].Width = 60;
+                dataGridView1.Columns[2].HeaderText = "Datum";
+                dataGridView1.Columns[3].HeaderText = "Platilac";
+                dataGridView1.Columns[3].Width = 300;
+                dataGridView1.Columns[4].Width = 300;
+                dataGridView1.Columns[4].HeaderText = "Primalac";
+                dataGridView1.Columns[5].HeaderText = "Mesto";
+                dataGridView1.Columns[6].HeaderText = "Iznos";
+                dataGridView1.Columns[6].Visible = false;
+                dataGridView1.Columns[7].HeaderText = "Primio";
+            }
 
         }
 

@@ -244,7 +244,7 @@ namespace Saobracaj.Sifarnici
 
         private void label1_Click(object sender, EventArgs e)
         {
-            PlaniraniPretovar frm = new PlaniraniPretovar();
+            RadniNalozi.PrijemnicaPregled frm = new RadniNalozi.PrijemnicaPregled();
             frm.Show();
         }
     }
