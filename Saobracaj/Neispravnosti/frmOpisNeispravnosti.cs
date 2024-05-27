@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Nepravilnosti
 {
-    public partial class frmOpisNeispravnosti : Form
+    public partial class frmOpisNeispravnosti : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
