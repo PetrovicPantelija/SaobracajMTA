@@ -169,7 +169,7 @@ namespace Saobracaj.Uvoz
             this.label33.ForeColor = System.Drawing.Color.Black;
             this.label33.Location = new System.Drawing.Point(798, 151);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(129, 16);
+            this.label33.Size = new System.Drawing.Size(128, 16);
             this.label33.TabIndex = 314;
             this.label33.Text = "Predefinisane poruke:";
             this.label33.Visible = false;
@@ -213,7 +213,7 @@ namespace Saobracaj.Uvoz
             this.chkCIRUradjen.ForeColor = System.Drawing.Color.Black;
             this.chkCIRUradjen.Location = new System.Drawing.Point(290, 116);
             this.chkCIRUradjen.Name = "chkCIRUradjen";
-            this.chkCIRUradjen.Size = new System.Drawing.Size(92, 20);
+            this.chkCIRUradjen.Size = new System.Drawing.Size(91, 20);
             this.chkCIRUradjen.TabIndex = 310;
             this.chkCIRUradjen.Text = "CIR urađen";
             this.chkCIRUradjen.UseVisualStyleBackColor = true;
@@ -225,7 +225,7 @@ namespace Saobracaj.Uvoz
             this.label31.ForeColor = System.Drawing.Color.Black;
             this.label31.Location = new System.Drawing.Point(930, 40);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(116, 16);
+            this.label31.Size = new System.Drawing.Size(115, 16);
             this.label31.TabIndex = 309;
             this.label31.Text = "Dodatne napomene";
             // 
@@ -245,7 +245,7 @@ namespace Saobracaj.Uvoz
             this.chkPoslatEmailPrijem.ForeColor = System.Drawing.Color.Black;
             this.chkPoslatEmailPrijem.Location = new System.Drawing.Point(432, 92);
             this.chkPoslatEmailPrijem.Name = "chkPoslatEmailPrijem";
-            this.chkPoslatEmailPrijem.Size = new System.Drawing.Size(101, 20);
+            this.chkPoslatEmailPrijem.Size = new System.Drawing.Size(100, 20);
             this.chkPoslatEmailPrijem.TabIndex = 307;
             this.chkPoslatEmailPrijem.Text = "Prijem e-mail";
             this.chkPoslatEmailPrijem.UseVisualStyleBackColor = true;
@@ -257,7 +257,7 @@ namespace Saobracaj.Uvoz
             this.chkPoslatEmailNajava.ForeColor = System.Drawing.Color.Black;
             this.chkPoslatEmailNajava.Location = new System.Drawing.Point(290, 91);
             this.chkPoslatEmailNajava.Name = "chkPoslatEmailNajava";
-            this.chkPoslatEmailNajava.Size = new System.Drawing.Size(105, 20);
+            this.chkPoslatEmailNajava.Size = new System.Drawing.Size(104, 20);
             this.chkPoslatEmailNajava.TabIndex = 306;
             this.chkPoslatEmailNajava.Text = "Najava E-mail";
             this.chkPoslatEmailNajava.UseVisualStyleBackColor = true;
@@ -269,7 +269,7 @@ namespace Saobracaj.Uvoz
             this.chkTransport.ForeColor = System.Drawing.Color.Black;
             this.chkTransport.Location = new System.Drawing.Point(102, 99);
             this.chkTransport.Name = "chkTransport";
-            this.chkTransport.Size = new System.Drawing.Size(132, 20);
+            this.chkTransport.Size = new System.Drawing.Size(131, 20);
             this.chkTransport.TabIndex = 305;
             this.chkTransport.Text = "Predato transportu";
             this.chkTransport.UseVisualStyleBackColor = true;
@@ -283,7 +283,7 @@ namespace Saobracaj.Uvoz
             this.chkVoz.ForeColor = System.Drawing.Color.Black;
             this.chkVoz.Location = new System.Drawing.Point(8, 99);
             this.chkVoz.Name = "chkVoz";
-            this.chkVoz.Size = new System.Drawing.Size(65, 20);
+            this.chkVoz.Size = new System.Drawing.Size(64, 20);
             this.chkVoz.TabIndex = 304;
             this.chkVoz.Text = "Vozom";
             this.chkVoz.UseVisualStyleBackColor = true;
@@ -303,7 +303,7 @@ namespace Saobracaj.Uvoz
             this.label29.ForeColor = System.Drawing.Color.Black;
             this.label29.Location = new System.Drawing.Point(603, 116);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(76, 16);
+            this.label29.Size = new System.Drawing.Size(75, 16);
             this.label29.TabIndex = 303;
             this.label29.Text = "Ime vozača:";
             // 
@@ -322,7 +322,7 @@ namespace Saobracaj.Uvoz
             this.label30.ForeColor = System.Drawing.Color.Black;
             this.label30.Location = new System.Drawing.Point(603, 92);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(85, 16);
+            this.label30.Size = new System.Drawing.Size(84, 16);
             this.label30.TabIndex = 301;
             this.label30.Text = "Reg br vozila:";
             // 
@@ -333,7 +333,7 @@ namespace Saobracaj.Uvoz
             this.label18.ForeColor = System.Drawing.Color.Black;
             this.label18.Location = new System.Drawing.Point(488, 40);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(35, 16);
+            this.label18.Size = new System.Drawing.Size(34, 16);
             this.label18.TabIndex = 299;
             this.label18.Text = "ATA:";
             // 
@@ -365,7 +365,7 @@ namespace Saobracaj.Uvoz
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(648, 42);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(77, 16);
+            this.label15.Size = new System.Drawing.Size(76, 16);
             this.label15.TabIndex = 297;
             this.label15.Text = "Voz dolaska:";
             this.label15.Visible = false;
@@ -390,7 +390,7 @@ namespace Saobracaj.Uvoz
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(308, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 16);
+            this.label2.Size = new System.Drawing.Size(90, 16);
             this.label2.TabIndex = 295;
             this.label2.Text = "Status prijema:";
             // 
@@ -401,7 +401,7 @@ namespace Saobracaj.Uvoz
             this.label16.ForeColor = System.Drawing.Color.Black;
             this.label16.Location = new System.Drawing.Point(117, 42);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(36, 16);
+            this.label16.Size = new System.Drawing.Size(35, 16);
             this.label16.TabIndex = 293;
             this.label16.Text = "ETA:";
             // 
@@ -432,7 +432,7 @@ namespace Saobracaj.Uvoz
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(12, 42);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 16);
+            this.label1.Size = new System.Drawing.Size(37, 16);
             this.label1.TabIndex = 291;
             this.label1.Text = "Šifra:";
             // 
@@ -463,7 +463,7 @@ namespace Saobracaj.Uvoz
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1247, 322);
+            this.ClientSize = new System.Drawing.Size(1247, 253);
             this.Controls.Add(this.label39);
             this.Controls.Add(this.cboOperaterHR);
             this.Controls.Add(this.txtKontejnerID);

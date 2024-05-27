@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
-    public partial class frmKreirajGrupu : Form
+    public partial class frmKreirajGrupu : Syncfusion.Windows.Forms.Office2010Form
     {
         public string connect = frmLogovanje.connectionString;
         private bool status = false;

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class Carinarnice : Form
+    public partial class Carinarnice : Syncfusion.Windows.Forms.Office2010Form
     {
         string Kor = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
         bool status = false;

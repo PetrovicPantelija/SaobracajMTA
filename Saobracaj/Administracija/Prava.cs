@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
-    public partial class Prava : Form
+    public partial class Prava : Syncfusion.Windows.Forms.Office2010Form
     {
         string connect = frmLogovanje.connectionString;
         public Prava()

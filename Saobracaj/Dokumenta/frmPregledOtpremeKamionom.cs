@@ -669,8 +669,8 @@ namespace TrackModal.Dokumeta
             dataGridView1.Columns[7].Width = 100;
 
 
-
         }
+
         public void REfreshDataGridOtpremaNajava()
         {
             var select = " SELECT top 500 n1.[ID],RegBrKamiona, ImeVozaca, " +
@@ -888,6 +888,7 @@ namespace TrackModal.Dokumeta
 
 
         }
+
         public void REfreshDataGridOtpremaOtpremljen()
         {
             var select = " SELECT top 500 n1.[ID],RegBrKamiona, ImeVozaca, " +

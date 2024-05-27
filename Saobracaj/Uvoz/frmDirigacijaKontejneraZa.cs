@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmDirigacijaKontejneraZa : Form
+    public partial class frmDirigacijaKontejneraZa : Syncfusion.Windows.Forms.Office2010Form
     {
 
 

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmNapomenaZaPozicioniranje : Form
+    public partial class frmNapomenaZaPozicioniranje : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmNapomenaZaPozicioniranje";
         public bool Pravo;

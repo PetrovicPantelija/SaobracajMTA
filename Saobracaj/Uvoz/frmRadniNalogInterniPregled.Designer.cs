@@ -185,6 +185,7 @@ namespace Saobracaj.Uvoz
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(178, 22);
             this.toolStripButton5.Text = "IZVOZ - OTPREMA KAMIONOM";
+            this.toolStripButton5.Visible = false;
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // toolStripButton7
@@ -196,6 +197,7 @@ namespace Saobracaj.Uvoz
             this.toolStripButton7.Name = "toolStripButton7";
             this.toolStripButton7.Size = new System.Drawing.Size(125, 22);
             this.toolStripButton7.Text = "UVOZ - PRIJEM VOZA";
+            this.toolStripButton7.Visible = false;
             this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
             // 
             // toolStripButton6
@@ -208,6 +210,7 @@ namespace Saobracaj.Uvoz
             this.toolStripButton6.Name = "toolStripButton6";
             this.toolStripButton6.Size = new System.Drawing.Size(155, 22);
             this.toolStripButton6.Text = "IZVOZ PRIJEM KAMIONOM";
+            this.toolStripButton6.Visible = false;
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
             // gridGroupingControl1
@@ -223,7 +226,7 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1150, 647);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1151, 647);
             this.gridGroupingControl1.TabIndex = 9;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -381,6 +384,7 @@ namespace Saobracaj.Uvoz
             this.button2.TabIndex = 221;
             this.button2.Text = "Formiraj otpremu kamionom";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
@@ -392,6 +396,7 @@ namespace Saobracaj.Uvoz
             this.button1.TabIndex = 220;
             this.button1.Text = "Formiraj prijem kamionom";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // cboIzdatZa

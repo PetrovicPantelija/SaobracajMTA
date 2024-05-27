@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
-    public partial class frmFormePrava : Form
+    public partial class frmFormePrava : Syncfusion.Windows.Forms.Office2010Form
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private string Kor = Sifarnici.frmLogovanje.user.ToString();
