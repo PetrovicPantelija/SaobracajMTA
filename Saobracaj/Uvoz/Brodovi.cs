@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class Brodovi : Form
+    public partial class Brodovi : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;

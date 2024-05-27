@@ -287,9 +287,9 @@
             this.txtSAPozicijeskladista.Location = new System.Drawing.Point(889, 54);
             this.txtSAPozicijeskladista.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtSAPozicijeskladista.Name = "txtSAPozicijeskladista";
-            this.txtSAPozicijeskladista.Size = new System.Drawing.Size(105, 13);
+            this.txtSAPozicijeskladista.Size = new System.Drawing.Size(104, 13);
             this.txtSAPozicijeskladista.TabIndex = 459;
-            this.txtSAPozicijeskladista.Text = "NA Poziciju skladista";
+            this.txtSAPozicijeskladista.Text = "Na Poziciju skladista";
             // 
             // txtSASkladista
             // 

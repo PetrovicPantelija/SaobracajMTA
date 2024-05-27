@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
-    public partial class frmKorisnici : Form
+    public partial class frmKorisnici : Syncfusion.Windows.Forms.Office2010Form
     {
         private string Kor = Sifarnici.frmLogovanje.user.ToString();
         private bool status = false;

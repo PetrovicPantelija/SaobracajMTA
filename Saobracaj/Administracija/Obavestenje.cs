@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
-    public partial class Obavestenje : Form
+    public partial class Obavestenje : Syncfusion.Windows.Forms.Office2010Form
     {
         string obavestenje;
         private int progressBarMaxValue;

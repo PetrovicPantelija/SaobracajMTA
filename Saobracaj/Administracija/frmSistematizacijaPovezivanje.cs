@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Administracija
 {
-    public partial class frmSistematizacijaPovezivanje : Form
+    public partial class frmSistematizacijaPovezivanje : Syncfusion.Windows.Forms.Office2010Form
     {
         private bool status = false;
 
