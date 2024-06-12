@@ -55,6 +55,7 @@ namespace Saobracaj.Uvoz
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.button1 = new System.Windows.Forms.Button();
             this.cboPlanUtovara = new System.Windows.Forms.ComboBox();
             this.label44 = new System.Windows.Forms.Label();
@@ -69,7 +70,8 @@ namespace Saobracaj.Uvoz
             this.cboOperater = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cboOperaterHR = new System.Windows.Forms.ComboBox();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.txtNalogID = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -83,7 +85,7 @@ namespace Saobracaj.Uvoz
             this.chkCIRUradjen.ForeColor = System.Drawing.Color.Black;
             this.chkCIRUradjen.Location = new System.Drawing.Point(12, 222);
             this.chkCIRUradjen.Name = "chkCIRUradjen";
-            this.chkCIRUradjen.Size = new System.Drawing.Size(92, 20);
+            this.chkCIRUradjen.Size = new System.Drawing.Size(91, 20);
             this.chkCIRUradjen.TabIndex = 243;
             this.chkCIRUradjen.Text = "CIR urađen";
             this.chkCIRUradjen.UseVisualStyleBackColor = true;
@@ -117,7 +119,7 @@ namespace Saobracaj.Uvoz
             this.chkPoslatEmailPrijem.ForeColor = System.Drawing.Color.Black;
             this.chkPoslatEmailPrijem.Location = new System.Drawing.Point(150, 176);
             this.chkPoslatEmailPrijem.Name = "chkPoslatEmailPrijem";
-            this.chkPoslatEmailPrijem.Size = new System.Drawing.Size(101, 20);
+            this.chkPoslatEmailPrijem.Size = new System.Drawing.Size(100, 20);
             this.chkPoslatEmailPrijem.TabIndex = 240;
             this.chkPoslatEmailPrijem.Text = "Prijem e-mail";
             this.chkPoslatEmailPrijem.UseVisualStyleBackColor = true;
@@ -130,7 +132,7 @@ namespace Saobracaj.Uvoz
             this.chkPoslatEmailNajava.ForeColor = System.Drawing.Color.Black;
             this.chkPoslatEmailNajava.Location = new System.Drawing.Point(12, 198);
             this.chkPoslatEmailNajava.Name = "chkPoslatEmailNajava";
-            this.chkPoslatEmailNajava.Size = new System.Drawing.Size(105, 20);
+            this.chkPoslatEmailNajava.Size = new System.Drawing.Size(104, 20);
             this.chkPoslatEmailNajava.TabIndex = 239;
             this.chkPoslatEmailNajava.Text = "Najava E-mail";
             this.chkPoslatEmailNajava.UseVisualStyleBackColor = true;
@@ -143,7 +145,7 @@ namespace Saobracaj.Uvoz
             this.chkTransport.ForeColor = System.Drawing.Color.Black;
             this.chkTransport.Location = new System.Drawing.Point(12, 178);
             this.chkTransport.Name = "chkTransport";
-            this.chkTransport.Size = new System.Drawing.Size(132, 20);
+            this.chkTransport.Size = new System.Drawing.Size(131, 20);
             this.chkTransport.TabIndex = 238;
             this.chkTransport.Text = "Predato transportu";
             this.chkTransport.UseVisualStyleBackColor = true;
@@ -362,6 +364,17 @@ namespace Saobracaj.Uvoz
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(130, 24);
+            this.toolStripButton1.Text = "OTVORI - GATE IN VOZ";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
@@ -442,7 +455,7 @@ namespace Saobracaj.Uvoz
             this.label33.ForeColor = System.Drawing.Color.Black;
             this.label33.Location = new System.Drawing.Point(891, 138);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(129, 16);
+            this.label33.Size = new System.Drawing.Size(128, 16);
             this.label33.TabIndex = 250;
             this.label33.Text = "Predefinisane poruke:";
             this.label33.Visible = false;
@@ -477,7 +490,7 @@ namespace Saobracaj.Uvoz
             this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.checkBox2.ForeColor = System.Drawing.Color.Black;
-            this.checkBox2.Location = new System.Drawing.Point(612, 188);
+            this.checkBox2.Location = new System.Drawing.Point(545, 222);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(51, 17);
             this.checkBox2.TabIndex = 257;
@@ -526,16 +539,27 @@ namespace Saobracaj.Uvoz
             this.cboOperaterHR.Size = new System.Drawing.Size(230, 21);
             this.cboOperaterHR.TabIndex = 258;
             // 
-            // toolStripButton1
+            // txtNalogID
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(130, 24);
-            this.toolStripButton1.Text = "OTVORI - GATE IN VOZ";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            this.txtNalogID.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.txtNalogID.Location = new System.Drawing.Point(608, 219);
+            this.txtNalogID.Name = "txtNalogID";
+            this.txtNalogID.Size = new System.Drawing.Size(152, 20);
+            this.txtNalogID.TabIndex = 260;
+            this.txtNalogID.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(609, 198);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(49, 13);
+            this.label4.TabIndex = 261;
+            this.label4.Text = "NalogID:";
+            this.label4.Visible = false;
             // 
             // frmPrijemVozaIzPlana
             // 
@@ -543,6 +567,8 @@ namespace Saobracaj.Uvoz
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1145, 448);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtNalogID);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cboOperaterHR);
             this.Controls.Add(this.checkBox2);
@@ -634,5 +660,7 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cboOperaterHR;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.TextBox txtNalogID;
+        private System.Windows.Forms.Label label4;
     }
 }

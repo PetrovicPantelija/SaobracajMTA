@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmPlanUtovaraOdgovorExcel : Form
+    public partial class frmPlanUtovaraOdgovorExcel : Syncfusion.Windows.Forms.Office2010Form
     {
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 

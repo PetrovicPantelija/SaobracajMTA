@@ -55,7 +55,7 @@ namespace Saobracaj.Uvoz
                 select = "  SELECT RadniNalogInterni.[ID]  ,UvozKonacna.BrojKontejnera, RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]     " +
   "  ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena]  , UvozKonacnaVrstaManipulacije.IDVrstaManipulacije, " +
    " VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov] , PlanID as PlanUtovara  ,[BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac  , " +
-   " TipKontenjera.Naziv as Tipkontejnera, RadniNalogInterni.Pokret, KontejnerStatus.Naziv  FROM[RadniNalogInterni] " +
+   " TipKontenjera.Naziv as Tipkontejnera, RadniNalogInterni.Pokret, KontejnerStatus.Naziv, RadniNalogInterni.TipDokPrevoza, RadniNalogInterni.BrojDokPrevoza, RadniNalogInterni.TipRN, RadniNalogInterni.BrojRN  FROM[RadniNalogInterni] " +
    " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
    " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
    " inner join UvozKonacna on UvozKonacna.ID = BrojOsnov " +
@@ -69,16 +69,35 @@ namespace Saobracaj.Uvoz
             }
             else if (cboIzdatOd.Text == "Izvoz")
             {
+                select = "  SELECT RadniNalogInterni.[ID]  ,(Select Top 1 BrojKontejnera from IzvozKonacna where IzvozKOnacna.ID =RadniNalogInterni.BrojOsnov) as BrojKontejnera , " +
+  " RadniNalogInterni.[StatusIzdavanja], [OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]      " +
+  " ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena]  , RadniNalogInterni.IDManipulacijaJed, " +
+  " [Uradjen]  ,[Osnov], PlanID as PlanUtovara  ,[BrojOsnov] as BrojOsnov ,  VezniNalogID ,[KorisnikIzdao]      ,[KorisnikZavrsio] " +
+" ,  VrstaManipulacije.Naziv,    uv.PaNaziv as Platilac  , " +
+ "  TipKontenjera.Naziv as Tipkontejnera, RadniNalogInterni.Pokret, KontejnerStatus.Naziv, RadniNalogInterni.TipDokPrevoza, RadniNalogInterni.BrojDokPrevoza, RadniNalogInterni.TipRN, " +
+ "  RadniNalogInterni.BrojRN   FROM [RadniNalogInterni]  " +
+ " inner join IzvozKonacna on IzvozKonacna.ID = [RadniNalogInterni].BrojOsnov and RadniNalogInterni.PlanID= IzvozKonacna.IDNAdredjena " +
+ " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera   " +
+ "  inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera  " +
+ "  inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID  " +
+ "  inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID  " +
+ "  inner join VrstaManipulacije on RadniNalogInterni.IDManipulacijaJed = VrstaManipulacije.ID " +
+ "  inner join IzvozKonacnaVrstaManipulacije on IzvozKonacnaVrstaManipulacije.ID = RadniNalogInterni.KonkretaIDUsluge  " +
+ "    inner join Partnerji uv on uv.PaSifra = IzvozKonacnaVrstaManipulacije.Platilac " +
+ " where OJIzdavanja = 2 AND 1=1  order by RadniNalogInterni.ID desc ";
+
+
+
                 select = "   SELECT RadniNalogInterni.[ID]  ,IzvozKonacna.BrojKontejnera ,RadniNalogInterni.[StatusIzdavanja], [OJIzdavanja]      " +
                     ", o1.Naziv as Izdao  ,[OJRealizacije]      ,o2.Naziv as Realizuje  ,[DatumIzdavanja]   " +
                     "   ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena] " +
       " , IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije, VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov], PlanID as PlanUtovara " +
       " ,[BrojOsnov] as BrojOsnov ,  VezniNalogID ,[KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac " +
-      " , TipKontenjera.Naziv as Tipkontejnera, RadniNalogInterni.Pokret, KontejnerStatus.Naziv   FROM [RadniNalogInterni] " +
+      " , TipKontenjera.Naziv as Tipkontejnera, RadniNalogInterni.Pokret, KontejnerStatus.Naziv, RadniNalogInterni.TipDokPrevoza, RadniNalogInterni.BrojDokPrevoza, RadniNalogInterni.TipRN, RadniNalogInterni.BrojRN   FROM [RadniNalogInterni] " +
       " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
       " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
-      " inner join IzvozKonacna on IzvozKonacna.ID = BrojOsnov " +
-      " inner join IzvozKonacnaVrstaManipulacije on IzvozKonacnaVrstaManipulacije.ID = RadniNalogInterni.KonkretaIDUsluge" +
+            " inner join IzvozKonacnaVrstaManipulacije on IzvozKonacnaVrstaManipulacije.ID = RadniNalogInterni.KonkretaIDUsluge" +
+       " inner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaVrstaManipulacije.IDNAdredjena " +
       " inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
       " inner join Partnerji uv on uv.PaSifra = IzvozKonacnaVrstaManipulacije.Platilac " +
          " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera " +
@@ -94,7 +113,7 @@ namespace Saobracaj.Uvoz
   "  ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena]  , UvozKonacnaVrstaManipulacije.IDVrstaManipulacije," +
    " VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov]  ,[BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]      " +
    "  , uv.PaNaziv as Platilac  , " +
-   " TipKontenjera.Naziv as Tipkontejnera, PlanID as PlanUtovara, RadniNalogInterni.Pokret, KontejnerStatus.Naziv  FROM[RadniNalogInterni] " +
+   " TipKontenjera.Naziv as Tipkontejnera, PlanID as PlanUtovara, RadniNalogInterni.Pokret, KontejnerStatus.Naziv, RadniNalogInterni.TipDokPrevoza, RadniNalogInterni.BrojDokPrevoza, RadniNalogInterni.TipRN, RadniNalogInterni.BrojRN  FROM[RadniNalogInterni] " +
    " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
    " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
    " inner join UvozKonacna on UvozKonacna.ID = BrojOsnov " +
@@ -104,7 +123,17 @@ namespace Saobracaj.Uvoz
    " Inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
    " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera " +
            " where OJIzdavanja = " + Convert.ToInt32(cboIzdatOd.SelectedValue) +
-           " order by RadniNalogInterni.ID desc";
+           " union " +
+           " SELECT RadniNalogInterni.[ID] ,IzvozKonacna.BrojKontejnera ,RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]   " +
+           " , o1.Naziv as Izdao  ,[OJRealizacije]       ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena]  , " +
+           " IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije, VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov]  ,[BrojOsnov] as BrojOsnov , " +
+           " VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]        , uv.PaNaziv as Platilac  ,  TipKontenjera.Naziv as Tipkontejnera, " +
+           " PlanID as PlanUtovara, RadniNalogInterni.Pokret, KontejnerStatus.Naziv,RadniNalogInterni.TipDokPrevoza, RadniNalogInterni.BrojDokPrevoza, RadniNalogInterni.TipRN, RadniNalogInterni.BrojRN  FROM[RadniNalogInterni]  inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
+           " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID  inner join IzvozKonacna on IzvozKonacna.ID = BrojOsnov  " +
+           " inner join IzvozKonacnaVrstaManipulacije on IzvozKonacnaVrstaManipulacije.ID = RadniNalogInterni.KonkretaIDUsluge  " +
+           " inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije  " +
+           " inner join Partnerji uv on uv.PaSifra = IzvozKonacnaVrstaManipulacije.Platilac  Inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
+           " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera  where OJIzdavanja =  " + Convert.ToInt32(cboIzdatOd.SelectedValue) + "Order by ID desc"; 
             }
             var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -281,7 +310,11 @@ namespace Saobracaj.Uvoz
                 {
                     textBox1.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojOsnov").ToString();
                     txtNALOGID.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
-
+                 //   RadniNalogInterni.TipDokPrevoza, RadniNalogInterni.BrojDokPrevoza, RadniNalogInterni.TipRN, RadniNalogInterni.BrojRN
+                    txtTip.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("TipDokPrevoza").ToString();
+                    txtTipBroj.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojDokPrevoza").ToString();
+                    txtRNTip.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("TipRN").ToString();
+                    txtRNBroj.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojRN").ToString();
                     // txtSifra.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
                 }
 
@@ -361,7 +394,8 @@ namespace Saobracaj.Uvoz
                 DialogResult dialogResult = MessageBox.Show("Formirate otpremu platforme Kamionom", "Usluga?", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    Saobracaj.Dokumenta.frmOtpremaKontejneraIzvozKamion okk = new Saobracaj.Dokumenta.frmOtpremaKontejneraIzvozKamion(Korisnik, txtNALOGID.Text);
+                    //OVO JE FUNKCIONALNOST KOJA NESTAJE
+                    Saobracaj.Dokumenta.frmOtpremaKontejneraIzvozKamion okk = new Saobracaj.Dokumenta.frmOtpremaKontejneraIzvozKamion(Korisnik, Convert.ToInt32(txtNALOGID.Text));
                     okk.Show();
                 }
                 else if (dialogResult == DialogResult.No)
@@ -448,7 +482,7 @@ namespace Saobracaj.Uvoz
             if (Forma == "GATE IN VOZ")
             {
                 MessageBox.Show("Formirate Prijem vozom");
-                frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text));
+                frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text),0);
                 rd1.Show();
             }
             if (Forma == "GATE OUT KAMION")
@@ -483,8 +517,10 @@ namespace Saobracaj.Uvoz
                 {
                     //Prijem platforme //Uvoz SC1
                     MessageBox.Show("Formirate Prijem kamionom Platforma Uvoz");
-                    Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 0, 1);
-                    prijemplat.Show();
+                    frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1);
+                    rd1.Show();
+                    //   Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 0, 1);
+                    // prijemplat.Show();
 
                 }
               

@@ -375,5 +375,15 @@ namespace Saobracaj.RadniNalozi
             }
 
         }
+
+        private void txtNalogRealizovao_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

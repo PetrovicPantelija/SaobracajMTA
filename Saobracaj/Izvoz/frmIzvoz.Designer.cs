@@ -64,6 +64,7 @@ namespace Saobracaj.Izvoz
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.txtID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTipKont = new System.Windows.Forms.ComboBox();
@@ -276,10 +277,11 @@ namespace Saobracaj.Izvoz
             this.tslKreirao,
             this.toolStripButton4,
             this.toolStripButton3,
-            this.toolStripButton5});
+            this.toolStripButton5,
+            this.toolStripButton7});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1312, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1362, 27);
             this.toolStrip1.TabIndex = 51;
             this.toolStrip1.Text = "Tabela";
             // 
@@ -382,8 +384,8 @@ namespace Saobracaj.Izvoz
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(248, 24);
-            this.toolStripButton3.Text = "FORMIRAJ PRIJEM KAMIONOM PLATFORMA";
+            this.toolStripButton3.Size = new System.Drawing.Size(166, 24);
+            this.toolStripButton3.Text = "FORMIRAJ PRIJEM KAM PLAT";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // toolStripButton5
@@ -396,6 +398,17 @@ namespace Saobracaj.Izvoz
             this.toolStripButton5.Size = new System.Drawing.Size(222, 24);
             this.toolStripButton5.Text = "POSTAVI U PLAN, IZDAJ RN - TERMINAL";
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
+            // 
+            // toolStripButton7
+            // 
+            this.toolStripButton7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton7.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton7.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton7.Image")));
+            this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton7.Name = "toolStripButton7";
+            this.toolStripButton7.Size = new System.Drawing.Size(171, 24);
+            this.toolStripButton7.Text = "SC116 - Konacna, Usluga, Plan";
+            this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
             // 
             // txtID
             // 
@@ -1680,7 +1693,7 @@ namespace Saobracaj.Izvoz
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(4, 29);
+            this.dataGridView1.Size = new System.Drawing.Size(54, 29);
             this.dataGridView1.TabIndex = 274;
             this.dataGridView1.Visible = false;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -2474,7 +2487,7 @@ namespace Saobracaj.Izvoz
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1312, 657);
+            this.ClientSize = new System.Drawing.Size(1362, 657);
             this.Controls.Add(this.chkTerminal);
             this.Controls.Add(this.txtUvozniID);
             this.Controls.Add(this.label63);
@@ -2853,5 +2866,6 @@ namespace Saobracaj.Izvoz
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.CheckBox chkTerminal;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
+        private System.Windows.Forms.ToolStripButton toolStripButton7;
     }
 }

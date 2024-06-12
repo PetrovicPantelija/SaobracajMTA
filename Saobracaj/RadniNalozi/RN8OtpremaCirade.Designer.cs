@@ -345,7 +345,7 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton5});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1068, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(969, 27);
             this.toolStrip1.TabIndex = 435;
             this.toolStrip1.Text = "FORMIRAJ RN OTPREMA CIRADE";
             // 
@@ -467,7 +467,7 @@ namespace Saobracaj.RadniNalozi
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(825, 247);
+            this.dataGridView1.Size = new System.Drawing.Size(960, 247);
             this.dataGridView1.TabIndex = 436;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -620,7 +620,7 @@ namespace Saobracaj.RadniNalozi
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1068, 648);
+            this.ClientSize = new System.Drawing.Size(969, 648);
             this.Controls.Add(this.label41);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.chkZavrsen);

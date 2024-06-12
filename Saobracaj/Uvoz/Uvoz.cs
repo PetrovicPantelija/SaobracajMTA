@@ -146,6 +146,14 @@ namespace Saobracaj.Uvoz
 
                 cboRLTerminal.SelectedValue = Convert.ToInt32(dr["RLTerminali"].ToString());
                 cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
+                if (dr["Napomena1"].ToString() == "1")
+                { 
+                chkSlobodan.Checked = true;
+                }
+                else
+                {
+                    chkSlobodan.Checked = false;
+                }
                 txtNapomena1.Text = dr["Napomena1"].ToString();
                 txtVrstaPregleda.SelectedValue = Convert.ToInt32(dr["VrstaPregleda"].ToString());
                 cboNalogodavac1.SelectedValue = Convert.ToInt32(dr["Nalogodavac1"].ToString());
@@ -422,7 +430,8 @@ namespace Saobracaj.Uvoz
             cbOcarina.DisplayMember = "Naziv";
             cbOcarina.ValueMember = "ID";
 
-            var partner = "Select PaSifra,PaNaziv From Partnerji where Vlasnik = 1  order by PaNaziv";
+            //where Vlasnik = 1
+            var partner = "Select PaSifra,PaNaziv From Partnerji order by PaNaziv";
             var partAD = new SqlDataAdapter(partner, conn);
             var partDS = new DataSet();
             partAD.Fill(partDS);
@@ -689,6 +698,15 @@ namespace Saobracaj.Uvoz
             }
             */
             InsertUvoz ins = new InsertUvoz();
+            if (chkSlobodan.Checked == true)
+            {
+                txtNapomena1.Text = "1";
+            }
+            else
+            {
+                txtNapomena1.Text = "0";
+            }
+
             ins.UpdUvoz(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtEtaRijeka.Value.ToString()),
                 Convert.ToDateTime(dtAtaRijeka.Value.ToString()), txtStatus.Text.ToString().TrimEnd(), txtBrKont.Text,
                 Convert.ToInt32(txtTipKont.SelectedValue), Convert.ToDateTime(dtNalogBrodara.Value.ToString()), txtBZ.Text.ToString().TrimEnd(),
@@ -703,7 +721,7 @@ namespace Saobracaj.Uvoz
                 Convert.ToInt32(txtBrojVoza.Text), txtRelacija.Text.ToString().TrimEnd(), Convert.ToDateTime(dtAtaDolazak.Value.ToString()), Convert.ToDecimal(txtKoleta.Value), Convert.ToInt32(cboRLTerminal.SelectedValue), txtNapomena1.Text, Convert.ToInt32(txtVrstaPregleda.SelectedValue),
                 Convert.ToInt32(cboNalogodavac1.SelectedValue), txtRef1.Text,
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
-                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska);
+                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska, Convert.ToDecimal(txtTaraTerminal.Value));
             //  FillGV();
             //  RefreshDataGridColor();
             tsNew.Enabled = true;
@@ -733,7 +751,8 @@ namespace Saobracaj.Uvoz
      "  ,[BrutoRobe] ,[TaraKontejnera]   ,[BrutoKontejnera],[NapomenaZaPozicioniranje] " +
      "  ,[AtaOtpreme]  ,[BrojVoza] ,[RelacijaVoza]  ,[AtaDolazak] " +
      "  ,[TipKontejnera] ,[Koleta]," +
-     " RLTErminali , Napomena1 ,VrstaPregleda ,Nalogodavac1 ,Ref1 ,Nalogodavac2 ,Ref2 ,Nalogodavac3 ,Ref3, Brodar, NaslovStatusaVozila, Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe " +
+     " RLTErminali , Napomena1 ,VrstaPregleda ,Nalogodavac1 ,Ref1 ,Nalogodavac2 ,Ref2 ,Nalogodavac3 ,Ref3, Brodar, NaslovStatusaVozila, " +
+     "Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe, TaraKontejneraT " +
  "  FROM [Uvoz] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -773,6 +792,8 @@ namespace Saobracaj.Uvoz
                 txtBrutoR.Value = Convert.ToDecimal(dr["BrutoRobe"].ToString());
                 txtTaraK.Value = Convert.ToDecimal(dr["TaraKontejnera"].ToString());
                 txtBrutoK.Value = Convert.ToDecimal(dr["BrutoKontejnera"].ToString());
+     
+                   txtTaraTerminal.Value = Convert.ToDecimal(dr["TaraKontejneraT"].ToString());
                 cbNapomenaPoz.SelectedValue = Convert.ToInt32(dr["NapomenaZaPozicioniranje"].ToString());
                 dtAtaOtprema.Value = Convert.ToDateTime(dr["AtaOtpreme"].ToString());
                 txtBrojVoza.Text = dr["BrojVoza"].ToString();
@@ -780,6 +801,14 @@ namespace Saobracaj.Uvoz
                 dtAtaDolazak.Value = Convert.ToDateTime(dr["AtaDolazak"].ToString());
                 txtKoleta.Value = Convert.ToDecimal(dr["Koleta"].ToString());
                 cboRLTerminal.SelectedValue = Convert.ToInt32(dr["RLTerminali"].ToString());
+                if (dr["Napomena1"].ToString() == "1")
+                {
+                    chkSlobodan.Checked = true;
+                }
+                else
+                {
+                    chkSlobodan.Checked = false;
+                }
                 txtNapomena1.Text = dr["Napomena1"].ToString();
                 txtVrstaPregleda.SelectedValue = Convert.ToInt32(dr["VrstaPregleda"].ToString());
                 cboNalogodavac1.SelectedValue = Convert.ToInt32(dr["Nalogodavac1"].ToString());
@@ -979,6 +1008,16 @@ namespace Saobracaj.Uvoz
                     }
                 }
             }
+
+            if (chkSlobodan.Checked == true)
+            {
+                txtNapomena1.Text = "1";
+            }
+            else
+            {
+                txtNapomena1.Text = "0";
+            }
+
             uvK.InsUvozKonacna(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue), Convert.ToDateTime(dtEtaRijeka.Value.ToString()),
                 Convert.ToDateTime(dtAtaRijeka.Value.ToString()), txtStatus.Text.ToString().TrimEnd(), txtBrKont.Text,
                 Convert.ToInt32(txtTipKont.SelectedValue), Convert.ToDateTime(dtNalogBrodara.Value.ToString()), txtBZ.Text.ToString().TrimEnd(),
@@ -994,7 +1033,7 @@ namespace Saobracaj.Uvoz
                 , Convert.ToInt32(cboRLTerminal.SelectedValue), txtNapomena1.Text, Convert.ToInt32(txtVrstaPregleda.SelectedValue),
                 Convert.ToInt32(cboNalogodavac1.SelectedValue), txtRef1.Text,
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
-                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet);
+                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToDecimal(txtTaraTerminal.Value));
 
             uvK.PrebaciNHMUvozUvozKonacna(Convert.ToInt32(txtID.Text));
             uvK.PrebaciVrsterobeHSUvozUvozKonacna(Convert.ToInt32(txtID.Text));

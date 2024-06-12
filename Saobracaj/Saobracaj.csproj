@@ -3404,6 +3404,12 @@
     <Compile Include="Uvoz\frmKontejnerTekuce.Designer.cs">
       <DependentUpon>frmKontejnerTekuce.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\frmKontejnerTekuceArhiv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmKontejnerTekuceArhiv.Designer.cs">
+      <DependentUpon>frmKontejnerTekuceArhiv.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\frmNapomenaZaPozicioniranje.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4898,6 +4904,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmKontejnerTekuce.resx">
       <DependentUpon>frmKontejnerTekuce.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmKontejnerTekuceArhiv.resx">
+      <DependentUpon>frmKontejnerTekuceArhiv.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmNapomenaZaPozicioniranje.resx">
       <DependentUpon>frmNapomenaZaPozicioniranje.cs</DependentUpon>

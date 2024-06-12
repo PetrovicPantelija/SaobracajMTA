@@ -39,9 +39,9 @@ namespace Saobracaj.Uvoz
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.cboPlanUtovara = new System.Windows.Forms.ComboBox();
-            this.label44 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -72,7 +72,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView1.Location = new System.Drawing.Point(14, 46);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(795, 343);
+            this.dataGridView1.Size = new System.Drawing.Size(796, 343);
             this.dataGridView1.TabIndex = 161;
             // 
             // openFileDialog1
@@ -82,7 +82,7 @@ namespace Saobracaj.Uvoz
             // splitContainer1
             // 
             this.splitContainer1.Location = new System.Drawing.Point(9, 2);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -158,31 +158,10 @@ namespace Saobracaj.Uvoz
             this.cboPlanUtovara.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.cboPlanUtovara.FormattingEnabled = true;
             this.cboPlanUtovara.Location = new System.Drawing.Point(15, 29);
-            this.cboPlanUtovara.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboPlanUtovara.Margin = new System.Windows.Forms.Padding(2);
             this.cboPlanUtovara.Name = "cboPlanUtovara";
             this.cboPlanUtovara.Size = new System.Drawing.Size(167, 21);
             this.cboPlanUtovara.TabIndex = 159;
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(-147, 12);
-            this.label44.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(67, 13);
-            this.label44.TabIndex = 158;
-            this.label44.Text = "Plan utovara";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.label3.Location = new System.Drawing.Point(228, 29);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(327, 13);
-            this.label3.TabIndex = 162;
-            this.label3.Text = "EXCEL FAJL raspored- 1. RB 2.BrojKola 3.Kontejner1 4. KOntejner2";
             // 
             // label4
             // 
@@ -195,6 +174,27 @@ namespace Saobracaj.Uvoz
             this.label4.TabIndex = 163;
             this.label4.Text = "Header 1 red";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.label3.Location = new System.Drawing.Point(301, 7);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(327, 13);
+            this.label3.TabIndex = 162;
+            this.label3.Text = "EXCEL FAJL raspored- 1. RB 2.BrojKola 3.Kontejner1 4. KOntejner2";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(-147, 12);
+            this.label44.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(67, 13);
+            this.label44.TabIndex = 158;
+            this.label44.Text = "Plan utovara";
+            // 
             // frmPlanUtovaraOdgovorExcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -203,7 +203,7 @@ namespace Saobracaj.Uvoz
             this.ClientSize = new System.Drawing.Size(1030, 404);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmPlanUtovaraOdgovorExcel";
             this.Text = "Uvoz Excel broj kola";
             this.Load += new System.EventHandler(this.frmPlanUtovaraOdgovorExcel_Load);

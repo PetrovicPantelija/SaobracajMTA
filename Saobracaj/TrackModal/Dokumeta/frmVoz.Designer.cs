@@ -149,6 +149,7 @@
             this.label43 = new System.Windows.Forms.Label();
             this.panelLegetOperater = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chkTerminal = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaksBrojKola)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDuzina)).BeginInit();
@@ -586,7 +587,7 @@
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1146, 160);
+            this.dataGridView1.Size = new System.Drawing.Size(1160, 209);
             this.dataGridView1.TabIndex = 137;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged_1);
             this.dataGridView1.Click += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -1123,7 +1124,7 @@
             this.tabControl1.Location = new System.Drawing.Point(5, 501);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1174, 202);
+            this.tabControl1.Size = new System.Drawing.Size(1188, 251);
             this.tabControl1.TabIndex = 248;
             // 
             // tabPage1
@@ -1132,7 +1133,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1166, 174);
+            this.tabPage1.Size = new System.Drawing.Size(1180, 223);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Vozovi";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1153,7 +1154,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1166, 174);
+            this.tabPage2.Size = new System.Drawing.Size(1180, 223);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Sastav voza";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1741,12 +1742,27 @@
             this.panel1.Size = new System.Drawing.Size(838, 250);
             this.panel1.TabIndex = 276;
             // 
+            // chkTerminal
+            // 
+            this.chkTerminal.AutoSize = true;
+            this.chkTerminal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.chkTerminal.ForeColor = System.Drawing.Color.Black;
+            this.chkTerminal.Location = new System.Drawing.Point(262, 50);
+            this.chkTerminal.Margin = new System.Windows.Forms.Padding(4);
+            this.chkTerminal.Name = "chkTerminal";
+            this.chkTerminal.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkTerminal.Size = new System.Drawing.Size(88, 19);
+            this.chkTerminal.TabIndex = 277;
+            this.chkTerminal.Text = "Za terminal";
+            this.chkTerminal.UseVisualStyleBackColor = true;
+            // 
             // frmVoz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1197, 752);
+            this.Controls.Add(this.chkTerminal);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panelLegetOperater);
             this.Controls.Add(this.panelLeget);
@@ -1936,5 +1952,6 @@
         private System.Windows.Forms.DateTimePicker dtpPristizanjaUSid;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox chkTerminal;
     }
 }

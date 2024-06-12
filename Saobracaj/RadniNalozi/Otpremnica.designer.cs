@@ -438,6 +438,7 @@ namespace Saobracaj.RadniNalozi
             this.button3.TabIndex = 24;
             this.button3.Text = "OTPREMNICE PREGLED";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // Otpremnica
             // 

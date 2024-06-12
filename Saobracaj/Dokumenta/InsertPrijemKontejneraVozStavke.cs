@@ -14,7 +14,7 @@ namespace Saobracaj.Dokumeta
     {
 
         public void InsertPrijemKontVozStavke( int IdNadredjenog, string BrojKontejnera, String BrojVagona, double Granica, double BrojOsovina, double SopstvenaMasa , double Tara, double Neto, int Posiljalac,int Primalac,int VlasnikKontejnera, int TipKontejnera, 	int VrstaRobe,int Buking, int StatusKontejnera,string BrojPlombe,int PlaniraniLager, int IdVoza, DateTime VremeDolaska, 	DateTime VremePripremljen, 	DateTime VremeOdlaska,	DateTime Datum, string Korisnik, string BrojPlombe2, int Organizator, string BukingBrodar, string NapomenaS, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, Double BTTORobe, int KontejnerID, double BTTOKOntejnera, string Napomena2, int PostupakSaRobom
-              , double BTTORobeOTP, double BTTORobeODVAGA, string PLOMBAVLASN, string CBMOTP, string KOLETAOTP, int NajavaID)
+              , double BTTORobeOTP, double BTTORobeODVAGA, string PLOMBAVLASN, string CBMOTP, string KOLETAOTP, int NajavaID, decimal TaraKontejneraT)
         {
             
               
@@ -364,6 +364,15 @@ namespace Saobracaj.Dokumeta
             parameter40.Direction = ParameterDirection.Input;
             parameter40.Value = NajavaID;
             myCommand.Parameters.Add(parameter40);
+
+
+            SqlParameter parameter41 = new SqlParameter();
+            parameter41.ParameterName = "@TaraKontejneraT";
+            parameter41.SqlDbType = SqlDbType.Decimal;
+            // parameter4.Size = 20;
+            parameter41.Direction = ParameterDirection.Input;
+            parameter41.Value = TaraKontejneraT;
+            myCommand.Parameters.Add(parameter41);
             /*
            
 
@@ -413,7 +422,7 @@ namespace Saobracaj.Dokumeta
             }
         }
 
-        public void UpdPrijemKontejneraVozStavke(int ID, int IdNadredjenog, string BrojKontejnera, String BrojVagona, double Granica, double BrojOsovina, double SopstvenaMasa, double Tara, double Neto, int Posiljalac, int Primalac, int VlasnikKontejnera, int TipKontejnera, int VrstaRobe, int Buking, int StatusKontejnera, string BrojPlombe, int PlaniraniLager, int IdVoza, DateTime VremeDolaska, DateTime VremePripremljen, DateTime VremeOdlaska, DateTime Datum, string Korisnik, int RB, string BrojPlombe2, int Organizator,string BukingBrodar, string NapomenaS, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, Double BTTORobe, int KontejnerID, double BTTOKOntejnera, string Napomena2, int PostupakSaRobom,double BTTORobeOTP, double BTTORobeODVAGA, string PLOMBAVLASN, string CBMOTP, string KOLETAOTP)
+        public void UpdPrijemKontejneraVozStavke(int ID, int IdNadredjenog, string BrojKontejnera, String BrojVagona, double Granica, double BrojOsovina, double SopstvenaMasa, double Tara, double Neto, int Posiljalac, int Primalac, int VlasnikKontejnera, int TipKontejnera, int VrstaRobe, int Buking, int StatusKontejnera, string BrojPlombe, int PlaniraniLager, int IdVoza, DateTime VremeDolaska, DateTime VremePripremljen, DateTime VremeOdlaska, DateTime Datum, string Korisnik, int RB, string BrojPlombe2, int Organizator,string BukingBrodar, string NapomenaS, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, Double BTTORobe, int KontejnerID, double BTTOKOntejnera, string Napomena2, int PostupakSaRobom,double BTTORobeOTP, double BTTORobeODVAGA, string PLOMBAVLASN, string CBMOTP, string KOLETAOTP, decimal TaraKontejneraT)
         {
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -737,6 +746,13 @@ namespace Saobracaj.Dokumeta
             parameter39.Direction = ParameterDirection.Input;
             parameter39.Value = KOLETAOTP;
             myCommand.Parameters.Add(parameter39);
+
+            SqlParameter parameter40 = new SqlParameter();
+            parameter40.ParameterName = "@TaraKontejneraT";
+            parameter40.SqlDbType = SqlDbType.Decimal;
+            parameter40.Direction = ParameterDirection.Input;
+            parameter40.Value = TaraKontejneraT;
+            myCommand.Parameters.Add(parameter40);
 
 
 

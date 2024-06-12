@@ -38,6 +38,7 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtSize = new System.Windows.Forms.NumericUpDown();
@@ -108,7 +109,6 @@
             this.chkInterni = new System.Windows.Forms.CheckBox();
             this.label24 = new System.Windows.Forms.Label();
             this.txtNosivost = new System.Windows.Forms.NumericUpDown();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.btnManipulacija.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTara)).BeginInit();
@@ -207,6 +207,16 @@
             this.toolStripButton1.Text = "AŽURIRAJ TEKUCI KONTEJNER";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(198, 24);
+            this.toolStripButton2.Text = "ODREDI PRIVREMENU POZICIJU";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
             // txtSifra
             // 
             this.txtSifra.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
@@ -257,8 +267,6 @@
             // chkMaterijalCelik
             // 
             this.chkMaterijalCelik.AutoSize = true;
-            this.chkMaterijalCelik.Checked = true;
-            this.chkMaterijalCelik.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMaterijalCelik.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkMaterijalCelik.ForeColor = System.Drawing.Color.Black;
             this.chkMaterijalCelik.Location = new System.Drawing.Point(12, 287);
@@ -830,6 +838,8 @@
             // chkPrazan
             // 
             this.chkPrazan.AutoSize = true;
+            this.chkPrazan.Checked = true;
+            this.chkPrazan.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkPrazan.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPrazan.ForeColor = System.Drawing.Color.Black;
             this.chkPrazan.Location = new System.Drawing.Point(12, 262);
@@ -964,7 +974,7 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(355, 72);
+            this.label21.Location = new System.Drawing.Point(359, 82);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(114, 16);
             this.label21.TabIndex = 299;
@@ -1045,16 +1055,6 @@
             this.txtNosivost.Size = new System.Drawing.Size(100, 22);
             this.txtNosivost.TabIndex = 303;
             this.txtNosivost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(198, 24);
-            this.toolStripButton2.Text = "ODREDI PRIVREMENU POZICIJU";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // frmCIR
             // 

@@ -175,6 +175,8 @@ namespace Saobracaj.Dokumenta
             this.chkTerminal = new System.Windows.Forms.CheckBox();
             this.chkIzvoz = new System.Windows.Forms.CheckBox();
             this.chkCirada = new System.Windows.Forms.CheckBox();
+            this.label52 = new System.Windows.Forms.Label();
+            this.txtTaraTerminal = new System.Windows.Forms.NumericUpDown();
             this.btnManipulacija.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -198,6 +200,7 @@ namespace Saobracaj.Dokumenta
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaraTerminal)).BeginInit();
             this.SuspendLayout();
             // 
             // btnManipulacija
@@ -626,6 +629,8 @@ namespace Saobracaj.Dokumenta
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label52);
+            this.panel1.Controls.Add(this.txtTaraTerminal);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.txtNalogID);
             this.panel1.Controls.Add(this.label42);
@@ -1197,8 +1202,9 @@ namespace Saobracaj.Dokumenta
             this.txtNapomenaS.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.txtNapomenaS.Location = new System.Drawing.Point(685, 127);
             this.txtNapomenaS.Name = "txtNapomenaS";
-            this.txtNapomenaS.Size = new System.Drawing.Size(215, 22);
+            this.txtNapomenaS.Size = new System.Drawing.Size(33, 22);
             this.txtNapomenaS.TabIndex = 200;
+            this.txtNapomenaS.Visible = false;
             // 
             // label32
             // 
@@ -1212,6 +1218,7 @@ namespace Saobracaj.Dokumenta
             this.label32.Size = new System.Drawing.Size(85, 14);
             this.label32.TabIndex = 238;
             this.label32.Text = "NAPOMENA 1.:";
+            this.label32.Visible = false;
             // 
             // button6
             // 
@@ -1940,6 +1947,33 @@ namespace Saobracaj.Dokumenta
             this.chkCirada.UseVisualStyleBackColor = false;
             this.chkCirada.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged_1);
             // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.label52.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label52.ForeColor = System.Drawing.Color.White;
+            this.label52.Location = new System.Drawing.Point(779, 109);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(136, 14);
+            this.label52.TabIndex = 430;
+            this.label52.Text = "TARA KONT TERMINAL:";
+            // 
+            // txtTaraTerminal
+            // 
+            this.txtTaraTerminal.DecimalPlaces = 3;
+            this.txtTaraTerminal.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtTaraTerminal.Location = new System.Drawing.Point(782, 126);
+            this.txtTaraTerminal.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.txtTaraTerminal.Name = "txtTaraTerminal";
+            this.txtTaraTerminal.Size = new System.Drawing.Size(93, 22);
+            this.txtTaraTerminal.TabIndex = 429;
+            this.txtTaraTerminal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // frmPrijemKontejneraKamionLegetUvoz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2005,6 +2039,7 @@ namespace Saobracaj.Dokumenta
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaraTerminal)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2142,5 +2177,7 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.CheckBox chkIzvoz;
         private System.Windows.Forms.CheckBox chkCirada;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.NumericUpDown txtTaraTerminal;
     }
 }

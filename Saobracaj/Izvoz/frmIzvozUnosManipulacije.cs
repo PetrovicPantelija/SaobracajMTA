@@ -588,7 +588,44 @@ namespace Saobracaj.Izvoz
 
             DataGridViewColumn column6 = dataGridView7.Columns[5];
             dataGridView7.Columns[5].HeaderText = "Usluga";
-            dataGridView7.Columns[5].Width = 50;
+            dataGridView7.Columns[5].Width = 220;
+
+            DataGridViewColumn column7 = dataGridView7.Columns[6];
+            dataGridView7.Columns[6].HeaderText = "Cena";
+            dataGridView7.Columns[6].Width = 80;
+
+
+            DataGridViewColumn column8 = dataGridView7.Columns[7];
+            dataGridView7.Columns[7].HeaderText = "OJID";
+            dataGridView7.Columns[7].Width = 50;
+
+            DataGridViewColumn column9 = dataGridView7.Columns[8];
+            dataGridView7.Columns[8].HeaderText = "OJNaziv";
+            dataGridView7.Columns[8].Width = 50;
+
+            DataGridViewColumn column10 = dataGridView7.Columns[9];
+            dataGridView7.Columns[9].HeaderText = "PlatilacID";
+            dataGridView7.Columns[9].Width = 50;
+
+            DataGridViewColumn column11 = dataGridView7.Columns[10];
+            dataGridView7.Columns[10].HeaderText = "Platilac";
+            dataGridView7.Columns[10].Width = 150;
+
+            DataGridViewColumn column12 = dataGridView7.Columns[11];
+            dataGridView7.Columns[11].HeaderText = "SaPDV";
+            dataGridView7.Columns[11].Width = 50;
+
+            DataGridViewColumn column13 = dataGridView7.Columns[12];
+            dataGridView7.Columns[12].HeaderText = "Pokret";
+            dataGridView7.Columns[12].Width = 100;
+
+            DataGridViewColumn column14 = dataGridView7.Columns[13];
+            dataGridView7.Columns[13].HeaderText = "Status";
+            dataGridView7.Columns[13].Width = 100;
+
+            DataGridViewColumn column15 = dataGridView7.Columns[14];
+            dataGridView7.Columns[14].HeaderText = "Forma";
+            dataGridView7.Columns[14].Width = 100;
 
         }
 
@@ -1853,6 +1890,7 @@ namespace Saobracaj.Izvoz
         private void button16_Click(object sender, EventArgs e)
         {
             FillDG6Scenario();
+            dataGridView6.SelectAll();
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)

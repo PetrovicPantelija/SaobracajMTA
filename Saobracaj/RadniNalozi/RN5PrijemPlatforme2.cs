@@ -11,11 +11,13 @@ namespace Saobracaj.RadniNalozi
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
+        string kor = Sifarnici.frmLogovanje.user;
         public RN5PrijemPlatforme2()
         {
             InitializeComponent();
             FillGV();
             FillCombo();
+            txtDatumRasporeda.Value = DateTime.Now;
         }
 
         public RN5PrijemPlatforme2(string PrijemID, string RegBr, string KorisnikCene, string Usluga, int Uvoz)
@@ -29,7 +31,7 @@ namespace Saobracaj.RadniNalozi
             txtNalogID.Text = Usluga;
             FillCombo();
             VratiPodatkeVrstaMan(Usluga.ToString());
-
+            txtDatumRasporeda.Value = DateTime.Now;
 
 
         }
@@ -225,7 +227,7 @@ namespace Saobracaj.RadniNalozi
                 " ,[DatumRealizacije]      ,[SaVoznogSredstva] " +
     "  ,[BrojKontejnera]      ,[VrstaKontejnera]      ,[NazivBrodara]      ,[VrstaRobe] " +
     "    ,[USkladiste]      ,[UPozicijaSklad]      ,[IdUsluge]      ,[NalogRealizovao] " +
-    "    ,[Napomena]      ,[PrijemID]      ,[Kamion]      ,[Zavrsen]      ,[NalogID] " +
+    "    ,[Napomena]      ,[PrijemID]      ,[Kamion]      ,[Zavrsen]      ,[NalogID], ZavrsenCIR, DatumRealizacijeCIR, NalogRealizovaoCIR " +
   "  FROM [dbo].[RNPrijemPlatforme2] " +
              " where ID = " + txtID.Text, con);
 
@@ -249,6 +251,15 @@ namespace Saobracaj.RadniNalozi
                 txtKamion.Text = dr["Kamion"].ToString();
                 //NIJE DOBRO null   cboPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
                 txtNapomena.Text = dr["Napomena"].ToString();
+                txtNalogRealizovaoCIR.Text = dr["NalogRealizovaoCIR"].ToString();
+                dtpNalogRealizovaoCIR.Value = Convert.ToDateTime(dr["DatumRealizacijeCIR"].ToString());
+
+                if (dr["ZavrsenCIR"].ToString() == "1")
+                { chkZavrsenCIR.Checked = true; }
+                else
+                {
+                    chkZavrsenCIR.Checked = false;
+                }
 
 
                 if (dr["Zavrsen"].ToString() == "1")
@@ -287,7 +298,7 @@ namespace Saobracaj.RadniNalozi
             {
                 if (row.Selected == true)
                 {
-                    up.PotvrdiUradjenRN5(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                    up.PotvrdiUradjenRN5(Convert.ToInt32(row.Cells[0].Value.ToString()), kor);
                 }
 
             }
@@ -300,7 +311,7 @@ namespace Saobracaj.RadniNalozi
             {
                 if (row.Selected == true)
                 {
-                    up.PotvrdiUradjenRN5CIR(Convert.ToInt32(row.Cells[0].Value.ToString()));
+                    up.PotvrdiUradjenRN5CIR(Convert.ToInt32(row.Cells[0].Value.ToString()), kor);
                 }
 
             }
@@ -317,6 +328,12 @@ namespace Saobracaj.RadniNalozi
                 }
 
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Saobracaj.RadniNalozi.frmDodelaSkladista ds = new frmDodelaSkladista(txtPrijemID.Text, 2);
+            ds.Show();
         }
     }
 }

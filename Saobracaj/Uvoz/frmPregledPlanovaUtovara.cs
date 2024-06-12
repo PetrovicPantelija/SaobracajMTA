@@ -154,6 +154,11 @@ namespace Saobracaj.Uvoz
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                MessageBox.Show("Odaberite Plan Terminala");
+                return;
+            }
             Saobracaj.Uvoz.Uvoz uv = new Saobracaj.Uvoz.Uvoz(1, Convert.ToInt32(txtSifra.Text));
             uv.Show();
         }

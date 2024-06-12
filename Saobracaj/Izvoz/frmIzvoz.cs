@@ -794,6 +794,13 @@ namespace Saobracaj.Izvoz
                 pomTerminal= 1;
             }
 
+            if (txtID.Text == "")
+            {
+                MessageBox.Show("Prvo kontejner mora dobiti izvozni broj, kliknite na Novi");
+                return;
+            
+            }
+
             ins.UpdIzvoz(Convert.ToInt32(txtID.Text), txtBrojVagona.Text, txtBrKont.Text, Convert.ToInt32(txtTipKont.SelectedValue),
                 txtBrodskaPlomba.Text, Convert.ToInt32(txtBokingBrodara.Text), Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToDateTime(dtpCutOffPort.Value),
                 Convert.ToDecimal(txtNetoR.Value), Convert.ToDecimal(txtBrutoR.Value), Convert.ToDecimal(txtBrutoO.Value), Convert.ToInt32(txtKoleta.Value),
@@ -2118,6 +2125,21 @@ namespace Saobracaj.Izvoz
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
+            InsertIzvozKonacna ins = new InsertIzvozKonacna();
+            ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(txtID.Text), PlanZaPrebacivanje);
+
+            Uvoz.InsertRadniNalogInterni ins2 = new Uvoz.InsertRadniNalogInterni();
+            //ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
+            ins2.InsRadniNalogInterniIzvoz(Convert.ToInt32(4), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovaraT", Convert.ToInt32(PlanZaPrebacivanje), tKorisnik, "");
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            InsertIzvoz uvK = new InsertIzvoz();
+            uvK.InsUbaciUsluguKonacna(Convert.ToInt32(txtID.Text), 69, 0, 1, 4, Convert.ToInt32(cboBrodar.SelectedValue), 0, "GATE OUT EMPTY", 12, "GATE OUT KAMION");
+            FillDG8();
+
+
             InsertIzvozKonacna ins = new InsertIzvozKonacna();
             ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(txtID.Text), PlanZaPrebacivanje);
 

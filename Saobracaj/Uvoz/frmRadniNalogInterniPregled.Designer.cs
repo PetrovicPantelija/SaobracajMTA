@@ -62,6 +62,13 @@ namespace Saobracaj.Uvoz
             this.label1 = new System.Windows.Forms.Label();
             this.cboIzdatOd = new System.Windows.Forms.ComboBox();
             this.label43 = new System.Windows.Forms.Label();
+            this.gradientPanel4 = new Syncfusion.Windows.Forms.Tools.GradientPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtTip = new System.Windows.Forms.TextBox();
+            this.txtTipBroj = new System.Windows.Forms.TextBox();
+            this.txtRNTip = new System.Windows.Forms.TextBox();
+            this.txtRNBroj = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -74,6 +81,8 @@ namespace Saobracaj.Uvoz
             this.gradientPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gradientPanel1)).BeginInit();
             this.gradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gradientPanel4)).BeginInit();
+            this.gradientPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStrip1
@@ -226,7 +235,7 @@ namespace Saobracaj.Uvoz
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1151, 647);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1152, 647);
             this.gridGroupingControl1.TabIndex = 9;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -252,6 +261,7 @@ namespace Saobracaj.Uvoz
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.gradientPanel4);
             this.splitContainer1.Panel1.Controls.Add(this.gradientPanel3);
             this.splitContainer1.Panel1.Controls.Add(this.gradientPanel2);
             this.splitContainer1.Panel1.Controls.Add(this.gradientPanel1);
@@ -273,9 +283,9 @@ namespace Saobracaj.Uvoz
             // gradientPanel3
             // 
             this.gradientPanel3.Controls.Add(this.chkFormiranTerminal);
-            this.gradientPanel3.Location = new System.Drawing.Point(13, 330);
+            this.gradientPanel3.Location = new System.Drawing.Point(9, 312);
             this.gradientPanel3.Name = "gradientPanel3";
-            this.gradientPanel3.Size = new System.Drawing.Size(161, 127);
+            this.gradientPanel3.Size = new System.Drawing.Size(165, 68);
             this.gradientPanel3.TabIndex = 229;
             // 
             // chkFormiranTerminal
@@ -293,7 +303,7 @@ namespace Saobracaj.Uvoz
             this.gradientPanel2.Controls.Add(this.chkAdministrativna);
             this.gradientPanel2.Controls.Add(this.chkKamion);
             this.gradientPanel2.Controls.Add(this.chkVOZ);
-            this.gradientPanel2.Location = new System.Drawing.Point(10, 197);
+            this.gradientPanel2.Location = new System.Drawing.Point(9, 179);
             this.gradientPanel2.Name = "gradientPanel2";
             this.gradientPanel2.Size = new System.Drawing.Size(161, 127);
             this.gradientPanel2.TabIndex = 228;
@@ -336,7 +346,7 @@ namespace Saobracaj.Uvoz
             this.gradientPanel1.Controls.Add(this.textBox1);
             this.gradientPanel1.Location = new System.Drawing.Point(9, 64);
             this.gradientPanel1.Name = "gradientPanel1";
-            this.gradientPanel1.Size = new System.Drawing.Size(161, 127);
+            this.gradientPanel1.Size = new System.Drawing.Size(161, 109);
             this.gradientPanel1.TabIndex = 227;
             // 
             // label2
@@ -378,7 +388,7 @@ namespace Saobracaj.Uvoz
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button2.Location = new System.Drawing.Point(13, 532);
+            this.button2.Location = new System.Drawing.Point(21, 610);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(158, 35);
             this.button2.TabIndex = 221;
@@ -390,7 +400,7 @@ namespace Saobracaj.Uvoz
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button1.Location = new System.Drawing.Point(14, 491);
+            this.button1.Location = new System.Drawing.Point(22, 569);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(160, 35);
             this.button1.TabIndex = 220;
@@ -437,6 +447,71 @@ namespace Saobracaj.Uvoz
             this.label43.TabIndex = 216;
             this.label43.Text = "IZDALA ORG JED";
             // 
+            // gradientPanel4
+            // 
+            this.gradientPanel4.Controls.Add(this.label5);
+            this.gradientPanel4.Controls.Add(this.txtRNBroj);
+            this.gradientPanel4.Controls.Add(this.txtRNTip);
+            this.gradientPanel4.Controls.Add(this.txtTipBroj);
+            this.gradientPanel4.Controls.Add(this.txtTip);
+            this.gradientPanel4.Controls.Add(this.label4);
+            this.gradientPanel4.Location = new System.Drawing.Point(9, 386);
+            this.gradientPanel4.Name = "gradientPanel4";
+            this.gradientPanel4.Size = new System.Drawing.Size(162, 164);
+            this.gradientPanel4.TabIndex = 230;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 11);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(129, 13);
+            this.label4.TabIndex = 227;
+            this.label4.Text = "PREVOZNO SREDSTVO";
+            // 
+            // txtTip
+            // 
+            this.txtTip.Enabled = false;
+            this.txtTip.Location = new System.Drawing.Point(11, 38);
+            this.txtTip.Name = "txtTip";
+            this.txtTip.Size = new System.Drawing.Size(48, 20);
+            this.txtTip.TabIndex = 228;
+            // 
+            // txtTipBroj
+            // 
+            this.txtTipBroj.Enabled = false;
+            this.txtTipBroj.Location = new System.Drawing.Point(69, 38);
+            this.txtTipBroj.Name = "txtTipBroj";
+            this.txtTipBroj.Size = new System.Drawing.Size(69, 20);
+            this.txtTipBroj.TabIndex = 229;
+            // 
+            // txtRNTip
+            // 
+            this.txtRNTip.Enabled = false;
+            this.txtRNTip.Location = new System.Drawing.Point(12, 90);
+            this.txtRNTip.Name = "txtRNTip";
+            this.txtRNTip.Size = new System.Drawing.Size(47, 20);
+            this.txtRNTip.TabIndex = 227;
+            // 
+            // txtRNBroj
+            // 
+            this.txtRNBroj.Enabled = false;
+            this.txtRNBroj.Location = new System.Drawing.Point(69, 90);
+            this.txtRNBroj.Name = "txtRNBroj";
+            this.txtRNBroj.Size = new System.Drawing.Size(69, 20);
+            this.txtRNBroj.TabIndex = 230;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(9, 69);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(81, 13);
+            this.label5.TabIndex = 231;
+            this.label5.Text = "RADNI NALOG";
+            // 
             // frmRadniNalogInterniPregled
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -467,6 +542,9 @@ namespace Saobracaj.Uvoz
             ((System.ComponentModel.ISupportInitialize)(this.gradientPanel1)).EndInit();
             this.gradientPanel1.ResumeLayout(false);
             this.gradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gradientPanel4)).EndInit();
+            this.gradientPanel4.ResumeLayout(false);
+            this.gradientPanel4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -506,5 +584,12 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.ToolStripButton toolStripButton8;
         private Syncfusion.Windows.Forms.Tools.GradientPanel gradientPanel3;
         private System.Windows.Forms.CheckBox chkFormiranTerminal;
+        private Syncfusion.Windows.Forms.Tools.GradientPanel gradientPanel4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtRNBroj;
+        private System.Windows.Forms.TextBox txtRNTip;
+        private System.Windows.Forms.TextBox txtTipBroj;
+        private System.Windows.Forms.TextBox txtTip;
+        private System.Windows.Forms.Label label4;
     }
 }

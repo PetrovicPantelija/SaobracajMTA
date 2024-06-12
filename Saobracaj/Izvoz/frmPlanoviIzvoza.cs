@@ -140,6 +140,11 @@ namespace Saobracaj.Izvoz
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            {
+                MessageBox.Show("Izaberite plan/mesec odlaska");
+                return;
+            }
             //Otvaranje forme za Terminal, sa Planom
             frmIzvoz ik = new frmIzvoz(1, Convert.ToInt32(txtSifra.Text));
             ik.Show();

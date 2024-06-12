@@ -36,7 +36,7 @@ namespace Saobracaj.RadniNalozi
 " inner join TipKontenjera on TipKontenjera.Id = VrstaKontejnera " +
 " where Zavrsen is null " +
 " union " +
-" Select RNPrijemPlatforme2.ID, BrojKontejnera, DATUMRAsporeda, TipKontenjera.Naziv as TipKOntejnera,  NalogIZdao, USkladiste, Skladista.Naziv,Kamion, NalogID, PrijemID, 'SC15' from RNPrijemPlatforme2 " +
+" Select RNPrijemPlatforme2.ID, BrojKontejnera, DATUMRAsporeda, TipKontenjera.Naziv as TipKOntejnera,  NalogIZdao, USkladiste, Skladista.Naziv,Kamion, NalogID, PrijemID, 'SC15 OD BRODARA' from RNPrijemPlatforme2 " +
 "  inner join Skladista on Skladista.ID = USkladiste " +
 " inner join TipKontenjera on TipKontenjera.Id = VrstaKontejnera " +
 " where Zavrsen is null ";

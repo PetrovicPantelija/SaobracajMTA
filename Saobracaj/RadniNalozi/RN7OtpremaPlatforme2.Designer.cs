@@ -57,6 +57,7 @@ namespace Saobracaj.RadniNalozi
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.cboVrstaRobe = new System.Windows.Forms.ComboBox();
             this.txtvrstarobe = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -65,20 +66,26 @@ namespace Saobracaj.RadniNalozi
             this.txtID = new System.Windows.Forms.TextBox();
             this.cboSaPoz = new System.Windows.Forms.ComboBox();
             this.cboSaSklad = new System.Windows.Forms.ComboBox();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.label2 = new System.Windows.Forms.Label();
             this.txtKamion = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtOtpremaID = new System.Windows.Forms.TextBox();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.txtNalogID = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.chkZavrsen = new System.Windows.Forms.CheckBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cboUsluga
             // 
             this.cboUsluga.FormattingEnabled = true;
             this.cboUsluga.ItemHeight = 13;
-            this.cboUsluga.Location = new System.Drawing.Point(400, 162);
+            this.cboUsluga.Location = new System.Drawing.Point(428, 95);
             this.cboUsluga.Margin = new System.Windows.Forms.Padding(2);
             this.cboUsluga.Name = "cboUsluga";
             this.cboUsluga.Size = new System.Drawing.Size(186, 21);
@@ -88,17 +95,18 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cboNaSredstvo.FormattingEnabled = true;
             this.cboNaSredstvo.ItemHeight = 13;
-            this.cboNaSredstvo.Location = new System.Drawing.Point(14, 168);
+            this.cboNaSredstvo.Location = new System.Drawing.Point(380, 277);
             this.cboNaSredstvo.Margin = new System.Windows.Forms.Padding(2);
             this.cboNaSredstvo.Name = "cboNaSredstvo";
             this.cboNaSredstvo.Size = new System.Drawing.Size(186, 21);
             this.cboNaSredstvo.TabIndex = 424;
+            this.cboNaSredstvo.Visible = false;
             // 
             // cboBrodar
             // 
             this.cboBrodar.FormattingEnabled = true;
             this.cboBrodar.ItemHeight = 13;
-            this.cboBrodar.Location = new System.Drawing.Point(606, 107);
+            this.cboBrodar.Location = new System.Drawing.Point(428, 51);
             this.cboBrodar.Margin = new System.Windows.Forms.Padding(2);
             this.cboBrodar.Name = "cboBrodar";
             this.cboBrodar.Size = new System.Drawing.Size(230, 21);
@@ -116,7 +124,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // txtNalogRealizovao
             // 
-            this.txtNalogRealizovao.Location = new System.Drawing.Point(865, 92);
+            this.txtNalogRealizovao.Location = new System.Drawing.Point(861, 95);
             this.txtNalogRealizovao.Margin = new System.Windows.Forms.Padding(2);
             this.txtNalogRealizovao.Name = "txtNalogRealizovao";
             this.txtNalogRealizovao.Size = new System.Drawing.Size(184, 20);
@@ -125,7 +133,7 @@ namespace Saobracaj.RadniNalozi
             // txtIDinazivplaniraneusluge
             // 
             this.txtIDinazivplaniraneusluge.AutoSize = true;
-            this.txtIDinazivplaniraneusluge.Location = new System.Drawing.Point(401, 140);
+            this.txtIDinazivplaniraneusluge.Location = new System.Drawing.Point(425, 77);
             this.txtIDinazivplaniraneusluge.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtIDinazivplaniraneusluge.Name = "txtIDinazivplaniraneusluge";
             this.txtIDinazivplaniraneusluge.Size = new System.Drawing.Size(131, 13);
@@ -135,7 +143,7 @@ namespace Saobracaj.RadniNalozi
             // txtSAPozicijeskladista
             // 
             this.txtSAPozicijeskladista.AutoSize = true;
-            this.txtSAPozicijeskladista.Location = new System.Drawing.Point(11, 243);
+            this.txtSAPozicijeskladista.Location = new System.Drawing.Point(12, 53);
             this.txtSAPozicijeskladista.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtSAPozicijeskladista.Name = "txtSAPozicijeskladista";
             this.txtSAPozicijeskladista.Size = new System.Drawing.Size(104, 13);
@@ -145,7 +153,7 @@ namespace Saobracaj.RadniNalozi
             // txtSASkladista
             // 
             this.txtSASkladista.AutoSize = true;
-            this.txtSASkladista.Location = new System.Drawing.Point(11, 199);
+            this.txtSASkladista.Location = new System.Drawing.Point(12, 9);
             this.txtSASkladista.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtSASkladista.Name = "txtSASkladista";
             this.txtSASkladista.Size = new System.Drawing.Size(65, 13);
@@ -155,7 +163,7 @@ namespace Saobracaj.RadniNalozi
             // txtnazivbrodara
             // 
             this.txtnazivbrodara.AutoSize = true;
-            this.txtnazivbrodara.Location = new System.Drawing.Point(613, 92);
+            this.txtnazivbrodara.Location = new System.Drawing.Point(425, 36);
             this.txtnazivbrodara.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtnazivbrodara.Name = "txtnazivbrodara";
             this.txtnazivbrodara.Size = new System.Drawing.Size(73, 13);
@@ -167,7 +175,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cboVrstaKontejnera.FormattingEnabled = true;
             this.cboVrstaKontejnera.ItemHeight = 13;
-            this.cboVrstaKontejnera.Location = new System.Drawing.Point(400, 110);
+            this.cboVrstaKontejnera.Location = new System.Drawing.Point(11, 137);
             this.cboVrstaKontejnera.Margin = new System.Windows.Forms.Padding(2);
             this.cboVrstaKontejnera.Name = "cboVrstaKontejnera";
             this.cboVrstaKontejnera.Size = new System.Drawing.Size(186, 21);
@@ -176,7 +184,7 @@ namespace Saobracaj.RadniNalozi
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(401, 95);
+            this.label4.Location = new System.Drawing.Point(11, 121);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(84, 13);
@@ -185,7 +193,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // txtBrojKontejnera
             // 
-            this.txtBrojKontejnera.Location = new System.Drawing.Point(400, 68);
+            this.txtBrojKontejnera.Location = new System.Drawing.Point(11, 95);
             this.txtBrojKontejnera.Margin = new System.Windows.Forms.Padding(2);
             this.txtBrojKontejnera.Name = "txtBrojKontejnera";
             this.txtBrojKontejnera.Size = new System.Drawing.Size(136, 20);
@@ -194,7 +202,7 @@ namespace Saobracaj.RadniNalozi
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(407, 51);
+            this.label3.Location = new System.Drawing.Point(11, 77);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 13);
@@ -205,7 +213,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.txtDatumRealizacije.CustomFormat = "dd.MM.yyyy HH:mm";
             this.txtDatumRealizacije.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtDatumRealizacije.Location = new System.Drawing.Point(269, 107);
+            this.txtDatumRealizacije.Location = new System.Drawing.Point(861, 54);
             this.txtDatumRealizacije.Margin = new System.Windows.Forms.Padding(2);
             this.txtDatumRealizacije.Name = "txtDatumRealizacije";
             this.txtDatumRealizacije.Size = new System.Drawing.Size(122, 20);
@@ -215,7 +223,7 @@ namespace Saobracaj.RadniNalozi
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(266, 92);
+            this.label9.Location = new System.Drawing.Point(858, 36);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(87, 13);
@@ -225,17 +233,18 @@ namespace Saobracaj.RadniNalozi
             // txtNAvoznosredstvo
             // 
             this.txtNAvoznosredstvo.AutoSize = true;
-            this.txtNAvoznosredstvo.Location = new System.Drawing.Point(11, 153);
+            this.txtNAvoznosredstvo.Location = new System.Drawing.Point(377, 260);
             this.txtNAvoznosredstvo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtNAvoznosredstvo.Name = "txtNAvoznosredstvo";
             this.txtNAvoznosredstvo.Size = new System.Drawing.Size(97, 13);
             this.txtNAvoznosredstvo.TabIndex = 400;
             this.txtNAvoznosredstvo.Text = "NA vozno sredstvo";
+            this.txtNAvoznosredstvo.Visible = false;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(862, 36);
+            this.label6.Location = new System.Drawing.Point(266, 36);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(63, 13);
@@ -246,7 +255,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.txtDatumRasporeda.CustomFormat = "dd.MM.yyyy HH:mm";
             this.txtDatumRasporeda.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtDatumRasporeda.Location = new System.Drawing.Point(269, 69);
+            this.txtDatumRasporeda.Location = new System.Drawing.Point(269, 96);
             this.txtDatumRasporeda.Margin = new System.Windows.Forms.Padding(2);
             this.txtDatumRasporeda.Name = "txtDatumRasporeda";
             this.txtDatumRasporeda.Size = new System.Drawing.Size(122, 20);
@@ -256,7 +265,7 @@ namespace Saobracaj.RadniNalozi
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(266, 54);
+            this.label1.Location = new System.Drawing.Point(266, 77);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 13);
@@ -274,7 +283,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // txtNapomena
             // 
-            this.txtNapomena.Location = new System.Drawing.Point(861, 154);
+            this.txtNapomena.Location = new System.Drawing.Point(861, 137);
             this.txtNapomena.Margin = new System.Windows.Forms.Padding(2);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
@@ -284,7 +293,7 @@ namespace Saobracaj.RadniNalozi
             // lbl2
             // 
             this.lbl2.AutoSize = true;
-            this.lbl2.Location = new System.Drawing.Point(858, 139);
+            this.lbl2.Location = new System.Drawing.Point(858, 118);
             this.lbl2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl2.Name = "lbl2";
             this.lbl2.Size = new System.Drawing.Size(59, 13);
@@ -300,7 +309,9 @@ namespace Saobracaj.RadniNalozi
             this.tsSave,
             this.tsDelete,
             this.toolStripSeparator1,
-            this.toolStripButton1});
+            this.toolStripButton1,
+            this.toolStripButton2,
+            this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1064, 27);
@@ -342,25 +353,39 @@ namespace Saobracaj.RadniNalozi
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.BackColor = System.Drawing.Color.DarkRed;
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(248, 24);
+            this.toolStripButton1.Text = "FORMIRAJ OTPREMA PLATFORME - BRODAR";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // cboVrstaRobe
             // 
             this.cboVrstaRobe.FormattingEnabled = true;
             this.cboVrstaRobe.ItemHeight = 13;
-            this.cboVrstaRobe.Location = new System.Drawing.Point(606, 159);
+            this.cboVrstaRobe.Location = new System.Drawing.Point(850, 241);
             this.cboVrstaRobe.Margin = new System.Windows.Forms.Padding(2);
             this.cboVrstaRobe.Name = "cboVrstaRobe";
             this.cboVrstaRobe.Size = new System.Drawing.Size(186, 21);
             this.cboVrstaRobe.TabIndex = 440;
+            this.cboVrstaRobe.Visible = false;
             // 
             // txtvrstarobe
             // 
             this.txtvrstarobe.AutoSize = true;
-            this.txtvrstarobe.Location = new System.Drawing.Point(603, 140);
+            this.txtvrstarobe.Location = new System.Drawing.Point(847, 222);
             this.txtvrstarobe.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtvrstarobe.Name = "txtvrstarobe";
             this.txtvrstarobe.Size = new System.Drawing.Size(55, 13);
             this.txtvrstarobe.TabIndex = 439;
             this.txtvrstarobe.Text = "Vrsta robe";
+            this.txtvrstarobe.Visible = false;
             // 
             // dataGridView1
             // 
@@ -379,10 +404,10 @@ namespace Saobracaj.RadniNalozi
             // 
             // txtNalogIzdao
             // 
-            this.txtNalogIzdao.Location = new System.Drawing.Point(865, 51);
+            this.txtNalogIzdao.Location = new System.Drawing.Point(269, 52);
             this.txtNalogIzdao.Margin = new System.Windows.Forms.Padding(2);
             this.txtNalogIzdao.Name = "txtNalogIzdao";
-            this.txtNalogIzdao.Size = new System.Drawing.Size(184, 20);
+            this.txtNalogIzdao.Size = new System.Drawing.Size(143, 20);
             this.txtNalogIzdao.TabIndex = 436;
             // 
             // label8
@@ -408,7 +433,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cboSaPoz.FormattingEnabled = true;
             this.cboSaPoz.ItemHeight = 13;
-            this.cboSaPoz.Location = new System.Drawing.Point(12, 258);
+            this.cboSaPoz.Location = new System.Drawing.Point(13, 68);
             this.cboSaPoz.Margin = new System.Windows.Forms.Padding(2);
             this.cboSaPoz.Name = "cboSaPoz";
             this.cboSaPoz.Size = new System.Drawing.Size(188, 21);
@@ -418,58 +443,115 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cboSaSklad.FormattingEnabled = true;
             this.cboSaSklad.ItemHeight = 13;
-            this.cboSaSklad.Location = new System.Drawing.Point(11, 214);
+            this.cboSaSklad.Location = new System.Drawing.Point(12, 24);
             this.cboSaSklad.Margin = new System.Windows.Forms.Padding(2);
             this.cboSaSklad.Name = "cboSaSklad";
             this.cboSaSklad.Size = new System.Drawing.Size(151, 21);
             this.cboSaSklad.TabIndex = 440;
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.BackColor = System.Drawing.Color.White;
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(248, 24);
-            this.toolStripButton1.Text = "FORMIRAJ OTPREMA PLATFORME - BRODAR";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 95);
+            this.label2.Location = new System.Drawing.Point(425, 155);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 443;
             this.label2.Text = "Kamion";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtKamion
             // 
-            this.txtKamion.Location = new System.Drawing.Point(81, 92);
+            this.txtKamion.Location = new System.Drawing.Point(428, 171);
             this.txtKamion.Margin = new System.Windows.Forms.Padding(2);
             this.txtKamion.Name = "txtKamion";
             this.txtKamion.Size = new System.Drawing.Size(153, 20);
             this.txtKamion.TabIndex = 442;
+            this.txtKamion.TextChanged += new System.EventHandler(this.txtKamion_TextChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 119);
+            this.label5.Location = new System.Drawing.Point(425, 199);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 13);
             this.label5.TabIndex = 445;
             this.label5.Text = "Otprema ID";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // txtOtpremaID
             // 
-            this.txtOtpremaID.Location = new System.Drawing.Point(81, 116);
+            this.txtOtpremaID.Location = new System.Drawing.Point(428, 219);
             this.txtOtpremaID.Margin = new System.Windows.Forms.Padding(2);
             this.txtOtpremaID.Name = "txtOtpremaID";
             this.txtOtpremaID.Size = new System.Drawing.Size(153, 20);
             this.txtOtpremaID.TabIndex = 444;
+            this.txtOtpremaID.TextChanged += new System.EventHandler(this.txtOtpremaID_TextChanged);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.BackColor = System.Drawing.Color.SeaGreen;
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(91, 24);
+            this.toolStripButton2.Text = "Potvrdi završen";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // txtNalogID
+            // 
+            this.txtNalogID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txtNalogID.Location = new System.Drawing.Point(428, 133);
+            this.txtNalogID.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNalogID.Name = "txtNalogID";
+            this.txtNalogID.Size = new System.Drawing.Size(101, 20);
+            this.txtNalogID.TabIndex = 447;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(425, 118);
+            this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(49, 13);
+            this.label19.TabIndex = 446;
+            this.label19.Text = "Nalog ID";
+            // 
+            // chkZavrsen
+            // 
+            this.chkZavrsen.AutoSize = true;
+            this.chkZavrsen.Location = new System.Drawing.Point(861, 196);
+            this.chkZavrsen.Name = "chkZavrsen";
+            this.chkZavrsen.Size = new System.Drawing.Size(65, 17);
+            this.chkZavrsen.TabIndex = 448;
+            this.chkZavrsen.Text = "Zavrsen";
+            this.chkZavrsen.UseVisualStyleBackColor = true;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.txtSASkladista);
+            this.panel1.Controls.Add(this.txtSAPozicijeskladista);
+            this.panel1.Controls.Add(this.cboSaPoz);
+            this.panel1.Controls.Add(this.cboSaSklad);
+            this.panel1.Location = new System.Drawing.Point(14, 171);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(215, 102);
+            this.panel1.TabIndex = 449;
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.BackColor = System.Drawing.Color.Olive;
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton3.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(133, 24);
+            this.toolStripButton3.Text = "ARHIVIRAJ KONTEJNER";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // RN7OtpremaPlatforme2
             // 
@@ -477,13 +559,15 @@ namespace Saobracaj.RadniNalozi
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1064, 630);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.chkZavrsen);
+            this.Controls.Add(this.txtNalogID);
+            this.Controls.Add(this.label19);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtOtpremaID);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtKamion);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.cboSaSklad);
-            this.Controls.Add(this.cboSaPoz);
             this.Controls.Add(this.cboVrstaRobe);
             this.Controls.Add(this.txtvrstarobe);
             this.Controls.Add(this.txtID);
@@ -497,8 +581,6 @@ namespace Saobracaj.RadniNalozi
             this.Controls.Add(this.lbl1);
             this.Controls.Add(this.txtNalogRealizovao);
             this.Controls.Add(this.txtIDinazivplaniraneusluge);
-            this.Controls.Add(this.txtSAPozicijeskladista);
-            this.Controls.Add(this.txtSASkladista);
             this.Controls.Add(this.txtnazivbrodara);
             this.Controls.Add(this.cboVrstaKontejnera);
             this.Controls.Add(this.label4);
@@ -518,6 +600,8 @@ namespace Saobracaj.RadniNalozi
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -564,5 +648,11 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.TextBox txtKamion;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtOtpremaID;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.TextBox txtNalogID;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.CheckBox chkZavrsen;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
     }
 }

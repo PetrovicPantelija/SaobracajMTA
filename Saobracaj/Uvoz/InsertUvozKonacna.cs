@@ -16,7 +16,7 @@ namespace Saobracaj.Uvoz
             int MestoIstovara, int KontaktOsoba, string Mail, string Plomba1, string Plomba2, decimal NetoRoba, decimal BrutoRoba, decimal TaraKont, decimal BrutoKont,
             int NapomenaPoz, DateTime ATAOtpreme, int BrojVoza, string Relacija, DateTime ATADolazak, decimal Koleta, int RLTerminali
             , string Napomena1, int VrstaPregleda, int Nalogodavac1, string Ref1, int Nalogodavac2,
-string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet)
+string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet, decimal TaraKontejneraT)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -444,6 +444,13 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             prioritet.Value = Prioritet;
             cmd.Parameters.Add(prioritet);
 
+            SqlParameter tarakontejnerat = new SqlParameter();
+            tarakontejnerat.ParameterName = "@TaraKontejneraT";
+            tarakontejnerat.SqlDbType = SqlDbType.Decimal;
+            tarakontejnerat.Direction = ParameterDirection.Input;
+            tarakontejnerat.Value = TaraKontejneraT;
+            cmd.Parameters.Add(tarakontejnerat);
+
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
             cmd.Transaction = myTransaction;
@@ -484,7 +491,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             int MestoIstovara, int KontaktOsoba, string Mail, string Plomba1, string Plomba2, decimal NetoRoba, decimal BrutoRoba, decimal TaraKont, decimal BrutoKont,
             int NapomenaPoz, DateTime ATAOtpreme, int BrojVoza, string Relacija, DateTime ATADolazak, decimal Koleta, int RLTerminali
             , string Napomena1, int VrstaPregleda, int Nalogodavac1, string Ref1, int Nalogodavac2,
-string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet, int AdresaMestaUtovara, string KontaktOsobe)
+string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozila, int DobijenBZ, int Prioritet, int AdresaMestaUtovara, string KontaktOsobe, decimal TaraKontejneraT)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -926,6 +933,13 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             kontaktosobe.Direction = ParameterDirection.Input;
             kontaktosobe.Value = KontaktOsobe;
             cmd.Parameters.Add(kontaktosobe);
+
+            SqlParameter tarakontejnerat = new SqlParameter();
+            tarakontejnerat.ParameterName = "@TaraKontejneraT";
+            tarakontejnerat.SqlDbType = SqlDbType.Decimal;
+            tarakontejnerat.Direction = ParameterDirection.Input;
+            tarakontejnerat.Value = TaraKontejneraT;
+            cmd.Parameters.Add(tarakontejnerat);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -2528,6 +2542,64 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
 
         }
 
+        public void PrenesiPlanUtovaraUPrijemPLatforma(int IDPrijema, int IDNaloga)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "spPrenesiPlanUtovaraUPrijemPlatforma";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@IDPrijema";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = IDPrijema;
+            cmd.Parameters.Add(id);
+
+
+            SqlParameter idnadredjena = new SqlParameter();
+            idnadredjena.ParameterName = "@IDNaloga";
+            idnadredjena.SqlDbType = SqlDbType.Int;
+            idnadredjena.Direction = ParameterDirection.Input;
+            idnadredjena.Value = IDNaloga;
+            cmd.Parameters.Add(idnadredjena);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+
         public void PrenesiKontejnerIzPlanaNaPrijemnicu(int KontejnerID, int NalogID)
         {
             SqlConnection conn = new SqlConnection(connection);
@@ -2586,7 +2658,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
 
         }
 
-        public void PromeniSaPrijemnice(int KontejnerID, string Plomba1, string Plomba2, string BrojKontejnera, string BrojVagona, double TaraKontejnera, int VrstaKontejnera)
+        public void PromeniSaPrijemnice(int KontejnerID, string Plomba1, string Plomba2, string BrojKontejnera, string BrojVagona, double TaraKontejnera, int VrstaKontejnera, decimal TaraKontejneraT)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -2645,6 +2717,15 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             vrstakontejnera.Direction = ParameterDirection.Input;
             vrstakontejnera.Value = VrstaKontejnera;
             cmd.Parameters.Add(vrstakontejnera);
+
+
+            SqlParameter tarakontejnerat = new SqlParameter();
+            tarakontejnerat.ParameterName = "@TaraKontejneraT";
+            tarakontejnerat.SqlDbType = SqlDbType.Decimal;
+            tarakontejnerat.Direction = ParameterDirection.Input;
+            tarakontejnerat.Value = TaraKontejneraT;
+            cmd.Parameters.Add(tarakontejnerat);
+
 
 
             conn.Open();

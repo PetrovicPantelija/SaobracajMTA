@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace Saobracaj.RadniNalozi
@@ -63,6 +64,8 @@ namespace Saobracaj.RadniNalozi
                 da2.Fill(ds2);
                 dataGridView4.ReadOnly = true;
                 dataGridView4.DataSource = ds2.Tables[0];
+
+                dataGridView4.Columns["PrIzdKol"].DefaultCellStyle.BackColor = Color.LightGreen;
             }
             DGVCombo();
 
@@ -81,6 +84,8 @@ namespace Saobracaj.RadniNalozi
             dt.Load(cmd.ExecuteReader());
             conn.Close();
             dataGridView1.DataSource = dt;
+
+            dataGridView1.Columns["PrIzdKol"].DefaultCellStyle.BackColor = Color.LightGreen;
         }
         private void RefreshGV()
         {
@@ -417,6 +422,12 @@ namespace Saobracaj.RadniNalozi
                 }
             }
             RefreshGV();
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            OtpremnicaPregled op = new OtpremnicaPregled();
+            op.Show();
         }
 
         private void button2_Click_1(object sender, EventArgs e)

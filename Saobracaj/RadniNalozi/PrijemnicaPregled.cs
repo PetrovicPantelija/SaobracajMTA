@@ -99,7 +99,10 @@ namespace Saobracaj.RadniNalozi
             reportViewer1.LocalReport.DataSources.Add(rds);
             reportViewer1.RefreshReport();
             */
-
+          if (txtSifra.Text == "")
+                { MessageBox.Show("Izberite prijemnicu");
+                return;
+            }
             PrijemnicaDataSetTableAdapters.NPreRptTableAdapter ta = new PrijemnicaDataSetTableAdapters.NPreRptTableAdapter();
             PrijemnicaDataSet.NPreRptDataTable dt = new PrijemnicaDataSet.NPreRptDataTable();
             ta.Fill(dt, Convert.ToInt32(txtSifra.Text));

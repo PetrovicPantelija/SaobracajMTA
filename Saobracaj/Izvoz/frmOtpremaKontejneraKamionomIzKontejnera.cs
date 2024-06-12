@@ -142,6 +142,27 @@ namespace Saobracaj.Izvoz
 
 
         }
+        int VratiUsluguPoNalogu(string NalogID)
+        {
+            int Manipulacija = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT IDManipulacijaJed  from RadniNalogInterni " +
+            "  where ID =" + NalogID, con);;
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+               Manipulacija =  Convert.ToInt32(dr["IDManipulacijaJed"].ToString());
+
+            }
+            con.Close();
+            return Manipulacija;
+
+        }
 
         private void tsSave_Click(object sender, EventArgs e)
         {
@@ -179,21 +200,43 @@ namespace Saobracaj.Izvoz
 
             if (txtKontejnerID.Text != "" && txtNalogID.Text != "")
             {
+                int Usluga = VratiUsluguPoNalogu(txtNalogID.Text);
                 if (chkUvoz.Checked == true)
                 {
+                    
                     InsertIzvozKonacna ins = new InsertIzvozKonacna();
                     ins.PrenesiKontejnerUOtpremuKamionomUvoz(Convert.ToInt32(txtKontejnerID.Text), Convert.ToInt32(txtNalogID.Text));
                     // RefreshDataGrid();
                     MessageBox.Show("Uspešno ste formirali Otpremu kamionom");
+                    DialogResult dialogResult = MessageBox.Show("Da li želite da formirate RN 6 za otpremu platforme", "Radni nalozi?", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        RadniNalozi.RN6OtpremaPlatforme rnop = new RadniNalozi.RN6OtpremaPlatforme(txtSifra.Text, KorisnikCene, txtNalogID.Text, txtRegBrKamiona.Text, 0);
+                        rnop.Show();
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        return;
+                    }
+
                     //FORMIRATI RADNI NALOG
                 }
                 else if (chkIzvoz.Checked == true)
                 {
                     InsertIzvozKonacna ins = new InsertIzvozKonacna();
                     //Prakticno napravi stavku
-                    ins.PrenesiKontejnerUOtpremuKamionomIzvoz(Convert.ToInt32(txtSifra.Text),Convert.ToInt32(txtKontejnerID.Text), Convert.ToInt32(txtNalogID.Text));
+                    ins.PrenesiKontejnerUOtpremuKamionomIzvoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtKontejnerID.Text), Convert.ToInt32(txtNalogID.Text));
                     // RefreshDataGrid();
                     MessageBox.Show("Uspešno ste formirali Otpremu kamionom");
+                }
+                else if (chkTerminal.Checked == true)
+                {
+                    InsertIzvozKonacna ins = new InsertIzvozKonacna();
+                    //Prakticno napravi stavku
+                    ins.PrenesiKontejnerUOtpremuKamionomIzvoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtKontejnerID.Text), Convert.ToInt32(txtNalogID.Text));
+                    // RefreshDataGrid();
+                    MessageBox.Show("Uspešno ste formirali Otpremu kamionom");
+
                 }
               
 
@@ -245,12 +288,17 @@ namespace Saobracaj.Izvoz
                         {
                             if (chkIzvoz.Checked == true)
                             {
-                                Saobracaj.Dokumenta.frmOtpremaKontejneraIzvozKamion ter2 = new Saobracaj.Dokumenta.frmOtpremaKontejneraIzvozKamion(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+                                Saobracaj.Dokumenta.frmOtpremaKontejneraIzvozKamion ter2 = new Saobracaj.Dokumenta.frmOtpremaKontejneraIzvozKamion( KorisnikCene,txtNalogID.Text, 0,2, txtSifra.Text);
                                 ter2.Show();
                             }
                             else if (chkUvoz.Checked == true)
                             {
                                 Saobracaj.Dokumenta.frmOtpremaKontejneraUvozKamion ter2 = new Saobracaj.Dokumenta.frmOtpremaKontejneraUvozKamion(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+                                ter2.Show();
+                            }
+                            else if (chkTerminal.Checked == true)
+                            {
+                                Saobracaj.Dokumenta.frmOtpremaKontejneraIzvozKamion ter2 = new Saobracaj.Dokumenta.frmOtpremaKontejneraIzvozKamion(KorisnikCene, txtNalogID.Text, 0, 4, txtSifra.Text);
                                 ter2.Show();
                             }
                             return;
@@ -266,6 +314,11 @@ namespace Saobracaj.Izvoz
 
                 }
             }
+
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
 
         }
     }

@@ -133,15 +133,15 @@ namespace Saobracaj.RadniNalozi
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(504, 9);
+            this.button1.Location = new System.Drawing.Point(476, 6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(173, 23);
+            this.button1.Size = new System.Drawing.Size(132, 53);
             this.button1.TabIndex = 197;
-            this.button1.Text = "Pregled skladišta";
+            this.button1.Text = "MAPA SKLADISTA";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

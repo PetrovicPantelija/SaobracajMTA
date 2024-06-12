@@ -27,6 +27,7 @@ namespace Saobracaj.RadniNalozi
             InitializeComponent();
             FillGV();
             FillCombo();
+            txtDatumRasporeda.Value = DateTime.Now;
 
         }
 
@@ -38,6 +39,7 @@ namespace Saobracaj.RadniNalozi
             FillGV();
             FillCombo();
             KorisnikTekuci = Korisnik;
+            txtDatumRasporeda.Value = DateTime.Now;
         }
 
         public RN1PrijemVoza(string Korisnik, string IDVOza, string IDUsluge, string PrijemID)
@@ -56,6 +58,7 @@ namespace Saobracaj.RadniNalozi
             RefreshStavkeVoza(PrijemID);
             FillGV();
             KorisnikTekuci = Korisnik;
+            txtDatumRasporeda.Value = DateTime.Now;
 
         }
         private void NapuniVrstuUsluge(string IDUsluga)
@@ -114,7 +117,10 @@ namespace Saobracaj.RadniNalozi
 
         private void FillGVPoVozu()
         {
-            var select = "select RNPrijemVoza.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, DatumRasporeda, NalogIzdao, Voz.BrVoza, NaSkladiste,Skladista.Naziv as Sklad,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, VrstaManipulacije.Naziv as Usliga, BrojPlombe, RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID,RNPrijemVoza.NalogID, DatumRealizacijeVP, NalogRealizovaoVP, ZavrsenVP, DatumRealizacije, NalogRealizovao, Zavrsen  from RNPrijemVoza " +
+            var select = "select RNPrijemVoza.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, DatumRasporeda, NalogIzdao, Voz.BrVoza, " +
+                "NaSkladiste,Skladista.Naziv as Sklad,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, VrstaManipulacije.Naziv as Usliga, BrojPlombe," +
+                " RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID,RNPrijemVoza.NalogID, DatumRealizacijeVP, NalogRealizovaoVP, ZavrsenVP, NapomenaPlombe1, NapomenaPlombe2, " +
+                "DatumRealizacije, NalogRealizovao, Zavrsen  from RNPrijemVoza " +
 " inner join TipKontenjera on TipKontenjera.ID = RNPrijemVoza.VrstaKontejnera " +
 " inner join Voz on RNPrijemVoza.SaVoznogSredstva = Voz.ID " +
 " inner join Skladista on Skladista.ID = NaSkladiste " +
@@ -145,7 +151,9 @@ namespace Saobracaj.RadniNalozi
 
         private void FillGV()
         {
-            var select = "select RNPrijemVoza.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, DatumRasporeda, NalogIzdao, Voz.BrVoza, NaSkladiste,Skladista.Naziv as Sklad,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, VrstaManipulacije.Naziv as Usliga, BrojPlombe, RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID,RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, Zavrsen  from RNPrijemVoza " +
+            var select = "select RNPrijemVoza.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, DatumRasporeda, NalogIzdao, " +
+                " Voz.BrVoza, NaSkladiste,Skladista.Naziv as Sklad,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, VrstaManipulacije.Naziv as Usliga, BrojPlombe, BrojPlombe2,  NapomenaPlombe1, NapomenaPlombe2, " +
+                " RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID,RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, Zavrsen  from RNPrijemVoza " +
 " inner join TipKontenjera on TipKontenjera.ID = RNPrijemVoza.VrstaKontejnera " +
 " inner join Voz on RNPrijemVoza.SaVoznogSredstva = Voz.ID " +
 " inner join Skladista on Skladista.ID = NaSkladiste " +
@@ -357,7 +365,7 @@ namespace Saobracaj.RadniNalozi
             if (dialogResult == DialogResult.Yes)
             {
                 RadniNalozi.InsertRN ir = new InsertRN();
-                ir.InsRNPPrijemVozaCeoVoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboSaVoznog.SelectedValue), Convert.ToInt32(cboNaSkladiste.SelectedValue), Convert.ToInt32(cboNaPoziciju.SelectedValue), Convert.ToInt32(cboUsluge.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text));
+                ir.InsRNPPrijemVozaCeoVoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboSaVoznog.SelectedValue), Convert.ToInt32(cboNaSkladiste.SelectedValue), Convert.ToInt32(cboNaPoziciju.SelectedValue), Convert.ToInt32(cboUsluge.SelectedValue), " ", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text));
                 FillGV();
             }
             else if (dialogResult == DialogResult.No)
@@ -457,7 +465,7 @@ namespace Saobracaj.RadniNalozi
             SqlCommand cmd = new SqlCommand(" select RNPrijemVoza.ID, RNPrijemVoza.BrojKontejnera, TipKontenjera.ID as VrstaKontejnera, DatumRasporeda," +
                 " NalogIzdao, Voz.BrVoza, NaSkladiste, NaPozicijuSklad,  PArtnerji.PaSifra as Uvoznik, p2.PaSifra as Brodar, VrstaManipulacije.ID as Usluga, " +
                 "BrojPlombe, RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID, RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, " +
-                "Zavrsen, NalogRealizovaoVP, ZavrsenVP, NapomenaVP, DatumRealizacijeVP, PotrebanCIR, NalogRealizovaoCIR, DatumRealizacijeCIR, ZavrsenCIR from RNPrijemVoza " +
+                "Zavrsen, NalogRealizovaoVP, ZavrsenVP, NapomenaVP, DatumRealizacijeVP,  NapomenaPlombe1, NapomenaPlombe2, PotrebanCIR, NalogRealizovaoCIR, DatumRealizacijeCIR, ZavrsenCIR, BrojPlombe2 from RNPrijemVoza " +
 " inner join TipKontenjera on TipKontenjera.ID = RNPrijemVoza.VrstaKontejnera " +
 " inner join Voz on RNPrijemVoza.SaVoznogSredstva = Voz.ID " +
 " inner join Skladista on Skladista.ID = NaSkladiste " +
@@ -473,15 +481,14 @@ namespace Saobracaj.RadniNalozi
                 txtDatumRasporeda.Value = Convert.ToDateTime(dr["DatumRasporeda"].ToString());
                 txtbrojkontejnera.Text = dr["BrojKontejnera"].ToString();
                 cbovrstakontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
-                        cboUsluge.SelectedValue = Convert.ToInt32(dr["Usluga"].ToString());
-                  txtNalogRealizovao.Text = dr["NalogRealizovao"].ToString();
+                cboUsluge.SelectedValue = Convert.ToInt32(dr["Usluga"].ToString());
+                txtNalogRealizovao.Text = dr["NalogRealizovao"].ToString();
                 txtNalogRealizovaoVP.Text = dr["NalogRealizovaoVP"].ToString();
-
+                txtNapomenaPlombe.Text = dr["NapomenaPlombe1"].ToString();
+                txtNapomenaPlombe2.Text = dr["NapomenaPlombe2"].ToString();
                 txtPrijemID.Text = dr["PrijemID"].ToString();
-             
                 txtNalogID.Text = dr["NalogID"].ToString();
-            
-                 cboNaPoziciju.SelectedValue = Convert.ToInt32(dr["NaPozicijuSklad"].ToString());
+                cboNaPoziciju.SelectedValue = Convert.ToInt32(dr["NaPozicijuSklad"].ToString());
                 txtNalogIzdao.Text = dr["NalogIzdao"].ToString();
                 txtDatumRealizacije.Value = Convert.ToDateTime(dr["DatumRealizacije"].ToString());
                 if (dr["DatumRealizacijeVP"].ToString() == "")
@@ -493,11 +500,10 @@ namespace Saobracaj.RadniNalozi
                 }
                     
                 cboUvoznik.SelectedValue = Convert.ToInt32(dr["Uvoznik"].ToString());
-                 cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
-  //cboVrstaRobe.SelectedValue = Convert.ToInt32(dr["VrstaRobe"].ToString());
+                cboBrodar.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
                 cboNaSkladiste.SelectedValue = Convert.ToInt32(dr["NaSkladiste"].ToString());
-
                 txtBrojPlombe.Text = dr["BrojPlombe"].ToString();
+                txtBrojPlombe2.Text = dr["BrojPlombe2"].ToString();
                 txtNapomena.Text = dr["Napomena"].ToString();
                 txtNapomenaVP.Text = dr["NapomenaVP"].ToString();
 
@@ -520,8 +526,6 @@ namespace Saobracaj.RadniNalozi
                 { 
                     chkPotrebanCIR.Checked = true;
                     button4.Enabled = true;    
-
-
                 }
                 else
                 {
@@ -533,14 +537,11 @@ namespace Saobracaj.RadniNalozi
                 {
                     chkZavrsenCIR.Checked = true;
                     txtNalogRealizovaoCIR.Text = dr["NalogRealizovaoCIR"].ToString();
-                    //dtpNalogRealizovaoCIR.Value = Convert.ToDateTime(dr["DatumRealizacijeCIR"].ToString());
                 }
                 else
                 {
                     chkZavrsenCIR.Checked = false;
                 }
-
-               
             }
 
             con.Close();
@@ -596,7 +597,7 @@ namespace Saobracaj.RadniNalozi
             {
                 if (row.Selected == true)
                 {
-                    up.PotvrdiUradjenRN1VP(Convert.ToInt32(row.Cells[0].Value.ToString()), KorisnikTekuci);
+                    up.PotvrdiUradjenRN1VP(Convert.ToInt32(row.Cells[0].Value.ToString()), KorisnikTekuci, txtNapomenaVP.Text, txtNapomenaPlombe.Text, txtNapomenaPlombe2.Text);
                 }
 
             }
@@ -604,7 +605,8 @@ namespace Saobracaj.RadniNalozi
 
         private void button4_Click(object sender, EventArgs e)
         {
-            frmCIR cir = new frmCIR(Convert.ToInt32(txtID.Text));
+           // frmCIR(int PrijemID, int Leget)
+            frmCIR cir = new frmCIR(Convert.ToInt32(txtPrijemID.Text), 0);
             cir.Show();
         }
 
@@ -615,6 +617,7 @@ namespace Saobracaj.RadniNalozi
                 chkZavrsenCIR.Enabled = true;
                 txtNalogRealizovaoCIR.Enabled = true;
                 dtpNalogRealizovaoCIR.Enabled = true;
+                button4.Enabled = true;
 
             }
             else
@@ -622,6 +625,7 @@ namespace Saobracaj.RadniNalozi
                 chkZavrsenCIR.Enabled = false;
                 txtNalogRealizovaoCIR.Enabled = false;
                 dtpNalogRealizovaoCIR.Enabled = false;
+                button4.Enabled = false;
             }
         }
 
@@ -645,6 +649,21 @@ namespace Saobracaj.RadniNalozi
                 MessageBox.Show("Operacija se izvrsava samo ako je potreban CIR");
             }
            
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
+            FillGV();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

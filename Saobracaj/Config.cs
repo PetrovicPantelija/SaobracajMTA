@@ -64,7 +64,27 @@ namespace Saobracaj
                         OsnovnaLokacija= "1"
                         
                     };
-               
+
+                case "TA_TEST":
+                    return new CompanyConfiguration
+                    {
+                        Naziv = "TA",
+                        DB = @"Data Source=192.168.129.7\;Initial Catalog=TA_TEST;User ID=sa;Password=duki7990",
+                        Dokumenta = @"\\192.168.99.10\TA\",
+                        PIB = "108430447",
+                        Name_Value = "TRANSAGENT OPERATOR DOO BEOGRAD TEST\r\n",
+                        Ulica_Value = "Uzun Mirkova 3",
+                        Grad_Value = "Beograd",
+                        PostanskiBroj_Value = "11000",
+                        Line_Value = "Uzun Mirkova 3,11000 Beograd",
+                        CompanyID_Value = "RS108430447",
+                        MB_Value = "20997923",
+                        EmailSender_Value = "office@transagent.rs",
+                        OsnovnoSkladiste = "1",
+                        OsnovnaLokacija = "1"
+
+                    };
+
                 case "DPT":
                     return new CompanyConfiguration
                     {

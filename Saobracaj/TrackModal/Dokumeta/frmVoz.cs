@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Net;
 using System.Net.Mail;
+using Saobracaj.Izvoz;
 
 
 
@@ -29,8 +30,9 @@ namespace Testiranje.Dokumeta
         string Kor = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
         string niz = "";
         string BrojPlanaUvoza = "";
+        string BrojPlanaIzvoza = "";
 
-        string KorisnikCene = "Panta";
+        string KorisnikCene = Saobracaj.Sifarnici.frmLogovanje.user;
         bool status = false;
       //  int VozID = 1;
         public frmVoz()
@@ -39,7 +41,7 @@ namespace Testiranje.Dokumeta
 
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
 
-            KorisnikCene = "Panta";
+            //KorisnikCene = "Panta";
 
             ProveriFirmu();
         }
@@ -66,6 +68,7 @@ namespace Testiranje.Dokumeta
                         panelLeget.Visible = true;
                         panelLegetOperater.Visible = true;
                         panel1.Visible = false;
+                        chkTerminal.Visible = true;
                        // panelLegetUvoz.Visible = true;
                         return;
 
@@ -89,7 +92,7 @@ namespace Testiranje.Dokumeta
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
-            KorisnikCene = "Panta";
+          //  KorisnikCene = "Panta";
             txtSifra.Text = Voz.ToString();
             RefreshDataGrid2();
             VratiUkupanBrojKontejnera();
@@ -376,6 +379,8 @@ namespace Testiranje.Dokumeta
                 txtVremeIzvlacenjaO.Enabled = false;
                 dtpVremePolaskaO.Enabled = false;
                 dtpVremeDolaskaO.Enabled = false;
+                toolStripButton1.Visible = true;
+                toolStripButton2.Visible = false;
             }
             else
             {
@@ -392,6 +397,8 @@ namespace Testiranje.Dokumeta
                 txtVremeIzvlacenjaO.Enabled = true;
                 dtpVremePolaskaO.Enabled = true;
                 dtpVremeDolaskaO.Enabled = true;
+                toolStripButton1.Visible = false;
+                toolStripButton2.Visible = true;
             } 
             con.Close();
         }
@@ -722,6 +729,26 @@ namespace Testiranje.Dokumeta
 
         }
 
+        private void VratiZadnjiBrojPlanaIzvoza()
+        {
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Max([ID]) as ID from IzvozKonacnaZaglavlje", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+
+                BrojPlanaIzvoza = dr["ID"].ToString();
+            }
+
+            con.Close();
+        }
+
         private void VratiZadnjiBrojPlanaUvoza()
         {
 
@@ -757,8 +784,21 @@ namespace Testiranje.Dokumeta
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
+            /*
             Saobracaj.Izvoz.frmIzvozKonacnaZaglavlje fukz = new Saobracaj.Izvoz.frmIzvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text));
             fukz.Show();
+            */
+            int Terminal = 0;
+            if (chkTerminal.Checked == true) { Terminal = 1; }
+            
+            InsertIzvozKonacnaZaglavlje ins = new InsertIzvozKonacnaZaglavlje();
+            ins.InsIzvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text), txtNapomena.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "", Terminal);
+            VratiZadnjiBrojPlanaIzvoza();
+            MessageBox.Show("Uspesno ste formirirali novi Plan: " + BrojPlanaIzvoza + " potrebno je da dodelite kontejnere planu, koristite opciju Popunjavanje Plana kontejnerima");
+            frmFormiranjePlanaIzvoz fpi = new frmFormiranjePlanaIzvoz(Convert.ToInt32(BrojPlanaIzvoza));
+            fpi.Show();
+
+
         }
 
         private void tsPrvi_Click(object sender, EventArgs e)
