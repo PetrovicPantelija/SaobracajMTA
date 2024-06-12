@@ -85,7 +85,7 @@ namespace Saobracaj.Sifarnici
         }
         private void btn_TA_Click(object sender, EventArgs e)
         {
-            var companyConfig = ConfigManager.GetCompanyConfiguration("TA_TEST");
+            var companyConfig = ConfigManager.GetCompanyConfiguration("TA");
             connectionString = companyConfig.DB;
             Firma = companyConfig.Naziv;
             PIB = companyConfig.PIB;
