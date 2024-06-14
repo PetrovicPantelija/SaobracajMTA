@@ -1,14 +1,16 @@
-﻿using System;
+﻿using Saobracaj.Pantheon_Export;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Security.Cryptography.Xml;
 using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
     class InsertNajava
     {
-        public void InsNaj(string BrojNajave, int Voz, int Posiljalac, int Prevoznik, int Otpravna, int Uputna, int Primalac, int RobaNHM, string PrevozniPut, double Tezina, double Duzina, int BrojKola, bool RID, System.DateTime PredvidjenoPrimanje, System.DateTime StvarnoPrimanje, System.DateTime PredvidjenaPredaja, System.DateTime StvarnaPredaja, int Status, string OnBroj, string RidBroj, string Komentar, int VozP, int Granicna, int Platilac, bool AdHoc, int PrevoznikZa, string Faktura, string Zadatak, bool CIM, string Korisnik, string DispecerRid, int TipPrevoza, double NetoTezinaM, int PorudzbinaID, int ImaPovrat, int TehnologijaID, int RobaNHM2, string DodatnoPorudzbina, string Oznaka, string SerijaVagona, string OznakaPrefiks, string OznakaBroj, int BrojKontejnera)
+        public void InsNaj(string BrojNajave, int Voz, int Posiljalac, int Prevoznik, int Otpravna, int Uputna, int Primalac, int RobaNHM, string PrevozniPut, double Tezina, double Duzina, int BrojKola, bool RID, System.DateTime PredvidjenoPrimanje, System.DateTime StvarnoPrimanje, System.DateTime PredvidjenaPredaja, System.DateTime StvarnaPredaja, int Status, string OnBroj, string RidBroj, string Komentar, int VozP, int Granicna, int Platilac, bool AdHoc, int PrevoznikZa, string Faktura, string Zadatak, bool CIM, string Korisnik, string DispecerRid, int TipPrevoza, double NetoTezinaM, int PorudzbinaID, int ImaPovrat, int TehnologijaID, int RobaNHM2, string DodatnoPorudzbina, string Oznaka, string SerijaVagona, string OznakaPrefiks, string OznakaBroj, int BrojKontejnera,int OppID)
         {
 
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -335,6 +337,13 @@ namespace Saobracaj.Dokumenta
             parameter43.Value = BrojKontejnera;
             myCommand.Parameters.Add(parameter43);
 
+            SqlParameter parameter44 = new SqlParameter();
+            parameter44.ParameterName = "@OpportunityID";
+            parameter44.SqlDbType = SqlDbType.Int;
+            parameter44.Direction = ParameterDirection.Input;
+            parameter44.Value = OppID;
+            myCommand.Parameters.Add(parameter44);
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -584,7 +593,7 @@ namespace Saobracaj.Dokumenta
             }
         }
 
-        public void UpdNaj(int ID, string BrojNajave, int Voz, int Posiljalac, int Prevoznik, int Otpravna, int Uputna, int Primalac, int RobaNHM, string PrevozniPut, double Tezina, double Duzina, int BrojKola, bool RID, System.DateTime PredvidjenoPrimanje, System.DateTime StvarnoPrimanje, System.DateTime PredvidjenaPredaja, System.DateTime StvarnaPredaja, int Status, string OnBroj, string RIDBroj, string Komentar, int VozP, int Granicna, int Platilac, bool AdHoc, int PrevoznikZa, string Faktura, string Zadatak, bool CIM, string Korisnik, string DispecerRid, int TipPrevoza, double NetoTezinaM, int PorudzbinaID, int ImaPovrat, int TehnologijaID, int RobaNHM2, string DodatnoPorudzbina, string Oznaka, string SerijaVagona, string OznakaPrefiks, string OznakaBroj, int BrojKontejnera)
+        public void UpdNaj(int ID, string BrojNajave, int Voz, int Posiljalac, int Prevoznik, int Otpravna, int Uputna, int Primalac, int RobaNHM, string PrevozniPut, double Tezina, double Duzina, int BrojKola, bool RID, System.DateTime PredvidjenoPrimanje, System.DateTime StvarnoPrimanje, System.DateTime PredvidjenaPredaja, System.DateTime StvarnaPredaja, int Status, string OnBroj, string RIDBroj, string Komentar, int VozP, int Granicna, int Platilac, bool AdHoc, int PrevoznikZa, string Faktura, string Zadatak, bool CIM, string Korisnik, string DispecerRid, int TipPrevoza, double NetoTezinaM, int PorudzbinaID, int ImaPovrat, int TehnologijaID, int RobaNHM2, string DodatnoPorudzbina, string Oznaka, string SerijaVagona, string OznakaPrefiks, string OznakaBroj, int BrojKontejnera,int OppID)
         {
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -921,6 +930,13 @@ namespace Saobracaj.Dokumenta
             parameter43.Value = BrojKontejnera;
             myCommand.Parameters.Add(parameter43);
 
+            SqlParameter parameter44 = new SqlParameter();
+            parameter44.ParameterName = "@OpportunityID";
+            parameter44.SqlDbType= SqlDbType.Int;
+            parameter44.Direction = ParameterDirection.Input;
+            parameter44.Value = OppID;
+            myCommand.Parameters.Add(parameter44);
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;
@@ -1148,7 +1164,43 @@ namespace Saobracaj.Dokumenta
 
 
         }
+        public void InsNTNajava(string NazivNosiocaTroska,int Kupac,int Odeljenje,int OppID,int Posao,string Korisnik)
+        {
+            var connect = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            using (SqlConnection conn = new SqlConnection(connect))
+            {
+                conn.Open();
+                using (SqlTransaction transaction = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand cmd = conn.CreateCommand())
+                        {
+                            cmd.Transaction = transaction;
+                            cmd.CommandText = "InsertNTizNajave";
+                            cmd.CommandType = CommandType.StoredProcedure;
 
+                            cmd.Parameters.Add(new SqlParameter("@NazivNosiocaTroska", SqlDbType.NVarChar,50) { Value = NazivNosiocaTroska });
+                            cmd.Parameters.Add(new SqlParameter("@Kupac", SqlDbType.Int) { Value = Kupac });
+                            cmd.Parameters.Add(new SqlParameter("@Odeljenje", SqlDbType.Int) { Value = Odeljenje });
+                            cmd.Parameters.Add(new SqlParameter("@OppID", SqlDbType.Int) { Value = OppID });
+                            cmd.Parameters.Add(new SqlParameter("@Posao", SqlDbType.Int) { Value= Posao });
+                            cmd.Parameters.Add(new SqlParameter("@Korisnik", SqlDbType.NVarChar, 50) { Value = Korisnik });
+
+                            cmd.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Neuspešan upis cena u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                conn.Close();
+
+            }
+        }
 
     }
 }

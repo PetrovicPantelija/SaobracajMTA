@@ -32,7 +32,7 @@ namespace Saobracaj.Dokumenta
                      "  AktivnostiStavke ON LokomotivaPrimopredaja.StavkaAktivnostiID = AktivnostiStavke.ID " +
                     "   inner join Aktivnosti on Aktivnosti.ID = AktivnostiStavke.IdNadredjena " +
                      "  inner join Delavci on Delavci.DeSifra = Aktivnosti.Zaposleni " +
-                   "    order by LokomotivaPrimopredaja.ID desc ";
+                   "    order by AktivnostiStavke.DatumPocetka asc ";
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

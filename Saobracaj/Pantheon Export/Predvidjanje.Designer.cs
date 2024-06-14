@@ -51,13 +51,13 @@
             this.cboValuta = new System.Windows.Forms.ComboBox();
             this.cboOdeljenje = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cboFilterNazivNT = new System.Windows.Forms.ComboBox();
+            this.cboFilterNT = new System.Windows.Forms.ComboBox();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.cboPredvidjanjeIDFilter = new System.Windows.Forms.ComboBox();
             this.btnPredvidjanjeFilter = new System.Windows.Forms.Button();
             this.btnNTNazivFilter = new System.Windows.Forms.Button();
-            this.txtFilterNazivNT = new System.Windows.Forms.TextBox();
             this.btnNTFilter = new System.Windows.Forms.Button();
-            this.txtFilterNT = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -104,6 +104,7 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1614, 626);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // toolStrip1
@@ -299,23 +300,39 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.cboFilterNazivNT);
+            this.panel1.Controls.Add(this.cboFilterNT);
             this.panel1.Controls.Add(this.btnRefresh);
             this.panel1.Controls.Add(this.cboPredvidjanjeIDFilter);
             this.panel1.Controls.Add(this.btnPredvidjanjeFilter);
             this.panel1.Controls.Add(this.btnNTNazivFilter);
-            this.panel1.Controls.Add(this.txtFilterNazivNT);
             this.panel1.Controls.Add(this.btnNTFilter);
-            this.panel1.Controls.Add(this.txtFilterNT);
             this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.dataGridView2);
-            this.panel1.Location = new System.Drawing.Point(12, 50);
+            this.panel1.Location = new System.Drawing.Point(12, 53);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1586, 706);
+            this.panel1.Size = new System.Drawing.Size(1614, 703);
             this.panel1.TabIndex = 204;
+            // 
+            // cboFilterNazivNT
+            // 
+            this.cboFilterNazivNT.FormattingEnabled = true;
+            this.cboFilterNazivNT.Location = new System.Drawing.Point(431, 12);
+            this.cboFilterNazivNT.Name = "cboFilterNazivNT";
+            this.cboFilterNazivNT.Size = new System.Drawing.Size(217, 21);
+            this.cboFilterNazivNT.TabIndex = 16;
+            // 
+            // cboFilterNT
+            // 
+            this.cboFilterNT.FormattingEnabled = true;
+            this.cboFilterNT.Location = new System.Drawing.Point(130, 14);
+            this.cboFilterNT.Name = "cboFilterNT";
+            this.cboFilterNT.Size = new System.Drawing.Size(121, 21);
+            this.cboFilterNT.TabIndex = 15;
             // 
             // btnRefresh
             // 
@@ -356,14 +373,6 @@
             this.btnNTNazivFilter.UseVisualStyleBackColor = false;
             this.btnNTNazivFilter.Click += new System.EventHandler(this.btnNTNazivFilter_Click);
             // 
-            // txtFilterNazivNT
-            // 
-            this.txtFilterNazivNT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFilterNazivNT.Location = new System.Drawing.Point(434, 10);
-            this.txtFilterNazivNT.Name = "txtFilterNazivNT";
-            this.txtFilterNazivNT.Size = new System.Drawing.Size(214, 22);
-            this.txtFilterNazivNT.TabIndex = 11;
-            // 
             // btnNTFilter
             // 
             this.btnNTFilter.BackColor = System.Drawing.Color.NavajoWhite;
@@ -374,13 +383,6 @@
             this.btnNTFilter.TabIndex = 10;
             this.btnNTFilter.UseVisualStyleBackColor = false;
             this.btnNTFilter.Click += new System.EventHandler(this.btnNTFilter_Click);
-            // 
-            // txtFilterNT
-            // 
-            this.txtFilterNT.Location = new System.Drawing.Point(138, 12);
-            this.txtFilterNT.Name = "txtFilterNT";
-            this.txtFilterNT.Size = new System.Drawing.Size(113, 20);
-            this.txtFilterNT.TabIndex = 9;
             // 
             // label18
             // 
@@ -448,8 +450,9 @@
             this.dataGridView2.Location = new System.Drawing.Point(3, 48);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(1580, 655);
+            this.dataGridView2.Size = new System.Drawing.Size(1608, 652);
             this.dataGridView2.TabIndex = 0;
+            this.dataGridView2.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView2_ColumnHeaderMouseClick);
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
             // txtPredvidjanje
@@ -759,14 +762,14 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button btnNTNazivFilter;
-        private System.Windows.Forms.TextBox txtFilterNazivNT;
         private System.Windows.Forms.Button btnNTFilter;
-        private System.Windows.Forms.TextBox txtFilterNT;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ComboBox cboPredvidjanjeIDFilter;
         private System.Windows.Forms.Button btnPredvidjanjeFilter;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.ComboBox cboFilterNazivNT;
+        private System.Windows.Forms.ComboBox cboFilterNT;
     }
 }
