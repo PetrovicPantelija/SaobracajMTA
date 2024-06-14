@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmKontejnerTekuceOperacijeLog));
             this.gridGroupingControl2 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.button2 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl2)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,7 +48,6 @@
             this.gridGroupingControl2.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2010Blue;
             this.gridGroupingControl2.Location = new System.Drawing.Point(12, 50);
             this.gridGroupingControl2.Name = "gridGroupingControl2";
-            this.gridGroupingControl2.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
             this.gridGroupingControl2.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
             this.gridGroupingControl2.Size = new System.Drawing.Size(1288, 604);
             this.gridGroupingControl2.TabIndex = 16;
@@ -67,9 +68,14 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(295, 23);
             this.button2.TabIndex = 15;
-            this.button2.Text = "Refresh";
+            this.button2.Text = "Pokreni";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 20000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmKontejnerTekuceOperacijeLog
             // 
@@ -91,5 +97,6 @@
 
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl2;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Timer timer1;
     }
 }

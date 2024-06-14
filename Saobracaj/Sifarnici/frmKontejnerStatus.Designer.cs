@@ -155,6 +155,7 @@ namespace Saobracaj.Sifarnici
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmKontejnerStatus";
             this.Text = "ŠIFRNIK STATUSA KONTEJNERA";
+            this.Load += new System.EventHandler(this.frmKontejnerStatus_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

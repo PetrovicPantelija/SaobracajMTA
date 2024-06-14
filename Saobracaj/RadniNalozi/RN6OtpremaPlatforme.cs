@@ -11,7 +11,7 @@ namespace Saobracaj.RadniNalozi
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
-        string KorisnikTekuci = "";
+        string KorisnikTekuci = Sifarnici.frmLogovanje.user;
         public RN6OtpremaPlatforme()
         {
             InitializeComponent();

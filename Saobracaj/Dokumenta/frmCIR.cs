@@ -34,6 +34,51 @@ namespace Saobracaj.Dokumenta
 
         }
 
+        public frmCIR(int PrijemID, int Leget)
+        {
+           
+            //Drugi podatak je stavljen 
+            InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+            txtDokument.Text = PrijemID.ToString();
+            VratiPodatkePoPrijemuStavkeID(PrijemID);
+        }
+
+        private void VratiPodatkePoPrijemuStavkeID(int PrijemID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+            string upit = "";
+          
+                upit = " Select BrojKontejnera, BrojVagona, Neto, Tara, TipKontejnera, BrojPlombe, BrojPlombe2, PrijemKontejneraVoz.Vozom from PrijemKOntejneraVozStavke " +
+" inner Join PrijemKontejneraVoz on PrijemKontejneraVoz.ID = PrijemKOntejneraVozStavke.IdNadredjenog where PrijemKOntejneraVozStavke.ID = " + PrijemID;
+
+
+
+            SqlCommand cmd = new SqlCommand(upit, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+               // txtSize.Value = Convert.ToInt32(dr["Size"].ToString());
+                // txtContainerresponsible.Text = dr["Containerresponsible"].ToString();
+                txtVagon.Text =  dr["BrojKontejnera"].ToString();
+                txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
+                txtNeto.Value = Convert.ToDecimal(dr["Neto"].ToString());
+                txtTara.Value = Convert.ToDecimal(dr["Tara"].ToString());
+                cboTipKontejnera.SelectedValue = Convert.ToDecimal(dr["TipKontejnera"].ToString());
+                txtPlomba.Text = dr["BrojPlombe"].ToString();
+                txtPlomba2.Text = dr["BrojPlombe2"].ToString();
+
+
+            }
+
+            con.Close();
+
+        }
+
         public frmCIR(int Dokument)
         {
             InitializeComponent();
@@ -1216,7 +1261,7 @@ namespace Saobracaj.Dokumenta
             }
             Saobracaj.RadniNalozi.InsertRN up = new Saobracaj.RadniNalozi.InsertRN();
           
-                    up.UpdateKontejnerIzCira(txtBrojKontejnera.Text,tmpStanje, txtOstecenje.Text, Convert.ToInt32(cboKvalitet.Text), Convert.ToInt32(txtSifra.Text));
+                    up.UpdateKontejnerIzCira(txtBrojKontejnera.Text,tmpStanje, txtOstecenje.Text,Convert.ToInt32(cboKvalitet.SelectedValue), Convert.ToInt32(txtSifra.Text));
             
 
             }

@@ -76,7 +76,7 @@ namespace Saobracaj.Izvoz
             if (status == true)
             {
                 InsertIzvozKonacnaZaglavlje ins = new InsertIzvozKonacnaZaglavlje();
-                ins.InsIzvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "", Terminal);
+                ins.InsIzvozKonacnaZaglavlje(Convert.ToInt32(cboVoz.SelectedValue), txtNapomenaZaglavlje.Text,1, "", Convert.ToDateTime("1.1.1900"), "", "", Terminal);
                 RefreshDataGrid();
                 status = false;
             }

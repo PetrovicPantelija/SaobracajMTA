@@ -13,6 +13,7 @@ namespace Saobracaj.Sifarnici
         public frmKontejnerStatus()
         {
             InitializeComponent();
+          
         }
 
         private void RefreshDataGrid()
@@ -108,6 +109,11 @@ namespace Saobracaj.Sifarnici
             Saobracaj.Sifarnici.InsertKontejnerStatus del = new Saobracaj.Sifarnici.InsertKontejnerStatus();
             del.DelKontejnerStoatus(Convert.ToInt32(txtSifra.Text));
 
+            RefreshDataGrid();
+        }
+
+        private void frmKontejnerStatus_Load(object sender, EventArgs e)
+        {
             RefreshDataGrid();
         }
     }

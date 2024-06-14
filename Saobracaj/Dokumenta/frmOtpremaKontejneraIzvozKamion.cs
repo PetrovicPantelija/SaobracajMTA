@@ -10,7 +10,7 @@ using static Syncfusion.WinForms.Core.NativeScroll;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmOtpremaKontejneraIzvozKamion : Form
+    public partial class frmOtpremaKontejneraIzvozKamion : Syncfusion.Windows.Forms.Office2010Form
     {
         MailMessage mailMessage;
         string KorisnikCene;
@@ -22,11 +22,33 @@ namespace Saobracaj.Dokumenta
             InitializeComponent();
         }
 
-        public frmOtpremaKontejneraIzvozKamion(string Korisnik, string RadniNalogInterni)
+        public frmOtpremaKontejneraIzvozKamion(string Korisnik, string RadniNalogInterni,int Poreklo, int OJ, string SifraOtpremnica)
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
-            chkIzvoz.Checked = true;
+            if (OJ == 2)
+            {
+                chkIzvoz.Checked = true;
+                chkTerminal.Checked = false;
+            }
+            else if (OJ == 4)
+            { 
+            chkTerminal.Checked = true;
+            chkIzvoz.Checked = false;
+            }
+            if (Poreklo == 0)
+            {
+                chkPlatforma.Checked = true;
+                chkCirada.Checked = false;
+            }
+            else 
+            {
+                chkCirada.Checked = true;
+                chkPlatforma.Checked = false;
+            }
+            txtSifra.Text = SifraOtpremnica;
+            VratiPodatke(Convert.ToInt32(txtSifra.Text));
+
             FillCombo();
             txtNalogID.Text = RadniNalogInterni;
             VratiPodatkeIzvoznePoNalogu(RadniNalogInterni);
@@ -1645,6 +1667,26 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
             }
             //string OtpremaID, string Korisnik, string Usluga, string Kamion, int Uvoz
             Saobracaj.RadniNalozi.RN6OtpremaPlatforme op = new RadniNalozi.RN6OtpremaPlatforme(txtSifra.Text, KorisnikCene, txtNalogID.Text, txtRegBrKamiona.Text, 1);
+            op.Show();
+            ;
+        }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            string IDUsluge = "0";
+            foreach (DataGridViewRow row in dataGridView4.Rows)
+            {
+
+                if (row.Selected == true)
+                {
+                    IDUsluge = row.Cells[0].Value.ToString();
+
+                }
+
+
+            }
+            //string OtpremaID, string Korisnik, string Usluga, string Kamion, int Uvoz
+            Saobracaj.RadniNalozi.RN7OtpremaPlatforme2 op = new RadniNalozi.RN7OtpremaPlatforme2(txtSifra.Text, KorisnikCene, txtNalogID.Text, txtRegBrKamiona.Text, 1);
             op.Show();
             ;
         }

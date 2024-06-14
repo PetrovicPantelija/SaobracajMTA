@@ -36,7 +36,7 @@ namespace Saobracaj.RadniNalozi
             
             NapuniVrstuUsluge(Usluga);
 
-            txtNalogID.Text = Usluga;
+            txtNalogID.Text = NalogID;
             FillCombo();
             VratiPodatkeVrstaMan(Usluga.ToString());
             if (Uvoz == 0)
@@ -379,7 +379,7 @@ namespace Saobracaj.RadniNalozi
 
         private void button1_Click(object sender, EventArgs e)
         {
-            frmCIR cir = new frmCIR(Convert.ToInt32(txtID.Text));
+            frmCIR cir = new frmCIR(Convert.ToInt32(txtPrijemID.Text),1);
             cir.Show();
         }
 

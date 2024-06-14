@@ -25,6 +25,7 @@ namespace Saobracaj.Izvoz
             InitializeComponent();
             IzRNI = 1;
             trnI = Convert.ToInt32(NAlogID);
+            txtNalogID.Text = NAlogID;
         }
 
         private void frmOtpremaVozaIzPlana_Load(object sender, EventArgs e)
@@ -101,7 +102,7 @@ namespace Saobracaj.Izvoz
 
             status = true;
             txtSifra.Enabled = false;
-
+            
             dtpDatumOtpreme.Value = DateTime.Now;
             dtpDatumOtpreme.Enabled = true;
         }
@@ -118,17 +119,21 @@ namespace Saobracaj.Izvoz
 
             con.Open();
 
+            SqlCommand cmd = new SqlCommand("Select Top 1 IDVoza, Operater, Voz.Napomena from IzvozKonacnaZaglavlje " +
+" inner join Voz on IzvozKonacnaZaglavlje.IDVoza = Voz.ID " +
+" where IzvozKonacnaZaglavlje.ID = " + Convert.ToInt32(cboPlanUtovara.SelectedValue));
 
 
 
-
-            SqlCommand cmd = new SqlCommand("Select Top 1 IDVoza from IzvozKonacnaZaglavlje where ID = " + Convert.ToInt32(cboPlanUtovara.SelectedValue));
+          
             cmd.Connection = con;
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
                 cboVozBuking.SelectedValue = Convert.ToInt32(dr["IDVoza"].ToString());
+                cboOperater.SelectedValue = Convert.ToInt32(dr["Operater"].ToString());
+                txtNapomena.Text = dr["Napomena"].ToString();
             }
 
             con.Close();
@@ -176,9 +181,31 @@ namespace Saobracaj.Izvoz
         {
 
         }
+        int VratiUsluguPoNalogu(string NalogID)
+        {
+            int Manipulacija = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT IDManipulacijaJed  from RadniNalogInterni " +
+            "  where ID =" + NalogID, con); ;
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Manipulacija = Convert.ToInt32(dr["IDManipulacijaJed"].ToString());
+
+            }
+            con.Close();
+            return Manipulacija;
+
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int Usluga = VratiUsluguPoNalogu(txtNalogID.Text);
             if (txtSifra.Text == "")
             { return; }
             else
@@ -190,6 +217,17 @@ namespace Saobracaj.Izvoz
 
             }
             MessageBox.Show("Uspešno ste formirali Otpremnicu za Plan");
+
+            DialogResult dialogResult = MessageBox.Show("Da li želite da formirate RN za otpremu voza GATE OUT VOZ", "Radni nalozi?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                RadniNalozi.RN2OtpremaVoza rnpv = new RadniNalozi.RN2OtpremaVoza(KorisnikCene, cboVozBuking.SelectedValue.ToString(), Usluga.ToString(), txtSifra.Text);
+                rnpv.Show();
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                return;
+            }
 
 
         }
@@ -334,7 +372,24 @@ namespace Saobracaj.Izvoz
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+            string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+            switch (Company)
+            {
+                case "Leget":
+                    {
+                        Saobracaj.Dokumenta.frmOtpremaKontejneraLegetIZVOZ otpr = new Saobracaj.Dokumenta.frmOtpremaKontejneraLegetIZVOZ(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+                        otpr.Show();
+                        return;
 
+                    }
+                default:
+                    {
+                        Saobracaj.Dokumeta.frmOtpremaKontejnera otpr = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
+                        otpr.Show();
+                        return;
+
+                    }
+            }
         }
     }
 }

@@ -2392,7 +2392,7 @@ namespace Saobracaj
             foreach (Form frm in fc)
             {
                 //iterate through
-                if (frm.Name == "frmStatusRobe")
+                if (frm.Name == "frmKontejnerStatus")
                 {
                     bFormNameOpen = true;
                     frm.Activate();
@@ -2401,7 +2401,7 @@ namespace Saobracaj
             }
             if (bFormNameOpen == false)
             {
-                frmStatusRobe snac = new frmStatusRobe(Korisnik);
+                frmKontejnerStatus snac = new frmKontejnerStatus();
                 snac.Show();
             }
         }
@@ -6578,6 +6578,12 @@ namespace Saobracaj
         private void toolStripButton368_Click(object sender, EventArgs e)
         {
             OtpremnicaPregled op = new OtpremnicaPregled(); op.Show();
+        }
+
+        private void toolStripButton369_Click(object sender, EventArgs e)
+        {
+            frmKontejnerTekuceArhiv kta = new frmKontejnerTekuceArhiv();
+            kta.Show();
         }
     }
     }

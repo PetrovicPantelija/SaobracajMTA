@@ -499,6 +499,61 @@ namespace Saobracaj.RadniNalozi
             }
         }
 
+        public void PotvrdiUradjenRN7(int RN, string Korisnik)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "UpdateRN7Uradjene";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter rn = new SqlParameter();
+            rn.ParameterName = "@RN";
+            rn.SqlDbType = SqlDbType.Int;
+            rn.Direction = ParameterDirection.Input;
+            rn.Value = RN;
+            cmd.Parameters.Add(rn);
+
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName = "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Size = 20;
+            korisnik.Direction = ParameterDirection.Input;
+            korisnik.Value = Korisnik;
+            cmd.Parameters.Add(korisnik);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis cena u bazu");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Nije uspeo upis cena", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                { }
+            }
+        }
+
         public void PotvrdiUradjenRN8(int RN, string Korisnik)
         {
             SqlConnection conn = new SqlConnection(connect);
@@ -761,7 +816,7 @@ namespace Saobracaj.RadniNalozi
             }
         }
 
-        public void PotvrdiUradjenRN1VP(int RN, string Korisnik)
+        public void PotvrdiUradjenRN1VP(int RN, string Korisnik, string NapomenaVP, string NapomenaPlombe1, string NapomenaPlombe2)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -782,6 +837,30 @@ namespace Saobracaj.RadniNalozi
             korisnik.Direction = ParameterDirection.Input;
             korisnik.Value = Korisnik;
             cmd.Parameters.Add(korisnik);
+
+            SqlParameter napomenavp = new SqlParameter();
+            napomenavp.ParameterName = "@NapomenaVP";
+            napomenavp.SqlDbType = SqlDbType.NVarChar;
+            napomenavp.Size = 100;
+            napomenavp.Direction = ParameterDirection.Input;
+            napomenavp.Value = NapomenaVP;
+            cmd.Parameters.Add(napomenavp);
+
+            SqlParameter napomenaplombe1 = new SqlParameter();
+            napomenaplombe1.ParameterName = "@NapomenaPlombe1";
+            napomenaplombe1.SqlDbType = SqlDbType.NVarChar;
+            napomenaplombe1.Size = 100;
+            napomenaplombe1.Direction = ParameterDirection.Input;
+            napomenaplombe1.Value = NapomenaPlombe1;
+            cmd.Parameters.Add(napomenaplombe1);
+
+            SqlParameter napomenaplombe2 = new SqlParameter();
+            napomenaplombe2.ParameterName = "@NapomenaPlombe2";
+            napomenaplombe2.SqlDbType = SqlDbType.NVarChar;
+            napomenaplombe2.Size = 100;
+            napomenaplombe2.Direction = ParameterDirection.Input;
+            napomenaplombe2.Value = NapomenaPlombe2;
+            cmd.Parameters.Add(napomenaplombe2);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -1139,7 +1218,7 @@ namespace Saobracaj.RadniNalozi
             }
         }
 
-        public void PotvrdiUradjenRN5(int RN)
+        public void PotvrdiUradjenRN5(int RN, string Korisnik)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -1152,6 +1231,15 @@ namespace Saobracaj.RadniNalozi
             rn.Direction = ParameterDirection.Input;
             rn.Value = RN;
             cmd.Parameters.Add(rn);
+
+
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName = "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Size = 20;
+            korisnik.Direction = ParameterDirection.Input;
+            korisnik.Value = Korisnik;
+            cmd.Parameters.Add(korisnik);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -1187,7 +1275,7 @@ namespace Saobracaj.RadniNalozi
         }
        
 
-        public void PotvrdiUradjenRN5CIR(int RN)
+        public void PotvrdiUradjenRN5CIR(int RN, string Korisnik)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -1200,6 +1288,15 @@ namespace Saobracaj.RadniNalozi
             rn.Direction = ParameterDirection.Input;
             rn.Value = RN;
             cmd.Parameters.Add(rn);
+
+
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName = "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Size = 20;
+            korisnik.Direction = ParameterDirection.Input;
+            korisnik.Value = Korisnik;
+            cmd.Parameters.Add(korisnik);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -1259,7 +1356,7 @@ namespace Saobracaj.RadniNalozi
             cmd.Parameters.Add(stanje);
 
             SqlParameter ostecenja = new SqlParameter();
-            ostecenja.ParameterName = "@Ostecenje";
+            ostecenja.ParameterName = "@Ostecenja";
             ostecenja.SqlDbType = SqlDbType.NVarChar;
             ostecenja.Size = 50;
             ostecenja.Direction = ParameterDirection.Input;
@@ -1569,7 +1666,7 @@ namespace Saobracaj.RadniNalozi
 
             catch (SqlException)
             {
-                throw new Exception("Neuspešan upis cena u bazu");
+                throw new Exception("Neuspešan upis  u bazu");
             }
 
             finally
@@ -2553,7 +2650,7 @@ namespace Saobracaj.RadniNalozi
             }
         }
 
-        public void InsRN7OtpremaPlatformeKam(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaVoznogSredstva, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, int OtpremaID, string Kamion)
+        public void InsRN7OtpremaPlatformeKam(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaVoznogSredstva, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, int OtpremaID, string Kamion, int NalogID)
         {
 
             SqlConnection conn = new SqlConnection(connect);
@@ -2644,6 +2741,14 @@ namespace Saobracaj.RadniNalozi
             kamion.Direction = ParameterDirection.Input;
             kamion.Value = Kamion;
             cmd.Parameters.Add(kamion);
+
+            SqlParameter nalogid = new SqlParameter();
+            nalogid.ParameterName = "@NalogID";
+            nalogid.SqlDbType = SqlDbType.Int;
+   
+            nalogid.Direction = ParameterDirection.Input;
+            nalogid.Value = NalogID;
+            cmd.Parameters.Add(nalogid);
 
 
 

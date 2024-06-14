@@ -67,12 +67,11 @@ namespace Saobracaj.Izvoz
             this.cboStatusOtpreme = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
             this.dtpDatumOtpreme = new System.Windows.Forms.DateTimePicker();
-            this.txtNapomena = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
+            this.txtNapomena = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -91,8 +90,7 @@ namespace Saobracaj.Izvoz
             this.tsNew,
             this.tsSave,
             this.toolStripSeparator1,
-            this.toolStripButton1,
-            this.toolStripButton2});
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1087, 27);
@@ -543,15 +541,6 @@ namespace Saobracaj.Izvoz
             this.dtpDatumOtpreme.TabIndex = 243;
             this.dtpDatumOtpreme.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             // 
-            // txtNapomena
-            // 
-            this.txtNapomena.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtNapomena.Location = new System.Drawing.Point(14, 30);
-            this.txtNapomena.Multiline = true;
-            this.txtNapomena.Name = "txtNapomena";
-            this.txtNapomena.Size = new System.Drawing.Size(359, 220);
-            this.txtNapomena.TabIndex = 260;
-            // 
             // label31
             // 
             this.label31.AutoSize = true;
@@ -563,6 +552,15 @@ namespace Saobracaj.Izvoz
             this.label31.Size = new System.Drawing.Size(142, 15);
             this.label31.TabIndex = 261;
             this.label31.Text = "NAPOMENA ZA KAMION";
+            // 
+            // txtNapomena
+            // 
+            this.txtNapomena.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtNapomena.Location = new System.Drawing.Point(14, 30);
+            this.txtNapomena.Multiline = true;
+            this.txtNapomena.Name = "txtNapomena";
+            this.txtNapomena.Size = new System.Drawing.Size(359, 220);
+            this.txtNapomena.TabIndex = 260;
             // 
             // tabControl1
             // 
@@ -600,16 +598,6 @@ namespace Saobracaj.Izvoz
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1045, 160);
             this.dataGridView1.TabIndex = 168;
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(117, 24);
-            this.toolStripButton2.Text = "Povuci iz prijemnice";
             // 
             // frmOtpremaKontejneraKamionomIzKontejnera
             // 
@@ -684,6 +672,5 @@ namespace Saobracaj.Izvoz
         private System.Windows.Forms.CheckBox chkIzvoz;
         private System.Windows.Forms.CheckBox chkTerminal;
         private System.Windows.Forms.CheckBox chkPlatforma;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
     }
 }

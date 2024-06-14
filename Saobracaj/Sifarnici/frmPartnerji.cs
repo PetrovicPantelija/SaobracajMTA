@@ -72,7 +72,7 @@ namespace Saobracaj.Sifarnici
                     cbDobavljac.Visible = false;
                     cbObveznik.Visible = false;
                     cboValuta.Visible = false;
-
+                    cboValuta.SelectedValue= "RSD";
                     int prviRedX = 16;
                     int prviRedY = 245;
 
@@ -630,7 +630,10 @@ namespace Saobracaj.Sifarnici
             if (cbDobavljac.Checked) { Dobavljac = "T"; } else{ Dobavljac = "F"; }
             if (cboKupac.Checked) { Kupac = "T"; }else{ Kupac = "F"; }
             if (cbObveznik.Checked) { Obveznik = "Z"; } else { Obveznik = "I"; }
-
+            if (cboValuta.SelectedValue == null)
+            {
+                cboValuta.SelectedValue = "RSD";
+            }
             if (status == true)
             {
                 //  txtNaziv.Text,  txtUlica.Text,  txtMesto.Text,  txtOblast.Text, txtPosta.Text ,txtDrzava.Text, txtTelefon.Text, txtTR.Text ,  txtNapomena.Text,txtMaticniBroj.Text,  txtEmail.Text,  txtPIB.Text

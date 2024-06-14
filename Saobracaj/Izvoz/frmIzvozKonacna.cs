@@ -1445,7 +1445,7 @@ namespace Saobracaj.Izvoz
                 {
                     Uvoz.InsertRadniNalogInterni ins = new Uvoz.InsertRadniNalogInterni();
                     //ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
-                    ins.InsRadniNalogInterniIzvoz(Convert.ToInt32(4), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovaraIZ", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");
+                    ins.InsRadniNalogInterniIzvoz(Convert.ToInt32(4), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovaraTER", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, " ");
                 }
                 else
                 {
@@ -1743,7 +1743,7 @@ namespace Saobracaj.Izvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView8.Columns[0];
             dataGridView8.Columns[0].HeaderText = "ID";
-            dataGridView8.Columns[0].Width = 20;
+            dataGridView8.Columns[0].Width = 30;
 
             DataGridViewColumn column2 = dataGridView8.Columns[1];
             dataGridView8.Columns[1].HeaderText = "IDU";
@@ -1751,7 +1751,19 @@ namespace Saobracaj.Izvoz
 
             DataGridViewColumn column3 = dataGridView8.Columns[2];
             dataGridView8.Columns[2].HeaderText = "Kontejner";
-            dataGridView8.Columns[2].Width = 50;
+            dataGridView8.Columns[2].Width = 70;
+
+            DataGridViewColumn column4 = dataGridView8.Columns[3];
+            dataGridView8.Columns[3].HeaderText = "Kol";
+            dataGridView8.Columns[3].Width = 30;
+
+            DataGridViewColumn column5 = dataGridView8.Columns[4];
+            dataGridView8.Columns[4].HeaderText = "VM";
+            dataGridView8.Columns[4].Width = 30;
+
+            DataGridViewColumn column6 = dataGridView8.Columns[5];
+            dataGridView8.Columns[5].HeaderText = "Usluga";
+            dataGridView8.Columns[5].Width = 230;
 
         }
 
@@ -1974,13 +1986,16 @@ namespace Saobracaj.Izvoz
 
         private void toolStripButton5_Click(object sender, EventArgs e)
         {
+           
 
             using (var detailForm = new frmIzvozKonacnaTable(txtNadredjeni.Text))
             {
                 detailForm.ShowDialog();
                 txtID.Text = detailForm.GetID();
-
-                VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+                if (txtID.Text == "")
+                { return; }
+                { VratiPodatkeSelect(Convert.ToInt32(txtID.Text)); }
+                
             }
         }
 

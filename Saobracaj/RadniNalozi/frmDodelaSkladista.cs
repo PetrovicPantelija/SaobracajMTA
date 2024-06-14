@@ -31,15 +31,26 @@ namespace Saobracaj.RadniNalozi
             textBox1.Text = Prijem;
             if (TipRN == 1)
             {
+                //RN1PrijemOVoza
                 label5.Text = "GATE IN VOZ";
                 chkGateInVoz.Checked = true;
             };
             if (TipRN == 2)
             {
+                //Prijem Platforme RN4
                 label5.Text = "GATE IN KAMION - RN4";
                 chkGAteInKamion.Checked = true;
 
             }
+
+            if (TipRN == 21)
+            {
+                //Prijem Platforme RN4
+                label5.Text = "GATE IN KAMION - RN5";
+                chkGAteInKamion.Checked = true;
+
+            }
+
             if (TipRN == 3)
             {
                 label5.Text = "CIR";
@@ -132,11 +143,42 @@ namespace Saobracaj.RadniNalozi
 
         }
 
+        private void FillDGRN21()
+        {
+            // Prijem platforme kalmarista
+            var select = "select * from RnPrijemPlatforme 2" +
+   " order by RnPrijemPlatforme2.ID  desc ";
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = ds.Tables[0];
+
+            dataGridView2.BorderStyle = BorderStyle.None;
+            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView2.BackgroundColor = Color.White;
+
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+        }
+
         private void FillDGRN2()
         {
             // Prijem platforme kalmarista
             var select = "select * from RnPrijemPlatforme " +
-   " order by RnPrijemPlatforme.ID  ";
+   " order by RnPrijemPlatforme.ID desc ";
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -175,7 +217,7 @@ namespace Saobracaj.RadniNalozi
 " inner join Partnerji on Partnerji.PaSifra = RNPrijemPlatforme.Izvoznik " +
 " inner join Partnerji p2 on p2.PaSifra = RNPrijemPlatforme.NazivBrodara " +
 " inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge where RNPrijemPlatforme.PrijemID = " + textBox1.Text +
-   " order by RNPrijemVoza.ID  ";
+   " order by RNPrijemVoza.ID  desc ";
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -253,10 +295,13 @@ namespace Saobracaj.RadniNalozi
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (TipRadnogNaloga == 1)
-            FillDGRN1();
+            FillDGRN1(); // RNPRIJEMVOZA
 
             if (TipRadnogNaloga == 2)
-                FillDGRN2();
+                FillDGRN2(); // RN PRIJEM PLATFORME
+
+            if (TipRadnogNaloga == 21)
+                FillDGRN21(); // RN PRIJEM PLATFORME BRODAR
             if (TipRadnogNaloga == 6)
                 FillDGRN6();
         }
@@ -425,8 +470,8 @@ namespace Saobracaj.RadniNalozi
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
-            Saobracaj.Proba pr = new Proba();
+        { 
+            frmPregledSkladistaNovi pr = new frmPregledSkladistaNovi();
             pr.Show();
         }
     }

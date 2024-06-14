@@ -62,9 +62,14 @@ namespace Saobracaj.RadniNalozi
                                 c.BackColor = Color.DodgerBlue;
                                 c.ForeColor = Color.White;
                             }
-                            else if (numberOfLines >= 2 && numberOfLines < 7)
+                            else if (numberOfLines >= 2 && numberOfLines < 4)
                             {
                                 c.BackColor = Color.Yellow;
+                            }
+                            else if (numberOfLines == 0)
+                            {
+                                c.BackColor = Color.White;
+                                c.ForeColor = Color.DarkCyan;
                             }
                             else
                             {

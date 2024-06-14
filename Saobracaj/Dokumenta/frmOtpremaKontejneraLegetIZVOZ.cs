@@ -443,7 +443,7 @@ Convert.ToDouble(bttoRobeOtpremnica.Value),Convert.ToDouble(bttoRobeOdvaga.Value
 
             // SqlCommand cmd = new SqlCommand("select [ID] ,[DatumOtpreme],[StatusOtpreme],[IdVoza],[VremeOdlaska], [RegBrKamiona], [ImeVozaca], NacinOtpreme, Napomena, NajavaEmail, OtpremaEmail, Zatvoren, CIRUradjen, PredefinisanePorukeID from OtpremaKontejnera where ID = " + ID, con);
 
-            SqlCommand cmd = new SqlCommand("select [ID] ,[DatumOtpreme],[StatusOtpreme],[IdVoza],[VremeOdlaska], [RegBrKamiona], [ImeVozaca], NacinOtpreme, Napomena, NajavaEmail, OtpremaEmail, Zatvoren, CIRUradjen from OtpremaKontejnera where ID = " + ID, con);
+            SqlCommand cmd = new SqlCommand("select [ID] ,[DatumOtpreme],[StatusOtpreme],[IdVoza],[VremeOdlaska], [RegBrKamiona], [ImeVozaca], NacinOtpreme, Napomena, NajavaEmail, OtpremaEmail, Zatvoren, CIRUradjen, Operater from OtpremaKontejnera where ID = " + ID, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -457,6 +457,8 @@ Convert.ToDouble(bttoRobeOtpremnica.Value),Convert.ToDouble(bttoRobeOdvaga.Value
                 txtRegBrKamiona.Text = dr["RegBrKamiona"].ToString();
                 txtImeVozaca.Text = dr["ImeVozaca"].ToString();
                 txtNapomena.Text = dr["Napomena"].ToString();
+                cboOperater.SelectedValue = Convert.ToInt32(dr["Operater"].ToString());
+                cboVozBuking.SelectedValue = Convert.ToInt32(dr["IDVoza"].ToString());
                 if (Convert.ToInt32(dr["NacinOtpreme"].ToString()) == 1)
                 {
                     chkVoz.Checked = true;

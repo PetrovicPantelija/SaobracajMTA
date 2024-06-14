@@ -466,5 +466,11 @@ namespace Saobracaj.Izvoz
             VratiUkupanBrojKontejneraPrenetih();
             VratiUkupanBrojKontejneraPrenetihBezSerije();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            frmIzvozKonacna pUvoz = new frmIzvozKonacna(Convert.ToInt32(cboPlanUtovara.SelectedValue));
+            pUvoz.Show();
+        }
     }
 }
