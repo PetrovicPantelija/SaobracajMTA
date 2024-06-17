@@ -532,7 +532,6 @@ namespace Saobracaj.Izvoz
             // dtpDatumOtpreme
             // 
             this.dtpDatumOtpreme.CustomFormat = "dd.MM.yyyy HH:mm";
-            this.dtpDatumOtpreme.Enabled = false;
             this.dtpDatumOtpreme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.dtpDatumOtpreme.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpDatumOtpreme.Location = new System.Drawing.Point(234, 74);

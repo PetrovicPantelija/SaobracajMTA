@@ -1,10 +1,12 @@
-﻿using Saobracaj.Izvoz;
+﻿using Saobracaj.Dokumenta;
+using Saobracaj.Izvoz;
 using Saobracaj.RadniNalozi;
 using Saobracaj.Sifarnici;
 using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net;
 using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
@@ -25,7 +27,7 @@ namespace Saobracaj.Uvoz
 
         }
 
-        public frmPrijemVozaIzPlana(int RNI, int Vozom)
+        public frmPrijemVozaIzPlana(int RNI, int Vozom, int OJ)
         {
 
             //Vozom za voz - 0; Vozaom = 1 za Kamion 
@@ -34,6 +36,19 @@ namespace Saobracaj.Uvoz
             IzRNI = 1;
             trnI = RNI;
             txtNalogID.Text = RNI.ToString();
+            if (OJ == 2)
+            { 
+            chkIzvoz.Checked = true;
+                chkUvoz.Checked = false;
+            
+            }
+
+            if (OJ == 1)
+            {
+                chkIzvoz.Checked = false;
+                chkUvoz.Checked = true;
+
+            }
             if (Vozom == 0 ) { Kamion = 1; // Ynaci Prijem Kamiona platforme
                                           }
             else
@@ -49,6 +64,10 @@ namespace Saobracaj.Uvoz
                 chkVoz.Checked = false;
                 label15.Visible = false;
                 cboBukingPrijema.Visible = false;
+                label35.Visible = false;
+                cboOperater.Visible = false;
+                label3.Visible = false;
+                cboOperaterHR.Visible = false;
             }
             else {
                 label30.Visible = false;
@@ -58,6 +77,10 @@ namespace Saobracaj.Uvoz
                 chkVoz.Checked = true;
                 label15.Visible = true;
                 cboBukingPrijema.Visible = true;
+                label35.Visible = true;
+                cboOperater.Visible = true;
+                label3.Visible = true;
+                cboOperaterHR.Visible = true;
             }
 
         }
@@ -132,7 +155,7 @@ namespace Saobracaj.Uvoz
                     VratiPodatkeMax();
 
                 }
-
+               
 
 
             }
@@ -148,6 +171,8 @@ namespace Saobracaj.Uvoz
                     VratiPodatkeMax();
                 }
             }
+
+            PrenesiStavkeIRN();
 
         }
         private void VratiIDPrijemnice(int Voz)
@@ -325,19 +350,23 @@ namespace Saobracaj.Uvoz
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void PrenesiStavkeIRN()
         {
             int Usluga = VratiUsluguPoNalogu(txtNalogID.Text);
             if (txtSifra.Text == "")
-            { 
-                return; 
+            {
+                return;
             }
             else
             {
                 if (Kamion == 1)
                 {
                     InsertUvozKonacna ins = new InsertUvozKonacna();
-                    ins.PrenesiPlanUtovaraUPrijemVoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+                    
+                    {
+                        ins.PrenesiPlanUtovaraUPrijemVoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+                    }
+
                     VratiPodatkeMax();
                     RefreshDataGrid();
                     ProglasiObradjenimRNIVOZ(Convert.ToInt32(cboPlanUtovara.SelectedValue));
@@ -356,15 +385,30 @@ namespace Saobracaj.Uvoz
                 else if (Kamion == 0)
                 {
                     InsertUvozKonacna ins = new InsertUvozKonacna();
-                    ins.PrenesiPlanUtovaraUPrijemPLatforma(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtNalogID.Text));
+                    if (chkIzvoz.Checked == true)
+                    {
+                        ins.PrenesiPlanUtovaraUPrijemVozIzvoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+                    }
+                    else
+                    {
+                        ins.PrenesiPlanUtovaraUPrijemPLatforma(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtNalogID.Text));
+                    }
+               
                     VratiPodatkeMax();
                     RefreshDataGrid();
-                   // ProglasiObradjenimRNIVOZ(Convert.ToInt32(cboPlanUtovara.SelectedValue));
+                    int Modul = 0;
+                    if (chkIzvoz.Checked == true)
+                    {
+                        Modul = 1; // IZvoz
+                    }
+                    else
+                    { Modul = 0; }
+                    // ProglasiObradjenimRNIVOZ(Convert.ToInt32(cboPlanUtovara.SelectedValue));
                     MessageBox.Show("Uspešno ste formirali prijemnicu za izabrani plan");
                     DialogResult dialogResult = MessageBox.Show("Da li želite da formirate RN 4 PRIJEM PLATFORME", "Radni nalozi?", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        RadniNalozi.RN4PrijemPlatforme ppl = new RadniNalozi.RN4PrijemPlatforme(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene, Usluga.ToString(), 0, txtNalogID.Text);
+                        RadniNalozi.RN4PrijemPlatforme ppl = new RadniNalozi.RN4PrijemPlatforme(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene, Usluga.ToString(), Modul, txtNalogID.Text);
                         ppl.Show();
                     }
                     else if (dialogResult == DialogResult.No)
@@ -373,8 +417,18 @@ namespace Saobracaj.Uvoz
                     }
 
                 }
-               
+
             }
+
+
+
+
+
+
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+           
           
 
         }
@@ -553,6 +607,23 @@ namespace Saobracaj.Uvoz
                     }
                     break;
             }
+        }
+
+        private void cboOperater_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            frmPrijemKontejneraKamionLegetIzvoz li = new frmPrijemKontejneraKamionLegetIzvoz(txtSifra.Text,0);
+            li.Show();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            frmPrijemKontejneraKamionLegetUvoz lu = new frmPrijemKontejneraKamionLegetUvoz(txtSifra.Text, 0);
+            lu.Show();
         }
     }
 }

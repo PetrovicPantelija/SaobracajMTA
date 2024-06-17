@@ -62,6 +62,7 @@
             this.cboGrupaVrsteManipulacije = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
             this.chkAdministratvna = new System.Windows.Forms.CheckBox();
+            this.chkDrumski = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCena)).BeginInit();
@@ -381,7 +382,7 @@
             this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(863, 118);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(34, 16);
+            this.label9.Size = new System.Drawing.Size(33, 16);
             this.label9.TabIndex = 251;
             this.label9.Text = "EUR";
             // 
@@ -411,7 +412,7 @@
             this.chkAdministratvna.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkAdministratvna.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.chkAdministratvna.ForeColor = System.Drawing.Color.Black;
-            this.chkAdministratvna.Location = new System.Drawing.Point(12, 166);
+            this.chkAdministratvna.Location = new System.Drawing.Point(11, 166);
             this.chkAdministratvna.Name = "chkAdministratvna";
             this.chkAdministratvna.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkAdministratvna.Size = new System.Drawing.Size(109, 19);
@@ -419,12 +420,27 @@
             this.chkAdministratvna.Text = "Administrativna";
             this.chkAdministratvna.UseVisualStyleBackColor = true;
             // 
+            // chkDrumski
+            // 
+            this.chkDrumski.AutoSize = true;
+            this.chkDrumski.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkDrumski.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.chkDrumski.ForeColor = System.Drawing.Color.Black;
+            this.chkDrumski.Location = new System.Drawing.Point(11, 191);
+            this.chkDrumski.Name = "chkDrumski";
+            this.chkDrumski.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.chkDrumski.Size = new System.Drawing.Size(116, 19);
+            this.chkDrumski.TabIndex = 255;
+            this.chkDrumski.Text = "Drumska usluga";
+            this.chkDrumski.UseVisualStyleBackColor = true;
+            // 
             // frmVrstaManipulacije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1173, 537);
+            this.Controls.Add(this.chkDrumski);
             this.Controls.Add(this.chkAdministratvna);
             this.Controls.Add(this.cboGrupaVrsteManipulacije);
             this.Controls.Add(this.label10);
@@ -500,5 +516,6 @@
         private System.Windows.Forms.ComboBox cboGrupaVrsteManipulacije;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckBox chkAdministratvna;
+        private System.Windows.Forms.CheckBox chkDrumski;
     }
 }

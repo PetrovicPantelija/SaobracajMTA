@@ -477,28 +477,29 @@ namespace Saobracaj.Dokumenta
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
-            dataGridView1.ReadOnly = false;
-            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView2.ReadOnly = false;
+            dataGridView2.DataSource = ds.Tables[0];
 
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView1.BackgroundColor = Color.White;
+            dataGridView2.BorderStyle = BorderStyle.None;
+            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView2.BackgroundColor = Color.White;
 
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
             //Panta refresh
 
 
-            DataGridViewColumn column = dataGridView1.Columns[0];
-            dataGridView1.Columns[0].HeaderText = "ID";
-            dataGridView1.Columns[0].Width = 40;
-            dataGridView1.Columns[0].Visible = false;
+            DataGridViewColumn column = dataGridView2.Columns[0];
+            dataGridView2.Columns[0].HeaderText = "ID";
+            dataGridView2.Columns[0].Width = 40;
+            dataGridView2.Columns[0].Visible = false;
+           
             /*
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "RB";
@@ -1039,7 +1040,7 @@ namespace Saobracaj.Dokumenta
 " PrijemKontejneraVozStavke.PlaniraniLager as DIREKTNI_INDIREKTNI, UvozKonacna.Napomena1 as NapomenaS, UvozKonacna.Napomena as Napomena2, PrijemKontejneraVozStavke.Datum, " +
 " PrijemKontejneraVozStavke.Korisnik, KontejnerskiTerminali.ID as RLTerminal, " +
 " InspekciskiTretman.ID as InspekciskiTretman, VrstaRobeADR.ID AS ADR, Partnerji_5.PaSifra as Uvoznik, VrstaCarinskogPostupka.ID as CarinskiPostupak, " +
-" Partnerji_6.PaSifra as SpedicijaRTC, UvozKonacna.KontaktOsobe, TaraKontejneraT " +
+" Partnerji_6.PaSifra as SpedicijaRTC, UvozKonacna.KontaktOsobe, PrijemKontejneraVozStavke.TaraKontejneraT " +
 " FROM  PrijemKontejneraVozStavke " +
 " inner join PrijemKontejneraVoz on PrijemKontejneraVoz.ID = PrijemKontejneraVozStavke.IdNadredjenog " +
 " inner join UvozKonacna on UvozKonacna.ID = PrijemKontejneraVozStavke.KontejnerID " +

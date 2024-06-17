@@ -720,7 +720,7 @@ namespace Saobracaj.Uvoz
 " join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozKonacnaVrstaManipulacije.OrgJed" +
 " inner" +
 " join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID" +
-" left" +
+" inner " +
 " join KontejnerStatus on KontejnerStatus.ID = StatusKontejnera where UvozKonacna.ID  = " + Convert.ToInt32(txtID.Text) + " order by UvozKonacnaVrstaManipulacije.ID asc";
 
 

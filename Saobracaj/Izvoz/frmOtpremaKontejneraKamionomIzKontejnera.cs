@@ -211,7 +211,7 @@ namespace Saobracaj.Izvoz
                     DialogResult dialogResult = MessageBox.Show("Da li želite da formirate RN 6 za otpremu platforme", "Radni nalozi?", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
-                        RadniNalozi.RN6OtpremaPlatforme rnop = new RadniNalozi.RN6OtpremaPlatforme(txtSifra.Text, KorisnikCene, txtNalogID.Text, txtRegBrKamiona.Text, 0);
+                        RadniNalozi.RN6OtpremaPlatforme rnop = new RadniNalozi.RN6OtpremaPlatforme(txtSifra.Text, KorisnikCene, txtNalogID.Text, txtRegBrKamiona.Text, 0, txtNalogID.Text);
                         rnop.Show();
                     }
                     else if (dialogResult == DialogResult.No)
@@ -228,6 +228,17 @@ namespace Saobracaj.Izvoz
                     ins.PrenesiKontejnerUOtpremuKamionomIzvoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtKontejnerID.Text), Convert.ToInt32(txtNalogID.Text));
                     // RefreshDataGrid();
                     MessageBox.Show("Uspešno ste formirali Otpremu kamionom");
+                    DialogResult dialogResult = MessageBox.Show("Da li želite da formirate RN 6 OTPREMA PLATFORME", "Radni nalozi?", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                       // string OtpremaID, string Korisnik, string Usluga, string Kamion, int Uvoz
+                        RadniNalozi.RN6OtpremaPlatforme ppl = new RadniNalozi.RN6OtpremaPlatforme(txtSifra.Text, KorisnikCene,  Usluga.ToString(), txtRegBrKamiona.Text, 1, txtNalogID.Text);
+                        ppl.Show();
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        return;
+                    }
                 }
                 else if (chkTerminal.Checked == true)
                 {

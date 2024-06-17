@@ -1040,7 +1040,7 @@ namespace Saobracaj.Dokumenta
             // txtBrojPlombe2
             // 
             this.txtBrojPlombe2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.txtBrojPlombe2.Location = new System.Drawing.Point(724, 76);
+            this.txtBrojPlombe2.Location = new System.Drawing.Point(504, 125);
             this.txtBrojPlombe2.Name = "txtBrojPlombe2";
             this.txtBrojPlombe2.Size = new System.Drawing.Size(130, 21);
             this.txtBrojPlombe2.TabIndex = 221;
@@ -1051,7 +1051,7 @@ namespace Saobracaj.Dokumenta
             this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
             this.label7.Font = new System.Drawing.Font("Times New Roman", 8.25F);
             this.label7.ForeColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(722, 59);
+            this.label7.Location = new System.Drawing.Point(501, 105);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(101, 14);
             this.label7.TabIndex = 222;

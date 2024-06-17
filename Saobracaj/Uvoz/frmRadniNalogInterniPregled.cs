@@ -482,7 +482,7 @@ namespace Saobracaj.Uvoz
             if (Forma == "GATE IN VOZ")
             {
                 MessageBox.Show("Formirate Prijem vozom");
-                frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text),0);
+                frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text),0,0);
                 rd1.Show();
             }
             if (Forma == "GATE OUT KAMION")
@@ -509,15 +509,21 @@ namespace Saobracaj.Uvoz
                 }
                 else if (OJ ==2)
                 {
+                   
+                   // MessageBox.Show("Formirate Prijem kamionom Platforma Izvoz");
                     MessageBox.Show("Formirate Prijem kamionom Platforma Izvoz");
-                    Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz(Korisnik, 0, txtNALOGID.Text,0, 2);
-                    prijemplat.Show();
+                    frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1, OJ);
+                    rd1.Show();
+
+
+                   // Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz(Korisnik, 0, txtNALOGID.Text,0, 2);
+                   // prijemplat.Show();
                 }
                 else if (OJ == 1)
                 {
                     //Prijem platforme //Uvoz SC1
                     MessageBox.Show("Formirate Prijem kamionom Platforma Uvoz");
-                    frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1);
+                    frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1, OJ);
                     rd1.Show();
                     //   Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 0, 1);
                     // prijemplat.Show();

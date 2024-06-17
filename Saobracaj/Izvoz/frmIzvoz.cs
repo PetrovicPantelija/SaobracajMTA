@@ -1845,6 +1845,7 @@ namespace Saobracaj.Izvoz
                 if (txtID.Text !=  "")
                 {
                     VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+                    FillDGUsluge();
                 }
             }
         }

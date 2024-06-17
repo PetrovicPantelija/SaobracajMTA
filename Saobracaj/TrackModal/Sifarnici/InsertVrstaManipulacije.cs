@@ -10,7 +10,7 @@ namespace Testiranje.Sifarnici
     class InsertVrstaManipulacije
     {
 
-        public void InsVrstaManipulacije(string Naziv, DateTime Datum, string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna)
+        public void InsVrstaManipulacije(string Naziv, DateTime Datum, string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna, int drumski)
         {
             // @Oznaka nvarchar(50), 
             // @Relacija nvarchar(100), 
@@ -118,6 +118,14 @@ namespace Testiranje.Sifarnici
             parameter15.Direction = ParameterDirection.Input;
             parameter15.Value = administrativna;
             myCommand.Parameters.Add(parameter15);
+
+
+            SqlParameter parameter16 = new SqlParameter();
+            parameter16.ParameterName = "@Drumska";
+            parameter16.SqlDbType = SqlDbType.Int;
+            parameter16.Direction = ParameterDirection.Input;
+            parameter16.Value = drumski;
+            myCommand.Parameters.Add(parameter16);
             // @Oznaka nvarchar(50), 
             // @Relacija nvarchar(100), 
             // @Cena numeric(18,2)
@@ -159,7 +167,7 @@ namespace Testiranje.Sifarnici
             }
         }
 
-        public void UpdVrstaManipulacije(int ID, string Naziv, DateTime Datum, string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna)
+        public void UpdVrstaManipulacije(int ID, string Naziv, DateTime Datum, string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna, int drumski)
         {
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -272,6 +280,14 @@ namespace Testiranje.Sifarnici
             parameter15.Direction = ParameterDirection.Input;
             parameter15.Value = administrativna;
             myCommand.Parameters.Add(parameter15);
+
+
+            SqlParameter parameter16 = new SqlParameter();
+            parameter16.ParameterName = "@Drumska";
+            parameter16.SqlDbType = SqlDbType.Int;
+            parameter16.Direction = ParameterDirection.Input;
+            parameter16.Value = drumski;
+            myCommand.Parameters.Add(parameter16);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

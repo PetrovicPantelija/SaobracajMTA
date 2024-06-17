@@ -19,7 +19,7 @@ namespace Saobracaj.RadniNalozi
             FillCombo();
         }
 
-        public RN6OtpremaPlatforme(string OtpremaID, string Korisnik, string Usluga, string Kamion, int Uvoz)
+        public RN6OtpremaPlatforme(string OtpremaID, string Korisnik, string Usluga, string Kamion, int Uvoz, string NalogID)
         {
             //Uvoz = 0
             //Izvoz = 1
@@ -37,7 +37,8 @@ namespace Saobracaj.RadniNalozi
                 VratiPodatkeVrstaMan(Usluga.ToString());
                 chkUvoz.Checked = true;
                 chkIzvoz.Checked = false;
-               
+                //Proveriti da li je ovo tacno
+
 
             }
             else
@@ -51,7 +52,7 @@ namespace Saobracaj.RadniNalozi
 
             txtRegBr.Text = Kamion;
             KorisnikTekuci = Korisnik;
-            txtNalogID.Text = Usluga;
+            txtNalogID.Text = NalogID;
         }
 
         private void VratiPodatkeVrstaMan(string IDUsluge)

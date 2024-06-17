@@ -267,7 +267,7 @@ namespace Saobracaj.Uvoz
             this.chkTransport.AutoSize = true;
             this.chkTransport.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkTransport.ForeColor = System.Drawing.Color.Black;
-            this.chkTransport.Location = new System.Drawing.Point(102, 99);
+            this.chkTransport.Location = new System.Drawing.Point(116, 93);
             this.chkTransport.Name = "chkTransport";
             this.chkTransport.Size = new System.Drawing.Size(131, 20);
             this.chkTransport.TabIndex = 305;
@@ -281,7 +281,7 @@ namespace Saobracaj.Uvoz
             this.chkVoz.Enabled = false;
             this.chkVoz.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkVoz.ForeColor = System.Drawing.Color.Black;
-            this.chkVoz.Location = new System.Drawing.Point(8, 99);
+            this.chkVoz.Location = new System.Drawing.Point(12, 93);
             this.chkVoz.Name = "chkVoz";
             this.chkVoz.Size = new System.Drawing.Size(64, 20);
             this.chkVoz.TabIndex = 304;

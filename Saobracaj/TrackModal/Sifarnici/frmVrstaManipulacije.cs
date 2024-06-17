@@ -58,17 +58,25 @@ namespace Testiranje.Sifarnici
                 administrativna = 1;
 
             }
+
+            int drumska = 0;
+            if (chkDrumski.Checked == true)
+            {
+                drumska = 1;
+
+            }
+
             if (status == true)
             {
                 InsertVrstaManipulacije ins = new InsertVrstaManipulacije();
-                ins.InsVrstaManipulacije(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue), administrativna);
+                ins.InsVrstaManipulacije(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue), administrativna, drumska);
                 status = false;
             }
             else
             {
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertVrstaManipulacije upd = new InsertVrstaManipulacije();
-                upd.UpdVrstaManipulacije(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue), administrativna);
+                upd.UpdVrstaManipulacije(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue), administrativna, drumska);
             }
             RefreshDataGrid();
         }
@@ -95,7 +103,10 @@ namespace Testiranje.Sifarnici
         {
             var select = " SELECT VrstaManipulacije.[ID] as VID,VrstaManipulacije.Naziv as VrstaM,VrstaManipulacije.JM as JMM," +
                 " CASE WHEN UticeSkladisno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as UticeSkladisno, " +
-                "VrstaManipulacije.[Datum] as Dat,VrstaManipulacije.[Korisnik] as Kor, TipManipulacije, VrstaManipulacije.OrgJed, OrganizacioneJedinice.Naziv, VrstaManipulacije.Oznaka, VrstaManipulacije.Relacija,VrstaManipulacije.Cena " +
+                "VrstaManipulacije.[Datum] as Dat,VrstaManipulacije.[Korisnik] as Kor, TipManipulacije, VrstaManipulacije.OrgJed, " +
+                " OrganizacioneJedinice.Naziv, VrstaManipulacije.Oznaka, VrstaManipulacije.Relacija,VrstaManipulacije.Cena, " +
+                " CASE WHEN Administrativna > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Administrativna," +
+                "CASE WHEN Drumska > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Drumska  " +
              " FROM [dbo].[VrstaManipulacije] " +
              " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = VrstaManipulacije.OrgJed" +
              " order by VrstaManipulacije.[ID]";
@@ -182,7 +193,7 @@ namespace Testiranje.Sifarnici
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT ID , Naziv, JM, UticeSkladisno, TipManipulacije, OrgJed, Oznaka,Relacija, Cena, GrupaVrsteManipulacijeID, Administrativna from VrstaManipulacije where ID=" + txtSifra.Text, con);
+            SqlCommand cmd = new SqlCommand("SELECT ID , Naziv, JM, UticeSkladisno, TipManipulacije, OrgJed, Oznaka,Relacija, Cena, GrupaVrsteManipulacijeID, Administrativna, Drumska from VrstaManipulacije where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -205,6 +216,10 @@ namespace Testiranje.Sifarnici
                 if (dr["Administrativna"].ToString() == "1")
                 { chkAdministratvna.Checked = true; }
                 else { chkAdministratvna.Checked = false; }
+
+                if (dr["Drumska"].ToString() == "1")
+                { chkDrumski.Checked = true; }
+                else { chkDrumski.Checked = false; }
             }
 
             con.Close();

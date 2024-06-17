@@ -900,19 +900,20 @@ namespace Saobracaj.Uvoz
                             con.Close();
                             pomPlatilac = Convert.ToInt32(cboNalogodavac1.SelectedValue);
                             pomOrgJed = VratiOrgJed(pomManupulacija);
+                            foreach (DataGridViewRow row2 in dataGridView1.Rows)
+                            {
+                                if (row2.Selected)
+                                {
+                                    pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                                    UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed, pomPlatilac, pomPokret, pomStatusKontejnera, pomForma);
+                                }
+                            }
+
                         }
 
                         //  pomCena = Convert.ToDouble(row.Cells[2].Value.ToString());
                         // pomkolicina= Convert.ToDouble(row.Cells[4].Value.ToString());
                         //   pomOrgJed = Convert.ToInt32(row.Cells[5].Value.ToString());
-                        foreach (DataGridViewRow row2 in dataGridView1.Rows)
-                        {
-                            if (row2.Selected)
-                            {
-                                pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
-                                UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed, pomPlatilac, pomPokret, pomStatusKontejnera, pomForma);
-                            }
-                        }
 
 
                     }
@@ -1689,19 +1690,20 @@ namespace Saobracaj.Uvoz
                             con.Close();
                             pomPlatilac = Convert.ToInt32(cboNalogodavac2.SelectedValue);
                             pomOrgJed = VratiOrgJed(pomManupulacija);
+                            foreach (DataGridViewRow row2 in dataGridView1.Rows)
+                            {
+                                if (row2.Selected)
+                                {
+                                    pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                                    UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed, pomPlatilac, pomPokret, pomStatusKontejnera, pomForma);
+                                }
+                            }
                         }
 
                         //  pomCena = Convert.ToDouble(row.Cells[2].Value.ToString());
                         // pomkolicina= Convert.ToDouble(row.Cells[4].Value.ToString());
                         //   pomOrgJed = Convert.ToInt32(row.Cells[5].Value.ToString());
-                        foreach (DataGridViewRow row2 in dataGridView1.Rows)
-                        {
-                            if (row2.Selected)
-                            {
-                                pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
-                                UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed, pomPlatilac, pomPokret, pomStatusKontejnera, pomForma);
-                            }
-                        }
+                       
 
 
                     }
@@ -1811,19 +1813,20 @@ namespace Saobracaj.Uvoz
                             con.Close();
                             pomPlatilac = Convert.ToInt32(cboNalogodavac3.SelectedValue);
                             pomOrgJed = VratiOrgJed(pomManupulacija);
+                            foreach (DataGridViewRow row2 in dataGridView1.Rows)
+                            {
+                                if (row2.Selected)
+                                {
+                                    pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                                    UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed, pomPlatilac, pomPokret, pomStatusKontejnera, pomForma);
+                                }
+                            }
                         }
 
                         //  pomCena = Convert.ToDouble(row.Cells[2].Value.ToString());
                         // pomkolicina= Convert.ToDouble(row.Cells[4].Value.ToString());
                         //   pomOrgJed = Convert.ToInt32(row.Cells[5].Value.ToString());
-                        foreach (DataGridViewRow row2 in dataGridView1.Rows)
-                        {
-                            if (row2.Selected)
-                            {
-                                pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
-                                UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed, pomPlatilac, pomPokret, pomStatusKontejnera, pomForma);
-                            }
-                        }
+                       
 
 
                     }
@@ -1915,7 +1918,7 @@ namespace Saobracaj.Uvoz
             {
                 foreach (DataGridViewRow row in dataGridView6.Rows)
                 {
-                    if (row.Selected)
+                    if (row.Selected == true)
                     {
                         pomManupulacija = Convert.ToInt32(row.Cells[0].Value.ToString());
                         pomPokret = row.Cells[7].Value.ToString();
@@ -1951,18 +1954,18 @@ namespace Saobracaj.Uvoz
                         //  pomCena = Convert.ToDouble(row.Cells[2].Value.ToString());
                         // pomkolicina= Convert.ToDouble(row.Cells[4].Value.ToString());
                         //   pomOrgJed = Convert.ToInt32(row.Cells[5].Value.ToString());
-                    
-
-
-                    }
-                    foreach (DataGridViewRow row2 in dataGridView1.Rows)
-                    {
-                        if (row2.Selected)
+                        foreach (DataGridViewRow row2 in dataGridView1.Rows)
                         {
-                            pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
-                            UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed, pomPlatilac, pomPokret, pomStatusKontejnera, pomForma);
+                            if (row2.Selected == true)
+                            {
+                                pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                                UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed, pomPlatilac, pomPokret, pomStatusKontejnera, pomForma);
+                            }
                         }
+
+
                     }
+                    
                 }
                 FillDG8();
 

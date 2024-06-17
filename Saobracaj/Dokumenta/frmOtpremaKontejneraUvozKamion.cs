@@ -1267,7 +1267,38 @@ namespace Saobracaj.Dokumenta
                 }
             }
         }
+        int VratiPostojiUslugaDrumskogPrevoza(string KontejnerID)
+        {
+           
 
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                SqlConnection con = new SqlConnection(s_connection);
+
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("select Count(*) as Broj from UvozKonacnaVrstaManipulacije inner join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije where UvozKonacnaVrstaManipulacije.IDNadredjena = "+ KontejnerID +" and VrstaManipulacije.Drumska = 1 " , con);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    if (Convert.ToInt32(dr["Broj"].ToString()) > 0) 
+                    {
+                    chkDrumski.Checked = true;
+                    }
+                    else
+                    {
+                        chkDrumski.Checked = false;
+                    }
+                    
+                }
+
+                con.Close();
+
+          
+
+
+            return 0; 
+        }
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -1278,6 +1309,7 @@ namespace Saobracaj.Dokumenta
                     {
                         txtSifra.Text = row.Cells[2].Value.ToString();
                         VratiPodatkeStavke(txtSifra.Text, Convert.ToInt32(row.Cells[1].Value.ToString()));
+                       int l = VratiPostojiUslugaDrumskogPrevoza(txtKontejnerID.Text);
 
                     }
                 }
@@ -3048,7 +3080,7 @@ namespace Saobracaj.Dokumenta
             }
             //ID usluge je ustvaribroj RadnogNalogaInternog
 
-            RadniNalozi.RN6OtpremaPlatforme rnop = new RadniNalozi.RN6OtpremaPlatforme(txtSifra.Text, KorisnikCene, IDUsluge, txtRegBrKamiona.Text, 0);
+            RadniNalozi.RN6OtpremaPlatforme rnop = new RadniNalozi.RN6OtpremaPlatforme(txtSifra.Text, KorisnikCene, IDUsluge, txtRegBrKamiona.Text, 0, txtNalogID.Text);
             rnop.Show();
         }
 
