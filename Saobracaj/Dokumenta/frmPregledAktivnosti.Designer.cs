@@ -75,7 +75,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(440, 15);
+            this.button1.Location = new System.Drawing.Point(454, 15);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(172, 42);
             this.button1.TabIndex = 219;
@@ -188,7 +188,7 @@ namespace Saobracaj.Dokumenta
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(120, 42);
             this.button7.TabIndex = 227;
-            this.button7.Text = "Primopredaja";
+            this.button7.Text = "LO-dnevni pregled";
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
@@ -337,9 +337,9 @@ namespace Saobracaj.Dokumenta
             this.chkAutomobili.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkAutomobili.Location = new System.Drawing.Point(339, 34);
             this.chkAutomobili.Name = "chkAutomobili";
-            this.chkAutomobili.Size = new System.Drawing.Size(74, 17);
+            this.chkAutomobili.Size = new System.Drawing.Size(109, 17);
             this.chkAutomobili.TabIndex = 241;
-            this.chkAutomobili.Text = "Automobili";
+            this.chkAutomobili.Text = "Automobili/Ostalo";
             this.chkAutomobili.UseVisualStyleBackColor = true;
             // 
             // frmPregledAktivnosti

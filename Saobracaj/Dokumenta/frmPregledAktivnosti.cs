@@ -292,6 +292,9 @@ namespace Saobracaj.Dokumenta
             cboPosao.DataSource = ds3.Tables[0];
             cboPosao.DisplayMember = "Oznaka";
             cboPosao.ValueMember = "Oznaka";
+
+            chkAktvni.Checked = false;
+            chkAutomobili.Checked = false;
         }
 
         private void cboPosao_SelectedIndexChanged(object sender, EventArgs e)

@@ -1,4 +1,5 @@
 ﻿using Saobracaj.Sifarnici;
+using Syncfusion.Windows.Forms.Tools;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -134,7 +135,23 @@ namespace Saobracaj.Pantheon_Export
             InsertPatheonExport ins = new InsertPatheonExport();
             if (status == true)
             {
-                ins.InsNosiociTroskova(txtNosilacTroska.Text.ToString().TrimEnd(), txtNazivNosioca.Text.ToString().TrimEnd(), cboGrupa.Text.ToString().TrimEnd(), Convert.ToInt32(cboKupac.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToInt32(cboOpportunity.SelectedValue), Convert.ToInt32(cboPosao.SelectedValue), korisnik);
+                SqlConnection conn=new SqlConnection(connect);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("Select ID from NosiociTroskova Where Posao=" + Convert.ToInt32(cboPosao.SelectedValue), conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        MessageBox.Show("Već postoji kreiran nosilac troška za ovaj posao! ID:" + dr[0].ToString());
+                        return;
+                    }
+                }
+                else
+                {
+                    ins.InsNosiociTroskova(txtNosilacTroska.Text.ToString().TrimEnd(), txtNazivNosioca.Text.ToString().TrimEnd(), cboGrupa.Text.ToString().TrimEnd(), Convert.ToInt32(cboKupac.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToInt32(cboOpportunity.SelectedValue), Convert.ToInt32(cboPosao.SelectedValue), korisnik);
+                }
+                conn.Close();
             }
             else
             {
@@ -166,9 +183,16 @@ namespace Saobracaj.Pantheon_Export
 
         private void tsDelete_Click(object sender, EventArgs e)
         {
-            InsertPatheonExport ins = new InsertPatheonExport();
-            ins.DelNosiociTroskova(Convert.ToInt32(txtID.Text));
-            FillGV();
+            if (korisnik == "mikic.d")
+            {
+                InsertPatheonExport ins = new InsertPatheonExport();
+                ins.DelNosiociTroskova(Convert.ToInt32(txtID.Text));
+                FillGV();
+            }
+            else
+            {
+                MessageBox.Show("Nemate pravo brisanja zapisa!");
+            }
         }
 
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
@@ -385,6 +409,204 @@ namespace Saobracaj.Pantheon_Export
                     dataGridView2.CurrentCell = row.Cells[2];
                 }
             }
+        }
+        //Sort prvi DGV
+        int gv1 = 0;
+        int gv2 = 0;
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var select = "Select NosiociTroskova.ID,NosilacTroska,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska,Grupa,RTrim(PaNaziv) as Kupac,RTrim(SifraSubjekta) as Odeljenje, " +
+                "(RTrim(Opportunity.OppID) + ' - ' + RTrim(Opportunity.NazivPosla)) as Opportunity, Kupac, NosiociTroskova.Odeljenje,NosiociTroskova.OppID,Posao,NosiociTroskova.Status,RTrim(NosiociTroskova.Korisnik) as Korisnik " +
+                "From NosiociTroskova " +
+                "inner join Partnerji on NosiociTroskova.Kupac = Partnerji.PaSifra " +
+                "inner join Odeljenja on NosiociTroskova.Odeljenje = Odeljenja.ID " +
+                "Inner join Opportunity on NosiociTroskova.OppID = Opportunity.ID " +
+                "WHere NosiociTroskova.Status = 0 ";
+
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "NazivNosiocaTroska")
+            {
+
+                if (gv1 % 2 == 0)
+                {
+                    select = select + "order by NosiociTroskova.ID asc";
+                }
+                else
+                {
+                    select = select + " order by NosiociTroskova.ID desc";
+                }
+                gv1++;
+            }
+
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "NazivNosiocaTroska")
+            {
+                
+                if (gv1 % 2 == 0)
+                {
+                    select = select + "order by NazivNosiocaTroska asc";
+                }
+                else
+                {
+                    select = select + " order by NazivNosiocaTroska desc";
+                }
+                gv1++;
+            }
+
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Kupac")
+            {
+
+                if (gv1 % 2 == 0)
+                {
+                    select = select + "order by NosiociTroskova.Kupac asc";
+                }
+                else
+                {
+                    select = select + " order by NosiociTroskova.Kupac desc";
+                }
+                gv1++;
+            }
+
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Opportunity")
+            {
+
+                if (gv1 % 2 == 0)
+                {
+                    select = select + "order by NosiociTroskova.OppID asc";
+                }
+                else
+                {
+                    select = select + " order by NosiociTroskova.OppID desc";
+                }
+                gv1++;
+            }
+
+            SqlConnection conn = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            dataGridView1.Columns[0].Width = 50;
+            dataGridView1.Columns[1].Width = 150;
+            dataGridView1.Columns[2].Width = 220;
+            dataGridView1.Columns[3].Visible = false;
+            dataGridView1.Columns[3].Width = 150;
+            dataGridView1.Columns[4].Width = 300;
+            dataGridView1.Columns[5].Width = 150;
+            dataGridView1.Columns[5].Visible = false;
+            dataGridView1.Columns[6].Width = 300;
+            dataGridView1.Columns[7].Visible = false;
+            dataGridView1.Columns[8].Visible = false;
+            dataGridView1.Columns[9].Visible = false;
+            dataGridView1.Columns[10].Width = 80;
+            dataGridView1.Columns[11].Width = 60;
+
+
+            dataGridView1.BorderStyle = BorderStyle.FixedSingle;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+        }
+        //Sort drugi DGV
+        private void dataGridView2_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var select = "Select NosiociTroskova.ID,NosilacTroska,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska,Grupa,RTrim(PaNaziv) as Kupac,RTrim(SifraSubjekta) as Odeljenje, " +
+                "(RTrim(Opportunity.OppID) + ' - ' + RTrim(Opportunity.NazivPosla)) as Opportunity, Kupac, NosiociTroskova.Odeljenje,NosiociTroskova.OppID,Posao,NosiociTroskova.Status,RTrim(NosiociTroskova.Korisnik) as Korisnik " +
+                "From NosiociTroskova " +
+                "inner join Partnerji on NosiociTroskova.Kupac = Partnerji.PaSifra " +
+                "inner join Odeljenja on NosiociTroskova.Odeljenje = Odeljenja.ID " +
+                "Inner join Opportunity on NosiociTroskova.OppID = Opportunity.ID ";
+
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "ID")
+            {
+                if (gv2 % 2 == 0)
+                {
+                    select = select + "order by NosiociTroskova.ID asc";
+                }
+                else
+                {
+                    select = select + " order by NosiociTroskova.ID desc";
+                }
+                gv2++;
+            }
+
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "NazivNosiocaTroska")
+            {
+                if (gv2 % 2 == 0)
+                {
+                    select = select + "order by NazivNosiocaTroska asc";
+                }
+                else
+                {
+                    select = select + " order by NazivNosiocaTroska desc";
+                }
+                gv2++;
+            }
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "Kupac")
+            {
+                if (gv2 % 2 == 0)
+                {
+                    select = select + "order by NosiociTroskova.Kupac asc";
+                }
+                else
+                {
+                    select = select + " order by NosiociTroskova.Kupac desc";
+                }
+                gv2++;
+            }
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "Opportunity")
+            {
+                if (gv2 % 2 == 0)
+                {
+                    select = select + "order by NosiociTroskova.OppID asc";
+                }
+                else
+                {
+                    select = select + " order by NosiociTroskova.OppID desc";
+                }
+                gv2++;
+            }
+            SqlConnection conn = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = ds.Tables[0];
+
+            dataGridView2.BorderStyle = BorderStyle.FixedSingle;
+            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView2.BackgroundColor = Color.White;
+
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+
+            dataGridView2.Columns[0].Width = 50;
+            dataGridView2.Columns[1].Width = 150;
+            dataGridView2.Columns[2].Width = 220;
+            dataGridView2.Columns[3].Width = 150;
+            dataGridView2.Columns[3].Visible = false;
+            dataGridView2.Columns[4].Width = 300;
+            dataGridView2.Columns[5].Width = 150;
+            dataGridView2.Columns[5].Visible = false;
+            dataGridView2.Columns[6].Width = 300;
+            dataGridView2.Columns[7].Visible = false;
+            dataGridView2.Columns[8].Visible = false;
+            dataGridView2.Columns[9].Visible = false;
+            dataGridView2.Columns[10].Width = 80;
+            dataGridView2.Columns[11].Width = 60;
         }
     }
 }

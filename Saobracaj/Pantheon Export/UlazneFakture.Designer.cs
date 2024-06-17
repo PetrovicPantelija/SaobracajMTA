@@ -340,6 +340,7 @@
             this.cboValuta.Name = "cboValuta";
             this.cboValuta.Size = new System.Drawing.Size(143, 21);
             this.cboValuta.TabIndex = 203;
+            this.cboValuta.SelectionChangeCommitted += new System.EventHandler(this.cboValuta_SelectionChangeCommitted);
             // 
             // txtRacunDobavljaca
             // 

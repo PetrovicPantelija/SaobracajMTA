@@ -232,13 +232,29 @@ namespace Saobracaj.Pantheon_Export
             cboJM.DisplayMember = "MeNaziv";
             cboJM.ValueMember = "MeNaziv";
 
-            var pID = "select Distinct PRedvidjanjeID,IDP From Predvidjanje order by IDp desc";
-            var pDa=new SqlDataAdapter(pID, conn);
-            var pDS=new DataSet();
+            var pID = "select Distinct RTrim(PRedvidjanjeID) as PredvidjanjeID,IDP From Predvidjanje order by IDp desc";
+            var pDa = new SqlDataAdapter(pID, conn);
+            var pDS = new DataSet();
             pDa.Fill(pDS);
-            cboPredvidjanjeIDFilter.DataSource= pDS.Tables[0];
+            cboPredvidjanjeIDFilter.DataSource = pDS.Tables[0];
             cboPredvidjanjeIDFilter.DisplayMember = "PredvidjanjeID";
             cboPredvidjanjeIDFilter.ValueMember = "PredvidjanjeID";
+
+            var filterNTtxt = "Select ID,RTrim(NosilacTroska) as NosilacTroska from NosiociTroskova order by ID desc";
+            var DafNT = new SqlDataAdapter(filterNTtxt, conn);
+            var DsfNt = new DataSet();
+            DafNT.Fill(DsfNt);
+            cboFilterNT.DataSource = DsfNt.Tables[0];
+            cboFilterNT.DisplayMember = "NosilacTroska";
+            cboFilterNT.ValueMember = "ID";
+
+            var filterNTTxt = "Select ID,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska from NosiociTroskova order by ID desc";
+            var DafNTtxt = new SqlDataAdapter(filterNTTxt, conn);
+            var DsfNttxt = new DataSet();
+            DafNTtxt.Fill(DsfNttxt);
+            cboFilterNazivNT.DataSource = DsfNttxt.Tables[0];
+            cboFilterNazivNT.DisplayMember = "NazivNosiocaTroska";
+            cboFilterNazivNT.ValueMember = "ID";
         }
 
         int ID, IDp, RB, Najava, StatusSelektovanog;
@@ -372,9 +388,16 @@ namespace Saobracaj.Pantheon_Export
 
         private void tsDelete_Click(object sender, EventArgs e)
         {
-            InsertPatheonExport ins = new InsertPatheonExport();
-            ins.DelPredvidjanje(Convert.ToInt32(txtID.Text));
-            FillGV();
+            if (korisnik == "mikic.d")
+            {
+                InsertPatheonExport ins = new InsertPatheonExport();
+                ins.DelPredvidjanje(Convert.ToInt32(txtID.Text));
+                FillGV();
+            }
+            else
+            {
+                MessageBox.Show("Nemate pravo brisanja zapisa!");
+            }
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -537,7 +560,7 @@ namespace Saobracaj.Pantheon_Export
         }
         private void btnNTFilter_Click(object sender, EventArgs e)
         {
-            string nt = txtFilterNT.Text.ToString().TrimEnd();
+            int nt = Convert.ToInt32(cboFilterNT.SelectedValue);
 
             string query = "select p.ID as ID,p.IDp as IDp,RTrim(p.NosilacTroska) as NTID,RTrim(NosiociTroskova.NosilacTroska) as NT," +
             "RTrim(NosiociTroskova.NazivNosiocaTroska) as [NT Naziv],p.Status as Status,RTrim(PredvidjanjeID) as Predvidjanje,(RTrim(MpStaraSif) + '-' + RTrim(MpNaziv)) as Ident," +
@@ -547,14 +570,14 @@ namespace Saobracaj.Pantheon_Export
             "inner join Partnerji on p.Subjekt = Partnerji.PaSifra " +
             "inner join NosiociTroskova on p.NosilacTroska = NosiociTroskova.ID " +
             "inner join MaticniPodatki on p.Ident = MaticniPodatki.MpSifra " +
-            "inner join Odeljenja on p.Odeljenje = Odeljenja.ID Where Kolicina>0 and NosiociTroskova.NosilacTroska='" + nt + "' order by p.ID desc";
+            "inner join Odeljenja on p.Odeljenje = Odeljenja.ID Where Kolicina>0 and NosiociTroskova.ID=" + nt + " order by p.ID desc";
 
             Filteri(query);
         }
 
         private void btnNTNazivFilter_Click(object sender, EventArgs e)
         {
-            string nt = txtFilterNazivNT.Text.ToString().TrimEnd();
+            int nt = Convert.ToInt32(cboFilterNazivNT.SelectedValue);
 
             string query = "select p.ID as ID,p.IDp as IDp,RTrim(p.NosilacTroska) as NTID,RTrim(NosiociTroskova.NosilacTroska) as NT," +
             "RTrim(NosiociTroskova.NazivNosiocaTroska) as [NT Naziv],p.Status as Status,RTrim(PredvidjanjeID) as Predvidjanje,(RTrim(MpStaraSif) + '-' + RTrim(MpNaziv)) as Ident," +
@@ -564,7 +587,7 @@ namespace Saobracaj.Pantheon_Export
             "inner join Partnerji on p.Subjekt = Partnerji.PaSifra " +
             "inner join NosiociTroskova on p.NosilacTroska = NosiociTroskova.ID " +
             "inner join MaticniPodatki on p.Ident = MaticniPodatki.MpSifra " +
-            "inner join Odeljenja on p.Odeljenje = Odeljenja.ID Where Kolicina>0 and NosiociTroskova.NazivNosiocaTroska='" + nt + "' order by p.ID desc";
+            "inner join Odeljenja on p.Odeljenje = Odeljenja.ID Where Kolicina>0 and NosiociTroskova.ID=" + nt + " order by p.ID desc";
 
             Filteri(query);
         }
@@ -621,22 +644,336 @@ namespace Saobracaj.Pantheon_Export
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            var query = "Select (Max(PredvodjanjePoz)) as Poz From Predvidjanje Where IDP=" + Convert.ToInt32(txtIDPredvidjanja.Text);
+            string pomVal = "";
             SqlConnection conn = new SqlConnection(connect);
             conn.Open();
-            SqlCommand cmd = new SqlCommand(query, conn);
-            SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
+            SqlCommand select = new SqlCommand("Select Top 1 Valuta from Predvidjanje Where IDP=" + Convert.ToInt32(txtIDPredvidjanja.Text) + " order by ID desc", conn);
+            SqlDataReader reader = select.ExecuteReader();
+            while (reader.Read())
             {
-                poz = Convert.ToInt32(dr[0]) + 1;
+                pomVal = reader[0].ToString().TrimEnd();
             }
             conn.Close();
 
-            GetNosiociInfo();
-            iznosRSD = (Convert.ToDecimal(txtIznos.Value) * Convert.ToDecimal(txtKurs.Value));
-            InsertPatheonExport ins = new InsertPatheonExport();
-            ins.InsPredvidjanje(Convert.ToInt32(txtIDPredvidjanja.Text), txtPredvidjanje.Text.ToString().TrimEnd(), poz, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Text.ToString()), cboValuta.SelectedValue.ToString(), 0, Najava, Convert.ToInt32(cboIdent.SelectedValue), Convert.ToDecimal(txtKolicina.Value), cboJM.SelectedValue.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd(), Convert.ToInt32(txtKurs.Value), iznosRSD, korisnik);
-            FillGV();
+            if (pomVal == cboValuta.SelectedValue.ToString().TrimEnd())
+            {
+                var query = "Select (Max(PredvodjanjePoz)) as Poz From Predvidjanje Where IDP=" + Convert.ToInt32(txtIDPredvidjanja.Text);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    poz = Convert.ToInt32(dr[0]) + 1;
+                }
+                conn.Close();
+
+                GetNosiociInfo();
+                iznosRSD = (Convert.ToDecimal(txtIznos.Value) * Convert.ToDecimal(txtKurs.Value));
+
+
+                InsertPatheonExport ins = new InsertPatheonExport();
+                ins.InsPredvidjanje(Convert.ToInt32(txtIDPredvidjanja.Text), txtPredvidjanje.Text.ToString().TrimEnd(), poz, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(cboSubjekt.SelectedValue), Convert.ToInt32(cboNosilacTroska.SelectedValue), Convert.ToInt32(cboOdeljenje.SelectedValue), Convert.ToDecimal(txtIznos.Text.ToString()), cboValuta.SelectedValue.ToString(), 0, Najava, Convert.ToInt32(cboIdent.SelectedValue), Convert.ToDecimal(txtKolicina.Value), cboJM.SelectedValue.ToString().TrimEnd(), txtNapomena.Text.ToString().TrimEnd(), Convert.ToInt32(txtKurs.Value), iznosRSD, korisnik);
+                FillGV();
+            }
+            else
+            {
+                MessageBox.Show("Za ovo predviđanje pozicija mora biti u valuti " + pomVal, "Sve pozicije predvidjanja moraju biti u istoj valuti!");
+                return;
+            }
+        }
+        int gv1 = 0;
+        int gv2 = 0;
+        private void dataGridView1_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            var select = "select p.ID as ID,p.IDp as IDp,RTrim(p.NosilacTroska) as NTID,RTrim(NosiociTroskova.NosilacTroska) as NT," +
+                "RTrim(NosiociTroskova.NazivNosiocaTroska) as [NT Naziv],RTrim(PredvidjanjeID) as Predvidjanje,(RTrim(MpStaraSif) + '-' + RTrim(MpNaziv)) as Ident," +
+                "p.PredvodjanjePoz as [Poz.],p.Napomena as Napomena,Format(p.Datum,'dd.MM.yyyy') as Datum,RTrim(PaNaziv) as Subjekt,RTrim(SifraSubjekta) as Odeljenje," +
+                "Iznos,Valuta,Kolicina,JM,Cast((Iznos/Kolicina) as decimal(18,4))as [Jedinicna Cena],p.Kurs as Kurs,p.Subjekt,p.Odeljenje,p.NajavaID,Ident,RTrim(p.Korisnik) as Korisnik,IznosRSD " +
+                "From Predvidjanje p " +
+                "inner join Partnerji on p.Subjekt = Partnerji.PaSifra " +
+                "inner join NosiociTroskova on p.NosilacTroska = NosiociTroskova.ID " +
+                "inner join MaticniPodatki on p.Ident = MaticniPodatki.MpSifra " +
+                "inner join Odeljenja on p.Odeljenje = Odeljenja.ID Where p.Status = 0 ";
+
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "ID")
+            {
+
+                if (gv1 % 2 == 0)
+                {
+                    select = select + " order by p.ID asc";
+                }
+                else
+                {
+                    select = select + " order by p.ID desc";
+                }
+                gv1++;
+            }
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "IDp")
+            {
+
+                if (gv1 % 2 == 0)
+                {
+                    select = select + " order by p.IDp asc,PredvodjanjePoz asc";
+                }
+                else
+                {
+                    select = select + " order by p.IDp desc,PredvodjanjePoz desc";
+                }
+                gv1++;
+            }
+
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "NT")
+            {
+
+                if (gv1 % 2 == 0)
+                {
+                    select = select + " order by p.NosilacTroska asc,PredvodjanjePoz asc";
+                }
+                else
+                {
+                    select = select + " order by p.NosilacTroska desc,PredvodjanjePoz desc";
+                }
+                gv1++;
+            }
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Predvidjanje")
+            {
+
+                if (gv1 % 2 == 0)
+                {
+                    select = select + " order by p.IDP asc,PredvodjanjePoz asc";
+                }
+                else
+                {
+                    select = select + " order by p.IDP desc,PredvodjanjePoz desc";
+                }
+                gv1++;
+            }
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Ident")
+            {
+
+                if (gv1 % 2 == 0)
+                {
+                    select = select + " order by p.Ident asc";
+                }
+                else
+                {
+                    select = select + " order by p.Ident desc";
+                }
+                gv1++;
+            }
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Datum")
+            {
+
+                if (gv1 % 2 == 0)
+                {
+                    select = select + " order by p.Datum asc";
+                }
+                else
+                {
+                    select = select + " order by p.Datum desc";
+                }
+                gv1++;
+            }
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Subjekt")
+            {
+
+                if (gv1 % 2 == 0)
+                {
+                    select = select + " order by p.Subjekt asc";
+                }
+                else
+                {
+                    select = select + " order by p.Subjekt desc";
+                }
+                gv1++;
+            }
+            SqlConnection conn = new SqlConnection(connect);
+            var dataAdapter = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            dataGridView1.BorderStyle = BorderStyle.FixedSingle;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            dataGridView1.Columns["ID"].Width = 55;
+            dataGridView1.Columns["IDp"].Width = 60;
+            dataGridView1.Columns["NTID"].Visible = false;
+            dataGridView1.Columns["NT"].Width = 70;
+            dataGridView1.Columns["NT Naziv"].Width = 90;
+            dataGridView1.Columns["Ident"].Width = 120;
+            dataGridView1.Columns["Poz."].Width = 55;
+            dataGridView1.Columns["Napomena"].Width = 120;
+            dataGridView1.Columns["Subjekt"].Width = 150;
+            dataGridView1.Columns["Odeljenje"].Visible = false;
+            dataGridView1.Columns["Iznos"].Width = 80;
+            dataGridView1.Columns["Valuta"].Width = 50;
+            dataGridView1.Columns["Kolicina"].Width = 60;
+            dataGridView1.Columns["JM"].Width = 55;
+            dataGridView1.Columns["Jedinicna Cena"].Width = 70;
+            dataGridView1.Columns["Kurs"].Width = 65;
+            dataGridView1.Columns["Subjekt1"].Visible = false;
+            dataGridView1.Columns["Odeljenje1"].Visible = false;
+            dataGridView1.Columns["Ident1"].Visible = false;
+            dataGridView1.Columns["Korisnik"].Width = 70;
+            dataGridView1.Columns["IznosRSD"].Visible = false;
+
+        }
+
+        private void dataGridView2_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string select = "select p.ID as ID,p.IDp as IDp,RTrim(p.NosilacTroska) as NTID,RTrim(NosiociTroskova.NosilacTroska) as NT," +
+     "RTrim(NosiociTroskova.NazivNosiocaTroska) as [NT Naziv],p.Status as Status,RTrim(PredvidjanjeID) as Predvidjanje,(RTrim(MpStaraSif) + '-' + RTrim(MpNaziv)) as Ident," +
+     "p.PredvodjanjePoz as [Poz.],p.Napomena as Napomena,Format(p.Datum,'dd.MM.yyyy') as Datum,RTrim(PaNaziv) as Subjekt,RTrim(SifraSubjekta) as Odeljenje," +
+     "Iznos,Valuta,Kolicina,JM,Cast((Iznos/Kolicina) as decimal(18,4))as [Jedinicna Cena],p.Kurs as Kurs,p.Subjekt,p.Odeljenje,p.NajavaID,Ident,RTrim(p.Korisnik) as Korisnik,IznosRSD " +
+     "From Predvidjanje p " +
+     "inner join Partnerji on p.Subjekt = Partnerji.PaSifra " +
+     "inner join NosiociTroskova on p.NosilacTroska = NosiociTroskova.ID " +
+     "inner join MaticniPodatki on p.Ident = MaticniPodatki.MpSifra " +
+     "inner join Odeljenja on p.Odeljenje = Odeljenja.ID Where Kolicina>0 ";
+
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "ID")
+            {
+
+                if (gv2 % 2 == 0)
+                {
+                    select = select + " order by p.ID asc";
+                }
+                else
+                {
+                    select = select + " order by p.ID desc";
+                }
+                gv2++;
+            }
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "IDp")
+            {
+
+                if (gv2 % 2 == 0)
+                {
+                    select = select + " order by p.IDp asc,PredvodjanjePoz asc";
+                }
+                else
+                {
+                    select = select + " order by p.IDp desc,PredvodjanjePoz desc";
+                }
+                gv2++;
+            }
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "NT")
+            {
+
+                if (gv2 % 2 == 0)
+                {
+                    select = select + " order by p.NosilacTroska asc,PredvodjanjePoz asc";
+                }
+                else
+                {
+                    select = select + " order by p.NosilacTroska desc,PredvodjanjePoz desc";
+                }
+                gv2++;
+            }
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "Predvidjanje")
+            {
+
+                if (gv2 % 2 == 0)
+                {
+                    select = select + " order by p.IDP asc,PredvodjanjePoz asc";
+                }
+                else
+                {
+                    select = select + " order by p.IDP desc,PredvodjanjePoz desc";
+                }
+                gv2++;
+            }
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "Ident")
+            {
+
+                if (gv2 % 2 == 0)
+                {
+                    select = select + " order by p.Ident asc";
+                }
+                else
+                {
+                    select = select + " order by p.Ident desc";
+                }
+                gv2++;
+            }
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "Datum")
+            {
+
+                if (gv2 % 2 == 0)
+                {
+                    select = select + " order by p.Datum asc";
+                }
+                else
+                {
+                    select = select + " order by p.Datum desc";
+                }
+                gv2++;
+            }
+            if (dataGridView2.Columns[e.ColumnIndex].Name == "Subjekt")
+            {
+
+                if (gv2 % 2 == 0)
+                {
+                    select = select + " order by p.Subjekt asc";
+                }
+                else
+                {
+                    select = select + " order by p.Subjekt desc";
+                }
+                gv2++;
+            }
+            SqlConnection conn = new SqlConnection(connect);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = ds.Tables[0];
+
+            dataGridView2.BorderStyle = BorderStyle.FixedSingle;
+            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView2.BackgroundColor = Color.White;
+
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            dataGridView2.Columns["ID"].Width = 55;
+            dataGridView2.Columns["IDp"].Width = 55;
+            dataGridView2.Columns["NTID"].Visible = false;
+            dataGridView2.Columns["NT"].Width = 70;
+            dataGridView2.Columns["NT Naziv"].Width = 90;
+            dataGridView2.Columns["Status"].Width = 55;
+            dataGridView2.Columns["Predvidjanje"].Width = 80;
+            dataGridView2.Columns["Ident"].Width = 100;
+            dataGridView2.Columns["Poz."].Width = 50;
+            dataGridView2.Columns["Napomena"].Width = 100;
+            dataGridView2.Columns["Subjekt"].Width = 150;
+            dataGridView2.Columns["Odeljenje"].Visible = false;
+            dataGridView2.Columns["Iznos"].Width = 70;
+            dataGridView2.Columns["Valuta"].Width = 50;
+            dataGridView2.Columns["Kolicina"].Width = 70;
+            dataGridView2.Columns["JM"].Width = 55;
+            dataGridView2.Columns["Jedinicna cena"].Width = 70;
+            dataGridView2.Columns["Kurs"].Width = 60;
+            dataGridView2.Columns["Subjekt1"].Visible = false;
+            dataGridView2.Columns["Ident1"].Visible = false;
+            dataGridView2.Columns["IznosRSD"].Visible = false;
+            dataGridView2.Columns["Odeljenje1"].Visible = false;
         }
     }
 }

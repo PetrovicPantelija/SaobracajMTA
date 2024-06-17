@@ -1,5 +1,6 @@
 ﻿using Saobracaj.Dokumenta.TrainList;
 using Saobracaj.Dokumenta.TrainListItem;
+using Saobracaj.Sifarnici;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -396,7 +397,6 @@ namespace Saobracaj.Dokumenta
                     if (row.Selected)
                     {
                         textBoxSearch.Text = row.Cells[0].Value.ToString();
-
                         // txtOpis.Text = row.Cells[1].Value.ToString();
                     }
                 }
@@ -1028,10 +1028,11 @@ namespace Saobracaj.Dokumenta
                         InsertTrainList del = new InsertTrainList();
                         del.PromeniVrednostiZaSvakaKola(row.Cells[0].Value.ToString(), Convert.ToInt32(textBoxSearch.Text));
                         // dataGrid2_Click(e.);
-                        MessageBox.Show("Ponovo uradite refresh sa klikom na izabrani posao i digme stare vrednosti");
+                        //MessageBox.Show("Ponovo uradite refresh sa klikom na izabrani posao i digme stare vrednosti");
                         // txtOpis.Text = row.Cells[1].Value.ToString();
                     }
                 }
+                MessageBox.Show("Ponovo uradite refresh sa klikom na izabrani posao i digme stare vrednosti");
                 REfreshSve();
                 RefreshDatagridKontrolisano();
             }
@@ -1071,8 +1072,34 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            frmTeretnica ter = new frmTeretnica();
-            ter.Show();
+            var query = "Select ID From Teretnica Where TrainListID="+Convert.ToInt32(textBoxSearch.Text);
+            string connect = frmLogovanje.connectionString;
+            SqlConnection conn = new SqlConnection(connect);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(query, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+                    var result = MessageBox.Show("Za posao je formirana teretnica. Da li stvarno želiš da otvoriš novu?",
+                         "Nova teretnica",
+                         MessageBoxButtons.YesNoCancel);
+                    if (result == DialogResult.Yes)
+                    {
+                        frmTeretnica ter = new frmTeretnica();
+                        ter.Show();
+                    }
+                    else if (result == DialogResult.No)
+                    {
+                        string kor = frmLogovanje.user.ToString();
+                        string teretnica = dr[0].ToString().TrimEnd();
+                        frmTeretnica frm = new frmTeretnica(teretnica, kor);
+                        frm.Show();
+                    }
+                    else { return; }
+                }
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)

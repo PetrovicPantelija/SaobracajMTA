@@ -1823,6 +1823,12 @@
     <Compile Include="Pantheon Export\ApiPregled.Designer.cs">
       <DependentUpon>ApiPregled.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pantheon Export\DraganStatusi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantheon Export\DraganStatusi.Designer.cs">
+      <DependentUpon>DraganStatusi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pantheon Export\InsertPatheonExport.cs" />
     <Compile Include="Pantheon Export\IzlazneFakture.cs">
       <SubType>Form</SubType>
@@ -4265,6 +4271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pantheon Export\ApiPregled.resx">
       <DependentUpon>ApiPregled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantheon Export\DraganStatusi.resx">
+      <DependentUpon>DraganStatusi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantheon Export\IzlazneFakture.resx">
       <DependentUpon>IzlazneFakture.cs</DependentUpon>

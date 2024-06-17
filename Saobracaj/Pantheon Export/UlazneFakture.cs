@@ -126,7 +126,6 @@ namespace Saobracaj.Pantheon_Export
             cboJM.DisplayMember = "MeNaziv";
             cboJM.ValueMember = "MeNaziv";
         }
-        decimal uValuti;
         private void FillGV()
         {
             ID = Convert.ToInt32(txtID.Text);
@@ -216,8 +215,6 @@ namespace Saobracaj.Pantheon_Export
             }
             conn.Close();
 
-
-
             string query2 = "Select IDP From Predvidjanje Where ID=" + Convert.ToInt32(cboCRM.SelectedValue);
             conn.Open();
             SqlCommand cmd2 = new SqlCommand(query2, conn);
@@ -260,6 +257,10 @@ namespace Saobracaj.Pantheon_Export
         {
             numericUpDown1.Value = Convert.ToDecimal(txtCena.Value) / Convert.ToDecimal(txtKolicina.Value);
         }
+        private void cboValuta_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+
+        }
 
         int posao;
         private void button1_Click(object sender, EventArgs e)
@@ -269,7 +270,7 @@ namespace Saobracaj.Pantheon_Export
             GetNosilacInfo();
 
             decimal iznosRSD;
-            if (sifDr == 82)
+            if (sifDr == 82 && cboValuta.SelectedValue!="RSD")
             {
                 iznosRSD = Convert.ToDecimal(txtKurs.Value) * Convert.ToDecimal(txtCena.Value);
             }
