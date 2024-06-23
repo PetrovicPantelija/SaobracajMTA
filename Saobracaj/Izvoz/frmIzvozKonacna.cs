@@ -390,6 +390,9 @@ namespace Saobracaj.Izvoz
             cboSpedicijaJ.DataSource = partDS4.Tables[0];
             cboSpedicijaJ.DisplayMember = "PaNaziv";
             cboSpedicijaJ.ValueMember = "PaSifra";
+           
+            
+            
             /*
             //Adresa statusa vozila
             var dir5 = "Select ID,Naziv from AdresaStatusVozila order by Naziv";
@@ -400,6 +403,7 @@ namespace Saobracaj.Izvoz
             cboAdresaStatusVozila.DisplayMember = "Naziv";
             cboAdresaStatusVozila.ValueMember = "ID";
             */
+            
             //Naslov statusa vozila
             /*
             var partner40 = "Select ID,Naziv from NaslovStatusaVozila order by Naziv";

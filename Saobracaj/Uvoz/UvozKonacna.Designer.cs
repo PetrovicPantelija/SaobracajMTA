@@ -229,6 +229,8 @@ namespace Saobracaj.Uvoz
             this.chkSlobodan = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtTaraTerminal = new System.Windows.Forms.NumericUpDown();
+            this.label28 = new System.Windows.Forms.Label();
+            this.txtKontaktOsobeSpeditera = new System.Windows.Forms.TextBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaraK)).BeginInit();
@@ -817,9 +819,9 @@ namespace Saobracaj.Uvoz
             this.label22.Location = new System.Drawing.Point(419, 492);
             this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(105, 13);
+            this.label22.Size = new System.Drawing.Size(83, 13);
             this.label22.TabIndex = 93;
-            this.label22.Text = "Špedicija-RTC Leget";
+            this.label22.Text = "Špedicija  Leget";
             // 
             // label21
             // 
@@ -857,7 +859,7 @@ namespace Saobracaj.Uvoz
             this.cbOspedicija.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbOspedicija.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbOspedicija.FormattingEnabled = true;
-            this.cbOspedicija.Location = new System.Drawing.Point(616, 389);
+            this.cbOspedicija.Location = new System.Drawing.Point(613, 468);
             this.cbOspedicija.Margin = new System.Windows.Forms.Padding(2);
             this.cbOspedicija.Name = "cbOspedicija";
             this.cbOspedicija.Size = new System.Drawing.Size(188, 21);
@@ -910,7 +912,7 @@ namespace Saobracaj.Uvoz
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(614, 376);
+            this.label27.Location = new System.Drawing.Point(614, 453);
             this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(101, 13);
@@ -1245,12 +1247,12 @@ namespace Saobracaj.Uvoz
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(629, 466);
+            this.dataGridView1.Location = new System.Drawing.Point(819, 568);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(150, 106);
+            this.dataGridView1.Size = new System.Drawing.Size(150, 64);
             this.dataGridView1.TabIndex = 53;
             this.dataGridView1.Visible = false;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
@@ -2466,12 +2468,34 @@ namespace Saobracaj.Uvoz
             this.txtTaraTerminal.TabIndex = 452;
             this.txtTaraTerminal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(611, 491);
+            this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(125, 13);
+            this.label28.TabIndex = 455;
+            this.label28.Text = "Kontakt osoba špeditera ";
+            // 
+            // txtKontaktOsobeSpeditera
+            // 
+            this.txtKontaktOsobeSpeditera.BackColor = System.Drawing.SystemColors.Info;
+            this.txtKontaktOsobeSpeditera.Location = new System.Drawing.Point(613, 505);
+            this.txtKontaktOsobeSpeditera.Margin = new System.Windows.Forms.Padding(2);
+            this.txtKontaktOsobeSpeditera.Multiline = true;
+            this.txtKontaktOsobeSpeditera.Name = "txtKontaktOsobeSpeditera";
+            this.txtKontaktOsobeSpeditera.Size = new System.Drawing.Size(181, 24);
+            this.txtKontaktOsobeSpeditera.TabIndex = 454;
+            // 
             // frmUvozKonacna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1272, 614);
+            this.Controls.Add(this.label28);
+            this.Controls.Add(this.txtKontaktOsobeSpeditera);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.txtTaraTerminal);
             this.Controls.Add(this.chkSlobodan);
@@ -2843,5 +2867,7 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.CheckBox chkSlobodan;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.NumericUpDown txtTaraTerminal;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox txtKontaktOsobeSpeditera;
     }
 }

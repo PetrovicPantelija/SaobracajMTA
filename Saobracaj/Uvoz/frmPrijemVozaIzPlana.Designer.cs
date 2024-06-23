@@ -56,6 +56,8 @@ namespace Saobracaj.Uvoz
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.cboPlanUtovara = new System.Windows.Forms.ComboBox();
             this.label44 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -72,8 +74,6 @@ namespace Saobracaj.Uvoz
             this.txtNalogID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.chkIzvoz = new System.Windows.Forms.CheckBox();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -381,6 +381,28 @@ namespace Saobracaj.Uvoz
             this.toolStripButton1.Text = "OTVORI - GATE IN VOZ";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(188, 24);
+            this.toolStripButton2.Text = "OTVORI - GATE IN KAMION UVOZ";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton3.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(190, 24);
+            this.toolStripButton3.Text = "OTVORI - GATE IN KAMION IZVOZ";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
             // cboPlanUtovara
             // 
             this.cboPlanUtovara.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
@@ -539,7 +561,6 @@ namespace Saobracaj.Uvoz
             this.txtNalogID.Name = "txtNalogID";
             this.txtNalogID.Size = new System.Drawing.Size(152, 20);
             this.txtNalogID.TabIndex = 260;
-            this.txtNalogID.Visible = false;
             // 
             // label4
             // 
@@ -552,7 +573,6 @@ namespace Saobracaj.Uvoz
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 261;
             this.label4.Text = "NalogID:";
-            this.label4.Visible = false;
             // 
             // chkIzvoz
             // 
@@ -566,28 +586,6 @@ namespace Saobracaj.Uvoz
             this.chkIzvoz.TabIndex = 262;
             this.chkIzvoz.Text = "Izvoz";
             this.chkIzvoz.UseVisualStyleBackColor = false;
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(188, 24);
-            this.toolStripButton2.Text = "OTVORI - GATE IN KAMION UVOZ";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton3.ForeColor = System.Drawing.Color.White;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(190, 24);
-            this.toolStripButton3.Text = "OTVORI - GATE IN KAMION IZVOZ";
-            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // panel1
             // 

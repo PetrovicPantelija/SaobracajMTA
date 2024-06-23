@@ -1103,7 +1103,7 @@ namespace Saobracaj.Dokumenta
 "   OtpremaKontejneraVozStavke.PlaniraniLager as DIREKTNI_INDIREKTNI, " +
 " OtpremaKontejneraVozStavke.Datum, OtpremaKontejneraVozStavke.Korisnik, UvozKonacna.NacinPakovanja as NacinPakovanja, " +
 " UvozKonacna.Napomena1, UvozKonacna.Napomena, UvozKOnacna.BrojPlombe1, UvozKonacna.BrojPlombe2, " +
-" DirigacijaKOntejneraZa.ID as DirigacijaKOntejneraZa, NalogID " +
+" DirigacijaKOntejneraZa.ID as DirigacijaKOntejneraZa, NalogID, RLTerminali, ADR " +
 " FROM  OtpremaKontejneraVozStavke " +
 " inner join UvozKonacna on UvozKonacna.ID = OtpremaKontejneraVozStavke.KontejnerID " +
 " INNER JOIN  Partnerji AS Partnerji_1 ON UvozKonacna.Nalogodavac1 = Partnerji_1.PaSifra " +
@@ -1150,6 +1150,8 @@ namespace Saobracaj.Dokumenta
                                */
                 txtBrojPlombe.Text = dr["BrojPlombe1"].ToString();
                 txtBrojPlombe2.Text = dr["BrojPlombe2"].ToString();
+
+
             }
 
             con.Close();

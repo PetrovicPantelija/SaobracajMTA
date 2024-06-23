@@ -2710,6 +2710,12 @@
     <Compile Include="SyncForm\frmPregledPopisa2.Designer.cs">
       <DependentUpon>frmPregledPopisa2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tehnologija\frmDefinisiPoziciju.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tehnologija\frmDefinisiPoziciju.Designer.cs">
+      <DependentUpon>frmDefinisiPoziciju.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tehnologija\frmTehnologija.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4655,6 +4661,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SyncForm\frmPregledPopisa2.resx">
       <DependentUpon>frmPregledPopisa2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tehnologija\frmDefinisiPoziciju.resx">
+      <DependentUpon>frmDefinisiPoziciju.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tehnologija\frmTehnologija.resx">
       <DependentUpon>frmTehnologija.cs</DependentUpon>

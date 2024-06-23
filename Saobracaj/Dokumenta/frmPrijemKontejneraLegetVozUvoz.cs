@@ -467,7 +467,7 @@ namespace Saobracaj.Dokumenta
 " inner join Partnerji on Partnerji.PaSifra = RNPrijemVoza.Uvoznik " +
 " inner join Partnerji p2 on p2.PaSifra = RNPrijemVoza.NazivBrodara " +
 " inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge" +
-             " where PrijemID = " + txtStavka.Text;
+             " where PrijemID = " + txtSifra.Text;
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -1763,7 +1763,17 @@ namespace Saobracaj.Dokumenta
             Saobracaj.RadniNalozi.frmDodelaSkladista ds = new frmDodelaSkladista(txtSifra.Text, 1);
             ds.Show();
         }
-    
+
+        private void label52_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton12_Click(object sender, EventArgs e)
+        {
+            Uvoz.frmKontejnerTekuce kt = new Uvoz.frmKontejnerTekuce();
+            kt.Show();
+        }
     }
 }
 

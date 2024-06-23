@@ -2041,7 +2041,7 @@ namespace Saobracaj.Dokumenta
             this.Controls.Add(this.btnManipulacija);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmOtpremaKontejneraUvozKamion";
-            this.Text = "Otprema kontejnera kamion - UVOZ";
+            this.Text = "GATE OUT KAMION - UVOZ";
             this.Load += new System.EventHandler(this.frmOtpremaKontejneraUvozKamion_Load);
             this.btnManipulacija.ResumeLayout(false);
             this.btnManipulacija.PerformLayout();

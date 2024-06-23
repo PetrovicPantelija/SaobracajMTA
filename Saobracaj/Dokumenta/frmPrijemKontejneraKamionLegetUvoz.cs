@@ -1140,7 +1140,7 @@ namespace Saobracaj.Dokumenta
              " ,[VremePripremljen],[VremeOdlaska],[Datum],[Korisnik] " +
              " ,[RB],[BrojPlombe2],[Organizator], BukingBrodar, NapomenaS, NapomenaSS " +
              "  ,[PeriodSkladistenjaOd]      ,[PeriodSkladistenjaDo]      ,[BTTORobe] " +
-           "  ,[KontejnerID]      ,[BTTOKOntejnera]      ,[Napomena2]      ,[PostupakSaRobom]" +
+           "  ,[KontejnerID]      ,[BTTOKOntejnera]      ,[Napomena2]      ,[PostupakSaRobom], NajavaID" +
              " FROM [dbo].[PrijemKontejneraVozStavke] " +
              " where IdNadredjenog = " + txtSifra.Text + " and RB = " + RB, con);
 
@@ -1148,9 +1148,10 @@ namespace Saobracaj.Dokumenta
 
             while (dr.Read())
             {
-
+                
 
                 txtKontejnerID.Text = dr["KontejnerID"].ToString();
+                txtNalogID.Text = dr["NajavaID"].ToString();
                 txtStavka.Text = dr["ID"].ToString();
                 txtRB.Text = dr["RB"].ToString();
                 txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
@@ -1357,8 +1358,8 @@ namespace Saobracaj.Dokumenta
                     if (row.Selected)
                     {
                         txtSifra.Text = row.Cells[2].Value.ToString();
-                        PopuniPolja();
                         VratiPodatkeStavke(txtSifra.Text, Convert.ToInt32(row.Cells[1].Value.ToString()));
+                        PopuniPolja();
                         FillDGUsluge();
                     }
                 }
@@ -1520,6 +1521,7 @@ namespace Saobracaj.Dokumenta
             {
                 FillDGUsluge();
                 PopuniPolja();
+               
                 FillDG3();
 
             }
@@ -1562,7 +1564,7 @@ namespace Saobracaj.Dokumenta
 " PrijemKontejneraVozStavke.PeriodSkladistenjaDo, DirigacijaKOntejneraZa.ID as DirigacijaKOntejneraZa, VrstePostupakaUvoz.ID as PostupakSaRobom," +
 " Partnerji_2.PaSifra AS Nalogodavac_Za_DrumskiPrevoz, Partnerji_3.PaSifra AS Nalogodavac_Za_Usluge," +
  "  PrijemKontejneraVozStavke.PlaniraniLager as DIREKTNI_INDIREKTNI,    PrijemKontejneraVozStavke.NapomenaS, PrijemKontejneraVozStavke.Napomena2, " +
-" PrijemKontejneraVozStavke.Datum, PrijemKontejneraVozStavke.Korisnik " +
+" PrijemKontejneraVozStavke.Datum, PrijemKontejneraVozStavke.Korisnik, RLTerminali, ADR " +
 " FROM  PrijemKontejneraVozStavke " +
 " inner join PrijemKontejneraVoz on PrijemKontejneraVoz.ID = PrijemKontejneraVozStavke.IdNadredjenog" + 
 " inner join UvozKonacna on UvozKonacna.ID = PrijemKontejneraVozStavke.KontejnerID " +
@@ -1584,6 +1586,9 @@ namespace Saobracaj.Dokumenta
                 txtRB.Text = "";
                 txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
                 txtVagon.Text = "";
+
+                txtKontejnerID.Text = dr["KontejnerID"].ToString();
+
                 txtTara.Value = Convert.ToDecimal(dr["Tara"].ToString());
                 txtNeto.Value = Convert.ToDecimal(dr["Neto"].ToString());
                 txtGranica.Value = Convert.ToDecimal(dr["GranicaTovarenja"].ToString());
@@ -1613,13 +1618,47 @@ namespace Saobracaj.Dokumenta
                 bttoKontejnera.Value = Convert.ToDecimal(dr["BTTOKOntejnera"].ToString());
                 txtNapomenaS2.Text = dr["Napomena2"].ToString();
                 cbPostupak.SelectedValue = Convert.ToInt32(dr["PostupakSaRobom"].ToString());
-               // txtKontejnerID.Text = dr["KontejnerID"].ToString(); ;// PostupakSaRobom
+
+                cboRLTerminal.SelectedValue= Convert.ToInt32(dr["RLTerminali"].ToString());
+                txtADR.SelectedValue = Convert.ToInt32(dr["ADR"].ToString());
+                // txtKontejnerID.Text = dr["KontejnerID"].ToString(); ;// PostupakSaRobom
+            }
+
+            con.Close();
+            VratiPostojiUslugaDrumskogPrevoza(txtKontejnerID.Text);
+        }
+        int VratiPostojiUslugaDrumskogPrevoza(string KontejnerID)
+        {
+
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Count(*) as Broj from UvozKonacnaVrstaManipulacije inner join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije where UvozKonacnaVrstaManipulacije.IDNadredjena = " + KontejnerID + " and VrstaManipulacije.Drumska = 1 ", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                if (Convert.ToInt32(dr["Broj"].ToString()) > 0)
+                {
+                    chkDrumski.Checked = true;
+                }
+                else
+                {
+                    chkDrumski.Checked = false;
+                }
+
             }
 
             con.Close();
 
-        }
 
+
+
+            return 0;
+        }
         private void FillDGUsluge()
         {
 
@@ -1819,6 +1858,11 @@ namespace Saobracaj.Dokumenta
         private void txtNalogID_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void txtKontejnerID_TextAlignChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

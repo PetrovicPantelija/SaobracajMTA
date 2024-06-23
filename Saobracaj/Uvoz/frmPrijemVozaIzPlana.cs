@@ -387,7 +387,7 @@ namespace Saobracaj.Uvoz
                     InsertUvozKonacna ins = new InsertUvozKonacna();
                     if (chkIzvoz.Checked == true)
                     {
-                        ins.PrenesiPlanUtovaraUPrijemVozIzvoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+                        ins.PrenesiPlanUtovaraUPrijemVozIzvoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtNalogID.Text));
                     }
                     else
                     {
