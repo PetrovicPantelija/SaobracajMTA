@@ -650,62 +650,91 @@ namespace Saobracaj.Dokumenta
         }
         int ProveraUnosa()
         {
-            if (cmbVoz.SelectedValue == null)
+            if (frmLogovanje.Firma == "Leget")
             {
-                MessageBox.Show("Nije unet voz");
-                return 0;
-            }
-            if (cboPosiljalac.SelectedValue == null)
-            {
-                MessageBox.Show("Nije unet Pošiljalac");
-                return 0;
-            }
-            if (cboVozP.SelectedValue == null)
-            {
-                MessageBox.Show("Nije unet prijemni voz");
-                return 0;
-            }
+                if (cmbVoz.SelectedValue == null)
+                {
+                    MessageBox.Show("Nije unet voz");
+                    return 0;
+                }
+                if (cboPosiljalac.SelectedValue == null)
+                {
+                    MessageBox.Show("Nije unet Pošiljalac");
+                    return 0;
+                }
+                if (cboVozP.SelectedValue == null)
+                {
+                    MessageBox.Show("Nije unet prijemni voz");
+                    return 0;
+                }
 
-            if (cboPrevoznik.SelectedValue == null)
-            {
-                MessageBox.Show("Nije unet prevoznik");
-                return 0;
-            }
-            if (cboOtpravna.SelectedValue == null)
-            {
-                MessageBox.Show("Nije unet otpravna stanica");
-                return 0;
-            }
-            if (cboUputna.SelectedValue == null)
-            {
-                MessageBox.Show("Nije unet uputna stanica");
-                return 0;
-            }
-            if (cboPrimalac.SelectedValue == null)
-            {
-                MessageBox.Show("Nije unet primalac");
-                return 0;
-            }
+                if (cboPrevoznik.SelectedValue == null)
+                {
+                    MessageBox.Show("Nije unet prevoznik");
+                    return 0;
+                }
+                if (cboOtpravna.SelectedValue == null)
+                {
+                    MessageBox.Show("Nije unet otpravna stanica");
+                    return 0;
+                }
+                if (cboUputna.SelectedValue == null)
+                {
+                    MessageBox.Show("Nije unet uputna stanica");
+                    return 0;
+                }
+                if (cboPrimalac.SelectedValue == null)
+                {
+                    MessageBox.Show("Nije unet primalac");
+                    return 0;
+                }
 
-            if (cboPrevoznikZa.SelectedValue == null)
-            {
-                MessageBox.Show("Nije unet Prevoznik za");
-                return 0;
-            }
+                if (cboPrevoznikZa.SelectedValue == null)
+                {
+                    MessageBox.Show("Nije unet Prevoznik za");
+                    return 0;
+                }
 
-            if (cboPlatilac.SelectedValue == null)
-            {
-                MessageBox.Show("Nije unet Platilac");
-                return 0;
-            }
+                if (cboPlatilac.SelectedValue == null)
+                {
+                    MessageBox.Show("Nije unet Platilac");
+                    return 0;
+                }
 
-            if (cboStatusPredaje.SelectedValue == null)
-            {
-                MessageBox.Show("Nije unet Status najave");
-                return 0;
-            }
+                if (cboStatusPredaje.SelectedValue == null)
+                {
+                    MessageBox.Show("Nije unet Status najave");
+                    return 0;
+                }
 
+            }
+            else
+            {
+
+                if (cboPosiljalac.SelectedValue == null)
+                {
+                    MessageBox.Show("Nije unet Pošiljalac");
+                    return 0;
+                }
+               
+                if (cboOtpravna.SelectedValue == null)
+                {
+                    MessageBox.Show("Nije unet otpravna stanica");
+                    return 0;
+                }
+                if (cboUputna.SelectedValue == null)
+                {
+                    MessageBox.Show("Nije unet uputna stanica");
+                    return 0;
+                }
+                if (cboStatusPredaje.SelectedValue == null)
+                {
+                    MessageBox.Show("Nije unet Status najave");
+                    return 0;
+                }
+            }
             return 1;
+
 
         }
         private void LogInsert()
@@ -1254,6 +1283,10 @@ namespace Saobracaj.Dokumenta
                         // txtOznaka.Enabled = false;
                         // txtOpis.Text = row.Cells[1].Value.ToString();
                         FillAktivnosti(Convert.ToInt32(txtSifra.Text));
+                        if (frmLogovanje.Firma != "Leget")
+                        {
+                            VratiOpportunity();
+                        }
                     }
                 }
 
@@ -1263,6 +1296,22 @@ namespace Saobracaj.Dokumenta
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
+        }
+        private void VratiOpportunity()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("Select OpportunityID FROM [TESTIRANJE].[dbo].[Najava] where ID=" + txtSifra.Text, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                cboOpportunity.SelectedValue = Convert.ToInt32(dr[0].ToString());
+            }
+            con.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)
