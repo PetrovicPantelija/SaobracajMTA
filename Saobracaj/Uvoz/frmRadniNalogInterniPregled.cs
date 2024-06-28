@@ -482,7 +482,7 @@ namespace Saobracaj.Uvoz
             if (Forma == "GATE IN VOZ")
             {
                 MessageBox.Show("Formirate Prijem vozom");
-                frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text),0,0);
+                frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text),0,OJ);
                 rd1.Show();
             }
             if (Forma == "GATE OUT KAMION")

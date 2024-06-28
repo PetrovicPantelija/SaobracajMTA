@@ -593,10 +593,19 @@ namespace Saobracaj.Dokumenta
         private void RefreshDataGridRN()
         {
             //PANTA DATAGRID
+            var select = "";
+            if (chkPlatforma.Checked == true)
+            {
+                select = " select * from RNPrijemPlatforme " +
+               " where PrijemID = " + txtSifra.Text;
+            }
+            else if (chkCirada.Checked == true)
+            {
+                select = " select * from  RNPrijemCirade " +
+                 " where PrijemID = " + txtSifra.Text;
 
-
-            var select = " select * from RNPrijemPlatforme " + 
-             " where PrijemID = " + txtSifra.Text;
+            }
+          
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -1255,20 +1264,6 @@ namespace Saobracaj.Dokumenta
             dataGridView8.Columns[7].HeaderText = "USLUGA";
             dataGridView8.Columns[7].Width = 170;
 
-        }
-
-        private void dataGridView8_SelectionChanged(object sender, EventArgs e)
-        {
-            string IDUsluge = "0";
-            foreach (DataGridViewRow row in dataGridView8.Rows)
-            {
-
-                if (row.Selected == true)
-                {
-                    IDUsluge = row.Cells[0].Value.ToString();
-                    txtNalogID.Text = IDUsluge;
-                }
-            }
         }
 
         private void txtNalogID_TextChanged(object sender, EventArgs e)

@@ -573,21 +573,21 @@ namespace Saobracaj.Dokumenta
                     chkCirada.Checked = true;
                 }
 
-                if (Convert.ToInt32(dr["Poreklo"].ToString()) == 0)
+                if (Convert.ToInt32(dr["Poreklo"].ToString()) == 1)
                 {
                     chkUvoz.Checked = true;
                     chkIzvoz.Checked = false;
                     chkTerminal.Checked = false;
 
                 }
-                else if (Convert.ToInt32(dr["Poreklo"].ToString()) == 1)
+                else if (Convert.ToInt32(dr["Poreklo"].ToString()) == 2)
                 {
                     chkUvoz.Checked = false;
                     chkIzvoz.Checked = true;
                     chkTerminal.Checked = false;
                 }
 
-                else if (Convert.ToInt32(dr["Poreklo"].ToString()) == 2)
+                else if (Convert.ToInt32(dr["Poreklo"].ToString()) == 4)
                 {
                     chkUvoz.Checked = false;
                     chkIzvoz.Checked = false;
@@ -1301,6 +1301,67 @@ namespace Saobracaj.Dokumenta
 
             return 0; 
         }
+
+        private void RefreshDataGridRN()
+        {
+            var select = "";
+            //PANTA DATAGRID
+            if (chkCirada.Checked == true)
+            {
+           select =
+" select * from RNOtpremaCirade " +
+             " where NalogID = " + txtNalogID.Text;
+            }
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView2.ReadOnly = false;
+            dataGridView2.DataSource = ds.Tables[0];
+
+            dataGridView2.BorderStyle = BorderStyle.None;
+            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView2.BackgroundColor = Color.White;
+
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            //Panta refresh
+
+
+            DataGridViewColumn column = dataGridView2.Columns[0];
+            dataGridView2.Columns[0].HeaderText = "ID";
+            dataGridView2.Columns[0].Width = 40;
+            dataGridView2.Columns[0].Visible = false;
+
+            /*
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "RB";
+            dataGridView1.Columns[1].Width = 30;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "NAdr";
+            dataGridView1.Columns[2].Visible = false;
+            dataGridView1.Columns[2].Width = 30;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "KontID";
+            dataGridView1.Columns[3].Width = 40;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Br kont";
+            dataGridView1.Columns[4].Width = 110;
+           */
+        }
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -1312,6 +1373,7 @@ namespace Saobracaj.Dokumenta
                         txtSifra.Text = row.Cells[2].Value.ToString();
                         VratiPodatkeStavke(txtSifra.Text, Convert.ToInt32(row.Cells[1].Value.ToString()));
                        int l = VratiPostojiUslugaDrumskogPrevoza(txtKontejnerID.Text);
+                        RefreshDataGridRN();
 
                     }
                 }

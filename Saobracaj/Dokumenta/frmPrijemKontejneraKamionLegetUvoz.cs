@@ -316,6 +316,7 @@ namespace Saobracaj.Dokumenta
                 //  toolStripButton6.Visible = false;
             }
             txtSifra.Text = sifra.ToString();
+            FillCombo();
             VratiPodatke(sifra);
             RefreshDataGrid();
 
@@ -1208,6 +1209,7 @@ namespace Saobracaj.Dokumenta
             cboPosiljalac.DisplayMember = "Naziv";
             cboPosiljalac.ValueMember = "ID";
             //where Primalac = 1 
+           
             var select2 = " Select Distinct PaSifra as ID, PaNaziv as Naziv From Partnerji order by PaNaziv";
             var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection2 = new SqlConnection(s_connection2);
@@ -1346,6 +1348,30 @@ namespace Saobracaj.Dokumenta
             cbPostupak.DisplayMember = "Naziv";
             cbPostupak.ValueMember = "ID";
 
+            var adr = "Select ID, (Naziv + ' - ' + UNKod) as Naziv From VrstaRobeADR order by (UNKod + ' ' + Naziv)";
+            var adrSAD = new SqlDataAdapter(adr, connection);
+            var adrSDS = new DataSet();
+            adrSAD.Fill(adrSDS);
+            txtADR.DataSource = adrSDS.Tables[0];
+            txtADR.DisplayMember = "Naziv";
+            txtADR.ValueMember = "ID";
+
+            var tipkontejnera = "Select ID, SkNaziv From TipKontenjera order by SkNaziv";
+            var tkAD = new SqlDataAdapter(tipkontejnera, connection);
+            var tkDS = new DataSet();
+            tkAD.Fill(tkDS);
+            cboTipKontejnera.DataSource = tkDS.Tables[0];
+            cboTipKontejnera.DisplayMember = "SkNaziv";
+            cboTipKontejnera.ValueMember = "ID";
+
+
+            var rl = "Select ID, (Naziv + ' - ' + Oznaka) as Naziv From KontejnerskiTerminali order by (Naziv + ' ' + Oznaka)";
+            var rlSAD = new SqlDataAdapter(rl, connection);
+            var rlSDS = new DataSet();
+            rlSAD.Fill(rlSDS);
+            cboRLTerminal.DataSource = rlSDS.Tables[0];
+            cboRLTerminal.DisplayMember = "Naziv";
+            cboRLTerminal.ValueMember = "ID";
 
 
         }
@@ -1554,7 +1580,7 @@ namespace Saobracaj.Dokumenta
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand(" SELECT PrijemKontejneraVozStavke.ID,  PrijemKontejneraVozStavke.KontejnerID, " +
+            SqlCommand cmd = new SqlCommand(" SELECT PrijemKontejneraVozStavke.ID, PrijemKontejneraVozStavke.RB,  PrijemKontejneraVozStavke.KontejnerID, " +
 " PrijemKontejneraVozStavke.BrojKontejnera,  TipKontenjera.ID AS TipKontejnera, PrijemKontejneraVozStavke.Granica as GranicaTovarenja, " +
 " PrijemKontejneraVozStavke.BrojOsovina,  PrijemKontejneraVozStavke.SopstvenaMasa as TaraVagona,  PrijemKontejneraVozStavke.Tara,  " +
 "PrijemKontejneraVozStavke.Neto, " +
@@ -1582,8 +1608,8 @@ namespace Saobracaj.Dokumenta
 
             while (dr.Read())
             {
-                txtStavka.Text = "";
-                txtRB.Text = "";
+                txtStavka.Text = dr["ID"].ToString(); ;
+                txtRB.Text = dr["RB"].ToString(); ;
                 txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
                 txtVagon.Text = "";
 
