@@ -11,7 +11,7 @@ namespace Saobracaj.Dokumenta
     class InsertNaruceneManipulacije
     {
 
-        public void InsertNarManipulacije(int IDPrijemaVoza, int IDPrijemaKamionom, string BrojKontejnera, int VrstaManipulacije, int Uradjeno, DateTime DatumOd, DateTime DatumDo, DateTime Datum, string Korisnik, int Broj, int Platilac, int IzPrijema, int Direktna)
+        public void InsertNarManipulacije(int IDPrijemaVoza, int IDPrijemaKamionom, string BrojKontejnera, int VrstaManipulacije, int Uradjeno, DateTime DatumOd, DateTime DatumDo, DateTime Datum, string Korisnik, int Broj, int Platilac, int IzPrijema, int Direktna, int PunPrazan)
         {
 
 
@@ -115,6 +115,14 @@ namespace Saobracaj.Dokumenta
             parameter8.Direction = ParameterDirection.Input;
             parameter8.Value = Direktna;
             myCommand.Parameters.Add(parameter8);
+
+
+            SqlParameter parameter9= new SqlParameter();
+            parameter9.ParameterName = "@PunPrazan";
+            parameter9.SqlDbType = SqlDbType.Int;
+            parameter9.Direction = ParameterDirection.Input;
+            parameter9.Value = PunPrazan;
+            myCommand.Parameters.Add(parameter9);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
