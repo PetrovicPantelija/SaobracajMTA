@@ -294,8 +294,6 @@
             // 
             this.chkPlatforma.AutoSize = true;
             this.chkPlatforma.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
-            this.chkPlatforma.Checked = true;
-            this.chkPlatforma.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkPlatforma.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPlatforma.ForeColor = System.Drawing.Color.Transparent;
             this.chkPlatforma.Location = new System.Drawing.Point(199, 35);
@@ -309,8 +307,6 @@
             // 
             this.chkCirada.AutoSize = true;
             this.chkCirada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
-            this.chkCirada.Checked = true;
-            this.chkCirada.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkCirada.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkCirada.ForeColor = System.Drawing.Color.Transparent;
             this.chkCirada.Location = new System.Drawing.Point(199, 11);
@@ -324,8 +320,6 @@
             // 
             this.chkUvoz.AutoSize = true;
             this.chkUvoz.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
-            this.chkUvoz.Checked = true;
-            this.chkUvoz.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkUvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkUvoz.ForeColor = System.Drawing.Color.Transparent;
             this.chkUvoz.Location = new System.Drawing.Point(25, 11);
@@ -339,8 +333,6 @@
             // 
             this.chkIzvoz.AutoSize = true;
             this.chkIzvoz.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
-            this.chkIzvoz.Checked = true;
-            this.chkIzvoz.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkIzvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkIzvoz.ForeColor = System.Drawing.Color.Transparent;
             this.chkIzvoz.Location = new System.Drawing.Point(25, 35);
@@ -354,8 +346,6 @@
             // 
             this.chkTerminal.AutoSize = true;
             this.chkTerminal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
-            this.chkTerminal.Checked = true;
-            this.chkTerminal.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkTerminal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkTerminal.ForeColor = System.Drawing.Color.Transparent;
             this.chkTerminal.Location = new System.Drawing.Point(103, 35);

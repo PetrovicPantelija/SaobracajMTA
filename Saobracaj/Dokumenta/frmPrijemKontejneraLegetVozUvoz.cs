@@ -1774,6 +1774,12 @@ namespace Saobracaj.Dokumenta
             Uvoz.frmKontejnerTekuce kt = new Uvoz.frmKontejnerTekuce();
             kt.Show();
         }
+
+        private void toolStripButton11_Click(object sender, EventArgs e)
+        {
+            Dokumenta.frmPovezivanjeKontejneraIVagona pkiv = new frmPovezivanjeKontejneraIVagona();
+            pkiv.Show();
+        }
     }
 }
 

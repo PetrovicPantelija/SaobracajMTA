@@ -14,6 +14,9 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using Syncfusion.Grouping;
 using System.Data.Common;
+using Saobracaj.Uvoz;
+using Syncfusion.Windows.Forms.Grid.Grouping;
+using Syncfusion.Windows.Forms.Grid;
 
 namespace Saobracaj.Tehnologija
 {
@@ -26,6 +29,11 @@ namespace Saobracaj.Tehnologija
         }
 
         private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        private void frmDefinisiPoziciju_Load(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(connection);
 
@@ -94,16 +102,16 @@ namespace Saobracaj.Tehnologija
 
             var select7 = " Select Distinct ID, Naziv   From uvKvalitetKontejnera order by ID";
             var s_connection7 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-            SqlConnection myConnection7= new SqlConnection(s_connection7);
-            var c7= new SqlConnection(s_connection7);
+            SqlConnection myConnection7 = new SqlConnection(s_connection7);
+            var c7 = new SqlConnection(s_connection7);
             var dataAdapter7 = new SqlDataAdapter(select7, c7);
 
             var commandBuilder7 = new SqlCommandBuilder(dataAdapter7);
             var ds7 = new DataSet();
             dataAdapter7.Fill(ds7);
-            cboKvalitet.DataSource = ds7.Tables[0];
-            cboKvalitet.DisplayMember = "Naziv";
-            cboKvalitet.ValueMember = "ID";
+            cboKvalitet2.DataSource = ds7.Tables[0];
+            cboKvalitet2.DisplayMember = "Naziv";
+            cboKvalitet2.ValueMember = "ID";
 
             var sklad = "select ID,naziv from Skladista order by ID";
             var daSklad = new SqlDataAdapter(sklad, conn);
@@ -152,6 +160,172 @@ namespace Saobracaj.Tehnologija
             cboNaSkladiste6.DataSource = dsSklad6.Tables[0];
             cboNaSkladiste6.DisplayMember = "Naziv";
             cboNaSkladiste6.ValueMember = "ID";
+
+            // select distinct bookingbrodara from IzvozKonacna
+            var sklad7 = "select distinct bookingbrodara from IzvozKonacna";
+            var daSklad7 = new SqlDataAdapter(sklad7, conn);
+            var dsSklad7 = new DataSet();
+            daSklad7.Fill(dsSklad7);
+            cboBooking.DataSource = dsSklad7.Tables[0];
+            cboBooking.DisplayMember = "bookingbrodara";
+            cboBooking.ValueMember = "bookingbrodara";
+
+
+            conn.Close();
+
+            FillDG1();
+            FillDG2();
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            InsertDefinisiPoziciju ins = new InsertDefinisiPoziciju();
+           
+                ins.InsDefinisiPoziciju(0, Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(txtTipKont.SelectedValue), Convert.ToInt32(cboKvalitet.SelectedValue), 0, 0, 0, Convert.ToInt32(cboNaSkladiste.SelectedValue), Convert.ToInt32(cboNaSkladiste2.SelectedValue), Convert.ToInt32(cboNaSkladiste3.SelectedValue));
+        
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            InsertDefinisiPoziciju ins = new InsertDefinisiPoziciju();
+
+            ins.InsDefinisiPoziciju(1, Convert.ToInt32(cboBrodar2.SelectedValue), Convert.ToInt32(txtTipKont2.SelectedValue), Convert.ToInt32(cboKvalitet2.SelectedValue), Convert.ToInt32(cboBooking.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNaSkladiste4.SelectedValue), Convert.ToInt32(cboNaSkladiste5.SelectedValue), Convert.ToInt32(cboNaSkladiste6.SelectedValue));
+        }
+
+        private void gridGroupingControl1_TableControlCellClick(object sender, Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridGroupingControl1.Table.CurrentRecord != null)
+                {
+                    textBox1.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                 
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private void FillDG1()
+        {
+      
+            var select = "";
+        
+                select = "   SELECT        PredefinisanePozicije.ID, PredefinisanePozicije.Opcija, Partnerji_1.PaNaziv AS Brodar, TipKontenjera.Naziv AS VrstaKontejnera, " +
+               " uvKvalitetKontejnera.Naziv AS Kvalitet, Partnerji.PaNaziv AS Izvoznik, " +
+              " Partnerji_2.PaNaziv AS NalogodavacZaVoz, PredefinisanePozicije.BookingBrodara " +
+              "    FROM  PredefinisanePozicije INNER JOIN " +
+                "           Partnerji AS Partnerji_1 ON PredefinisanePozicije.Brodar = Partnerji_1.PaSifra INNER JOIN " +
+                "           TipKontenjera ON PredefinisanePozicije.VrstaKontejnera = TipKontenjera.ID INNER JOIN " +
+                "           uvKvalitetKontejnera ON PredefinisanePozicije.Kvalitet = uvKvalitetKontejnera.ID INNER JOIN " +
+                 "          Partnerji ON PredefinisanePozicije.Izvoznik = Partnerji.PaSifra INNER JOIN " +
+                 "          Partnerji AS Partnerji_2 ON PredefinisanePozicije.NalogodavacZaVoz = Partnerji_2.PaSifra " +
+                  "         inner join Skladista on Skladista.ID = Skladiste1 " +
+                  "          inner join Skladista as S2 on S2.ID = Skladiste2 " +
+                   "           inner join Skladista as S3 on S3.ID = Skladiste3 " +
+                   "           where Opcija = 0 ";
+
+
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+
+
+
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+
+
+
+
+
+
+        }
+
+        private void FillDG2()
+        {
+
+            var select = "";
+
+            select = "   SELECT        PredefinisanePozicije.ID, PredefinisanePozicije.Opcija, Partnerji_1.PaNaziv AS Brodar, TipKontenjera.Naziv AS VrstaKontejnera, " +
+           " uvKvalitetKontejnera.Naziv AS Kvalitet, Partnerji.PaNaziv AS Izvoznik, " +
+          " Partnerji_2.PaNaziv AS NalogodavacZaVoz, PredefinisanePozicije.BookingBrodara " +
+          "    FROM  PredefinisanePozicije INNER JOIN " +
+            "           Partnerji AS Partnerji_1 ON PredefinisanePozicije.Brodar = Partnerji_1.PaSifra INNER JOIN " +
+            "           TipKontenjera ON PredefinisanePozicije.VrstaKontejnera = TipKontenjera.ID INNER JOIN " +
+            "           uvKvalitetKontejnera ON PredefinisanePozicije.Kvalitet = uvKvalitetKontejnera.ID INNER JOIN " +
+             "          Partnerji ON PredefinisanePozicije.Izvoznik = Partnerji.PaSifra INNER JOIN " +
+             "          Partnerji AS Partnerji_2 ON PredefinisanePozicije.NalogodavacZaVoz = Partnerji_2.PaSifra " +
+              "         inner join Skladista on Skladista.ID = Skladiste1 " +
+              "          inner join Skladista as S2 on S2.ID = Skladiste2 " +
+               "           inner join Skladista as S3 on S3.ID = Skladiste3 " +
+               "           where Opcija = 1 ";
+
+
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            gridGroupingControl2.DataSource = ds.Tables[0];
+            gridGroupingControl2.ShowGroupDropArea = true;
+            this.gridGroupingControl2.TopLevelGroupOptions.ShowFilterBar = true;
+
+
+
+            foreach (GridColumnDescriptor column in this.gridGroupingControl2.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+
+
+
+
+
+
+        }
+
+        private void gridGroupingControl2_TableControlCellClick(object sender, Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventArgs e)
+        {
+            try
+            {
+                if (gridGroupingControl2.Table.CurrentRecord != null)
+                {
+                    textBox2.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private void toolStripButton5_Click(object sender, EventArgs e)
+        {
+            FillDG1();
+            FillDG2();
         }
     }
 }

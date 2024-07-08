@@ -859,6 +859,12 @@
     <Compile Include="Dokumenta\frmPodtrase.Designer.cs">
       <DependentUpon>frmPodtrase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dokumenta\frmPovezivanjeKontejneraIVagona.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmPovezivanjeKontejneraIVagona.Designer.cs">
+      <DependentUpon>frmPovezivanjeKontejneraIVagona.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\frmPravoAktivnosti.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2734,6 +2740,7 @@
     <Compile Include="Tehnologija\frmTerminalOperacije.Designer.cs">
       <DependentUpon>frmTerminalOperacije.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tehnologija\InsertDefinisiPoziciju.cs" />
     <Compile Include="Tehnologija\InserTerminalProces.cs" />
     <Compile Include="Tehnologija\InsertTehnologija.cs" />
     <Compile Include="Tehnologija\InsertTerminalOperacije.cs" />
@@ -3386,6 +3393,12 @@
     <Compile Include="Uvoz\frmDirigacijaKontejneraZa.Designer.cs">
       <DependentUpon>frmDirigacijaKontejneraZa.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\frmDodatneUsluge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmDodatneUsluge.Designer.cs">
+      <DependentUpon>frmDodatneUsluge.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\frmFormiranjePlana.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3820,6 +3833,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmPodtrase.resx">
       <DependentUpon>frmPodtrase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmPovezivanjeKontejneraIVagona.resx">
+      <DependentUpon>frmPovezivanjeKontejneraIVagona.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmPravoAktivnosti.resx">
       <DependentUpon>frmPravoAktivnosti.cs</DependentUpon>
@@ -4907,6 +4923,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmDirigacijaKontejneraZa.resx">
       <DependentUpon>frmDirigacijaKontejneraZa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmDodatneUsluge.resx">
+      <DependentUpon>frmDodatneUsluge.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmFormiranjePlana.resx">
       <DependentUpon>frmFormiranjePlana.cs</DependentUpon>

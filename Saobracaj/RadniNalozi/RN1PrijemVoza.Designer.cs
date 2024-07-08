@@ -113,12 +113,14 @@ namespace Saobracaj.RadniNalozi
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.txtNapomenaPlombe2 = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.txtNapomenaPlombe = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.label27 = new System.Windows.Forms.Label();
-            this.txtNapomenaPlombe2 = new System.Windows.Forms.TextBox();
-            this.txtNapomenaPlombe = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.cboNaSkladistePregledac = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -735,7 +737,7 @@ namespace Saobracaj.RadniNalozi
             this.label41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
             this.label41.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label41.ForeColor = System.Drawing.Color.Black;
-            this.label41.Location = new System.Drawing.Point(601, 320);
+            this.label41.Location = new System.Drawing.Point(601, 343);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(36, 14);
             this.label41.TabIndex = 261;
@@ -761,7 +763,7 @@ namespace Saobracaj.RadniNalozi
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView3.Location = new System.Drawing.Point(601, 343);
+            this.dataGridView3.Location = new System.Drawing.Point(601, 364);
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView3.Name = "dataGridView3";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -870,7 +872,7 @@ namespace Saobracaj.RadniNalozi
             this.txtNapomenaVP.Margin = new System.Windows.Forms.Padding(2);
             this.txtNapomenaVP.Multiline = true;
             this.txtNapomenaVP.Name = "txtNapomenaVP";
-            this.txtNapomenaVP.Size = new System.Drawing.Size(185, 58);
+            this.txtNapomenaVP.Size = new System.Drawing.Size(176, 58);
             this.txtNapomenaVP.TabIndex = 270;
             // 
             // label23
@@ -1037,12 +1039,52 @@ namespace Saobracaj.RadniNalozi
             this.panel4.Controls.Add(this.txtNapomenaVP);
             this.panel4.Location = new System.Drawing.Point(601, 40);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(200, 274);
+            this.panel4.Size = new System.Drawing.Size(200, 301);
             this.panel4.TabIndex = 349;
+            // 
+            // txtNapomenaPlombe2
+            // 
+            this.txtNapomenaPlombe2.Location = new System.Drawing.Point(14, 171);
+            this.txtNapomenaPlombe2.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNapomenaPlombe2.Name = "txtNapomenaPlombe2";
+            this.txtNapomenaPlombe2.Size = new System.Drawing.Size(101, 20);
+            this.txtNapomenaPlombe2.TabIndex = 350;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.ForeColor = System.Drawing.Color.DarkRed;
+            this.label28.Location = new System.Drawing.Point(11, 156);
+            this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(105, 13);
+            this.label28.TabIndex = 349;
+            this.label28.Text = "Napomena plombe 2";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.ForeColor = System.Drawing.Color.DarkRed;
+            this.label27.Location = new System.Drawing.Point(8, 119);
+            this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(96, 13);
+            this.label27.TabIndex = 347;
+            this.label27.Text = "Napomena plombe";
+            // 
+            // txtNapomenaPlombe
+            // 
+            this.txtNapomenaPlombe.Location = new System.Drawing.Point(11, 134);
+            this.txtNapomenaPlombe.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNapomenaPlombe.Name = "txtNapomenaPlombe";
+            this.txtNapomenaPlombe.Size = new System.Drawing.Size(101, 20);
+            this.txtNapomenaPlombe.TabIndex = 348;
             // 
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.label29);
+            this.panel5.Controls.Add(this.cboNaSkladistePregledac);
             this.panel5.Controls.Add(this.chkPotrebanCIR);
             this.panel5.Controls.Add(this.button4);
             this.panel5.Controls.Add(this.label24);
@@ -1052,7 +1094,7 @@ namespace Saobracaj.RadniNalozi
             this.panel5.Controls.Add(this.label25);
             this.panel5.Location = new System.Drawing.Point(805, 40);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(173, 224);
+            this.panel5.Size = new System.Drawing.Size(173, 274);
             this.panel5.TabIndex = 350;
             // 
             // panel6
@@ -1070,43 +1112,25 @@ namespace Saobracaj.RadniNalozi
             this.panel6.Size = new System.Drawing.Size(200, 224);
             this.panel6.TabIndex = 351;
             // 
-            // label27
+            // label29
             // 
-            this.label27.AutoSize = true;
-            this.label27.ForeColor = System.Drawing.Color.DarkRed;
-            this.label27.Location = new System.Drawing.Point(8, 119);
-            this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(96, 13);
-            this.label27.TabIndex = 347;
-            this.label27.Text = "Napomena plombe";
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(11, 210);
+            this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(84, 13);
+            this.label29.TabIndex = 351;
+            this.label29.Text = "NA SKLADISTE";
             // 
-            // txtNapomenaPlombe2
+            // cboNaSkladistePregledac
             // 
-            this.txtNapomenaPlombe2.Location = new System.Drawing.Point(14, 171);
-            this.txtNapomenaPlombe2.Margin = new System.Windows.Forms.Padding(2);
-            this.txtNapomenaPlombe2.Name = "txtNapomenaPlombe2";
-            this.txtNapomenaPlombe2.Size = new System.Drawing.Size(101, 20);
-            this.txtNapomenaPlombe2.TabIndex = 350;
-            // 
-            // txtNapomenaPlombe
-            // 
-            this.txtNapomenaPlombe.Location = new System.Drawing.Point(11, 134);
-            this.txtNapomenaPlombe.Margin = new System.Windows.Forms.Padding(2);
-            this.txtNapomenaPlombe.Name = "txtNapomenaPlombe";
-            this.txtNapomenaPlombe.Size = new System.Drawing.Size(101, 20);
-            this.txtNapomenaPlombe.TabIndex = 348;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.ForeColor = System.Drawing.Color.DarkRed;
-            this.label28.Location = new System.Drawing.Point(11, 156);
-            this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(105, 13);
-            this.label28.TabIndex = 349;
-            this.label28.Text = "Napomena plombe 2";
+            this.cboNaSkladistePregledac.FormattingEnabled = true;
+            this.cboNaSkladistePregledac.ItemHeight = 13;
+            this.cboNaSkladistePregledac.Location = new System.Drawing.Point(9, 228);
+            this.cboNaSkladistePregledac.Margin = new System.Windows.Forms.Padding(2);
+            this.cboNaSkladistePregledac.Name = "cboNaSkladistePregledac";
+            this.cboNaSkladistePregledac.Size = new System.Drawing.Size(150, 21);
+            this.cboNaSkladistePregledac.TabIndex = 352;
             // 
             // RN1PrijemVoza
             // 
@@ -1242,5 +1266,7 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.TextBox txtNapomenaPlombe2;
         private System.Windows.Forms.TextBox txtNapomenaPlombe;
         private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.ComboBox cboNaSkladistePregledac;
     }
 }

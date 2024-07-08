@@ -6608,6 +6608,17 @@ namespace Saobracaj
 
             }
         }
+
+        private void toolStripButton337_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void toolStripButton371_Click(object sender, EventArgs e)
+        {
+            frmDodatneUsluge dodu = new frmDodatneUsluge();
+            dodu.Show();
+        }
     }
     }
 

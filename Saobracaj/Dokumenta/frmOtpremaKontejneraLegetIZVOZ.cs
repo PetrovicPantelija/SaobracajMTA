@@ -977,6 +977,7 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
             {
                 txtStavka.Text = dr["ID"].ToString();
                 txtRB.Text = dr["RB"].ToString();
+                txtVagon.Text = dr["BrojVagona"].ToString();
                 txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
                /*
                 txtVagon.Text = dr["BrojVagona"].ToString();
@@ -1405,25 +1406,25 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("  SELECT PrijemKontejneraVozStavke.ID as ID, PrijemKontejneraVozStavke.RB,  PrijemKontejneraVozStavke.IDNadredjenog," +
-                " PrijemKontejneraVozStavke.KontejnerID, PrijemKontejneraVozStavke.BrojKontejnera, TipKontenjera.Naziv AS TipKontejnera,  PrijemKontejneraVozStavke.NajavaID, " +
-                " IzvozKonacna.BrojKontejnera,  IzvozKonacna.BrojVagona, IzvozKOnacna.VrstaKontejnera, Partnerji_1.PaSifra as Brodar, IzvozKOnacna.BookingBrodara, " +
+            SqlCommand cmd = new SqlCommand("  SELECT OtpremaKontejneraVozStavke.ID as ID, OtpremaKontejneraVozStavke.RB,  OtpremaKontejneraVozStavke.IDNadredjenog," +
+                " OtpremaKontejneraVozStavke.KontejnerID, OtpremaKontejneraVozStavke.BrojKontejnera, OtpremaKontejneraVozStavke.BrojVagona as BV, TipKontenjera.Naziv AS TipKontejnera,  OtpremaKontejneraVozStavke.NalogID, " +
+                "  IzvozKOnacna.VrstaKontejnera, Partnerji_1.PaSifra as Brodar, IzvozKOnacna.BookingBrodara, " +
                 " IzvozKOnacna.BrodskaPlomba, "+
                 " IzvozKonacna.OstalePlombe,  IzvozKOnacna.BrojKoletaO, IzvozKOnacna.BrutoRobe, "+
                 " IzvozKOnacna.BrutoRobeO, IzvozKOnacna.CBMO, IzvozKOnacna.Tara, "+
                 " IzvozKOnacna.NetoRobe, IzvozKOnacna.PeriodSkladistenjaOd,  IzvozKOnacna.PeriodSkladistenjaDo, Partnerji_2.PaSifra as Izvoznik, INSTret.ID as InspekciskiTretman, "+ 
                 " IZvozKonacna.Spedicija,IzvozKonacna.KontaktSpeditera, IzvozKonacna.MestoPreuzimanja as PICKUPCNT,Carinarnice.ID as Carina, IzvozKonacna.ADR as ADR, " +
-                " IzvozKonacna.NapomenaReexport as Reexport, IzvozKonacna.NapomenaZaRobu, IzvozKonacna.VGMBrod, IzvozKonacna.Klijent1, IzvozKonacna.Klijent2, IzvozKonacna.KrajnaDestinacija  FROM PrijemKontejneraVozStavke " +
-                " inner join IzvozKonacna on IzvozKonacna.ID = PrijemKontejneraVozStavke.KontejnerID "+
+                " IzvozKonacna.NapomenaReexport as Reexport, IzvozKonacna.NapomenaZaRobu, IzvozKonacna.VGMBrod, IzvozKonacna.Klijent1, IzvozKonacna.Klijent2, IzvozKonacna.KrajnaDestinacija  FROM OtpremaKontejneraVozStavke " +
+                " inner join IzvozKonacna on IzvozKonacna.ID = OtpremaKontejneraVozStavke.KontejnerID "+
                 " INNER JOIN  Partnerji AS Partnerji_1 ON IzvozKonacna.Brodar = Partnerji_1.PaSifra  "+
                 " INNER JOIN  Partnerji AS Partnerji_2 ON IzvozKonacna.Izvoznik = Partnerji_2.PaSifra "+
                 " INNER JOIN  InspekciskiTretman AS INSTret ON IZvozKOnacna.Inspekcija = INSTret.ID  "+
-                " INNER JOIN TipKontenjera ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID  "+
+                " INNER JOIN TipKontenjera ON OtpremaKontejneraVozStavke.TipKontejnera = TipKontenjera.ID  " +
                 " INNER JOIN  Carinarnice ON IzvozKonacna.MestoCarinjenja = Carinarnice.ID  "+
                 " INNER JOIN  Partnerji AS Partnerji_3 ON IzvozKonacna.Spedicija = Partnerji_3.PaSifra "+
                 " inner join KontejnerskiTerminali on KontejnerskiTerminali.ID = IzvozKonacna.MestoPreuzimanja "+
-                " inner join VrstaRobeADR on VrstaRobeADR.ID = IzvozKonacna.ADR " + 
-               "  inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = IzvozKonacna.NapomenaReexport  where PrijemKontejneraVozStavke.Id  =  " + txtStavka.Text , con);
+                " inner join VrstaRobeADR on VrstaRobeADR.ID = IzvozKonacna.ADR " +
+               "  inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.ID = IzvozKonacna.NapomenaReexport  where OtpremaKontejneraVozStavke.Id  =  " + txtStavka.Text , con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -1432,14 +1433,14 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
 
 
 
-                txtNalogID.Text = dr["NajavaID"].ToString();
+                txtNalogID.Text = dr["NalogID"].ToString();
                 txtStavka.Text = dr["ID"].ToString();
                 txtRB.Text = dr["RB"].ToString();
                 txtKOntejnerID.Text = dr["KontejnerID"].ToString();
                 txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
                 cboTipKontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
               
-                txtVagon.Text = "";
+                txtVagon.Text = dr["BV"].ToString(); ;
                 cboVlasnikKontejnera.SelectedValue = Convert.ToInt32(dr["Brodar"].ToString());
                 txtTara.Value = Convert.ToDecimal(dr["Tara"].ToString());
                 txtBukingBrodar.Text = dr["BookingBrodara"].ToString();
@@ -1462,7 +1463,7 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
                 cboNalogodavac1.SelectedValue = Convert.ToInt32(dr["Klijent1"].ToString());
                 cboNalogodavac2.SelectedValue = Convert.ToInt32(dr["Klijent2"].ToString());
                 cboKrajnjaDestinacija.SelectedValue = Convert.ToInt32(dr["KrajnaDestinacija"].ToString());
-                dtpEtaLeget.Value = Convert.ToDateTime(dr["EtaLeget"].ToString());
+               // dtpEtaLeget.Value = Convert.ToDateTime(dr["EtaLeget"].ToString());
             }
 
             con.Close();
@@ -1665,6 +1666,12 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
 
                 }
             }
+        }
+
+        private void toolStripButton6_Click_1(object sender, EventArgs e)
+        {
+            Dokumenta.frmPovezivanjeKontejneraIVagona pkiv = new frmPovezivanjeKontejneraIVagona(txtSifra.Text);
+            pkiv.Show();
         }
     }
 }

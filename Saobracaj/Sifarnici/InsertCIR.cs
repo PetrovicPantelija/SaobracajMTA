@@ -14,7 +14,7 @@ namespace Saobracaj.Sifarnici
     class InsertCIR
     {
 
-        public void InsCIR(int Size , int TiKontejnera , int MaterijalCelik ,int MaterijalAlumini ,int incoming ,int Pun ,double Tezina , string BrKontejnera ,int Plomba1 , int Plomba2 , DateTime DatumIn , string Vagon ,string TruckNo , int Damaged ,int Ispravan ,int Prevoz ,string Containerresponsible , string primedbe ,string Received ,string Inspected, string Delivery , DateTime Datum,  string Korisnik, int Prijem, int Dokumenta, double Duzina, double Sirina, double Visina, string sPlomba, string sPlomba2, int Interni, double Nosivost)
+        public void InsCIR(int Size , int TiKontejnera , int MaterijalCelik ,int MaterijalAlumini ,int incoming ,int Pun ,double Tezina , string BrKontejnera ,int Plomba1 , int Plomba2 , DateTime DatumIn , string Vagon ,string TruckNo , int Damaged ,int Ispravan ,int Prevoz ,string Containerresponsible , string primedbe ,string Received ,string Inspected, string Delivery , DateTime Datum,  string Korisnik, int Prijem, int Dokumenta, double Duzina, double Sirina, double Visina, string sPlomba, string sPlomba2, int Interni, double Nosivost, string TipRN, int RNID, int NalogID, int PregledacSkladiste)
         {
       
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -261,17 +261,34 @@ namespace Saobracaj.Sifarnici
             parameter31.Value = Nosivost;
             myCommand.Parameters.Add(parameter31);
 
-            /*   
+            SqlParameter parameter32 = new SqlParameter();
+            parameter32.ParameterName = "@TipRN";
+            parameter32.SqlDbType = SqlDbType.NVarChar;
+            parameter32.Size = 20;
+            parameter32.Direction = ParameterDirection.Input;
+            parameter32.Value = TipRN;
+            myCommand.Parameters.Add(parameter32);
 
-    
- 
-   
-     @primedbe nvarchar(200),@Received nvarchar(100),
-     @Inspected nvarchar(100), @Delivery nvarchar(100),
-     @Datum datetime,  @Korisnik nvarchar(20)
-*/
+            SqlParameter parameter33 = new SqlParameter();
+            parameter33.ParameterName = "@RNID";
+            parameter33.SqlDbType = SqlDbType.Int;
+            parameter33.Direction = ParameterDirection.Input;
+            parameter33.Value = RNID;
+            myCommand.Parameters.Add(parameter33);
 
+            SqlParameter parameter34 = new SqlParameter();
+            parameter34.ParameterName = "@NalogID";
+            parameter34.SqlDbType = SqlDbType.Int;
+            parameter34.Direction = ParameterDirection.Input;
+            parameter34.Value = NalogID;
+            myCommand.Parameters.Add(parameter34);
 
+            SqlParameter parameter35 = new SqlParameter();
+            parameter35.ParameterName = "@PregledacSkladiste";
+            parameter35.SqlDbType = SqlDbType.Int;
+            parameter35.Direction = ParameterDirection.Input;
+            parameter35.Value = PregledacSkladiste;
+            myCommand.Parameters.Add(parameter35);
 
 
             myConnection.Open();
@@ -417,7 +434,7 @@ namespace Saobracaj.Sifarnici
             }
         }
 
-        public void UpdCIR(int Id, int Size, int TiKontejnera, int MaterijalCelik, int MaterijalAlumini, int incoming, int Pun, double Tezina, string BrKontejnera, int Plomba1, int Plomba2, DateTime DatumIn, string Vagon, string TruckNo, int Damaged, int Ispravan, int Prevoz, string Containerresponsible, string primedbe, string Received, string Inspected, string Delivery, DateTime Datum, string Korisnik, int Prijem, int Dokumenta, double Duzina, double Sirina, double Visina, string sPlomba, string sPlomba2, int Interni, double Nosivost)
+        public void UpdCIR(int Id, int Size, int TiKontejnera, int MaterijalCelik, int MaterijalAlumini, int incoming, int Pun, double Tezina, string BrKontejnera, int Plomba1, int Plomba2, DateTime DatumIn, string Vagon, string TruckNo, int Damaged, int Ispravan, int Prevoz, string Containerresponsible, string primedbe, string Received, string Inspected, string Delivery, DateTime Datum, string Korisnik, int Prijem, int Dokumenta, double Duzina, double Sirina, double Visina, string sPlomba, string sPlomba2, int Interni, double Nosivost, string TIPRN, int RNID, int NALOGID, int SkladistePregledac)
         {
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -670,6 +687,35 @@ namespace Saobracaj.Sifarnici
             parameter31.Direction = ParameterDirection.Input;
             parameter31.Value = Nosivost;
             myCommand.Parameters.Add(parameter31);
+
+            SqlParameter parameter32 = new SqlParameter();
+            parameter32.ParameterName = "@TipRN";
+            parameter32.SqlDbType = SqlDbType.NVarChar;
+            parameter32.Size = 20;
+            parameter32.Direction = ParameterDirection.Input;
+            parameter32.Value = TIPRN;
+            myCommand.Parameters.Add(parameter32);
+
+            SqlParameter parameter33 = new SqlParameter();
+            parameter33.ParameterName = "@RNID";
+            parameter33.SqlDbType = SqlDbType.Int;
+            parameter33.Direction = ParameterDirection.Input;
+            parameter33.Value = RNID;
+            myCommand.Parameters.Add(parameter33);
+
+            SqlParameter parameter34 = new SqlParameter();
+            parameter34.ParameterName = "@NalogID";
+            parameter34.SqlDbType = SqlDbType.Int;
+            parameter34.Direction = ParameterDirection.Input;
+            parameter34.Value = NALOGID;
+            myCommand.Parameters.Add(parameter34);
+
+            SqlParameter parameter35 = new SqlParameter();
+            parameter35.ParameterName = "@PregledacSkladiste";
+            parameter35.SqlDbType = SqlDbType.Int;
+            parameter35.Direction = ParameterDirection.Input;
+            parameter35.Value = SkladistePregledac;
+            myCommand.Parameters.Add(parameter35);
             /*   
 
     

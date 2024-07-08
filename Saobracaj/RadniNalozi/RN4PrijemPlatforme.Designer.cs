@@ -105,6 +105,8 @@ namespace Saobracaj.RadniNalozi
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.label29 = new System.Windows.Forms.Label();
+            this.cboNaSkladistePregledac = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nedraDataSet1)).BeginInit();
@@ -269,7 +271,7 @@ namespace Saobracaj.RadniNalozi
             // txtizvoznik
             // 
             this.txtizvoznik.AutoSize = true;
-            this.txtizvoznik.Location = new System.Drawing.Point(16, 8);
+            this.txtizvoznik.Location = new System.Drawing.Point(8, 188);
             this.txtizvoznik.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtizvoznik.Name = "txtizvoznik";
             this.txtizvoznik.Size = new System.Drawing.Size(46, 13);
@@ -421,7 +423,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cboIzvoznik.FormattingEnabled = true;
             this.cboIzvoznik.ItemHeight = 13;
-            this.cboIzvoznik.Location = new System.Drawing.Point(10, 29);
+            this.cboIzvoznik.Location = new System.Drawing.Point(11, 205);
             this.cboIzvoznik.Margin = new System.Windows.Forms.Padding(2);
             this.cboIzvoznik.Name = "cboIzvoznik";
             this.cboIzvoznik.Size = new System.Drawing.Size(186, 21);
@@ -826,7 +828,8 @@ namespace Saobracaj.RadniNalozi
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.txtizvoznik);
+            this.panel1.Controls.Add(this.label29);
+            this.panel1.Controls.Add(this.cboNaSkladistePregledac);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.txtDatumRealizacije);
             this.panel1.Controls.Add(this.txtNalogRealizovao);
@@ -836,7 +839,6 @@ namespace Saobracaj.RadniNalozi
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.txtNalogRealizovaoCIR);
-            this.panel1.Controls.Add(this.cboIzvoznik);
             this.panel1.Controls.Add(this.chkZavrsen);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Location = new System.Drawing.Point(726, 30);
@@ -846,6 +848,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.txtizvoznik);
             this.panel2.Controls.Add(this.txtnazivbrodara);
             this.panel2.Controls.Add(this.tx);
             this.panel2.Controls.Add(this.txtBrojPlombe);
@@ -854,6 +857,7 @@ namespace Saobracaj.RadniNalozi
             this.panel2.Controls.Add(this.txtinspekcijskipregled);
             this.panel2.Controls.Add(this.cboBrodar);
             this.panel2.Controls.Add(this.cboInspekcijski);
+            this.panel2.Controls.Add(this.cboIzvoznik);
             this.panel2.Location = new System.Drawing.Point(488, 30);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(232, 339);
@@ -918,6 +922,26 @@ namespace Saobracaj.RadniNalozi
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(206, 214);
             this.panel6.TabIndex = 347;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(13, 9);
+            this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(84, 13);
+            this.label29.TabIndex = 353;
+            this.label29.Text = "NA SKLADISTE";
+            // 
+            // cboNaSkladistePregledac
+            // 
+            this.cboNaSkladistePregledac.FormattingEnabled = true;
+            this.cboNaSkladistePregledac.ItemHeight = 13;
+            this.cboNaSkladistePregledac.Location = new System.Drawing.Point(11, 27);
+            this.cboNaSkladistePregledac.Margin = new System.Windows.Forms.Padding(2);
+            this.cboNaSkladistePregledac.Name = "cboNaSkladistePregledac";
+            this.cboNaSkladistePregledac.Size = new System.Drawing.Size(150, 21);
+            this.cboNaSkladistePregledac.TabIndex = 354;
             // 
             // RN4PrijemPlatforme
             // 
@@ -1040,5 +1064,7 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.ComboBox cboNaSkladistePregledac;
     }
 }

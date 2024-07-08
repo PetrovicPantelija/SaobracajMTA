@@ -30,9 +30,9 @@ namespace Saobracaj.RadniNalozi
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RN8OtpremaCirade));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.cboUsluga = new System.Windows.Forms.ComboBox();
             this.cboNaSredstvo = new System.Windows.Forms.ComboBox();
             this.cboBrodar = new System.Windows.Forms.ComboBox();
@@ -85,6 +85,17 @@ namespace Saobracaj.RadniNalozi
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.label29 = new System.Windows.Forms.Label();
+            this.cboNaSkladistePregledac = new System.Windows.Forms.ComboBox();
+            this.chkPotrebanCIR = new System.Windows.Forms.CheckBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.label24 = new System.Windows.Forms.Label();
+            this.txtNalogRealizovaoCIR = new System.Windows.Forms.TextBox();
+            this.chkZavrsenCIR = new System.Windows.Forms.CheckBox();
+            this.dtpNalogRealizovaoCIR = new System.Windows.Forms.DateTimePicker();
+            this.label25 = new System.Windows.Forms.Label();
+            this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -92,6 +103,7 @@ namespace Saobracaj.RadniNalozi
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // cboUsluga
@@ -350,10 +362,11 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton1,
             this.toolStripButton2,
             this.toolStripButton3,
-            this.toolStripButton5});
+            this.toolStripButton5,
+            this.toolStripButton6});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(969, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1139, 27);
             this.toolStrip1.TabIndex = 435;
             this.toolStrip1.Text = "FORMIRAJ RN OTPREMA CIRADE";
             // 
@@ -475,7 +488,7 @@ namespace Saobracaj.RadniNalozi
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(960, 263);
+            this.dataGridView1.Size = new System.Drawing.Size(1130, 263);
             this.dataGridView1.TabIndex = 436;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -571,7 +584,7 @@ namespace Saobracaj.RadniNalozi
             this.label41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
             this.label41.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label41.ForeColor = System.Drawing.Color.Black;
-            this.label41.Location = new System.Drawing.Point(451, 246);
+            this.label41.Location = new System.Drawing.Point(678, 241);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(92, 14);
             this.label41.TabIndex = 445;
@@ -580,34 +593,34 @@ namespace Saobracaj.RadniNalozi
             // dataGridView3
             // 
             this.dataGridView3.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView3.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView3.Location = new System.Drawing.Point(451, 262);
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridView3.Location = new System.Drawing.Point(676, 262);
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView3.Name = "dataGridView3";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView3.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView3.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView3.RowHeadersWidth = 11;
             this.dataGridView3.RowTemplate.Height = 24;
             this.dataGridView3.Size = new System.Drawing.Size(408, 110);
@@ -650,7 +663,7 @@ namespace Saobracaj.RadniNalozi
             this.panel2.Controls.Add(this.txtNalogIzdao);
             this.panel2.Location = new System.Drawing.Point(194, 37);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(251, 218);
+            this.panel2.Size = new System.Drawing.Size(254, 158);
             this.panel2.TabIndex = 447;
             // 
             // panel3
@@ -662,7 +675,7 @@ namespace Saobracaj.RadniNalozi
             this.panel3.Controls.Add(this.chkZavrsen);
             this.panel3.Controls.Add(this.lbl1);
             this.panel3.Controls.Add(this.txtNapomena);
-            this.panel3.Location = new System.Drawing.Point(451, 37);
+            this.panel3.Location = new System.Drawing.Point(915, 30);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(217, 206);
             this.panel3.TabIndex = 448;
@@ -678,12 +691,133 @@ namespace Saobracaj.RadniNalozi
             this.panel4.Size = new System.Drawing.Size(189, 100);
             this.panel4.TabIndex = 449;
             // 
+            // panel5
+            // 
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.label29);
+            this.panel5.Controls.Add(this.cboNaSkladistePregledac);
+            this.panel5.Controls.Add(this.chkPotrebanCIR);
+            this.panel5.Controls.Add(this.button4);
+            this.panel5.Controls.Add(this.label24);
+            this.panel5.Controls.Add(this.txtNalogRealizovaoCIR);
+            this.panel5.Controls.Add(this.chkZavrsenCIR);
+            this.panel5.Controls.Add(this.dtpNalogRealizovaoCIR);
+            this.panel5.Controls.Add(this.label25);
+            this.panel5.Location = new System.Drawing.Point(454, 37);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(189, 274);
+            this.panel5.TabIndex = 450;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(11, 210);
+            this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(84, 13);
+            this.label29.TabIndex = 351;
+            this.label29.Text = "NA SKLADISTE";
+            // 
+            // cboNaSkladistePregledac
+            // 
+            this.cboNaSkladistePregledac.FormattingEnabled = true;
+            this.cboNaSkladistePregledac.ItemHeight = 13;
+            this.cboNaSkladistePregledac.Location = new System.Drawing.Point(9, 228);
+            this.cboNaSkladistePregledac.Margin = new System.Windows.Forms.Padding(2);
+            this.cboNaSkladistePregledac.Name = "cboNaSkladistePregledac";
+            this.cboNaSkladistePregledac.Size = new System.Drawing.Size(150, 21);
+            this.cboNaSkladistePregledac.TabIndex = 352;
+            // 
+            // chkPotrebanCIR
+            // 
+            this.chkPotrebanCIR.AutoSize = true;
+            this.chkPotrebanCIR.Location = new System.Drawing.Point(17, 12);
+            this.chkPotrebanCIR.Name = "chkPotrebanCIR";
+            this.chkPotrebanCIR.Size = new System.Drawing.Size(90, 17);
+            this.chkPotrebanCIR.TabIndex = 344;
+            this.chkPotrebanCIR.Text = "Potreban CIR";
+            this.chkPotrebanCIR.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button4.Enabled = false;
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(9, 35);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(150, 40);
+            this.button4.TabIndex = 339;
+            this.button4.Text = "Uradi CIR";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(14, 81);
+            this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(107, 13);
+            this.label24.TabIndex = 343;
+            this.label24.Text = "Nalog realizovao CIR";
+            // 
+            // txtNalogRealizovaoCIR
+            // 
+            this.txtNalogRealizovaoCIR.Location = new System.Drawing.Point(9, 105);
+            this.txtNalogRealizovaoCIR.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNalogRealizovaoCIR.Name = "txtNalogRealizovaoCIR";
+            this.txtNalogRealizovaoCIR.Size = new System.Drawing.Size(136, 20);
+            this.txtNalogRealizovaoCIR.TabIndex = 342;
+            // 
+            // chkZavrsenCIR
+            // 
+            this.chkZavrsenCIR.AutoSize = true;
+            this.chkZavrsenCIR.Location = new System.Drawing.Point(9, 181);
+            this.chkZavrsenCIR.Name = "chkZavrsenCIR";
+            this.chkZavrsenCIR.Size = new System.Drawing.Size(86, 17);
+            this.chkZavrsenCIR.TabIndex = 338;
+            this.chkZavrsenCIR.Text = "Završen CIR";
+            this.chkZavrsenCIR.UseVisualStyleBackColor = true;
+            // 
+            // dtpNalogRealizovaoCIR
+            // 
+            this.dtpNalogRealizovaoCIR.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dtpNalogRealizovaoCIR.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpNalogRealizovaoCIR.Location = new System.Drawing.Point(9, 154);
+            this.dtpNalogRealizovaoCIR.Margin = new System.Windows.Forms.Padding(2);
+            this.dtpNalogRealizovaoCIR.Name = "dtpNalogRealizovaoCIR";
+            this.dtpNalogRealizovaoCIR.Size = new System.Drawing.Size(122, 20);
+            this.dtpNalogRealizovaoCIR.TabIndex = 341;
+            this.dtpNalogRealizovaoCIR.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(6, 135);
+            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(108, 13);
+            this.label25.TabIndex = 340;
+            this.label25.Text = "Datum realizacije CIR";
+            // 
+            // toolStripButton6
+            // 
+            this.toolStripButton6.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton6.ForeColor = System.Drawing.Color.White;
+            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
+            this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton6.Name = "toolStripButton6";
+            this.toolStripButton6.Size = new System.Drawing.Size(112, 24);
+            this.toolStripButton6.Text = "Potvrdi završen CIR";
+            this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
+            // 
             // RN8OtpremaCirade
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(969, 648);
+            this.ClientSize = new System.Drawing.Size(1139, 648);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -717,6 +851,8 @@ namespace Saobracaj.RadniNalozi
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -775,5 +911,16 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.ComboBox cboNaSkladistePregledac;
+        private System.Windows.Forms.CheckBox chkPotrebanCIR;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox txtNalogRealizovaoCIR;
+        private System.Windows.Forms.CheckBox chkZavrsenCIR;
+        private System.Windows.Forms.DateTimePicker dtpNalogRealizovaoCIR;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.ToolStripButton toolStripButton6;
     }
 }

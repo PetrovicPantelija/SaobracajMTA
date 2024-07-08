@@ -48,7 +48,6 @@
             this.label42 = new System.Windows.Forms.Label();
             this.cboIzvoznik = new System.Windows.Forms.ComboBox();
             this.label41 = new System.Windows.Forms.Label();
-            this.txtBokingBrodara = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cboNaSkladiste6 = new System.Windows.Forms.ComboBox();
@@ -69,6 +68,9 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
+            this.cboBooking = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -106,12 +108,14 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.splitContainer1.Panel2.Controls.Add(this.textBox2);
+            this.splitContainer1.Panel2.Controls.Add(this.textBox1);
+            this.splitContainer1.Panel2.Controls.Add(this.cboBooking);
             this.splitContainer1.Panel2.Controls.Add(this.gridGroupingControl2);
             this.splitContainer1.Panel2.Controls.Add(this.cboNalogodavac1);
             this.splitContainer1.Panel2.Controls.Add(this.label42);
             this.splitContainer1.Panel2.Controls.Add(this.cboIzvoznik);
             this.splitContainer1.Panel2.Controls.Add(this.label41);
-            this.splitContainer1.Panel2.Controls.Add(this.txtBokingBrodara);
             this.splitContainer1.Panel2.Controls.Add(this.label11);
             this.splitContainer1.Panel2.Controls.Add(this.label3);
             this.splitContainer1.Panel2.Controls.Add(this.cboNaSkladiste6);
@@ -125,7 +129,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.label9);
             this.splitContainer1.Panel2.Controls.Add(this.txtTipKont2);
             this.splitContainer1.Panel2.Controls.Add(this.label10);
-            this.splitContainer1.Size = new System.Drawing.Size(1352, 613);
+            this.splitContainer1.Size = new System.Drawing.Size(1402, 613);
             this.splitContainer1.SplitterDistance = 313;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -142,7 +146,7 @@
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1339, 233);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1389, 233);
             this.gridGroupingControl1.TabIndex = 308;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -153,6 +157,7 @@
             this.gridGroupingControl1.Text = "gridGroupingControl1";
             this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
+            this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
             // 
             // label2
             // 
@@ -297,7 +302,7 @@
             this.gridGroupingControl2.Name = "gridGroupingControl2";
             this.gridGroupingControl2.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
             this.gridGroupingControl2.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl2.Size = new System.Drawing.Size(1337, 185);
+            this.gridGroupingControl2.Size = new System.Drawing.Size(1387, 185);
             this.gridGroupingControl2.TabIndex = 418;
             this.gridGroupingControl2.TableDescriptor.AllowNew = false;
             this.gridGroupingControl2.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -308,6 +313,7 @@
             this.gridGroupingControl2.Text = "gridGroupingControl2";
             this.gridGroupingControl2.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl2.VersionInfo = "18.4460.0.34";
+            this.gridGroupingControl2.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl2_TableControlCellClick);
             // 
             // cboNalogodavac1
             // 
@@ -353,15 +359,6 @@
             this.label41.Size = new System.Drawing.Size(46, 13);
             this.label41.TabIndex = 416;
             this.label41.Text = "Izvoznik";
-            // 
-            // txtBokingBrodara
-            // 
-            this.txtBokingBrodara.Location = new System.Drawing.Point(20, 81);
-            this.txtBokingBrodara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtBokingBrodara.Name = "txtBokingBrodara";
-            this.txtBokingBrodara.Size = new System.Drawing.Size(196, 20);
-            this.txtBokingBrodara.TabIndex = 413;
-            this.txtBokingBrodara.Text = "0";
             // 
             // label11
             // 
@@ -515,7 +512,7 @@
             this.toolStripButton5});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1352, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1402, 27);
             this.toolStrip1.TabIndex = 202;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -532,6 +529,7 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(112, 24);
             this.toolStripButton1.Text = "SNIMI PRAZAN";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButton2
             // 
@@ -550,6 +548,7 @@
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(90, 24);
             this.toolStripButton3.Text = "SNIMI PUN";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // toolStripButton4
             // 
@@ -568,17 +567,50 @@
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(122, 24);
             this.toolStripButton5.Text = "REFRESH TEKUCE";
+            this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
+            // 
+            // cboBooking
+            // 
+            this.cboBooking.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBooking.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboBooking.CausesValidation = false;
+            this.cboBooking.FormattingEnabled = true;
+            this.cboBooking.ItemHeight = 13;
+            this.cboBooking.Location = new System.Drawing.Point(18, 82);
+            this.cboBooking.Margin = new System.Windows.Forms.Padding(2);
+            this.cboBooking.Name = "cboBooking";
+            this.cboBooking.Size = new System.Drawing.Size(220, 21);
+            this.cboBooking.TabIndex = 419;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(923, 82);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(103, 20);
+            this.textBox1.TabIndex = 309;
+            this.textBox1.WordWrap = false;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(1049, 82);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(103, 20);
+            this.textBox2.TabIndex = 420;
+            this.textBox2.WordWrap = false;
             // 
             // frmDefinisiPoziciju
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1352, 613);
+            this.ClientSize = new System.Drawing.Size(1402, 613);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDefinisiPoziciju";
             this.Text = "DEFINISANJE POZICIJE";
+            this.Load += new System.EventHandler(this.frmDefinisiPoziciju_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -622,7 +654,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox txtTipKont2;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtBokingBrodara;
         private System.Windows.Forms.Label label11;
         private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl2;
         private System.Windows.Forms.ComboBox cboNalogodavac1;
@@ -636,5 +667,8 @@
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
+        private System.Windows.Forms.ComboBox cboBooking;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

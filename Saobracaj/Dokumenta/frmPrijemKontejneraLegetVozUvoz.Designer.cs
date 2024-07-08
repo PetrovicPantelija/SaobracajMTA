@@ -410,6 +410,7 @@ namespace Saobracaj.Dokumenta
             this.toolStripButton11.Name = "toolStripButton11";
             this.toolStripButton11.Size = new System.Drawing.Size(154, 24);
             this.toolStripButton11.Text = "POVEZIVANJE VAGONA";
+            this.toolStripButton11.Click += new System.EventHandler(this.toolStripButton11_Click);
             // 
             // toolStripButton12
             // 

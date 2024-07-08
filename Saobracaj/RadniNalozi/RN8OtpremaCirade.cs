@@ -370,5 +370,26 @@ namespace Saobracaj.RadniNalozi
             OtpremnicaPregled otpp = new OtpremnicaPregled();
             otpp.Show();
         }
+
+        private void toolStripButton6_Click(object sender, EventArgs e)
+        {
+            if (chkPotrebanCIR.Checked == true)
+            {
+                InsertRN up = new InsertRN();
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected == true)
+                    {
+                        up.PotvrdiUradjenRN8CIr(Convert.ToInt32(row.Cells[0].Value.ToString()), KorisnikTekuci);
+                    }
+
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Operacija se izvrsava samo ako je potreban CIR");
+            }
+        }
     }
 }

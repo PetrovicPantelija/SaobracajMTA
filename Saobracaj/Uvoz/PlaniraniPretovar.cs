@@ -33,8 +33,8 @@ namespace Saobracaj.Uvoz
             var select = "Select t1.* from ( " +
 " SELECT RadniNalogInterni.[ID]  ,RadniNalogInterni.[StatusIzdavanja]  ,UvozKonacna.BrojKontejnera, [OJIzdavanja], o1.Naziv as Izdao,  [OJRealizacije], o2.Naziv as Realizuje, " +
 " [DatumIzdavanja],[DatumRealizacije]  ,RadniNalogInterni.[Napomena]  ,  UvozKonacnaVrstaManipulacije.IDVrstaManipulacije,VrstaManipulacije.Naziv,[Uradjen]  , " +
-" [Osnov]  ,[BrojOsnov]  ,[KorisnikIzdao] ,  [KorisnikZavrsio]  ,uv.PaNaziv as Platilac  ,TipKontenjera.Naziv as Tipkontejnera, PlanID as PlanUtovara, RadniNalogInterni.Pokret, " + 
-" KontejnerStatus.Naziv as KS FROM[RadniNalogInterni] inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
+" [Osnov]  ,[BrojOsnov]  ,[KorisnikIzdao] ,  [KorisnikZavrsio]  ,uv.PaNaziv as Platilac  ,TipKontenjera.Naziv as Tipkontejnera, PlanID as PlanUtovara, RadniNalogInterni.Pokret, " +
+" KontejnerStatus.Naziv as KS , RadniNalogInterni.BrojDokPrevoza, RAdniNalogInterni.BrojRN FROM [RadniNalogInterni] inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
 " inner join UvozKonacna on UvozKonacna.ID = BrojOsnov  inner join UvozKonacnaVrstaManipulacije on UvozKonacnaVrstaManipulacije.ID = RadniNalogInterni.KonkretaIDUsluge " +
 " inner join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
 " inner join Partnerji uv on uv.PaSifra = UvozKonacnaVrstaManipulacije.Platilac " +
@@ -46,7 +46,7 @@ namespace Saobracaj.Uvoz
 " SELECT RadniNalogInterni.[ID]  ,RadniNalogInterni.[StatusIzdavanja]  ,IzvozKonacna.BrojKontejnera, [OJIzdavanja], o1.Naziv as Izdao,  [OJRealizacije], o2.Naziv as Realizuje, " +
 " [DatumIzdavanja],[DatumRealizacije]  ,RadniNalogInterni.[Napomena]  ,  IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije,VrstaManipulacije.Naziv,[Uradjen]  , " +
 " [Osnov]  ,[BrojOsnov]  ,[KorisnikIzdao] ,  [KorisnikZavrsio]  ,uv.PaNaziv as Platilac  ,TipKontenjera.Naziv as Tipkontejnera, PlanID as PlanUtovara, RadniNalogInterni.Pokret, " + 
-" KontejnerStatus.Naziv as KS FROM[RadniNalogInterni] inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
+" KontejnerStatus.Naziv as KS, RadniNalogInterni.BrojDokPrevoza, RAdniNalogInterni.BrojRN FROM [RadniNalogInterni] inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
 " inner join IzvozKonacna on IzvozKonacna.ID = BrojOsnov  inner join IzvozKonacnaVrstaManipulacije on IzvozKonacnaVrstaManipulacije.ID = RadniNalogInterni.KonkretaIDUsluge " +
 " inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
 " inner join Partnerji uv on uv.PaSifra = IzvozKonacnaVrstaManipulacije.Platilac " +
@@ -116,6 +116,9 @@ namespace Saobracaj.Uvoz
                     txtPlanUtovara.Text= gridGroupingControl1.Table.CurrentRecord.GetValue("PlanUtovara").ToString();
                     txtOsnov.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojOsnov").ToString();
                     Usluga= gridGroupingControl1.Table.CurrentRecord.GetValue("IDVrstaManipulacije").ToString();
+                    txtPrijemID.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojDokPrevoza").ToString();
+                    txtRN.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojRN").ToString();
+
                 }
             }
             catch (Exception ex)
@@ -216,53 +219,7 @@ namespace Saobracaj.Uvoz
 
         private void btnOtpremnica_Click(object sender, EventArgs e)
         {
-            int Ciradatmp = 0;
-            int ModulPorekla = 0;
-            if (chkUvoz.Checked == true)
-            {
-                ModulPorekla = 1;
-            }
-            else if (chkIzvoz.Checked == true)
-            {
-                ModulPorekla = 2;
-            }
-            if (chkCirada.Checked == true)
-                Ciradatmp = 1;
-
-            Dokumenta.InsertOtprema ins = new Dokumenta.InsertOtprema();
-            ins.InsertOtp(Convert.ToDateTime(dateTimePicker1.Value),0,0, txtReg.Text.ToString().TrimEnd(), txtVozac.Text.ToString().TrimEnd(), Convert.ToDateTime(dateTimePicker1.MinDate), 0, Convert.ToDateTime(DateTime.Now), korisnik, txtNapomena.Text, 0, 0, Ciradatmp, ModulPorekla);
-            VratiPodatkeMax();
-            if (chkUvoz.Checked == true)
-            {
-                InsertIzvozKonacna ins2 = new InsertIzvozKonacna();
-                ins2.PrenesiKontejnerUOtpremuKamionomUvoz(Convert.ToInt32(txtOsnov.Text), Convert.ToInt32(txtID.Text));
-                MessageBox.Show("Uspešno ste formirali Otpremu kamionom");
-            }
-            else if (chkIzvoz.Checked == true)
-            {
-                InsertIzvozKonacna ins2 = new InsertIzvozKonacna();
-                ins2.PrenesiKontejnerUOtpremuKamionomIzvoz(OtpremaKontejneraID, Convert.ToInt32(txtOsnov.Text), Convert.ToInt32(txtID.Text));
-                MessageBox.Show("Uspešno ste formirali Otpremu kamionom");
-
-                //MessageBox.Show("Mora se obeležiti uvoz!");
-            }
-            RadniNalozi.InsertRN ir = new InsertRN();
-            if (chkPlatforma.Checked)
-            {
-                ir.InsRN6OtpremaPlatformeKam(Convert.ToDateTime(dateTimePicker1.Value), korisnik, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(0), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(Usluga), "", "", OtpremaKontejneraID, txtReg.Text, Convert.ToInt32(txtID.Text), 1, 0);
-            }
-            if (chkCirada.Checked)
-            {
-                if (chkUvoz.Checked == true)
-                {
-                    ir.InsRN8OtpremaCiradeKam(Convert.ToDateTime(dateTimePicker1.Value), korisnik, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(0), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(Usluga), "", "", OtpremaKontejneraID, txtReg.Text, 0, txtID.Text);
-                }
-                else if (chkIzvoz.Checked == true)
-                {
-                    ir.InsRN8OtpremaCiradeKamIzvoz(Convert.ToDateTime(dateTimePicker1.Value), korisnik, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(0), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(Usluga), "", "", OtpremaKontejneraID, txtReg.Text, 0, txtID.Text);
-                }
-                
-            }
+           
 
         }
         int OtpremaKontejneraID;
@@ -322,6 +279,101 @@ namespace Saobracaj.Uvoz
             conn.Close();
             dr.Close();
         }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            //Otvaranje prijema CIrada Uvoz
+            Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz ter2 = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Convert.ToInt32(txtPrijemID.Text), korisnik, 0);
+            ter2.Show();
+            return;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            int Ciradatmp = 0;
+            int ModulPorekla = 0;
+            if (chkUvoz.Checked == true)
+            {
+                ModulPorekla = 1;
+            }
+            else if (chkIzvoz.Checked == true)
+            {
+                ModulPorekla = 2;
+            }
+            if (chkCirada.Checked == true)
+                Ciradatmp = 1;
+
+            Dokumenta.InsertOtprema ins = new Dokumenta.InsertOtprema();
+            ins.InsertOtp(Convert.ToDateTime(dateTimePicker1.Value), 0, 0, txtReg.Text.ToString().TrimEnd(), txtVozac.Text.ToString().TrimEnd(), Convert.ToDateTime(dateTimePicker1.MinDate), 0, Convert.ToDateTime(DateTime.Now), korisnik, txtNapomena.Text, 0, 0, Ciradatmp, ModulPorekla);
+            VratiPodatkeMax();
+            if (chkUvoz.Checked == true)
+            {
+                InsertIzvozKonacna ins2 = new InsertIzvozKonacna();
+                ins2.PrenesiKontejnerUOtpremuKamionomUvoz(Convert.ToInt32(txtOsnov.Text), Convert.ToInt32(txtID.Text));
+                MessageBox.Show("Uspešno ste formirali Otpremu kamionom");
+            }
+            else if (chkIzvoz.Checked == true)
+            {
+                InsertIzvozKonacna ins2 = new InsertIzvozKonacna();
+                ins2.PrenesiKontejnerUOtpremuKamionomIzvoz(OtpremaKontejneraID, Convert.ToInt32(txtOsnov.Text), Convert.ToInt32(txtID.Text));
+                MessageBox.Show("Uspešno ste formirali Otpremu kamionom");
+
+                //MessageBox.Show("Mora se obeležiti uvoz!");
+            }
+            RadniNalozi.InsertRN ir = new InsertRN();
+            if (chkPlatforma.Checked)
+            {
+                ir.InsRN6OtpremaPlatformeKam(Convert.ToDateTime(dateTimePicker1.Value), korisnik, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(0), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(Usluga), "", "", OtpremaKontejneraID, txtReg.Text, Convert.ToInt32(txtID.Text), 1, 0);
+            }
+            if (chkCirada.Checked)
+            {
+                if (chkUvoz.Checked == true)
+                {
+                    ir.InsRN8OtpremaCiradeKam(Convert.ToDateTime(dateTimePicker1.Value), korisnik, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(0), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(Usluga), "", "", OtpremaKontejneraID, txtReg.Text, 0, txtID.Text);
+                    VratiRNOtpremaCiradeID();
+                    InsertRadniNalogInterni radniNalogInterni = new InsertRadniNalogInterni();
+                    radniNalogInterni.UpdRadniNalogInterniGenerisan(Convert.ToInt32(txtID.Text), "OTP", OtpremaKontejneraID, "RN8", RadniNalog8ID);
+                    MessageBox.Show("Automatski su formirane forme ZAVRSENI PPRETOVARI i RN ZA KALMARISTU POSTAVKA IZ PRIVREMENE ZONE, OTPREMA CIRADE i RN OTPREMA CIRADE ");
+
+
+                }
+                else if (chkIzvoz.Checked == true)
+                {
+                    ir.InsRN8OtpremaCiradeKamIzvoz(Convert.ToDateTime(dateTimePicker1.Value), korisnik, Convert.ToDateTime(dateTimePicker1.Value), Convert.ToInt32(0), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(Usluga), "", "", OtpremaKontejneraID, txtReg.Text, 0, txtID.Text);
+                }
+
+            }
+        }
+
+        int RadniNalogID;
+        int RadniNalog8ID;
+
+        private void VratiRNOtpremaCiradeID()
+        {
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("select Max(ID) from RNOtpremaCirade", conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                RadniNalog8ID = Convert.ToInt32(dr[0].ToString());
+            }
+            conn.Close();
+            dr.Close();
+        }
+        private void VratiRNPrijemCiradeID()
+        {
+            SqlConnection conn = new SqlConnection(s_connection);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("select Max(ID) from RNPrijemCirade", conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                RadniNalogID = Convert.ToInt32(dr[0].ToString());
+            }
+            conn.Close();
+            dr.Close();
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (chkUvoz.Checked == true)
@@ -337,6 +389,10 @@ namespace Saobracaj.Uvoz
                 rn.InsRN9PrijmCiradeKam(Convert.ToDateTime(dateTimePicker1.Value), korisnik, Convert.ToDateTime(dateTimePicker1.MinDate), 0, Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue)
                     , Convert.ToInt32(Usluga), "", "", PrijemID, txtReg.Text.ToString().TrimEnd(), CariniskiPostupak, VrstaPregleda, Spedicija, Brodar, BrojPlombe, Convert.ToInt32(txtID.Text));
 
+                VratiRNPrijemCiradeID();
+                InsertRadniNalogInterni radniNalogInterni = new InsertRadniNalogInterni();
+                radniNalogInterni.UpdRadniNalogInterniGenerisan(Convert.ToInt32(txtID.Text), "PRI", PrijemID, "RN9", RadniNalogID);
+                MessageBox.Show("Automatski su formirane forme PLANIRANI PRETOVARI i RN ZA KALMARISTU POSTAVKA U PRIVREMENU ZONU, PRIJEM CIRADE i RN PRIJEM CIRADE ");
 
             }
             else if (chkIzvoz.Checked == true)

@@ -248,11 +248,6 @@ namespace Saobracaj.RadniNalozi
                 {
                     chkZavrsen.Checked = false;
                 }
-
-
-
-
-
             }
 
             con.Close();

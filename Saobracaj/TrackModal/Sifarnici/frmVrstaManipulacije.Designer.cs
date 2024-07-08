@@ -242,7 +242,7 @@
             this.chkUticeSkladisno.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkUticeSkladisno.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.chkUticeSkladisno.ForeColor = System.Drawing.Color.Black;
-            this.chkUticeSkladisno.Location = new System.Drawing.Point(11, 141);
+            this.chkUticeSkladisno.Location = new System.Drawing.Point(18, 142);
             this.chkUticeSkladisno.Name = "chkUticeSkladisno";
             this.chkUticeSkladisno.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkUticeSkladisno.Size = new System.Drawing.Size(109, 19);
@@ -412,7 +412,7 @@
             this.chkAdministratvna.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkAdministratvna.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.chkAdministratvna.ForeColor = System.Drawing.Color.Black;
-            this.chkAdministratvna.Location = new System.Drawing.Point(11, 166);
+            this.chkAdministratvna.Location = new System.Drawing.Point(18, 166);
             this.chkAdministratvna.Name = "chkAdministratvna";
             this.chkAdministratvna.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkAdministratvna.Size = new System.Drawing.Size(109, 19);
