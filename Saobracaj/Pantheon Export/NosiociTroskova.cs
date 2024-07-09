@@ -104,6 +104,23 @@ namespace Saobracaj.Pantheon_Export
             cboPosao.DataSource = najavaDS.Tables[0];
             cboPosao.DisplayMember = "Oznaka";
             cboPosao.ValueMember = "ID";
+
+            var filternt = "Select ID,RTrim(NosilacTroska) as NosilacTroska from NosiociTroskova order by ID desc";
+            var filterntDA = new SqlDataAdapter(filternt,conn);
+            var filterntDS = new DataSet();
+            filterntDA.Fill(filterntDS);
+            cboFilterNT.DataSource= filterntDS.Tables[0];
+            cboFilterNT.DisplayMember = "NosilacTroska";
+            cboFilterNT.ValueMember="ID";
+
+            var filterTextNt = "Select ID,RTrim(NazivNosiocaTroska) as NazivNosiocaTroska from NosiociTroskova order by ID desc";
+            var filterTextNTDa = new SqlDataAdapter(filterTextNt, conn);
+            var filterTextNTDS = new DataSet();
+            filterTextNTDa.Fill(filterTextNTDS);
+            cboFilterNazivNT.DataSource= filterTextNTDS.Tables[0];
+            cboFilterNazivNT.DisplayMember = "NazivNosiocaTroska";
+            cboFilterNazivNT.ValueMember = "ID";
+
         }
         int ID;
         private void tsNew_Click(object sender, EventArgs e)
@@ -183,7 +200,7 @@ namespace Saobracaj.Pantheon_Export
 
         private void tsDelete_Click(object sender, EventArgs e)
         {
-            if (korisnik == "mikic.d")
+            if (korisnik.TrimEnd() == "mikic.d")
             {
                 InsertPatheonExport ins = new InsertPatheonExport();
                 ins.DelNosiociTroskova(Convert.ToInt32(txtID.Text));
@@ -385,11 +402,11 @@ namespace Saobracaj.Pantheon_Export
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string nt = "";
-            nt = txtFilterNT.Text.ToString().TrimEnd();
+            int nt = Convert.ToInt32(cboFilterNT.SelectedValue);
+            
             foreach(DataGridViewRow row in dataGridView2.Rows)
             {
-                if (nt==row.Cells[1].Value.ToString().TrimEnd())
+                if (nt==Convert.ToInt32(row.Cells["ID"].Value.ToString()))
                 {
                     row.Selected = true;
                     dataGridView2.CurrentCell = row.Cells[1];
@@ -399,11 +416,10 @@ namespace Saobracaj.Pantheon_Export
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string nt = "";
-            nt = txtFilterNazivNT.Text.ToString().TrimEnd().ToLower();
+            int nt =Convert.ToInt32(cboFilterNazivNT.SelectedValue);
             foreach (DataGridViewRow row in dataGridView2.Rows)
             {
-                if (nt == row.Cells[2].Value.ToString().TrimEnd().ToLower())
+                if (nt == Convert.ToInt32(row.Cells[0].Value.ToString()))
                 {
                     row.Selected = true;
                     dataGridView2.CurrentCell = row.Cells[2];

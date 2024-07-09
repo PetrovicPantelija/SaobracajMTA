@@ -46,13 +46,8 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnRSD = new System.Windows.Forms.Button();
-            this.btnValuta = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -235,59 +230,12 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.DimGray;
-            this.panel1.Controls.Add(this.btnValuta);
-            this.panel1.Controls.Add(this.btnRSD);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panel1.Location = new System.Drawing.Point(499, 135);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(303, 100);
-            this.panel1.TabIndex = 10;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(18, 15);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(272, 36);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Izaberite valutu za sinhronizaciju fakture \r\nza domaćeg kupca\r\n";
-            // 
-            // btnRSD
-            // 
-            this.btnRSD.BackColor = System.Drawing.Color.DarkGray;
-            this.btnRSD.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRSD.Location = new System.Drawing.Point(47, 54);
-            this.btnRSD.Name = "btnRSD";
-            this.btnRSD.Size = new System.Drawing.Size(82, 34);
-            this.btnRSD.TabIndex = 1;
-            this.btnRSD.Text = "RSD";
-            this.btnRSD.UseVisualStyleBackColor = false;
-            this.btnRSD.Click += new System.EventHandler(this.btnRSD_Click);
-            // 
-            // btnValuta
-            // 
-            this.btnValuta.BackColor = System.Drawing.Color.DarkGray;
-            this.btnValuta.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnValuta.Location = new System.Drawing.Point(156, 54);
-            this.btnValuta.Name = "btnValuta";
-            this.btnValuta.Size = new System.Drawing.Size(82, 34);
-            this.btnValuta.TabIndex = 1;
-            this.btnValuta.Text = "RSD";
-            this.btnValuta.UseVisualStyleBackColor = false;
-            this.btnValuta.Click += new System.EventHandler(this.btnValuta_Click);
-            // 
             // IzlazneFakturePregled
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1432, 862);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -311,8 +259,6 @@
             this.Load += new System.EventHandler(this.IzlazneFakturePregled_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -337,9 +283,5 @@
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnValuta;
-        private System.Windows.Forms.Button btnRSD;
     }
 }

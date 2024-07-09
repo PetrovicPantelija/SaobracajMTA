@@ -1191,10 +1191,10 @@ namespace Saobracaj.Dokumenta
                         }
                         transaction.Commit();
                     }
-                    catch
+                    catch(Exception ex)
                     {
                         transaction.Rollback();
-                        MessageBox.Show("Neuspešan upis cena u bazu", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Neuspešan upis cena u bazu \n" + ex.ToString(), "", MessageBoxButtons.OK, MessageBoxIcon.Information) ;
                     }
                 }
                 conn.Close();

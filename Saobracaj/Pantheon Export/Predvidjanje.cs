@@ -388,7 +388,7 @@ namespace Saobracaj.Pantheon_Export
 
         private void tsDelete_Click(object sender, EventArgs e)
         {
-            if (korisnik == "mikic.d")
+            if (korisnik.TrimEnd() == "mikic.d")
             {
                 InsertPatheonExport ins = new InsertPatheonExport();
                 ins.DelPredvidjanje(Convert.ToInt32(txtID.Text));
