@@ -610,6 +610,7 @@ namespace Saobracaj.Uvoz
 
         private void UbaciStavkuUsluge(int ID, int Manipulacija, double Cena, double Kolicina, int OrgJed, int pomPlatilac, string pomPokret, int pomStatusKontejnera, string pomForma)
         {
+           
             if (txtNadredjeni.Text != "0")
             {
                 InsertUvozKonacna uvK = new InsertUvozKonacna();
@@ -623,7 +624,214 @@ namespace Saobracaj.Uvoz
                 FillDG8();
 
             }
+           
 
+        }
+        //Panta
+        int VratiBrojManipulacija(int ID)
+        {
+            int pomBZ = 0;
+            string Komanda = "";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+            if (txtNadredjeni.Text != "0")
+            {
+                Komanda = "select Count(*) as Broj from UvozKonacnaVrstaManipulacije  where ID= ";
+            }
+            else
+            {
+                Komanda = "select Count(*) as Broj from UvozVrstaManipulacije  where ID= ";
+            }
+
+                SqlCommand cmd = new SqlCommand(Komanda + ID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                pomBZ = Convert.ToInt32(dr["Broj"].ToString());
+            }
+            con.Close();
+            return pomBZ;
+
+        }
+
+        int VratiBrojScenario(int ID)
+        {
+            int pomBZ = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Count(*) as Broj from Scenario  where ID= " + ID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                pomBZ = Convert.ToInt32(dr["Broj"].ToString());
+            }
+            con.Close();
+            return pomBZ;
+
+        }
+
+        int ProveriDaLiSuIsteManipulacije(int ID, int SC)
+        {
+            int postoji = 0;
+            int konacan = 1;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select usluga from Scenario  where ID= " + ID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                postoji = VratiPostojiUsluga(Convert.ToInt32(dr["usluga"].ToString()),ID);
+                if (postoji == 0)
+                {
+                    konacan = 0;
+                }
+            }
+            con.Close();
+            return konacan;
+
+        }
+        int VratiPostojiUsluga(int usluga, int kontejnerid)
+        {
+            int postoji = 0;
+            string Komanda = "";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            if (txtNadredjeni.Text != "0")
+            {
+                Komanda = "select Count(*) as Broj from UvozKonacnaVrstaManipulacije where IDNadredjena = " + kontejnerid + " and IDVrstaManipulacije = " + usluga;
+            }
+            else
+            {
+                Komanda = "select Count(*) as Broj from UvozVrstaManipulacije where IDNadredjena = " + kontejnerid + " and IDVrstaManipulacije = " + usluga;
+            }
+
+            SqlCommand cmd = new SqlCommand(Komanda, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                if (Convert.ToInt32(dr["Broj"].ToString()) == 1)
+                {
+                    postoji = 1;
+                }
+            }
+            con.Close();
+            return postoji;
+
+
+        }
+
+        private void ProveriScenario(int ID)
+        {
+            //Panta 2
+            // broj Zapisa za kontejner
+            //Izab raniScenario
+            int IzabraniScenario = 0;
+            int BrojZapisaKontejnera = VratiBrojManipulacija(ID);
+            int BSC1 = VratiBrojScenario(1);
+            int BSC2 = VratiBrojScenario(2);
+            int BSC3 = VratiBrojScenario(3);
+            int BSC4 = VratiBrojScenario(4);
+            int BSC5 = VratiBrojScenario(5);
+            int BSC6 = VratiBrojScenario(6);
+            int rasporedjen = 0;
+            if (txtNadredjeni.Text != "0")
+            {
+                rasporedjen = 1;
+            }
+            else
+            {
+                rasporedjen = 0;
+            }
+            if (BrojZapisaKontejnera == BSC1)
+            {
+                IzabraniScenario =  ProveriDaLiSuIsteManipulacije(ID,1);
+                if (IzabraniScenario == 1)
+                {
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(1, ID, 1, rasporedjen);
+                    MessageBox.Show("Izabrali ste scenario 1");
+                }
+            }
+            if (BrojZapisaKontejnera == BSC2)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 2);
+                if (IzabraniScenario == 1)
+                {
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(2, ID, 1, rasporedjen);
+                    MessageBox.Show("Izabrali ste scenario 2");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC3)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 3);
+                if (IzabraniScenario == 1)
+                {
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(3, ID, 1, rasporedjen);
+                    MessageBox.Show("Izabrali ste scenario 3");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC4)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 4);
+                if (IzabraniScenario == 1)
+                {
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(4, ID, 1, rasporedjen);
+                    MessageBox.Show("Izabrali ste scenario 4");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC5)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 5);
+                if (IzabraniScenario == 1)
+                {
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(5, ID, 1, rasporedjen);
+                    MessageBox.Show("Izabrali ste scenario 5");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC6)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 6);
+                if (IzabraniScenario == 1)
+                {
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(6, ID, 1, rasporedjen);
+                    MessageBox.Show("Izabrali ste scenario 6");
+                }
+            }
+
+            // Proveri da li je isti broj 
+            // Proveri da lii su iste manipulacije
 
         }
 
@@ -919,7 +1127,8 @@ namespace Saobracaj.Uvoz
                     }
                 }
 
-
+                FillDG8();
+                ProveriScenario(pomID);
             }
             catch
             {
@@ -1708,7 +1917,8 @@ namespace Saobracaj.Uvoz
 
                     }
                 }
-
+                FillDG8();
+                ProveriScenario(pomID);
 
             }
             catch
@@ -1831,7 +2041,8 @@ namespace Saobracaj.Uvoz
 
                     }
                 }
-
+                FillDG8();
+                ProveriScenario(pomID);
 
             }
             catch
@@ -1968,6 +2179,8 @@ namespace Saobracaj.Uvoz
                     
                 }
                 FillDG8();
+                ProveriScenario(pomID);
+
 
             }
             catch
@@ -1975,6 +2188,7 @@ namespace Saobracaj.Uvoz
                 MessageBox.Show("Unos nije uspeo.Proverite da li imate definisanu cenu u Cenovniku!!!");
             }
         }
+     
 
         int VratiOrgJed(int Manipulacija)
         {

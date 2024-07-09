@@ -683,6 +683,15 @@ namespace Saobracaj.Izvoz
             cbNapomenaPoz.DisplayMember = "Naziv";
             cbNapomenaPoz.ValueMember = "ID";
 
+            //FillCombo
+            var partner22 = "SELECT ID, Min(Naziv) as Naziv FROM Scenario group by ID order by ID";
+            var partAD22 = new SqlDataAdapter(partner22, conn);
+            var partDS22 = new DataSet();
+            partAD22.Fill(partDS22);
+            cboScenario.DataSource = partDS22.Tables[0];
+            cboScenario.DisplayMember = "Naziv";
+            cboScenario.ValueMember = "ID";
+
         }
 
 
@@ -817,7 +826,7 @@ namespace Saobracaj.Izvoz
                 Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(txtRef3.Text),
                  Convert.ToInt32(cboSpediterURijeci.SelectedValue), txtOstalePlombe.Text,
                  Convert.ToInt32(txtADR.SelectedValue), txtVozilo.Text, txtVozac.Text, Convert.ToInt32(cboSpedicijaJ.SelectedValue), 
-                 Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToInt32(cboVrstaPlombe.SelectedValue), txtNapomenaZaRobu.Text, Convert.ToDecimal(txtVGMBrod.Value), txtKontaktSpeditera.Text, txtKontaktOsobe.Text, Convert.ToInt32(txtUvozniID.Text), pomTerminal);
+                 Convert.ToDateTime(dtpPeriodSkladistenjaOd.Value), Convert.ToDateTime(dtpPeriodSkladistenjaDo.Value), Convert.ToInt32(cboVrstaPlombe.SelectedValue), txtNapomenaZaRobu.Text, Convert.ToDecimal(txtVGMBrod.Value), txtKontaktSpeditera.Text, txtKontaktOsobe.Text, Convert.ToInt32(txtUvozniID.Text), pomTerminal, Convert.ToInt32(cboScenario.SelectedValue));
             //Fale ostale plombe
             // Convert.ToDecimal(txtDodatneNapomene.Text -- treba staviti nvarchar
 
@@ -1176,7 +1185,7 @@ namespace Saobracaj.Izvoz
    "      ,[Izvoznik],[Klijent1],[Napomena1REf],[DodatneNapomeneDrumski] " +
    "      ,[Klijent2],[Napomena2REf],[Klijent3],[Napomena3REf] " +
    "      ,[SpediterRijeka],[OstalePlombe],[ADR],[Vozilo],[Vozac], SpedicijaJ, PeriodSkladistenjaOd, PeriodSkladistenjaDo, VrstaBrodskePlombe, NapomenaZaRobu, VGMBrod2  ,[KontaktSpeditera] " +
-      " ,[KontaktOsobe]      ,[Korisnik]      ,[DatumKreiranja], UvozID, Terminal " +
+      " ,[KontaktOsobe]      ,[Korisnik]      ,[DatumKreiranja], UvozID, Terminal, Scenario " +
  "  FROM [Izvoz] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -1291,7 +1300,9 @@ namespace Saobracaj.Izvoz
                 txtKontaktOsobe.Text =  dr["KontaktOsobe"].ToString();     
                 tslDatum.Text = dr["DatumKreiranja"].ToString();
                 tslKreirao.Text = dr["Korisnik"].ToString();
-              
+
+                cboScenario.SelectedValue = Convert.ToInt32(dr["Scenario"].ToString());
+
                 /*
 
                 dtEtaRijeka.Value = Convert.ToDateTime(dr["EtaBroda"].ToString());

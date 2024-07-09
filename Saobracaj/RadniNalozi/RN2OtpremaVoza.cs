@@ -285,9 +285,11 @@ namespace Saobracaj.RadniNalozi
                 if (row.Selected == true)
                 {
                     up.PotvrdiUradjenRN2(Convert.ToInt32(row.Cells[0].Value.ToString()), KorisnikTekuce);
+                    up.ArhivirajKontejner(row.Cells[0].Value.ToString());
                 }
 
             }
+          
         }
 
         private void VratiPodatkeStavka()
@@ -364,15 +366,7 @@ namespace Saobracaj.RadniNalozi
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            InsertRN up = new InsertRN();
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (row.Selected == true)
-                {
-                    up.ArhivirajKontejner(row.Cells[0].Value.ToString());
-                }
-
-            }
+           
 
         }
 

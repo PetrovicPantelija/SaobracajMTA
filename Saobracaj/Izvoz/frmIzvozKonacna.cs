@@ -547,6 +547,15 @@ namespace Saobracaj.Izvoz
             cbNapomenaPoz.DisplayMember = "Naziv";
             cbNapomenaPoz.ValueMember = "ID";
 
+            var partner22 = "SELECT ID, Min(Naziv) as Naziv FROM Scenario group by ID order by ID";
+            var partAD22 = new SqlDataAdapter(partner22, conn);
+            var partDS22 = new DataSet();
+            partAD22.Fill(partDS22);
+            cboScenario.DataSource = partDS22.Tables[0];
+            cboScenario.DisplayMember = "Naziv";
+            cboScenario.ValueMember = "ID";
+
+
         }
 
         private void FillDG()
@@ -1249,7 +1258,7 @@ namespace Saobracaj.Izvoz
    "      ,[Izvoznik],[Klijent1],[Napomena1REf],[DodatneNapomeneDrumski] " +
    "      ,[Klijent2],[Napomena2REf],[Klijent3],[Napomena3REf] " +
    "      ,[SpediterRijeka],[OstalePlombe],[ADR],[Vozilo],[Vozac], SpedicijaJ, PeriodSkladistenjaOd, PeriodSkladistenjaDo , VrstaBrodskePlombe, NapomenaZaRobu, VGMBrod2,KontaktSpeditera" +
-   " KontaktOsobe, UvozID" +
+   " KontaktOsobe, UvozID, Scenario" +
  "  FROM [IzvozKonacna] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -1353,6 +1362,10 @@ namespace Saobracaj.Izvoz
                 txtBrojVagona.Text = dr["BrojVagona"].ToString();
                 cboVrstaPlombe.SelectedValue = Convert.ToInt32(dr["VrstaBrodskePlombe"].ToString());
                 txtNapomenaZaRobu.Text = dr["NapomenaZaRobu"].ToString();
+
+                cboScenario.SelectedValue = Convert.ToInt32(dr["Scenario"].ToString());
+               
+                
                 //txtKontaktSpeditera.Text = dr["KontaktSpeditera"].ToString();
 
                 /*

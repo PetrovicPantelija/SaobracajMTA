@@ -228,6 +228,8 @@ namespace Saobracaj.Uvoz
             this.label64 = new System.Windows.Forms.Label();
             this.txtKoletaTer = new System.Windows.Forms.NumericUpDown();
             this.label65 = new System.Windows.Forms.Label();
+            this.cboScenario = new System.Windows.Forms.ComboBox();
+            this.label66 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtNetoR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoR)).BeginInit();
@@ -897,7 +899,7 @@ namespace Saobracaj.Uvoz
             // clNalogodavac
             // 
             this.clNalogodavac.FormattingEnabled = true;
-            this.clNalogodavac.Location = new System.Drawing.Point(650, 598);
+            this.clNalogodavac.Location = new System.Drawing.Point(365, 31);
             this.clNalogodavac.Margin = new System.Windows.Forms.Padding(2);
             this.clNalogodavac.Name = "clNalogodavac";
             this.clNalogodavac.Size = new System.Drawing.Size(55, 19);
@@ -1259,7 +1261,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(72, 178);
+            this.dataGridView1.Size = new System.Drawing.Size(0, 11);
             this.dataGridView1.TabIndex = 52;
             this.dataGridView1.Visible = false;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -1464,7 +1466,7 @@ namespace Saobracaj.Uvoz
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(225, 115);
+            this.label44.Location = new System.Drawing.Point(14, 65);
             this.label44.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(67, 13);
@@ -1535,7 +1537,7 @@ namespace Saobracaj.Uvoz
             // 
             this.button5.BackColor = System.Drawing.Color.DarkRed;
             this.button5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button5.Location = new System.Drawing.Point(468, 392);
+            this.button5.Location = new System.Drawing.Point(475, 392);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(56, 26);
             this.button5.TabIndex = 30;
@@ -1547,7 +1549,7 @@ namespace Saobracaj.Uvoz
             // 
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button6.Location = new System.Drawing.Point(406, 392);
+            this.button6.Location = new System.Drawing.Point(413, 393);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(56, 27);
             this.button6.TabIndex = 29;
@@ -1940,10 +1942,11 @@ namespace Saobracaj.Uvoz
             this.panel1.Controls.Add(this.cboNazivRobe);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.txtVrstaRobeHS);
-            this.panel1.Location = new System.Drawing.Point(5, 480);
+            this.panel1.Controls.Add(this.clNalogodavac);
+            this.panel1.Location = new System.Drawing.Point(40, 487);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(676, 305);
+            this.panel1.Size = new System.Drawing.Size(445, 138);
             this.panel1.TabIndex = 198;
             this.panel1.Visible = false;
             // 
@@ -2034,7 +2037,7 @@ namespace Saobracaj.Uvoz
             this.txtKontaktOsoba.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txtKontaktOsoba.FormattingEnabled = true;
             this.txtKontaktOsoba.ItemHeight = 13;
-            this.txtKontaktOsoba.Location = new System.Drawing.Point(329, 60);
+            this.txtKontaktOsoba.Location = new System.Drawing.Point(236, 54);
             this.txtKontaktOsoba.Margin = new System.Windows.Forms.Padding(2);
             this.txtKontaktOsoba.Name = "txtKontaktOsoba";
             this.txtKontaktOsoba.Size = new System.Drawing.Size(186, 21);
@@ -2464,6 +2467,32 @@ namespace Saobracaj.Uvoz
             this.label65.TabIndex = 454;
             this.label65.Text = "Koleta terminal";
             // 
+            // cboScenario
+            // 
+            this.cboScenario.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboScenario.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboScenario.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.cboScenario.ForeColor = System.Drawing.SystemColors.Window;
+            this.cboScenario.FormattingEnabled = true;
+            this.cboScenario.ItemHeight = 13;
+            this.cboScenario.Location = new System.Drawing.Point(202, 448);
+            this.cboScenario.Margin = new System.Windows.Forms.Padding(2);
+            this.cboScenario.Name = "cboScenario";
+            this.cboScenario.Size = new System.Drawing.Size(191, 21);
+            this.cboScenario.TabIndex = 455;
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.BackColor = System.Drawing.SystemColors.GrayText;
+            this.label66.ForeColor = System.Drawing.SystemColors.Window;
+            this.label66.Location = new System.Drawing.Point(210, 432);
+            this.label66.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(87, 13);
+            this.label66.TabIndex = 456;
+            this.label66.Text = "Izabrani scenario";
+            // 
             // Uvoz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -2471,6 +2500,8 @@ namespace Saobracaj.Uvoz
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1380, 833);
+            this.Controls.Add(this.cboScenario);
+            this.Controls.Add(this.label66);
             this.Controls.Add(this.txtKoletaTer);
             this.Controls.Add(this.label65);
             this.Controls.Add(this.label64);
@@ -2551,7 +2582,6 @@ namespace Saobracaj.Uvoz
             this.Controls.Add(this.cboUvoznik);
             this.Controls.Add(this.cbBrod);
             this.Controls.Add(this.cbDirigacija);
-            this.Controls.Add(this.clNalogodavac);
             this.Controls.Add(this.txtMail);
             this.Controls.Add(this.txtPlomba2);
             this.Controls.Add(this.txtPlomba1);
@@ -2816,5 +2846,7 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.Label label64;
         private System.Windows.Forms.NumericUpDown txtKoletaTer;
         private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.ComboBox cboScenario;
+        private System.Windows.Forms.Label label66;
     }
 }

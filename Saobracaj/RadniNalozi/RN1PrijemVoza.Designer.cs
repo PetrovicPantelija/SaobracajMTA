@@ -71,7 +71,6 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -118,9 +117,9 @@ namespace Saobracaj.RadniNalozi
             this.label27 = new System.Windows.Forms.Label();
             this.txtNapomenaPlombe = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.label29 = new System.Windows.Forms.Label();
             this.cboNaSkladistePregledac = new System.Windows.Forms.ComboBox();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -463,7 +462,6 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton7,
             this.toolStripSeparator1,
             this.toolStripButton1,
-            this.toolStripButton3,
             this.toolStripButton5,
             this.toolStripButton6,
             this.toolStripButton2,
@@ -528,20 +526,9 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(250, 24);
-            this.toolStripButton1.Text = "FORMIRAJ RADNE NALOGE ZA PRIJEM VOZA";
+            this.toolStripButton1.Size = new System.Drawing.Size(315, 24);
+            this.toolStripButton1.Text = "FORMIRAJ RADNE NALOGE ZA PRIJEM VOZA / AKTIVIRAJ";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.BackColor = System.Drawing.Color.Gold;
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(130, 24);
-            this.toolStripButton3.Text = "AKTIVIRAJ KONTEJNER";
-            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // toolStripButton5
             // 
@@ -1097,21 +1084,6 @@ namespace Saobracaj.RadniNalozi
             this.panel5.Size = new System.Drawing.Size(173, 274);
             this.panel5.TabIndex = 350;
             // 
-            // panel6
-            // 
-            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel6.Controls.Add(this.label17);
-            this.panel6.Controls.Add(this.txtNalogRealizovao);
-            this.panel6.Controls.Add(this.label9);
-            this.panel6.Controls.Add(this.txtDatumRealizacije);
-            this.panel6.Controls.Add(this.chkZavrsen);
-            this.panel6.Controls.Add(this.label16);
-            this.panel6.Controls.Add(this.txtNapomena);
-            this.panel6.Location = new System.Drawing.Point(985, 40);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(200, 224);
-            this.panel6.TabIndex = 351;
-            // 
             // label29
             // 
             this.label29.AutoSize = true;
@@ -1131,6 +1103,21 @@ namespace Saobracaj.RadniNalozi
             this.cboNaSkladistePregledac.Name = "cboNaSkladistePregledac";
             this.cboNaSkladistePregledac.Size = new System.Drawing.Size(150, 21);
             this.cboNaSkladistePregledac.TabIndex = 352;
+            // 
+            // panel6
+            // 
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.label17);
+            this.panel6.Controls.Add(this.txtNalogRealizovao);
+            this.panel6.Controls.Add(this.label9);
+            this.panel6.Controls.Add(this.txtDatumRealizacije);
+            this.panel6.Controls.Add(this.chkZavrsen);
+            this.panel6.Controls.Add(this.label16);
+            this.panel6.Controls.Add(this.txtNapomena);
+            this.panel6.Location = new System.Drawing.Point(985, 40);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(200, 224);
+            this.panel6.TabIndex = 351;
             // 
             // RN1PrijemVoza
             // 
@@ -1234,7 +1221,6 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.DataGridView dataGridView3;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripButton toolStripButton4;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button button3;

@@ -1616,7 +1616,7 @@ namespace Saobracaj.RadniNalozi
             }
         }
 
-        public void InsRNPPrijemVozaCeoVoz(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaVoznogSredstva, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, int PrijemID, int NaSkladistePregledac)
+        public void InsRNPPrijemVozaCeoVoz(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaVoznogSredstva, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, int PrijemID, int NaSkladistePregledac, string KorisnikTekuci)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -1708,8 +1708,12 @@ namespace Saobracaj.RadniNalozi
             naskladistepregledac.Value = NaSkladistePregledac;
             cmd.Parameters.Add(naskladistepregledac);
 
-
-
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName = "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Direction = ParameterDirection.Input;
+            korisnik.Value = KorisnikTekuci;
+            cmd.Parameters.Add(korisnik);
 
 
             conn.Open();

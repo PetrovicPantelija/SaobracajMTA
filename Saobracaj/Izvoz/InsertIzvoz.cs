@@ -1331,7 +1331,7 @@ namespace Saobracaj.Izvoz
                             decimal VGMTezina, decimal Tara, decimal VGMBrod, int Izvoznik,
                             int Klijent1, int Napomena1REf, int DobijenNalogKlijent1, int Klijent2,
                             int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR,
-                            string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, int VrstaBrodskePlombe, string NapomenaZaRobu, decimal VGMBrod2, string KontaktSpeditera, string KontaktOsobe, int UvozniID, int Terminal)
+                            string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, int VrstaBrodskePlombe, string NapomenaZaRobu, decimal VGMBrod2, string KontaktSpeditera, string KontaktOsobe, int UvozniID, int Terminal, int Scenario)
         {
 
 
@@ -1805,9 +1805,16 @@ namespace Saobracaj.Izvoz
             terminal.Value = Terminal;
             cmd.Parameters.Add(terminal);
 
+            SqlParameter scenario = new SqlParameter();
+            scenario.ParameterName = "@Scenario";
+            scenario.SqlDbType = SqlDbType.Int;
+            scenario.Direction = ParameterDirection.Input;
+            scenario.Value = Scenario;
+            cmd.Parameters.Add(scenario);
 
 
-           
+
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
