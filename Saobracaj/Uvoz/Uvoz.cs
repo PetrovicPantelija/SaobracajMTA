@@ -721,7 +721,7 @@ namespace Saobracaj.Uvoz
                 Convert.ToInt32(txtBrojVoza.Text), txtRelacija.Text.ToString().TrimEnd(), Convert.ToDateTime(dtAtaDolazak.Value.ToString()), Convert.ToDecimal(txtKoleta.Value), Convert.ToInt32(cboRLTerminal.SelectedValue), txtNapomena1.Text, Convert.ToInt32(txtVrstaPregleda.SelectedValue),
                 Convert.ToInt32(cboNalogodavac1.SelectedValue), txtRef1.Text,
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
-                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska, Convert.ToDecimal(txtTaraTerminal.Value));
+                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToDecimal(txtKoletaTer.Value));
             //  FillGV();
             //  RefreshDataGridColor();
             tsNew.Enabled = true;
@@ -752,7 +752,7 @@ namespace Saobracaj.Uvoz
      "  ,[AtaOtpreme]  ,[BrojVoza] ,[RelacijaVoza]  ,[AtaDolazak] " +
      "  ,[TipKontejnera] ,[Koleta]," +
      " RLTErminali , Napomena1 ,VrstaPregleda ,Nalogodavac1 ,Ref1 ,Nalogodavac2 ,Ref2 ,Nalogodavac3 ,Ref3, Brodar, NaslovStatusaVozila, " +
-     "Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe, TaraKontejneraT " +
+     "Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe, TaraKontejneraT, KoletaTer " +
  "  FROM [Uvoz] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -800,6 +800,7 @@ namespace Saobracaj.Uvoz
                 txtRelacija.Text = dr["RelacijaVoza"].ToString();
                 dtAtaDolazak.Value = Convert.ToDateTime(dr["AtaDolazak"].ToString());
                 txtKoleta.Value = Convert.ToDecimal(dr["Koleta"].ToString());
+                txtKoletaTer.Value = Convert.ToDecimal(dr["KoletaTer"].ToString());
                 cboRLTerminal.SelectedValue = Convert.ToInt32(dr["RLTerminali"].ToString());
                 if (dr["Napomena1"].ToString() == "1")
                 {

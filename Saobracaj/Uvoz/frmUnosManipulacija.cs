@@ -1546,12 +1546,12 @@ namespace Saobracaj.Uvoz
             cboUvoznik.ValueMember = "PaSifra";
 
 
-            var partner22 = "Select DISTINCT ID from Scenario Order by ID";
+            var partner22 = "SELECT ID, Min(Naziv) as Naziv FROM Scenario group by ID order by ID";
             var partAD22 = new SqlDataAdapter(partner22, conn);
             var partDS22 = new DataSet();
             partAD22.Fill(partDS22);
             cboScenario.DataSource = partDS22.Tables[0];
-            cboScenario.DisplayMember = "ID";
+            cboScenario.DisplayMember = "Naziv";
             cboScenario.ValueMember = "ID";
         }
 

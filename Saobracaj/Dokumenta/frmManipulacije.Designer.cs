@@ -64,6 +64,7 @@
             this.chkOtprema = new System.Windows.Forms.CheckBox();
             this.chkPrijem = new System.Windows.Forms.CheckBox();
             this.chkDirektna = new System.Windows.Forms.CheckBox();
+            this.chkPunPrazan = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -478,12 +479,26 @@
             this.chkDirektna.Text = "Direktna usluga";
             this.chkDirektna.UseVisualStyleBackColor = false;
             // 
+            // chkPunPrazan
+            // 
+            this.chkPunPrazan.AutoSize = true;
+            this.chkPunPrazan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.chkPunPrazan.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkPunPrazan.ForeColor = System.Drawing.Color.Black;
+            this.chkPunPrazan.Location = new System.Drawing.Point(904, 95);
+            this.chkPunPrazan.Name = "chkPunPrazan";
+            this.chkPunPrazan.Size = new System.Drawing.Size(90, 20);
+            this.chkPunPrazan.TabIndex = 204;
+            this.chkPunPrazan.Text = "Pun/Prazan";
+            this.chkPunPrazan.UseVisualStyleBackColor = false;
+            // 
             // frmManipulacije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1322, 593);
+            this.Controls.Add(this.chkPunPrazan);
             this.Controls.Add(this.chkDirektna);
             this.Controls.Add(this.chkPrijem);
             this.Controls.Add(this.chkOtprema);
@@ -565,5 +580,6 @@
         private System.Windows.Forms.CheckBox chkOtprema;
         private System.Windows.Forms.CheckBox chkPrijem;
         private System.Windows.Forms.CheckBox chkDirektna;
+        private System.Windows.Forms.CheckBox chkPunPrazan;
     }
 }

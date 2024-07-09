@@ -1485,21 +1485,32 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
         }
         private void RefreshDataGridRN()
         {
+            var select = "";
             //PANTA DATAGRID
+            if (chkCirada.Checked == true) 
+            {
+                select =
+                 " select * from RnOtpremaCirade " +
+                              " where NalogID = " + txtNalogID.Text;
 
+            }
+            else
+            {
+                select =
+              " select RNPrijemVoza.ID, RNPrijemVoza.BrojKontejnera, TipKontenjera.ID as VrstaKontejnera, DatumRasporeda," +
+                              " NalogIzdao, Voz.BrVoza, NaSkladiste, NaPozicijuSklad,  PArtnerji.PaSifra as Uvoznik, p2.PaSifra as Brodar, VrstaManipulacije.ID as Usluga, " +
+                              "BrojPlombe, RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID, RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, " +
+                              "Zavrsen, NalogRealizovaoVP, ZavrsenVP, NapomenaVP, DatumRealizacijeVP,  NapomenaPlombe1, NapomenaPlombe2, PotrebanCIR, NalogRealizovaoCIR, DatumRealizacijeCIR, ZavrsenCIR, BrojPlombe2 from RNPrijemVoza " +
+              " inner join TipKontenjera on TipKontenjera.ID = RNPrijemVoza.VrstaKontejnera " +
+              " inner join Voz on RNPrijemVoza.SaVoznogSredstva = Voz.ID " +
+              " inner join Skladista on Skladista.ID = NaSkladiste " +
+              " inner join Partnerji on Partnerji.PaSifra = RNPrijemVoza.Uvoznik " +
+              " inner join Partnerji p2 on p2.PaSifra = RNPrijemVoza.NazivBrodara " +
+              " inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge" +
+                           " where PrijemID = " + txtStavka.Text;
+            }
 
-            var select =
-" select RNPrijemVoza.ID, RNPrijemVoza.BrojKontejnera, TipKontenjera.ID as VrstaKontejnera, DatumRasporeda," +
-                " NalogIzdao, Voz.BrVoza, NaSkladiste, NaPozicijuSklad,  PArtnerji.PaSifra as Uvoznik, p2.PaSifra as Brodar, VrstaManipulacije.ID as Usluga, " +
-                "BrojPlombe, RNPrijemVoza.Napomena, RNPrijemVoza.PrijemID, RNPrijemVoza.NalogID, DatumRealizacije, NalogRealizovao, " +
-                "Zavrsen, NalogRealizovaoVP, ZavrsenVP, NapomenaVP, DatumRealizacijeVP,  NapomenaPlombe1, NapomenaPlombe2, PotrebanCIR, NalogRealizovaoCIR, DatumRealizacijeCIR, ZavrsenCIR, BrojPlombe2 from RNPrijemVoza " +
-" inner join TipKontenjera on TipKontenjera.ID = RNPrijemVoza.VrstaKontejnera " +
-" inner join Voz on RNPrijemVoza.SaVoznogSredstva = Voz.ID " +
-" inner join Skladista on Skladista.ID = NaSkladiste " +
-" inner join Partnerji on Partnerji.PaSifra = RNPrijemVoza.Uvoznik " +
-" inner join Partnerji p2 on p2.PaSifra = RNPrijemVoza.NazivBrodara " +
-" inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge" +
-             " where PrijemID = " + txtStavka.Text;
+          
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -1556,42 +1567,52 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
 
         private void FillGVIzvozni()
         {
+            if (chkCirada.Checked == true)
+            {
+                RefreshDataGridRN(); // Ovo je ako je Cirada
 
-            var select = " SELECT       [RNOtpremaPlatforme].ID, [Kamion] ,[Zavrsen] ,[DatumRasporeda]   " +
-                 "   ,[BrojKontejnera]  ,TipKontenjera.NAziv as [VrstaKontejnera]      ,[NalogIzdao]   " +
- " ,[DatumRealizacije], Komitenti_3.PaNaziv as [Uvoznik]    ,VrstaCarinskogPostupka.[Naziv] as CarinskiPostupak        , Komitenti_2.PaNaziv as [SpedicijaRTC] " +
- " ,Komitenti_1.PaNaziv as [NazivBrodara]      ,[VrstaRobe]    ,[SaSkladista]      ,[SaPozicijeSklad] " +
- " ,[IdUsluge]      ,[NalogRealizovao]    ,[OtpremaID] " +
- " ,[NalogID]   FROM[dbo].[RNOtpremaPlatforme] " +
- " INNER JOIN  Partnerji AS Komitenti_1 ON [RNOtpremaPlatforme].NazivBrodara = Komitenti_1.PaSifra " +
- " INNER JOIN  Partnerji AS Komitenti_2 ON [RNOtpremaPlatforme].SpedicijaRTC = Komitenti_2.PaSifra " +
- " INNER JOIN  Partnerji AS Komitenti_3 ON [RNOtpremaPlatforme].Uvoznik = Komitenti_3.PaSifra " +
- " inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.id = [RNOtpremaPlatforme].CarinskiPostupak " +
- " inner join  Skladista on[RNOtpremaPlatforme].[SaSkladista] = Skladista.ID " +
- " inner join TipKontenjera on TipKontenjera.ID = [RNOtpremaPlatforme].[VrstaKontejnera] " +
- " where Uvoz = 1 And NalogID = " + txtNalogID.Text + "  order by [RNOtpremaPlatforme].ID desc";
-            SqlConnection conn = new SqlConnection(connection);
-            var dataAdapter = new SqlDataAdapter(select, conn);
-            var ds = new DataSet();
-            dataAdapter.Fill(ds);
-            dataGridView2.ReadOnly = true;
-            dataGridView2.DataSource = ds.Tables[0];
+            }
+            else
+            {
+                // Ako je platforma
+                var select = " SELECT       [RNOtpremaPlatforme].ID, [Kamion] ,[Zavrsen] ,[DatumRasporeda]   " +
+                     "   ,[BrojKontejnera]  ,TipKontenjera.NAziv as [VrstaKontejnera]      ,[NalogIzdao]   " +
+     " ,[DatumRealizacije], Komitenti_3.PaNaziv as [Uvoznik]    ,VrstaCarinskogPostupka.[Naziv] as CarinskiPostupak        , Komitenti_2.PaNaziv as [SpedicijaRTC] " +
+     " ,Komitenti_1.PaNaziv as [NazivBrodara]      ,[VrstaRobe]    ,[SaSkladista]      ,[SaPozicijeSklad] " +
+     " ,[IdUsluge]      ,[NalogRealizovao]    ,[OtpremaID] " +
+     " ,[NalogID]   FROM[dbo].[RNOtpremaPlatforme] " +
+     " INNER JOIN  Partnerji AS Komitenti_1 ON [RNOtpremaPlatforme].NazivBrodara = Komitenti_1.PaSifra " +
+     " INNER JOIN  Partnerji AS Komitenti_2 ON [RNOtpremaPlatforme].SpedicijaRTC = Komitenti_2.PaSifra " +
+     " INNER JOIN  Partnerji AS Komitenti_3 ON [RNOtpremaPlatforme].Uvoznik = Komitenti_3.PaSifra " +
+     " inner join VrstaCarinskogPostupka on VrstaCarinskogPostupka.id = [RNOtpremaPlatforme].CarinskiPostupak " +
+     " inner join  Skladista on[RNOtpremaPlatforme].[SaSkladista] = Skladista.ID " +
+     " inner join TipKontenjera on TipKontenjera.ID = [RNOtpremaPlatforme].[VrstaKontejnera] " +
+     " where Uvoz = 1 And NalogID = " + txtNalogID.Text + "  order by [RNOtpremaPlatforme].ID desc";
+                SqlConnection conn = new SqlConnection(connection);
+                var dataAdapter = new SqlDataAdapter(select, conn);
+                var ds = new DataSet();
+                dataAdapter.Fill(ds);
+                dataGridView2.ReadOnly = true;
+                dataGridView2.DataSource = ds.Tables[0];
 
-            dataGridView2.BorderStyle = BorderStyle.None;
-            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView2.BackgroundColor = Color.White;
+                dataGridView2.BorderStyle = BorderStyle.None;
+                dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+                dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+                dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+                dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+                dataGridView2.BackgroundColor = Color.White;
 
-            dataGridView2.EnableHeadersVisualStyles = false;
-            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                dataGridView2.EnableHeadersVisualStyles = false;
+                dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+                dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+                dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
-            DataGridViewColumn column = dataGridView2.Columns[0];
-            dataGridView2.Columns[0].HeaderText = "ID";
-            dataGridView2.Columns[0].Width = 20;
+                DataGridViewColumn column = dataGridView2.Columns[0];
+                dataGridView2.Columns[0].HeaderText = "ID";
+                dataGridView2.Columns[0].Width = 20;
+
+            }
+            
         }
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
@@ -1606,13 +1627,16 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
                     {
                         txtSifra.Text = row.Cells[2].Value.ToString();
                         NalogID = VratiNalogID(row.Cells[0].Value.ToString());
+                        txtNalogID.Text = NalogID.ToString();
                         VratiPodatkeStavke(txtSifra.Text, Convert.ToInt32(row.Cells[1].Value.ToString())); // Standarna verzija
                         VratiPodatkeIzvoznePoID(NalogID.ToString());
                         if (chkIzvoz.Checked  == true)
                         {
-                            FillGVIzvozni();
+                            FillGVIzvozni(); // Refresh otprema platforme
                         }
+
                         
+
                     }
                 }
             }
@@ -1620,6 +1644,7 @@ Convert.ToDouble(bttoRobeOtpremnica.Value), Convert.ToDouble(bttoRobeOdvaga.Valu
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
+            
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)

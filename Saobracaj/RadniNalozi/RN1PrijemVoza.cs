@@ -365,7 +365,7 @@ namespace Saobracaj.RadniNalozi
             if (dialogResult == DialogResult.Yes)
             {
                 RadniNalozi.InsertRN ir = new InsertRN();
-                ir.InsRNPPrijemVozaCeoVoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboSaVoznog.SelectedValue), Convert.ToInt32(cboNaSkladiste.SelectedValue), Convert.ToInt32(cboNaPoziciju.SelectedValue), Convert.ToInt32(cboUsluge.SelectedValue), " ", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text));
+                ir.InsRNPPrijemVozaCeoVoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboSaVoznog.SelectedValue), Convert.ToInt32(cboNaSkladiste.SelectedValue), Convert.ToInt32(cboNaPoziciju.SelectedValue), Convert.ToInt32(cboUsluge.SelectedValue), " ", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), Convert.ToInt32(cboNaSkladistePregledac.SelectedValue));
                 FillGV();
             }
             else if (dialogResult == DialogResult.No)

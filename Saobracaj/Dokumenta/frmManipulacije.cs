@@ -173,7 +173,7 @@ namespace Saobracaj.Dokumenta
                 //Kod za ulazak a nije iz prijemnice tj sa otpremnice
                 /*
                  var select = "SELECT PrijemKontejneraVoz.[ID], (CAst(PrijemKontejneraVoz.[ID] as nvarchar(5)) + '-' + Cast(Voz.BrVoza as nvarchar(6)) + ' ' + Voz.Relacija +  ' ' +  CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],104)      + ' '      + SUBSTRING(CONVERT(varchar,PrijemKontejneraVoz.[DatumPrijema],108),1,5)) as Naziv " +
-     " FROM [dbo].[PrijemKontejneraVoz]    inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza  where Vozom = 1 order by  PrijemKontejneraVoz.[DatumPrijema] desc, PrijemKontejneraVoz.[ID] ";
+                 " FROM [dbo].[PrijemKontejneraVoz]    inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza  where Vozom = 1 order by  PrijemKontejneraVoz.[DatumPrijema] desc, PrijemKontejneraVoz.[ID] ";
                  var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
                  SqlConnection myConnection = new SqlConnection(s_connection);
                  var c = new SqlConnection(s_connection);
@@ -772,8 +772,19 @@ namespace Saobracaj.Dokumenta
 
         private void btnUnesi_Click(object sender, EventArgs e)
         {
+            if (txtSifra.Text == "")
+            { MessageBox.Show("Morate oformiti dokument"); return; }
             int IzPrijema = 0;
             int Direktna = 0;
+            int PunPrazan = 0;
+
+            if (chkPunPrazan.Checked == true)
+            {
+                PunPrazan = 1;
+            
+            }
+
+
             if (chkPrijem.Checked == true)
             { IzPrijema = 1; }
             else
@@ -799,11 +810,11 @@ namespace Saobracaj.Dokumenta
                     {
                         if (chkVoz.Checked == true && row2.Selected == true)
                         {
-                            ins.InsertNarManipulacije(Convert.ToInt32(cboPrijemVozom.SelectedValue), 0, row.Cells[0].Value.ToString(), Convert.ToInt32(row2.Cells[0].Value.ToString()), 0, Convert.ToDateTime(dtpVremeOd.Text), Convert.ToDateTime(dtpVremeDo.Text), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlatilac.SelectedValue), IzPrijema, Direktna);
+                            ins.InsertNarManipulacije(Convert.ToInt32(cboPrijemVozom.SelectedValue), 0, row.Cells[0].Value.ToString(), Convert.ToInt32(row2.Cells[0].Value.ToString()), 0, Convert.ToDateTime(dtpVremeOd.Text), Convert.ToDateTime(dtpVremeDo.Text), Convert.ToDateTime(DateTime.Now), KorisnikCene, Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlatilac.SelectedValue), IzPrijema, Direktna, PunPrazan);
                         }
                         else if (chkVoz.Checked == false && row2.Selected == true)
                         {
-                            ins.InsertNarManipulacije( 0,Convert.ToInt32(cboPrijemKamionom.SelectedValue) , row.Cells[0].Value.ToString(), Convert.ToInt32(row2.Cells[0].Value.ToString()), 0, Convert.ToDateTime(dtpVremeOd.Text), Convert.ToDateTime(dtpVremeDo.Text), Convert.ToDateTime(DateTime.Now), KorisnikCene,  Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlatilac.SelectedValue), IzPrijema, Direktna);
+                            ins.InsertNarManipulacije( 0,Convert.ToInt32(cboPrijemKamionom.SelectedValue) , row.Cells[0].Value.ToString(), Convert.ToInt32(row2.Cells[0].Value.ToString()), 0, Convert.ToDateTime(dtpVremeOd.Text), Convert.ToDateTime(dtpVremeDo.Text), Convert.ToDateTime(DateTime.Now), KorisnikCene,  Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlatilac.SelectedValue), IzPrijema, Direktna, PunPrazan);
                         }
                     }
                     

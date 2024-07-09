@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCIR));
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.btnManipulacija = new System.Windows.Forms.ToolStrip();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
@@ -109,6 +109,14 @@
             this.chkInterni = new System.Windows.Forms.CheckBox();
             this.label24 = new System.Windows.Forms.Label();
             this.txtNosivost = new System.Windows.Forms.NumericUpDown();
+            this.label29 = new System.Windows.Forms.Label();
+            this.cboNaSkladistePregledac = new System.Windows.Forms.ComboBox();
+            this.txtRNTIP = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.RNID = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.txtNALOGID = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
             this.btnManipulacija.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTara)).BeginInit();
@@ -318,7 +326,7 @@
             this.chkincoming.AutoSize = true;
             this.chkincoming.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkincoming.ForeColor = System.Drawing.Color.Black;
-            this.chkincoming.Location = new System.Drawing.Point(211, 86);
+            this.chkincoming.Location = new System.Drawing.Point(211, 111);
             this.chkincoming.Name = "chkincoming";
             this.chkincoming.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkincoming.Size = new System.Drawing.Size(75, 20);
@@ -419,7 +427,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(172, 150);
+            this.label6.Location = new System.Drawing.Point(164, 178);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(44, 16);
             this.label6.TabIndex = 253;
@@ -429,7 +437,7 @@
             // 
             this.txtVagon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(224)))), ((int)(((byte)(215)))));
             this.txtVagon.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtVagon.Location = new System.Drawing.Point(175, 173);
+            this.txtVagon.Location = new System.Drawing.Point(167, 201);
             this.txtVagon.Name = "txtVagon";
             this.txtVagon.Size = new System.Drawing.Size(170, 22);
             this.txtVagon.TabIndex = 252;
@@ -439,7 +447,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(175, 198);
+            this.label2.Location = new System.Drawing.Point(167, 226);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 16);
             this.label2.TabIndex = 255;
@@ -449,7 +457,7 @@
             // 
             this.txtTruckIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(224)))), ((int)(((byte)(215)))));
             this.txtTruckIn.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtTruckIn.Location = new System.Drawing.Point(173, 217);
+            this.txtTruckIn.Location = new System.Drawing.Point(165, 245);
             this.txtTruckIn.Name = "txtTruckIn";
             this.txtTruckIn.Size = new System.Drawing.Size(172, 22);
             this.txtTruckIn.TabIndex = 254;
@@ -459,7 +467,7 @@
             this.chkDemaged.AutoSize = true;
             this.chkDemaged.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkDemaged.ForeColor = System.Drawing.Color.Black;
-            this.chkDemaged.Location = new System.Drawing.Point(358, 198);
+            this.chkDemaged.Location = new System.Drawing.Point(362, 219);
             this.chkDemaged.Name = "chkDemaged";
             this.chkDemaged.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkDemaged.Size = new System.Drawing.Size(71, 20);
@@ -475,7 +483,7 @@
             this.chkIspravan.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkIspravan.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkIspravan.ForeColor = System.Drawing.Color.Black;
-            this.chkIspravan.Location = new System.Drawing.Point(358, 224);
+            this.chkIspravan.Location = new System.Drawing.Point(362, 245);
             this.chkIspravan.Name = "chkIspravan";
             this.chkIspravan.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkIspravan.Size = new System.Drawing.Size(75, 20);
@@ -489,7 +497,7 @@
             this.chkPrevoz.AutoSize = true;
             this.chkPrevoz.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPrevoz.ForeColor = System.Drawing.Color.Black;
-            this.chkPrevoz.Location = new System.Drawing.Point(175, 250);
+            this.chkPrevoz.Location = new System.Drawing.Point(167, 276);
             this.chkPrevoz.Name = "chkPrevoz";
             this.chkPrevoz.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkPrevoz.Size = new System.Drawing.Size(166, 20);
@@ -502,7 +510,7 @@
             this.Containerresponsible.AutoSize = true;
             this.Containerresponsible.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Containerresponsible.ForeColor = System.Drawing.Color.Black;
-            this.Containerresponsible.Location = new System.Drawing.Point(164, 317);
+            this.Containerresponsible.Location = new System.Drawing.Point(164, 347);
             this.Containerresponsible.Name = "Containerresponsible";
             this.Containerresponsible.Size = new System.Drawing.Size(70, 16);
             this.Containerresponsible.TabIndex = 260;
@@ -511,10 +519,10 @@
             // txtContainerresponsible
             // 
             this.txtContainerresponsible.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtContainerresponsible.Location = new System.Drawing.Point(165, 341);
+            this.txtContainerresponsible.Location = new System.Drawing.Point(165, 366);
             this.txtContainerresponsible.Multiline = true;
             this.txtContainerresponsible.Name = "txtContainerresponsible";
-            this.txtContainerresponsible.Size = new System.Drawing.Size(187, 71);
+            this.txtContainerresponsible.Size = new System.Drawing.Size(187, 46);
             this.txtContainerresponsible.TabIndex = 259;
             // 
             // label4
@@ -603,7 +611,7 @@
             this.chkPrijem.AutoSize = true;
             this.chkPrijem.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPrijem.ForeColor = System.Drawing.Color.Black;
-            this.chkPrijem.Location = new System.Drawing.Point(211, 109);
+            this.chkPrijem.Location = new System.Drawing.Point(211, 134);
             this.chkPrijem.Name = "chkPrijem";
             this.chkPrijem.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkPrijem.Size = new System.Drawing.Size(62, 20);
@@ -616,21 +624,22 @@
             // 
             this.txtDokument.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(196)))), ((int)(((byte)(193)))));
             this.txtDokument.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtDokument.Location = new System.Drawing.Point(222, 60);
+            this.txtDokument.Location = new System.Drawing.Point(218, 62);
             this.txtDokument.Name = "txtDokument";
-            this.txtDokument.Size = new System.Drawing.Size(105, 22);
+            this.txtDokument.Size = new System.Drawing.Size(86, 22);
             this.txtDokument.TabIndex = 270;
+            this.txtDokument.Text = "0";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(219, 41);
+            this.label9.Location = new System.Drawing.Point(215, 43);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(25, 16);
+            this.label9.Size = new System.Drawing.Size(77, 16);
             this.label9.TabIndex = 271;
-            this.label9.Text = "ID:";
+            this.label9.Text = "PRIJEM ID:";
             // 
             // dtpDatumIn
             // 
@@ -724,9 +733,9 @@
             this.reportViewer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            reportDataSource2.Name = "DataSet1";
-            reportDataSource2.Value = null;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = null;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.Izvestaji.Najava.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(362, 276);
             this.reportViewer1.Name = "reportViewer1";
@@ -961,7 +970,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(222, 276);
+            this.button2.Location = new System.Drawing.Point(222, 305);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(123, 28);
             this.button2.TabIndex = 297;
@@ -974,7 +983,7 @@
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(359, 82);
+            this.label21.Location = new System.Drawing.Point(350, 94);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(114, 16);
             this.label21.TabIndex = 299;
@@ -991,18 +1000,18 @@
             "3",
             "4",
             "5"});
-            this.cboKvalitet.Location = new System.Drawing.Point(358, 101);
+            this.cboKvalitet.Location = new System.Drawing.Point(362, 113);
             this.cboKvalitet.Name = "cboKvalitet";
-            this.cboKvalitet.Size = new System.Drawing.Size(174, 24);
+            this.cboKvalitet.Size = new System.Drawing.Size(165, 24);
             this.cboKvalitet.TabIndex = 298;
             // 
             // txtOstecenje
             // 
             this.txtOstecenje.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtOstecenje.Location = new System.Drawing.Point(358, 150);
+            this.txtOstecenje.Location = new System.Drawing.Point(362, 169);
             this.txtOstecenje.Multiline = true;
             this.txtOstecenje.Name = "txtOstecenje";
-            this.txtOstecenje.Size = new System.Drawing.Size(174, 39);
+            this.txtOstecenje.Size = new System.Drawing.Size(161, 39);
             this.txtOstecenje.TabIndex = 300;
             // 
             // label23
@@ -1010,7 +1019,7 @@
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label23.ForeColor = System.Drawing.Color.Black;
-            this.label23.Location = new System.Drawing.Point(355, 128);
+            this.label23.Location = new System.Drawing.Point(350, 150);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(67, 16);
             this.label23.TabIndex = 301;
@@ -1021,7 +1030,7 @@
             this.chkInterni.AutoSize = true;
             this.chkInterni.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkInterni.ForeColor = System.Drawing.Color.Black;
-            this.chkInterni.Location = new System.Drawing.Point(211, 133);
+            this.chkInterni.Location = new System.Drawing.Point(211, 158);
             this.chkInterni.Name = "chkInterni";
             this.chkInterni.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.chkInterni.Size = new System.Drawing.Size(67, 20);
@@ -1056,12 +1065,102 @@
             this.txtNosivost.TabIndex = 303;
             this.txtNosivost.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(538, 32);
+            this.label29.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(84, 13);
+            this.label29.TabIndex = 353;
+            this.label29.Text = "NA SKLADISTE";
+            // 
+            // cboNaSkladistePregledac
+            // 
+            this.cboNaSkladistePregledac.FormattingEnabled = true;
+            this.cboNaSkladistePregledac.ItemHeight = 13;
+            this.cboNaSkladistePregledac.Location = new System.Drawing.Point(538, 49);
+            this.cboNaSkladistePregledac.Margin = new System.Windows.Forms.Padding(2);
+            this.cboNaSkladistePregledac.Name = "cboNaSkladistePregledac";
+            this.cboNaSkladistePregledac.Size = new System.Drawing.Size(193, 21);
+            this.cboNaSkladistePregledac.TabIndex = 354;
+            // 
+            // txtRNTIP
+            // 
+            this.txtRNTIP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(196)))), ((int)(((byte)(193)))));
+            this.txtRNTIP.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txtRNTIP.Location = new System.Drawing.Point(314, 62);
+            this.txtRNTIP.Name = "txtRNTIP";
+            this.txtRNTIP.Size = new System.Drawing.Size(52, 22);
+            this.txtRNTIP.TabIndex = 355;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label26.ForeColor = System.Drawing.Color.Black;
+            this.label26.Location = new System.Drawing.Point(311, 43);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(55, 16);
+            this.label26.TabIndex = 356;
+            this.label26.Text = "RN TIP:";
+            // 
+            // RNID
+            // 
+            this.RNID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(196)))), ((int)(((byte)(193)))));
+            this.RNID.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.RNID.Location = new System.Drawing.Point(377, 62);
+            this.RNID.Name = "RNID";
+            this.RNID.Size = new System.Drawing.Size(52, 22);
+            this.RNID.TabIndex = 357;
+            this.RNID.Text = "0";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label27.ForeColor = System.Drawing.Color.Black;
+            this.label27.Location = new System.Drawing.Point(374, 43);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(48, 16);
+            this.label27.TabIndex = 358;
+            this.label27.Text = "RN ID:";
+            // 
+            // txtNALOGID
+            // 
+            this.txtNALOGID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(196)))), ((int)(((byte)(193)))));
+            this.txtNALOGID.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.txtNALOGID.Location = new System.Drawing.Point(443, 62);
+            this.txtNALOGID.Name = "txtNALOGID";
+            this.txtNALOGID.Size = new System.Drawing.Size(52, 22);
+            this.txtNALOGID.TabIndex = 359;
+            this.txtNALOGID.Text = "0";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label28.ForeColor = System.Drawing.Color.Black;
+            this.label28.Location = new System.Drawing.Point(440, 43);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(62, 16);
+            this.label28.TabIndex = 360;
+            this.label28.Text = "Nalog ID:";
+            // 
             // frmCIR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1235, 702);
+            this.Controls.Add(this.txtNALOGID);
+            this.Controls.Add(this.label28);
+            this.Controls.Add(this.RNID);
+            this.Controls.Add(this.label27);
+            this.Controls.Add(this.txtRNTIP);
+            this.Controls.Add(this.label26);
+            this.Controls.Add(this.label29);
+            this.Controls.Add(this.cboNaSkladistePregledac);
             this.Controls.Add(this.label24);
             this.Controls.Add(this.txtNosivost);
             this.Controls.Add(this.chkInterni);
@@ -1235,5 +1334,13 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.NumericUpDown txtNosivost;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.ComboBox cboNaSkladistePregledac;
+        private System.Windows.Forms.TextBox txtRNTIP;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox RNID;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox txtNALOGID;
+        private System.Windows.Forms.Label label28;
     }
 }

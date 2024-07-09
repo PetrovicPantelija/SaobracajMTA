@@ -464,8 +464,8 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(94, 24);
-            this.toolStripButton2.Text = "Potvrdi završen ";
+            this.toolStripButton2.Size = new System.Drawing.Size(109, 24);
+            this.toolStripButton2.Text = "POTVRDI ZAVRŠEN";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripButton3

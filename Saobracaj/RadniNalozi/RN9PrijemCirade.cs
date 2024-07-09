@@ -224,9 +224,9 @@ namespace Saobracaj.RadniNalozi
                 txtDatumRasporeda.Value = Convert.ToDateTime(dr["DatumRasporeda"].ToString());
                 txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
                 cboVrstaKontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
-                cboUsluga.SelectedValue = Convert.ToInt32(dr["Usluga"].ToString());
+                cboUsluga.SelectedValue = Convert.ToInt32(dr["IDUsluge"].ToString());
                 txtNalogRealizovao.Text = dr["NalogRealizovao"].ToString();
-                txtPrijemID.Text = dr["PrijemID"].ToString();
+               // txtPrijemID.Text = dr["PrijemID"].ToString();
                 txtNalogID.Text = dr["NalogID"].ToString();
                 cboSaSklad.SelectedValue = Convert.ToInt32(dr["SaSkladista"].ToString());
                 cboSaPoz.SelectedValue = Convert.ToInt32(dr["SaPozicijeSklad"].ToString());
@@ -248,11 +248,6 @@ namespace Saobracaj.RadniNalozi
                 {
                     chkZavrsen.Checked = false;
                 }
-
-
-
-
-
             }
 
             con.Close();

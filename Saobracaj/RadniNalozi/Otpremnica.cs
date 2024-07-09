@@ -229,8 +229,8 @@ namespace Saobracaj.RadniNalozi
                             skladisteno = 0;
                         }
                         else { skladisteno = 1; }
-                        ins.InsertPromet(Convert.ToDateTime(dtpVreme.Value), "OTP", prStDokumenta, txtBrojKontejnera.Text.ToString().TrimEnd(), "OTP", Convert.ToDecimal(row.Cells["PrPrimKol"].Value), Convert.ToDecimal(row.Cells["PrIzdKol"].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue),
-                            Convert.ToInt32(cbo_Lokacija.SelectedValue), 0, 0, Convert.ToDateTime(DateTime.Now), korisnik, 0, Convert.ToInt32(comboBox1.SelectedValue), Convert.ToDateTime(dtpVreme.Value.ToString()), row.Cells["JedinicaMere"].Value.ToString(),
+                        ins.InsertPromet(Convert.ToDateTime(dtpVreme.Value), "OTP", prStDokumenta, txtBrojKontejnera.Text.ToString().TrimEnd(), "OTP", 0, Convert.ToDecimal(row.Cells["PrIzdKol"].Value), 0, 0, Convert.ToInt32(cbo_Skladiste.SelectedValue),
+                            Convert.ToInt32(cbo_Lokacija.SelectedValue),  Convert.ToDateTime(DateTime.Now), korisnik, 0, Convert.ToInt32(comboBox1.SelectedValue), Convert.ToDateTime(dtpVreme.Value.ToString()), row.Cells["JedinicaMere"].Value.ToString(),
                             row.Cells["Lot"].Value.ToString(), nalog, Convert.ToInt32(row.Cells["MpSifra"].Value), skladisteno);
                         //isporuka.InsertPrijemnicaPostav(Convert.ToInt32(row.Cells[0].Value), Convert.ToDecimal(row.Cells[1].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
                         // progressBar1.Value = progressBar1.Value + 1;

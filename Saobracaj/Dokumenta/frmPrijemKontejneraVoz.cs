@@ -3012,7 +3012,7 @@ namespace TrackModal.Dokumeta
 
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
-            if (cboStatusPrijema.Text != "2 - Primljeno")
+            if (cboStatusPrijema.Text != "2-Primljeno")
             {
                 MessageBox.Show("Prijemnica mora biti u statusu Primljeno");
                 return;

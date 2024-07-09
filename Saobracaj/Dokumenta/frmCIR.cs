@@ -44,6 +44,19 @@ namespace Saobracaj.Dokumenta
             VratiPodatkePoPrijemuStavkeID(PrijemID);
         }
 
+        public frmCIR(int PrijemID, int Leget, string TIPRN, int RNIDu, int NalogID)
+        {
+            //Pravljeno ZA Leget
+            //Prenosim 
+            InitializeComponent();
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
+            txtDokument.Text = PrijemID.ToString();
+            txtRNTIP.Text = TIPRN;
+            RNID.Text = RNIDu.ToString();
+            txtNALOGID.Text = NalogID.ToString();
+            VratiPodatkePoPrijemuStavkeID(PrijemID);
+        }
+
         private void VratiPodatkePoPrijemuStavkeID(int PrijemID)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -393,7 +406,7 @@ namespace Saobracaj.Dokumenta
                 double TezinaPom = 0;
                 TezinaPom = Convert.ToDouble(txtBruto.Text);
 
-                ins.InsCIR(Convert.ToInt32(txtSize.Value), Convert.ToInt32(cboTipKontejnera.SelectedValue), MaterijalCelik, MaterijalAlumni, incoming, Pun, Convert.ToDouble(txtBruto.Text), txtBrojKontejnera.Text, Plomba1, Plomba2, Convert.ToDateTime(dtpDatumIn.Value), txtVagon.Text, txtTruckIn.Text, Damaged, Ispravan, Prevoz, txtContainerresponsible.Text, txtprimedbe.Text, txtReceived.Text, txtInspected.Text, txtDelivery.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Prijem, Convert.ToInt32(txtDokument.Text), Convert.ToDouble(txtDuzina.Value), Convert.ToDouble(txtSirina.Value), Convert.ToDouble(txtDuzina.Value), txtPlomba.Text, txtPlomba2.Text, Interni, Convert.ToDouble(txtNosivost.Value));
+                ins.InsCIR(Convert.ToInt32(txtSize.Value), Convert.ToInt32(cboTipKontejnera.SelectedValue), MaterijalCelik, MaterijalAlumni, incoming, Pun, Convert.ToDouble(txtBruto.Text), txtBrojKontejnera.Text, Plomba1, Plomba2, Convert.ToDateTime(dtpDatumIn.Value), txtVagon.Text, txtTruckIn.Text, Damaged, Ispravan, Prevoz, txtContainerresponsible.Text, txtprimedbe.Text, txtReceived.Text, txtInspected.Text, txtDelivery.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Prijem, Convert.ToInt32(txtDokument.Text), Convert.ToDouble(txtDuzina.Value), Convert.ToDouble(txtSirina.Value), Convert.ToDouble(txtDuzina.Value), txtPlomba.Text, txtPlomba2.Text, Interni, Convert.ToDouble(txtNosivost.Value), txtRNTIP.Text, Convert.ToInt32(RNID.Text), Convert.ToInt32(txtNALOGID.Text), Convert.ToInt32(cboNaSkladistePregledac.SelectedValue));
                 if (Prijem == 1)
                 {
                     ins.UpdateCIRPrijem(Convert.ToInt32(txtDokument.Text));
@@ -469,7 +482,7 @@ namespace Saobracaj.Dokumenta
                 double TezinaPom = 0;
                 TezinaPom = Convert.ToDouble(txtBruto.Text);
 
-                upd.UpdCIR(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtSize.Value), Convert.ToInt32(cboTipKontejnera.SelectedValue), MaterijalCelik, MaterijalAlumni, incoming, Pun, Convert.ToDouble(txtBruto.Text), txtBrojKontejnera.Text, Plomba1, Plomba2, Convert.ToDateTime(dtpDatumIn.Value), txtVagon.Text, txtTruckIn.Text, Damaged, Ispravan, Prevoz, txtContainerresponsible.Text, txtprimedbe.Text, txtReceived.Text, txtInspected.Text, txtDelivery.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Prijem, Convert.ToInt32(txtDokument.Text), Convert.ToDouble(txtDuzina.Value), Convert.ToDouble(txtSirina.Value), Convert.ToDouble(txtDuzina.Value), txtPlomba.Text, txtPlomba2.Text,Interni, Convert.ToDouble(txtNosivost.Value));
+                upd.UpdCIR(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtSize.Value), Convert.ToInt32(cboTipKontejnera.SelectedValue), MaterijalCelik, MaterijalAlumni, incoming, Pun, Convert.ToDouble(txtBruto.Text), txtBrojKontejnera.Text, Plomba1, Plomba2, Convert.ToDateTime(dtpDatumIn.Value), txtVagon.Text, txtTruckIn.Text, Damaged, Ispravan, Prevoz, txtContainerresponsible.Text, txtprimedbe.Text, txtReceived.Text, txtInspected.Text, txtDelivery.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, Prijem, Convert.ToInt32(txtDokument.Text), Convert.ToDouble(txtDuzina.Value), Convert.ToDouble(txtSirina.Value), Convert.ToDouble(txtDuzina.Value), txtPlomba.Text, txtPlomba2.Text,Interni, Convert.ToDouble(txtNosivost.Value),txtRNTIP.Text, Convert.ToInt32(RNID.Text), Convert.ToInt32(txtNALOGID.Text), Convert.ToInt32(cboNaSkladistePregledac.SelectedValue));
 
                 status = false;
             }

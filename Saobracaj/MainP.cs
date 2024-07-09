@@ -2247,7 +2247,7 @@ namespace Saobracaj
 
         private void toolStripEx36_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
-
+           
         }
 
         private void toolStripButton120_Click(object sender, EventArgs e)
@@ -6584,6 +6584,40 @@ namespace Saobracaj
         {
             frmKontejnerTekuceArhiv kta = new frmKontejnerTekuceArhiv();
             kta.Show();
+        }
+
+        private void toolStripButton370_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmDefinisiPoziciju")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+
+                frmDefinisiPoziciju greske = new frmDefinisiPoziciju();
+                greske.Show();
+
+            }
+        }
+
+        private void toolStripButton337_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void toolStripButton371_Click(object sender, EventArgs e)
+        {
+            frmDodatneUsluge dodu = new frmDodatneUsluge();
+            dodu.Show();
         }
     }
     }

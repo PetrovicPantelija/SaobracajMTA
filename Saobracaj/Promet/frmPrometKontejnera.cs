@@ -51,14 +51,31 @@ namespace TrackModal.Promet
 
         private void btnPregled_Click(object sender, EventArgs e)
         {
-             var select = " SELECT DISTINCT Promet.[Id], Promet.[DatumTransakcije], Promet.[VrstaDokumenta]   " +
-         " ,Promet.[PrStDokumenta],Promet.[PrSifVrstePrometa],Promet.[BrojKontejnera] " +
-         " ,Promet.[PrPrimKol],Promet.[PrIzdKol] , Skladista.Naziv as Skladiste  , Pozicija.Oznaka, Skladista1.Naziv as SkaldisteIz, pozicija1.Oznaka as LokacijaIz, " +
-         " Promet.[PrOznSled]  ,Zatvoren, DatumOtpreme, BrojOtpremnice, Promet.[Datum] ,Promet.[Korisnik]  FROM [dbo].[Promet] inner join Skladista on Promet.SkladisteU = Skladista.ID " +
-         " inner join Pozicija on Pozicija.ID = Promet.LokacijaU " +
-         " inner join skladista as skladista1 on skladista1.ID = promet.SkladisteIz " +
-         " inner join pozicija as pozicija1 on Pozicija1.ID = Promet.LokacijaIz " +
-         " where  Promet.BrojKontejnera  = '" + txtKontejner.Text + "'";
+            var select = "";
+            if (frmLogovanje.Firma == "Leget")
+            {
+                select = " SELECT DISTINCT Promet.[Id], Promet.[DatumTransakcije], Promet.[VrstaDokumenta]   " +
+ " ,Promet.[PrStDokumenta],Promet.[PrSifVrstePrometa],Promet.[BrojKontejnera] " +
+" ,Promet.[PrPrimKol],Promet.[PrIzdKol] , Skladista.Naziv as Skladiste  , Pozicija.Oznaka, Skladista1.Naziv as SkaldisteIz, pozicija1.Oznaka as LokacijaIz, " +
+" Promet.JedinicaMere, Promet.Lot, Promet.NalogID, Promet.MpSifra,NHM.Broj, NHM.Naziv, Promet.Skladisteno, Promet.[PrOznSled]  ,Zatvoren, DatumOtpreme, BrojOtpremnice, Promet.[Datum] ,Promet.[Korisnik]  FROM[dbo].[Promet] inner join Skladista on Promet.SkladisteU = Skladista.ID " +
+" inner join Pozicija on Pozicija.ID = Promet.LokacijaU " +
+" inner join skladista as skladista1 on skladista1.ID = promet.SkladisteIz " +
+" inner join pozicija as pozicija1 on Pozicija1.ID = Promet.LokacijaIz " +
+" inner join NHM on Promet.MpSifra = NHM.ID " +
+       " where  Promet.BrojKontejnera  = '" + txtKontejner.Text + "'";
+            }
+            else
+            {
+                select = " SELECT DISTINCT Promet.[Id], Promet.[DatumTransakcije], Promet.[VrstaDokumenta]   " +
+        " ,Promet.[PrStDokumenta],Promet.[PrSifVrstePrometa],Promet.[BrojKontejnera] " +
+        " ,Promet.[PrPrimKol],Promet.[PrIzdKol] , Skladista.Naziv as Skladiste  , Pozicija.Oznaka, Skladista1.Naziv as SkaldisteIz, pozicija1.Oznaka as LokacijaIz, " +
+        " Promet.[PrOznSled]  ,Zatvoren, DatumOtpreme, BrojOtpremnice, Promet.[Datum] ,Promet.[Korisnik]  FROM [dbo].[Promet] inner join Skladista on Promet.SkladisteU = Skladista.ID " +
+        " inner join Pozicija on Pozicija.ID = Promet.LokacijaU " +
+        " inner join skladista as skladista1 on skladista1.ID = promet.SkladisteIz " +
+        " inner join pozicija as pozicija1 on Pozicija1.ID = Promet.LokacijaIz " +
+        " where  Promet.BrojKontejnera  = '" + txtKontejner.Text + "'";
+            }
+           
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);

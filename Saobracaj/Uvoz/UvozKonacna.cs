@@ -570,7 +570,7 @@ namespace Saobracaj.Uvoz
      "  ,[Email]  ,[BrojPlombe1]   ,[BrojPlombe2]  ,[NetoRobe] " +
      "  ,[BrutoRobe] ,[TaraKontejnera]   ,[BrutoKontejnera],[NapomenaZaPozicioniranje] " +
      "  ,[AtaOtpreme]  ,[BrojVoza] ,[RelacijaVoza]  ,[AtaDolazak] " +
-     "  ,[TipKontejnera] ,[Koleta], RLTerminali, BrojKola, Napomena1 ,VrstaPregleda ,Nalogodavac1 ,Ref1 ,Nalogodavac2 ,Ref2 ,Nalogodavac3 ,Ref3, Brodar, NaslovStatusaVozila, Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe , TaraKontejneraT" +
+     "  ,[TipKontejnera] ,[Koleta], RLTerminali, BrojKola, Napomena1 ,VrstaPregleda ,Nalogodavac1 ,Ref1 ,Nalogodavac2 ,Ref2 ,Nalogodavac3 ,Ref3, Brodar, NaslovStatusaVozila, Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe , TaraKontejneraT, KoletaTer" +
  "  FROM [UvozKonacna] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -616,6 +616,7 @@ namespace Saobracaj.Uvoz
                 txtRelacija.Text = dr["RelacijaVoza"].ToString();
                 dtAtaDolazak.Value = Convert.ToDateTime(dr["AtaDolazak"].ToString());
                 txtKoleta.Value = Convert.ToDecimal(dr["Koleta"].ToString());
+                txtKoletaTer.Value = Convert.ToDecimal(dr["KoletaTer"].ToString());
                 cboRLTerminal.SelectedValue = Convert.ToInt32(dr["RLTerminali"].ToString());
                 txtBrojKola2.Text = dr["BrojKola"].ToString();
                 if (dr["Napomena1"].ToString() == "1")
@@ -905,7 +906,7 @@ namespace Saobracaj.Uvoz
                 txtNapomena1.Text, Convert.ToInt32(txtVrstaPregleda.SelectedValue),
                 Convert.ToInt32(cboNalogodavac1.SelectedValue), txtRef1.Text,
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
-                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Convert.ToDecimal(txtTaraTerminal.Value));
+                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToInt32(txtKoletaTer.Value));
             FillGV();
             RefreshDataGridColor();
         }
@@ -2918,6 +2919,11 @@ namespace Saobracaj.Uvoz
         private void toolStripButton2_Click_2(object sender, EventArgs e)
         {
 
+        }
+
+        private void chkDrumski_CheckedChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }

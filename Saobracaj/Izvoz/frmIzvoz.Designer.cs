@@ -1186,9 +1186,9 @@ namespace Saobracaj.Izvoz
             this.label26.Location = new System.Drawing.Point(380, 424);
             this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(46, 13);
+            this.label26.Size = new System.Drawing.Size(140, 13);
             this.label26.TabIndex = 229;
-            this.label26.Text = "Špediter";
+            this.label26.Text = "Špediter na mestu carinjenja";
             // 
             // txtKontaktSpeditera
             // 
