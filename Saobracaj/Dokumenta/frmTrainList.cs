@@ -1023,14 +1023,13 @@ namespace Saobracaj.Dokumenta
             {
                 foreach (DataGridViewRow row in dataGridView3.Rows)
                 {
-                    if (row.Selected)
-                    {
+
                         InsertTrainList del = new InsertTrainList();
                         del.PromeniVrednostiZaSvakaKola(row.Cells[0].Value.ToString(), Convert.ToInt32(textBoxSearch.Text));
                         // dataGrid2_Click(e.);
                         //MessageBox.Show("Ponovo uradite refresh sa klikom na izabrani posao i digme stare vrednosti");
                         // txtOpis.Text = row.Cells[1].Value.ToString();
-                    }
+
                 }
                 MessageBox.Show("Ponovo uradite refresh sa klikom na izabrani posao i digme stare vrednosti");
                 REfreshSve();
@@ -1072,15 +1071,15 @@ namespace Saobracaj.Dokumenta
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            var query = "Select ID From Teretnica Where TrainListID="+Convert.ToInt32(textBoxSearch.Text);
+            var query = "Select ID From Teretnica Where TrainListID=" + Convert.ToInt32(textBoxSearch.Text);
             string connect = frmLogovanje.connectionString;
             SqlConnection conn = new SqlConnection(connect);
             conn.Open();
             SqlCommand cmd = new SqlCommand(query, conn);
             SqlDataReader dr = cmd.ExecuteReader();
-            while (dr.Read())
+            if (dr.HasRows)
             {
-                if (dr.HasRows)
+                while (dr.Read())
                 {
                     var result = MessageBox.Show("Za posao je formirana teretnica. Da li stvarno želiš da otvoriš novu?",
                          "Nova teretnica",
@@ -1090,15 +1089,20 @@ namespace Saobracaj.Dokumenta
                         frmTeretnica ter = new frmTeretnica();
                         ter.Show();
                     }
-                    else if (result == DialogResult.No)
+                    if (result == DialogResult.No)
                     {
                         string kor = frmLogovanje.user.ToString();
                         string teretnica = dr[0].ToString().TrimEnd();
                         frmTeretnica frm = new frmTeretnica(teretnica, kor);
                         frm.Show();
                     }
-                    else { return; }
+                    if (result == DialogResult.Cancel) { return; }
                 }
+            }
+            else
+            {
+                frmTeretnica ter = new frmTeretnica();
+                ter.Show();
             }
         }
 

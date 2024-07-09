@@ -63,7 +63,7 @@ namespace Saobracaj.Pantheon_Export
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
-            dataGridView1.Columns["ID"].Width=50;
+            dataGridView1.Columns["ID"].Width = 50;
             dataGridView1.Columns["NT Naziv"].Width = 120;
             dataGridView1.Columns["Status"].Width = 45;
             dataGridView1.Columns["PredvidjanjeID"].Width = 90;
@@ -118,7 +118,6 @@ namespace Saobracaj.Pantheon_Export
         private void UlFakPregled_Load(object sender, EventArgs e)
         {
             dataGridView2.Visible = false;
-            panel1.Visible = false;
         }
         public class Placanja
         {
@@ -138,7 +137,7 @@ namespace Saobracaj.Pantheon_Export
             public string Poruka { get; set; }
             public List<Placanja> Uplate { get; set; }
         }
-        
+
         int CRMID;
         decimal Iznos;
         string ValutaResponse;
@@ -211,217 +210,202 @@ namespace Saobracaj.Pantheon_Export
         }
         int crm;
         int status;
-
         string valuta;
         string valutaPom = "";
-        int tmp = 0;
-        private void btnRSD_Click(object sender, EventArgs e)
-        {
-            valutaPom = "RSD";
-            tmp = 1;
-            panel1.Visible = false;
-        }
 
-        private void btnValuta_Click(object sender, EventArgs e)
-        {
-            valutaPom = valuta;
-            tmp = 1;
-            panel1.Visible = false;
-        }
         int drzava;
         private void btnExportProd_Click(object sender, EventArgs e)
         {
-            InsertPatheonExport ins = new InsertPatheonExport();
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (row.Selected)
                 {
-                    try
+                    crm = Convert.ToInt32(row.Cells["CRMID"].Value);
+                    status = Convert.ToInt32(row.Cells["Status"].Value);
+
+                    int partner = Convert.ToInt32(row.Cells["IDDObavljaca"].Value.ToString());
+                    string select = "Select PaSifDrzave From Partnerji Where PaSifra=" + partner;
+                    SqlConnection con = new SqlConnection(connect);
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand(select, con);
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
                     {
-                        crm = Convert.ToInt32(row.Cells["CRMID"].Value);
-                        status = Convert.ToInt32(row.Cells["Status"].Value);
+                        drzava = Convert.ToInt32(dr[0].ToString());
+                    }
+                    con.Close();
+                    valuta = row.Cells["Valuta"].Value.ToString();
 
-                        int partner = Convert.ToInt32(row.Cells["IDDObavljaca"].Value.ToString());
-                        string select = "Select PaSifDrzave From Partnerji Where PaSifra=" + partner;
-                        SqlConnection con = new SqlConnection(connect);
-                        con.Open();
-                        SqlCommand cmd = new SqlCommand(select, con);
-                        SqlDataReader dr = cmd.ExecuteReader();
-                        while (dr.Read())
+                    if (status == 0)
+                    {
+                        if (drzava == 82 && valuta != "RSD")
                         {
-                            drzava = Convert.ToInt32(dr[0].ToString());
+                            Valuta frm = new Valuta(2, valuta, crm);
+                            frm.Show();
                         }
-                        con.Close();
-                        valuta = row.Cells["Valuta"].Value.ToString();
-
-                        if (status == 0)
-                        {
-                            string query1 = "";
-                            string query2 = "";
-
-                            if (drzava == 82 && valuta != "RSD")
-                            {
-                                panel1.Visible = true;
-                                panel1.Location = new System.Drawing.Point(this.ClientSize.Width / 2 - panel1.Size.Width / 2, this.ClientSize.Height / 2 - panel1.Size.Height / 2);
-                                panel1.Anchor = AnchorStyles.None;
-
-                                btnValuta.Text = valuta;
-                            }
-                            else { tmp = 1; }
-
-                            if (tmp != 0)
-                            {
-
-                                if (valutaPom == "RSD")
-                                {
-                                    query1 = "Select RTrim(CRMID) as CRMDocumentId,RTrim(Tip) as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,'RSD' as Currency,'1' as FXRate,RTrim(FakturaBr) as Doc1, " +
-                                            "CONVERT(VARCHAR, DatumIzdavanja, 23) as DateDoc1,CONVERT(VARCHAR, DatumPDVa, 23) as DateVAT,CONVERT(VARCHAR, DatumValute, 23) as DateDue,Rtrim(PredvidjanjeID) as PredvidjanjeId, " +
-                                            "UlFak.Referent as UserId,UlFak.Napomena as Napomena,UlFak.ID as ID " +
-                                            "from UlFak " +
-                                            "Inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
-                                            "inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID Where UlFak.Status=0 and CRMID=" + crm;
-
-                                    query2 = "select RB as No,Rtrim(MpStaraSif) as Ident,CAST(Kolicina AS DECIMAL(10, 2)) as Qty,CAST(IznosRSD/Kolicina AS DECIMAL(10, 2)) as Price,Rtrim(NosiociTroskova.NosilacTroska) as CostDrv,RTrim(JM) as JNT,'' as Proizvod,IDFak " +
-                                        "From UlFakPostav " +
-                                        "inner join MaticniPodatki on UlFakPostav.Mp = MaticniPodatki.MpSifra " +
-                                        "inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID " +
-                                        "order by IDFak asc";
-                                }
-                                else
-                                {
-                                    query1 = "Select RTrim(CRMID) as CRMDocumentId,RTrim(Tip) as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,RTrim(UlFak.Valuta) as Currency,UlFak.Kurs as FXRate,RTrim(FakturaBr) as Doc1, " +
-                                    "CONVERT(VARCHAR, DatumIzdavanja, 23) as DateDoc1,CONVERT(VARCHAR, DatumPDVa, 23) as DateVAT,CONVERT(VARCHAR, DatumValute, 23) as DateDue,Rtrim(PredvidjanjeID) as PredvidjanjeId, " +
-                                    "UlFak.Referent as UserId,UlFak.Napomena as Napomena,UlFak.ID as ID " +
-                                    "from UlFak " +
-                                    "Inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
-                                    "inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID Where UlFak.Status=0 and CRMID=" + crm;
-
-                                    query2 = "select RB as No,Rtrim(MpStaraSif) as Ident,CAST(Kolicina AS DECIMAL(10, 2)) as Qty,CAST(Cena/Kolicina AS DECIMAL(10, 2)) as Price,Rtrim(NosiociTroskova.NosilacTroska) as CostDrv,RTrim(JM) as JNT,'' as Proizvod,IDFak " +
-                                        "From UlFakPostav " +
-                                        "inner join MaticniPodatki on UlFakPostav.Mp = MaticniPodatki.MpSifra " +
-                                        "inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID " +
-                                        "order by IDFak asc";
-                                }
-                                string ID = "";
-
-                                List<object> combinedData = new List<object>();
-
-                                using (SqlConnection conn = new SqlConnection(connect))
-                                {
-                                    SqlCommand cmd1 = new SqlCommand(query1, conn);
-                                    SqlCommand cmd2 = new SqlCommand(query2, conn);
-
-                                    conn.Open();
-
-                                    SqlDataReader dr1 = cmd1.ExecuteReader();
-                                    DataTable table1 = new DataTable();
-                                    table1.Load(dr1);
-
-                                    SqlDataReader dr2 = cmd2.ExecuteReader();
-                                    DataTable table2 = new DataTable();
-                                    table2.Load(dr2);
-
-                                    foreach (DataRow row1 in table1.Rows)
-                                    {
-                                        Dictionary<string, object> obj = new Dictionary<string, object>();
-                                        foreach (DataColumn column in table1.Columns)
-                                        {
-
-                                            ID = row1["ID"].ToString();
-                                            if (column.ColumnName != "ID") // Exclude the field FapStFak from the JSON object
-                                            {
-                                                obj.Add(column.ColumnName, row1[column]);
-                                            }
-                                        }
-
-                                        List<object> fakturaPoz = new List<object>();
-
-                                        DataRow[] relatedRows = table2.Select($"IDFak = '{row1["ID"]}'");
-                                        foreach (DataRow row2 in relatedRows)
-                                        {
-                                            Dictionary<string, object> fakturaPozObj = new Dictionary<string, object>();
-                                            foreach (DataColumn column in table2.Columns)
-                                            {
-                                                if (column.ColumnName != "IDFak") // Exclude the field FapStFak from the JSON object
-                                                {
-                                                    fakturaPozObj.Add(column.ColumnName, row2[column]);
-                                                }
-                                            }
-                                            fakturaPoz.Add(fakturaPozObj);
-                                        }
-
-                                        obj.Add("FakturaPoz", fakturaPoz);
-                                        combinedData.Add(obj);
-                                    }
-
-                                    conn.Close();
-                                }
-
-                                foreach (var item in combinedData)
-                                {
-                                    string jsonOutput = JsonConvert.SerializeObject(item, Formatting.Indented);
-
-                                    var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:3333/api/RacunDobavljaca/RacunDobavljacaPost");
-                                    httpWebRequest.ContentType = "application/json";
-                                    httpWebRequest.Method = "POST";
-                                    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-                                    {
-                                        streamWriter.Write(jsonOutput);
-                                    }
-                                    string response = "";
-                                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
-                                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                                    {
-                                        var result = streamReader.ReadToEnd();
-                                        response = result.ToString();
-                                        if (response.Contains("Error") == true || response.Contains("Greška") == true || response.Contains("ERROR") == true || response.Contains("Duplikat") == true)
-                                        {
-                                            MessageBox.Show("Slanje nije uspelo\n" + response.ToString());
-                                            ins.InsApiLog("UlFak-" + ID.ToString(), jsonOutput, response);
-                                            return;
-                                        }
-                                        else
-                                        {
-                                            using (SqlConnection conn = new SqlConnection(connect))
-                                            {
-                                                using (SqlCommand cmd1 = conn.CreateCommand())
-                                                {
-
-                                                    //string pantheon = JObject.Parse(result)["Id"].ToString().Trim();
-                                                    //cmd1.CommandText = "UPDATE UlFak SET Status = 1,PantheonID='" + pantheon + "' WHERE ID = " + ID;
-                                                    cmd1.CommandText = "UPDATE UlFak SET Status = 1 WHERE ID = " + ID;
-                                                    conn.Open();
-                                                    cmd1.ExecuteNonQuery();
-                                                    conn.Close();
-                                                }
-                                            }
-                                        }
-
-                                    }
-                                    ins.InsApiLog("UlFak-" + ID.ToString(), jsonOutput, response);
-                                }
-                            }
-                            tmp = 0;
-                        }
-
                         else
                         {
-                            MessageBox.Show("Faktura CRMID:" + crm + " je već poslata singronizacijom!");
-                            return;
+                            valutaPom = valuta;
+                            Export();
                         }
                     }
-                    catch(Exception ex)
+                    else
                     {
-                        if (ex.ToString().Contains("TimeOut") == true || ex.ToString().Contains("Timeout") == true)
-                        {
-                            MessageBox.Show("Pokušan je export velike količine podataka. Server je vratio grešku TIMEOUT!\nProverite ispravnost exportovanih podataka u Pantheon-u.\nKontaktirati Dragana Mikića za izmenu statusa exportovanih podataka!");
-                            return;
-                        }
-
+                        MessageBox.Show("Faktura CRMID:" + crm + " je već poslata singronizacijom!");
+                        return;
                     }
                 }
             }
             FillGV();
+        }
+        private void Export()
+        {
+            InsertPatheonExport ins = new InsertPatheonExport();
+            string query1 = "";
+            string query2 = "";
+            try
+            {
+                if (valutaPom == "RSD")
+                {
+                    query1 = "Select RTrim(CRMID) as CRMDocumentId,RTrim(Tip) as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,'RSD' as Currency,'1' as FXRate,RTrim(FakturaBr) as Doc1, " +
+                            "CONVERT(VARCHAR, DatumIzdavanja, 23) as DateDoc1,CONVERT(VARCHAR, DatumPDVa, 23) as DateVAT,CONVERT(VARCHAR, DatumValute, 23) as DateDue,Rtrim(PredvidjanjeID) as PredvidjanjeId, " +
+                            "UlFak.Referent as UserId,UlFak.Napomena as Napomena,UlFak.ID as ID " +
+                            "from UlFak " +
+                            "Inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
+                            "inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID Where UlFak.Status=0 and CRMID=" + crm;
+
+                    query2 = "select RB as No,Rtrim(MpStaraSif) as Ident,CAST(Kolicina AS DECIMAL(10, 2)) as Qty,CAST(IznosRSD/Kolicina AS DECIMAL(10, 2)) as Price,Rtrim(NosiociTroskova.NosilacTroska) as CostDrv,RTrim(JM) as JNT,'' as Proizvod,IDFak " +
+                        "From UlFakPostav " +
+                        "inner join MaticniPodatki on UlFakPostav.Mp = MaticniPodatki.MpSifra " +
+                        "inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID " +
+                        "order by IDFak asc";
+                }
+                else
+                {
+                    query1 = "Select RTrim(CRMID) as CRMDocumentId,RTrim(Tip) as DocType,CONVERT(VARCHAR, DatumIzdavanja, 23) as Date,Rtrim(PaNaziv) as Issuer,RTrim(UlFak.Valuta) as Currency,UlFak.Kurs as FXRate,RTrim(FakturaBr) as Doc1, " +
+                    "CONVERT(VARCHAR, DatumIzdavanja, 23) as DateDoc1,CONVERT(VARCHAR, DatumPDVa, 23) as DateVAT,CONVERT(VARCHAR, DatumValute, 23) as DateDue,Rtrim(PredvidjanjeID) as PredvidjanjeId, " +
+                    "UlFak.Referent as UserId,UlFak.Napomena as Napomena,UlFak.ID as ID " +
+                    "from UlFak " +
+                    "Inner join Partnerji on UlFak.IDDobavljaca = Partnerji.PaSifra " +
+                    "inner join Predvidjanje on UlFak.Predvidjanje = Predvidjanje.ID Where UlFak.Status=0 and CRMID=" + crm;
+
+                    query2 = "select RB as No,Rtrim(MpStaraSif) as Ident,CAST(Kolicina AS DECIMAL(10, 2)) as Qty,CAST(Cena/Kolicina AS DECIMAL(10, 2)) as Price,Rtrim(NosiociTroskova.NosilacTroska) as CostDrv,RTrim(JM) as JNT,'' as Proizvod,IDFak " +
+                        "From UlFakPostav " +
+                        "inner join MaticniPodatki on UlFakPostav.Mp = MaticniPodatki.MpSifra " +
+                        "inner join NosiociTroskova on UlFakPostav.NosilacTroska = NosiociTroskova.ID " +
+                        "order by IDFak asc";
+                }
+                string ID = "";
+
+                List<object> combinedData = new List<object>();
+
+                using (SqlConnection conn = new SqlConnection(connect))
+                {
+                    SqlCommand cmd1 = new SqlCommand(query1, conn);
+                    SqlCommand cmd2 = new SqlCommand(query2, conn);
+
+                    conn.Open();
+
+                    SqlDataReader dr1 = cmd1.ExecuteReader();
+                    DataTable table1 = new DataTable();
+                    table1.Load(dr1);
+
+                    SqlDataReader dr2 = cmd2.ExecuteReader();
+                    DataTable table2 = new DataTable();
+                    table2.Load(dr2);
+
+                    foreach (DataRow row1 in table1.Rows)
+                    {
+                        Dictionary<string, object> obj = new Dictionary<string, object>();
+                        foreach (DataColumn column in table1.Columns)
+                        {
+
+                            ID = row1["ID"].ToString();
+                            if (column.ColumnName != "ID") // Exclude the field FapStFak from the JSON object
+                            {
+                                obj.Add(column.ColumnName, row1[column]);
+                            }
+                        }
+
+                        List<object> fakturaPoz = new List<object>();
+
+                        DataRow[] relatedRows = table2.Select($"IDFak = '{row1["ID"]}'");
+                        foreach (DataRow row2 in relatedRows)
+                        {
+                            Dictionary<string, object> fakturaPozObj = new Dictionary<string, object>();
+                            foreach (DataColumn column in table2.Columns)
+                            {
+                                if (column.ColumnName != "IDFak") // Exclude the field FapStFak from the JSON object
+                                {
+                                    fakturaPozObj.Add(column.ColumnName, row2[column]);
+                                }
+                            }
+                            fakturaPoz.Add(fakturaPozObj);
+                        }
+
+                        obj.Add("FakturaPoz", fakturaPoz);
+                        combinedData.Add(obj);
+                    }
+
+                    conn.Close();
+                }
+
+                foreach (var item in combinedData)
+                {
+                    string jsonOutput = JsonConvert.SerializeObject(item, Formatting.Indented);
+
+                    var httpWebRequest = (HttpWebRequest)WebRequest.Create("http://192.168.129.2:3333/api/RacunDobavljaca/RacunDobavljacaPost");
+                    httpWebRequest.ContentType = "application/json";
+                    httpWebRequest.Method = "POST";
+                    using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+                    {
+                        streamWriter.Write(jsonOutput);
+                    }
+                    string response = "";
+                    var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        var result = streamReader.ReadToEnd();
+                        response = result.ToString();
+                        if (response.Contains("Error") == true || response.Contains("Greška") == true || response.Contains("ERROR") == true || response.Contains("Duplikat") == true)
+                        {
+                            MessageBox.Show("Slanje nije uspelo\n" + response.ToString());
+                            ins.InsApiLog("UlFak-" + ID.ToString(), jsonOutput, response);
+                            return;
+                        }
+                        else
+                        {
+                            using (SqlConnection conn = new SqlConnection(connect))
+                            {
+                                using (SqlCommand cmd1 = conn.CreateCommand())
+                                {
+
+                                    //string pantheon = JObject.Parse(result)["Id"].ToString().Trim();
+                                    //cmd1.CommandText = "UPDATE UlFak SET Status = 1,PantheonID='" + pantheon + "' WHERE ID = " + ID;
+                                    cmd1.CommandText = "UPDATE UlFak SET Status = 1 WHERE ID = " + ID;
+                                    conn.Open();
+                                    cmd1.ExecuteNonQuery();
+                                    conn.Close();
+                                }
+                            }
+                        }
+
+                    }
+                    ins.InsApiLog("UlFak-" + ID.ToString(), jsonOutput, response);
+                }
+            }
+            catch(Exception ex)
+            {
+                if (ex.ToString().Contains("TimeOut") == true || ex.ToString().Contains("Timeout") == true)
+                {
+                    MessageBox.Show("Pokušan je export velike količine podataka. Server je vratio grešku TIMEOUT!\nProverite ispravnost exportovanih podataka u Pantheon-u.\nKontaktirati Dragana Mikića za izmenu statusa exportovanih podataka!");
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
         }
         private void btnExport_Click(object sender, EventArgs e)
         {

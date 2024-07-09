@@ -854,6 +854,8 @@ namespace Saobracaj.Dokumenta
                             Convert.ToInt32(cboPrevoznikZa.SelectedValue), txtUgovor.Text, txtZadatak.Text, chkCIM.Checked, KorisnikNajava, txtDispecerRID.Text, Convert.ToInt32(cboTipPrevoza.SelectedValue),
                             Convert.ToDouble(txtNetoTezinaM.Value), Convert.ToInt32(multiColumnComboBox1.SelectedValue), PomImaPovrat, Convert.ToInt32(cboTehnologijaID.SelectedValue),
                             Convert.ToInt32(cboNHM2.SelectedValue), txtPorDodatno.Text, txtOznaka.Text.ToString().TrimEnd(), cboSerija.SelectedValue.ToString(), txtOznakaPrefix.Text, txtOznakaBroj.Text, Convert.ToInt32(txtBrojKontejnera.Value), 0);
+
+                        LogInsert();
                     }
                     else
                     {
@@ -866,6 +868,7 @@ namespace Saobracaj.Dokumenta
                             Convert.ToDouble(txtNetoTezinaM.Value), Convert.ToInt32(multiColumnComboBox1.SelectedValue), /*PomImaPovrat*/ 0, Convert.ToInt32(cboTehnologijaID.SelectedValue),
                             Convert.ToInt32(cboNHM2.SelectedValue), txtPorDodatno.Text, txtOznaka.Text.ToString().TrimEnd(), cboSerija.SelectedValue.ToString(), txtOznakaPrefix.Text, txtOznakaBroj.Text, Convert.ToInt32(txtBrojKontejnera.Value), Convert.ToInt32(cboOpportunity.SelectedValue));
 
+                        LogInsert();
                         NapraviNosiocaIzNajave();
 
                     }
@@ -881,7 +884,6 @@ namespace Saobracaj.Dokumenta
                         //PosaljiMail("vladeta.milosavljevic@kprevoz.co.rs");
                     }
 
-                    LogInsert();
                     RefreshDataGrid();
                     status = false;
                 }
@@ -1283,6 +1285,7 @@ namespace Saobracaj.Dokumenta
                         // txtOznaka.Enabled = false;
                         // txtOpis.Text = row.Cells[1].Value.ToString();
                         FillAktivnosti(Convert.ToInt32(txtSifra.Text));
+                        FillAktivnostiVuca(Convert.ToInt32(txtSifra.Text));
                         if (frmLogovanje.Firma != "Leget")
                         {
                             VratiOpportunity();
@@ -1553,10 +1556,10 @@ namespace Saobracaj.Dokumenta
                 txtRelacija.Text = dr["PrevozniPut"].ToString();
                 string pom = dr["Tezina"].ToString();
                 pom = pom.Replace(",", ".");
-                txtNetoTezina.Value = Convert.ToDecimal(pom, CultureInfo.InvariantCulture);
+                txtNetoTezina.Value = Convert.ToDecimal(pom, CultureInfo.InvariantCulture)/1000;
                 txtDuzinaM.Value = Convert.ToDecimal(dr["Duzina"].ToString());
                 txtBrojKola.Value = Convert.ToDecimal(dr["BrojKola"].ToString());
-                txtNetoTezinaM.Value = Convert.ToDecimal(dr["NetoTezinaM"].ToString());
+                txtNetoTezinaM.Value = Convert.ToDecimal(dr["NetoTezinaM"].ToString())/1000;
 
                 //Nemamo Iz Najave polje
 
@@ -3199,6 +3202,7 @@ namespace Saobracaj.Dokumenta
         }
         private void RefreshDataGridArhiva()
         {
+            
             var select = "  SELECT    najava.ID,najava.Oznaka, stanice_4.opis as Granicna, " +
             " Najava.BrojNajave, Najava.Voz, Partnerji_1.PaNaziv as Posiljalac, " +
             " Partnerji.PaNaziv AS Prevoznik, Partnerji_2.PaNaziv AS Primalac, " +
@@ -3206,8 +3210,8 @@ namespace Saobracaj.Dokumenta
             "  Najava.PredvidjenoPrimanje, Najava.StvarnoPrimanje, " +
             "  Najava.PredvidjenaPredaja, Najava.StvarnaPredaja, " +
      "   CASE WHEN Najava.RID > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StatusN , " +
-      "     Najava.ONBroj,  Najava.Status, Najava.Tezina, Najava.Duzina, " +
-       "   Najava.BrojKola, Najava.NetoTezinaM, Najava.DatumUnosa, Partnerji_3.PaNaziv as PrevoznikZa, Najava.Faktura, Najava.Korisnik,Najava.SerijaVagona " +
+      "     Najava.ONBroj,  Najava.Status,Cast(Najava.Tezina / 1000 as decimal(18, 4)) as Tezina, Najava.Duzina, " +
+       "   Najava.BrojKola,Cast(Najava.NetoTezinaM / 1000 as decimal(18, 4)) as Tezina, Najava.DatumUnosa, Partnerji_3.PaNaziv as PrevoznikZa, Najava.Faktura, Najava.Korisnik,Najava.SerijaVagona " +
         "   FROM  Najava INNER JOIN Partnerji AS Partnerji_1 ON " +
          "  Najava.Posiljalac = Partnerji_1.PaSifra " +
           " INNER JOIN Partnerji ON Najava.Prevoznik = Partnerji.PaSifra " +
@@ -3400,16 +3404,16 @@ namespace Saobracaj.Dokumenta
         }
         private void FillAktivnosti(int ID)
         {
-            var select =" SELECT     AktivnostiStavke.ID, AktivnostiStavke.IDNadredjena, AktivnostiStavke.VrstaAktivnostiID, VrstaAktivnosti.Naziv, AktivnostiStavke.DatumPocetka, " +
+            var select =" SELECT AktivnostiStavke.ID, AktivnostiStavke.IDNadredjena, AktivnostiStavke.VrstaAktivnostiID, VrstaAktivnosti.Naziv, AktivnostiStavke.DatumPocetka, " +
                      " AktivnostiStavke.DatumZavrsetka, AktivnostiStavke.Posao, AktivnostiStavke.OznakaPosla, AktivnostiStavke.MestoIzvrsenja, AktivnostiStavke.Teretnica, " +
-                      "  AktivnostiStavke.Lokomotiva, AktivnostiStavke.Stanica, Stanice.Opis, Aktivnosti.Zaposleni, Delavci.DeSifra, Delavci.DeIme,Delavci.DePriimek,  Aktivnosti.VremeOd, " +
+                      "  AktivnostiStavke.Lokomotiva, AktivnostiStavke.Stanica, RTrim(Stanice.Opis) as Opis, Aktivnosti.Zaposleni, Delavci.DeSifra, RTrim(Delavci.DeIme)+' '+RTrim(Delavci.DePriimek) as Izvrsio,  Aktivnosti.VremeOd, " +
                      "  Aktivnosti.VremeDo " +
 " FROM         AktivnostiStavke INNER JOIN " +
                       " VrstaAktivnosti ON AktivnostiStavke.VrstaAktivnostiID = VrstaAktivnosti.ID INNER JOIN " +
                      "  Aktivnosti ON AktivnostiStavke.IDNadredjena = Aktivnosti.ID " +
                        " inner join Stanice on Stanice.ID = AktivnostiStavke.Stanica " +
                      " INNER JOIN " +
-                     "  Delavci ON Aktivnosti.Zaposleni = Delavci.DeSifra where AktivnostiStavke.Posao =" + ID+" order by AktivnostiStavke.DatumPocetka desc   ";
+                     "  Delavci ON Aktivnosti.Zaposleni = Delavci.DeSifra where VrstaAktivnostiID<>61 and AktivnostiStavke.Posao =" + ID+" order by AktivnostiStavke.DatumPocetka desc   ";
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -3441,8 +3445,105 @@ namespace Saobracaj.Dokumenta
             dataGridView7.Columns[11].Visible = false;
             dataGridView7.Columns[13].Visible = false;
             dataGridView7.Columns[14].Visible = false;
-        }
 
+            dataGridView7.Columns["ID"].Visible = false;
+            dataGridView7.Columns["IDNadredjena"].Visible = false;
+            dataGridView7.Columns["MestoIzvrsenja"].Visible = false;
+            dataGridView7.Columns["Teretnica"].Visible = false;
+            dataGridView7.Columns["VremeOd"].Visible = false;
+            dataGridView7.Columns["VremeDo"].Visible = false;
+            dataGridView7.Columns["Naziv"].HeaderText = "Aktivnost";
+            dataGridView7.Columns["Opis"].HeaderText = "Stanica";
+
+
+            dataGridView7.BorderStyle = BorderStyle.None;
+            dataGridView7.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView7.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView7.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView7.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView7.BackgroundColor = Color.White;
+
+            dataGridView7.EnableHeadersVisualStyles = false;
+            dataGridView7.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView7.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView7.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+
+
+
+
+        }
+        private void FillAktivnostiVuca(int ID)
+        {
+            var select = "SELECT top 1 AktivnostiStavke.ID, AktivnostiStavke.IDNadredjena, AktivnostiStavke.VrstaAktivnostiID, VrstaAktivnosti.Naziv,SifVucaStatusi.Naziv as Status," +
+                " AktivnostiStavke.DatumPocetka," +
+                "AktivnostiStavke.DatumZavrsetka, AktivnostiStavke.Posao, AktivnostiStavke.OznakaPosla, AktivnostiStavke.MestoIzvrsenja, AktivnostiStavke.Teretnica," +
+                "AktivnostiStavke.Lokomotiva, AktivnostiStavke.Stanica, RTrim(Stanice.Opis) as Opis, Aktivnosti.Zaposleni, Delavci.DeSifra, RTrim(Delavci.DeIme)+' '+RTrim(Delavci.DePriimek) as Izvrsio," +
+                "Aktivnosti.VremeOd, Aktivnosti.VremeDo " +
+                "FROM AktivnostiStavke " +
+                "INNER JOIN VrstaAktivnosti ON AktivnostiStavke.VrstaAktivnostiID = VrstaAktivnosti.ID " +
+                "INNER JOIN Aktivnosti ON AktivnostiStavke.IDNadredjena = Aktivnosti.ID " +
+                "inner join Stanice on Stanice.ID = AktivnostiStavke.Stanica " +
+                "INNER JOIN " +
+                "Delavci ON Aktivnosti.Zaposleni = Delavci.DeSifra " +
+                "inner join VucaStatusi on AktivnostiStavke.ID=VucaStatusi.StavkaAktivnostiID " +
+                "inner join SifVucaStatusi on VucaStatusi.Status=SifVucaStatusi.ID " +
+                "where VrstaAktivnosti.ID=61 and AktivnostiStavke.Posao =" + ID + " order by AktivnostiStavke.DatumPocetka desc";
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView8.ReadOnly = true;
+            dataGridView8.DataSource = ds.Tables[0];
+
+            dataGridView8.BorderStyle = BorderStyle.None;
+            dataGridView8.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView8.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView8.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView8.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView8.BackgroundColor = Color.White;
+            dataGridView8.AutoResizeColumnHeadersHeight();
+
+            dataGridView8.Columns["ID"].Visible = false;
+            dataGridView8.Columns["IDNadredjena"].Visible = false;
+            dataGridView8.Columns["MestoIzvrsenja"].Visible = false;
+            dataGridView8.Columns["Teretnica"].Visible = false;
+            dataGridView8.Columns["VremeOd"].Visible = false;
+            dataGridView8.Columns["VremeDo"].Visible = false;
+            dataGridView8.Columns["Naziv"].HeaderText = "Aktivnost";
+            dataGridView8.Columns["Opis"].HeaderText = "Stanica";
+
+            dataGridView8.Columns["VrstaAktivnostiID"].Visible = false;
+            dataGridView8.Columns["Posao"].Visible = false;
+            dataGridView8.Columns["OznakaPosla"].Visible = false;
+            dataGridView8.Columns["Stanica"].Visible = false;
+            dataGridView8.Columns["Zaposleni"].Visible = false;
+            dataGridView8.Columns["DeSifra"].Visible = false;
+
+            dataGridView8.Columns["Naziv"].Width = 60 ;
+            dataGridView8.Columns["Lokomotiva"].Width = 70;
+
+            dataGridView8.BorderStyle = BorderStyle.None;
+            dataGridView8.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView8.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView8.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView8.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView8.BackgroundColor = Color.White;
+
+            dataGridView8.EnableHeadersVisualStyles = false;
+            dataGridView8.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView8.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView8
+                .ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+
+
+        }
         private void button13_Click(object sender, EventArgs e)
         {
             int ID = Convert.ToInt32(comboBox2.SelectedValue);

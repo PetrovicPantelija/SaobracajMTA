@@ -49,9 +49,7 @@
             this.cboOdeljenje = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button3 = new System.Windows.Forms.Button();
-            this.txtFilterNazivNT = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.txtFilterNT = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
@@ -62,6 +60,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.cboPosao = new System.Windows.Forms.ComboBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.cboFilterNT = new System.Windows.Forms.ComboBox();
+            this.cboFilterNazivNT = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -239,10 +239,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel1.Controls.Add(this.cboFilterNazivNT);
+            this.panel1.Controls.Add(this.cboFilterNT);
             this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.txtFilterNazivNT);
             this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.txtFilterNT);
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.dataGridView2);
@@ -262,14 +262,6 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // txtFilterNazivNT
-            // 
-            this.txtFilterNazivNT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFilterNazivNT.Location = new System.Drawing.Point(473, 17);
-            this.txtFilterNazivNT.Name = "txtFilterNazivNT";
-            this.txtFilterNazivNT.Size = new System.Drawing.Size(214, 22);
-            this.txtFilterNazivNT.TabIndex = 5;
-            // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.NavajoWhite;
@@ -280,13 +272,6 @@
             this.button2.TabIndex = 4;
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // txtFilterNT
-            // 
-            this.txtFilterNT.Location = new System.Drawing.Point(133, 17);
-            this.txtFilterNT.Name = "txtFilterNT";
-            this.txtFilterNT.Size = new System.Drawing.Size(113, 20);
-            this.txtFilterNT.TabIndex = 3;
             // 
             // label10
             // 
@@ -399,6 +384,22 @@
             this.dataGridView1.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_ColumnHeaderMouseClick);
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
+            // cboFilterNT
+            // 
+            this.cboFilterNT.FormattingEnabled = true;
+            this.cboFilterNT.Location = new System.Drawing.Point(125, 16);
+            this.cboFilterNT.Name = "cboFilterNT";
+            this.cboFilterNT.Size = new System.Drawing.Size(121, 21);
+            this.cboFilterNT.TabIndex = 7;
+            // 
+            // cboFilterNazivNT
+            // 
+            this.cboFilterNazivNT.FormattingEnabled = true;
+            this.cboFilterNazivNT.Location = new System.Drawing.Point(473, 16);
+            this.cboFilterNazivNT.Name = "cboFilterNazivNT";
+            this.cboFilterNazivNT.Size = new System.Drawing.Size(214, 21);
+            this.cboFilterNazivNT.TabIndex = 7;
+            // 
             // NosiociTroskova
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -469,10 +470,10 @@
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox txtFilterNT;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox txtFilterNazivNT;
+        private System.Windows.Forms.ComboBox cboFilterNazivNT;
+        private System.Windows.Forms.ComboBox cboFilterNT;
     }
 }

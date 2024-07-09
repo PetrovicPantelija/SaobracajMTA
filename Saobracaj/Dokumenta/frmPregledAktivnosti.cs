@@ -156,7 +156,6 @@ namespace Saobracaj.Dokumenta
 
 
             }
-
             var select = "";
             select = " SELECT     AktivnostiStavke.ID, AktivnostiStavke.IDNadredjena, AktivnostiStavke.VrstaAktivnostiID, VrstaAktivnosti.Naziv, AktivnostiStavke.DatumPocetka, " +
                      " AktivnostiStavke.DatumZavrsetka, AktivnostiStavke.Posao, AktivnostiStavke.OznakaPosla, AktivnostiStavke.MestoIzvrsenja, AktivnostiStavke.Teretnica, " +
@@ -280,7 +279,7 @@ namespace Saobracaj.Dokumenta
 
         private void frmPregledAktivnosti_Load(object sender, EventArgs e)
         {
-            var select3 = " select Oznaka from Najava  order by Oznaka";
+            /*var select3 = " select Oznaka from Najava  order by Oznaka";
             var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);
             var c3 = new SqlConnection(s_connection3);
@@ -291,10 +290,11 @@ namespace Saobracaj.Dokumenta
             dataAdapter3.Fill(ds3);
             cboPosao.DataSource = ds3.Tables[0];
             cboPosao.DisplayMember = "Oznaka";
-            cboPosao.ValueMember = "Oznaka";
-
-            chkAktvni.Checked = false;
+            cboPosao.ValueMember = "Oznaka";*/
+            
+            chkAktvni.Checked = true;
             chkAutomobili.Checked = false;
+            Cekirano();
         }
 
         private void cboPosao_SelectedIndexChanged(object sender, EventArgs e)
@@ -1067,8 +1067,7 @@ namespace Saobracaj.Dokumenta
             frmVucaPregled vucp = new frmVucaPregled();
             vucp.Show();
         }
-
-        private void chkAktvni_Click(object sender, EventArgs e)
+        private void Cekirano()
         {
             if (chkAktvni.Checked == true)
             {
@@ -1102,6 +1101,11 @@ namespace Saobracaj.Dokumenta
                 cboPosao.DisplayMember = "Oznaka";
                 cboPosao.ValueMember = "Oznaka";
             }
+        }
+
+        private void chkAktvni_Click(object sender, EventArgs e)
+        {
+            Cekirano();
         }
 
         private void button2_Click(object sender, EventArgs e)

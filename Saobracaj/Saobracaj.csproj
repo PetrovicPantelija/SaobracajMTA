@@ -1878,6 +1878,12 @@
     <Compile Include="Pantheon Export\UlFakPregled.Designer.cs">
       <DependentUpon>UlFakPregled.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pantheon Export\Valuta.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantheon Export\Valuta.Designer.cs">
+      <DependentUpon>Valuta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Perftech_BeogradDataSet.cs">
       <DependentUpon>Perftech_BeogradDataSet.xsd</DependentUpon>
       <SubType>code</SubType>
@@ -4298,6 +4304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pantheon Export\UlFakPregled.resx">
       <DependentUpon>UlFakPregled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantheon Export\Valuta.resx">
+      <DependentUpon>Valuta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Promet\frmLager.resx">
       <DependentUpon>frmLager.cs</DependentUpon>

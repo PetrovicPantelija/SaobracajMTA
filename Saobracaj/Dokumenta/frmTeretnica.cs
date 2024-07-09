@@ -38,7 +38,6 @@ namespace Saobracaj.Dokumenta
             InitializeComponent();
             NovaTeretnica = 1;
             Korisnik = KorisnikTeretnica;
-
         }
 
         public frmTeretnica(string IdTeretnice, string KorisnikTeretnica)
