@@ -274,7 +274,8 @@ namespace Saobracaj.Dokumenta
                 }
                 else
                 {
-                    var select = "  select NaruceneManipulacije.IDPrijemaKamionom, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv, NaruceneManipulacije.Uradjeno, NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik, NaruceneManipulacije.ID, NaruceneManipulacije.Broj, NaruceneManipulacije.DatumUradjeno from NaruceneManipulacije " +
+                    var select = "  select NaruceneManipulacije.IDPrijemaKamionom, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv, " +
+                    " CASE WHEN NaruceneManipulacije.Uradjeno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Uradjeno, NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik, NaruceneManipulacije.ID, NaruceneManipulacije.Broj, NaruceneManipulacije.DatumUradjeno from NaruceneManipulacije " +
                 " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
                  " where NaruceneManipulacije.IzPrijema = 1 and NaruceneManipulacije.IDPrijemaKamionom = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue);
 
@@ -434,7 +435,8 @@ namespace Saobracaj.Dokumenta
             }
             else
             {
-                var select = "  select NaruceneManipulacije.IDPrijemaKamionom, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv, NaruceneManipulacije.Uradjeno, NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik, NaruceneManipulacije.ID, NaruceneManipulacije.Broj, NaruceneManipulacije.DatumUradjeno from NaruceneManipulacije " +
+                var select = "  select NaruceneManipulacije.IDPrijemaKamionom, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv, " +
+                    " CASE WHEN NaruceneManipulacije.Uradjeno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Uradjeno, NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik, NaruceneManipulacije.ID, NaruceneManipulacije.Broj, NaruceneManipulacije.DatumUradjeno from NaruceneManipulacije " +
             " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
              " where NaruceneManipulacije.IzPrijema = 0 and NaruceneManipulacije.IDPrijemaKamionom = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue);
 
@@ -592,7 +594,8 @@ namespace Saobracaj.Dokumenta
             }
             else
             {
-                var select = "  select NaruceneManipulacije.IDPrijemaKamionom, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv, NaruceneManipulacije.Uradjeno, NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik, NaruceneManipulacije.ID, NaruceneManipulacije.Broj, NaruceneManipulacije.DatumUradjeno from NaruceneManipulacije " +
+                var select = "  select NaruceneManipulacije.IDPrijemaKamionom, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv," +
+                    " CASE WHEN NaruceneManipulacije.Uradjeno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Uradjeno, NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik, NaruceneManipulacije.ID, NaruceneManipulacije.Broj, NaruceneManipulacije.DatumUradjeno from NaruceneManipulacije " +
             " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
              " where NaruceneManipulacije.IzPrijema = 1 and NaruceneManipulacije.IDPrijemaKamionom = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue) + " and NaruceneManipulacije.BrojKontejnera = '" + txtBrojKontejnera.Text + "'"; ;
 
@@ -750,7 +753,8 @@ namespace Saobracaj.Dokumenta
             }
             else
             {
-                var select = "  select NaruceneManipulacije.IDPrijemaKamionom, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv, NaruceneManipulacije.Uradjeno, NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik, NaruceneManipulacije.ID, NaruceneManipulacije.Broj, NaruceneManipulacije.DatumUradjeno from NaruceneManipulacije " +
+                var select = "  select NaruceneManipulacije.IDPrijemaKamionom, NaruceneManipulacije.BrojKontejnera, VrstaManipulacije.ID, VrstaManipulacije.Naziv," +
+                    " CASE WHEN NaruceneManipulacije.Uradjeno > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Uradjeno, NaruceneManipulacije.DatumOd,NaruceneManipulacije.DatumDo, NaruceneManipulacije.Datum, NaruceneManipulacije.Korisnik, NaruceneManipulacije.ID, NaruceneManipulacije.Broj, NaruceneManipulacije.DatumUradjeno from NaruceneManipulacije " +
             " inner join VrstaManipulacije on NaruceneManipulacije.VrstaManipulacije = VrstaManipulacije.ID " +
              " where NaruceneManipulacije.IzPrijema = 0 and NaruceneManipulacije.IDPrijemaKamionom = " + Convert.ToInt32(cboPrijemKamionom.SelectedValue) + " and NaruceneManipulacije.BrojKontejnera = '" + txtBrojKontejnera.Text + "'"; ;
 
@@ -939,10 +943,6 @@ namespace Saobracaj.Dokumenta
             cboPrijemKamionom.DataSource = ds2.Tables[0];
             cboPrijemKamionom.DisplayMember = "Naziv";
             cboPrijemKamionom.ValueMember = "ID";
-
-           
-
-
         }
 
         private void RefreshComboOtprema()

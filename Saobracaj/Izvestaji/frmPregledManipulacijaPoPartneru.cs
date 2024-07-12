@@ -24,6 +24,8 @@ namespace TrackModal.Izvestaji
         }
         private void frmPregledManipulacijaPoPartneru_Load(object sender, EventArgs e)
         {
+            dtpDatumOd.Value = DateTime.Now;
+            dtpDatumDo.Value = DateTime.Now;
             var select3 = " Select Distinct PaSifra, PaNaziv From Partnerji order by PaNaziv";
             var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection3 = new SqlConnection(s_connection3);

@@ -72,6 +72,9 @@ namespace Saobracaj.Dokumenta
 
         private void frmManipulacije_Load(object sender, EventArgs e)
         {
+            dtpVremeOd.Value = DateTime.Now;
+            dtpVremeDo.Value = DateTime.Now;
+
             // var select = " Select ID From PrijemKontejneraVoz";
             if (IzPrijemnice == 1)
             {

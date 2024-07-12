@@ -1033,9 +1033,20 @@ namespace Saobracaj.Uvoz
                         pomManupulacija = Convert.ToInt32(row.Cells[0].Value.ToString());
                         CenaNadjenaTip1 = PretraziPoNalogodavciIIzvozniku(pomManupulacija, Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
                         CenaNadjenaTip2 = PretraziPoNalogodavci(pomManupulacija, Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
-                        pomPokret = row.Cells[7].Value.ToString();
-                        pomStatusKontejnera = Convert.ToInt32(row.Cells[8].Value.ToString());
-                        pomForma = row.Cells[10].Value.ToString();
+                        int Adm = ProveriAdministrativna(pomManupulacija);
+                        if (Adm == 0)
+                        {
+                            pomPokret = row.Cells[7].Value.ToString();
+                            pomStatusKontejnera = Convert.ToInt32(row.Cells[8].Value.ToString());
+                            pomForma = row.Cells[10].Value.ToString();
+
+                        }
+                        else
+                        {
+                            pomPokret = "/";
+                            pomStatusKontejnera = Convert.ToInt32(0);
+                            pomForma = "/";
+                        }
                         if (CenaNadjenaTip1 == 1)
                         {
                             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -1824,9 +1835,21 @@ namespace Saobracaj.Uvoz
                         pomManupulacija = Convert.ToInt32(row.Cells[0].Value.ToString());
                         CenaNadjenaTip1 = PretraziPoNalogodavciIIzvozniku(pomManupulacija, Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
                         CenaNadjenaTip2 = PretraziPoNalogodavci(pomManupulacija, Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
-                        pomPokret = row.Cells[7].Value.ToString();
-                        pomStatusKontejnera = Convert.ToInt32(row.Cells[8].Value.ToString());
-                        pomForma = row.Cells[10].Value.ToString();
+                        int Adm = ProveriAdministrativna(pomManupulacija);
+
+                        if (Adm == 0)
+                        {
+                            pomPokret = row.Cells[7].Value.ToString();
+                            pomStatusKontejnera = Convert.ToInt32(row.Cells[8].Value.ToString());
+                            pomForma = row.Cells[10].Value.ToString();
+
+                        }
+                        else
+                        {
+                            pomPokret = "/";
+                            pomStatusKontejnera = Convert.ToInt32(0);
+                            pomForma = "/";
+                        }
                         if (CenaNadjenaTip1 == 1)
                         {
                             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -1948,9 +1971,20 @@ namespace Saobracaj.Uvoz
                         pomManupulacija = Convert.ToInt32(row.Cells[0].Value.ToString());
                         CenaNadjenaTip1 = PretraziPoNalogodavciIIzvozniku(pomManupulacija, Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
                         CenaNadjenaTip2 = PretraziPoNalogodavci(pomManupulacija, Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
-                        pomPokret = row.Cells[7].Value.ToString();
-                        pomStatusKontejnera = Convert.ToInt32(row.Cells[8].Value.ToString());
-                        pomForma = row.Cells[10].Value.ToString();
+                        int Adm = ProveriAdministrativna(pomManupulacija);
+                        if (Adm == 0)
+                        {
+                            pomPokret = row.Cells[7].Value.ToString();
+                            pomStatusKontejnera = Convert.ToInt32(row.Cells[8].Value.ToString());
+                            pomForma = row.Cells[10].Value.ToString();
+
+                        }
+                        else
+                        {
+                            pomPokret = "/";
+                            pomStatusKontejnera = Convert.ToInt32(0);
+                            pomForma = "/";
+                        }
                         if (CenaNadjenaTip1 == 1)
                         {
                             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -2115,6 +2149,32 @@ namespace Saobracaj.Uvoz
             }
         }
 
+        int ProveriAdministrativna(int ID)
+        {
+            int pomBZ = 0;
+            string Komanda = "";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+          
+            Komanda = "select Administrativna from VrstaManipulacije  where ID = ";
+           
+
+            SqlCommand cmd = new SqlCommand(Komanda + ID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                pomBZ = Convert.ToInt32(dr["Administrativna"].ToString());
+            }
+            con.Close();
+            return pomBZ;
+
+        }
+
         private void button10_Click(object sender, EventArgs e)
         {
             int pomID = 0;
@@ -2132,9 +2192,21 @@ namespace Saobracaj.Uvoz
                     if (row.Selected == true)
                     {
                         pomManupulacija = Convert.ToInt32(row.Cells[0].Value.ToString());
-                        pomPokret = row.Cells[7].Value.ToString();
-                        pomStatusKontejnera = Convert.ToInt32(row.Cells[8].Value.ToString());
-                        pomForma = row.Cells[10].Value.ToString();
+                        int Adm = ProveriAdministrativna(pomManupulacija);
+                        if (Adm == 0)
+                        {
+                            pomPokret = row.Cells[7].Value.ToString();
+                            pomStatusKontejnera = Convert.ToInt32(row.Cells[8].Value.ToString());
+                            pomForma = row.Cells[10].Value.ToString();
+
+                        }
+                        else
+                        {
+                            pomPokret = "/";
+                            pomStatusKontejnera = Convert.ToInt32(0);
+                            pomForma = "/";
+                        }
+                   
                         var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
                         SqlConnection con = new SqlConnection(s_connection);
 

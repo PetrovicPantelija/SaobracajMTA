@@ -2387,23 +2387,48 @@ namespace Saobracaj
 
         private void toolStripButton126_Click(object sender, EventArgs e)
         {
-            FormCollection fc = Application.OpenForms;
-            bool bFormNameOpen = false;
-            foreach (Form frm in fc)
+            if (Sifarnici.frmLogovanje.Firma == "Leget")
             {
-                //iterate through
-                if (frm.Name == "frmKontejnerStatus")
+                FormCollection fc = Application.OpenForms;
+                bool bFormNameOpen = false;
+                foreach (Form frm in fc)
                 {
-                    bFormNameOpen = true;
-                    frm.Activate();
-                    frm.WindowState = FormWindowState.Normal;
+                    //iterate through
+                    if (frm.Name == "frmKontejnerStatus")
+                    {
+                        bFormNameOpen = true;
+                        frm.Activate();
+                        frm.WindowState = FormWindowState.Normal;
+                    }
+                }
+                if (bFormNameOpen == false)
+                {
+                    frmKontejnerStatus snac = new frmKontejnerStatus();
+                    snac.Show();
+                }
+
+            }
+            else
+            {
+                FormCollection fc = Application.OpenForms;
+                bool bFormNameOpen = false;
+                foreach (Form frm in fc)
+                {
+                    //iterate through
+                    if (frm.Name == "frmStatusRobe")
+                    {
+                        bFormNameOpen = true;
+                        frm.Activate();
+                        frm.WindowState = FormWindowState.Normal;
+                    }
+                }
+                if (bFormNameOpen == false)
+                {
+                    frmStatusRobe snac = new frmStatusRobe();
+                    snac.Show();
                 }
             }
-            if (bFormNameOpen == false)
-            {
-                frmKontejnerStatus snac = new frmKontejnerStatus();
-                snac.Show();
-            }
+                
         }
 
         private void toolStripButton127_Click(object sender, EventArgs e)

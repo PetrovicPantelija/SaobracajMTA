@@ -77,6 +77,7 @@ namespace Saobracaj.Dokumenta
 
         private void RefreshDataGrid()
         {
+            /*
             var select = "  SELECT    najava.ID,najava.Oznaka, stanice_4.opis as Granicna,Najava.BrojNajave, Najava.Voz, Partnerji_1.PaNaziv as Posiljalac,Partnerji.PaNaziv AS Prevoznik, Partnerji_2.PaNaziv AS Primalac, " +
                 "stanice.Opis AS Uputna, stanice_1.Opis AS Otpravna,  Najava.PrevozniPut as Relacija ,Najava.PredvidjenoPrimanje, Najava.StvarnoPrimanje, Najava.PredvidjenaPredaja, Najava.StvarnaPredaja, " +
                 "CASE WHEN Najava.RID > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StatusN ," +
@@ -90,13 +91,38 @@ namespace Saobracaj.Dokumenta
                 "INNER JOIN  stanice AS stanice_1 ON Najava.Otpravna = stanice_1.ID " +
                 "inner JOIN  stanice AS stanice_4 ON Najava.Granicna = stanice_4.ID " +
                 "INNER JOIN Partnerji as Partnerji_3 ON Najava.PrevoznikZa = Partnerji_3.PaSifra ";
+            */
+            var select = "  SELECT    n.ID,n.Oznaka, stanice_4.opis as Granicna,n.BrojNajave, n.Voz, Partnerji_1.PaNaziv as Posiljalac,Partnerji.PaNaziv AS Prevoznik, " +
+                " Partnerji_2.PaNaziv AS Primalac, stanice.Opis AS Uputna, stanice_1.Opis AS Otpravna,  " +
+                "n.PrevozniPut as Relacija ,n.PredvidjenoPrimanje, " +
+                " n.StvarnoPrimanje, n.PredvidjenaPredaja, n.StvarnaPredaja, " +
+                " CASE WHEN n.RID > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StatusN ,n.ONBroj," +
+                "    n.Status, Cast(n.Tezina/1000 as decimal(18,4)) as Tezina," +
+                "    n.Duzina,n.BrojKola,      Cast(n.NetoTezinaM/1000 as decimal(18,4)) as NetoTezinaM, n.DatumUnosa,      " +
+                "Partnerji_3.PaNaziv as PrevoznikZa, n.Faktura, n.Korisnik,n.SerijaVagona     , ISNULL(t1.Vreme, GetDate()) as Vreme, Isnull(t1.Status, '') as Status, ISNull(t1.Naziv, '') as Vuca, IsNull(t1.Opis, '') as Stanica      " +
+                " FROM  Najava n INNER JOIN Partnerji AS Partnerji_1 ON n.Posiljalac = Partnerji_1.PaSifra     " +
+                "INNER JOIN Partnerji ON n.Prevoznik = Partnerji.PaSifra      INNER JOIN Partnerji AS Partnerji_2 ON n.Primalac = Partnerji_2.PaSifra      " +
+                "INNER JOIN  stanice ON n.Uputna = stanice.ID     INNER JOIN  stanice AS stanice_1 ON n.Otpravna = stanice_1.ID    " +
+                " inner JOIN  stanice AS stanice_4 ON n.Granicna = stanice_4.ID      INNER JOIN Partnerji as Partnerji_3 ON n.PrevoznikZa = Partnerji_3.PaSifra   " +
+                " outer APPLY ( SELECT   Top 1 VrstaAktivnosti.Naziv,SifVucaStatusi.Naziv as Status, VucaStatusi.Vreme, AktivnostiStavke.Posao, " +
+                "AktivnostiStavke.OznakaPosla, AktivnostiStavke.MestoIzvrsenja,     AktivnostiStavke.Stanica, RTrim(Stanice.Opis) as Opis," +
+                "     Aktivnosti.Zaposleni,     Delavci.DeSifra, RTrim(Delavci.DeIme)+' '+RTrim(Delavci.DePriimek) as Izvrsio      " +
+                " FROM AktivnostiStavke      INNER JOIN VrstaAktivnosti ON AktivnostiStavke.VrstaAktivnostiID = VrstaAktivnosti.ID     " +
+                " INNER JOIN Aktivnosti ON AktivnostiStavke.IDNadredjena = Aktivnosti.ID      INNER JOIN Delavci ON Aktivnosti.Zaposleni = Delavci.DeSifra " +
+                "     inner join VucaStatusi on AktivnostiStavke.ID=VucaStatusi.StavkaAktivnostiID     " +
+                " inner join Stanice on Stanice.ID = VucaStatusi.Stanica     " +
+                " inner join SifVucaStatusi on VucaStatusi.Status=SifVucaStatusi.ID where VrstaAktivnosti.ID=61 and n.ID = AktivnostiStavke.Posao " +
+                "      order by VucaStatusi.Vreme desc) t1 ";
+
+
+
             if (Arhiv == 0)
             {
-                select = select + " WHERE  Faktura ='' order by Najava.ID desc";
+                select = select + " WHERE  Faktura ='' order by n.ID desc";
             }
             else
             {
-                select = select + " WHERE Faktura <> ''  order by Najava.ID desc";
+                select = select + " WHERE Faktura <> ''  order by n.ID desc";
             }
 
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -3476,19 +3502,19 @@ namespace Saobracaj.Dokumenta
         private void FillAktivnostiVuca(int ID)
         {
             var select = "SELECT top 1 AktivnostiStavke.ID, AktivnostiStavke.IDNadredjena, AktivnostiStavke.VrstaAktivnostiID, VrstaAktivnosti.Naziv,SifVucaStatusi.Naziv as Status," +
-                " AktivnostiStavke.DatumPocetka," +
-                "AktivnostiStavke.DatumZavrsetka, AktivnostiStavke.Posao, AktivnostiStavke.OznakaPosla, AktivnostiStavke.MestoIzvrsenja, AktivnostiStavke.Teretnica," +
+                " VucaStatusi.Vreme," +
+                " AktivnostiStavke.Posao, AktivnostiStavke.OznakaPosla, AktivnostiStavke.MestoIzvrsenja, AktivnostiStavke.Teretnica," +
                 "AktivnostiStavke.Lokomotiva, AktivnostiStavke.Stanica, RTrim(Stanice.Opis) as Opis, Aktivnosti.Zaposleni, Delavci.DeSifra, RTrim(Delavci.DeIme)+' '+RTrim(Delavci.DePriimek) as Izvrsio," +
                 "Aktivnosti.VremeOd, Aktivnosti.VremeDo " +
                 "FROM AktivnostiStavke " +
                 "INNER JOIN VrstaAktivnosti ON AktivnostiStavke.VrstaAktivnostiID = VrstaAktivnosti.ID " +
                 "INNER JOIN Aktivnosti ON AktivnostiStavke.IDNadredjena = Aktivnosti.ID " +
-                "inner join Stanice on Stanice.ID = AktivnostiStavke.Stanica " +
                 "INNER JOIN " +
                 "Delavci ON Aktivnosti.Zaposleni = Delavci.DeSifra " +
                 "inner join VucaStatusi on AktivnostiStavke.ID=VucaStatusi.StavkaAktivnostiID " +
+                 "inner join Stanice on Stanice.ID = VucaStatusi.Stanica " +
                 "inner join SifVucaStatusi on VucaStatusi.Status=SifVucaStatusi.ID " +
-                "where VrstaAktivnosti.ID=61 and AktivnostiStavke.Posao =" + ID + " order by AktivnostiStavke.DatumPocetka desc";
+                "where VrstaAktivnosti.ID=61 and AktivnostiStavke.Posao =" + ID + " order by VucaStatusi.Vreme desc";
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

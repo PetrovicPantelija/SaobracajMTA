@@ -784,7 +784,7 @@ namespace Saobracaj.Dokumenta
                 Convert.ToInt32(cboPosiljalac.SelectedValue), "",
                 Convert.ToInt32(cboPrimalac.SelectedValue), "", Convert.ToInt32(cboVlasnikKontejnera.SelectedValue),
                 "", 0, 0, Convert.ToInt32(0),
-                "",0, Convert.ToDecimal(txtTaraTerminal.Value), 0);
+                "",0, Convert.ToDecimal(txtTaraTerminal.Value), 0,0);
 
 
         }
