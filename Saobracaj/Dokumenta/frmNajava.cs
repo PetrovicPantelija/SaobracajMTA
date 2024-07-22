@@ -99,7 +99,7 @@ namespace Saobracaj.Dokumenta
                 " CASE WHEN n.RID > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as StatusN ,n.ONBroj," +
                 "    n.Status, Cast(n.Tezina/1000 as decimal(18,4)) as Tezina," +
                 "    n.Duzina,n.BrojKola,      Cast(n.NetoTezinaM/1000 as decimal(18,4)) as NetoTezinaM, n.DatumUnosa,      " +
-                "Partnerji_3.PaNaziv as PrevoznikZa, n.Faktura, n.Korisnik,n.SerijaVagona     , ISNULL(t1.Vreme, GetDate()) as Vreme, Isnull(t1.Status, '') as Status, ISNull(t1.Naziv, '') as Vuca, IsNull(t1.Opis, '') as Stanica      " +
+                "Partnerji_3.PaNaziv as PrevoznikZa, n.Faktura, n.Korisnik,n.SerijaVagona     ,  Isnull(t1.Status, '') as VucaStatus,  IsNull(t1.Opis, '') as Stanica, ISNULL(t1.Vreme,GetDate()) as Vreme      " +
                 " FROM  Najava n INNER JOIN Partnerji AS Partnerji_1 ON n.Posiljalac = Partnerji_1.PaSifra     " +
                 "INNER JOIN Partnerji ON n.Prevoznik = Partnerji.PaSifra      INNER JOIN Partnerji AS Partnerji_2 ON n.Primalac = Partnerji_2.PaSifra      " +
                 "INNER JOIN  stanice ON n.Uputna = stanice.ID     INNER JOIN  stanice AS stanice_1 ON n.Otpravna = stanice_1.ID    " +
