@@ -220,6 +220,16 @@ namespace TrackModal.Dokumeta
             dtpVremeOdlaska.Value = DateTime.Now;
             dtpDatumPrijema.Value = DateTime.Now;
             dtpDatumPrijema.Enabled = true;
+            if (chkVoz.Checked == true)
+            {
+                cboStatusKontejnera.SelectedValue = 1;
+
+
+            }
+            else
+            {
+                cboStatusKontejnera.SelectedValue = 2;
+            }
            
 
         }
