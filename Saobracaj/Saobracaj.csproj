@@ -1380,6 +1380,12 @@
     <Compile Include="Dokumenta\InsertUzrociKasnjenjaLok.cs" />
     <Compile Include="Dokumenta\InsertVozPaket.cs" />
     <Compile Include="Dokumenta\InsertVucaStatusi.cs" />
+    <Compile Include="Dokumenta\LocoTrackTA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\LocoTrackTA.Designer.cs">
+      <DependentUpon>LocoTrackTA.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\PivotTable.cs" />
     <Compile Include="Dokumenta\frmTeretnicaTerenIzmena.cs">
       <SubType>Form</SubType>
@@ -4070,6 +4076,9 @@
       <DependentUpon>frmZarade.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmZaradeMasinovodje.rdlc" />
+    <EmbeddedResource Include="Dokumenta\LocoTrackTA.resx">
+      <DependentUpon>LocoTrackTA.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\PrijemNaSkladiste.resx">
       <DependentUpon>PrijemNaSkladiste.cs</DependentUpon>
     </EmbeddedResource>
@@ -5636,6 +5645,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Dokumenta\map.html" />
     <Content Include="itextsharp.dll" />
     <None Include="Resources\mtaLogo.JPG" />
     <None Include="Resources\LEGET-colorP.jpg" />

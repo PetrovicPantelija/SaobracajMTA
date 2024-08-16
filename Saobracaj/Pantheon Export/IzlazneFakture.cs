@@ -350,6 +350,12 @@ namespace Saobracaj.Pantheon_Export
             }
             conn.Close();
         }
+
+        private void tsDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void GetNosilacInfo()
         {
             string query2 = "SELECT Posao From NosiociTroskova Where ID=" + Convert.ToInt32(cboNosilac.SelectedValue);
