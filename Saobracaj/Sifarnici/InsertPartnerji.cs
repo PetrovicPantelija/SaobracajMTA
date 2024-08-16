@@ -8,7 +8,7 @@ namespace Saobracaj.Sifarnici
     {
         public string connect = Sifarnici.frmLogovanje.connectionString;
 
-        public void InsPartneri(string Naziv, string Ulica, string Mesto, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB, string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar, int Vlasnik, int Spediter, int Platilac, int Organizator, int Nalogodavac, int Uvoznik, string MUAdresa, string MUKontakt, string UICDrzava, string TR2, string Faks, int PomIzvoznik, int Logisticar, int Kamioner, int Agent, string Kupac, string Obveznik, string Valuta, string Dobavljac, int Referent)
+        public void InsPartneri(string Naziv, string Ulica, string Mesto, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB, string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar, int Vlasnik, int Spediter, int Platilac, int Organizator, int Nalogodavac, int Uvoznik, string MUAdresa, string MUKontakt, string UICDrzava, string TR2, string Faks, int PomIzvoznik, int Logisticar, int Kamioner, int Agent, string Kupac, string Obveznik, string Valuta, string Dobavljac, int Referent, int FREC)
         {
             SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -324,6 +324,13 @@ namespace Saobracaj.Sifarnici
             sqlParameter4.Value = Referent;
             myCommand.Parameters.Add(sqlParameter4);
 
+            SqlParameter sqlParameter41 = new SqlParameter();
+            sqlParameter41.ParameterName = "@FREC";
+            sqlParameter41.SqlDbType = SqlDbType.Int;
+            sqlParameter41.Direction = ParameterDirection.Input;
+            sqlParameter41.Value = FREC;
+            myCommand.Parameters.Add(sqlParameter41);
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -362,7 +369,7 @@ namespace Saobracaj.Sifarnici
             }
         }
 
-        public void UpdPartneri(int ID, string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB, string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar, int Vlasnik, int Spediter, int Platilac, int Organizator, int Nalogodavac, int Uvoznik, string MUAdresa, string MUKontakt, string UICDrzava, string TR2, string Faks, int PomIzvoznik, int Logisticar, int Kamioner, int Agent, string Kupac, string Obveznik, string Dobavljac, string Valuta)
+        public void UpdPartneri(int ID, string Naziv, string Ulica, string Mesto, string Oblast, string Posta, string Drzava, string Telefon, string TR, string Napomena, string MaticniBroj, string Email, string PIB, string UIC, bool Prevoznik, bool Posiljalac, bool Primalac, int Brodar, int Vlasnik, int Spediter, int Platilac, int Organizator, int Nalogodavac, int Uvoznik, string MUAdresa, string MUKontakt, string UICDrzava, string TR2, string Faks, int PomIzvoznik, int Logisticar, int Kamioner, int Agent, string Kupac, string Obveznik, string Dobavljac, string Valuta, int FREC)
         {
             SqlConnection myConnection = new SqlConnection(connect);
             SqlCommand myCommand = myConnection.CreateCommand();
@@ -648,7 +655,7 @@ namespace Saobracaj.Sifarnici
             sqlParameter1.Direction = ParameterDirection.Input;
             sqlParameter1.Value = Dobavljac;
             myCommand.Parameters.Add(sqlParameter1);
-            /*
+
             SqlParameter sqlParameter3 = new SqlParameter();
             sqlParameter3.ParameterName = "@Valuta";
             sqlParameter3.SqlDbType = SqlDbType.Char;
@@ -656,6 +663,15 @@ namespace Saobracaj.Sifarnici
             sqlParameter3.Direction = ParameterDirection.Input;
             sqlParameter3.Value = Valuta;
             myCommand.Parameters.Add(sqlParameter3);
+
+            SqlParameter sqlParameter41 = new SqlParameter();
+            sqlParameter41.ParameterName = "@FREC";
+            sqlParameter41.SqlDbType = SqlDbType.Int;
+            sqlParameter41.Direction = ParameterDirection.Input;
+            sqlParameter41.Value = FREC;
+            myCommand.Parameters.Add(sqlParameter41);
+            /*
+            
             */
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

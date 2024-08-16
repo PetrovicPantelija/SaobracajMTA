@@ -1333,7 +1333,7 @@ namespace Saobracaj.Dokumenta
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("Select OpportunityID FROM [TESTIRANJE].[dbo].[Najava] where ID=" + txtSifra.Text, con);
+            SqlCommand cmd = new SqlCommand("Select OpportunityID FROM [Najava] where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())

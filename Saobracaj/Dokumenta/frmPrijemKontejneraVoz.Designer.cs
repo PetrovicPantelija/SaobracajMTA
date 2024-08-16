@@ -210,7 +210,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(107, 24);
+            this.toolStripButton1.Size = new System.Drawing.Size(106, 24);
             this.toolStripButton1.Text = "Pošalji mail";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_1);
             // 
@@ -221,7 +221,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(139, 24);
+            this.toolStripButton2.Size = new System.Drawing.Size(138, 24);
             this.toolStripButton2.Text = "Odredi aktivnosti";
             this.toolStripButton2.Visible = false;
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
@@ -234,7 +234,7 @@
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.MergeAction = System.Windows.Forms.MergeAction.Remove;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(188, 24);
+            this.toolStripButton3.Size = new System.Drawing.Size(187, 24);
             this.toolStripButton3.Text = "Prijemna dokumentacija";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
@@ -246,7 +246,7 @@
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.MergeAction = System.Windows.Forms.MergeAction.Remove;
             this.toolStripButton5.Name = "toolStripButton5";
-            this.toolStripButton5.Size = new System.Drawing.Size(54, 24);
+            this.toolStripButton5.Size = new System.Drawing.Size(53, 24);
             this.toolStripButton5.Text = "CIR";
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
@@ -278,7 +278,7 @@
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.MergeAction = System.Windows.Forms.MergeAction.Remove;
             this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(135, 24);
+            this.toolStripButton6.Size = new System.Drawing.Size(134, 24);
             this.toolStripButton6.Text = "Nalog za prevoz";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
@@ -311,7 +311,7 @@
             this.label18.ForeColor = System.Drawing.Color.Black;
             this.label18.Location = new System.Drawing.Point(500, 36);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(35, 16);
+            this.label18.Size = new System.Drawing.Size(34, 16);
             this.label18.TabIndex = 177;
             this.label18.Text = "ATA:";
             // 
@@ -344,7 +344,7 @@
             this.label15.ForeColor = System.Drawing.Color.Black;
             this.label15.Location = new System.Drawing.Point(660, 38);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(77, 16);
+            this.label15.Size = new System.Drawing.Size(76, 16);
             this.label15.TabIndex = 173;
             this.label15.Text = "Voz dolaska:";
             // 
@@ -368,7 +368,7 @@
             this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(303, 36);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 16);
+            this.label2.Size = new System.Drawing.Size(90, 16);
             this.label2.TabIndex = 171;
             this.label2.Text = "Status prijema:";
             // 
@@ -379,7 +379,7 @@
             this.label16.ForeColor = System.Drawing.Color.Black;
             this.label16.Location = new System.Drawing.Point(129, 38);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(36, 16);
+            this.label16.Size = new System.Drawing.Size(35, 16);
             this.label16.TabIndex = 169;
             this.label16.Text = "ETA:";
             // 
@@ -410,7 +410,7 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(24, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 16);
+            this.label1.Size = new System.Drawing.Size(37, 16);
             this.label1.TabIndex = 167;
             this.label1.Text = "Šifra:";
             // 
@@ -421,7 +421,7 @@
             this.label17.ForeColor = System.Drawing.Color.Black;
             this.label17.Location = new System.Drawing.Point(619, 158);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(116, 16);
+            this.label17.Size = new System.Drawing.Size(115, 16);
             this.label17.TabIndex = 207;
             this.label17.Text = "Pl Vreme pripreme:";
             // 
@@ -454,7 +454,7 @@
             this.label19.ForeColor = System.Drawing.Color.Black;
             this.label19.Location = new System.Drawing.Point(787, 158);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(116, 16);
+            this.label19.Size = new System.Drawing.Size(115, 16);
             this.label19.TabIndex = 205;
             this.label19.Text = "PL Vreme otpreme:";
             // 
@@ -474,7 +474,7 @@
             this.label14.ForeColor = System.Drawing.Color.Black;
             this.label14.Location = new System.Drawing.Point(12, 158);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(43, 16);
+            this.label14.Size = new System.Drawing.Size(42, 16);
             this.label14.TabIndex = 201;
             this.label14.Text = "Lager:";
             // 
@@ -493,7 +493,7 @@
             this.label13.ForeColor = System.Drawing.Color.Black;
             this.label13.Location = new System.Drawing.Point(825, 12);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(79, 16);
+            this.label13.Size = new System.Drawing.Size(78, 16);
             this.label13.TabIndex = 199;
             this.label13.Text = "Broj plombe:";
             // 
@@ -514,7 +514,7 @@
             this.label11.ForeColor = System.Drawing.Color.Black;
             this.label11.Location = new System.Drawing.Point(382, 111);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(96, 16);
+            this.label11.Size = new System.Drawing.Size(95, 16);
             this.label11.TabIndex = 195;
             this.label11.Text = "Buking odlaska:";
             // 
@@ -534,7 +534,7 @@
             this.label10.ForeColor = System.Drawing.Color.Black;
             this.label10.Location = new System.Drawing.Point(188, 68);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(69, 16);
+            this.label10.Size = new System.Drawing.Size(68, 16);
             this.label10.TabIndex = 193;
             this.label10.Text = "Vrsta robe:";
             // 
@@ -555,7 +555,7 @@
             this.label9.ForeColor = System.Drawing.Color.Black;
             this.label9.Location = new System.Drawing.Point(188, 111);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(92, 16);
+            this.label9.Size = new System.Drawing.Size(91, 16);
             this.label9.TabIndex = 191;
             this.label9.Text = "Tip kontejnera:";
             // 
@@ -576,7 +576,7 @@
             this.label8.ForeColor = System.Drawing.Color.Black;
             this.label8.Location = new System.Drawing.Point(468, 65);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(114, 16);
+            this.label8.Size = new System.Drawing.Size(113, 16);
             this.label8.TabIndex = 189;
             this.label8.Text = "Vlasnik kontejnera:";
             // 
@@ -596,7 +596,7 @@
             this.label7.ForeColor = System.Drawing.Color.Black;
             this.label7.Location = new System.Drawing.Point(822, 63);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(60, 16);
+            this.label7.Size = new System.Drawing.Size(59, 16);
             this.label7.TabIndex = 187;
             this.label7.Text = "Primalac:";
             // 
@@ -616,7 +616,7 @@
             this.label6.ForeColor = System.Drawing.Color.Black;
             this.label6.Location = new System.Drawing.Point(640, 65);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 16);
+            this.label6.Size = new System.Drawing.Size(56, 16);
             this.label6.TabIndex = 185;
             this.label6.Text = "Špediter:";
             // 
@@ -635,7 +635,7 @@
             this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(90, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 16);
+            this.label4.Size = new System.Drawing.Size(44, 16);
             this.label4.TabIndex = 183;
             this.label4.Text = "Vagon:";
             // 
@@ -655,7 +655,7 @@
             this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(660, 12);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 16);
+            this.label5.Size = new System.Drawing.Size(95, 16);
             this.label5.TabIndex = 181;
             this.label5.Text = "Broj kontejnera:";
             // 
@@ -675,7 +675,7 @@
             this.label20.ForeColor = System.Drawing.Color.Black;
             this.label20.Location = new System.Drawing.Point(12, 12);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(49, 16);
+            this.label20.Size = new System.Drawing.Size(48, 16);
             this.label20.TabIndex = 179;
             this.label20.Text = "Stavka:";
             // 
@@ -695,7 +695,7 @@
             this.label21.ForeColor = System.Drawing.Color.Black;
             this.label21.Location = new System.Drawing.Point(12, 63);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(28, 16);
+            this.label21.Size = new System.Drawing.Size(27, 16);
             this.label21.TabIndex = 209;
             this.label21.Text = "RB:";
             // 
@@ -762,9 +762,9 @@
             this.panel1.Controls.Add(this.cboBukingOtpreme);
             this.panel1.Controls.Add(this.cboVrstaRobe);
             this.panel1.Controls.Add(this.label11);
-            this.panel1.Location = new System.Drawing.Point(12, 142);
+            this.panel1.Location = new System.Drawing.Point(12, 140);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1284, 261);
+            this.panel1.Size = new System.Drawing.Size(1280, 263);
             this.panel1.TabIndex = 210;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -832,7 +832,7 @@
             this.label32.ForeColor = System.Drawing.Color.Black;
             this.label32.Location = new System.Drawing.Point(385, 158);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(111, 16);
+            this.label32.Size = new System.Drawing.Size(110, 16);
             this.label32.TabIndex = 238;
             this.label32.Text = "Napomena stavke:";
             // 
@@ -880,7 +880,7 @@
             this.label28.ForeColor = System.Drawing.Color.Black;
             this.label28.Location = new System.Drawing.Point(188, 158);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(60, 16);
+            this.label28.Size = new System.Drawing.Size(59, 16);
             this.label28.TabIndex = 228;
             this.label28.Text = "Operater:";
             // 
@@ -909,7 +909,7 @@
             this.label12.ForeColor = System.Drawing.Color.Black;
             this.label12.Location = new System.Drawing.Point(715, 111);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(108, 16);
+            this.label12.Size = new System.Drawing.Size(107, 16);
             this.label12.TabIndex = 226;
             this.label12.Text = "Status kontejnera:";
             // 
@@ -928,7 +928,7 @@
             this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(64, 68);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 16);
+            this.label3.Size = new System.Drawing.Size(89, 16);
             this.label3.TabIndex = 224;
             this.label3.Text = "Broj plombe 2:";
             // 
@@ -947,7 +947,7 @@
             this.label27.ForeColor = System.Drawing.Color.Black;
             this.label27.Location = new System.Drawing.Point(12, 111);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(91, 16);
+            this.label27.Size = new System.Drawing.Size(90, 16);
             this.label27.TabIndex = 222;
             this.label27.Text = "Buking brodar:";
             // 
@@ -972,7 +972,7 @@
             this.label26.ForeColor = System.Drawing.Color.Black;
             this.label26.Location = new System.Drawing.Point(569, 12);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(38, 16);
+            this.label26.Size = new System.Drawing.Size(37, 16);
             this.label26.TabIndex = 220;
             this.label26.Text = "Neto:";
             // 
@@ -997,7 +997,7 @@
             this.label25.ForeColor = System.Drawing.Color.Black;
             this.label25.Location = new System.Drawing.Point(483, 12);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(36, 16);
+            this.label25.Size = new System.Drawing.Size(35, 16);
             this.label25.TabIndex = 219;
             this.label25.Text = "Tara:";
             // 
@@ -1022,7 +1022,7 @@
             this.label24.ForeColor = System.Drawing.Color.Black;
             this.label24.Location = new System.Drawing.Point(311, 12);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(55, 16);
+            this.label24.Size = new System.Drawing.Size(54, 16);
             this.label24.TabIndex = 218;
             this.label24.Text = "Br osov:";
             // 
@@ -1033,7 +1033,7 @@
             this.label34.ForeColor = System.Drawing.Color.Black;
             this.label34.Location = new System.Drawing.Point(1018, 12);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(258, 16);
+            this.label34.Size = new System.Drawing.Size(257, 16);
             this.label34.TabIndex = 177;
             this.label34.Text = "POSTUPAK SA ROBOM/KONTEJNEROM:";
             // 
@@ -1088,7 +1088,7 @@
             this.label23.ForeColor = System.Drawing.Color.Black;
             this.label23.Location = new System.Drawing.Point(395, 12);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(66, 16);
+            this.label23.Size = new System.Drawing.Size(65, 16);
             this.label23.TabIndex = 216;
             this.label23.Text = "Sop masa:";
             // 
@@ -1161,7 +1161,7 @@
             this.label22.ForeColor = System.Drawing.Color.Black;
             this.label22.Location = new System.Drawing.Point(230, 12);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(55, 16);
+            this.label22.Size = new System.Drawing.Size(54, 16);
             this.label22.TabIndex = 211;
             this.label22.Text = "Granica:";
             // 
@@ -1172,7 +1172,7 @@
             this.label33.ForeColor = System.Drawing.Color.Black;
             this.label33.Location = new System.Drawing.Point(957, 96);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(126, 16);
+            this.label33.Size = new System.Drawing.Size(125, 16);
             this.label33.TabIndex = 241;
             this.label33.Text = "Predefinisana poruka";
             // 
@@ -1238,7 +1238,7 @@
             this.label29.ForeColor = System.Drawing.Color.Black;
             this.label29.Location = new System.Drawing.Point(615, 112);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(76, 16);
+            this.label29.Size = new System.Drawing.Size(75, 16);
             this.label29.TabIndex = 215;
             this.label29.Text = "Ime vozača:";
             // 
@@ -1257,7 +1257,7 @@
             this.label30.ForeColor = System.Drawing.Color.Black;
             this.label30.Location = new System.Drawing.Point(615, 88);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(85, 16);
+            this.label30.Size = new System.Drawing.Size(84, 16);
             this.label30.TabIndex = 213;
             this.label30.Text = "Reg br vozila:";
             // 
@@ -1269,7 +1269,7 @@
             this.chkVoz.ForeColor = System.Drawing.Color.Black;
             this.chkVoz.Location = new System.Drawing.Point(20, 94);
             this.chkVoz.Name = "chkVoz";
-            this.chkVoz.Size = new System.Drawing.Size(65, 20);
+            this.chkVoz.Size = new System.Drawing.Size(64, 20);
             this.chkVoz.TabIndex = 216;
             this.chkVoz.Text = "Vozom";
             this.chkVoz.UseVisualStyleBackColor = true;
@@ -1281,7 +1281,7 @@
             this.chkTransport.ForeColor = System.Drawing.Color.Black;
             this.chkTransport.Location = new System.Drawing.Point(105, 94);
             this.chkTransport.Name = "chkTransport";
-            this.chkTransport.Size = new System.Drawing.Size(132, 20);
+            this.chkTransport.Size = new System.Drawing.Size(131, 20);
             this.chkTransport.TabIndex = 217;
             this.chkTransport.Text = "Predato transportu";
             this.chkTransport.UseVisualStyleBackColor = true;
@@ -1294,7 +1294,7 @@
             this.chkPoslatEmailNajava.ForeColor = System.Drawing.Color.Black;
             this.chkPoslatEmailNajava.Location = new System.Drawing.Point(302, 87);
             this.chkPoslatEmailNajava.Name = "chkPoslatEmailNajava";
-            this.chkPoslatEmailNajava.Size = new System.Drawing.Size(105, 20);
+            this.chkPoslatEmailNajava.Size = new System.Drawing.Size(104, 20);
             this.chkPoslatEmailNajava.TabIndex = 218;
             this.chkPoslatEmailNajava.Text = "Najava E-mail";
             this.chkPoslatEmailNajava.UseVisualStyleBackColor = true;
@@ -1306,7 +1306,7 @@
             this.chkPoslatEmailPrijem.ForeColor = System.Drawing.Color.Black;
             this.chkPoslatEmailPrijem.Location = new System.Drawing.Point(444, 88);
             this.chkPoslatEmailPrijem.Name = "chkPoslatEmailPrijem";
-            this.chkPoslatEmailPrijem.Size = new System.Drawing.Size(101, 20);
+            this.chkPoslatEmailPrijem.Size = new System.Drawing.Size(100, 20);
             this.chkPoslatEmailPrijem.TabIndex = 219;
             this.chkPoslatEmailPrijem.Text = "Prijem e-mail";
             this.chkPoslatEmailPrijem.UseVisualStyleBackColor = true;
@@ -1327,7 +1327,7 @@
             this.label31.ForeColor = System.Drawing.Color.Black;
             this.label31.Location = new System.Drawing.Point(958, 36);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(113, 16);
+            this.label31.Size = new System.Drawing.Size(112, 16);
             this.label31.TabIndex = 221;
             this.label31.Text = "Napomena prijema";
             // 
@@ -1338,7 +1338,7 @@
             this.chkCIRUradjen.ForeColor = System.Drawing.Color.Black;
             this.chkCIRUradjen.Location = new System.Drawing.Point(302, 112);
             this.chkCIRUradjen.Name = "chkCIRUradjen";
-            this.chkCIRUradjen.Size = new System.Drawing.Size(92, 20);
+            this.chkCIRUradjen.Size = new System.Drawing.Size(91, 20);
             this.chkCIRUradjen.TabIndex = 222;
             this.chkCIRUradjen.Text = "CIR urađen";
             this.chkCIRUradjen.UseVisualStyleBackColor = true;

@@ -203,15 +203,16 @@ namespace Saobracaj.Dokumenta
                 {
                     chkPlomba2.Checked = false;
                 }
-
+                /*
                 if (Convert.ToInt32(dr["Plomba1"].ToString()) == 1)
                 {
                     chkPlomba1.Checked = true;
-                }
+                }0
                 else
                 {
                     chkPlomba1.Checked = false;
                 }
+                */
 
                 if (Convert.ToInt32(dr["Prevoz"].ToString()) == 1)
                 {

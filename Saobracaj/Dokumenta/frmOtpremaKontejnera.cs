@@ -184,6 +184,17 @@ namespace Saobracaj.Dokumeta
             dtpVremeOdlaska.Value = DateTime.Now;
             dtpDatumOtpreme.Value = DateTime.Now;
             dtpDatumOtpreme.Enabled = true;
+
+            if (chkVoz.Checked == true)
+            {
+                cboStatusKontejnera.SelectedValue = 5;
+
+
+            }
+            else
+            {
+                cboStatusKontejnera.SelectedValue = 4;
+            }
         }
 
         private void VratiPodatkeMax()

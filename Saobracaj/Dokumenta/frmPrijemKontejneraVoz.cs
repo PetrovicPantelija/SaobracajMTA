@@ -80,6 +80,7 @@ namespace TrackModal.Dokumeta
                 label23.Visible = false;
                 txtSopstvenaMasa.Visible = false;
             }
+            FillCombo();
         }
 
         public frmPrijemKontejneraVoz(int sifra, string Korisnik, int Vozom)
@@ -120,8 +121,93 @@ namespace TrackModal.Dokumeta
                 //  toolStripButton6.Visible = false;
             }
             txtSifra.Text = sifra.ToString();
+            FillCombo();
             VratiPodatke(sifra);
             RefreshDataGrid();
+        }
+
+        private void FillCombo()
+        {
+            var select5 = " Select Distinct ID, (Cast(BrVoza as nvarchar(6)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12))) as IDVoza From Voz where dolazeci = 0";
+            var s_connection5 = frmLogovanje.connectionString;
+            SqlConnection myConnection5 = new SqlConnection(s_connection5);
+            var c5 = new SqlConnection(s_connection5);
+            var dataAdapter5 = new SqlDataAdapter(select5, c5);
+
+            var commandBuilder5 = new SqlCommandBuilder(dataAdapter5);
+            var ds5 = new DataSet();
+            dataAdapter5.Fill(ds5);
+            cboBukingOtpreme.DataSource = ds5.Tables[0];
+            cboBukingOtpreme.DisplayMember = "IdVoza";
+            cboBukingOtpreme.ValueMember = "ID";
+
+            var select6 = " Select Distinct ID, (Cast(id as nvarchar(3)) + '-' + Naziv) as Naziv From StatusRobe Order by Naziv ";
+            var s_connection6 = frmLogovanje.connectionString;
+            SqlConnection myConnection6 = new SqlConnection(s_connection6);
+            var c6 = new SqlConnection(s_connection6);
+            var dataAdapter6 = new SqlDataAdapter(select6, c6);
+
+            var commandBuilder6 = new SqlCommandBuilder(dataAdapter6);
+            var ds6 = new DataSet();
+            dataAdapter6.Fill(ds6);
+            cboStatusKontejnera.DataSource = ds6.Tables[0];
+            cboStatusKontejnera.DisplayMember = "Naziv";
+            cboStatusKontejnera.ValueMember = "ID";
+            /*
+            var select7 = " Select Distinct ID, IdVoza From BukingVoza ";
+            var s_connection7 = frmLogovanje.connectionString;
+            SqlConnection myConnection7 = new SqlConnection(s_connection7);
+            var c7 = new SqlConnection(s_connection7);
+            var dataAdapter7 = new SqlDataAdapter(select7, c7);
+
+            var commandBuilder7 = new SqlCommandBuilder(dataAdapter7);
+            var ds7 = new DataSet();
+            dataAdapter7.Fill(ds7);
+            cboBukingOtpreme.DataSource = ds7.Tables[0];
+            cboBukingOtpreme.DisplayMember = "IdVoza";
+            cboBukingOtpreme.ValueMember = "ID";
+            */
+            var select8 = "  Select Distinct ID, (Cast(BrVoza as nvarchar(6)) + '-' + Relacija) as IdVoza   From Voz ";
+            var s_connection8 = frmLogovanje.connectionString;
+            SqlConnection myConnection8 = new SqlConnection(s_connection8);
+            var c8 = new SqlConnection(s_connection8);
+            var dataAdapter8 = new SqlDataAdapter(select8, c8);
+
+            var commandBuilder8 = new SqlCommandBuilder(dataAdapter8);
+            var ds8 = new DataSet();
+            dataAdapter8.Fill(ds8);
+            cboBukingPrijema.DataSource = ds8.Tables[0];
+            cboBukingPrijema.DisplayMember = "IdVoza";
+            cboBukingPrijema.ValueMember = "ID";
+            //where Organizator = 1
+
+
+
+            var select10 = " Select Distinct ID, Naziv  From PredefinisanePoruke order by ID";
+            var s_connection10 = frmLogovanje.connectionString;
+            SqlConnection myConnection10 = new SqlConnection(s_connection10);
+            var c10 = new SqlConnection(s_connection10);
+            var dataAdapter10 = new SqlDataAdapter(select10, c10);
+
+            var commandBuilder10 = new SqlCommandBuilder(dataAdapter10);
+            var ds10 = new DataSet();
+            dataAdapter10.Fill(ds10);
+            cboPredefinisanePoruke.DataSource = ds10.Tables[0];
+            cboPredefinisanePoruke.DisplayMember = "Naziv";
+            cboPredefinisanePoruke.ValueMember = "ID";
+
+            usao = 1;
+
+            var select11 = "select ID,RTrim(Naziv) as Naziv from VrstePostupakaUvoz order by Naziv";
+            SqlConnection conn = new SqlConnection(connect);
+            var da11 = new SqlDataAdapter(select11, conn);
+            var ds11 = new DataSet();
+            da11.Fill(ds11);
+            cboPostupak.DataSource = ds11.Tables[0];
+            cboPostupak.DisplayMember = "Naziv";
+            cboPostupak.ValueMember = "ID";
+
+
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -134,6 +220,16 @@ namespace TrackModal.Dokumeta
             dtpVremeOdlaska.Value = DateTime.Now;
             dtpDatumPrijema.Value = DateTime.Now;
             dtpDatumPrijema.Enabled = true;
+            if (chkVoz.Checked == true)
+            {
+                cboStatusKontejnera.SelectedValue = 1;
+
+
+            }
+            else
+            {
+                cboStatusKontejnera.SelectedValue = 2;
+            }
            
 
         }
@@ -241,7 +337,8 @@ namespace TrackModal.Dokumeta
        "      ON PrijemKontejneraVozStavke.VlasnikKontejnera = Partnerji_2.PaSifra INNER JOIN TipKontenjera" +
        "       ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID" +
       "        INNER JOIN  NHM ON PrijemKontejneraVozStavke.VrstaRobe = NHM.ID" +
-       "       Left JOIN  Voz ON PrijemKontejneraVozStavke.IdVoza = Voz.ID " +
+       "        INNER JOIN  PrijemKontejneraVoz ON PrijemKontejneraVozStavke.IdNAdredjenog = PrijemKontejneraVoz.ID" +
+       "       INNER JOIN  Voz ON PrijemKontejneraVoz.IdVoza = Voz.BrVoza " +
                            " where IdNadredjenog = " + txtSifra.Text + " order by RB";
 
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;;
@@ -568,84 +665,7 @@ namespace TrackModal.Dokumeta
             //where Posiljalac = 1
            
 
-            var select5 = " Select Distinct ID, (Cast(BrVoza as nvarchar(6)) + '-' + Relacija + '-' + Cast(Cast(VremePolaskaO as DateTime) as Nvarchar(12))) as IDVoza From Voz where dolazeci = 0";
-            var s_connection5 = frmLogovanje.connectionString;
-            SqlConnection myConnection5 = new SqlConnection(s_connection5);
-            var c5 = new SqlConnection(s_connection5);
-            var dataAdapter5 = new SqlDataAdapter(select5, c5);
-
-            var commandBuilder5 = new SqlCommandBuilder(dataAdapter5);
-            var ds5 = new DataSet();
-            dataAdapter5.Fill(ds5);
-            cboBukingOtpreme.DataSource = ds5.Tables[0];
-            cboBukingOtpreme.DisplayMember = "IdVoza";
-            cboBukingOtpreme.ValueMember = "ID";
-
-            var select6 = " Select Distinct ID, (Cast(id as nvarchar(3)) + '-' + Naziv) as Naziv From StatusRobe Order by Naziv ";
-            var s_connection6 = frmLogovanje.connectionString;
-            SqlConnection myConnection6 = new SqlConnection(s_connection6);
-            var c6 = new SqlConnection(s_connection6);
-            var dataAdapter6 = new SqlDataAdapter(select6, c6);
-
-            var commandBuilder6 = new SqlCommandBuilder(dataAdapter6);
-            var ds6 = new DataSet();
-            dataAdapter6.Fill(ds6);
-            cboStatusKontejnera.DataSource = ds6.Tables[0];
-            cboStatusKontejnera.DisplayMember = "Naziv";
-            cboStatusKontejnera.ValueMember = "ID";
-            /*
-            var select7 = " Select Distinct ID, IdVoza From BukingVoza ";
-            var s_connection7 = frmLogovanje.connectionString;
-            SqlConnection myConnection7 = new SqlConnection(s_connection7);
-            var c7 = new SqlConnection(s_connection7);
-            var dataAdapter7 = new SqlDataAdapter(select7, c7);
-
-            var commandBuilder7 = new SqlCommandBuilder(dataAdapter7);
-            var ds7 = new DataSet();
-            dataAdapter7.Fill(ds7);
-            cboBukingOtpreme.DataSource = ds7.Tables[0];
-            cboBukingOtpreme.DisplayMember = "IdVoza";
-            cboBukingOtpreme.ValueMember = "ID";
-            */
-            var select8 = "  Select Distinct ID, (Cast(BrVoza as nvarchar(6)) + '-' + Relacija) as IdVoza   From Voz ";
-            var s_connection8 = frmLogovanje.connectionString;
-            SqlConnection myConnection8 = new SqlConnection(s_connection8);
-            var c8 = new SqlConnection(s_connection8);
-            var dataAdapter8 = new SqlDataAdapter(select8, c8);
-
-            var commandBuilder8 = new SqlCommandBuilder(dataAdapter8);
-            var ds8 = new DataSet();
-            dataAdapter8.Fill(ds8);
-            cboBukingPrijema.DataSource = ds8.Tables[0];
-            cboBukingPrijema.DisplayMember = "IdVoza";
-            cboBukingPrijema.ValueMember = "ID";
-            //where Organizator = 1
-        
-
-
-            var select10 = " Select Distinct ID, Naziv  From PredefinisanePoruke order by ID";
-            var s_connection10 = frmLogovanje.connectionString;
-            SqlConnection myConnection10 = new SqlConnection(s_connection10);
-            var c10 = new SqlConnection(s_connection10);
-            var dataAdapter10 = new SqlDataAdapter(select10, c10);
-
-            var commandBuilder10 = new SqlCommandBuilder(dataAdapter10);
-            var ds10 = new DataSet();
-            dataAdapter10.Fill(ds10);
-            cboPredefinisanePoruke.DataSource = ds10.Tables[0];
-            cboPredefinisanePoruke.DisplayMember = "Naziv";
-            cboPredefinisanePoruke.ValueMember = "ID";
-
-            usao = 1;
-
-            var select11 = "select ID,RTrim(Naziv) as Naziv from VrstePostupakaUvoz order by Naziv";
-            SqlConnection conn = new SqlConnection(connect);
-            var da11=new SqlDataAdapter(select11, conn);
-            var ds11 = new DataSet();
-            da11.Fill(ds11);
-            cboPostupak.DataSource = ds11.Tables[0];
-            cboPostupak.DisplayMember = "Naziv";
-            cboPostupak.ValueMember = "ID";
+    
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
