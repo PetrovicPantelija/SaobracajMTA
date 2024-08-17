@@ -2376,6 +2376,96 @@ namespace Saobracaj.Izvoz
                 }
             }
         }
+        public void InsVaganje(string BrojKontejnera,int VrstaKontejnera,string VagarskaPotvrdaBroj,decimal Bruto,decimal Tara,decimal Neto,DateTime DatumMerenja)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsertVaganje";
+            cmd.CommandType = CommandType.StoredProcedure;
 
+            SqlParameter brKont = new SqlParameter();
+            brKont.ParameterName = "@BrojKontejnera";
+            brKont.SqlDbType = SqlDbType.NVarChar;
+            brKont.Size = 100;
+            brKont.Direction = ParameterDirection.Input;
+            brKont.Value = BrojKontejnera;
+            cmd.Parameters.Add(brKont);
+
+            SqlParameter vrsta = new SqlParameter();
+            vrsta.ParameterName = "@VrstaKontejnera";
+            vrsta.SqlDbType= SqlDbType.Int;
+            vrsta.Direction = ParameterDirection.Input;
+            vrsta.Value = VrstaKontejnera;
+            cmd.Parameters.Add(vrsta);
+
+            SqlParameter potrvrda = new SqlParameter();
+            potrvrda.ParameterName = "@VagarskaPotvrdaBroj";
+            potrvrda.SqlDbType = SqlDbType.NVarChar;
+            potrvrda.Direction = ParameterDirection.Input;
+            potrvrda.Value = VagarskaPotvrdaBroj;
+            cmd.Parameters.Add(potrvrda);
+
+            SqlParameter bruto = new SqlParameter();
+            bruto.ParameterName = "@Bruto";
+            bruto.SqlDbType = SqlDbType.Decimal;
+            bruto.Direction= ParameterDirection.Input;
+            bruto.Value = Bruto;
+            cmd.Parameters.Add(bruto);
+
+            SqlParameter tara = new SqlParameter();
+            tara.ParameterName = "@Tara";
+            tara.SqlDbType = SqlDbType.Decimal;
+            tara.Direction= ParameterDirection.Input;
+            tara.Value= Tara;
+            cmd.Parameters.Add(tara);
+
+            SqlParameter neto = new SqlParameter();
+            neto.ParameterName = "@Neto";
+            neto.SqlDbType = SqlDbType.Decimal;
+            neto.Direction= ParameterDirection.Input;
+            neto.Value = Neto;
+            cmd.Parameters.Add(neto);
+
+            SqlParameter datum = new SqlParameter();
+            datum.ParameterName = "@DatumMerenja";
+            datum.SqlDbType = SqlDbType.DateTime;
+            datum.Direction= ParameterDirection.Input;
+            datum.Value = DatumMerenja;
+            cmd.Parameters.Add(datum);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
     }
 }

@@ -1712,6 +1712,18 @@
     <Compile Include="Izvoz\TerminalOpredeljenje.Designer.cs">
       <DependentUpon>TerminalOpredeljenje.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\Vaganje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\Vaganje.Designer.cs">
+      <DependentUpon>Vaganje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvoz\VaganjePregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\VaganjePregled.Designer.cs">
+      <DependentUpon>VaganjePregled.cs</DependentUpon>
+    </Compile>
     <Compile Include="MailRepository.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
@@ -4256,6 +4268,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\TerminalOpredeljenje.resx">
       <DependentUpon>TerminalOpredeljenje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\Vaganje.resx">
+      <DependentUpon>Vaganje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\VaganjePregled.resx">
+      <DependentUpon>VaganjePregled.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
