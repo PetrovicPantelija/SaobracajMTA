@@ -19,6 +19,7 @@ using System.IO;
 using Saobracaj.Pantheon_Export;
 using Microsoft.Identity.Client;
 using Saobracaj.Uvoz;
+using Saobracaj.Izvoz;
 
 namespace Saobracaj.Sifarnici
 {
@@ -245,6 +246,12 @@ namespace Saobracaj.Sifarnici
         private void label1_Click(object sender, EventArgs e)
         {
             RadniNalozi.PrijemnicaPregled frm = new RadniNalozi.PrijemnicaPregled();
+            frm.Show();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            VaganjePregled frm = new VaganjePregled();
             frm.Show();
         }
     }

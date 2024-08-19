@@ -136,6 +136,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Izveštaj vaganja";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // dataGridView1
             // 
@@ -148,6 +149,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(581, 246);
             this.dataGridView1.TabIndex = 2;
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // txtKontejner
             // 
@@ -225,7 +227,7 @@
             this.Controls.Add(this.label1);
             this.Name = "Vaganje";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Vaganje";
+            this.Text = "2";
             this.Load += new System.EventHandler(this.Vaganje_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

@@ -94,6 +94,23 @@ namespace Saobracaj.Izvoz
                 txtNeto.Text = neto.ToString();
             }
         }
+        int ID;
+        private void dataGridView1_SelectionChanged(object sender, EventArgs e)
+        {
+            foreach(DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected)
+                {
+                    ID = Convert.ToInt32(row.Cells["ID"].Value.ToString());
+                }
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            IzvestajVaganja frm = new IzvestajVaganja(ID);
+            frm.Show();
+        }
     }
     
 }

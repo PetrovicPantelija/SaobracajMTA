@@ -1700,6 +1700,12 @@
     <Compile Include="Izvoz\InsertNaslovStatusaVozila.cs" />
     <Compile Include="Izvoz\InsertValute.cs" />
     <Compile Include="Izvoz\InsertVrstePlombi.cs" />
+    <Compile Include="Izvoz\IzvestajVaganja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\IzvestajVaganja.Designer.cs">
+      <DependentUpon>IzvestajVaganja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\IzvozOpredeljenje.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2773,6 +2779,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TESTIRANJEDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TestiranjeDataSet17.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestiranjeDataSet17.xsd</DependentUpon>
     </Compile>
     <Compile Include="TESTIRANJEDataSet1TA.Designer.cs">
       <DependentUpon>TESTIRANJEDataSet1TA.xsd</DependentUpon>
@@ -4263,6 +4274,9 @@
     <EmbeddedResource Include="Izvoz\frmVrstePlombi.resx">
       <DependentUpon>frmVrstePlombi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\IzvestajVaganja.resx">
+      <DependentUpon>IzvestajVaganja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\IzvozOpredeljenje.resx">
       <DependentUpon>IzvozOpredeljenje.cs</DependentUpon>
     </EmbeddedResource>
@@ -4275,6 +4289,7 @@
     <EmbeddedResource Include="Izvoz\VaganjePregled.resx">
       <DependentUpon>VaganjePregled.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\VaganjeRpt.rdlc" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -5319,6 +5334,17 @@
     </None>
     <None Include="TESTIRANJEDataSet.xss">
       <DependentUpon>TESTIRANJEDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TestiranjeDataSet17.xsc">
+      <DependentUpon>TestiranjeDataSet17.xsd</DependentUpon>
+    </None>
+    <None Include="TestiranjeDataSet17.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TestiranjeDataSet17.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TestiranjeDataSet17.xss">
+      <DependentUpon>TestiranjeDataSet17.xsd</DependentUpon>
     </None>
     <None Include="TESTIRANJEDataSet1TA.xsc">
       <DependentUpon>TESTIRANJEDataSet1TA.xsd</DependentUpon>
