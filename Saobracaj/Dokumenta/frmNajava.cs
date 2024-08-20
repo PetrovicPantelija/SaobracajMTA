@@ -3582,6 +3582,17 @@ namespace Saobracaj.Dokumenta
             }
         }
 
+        private void toolStripButton13_Click(object sender, EventArgs e)
+        {
+            Dokumenta.LocoTrackTA frm = new LocoTrackTA();
+            frm.Show();
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
 
         /*
         frmNajavaStavkePorudzbine nsp = new frmNajavaStavkePorudzbine(Convert.ToInt32(cboPlatilac.SelectedValue));

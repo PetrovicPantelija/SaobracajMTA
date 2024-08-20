@@ -262,6 +262,11 @@ namespace Saobracaj.Pantheon_Export
 
         }
 
+        private void tsDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
         int posao;
         private void button1_Click(object sender, EventArgs e)
         {

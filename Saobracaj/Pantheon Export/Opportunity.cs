@@ -137,6 +137,8 @@ namespace Saobracaj.Pantheon_Export
             }
             ClearFormControls(this);
             status = false;
+
+            
         }
 
         private void tsDelete_Click(object sender, EventArgs e)

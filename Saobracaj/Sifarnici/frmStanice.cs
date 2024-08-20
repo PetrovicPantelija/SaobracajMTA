@@ -46,7 +46,7 @@ namespace Saobracaj.Sifarnici
                 upd.UpdStanice(Convert.ToInt32(txtSifra.Text), txtOpis.Text, pomGranicna, txtKod.Text, cboDrzava.Text, Convert.ToDouble(txtLongitude.Value), Convert.ToDouble(txtLatitude.Value), txtPrelaz.Text);
                 status = false;
                 txtSifra.Enabled = false;
-                RefreshDataGrid();
+               // RefreshDataGrid();
             }
         }
 

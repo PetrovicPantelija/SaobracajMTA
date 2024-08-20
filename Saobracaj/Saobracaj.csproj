@@ -1380,6 +1380,12 @@
     <Compile Include="Dokumenta\InsertUzrociKasnjenjaLok.cs" />
     <Compile Include="Dokumenta\InsertVozPaket.cs" />
     <Compile Include="Dokumenta\InsertVucaStatusi.cs" />
+    <Compile Include="Dokumenta\LocoTrackTA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\LocoTrackTA.Designer.cs">
+      <DependentUpon>LocoTrackTA.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\PivotTable.cs" />
     <Compile Include="Dokumenta\frmTeretnicaTerenIzmena.cs">
       <SubType>Form</SubType>
@@ -1694,6 +1700,12 @@
     <Compile Include="Izvoz\InsertNaslovStatusaVozila.cs" />
     <Compile Include="Izvoz\InsertValute.cs" />
     <Compile Include="Izvoz\InsertVrstePlombi.cs" />
+    <Compile Include="Izvoz\IzvestajVaganja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\IzvestajVaganja.Designer.cs">
+      <DependentUpon>IzvestajVaganja.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\IzvozOpredeljenje.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1705,6 +1717,18 @@
     </Compile>
     <Compile Include="Izvoz\TerminalOpredeljenje.Designer.cs">
       <DependentUpon>TerminalOpredeljenje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvoz\Vaganje.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\Vaganje.Designer.cs">
+      <DependentUpon>Vaganje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvoz\VaganjePregled.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\VaganjePregled.Designer.cs">
+      <DependentUpon>VaganjePregled.cs</DependentUpon>
     </Compile>
     <Compile Include="MailRepository.cs" />
     <Compile Include="Main.cs">
@@ -2755,6 +2779,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TESTIRANJEDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TestiranjeDataSet17.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestiranjeDataSet17.xsd</DependentUpon>
     </Compile>
     <Compile Include="TESTIRANJEDataSet1TA.Designer.cs">
       <DependentUpon>TESTIRANJEDataSet1TA.xsd</DependentUpon>
@@ -4070,6 +4099,9 @@
       <DependentUpon>frmZarade.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmZaradeMasinovodje.rdlc" />
+    <EmbeddedResource Include="Dokumenta\LocoTrackTA.resx">
+      <DependentUpon>LocoTrackTA.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\PrijemNaSkladiste.resx">
       <DependentUpon>PrijemNaSkladiste.cs</DependentUpon>
     </EmbeddedResource>
@@ -4242,12 +4274,22 @@
     <EmbeddedResource Include="Izvoz\frmVrstePlombi.resx">
       <DependentUpon>frmVrstePlombi.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\IzvestajVaganja.resx">
+      <DependentUpon>IzvestajVaganja.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\IzvozOpredeljenje.resx">
       <DependentUpon>IzvozOpredeljenje.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\TerminalOpredeljenje.resx">
       <DependentUpon>TerminalOpredeljenje.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\Vaganje.resx">
+      <DependentUpon>Vaganje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\VaganjePregled.resx">
+      <DependentUpon>VaganjePregled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\VaganjeRpt.rdlc" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -5293,6 +5335,17 @@
     <None Include="TESTIRANJEDataSet.xss">
       <DependentUpon>TESTIRANJEDataSet.xsd</DependentUpon>
     </None>
+    <None Include="TestiranjeDataSet17.xsc">
+      <DependentUpon>TestiranjeDataSet17.xsd</DependentUpon>
+    </None>
+    <None Include="TestiranjeDataSet17.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TestiranjeDataSet17.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TestiranjeDataSet17.xss">
+      <DependentUpon>TestiranjeDataSet17.xsd</DependentUpon>
+    </None>
     <None Include="TESTIRANJEDataSet1TA.xsc">
       <DependentUpon>TESTIRANJEDataSet1TA.xsd</DependentUpon>
     </None>
@@ -5636,6 +5689,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Dokumenta\map.html" />
     <Content Include="itextsharp.dll" />
     <None Include="Resources\mtaLogo.JPG" />
     <None Include="Resources\LEGET-colorP.jpg" />

@@ -388,7 +388,7 @@ namespace Saobracaj.Pantheon_Export
 
         private void tsDelete_Click(object sender, EventArgs e)
         {
-            if (korisnik.TrimEnd() == "mikic.d")
+            if (frmLogovanje.user.ToString().TrimEnd() == "mikic.d" || frmLogovanje.user.ToString().TrimEnd() == "cvetkovic.a" || frmLogovanje.user.ToString().TrimEnd() == "jovanovic.v")
             {
                 InsertPatheonExport ins = new InsertPatheonExport();
                 ins.DelPredvidjanje(Convert.ToInt32(txtID.Text));

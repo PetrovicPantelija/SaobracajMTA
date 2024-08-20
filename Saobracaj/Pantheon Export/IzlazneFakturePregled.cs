@@ -405,7 +405,7 @@ namespace Saobracaj.Pantheon_Export
         }
         private void btnObrisi_Click(object sender, EventArgs e)
         {
-            if (frmLogovanje.user.ToString().TrimEnd() == "mikic.d")
+            if (frmLogovanje.user.ToString().TrimEnd() == "mikic.d" || frmLogovanje.user.ToString().TrimEnd() == "cvetkovic.a" || frmLogovanje.user.ToString().TrimEnd() == "jovanovic.v")
             {
                 InsertPatheonExport ins = new InsertPatheonExport();
                 foreach (DataGridViewRow row in dataGridView1.Rows)
