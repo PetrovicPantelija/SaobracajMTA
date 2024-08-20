@@ -51,7 +51,8 @@ namespace Saobracaj.Uvoz
                 chkUvoz.Checked = true;
 
             }
-            if (Vozom == 0 ) { Kamion = 1; // Ynaci Prijem Kamiona platforme
+            if (Vozom == 0 ) 
+            { Kamion = 1; // Ynaci Prijem Kamiona platforme
                                           }
             else
             {
@@ -116,6 +117,7 @@ namespace Saobracaj.Uvoz
 
         private void tsSave_Click(object sender, EventArgs e)
         {
+            //Kamion = 1 znaci da je voz
             if (Kamion == 1)
             {
                 int i = ProveriDaLIPostojiVoz(Convert.ToInt32(cboBukingPrijema.SelectedValue));
@@ -363,9 +365,11 @@ namespace Saobracaj.Uvoz
             {
                 if (Kamion == 1)
                 {
+                    //Ako jer kamion 1 onda prenosim voz
                     InsertUvozKonacna ins = new InsertUvozKonacna();
                     
                     {
+                        //OVaj poziv vazi samo za Voz
                         ins.PrenesiPlanUtovaraUPrijemVoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
                     }
 

@@ -6644,6 +6644,12 @@ namespace Saobracaj
             frmDodatneUsluge dodu = new frmDodatneUsluge();
             dodu.Show();
         }
+
+        private void toolStripButton372_Click(object sender, EventArgs e)
+        {
+            Sifarnici.frmJediniceMere jm = new frmJediniceMere();
+            jm.Show();
+        }
     }
     }
 

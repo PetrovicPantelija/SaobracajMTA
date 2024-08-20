@@ -235,6 +235,7 @@ namespace Saobracaj.Uvoz
             this.label66 = new System.Windows.Forms.Label();
             this.cboScenario = new System.Windows.Forms.ComboBox();
             this.label67 = new System.Windows.Forms.Label();
+            this.button20 = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaraK)).BeginInit();
@@ -580,9 +581,9 @@ namespace Saobracaj.Uvoz
             this.label2.Location = new System.Drawing.Point(1042, 520);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(127, 13);
+            this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 66;
-            this.label2.Text = "ETA broda u Luku Rijeka";
+            this.label2.Text = "ATA Rijeka";
             // 
             // txtPIN
             // 
@@ -864,7 +865,7 @@ namespace Saobracaj.Uvoz
             this.cbOspedicija.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbOspedicija.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbOspedicija.FormattingEnabled = true;
-            this.cbOspedicija.Location = new System.Drawing.Point(613, 468);
+            this.cbOspedicija.Location = new System.Drawing.Point(615, 435);
             this.cbOspedicija.Margin = new System.Windows.Forms.Padding(2);
             this.cbOspedicija.Name = "cbOspedicija";
             this.cbOspedicija.Size = new System.Drawing.Size(188, 21);
@@ -875,7 +876,7 @@ namespace Saobracaj.Uvoz
             this.cbOcarina.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbOcarina.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbOcarina.FormattingEnabled = true;
-            this.cbOcarina.Location = new System.Drawing.Point(614, 429);
+            this.cbOcarina.Location = new System.Drawing.Point(616, 396);
             this.cbOcarina.Margin = new System.Windows.Forms.Padding(2);
             this.cbOcarina.Name = "cbOcarina";
             this.cbOcarina.Size = new System.Drawing.Size(190, 21);
@@ -917,22 +918,22 @@ namespace Saobracaj.Uvoz
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(614, 453);
+            this.label27.Location = new System.Drawing.Point(616, 420);
             this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(101, 13);
+            this.label27.Size = new System.Drawing.Size(163, 13);
             this.label27.TabIndex = 103;
-            this.label27.Text = "Odredišna Špedicija";
+            this.label27.Text = "Špediter na odredišnoj carinarnici";
             // 
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(614, 414);
+            this.label26.Location = new System.Drawing.Point(616, 381);
             this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(60, 13);
+            this.label26.Size = new System.Drawing.Size(110, 13);
             this.label26.TabIndex = 104;
-            this.label26.Text = "Carinarnica";
+            this.label26.Text = "Odredišna carinarnica";
             this.label26.Click += new System.EventHandler(this.label26_Click);
             // 
             // label24
@@ -1284,7 +1285,7 @@ namespace Saobracaj.Uvoz
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(333, 172);
+            this.groupBox1.Size = new System.Drawing.Size(336, 137);
             this.groupBox1.TabIndex = 141;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Plan utovara";
@@ -1315,7 +1316,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView5.Location = new System.Drawing.Point(112, 6);
             this.dataGridView5.Name = "dataGridView5";
             this.dataGridView5.RowHeadersWidth = 51;
-            this.dataGridView5.Size = new System.Drawing.Size(0, 67);
+            this.dataGridView5.Size = new System.Drawing.Size(3, 32);
             this.dataGridView5.TabIndex = 131;
             this.dataGridView5.Visible = false;
             // 
@@ -2058,6 +2059,7 @@ namespace Saobracaj.Uvoz
             this.label59.Size = new System.Drawing.Size(80, 13);
             this.label59.TabIndex = 195;
             this.label59.Text = "Moguće usluge";
+            this.label59.Visible = false;
             // 
             // label60
             // 
@@ -2475,7 +2477,7 @@ namespace Saobracaj.Uvoz
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(611, 491);
+            this.label28.Location = new System.Drawing.Point(613, 458);
             this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(125, 13);
@@ -2485,7 +2487,7 @@ namespace Saobracaj.Uvoz
             // txtKontaktOsobeSpeditera
             // 
             this.txtKontaktOsobeSpeditera.BackColor = System.Drawing.SystemColors.Info;
-            this.txtKontaktOsobeSpeditera.Location = new System.Drawing.Point(613, 505);
+            this.txtKontaktOsobeSpeditera.Location = new System.Drawing.Point(615, 472);
             this.txtKontaktOsobeSpeditera.Margin = new System.Windows.Forms.Padding(2);
             this.txtKontaktOsobeSpeditera.Multiline = true;
             this.txtKontaktOsobeSpeditera.Name = "txtKontaktOsobeSpeditera";
@@ -2543,12 +2545,25 @@ namespace Saobracaj.Uvoz
             this.label67.TabIndex = 459;
             this.label67.Text = "Izabrani scenario";
             // 
+            // button20
+            // 
+            this.button20.BackColor = System.Drawing.Color.Maroon;
+            this.button20.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button20.Location = new System.Drawing.Point(803, 435);
+            this.button20.Name = "button20";
+            this.button20.Size = new System.Drawing.Size(21, 21);
+            this.button20.TabIndex = 460;
+            this.button20.Text = "K";
+            this.button20.UseVisualStyleBackColor = false;
+            this.button20.Click += new System.EventHandler(this.button20_Click);
+            // 
             // frmUvozKonacna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1272, 699);
+            this.Controls.Add(this.button20);
             this.Controls.Add(this.cboScenario);
             this.Controls.Add(this.label67);
             this.Controls.Add(this.txtKoletaTer);
@@ -2934,5 +2949,6 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.Label label66;
         private System.Windows.Forms.ComboBox cboScenario;
         private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.Button button20;
     }
 }

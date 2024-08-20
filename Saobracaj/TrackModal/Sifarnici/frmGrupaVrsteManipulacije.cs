@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.TrackModal.Sifarnici
 {
-    public partial class frmGrupaVrsteManipulacije : Form
+    public partial class frmGrupaVrsteManipulacije : Syncfusion.Windows.Forms.Office2010Form
     {
         string KorisnikCene = "sa";
         bool status = false;

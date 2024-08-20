@@ -2936,6 +2936,15 @@ namespace Saobracaj.Uvoz
         {
            
         }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            using (var detailForm = new Dokumenta.frmKontaktOsobe(Convert.ToInt32(cbOcarina.SelectedValue), Convert.ToInt32(cbOspedicija.SelectedValue)))
+            {
+                detailForm.ShowDialog();
+                txtKontaktOsobeSpeditera.Text = detailForm.GetKontaktSpeditera();
+            }
+        }
     }
 }
 

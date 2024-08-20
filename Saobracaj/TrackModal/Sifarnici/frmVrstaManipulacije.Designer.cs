@@ -313,7 +313,7 @@
             // txtOznaka
             // 
             this.txtOznaka.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtOznaka.Location = new System.Drawing.Point(689, 54);
+            this.txtOznaka.Location = new System.Drawing.Point(672, 107);
             this.txtOznaka.Name = "txtOznaka";
             this.txtOznaka.Size = new System.Drawing.Size(157, 22);
             this.txtOznaka.TabIndex = 245;
@@ -323,7 +323,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(618, 54);
+            this.label7.Location = new System.Drawing.Point(601, 107);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(52, 15);
             this.label7.TabIndex = 246;
@@ -332,7 +332,7 @@
             // txtRelacija
             // 
             this.txtRelacija.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtRelacija.Location = new System.Drawing.Point(689, 82);
+            this.txtRelacija.Location = new System.Drawing.Point(672, 135);
             this.txtRelacija.Name = "txtRelacija";
             this.txtRelacija.Size = new System.Drawing.Size(459, 22);
             this.txtRelacija.TabIndex = 247;
@@ -342,7 +342,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(620, 82);
+            this.label8.Location = new System.Drawing.Point(603, 135);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(55, 15);
             this.label8.TabIndex = 248;
@@ -352,7 +352,7 @@
             // 
             this.txtCena.DecimalPlaces = 2;
             this.txtCena.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtCena.Location = new System.Drawing.Point(741, 111);
+            this.txtCena.Location = new System.Drawing.Point(724, 164);
             this.txtCena.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -369,7 +369,7 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(620, 116);
+            this.label13.Location = new System.Drawing.Point(603, 169);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(66, 15);
             this.label13.TabIndex = 250;
@@ -380,7 +380,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(863, 118);
+            this.label9.Location = new System.Drawing.Point(846, 171);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(33, 16);
             this.label9.TabIndex = 251;
@@ -392,7 +392,7 @@
             this.cboGrupaVrsteManipulacije.FormattingEnabled = true;
             this.cboGrupaVrsteManipulacije.Location = new System.Drawing.Point(293, 52);
             this.cboGrupaVrsteManipulacije.Name = "cboGrupaVrsteManipulacije";
-            this.cboGrupaVrsteManipulacije.Size = new System.Drawing.Size(210, 24);
+            this.cboGrupaVrsteManipulacije.Size = new System.Drawing.Size(680, 24);
             this.cboGrupaVrsteManipulacije.TabIndex = 253;
             // 
             // label10

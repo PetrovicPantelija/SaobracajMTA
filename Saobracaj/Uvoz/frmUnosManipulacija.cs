@@ -638,11 +638,11 @@ namespace Saobracaj.Uvoz
             con.Open();
             if (txtNadredjeni.Text != "0")
             {
-                Komanda = "select Count(*) as Broj from UvozKonacnaVrstaManipulacije  where ID= ";
+                Komanda = "select Count(*) as Broj from UvozKonacnaVrstaManipulacije  inner join vrstamanipulacije on VrstaManipulacije.ID = IDVrstaManipulacije where Administrativna = 0 and IDNadredjena= ";
             }
             else
             {
-                Komanda = "select Count(*) as Broj from UvozVrstaManipulacije  where ID= ";
+                Komanda = "select Count(*) as Broj from UvozVrstaManipulacije  inner join vrstamanipulacije on VrstaManipulacije.ID = IDVrstaManipulacije where Administrativna = 0 and IDNadredjena= ";
             }
 
                 SqlCommand cmd = new SqlCommand(Komanda + ID, con);

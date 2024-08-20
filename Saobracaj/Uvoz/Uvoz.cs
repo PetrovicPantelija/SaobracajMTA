@@ -2337,5 +2337,14 @@ namespace Saobracaj.Uvoz
             InsertUvozKonacna ins = new InsertUvozKonacna();
             ins.PrenesiUPlanUtovara(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
         }
+
+        private void button14_Click_1(object sender, EventArgs e)
+        {
+            using (var detailForm = new Dokumenta.frmKontaktOsobe(Convert.ToInt32(cbOcarina.SelectedValue), Convert.ToInt32(cbOspedicija.SelectedValue)))
+            {
+                detailForm.ShowDialog();
+                txtKontaktOsobeSpeditera.Text = detailForm.GetKontaktSpeditera();
+            }
+        }
     }
 }

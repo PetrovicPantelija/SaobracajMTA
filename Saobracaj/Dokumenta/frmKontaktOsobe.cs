@@ -7,11 +7,13 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmKontaktOsobe : Form
+    public partial class frmKontaktOsobe : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         int IzPartnera = 0;
+        int IzPartneraICarine = 0;
         int pomPartner = 0;
+        int pomCarina = 0;
         public frmKontaktOsobe()
         {
             InitializeComponent();
@@ -23,6 +25,14 @@ namespace Saobracaj.Dokumenta
             InitializeComponent();
             IzPartnera = 1;
             pomPartner = Partner;
+        }
+
+        public frmKontaktOsobe(int Carina, int Partner)
+        {
+            InitializeComponent();
+            IzPartneraICarine = 1;
+            pomPartner = Partner;
+            pomCarina = Carina;
         }
 
         private void frmKontaktOsobe_Load(object sender, EventArgs e)
@@ -40,11 +50,33 @@ namespace Saobracaj.Dokumenta
             txtPaKOSifra.DisplayMember = "PaNaziv";
             txtPaKOSifra.ValueMember = "PaSifra";
 
+
+            var select2 = " Select ID, Naziv From Carinarnice order by ID";
+            var s_connection2 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection2 = new SqlConnection(s_connection2);
+            var c2 = new SqlConnection(s_connection2);
+            var dataAdapter2 = new SqlDataAdapter(select2, c2);
+
+            var commandBuilder2 = new SqlCommandBuilder(dataAdapter2);
+            var ds2 = new DataSet();
+            dataAdapter2.Fill(ds2);
+            cboCarinarnica.DataSource = ds2.Tables[0];
+            cboCarinarnica.DisplayMember = "Naziv";
+            cboCarinarnica.ValueMember = "ID";
+
+
+
             if (IzPartnera == 1)
             {
                 txtPaKOSifra.SelectedValue = pomPartner;
                 RefreshDataGridPoPartneru();
 
+            }
+            else if (IzPartneraICarine == 1)
+            {
+                txtPaKOSifra.SelectedValue = pomPartner;
+                cboCarinarnica.SelectedValue = pomCarina;
+                RefreshDataGridPoPartneruICarini();
             }
             else
             {
@@ -99,7 +131,52 @@ namespace Saobracaj.Dokumenta
         private void RefreshDataGridPoPartneru()
         {
             var select = " SELECT [PaKOZapSt]      ,[PaKOSifra]      ,[PaKOIme]      ,[PaKOPriimek]      ,[PaKOOddelek]      ,[PaKOTel] " +
-     " ,[PaKOMail]      ,[PaKOOpomba]      ,[Operatika]  FROM [TESTIRANJE].[dbo].[partnerjiKontOseba] where PaKoSifra = " + Convert.ToInt32(txtPaKOSifra.SelectedValue);
+     " ,[PaKOMail]      ,[PaKOOpomba]      ,[Operatika]  FROM [partnerjiKontOseba] where PaKoSifra = " + Convert.ToInt32(txtPaKOSifra.SelectedValue);
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+
+
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[0].Width = 40;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Partner ID";
+            dataGridView1.Columns[1].Width = 150;
+
+
+
+
+
+        }
+
+        private void RefreshDataGridPoPartneruICarini()
+        {
+            var select = " SELECT [PaKOZapSt]      ,[PaKOSifra]      ,[PaKOIme]      ,[PaKOPriimek]      ,[PaKOOddelek]      ,[PaKOTel] " +
+     " ,[PaKOMail]      ,[PaKOOpomba]      ,[Operatika]  FROM [partnerjiKontOseba] where PaKoSifra = " + Convert.ToInt32(txtPaKOSifra.SelectedValue)
+      + " AND Carinarnica = " + Convert.ToInt32(cboCarinarnica.SelectedValue);
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -147,7 +224,7 @@ namespace Saobracaj.Dokumenta
             txtPaKOZapSt.Enabled = false;
 
             txtPaKOZapSt.Text = "";
-            txtPaKOSifra.Text = "";
+         //   txtPaKOSifra.Text = "";
             txtPaKOIme.Text = "";
             txtPaKOPriimek.Text = "";
             txtPaKOOddelek.Text = "";
@@ -169,12 +246,12 @@ namespace Saobracaj.Dokumenta
             {
 
                 Sifarnici.InsertKontaktOsobe ins = new Sifarnici.InsertKontaktOsobe();
-                ins.InsKontaktOsoba(Convert.ToInt32(txtPaKOSifra.SelectedValue), txtPaKOIme.Text, txtPaKOPriimek.Text, txtPaKOOddelek.Text, txtPaKOTel.Text, txtPaKOMail.Text, txtPaKOOpomba.Text, pomOperater);
+                ins.InsKontaktOsoba(Convert.ToInt32(txtPaKOSifra.SelectedValue), txtPaKOIme.Text, txtPaKOPriimek.Text, txtPaKOOddelek.Text, txtPaKOTel.Text, txtPaKOMail.Text, txtPaKOOpomba.Text, pomOperater, Convert.ToInt32(cboCarinarnica.SelectedValue));
             }
             else
             {
                 Sifarnici.InsertKontaktOsobe upd = new Sifarnici.InsertKontaktOsobe();
-                upd.UpdKontaktOsoba(Convert.ToInt32(txtPaKOZapSt.Text), Convert.ToInt32(txtPaKOSifra.SelectedValue), txtPaKOIme.Text, txtPaKOPriimek.Text, txtPaKOOddelek.Text, txtPaKOTel.Text, txtPaKOMail.Text, txtPaKOOpomba.Text, pomOperater);
+                upd.UpdKontaktOsoba(Convert.ToInt32(txtPaKOZapSt.Text), Convert.ToInt32(txtPaKOSifra.SelectedValue), txtPaKOIme.Text, txtPaKOPriimek.Text, txtPaKOOddelek.Text, txtPaKOTel.Text, txtPaKOMail.Text, txtPaKOOpomba.Text, pomOperater, Convert.ToInt32(cboCarinarnica.SelectedValue));
             }
             RefreshDataGrid();
         }
@@ -268,6 +345,11 @@ namespace Saobracaj.Dokumenta
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

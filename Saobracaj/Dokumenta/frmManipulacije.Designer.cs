@@ -70,6 +70,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.cboPozicija = new System.Windows.Forms.ComboBox();
             this.chkUradjen = new System.Windows.Forms.CheckBox();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.label10 = new System.Windows.Forms.Label();
+            this.cboSkladIz = new System.Windows.Forms.ComboBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cboPozIz = new System.Windows.Forms.ComboBox();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -86,10 +92,12 @@
             this.tsDelete,
             this.toolStripSeparator1,
             this.toolStripSeparator2,
-            this.toolStripButton1});
+            this.toolStripButton2,
+            this.toolStripButton1,
+            this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1389, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1420, 27);
             this.toolStrip1.TabIndex = 7;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -152,7 +160,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(281, 158);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(432, 423);
+            this.dataGridView2.Size = new System.Drawing.Size(432, 456);
             this.dataGridView2.TabIndex = 174;
             // 
             // label2
@@ -177,7 +185,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 158);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(263, 423);
+            this.dataGridView1.Size = new System.Drawing.Size(263, 456);
             this.dataGridView1.TabIndex = 176;
             // 
             // label3
@@ -200,10 +208,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(822, 158);
+            this.dataGridView3.Location = new System.Drawing.Point(792, 158);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.Size = new System.Drawing.Size(552, 423);
+            this.dataGridView3.Size = new System.Drawing.Size(628, 456);
             this.dataGridView3.TabIndex = 178;
             this.dataGridView3.SelectionChanged += new System.EventHandler(this.dataGridView3_SelectionChanged);
             // 
@@ -217,7 +225,7 @@
             this.btnUnesi.ForeColor = System.Drawing.Color.White;
             this.btnUnesi.Location = new System.Drawing.Point(719, 158);
             this.btnUnesi.Name = "btnUnesi";
-            this.btnUnesi.Size = new System.Drawing.Size(93, 423);
+            this.btnUnesi.Size = new System.Drawing.Size(67, 456);
             this.btnUnesi.TabIndex = 179;
             this.btnUnesi.Text = ">>";
             this.btnUnesi.UseVisualStyleBackColor = false;
@@ -546,19 +554,88 @@
             this.chkUradjen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.chkUradjen.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkUradjen.ForeColor = System.Drawing.Color.Black;
-            this.chkUradjen.Location = new System.Drawing.Point(1288, 89);
+            this.chkUradjen.Location = new System.Drawing.Point(1087, 83);
             this.chkUradjen.Name = "chkUradjen";
             this.chkUradjen.Size = new System.Drawing.Size(69, 20);
             this.chkUradjen.TabIndex = 227;
             this.chkUradjen.Text = "Uradjen";
             this.chkUradjen.UseVisualStyleBackColor = false;
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.ForeColor = System.Drawing.Color.Yellow;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(250, 24);
+            this.toolStripButton2.Text = "POTVRDI URADJENA USLUGA SA PROMETOM";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label10.ForeColor = System.Drawing.Color.Black;
+            this.label10.Location = new System.Drawing.Point(1200, 106);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(67, 16);
+            this.label10.TabIndex = 228;
+            this.label10.Text = "Skladište t:";
+            // 
+            // cboSkladIz
+            // 
+            this.cboSkladIz.BackColor = System.Drawing.SystemColors.Info;
+            this.cboSkladIz.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.cboSkladIz.ForeColor = System.Drawing.Color.Black;
+            this.cboSkladIz.FormattingEnabled = true;
+            this.cboSkladIz.Location = new System.Drawing.Point(1203, 125);
+            this.cboSkladIz.Name = "cboSkladIz";
+            this.cboSkladIz.Size = new System.Drawing.Size(100, 24);
+            this.cboSkladIz.TabIndex = 229;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label11.ForeColor = System.Drawing.Color.Black;
+            this.label11.Location = new System.Drawing.Point(1306, 106);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(61, 16);
+            this.label11.TabIndex = 230;
+            this.label11.Text = "Pozicija t:";
+            // 
+            // cboPozIz
+            // 
+            this.cboPozIz.BackColor = System.Drawing.SystemColors.Info;
+            this.cboPozIz.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.cboPozIz.FormattingEnabled = true;
+            this.cboPozIz.Location = new System.Drawing.Point(1309, 125);
+            this.cboPozIz.Name = "cboPozIz";
+            this.cboPozIz.Size = new System.Drawing.Size(79, 24);
+            this.cboPozIz.TabIndex = 231;
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton3.ForeColor = System.Drawing.Color.Yellow;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(244, 24);
+            this.toolStripButton3.Text = "POTVRDI URADJENA USLUGA BEZ PROMETA";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
             // frmManipulacije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1389, 593);
+            this.ClientSize = new System.Drawing.Size(1420, 626);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.cboSkladIz);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.cboPozIz);
             this.Controls.Add(this.chkUradjen);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cboSkladiste);
@@ -652,5 +729,11 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cboPozicija;
         private System.Windows.Forms.CheckBox chkUradjen;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.ComboBox cboSkladIz;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox cboPozIz;
+        private System.Windows.Forms.ToolStripButton toolStripButton3;
     }
 }

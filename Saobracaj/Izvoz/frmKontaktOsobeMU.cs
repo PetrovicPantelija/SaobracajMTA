@@ -285,7 +285,7 @@ namespace Saobracaj.Izvoz
             }
             else
             {
-                Sifarnici.InsertKontaktOsobe upd = new Sifarnici.InsertKontaktOsobe();
+                Sifarnici.InsertKontaktOsobeMU upd = new Sifarnici.InsertKontaktOsobeMU();
                 upd.UpdKontaktOsoba(Convert.ToInt32(txtPaKOZapSt.Text), Convert.ToInt32(txtPaKOSifra.SelectedValue), txtPaKOIme.Text, txtPaKOPriimek.Text, txtPaKOOddelek.Text, txtPaKOTel.Text, txtPaKOMail.Text, txtPaKOOpomba.Text, pomOperater);
             }
             RefreshDataGrid();

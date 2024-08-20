@@ -1331,7 +1331,7 @@ namespace Saobracaj.Izvoz
                             decimal VGMTezina, decimal Tara, decimal VGMBrod, int Izvoznik,
                             int Klijent1, int Napomena1REf, int DobijenNalogKlijent1, int Klijent2,
                             int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR,
-                            string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, int VrstaBrodskePlombe, string NapomenaZaRobu, decimal VGMBrod2, string KontaktSpeditera, string KontaktOsobe, int UvozniID, int Terminal, int Scenario)
+                            string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, int VrstaBrodskePlombe, string NapomenaZaRobu, decimal VGMBrod2, string KontaktSpeditera, string KontaktOsobe, int UvozniID, int Terminal, int Scenario, decimal TaraZ)
         {
 
 
@@ -1812,6 +1812,13 @@ namespace Saobracaj.Izvoz
             scenario.Value = Scenario;
             cmd.Parameters.Add(scenario);
 
+            SqlParameter taraz = new SqlParameter();
+            taraz.ParameterName = "@TaraZ";
+            taraz.SqlDbType = SqlDbType.Decimal;
+            taraz.Direction = ParameterDirection.Input;
+            taraz.Value = TaraZ;
+            cmd.Parameters.Add(taraz);
+
 
 
 
@@ -1862,7 +1869,7 @@ namespace Saobracaj.Izvoz
                            int NacinPakovanja, int NacinPretovara, string DodatneNapomeneDrumski, int Vaganje,
                            decimal VGMTezina, decimal Tara, decimal VGMBrod, int Izvoznik,
                            int Klijent1, int Napomena1REf, int DobijenNalogKlijent1, int Klijent2,
-                           int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, int IDNadredjena, string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, int VrstaBrodskePlombe, string NapomenaZaRobu, decimal VGMBrod2, string KontaktSpeditera, string KontaktOsobe, int UvozniID, int Terminal)
+                           int Napomena2REf, int Klijent3, int Napomena3REf, int SpediterRijeka, string OstalePlombe, int ADR, int IDNadredjena, string Vozilo, string Vozac, int SpedicijaJ, DateTime PeriodSkladistenjaOd, DateTime PeriodSkladistenjaDo, int VrstaBrodskePlombe, string NapomenaZaRobu, decimal VGMBrod2, string KontaktSpeditera, string KontaktOsobe, int UvozniID, int Terminal, int Scenario, decimal TaraZ)
         {
 
 
@@ -2340,6 +2347,21 @@ namespace Saobracaj.Izvoz
             terminal.Direction = ParameterDirection.Input;
             terminal.Value = Terminal;
             cmd.Parameters.Add(terminal);
+
+            SqlParameter scenario = new SqlParameter();
+            scenario.ParameterName = "Scenario";
+            scenario.SqlDbType = SqlDbType.Int;
+            scenario.Direction = ParameterDirection.Input;
+            scenario.Value = Scenario;
+            cmd.Parameters.Add(scenario);
+
+
+            SqlParameter taraz = new SqlParameter();
+            taraz.ParameterName = "TaraZ";
+            taraz.SqlDbType = SqlDbType.Decimal;
+            taraz.Direction = ParameterDirection.Input;
+            taraz.Value = TaraZ;
+            cmd.Parameters.Add(taraz);
 
 
             conn.Open();

@@ -38,7 +38,7 @@ namespace Saobracaj.RadniNalozi
 
             txtNalogID.Text = NalogID;
             FillCombo();
-            VratiPodatkeVrstaMan(Usluga.ToString());
+            VratiPodatkeVrstaMan(NalogID);
             if (Uvoz == 0)
             {
                 chkUvoz.Checked = true;
@@ -54,7 +54,7 @@ namespace Saobracaj.RadniNalozi
              FillGV();
 
         }
-        private void VratiPodatkeVrstaMan(string IDUsluge)
+        private void VratiPodatkeVrstaMan(string NalogID)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
@@ -62,7 +62,7 @@ namespace Saobracaj.RadniNalozi
             con.Open();
 
             SqlCommand cmd = new SqlCommand(" Select VrstaManipulacije.ID from RadniNalogInterni inner join " +
-   " VrstaManipulacije on RadniNalogInterni.IDManipulacijaJed = VrstaManipulacije.ID where RadniNalogInterni.ID = " + IDUsluge, con);
+   " VrstaManipulacije on RadniNalogInterni.IDManipulacijaJed = VrstaManipulacije.ID where RadniNalogInterni.ID = " + NalogID, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
 

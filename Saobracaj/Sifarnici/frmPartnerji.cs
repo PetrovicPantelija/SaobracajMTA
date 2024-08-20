@@ -103,6 +103,12 @@ namespace Saobracaj.Sifarnici
                     chkOrganizator.Text = "Železnički operater";
                     chkOrganizator.Visible = true;
                     chkOrganizator.Location = new Point(drugiRedX, drugiRedY + 90);
+
+                    //Nije vidljivo za Leget
+                    toolStripButton2.Visible = false; //Export PAnteon
+                    label21.Visible = false; //VALUTA
+                    label22.Visible = false;
+                    numFREC.Visible = false; // FREC
                     break;
 
                 case "TA":

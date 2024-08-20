@@ -159,6 +159,7 @@ namespace Saobracaj.TrackModal.Sifarnici
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmGrupaVrsteManipulacije";
             this.Text = "Grupe usluga";
             this.Load += new System.EventHandler(this.frmGrupaVrsteManipulacije_Load);

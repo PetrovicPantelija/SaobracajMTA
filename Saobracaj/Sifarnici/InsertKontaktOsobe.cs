@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Uvoz;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -8,7 +9,7 @@ namespace Saobracaj.Sifarnici
 {
     class InsertKontaktOsobe
     {
-        public void InsKontaktOsoba(int PaSifra, string Ime, string Prezime, string Odeljenje, string Telefon, string Mail, string Napomena, int Operatika)
+        public void InsKontaktOsoba(int PaSifra, string Ime, string Prezime, string Odeljenje, string Telefon, string Mail, string Napomena, int Operatika, int Carinarnica)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -89,6 +90,13 @@ namespace Saobracaj.Sifarnici
             parameter8.Value = Odeljenje;
             myCommand.Parameters.Add(parameter8);
 
+            SqlParameter parameter9 = new SqlParameter();
+            parameter9.ParameterName = "@Carinarnica";
+            parameter9.SqlDbType = SqlDbType.Int;
+            parameter9.Direction = ParameterDirection.Input;
+            parameter9.Value = Carinarnica;
+            myCommand.Parameters.Add(parameter9);
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -125,7 +133,7 @@ namespace Saobracaj.Sifarnici
             }
         }
 
-        public void UpdKontaktOsoba(int ID, int PaSifra, string Ime, string Prezime, string Odeljenje, string Telefon, string Mail, string Napomena, int Operatika)
+        public void UpdKontaktOsoba(int ID, int PaSifra, string Ime, string Prezime, string Odeljenje, string Telefon, string Mail, string Napomena, int Operatika, int Carinarnica)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -212,6 +220,14 @@ namespace Saobracaj.Sifarnici
             parameter8.Direction = ParameterDirection.Input;
             parameter8.Value = Odeljenje;
             myCommand.Parameters.Add(parameter8);
+
+
+            SqlParameter parameter9 = new SqlParameter();
+            parameter9.ParameterName = "@Carinarnica";
+            parameter9.SqlDbType = SqlDbType.Int;
+            parameter9.Direction = ParameterDirection.Input;
+            parameter9.Value = Carinarnica;
+            myCommand.Parameters.Add(parameter9);
 
 
             myConnection.Open();

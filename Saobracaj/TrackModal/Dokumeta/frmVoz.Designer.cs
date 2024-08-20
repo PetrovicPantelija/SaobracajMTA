@@ -150,6 +150,7 @@
             this.panelLegetOperater = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkTerminal = new System.Windows.Forms.CheckBox();
+            this.button7 = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaksBrojKola)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDuzina)).BeginInit();
@@ -1576,6 +1577,7 @@
             // 
             // panelLeget
             // 
+            this.panelLeget.Controls.Add(this.button7);
             this.panelLeget.Controls.Add(this.label45);
             this.panelLeget.Controls.Add(this.label46);
             this.panelLeget.Controls.Add(this.dtpSazeta);
@@ -1755,6 +1757,20 @@
             this.chkTerminal.TabIndex = 277;
             this.chkTerminal.Text = "Za terminal";
             this.chkTerminal.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button7.ForeColor = System.Drawing.Color.White;
+            this.button7.Location = new System.Drawing.Point(560, 131);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(16, 22);
+            this.button7.TabIndex = 275;
+            this.button7.Text = "U";
+            this.button7.UseVisualStyleBackColor = false;
             // 
             // frmVoz
             // 
@@ -1953,5 +1969,6 @@
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox chkTerminal;
+        private System.Windows.Forms.Button button7;
     }
 }
