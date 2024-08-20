@@ -482,6 +482,7 @@ namespace Saobracaj
             this.toolStripButton90 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton102 = new System.Windows.Forms.ToolStripButton();
             this.imageListAdv1 = new Syncfusion.Windows.Forms.Tools.ImageListAdv(this.components);
+            this.toolStripButton373 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControlAdv1)).BeginInit();
             this.ribbonControlAdv1.SuspendLayout();
             this.toolStripTabItem1.Panel.SuspendLayout();
@@ -585,7 +586,7 @@ namespace Saobracaj
             this.ribbonControlAdv1.QuickPanelVisible = false;
             this.ribbonControlAdv1.RibbonHeaderImage = Syncfusion.Windows.Forms.Tools.RibbonHeaderImage.Boxes3D;
             this.ribbonControlAdv1.RibbonStyle = Syncfusion.Windows.Forms.Tools.RibbonStyle.Office2013;
-            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem11;
+            this.ribbonControlAdv1.SelectedTab = this.toolStripTabItem9;
             this.ribbonControlAdv1.ShowContextMenu = false;
             this.ribbonControlAdv1.ShowLauncher = false;
             this.ribbonControlAdv1.ShowRibbonDisplayOptionButton = false;
@@ -4580,7 +4581,8 @@ namespace Saobracaj
             this.toolStripButton158,
             this.toolStripButton159,
             this.toolStripButton367,
-            this.toolStripButton368});
+            this.toolStripButton368,
+            this.toolStripButton373});
             this.toolStripEx37.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Table;
             this.toolStripEx37.Location = new System.Drawing.Point(750, 1);
             this.toolStripEx37.Name = "toolStripEx37";
@@ -6475,6 +6477,17 @@ namespace Saobracaj
             this.toolStripButton102.Size = new System.Drawing.Size(31, 20);
             this.toolStripButton102.Text = "toolStripButton15";
             // 
+            // toolStripButton373
+            // 
+            this.toolStripButton373.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton373.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.toolStripButton373.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton373.Image")));
+            this.toolStripButton373.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton373.Name = "toolStripButton373";
+            this.toolStripButton373.Size = new System.Drawing.Size(132, 23);
+            this.toolStripButton373.Text = "VAGANJE PREGLED";
+            this.toolStripButton373.Click += new System.EventHandler(this.toolStripButton373_Click);
+            // 
             // MainP
             // 
             this.ClientSize = new System.Drawing.Size(1355, 795);
@@ -7055,5 +7068,6 @@ namespace Saobracaj
         private System.Windows.Forms.ToolStripButton toolStripButton370;
         private System.Windows.Forms.ToolStripButton toolStripButton371;
         private System.Windows.Forms.ToolStripButton toolStripButton372;
+        private System.Windows.Forms.ToolStripButton toolStripButton373;
     }
 }

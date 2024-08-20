@@ -6650,6 +6650,12 @@ namespace Saobracaj
             Sifarnici.frmJediniceMere jm = new frmJediniceMere();
             jm.Show();
         }
+
+        private void toolStripButton373_Click(object sender, EventArgs e)
+        {
+            VaganjePregled pp = new VaganjePregled();
+            pp.Show();
+        }
     }
     }
 
