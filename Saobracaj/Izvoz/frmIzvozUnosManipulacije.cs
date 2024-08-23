@@ -64,6 +64,26 @@ namespace Saobracaj.Izvoz
    " ,VrstaManipulacije.[Cena] ,VrstaManipulacije.[Datum] ,VrstaManipulacije.[Korisnik] FROM[VrstaManipulacije] " +
    " inner join OrganizacioneJedinice on VrstaManipulacije.OrgJed = OrganizacioneJedinice.ID" +
    " where Administrativna = 0 ";
+   }
+            else if (TipUsluge == 2)
+            {
+                //Po grupi Manipulacije
+                select = "SELECT VrstaManipulacije.[ID]      ,VrstaManipulacije.[Naziv] ,  " +
+      " VrstaManipulacije.[JM] " +
+     " ,VrstaManipulacije.[TipManipulacije]      ,VrstaManipulacije.[OrgJed]      ,OrganizacioneJedinice.Naziv as OJ " +
+     " ,VrstaManipulacije.[Cena] ,'',0, '/',  VrstaManipulacije.[Datum] ,VrstaManipulacije.[Korisnik] FROM [VrstaManipulacije] " +
+     "  inner join OrganizacioneJedinice on VrstaManipulacije.OrgJed = OrganizacioneJedinice.ID where VrstaManipulacije.GrupaVrsteManipulacijeID = " + Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue) + "  order by VrstaManipulacije.[Naziv] ";
+
+            }
+
+            else if (TipUsluge == 3)
+            {
+                //Po grupi Manipulacije
+               select = "SELECT VrstaManipulacije.[ID]      ,VrstaManipulacije.[Naziv] ,  " +
+      " VrstaManipulacije.[JM] " +
+     " ,VrstaManipulacije.[TipManipulacije]      ,VrstaManipulacije.[OrgJed]      ,OrganizacioneJedinice.Naziv as OJ " +
+     " ,VrstaManipulacije.[Cena] ,'',0, '/',  VrstaManipulacije.[Datum] ,VrstaManipulacije.[Korisnik] FROM [VrstaManipulacije] " +
+     "  inner join OrganizacioneJedinice on VrstaManipulacije.OrgJed = OrganizacioneJedinice.ID where VrstaManipulacije.Dodatna = 1  order by VrstaManipulacije.[Naziv] ";
 
             }
             else
@@ -1776,6 +1796,11 @@ namespace Saobracaj.Izvoz
             int BSC14 = VratiBrojScenario(14);
             int BSC15 = VratiBrojScenario(15);
             int BSC16 = VratiBrojScenario(16);
+
+            int BSC23 = VratiBrojScenario(23);
+            int BSC24 = VratiBrojScenario(24);
+            int BSC25 = VratiBrojScenario(25);
+            int BSC26 = VratiBrojScenario(26);
             int rasporedjen = 0;
             if (txtNadredjeni.Text != "0")
             {
@@ -1891,6 +1916,52 @@ namespace Saobracaj.Izvoz
                     InsertScenario isc = new InsertScenario();
                     isc.UpdScenarioKontejnera(16, ID, 2, rasporedjen);
                     MessageBox.Show("Izabrali ste scenario 16");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC23)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 23);
+                if (IzabraniScenario == 1)
+                {
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(23, ID, 2, rasporedjen);
+                    MessageBox.Show("Izabrali ste scenario 23");
+                }
+            }
+
+
+            if (BrojZapisaKontejnera == BSC24)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 24);
+                if (IzabraniScenario == 1)
+                {
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(24, ID, 2, rasporedjen);
+                    MessageBox.Show("Izabrali ste scenario 24");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC25)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 25);
+                if (IzabraniScenario == 1)
+                {
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(25, ID, 2, rasporedjen);
+                    MessageBox.Show("Izabrali ste scenario 25");
+                }
+            }
+
+
+            if (BrojZapisaKontejnera == BSC26)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 26);
+                if (IzabraniScenario == 1)
+                {
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(26, ID, 2, rasporedjen);
+                    MessageBox.Show("Izabrali ste scenario 26");
                 }
             }
 
@@ -2238,6 +2309,16 @@ namespace Saobracaj.Izvoz
               //  FillDG8();
 
             }
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            FillDG6(3);
+        }
+
+        private void button18_Click(object sender, EventArgs e)
+        {
+            FillDG6(3);
         }
     }
     }

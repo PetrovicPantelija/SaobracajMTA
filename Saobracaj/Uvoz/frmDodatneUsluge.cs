@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using GMap.NET.MapProviders;
 using Saobracaj.Izvoz;
+using Syncfusion.Windows.Forms.Tools;
+using Saobracaj.Dokumenta;
 
 namespace Saobracaj.Uvoz
 {
@@ -58,7 +60,7 @@ namespace Saobracaj.Uvoz
                 select = "  Select RadniNalogInterni.ID as ID, IzvozKonacna.BrojKontejnera, RadniNalogInterni.BrojOsnov, RadniNalogInterni.IDManipulacijaJed, VrstaManipulacije.Naziv, RadniNalogInterni.KonkretaIDUsluge from RadniNalogInterni " +
             " inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov " +
             " inner join VrstaManipulacije on VrstaManipulacije.ID = RadniNalogInterni.IDManipulacijaJed " +
-            " where RadniNalogInterni.OJIzdavanja = 2 and Uradjen = 0 and VrstaManipulacije.Administrativna = 0 " +
+            " where RadniNalogInterni.OJIzdavanja = 2 and Uradjen = 0 and VrstaManipulacije.Dodatna = 1 " +
             " Order by RadniNalogInterni.BrojOsnov desc ";
             }
             else if (chkUvoz.Checked == true)
@@ -66,7 +68,7 @@ namespace Saobracaj.Uvoz
                 select = "  Select RadniNalogInterni.ID as ID, UvozKonacna.BrojKontejnera, RadniNalogInterni.BrojOsnov, RadniNalogInterni.IDManipulacijaJed, VrstaManipulacije.Naziv,  RadniNalogInterni.KonkretaIDUsluge  from RadniNalogInterni " +
 " inner join UvozKonacna on UvozKOnacna.ID = RadniNalogInterni.BrojOsnov " +
 " inner join VrstaManipulacije on VrstaManipulacije.ID = RadniNalogInterni.IDManipulacijaJed " +
-" where RadniNalogInterni.OJIzdavanja = 1 and Uradjen = 0 and VrstaManipulacije.Administrativna = 0 " +
+" where RadniNalogInterni.OJIzdavanja = 1 and Uradjen = 0 and VrstaManipulacije.Dodatna = 1 " +
 " Order by RadniNalogInterni.BrojOSnov desc";
             }
             else if (chkDodatne.Checked == true)
@@ -113,7 +115,7 @@ namespace Saobracaj.Uvoz
             cboBukingPrijema.ValueMember = "ID";
 
 
-            var select9 = "  Select Distinct ID,Naziv   From VrstaManipulacije where Administrativna = 0";
+            var select9 = "  Select Distinct ID,Naziv   From VrstaManipulacije where Dodatna = 1";
             var s_connection9 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection9 = new SqlConnection(s_connection9);
             var c9 = new SqlConnection(s_connection9);
@@ -160,15 +162,72 @@ namespace Saobracaj.Uvoz
             }
             else if (chkDodatne.Checked == true)
             {
-                if (chkUvoz.Checked == true)
-                {
+               
 
                     string kor = Sifarnici.frmLogovanje.user;
                     uvK.InsUbaciDodatnuUsluguUvoz(Convert.ToInt32(txtBrojOsnov.Text),Convert.ToInt32(cboUsluga.SelectedValue), Convert.ToDouble(txtTara.Value), txtNapomena.Text, kor);
-            }
+          
 
             }
          
+        }
+
+        private void VratiPodatkeZaUslugu(string ID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT ID  Dodatna, PotvrdaUradio, Apstrakt1, Apstrakt2 from VrstaManipulacije where ID=" + ID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                lblKolicina1.Text = dr["Apstrakt1"].ToString();
+                lblKolicina2.Text = dr["Apstrakt2"].ToString();
+                // Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene
+                if (dr["PotvrdaUradio"].ToString() == "1")
+                {
+                    chkPotvrdiUradjen.Visible = true;
+
+                    lblKolicina1.Visible = false;
+                    lblKolicina2.Visible = false;
+                    num1.Visible = false;
+                    num2.Visible = false;
+                    num1.Value = 1;
+                    num2.Value = 1;
+                }
+                else
+                {
+                    chkPotvrdiUradjen.Visible = false;
+
+                    lblKolicina1.Visible = true;
+                    num1.Visible = true;
+                    if (lblKolicina2.Text == "")
+                    {
+                        lblKolicina2.Visible = false;
+
+                        num2.Visible = false;
+                    }
+                    else
+                    {
+                        lblKolicina2.Visible = true;
+                      
+                        num2.Visible = true;
+                    }
+                    lblKolicina2.Visible = true;
+                    num1.Visible = true;
+                    num2.Visible = true;
+                    num1.Value = 1;
+                    num2.Value = 1;
+                }
+
+                 
+               
+            }
+
+            con.Close();
         }
 
         private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
@@ -180,7 +239,9 @@ namespace Saobracaj.Uvoz
                     txtBrojOsnov.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojOsnov").ToString();
                     txtKonkretnaMan.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("KonkretaIDUsluge").ToString();
                     txtNalogID.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                    cboUsluga.SelectedValue = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("IDManipulacijaJed").ToString());
                 }
+                VratiPodatkeZaUslugu(cboUsluga.SelectedValue.ToString());
 
             }
             catch (Exception ex)
@@ -198,6 +259,22 @@ namespace Saobracaj.Uvoz
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (chkIzvoz.Checked == true)
+            {
+                frmDokumentaIzvozManipulacije dm = new frmDokumentaIzvozManipulacije(txtKonkretnaMan.Text);
+                dm.Show();
+
+            }
+            else
+            {
+                frmDokumentaUvozneManipulacije dm = new frmDokumentaUvozneManipulacije(txtKonkretnaMan.Text);
+                dm.Show();
+            }
+          
         }
     }
 }

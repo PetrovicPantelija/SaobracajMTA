@@ -52,10 +52,11 @@ namespace Saobracaj.Uvoz
             var select = "";
             if (cboIzdatOd.Text == "Uvoz")
             {
-                select = "  SELECT RadniNalogInterni.[ID]  ,UvozKonacna.BrojKontejnera, RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]     " +
+                select = "  SELECT RadniNalogInterni.[ID]  ,UvozKonacna.BrojKontejnera, s1.Naziv as Scenario, RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]     " +
   "  ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena]  , UvozKonacnaVrstaManipulacije.IDVrstaManipulacije, " +
    " VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov] , PlanID as PlanUtovara  ,[BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac  , " +
-   " TipKontenjera.Naziv as Tipkontejnera, RadniNalogInterni.Pokret, KontejnerStatus.Naziv, RadniNalogInterni.TipDokPrevoza, RadniNalogInterni.BrojDokPrevoza, RadniNalogInterni.TipRN, RadniNalogInterni.BrojRN  FROM[RadniNalogInterni] " +
+   " TipKontenjera.Naziv as Tipkontejnera, RadniNalogInterni.Pokret, KontejnerStatus.Naziv, RadniNalogInterni.TipDokPrevoza, " +
+   " RadniNalogInterni.BrojDokPrevoza, RadniNalogInterni.TipRN, RadniNalogInterni.BrojRN  FROM [RadniNalogInterni] " +
    " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
    " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
    " inner join UvozKonacna on UvozKonacna.ID = BrojOsnov " +
@@ -63,14 +64,16 @@ namespace Saobracaj.Uvoz
    " inner join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
    " inner join Partnerji uv on uv.PaSifra = UvozKonacnaVrstaManipulacije.Platilac " +
    " Inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
-   " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera " +
+   " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera" +
+   "  inner join (select Distinct ID,Naziv from Scenario) as S1 on S1.ID = UVozKonacna.Scenario " +
            " where OJIzdavanja = " + Convert.ToInt32(cboIzdatOd.SelectedValue) + DodatniAND +
            " order by RadniNalogInterni.ID desc";
             }
             else if (cboIzdatOd.Text == "Izvoz")
             {
+                /* STA JE OVO 
                 select = "  SELECT RadniNalogInterni.[ID]  ,(Select Top 1 BrojKontejnera from IzvozKonacna where IzvozKOnacna.ID =RadniNalogInterni.BrojOsnov) as BrojKontejnera , " +
-  " RadniNalogInterni.[StatusIzdavanja], [OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]      " +
+  " Scenario.Naziv as Scenario, RadniNalogInterni.[StatusIzdavanja], [OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]      " +
   " ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena]  , RadniNalogInterni.IDManipulacijaJed, " +
   " [Uradjen]  ,[Osnov], PlanID as PlanUtovara  ,[BrojOsnov] as BrojOsnov ,  VezniNalogID ,[KorisnikIzdao]      ,[KorisnikZavrsio] " +
 " ,  VrstaManipulacije.Naziv,    uv.PaNaziv as Platilac  , " +
@@ -86,14 +89,15 @@ namespace Saobracaj.Uvoz
  "    inner join Partnerji uv on uv.PaSifra = IzvozKonacnaVrstaManipulacije.Platilac " +
  " where OJIzdavanja = 2 AND 1=1  order by RadniNalogInterni.ID desc ";
 
+                */
 
-
-                select = "   SELECT RadniNalogInterni.[ID]  ,IzvozKonacna.BrojKontejnera ,RadniNalogInterni.[StatusIzdavanja], [OJIzdavanja]      " +
+                select = "   SELECT RadniNalogInterni.[ID]  ,IzvozKonacna.BrojKontejnera ,s1.Naziv as Scenario, RadniNalogInterni.[StatusIzdavanja], [OJIzdavanja]      " +
                     ", o1.Naziv as Izdao  ,[OJRealizacije]      ,o2.Naziv as Realizuje  ,[DatumIzdavanja]   " +
                     "   ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena] " +
       " , IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije, VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov], PlanID as PlanUtovara " +
       " ,[BrojOsnov] as BrojOsnov ,  VezniNalogID ,[KorisnikIzdao]      ,[KorisnikZavrsio]       , uv.PaNaziv as Platilac " +
-      " , TipKontenjera.Naziv as Tipkontejnera, RadniNalogInterni.Pokret, KontejnerStatus.Naziv, RadniNalogInterni.TipDokPrevoza, RadniNalogInterni.BrojDokPrevoza, RadniNalogInterni.TipRN, RadniNalogInterni.BrojRN   FROM [RadniNalogInterni] " +
+      " , TipKontenjera.Naziv as Tipkontejnera, RadniNalogInterni.Pokret, KontejnerStatus.Naziv, RadniNalogInterni.TipDokPrevoza, RadniNalogInterni.BrojDokPrevoza," +
+      " RadniNalogInterni.TipRN, RadniNalogInterni.BrojRN   FROM RadniNalogInterni " +
       " inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
       " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID " +
             " inner join IzvozKonacnaVrstaManipulacije on IzvozKonacnaVrstaManipulacije.ID = RadniNalogInterni.KonkretaIDUsluge" +
@@ -102,6 +106,7 @@ namespace Saobracaj.Uvoz
       " inner join Partnerji uv on uv.PaSifra = IzvozKonacnaVrstaManipulacije.Platilac " +
          " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera " +
       " inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera" +
+      "  inner join (select Distinct ID,Naziv from Scenario) as S1 on S1.ID = IzvozKonacna.Scenario " +
               " where OJIzdavanja = " + Convert.ToInt32(cboIzdatOd.SelectedValue) + DodatniAND +
               " order by RadniNalogInterni.ID desc";
 
@@ -109,7 +114,7 @@ namespace Saobracaj.Uvoz
 
             else if (cboIzdatOd.Text == "Terminal")
             {
-                select = "  SELECT RadniNalogInterni.[ID] ,UvozKonacna.BrojKontejnera ,RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]     " +
+                select = "  SELECT RadniNalogInterni.[ID] ,UvozKonacna.BrojKontejnera , s1.Naziv as Scenario, RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]     " +
   "  ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena]  , UvozKonacnaVrstaManipulacije.IDVrstaManipulacije," +
    " VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov]  ,[BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]      " +
    "  , uv.PaNaziv as Platilac  , " +
@@ -121,10 +126,11 @@ namespace Saobracaj.Uvoz
    " inner join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
    " inner join Partnerji uv on uv.PaSifra = UvozKonacnaVrstaManipulacije.Platilac " +
    " Inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
-   " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera " +
+   " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera" +
+   "  inner join (select Distinct ID,Naziv from Scenario) as S1 on S1.ID = UVozKonacna.Scenario " +
            " where OJIzdavanja = " + Convert.ToInt32(cboIzdatOd.SelectedValue) +
            " union " +
-           " SELECT RadniNalogInterni.[ID] ,IzvozKonacna.BrojKontejnera ,RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]   " +
+           " SELECT RadniNalogInterni.[ID] ,IzvozKonacna.BrojKontejnera ,S1.Naziv as Scenario, RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]   " +
            " , o1.Naziv as Izdao  ,[OJRealizacije]       ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena]  , " +
            " IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije, VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov]  ,[BrojOsnov] as BrojOsnov , " +
            " VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]        , uv.PaNaziv as Platilac  ,  TipKontenjera.Naziv as Tipkontejnera, " +
@@ -133,7 +139,8 @@ namespace Saobracaj.Uvoz
            " inner join IzvozKonacnaVrstaManipulacije on IzvozKonacnaVrstaManipulacije.ID = RadniNalogInterni.KonkretaIDUsluge  " +
            " inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije  " +
            " inner join Partnerji uv on uv.PaSifra = IzvozKonacnaVrstaManipulacije.Platilac  Inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
-           " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera  where OJIzdavanja =  " + Convert.ToInt32(cboIzdatOd.SelectedValue) + "Order by ID desc"; 
+           " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera  " +
+           "   inner join (select Distinct ID,Naziv from Scenario) as S1 on S1.ID = IzvozKonacna.Scenario  where OJIzdavanja =  " + Convert.ToInt32(cboIzdatOd.SelectedValue) + "Order by ID desc"; 
             }
             var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

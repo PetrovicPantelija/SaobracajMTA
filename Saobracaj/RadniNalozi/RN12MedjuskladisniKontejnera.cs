@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Saobracaj.Uvoz;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
+using static Syncfusion.WinForms.Core.NativeScroll;
 //
 namespace Saobracaj.RadniNalozi
 {
@@ -10,6 +12,7 @@ namespace Saobracaj.RadniNalozi
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
         private bool status = false;
+        string KorisnikTekuci = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
         public RN12MedjuskladisniKontejnera()
         {
             InitializeComponent();
@@ -18,7 +21,14 @@ namespace Saobracaj.RadniNalozi
         }
         private void FillGV()
         {
-            var select = "Select * from RNMedjuskladisni order by ID desc";
+            var select = "SELECT       RNMedjuskladisni.ID as ID,  RNMedjuskladisni.BrojKontejnera,  RNMedjuskladisni.VrstaKontejnera,TipKontenjera.Naziv, " +
+                "Skladista.ID as SaID, Skladista.Naziv AS SkladSa, Skladista_1.ID AS NaID, Skladista_1.Naziv AS NaSkladiste," +
+                "                     RNMedjuskladisni.DatumRasporeda, " +
+               " RNMedjuskladisni.NalogIzdao, RNMedjuskladisni.DatumRealizacije, RNMedjuskladisni.NalogRealizovao, RNMedjuskladisni.Napomena, " +
+               " RNMedjuskladisni.Zavrsen FROM            RNMedjuskladisni INNER JOIN" +
+               " TipKontenjera ON RNMedjuskladisni.VrstaKontejnera = TipKontenjera.ID INNER JOIN" +
+               " Skladista ON RNMedjuskladisni.SaSkladista = Skladista.ID INNER JOIN                         Skladista AS Skladista_1 " +
+               " ON RNMedjuskladisni.NaSkladiste = Skladista_1.ID Order by Zavrsen, RNMedjuskladisni.ID";
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -149,6 +159,47 @@ namespace Saobracaj.RadniNalozi
             }
         }
 
+        private void VratiPodatke(string ID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT  ID, DatumRasporeda, VrstaKontejnera, BrojKontejnera, NalogIzdao, SaSkladista, SaPozicijeSklad, NaSkladiste, " +
+                " NaPoziciju, NalogRealizovao, Napomena, Zavrsen " +
+                " FROM  RNMedjuskladisni where ID=" + ID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtID.Text = dr["ID"].ToString();
+                txtDatumRasporeda.Value = Convert.ToDateTime(dr["DatumRasporeda"].ToString());
+                cboVrstaKontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
+                txtBrojKontejnera.Text = dr["BrojKontejnera"].ToString();
+                txtNalogIzdao.Text = dr["NalogIzdao"].ToString();
+                cboSaSklad.SelectedValue = Convert.ToInt32(dr["SaSkladista"].ToString());
+                cboSaPoz.SelectedValue = Convert.ToInt32(dr["SaPozicijeSklad"].ToString());
+                cboNaSklad.SelectedValue = Convert.ToInt32(dr["NaSkladiste"].ToString());
+                cboNaPoz.SelectedValue = Convert.ToInt32(dr["NaPoziciju"].ToString());
+                txtNalogRealizovao.Text = dr["NalogRealizovao"].ToString();
+                txtNapomena.Text = dr["Napomena"].ToString();
+                if (dr["Zavrsen"].ToString() == "1")
+                {
+                    chkZavrsen.Checked = true;
+                }
+                else
+                {
+                    chkZavrsen.Checked = false;
+                }
+
+             
+            }
+            con.Close();
+
+
+        }
+
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             try
@@ -158,6 +209,7 @@ namespace Saobracaj.RadniNalozi
                     if (row.Selected)
                     {
                         txtID.Text = row.Cells[0].Value.ToString();
+                        VratiPodatke(txtID.Text);
                     }
                 }
             }
@@ -170,6 +222,53 @@ namespace Saobracaj.RadniNalozi
             RadniNalozi.InsertRN ir = new InsertRN();
             ir.InsRN12Medjuskladisni(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, txtBrojKontejnera.Text, Convert.ToInt32(cboVrstaKontejnera.SelectedValue), Convert.ToInt32(cboBrodar.SelectedValue));
             FillGV();
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            InsertRN up = new InsertRN();
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected == true)
+                {
+                    up.PotvrdiUradjenRN12(Convert.ToInt32(row.Cells[0].Value.ToString()), KorisnikTekuci);
+                }
+
+            }
+        }
+
+        private void VratiOstaloIzTekuceg(string BrojKontejnera)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT TipKontejnera, Skladiste " +
+  " FROM KontejnerTekuce where Kontejner= '" + BrojKontejnera + "'", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+               // txtID.Text = dr["ID"].ToString();
+                cboVrstaKontejnera.SelectedValue = Convert.ToInt32(dr["TipKontejnera"].ToString());
+                cboSaSklad.SelectedValue = Convert.ToInt32(dr["Skladiste"].ToString());
+            }
+            con.Close();
+
+
+
+
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            using (var detailForm = new Uvoz.frmKontejnerTekuce())
+            {
+                detailForm.ShowDialog();
+                txtBrojKontejnera.Text = detailForm.GetBrojKontejnera();
+                VratiOstaloIzTekuceg(txtBrojKontejnera.Text);
+            }
         }
     }
 }

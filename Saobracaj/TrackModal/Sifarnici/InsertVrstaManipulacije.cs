@@ -10,7 +10,7 @@ namespace Testiranje.Sifarnici
     class InsertVrstaManipulacije
     {
 
-        public void InsVrstaManipulacije(string Naziv, DateTime Datum, string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna, int drumski)
+        public void InsVrstaManipulacije(string Naziv, DateTime Datum, string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna, int drumski, int Dodatna, int PotvrdaUradio, string Apstrakt1, string Apstrakt2)
         {
             // @Oznaka nvarchar(50), 
             // @Relacija nvarchar(100), 
@@ -126,6 +126,44 @@ namespace Testiranje.Sifarnici
             parameter16.Direction = ParameterDirection.Input;
             parameter16.Value = drumski;
             myCommand.Parameters.Add(parameter16);
+
+
+            SqlParameter parameter17 = new SqlParameter();
+            parameter17.ParameterName = "@Dodatna";
+            parameter17.SqlDbType = SqlDbType.Int;
+            parameter17.Direction = ParameterDirection.Input;
+            parameter17.Value = Dodatna;
+            myCommand.Parameters.Add(parameter17);
+
+
+            SqlParameter parameter18 = new SqlParameter();
+            parameter18.ParameterName = "@PotvrdaUradio";
+            parameter18.SqlDbType = SqlDbType.Int;
+            parameter18.Direction = ParameterDirection.Input;
+            parameter18.Value = PotvrdaUradio;
+            myCommand.Parameters.Add(parameter18);
+
+
+            SqlParameter parameter19 = new SqlParameter();
+            parameter19.ParameterName = "@Apstrakt1";
+            parameter19.SqlDbType = SqlDbType.NVarChar;
+            parameter19.Size = 30;
+            parameter19.Direction = ParameterDirection.Input;
+            parameter19.Value = Apstrakt1;
+            myCommand.Parameters.Add(parameter19);
+
+            SqlParameter parameter20 = new SqlParameter();
+            parameter20.ParameterName = "@Apstrakt2";
+            parameter20.SqlDbType = SqlDbType.NVarChar;
+            parameter20.Size = 30;
+            parameter20.Direction = ParameterDirection.Input;
+            parameter20.Value = Apstrakt2;
+            myCommand.Parameters.Add(parameter20);
+
+
+
+
+
             // @Oznaka nvarchar(50), 
             // @Relacija nvarchar(100), 
             // @Cena numeric(18,2)
@@ -167,7 +205,7 @@ namespace Testiranje.Sifarnici
             }
         }
 
-        public void UpdVrstaManipulacije(int ID, string Naziv, DateTime Datum, string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna, int drumski)
+        public void UpdVrstaManipulacije(int ID, string Naziv, DateTime Datum, string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna, int drumski, int Dodatna, int PotvrdaUradio, string Apstrakt1, string Apstrakt2)
         {
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -288,6 +326,38 @@ namespace Testiranje.Sifarnici
             parameter16.Direction = ParameterDirection.Input;
             parameter16.Value = drumski;
             myCommand.Parameters.Add(parameter16);
+
+            SqlParameter parameter17 = new SqlParameter();
+            parameter17.ParameterName = "@Dodatna";
+            parameter17.SqlDbType = SqlDbType.Int;
+            parameter17.Direction = ParameterDirection.Input;
+            parameter17.Value = Dodatna;
+            myCommand.Parameters.Add(parameter17);
+
+
+            SqlParameter parameter18 = new SqlParameter();
+            parameter18.ParameterName = "@PotvrdaUradio";
+            parameter18.SqlDbType = SqlDbType.Int;
+            parameter18.Direction = ParameterDirection.Input;
+            parameter18.Value = PotvrdaUradio;
+            myCommand.Parameters.Add(parameter18);
+
+
+            SqlParameter parameter19 = new SqlParameter();
+            parameter19.ParameterName = "@Apstrakt1";
+            parameter19.SqlDbType = SqlDbType.NVarChar;
+            parameter19.Size = 30;
+            parameter19.Direction = ParameterDirection.Input;
+            parameter19.Value = Apstrakt1;
+            myCommand.Parameters.Add(parameter19);
+
+            SqlParameter parameter20 = new SqlParameter();
+            parameter20.ParameterName = "@Apstrakt2";
+            parameter20.SqlDbType = SqlDbType.NVarChar;
+            parameter20.Size = 30;
+            parameter20.Direction = ParameterDirection.Input;
+            parameter20.Value = Apstrakt2;
+            myCommand.Parameters.Add(parameter20);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

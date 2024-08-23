@@ -66,17 +66,31 @@ namespace Testiranje.Sifarnici
 
             }
 
+            int dodatna = 0;
+            if (chkDodatna.Checked == true)
+            {
+                dodatna = 1;
+
+            }
+
+            int potvrdauradio = 0;
+            if (chkPotvrdaUradio.Checked == true)
+            {
+                potvrdauradio = 1;
+
+            }
+
             if (status == true)
             {
                 InsertVrstaManipulacije ins = new InsertVrstaManipulacije();
-                ins.InsVrstaManipulacije(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue), administrativna, drumska);
+                ins.InsVrstaManipulacije(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue), administrativna, drumska, dodatna, potvrdauradio, txtApstrakt1.Text, txtApstrakt2.Text);
                 status = false;
             }
             else
             {
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertVrstaManipulacije upd = new InsertVrstaManipulacije();
-                upd.UpdVrstaManipulacije(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue), administrativna, drumska);
+                upd.UpdVrstaManipulacije(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue), administrativna, drumska, dodatna,potvrdauradio, txtApstrakt1.Text, txtApstrakt2.Text);
             }
             RefreshDataGrid();
         }
@@ -193,7 +207,7 @@ namespace Testiranje.Sifarnici
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT ID , Naziv, JM, UticeSkladisno, TipManipulacije, OrgJed, Oznaka,Relacija, Cena, GrupaVrsteManipulacijeID, Administrativna, Drumska from VrstaManipulacije where ID=" + txtSifra.Text, con);
+            SqlCommand cmd = new SqlCommand("SELECT ID , Naziv, JM, UticeSkladisno, TipManipulacije, OrgJed, Oznaka,Relacija, Cena, GrupaVrsteManipulacijeID, Administrativna, Drumska, Dodatna, PotvrdaUradio, Apstrakt1, Apstrakt2 from VrstaManipulacije where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -220,6 +234,17 @@ namespace Testiranje.Sifarnici
                 if (dr["Drumska"].ToString() == "1")
                 { chkDrumski.Checked = true; }
                 else { chkDrumski.Checked = false; }
+
+                if (dr["Dodatna"].ToString() == "1")
+                { chkDodatna.Checked = true; }
+                else { chkDodatna.Checked = false; }
+
+                if (dr["PotvrdaUradio"].ToString() == "1")
+                { chkPotvrdaUradio.Checked = true; }
+                else { chkPotvrdaUradio.Checked = false; }
+
+                txtApstrakt1.Text = dr["Apstrakt1"].ToString();
+                txtApstrakt2.Text = dr["Apstrakt2"].ToString();
             }
 
             con.Close();
@@ -424,6 +449,19 @@ namespace Testiranje.Sifarnici
         }
 
         private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkDodatna_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkDodatna.Checked == true)
+            {
+                panelDodatnaUluga.Visible = true;
+            }
+        }
+
+        private void panelDodatnaUluga_Paint(object sender, PaintEventArgs e)
         {
 
         }
