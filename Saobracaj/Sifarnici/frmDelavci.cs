@@ -214,6 +214,7 @@ namespace Saobracaj.Sifarnici
                 upd.UpdDelavciMTA(Convert.ToInt32(txtDeSifra.Text), txtDePriimek.Text, txtDeIme.Text, txtDeTelefon1.Text, txtDeTelefon2.Text, txtDeEMail.Text, txtDeUlHisStBivS.Text, txtDeKrajBivS.Text, Convert.ToInt32(txtDeSifDelMes.SelectedValue), txtDeSifStat.Text, PomManevrista, PomPomocnik, PomVozovodja, PomPregledacKola, PomMasinovodja, txtERPID.Text);
             }
             RefreshDataGrid();
+            status = false;
         }
 
         private void VratiPodatke(string ID)
