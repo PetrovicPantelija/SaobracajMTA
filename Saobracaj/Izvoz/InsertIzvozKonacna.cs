@@ -723,7 +723,7 @@ namespace Saobracaj.Izvoz
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             SqlCommand myCommand = myConnection.CreateCommand();
-            myCommand.CommandText = "InsertIzvozslugaDokument";
+            myCommand.CommandText = "InsertIzvozUslugaDokument";
             myCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
             SqlParameter parameter = new SqlParameter();

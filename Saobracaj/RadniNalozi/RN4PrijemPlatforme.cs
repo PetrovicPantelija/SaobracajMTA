@@ -344,18 +344,32 @@ namespace Saobracaj.RadniNalozi
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+            int potrebanvizuelni = 0;
+            if (chkVizuelni.Checked == true)
+            {
+                potrebanvizuelni = 1;
+
+
+            }
+            int pomIzUvoza = 0;
+            if (chkUvoz.Checked == true)
+            {
+                pomIzUvoza = 1;
+            
+            }
+
             if (chkUvoz.Checked == true)
             {
                 //
                 RadniNalozi.InsertRN ir = new InsertRN();
-                ir.InsRNPrijemPlatformeKamUvoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text, Convert.ToInt32(txtNalogID.Text));
+                ir.InsRNPrijemPlatformeKamUvoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text, Convert.ToInt32(txtNalogID.Text), potrebanvizuelni,pomIzUvoza );
                 FillGV();
 
             }
             else
             {
                 RadniNalozi.InsertRN ir = new InsertRN();
-                ir.InsRNPrijemPlatformeKamIzvoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text, Convert.ToInt32(txtNalogID.Text));
+                ir.InsRNPrijemPlatformeKamIzvoz(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(0), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, Convert.ToInt32(txtPrijemID.Text), txtKamion.Text, Convert.ToInt32(txtNalogID.Text), potrebanvizuelni, pomIzUvoza);
                 FillGV();
             }
            

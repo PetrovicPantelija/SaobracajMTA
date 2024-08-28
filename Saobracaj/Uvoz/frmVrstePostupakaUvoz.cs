@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmVrstePostupakaUvoz : Form
+    public partial class frmVrstePostupakaUvoz : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmVrstePostupakaUvoz";
         public bool Pravo;

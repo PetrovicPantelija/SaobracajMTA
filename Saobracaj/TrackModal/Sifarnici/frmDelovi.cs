@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Testiranje.Sifarnici
 {
-    public partial class frmDelovi : Form
+    public partial class frmDelovi : Syncfusion.Windows.Forms.Office2010Form
     {
 
 
@@ -100,7 +100,7 @@ namespace Testiranje.Sifarnici
 
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Naziv";
-            dataGridView1.Columns[1].Width = 150;
+            dataGridView1.Columns[1].Width = 350;
 
 
             DataGridViewColumn column3 = dataGridView1.Columns[2];

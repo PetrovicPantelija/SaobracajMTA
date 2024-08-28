@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmPregledNerasporedjeni : Form
+    public partial class frmPregledNerasporedjeni : Syncfusion.Windows.Forms.Office2010Form
     {
         int Selektovani = 0;
         private Keys keyData;

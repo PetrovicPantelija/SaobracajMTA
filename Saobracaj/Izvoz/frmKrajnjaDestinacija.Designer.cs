@@ -40,6 +40,8 @@ namespace Saobracaj.Izvoz
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.lblNaziv = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label13 = new System.Windows.Forms.Label();
+            this.cboDrzava = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +57,7 @@ namespace Saobracaj.Izvoz
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(800, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(600, 27);
             this.toolStrip1.TabIndex = 201;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -65,7 +67,7 @@ namespace Saobracaj.Izvoz
             this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
+            this.tsNew.Size = new System.Drawing.Size(24, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -75,7 +77,7 @@ namespace Saobracaj.Izvoz
             this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -85,7 +87,7 @@ namespace Saobracaj.Izvoz
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsDelete.Size = new System.Drawing.Size(24, 24);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
@@ -96,37 +98,33 @@ namespace Saobracaj.Izvoz
             // 
             // txtID
             // 
-            this.txtID.Location = new System.Drawing.Point(98, 50);
-            this.txtID.Margin = new System.Windows.Forms.Padding(4);
+            this.txtID.Location = new System.Drawing.Point(88, 36);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(140, 22);
+            this.txtID.Size = new System.Drawing.Size(106, 20);
             this.txtID.TabIndex = 236;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 48);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(11, 39);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(37, 17);
+            this.label3.Size = new System.Drawing.Size(28, 13);
             this.label3.TabIndex = 235;
             this.label3.Text = "Šifra";
             // 
             // txtNaziv
             // 
-            this.txtNaziv.Location = new System.Drawing.Point(98, 83);
-            this.txtNaziv.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNaziv.Location = new System.Drawing.Point(88, 67);
             this.txtNaziv.Name = "txtNaziv";
-            this.txtNaziv.Size = new System.Drawing.Size(304, 22);
+            this.txtNaziv.Size = new System.Drawing.Size(229, 20);
             this.txtNaziv.TabIndex = 234;
             // 
             // lblNaziv
             // 
             this.lblNaziv.AutoSize = true;
-            this.lblNaziv.Location = new System.Drawing.Point(13, 83);
-            this.lblNaziv.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNaziv.Location = new System.Drawing.Point(10, 67);
             this.lblNaziv.Name = "lblNaziv";
-            this.lblNaziv.Size = new System.Drawing.Size(37, 17);
+            this.lblNaziv.Size = new System.Drawing.Size(28, 13);
             this.lblNaziv.TabIndex = 233;
             this.lblNaziv.Text = "Opis";
             // 
@@ -137,20 +135,41 @@ namespace Saobracaj.Izvoz
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 131);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Location = new System.Drawing.Point(10, 133);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(774, 306);
+            this.dataGridView1.Size = new System.Drawing.Size(580, 222);
             this.dataGridView1.TabIndex = 237;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 102);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(41, 13);
+            this.label13.TabIndex = 238;
+            this.label13.Text = "Drzava";
+            // 
+            // cboDrzava
+            // 
+            this.cboDrzava.FormattingEnabled = true;
+            this.cboDrzava.ItemHeight = 13;
+            this.cboDrzava.Location = new System.Drawing.Point(88, 99);
+            this.cboDrzava.Margin = new System.Windows.Forms.Padding(2);
+            this.cboDrzava.Name = "cboDrzava";
+            this.cboDrzava.Size = new System.Drawing.Size(265, 21);
+            this.cboDrzava.TabIndex = 239;
+            // 
             // frmKrajnjaDestinacija
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.cboDrzava);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.label3);
@@ -158,6 +177,7 @@ namespace Saobracaj.Izvoz
             this.Controls.Add(this.lblNaziv);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmKrajnjaDestinacija";
             this.Text = "Krajnja destinacija";
             this.Load += new System.EventHandler(this.frmKrajnjaDestinacija_Load);
@@ -181,5 +201,7 @@ namespace Saobracaj.Izvoz
         private System.Windows.Forms.TextBox txtNaziv;
         private System.Windows.Forms.Label lblNaziv;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox cboDrzava;
     }
 }

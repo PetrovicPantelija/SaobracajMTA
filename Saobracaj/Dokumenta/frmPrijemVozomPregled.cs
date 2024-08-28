@@ -117,7 +117,7 @@ namespace TrackModal.Dokumeta
 "  [MaksimalnaBruto],[MaksimalnaDuzina] " +
 " ,[MaksimalanBrojKola] " +
   "           FROM[dbo].[PrijemKontejneraVoz] " +
-" inner join Voz on Voz.BrVoza = PrijemKontejneraVoz.IdVoza " +
+" inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza " +
 " inner join UvozKonacnaZaglavlje On Voz.ID = UvozKonacnaZaglavlje.IDVoza " +
 " inner join Partnerji p1 on p1.PaSifra = Voz.OperaterSrbija " +
 " inner join Partnerji p2 on p2.PaSifra = Voz.OperaterHR " +
