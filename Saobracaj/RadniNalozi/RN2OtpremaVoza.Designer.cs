@@ -84,7 +84,7 @@ namespace Saobracaj.RadniNalozi
             this.chkZavrsen = new System.Windows.Forms.CheckBox();
             this.txtNalogID = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtUvozniID = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
@@ -281,6 +281,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // cboSaSklad
             // 
+            this.cboSaSklad.Enabled = false;
             this.cboSaSklad.FormattingEnabled = true;
             this.cboSaSklad.ItemHeight = 13;
             this.cboSaSklad.Location = new System.Drawing.Point(7, 45);
@@ -302,6 +303,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // cboSaPoz
             // 
+            this.cboSaPoz.Enabled = false;
             this.cboSaPoz.FormattingEnabled = true;
             this.cboSaPoz.ItemHeight = 13;
             this.cboSaPoz.Location = new System.Drawing.Point(5, 84);
@@ -630,14 +632,14 @@ namespace Saobracaj.RadniNalozi
             this.label19.TabIndex = 265;
             this.label19.Text = "Nalog ID";
             // 
-            // textBox1
+            // txtUvozniID
             // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.textBox1.Location = new System.Drawing.Point(20, 238);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(2);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(101, 20);
-            this.textBox1.TabIndex = 268;
+            this.txtUvozniID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.txtUvozniID.Location = new System.Drawing.Point(20, 238);
+            this.txtUvozniID.Margin = new System.Windows.Forms.Padding(2);
+            this.txtUvozniID.Name = "txtUvozniID";
+            this.txtUvozniID.Size = new System.Drawing.Size(101, 20);
+            this.txtUvozniID.TabIndex = 268;
             // 
             // label8
             // 
@@ -729,7 +731,7 @@ namespace Saobracaj.RadniNalozi
             this.panel4.Controls.Add(this.label7);
             this.panel4.Controls.Add(this.txtDatumRasporeda);
             this.panel4.Controls.Add(this.label6);
-            this.panel4.Controls.Add(this.textBox1);
+            this.panel4.Controls.Add(this.txtUvozniID);
             this.panel4.Controls.Add(this.txtNalogIzdao);
             this.panel4.Controls.Add(this.label8);
             this.panel4.Controls.Add(this.txtIDinazivplaniraneusluge);
@@ -854,7 +856,7 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.CheckBox chkZavrsen;
         private System.Windows.Forms.TextBox txtNalogID;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtUvozniID;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.DataGridView dataGridView3;

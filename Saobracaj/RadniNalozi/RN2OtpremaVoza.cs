@@ -20,6 +20,30 @@ namespace Saobracaj.RadniNalozi
             FillCombo();
         }
 
+        private void VratiSkladisteIzTekuceg(string ID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" SELECT       Skladiste " +
+  "  FROM  KontejnerTekuce " +
+             " where Kontejner = '" + ID + "'", con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                cboSaSklad.SelectedValue = Convert.ToString(dr["Skladiste"].ToString());
+
+
+
+            }
+
+            con.Close();
+        }
+
         public RN2OtpremaVoza(string Korisnik, string IDVOza, string IDUsluge, string OtpremaID)
         {
             InitializeComponent();
@@ -176,6 +200,8 @@ namespace Saobracaj.RadniNalozi
             cboSaPoz.DataSource = dsPoz.Tables[0];
             cboSaPoz.DisplayMember = "Opis";
             cboSaPoz.ValueMember = "ID";
+
+            //VRati tekuce skladiste
         }
         private void tsNew_Click(object sender, EventArgs e)
         {
@@ -305,7 +331,7 @@ namespace Saobracaj.RadniNalozi
       " , [NazivBrodara]      , [VrstaRobe]      , [SaSkladista] " +
       " , [SaPozicijeSklad]      , [IdUsluge]      , [NalogRealizovao] " +
       " , [Napomena]      , [OtpremaID]      , [NalogID] " +
-      " , [Zavrsen]   FROM [dbo].[RNOtpremaVoza]" +
+      " , [Zavrsen], UvozniID   FROM [dbo].[RNOtpremaVoza]" +
              " where ID = " + txtID.Text, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -333,6 +359,7 @@ namespace Saobracaj.RadniNalozi
               
                 //NIJE DOBRO null   cboPostupak.SelectedValue = Convert.ToInt32(dr["CarinskiPostupak"].ToString());
                 txtNapomena.Text = dr["Napomena"].ToString();
+                txtUvozniID.Text = dr["UvozniID"].ToString();
                 //NIJE DOBR NULL   cboInspekcijski.SelectedValue = Convert.ToInt32(dr["InspekcijskiPregled"].ToString());
 
                 if (dr["Zavrsen"].ToString() == "1")
