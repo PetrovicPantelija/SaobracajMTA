@@ -20,6 +20,7 @@ namespace Saobracaj.Uvoz
         int pomOrgJed = 0;
         int Usao = 0;
         string KorisnikTekuci = "";
+        int terminal;
         public frmUnosManipulacija()
         {
             InitializeComponent();
@@ -27,7 +28,7 @@ namespace Saobracaj.Uvoz
             Usao = 0;
         }
 
-        public frmUnosManipulacija(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Uvoznik, string Korisnik)
+        public frmUnosManipulacija(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Uvoznik, string Korisnik,int Terminal)
         {
             InitializeComponent();
             pIDPlana = IDPlana;
@@ -42,6 +43,7 @@ namespace Saobracaj.Uvoz
             FillDG8();
             KorisnikTekuci = Korisnik;
             Usao = 0;
+            terminal = Terminal;
 
 
         }
@@ -1973,14 +1975,27 @@ namespace Saobracaj.Uvoz
             cboUvoznik.DisplayMember = "PaNaziv";
             cboUvoznik.ValueMember = "PaSifra";
 
+            if (terminal == 1)
+            {
+                var partner22 = "SELECT ID, Min(Naziv) as Naziv FROM Scenario Where OJIzdavanje=4 group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
+            else
+            {
+                var partner22 = "SELECT ID, Min(Naziv) as Naziv FROM Scenario group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
 
-            var partner22 = "SELECT ID, Min(Naziv) as Naziv FROM Scenario group by ID order by ID";
-            var partAD22 = new SqlDataAdapter(partner22, conn);
-            var partDS22 = new DataSet();
-            partAD22.Fill(partDS22);
-            cboScenario.DataSource = partDS22.Tables[0];
-            cboScenario.DisplayMember = "Naziv";
-            cboScenario.ValueMember = "ID";
 
             var select3 = " SELECT ID, Naziv from GrupaVrsteManipulacije order by ID";
             var s_connection3 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
