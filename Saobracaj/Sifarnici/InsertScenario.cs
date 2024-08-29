@@ -10,7 +10,7 @@ namespace Saobracaj.Sifarnici
     class InsertScenario
     {
 
-        public void InsScenario(int PotpunoNovi, string Naziv, int Usluga, string Pokret, int StatusKontejnera, string Forma)
+        public void InsScenario(int PotpunoNovi, string Naziv, int Usluga, string Pokret, int StatusKontejnera, string Forma,int OJ)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -65,6 +65,13 @@ namespace Saobracaj.Sifarnici
             parameter5.Value = Forma;
             myCommand.Parameters.Add(parameter5);
 
+            SqlParameter parameter6 = new SqlParameter();
+            parameter6.ParameterName = "@OJ";
+            parameter6.SqlDbType = SqlDbType.Int;
+            parameter6.Direction = ParameterDirection.Input;    
+            parameter6.Value = OJ;
+            myCommand.Parameters.Add(parameter6);
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
@@ -101,7 +108,7 @@ namespace Saobracaj.Sifarnici
             }
         }
 
-        public void UpdScenario(int ScenarioID, int RB, string Naziv, int Usluga, string Pokret, int StatusKontejnera, string Forma)
+        public void UpdScenario(int ScenarioID, int RB, string Naziv, int Usluga, string Pokret, int StatusKontejnera, string Forma,int OJ)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -162,6 +169,13 @@ namespace Saobracaj.Sifarnici
             parameter5.Direction = ParameterDirection.Input;
             parameter5.Value = Forma;
             myCommand.Parameters.Add(parameter5);
+
+            SqlParameter parameter6 = new SqlParameter();
+            parameter6.ParameterName = "@OJ";
+            parameter6.SqlDbType = SqlDbType.Int;
+            parameter6.Direction = ParameterDirection.Input;
+            parameter6.Value = OJ;
+            myCommand.Parameters.Add(parameter6);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

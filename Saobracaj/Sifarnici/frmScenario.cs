@@ -24,13 +24,13 @@ namespace Saobracaj.Sifarnici
                 InsertScenario ins = new InsertScenario();
                 //0-Ako je novi scenario
                 //1-Ako je dodavanje stavke
-                ins.InsScenario(0, txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.SelectedText);
+                ins.InsScenario(0, txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.SelectedText,Convert.ToInt32(cboOJ.Text.Substring(0,1)));
                 status = false;
             }
             else
             {
                 InsertScenario upd = new InsertScenario();
-                upd.UpdScenario(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtRB.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.SelectedText);
+                upd.UpdScenario(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtRB.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.SelectedText,Convert.ToInt32(cboOJ.Text.Substring(0,1)));
 
             }
             RefreshDataGrid();
@@ -38,11 +38,31 @@ namespace Saobracaj.Sifarnici
         private void RefreshDataGrid()
         {
             var select = "";
-            select = "Select Scenario.ID,Scenario.RB, Scenario.Naziv, Scenario.Usluga, VrstaManipulacije.Naziv as UslugaN,  Scenario.Pokret, Scenario.StatusKontejnera, " +
-" KontejnerStatus.Naziv as StatusN, Forma from Scenario " +
-" inner join VrstaManipulacije on VrstaManipulacije.ID = Usluga " +
-" inner join KontejnerStatus on KontejnerStatus.ID = Scenario.StatusKOntejnera " +
-" order by  Scenario.ID,Scenario.RB ";
+            select = @" SELECT 
+    Scenario.ID,
+    Scenario.RB,
+    Scenario.Naziv,
+    Scenario.Usluga,
+    VrstaManipulacije.Naziv AS UslugaN,
+    Scenario.Pokret,
+    Scenario.StatusKontejnera,
+    KontejnerStatus.Naziv AS StatusN,
+    Scenario.Forma,
+    CASE 
+        WHEN Scenario.OJIzdavanje = 1 THEN '1-Uvoz'
+        WHEN Scenario.OJIzdavanje = 2 THEN '2-Izvoz'
+        WHEN Scenario.OJIzdavanje = 4 THEN '4-Terminal'
+        ELSE ''
+    END AS OJIzdavanje
+FROM 
+    Scenario
+INNER JOIN 
+    VrstaManipulacije ON VrstaManipulacije.ID = Scenario.Usluga
+INNER JOIN 
+    KontejnerStatus ON KontejnerStatus.ID = Scenario.StatusKontejnera
+ORDER BY 
+    Scenario.ID,
+    Scenario.RB";
 
             //  "  where  Aktivnosti.Masinovodja = 1 and Zaposleni = " + Convert.ToInt32(cboZaposleni.SelectedValue) + " order by Aktivnosti.ID desc";
 
@@ -135,7 +155,11 @@ namespace Saobracaj.Sifarnici
             cboStatus.ValueMember = "ID";
 
             RefreshDataGrid();
-           
+
+            cboOJ.Items.Add("1-Uvoz");
+            cboOJ.Items.Add("2-Izvoz");
+            cboOJ.Items.Add("4-Terminal");
+
 
         }
 
@@ -144,7 +168,7 @@ namespace Saobracaj.Sifarnici
             InsertScenario ins = new InsertScenario();
             //0-Ako je novi scenario
             //1-Je broj tekuceg scaniraj
-            ins.InsScenario(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.Text);
+            ins.InsScenario(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.Text,Convert.ToInt32(cboOJ.Text.Substring(0,1)));
             RefreshDataGrid();
         }
         private void VratiPodatkeSelect(string ID, string RB)
@@ -180,6 +204,7 @@ namespace Saobracaj.Sifarnici
                     {
                         txtSifra.Text = row.Cells[0].Value.ToString();
                         txtRB.Text = row.Cells[1].Value.ToString();
+                        cboOJ.Text = row.Cells["OJIzdavanje"].Value.ToString();
                         VratiPodatkeSelect(txtSifra.Text, txtRB.Text);
                         // txtOznaka.Enabled = false;
                         // txtOpis.Text = row.Cells[1].Value.ToString();
