@@ -10,7 +10,7 @@ namespace Saobracaj.Izvoz
     {
         string connection = frmLogovanje.connectionString;
 
-        public void InsKrajnjaDestinacija(string Naziv, int SifDr)
+        public void InsKrajnjaDestinacija(string Naziv, string SifDr)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -27,7 +27,8 @@ namespace Saobracaj.Izvoz
 
             SqlParameter drzava = new SqlParameter();
             drzava.ParameterName = "@SifDr";
-            drzava.SqlDbType = SqlDbType.Int;
+            drzava.SqlDbType = SqlDbType.Char;
+            drzava.Size = 3;
             drzava.Direction = ParameterDirection.Input;
             drzava.Value = SifDr;
             cmd.Parameters.Add(drzava);
@@ -67,7 +68,7 @@ namespace Saobracaj.Izvoz
                 }
             }
         }
-        public void UpdKrajnjaDestinacija(int ID, string Naziv, int SifDr)
+        public void UpdKrajnjaDestinacija(int ID, string Naziv, string SifDr)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -91,7 +92,8 @@ namespace Saobracaj.Izvoz
 
             SqlParameter drzava = new SqlParameter();
             drzava.ParameterName = "@SifDr";
-            drzava.SqlDbType = SqlDbType.Int;
+            drzava.SqlDbType = SqlDbType.Char;
+            drzava.Size = 53;
             drzava.Direction = ParameterDirection.Input;
             drzava.Value = SifDr;
             cmd.Parameters.Add(drzava);

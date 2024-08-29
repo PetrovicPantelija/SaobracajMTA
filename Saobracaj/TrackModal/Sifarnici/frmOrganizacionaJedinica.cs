@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Testiranje.Sifarnici
 {
-    public partial class frmOrganizacionaJedinica : Form
+    public partial class frmOrganizacionaJedinica : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "frmOrganizacionaJedinica";
         public bool Pravo;

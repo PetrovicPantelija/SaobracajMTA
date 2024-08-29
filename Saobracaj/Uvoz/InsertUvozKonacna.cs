@@ -1502,7 +1502,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             }
         }
 
-        public void InsUbaciDodatnuUsluguUvoz(int IDNadredjena, int IDVrstaManipulacije,  double Kolicina,   string NapomenaZaUslugu, string Korisnik)
+        public void InsUbaciDodatnuUsluguUvoz(int IDNadredjena, int IDVrstaManipulacije,  double Kolicina,   string NapomenaZaUslugu, string Korisnik, int PotvrdiUradjen, decimal Kolicina2)
         {
             //  @IdNadredjena int,
             //@IDVrstaManipulacije int,
@@ -1553,10 +1553,27 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             SqlParameter korisnik = new SqlParameter();
             korisnik.ParameterName = "@Korisnik";
             korisnik.SqlDbType = SqlDbType.NVarChar;
-            korisnik.Size = 500;
+            korisnik.Size = 20;
             korisnik.Direction = ParameterDirection.Input;
-            korisnik.Value = Korisnik;
+            korisnik.Value = Korisnik.ToString().TrimEnd();
             cmd.Parameters.Add(korisnik);
+
+
+            SqlParameter potvrdiuradjen = new SqlParameter();
+            potvrdiuradjen.ParameterName = "@PotvrdiUradjen";
+            potvrdiuradjen.SqlDbType = SqlDbType.Int;
+            potvrdiuradjen.Direction = ParameterDirection.Input;
+            potvrdiuradjen.Value = PotvrdiUradjen;
+            cmd.Parameters.Add(potvrdiuradjen);
+
+
+
+            SqlParameter kolicina2 = new SqlParameter();
+            kolicina2.ParameterName = "@Kolicina2";
+            kolicina2.SqlDbType = SqlDbType.Decimal;
+            kolicina2.Direction = ParameterDirection.Input;
+            kolicina2.Value = Kolicina2;
+            cmd.Parameters.Add(kolicina2);
             /*
             SqlParameter korisnik = new SqlParameter();
             korisnik.ParameterName = "@Korisnik";
@@ -2993,7 +3010,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
 
         }
 
-        public void ZavrsiDodatnuUsluguUvozZadata(int NalogID, int IDKonkretnaUsluga, decimal Kolicina, string NapomenaZaUslugu)
+        public void ZavrsiDodatnuUsluguUvozZadata(int NalogID, int IDKonkretnaUsluga, decimal Kolicina, string NapomenaZaUslugu, int PotvrdiUradjen, decimal Kolicina2)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -3017,7 +3034,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
 
             SqlParameter kolicina = new SqlParameter();
             kolicina.ParameterName = "@Kolicina";
-            kolicina.SqlDbType = SqlDbType.Int;
+            kolicina.SqlDbType = SqlDbType.Decimal;
             kolicina.Direction = ParameterDirection.Input;
             kolicina.Value = Kolicina;
             cmd.Parameters.Add(kolicina);
@@ -3029,6 +3046,23 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             napomenazauslugu.Direction = ParameterDirection.Input;
             napomenazauslugu.Value = NapomenaZaUslugu;
             cmd.Parameters.Add(napomenazauslugu);
+
+
+            SqlParameter potvrdiuradjen = new SqlParameter();
+            potvrdiuradjen.ParameterName = "@PotvrdiUradjen";
+            potvrdiuradjen.SqlDbType = SqlDbType.Int;
+            potvrdiuradjen.Direction = ParameterDirection.Input;
+            potvrdiuradjen.Value = PotvrdiUradjen;
+            cmd.Parameters.Add(potvrdiuradjen);
+
+
+
+            SqlParameter kolicina2 = new SqlParameter();
+            kolicina2.ParameterName = "@Kolicina2";
+            kolicina2.SqlDbType = SqlDbType.Int;
+            kolicina2.Direction = ParameterDirection.Input;
+            kolicina2.Value = Kolicina2;
+            cmd.Parameters.Add(kolicina2);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -3066,7 +3100,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
 
         }
 
-        public void ZavrsiDodatnuUsluguIzvozZadata(int NalogID, int IDKonkretnaUsluga, decimal Kolicina, string NapomenaZaUslugu)
+        public void ZavrsiDodatnuUsluguIzvozZadata(int NalogID, int IDKonkretnaUsluga, decimal Kolicina, string NapomenaZaUslugu, int PotvrdiUradjen, decimal Kolicina2)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
@@ -3090,7 +3124,7 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
 
             SqlParameter kolicina = new SqlParameter();
             kolicina.ParameterName = "@Kolicina";
-            kolicina.SqlDbType = SqlDbType.Int;
+            kolicina.SqlDbType = SqlDbType.Decimal;
             kolicina.Direction = ParameterDirection.Input;
             kolicina.Value = Kolicina;
             cmd.Parameters.Add(kolicina);
@@ -3102,6 +3136,25 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             napomenazauslugu.Direction = ParameterDirection.Input;
             napomenazauslugu.Value = NapomenaZaUslugu;
             cmd.Parameters.Add(napomenazauslugu);
+
+
+            SqlParameter potvrdiuradjen = new SqlParameter();
+            potvrdiuradjen.ParameterName = "@PotvrdiUradjen";
+            potvrdiuradjen.SqlDbType = SqlDbType.Int;
+            potvrdiuradjen.Direction = ParameterDirection.Input;
+            potvrdiuradjen.Value = PotvrdiUradjen;
+            cmd.Parameters.Add(potvrdiuradjen);
+
+
+
+            SqlParameter kolicina2 = new SqlParameter();
+            kolicina2.ParameterName = "@Kolicina2";
+            kolicina2.SqlDbType = SqlDbType.Int;
+            kolicina2.Direction = ParameterDirection.Input;
+            kolicina2.Value = Kolicina2;
+            cmd.Parameters.Add(kolicina2);
+
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

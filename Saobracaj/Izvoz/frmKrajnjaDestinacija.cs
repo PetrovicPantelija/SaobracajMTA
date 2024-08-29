@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
 {
-    public partial class frmKrajnjaDestinacija : Form
+    public partial class frmKrajnjaDestinacija : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         public frmKrajnjaDestinacija()
@@ -17,12 +17,25 @@ namespace Saobracaj.Izvoz
 
         private void frmKrajnjaDestinacija_Load(object sender, EventArgs e)
         {
+            var select8 = "  Select DrSifra,DrNaziv   From Drzave ";
+            var s_connection8 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection8 = new SqlConnection(s_connection8);
+            var c8 = new SqlConnection(s_connection8);
+            var dataAdapter8 = new SqlDataAdapter(select8, c8);
+
+            var commandBuilder8 = new SqlCommandBuilder(dataAdapter8);
+            var ds8 = new DataSet();
+            dataAdapter8.Fill(ds8);
+            cboDrzava.DataSource = ds8.Tables[0];
+            cboDrzava.DisplayMember = "DrNaziv";
+            cboDrzava.ValueMember = "DrSifra";
+
             RefreshDataGrid();
         }
 
         private void RefreshDataGrid()
         {
-            var select = " SELECT ID,Naziv FROM  KrajnjaDestinacija";
+            var select = " SELECT ID,Naziv, DrSifra,SifDr FROM  KrajnjaDestinacija";
 
 
 
@@ -76,12 +89,12 @@ namespace Saobracaj.Izvoz
             if (status == true)
             {
                 InsertKrajnjaDestinacija ins = new InsertKrajnjaDestinacija();
-                // ins.InsKrajnjaDestinacija(txtNaziv.Text);
+                 ins.InsKrajnjaDestinacija(txtNaziv.Text,cboDrzava.SelectedValue.ToString());
             }
             else
             {
                 InsertKrajnjaDestinacija upd = new InsertKrajnjaDestinacija();
-                // upd.UpdKrajnjaDestinacija(Convert.ToInt32(txtID.Text), txtNaziv.Text);
+                upd.UpdKrajnjaDestinacija(Convert.ToInt32(txtID.Text), txtNaziv.Text, cboDrzava.SelectedValue.ToString());
             }
             RefreshDataGrid();
         }
@@ -103,7 +116,7 @@ namespace Saobracaj.Izvoz
                     {
                         txtID.Text = row.Cells[0].Value.ToString();
                         txtNaziv.Text = row.Cells[1].Value.ToString();
-
+                        cboDrzava.SelectedValue = row.Cells[2].Value.ToString();
                     }
                 }
             }

@@ -34,6 +34,7 @@ namespace Testiranje.Dokumeta
 
         string KorisnikCene = Saobracaj.Sifarnici.frmLogovanje.user;
         bool status = false;
+        int IzPregleda = 0;
       //  int VozID = 1;
         public frmVoz()
         {
@@ -91,11 +92,12 @@ namespace Testiranje.Dokumeta
         public frmVoz(int Voz, string Korisnik)
         {
             InitializeComponent();
-            KorisnikCene = Korisnik;
+            KorisnikCene = Kor;
           //  KorisnikCene = "Panta";
             txtSifra.Text = Voz.ToString();
             RefreshDataGrid2();
             VratiUkupanBrojKontejnera();
+            IzPregleda = 1;
             
         }
         private void tsSave_Click(object sender, EventArgs e)
@@ -381,6 +383,23 @@ namespace Testiranje.Dokumeta
                 dtpVremeDolaskaO.Enabled = false;
                 toolStripButton1.Visible = true;
                 toolStripButton2.Visible = false;
+
+
+                label36.Visible = false;
+                dtpPLFormiranja.Visible = false;
+                label37.Visible = false;
+                dtpIzvlacenjeSaTerminala.Visible = false;
+                label38.Visible = false;
+                dtpPreuzimanjeSM.Visible = false;
+                label39.Visible = false;
+                dtpPolazakSid.Visible = false;
+                label40.Visible = false;
+                dtpPredajaHR.Visible = false;
+                label41.Visible = false;
+                dtpPrispeceRijeka.Visible = false;
+                label42.Visible = false;
+                dtpIskrcajRijeka.Visible = false;
+                button7.Visible = false;
             }
             else
             {
@@ -399,6 +418,23 @@ namespace Testiranje.Dokumeta
                 dtpVremeDolaskaO.Enabled = true;
                 toolStripButton1.Visible = false;
                 toolStripButton2.Visible = true;
+
+
+                label36.Visible = true;
+                dtpPLFormiranja.Visible = true;
+                label37.Visible = true;
+                dtpIzvlacenjeSaTerminala.Visible = true;
+                label38.Visible = true;
+                dtpPreuzimanjeSM.Visible = true;
+                label39.Visible = true;
+                dtpPolazakSid.Visible = true;
+                label40.Visible = true;
+                dtpPredajaHR.Visible = true;
+                label41.Visible = true;
+                dtpPrispeceRijeka.Visible = true;
+                label42.Visible = true;
+                dtpIskrcajRijeka.Visible = true;
+                button7.Visible = true;
             } 
             con.Close();
         }
@@ -523,7 +559,11 @@ namespace Testiranje.Dokumeta
             cboVlasnik.ValueMember = "PaSifra";
 
             //cboSerijaKola
-
+            if (IzPregleda == 1)
+            {
+                VratiPodatke(txtSifra.Text);
+            }
+  
             RefreshDataGrid();
         }
 
@@ -549,7 +589,23 @@ namespace Testiranje.Dokumeta
                 txtVremeIzvlacenjaO.Enabled = false;
                 dtpVremePolaskaO.Enabled = false;
                 dtpVremeDolaskaO.Enabled = false;
-                }
+
+                label36.Visible = false;
+                dtpPLFormiranja.Visible = false;
+                label37.Visible = false;
+                dtpIzvlacenjeSaTerminala.Visible = false;
+                label38.Visible = false;
+                dtpPreuzimanjeSM.Visible = false;
+                label39.Visible = false;
+                dtpPolazakSid.Visible = false;
+                label40.Visible = false;
+                dtpPredajaHR.Visible = false;
+                label41.Visible = false;
+                dtpPrispeceRijeka.Visible = false;
+                label42.Visible = false;
+                dtpIskrcajRijeka.Visible = false;
+                button7.Visible = false;
+            }
                 else
 	            {
                 dtpVremePolaska.Enabled = false;
@@ -565,7 +621,23 @@ namespace Testiranje.Dokumeta
                 txtVremeIzvlacenjaO.Enabled = true;
                 dtpVremePolaskaO.Enabled = true;
                 dtpVremeDolaskaO.Enabled = true;
-	            } 
+
+                label36.Visible = true;
+                dtpPLFormiranja.Visible = true;
+                label37.Visible = true;
+                dtpIzvlacenjeSaTerminala.Visible = true;
+                label38.Visible = true;
+                dtpPreuzimanjeSM.Visible = true;
+                label39.Visible = true;
+                dtpPolazakSid.Visible = true;
+                label40.Visible = true;
+                dtpPredajaHR.Visible = true;
+                label41.Visible = true;
+                dtpPrispeceRijeka.Visible = true;
+                label42.Visible = true;
+                dtpIskrcajRijeka.Visible = true;
+                button7.Visible = true;
+            } 
         }
 
         private void tsNew_Click(object sender, EventArgs e)

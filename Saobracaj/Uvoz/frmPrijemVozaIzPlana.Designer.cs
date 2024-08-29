@@ -75,6 +75,10 @@ namespace Saobracaj.Uvoz
             this.label4 = new System.Windows.Forms.Label();
             this.chkIzvoz = new System.Windows.Forms.CheckBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtTelefon = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtNapomenaVozac = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.toolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -601,12 +605,60 @@ namespace Saobracaj.Uvoz
             this.panel1.TabIndex = 263;
             this.panel1.Visible = false;
             // 
+            // txtTelefon
+            // 
+            this.txtTelefon.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.txtTelefon.Location = new System.Drawing.Point(581, 139);
+            this.txtTelefon.Name = "txtTelefon";
+            this.txtTelefon.Size = new System.Drawing.Size(210, 20);
+            this.txtTelefon.TabIndex = 264;
+            this.txtTelefon.Visible = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(585, 123);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 13);
+            this.label5.TabIndex = 265;
+            this.label5.Text = "TELEFON:";
+            this.label5.Visible = false;
+            // 
+            // txtNapomenaVozac
+            // 
+            this.txtNapomenaVozac.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.txtNapomenaVozac.Location = new System.Drawing.Point(581, 185);
+            this.txtNapomenaVozac.Name = "txtNapomenaVozac";
+            this.txtNapomenaVozac.Size = new System.Drawing.Size(210, 20);
+            this.txtNapomenaVozac.TabIndex = 266;
+            this.txtNapomenaVozac.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(585, 169);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(71, 13);
+            this.label6.TabIndex = 267;
+            this.label6.Text = "NAPOMENA:";
+            this.label6.Visible = false;
+            // 
             // frmPrijemVozaIzPlana
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1145, 448);
+            this.Controls.Add(this.txtNapomenaVozac);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtTelefon);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.chkIzvoz);
             this.Controls.Add(this.label4);
@@ -702,5 +754,9 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtTelefon;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtNapomenaVozac;
+        private System.Windows.Forms.Label label6;
     }
 }

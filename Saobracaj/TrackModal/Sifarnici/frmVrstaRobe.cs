@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Testiranje.Sifarnici
 {
-    public partial class frmVrstaRobe : Form
+    public partial class frmVrstaRobe : Syncfusion.Windows.Forms.Office2010Form
     {
 
         public static string code = "frmVrstaRobe";

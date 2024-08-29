@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class fruvNacinPakovanja : Form
+    public partial class fruvNacinPakovanja : Syncfusion.Windows.Forms.Office2010Form
     {
         public static string code = "fruvNacinPakovanja";
         public bool Pravo;

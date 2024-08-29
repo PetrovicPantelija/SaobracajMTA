@@ -19,6 +19,7 @@ namespace Saobracaj.Uvoz
 {
     public partial class frmDodatneUsluge : Syncfusion.Windows.Forms.Office2010Form
     {
+        int usao = 1;
         public frmDodatneUsluge()
         {
             InitializeComponent();
@@ -73,10 +74,10 @@ namespace Saobracaj.Uvoz
             }
             else if (chkDodatne.Checked == true)
             {
-                select = " Select BrojKontejnera, KontejnerID as BrojOsnov from PrijemKontejneraVozStavke   " +
+                select = " Select DISTINCT 0 as ID, BrojKontejnera, KontejnerID as BrojOsnov, 0 as  IDMAnipulacijaJed, '' as Naziv, 0 as KonkretaIDUsluge from PrijemKontejneraVozStavke   " +
 " inner join PrijemKontejneraVoz on PrijemKontejneraVoz.ID = PrijemKontejneraVozStavke.IDNadredjenog " +
 " where PrijemKontejneraVoz.IdVoza = " + cboBukingPrijema.SelectedValue +
-" Order by PrijemKontejneraVozStavke.RB ASC";
+" ";
             }
             var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -127,17 +128,24 @@ namespace Saobracaj.Uvoz
             cboUsluga.DataSource = ds9.Tables[0];
             cboUsluga.DisplayMember = "Naziv";
             cboUsluga.ValueMember = "ID";
+
+            usao = 1;
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             int pom = 0;
+            int pomPotvrdiUradjen = 0;
+            if (chkPotvrdiUradjen.Checked == true)
+            {
+                pomPotvrdiUradjen = 1;
+            }
             InsertUvozKonacna uvK = new InsertUvozKonacna();
             if (chkIzvoz.Checked == true)
             {
                 try
                 {
-                    uvK.ZavrsiDodatnuUsluguIzvozZadata(Convert.ToInt32(txtNalogID.Text), Convert.ToInt32(txtKonkretnaMan.Text), Convert.ToDecimal(txtTara.Value), txtNapomena.Text);
+                    uvK.ZavrsiDodatnuUsluguIzvozZadata(Convert.ToInt32(txtNalogID.Text), Convert.ToInt32(txtKonkretnaMan.Text), Convert.ToDecimal(num1.Value), txtNapomena.Text, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
 
                 }
                 catch
@@ -151,7 +159,7 @@ namespace Saobracaj.Uvoz
             {
                 try
                 {
-                    uvK.ZavrsiDodatnuUsluguUvozZadata(Convert.ToInt32(txtNalogID.Text), Convert.ToInt32(txtKonkretnaMan.Text), Convert.ToDecimal(txtTara.Value), txtNapomena.Text);
+                    uvK.ZavrsiDodatnuUsluguUvozZadata(Convert.ToInt32(txtNalogID.Text), Convert.ToInt32(txtKonkretnaMan.Text), Convert.ToDecimal(num1.Value), txtNapomena.Text, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
 
                 }
                 catch
@@ -165,21 +173,25 @@ namespace Saobracaj.Uvoz
                
 
                     string kor = Sifarnici.frmLogovanje.user;
-                    uvK.InsUbaciDodatnuUsluguUvoz(Convert.ToInt32(txtBrojOsnov.Text),Convert.ToInt32(cboUsluga.SelectedValue), Convert.ToDouble(txtTara.Value), txtNapomena.Text, kor);
+                    uvK.InsUbaciDodatnuUsluguUvoz(Convert.ToInt32(txtBrojOsnov.Text),Convert.ToInt32(cboUsluga.SelectedValue), Convert.ToDouble(num1.Value), txtNapomena.Text, kor, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
           
 
             }
          
         }
 
-        private void VratiPodatkeZaUslugu(string ID)
+        private void VratiPodatkeZaUslugu(int ID)
         {
+            if (ID == 0)
+            {
+                return;
+            }
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT ID  Dodatna, PotvrdaUradio, Apstrakt1, Apstrakt2 from VrstaManipulacije where ID=" + ID, con);
+            SqlCommand cmd = new SqlCommand("SELECT ID,  Dodatna, PotvrdaUradio, Apstrakt1, Apstrakt2 from VrstaManipulacije where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -216,9 +228,9 @@ namespace Saobracaj.Uvoz
                       
                         num2.Visible = true;
                     }
-                    lblKolicina2.Visible = true;
-                    num1.Visible = true;
-                    num2.Visible = true;
+                  //  lblKolicina2.Visible = true;
+                    //num1.Visible = true;
+                   // num2.Visible = true;
                     num1.Value = 1;
                     num2.Value = 1;
                 }
@@ -237,11 +249,21 @@ namespace Saobracaj.Uvoz
                 if (gridGroupingControl1.Table.CurrentRecord != null)
                 {
                     txtBrojOsnov.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojOsnov").ToString();
-                    txtKonkretnaMan.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("KonkretaIDUsluge").ToString();
-                    txtNalogID.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
-                    cboUsluga.SelectedValue = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("IDManipulacijaJed").ToString());
+                  
+                    if (chkDodatne.Checked == true )
+                    {
+                        VratiPodatkeZaUslugu(Convert.ToInt32(cboUsluga.SelectedValue));
+                    }
+                    else
+                    {
+                        txtKonkretnaMan.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("KonkretaIDUsluge").ToString();
+                        txtNalogID.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
+                        cboUsluga.SelectedValue = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("IDManipulacijaJed").ToString());
+                        VratiPodatkeZaUslugu(Convert.ToInt32(cboUsluga.SelectedValue));
+                    }
+                   
                 }
-                VratiPodatkeZaUslugu(cboUsluga.SelectedValue.ToString());
+           
 
             }
             catch (Exception ex)
@@ -275,6 +297,23 @@ namespace Saobracaj.Uvoz
                 dm.Show();
             }
           
+        }
+
+        private void cboUsluga_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+           
+        }
+
+        private void cboUsluga_SelectedValueChanged(object sender, EventArgs e)
+        {
+        
+           
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            VratiPodatkeZaUslugu(Convert.ToInt32(cboUsluga.SelectedValue));
         }
     }
 }

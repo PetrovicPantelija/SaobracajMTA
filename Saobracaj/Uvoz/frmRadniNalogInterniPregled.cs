@@ -154,6 +154,12 @@ namespace Saobracaj.Uvoz
             gridGroupingControl1.ShowGroupDropArea = true;
             this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
 
+            GridConditionalFormatDescriptor gcfd3 = new GridConditionalFormatDescriptor();
+            gcfd3.Appearance.AnyRecordFieldCell.BackColor = Color.Green;
+            gcfd3.Appearance.AnyRecordFieldCell.TextColor = Color.Yellow;
+
+            gcfd3.Expression = "[Uradjen] =  '1'";
+            this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd3);
 
             GridConditionalFormatDescriptor gcfd = new GridConditionalFormatDescriptor();
             gcfd.Appearance.AnyRecordFieldCell.BackColor = Color.BlueViolet;
@@ -171,12 +177,7 @@ namespace Saobracaj.Uvoz
             gcfd2.Expression = "[StatusIzdavanja] =  'STORNO'";
             this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd2);
 
-            GridConditionalFormatDescriptor gcfd3 = new GridConditionalFormatDescriptor();
-            gcfd3.Appearance.AnyRecordFieldCell.BackColor = Color.Green;
-            gcfd3.Appearance.AnyRecordFieldCell.TextColor = Color.Yellow;
-
-            gcfd3.Expression = "[Uradjen] =  '1'";
-            this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd3);
+        
             //To add the conditional format instances to the ConditionalFormats collection. 
 
 

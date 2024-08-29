@@ -108,11 +108,11 @@ namespace Saobracaj.Sifarnici
             InsertKrajnjaDestinacija ins = new InsertKrajnjaDestinacija();
             if (status == true)
             {
-                ins.InsKrajnjaDestinacija(txtNaziv.Text.ToString().TrimEnd(), Convert.ToInt32(txtIdDrzave.Text));
+                ins.InsKrajnjaDestinacija(txtNaziv.Text.ToString().TrimEnd(), txtIdDrzave.Text);
             }
             else
             {
-                ins.UpdKrajnjaDestinacija(Convert.ToInt32(txtID.Text), txtNaziv.Text.ToString().TrimEnd(), Convert.ToInt32(txtIdDrzave.Text));
+                ins.UpdKrajnjaDestinacija(Convert.ToInt32(txtID.Text), txtNaziv.Text.ToString().TrimEnd(),txtIdDrzave.Text);
             }
             status = false;
             FillGV();

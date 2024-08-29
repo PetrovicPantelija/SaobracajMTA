@@ -55,6 +55,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -130,6 +131,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.chkPotvrdiUradjen);
             this.panel1.Controls.Add(this.lblKolicina2);
@@ -283,6 +285,8 @@
             this.cboUsluga.Name = "cboUsluga";
             this.cboUsluga.Size = new System.Drawing.Size(264, 22);
             this.cboUsluga.TabIndex = 233;
+            this.cboUsluga.SelectedIndexChanged += new System.EventHandler(this.cboUsluga_SelectedIndexChanged);
+            this.cboUsluga.SelectedValueChanged += new System.EventHandler(this.cboUsluga_SelectedValueChanged);
             // 
             // label2
             // 
@@ -396,6 +400,16 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(292, 112);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(29, 23);
+            this.button2.TabIndex = 257;
+            this.button2.Text = "?";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
             // frmDodatneUsluge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -450,5 +464,6 @@
         private System.Windows.Forms.NumericUpDown num2;
         private System.Windows.Forms.CheckBox chkPotvrdiUradjen;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

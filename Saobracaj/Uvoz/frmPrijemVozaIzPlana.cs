@@ -71,6 +71,7 @@ namespace Saobracaj.Uvoz
                 cboOperater.Visible = false;
                 label3.Visible = false;
                 cboOperaterHR.Visible = false;
+                VratiKamion(RNI); // Vraca podatke o kamionu i vozacu
             }
             else {
                 label30.Visible = false;
@@ -84,7 +85,38 @@ namespace Saobracaj.Uvoz
                 cboOperater.Visible = true;
                 label3.Visible = true;
                 cboOperaterHR.Visible = true;
+                txtTelefon.Visible = false;
+                txtNapomenaVozac.Visible = false;
+                label5.Visible = false;
+                label6.Visible = false;
             }
+
+        }
+
+        private void VratiKamion(int RNI)
+        {
+            int IzUvoza = 0;
+            if (chkUvoz.Checked == true)
+            {
+                IzUvoza = 0;
+            }
+            else { IzUvoza = 1; }
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" Select RegBr, Vozac, BrojTelefona, VoziloUsluga.Napomena from RadniNalogInterni inner join VoziloUsluga On VoziloUsluga.IdUsluge = RadniNalogInterni.KonkretaIDUsluge where Modul = " + IzUvoza, con); // UVoz
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtRegBrKamiona.Text = dr["RegBr"].ToString();
+                txtImeVozaca.Text = dr["Vozac"].ToString();
+            }
+
+            con.Close();
 
         }
 

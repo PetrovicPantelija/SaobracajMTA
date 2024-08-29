@@ -1806,7 +1806,7 @@ namespace Saobracaj.RadniNalozi
             }
         }
 
-        public void InsRNPrijemPlatformeKamIzvoz(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaVoznogSredstva, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, int PrijemID, string Kamion, int NalogID)
+        public void InsRNPrijemPlatformeKamIzvoz(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaVoznogSredstva, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, int PrijemID, string Kamion, int NalogID, int PotrebanVizuelni, int IzUvoza)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -1908,6 +1908,21 @@ namespace Saobracaj.RadniNalozi
             cmd.Parameters.Add(nalogid);
 
 
+            SqlParameter potrebanvizuelni = new SqlParameter();
+            potrebanvizuelni.ParameterName = "@PotrebanVizuelni";
+            potrebanvizuelni.SqlDbType = SqlDbType.Int;
+            potrebanvizuelni.Direction = ParameterDirection.Input;
+            potrebanvizuelni.Value = PotrebanVizuelni;
+            cmd.Parameters.Add(potrebanvizuelni);
+
+            SqlParameter izuvoza = new SqlParameter();
+            izuvoza.ParameterName = "@IzUvoza";
+            izuvoza.SqlDbType = SqlDbType.Int;
+            izuvoza.Direction = ParameterDirection.Input;
+            izuvoza.Value = IzUvoza;
+            cmd.Parameters.Add(izuvoza);
+
+
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -1944,7 +1959,7 @@ namespace Saobracaj.RadniNalozi
             }
         }
 
-        public void InsRNPrijemPlatformeKamUvoz(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaVoznogSredstva, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, int PrijemID, string Kamion, int NalogID)
+        public void InsRNPrijemPlatformeKamUvoz(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaVoznogSredstva, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, int PrijemID, string Kamion, int NalogID, int PotrebanVizuelni, int IzUvoza)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -2024,7 +2039,6 @@ namespace Saobracaj.RadniNalozi
             SqlParameter prijemid = new SqlParameter();
             prijemid.ParameterName = "@PrijemID";
             prijemid.SqlDbType = SqlDbType.Int;
-
             prijemid.Direction = ParameterDirection.Input;
             prijemid.Value = PrijemID;
             cmd.Parameters.Add(prijemid);
@@ -2044,7 +2058,19 @@ namespace Saobracaj.RadniNalozi
             nalogid.Value = NalogID;
             cmd.Parameters.Add(nalogid);
 
+            SqlParameter potrebanvizuelni = new SqlParameter();
+            potrebanvizuelni.ParameterName = "@PotrebanVizuelni";
+            potrebanvizuelni.SqlDbType = SqlDbType.Int;
+            potrebanvizuelni.Direction = ParameterDirection.Input;
+            potrebanvizuelni.Value = PotrebanVizuelni;
+            cmd.Parameters.Add(potrebanvizuelni);
 
+            SqlParameter izuvoza = new SqlParameter();
+            izuvoza.ParameterName = "@IzUvoza";
+            izuvoza.SqlDbType = SqlDbType.Int;
+            izuvoza.Direction = ParameterDirection.Input;
+            izuvoza.Value = IzUvoza;
+            cmd.Parameters.Add(izuvoza);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
