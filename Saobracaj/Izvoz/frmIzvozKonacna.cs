@@ -209,7 +209,7 @@ namespace Saobracaj.Izvoz
              " ,[NacinPretovara]      ,[DodatneNapomeneDrumski]      ,[Vaganje]      ,[VGMTezina] " +
              " ,[Tara]      ,[VGMBrod]      ,[Izvoznik]      ,[Klijent1] " +
              " ,[Napomena1REf]      ,[DobijenNalogKlijent1]      ,[Klijent2]      ,[Napomena2REf] " +
-             " ,[Klijent3]      ,[Napomena3REf]      ,[SpediterRijeka] , ADR   " +
+             " ,[Klijent3]      ,[Napomena3REf]      ,[SpediterRijeka] , ADR,Scenario   " +
              "  FROM [IzvozKonacna] where ID=" + ID, con);
 
             SqlDataReader dr = cmd.ExecuteReader();
@@ -292,6 +292,8 @@ namespace Saobracaj.Izvoz
                 cboNalogodavac3.SelectedValue = Convert.ToInt32(dr["Klijent3"].ToString());
                 txtRef3.Text = dr["Napomena3REf"].ToString();
                 cboSpediterURijeci.SelectedValue = Convert.ToInt32(dr["SpediterRijeka"].ToString());
+
+                cboScenario.SelectedValue = Convert.ToInt32(dr["Scenario"].ToString());
 
 
 
@@ -1484,13 +1486,16 @@ namespace Saobracaj.Izvoz
         {
             return 0;
         }
-
+        int terminal = 0;
+        string pickUp;
         private void button14_Click(object sender, EventArgs e)
         {
             if (txtNadredjeni.Text == "")
             { txtNadredjeni.Text = "0"; }
+            if (chkTerminal.Checked) { terminal = 1; }
+            pickUp = cboPPCNT.Text.ToString().TrimEnd();
             // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue));
+            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), terminal, pickUp);
             um.Show();
         }
 
@@ -2027,8 +2032,10 @@ namespace Saobracaj.Izvoz
 
             if (txtNadredjeni.Text == "")
             { txtNadredjeni.Text = "0"; }
+            if (chkTerminal.Checked) { terminal = 1; }
+            pickUp = cboPPCNT.Text.ToString().TrimEnd();
             // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue));
+            frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue), terminal, pickUp);
             um.Show();
         }
 
@@ -2246,8 +2253,10 @@ namespace Saobracaj.Izvoz
             {
                 if (txtID.Text == "")
                 { txtID.Text = "0"; }
+                if (chkTerminal.Checked) { terminal = 1; }
+                pickUp = cboPPCNT.Text.ToString().TrimEnd();
                 // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-                frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue));
+                frmIzvozUnosManipulacije um = new frmIzvozUnosManipulacije(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboIzvoznik.SelectedValue),terminal,pickUp);
                 um.Show();
 
             }
@@ -2269,7 +2278,6 @@ namespace Saobracaj.Izvoz
         {
 
         }
-
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 

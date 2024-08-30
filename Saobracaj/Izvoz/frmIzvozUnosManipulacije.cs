@@ -25,6 +25,8 @@ namespace Saobracaj.Izvoz
         int pIzvoznik = 0;
         int pomOrgJed = 0;
         int Usao = 0;
+        int terminal;
+        string pickUp;
         public frmIzvozUnosManipulacije()
         {
             InitializeComponent();
@@ -32,7 +34,7 @@ namespace Saobracaj.Izvoz
             int Usao = 0;
         }
 
-        public frmIzvozUnosManipulacije(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Izvoznik)
+        public frmIzvozUnosManipulacije(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Izvoznik,int Terminal, string PickUp)
         {
             InitializeComponent();
             pIDPlana = IDPlana;
@@ -45,6 +47,8 @@ namespace Saobracaj.Izvoz
             FillDG6(1);
             FillDG8();
             int Usao = 0;
+            terminal = Terminal;
+            pickUp = PickUp;
         }
 
         private void button11_Click(object sender, EventArgs e)
@@ -882,13 +886,46 @@ namespace Saobracaj.Izvoz
             cboUvoznik.DisplayMember = "PaNaziv";
             cboUvoznik.ValueMember = "PaSifra";
 
-            var partner22 = "Select DISTINCT ID from Scenario Order by ID";
-            var partAD22 = new SqlDataAdapter(partner22, conn);
-            var partDS22 = new DataSet();
-            partAD22.Fill(partDS22);
-            cboScenario.DataSource = partDS22.Tables[0];
-            cboScenario.DisplayMember = "ID";
-            cboScenario.ValueMember = "ID";
+            if (terminal == 1)
+            {
+                var partner22 = "SELECT ID, Min(Naziv) as Naziv FROM Scenario Where OJIzdavanje=4 group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
+            else if (pickUp == "AGCT Rijeka -")
+            {
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID=11 group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
+            else if (pickUp == "Leget -")
+            {
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (7,8,9,12,23,24,25) group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
+            else
+            {
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (11,13,14,26) group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
         }
 
         private void FillGVIzvoz()
@@ -2301,6 +2338,24 @@ namespace Saobracaj.Izvoz
                 InsertIzvoz uvK = new InsertIzvoz();
                 uvK.InsUbaciUsluguKonacnaPlan(Convert.ToInt32(txtNadredjeni.Text));
                 FillDG8();
+                using (SqlConnection conn = new SqlConnection(connection))
+                {
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = "UPDATE Izvoz Set Scenario="+Convert.ToInt32(cboScenario.SelectedValue)+" Where ID="+Convert.ToInt32(txtID.Text);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                    using (SqlCommand cmd = conn.CreateCommand())
+                    {
+                        cmd.CommandText = "UPDATE IzvozKonacna Set Scenario=" + Convert.ToInt32(cboScenario.SelectedValue) + " Where ID=" + Convert.ToInt32(txtID.Text);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                }
+
             }
             else
             {

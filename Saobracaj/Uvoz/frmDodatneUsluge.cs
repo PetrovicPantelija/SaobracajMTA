@@ -145,7 +145,7 @@ namespace Saobracaj.Uvoz
             {
                 try
                 {
-                    uvK.ZavrsiDodatnuUsluguIzvozZadata(Convert.ToInt32(txtNalogID.Text), Convert.ToInt32(txtKonkretnaMan.Text), Convert.ToDecimal(num1.Value), txtNapomena.Text, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
+                   // uvK.ZavrsiDodatnuUsluguIzvozZadata(Convert.ToInt32(txtNalogID.Text), Convert.ToInt32(txtKonkretnaMan.Text), Convert.ToDecimal(num1.Value), txtNapomena.Text, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
 
                 }
                 catch
@@ -159,7 +159,7 @@ namespace Saobracaj.Uvoz
             {
                 try
                 {
-                    uvK.ZavrsiDodatnuUsluguUvozZadata(Convert.ToInt32(txtNalogID.Text), Convert.ToInt32(txtKonkretnaMan.Text), Convert.ToDecimal(num1.Value), txtNapomena.Text, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
+                   // uvK.ZavrsiDodatnuUsluguUvozZadata(Convert.ToInt32(txtNalogID.Text), Convert.ToInt32(txtKonkretnaMan.Text), Convert.ToDecimal(num1.Value), txtNapomena.Text, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
 
                 }
                 catch
@@ -173,7 +173,7 @@ namespace Saobracaj.Uvoz
                
 
                     string kor = Sifarnici.frmLogovanje.user;
-                    uvK.InsUbaciDodatnuUsluguUvoz(Convert.ToInt32(txtBrojOsnov.Text),Convert.ToInt32(cboUsluga.SelectedValue), Convert.ToDouble(num1.Value), txtNapomena.Text, kor, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
+                   // uvK.InsUbaciDodatnuUsluguUvoz(Convert.ToInt32(txtBrojOsnov.Text),Convert.ToInt32(cboUsluga.SelectedValue), Convert.ToDouble(num1.Value), txtNapomena.Text, kor, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
           
 
             }
@@ -284,7 +284,7 @@ namespace Saobracaj.Uvoz
         }
 
         private void button1_Click_1(object sender, EventArgs e)
-        {
+        {/*
             if (chkIzvoz.Checked == true)
             {
                 frmDokumentaIzvozManipulacije dm = new frmDokumentaIzvozManipulacije(txtKonkretnaMan.Text);
@@ -296,7 +296,7 @@ namespace Saobracaj.Uvoz
                 frmDokumentaUvozneManipulacije dm = new frmDokumentaUvozneManipulacije(txtKonkretnaMan.Text);
                 dm.Show();
             }
-          
+          */
         }
 
         private void cboUsluga_SelectedIndexChanged(object sender, EventArgs e)

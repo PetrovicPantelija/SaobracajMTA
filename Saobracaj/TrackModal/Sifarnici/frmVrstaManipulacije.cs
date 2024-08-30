@@ -83,14 +83,14 @@ namespace Testiranje.Sifarnici
             if (status == true)
             {
                 InsertVrstaManipulacije ins = new InsertVrstaManipulacije();
-                ins.InsVrstaManipulacije(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue), administrativna, drumska, dodatna, potvrdauradio, txtApstrakt1.Text, txtApstrakt2.Text);
+                ins.InsVrstaManipulacije(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue), administrativna, drumska, dodatna, potvrdauradio, txtApstrakt1.Text, txtApstrakt2.Text,Convert.ToInt32(txtTipKont.SelectedValue));
                 status = false;
             }
             else
             {
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertVrstaManipulacije upd = new InsertVrstaManipulacije();
-                upd.UpdVrstaManipulacije(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue), administrativna, drumska, dodatna,potvrdauradio, txtApstrakt1.Text, txtApstrakt2.Text);
+                upd.UpdVrstaManipulacije(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue), administrativna, drumska, dodatna,potvrdauradio, txtApstrakt1.Text, txtApstrakt2.Text,Convert.ToInt32(txtTipKont.SelectedValue));
             }
             RefreshDataGrid();
         }
@@ -323,7 +323,15 @@ namespace Testiranje.Sifarnici
             cboGrupaVrsteManipulacije.ValueMember = "ID";
 
 
-
+            var tipkontejnera = "Select ID, SkNaziv From TipKontenjera order by SkNaziv";
+            var s_connection4 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection4 = new SqlConnection(s_connection4);
+            var tkAD = new SqlDataAdapter(tipkontejnera, myConnection4);
+            var tkDS = new DataSet();
+            tkAD.Fill(tkDS);
+            txtTipKont.DataSource = tkDS.Tables[0];
+            txtTipKont.DisplayMember = "SkNaziv";
+            txtTipKont.ValueMember = "ID";
 
 
 
