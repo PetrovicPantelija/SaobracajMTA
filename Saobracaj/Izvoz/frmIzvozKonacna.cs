@@ -2041,6 +2041,7 @@ namespace Saobracaj.Izvoz
 
         private void frmIzvozKonacna_SizeChanged(object sender, EventArgs e)
         {
+            /*
             float size1 = this.Size.Width / firstWidth;
             float size2 = this.Size.Height / firstHeight;
 
@@ -2062,6 +2063,7 @@ namespace Saobracaj.Izvoz
                     cb.SelectedIndex = -1;
                 }
             }
+            */
         }
 
         private void txtVrednostRobeFaktura_Enter(object sender, EventArgs e)
