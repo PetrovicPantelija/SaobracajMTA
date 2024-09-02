@@ -29,6 +29,7 @@ namespace Testiranje.Sifarnici
         private void tsNew_Click(object sender, EventArgs e)
         {
             status = true;
+            txtSifra.Text = "";
             txtSifra.Enabled = false;
             txtNaziv.Text = "";
         }
