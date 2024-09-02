@@ -31,9 +31,13 @@ namespace Saobracaj.Izvoz
 
         private void RefreshGV()
         {
-            var select = " Select Kontejner, KontejnerStatus.Naziv as Kontejner_Status, Skladista.Naziv as Skladiste, Pokret, KontejnerTekuce.Stanje, KontejnerTekuce.RLSRB, KontejnerTekuce.StatusIZvoz, KontejnerTekuce.UlazniBroj from KontejnerTekuce " +
-            " inner join KontejnerStatus on KontejnerStatus.ID = KontejnerTekuce.StatusKontejnera " +
-            " inner join Skladista on Skladista.ID = KontejnerTekuce.Skladiste  ";
+            var select = " Select Kontejner, KontejnerStatus.Naziv as Kontejner_Status, Skladista.Naziv as Skladiste, Pokret, KontejnerTekuce.Stanje, " +
+" (KontejnerskiTerminali.Oznaka + ' ' + KontejnerskiTerminali.Naziv) as RLSRB, KontejnerTekuce.StatusIZvoz, KontejnerTekuce.UlazniBroj " +
+" , Partnerji.PaNaziv as Brodar, p2.PaNAziv as Uvoznik from KontejnerTekuce " +
+" inner join KontejnerStatus on KontejnerStatus.ID = KontejnerTekuce.StatusKontejnera inner  join KontejnerskiTerminali on KontejnerskiTerminali.Id = KontejnerTekuce.RLSRB " +
+" inner  join Skladista on Skladista.ID = KontejnerTekuce.Skladiste " +
+ " inner  join Partnerji on PArtnerji.PaSifra = KontejnerTekuce.Brodar " +
+  " inner  join Partnerji as p2 on p2.PaSifra = KontejnerTekuce.Uvoznik  ";
 
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;
