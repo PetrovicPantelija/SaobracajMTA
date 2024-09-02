@@ -1,4 +1,5 @@
-﻿using Saobracaj.Sifarnici;
+﻿using Microsoft.Ajax.Utilities;
+using Saobracaj.Sifarnici;
 using System;
 using System.Configuration;
 using System.Data;
@@ -21,6 +22,7 @@ namespace Saobracaj.Uvoz
         int Usao = 0;
         string KorisnikTekuci = "";
         int terminal;
+        string relacija;
         public frmUnosManipulacija()
         {
             InitializeComponent();
@@ -28,7 +30,7 @@ namespace Saobracaj.Uvoz
             Usao = 0;
         }
 
-        public frmUnosManipulacija(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Uvoznik, string Korisnik,int Terminal)
+        public frmUnosManipulacija(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Uvoznik, string Korisnik,int Terminal,string Relacija)
         {
             InitializeComponent();
             pIDPlana = IDPlana;
@@ -44,7 +46,7 @@ namespace Saobracaj.Uvoz
             KorisnikTekuci = Korisnik;
             Usao = 0;
             terminal = Terminal;
-
+            relacija = Relacija;
 
         }
 
@@ -1941,6 +1943,7 @@ namespace Saobracaj.Uvoz
 
         private void FillCombo()
         {
+            
             SqlConnection conn = new SqlConnection(connection);
 
             var partner8 = "Select PaSifra,PaNaziv From Partnerji order by PaSifra";
@@ -1974,7 +1977,7 @@ namespace Saobracaj.Uvoz
             cboUvoznik.DataSource = partDS2.Tables[0];
             cboUvoznik.DisplayMember = "PaNaziv";
             cboUvoznik.ValueMember = "PaSifra";
-
+            
             if (terminal == 1)
             {
                 var partner22 = "SELECT ID, Min(Naziv) as Naziv FROM Scenario Where OJIzdavanje=4 group by ID order by ID";
@@ -1985,9 +1988,29 @@ namespace Saobracaj.Uvoz
                 cboScenario.DisplayMember = "Naziv";
                 cboScenario.ValueMember = "ID";
             }
+            else if(relacija== "AGCT Rijeka -")
+            {
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (1,2,18,19) group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
+            else if(relacija== "Leget -")
+            {
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (3,4,6,20,21) group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+            }
             else
             {
-                var partner22 = "SELECT ID, Min(Naziv) as Naziv FROM Scenario group by ID order by ID";
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (5,22) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);
                 var partDS22 = new DataSet();
                 partAD22.Fill(partDS22);

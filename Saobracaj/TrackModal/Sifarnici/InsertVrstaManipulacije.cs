@@ -10,7 +10,7 @@ namespace Testiranje.Sifarnici
     class InsertVrstaManipulacije
     {
 
-        public void InsVrstaManipulacije(string Naziv, DateTime Datum, string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna, int drumski, int Dodatna, int PotvrdaUradio, string Apstrakt1, string Apstrakt2)
+        public void InsVrstaManipulacije(string Naziv, DateTime Datum, string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna, int drumski, int Dodatna, int PotvrdaUradio, string Apstrakt1, string Apstrakt2,int TipKontejnera)
         {
             // @Oznaka nvarchar(50), 
             // @Relacija nvarchar(100), 
@@ -160,6 +160,13 @@ namespace Testiranje.Sifarnici
             parameter20.Value = Apstrakt2;
             myCommand.Parameters.Add(parameter20);
 
+            SqlParameter parameter21 = new SqlParameter();
+            parameter21.ParameterName = "@TipKontejnera";
+            parameter21.SqlDbType= SqlDbType.Int;
+            parameter21.Direction = ParameterDirection.Input;
+            parameter21.Value = TipKontejnera;
+            myCommand.Parameters.Add(parameter21);
+
 
 
 
@@ -205,7 +212,7 @@ namespace Testiranje.Sifarnici
             }
         }
 
-        public void UpdVrstaManipulacije(int ID, string Naziv, DateTime Datum, string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna, int drumski, int Dodatna, int PotvrdaUradio, string Apstrakt1, string Apstrakt2)
+        public void UpdVrstaManipulacije(int ID, string Naziv, DateTime Datum, string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna, int drumski, int Dodatna, int PotvrdaUradio, string Apstrakt1, string Apstrakt2,int TipKontejnera)
         {
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -358,6 +365,13 @@ namespace Testiranje.Sifarnici
             parameter20.Direction = ParameterDirection.Input;
             parameter20.Value = Apstrakt2;
             myCommand.Parameters.Add(parameter20);
+
+            SqlParameter parameter21 = new SqlParameter();
+            parameter21.ParameterName = "@TipKontejnera";
+            parameter21.SqlDbType = SqlDbType.Int;
+            parameter21.Direction = ParameterDirection.Input;
+            parameter21.Value = TipKontejnera;
+            myCommand.Parameters.Add(parameter21);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
