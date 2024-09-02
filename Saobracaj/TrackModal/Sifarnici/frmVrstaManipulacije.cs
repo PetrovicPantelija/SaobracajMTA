@@ -120,7 +120,7 @@ namespace Testiranje.Sifarnici
                 "VrstaManipulacije.[Datum] as Dat,VrstaManipulacije.[Korisnik] as Kor, TipManipulacije, VrstaManipulacije.OrgJed, " +
                 " OrganizacioneJedinice.Naziv, VrstaManipulacije.Oznaka, VrstaManipulacije.Relacija,VrstaManipulacije.Cena, " +
                 " CASE WHEN Administrativna > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Administrativna," +
-                "CASE WHEN Drumska > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Drumska  " +
+                "CASE WHEN Drumska > 0 THEN Cast(1 as bit) ELSE Cast(0 as BIT) END as Drumska,TipKontejnera as [Vrsta kontejnera]  " +
              " FROM [dbo].[VrstaManipulacije] " +
              " inner join OrganizacioneJedinice on OrganizacioneJedinice.ID = VrstaManipulacije.OrgJed" +
              " order by VrstaManipulacije.[ID]";

@@ -10,6 +10,8 @@ namespace Saobracaj.Sifarnici
     public partial class frmScenario : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
+        int vizuelniPregled = 0;
+        int cir = 0;
         public frmScenario()
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
@@ -18,22 +20,30 @@ namespace Saobracaj.Sifarnici
 
         private void tsSave_Click(object sender, EventArgs e)
         {
-
+            if (cbCir.Checked == true)
+            {
+                cir = 1;
+            }
+            if (cbVizuelni.Checked == true)
+            {
+                vizuelniPregled = 1;
+            }
             if (status == true)
             {
                 InsertScenario ins = new InsertScenario();
                 //0-Ako je novi scenario
                 //1-Ako je dodavanje stavke
-                ins.InsScenario(0, txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.SelectedText,Convert.ToInt32(cboOJ.Text.Substring(0,1)));
+                ins.InsScenario(0, txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.SelectedText,Convert.ToInt32(cboOJ.Text.Substring(0,1)),vizuelniPregled,cir);
                 status = false;
             }
             else
             {
                 InsertScenario upd = new InsertScenario();
-                upd.UpdScenario(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtRB.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.SelectedText,Convert.ToInt32(cboOJ.Text.Substring(0,1)));
+                upd.UpdScenario(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtRB.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.SelectedText,Convert.ToInt32(cboOJ.Text.Substring(0,1)),vizuelniPregled,cir);
 
             }
             RefreshDataGrid();
+            vizuelniPregled = 0;cir = 0;
         }
         private void RefreshDataGrid()
         {
@@ -53,7 +63,7 @@ namespace Saobracaj.Sifarnici
         WHEN Scenario.OJIzdavanje = 2 THEN '2-Izvoz'
         WHEN Scenario.OJIzdavanje = 4 THEN '4-Terminal'
         ELSE ''
-    END AS OJIzdavanje
+    END AS OJIzdavanje,VizuelniPregled,CIR
 FROM 
     Scenario
 INNER JOIN 
@@ -168,7 +178,15 @@ ORDER BY
             InsertScenario ins = new InsertScenario();
             //0-Ako je novi scenario
             //1-Je broj tekuceg scaniraj
-            ins.InsScenario(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.Text,Convert.ToInt32(cboOJ.Text.Substring(0,1)));
+            if (cbCir.Checked == true)
+            {
+                cir = 1;
+            }
+            if (cbVizuelni.Checked == true)
+            {
+                vizuelniPregled = 1;
+            }
+            ins.InsScenario(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToInt32(cboUsluga.SelectedValue), cboPokret.Text, Convert.ToInt32(cboStatus.SelectedValue), cboForma.Text,Convert.ToInt32(cboOJ.Text.Substring(0,1)),vizuelniPregled,cir);
             RefreshDataGrid();
         }
         private void VratiPodatkeSelect(string ID, string RB)
@@ -178,7 +196,7 @@ ORDER BY
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("Select Scenario.ID,Scenario.RB, Scenario.Naziv, Scenario.Usluga, Scenario.Pokret, Scenario.StatusKontejnera, Forma from Scenario where ID=" + ID + " AND RB =" + RB, con);
+            SqlCommand cmd = new SqlCommand("Select Scenario.ID,Scenario.RB, Scenario.Naziv, Scenario.Usluga, Scenario.Pokret, Scenario.StatusKontejnera, Forma,VizuelniPregled,CIR from Scenario where ID=" + ID + " AND RB =" + RB, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -188,6 +206,19 @@ ORDER BY
                 cboPokret.Text = dr["Pokret"].ToString();
                 cboStatus.SelectedValue = dr["StatusKontejnera"].ToString();
                 cboForma.Text = dr["Forma"].ToString();
+                int Vizuelni = Convert.ToInt32(dr["VizuelniPregled"].ToString());
+                int Cir = Convert.ToInt32(dr["CIR"].ToString());
+
+                if (Vizuelni == 1)
+                {
+                    cbVizuelni.Checked = true;
+                }
+                else { cbVizuelni.Checked = false; }
+                if(Cir == 1)
+                {
+                    cbCir.Checked = true;
+                }
+                else { cbCir.Checked = false; }
             }
 
             con.Close();

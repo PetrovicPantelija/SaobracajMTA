@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 
@@ -10,7 +11,7 @@ namespace Saobracaj.Sifarnici
     class InsertScenario
     {
 
-        public void InsScenario(int PotpunoNovi, string Naziv, int Usluga, string Pokret, int StatusKontejnera, string Forma,int OJ)
+        public void InsScenario(int PotpunoNovi, string Naziv, int Usluga, string Pokret, int StatusKontejnera, string Forma,int OJ,int Vizuelni,int CIR)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -71,6 +72,20 @@ namespace Saobracaj.Sifarnici
             parameter6.Direction = ParameterDirection.Input;    
             parameter6.Value = OJ;
             myCommand.Parameters.Add(parameter6);
+            
+            SqlParameter parameter7= new SqlParameter();
+            parameter7.ParameterName = "@VizuelniPregled";
+            parameter7.SqlDbType= SqlDbType.Int;
+            parameter7.Direction = ParameterDirection.Input;
+            parameter7.Value = Vizuelni;
+            myCommand.Parameters.Add(parameter7);
+
+            SqlParameter parameter8 = new SqlParameter();
+            parameter8.ParameterName = "@CIR";
+            parameter8.SqlDbType = SqlDbType.Int;
+            parameter8.Direction = ParameterDirection.Input;
+            parameter8.Value = CIR;
+            myCommand.Parameters.Add(parameter8);
 
 
             myConnection.Open();
@@ -108,7 +123,7 @@ namespace Saobracaj.Sifarnici
             }
         }
 
-        public void UpdScenario(int ScenarioID, int RB, string Naziv, int Usluga, string Pokret, int StatusKontejnera, string Forma,int OJ)
+        public void UpdScenario(int ScenarioID, int RB, string Naziv, int Usluga, string Pokret, int StatusKontejnera, string Forma,int OJ,int Vizuelni,int CIR)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -176,6 +191,20 @@ namespace Saobracaj.Sifarnici
             parameter6.Direction = ParameterDirection.Input;
             parameter6.Value = OJ;
             myCommand.Parameters.Add(parameter6);
+
+            SqlParameter parameter7 = new SqlParameter();
+            parameter7.ParameterName = "@VizuelniPregled";
+            parameter7.SqlDbType = SqlDbType.Int;
+            parameter7.Direction = ParameterDirection.Input;
+            parameter7.Value = Vizuelni;
+            myCommand.Parameters.Add(parameter7);
+
+            SqlParameter parameter8 = new SqlParameter();
+            parameter8.ParameterName = "@CIR";
+            parameter8.SqlDbType = SqlDbType.Int;
+            parameter8.Direction = ParameterDirection.Input;
+            parameter8.Value = CIR;
+            myCommand.Parameters.Add(parameter8);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

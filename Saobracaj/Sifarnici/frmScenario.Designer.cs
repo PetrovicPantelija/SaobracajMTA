@@ -56,6 +56,8 @@ namespace Saobracaj.Sifarnici
             this.label6 = new System.Windows.Forms.Label();
             this.cboOJ = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.cbVizuelni = new System.Windows.Forms.CheckBox();
+            this.cbCir = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -318,12 +320,34 @@ namespace Saobracaj.Sifarnici
             this.label7.TabIndex = 251;
             this.label7.Text = "OJ izdavanje:";
             // 
+            // cbVizuelni
+            // 
+            this.cbVizuelni.AutoSize = true;
+            this.cbVizuelni.Location = new System.Drawing.Point(375, 162);
+            this.cbVizuelni.Name = "cbVizuelni";
+            this.cbVizuelni.Size = new System.Drawing.Size(100, 17);
+            this.cbVizuelni.TabIndex = 252;
+            this.cbVizuelni.Text = "Vizuelni pregled";
+            this.cbVizuelni.UseVisualStyleBackColor = true;
+            // 
+            // cbCir
+            // 
+            this.cbCir.AutoSize = true;
+            this.cbCir.Location = new System.Drawing.Point(481, 162);
+            this.cbCir.Name = "cbCir";
+            this.cbCir.Size = new System.Drawing.Size(44, 17);
+            this.cbCir.TabIndex = 253;
+            this.cbCir.Text = "CIR";
+            this.cbCir.UseVisualStyleBackColor = true;
+            // 
             // frmScenario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(990, 473);
+            this.Controls.Add(this.cbCir);
+            this.Controls.Add(this.cbVizuelni);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cboOJ);
             this.Controls.Add(this.cboForma);
@@ -381,5 +405,7 @@ namespace Saobracaj.Sifarnici
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ComboBox cboOJ;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.CheckBox cbVizuelni;
+        private System.Windows.Forms.CheckBox cbCir;
     }
 }
