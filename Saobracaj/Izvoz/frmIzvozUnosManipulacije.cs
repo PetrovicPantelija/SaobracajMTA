@@ -49,6 +49,7 @@ namespace Saobracaj.Izvoz
             int Usao = 0;
             terminal = Terminal;
             pickUp = PickUp;
+            //sss
         }
 
         private void button11_Click(object sender, EventArgs e)
