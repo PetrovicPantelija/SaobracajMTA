@@ -121,7 +121,12 @@ namespace Saobracaj.Dokumenta
             DataGridViewColumn column2 = dataGridView1.Columns[1];
             dataGridView1.Columns[1].HeaderText = "Partner ID";
             dataGridView1.Columns[1].Width = 150;
-
+            dataGridView1.Columns[2].HeaderText = "Ime";
+            dataGridView1.Columns[3].HeaderText = "Prezime";
+            dataGridView1.Columns[4].HeaderText = "Odeljenje";
+            dataGridView1.Columns[5].HeaderText = "Telefon";
+            dataGridView1.Columns[6].HeaderText = "eMail";
+            dataGridView1.Columns[7].HeaderText = "Napomena";
 
 
 
@@ -167,7 +172,12 @@ namespace Saobracaj.Dokumenta
             dataGridView1.Columns[1].Width = 150;
 
 
-
+            dataGridView1.Columns[2].HeaderText = "Ime";
+            dataGridView1.Columns[3].HeaderText = "Prezime";
+            dataGridView1.Columns[4].HeaderText = "Odeljenje";
+            dataGridView1.Columns[5].HeaderText = "Telefon";
+            dataGridView1.Columns[6].HeaderText = "eMail";
+            dataGridView1.Columns[7].HeaderText = "Napomena";
 
 
         }
@@ -211,10 +221,12 @@ namespace Saobracaj.Dokumenta
             dataGridView1.Columns[1].HeaderText = "Partner ID";
             dataGridView1.Columns[1].Width = 150;
 
-
-
-
-
+            dataGridView1.Columns[2].HeaderText = "Ime";
+            dataGridView1.Columns[3].HeaderText = "Prezime";
+            dataGridView1.Columns[4].HeaderText = "Odeljenje";
+            dataGridView1.Columns[5].HeaderText = "Telefon";
+            dataGridView1.Columns[6].HeaderText = "eMail";
+            dataGridView1.Columns[7].HeaderText = "Napomena";
         }
 
 
@@ -253,7 +265,7 @@ namespace Saobracaj.Dokumenta
                 Sifarnici.InsertKontaktOsobe upd = new Sifarnici.InsertKontaktOsobe();
                 upd.UpdKontaktOsoba(Convert.ToInt32(txtPaKOZapSt.Text), Convert.ToInt32(txtPaKOSifra.SelectedValue), txtPaKOIme.Text, txtPaKOPriimek.Text, txtPaKOOddelek.Text, txtPaKOTel.Text, txtPaKOMail.Text, txtPaKOOpomba.Text, pomOperater, Convert.ToInt32(cboCarinarnica.SelectedValue));
             }
-            RefreshDataGrid();
+            RefreshDataGridPoPartneru();
         }
 
         private void tsDelete_Click(object sender, EventArgs e)
@@ -350,6 +362,11 @@ namespace Saobracaj.Dokumenta
         private void groupBox2_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            RefreshDataGrid();
         }
     }
 }
