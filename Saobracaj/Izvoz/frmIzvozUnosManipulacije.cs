@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
 using Saobracaj.Sifarnici;
+using static System.IdentityModel.Tokens.SecurityTokenHandlerCollectionManager;
 
 namespace Saobracaj.Izvoz
 {
@@ -34,7 +35,7 @@ namespace Saobracaj.Izvoz
             int Usao = 0;
         }
 
-        public frmIzvozUnosManipulacije(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Izvoznik,int Terminal, string PickUp)
+        public frmIzvozUnosManipulacije(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Izvoznik, int Terminal, string PickUp)
         {
             InitializeComponent();
             pIDPlana = IDPlana;
@@ -69,7 +70,7 @@ namespace Saobracaj.Izvoz
    " ,VrstaManipulacije.[Cena] ,VrstaManipulacije.[Datum] ,VrstaManipulacije.[Korisnik] FROM[VrstaManipulacije] " +
    " inner join OrganizacioneJedinice on VrstaManipulacije.OrgJed = OrganizacioneJedinice.ID" +
    " where Administrativna = 0 ";
-   }
+            }
             else if (TipUsluge == 2)
             {
                 //Po grupi Manipulacije
@@ -84,11 +85,11 @@ namespace Saobracaj.Izvoz
             else if (TipUsluge == 3)
             {
                 //Po grupi Manipulacije
-               select = "SELECT VrstaManipulacije.[ID]      ,VrstaManipulacije.[Naziv] ,  " +
-      " VrstaManipulacije.[JM] " +
-     " ,VrstaManipulacije.[TipManipulacije]      ,VrstaManipulacije.[OrgJed]      ,OrganizacioneJedinice.Naziv as OJ " +
-     " ,VrstaManipulacije.[Cena] ,'',0, '/',  VrstaManipulacije.[Datum] ,VrstaManipulacije.[Korisnik] FROM [VrstaManipulacije] " +
-     "  inner join OrganizacioneJedinice on VrstaManipulacije.OrgJed = OrganizacioneJedinice.ID where VrstaManipulacije.Dodatna = 1  order by VrstaManipulacije.[Naziv] ";
+                select = "SELECT VrstaManipulacije.[ID]      ,VrstaManipulacije.[Naziv] ,  " +
+       " VrstaManipulacije.[JM] " +
+      " ,VrstaManipulacije.[TipManipulacije]      ,VrstaManipulacije.[OrgJed]      ,OrganizacioneJedinice.Naziv as OJ " +
+      " ,VrstaManipulacije.[Cena] ,'',0, '/',  VrstaManipulacije.[Datum] ,VrstaManipulacije.[Korisnik] FROM [VrstaManipulacije] " +
+      "  inner join OrganizacioneJedinice on VrstaManipulacije.OrgJed = OrganizacioneJedinice.ID where VrstaManipulacije.Dodatna = 1  order by VrstaManipulacije.[Naziv] ";
 
             }
             else
@@ -101,7 +102,7 @@ namespace Saobracaj.Izvoz
               " where ADministrativna = 1 ";
             }
             //Opsti cenovnik pozivanje
-          
+
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -551,7 +552,7 @@ namespace Saobracaj.Izvoz
 " inner " +
  "  join Izvoz on IzvozVrstaManipulacije.IDNadredjena = Izvoz.ID" +
 " inner " +
-" join KontejnerStatus on IzvozVrstaManipulacije.StatusKontejnera = KontejnerStatus.ID where IzvozVrstaManipulacije.IDNadredjena =  " + pID; 
+" join KontejnerStatus on IzvozVrstaManipulacije.StatusKontejnera = KontejnerStatus.ID where IzvozVrstaManipulacije.IDNadredjena =  " + pID;
 
 
             }
@@ -734,121 +735,247 @@ namespace Saobracaj.Izvoz
                 {
                     if (row.Selected)
                     {
-                        pomManupulacija = Convert.ToInt32(row.Cells[0].Value.ToString());
-                        int Adm = ProveriAdministrativna(pomManupulacija);
-                        if (Adm == 0)
+                        int idMP = Convert.ToInt32(row.Cells[0].Value.ToString());
+                        List<int> gv7 = new List<int>();
+                        foreach(DataGridViewRow r in dataGridView7.Rows)
                         {
-                            pomPokret = row.Cells[7].Value.ToString();
-                            pomStatusKontejnera = Convert.ToInt32(row.Cells[8].Value.ToString());
-                            pomForma = row.Cells[10].Value.ToString();
-
+                            if (int.TryParse(r.Cells[4].Value.ToString(),out int value))
+                            {
+                                gv7.Add(value);
+                            }
+                        }
+                        bool uneto = gv7.Contains(idMP);
+                        if (uneto)
+                        {
+                            MessageBox.Show("Manipulacija ID:" + idMP + " je već dodata!");
+                            return;
                         }
                         else
                         {
-                            pomPokret = "/";
-                            pomStatusKontejnera = Convert.ToInt32(0);
-                            pomForma = "/";
-                        }
-                        CenaNadjenaTip1 = PretraziPoNalogodavciIIzvozniku(pomManupulacija, Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
-                        CenaNadjenaTip2 = PretraziPoNalogodavci(pomManupulacija, Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
-
-
-                        if (CenaNadjenaTip1 == 1)
-                        {
-                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-                            SqlConnection con = new SqlConnection(s_connection);
-
-                            con.Open();
-
-                            SqlCommand cmd = new SqlCommand("select ID, Cena, OrgJed from Cene where VrstaManipulacije = " + pomManupulacija + " Uvoznik = " + cboUvoznik.SelectedValue + " and  Komitent = " + Convert.ToInt32(cboNalogodavac1.SelectedValue) + "", con);
-                            SqlDataReader dr = cmd.ExecuteReader();
-
-                            while (dr.Read())
+                            pomManupulacija = Convert.ToInt32(row.Cells[0].Value.ToString());
+                            int Adm = ProveriAdministrativna(pomManupulacija);
+                            if (Adm == 0)
                             {
+                                pomPokret = row.Cells[7].Value.ToString();
+                                pomStatusKontejnera = Convert.ToInt32(row.Cells[8].Value.ToString());
+                                pomForma = row.Cells[10].Value.ToString();
 
-                                pomCena = Convert.ToDouble(dr["Cena"].ToString());
-                                pomkolicina = 1;
-                                pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+                            }
+                            else
+                            {
+                                pomPokret = "/";
+                                pomStatusKontejnera = Convert.ToInt32(0);
+                                pomForma = "/";
+                            }
+                            CenaNadjenaTip1 = PretraziPoNalogodavciIIzvozniku(pomManupulacija, Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
+                            CenaNadjenaTip2 = PretraziPoNalogodavci(pomManupulacija, Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
+
+
+                            if (CenaNadjenaTip1 == 1)
+                            {
+                                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                                SqlConnection con = new SqlConnection(s_connection);
+
+                                con.Open();
+
+                                SqlCommand cmd = new SqlCommand("select ID, Cena, OrgJed from Cene where VrstaManipulacije = " + pomManupulacija + " Uvoznik = " + cboUvoznik.SelectedValue + " and  Komitent = " + Convert.ToInt32(cboNalogodavac1.SelectedValue) + "", con);
+                                SqlDataReader dr = cmd.ExecuteReader();
+
+                                while (dr.Read())
+                                {
+
+                                    pomCena = Convert.ToDouble(dr["Cena"].ToString());
+                                    pomkolicina = 1;
+                                    pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+
+                                }
+
+                                con.Close();
+                                pomPlatilac = Convert.ToInt32(cboNalogodavac1.SelectedValue);
 
                             }
 
-                            con.Close();
-                            pomPlatilac = Convert.ToInt32(cboNalogodavac1.SelectedValue);
-
-                        }
-
-                        if (CenaNadjenaTip2 == 1 && CenaNadjenaTip2 == 0)
-                        {
-                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-                            SqlConnection con = new SqlConnection(s_connection);
-
-                            con.Open();
-
-                            SqlCommand cmd = new SqlCommand("select ID, Cena, OrgJed from Cene where Uvoznik = 0 and VrstaManipulacije = " + pomManupulacija + " and  Komitent = " + Convert.ToInt32(cboNalogodavac1.SelectedValue) + "", con);
-                            SqlDataReader dr = cmd.ExecuteReader();
-
-                            while (dr.Read())
+                            if (CenaNadjenaTip2 == 1 && CenaNadjenaTip2 == 0)
                             {
-                                //Izmenjeno
-                                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
-                                pomCena = Convert.ToDouble(dr["Cena"].ToString());
-                                pomkolicina = 1;
-                                pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+                                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                                SqlConnection con = new SqlConnection(s_connection);
 
+                                con.Open();
+
+                                SqlCommand cmd = new SqlCommand("select ID, Cena, OrgJed from Cene where Uvoznik = 0 and VrstaManipulacije = " + pomManupulacija + " and  Komitent = " + Convert.ToInt32(cboNalogodavac1.SelectedValue) + "", con);
+                                SqlDataReader dr = cmd.ExecuteReader();
+
+                                while (dr.Read())
+                                {
+                                    //Izmenjeno
+                                    // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                                    pomCena = Convert.ToDouble(dr["Cena"].ToString());
+                                    pomkolicina = 1;
+                                    pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+
+                                }
+
+                                con.Close();
+
+                                pomPlatilac = Convert.ToInt32(cboNalogodavac1.SelectedValue);
                             }
 
-                            con.Close();
-
-                            pomPlatilac = Convert.ToInt32(cboNalogodavac1.SelectedValue);
-                        }
-
-                        if (CenaNadjenaTip2 == 0 && CenaNadjenaTip2 == 0)
-                        {
-                            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-                            SqlConnection con = new SqlConnection(s_connection);
-
-                            con.Open();
-
-                            SqlCommand cmd = new SqlCommand("select ID, Cena, OrgJed from Cene where TipCenovnika =1 and VrstaManipulacije = " + pomManupulacija, con);
-                            SqlDataReader dr = cmd.ExecuteReader();
-
-                            while (dr.Read())
+                            if (CenaNadjenaTip2 == 0 && CenaNadjenaTip2 == 0)
                             {
-                                //Izmenjeno
-                                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
-                                pomCena = Convert.ToDouble(dr["Cena"].ToString());
-                                pomkolicina = 1;
-                                pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+                                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                                SqlConnection con = new SqlConnection(s_connection);
+
+                                con.Open();
+
+                                SqlCommand cmd = new SqlCommand("select ID, Cena, OrgJed from Cene where TipCenovnika =1 and VrstaManipulacije = " + pomManupulacija, con);
+                                SqlDataReader dr = cmd.ExecuteReader();
+
+                                while (dr.Read())
+                                {
+                                    //Izmenjeno
+                                    // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                                    pomCena = Convert.ToDouble(dr["Cena"].ToString());
+                                    pomkolicina = 1;
+                                    pomOrgJed = Convert.ToInt32(dr["OrgJed"].ToString());
+
+                                }
+
+                                con.Close();
+                                pomPlatilac = Convert.ToInt32(cboNalogodavac1.SelectedValue); ;
 
                             }
-
-                            con.Close();
-                            pomPlatilac = Convert.ToInt32(cboNalogodavac1.SelectedValue);;
-
-                        }
-                        pomOrgJed = VratiOrgJed(pomManupulacija);
-                        //  pomCena = Convert.ToDouble(row.Cells[2].Value.ToString());
-                        // pomkolicina= Convert.ToDouble(row.Cells[4].Value.ToString());
-                        //   pomOrgJed = Convert.ToInt32(row.Cells[5].Value.ToString());
-                        foreach (DataGridViewRow row2 in dataGridView1.Rows)
-                        {
-                            if (row2.Selected)
+                            pomOrgJed = VratiOrgJed(pomManupulacija);
+                            //  pomCena = Convert.ToDouble(row.Cells[2].Value.ToString());
+                            // pomkolicina= Convert.ToDouble(row.Cells[4].Value.ToString());
+                            //   pomOrgJed = Convert.ToInt32(row.Cells[5].Value.ToString());
+                            foreach (DataGridViewRow row2 in dataGridView1.Rows)
                             {
-                                pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
-                                UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed, pomPlatilac, pomPokret, pomStatusKontejnera, pomForma);
+                                if (row2.Selected)
+                                {
+                                    pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                                    UbaciStavkuUsluge(pomID, pomManupulacija, pomCena, pomkolicina, pomOrgJed, pomPlatilac, pomPokret, pomStatusKontejnera, pomForma);
+                                }
                             }
                         }
-
 
                     }
                 }
                 FillDG8();
+                ProveriScenario();
 
             }
             catch
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
+        }
+        int brojKontejnera;
+        private void ProveriScenario()
+        {
+            foreach(DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.Selected)
+                {
+                    brojKontejnera = Convert.ToInt32(row.Cells[0].Value);
+                }
+            }
+            bool nasao=false;
+            int count = dataGridView7.RowCount;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection conn = new SqlConnection(s_connection);
+
+            List<int> usluge = new List<int>();
+            foreach (DataGridViewRow row in dataGridView7.Rows)
+            {
+                if (row.Cells[4].Value != null)
+                {
+                    usluge.Add(Convert.ToInt32(row.Cells[4].Value));
+                }
+            }
+
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("Select ID From Scenario Group by ID Having Count(usluga)=" + count, conn);
+            SqlDataReader dr = cmd.ExecuteReader();
+            List<int> scenarija = new List<int>();
+            while (dr.Read())
+            {
+                scenarija.Add(dr.GetInt32(0));
+            }
+            conn.Close();
+
+            foreach(int id in scenarija)
+            {
+                List<int> uslugeScenario = new List<int>();
+                conn.Open();
+                SqlCommand cmd2 = new SqlCommand("Select Usluga From Scenario Where ID=" + id, conn);
+                SqlDataReader dr2 = cmd2.ExecuteReader();
+                while (dr2.Read())
+                {
+                    uslugeScenario.Add(Convert.ToInt32(dr2[0]));
+                }
+                if (ProveriListe(usluge, uslugeScenario))
+                {
+                    nasao = true;
+                    int rasporedjen = 0;
+                    if (txtNadredjeni.Text != "0")
+                    {
+                        rasporedjen = 1;
+                    }
+                    else
+                    {
+                        rasporedjen = 0;
+                    }
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(id, brojKontejnera, 1, rasporedjen);
+                    MessageBox.Show("Izabrali ste scenario " + id);
+                }
+                else
+                {
+                    uslugeScenario.Clear();
+                }
+                conn.Close();
+            }
+            if (nasao == false)
+            {
+                MessageBox.Show("Ne postoji takav scenario!");
+            }
+        }
+        private bool ProveriListe(List<int> list1, List<int> list2)
+        {
+            var countMap1 = GetCountMap(list1);
+            var countMap2 = GetCountMap(list2);
+
+            // Check if both dictionaries have the same elements and counts
+            if (countMap1.Count != countMap2.Count)
+            {
+                return false;
+            }
+
+            foreach (var kvp in countMap1)
+            {
+                if (!countMap2.TryGetValue(kvp.Key, out int count) || count != kvp.Value)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        private Dictionary<int, int> GetCountMap(List<int> list)
+        {
+            var countMap = new Dictionary<int, int>();
+            foreach (var item in list)
+            {
+                if (countMap.ContainsKey(item))
+                {
+                    countMap[item]++;
+                }
+                else
+                {
+                    countMap[item] = 1;
+                }
+            }
+            return countMap;
         }
 
         private void FillCombo()
@@ -2111,7 +2238,8 @@ namespace Saobracaj.Izvoz
                 }
 
                 FillDG8();
-                ProveriScenario(pomID);
+                //ProveriScenario(pomID);
+                ProveriScenario();
             }
             catch
             {

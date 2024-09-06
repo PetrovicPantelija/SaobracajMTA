@@ -56,6 +56,7 @@ namespace Saobracaj.Dokumenta
             this.txtPaKOSifra = new System.Windows.Forms.ComboBox();
             this.cboCarinarnica = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -69,7 +70,8 @@ namespace Saobracaj.Dokumenta
             this.tsNew,
             this.tsSave,
             this.tsDelete,
-            this.toolStripSeparator1});
+            this.toolStripSeparator1,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(593, 27);
@@ -232,9 +234,9 @@ namespace Saobracaj.Dokumenta
             // 
             this.groupBox2.Controls.Add(this.dataGridView1);
             this.groupBox2.Location = new System.Drawing.Point(9, 228);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(574, 167);
             this.groupBox2.TabIndex = 247;
             this.groupBox2.TabStop = false;
@@ -251,7 +253,7 @@ namespace Saobracaj.Dokumenta
             this.dataGridView1.Location = new System.Drawing.Point(5, 18);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(563, 139);
+            this.dataGridView1.Size = new System.Drawing.Size(564, 139);
             this.dataGridView1.TabIndex = 229;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -300,6 +302,17 @@ namespace Saobracaj.Dokumenta
             this.label9.TabIndex = 251;
             this.label9.Text = "Carinarnica";
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(72, 24);
+            this.toolStripButton1.Text = "Svi kontakti";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // frmKontaktOsobe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -328,7 +341,7 @@ namespace Saobracaj.Dokumenta
             this.Controls.Add(this.label3);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmKontaktOsobe";
             this.Text = "Kontakt osobe";
             this.Load += new System.EventHandler(this.frmKontaktOsobe_Load);
@@ -369,5 +382,6 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.ComboBox txtPaKOSifra;
         private System.Windows.Forms.ComboBox cboCarinarnica;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

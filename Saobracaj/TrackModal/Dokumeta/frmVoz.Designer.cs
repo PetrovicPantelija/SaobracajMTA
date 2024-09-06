@@ -141,6 +141,7 @@
             this.label42 = new System.Windows.Forms.Label();
             this.dtpIskrcajRijeka = new System.Windows.Forms.DateTimePicker();
             this.panelLeget = new System.Windows.Forms.Panel();
+            this.button7 = new System.Windows.Forms.Button();
             this.label45 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.dtpSazeta = new System.Windows.Forms.DateTimePicker();
@@ -150,7 +151,6 @@
             this.panelLegetOperater = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chkTerminal = new System.Windows.Forms.CheckBox();
-            this.button7 = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaksBrojKola)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDuzina)).BeginInit();
@@ -1605,6 +1605,21 @@
             this.panelLeget.Size = new System.Drawing.Size(653, 199);
             this.panelLeget.TabIndex = 273;
             // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button7.ForeColor = System.Drawing.Color.White;
+            this.button7.Location = new System.Drawing.Point(560, 131);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(16, 22);
+            this.button7.TabIndex = 275;
+            this.button7.Text = "U";
+            this.button7.UseVisualStyleBackColor = false;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // label45
             // 
             this.label45.AutoSize = true;
@@ -1757,20 +1772,6 @@
             this.chkTerminal.TabIndex = 277;
             this.chkTerminal.Text = "Za terminal";
             this.chkTerminal.UseVisualStyleBackColor = true;
-            // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(560, 131);
-            this.button7.Margin = new System.Windows.Forms.Padding(4);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(16, 22);
-            this.button7.TabIndex = 275;
-            this.button7.Text = "U";
-            this.button7.UseVisualStyleBackColor = false;
             // 
             // frmVoz
             // 

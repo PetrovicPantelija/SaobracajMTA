@@ -843,15 +843,33 @@ namespace Testiranje.Dokumeta
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("Select ID from UvozKonacnaZaglavlje Where IDVoza="+Convert.ToInt32(txtSifra.Text), con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+                    MessageBox.Show("Već postoji kreiran plan!");
+                    Saobracaj.Uvoz.frmFormiranjePlana fplan = new Saobracaj.Uvoz.frmFormiranjePlana(Convert.ToInt32(dr[0].ToString()));
+                    fplan.Show();
+                }
+                else
+                {
+                    Saobracaj.Uvoz.InsertUvozKonacnaZaglavlje ins = new Saobracaj.Uvoz.InsertUvozKonacnaZaglavlje();
+                    ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text), txtNapomena.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "", 0);
 
-            Saobracaj.Uvoz.InsertUvozKonacnaZaglavlje ins = new Saobracaj.Uvoz.InsertUvozKonacnaZaglavlje();
-            ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text), txtNapomena.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "",0);
-           
-            VratiZadnjiBrojPlanaUvoza();
-            MessageBox.Show("Uspesno ste formirirali novi Plan: " + BrojPlanaUvoza + " potrebno je da dodelite kontejnere planu, koristite opciju Popunjavanje Plana kontejnerima");
+                    VratiZadnjiBrojPlanaUvoza();
+                    MessageBox.Show("Uspesno ste formirirali novi Plan: " + BrojPlanaUvoza + " potrebno je da dodelite kontejnere planu, koristite opciju Popunjavanje Plana kontejnerima");
 
-            Saobracaj.Uvoz.frmFormiranjePlana fplan = new Saobracaj.Uvoz.frmFormiranjePlana(Convert.ToInt32(BrojPlanaUvoza));
-            fplan.Show();
+                    Saobracaj.Uvoz.frmFormiranjePlana fplan = new Saobracaj.Uvoz.frmFormiranjePlana(Convert.ToInt32(BrojPlanaUvoza));
+                    fplan.Show();
+                }
+            }
+
+                
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -860,22 +878,107 @@ namespace Testiranje.Dokumeta
             Saobracaj.Izvoz.frmIzvozKonacnaZaglavlje fukz = new Saobracaj.Izvoz.frmIzvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text));
             fukz.Show();
             */
-            int Terminal = 0;
-            if (chkTerminal.Checked == true) { Terminal = 1; }
-            
-            InsertIzvozKonacnaZaglavlje ins = new InsertIzvozKonacnaZaglavlje();
-            ins.InsIzvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text), txtNapomena.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "", Terminal);
-            VratiZadnjiBrojPlanaIzvoza();
-            MessageBox.Show("Uspesno ste formirirali novi Plan: " + BrojPlanaIzvoza + " potrebno je da dodelite kontejnere planu, koristite opciju Popunjavanje Plana kontejnerima");
-            frmFormiranjePlanaIzvoz fpi = new frmFormiranjePlanaIzvoz(Convert.ToInt32(BrojPlanaIzvoza));
-            fpi.Show();
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+            con.Open();
+            SqlCommand cmd = new SqlCommand("Select ID from IzvozKonacnaZaglavlje Where IDVoza=" + Convert.ToInt32(txtSifra.Text), con);
+            SqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                if (dr.HasRows)
+                {
+                    MessageBox.Show("Već postoji kreiran plan!");
+                    frmFormiranjePlanaIzvoz fpi = new frmFormiranjePlanaIzvoz(Convert.ToInt32(txtSifra.Text));
 
+                }
+                else
+                {
+                    int Terminal = 0;
+                    if (chkTerminal.Checked == true) { Terminal = 1; }
 
+                    InsertIzvozKonacnaZaglavlje ins = new InsertIzvozKonacnaZaglavlje();
+                    ins.InsIzvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text), txtNapomena.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "", Terminal);
+                    VratiZadnjiBrojPlanaIzvoza();
+                    MessageBox.Show("Uspesno ste formirirali novi Plan: " + BrojPlanaIzvoza + " potrebno je da dodelite kontejnere planu, koristite opciju Popunjavanje Plana kontejnerima");
+                    frmFormiranjePlanaIzvoz fpi = new frmFormiranjePlanaIzvoz(Convert.ToInt32(BrojPlanaIzvoza));
+                    fpi.Show();
+                }
+            }
         }
 
         private void tsPrvi_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            int idPlana = 0;
+            string connectionString = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                string query = "SELECT ID FROM IzvozKonacnaZaglavlje WHERE IDVoza = @IDVoza";
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@IDVoza", Convert.ToInt32(txtSifra.Text));
+                    object result = cmd.ExecuteScalar();
+                    if (result != null)
+                    {
+                        idPlana = Convert.ToInt32(result);
+                    }
+                }
+            }
+            DataTable dt = new DataTable();
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                string query = "SELECT BrojKontejnera FROM IzvozKonacna WHERE IDNadredjena = @IDNadredjena";
+                using (SqlCommand cmd = new SqlCommand(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@IDNadredjena", idPlana);
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+            }
+            foreach (DataRow row in dt.Rows)
+            {
+                string brKont = row["BrojKontejnera"].ToString().TrimEnd();
+                int uvozID = 0;
+
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    string query = "SELECT MAX(ID) FROM UvozKonacna WHERE BrojKontejnera = @BrojKontejnera";
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@BrojKontejnera", brKont);
+                        object result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            uvozID = Convert.ToInt32(result);
+                        }
+                    }
+                }
+
+                if (uvozID > 0)
+                {
+                    using (SqlConnection con = new SqlConnection(connectionString))
+                    {
+                        con.Open();
+                        string query = "UPDATE UvozKonacna SET EtaBrodara = @EtaBrodara WHERE ID = @ID";
+                        using (SqlCommand cmd = new SqlCommand(query, con))
+                        {
+                            cmd.Parameters.AddWithValue("@EtaBrodara", dtpPrispeceRijeka.Value);
+                            cmd.Parameters.AddWithValue("@ID", uvozID);
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
         }
     }
 }
