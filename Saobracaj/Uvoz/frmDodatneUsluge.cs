@@ -159,7 +159,7 @@ namespace Saobracaj.Uvoz
             {
                 try
                 {
-                   // uvK.ZavrsiDodatnuUsluguUvozZadata(Convert.ToInt32(txtNalogID.Text), Convert.ToInt32(txtKonkretnaMan.Text), Convert.ToDecimal(num1.Value), txtNapomena.Text, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
+                   uvK.ZavrsiDodatnuUsluguUvozZadata(Convert.ToInt32(txtNalogID.Text), Convert.ToInt32(txtKonkretnaMan.Text), Convert.ToDecimal(num1.Value), txtNapomena.Text, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
 
                 }
                 catch
