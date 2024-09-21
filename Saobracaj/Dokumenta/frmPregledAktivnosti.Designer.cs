@@ -320,7 +320,7 @@ namespace Saobracaj.Dokumenta
             // 
             this.button10.Location = new System.Drawing.Point(1218, 33);
             this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(61, 20);
+            this.button10.Size = new System.Drawing.Size(84, 20);
             this.button10.TabIndex = 240;
             this.button10.Text = "Otvori";
             this.button10.UseVisualStyleBackColor = true;

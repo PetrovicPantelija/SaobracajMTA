@@ -46,10 +46,10 @@ namespace Saobracaj.Uvoz
 
 
             }
+           
 
 
-
-            var select = "";
+                var select = "";
             if (cboIzdatOd.Text == "Uvoz")
             {
                 select = "  SELECT RadniNalogInterni.[ID]  ,UvozKonacna.BrojKontejnera, s1.Naziv as Scenario, RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]     " +
@@ -114,7 +114,11 @@ namespace Saobracaj.Uvoz
 
             else if (cboIzdatOd.Text == "Terminal")
             {
-                select = "  SELECT RadniNalogInterni.[ID] ,UvozKonacna.BrojKontejnera , s1.Naziv as Scenario, RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]     " +
+
+                DialogResult result = MessageBox.Show("Da li Gate in Brodar ako nije onda će biti prikazani GAte Out Brodara?", "Potvrda", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    select = "  SELECT RadniNalogInterni.[ID] ,UvozKonacna.BrojKontejnera , s1.Naziv as Scenario, RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]      , o1.Naziv as Izdao  ,[OJRealizacije]     " +
   "  ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena]  , UvozKonacnaVrstaManipulacije.IDVrstaManipulacije," +
    " VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov]  ,[BrojOsnov] as BrojOsnov ,  VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]      " +
    "  , uv.PaNaziv as Platilac  , " +
@@ -128,20 +132,27 @@ namespace Saobracaj.Uvoz
    " Inner join TipKontenjera on TipKontenjera.ID = UvozKonacna.TipKontejnera " +
    " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera" +
    "  inner join (select Distinct ID,Naziv from Scenario) as S1 on S1.ID = UVozKonacna.Scenario " +
-           " where OJIzdavanja = " + Convert.ToInt32(cboIzdatOd.SelectedValue) +
-           " union " +
-           " SELECT RadniNalogInterni.[ID] ,IzvozKonacna.BrojKontejnera ,S1.Naziv as Scenario, RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]   " +
-           " , o1.Naziv as Izdao  ,[OJRealizacije]       ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena]  , " +
-           " IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije, VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov]  ,[BrojOsnov] as BrojOsnov , " +
-           " VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]        , uv.PaNaziv as Platilac  ,  TipKontenjera.Naziv as Tipkontejnera, " +
-           " PlanID as PlanUtovara, RadniNalogInterni.Pokret, KontejnerStatus.Naziv,RadniNalogInterni.TipDokPrevoza, RadniNalogInterni.BrojDokPrevoza, RadniNalogInterni.TipRN, RadniNalogInterni.BrojRN  FROM[RadniNalogInterni]  inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
-           " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID  inner join IzvozKonacna on IzvozKonacna.ID = BrojOsnov  " +
-           " inner join IzvozKonacnaVrstaManipulacije on IzvozKonacnaVrstaManipulacije.ID = RadniNalogInterni.KonkretaIDUsluge  " +
-           " inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije  " +
-           " inner join Partnerji uv on uv.PaSifra = IzvozKonacnaVrstaManipulacije.Platilac  Inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
-           " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera  " +
-           "   inner join (select Distinct ID,Naziv from Scenario) as S1 on S1.ID = IzvozKonacna.Scenario  where OJIzdavanja =  " + Convert.ToInt32(cboIzdatOd.SelectedValue) + "Order by ID desc"; 
+           " where OJIzdavanja = " + Convert.ToInt32(cboIzdatOd.SelectedValue) + "Order by ID desc"; ;
+                }
+                else if (result == DialogResult.No)
+                {
+                    select =
+        " SELECT RadniNalogInterni.[ID] ,IzvozKonacna.BrojKontejnera ,S1.Naziv as Scenario, RadniNalogInterni.[StatusIzdavanja]  ,[OJIzdavanja]   " +
+        " , o1.Naziv as Izdao  ,[OJRealizacije]       ,o2.Naziv as Realizuje  ,[DatumIzdavanja]      ,[DatumRealizacije]  ,RadniNalogInterni.[Napomena]  , " +
+        " IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije, VrstaManipulacije.Naziv,[Uradjen]  ,[Osnov]  ,[BrojOsnov] as BrojOsnov , " +
+        " VezniNalogID, [KorisnikIzdao]      ,[KorisnikZavrsio]        , uv.PaNaziv as Platilac  ,  TipKontenjera.Naziv as Tipkontejnera, " +
+        " PlanID as PlanUtovara, RadniNalogInterni.Pokret, KontejnerStatus.Naziv,RadniNalogInterni.TipDokPrevoza, RadniNalogInterni.BrojDokPrevoza, RadniNalogInterni.TipRN, RadniNalogInterni.BrojRN  FROM[RadniNalogInterni]  inner join OrganizacioneJedinice as o1 on OjIzdavanja = O1.ID " +
+        " inner join OrganizacioneJedinice as o2 on OjRealizacije = O2.ID  inner join IzvozKonacna on IzvozKonacna.ID = BrojOsnov  " +
+        " inner join IzvozKonacnaVrstaManipulacije on IzvozKonacnaVrstaManipulacije.ID = RadniNalogInterni.KonkretaIDUsluge  " +
+        " inner join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije  " +
+        " inner join Partnerji uv on uv.PaSifra = IzvozKonacnaVrstaManipulacije.Platilac  Inner join TipKontenjera on TipKontenjera.ID = IzvozKonacna.VrstaKontejnera " +
+        " Inner join KontejnerStatus on KontejnerStatus.ID = RadniNalogInterni.StatusKontejnera  " +
+        "   inner join (select Distinct ID,Naziv from Scenario) as S1 on S1.ID = IzvozKonacna.Scenario  where OJIzdavanja =  " + Convert.ToInt32(cboIzdatOd.SelectedValue) + "Order by ID desc";
+                }
             }
+
+
+              
             var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -504,16 +515,19 @@ namespace Saobracaj.Uvoz
 
             }
 
-            if (Forma == "GATE IN KAMION")
+            if (Forma == "GATE IN KAMION" || Forma ==  "GATE IN KAMION IZVOZ" || Forma == "GATE IN KAMION TERMINAL")
             {
                 
                 //ZAdnja nula je Uvoz
                 if (OJ == 4)
                 {
                     //
-                    MessageBox.Show("Formirate Prijem kamionom Platforma");
-                    Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 0,2);
-                    prijemplat.Show();
+                    MessageBox.Show("Formirate Prijem kamionom Platforma TERMINAL");
+                    //OVDE TREBA DA URADIM TERMINALSKI GATE IN KAMION
+                    frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text), 1, OJ);
+                    rd1.Show();
+                   // Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz prijemplat = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetUvoz(Korisnik, 0, txtNALOGID.Text, 0,4);
+                  //  prijemplat.Show();
                 }
                 else if (OJ ==2)
                 {

@@ -41,6 +41,7 @@ namespace Saobracaj.RadniNalozi
             this.chkGateInVoz = new System.Windows.Forms.CheckBox();
             this.chkGAteInKamion = new System.Windows.Forms.CheckBox();
             this.chkCIR = new System.Windows.Forms.CheckBox();
+            this.chkGateINTerminal = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +56,7 @@ namespace Saobracaj.RadniNalozi
             this.dataGridView1.Location = new System.Drawing.Point(16, 65);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(454, 729);
+            this.dataGridView1.Size = new System.Drawing.Size(479, 729);
             this.dataGridView1.TabIndex = 177;
             // 
             // btnUnesi
@@ -66,7 +67,7 @@ namespace Saobracaj.RadniNalozi
             this.btnUnesi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUnesi.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnUnesi.ForeColor = System.Drawing.Color.White;
-            this.btnUnesi.Location = new System.Drawing.Point(476, 65);
+            this.btnUnesi.Location = new System.Drawing.Point(501, 65);
             this.btnUnesi.Name = "btnUnesi";
             this.btnUnesi.Size = new System.Drawing.Size(69, 729);
             this.btnUnesi.TabIndex = 180;
@@ -82,10 +83,10 @@ namespace Saobracaj.RadniNalozi
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView2.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(551, 65);
+            this.dataGridView2.Location = new System.Drawing.Point(576, 65);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(864, 729);
+            this.dataGridView2.Size = new System.Drawing.Size(839, 729);
             this.dataGridView2.TabIndex = 181;
             // 
             // label5
@@ -137,7 +138,7 @@ namespace Saobracaj.RadniNalozi
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(476, 6);
+            this.button1.Location = new System.Drawing.Point(521, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(132, 53);
             this.button1.TabIndex = 197;
@@ -175,12 +176,23 @@ namespace Saobracaj.RadniNalozi
             this.chkCIR.Text = "CIR";
             this.chkCIR.UseVisualStyleBackColor = true;
             // 
+            // chkGateINTerminal
+            // 
+            this.chkGateINTerminal.AutoSize = true;
+            this.chkGateINTerminal.Location = new System.Drawing.Point(309, 42);
+            this.chkGateINTerminal.Name = "chkGateINTerminal";
+            this.chkGateINTerminal.Size = new System.Drawing.Size(172, 17);
+            this.chkGateINTerminal.TabIndex = 332;
+            this.chkGateINTerminal.Text = "GATE IN KAMION TERMINAL";
+            this.chkGateINTerminal.UseVisualStyleBackColor = true;
+            // 
             // frmDodelaSkladista
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1423, 806);
+            this.Controls.Add(this.chkGateINTerminal);
             this.Controls.Add(this.chkCIR);
             this.Controls.Add(this.chkGAteInKamion);
             this.Controls.Add(this.chkGateInVoz);
@@ -216,5 +228,6 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.CheckBox chkGateInVoz;
         private System.Windows.Forms.CheckBox chkGAteInKamion;
         private System.Windows.Forms.CheckBox chkCIR;
+        private System.Windows.Forms.CheckBox chkGateINTerminal;
     }
 }

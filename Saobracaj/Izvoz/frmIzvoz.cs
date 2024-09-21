@@ -2161,7 +2161,7 @@ namespace Saobracaj.Izvoz
 
 
             InsertIzvozKonacna ins = new InsertIzvozKonacna();
-            ins.PrenesiUPlanUtovaraIzvoz(Convert.ToInt32(txtID.Text), PlanZaPrebacivanje);
+            ins.PrenesiUPlanUtovaraIzvozBrodar(Convert.ToInt32(txtID.Text), PlanZaPrebacivanje);
 
             Uvoz.InsertRadniNalogInterni ins2 = new Uvoz.InsertRadniNalogInterni();
             //ins.InsRadniNalogInterni(Convert.ToInt32(1), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(txtNadredjeni.Text), KorisnikTekuci, "");

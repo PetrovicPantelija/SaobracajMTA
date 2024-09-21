@@ -153,6 +153,7 @@ namespace Saobracaj.Dokumenta
                   "             CistocaIznutra ON ZaposleniPrijavaAuto.CistocaIznutraZaduzivanje = CistocaIznutra.Id LEFT OUTER JOIN  " +
                   "         CistocaIznutraRazduzivanje ON ZaposleniPrijavaAuto.CistocaIznutraRazduzivanje = CistocaIznutraRazduzivanje.Id LEFT OUTER JOIN  " +
                   "         CistocaSpolja ON ZaposleniPrijavaAuto.CistocaSpoljaZaduzivanje = CistocaSpolja.Id  " +
+                  "  where ZaposleniPrijavaAuto.DatumPrijave > DateADD(DAY, -45,GetDAte()) " +
 "     ORDER BY ZaposleniPrijavaAuto.Id DESC";
 
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;

@@ -685,6 +685,7 @@ namespace Saobracaj.Dokumenta
                 dataGrid1.Rows[dataGrid1.Rows.Count - 1].Selected = true;
                 dataGrid1.FirstDisplayedScrollingRowIndex = dataGrid1.RowCount - 1;
                 groupBoxAddEdit.Visible = false;
+                 VratiTrainListID();
             }
             else
             {
@@ -701,6 +702,7 @@ namespace Saobracaj.Dokumenta
                 // Refresh the table
                 dataGrid1.DataSource = _trainList.GetAll();
                 groupBoxAddEdit.Visible = false;
+                VratiTrainListID();
             }
 
         }

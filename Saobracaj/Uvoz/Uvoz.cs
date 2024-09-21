@@ -54,7 +54,8 @@ namespace Saobracaj.Uvoz
             cboPlanUtovara.SelectedValue = Plan;
             chkTerminalski.Checked = true;
             this.Text = "Primljeni kontejneri od strane terminala";
-         
+           // cboScenario.SelectedValue = 15;
+
             //  RefreshDataGridColor();
         }
 
@@ -1311,8 +1312,13 @@ namespace Saobracaj.Uvoz
         private void Uvoz_Load(object sender, EventArgs e)
         {
             //--- RefreshDataGridColor();
-          //  firstWidth = this.Size.Width;
-         //   firstHeight = this.Size.Height;
+            //  firstWidth = this.Size.Width;
+            //   firstHeight = this.Size.Height;
+            if (chkTerminalski.Checked == true)
+            {
+                cboScenario.SelectedValue = 15;
+
+            }
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -2335,11 +2341,40 @@ namespace Saobracaj.Uvoz
 
         }
 
+        int VratiPostojeceRN()
+        {
+            //Ovde treba napisati proveru da li je RN vec iygenerisan
+            return 0;
+        }
+
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
             InsertUvozKonacna uvK = new InsertUvozKonacna();
             uvK.InsUbaciUslugu(Convert.ToInt32(txtID.Text), 69, 0, 1, 4, Convert.ToInt32(cboBrodar.SelectedValue), 0, "GATE IN EMPTY", 13, KorisnikTekuci, "GATE IN KAMION");
             FillDGUsluge();
+
+            InsertUvozKonacna ins = new InsertUvozKonacna();
+            ins.PrenesiUPlanUtovara(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+
+
+            if (chkTerminalski.Checked == true)
+            {
+                DialogResult dialogResult = MessageBox.Show("Pokrenuli ste proceduru pravljenja Terminalskog naloga ", "Radni nalog", MessageBoxButtons.YesNo);
+                int PostojeRn = 0;
+                PostojeRn = VratiPostojeceRN();
+                if (dialogResult == DialogResult.Yes)
+                {
+
+                    InsertRadniNalogInterni insRNI = new InsertRadniNalogInterni();
+                    insRNI.InsRadniNalogInterni(Convert.ToInt32(4), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(cboPlanUtovara.SelectedValue), KorisnikTekuci, "");
+
+                }
+                else
+                {
+                    // FormirajOpstiExcel();
+                }
+            }
+
         }
 
         private void toolStripButton8_Click(object sender, EventArgs e)
@@ -2355,6 +2390,11 @@ namespace Saobracaj.Uvoz
                 detailForm.ShowDialog();
                 txtKontaktOsobeSpeditera.Text = detailForm.GetKontaktSpeditera();
             }
+        }
+
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

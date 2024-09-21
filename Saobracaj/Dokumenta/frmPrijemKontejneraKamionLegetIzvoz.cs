@@ -36,15 +36,84 @@ namespace Saobracaj.Dokumenta
 
         }
 
-        public frmPrijemKontejneraKamionLegetIzvoz(string Sifra, int Vozom)
+        public frmPrijemKontejneraKamionLegetIzvoz(string Sifra, int Vozom, int OJ)
         {
             InitializeComponent();
-
-            chkIzvoz.Checked = true;
+            
+           // chkIzvoz.Checked = true;
             FillCombo();
             //KorisnikCene = Korisnik;
             //txtNalogID.Text = NalogID;
-            chkIzvoz.Checked = true;
+            if (OJ == 2)
+            {
+                chkIzvoz.Checked = true;
+                chkTerminal.Checked = false;
+                this.Text = "GATE IN KAMION IZVOZ";
+            }
+            // chkIzvoz.Checked = true;
+            if (OJ == 4)
+            {
+                chkIzvoz.Checked = false;
+                chkTerminal.Checked = true;
+                this.Text = "GATE IN KAMION TERMINAL";
+
+                //SAkrivanje vidljivosti polja
+                txtBrojPlombe.Visible = false;
+                label3.Visible = false;
+                txtBrojPlombe2.Visible = false;
+                label39.Visible = false;
+                bttoRobeOtpremnica.Visible = false;
+
+                label42.Visible = false;
+                txtKOLETAOTP.Visible = false;
+
+                label43.Visible = false;
+                txtCBMOTP.Visible = false;
+
+                label25.Visible = false;
+                txtTara.Visible = false;
+
+                label35.Visible = false;
+                bttoRobeOdvaga.Visible = false;
+
+                label56.Visible = false;
+                txVGMBrodBruto.Visible = false;
+
+                label46.Visible = false;
+                cboIzvoznik.Visible = false;
+
+                label8.Visible = false;
+                cboOrganizator.Visible = false;
+
+                label52.Visible = false;
+                cboReexport.Visible = false;
+
+                label47.Visible = false;
+                txtADR.Visible = false;
+
+                label53.Visible = false;
+                cboInspekciskiTretman.Visible = false;
+
+                label48.Visible = false;
+                cboPPCNT.Visible = false;
+
+                label49.Visible = false;
+                cboCarina.Visible = false;
+
+                label50.Visible = false;
+                cboSpedicija.Visible = false;
+
+                label51.Visible = false;
+                txtKontaktSpeditera.Visible = false;
+
+                label54.Visible = false;
+                txtDodatneNapomene.Visible = false;
+
+                label41.Visible = false;
+                dataGridView3.Visible = false;
+
+            }
+
             txtSifra.Text = Sifra;
             VratiPodatke(Convert.ToInt32(Sifra));
             RefreshDataGrid();
@@ -377,23 +446,43 @@ namespace Saobracaj.Dokumenta
             //PANTA DATAGRID
 
 
-            var select =
-       " SELECT PrijemKontejneraVozStavke.ID, PrijemKontejneraVozStavke.RB, " +
-" PrijemKontejneraVozStavke.IDNadredjenog,   PrijemKontejneraVozStavke.KontejnerID, " +
-" PrijemKontejneraVozStavke.BrojKontejnera,  TipKontenjera.Naziv AS TipKontejnera ,  " +
-" IzvozKonacna.BrojKontejnera,  " +
-" IzvozKonacna.BrojVagona, IzvozKOnacna.VrstaKontejnera, Partnerji_1.PaNaziv as Brodar, IzvozKOnacna.BookingBrodara,  " +
-" IzvozKOnacna.BrodskaPlomba, IzvozKonacna.OstalePlombe,  " +
-" IzvozKOnacna.BrojKoletaO, IzvozKOnacna.BrutoRobe, IzvozKOnacna.BrutoRobeO, IzvozKOnacna.CBMO, IzvozKOnacna.Tara,   " +
-" IzvozKOnacna.NetoRobe, IzvozKOnacna.PeriodSkladistenjaOd,  " +
-" IzvozKOnacna.PeriodSkladistenjaDo , Partnerji_2.PANAziv as Izvoznik, INSTret.Naziv as InspekciskiTretman  " +
-" FROM PrijemKontejneraVozStavke  " +
-" inner join IzvozKonacna on IzvozKonacna.ID = PrijemKontejneraVozStavke.KontejnerID  " +
-" INNER JOIN  Partnerji AS Partnerji_1 ON IzvozKonacna.Brodar = Partnerji_1.PaSifra  " +
-"  INNER JOIN  Partnerji AS Partnerji_2 ON IzvozKonacna.Izvoznik = Partnerji_2.PaSifra  " +
-" INNER JOIN  InspekciskiTretman AS INSTret ON IZvozKOnacna.Inspekcija = INSTret.ID  " +
-"  INNER JOIN TipKontenjera ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID  " +
-           "  where IdNadredjenog =  " + txtSifra.Text + " order by RB";
+            var select = "";
+
+            if (chkIzvoz.Checked == true)
+            {
+                select = " SELECT PrijemKontejneraVozStavke.ID, PrijemKontejneraVozStavke.RB, " +
+    " PrijemKontejneraVozStavke.IDNadredjenog,   PrijemKontejneraVozStavke.KontejnerID, " +
+    " PrijemKontejneraVozStavke.BrojKontejnera,  TipKontenjera.Naziv AS TipKontejnera ,  " +
+    " IzvozKonacna.BrojKontejnera,  " +
+    " IzvozKonacna.BrojVagona, IzvozKOnacna.VrstaKontejnera, Partnerji_1.PaNaziv as Brodar, IzvozKOnacna.BookingBrodara,  " +
+    " IzvozKOnacna.BrodskaPlomba, IzvozKonacna.OstalePlombe,  " +
+    " IzvozKOnacna.BrojKoletaO, IzvozKOnacna.BrutoRobe, IzvozKOnacna.BrutoRobeO, IzvozKOnacna.CBMO, IzvozKOnacna.Tara,   " +
+    " IzvozKOnacna.NetoRobe, IzvozKOnacna.PeriodSkladistenjaOd,  " +
+    " IzvozKOnacna.PeriodSkladistenjaDo , Partnerji_2.PANAziv as Izvoznik, INSTret.Naziv as InspekciskiTretman  " +
+    " FROM PrijemKontejneraVozStavke  " +
+    " inner join IzvozKonacna on IzvozKonacna.ID = PrijemKontejneraVozStavke.KontejnerID  " +
+    " INNER JOIN  Partnerji AS Partnerji_1 ON IzvozKonacna.Brodar = Partnerji_1.PaSifra  " +
+    "  INNER JOIN  Partnerji AS Partnerji_2 ON IzvozKonacna.Izvoznik = Partnerji_2.PaSifra  " +
+    " INNER JOIN  InspekciskiTretman AS INSTret ON IZvozKOnacna.Inspekcija = INSTret.ID  " +
+    "  INNER JOIN TipKontenjera ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID  " +
+               "  where IdNadredjenog =  " + txtSifra.Text + " order by RB";
+
+            }
+
+            else if (chkTerminal.Checked == true)
+            {
+
+                select = "  SELECT PrijemKontejneraVozStavke.ID, PrijemKontejneraVozStavke.RB,  PrijemKontejneraVozStavke.IDNadredjenog,  " +
+" PrijemKontejneraVozStavke.KontejnerID,  PrijemKontejneraVozStavke.BrojKontejnera,  TipKontenjera.Naziv AS TipKontejnera ,  " +
+" UvozKonacna.BrojKontejnera,   PrijemKontejneraVozStavke.BrojVagona, UVozKOnacna.TipKontejnera, Partnerji_1.PaNaziv as Brodar   FROM PrijemKontejneraVozStavke " +
+" inner join UvozKonacna on UvozKonacna.ID = PrijemKontejneraVozStavke.KontejnerID " +
+" INNER JOIN  Partnerji AS Partnerji_1 ON UvozKonacna.Brodar = Partnerji_1.PaSifra  " + 
+"    INNER JOIN TipKontenjera ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID " +
+"  where IdNadredjenog =  " + txtSifra.Text + " order by RB";
+
+
+            }
+     
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -594,10 +683,17 @@ namespace Saobracaj.Dokumenta
         {
             //PANTA DATAGRID
             var select = "";
-            if (chkPlatforma.Checked == true)
+            if (chkPlatforma.Checked == true && chkIzvoz.Checked == true)
             {
                 select = " select * from RNPrijemPlatforme " +
                " where PrijemID = " + txtSifra.Text;
+            }
+            else if (chkPlatforma.Checked == true && chkTerminal.Checked == true)
+            {
+
+                select = " select * from RNPrijemPlatforme2 " +
+                " where PrijemID = " + txtSifra.Text;
+
             }
             else if (chkCirada.Checked == true)
             {

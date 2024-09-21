@@ -27,6 +27,7 @@ namespace TrackModal.Dokumeta
         string Kor = Saobracaj.Sifarnici.frmLogovanje.user.ToString();
         string niz = "";
         string KorisnikCene;
+        string pomModul = "";
         public frmPrijemKontejneraKamionPregled()
         {
             InitializeComponent();
@@ -733,7 +734,12 @@ namespace TrackModal.Dokumeta
             {
                 case "Leget":
                     {
-                        Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz ter2 = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz(txtSifra.Text,0);
+                        int Modul = 2;
+                        if (chkTerminal.Checked == true)
+                        {
+                            Modul = 4;
+                        }
+                        Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz ter2 = new Saobracaj.Dokumenta.frmPrijemKontejneraKamionLegetIzvoz(txtSifra.Text,0, Modul);
                         ter2.Show();
                         return;
 

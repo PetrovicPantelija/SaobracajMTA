@@ -843,6 +843,7 @@ namespace Testiranje.Dokumeta
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+            int Postoji = 0;
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
             con.Open();
@@ -853,20 +854,22 @@ namespace Testiranje.Dokumeta
                 if (dr.HasRows)
                 {
                     MessageBox.Show("Već postoji kreiran plan!");
+                    Postoji = 1;
                     Saobracaj.Uvoz.frmFormiranjePlana fplan = new Saobracaj.Uvoz.frmFormiranjePlana(Convert.ToInt32(dr[0].ToString()));
                     fplan.Show();
                 }
-                else
-                {
+              
+            }
+            if (Postoji == 0)
+            {
                     Saobracaj.Uvoz.InsertUvozKonacnaZaglavlje ins = new Saobracaj.Uvoz.InsertUvozKonacnaZaglavlje();
                     ins.InsUvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text), txtNapomena.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "", 0);
 
                     VratiZadnjiBrojPlanaUvoza();
                     MessageBox.Show("Uspesno ste formirirali novi Plan: " + BrojPlanaUvoza + " potrebno je da dodelite kontejnere planu, koristite opciju Popunjavanje Plana kontejnerima");
-
                     Saobracaj.Uvoz.frmFormiranjePlana fplan = new Saobracaj.Uvoz.frmFormiranjePlana(Convert.ToInt32(BrojPlanaUvoza));
                     fplan.Show();
-                }
+
             }
 
                 
@@ -878,6 +881,7 @@ namespace Testiranje.Dokumeta
             Saobracaj.Izvoz.frmIzvozKonacnaZaglavlje fukz = new Saobracaj.Izvoz.frmIzvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text));
             fukz.Show();
             */
+            int Postoji = 0;
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection con = new SqlConnection(s_connection);
             con.Open();
@@ -889,21 +893,23 @@ namespace Testiranje.Dokumeta
                 {
                     MessageBox.Show("Već postoji kreiran plan!");
                     frmFormiranjePlanaIzvoz fpi = new frmFormiranjePlanaIzvoz(Convert.ToInt32(txtSifra.Text));
-
+                    Postoji = 1;
                 }
-                else
-                {
-                    int Terminal = 0;
-                    if (chkTerminal.Checked == true) { Terminal = 1; }
-
-                    InsertIzvozKonacnaZaglavlje ins = new InsertIzvozKonacnaZaglavlje();
-                    ins.InsIzvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text), txtNapomena.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "", Terminal);
-                    VratiZadnjiBrojPlanaIzvoza();
-                    MessageBox.Show("Uspesno ste formirirali novi Plan: " + BrojPlanaIzvoza + " potrebno je da dodelite kontejnere planu, koristite opciju Popunjavanje Plana kontejnerima");
-                    frmFormiranjePlanaIzvoz fpi = new frmFormiranjePlanaIzvoz(Convert.ToInt32(BrojPlanaIzvoza));
-                    fpi.Show();
-                }
+              
             }
+            if (Postoji == 0)
+            {
+                int Terminal = 0;
+                if (chkTerminal.Checked == true) { Terminal = 1; }
+
+                InsertIzvozKonacnaZaglavlje ins = new InsertIzvozKonacnaZaglavlje();
+                ins.InsIzvozKonacnaZaglavlje(Convert.ToInt32(txtSifra.Text), txtNapomena.Text, 1, "", Convert.ToDateTime("1.1.1900"), "", "", Terminal);
+                VratiZadnjiBrojPlanaIzvoza();
+                MessageBox.Show("Uspesno ste formirirali novi Plan: " + BrojPlanaIzvoza + " potrebno je da dodelite kontejnere planu, koristite opciju Popunjavanje Plana kontejnerima");
+                frmFormiranjePlanaIzvoz fpi = new frmFormiranjePlanaIzvoz(Convert.ToInt32(BrojPlanaIzvoza));
+                fpi.Show();
+            }
+
         }
 
         private void tsPrvi_Click(object sender, EventArgs e)

@@ -23,6 +23,7 @@ namespace Saobracaj.SyncForm
 " inner join Stanice on Stanice.ID = LokomotivaPrijava.Stanica" +
 " left join Aktivnosti on Aktivnosti.ID = LokomotivaPrijava.AktivnostID" +
 " left join AktivnostiStavke on AktivnostiStavke.IDNadredjena = Aktivnosti.ID" +
+" where dbo.LokomotivaPrijava.Datum > DateADD(DAY, -45,GetDAte()) " +
 " order by LokomotivaPrijava.ID desc ";
 
             var s_connection = Sifarnici.frmLogovanje.connectionString;

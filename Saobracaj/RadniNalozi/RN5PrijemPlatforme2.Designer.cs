@@ -84,9 +84,9 @@ namespace Saobracaj.RadniNalozi
             this.button1 = new System.Windows.Forms.Button();
             this.chkZavrsenCIR = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.label29 = new System.Windows.Forms.Label();
             this.cboNaSkladistePregledac = new System.Windows.Forms.ComboBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -410,8 +410,8 @@ namespace Saobracaj.RadniNalozi
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(89, 24);
-            this.toolStripButton4.Text = "Ubaci u tekuce";
+            this.toolStripButton4.Size = new System.Drawing.Size(152, 24);
+            this.toolStripButton4.Text = "Ubaci u tekuce - NE TREBA";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // toolStripButton3
@@ -658,20 +658,6 @@ namespace Saobracaj.RadniNalozi
             this.panel2.Size = new System.Drawing.Size(200, 242);
             this.panel2.TabIndex = 375;
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.lbl1);
-            this.panel3.Controls.Add(this.label9);
-            this.panel3.Controls.Add(this.txtDatumRealizacije);
-            this.panel3.Controls.Add(this.chkZavrsen);
-            this.panel3.Controls.Add(this.txtNalogRealizovao);
-            this.panel3.Controls.Add(this.lbl2);
-            this.panel3.Controls.Add(this.txtNapomena);
-            this.panel3.Location = new System.Drawing.Point(769, 47);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(200, 242);
-            this.panel3.TabIndex = 376;
-            // 
             // label29
             // 
             this.label29.AutoSize = true;
@@ -691,6 +677,20 @@ namespace Saobracaj.RadniNalozi
             this.cboNaSkladistePregledac.Name = "cboNaSkladistePregledac";
             this.cboNaSkladistePregledac.Size = new System.Drawing.Size(150, 21);
             this.cboNaSkladistePregledac.TabIndex = 376;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.lbl1);
+            this.panel3.Controls.Add(this.label9);
+            this.panel3.Controls.Add(this.txtDatumRealizacije);
+            this.panel3.Controls.Add(this.chkZavrsen);
+            this.panel3.Controls.Add(this.txtNalogRealizovao);
+            this.panel3.Controls.Add(this.lbl2);
+            this.panel3.Controls.Add(this.txtNapomena);
+            this.panel3.Location = new System.Drawing.Point(769, 47);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(200, 242);
+            this.panel3.TabIndex = 376;
             // 
             // RN5PrijemPlatforme2
             // 

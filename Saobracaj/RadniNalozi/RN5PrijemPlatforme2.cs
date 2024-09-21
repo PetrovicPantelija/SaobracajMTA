@@ -20,19 +20,19 @@ namespace Saobracaj.RadniNalozi
             txtDatumRasporeda.Value = DateTime.Now;
         }
 
-        public RN5PrijemPlatforme2(string PrijemID, string RegBr, string KorisnikCene, string Usluga, int Uvoz)
+        public RN5PrijemPlatforme2(string PrijemID, string RegBr, string KorisnikCene, string Usluga, int Uvoz, int NalogID)
         {
             InitializeComponent();
             txtNalogIzdao.Text = KorisnikCene;
             txtPrijemID.Text = PrijemID;
             txtKamion.Text = RegBr;
-            NapuniVrstuUsluge(Usluga);
+          //  NapuniVrstuUsluge(NalogID);
 
-            txtNalogID.Text = Usluga;
+            //txtNalogID.Text = Usluga;
             FillCombo();
-            VratiPodatkeVrstaMan(Usluga.ToString());
+            VratiPodatkeVrstaMan(NalogID.ToString());
             txtDatumRasporeda.Value = DateTime.Now;
-
+            txtNalogID.Text = NalogID.ToString();
 
         }
 
@@ -80,7 +80,7 @@ namespace Saobracaj.RadniNalozi
      "  ,[NalogID]           FROM [dbo].[RNPrijemPlatforme2] " +
   " INNER JOIN  Partnerji AS Partnerji_3 ON[RNPrijemPlatforme2].NazivBrodara = Partnerji_3.PaSifra " +
 " INNER JOIN TipKontenjera ON[RNPrijemPlatforme2].VrstaKontejnera = TipKontenjera.ID " +
-" inner join Skladista on Skladista.ID = [USkladiste]";
+" inner join Skladista on Skladista.ID = [USkladiste] order by RNPrijemPlatforme2.ID desc";
             SqlConnection conn = new SqlConnection(connect);
             var dataAdapter = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
@@ -332,7 +332,7 @@ namespace Saobracaj.RadniNalozi
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Saobracaj.RadniNalozi.frmDodelaSkladista ds = new frmDodelaSkladista(txtPrijemID.Text, 2);
+            Saobracaj.RadniNalozi.frmDodelaSkladista ds = new frmDodelaSkladista(txtPrijemID.Text, 5);
             ds.Show();
         }
     }

@@ -282,8 +282,8 @@ namespace Saobracaj.Izvoz
             this.tslKreirao,
             this.toolStripButton4,
             this.toolStripButton3,
-            this.toolStripButton5,
-            this.toolStripButton7});
+            this.toolStripButton7,
+            this.toolStripButton5});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1362, 27);
@@ -402,6 +402,7 @@ namespace Saobracaj.Izvoz
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(222, 24);
             this.toolStripButton5.Text = "POSTAVI U PLAN, IZDAJ RN - TERMINAL";
+            this.toolStripButton5.Visible = false;
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // toolStripButton7
@@ -413,6 +414,7 @@ namespace Saobracaj.Izvoz
             this.toolStripButton7.Name = "toolStripButton7";
             this.toolStripButton7.Size = new System.Drawing.Size(171, 24);
             this.toolStripButton7.Text = "SC116 - Konacna, Usluga, Plan";
+            this.toolStripButton7.ToolTipText = "SC116 - PRENOS U PLAN I FORMIRANJE USLUGE";
             this.toolStripButton7.Click += new System.EventHandler(this.toolStripButton7_Click);
             // 
             // txtID

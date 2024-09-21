@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Saobracaj.Testiranje;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -828,6 +829,47 @@ namespace Saobracaj.Dokumenta
 
 
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView3.ReadOnly = true;
+            dataGridView3.DataSource = ds.Tables[0];
+
+            dataGridView3.BorderStyle = BorderStyle.None;
+            dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView3.BackgroundColor = Color.White;
+
+            dataGridView3.EnableHeadersVisualStyles = false;
+            dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            /*
+            dataGridView1.Columns[0].HeaderText = "ID";
+            dataGridView1.Columns[2].HeaderText = "Zaposleni";
+            dataGridView1.Columns[3].HeaderText = "DatumPrijave";
+            dataGridView1.Columns[6].HeaderText = "Registarski BR";
+            dataGridView1.Columns[8].HeaderText = "Relacija";
+            dataGridView1.Columns[11].HeaderText = "KilometrazaZaduzivanje";
+            dataGridView1.Columns[12].HeaderText = "KilometrazaRazduzivanje";
+            */
+        }
+
+
+        private void FillGV2AktivnostiPregledSlike(string ID)
+        {
+            var select = "  SELECT TOP (1000) [ID]      ,[IDStavkeAktivnosti]      ,[Putanja] " +
+ " FROM [AktivnostiStavkeDokumenta] " +
+                    "    where IDStavkeAktivnosti = '" + ID + "'";
+
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
             var dataAdapter = new SqlDataAdapter(select, c);

@@ -1375,6 +1375,7 @@ namespace Saobracaj.Dokumenta
         }
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
+            //Panta
             foreach (DataGridViewRow row in dataGridView3.Rows)
             {
                 Saobracaj.Dokumenta.InsertPromet ins = new Saobracaj.Dokumenta.InsertPromet();

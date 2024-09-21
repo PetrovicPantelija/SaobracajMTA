@@ -60,6 +60,12 @@ namespace Saobracaj.RadniNalozi
             {
                 label5.Text = "GATE IN KAMION S1";
             };
+
+            if (TipRN == 5)
+            {
+                label5.Text = "GATE IN KAMION TERMINAL";
+                chkGateINTerminal.Checked = true;
+            };
             if (TipRN == 6)
             {
                 label5.Text = "Otprema ID";
@@ -177,8 +183,17 @@ namespace Saobracaj.RadniNalozi
         private void FillDGRN2()
         {
             // Prijem platforme kalmarista
-            var select = "select * from RnPrijemPlatforme " +
-   " order by RnPrijemPlatforme.ID desc ";
+            var select = "  select RNPrijemPlatforme.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, RNPrijemPlatforme.Kamion, USkladiste,Skladista.Naziv as Sklad, " +
+                " DatumRasporeda, NalogIzdao, " +
+"  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, " +
+" VrstaManipulacije.Naziv as Usliga, BrojPlombe, RNPrijemPlatforme.Napomena, RNPrijemPlatforme.PrijemID,RNPrijemPlatforme.NalogID, DatumRealizacije, " +
+" NalogRealizovao, RNPrijemPlatforme.Zavrsen from RNPrijemPlatforme " +
+" inner join TipKontenjera on TipKontenjera.ID = RNPrijemPlatforme.VrstaKontejnera " +
+" inner join Skladista on Skladista.ID = USkladiste " +
+" inner join Partnerji on Partnerji.PaSifra = RNPrijemPlatforme.Izvoznik " +
+" inner join Partnerji p2 on p2.PaSifra = RNPrijemPlatforme.NazivBrodara " +
+" inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge where RNPrijemPlatforme.PrijemID = " + textBox1.Text +
+   " order by RNPrijemPlatforme.ID  desc ";
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -208,8 +223,9 @@ namespace Saobracaj.RadniNalozi
         private void FillDGRN4()
         {
             //Prijem platforme Uvoz - scenario 1
-            var select = "  select RNPrijemPlatforme.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, DatumRasporeda, NalogIzdao, " +
-" RNPrijemPlatforme.Kamion, USkladiste,Skladista.Naziv as Sklad,  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, " +
+            var select = "  select RNPrijemPlatforme.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, RNPrijemPlatforme.Kamion, USkladiste,Skladista.Naziv as Sklad, " +
+                " DatumRasporeda, NalogIzdao, " +
+"  PArtnerji.PaNaziv as Uvoznik, p2.PaNaziv as Brodar, " +
 " VrstaManipulacije.Naziv as Usliga, BrojPlombe, RNPrijemPlatforme.Napomena, RNPrijemPlatforme.PrijemID,RNPrijemPlatforme.NalogID, DatumRealizacije, " +
 " NalogRealizovao, RNPrijemPlatforme.Zavrsen from RNPrijemPlatforme " +
 " inner join TipKontenjera on TipKontenjera.ID = RNPrijemPlatforme.VrstaKontejnera " +
@@ -217,7 +233,46 @@ namespace Saobracaj.RadniNalozi
 " inner join Partnerji on Partnerji.PaSifra = RNPrijemPlatforme.Izvoznik " +
 " inner join Partnerji p2 on p2.PaSifra = RNPrijemPlatforme.NazivBrodara " +
 " inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge where RNPrijemPlatforme.PrijemID = " + textBox1.Text +
-   " order by RNPrijemVoza.ID  desc ";
+   " order by RNPrijemPlatforme.ID  desc ";
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView2.ReadOnly = true;
+            dataGridView2.DataSource = ds.Tables[0];
+
+            dataGridView2.BorderStyle = BorderStyle.None;
+            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView2.BackgroundColor = Color.White;
+
+            dataGridView2.EnableHeadersVisualStyles = false;
+            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+        }
+
+        private void FillDGRN5()
+        {
+            //Prijem platforme TERMINAL BRODAR
+            var select = "  select RNPrijemPlatforme2.ID,BrojKontejnera, TipKontenjera.Naziv as VrstaKontejnera, RNPrijemPlatforme2.Kamion, USkladiste,Skladista.Naziv as Sklad, " +
+" DatumRasporeda, NalogIzdao, " +
+" '' as Uvoznik, p2.PaNaziv as Brodar, " +
+" VrstaManipulacije.Naziv as Usliga, '' as BRojPlombe, RNPrijemPlatforme2.Napomena, RNPrijemPlatforme2.PrijemID,RNPrijemPlatforme2.NalogID, DatumRealizacije, " +
+" NalogRealizovao, RNPrijemPlatforme2.Zavrsen from RNPrijemPlatforme2 " +
+" inner join TipKontenjera on TipKontenjera.ID = RNPrijemPlatforme2.VrstaKontejnera " +
+" inner join Skladista on Skladista.ID = USkladiste " +
+" inner join Partnerji p2 on p2.PaSifra = RNPrijemPlatforme2.NazivBrodara " +
+" inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge where RNPrijemPlatforme2.PrijemID = " + textBox1.Text +
+   " order by RNPrijemPlatforme2.ID  desc ";
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -304,6 +359,9 @@ namespace Saobracaj.RadniNalozi
                 FillDGRN21(); // RN PRIJEM PLATFORME BRODAR
             if (TipRadnogNaloga == 6)
                 FillDGRN6();
+
+            if (TipRadnogNaloga == 5)
+                FillDGRN5();
         }
 
         private void btnUnesi_Click(object sender, EventArgs e)
@@ -395,6 +453,32 @@ namespace Saobracaj.RadniNalozi
                             if (row2.Selected == true)
                             {
                                 ins.UpdateRN6Skladiste(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row2.Cells[0].Value.ToString()));
+                            }
+
+
+                        }
+
+                    // ins.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
+                }
+                FillDGRN6();
+
+            }
+
+
+            if (TipRadnogNaloga == 5)
+            {
+                //Napisano za PrijemPlatvorme BRODAR - PRIJEM TERMINALA
+
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    InsertRN ins = new InsertRN();
+
+                    if (row.Selected == true)
+                        foreach (DataGridViewRow row2 in dataGridView2.Rows)
+                        {
+                            if (row2.Selected == true)
+                            {
+                                ins.UpdateRN5Skladiste(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row2.Cells[0].Value.ToString()));
                             }
 
 

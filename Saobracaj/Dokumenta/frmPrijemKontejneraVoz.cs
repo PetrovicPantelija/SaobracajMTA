@@ -338,7 +338,7 @@ namespace TrackModal.Dokumeta
        "       ON PrijemKontejneraVozStavke.TipKontejnera = TipKontenjera.ID" +
       "        INNER JOIN  NHM ON PrijemKontejneraVozStavke.VrstaRobe = NHM.ID" +
        "        INNER JOIN  PrijemKontejneraVoz ON PrijemKontejneraVozStavke.IdNAdredjenog = PrijemKontejneraVoz.ID" +
-       "       INNER JOIN  Voz ON PrijemKontejneraVoz.IdVoza = Voz.BrVoza " +
+       "       INNER JOIN  Voz ON PrijemKontejneraVoz.IdVoza = Voz.ID " +
                            " where IdNadredjenog = " + txtSifra.Text + " order by RB";
 
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;;

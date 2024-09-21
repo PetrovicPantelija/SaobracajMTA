@@ -150,17 +150,18 @@ namespace Saobracaj.Dokumenta
 
             else if (OJ == 2)
             {
-                //KADA TERMINAL PRIMA KONTEJNER OD BRODARA
+              
                 chkTerminal.Checked = false;
                 chkIzvoz.Checked = true;
                 chkUvoz.Checked = false;
                 VratiPodatkePoNalogu(NalogID);
             }
-            else
+            else if (OJ == 4)
             {
-                chkTerminal.Checked = false;
+                //KADA TERMINAL PRIMA KONTEJNER OD BRODARA
+                chkTerminal.Checked = true;
                 chkIzvoz.Checked = false;
-                chkUvoz.Checked = true;
+                chkUvoz.Checked = false;
             }
 
 
@@ -2041,7 +2042,7 @@ namespace Saobracaj.Dokumenta
                 if (dialogResult == DialogResult.Yes)
                 {
                     // 0 - Uvoz kao modul - ovde je direktno Terminal
-                    RadniNalozi.RN5PrijemPlatforme2 ppl = new RadniNalozi.RN5PrijemPlatforme2(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene, IDUsluge, 0);
+                    RadniNalozi.RN5PrijemPlatforme2 ppl = new RadniNalozi.RN5PrijemPlatforme2(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene, IDUsluge,0, Convert.ToInt32(txtNalogID.Text));
                     ppl.Show();
                 }
                 else if (dialogResult == DialogResult.No)
@@ -2052,7 +2053,7 @@ namespace Saobracaj.Dokumenta
             }
             else
             {
-                RadniNalozi.RN5PrijemPlatforme2 ppl = new RadniNalozi.RN5PrijemPlatforme2(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene, IDUsluge, 0);
+                RadniNalozi.RN5PrijemPlatforme2 ppl = new RadniNalozi.RN5PrijemPlatforme2(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene, IDUsluge, 0, Convert.ToInt32(txtNalogID.Text));
                 ppl.Show();
             }
 

@@ -136,6 +136,65 @@ namespace Saobracaj.Izvoz
 
         }
 
+        public void PrenesiUPlanUtovaraIzvozBrodar(int ID, int IDNadredjena)
+        {
+            //Prenesi u Plan Selektovano izvoz prenosi sa Skladista, fali drugi prenos obicno Iz Nerasporedjenih u rasporedjene
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "PrenesiUPlanUtovaraSelektovanoIzvozBrodar";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+
+            SqlParameter idnadredjena = new SqlParameter();
+            idnadredjena.ParameterName = "@IDNadredjeni";
+            idnadredjena.SqlDbType = SqlDbType.Int;
+            idnadredjena.Direction = ParameterDirection.Input;
+            idnadredjena.Value = IDNadredjena;
+            cmd.Parameters.Add(idnadredjena);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+
+        }
+
 
         public void OdrediKontejnerTerminal(int ID, string Kontejner, int TIzvoza)
         {
