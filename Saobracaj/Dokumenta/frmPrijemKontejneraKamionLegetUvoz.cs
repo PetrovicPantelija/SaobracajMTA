@@ -323,6 +323,7 @@ namespace Saobracaj.Dokumenta
             if (chkUvoz.Checked == true && chkCirada.Checked == true)
             {
                 //Uvoz cirada pakovanje
+                this.Text = "PLANIRANI PRETOVAR UVOZ";
                 panel5.Visible = true;
                 panel6.Visible = true;
                 panel7.Visible = true;

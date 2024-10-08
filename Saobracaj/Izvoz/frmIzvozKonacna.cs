@@ -1726,7 +1726,7 @@ namespace Saobracaj.Izvoz
             select = "select  IzvozKonacnaVrstaManipulacije.ID as ID, IzvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, IzvozKonacna.BrojKontejnera, " +
   " IzvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
   " IzvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica, " +
-  " Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, SaPDV,IzvozKonacnaVrstaManipulacije.Pokret, KontejnerStatus.Naziv , 'IZVOZNA' " +
+  " Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, SaPDV,IzvozKonacnaVrstaManipulacije.Pokret, KontejnerStatus.Naziv , 'IZVOZNA'  as Tip" +
   " from IzvozKonacnaVrstaManipulacije " +
   " Inner    join VrstaManipulacije on VrstaManipulacije.ID = IzvozKonacnaVrstaManipulacije.IDVrstaManipulacije " +
   "  inner " +
@@ -1765,7 +1765,7 @@ namespace Saobracaj.Izvoz
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView8.Columns[0];
             dataGridView8.Columns[0].HeaderText = "ID";
-            dataGridView8.Columns[0].Width = 30;
+            dataGridView8.Columns[0].Width = 20;
 
             DataGridViewColumn column2 = dataGridView8.Columns[1];
             dataGridView8.Columns[1].HeaderText = "IDU";
@@ -1773,19 +1773,39 @@ namespace Saobracaj.Izvoz
 
             DataGridViewColumn column3 = dataGridView8.Columns[2];
             dataGridView8.Columns[2].HeaderText = "Kontejner";
-            dataGridView8.Columns[2].Width = 70;
+            dataGridView8.Columns[2].Width = 100;
 
             DataGridViewColumn column4 = dataGridView8.Columns[3];
-            dataGridView8.Columns[3].HeaderText = "Kol";
-            dataGridView8.Columns[3].Width = 30;
+            dataGridView8.Columns[3].HeaderText = "Kolicina";
+            dataGridView8.Columns[3].Width = 70;
 
             DataGridViewColumn column5 = dataGridView8.Columns[4];
-            dataGridView8.Columns[4].HeaderText = "VM";
-            dataGridView8.Columns[4].Width = 30;
+            dataGridView8.Columns[4].HeaderText = "UslugaID";
+            dataGridView8.Columns[4].Width = 70;
 
             DataGridViewColumn column6 = dataGridView8.Columns[5];
             dataGridView8.Columns[5].HeaderText = "Usluga";
-            dataGridView8.Columns[5].Width = 230;
+            dataGridView8.Columns[5].Width = 370;
+
+            DataGridViewColumn column7 = dataGridView8.Columns[6];
+            dataGridView8.Columns[6].HeaderText = "Cena";
+            dataGridView8.Columns[6].Width = 100;
+
+            DataGridViewColumn column8 = dataGridView8.Columns[7];
+            dataGridView8.Columns[7].HeaderText = "OJID";
+            dataGridView8.Columns[7].Width = 50;
+
+            DataGridViewColumn column9 = dataGridView8.Columns[8];
+            dataGridView8.Columns[8].HeaderText = "OJ NAziv";
+            dataGridView8.Columns[8].Width = 150;
+
+            DataGridViewColumn column10 = dataGridView8.Columns[9];
+            dataGridView8.Columns[9].HeaderText = "Pa Sifra";
+            dataGridView8.Columns[9].Width = 70;
+
+            DataGridViewColumn column11 = dataGridView8.Columns[10];
+            dataGridView8.Columns[10].HeaderText = "Partner";
+            dataGridView8.Columns[10].Width = 270;
 
         }
 

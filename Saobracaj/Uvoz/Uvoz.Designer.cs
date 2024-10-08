@@ -273,7 +273,7 @@ namespace Saobracaj.Uvoz
             this.toolStripButton9});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1380, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1278, 27);
             this.toolStrip1.TabIndex = 50;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -587,7 +587,7 @@ namespace Saobracaj.Uvoz
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(613, 40);
+            this.label19.Location = new System.Drawing.Point(617, 31);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(32, 13);
@@ -970,10 +970,10 @@ namespace Saobracaj.Uvoz
             // 
             this.cboNHM.FormattingEnabled = true;
             this.cboNHM.ItemHeight = 13;
-            this.cboNHM.Location = new System.Drawing.Point(611, 58);
+            this.cboNHM.Location = new System.Drawing.Point(611, 54);
             this.cboNHM.Margin = new System.Windows.Forms.Padding(2);
             this.cboNHM.Name = "cboNHM";
-            this.cboNHM.Size = new System.Drawing.Size(260, 21);
+            this.cboNHM.Size = new System.Drawing.Size(468, 21);
             this.cboNHM.TabIndex = 31;
             // 
             // cboNazivRobe
@@ -1265,7 +1265,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(0, 11);
+            this.dataGridView1.Size = new System.Drawing.Size(0, 9);
             this.dataGridView1.TabIndex = 52;
             this.dataGridView1.Visible = false;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
@@ -1328,7 +1328,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
             this.dataGridView2.RowHeadersWidth = 11;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(323, 101);
+            this.dataGridView2.Size = new System.Drawing.Size(590, 99);
             this.dataGridView2.TabIndex = 144;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
@@ -1401,11 +1401,11 @@ namespace Saobracaj.Uvoz
             // 
             this.button3.BackColor = System.Drawing.Color.DarkRed;
             this.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(880, 54);
+            this.button3.Location = new System.Drawing.Point(1143, 53);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(53, 28);
             this.button3.TabIndex = 33;
-            this.button3.Text = "Delete";
+            this.button3.Text = "Izbrisi";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -1413,7 +1413,7 @@ namespace Saobracaj.Uvoz
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(880, 27);
+            this.button1.Location = new System.Drawing.Point(1084, 54);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(53, 27);
             this.button1.TabIndex = 32;
@@ -1450,7 +1450,7 @@ namespace Saobracaj.Uvoz
             // txtIDNHM
             // 
             this.txtIDNHM.BackColor = System.Drawing.SystemColors.Highlight;
-            this.txtIDNHM.Location = new System.Drawing.Point(814, 34);
+            this.txtIDNHM.Location = new System.Drawing.Point(1022, 31);
             this.txtIDNHM.Margin = new System.Windows.Forms.Padding(2);
             this.txtIDNHM.Name = "txtIDNHM";
             this.txtIDNHM.Size = new System.Drawing.Size(57, 20);
@@ -1541,11 +1541,11 @@ namespace Saobracaj.Uvoz
             // 
             this.button5.BackColor = System.Drawing.Color.DarkRed;
             this.button5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button5.Location = new System.Drawing.Point(475, 392);
+            this.button5.Location = new System.Drawing.Point(475, 394);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(56, 26);
             this.button5.TabIndex = 30;
-            this.button5.Text = "Delete";
+            this.button5.Text = "Izbrisi";
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
@@ -1947,10 +1947,10 @@ namespace Saobracaj.Uvoz
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.txtVrstaRobeHS);
             this.panel1.Controls.Add(this.clNalogodavac);
-            this.panel1.Location = new System.Drawing.Point(9, 487);
+            this.panel1.Location = new System.Drawing.Point(1098, 515);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(440, 138);
+            this.panel1.Size = new System.Drawing.Size(169, 136);
             this.panel1.TabIndex = 198;
             this.panel1.Visible = false;
             // 
@@ -2076,9 +2076,9 @@ namespace Saobracaj.Uvoz
             // 
             this.button11.BackColor = System.Drawing.Color.Maroon;
             this.button11.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button11.Location = new System.Drawing.Point(771, 33);
+            this.button11.Location = new System.Drawing.Point(736, 28);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(21, 21);
+            this.button11.Size = new System.Drawing.Size(33, 21);
             this.button11.TabIndex = 216;
             this.button11.Text = "Unesi";
             this.button11.UseVisualStyleBackColor = false;
@@ -2146,10 +2146,10 @@ namespace Saobracaj.Uvoz
             // 
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(948, 32);
+            this.tabControl1.Location = new System.Drawing.Point(4, 493);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(420, 158);
+            this.tabControl1.Size = new System.Drawing.Size(1237, 209);
             this.tabControl1.TabIndex = 42;
             // 
             // tabPage2
@@ -2158,7 +2158,7 @@ namespace Saobracaj.Uvoz
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(412, 132);
+            this.tabPage2.Size = new System.Drawing.Size(1229, 183);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Usluge";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -2199,7 +2199,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView7.RowHeadersDefaultCellStyle = dataGridViewCellStyle42;
             this.dataGridView7.RowHeadersWidth = 11;
             this.dataGridView7.RowTemplate.Height = 24;
-            this.dataGridView7.Size = new System.Drawing.Size(402, 122);
+            this.dataGridView7.Size = new System.Drawing.Size(1219, 173);
             this.dataGridView7.TabIndex = 158;
             // 
             // tabPage1
@@ -2299,7 +2299,7 @@ namespace Saobracaj.Uvoz
             this.chkInterni.AutoSize = true;
             this.chkInterni.Checked = true;
             this.chkInterni.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkInterni.Location = new System.Drawing.Point(711, 34);
+            this.chkInterni.Location = new System.Drawing.Point(676, 33);
             this.chkInterni.Margin = new System.Windows.Forms.Padding(2);
             this.chkInterni.Name = "chkInterni";
             this.chkInterni.Size = new System.Drawing.Size(55, 17);
@@ -2479,10 +2479,10 @@ namespace Saobracaj.Uvoz
             this.cboScenario.ForeColor = System.Drawing.SystemColors.Window;
             this.cboScenario.FormattingEnabled = true;
             this.cboScenario.ItemHeight = 13;
-            this.cboScenario.Location = new System.Drawing.Point(202, 448);
+            this.cboScenario.Location = new System.Drawing.Point(208, 452);
             this.cboScenario.Margin = new System.Windows.Forms.Padding(2);
             this.cboScenario.Name = "cboScenario";
-            this.cboScenario.Size = new System.Drawing.Size(191, 21);
+            this.cboScenario.Size = new System.Drawing.Size(250, 21);
             this.cboScenario.TabIndex = 455;
             // 
             // label66
@@ -2515,7 +2515,7 @@ namespace Saobracaj.Uvoz
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1380, 833);
+            this.ClientSize = new System.Drawing.Size(1278, 716);
             this.Controls.Add(this.button14);
             this.Controls.Add(this.cboScenario);
             this.Controls.Add(this.label66);

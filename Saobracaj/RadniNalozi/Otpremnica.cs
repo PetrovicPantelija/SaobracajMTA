@@ -430,6 +430,12 @@ namespace Saobracaj.RadniNalozi
             op.Show();
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            InsertIsporuka isporuka = new InsertIsporuka();
+            isporuka.PromenaBrojaKontejnera(txtBrojKontejnera.Text, txtNoviKontejner.Text);
+        }
+
         private void button2_Click_1(object sender, EventArgs e)
         {
             panel1.Visible = false;

@@ -169,7 +169,6 @@ namespace Saobracaj.Dokumenta
             this.txtNeto = new System.Windows.Forms.NumericUpDown();
             this.label22 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.dtpPeriodSkladistenjaDo = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.txtVagon = new System.Windows.Forms.TextBox();
             this.dtpPerodSkladistenjaOd = new System.Windows.Forms.DateTimePicker();
@@ -192,6 +191,17 @@ namespace Saobracaj.Dokumenta
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkTerminal = new System.Windows.Forms.CheckBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label68 = new System.Windows.Forms.Label();
+            this.txtTaraKontejneraZ = new System.Windows.Forms.NumericUpDown();
+            this.txtTaraKontejnera = new System.Windows.Forms.NumericUpDown();
+            this.label60 = new System.Windows.Forms.Label();
+            this.dtpPeriodSkladistenjaOd = new System.Windows.Forms.DateTimePicker();
+            this.cbNacinPakovanja = new System.Windows.Forms.ComboBox();
+            this.label57 = new System.Windows.Forms.Label();
+            this.dtpPlanUtovara = new System.Windows.Forms.DateTimePicker();
+            this.label58 = new System.Windows.Forms.Label();
+            this.dtpPeriodSkladistenjaDo = new System.Windows.Forms.DateTimePicker();
             this.btnManipulacija.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txVGMBrodBruto)).BeginInit();
@@ -217,6 +227,8 @@ namespace Saobracaj.Dokumenta
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaraKontejneraZ)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaraKontejnera)).BeginInit();
             this.SuspendLayout();
             // 
             // btnManipulacija
@@ -666,6 +678,17 @@ namespace Saobracaj.Dokumenta
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.panel1.Controls.Add(this.dtpPeriodSkladistenjaDo);
+            this.panel1.Controls.Add(this.dtpPlanUtovara);
+            this.panel1.Controls.Add(this.label58);
+            this.panel1.Controls.Add(this.cbNacinPakovanja);
+            this.panel1.Controls.Add(this.label57);
+            this.panel1.Controls.Add(this.label60);
+            this.panel1.Controls.Add(this.dtpPeriodSkladistenjaOd);
+            this.panel1.Controls.Add(this.label55);
+            this.panel1.Controls.Add(this.label68);
+            this.panel1.Controls.Add(this.txtTaraKontejneraZ);
+            this.panel1.Controls.Add(this.txtTaraKontejnera);
             this.panel1.Controls.Add(this.txtKontaktSpeditera);
             this.panel1.Controls.Add(this.cboInspekciskiTretman);
             this.panel1.Controls.Add(this.cboSpedicija);
@@ -728,9 +751,9 @@ namespace Saobracaj.Dokumenta
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.cboTipKontejnera);
             this.panel1.ForeColor = System.Drawing.Color.White;
-            this.panel1.Location = new System.Drawing.Point(24, 141);
+            this.panel1.Location = new System.Drawing.Point(14, 141);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1412, 341);
+            this.panel1.Size = new System.Drawing.Size(1422, 438);
             this.panel1.TabIndex = 305;
             // 
             // txtKontaktSpeditera
@@ -993,7 +1016,7 @@ namespace Saobracaj.Dokumenta
             this.txtNalogID.BackColor = System.Drawing.Color.White;
             this.txtNalogID.Enabled = false;
             this.txtNalogID.Font = new System.Drawing.Font("Times New Roman", 8.25F);
-            this.txtNalogID.Location = new System.Drawing.Point(14, 173);
+            this.txtNalogID.Location = new System.Drawing.Point(13, 180);
             this.txtNalogID.Name = "txtNalogID";
             this.txtNalogID.Size = new System.Drawing.Size(63, 20);
             this.txtNalogID.TabIndex = 436;
@@ -1018,7 +1041,7 @@ namespace Saobracaj.Dokumenta
             this.label45.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.label45.Font = new System.Drawing.Font("Times New Roman", 8.25F);
             this.label45.ForeColor = System.Drawing.Color.Black;
-            this.label45.Location = new System.Drawing.Point(12, 154);
+            this.label45.Location = new System.Drawing.Point(12, 159);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(60, 14);
             this.label45.TabIndex = 435;
@@ -1944,17 +1967,6 @@ namespace Saobracaj.Dokumenta
             this.label17.Text = "PERIOD SKLADIŠTANJA OD:";
             this.label17.Click += new System.EventHandler(this.label17_Click);
             // 
-            // dtpPeriodSkladistenjaDo
-            // 
-            this.dtpPeriodSkladistenjaDo.CustomFormat = "dd.MM.yyyy HH:mm";
-            this.dtpPeriodSkladistenjaDo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.dtpPeriodSkladistenjaDo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPeriodSkladistenjaDo.Location = new System.Drawing.Point(452, 62);
-            this.dtpPeriodSkladistenjaDo.Name = "dtpPeriodSkladistenjaDo";
-            this.dtpPeriodSkladistenjaDo.Size = new System.Drawing.Size(150, 22);
-            this.dtpPeriodSkladistenjaDo.TabIndex = 204;
-            this.dtpPeriodSkladistenjaDo.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -2125,10 +2137,10 @@ namespace Saobracaj.Dokumenta
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.tabControl1.Location = new System.Drawing.Point(27, 488);
+            this.tabControl1.Location = new System.Drawing.Point(14, 585);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1412, 236);
+            this.tabControl1.Size = new System.Drawing.Size(1408, 194);
             this.tabControl1.TabIndex = 306;
             // 
             // tabPage1
@@ -2137,7 +2149,7 @@ namespace Saobracaj.Dokumenta
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1404, 207);
+            this.tabPage1.Size = new System.Drawing.Size(1400, 165);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Stavke";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -2152,7 +2164,7 @@ namespace Saobracaj.Dokumenta
             this.dataGridView1.Location = new System.Drawing.Point(5, 6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1390, 195);
+            this.dataGridView1.Size = new System.Drawing.Size(1386, 153);
             this.dataGridView1.TabIndex = 168;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -2226,12 +2238,11 @@ namespace Saobracaj.Dokumenta
             this.panel2.Controls.Add(this.label27);
             this.panel2.Controls.Add(this.label17);
             this.panel2.Controls.Add(this.txtPlaniraniLager);
-            this.panel2.Controls.Add(this.dtpPeriodSkladistenjaDo);
             this.panel2.Controls.Add(this.label19);
             this.panel2.Controls.Add(this.dtpPerodSkladistenjaOd);
-            this.panel2.Location = new System.Drawing.Point(1075, 33);
+            this.panel2.Location = new System.Drawing.Point(1144, 33);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(176, 67);
+            this.panel2.Size = new System.Drawing.Size(107, 94);
             this.panel2.TabIndex = 439;
             this.panel2.Visible = false;
             // 
@@ -2264,6 +2275,147 @@ namespace Saobracaj.Dokumenta
             this.chkTerminal.TabIndex = 440;
             this.chkTerminal.Text = "TERMINAL";
             this.chkTerminal.UseVisualStyleBackColor = false;
+            // 
+            // label55
+            // 
+            this.label55.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
+            this.label55.ForeColor = System.Drawing.Color.Black;
+            this.label55.Location = new System.Drawing.Point(11, 340);
+            this.label55.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(169, 15);
+            this.label55.TabIndex = 468;
+            this.label55.Text = "TARA KONTEJNERA UPISANA ";
+            this.label55.Visible = false;
+            // 
+            // label68
+            // 
+            this.label68.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
+            this.label68.ForeColor = System.Drawing.Color.Black;
+            this.label68.Location = new System.Drawing.Point(223, 340);
+            this.label68.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(194, 16);
+            this.label68.TabIndex = 467;
+            this.label68.Text = "TARA KONTEJNERA ZAOKRUŽENA ";
+            this.label68.Visible = false;
+            // 
+            // txtTaraKontejneraZ
+            // 
+            this.txtTaraKontejneraZ.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.txtTaraKontejneraZ.DecimalPlaces = 3;
+            this.txtTaraKontejneraZ.ForeColor = System.Drawing.SystemColors.Window;
+            this.txtTaraKontejneraZ.Location = new System.Drawing.Point(226, 358);
+            this.txtTaraKontejneraZ.Margin = new System.Windows.Forms.Padding(2);
+            this.txtTaraKontejneraZ.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.txtTaraKontejneraZ.Name = "txtTaraKontejneraZ";
+            this.txtTaraKontejneraZ.Size = new System.Drawing.Size(90, 20);
+            this.txtTaraKontejneraZ.TabIndex = 466;
+            this.txtTaraKontejneraZ.Visible = false;
+            // 
+            // txtTaraKontejnera
+            // 
+            this.txtTaraKontejnera.DecimalPlaces = 3;
+            this.txtTaraKontejnera.Location = new System.Drawing.Point(13, 357);
+            this.txtTaraKontejnera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtTaraKontejnera.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.txtTaraKontejnera.Name = "txtTaraKontejnera";
+            this.txtTaraKontejnera.Size = new System.Drawing.Size(120, 20);
+            this.txtTaraKontejnera.TabIndex = 465;
+            this.txtTaraKontejnera.Visible = false;
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
+            this.label60.ForeColor = System.Drawing.Color.Black;
+            this.label60.Location = new System.Drawing.Point(438, 343);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(170, 13);
+            this.label60.TabIndex = 470;
+            this.label60.Text = "PERIOD SKLADISTENJA OD/DO";
+            this.label60.Visible = false;
+            // 
+            // dtpPeriodSkladistenjaOd
+            // 
+            this.dtpPeriodSkladistenjaOd.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dtpPeriodSkladistenjaOd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpPeriodSkladistenjaOd.Location = new System.Drawing.Point(438, 367);
+            this.dtpPeriodSkladistenjaOd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpPeriodSkladistenjaOd.Name = "dtpPeriodSkladistenjaOd";
+            this.dtpPeriodSkladistenjaOd.Size = new System.Drawing.Size(161, 20);
+            this.dtpPeriodSkladistenjaOd.TabIndex = 469;
+            this.dtpPeriodSkladistenjaOd.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
+            this.dtpPeriodSkladistenjaOd.Visible = false;
+            // 
+            // cbNacinPakovanja
+            // 
+            this.cbNacinPakovanja.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbNacinPakovanja.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbNacinPakovanja.FormattingEnabled = true;
+            this.cbNacinPakovanja.ItemHeight = 13;
+            this.cbNacinPakovanja.Location = new System.Drawing.Point(10, 397);
+            this.cbNacinPakovanja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbNacinPakovanja.Name = "cbNacinPakovanja";
+            this.cbNacinPakovanja.Size = new System.Drawing.Size(199, 21);
+            this.cbNacinPakovanja.TabIndex = 472;
+            this.cbNacinPakovanja.Visible = false;
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
+            this.label57.ForeColor = System.Drawing.Color.Black;
+            this.label57.Location = new System.Drawing.Point(13, 379);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(106, 13);
+            this.label57.TabIndex = 473;
+            this.label57.Text = "NAČIN PAKOVANJA";
+            this.label57.Visible = false;
+            // 
+            // dtpPlanUtovara
+            // 
+            this.dtpPlanUtovara.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dtpPlanUtovara.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpPlanUtovara.Location = new System.Drawing.Point(226, 398);
+            this.dtpPlanUtovara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dtpPlanUtovara.Name = "dtpPlanUtovara";
+            this.dtpPlanUtovara.Size = new System.Drawing.Size(161, 20);
+            this.dtpPlanUtovara.TabIndex = 474;
+            this.dtpPlanUtovara.Value = new System.DateTime(2023, 6, 23, 0, 0, 0, 0);
+            this.dtpPlanUtovara.Visible = false;
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
+            this.label58.ForeColor = System.Drawing.Color.Black;
+            this.label58.Location = new System.Drawing.Point(225, 383);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(161, 13);
+            this.label58.TabIndex = 475;
+            this.label58.Text = "PLANIRANI DATUM UTOVARA";
+            this.label58.Visible = false;
+            // 
+            // dtpPeriodSkladistenjaDo
+            // 
+            this.dtpPeriodSkladistenjaDo.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dtpPeriodSkladistenjaDo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.dtpPeriodSkladistenjaDo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpPeriodSkladistenjaDo.Location = new System.Drawing.Point(437, 393);
+            this.dtpPeriodSkladistenjaDo.Name = "dtpPeriodSkladistenjaDo";
+            this.dtpPeriodSkladistenjaDo.Size = new System.Drawing.Size(162, 22);
+            this.dtpPeriodSkladistenjaDo.TabIndex = 476;
+            this.dtpPeriodSkladistenjaDo.Value = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtpPeriodSkladistenjaDo.Visible = false;
             // 
             // frmPrijemKontejneraKamionLegetIzvoz
             // 
@@ -2328,6 +2480,8 @@ namespace Saobracaj.Dokumenta
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaraKontejneraZ)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTaraKontejnera)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2425,7 +2579,6 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtBrojKontejnera;
-        private System.Windows.Forms.DateTimePicker dtpPeriodSkladistenjaDo;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtVagon;
         private System.Windows.Forms.DateTimePicker dtpPerodSkladistenjaOd;
@@ -2491,5 +2644,16 @@ namespace Saobracaj.Dokumenta
         private System.Windows.Forms.DataGridView dataGridView8;
         private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.CheckBox chkTerminal;
+        private System.Windows.Forms.Label label55;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.NumericUpDown txtTaraKontejneraZ;
+        private System.Windows.Forms.NumericUpDown txtTaraKontejnera;
+        private System.Windows.Forms.Label label60;
+        private System.Windows.Forms.DateTimePicker dtpPeriodSkladistenjaOd;
+        private System.Windows.Forms.ComboBox cbNacinPakovanja;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.DateTimePicker dtpPlanUtovara;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.DateTimePicker dtpPeriodSkladistenjaDo;
     }
 }

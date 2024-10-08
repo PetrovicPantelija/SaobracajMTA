@@ -246,12 +246,21 @@ namespace Saobracaj.Izvoz
                     //Prakticno napravi stavku
                     ins.PrenesiKontejnerUOtpremuKamionomIzvoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(txtKontejnerID.Text), Convert.ToInt32(txtNalogID.Text));
                     // RefreshDataGrid();
-                    MessageBox.Show("Uspešno ste formirali Otpremu kamionom");
-
+                    DialogResult dialogResult = MessageBox.Show("Uspešno ste formirali Otpremu kamionom, Da li želite da formirate RN za kalmaristu?", "Radni nalozi" ,MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        PrenesiRN7();
+                    }
                 }
-              
 
+                
             }
+        }
+
+        private void PrenesiRN7()
+        {
+            Saobracaj.RadniNalozi.RN7OtpremaPlatforme2 op = new RadniNalozi.RN7OtpremaPlatforme2(txtSifra.Text, KorisnikCene, txtNalogID.Text, txtRegBrKamiona.Text, 1);
+            op.Show();
         }
         private void VratiPodatkeMax()
         {

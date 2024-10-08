@@ -1236,6 +1236,101 @@ namespace TrackModal.Dokumeta
             Saobracaj.Dokumeta.frmOtpremaKontejnera ter3 = new Saobracaj.Dokumeta.frmOtpremaKontejnera(Convert.ToInt32(txtSifra.Text), KorisnikCene);
             ter3.Show();
         }
+
+        private void ChekurajModulIPoreklo(string Sifra)
+        {
+            int Modul = 0;
+            int Poreklo = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select VrstaKamiona, Poreklo from OtpremaKontejnera where ID = " + Sifra, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Modul = Convert.ToInt32(dr["Poreklo"].ToString());
+                Poreklo = Convert.ToInt32(dr["VrstaKamiona"].ToString());
+            }
+            con.Close();
+            if (Poreklo == 1)
+            {
+                chkCirada.Checked = true;
+                chkPlatforma.Checked = false;
+            }
+            else
+            {
+                chkCirada.Checked = false;
+                chkPlatforma.Checked = true;
+            }
+
+            if (Modul == 1)
+            {
+
+                chkTerminal.Checked = false;
+                chkIzvoz.Checked = false;
+                chkUvoz.Checked = true;
+            }
+
+            else if (Modul == 2)
+            {
+                //KADA TERMINAL PRIMA KONTEJNER OD BRODARA
+                chkTerminal.Checked = false;
+                chkIzvoz.Checked = true;
+                chkUvoz.Checked = false;
+
+            }
+            else
+            {
+                chkTerminal.Checked = false;
+                chkIzvoz.Checked = false;
+                chkUvoz.Checked = true;
+            }
+
+        }
+
+        private void dataGridView1_SelectionChanged_2(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        txtSifra.Text = row.Cells[0].Value.ToString();
+
+                        string Company = Saobracaj.Sifarnici.frmLogovanje.Firma;
+                        switch (Company)
+                        {
+                            case "Leget":
+                                {
+                                    ChekurajModulIPoreklo(txtSifra.Text);
+                                    return;
+
+                                }
+                            default:
+                                {
+
+
+                                    return;
+
+                                }
+                                break;
+                        }
+
+                    }
+
+                }
+
+
+            }
+            catch
+            {
+                MessageBox.Show("Nije uspela selekcija stavki");
+            }
+        }
     }
 }
 

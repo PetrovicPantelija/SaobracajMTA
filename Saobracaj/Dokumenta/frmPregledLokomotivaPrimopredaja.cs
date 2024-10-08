@@ -23,16 +23,17 @@ namespace Saobracaj.Dokumenta
         private void FillGV()
         {
 
-            var select = 
+            var select =
 " SELECT AktivnostiStavke.ID, VrstaAktivnosti.Naziv as Aktivnost, AktivnostiStavke.Sati, AktivnostiStavke.Posao, AktivnostiStavke.OznakaPosla, AktivnostiStavke.DatumPocetka, AktivnostiStavke.DatumZavrsetka, " +
-" (RTRim(Delavci.DeIme) + ' ' + RTRIM(DePriimek)) as Izvrsilac, Stanice.Opis as Stanica, AktivnostiStavke.Lokomotiva, AktivnostiStavke.MestoIzvrsenja, AktivnostiStavke.Napomena " +
+" (RTRim(Delavci.DeIme) + ' ' + RTRIM(DePriimek)) as Izvrsilac, Stanice.Opis as Stanica, l1.Lokomotiva, AktivnostiStavke.MestoIzvrsenja, AktivnostiStavke.Napomena " +
 " from AktivnostiStavke " +
-"  inner join Aktivnosti on Aktivnosti.ID = AktivnostiStavke.IdNadredjena " +
-"  inner join Delavci on Delavci.DeSifra = Aktivnosti.Zaposleni " +
-"  inner join Stanice on Stanice.ID = AktivnostiStavke.Stanica " +
-"  inner join VrstaAktivnosti on VrstaAktivnosti.ID = AktivnostiStavke.VrstaAktivnostiID " +
+" inner join Aktivnosti on Aktivnosti.ID = AktivnostiStavke.IdNadredjena " +
+" inner join Delavci on Delavci.DeSifra = Aktivnosti.Zaposleni  " +
+" inner join Stanice on Stanice.ID = AktivnostiStavke.Stanica " +
+" inner join VrstaAktivnosti on VrstaAktivnosti.ID = AktivnostiStavke.VrstaAktivnostiID " +
+" left join(Select* from LokomotivaPrijava where Smer = 1) as l1 on l1.AktivnostId = Aktivnosti.ID " +
 "  where AktivnostiStavke.VrstaAktivnostiID = 73 " +
- " order by AktivnostiStavke.ID desc ";
+" order by AktivnostiStavke.ID desc ";
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

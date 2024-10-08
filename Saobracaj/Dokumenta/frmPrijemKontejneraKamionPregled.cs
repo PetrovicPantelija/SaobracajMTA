@@ -106,18 +106,20 @@ namespace TrackModal.Dokumeta
                " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0";
             */
 
-            var select = "SELECT [ID]," +
+            var select = "SELECT n1.[ID]," +
                 " DatumPrijema as DatumPrijema, " +
                 " CASE WHEN n1.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status, " +
                " REgBrKamiona, ImeVozaca, " +
                " VremeDolaska as VremeDolaska, " +
-              " [Datum] ,[Korisnik]," +
+              " n1.[Datum] ,n1.[Korisnik] , "+
 
 " (  SELECT  STUFF((SELECT distinct   '/ ' + Cast(ts.BrojKontejnera as nvarchar(20)) " +
 "  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
 " FOR XML PATH('')), 1, 1, ''  ) As Skupljen) " +
-" as Kontejner " +
-              " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 order by ID desc";
+" as Kontejner , OrganizacioneJedinice.Naziv as Modul,  CASE WHEN n1.Poreklo = 0 THEN 'PLATFORMA' ELSE 'CIRADA' END as POREKLO " +
+              " FROM [dbo].[PrijemKontejneraVoz] as n1 " +
+              " inner join organizacioneJedinice on OrganizacioneJedinice.ID = n1.Modul " +
+              " where Vozom = 0 order by ID desc";
 
 
 
@@ -576,11 +578,11 @@ namespace TrackModal.Dokumeta
                  " CASE WHEN n1.StatusPrijema = 0 THEN '1-Najava' ELSE '2-Prijem' END as Status, " +
                 " REgBrKamiona, ImeVozaca, " +
                 " CONVERT(varchar,VremeDolaska,104)      + ' '      + SUBSTRING(CONVERT(varchar,VremeDolaska,108),1,5) as VremeDolaska, " +
-               " [Datum] ,[Korisnik] ," +
+               " [Datum] ,[Korisnik] , Modul, Poreklo," +
 " (  SELECT  STUFF((SELECT distinct   '/ ' + Cast(ts.BrojKontejnera as nvarchar(20)) " +
  "  FROM PrijemKontejneraVozStavke ts where n1.ID = ts.IDNadredjenog " +
  " FOR XML PATH('')), 1, 1, ''  ) As Skupljen) " +
- " as Kontejner " +
+ " as Kontejner "  +
                " FROM [dbo].[PrijemKontejneraVoz] as n1 where Vozom = 0 and n1.StatusPrijema = 1 Order by ID Desc";
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);

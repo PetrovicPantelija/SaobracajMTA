@@ -596,7 +596,7 @@ namespace Saobracaj.Izvoz
             this.cboSpediterURijeci.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboSpediterURijeci.FormattingEnabled = true;
             this.cboSpediterURijeci.ItemHeight = 13;
-            this.cboSpediterURijeci.Location = new System.Drawing.Point(1245, 719);
+            this.cboSpediterURijeci.Location = new System.Drawing.Point(1245, 502);
             this.cboSpediterURijeci.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboSpediterURijeci.Name = "cboSpediterURijeci";
             this.cboSpediterURijeci.Size = new System.Drawing.Size(218, 21);
@@ -605,7 +605,7 @@ namespace Saobracaj.Izvoz
             // label44
             // 
             this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(1245, 704);
+            this.label44.Location = new System.Drawing.Point(1245, 487);
             this.label44.Name = "label44";
             this.label44.Size = new System.Drawing.Size(84, 13);
             this.label44.TabIndex = 388;
@@ -613,7 +613,7 @@ namespace Saobracaj.Izvoz
             // 
             // cboDobijenNalog
             // 
-            this.cboDobijenNalog.Location = new System.Drawing.Point(1244, 455);
+            this.cboDobijenNalog.Location = new System.Drawing.Point(1244, 238);
             this.cboDobijenNalog.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboDobijenNalog.Name = "cboDobijenNalog";
             this.cboDobijenNalog.Size = new System.Drawing.Size(180, 71);
@@ -624,7 +624,7 @@ namespace Saobracaj.Izvoz
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(1242, 666);
+            this.label50.Location = new System.Drawing.Point(1242, 449);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(104, 13);
             this.label50.TabIndex = 385;
@@ -632,7 +632,7 @@ namespace Saobracaj.Izvoz
             // 
             // txtRef3
             // 
-            this.txtRef3.Location = new System.Drawing.Point(1244, 681);
+            this.txtRef3.Location = new System.Drawing.Point(1244, 464);
             this.txtRef3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRef3.Name = "txtRef3";
             this.txtRef3.Size = new System.Drawing.Size(193, 20);
@@ -645,7 +645,7 @@ namespace Saobracaj.Izvoz
             this.cboNalogodavac3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNalogodavac3.FormattingEnabled = true;
             this.cboNalogodavac3.ItemHeight = 13;
-            this.cboNalogodavac3.Location = new System.Drawing.Point(1245, 638);
+            this.cboNalogodavac3.Location = new System.Drawing.Point(1245, 421);
             this.cboNalogodavac3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboNalogodavac3.Name = "cboNalogodavac3";
             this.cboNalogodavac3.Size = new System.Drawing.Size(215, 21);
@@ -654,7 +654,7 @@ namespace Saobracaj.Izvoz
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(1245, 621);
+            this.label47.Location = new System.Drawing.Point(1245, 404);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(159, 13);
             this.label47.TabIndex = 384;
@@ -663,7 +663,7 @@ namespace Saobracaj.Izvoz
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(1242, 564);
+            this.label49.Location = new System.Drawing.Point(1242, 347);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(104, 13);
             this.label49.TabIndex = 381;
@@ -671,7 +671,7 @@ namespace Saobracaj.Izvoz
             // 
             // txtRef2
             // 
-            this.txtRef2.Location = new System.Drawing.Point(1245, 584);
+            this.txtRef2.Location = new System.Drawing.Point(1245, 367);
             this.txtRef2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRef2.Name = "txtRef2";
             this.txtRef2.Size = new System.Drawing.Size(193, 20);
@@ -681,7 +681,7 @@ namespace Saobracaj.Izvoz
             // label48
             // 
             this.label48.AutoSize = true;
-            this.label48.Location = new System.Drawing.Point(1242, 408);
+            this.label48.Location = new System.Drawing.Point(1242, 191);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(104, 13);
             this.label48.TabIndex = 380;
@@ -689,7 +689,7 @@ namespace Saobracaj.Izvoz
             // 
             // txtRef1
             // 
-            this.txtRef1.Location = new System.Drawing.Point(1244, 428);
+            this.txtRef1.Location = new System.Drawing.Point(1244, 211);
             this.txtRef1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtRef1.Name = "txtRef1";
             this.txtRef1.Size = new System.Drawing.Size(193, 20);
@@ -702,7 +702,7 @@ namespace Saobracaj.Izvoz
             this.cboNalogodavac2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNalogodavac2.FormattingEnabled = true;
             this.cboNalogodavac2.ItemHeight = 13;
-            this.cboNalogodavac2.Location = new System.Drawing.Point(1244, 534);
+            this.cboNalogodavac2.Location = new System.Drawing.Point(1244, 317);
             this.cboNalogodavac2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboNalogodavac2.Name = "cboNalogodavac2";
             this.cboNalogodavac2.Size = new System.Drawing.Size(216, 21);
@@ -711,7 +711,7 @@ namespace Saobracaj.Izvoz
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(1244, 513);
+            this.label46.Location = new System.Drawing.Point(1244, 296);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(119, 13);
             this.label46.TabIndex = 379;
@@ -723,7 +723,7 @@ namespace Saobracaj.Izvoz
             this.cboNalogodavac1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNalogodavac1.FormattingEnabled = true;
             this.cboNalogodavac1.ItemHeight = 13;
-            this.cboNalogodavac1.Location = new System.Drawing.Point(1244, 380);
+            this.cboNalogodavac1.Location = new System.Drawing.Point(1244, 163);
             this.cboNalogodavac1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboNalogodavac1.Name = "cboNalogodavac1";
             this.cboNalogodavac1.Size = new System.Drawing.Size(216, 21);
@@ -732,7 +732,7 @@ namespace Saobracaj.Izvoz
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(1245, 365);
+            this.label42.Location = new System.Drawing.Point(1245, 148);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(105, 13);
             this.label42.TabIndex = 378;
@@ -744,7 +744,7 @@ namespace Saobracaj.Izvoz
             this.cboIzvoznik.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboIzvoznik.FormattingEnabled = true;
             this.cboIzvoznik.ItemHeight = 13;
-            this.cboIzvoznik.Location = new System.Drawing.Point(1021, 604);
+            this.cboIzvoznik.Location = new System.Drawing.Point(1026, 436);
             this.cboIzvoznik.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboIzvoznik.Name = "cboIzvoznik";
             this.cboIzvoznik.Size = new System.Drawing.Size(210, 21);
@@ -753,7 +753,7 @@ namespace Saobracaj.Izvoz
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(1021, 584);
+            this.label41.Location = new System.Drawing.Point(1027, 421);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(46, 13);
             this.label41.TabIndex = 373;
@@ -761,7 +761,7 @@ namespace Saobracaj.Izvoz
             // 
             // label40
             // 
-            this.label40.Location = new System.Drawing.Point(1024, 486);
+            this.label40.Location = new System.Drawing.Point(1024, 314);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(186, 17);
             this.label40.TabIndex = 371;
@@ -770,7 +770,7 @@ namespace Saobracaj.Izvoz
             // txVGMBrodBruto
             // 
             this.txVGMBrodBruto.DecimalPlaces = 3;
-            this.txVGMBrodBruto.Location = new System.Drawing.Point(1024, 506);
+            this.txVGMBrodBruto.Location = new System.Drawing.Point(1024, 334);
             this.txVGMBrodBruto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txVGMBrodBruto.Maximum = new decimal(new int[] {
             100000,
@@ -787,7 +787,7 @@ namespace Saobracaj.Izvoz
             // txtTaraKontejnera
             // 
             this.txtTaraKontejnera.DecimalPlaces = 3;
-            this.txtTaraKontejnera.Location = new System.Drawing.Point(1021, 416);
+            this.txtTaraKontejnera.Location = new System.Drawing.Point(1021, 244);
             this.txtTaraKontejnera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtTaraKontejnera.Maximum = new decimal(new int[] {
             100000,
@@ -803,7 +803,7 @@ namespace Saobracaj.Izvoz
             // 
             // label38
             // 
-            this.label38.Location = new System.Drawing.Point(1017, 350);
+            this.label38.Location = new System.Drawing.Point(1017, 178);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(207, 18);
             this.label38.TabIndex = 367;
@@ -812,7 +812,7 @@ namespace Saobracaj.Izvoz
             // txtOdvaganaTezina
             // 
             this.txtOdvaganaTezina.DecimalPlaces = 3;
-            this.txtOdvaganaTezina.Location = new System.Drawing.Point(1018, 370);
+            this.txtOdvaganaTezina.Location = new System.Drawing.Point(1018, 198);
             this.txtOdvaganaTezina.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtOdvaganaTezina.Maximum = new decimal(new int[] {
             100000,
@@ -828,7 +828,7 @@ namespace Saobracaj.Izvoz
             // chkVaganje
             // 
             this.chkVaganje.AutoSize = true;
-            this.chkVaganje.Location = new System.Drawing.Point(1019, 326);
+            this.chkVaganje.Location = new System.Drawing.Point(1030, 155);
             this.chkVaganje.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkVaganje.Name = "chkVaganje";
             this.chkVaganje.Size = new System.Drawing.Size(75, 17);
@@ -839,7 +839,7 @@ namespace Saobracaj.Izvoz
             // 
             // txtDodatneNapomene
             // 
-            this.txtDodatneNapomene.Location = new System.Drawing.Point(1019, 254);
+            this.txtDodatneNapomene.Location = new System.Drawing.Point(1030, 83);
             this.txtDodatneNapomene.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDodatneNapomene.Multiline = true;
             this.txtDodatneNapomene.Name = "txtDodatneNapomene";
@@ -848,7 +848,7 @@ namespace Saobracaj.Izvoz
             // 
             // label37
             // 
-            this.label37.Location = new System.Drawing.Point(1018, 223);
+            this.label37.Location = new System.Drawing.Point(1029, 52);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(209, 29);
             this.label37.TabIndex = 364;
@@ -871,7 +871,7 @@ namespace Saobracaj.Izvoz
             this.cbNacinPakovanja.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbNacinPakovanja.FormattingEnabled = true;
             this.cbNacinPakovanja.ItemHeight = 13;
-            this.cbNacinPakovanja.Location = new System.Drawing.Point(806, 718);
+            this.cbNacinPakovanja.Location = new System.Drawing.Point(773, 486);
             this.cbNacinPakovanja.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbNacinPakovanja.Name = "cbNacinPakovanja";
             this.cbNacinPakovanja.Size = new System.Drawing.Size(199, 21);
@@ -880,7 +880,7 @@ namespace Saobracaj.Izvoz
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(803, 701);
+            this.label36.Location = new System.Drawing.Point(775, 472);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(88, 13);
             this.label36.TabIndex = 361;
@@ -889,7 +889,7 @@ namespace Saobracaj.Izvoz
             // chkNajavaVozila
             // 
             this.chkNajavaVozila.AutoSize = true;
-            this.chkNajavaVozila.Location = new System.Drawing.Point(806, 581);
+            this.chkNajavaVozila.Location = new System.Drawing.Point(776, 359);
             this.chkNajavaVozila.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkNajavaVozila.Name = "chkNajavaVozila";
             this.chkNajavaVozila.Size = new System.Drawing.Size(187, 17);
@@ -901,7 +901,7 @@ namespace Saobracaj.Izvoz
             // txtAutoDana
             // 
             this.txtAutoDana.DecimalPlaces = 2;
-            this.txtAutoDana.Location = new System.Drawing.Point(796, 333);
+            this.txtAutoDana.Location = new System.Drawing.Point(808, 163);
             this.txtAutoDana.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAutoDana.Maximum = new decimal(new int[] {
             100000,
@@ -917,7 +917,7 @@ namespace Saobracaj.Izvoz
             // label35
             // 
             this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(793, 315);
+            this.label35.Location = new System.Drawing.Point(803, 148);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(56, 13);
             this.label35.TabIndex = 358;
@@ -926,7 +926,7 @@ namespace Saobracaj.Izvoz
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(796, 268);
+            this.label32.Location = new System.Drawing.Point(808, 98);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(98, 13);
             this.label32.TabIndex = 356;
@@ -938,7 +938,7 @@ namespace Saobracaj.Izvoz
             this.cboInspekciskiTretman.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboInspekciskiTretman.FormattingEnabled = true;
             this.cboInspekciskiTretman.ItemHeight = 13;
-            this.cboInspekciskiTretman.Location = new System.Drawing.Point(796, 286);
+            this.cboInspekciskiTretman.Location = new System.Drawing.Point(808, 116);
             this.cboInspekciskiTretman.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboInspekciskiTretman.Name = "cboInspekciskiTretman";
             this.cboInspekciskiTretman.Size = new System.Drawing.Size(209, 21);
@@ -947,7 +947,7 @@ namespace Saobracaj.Izvoz
             // label31
             // 
             this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(793, 222);
+            this.label31.Location = new System.Drawing.Point(805, 52);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(206, 13);
             this.label31.TabIndex = 354;
@@ -959,7 +959,7 @@ namespace Saobracaj.Izvoz
             this.cboReexport.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboReexport.FormattingEnabled = true;
             this.cboReexport.ItemHeight = 13;
-            this.cboReexport.Location = new System.Drawing.Point(796, 242);
+            this.cboReexport.Location = new System.Drawing.Point(808, 72);
             this.cboReexport.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboReexport.Name = "cboReexport";
             this.cboReexport.Size = new System.Drawing.Size(209, 21);
@@ -969,7 +969,7 @@ namespace Saobracaj.Izvoz
             // 
             this.dtpEtaLeget.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpEtaLeget.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpEtaLeget.Location = new System.Drawing.Point(516, 428);
+            this.dtpEtaLeget.Location = new System.Drawing.Point(1245, 598);
             this.dtpEtaLeget.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpEtaLeget.Name = "dtpEtaLeget";
             this.dtpEtaLeget.Size = new System.Drawing.Size(161, 20);
@@ -979,7 +979,7 @@ namespace Saobracaj.Izvoz
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(516, 415);
+            this.label30.Location = new System.Drawing.Point(1245, 585);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(58, 13);
             this.label30.TabIndex = 352;
@@ -988,7 +988,7 @@ namespace Saobracaj.Izvoz
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(516, 452);
+            this.label29.Location = new System.Drawing.Point(474, 404);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(151, 13);
             this.label29.TabIndex = 350;
@@ -997,7 +997,7 @@ namespace Saobracaj.Izvoz
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(515, 606);
+            this.label28.Location = new System.Drawing.Point(473, 558);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(151, 13);
             this.label28.TabIndex = 348;
@@ -1006,7 +1006,7 @@ namespace Saobracaj.Izvoz
             // txtKontaktSpeditera
             // 
             this.txtKontaktSpeditera.ForeColor = System.Drawing.Color.Black;
-            this.txtKontaktSpeditera.Location = new System.Drawing.Point(516, 351);
+            this.txtKontaktSpeditera.Location = new System.Drawing.Point(478, 345);
             this.txtKontaktSpeditera.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtKontaktSpeditera.Name = "txtKontaktSpeditera";
             this.txtKontaktSpeditera.Size = new System.Drawing.Size(247, 20);
@@ -1015,7 +1015,7 @@ namespace Saobracaj.Izvoz
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(516, 337);
+            this.label27.Location = new System.Drawing.Point(478, 331);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(122, 13);
             this.label27.TabIndex = 346;
@@ -1027,7 +1027,7 @@ namespace Saobracaj.Izvoz
             this.cboSpedicija.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboSpedicija.FormattingEnabled = true;
             this.cboSpedicija.ItemHeight = 13;
-            this.cboSpedicija.Location = new System.Drawing.Point(516, 312);
+            this.cboSpedicija.Location = new System.Drawing.Point(478, 306);
             this.cboSpedicija.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboSpedicija.Name = "cboSpedicija";
             this.cboSpedicija.Size = new System.Drawing.Size(241, 21);
@@ -1036,7 +1036,7 @@ namespace Saobracaj.Izvoz
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(516, 297);
+            this.label26.Location = new System.Drawing.Point(478, 291);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(140, 13);
             this.label26.TabIndex = 344;
@@ -1045,7 +1045,7 @@ namespace Saobracaj.Izvoz
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(516, 259);
+            this.label52.Location = new System.Drawing.Point(478, 253);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(84, 13);
             this.label52.TabIndex = 342;
@@ -1057,7 +1057,7 @@ namespace Saobracaj.Izvoz
             this.cboCarina.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboCarina.FormattingEnabled = true;
             this.cboCarina.ItemHeight = 13;
-            this.cboCarina.Location = new System.Drawing.Point(516, 274);
+            this.cboCarina.Location = new System.Drawing.Point(478, 268);
             this.cboCarina.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboCarina.Name = "cboCarina";
             this.cboCarina.Size = new System.Drawing.Size(241, 21);
@@ -1066,7 +1066,7 @@ namespace Saobracaj.Izvoz
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(516, 219);
+            this.label25.Location = new System.Drawing.Point(478, 213);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(76, 13);
             this.label25.TabIndex = 340;
@@ -1075,7 +1075,7 @@ namespace Saobracaj.Izvoz
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(242, 573);
+            this.label24.Location = new System.Drawing.Point(770, 551);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(79, 13);
             this.label24.TabIndex = 338;
@@ -1087,16 +1087,16 @@ namespace Saobracaj.Izvoz
             this.cboMestoUtovara.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMestoUtovara.FormattingEnabled = true;
             this.cboMestoUtovara.ItemHeight = 13;
-            this.cboMestoUtovara.Location = new System.Drawing.Point(242, 546);
+            this.cboMestoUtovara.Location = new System.Drawing.Point(773, 528);
             this.cboMestoUtovara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboMestoUtovara.Name = "cboMestoUtovara";
-            this.cboMestoUtovara.Size = new System.Drawing.Size(221, 21);
+            this.cboMestoUtovara.Size = new System.Drawing.Size(203, 21);
             this.cboMestoUtovara.TabIndex = 335;
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(239, 531);
+            this.label23.Location = new System.Drawing.Point(774, 516);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(75, 13);
             this.label23.TabIndex = 336;
@@ -1149,7 +1149,7 @@ namespace Saobracaj.Izvoz
             this.cboPostupanjeSaRobom.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboPostupanjeSaRobom.FormattingEnabled = true;
             this.cboPostupanjeSaRobom.ItemHeight = 13;
-            this.cboPostupanjeSaRobom.Location = new System.Drawing.Point(1021, 720);
+            this.cboPostupanjeSaRobom.Location = new System.Drawing.Point(1022, 554);
             this.cboPostupanjeSaRobom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboPostupanjeSaRobom.Name = "cboPostupanjeSaRobom";
             this.cboPostupanjeSaRobom.Size = new System.Drawing.Size(210, 21);
@@ -1159,7 +1159,7 @@ namespace Saobracaj.Izvoz
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(1022, 705);
+            this.label18.Location = new System.Drawing.Point(1022, 533);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(175, 13);
             this.label18.TabIndex = 329;
@@ -1218,7 +1218,7 @@ namespace Saobracaj.Izvoz
             this.txtADR.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txtADR.FormattingEnabled = true;
             this.txtADR.ItemHeight = 13;
-            this.txtADR.Location = new System.Drawing.Point(517, 392);
+            this.txtADR.Location = new System.Drawing.Point(479, 386);
             this.txtADR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtADR.Name = "txtADR";
             this.txtADR.Size = new System.Drawing.Size(247, 21);
@@ -1227,7 +1227,7 @@ namespace Saobracaj.Izvoz
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(516, 377);
+            this.label13.Location = new System.Drawing.Point(478, 371);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(30, 13);
             this.label13.TabIndex = 321;
@@ -1290,7 +1290,7 @@ namespace Saobracaj.Izvoz
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(67, 34);
             this.button3.TabIndex = 310;
-            this.button3.Text = "Delete";
+            this.button3.Text = "Izbriši";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -1364,7 +1364,7 @@ namespace Saobracaj.Izvoz
             dataGridViewCellStyle41.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle41.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle41;
-            this.dataGridView2.Location = new System.Drawing.Point(423, 88);
+            this.dataGridView2.Location = new System.Drawing.Point(382, 88);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(1);
             this.dataGridView2.Name = "dataGridView2";
             dataGridViewCellStyle42.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1377,7 +1377,7 @@ namespace Saobracaj.Izvoz
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle42;
             this.dataGridView2.RowHeadersWidth = 11;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(375, 115);
+            this.dataGridView2.Size = new System.Drawing.Size(416, 95);
             this.dataGridView2.TabIndex = 316;
             this.dataGridView2.SelectionChanged += new System.EventHandler(this.dataGridView2_SelectionChanged);
             // 
@@ -1400,10 +1400,10 @@ namespace Saobracaj.Izvoz
             this.cboNHM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNHM.FormattingEnabled = true;
             this.cboNHM.ItemHeight = 13;
-            this.cboNHM.Location = new System.Drawing.Point(423, 53);
+            this.cboNHM.Location = new System.Drawing.Point(377, 60);
             this.cboNHM.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboNHM.Name = "cboNHM";
-            this.cboNHM.Size = new System.Drawing.Size(215, 21);
+            this.cboNHM.Size = new System.Drawing.Size(261, 21);
             this.cboNHM.TabIndex = 308;
             // 
             // label20
@@ -1419,7 +1419,7 @@ namespace Saobracaj.Izvoz
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(424, 34);
+            this.label19.Location = new System.Drawing.Point(378, 41);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(107, 13);
             this.label19.TabIndex = 315;
@@ -1528,7 +1528,7 @@ namespace Saobracaj.Izvoz
             // txtBrutoO
             // 
             this.txtBrutoO.DecimalPlaces = 3;
-            this.txtBrutoO.Location = new System.Drawing.Point(16, 723);
+            this.txtBrutoO.Location = new System.Drawing.Point(302, 598);
             this.txtBrutoO.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBrutoO.Maximum = new decimal(new int[] {
             100000,
@@ -1544,7 +1544,7 @@ namespace Saobracaj.Izvoz
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(13, 705);
+            this.label8.Location = new System.Drawing.Point(299, 581);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(121, 13);
             this.label8.TabIndex = 299;
@@ -1553,7 +1553,7 @@ namespace Saobracaj.Izvoz
             // txtBrutoR
             // 
             this.txtBrutoR.DecimalPlaces = 3;
-            this.txtBrutoR.Location = new System.Drawing.Point(14, 674);
+            this.txtBrutoR.Location = new System.Drawing.Point(159, 598);
             this.txtBrutoR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBrutoR.Maximum = new decimal(new int[] {
             100000,
@@ -1569,7 +1569,7 @@ namespace Saobracaj.Izvoz
             // txtNetoR
             // 
             this.txtNetoR.DecimalPlaces = 3;
-            this.txtNetoR.Location = new System.Drawing.Point(12, 631);
+            this.txtNetoR.Location = new System.Drawing.Point(8, 592);
             this.txtNetoR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNetoR.Maximum = new decimal(new int[] {
             100000,
@@ -1585,7 +1585,7 @@ namespace Saobracaj.Izvoz
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(11, 656);
+            this.label34.Location = new System.Drawing.Point(157, 576);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(102, 13);
             this.label34.TabIndex = 296;
@@ -1594,7 +1594,7 @@ namespace Saobracaj.Izvoz
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(10, 616);
+            this.label33.Location = new System.Drawing.Point(7, 573);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(103, 13);
             this.label33.TabIndex = 297;
@@ -1767,7 +1767,7 @@ namespace Saobracaj.Izvoz
             this.txtValuta.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txtValuta.FormattingEnabled = true;
             this.txtValuta.ItemHeight = 13;
-            this.txtValuta.Location = new System.Drawing.Point(10, 588);
+            this.txtValuta.Location = new System.Drawing.Point(239, 548);
             this.txtValuta.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtValuta.Name = "txtValuta";
             this.txtValuta.Size = new System.Drawing.Size(169, 21);
@@ -1776,7 +1776,7 @@ namespace Saobracaj.Izvoz
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(7, 573);
+            this.label15.Location = new System.Drawing.Point(242, 533);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(37, 13);
             this.label15.TabIndex = 399;
@@ -1799,7 +1799,7 @@ namespace Saobracaj.Izvoz
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(803, 652);
+            this.label16.Location = new System.Drawing.Point(774, 427);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(37, 13);
             this.label16.TabIndex = 404;
@@ -1807,7 +1807,7 @@ namespace Saobracaj.Izvoz
             // 
             // txtVozac
             // 
-            this.txtVozac.Location = new System.Drawing.Point(806, 669);
+            this.txtVozac.Location = new System.Drawing.Point(776, 447);
             this.txtVozac.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtVozac.Name = "txtVozac";
             this.txtVozac.Size = new System.Drawing.Size(199, 20);
@@ -1816,7 +1816,7 @@ namespace Saobracaj.Izvoz
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(803, 609);
+            this.label53.Location = new System.Drawing.Point(773, 385);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(35, 13);
             this.label53.TabIndex = 403;
@@ -1824,7 +1824,7 @@ namespace Saobracaj.Izvoz
             // 
             // txtVozilo
             // 
-            this.txtVozilo.Location = new System.Drawing.Point(806, 624);
+            this.txtVozilo.Location = new System.Drawing.Point(776, 402);
             this.txtVozilo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtVozilo.Name = "txtVozilo";
             this.txtVozilo.Size = new System.Drawing.Size(199, 20);
@@ -1897,7 +1897,7 @@ namespace Saobracaj.Izvoz
             // 
             this.dtpPeriodSkladistenjaDo.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPeriodSkladistenjaDo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPeriodSkladistenjaDo.Location = new System.Drawing.Point(17, 151);
+            this.dtpPeriodSkladistenjaDo.Location = new System.Drawing.Point(17, 126);
             this.dtpPeriodSkladistenjaDo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpPeriodSkladistenjaDo.Name = "dtpPeriodSkladistenjaDo";
             this.dtpPeriodSkladistenjaDo.Size = new System.Drawing.Size(161, 20);
@@ -1907,7 +1907,7 @@ namespace Saobracaj.Izvoz
             // label60
             // 
             this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(13, 89);
+            this.label60.Location = new System.Drawing.Point(14, 79);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(133, 13);
             this.label60.TabIndex = 409;
@@ -1917,7 +1917,7 @@ namespace Saobracaj.Izvoz
             // 
             this.dtpPeriodSkladistenjaOd.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPeriodSkladistenjaOd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPeriodSkladistenjaOd.Location = new System.Drawing.Point(17, 113);
+            this.dtpPeriodSkladistenjaOd.Location = new System.Drawing.Point(14, 99);
             this.dtpPeriodSkladistenjaOd.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpPeriodSkladistenjaOd.Name = "dtpPeriodSkladistenjaOd";
             this.dtpPeriodSkladistenjaOd.Size = new System.Drawing.Size(161, 20);
@@ -1971,7 +1971,7 @@ namespace Saobracaj.Izvoz
             // 
             this.button15.BackColor = System.Drawing.Color.Maroon;
             this.button15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button15.Location = new System.Drawing.Point(610, 28);
+            this.button15.Location = new System.Drawing.Point(564, 35);
             this.button15.Margin = new System.Windows.Forms.Padding(4);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(28, 25);
@@ -2018,7 +2018,7 @@ namespace Saobracaj.Izvoz
             // 
             // txtNapomenaZaRobu
             // 
-            this.txtNapomenaZaRobu.Location = new System.Drawing.Point(1025, 660);
+            this.txtNapomenaZaRobu.Location = new System.Drawing.Point(1025, 488);
             this.txtNapomenaZaRobu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNapomenaZaRobu.Multiline = true;
             this.txtNapomenaZaRobu.Name = "txtNapomenaZaRobu";
@@ -2027,7 +2027,7 @@ namespace Saobracaj.Izvoz
             // 
             // label62
             // 
-            this.label62.Location = new System.Drawing.Point(1024, 641);
+            this.label62.Location = new System.Drawing.Point(1024, 469);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(200, 17);
             this.label62.TabIndex = 419;
@@ -2036,7 +2036,7 @@ namespace Saobracaj.Izvoz
             // cboAdresaStatusVozila
             // 
             this.cboAdresaStatusVozila.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.cboAdresaStatusVozila.Location = new System.Drawing.Point(513, 621);
+            this.cboAdresaStatusVozila.Location = new System.Drawing.Point(471, 573);
             this.cboAdresaStatusVozila.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboAdresaStatusVozila.Multiline = true;
             this.cboAdresaStatusVozila.Name = "cboAdresaStatusVozila";
@@ -2047,10 +2047,10 @@ namespace Saobracaj.Izvoz
             // 
             this.button12.BackColor = System.Drawing.Color.Maroon;
             this.button12.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button12.Location = new System.Drawing.Point(470, 542);
+            this.button12.Location = new System.Drawing.Point(980, 523);
             this.button12.Margin = new System.Windows.Forms.Padding(4);
             this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(28, 31);
+            this.button12.Size = new System.Drawing.Size(22, 26);
             this.button12.TabIndex = 422;
             this.button12.Text = "Unesi";
             this.button12.UseVisualStyleBackColor = false;
@@ -2060,7 +2060,7 @@ namespace Saobracaj.Izvoz
             // 
             this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button13.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button13.Location = new System.Drawing.Point(771, 568);
+            this.button13.Location = new System.Drawing.Point(729, 520);
             this.button13.Margin = new System.Windows.Forms.Padding(4);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(19, 25);
@@ -2073,7 +2073,7 @@ namespace Saobracaj.Izvoz
             // 
             this.button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button16.Location = new System.Drawing.Point(764, 233);
+            this.button16.Location = new System.Drawing.Point(726, 227);
             this.button16.Margin = new System.Windows.Forms.Padding(4);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(19, 25);
@@ -2097,7 +2097,7 @@ namespace Saobracaj.Izvoz
             // 
             // cboNaslovStatusaVozila
             // 
-            this.cboNaslovStatusaVozila.Location = new System.Drawing.Point(516, 557);
+            this.cboNaslovStatusaVozila.Location = new System.Drawing.Point(474, 509);
             this.cboNaslovStatusaVozila.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cboNaslovStatusaVozila.Multiline = true;
             this.cboNaslovStatusaVozila.Name = "cboNaslovStatusaVozila";
@@ -2108,7 +2108,7 @@ namespace Saobracaj.Izvoz
             // 
             this.button18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button18.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button18.Location = new System.Drawing.Point(768, 464);
+            this.button18.Location = new System.Drawing.Point(726, 416);
             this.button18.Margin = new System.Windows.Forms.Padding(4);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(21, 96);
@@ -2128,7 +2128,7 @@ namespace Saobracaj.Izvoz
             "Buking brodara",
             "",
             ""});
-            this.checkedListBox2.Location = new System.Drawing.Point(516, 472);
+            this.checkedListBox2.Location = new System.Drawing.Point(474, 424);
             this.checkedListBox2.Margin = new System.Windows.Forms.Padding(4);
             this.checkedListBox2.Name = "checkedListBox2";
             this.checkedListBox2.Size = new System.Drawing.Size(248, 79);
@@ -2140,7 +2140,7 @@ namespace Saobracaj.Izvoz
             this.txtKontaktOsoba.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txtKontaktOsoba.FormattingEnabled = true;
             this.txtKontaktOsoba.ItemHeight = 13;
-            this.txtKontaktOsoba.Location = new System.Drawing.Point(516, 236);
+            this.txtKontaktOsoba.Location = new System.Drawing.Point(478, 230);
             this.txtKontaktOsoba.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtKontaktOsoba.Name = "txtKontaktOsoba";
             this.txtKontaktOsoba.Size = new System.Drawing.Size(241, 21);
@@ -2150,7 +2150,7 @@ namespace Saobracaj.Izvoz
             // 
             this.button19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button19.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button19.Location = new System.Drawing.Point(768, 389);
+            this.button19.Location = new System.Drawing.Point(730, 383);
             this.button19.Margin = new System.Windows.Forms.Padding(4);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(19, 25);
@@ -2166,11 +2166,11 @@ namespace Saobracaj.Izvoz
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(806, 31);
+            this.tabControl1.Location = new System.Drawing.Point(8, 642);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(645, 181);
+            this.tabControl1.Size = new System.Drawing.Size(1430, 181);
             this.tabControl1.TabIndex = 435;
             // 
             // tabPage2
@@ -2180,7 +2180,7 @@ namespace Saobracaj.Izvoz
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(637, 155);
+            this.tabPage2.Size = new System.Drawing.Size(1422, 155);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Usluge";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -2221,7 +2221,7 @@ namespace Saobracaj.Izvoz
             this.dataGridView8.RowHeadersDefaultCellStyle = dataGridViewCellStyle45;
             this.dataGridView8.RowHeadersWidth = 11;
             this.dataGridView8.RowTemplate.Height = 24;
-            this.dataGridView8.Size = new System.Drawing.Size(620, 139);
+            this.dataGridView8.Size = new System.Drawing.Size(1405, 139);
             this.dataGridView8.TabIndex = 158;
             // 
             // tabPage1
@@ -2336,12 +2336,12 @@ namespace Saobracaj.Izvoz
             // 
             this.button20.BackColor = System.Drawing.Color.DarkRed;
             this.button20.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button20.Location = new System.Drawing.Point(1376, 270);
+            this.button20.Location = new System.Drawing.Point(1376, 105);
             this.button20.Margin = new System.Windows.Forms.Padding(4);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(75, 32);
             this.button20.TabIndex = 432;
-            this.button20.Text = "Delete";
+            this.button20.Text = "Izbriši";
             this.button20.UseVisualStyleBackColor = false;
             this.button20.Click += new System.EventHandler(this.button20_Click);
             // 
@@ -2349,7 +2349,7 @@ namespace Saobracaj.Izvoz
             // 
             this.button21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button21.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button21.Location = new System.Drawing.Point(1245, 269);
+            this.button21.Location = new System.Drawing.Point(1245, 104);
             this.button21.Margin = new System.Windows.Forms.Padding(4);
             this.button21.Name = "button21";
             this.button21.Size = new System.Drawing.Size(75, 33);
@@ -2364,7 +2364,7 @@ namespace Saobracaj.Izvoz
             this.cbNapomenaPoz.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbNapomenaPoz.FormattingEnabled = true;
             this.cbNapomenaPoz.ItemHeight = 13;
-            this.cbNapomenaPoz.Location = new System.Drawing.Point(1248, 242);
+            this.cbNapomenaPoz.Location = new System.Drawing.Point(1248, 77);
             this.cbNapomenaPoz.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbNapomenaPoz.Name = "cbNapomenaPoz";
             this.cbNapomenaPoz.Size = new System.Drawing.Size(203, 21);
@@ -2373,7 +2373,7 @@ namespace Saobracaj.Izvoz
             // label63
             // 
             this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(1244, 219);
+            this.label63.Location = new System.Drawing.Point(1244, 54);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(193, 13);
             this.label63.TabIndex = 433;
@@ -2381,7 +2381,7 @@ namespace Saobracaj.Izvoz
             // 
             // label64
             // 
-            this.label64.Location = new System.Drawing.Point(1021, 532);
+            this.label64.Location = new System.Drawing.Point(1021, 360);
             this.label64.Name = "label64";
             this.label64.Size = new System.Drawing.Size(184, 18);
             this.label64.TabIndex = 437;
@@ -2390,7 +2390,7 @@ namespace Saobracaj.Izvoz
             // txtVGMBrod
             // 
             this.txtVGMBrod.DecimalPlaces = 3;
-            this.txtVGMBrod.Location = new System.Drawing.Point(1024, 552);
+            this.txtVGMBrod.Location = new System.Drawing.Point(1024, 380);
             this.txtVGMBrod.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtVGMBrod.Maximum = new decimal(new int[] {
             100000,
@@ -2405,7 +2405,7 @@ namespace Saobracaj.Izvoz
             // 
             // chkIndirektno
             // 
-            this.chkIndirektno.Location = new System.Drawing.Point(17, 57);
+            this.chkIndirektno.Location = new System.Drawing.Point(14, 52);
             this.chkIndirektno.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkIndirektno.Name = "chkIndirektno";
             this.chkIndirektno.Size = new System.Drawing.Size(176, 25);
@@ -2417,17 +2417,17 @@ namespace Saobracaj.Izvoz
             // txtKontaktOsobe
             // 
             this.txtKontaktOsobe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.txtKontaktOsobe.Location = new System.Drawing.Point(239, 631);
+            this.txtKontaktOsobe.Location = new System.Drawing.Point(774, 607);
             this.txtKontaktOsobe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtKontaktOsobe.Multiline = true;
             this.txtKontaktOsobe.Name = "txtKontaktOsobe";
-            this.txtKontaktOsobe.Size = new System.Drawing.Size(237, 45);
+            this.txtKontaktOsobe.Size = new System.Drawing.Size(237, 29);
             this.txtKontaktOsobe.TabIndex = 439;
             // 
             // label65
             // 
             this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(238, 613);
+            this.label65.Location = new System.Drawing.Point(773, 589);
             this.label65.Name = "label65";
             this.label65.Size = new System.Drawing.Size(76, 13);
             this.label65.TabIndex = 440;
@@ -2437,10 +2437,10 @@ namespace Saobracaj.Izvoz
             // 
             this.button22.BackColor = System.Drawing.Color.Yellow;
             this.button22.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button22.Location = new System.Drawing.Point(470, 585);
+            this.button22.Location = new System.Drawing.Point(1000, 560);
             this.button22.Margin = new System.Windows.Forms.Padding(4);
             this.button22.Name = "button22";
-            this.button22.Size = new System.Drawing.Size(28, 31);
+            this.button22.Size = new System.Drawing.Size(15, 31);
             this.button22.TabIndex = 441;
             this.button22.Text = "Unesi";
             this.button22.UseVisualStyleBackColor = false;
@@ -2452,7 +2452,7 @@ namespace Saobracaj.Izvoz
             this.txtAdresaMestaUtovara.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txtAdresaMestaUtovara.FormattingEnabled = true;
             this.txtAdresaMestaUtovara.ItemHeight = 13;
-            this.txtAdresaMestaUtovara.Location = new System.Drawing.Point(242, 589);
+            this.txtAdresaMestaUtovara.Location = new System.Drawing.Point(773, 566);
             this.txtAdresaMestaUtovara.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAdresaMestaUtovara.Name = "txtAdresaMestaUtovara";
             this.txtAdresaMestaUtovara.Size = new System.Drawing.Size(221, 21);
@@ -2466,16 +2466,16 @@ namespace Saobracaj.Izvoz
             this.panel2.Controls.Add(this.label60);
             this.panel2.Controls.Add(this.dtpPeriodSkladistenjaOd);
             this.panel2.Controls.Add(this.dtpPeriodSkladistenjaDo);
-            this.panel2.Location = new System.Drawing.Point(804, 375);
+            this.panel2.Location = new System.Drawing.Point(778, 194);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(201, 197);
+            this.panel2.Size = new System.Drawing.Size(201, 157);
             this.panel2.TabIndex = 443;
             // 
             // label66
             // 
             this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(8, 5);
+            this.label66.Location = new System.Drawing.Point(10, 10);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(47, 13);
             this.label66.TabIndex = 439;
@@ -2502,7 +2502,7 @@ namespace Saobracaj.Izvoz
             dataGridViewCellStyle53.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle53.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView4.DefaultCellStyle = dataGridViewCellStyle53;
-            this.dataGridView4.Location = new System.Drawing.Point(359, 34);
+            this.dataGridView4.Location = new System.Drawing.Point(321, 34);
             this.dataGridView4.Margin = new System.Windows.Forms.Padding(1);
             this.dataGridView4.Name = "dataGridView4";
             dataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -2524,7 +2524,7 @@ namespace Saobracaj.Izvoz
             this.chkInterni.AutoSize = true;
             this.chkInterni.Checked = true;
             this.chkInterni.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkInterni.Location = new System.Drawing.Point(545, 32);
+            this.chkInterni.Location = new System.Drawing.Point(499, 39);
             this.chkInterni.Margin = new System.Windows.Forms.Padding(2);
             this.chkInterni.Name = "chkInterni";
             this.chkInterni.Size = new System.Drawing.Size(55, 17);
@@ -2585,16 +2585,16 @@ namespace Saobracaj.Izvoz
             this.cboScenario.ForeColor = System.Drawing.SystemColors.Window;
             this.cboScenario.FormattingEnabled = true;
             this.cboScenario.ItemHeight = 13;
-            this.cboScenario.Location = new System.Drawing.Point(239, 702);
+            this.cboScenario.Location = new System.Drawing.Point(1244, 554);
             this.cboScenario.Margin = new System.Windows.Forms.Padding(2);
             this.cboScenario.Name = "cboScenario";
-            this.cboScenario.Size = new System.Drawing.Size(186, 21);
+            this.cboScenario.Size = new System.Drawing.Size(219, 21);
             this.cboScenario.TabIndex = 460;
             // 
             // label67
             // 
             this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(239, 688);
+            this.label67.Location = new System.Drawing.Point(1245, 535);
             this.label67.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(87, 13);
@@ -2603,7 +2603,7 @@ namespace Saobracaj.Izvoz
             // 
             // label68
             // 
-            this.label68.Location = new System.Drawing.Point(1016, 441);
+            this.label68.Location = new System.Drawing.Point(1016, 269);
             this.label68.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(194, 16);
@@ -2615,7 +2615,7 @@ namespace Saobracaj.Izvoz
             this.txtTaraKontejneraZ.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.txtTaraKontejneraZ.DecimalPlaces = 3;
             this.txtTaraKontejneraZ.ForeColor = System.Drawing.SystemColors.Window;
-            this.txtTaraKontejneraZ.Location = new System.Drawing.Point(1022, 456);
+            this.txtTaraKontejneraZ.Location = new System.Drawing.Point(1022, 284);
             this.txtTaraKontejneraZ.Margin = new System.Windows.Forms.Padding(2);
             this.txtTaraKontejneraZ.Maximum = new decimal(new int[] {
             100000,
@@ -2628,7 +2628,7 @@ namespace Saobracaj.Izvoz
             // 
             // label39
             // 
-            this.label39.Location = new System.Drawing.Point(1019, 398);
+            this.label39.Location = new System.Drawing.Point(1019, 226);
             this.label39.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(169, 15);
@@ -2639,7 +2639,7 @@ namespace Saobracaj.Izvoz
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1473, 745);
+            this.ClientSize = new System.Drawing.Size(1473, 889);
             this.Controls.Add(this.label39);
             this.Controls.Add(this.label68);
             this.Controls.Add(this.txtTaraKontejneraZ);

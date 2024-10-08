@@ -67,6 +67,7 @@
             this.button8 = new System.Windows.Forms.Button();
             this.txtPrijemID = new System.Windows.Forms.TextBox();
             this.txtRN = new System.Windows.Forms.TextBox();
+            this.button9 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -260,11 +261,11 @@
             // 
             this.button1.BackColor = System.Drawing.Color.DodgerBlue;
             this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button1.Location = new System.Drawing.Point(892, 17);
+            this.button1.Location = new System.Drawing.Point(892, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(101, 67);
+            this.button1.Size = new System.Drawing.Size(141, 56);
             this.button1.TabIndex = 13;
-            this.button1.Text = "PLANIRANI PRETOVARI KONTEJNERA";
+            this.button1.Text = "PLANIRANI PRETOVARI KON CIRADA";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -314,11 +315,11 @@
             // 
             this.button2.BackColor = System.Drawing.Color.DodgerBlue;
             this.button2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button2.Location = new System.Drawing.Point(1104, 16);
+            this.button2.Location = new System.Drawing.Point(1171, 16);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(89, 68);
             this.button2.TabIndex = 462;
-            this.button2.Text = "PRETOVAR ROBE";
+            this.button2.Text = "PRETOVAR ROBE - PRIJEM";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -352,7 +353,7 @@
             this.chkPlatforma.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
             this.chkPlatforma.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPlatforma.ForeColor = System.Drawing.Color.Transparent;
-            this.chkPlatforma.Location = new System.Drawing.Point(234, 99);
+            this.chkPlatforma.Location = new System.Drawing.Point(172, 122);
             this.chkPlatforma.Name = "chkPlatforma";
             this.chkPlatforma.Size = new System.Drawing.Size(70, 17);
             this.chkPlatforma.TabIndex = 466;
@@ -452,7 +453,7 @@
             // 
             this.button7.BackColor = System.Drawing.Color.LimeGreen;
             this.button7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button7.Location = new System.Drawing.Point(999, 30);
+            this.button7.Location = new System.Drawing.Point(1053, 30);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(77, 30);
             this.button7.TabIndex = 472;
@@ -464,17 +465,18 @@
             // 
             this.button8.BackColor = System.Drawing.Color.LimeGreen;
             this.button8.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.button8.Location = new System.Drawing.Point(999, 58);
+            this.button8.Location = new System.Drawing.Point(1053, 58);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(77, 27);
             this.button8.TabIndex = 473;
             this.button8.Text = "RN PC";
             this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // txtPrijemID
             // 
             this.txtPrijemID.Enabled = false;
-            this.txtPrijemID.Location = new System.Drawing.Point(999, 4);
+            this.txtPrijemID.Location = new System.Drawing.Point(1053, 4);
             this.txtPrijemID.Name = "txtPrijemID";
             this.txtPrijemID.Size = new System.Drawing.Size(45, 20);
             this.txtPrijemID.TabIndex = 474;
@@ -482,10 +484,22 @@
             // txtRN
             // 
             this.txtRN.Enabled = false;
-            this.txtRN.Location = new System.Drawing.Point(1050, 4);
+            this.txtRN.Location = new System.Drawing.Point(1104, 4);
             this.txtRN.Name = "txtRN";
             this.txtRN.Size = new System.Drawing.Size(45, 20);
             this.txtRN.TabIndex = 475;
+            // 
+            // button9
+            // 
+            this.button9.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button9.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button9.Location = new System.Drawing.Point(892, 62);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(141, 35);
+            this.button9.TabIndex = 476;
+            this.button9.Text = "PLANIRANI PRETOVARI KONT- RN KALMARISTA";
+            this.button9.UseVisualStyleBackColor = false;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // PlaniraniPretovar
             // 
@@ -494,6 +508,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1447, 628);
+            this.Controls.Add(this.button9);
             this.Controls.Add(this.txtRN);
             this.Controls.Add(this.txtPrijemID);
             this.Controls.Add(this.button8);
@@ -576,5 +591,6 @@
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.TextBox txtPrijemID;
         private System.Windows.Forms.TextBox txtRN;
+        private System.Windows.Forms.Button button9;
     }
 }

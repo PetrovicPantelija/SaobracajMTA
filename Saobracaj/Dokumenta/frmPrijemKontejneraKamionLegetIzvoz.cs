@@ -23,7 +23,7 @@ namespace Saobracaj.Dokumenta
     public partial class frmPrijemKontejneraKamionLegetIzvoz : Syncfusion.Windows.Forms.Office2010Form
     {
         MailMessage mailMessage;
-        string KorisnikCene;
+        string KorisnikCene = Saobracaj.Sifarnici.frmLogovanje.user;
         bool status = false;
         int usao = 0;
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -44,11 +44,39 @@ namespace Saobracaj.Dokumenta
             FillCombo();
             //KorisnikCene = Korisnik;
             //txtNalogID.Text = NalogID;
+            
+
+            txtSifra.Text = Sifra;
+            VratiPodatke(Convert.ToInt32(Sifra));
             if (OJ == 2)
             {
                 chkIzvoz.Checked = true;
                 chkTerminal.Checked = false;
-                this.Text = "GATE IN KAMION IZVOZ";
+                if (chkCirada.Checked == false)
+                {
+                    this.Text = "GATE IN KAMION IZVOZ";
+                }
+                else
+                {
+                    this.Text = "PLANIRANI PRETOVAR IZVOZ";
+                    label55.Visible = true;
+                    txtTaraKontejnera.Visible = true;
+
+                    label57.Visible = true;
+                    cbNacinPakovanja.Visible = true;
+
+                    label68.Visible = true;
+                    txtTaraKontejneraZ.Visible = true;
+
+                    label58.Visible = true;
+                    dtpPlanUtovara.Visible = true;
+
+                    label60.Visible = true;
+                    dtpPeriodSkladistenjaOd.Visible = true;
+                    dtpPeriodSkladistenjaDo.Visible = true;
+
+                }
+
             }
             // chkIzvoz.Checked = true;
             if (OJ == 4)
@@ -113,9 +141,6 @@ namespace Saobracaj.Dokumenta
                 dataGridView3.Visible = false;
 
             }
-
-            txtSifra.Text = Sifra;
-            VratiPodatke(Convert.ToInt32(Sifra));
             RefreshDataGrid();
          }
 
@@ -1068,6 +1093,15 @@ namespace Saobracaj.Dokumenta
             cbPostupak.DataSource = dirDS3.Tables[0];
             cbPostupak.DisplayMember = "Naziv";
             cbPostupak.ValueMember = "ID";
+           
+            
+            var np4 = "Select ID,(Oznaka + ' ' + Naziv) as Naziv from uvNacinPakovanja order by Naziv";
+            var npAD4 = new SqlDataAdapter(np4, s_connection10);
+            var npDS4 = new DataSet();
+            npAD4.Fill(npDS4);
+            cbNacinPakovanja.DataSource = npDS4.Tables[0];
+            cbNacinPakovanja.DisplayMember = "Naziv";
+            cbNacinPakovanja.ValueMember = "ID";
 
             usao = 1;
         }
@@ -1219,11 +1253,11 @@ namespace Saobracaj.Dokumenta
 " PrijemKontejneraVozStavke.IDNadredjenog, PrijemKontejneraVozStavke.KontejnerID, " +
 " PrijemKontejneraVozStavke.BrojKontejnera, TipKontenjera.Naziv AS TipKontejnera, " +
 " PrijemKontejneraVozStavke.NajavaID, " +
-" IzvozKonacna.BrojKontejnera, " +
+" IzvozKonacna.BrojKontejnera, IzvozKonacna.NacinPakovanja," +
 " IzvozKonacna.BrojVagona, IzvozKOnacna.VrstaKontejnera, Partnerji_1.PaSifra as Brodar, IzvozKOnacna.BookingBrodara, " +
 " IzvozKOnacna.BrodskaPlomba, IzvozKonacna.OstalePlombe, " +
-" IzvozKOnacna.BrojKoletaO, IzvozKOnacna.BrutoRobe, IzvozKOnacna.BrutoRobeO, IzvozKOnacna.CBMO, IzvozKOnacna.Tara, " +
-" IzvozKOnacna.NetoRobe, IzvozKOnacna.PeriodSkladistenjaOd, " +
+" IzvozKOnacna.BrojKoletaO, IzvozKOnacna.BrutoRobe, IzvozKOnacna.BrutoRobeO, IzvozKOnacna.CBMO, IzvozKOnacna.Tara, IzvozKOnacna.TaraZ," +
+" IzvozKOnacna.NetoRobe, IzvozKOnacna.PeriodSkladistenjaOd, IzvozKOnacna.PlaniraniDatumUtovara," +
 " IzvozKOnacna.PeriodSkladistenjaDo, Partnerji_2.PASifra as Izvoznik, INSTret.ID as InspekciskiTretman, " +
 " IZvozKonacna.Spedicija,IzvozKonacna.KontaktSpeditera, IzvozKonacna.MestoPreuzimanja as PICKUPCNT,Carinarnice.ID as Carina, IzvozKonacna.ADR as ADR, " +
 " IzvozKonacna.NapomenaReexport as Reexport, IzvozKonacna.DodatneNapomeneDrumski, IzvozKonacna.VGMBrod , IzvozKonacna.Vaganje " +
@@ -1270,6 +1304,13 @@ namespace Saobracaj.Dokumenta
                 txtADR.SelectedValue = Convert.ToInt32(dr["ADR"].ToString());
                 //Ovde videti da li sam pogodio dobro polje VGMBrod ima i VGMBrod2
                 txVGMBrodBruto.Value = Convert.ToDecimal(dr["VGMBrod"].ToString());
+
+                dtpPeriodSkladistenjaOd.Value = Convert.ToDateTime(dr["PeriodSkladistenjaOd"].ToString());
+                dtpPeriodSkladistenjaDo.Value = Convert.ToDateTime(dr["PeriodSkladistenjaDo"].ToString());
+                cbNacinPakovanja.SelectedValue = Convert.ToInt32(dr["NacinPakovanja"].ToString());
+                txtTaraKontejnera.Value = Convert.ToDecimal(dr["Tara"].ToString());
+                txtTaraKontejneraZ.Value = Convert.ToDecimal(dr["TaraZ"].ToString());
+                dtpPlanUtovara.Value = Convert.ToDateTime(dr["PlaniraniDatumUtovara"].ToString());
                 if (dr["Vaganje"].ToString() == "1")
                 { 
                 chkVaganje.Checked = true;

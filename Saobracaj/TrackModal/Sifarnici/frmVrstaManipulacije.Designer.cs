@@ -43,10 +43,8 @@
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txtJM = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.chkUticeSkladisno = new System.Windows.Forms.CheckBox();
-            this.txtJM2 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cboTipManipulacije = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -72,6 +70,8 @@
             this.cboGrupaVrsteManipulacije = new Syncfusion.WinForms.ListView.SfComboBox();
             this.txtTipKont = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.txtJM = new System.Windows.Forms.ComboBox();
+            this.txtJM2 = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCena)).BeginInit();
@@ -228,14 +228,6 @@
             this.dataGridView1.TabIndex = 112;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
-            // txtJM
-            // 
-            this.txtJM.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtJM.Location = new System.Drawing.Point(66, 111);
-            this.txtJM.Name = "txtJM";
-            this.txtJM.Size = new System.Drawing.Size(149, 22);
-            this.txtJM.TabIndex = 114;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -261,20 +253,12 @@
             this.chkUticeSkladisno.Text = "Utiče skladišno";
             this.chkUticeSkladisno.UseVisualStyleBackColor = true;
             // 
-            // txtJM2
-            // 
-            this.txtJM2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtJM2.Location = new System.Drawing.Point(305, 111);
-            this.txtJM2.Name = "txtJM2";
-            this.txtJM2.Size = new System.Drawing.Size(149, 22);
-            this.txtJM2.TabIndex = 239;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(246, 114);
+            this.label4.Location = new System.Drawing.Point(298, 114);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(37, 15);
             this.label4.TabIndex = 240;
@@ -391,7 +375,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(873, 207);
+            this.label9.Location = new System.Drawing.Point(862, 202);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(33, 16);
             this.label9.TabIndex = 251;
@@ -552,12 +536,32 @@
             this.label14.TabIndex = 261;
             this.label14.Text = "Vrsta kontejnera";
             // 
+            // txtJM
+            // 
+            this.txtJM.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtJM.FormattingEnabled = true;
+            this.txtJM.Location = new System.Drawing.Point(66, 109);
+            this.txtJM.Name = "txtJM";
+            this.txtJM.Size = new System.Drawing.Size(220, 24);
+            this.txtJM.TabIndex = 262;
+            // 
+            // txtJM2
+            // 
+            this.txtJM2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.txtJM2.FormattingEnabled = true;
+            this.txtJM2.Location = new System.Drawing.Point(359, 109);
+            this.txtJM2.Name = "txtJM2";
+            this.txtJM2.Size = new System.Drawing.Size(225, 24);
+            this.txtJM2.TabIndex = 263;
+            // 
             // frmVrstaManipulacije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1173, 537);
+            this.Controls.Add(this.txtJM2);
+            this.Controls.Add(this.txtJM);
             this.Controls.Add(this.txtTipKont);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.cboGrupaVrsteManipulacije);
@@ -577,10 +581,8 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cboTipManipulacije);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtJM2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.chkUticeSkladisno);
-            this.Controls.Add(this.txtJM);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtNaziv);
@@ -622,10 +624,8 @@
         private System.Windows.Forms.TextBox txtNaziv;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox txtJM;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox chkUticeSkladisno;
-        private System.Windows.Forms.TextBox txtJM2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cboTipManipulacije;
         private System.Windows.Forms.Label label5;
@@ -651,5 +651,7 @@
         private Syncfusion.WinForms.ListView.SfComboBox cboGrupaVrsteManipulacije;
         private System.Windows.Forms.ComboBox txtTipKont;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox txtJM;
+        private System.Windows.Forms.ComboBox txtJM2;
     }
 }

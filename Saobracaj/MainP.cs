@@ -29,6 +29,7 @@ using Saobracaj.Tehnologija;
 using Syncfusion.Windows.Forms.Tools;
 using Saobracaj.Administracija;
 using Saobracaj.Uvoz;
+using Saobracaj.Dokumenta;
 namespace Saobracaj
 {
     public partial class MainP : Syncfusion.Windows.Forms.Tools.RibbonForm
@@ -6655,6 +6656,17 @@ namespace Saobracaj
         {
             VaganjePregled pp = new VaganjePregled();
             pp.Show();
+        }
+
+        private void toolStripTabItem8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripButton374_Click(object sender, EventArgs e)
+        {
+            frmPregledLokomotivaPrimopredaja plp = new frmPregledLokomotivaPrimopredaja();
+            plp.Show();
         }
     }
     }

@@ -1618,6 +1618,122 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             }
         }
 
+        public void InsUbaciDodatnuUsluguIzvoz(int IDNadredjena, int IDVrstaManipulacije, double Kolicina, string NapomenaZaUslugu, string Korisnik, int PotvrdiUradjen, decimal Kolicina2)
+        {
+            //  @IdNadredjena int,
+            //@IDVrstaManipulacije int,
+            //@Cena numeric(18, 2)
+
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "InsUbaciDodatnuUsluguIzvoz";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+
+            //IDNadredjena treba da bude ID svake stavke tj. svakog kontejnera
+            SqlParameter idnadredjena = new SqlParameter();
+            idnadredjena.ParameterName = "@IDNadredjena";
+            idnadredjena.SqlDbType = SqlDbType.Int;
+            idnadredjena.Direction = ParameterDirection.Input;
+            idnadredjena.Value = IDNadredjena;
+            cmd.Parameters.Add(idnadredjena);
+
+            SqlParameter idVrstaManipulacije = new SqlParameter();
+            idVrstaManipulacije.ParameterName = "@IDVrstaManipulacije";
+            idVrstaManipulacije.SqlDbType = SqlDbType.Int;
+            idVrstaManipulacije.Direction = ParameterDirection.Input;
+            idVrstaManipulacije.Value = IDVrstaManipulacije;
+            cmd.Parameters.Add(idVrstaManipulacije);
+
+
+
+
+            SqlParameter kolicina = new SqlParameter();
+            kolicina.ParameterName = "@Kolicina";
+            kolicina.SqlDbType = SqlDbType.Decimal;
+            kolicina.Direction = ParameterDirection.Input;
+            kolicina.Value = Kolicina;
+            cmd.Parameters.Add(kolicina);
+
+
+            SqlParameter napomenazauslugu = new SqlParameter();
+            napomenazauslugu.ParameterName = "@NapomenaZaUslugu";
+            napomenazauslugu.SqlDbType = SqlDbType.NVarChar;
+            napomenazauslugu.Size = 500;
+            napomenazauslugu.Direction = ParameterDirection.Input;
+            napomenazauslugu.Value = NapomenaZaUslugu;
+            cmd.Parameters.Add(napomenazauslugu);
+
+
+
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName = "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Size = 20;
+            korisnik.Direction = ParameterDirection.Input;
+            korisnik.Value = Korisnik.ToString().TrimEnd();
+            cmd.Parameters.Add(korisnik);
+
+
+            SqlParameter potvrdiuradjen = new SqlParameter();
+            potvrdiuradjen.ParameterName = "@PotvrdiUradjen";
+            potvrdiuradjen.SqlDbType = SqlDbType.Int;
+            potvrdiuradjen.Direction = ParameterDirection.Input;
+            potvrdiuradjen.Value = PotvrdiUradjen;
+            cmd.Parameters.Add(potvrdiuradjen);
+
+
+
+            SqlParameter kolicina2 = new SqlParameter();
+            kolicina2.ParameterName = "@Kolicina2";
+            kolicina2.SqlDbType = SqlDbType.Decimal;
+            kolicina2.Direction = ParameterDirection.Input;
+            kolicina2.Value = Kolicina2;
+            cmd.Parameters.Add(kolicina2);
+            /*
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName = "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Size = 50;
+            korisnik.Direction = ParameterDirection.Input;
+            korisnik.Value = Korisnik;
+            cmd.Parameters.Add(korisnik);
+            */
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
         public void InsUvozKonacnaNHM(int IDNadredjena, int idNHM)
         {
             SqlConnection conn = new SqlConnection(connection);

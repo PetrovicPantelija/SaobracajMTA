@@ -504,13 +504,15 @@ namespace Saobracaj.Uvoz
                 frmPrijemVozaIzPlana rd1 = new frmPrijemVozaIzPlana(Convert.ToInt32(txtNALOGID.Text),0,OJ);
                 rd1.Show();
             }
-            if (Forma == "GATE OUT KAMION")
+            if (Forma == "GATE OUT KAMION" || Forma ==  "GATE OUT KAMION TERMINAL")
             {
                 
                 MessageBox.Show("Formirate Otpremu kamionom Platforma");
                 KISUsl = VratiKonkretanIDUsluge();
                 Saobracaj.Izvoz.frmOtpremaKontejneraKamionomIzKontejnera okk = new Izvoz.frmOtpremaKontejneraKamionomIzKontejnera(textBox1.Text, txtNALOGID.Text, Korisnik, 0 ,OJ);
                 okk.Show();
+
+              
 
 
             }

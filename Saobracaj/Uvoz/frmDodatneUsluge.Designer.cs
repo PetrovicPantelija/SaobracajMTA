@@ -35,6 +35,8 @@
             this.txtBrojOsnov = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.chkPotvrdiUradjen = new System.Windows.Forms.CheckBox();
             this.lblKolicina2 = new System.Windows.Forms.Label();
             this.num2 = new System.Windows.Forms.NumericUpDown();
@@ -54,8 +56,11 @@
             this.chkDodatne = new System.Windows.Forms.CheckBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.lblJM = new System.Windows.Forms.Label();
+            this.lblJM2 = new System.Windows.Forms.Label();
+            this.txtkontejner = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.chkUvozniPosao = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -85,6 +90,8 @@
             this.splitContainer1.Panel1.Controls.Add(this.chkUvoz);
             this.splitContainer1.Panel1.Controls.Add(this.chkIzvoz);
             this.splitContainer1.Panel1.Controls.Add(this.chkDodatne);
+            this.splitContainer1.Panel1.Controls.Add(this.label15);
+            this.splitContainer1.Panel1.Controls.Add(this.cboBukingPrijema);
             // 
             // splitContainer1.Panel2
             // 
@@ -131,6 +138,11 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.chkUvozniPosao);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.txtkontejner);
+            this.panel1.Controls.Add(this.lblJM2);
+            this.panel1.Controls.Add(this.lblJM);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.chkPotvrdiUradjen);
@@ -145,12 +157,30 @@
             this.panel1.Controls.Add(this.txtNapomena);
             this.panel1.Controls.Add(this.cboUsluga);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.cboBukingPrijema);
-            this.panel1.Controls.Add(this.label15);
             this.panel1.Location = new System.Drawing.Point(12, 159);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(396, 465);
             this.panel1.TabIndex = 2;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(292, 112);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(29, 23);
+            this.button2.TabIndex = 257;
+            this.button2.Text = "?";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(122, 381);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 256;
+            this.button1.Text = "Dodeli slike";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // chkPotvrdiUradjen
             // 
@@ -171,7 +201,7 @@
             this.lblKolicina2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
             this.lblKolicina2.Font = new System.Drawing.Font("Times New Roman", 8.25F);
             this.lblKolicina2.ForeColor = System.Drawing.Color.White;
-            this.lblKolicina2.Location = new System.Drawing.Point(155, 155);
+            this.lblKolicina2.Location = new System.Drawing.Point(216, 155);
             this.lblKolicina2.Name = "lblKolicina2";
             this.lblKolicina2.Size = new System.Drawing.Size(64, 14);
             this.lblKolicina2.TabIndex = 254;
@@ -181,7 +211,7 @@
             // 
             this.num2.DecimalPlaces = 3;
             this.num2.Font = new System.Drawing.Font("Times New Roman", 8.25F);
-            this.num2.Location = new System.Drawing.Point(156, 181);
+            this.num2.Location = new System.Drawing.Point(219, 181);
             this.num2.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -304,10 +334,11 @@
             // 
             this.cboBukingPrijema.Font = new System.Drawing.Font("Times New Roman", 8.25F);
             this.cboBukingPrijema.FormattingEnabled = true;
-            this.cboBukingPrijema.Location = new System.Drawing.Point(22, 45);
+            this.cboBukingPrijema.Location = new System.Drawing.Point(225, 127);
             this.cboBukingPrijema.Name = "cboBukingPrijema";
-            this.cboBukingPrijema.Size = new System.Drawing.Size(264, 22);
+            this.cboBukingPrijema.Size = new System.Drawing.Size(55, 22);
             this.cboBukingPrijema.TabIndex = 231;
+            this.cboBukingPrijema.Visible = false;
             // 
             // label15
             // 
@@ -315,11 +346,12 @@
             this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
             this.label15.Font = new System.Drawing.Font("Times New Roman", 8.25F);
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(19, 19);
+            this.label15.Location = new System.Drawing.Point(137, 130);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(82, 14);
             this.label15.TabIndex = 232;
             this.label15.Text = "DOLAZNI VOZ";
+            this.label15.Visible = false;
             // 
             // chkUvoz
             // 
@@ -359,7 +391,7 @@
             this.panel3.Controls.Add(this.gridGroupingControl1);
             this.panel3.Location = new System.Drawing.Point(12, 12);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(857, 639);
+            this.panel3.Size = new System.Drawing.Size(855, 639);
             this.panel3.TabIndex = 235;
             // 
             // gridGroupingControl1
@@ -375,7 +407,7 @@
             this.gridGroupingControl1.Name = "gridGroupingControl1";
             this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
             this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(851, 633);
+            this.gridGroupingControl1.Size = new System.Drawing.Size(849, 633);
             this.gridGroupingControl1.TabIndex = 10;
             this.gridGroupingControl1.TableDescriptor.AllowNew = false;
             this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
@@ -390,25 +422,64 @@
             this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
             this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
             // 
-            // button1
+            // lblJM
             // 
-            this.button1.Location = new System.Drawing.Point(122, 381);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 256;
-            this.button1.Text = "Dodeli slike";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.lblJM.AutoSize = true;
+            this.lblJM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.lblJM.Font = new System.Drawing.Font("Times New Roman", 8.25F);
+            this.lblJM.ForeColor = System.Drawing.Color.White;
+            this.lblJM.Location = new System.Drawing.Point(125, 183);
+            this.lblJM.Name = "lblJM";
+            this.lblJM.Size = new System.Drawing.Size(64, 14);
+            this.lblJM.TabIndex = 258;
+            this.lblJM.Text = "KOLICINA:";
             // 
-            // button2
+            // lblJM2
             // 
-            this.button2.Location = new System.Drawing.Point(292, 112);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(29, 23);
-            this.button2.TabIndex = 257;
-            this.button2.Text = "?";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.lblJM2.AutoSize = true;
+            this.lblJM2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.lblJM2.Font = new System.Drawing.Font("Times New Roman", 8.25F);
+            this.lblJM2.ForeColor = System.Drawing.Color.White;
+            this.lblJM2.Location = new System.Drawing.Point(318, 183);
+            this.lblJM2.Name = "lblJM2";
+            this.lblJM2.Size = new System.Drawing.Size(64, 14);
+            this.lblJM2.TabIndex = 259;
+            this.lblJM2.Text = "KOLICINA:";
+            // 
+            // txtkontejner
+            // 
+            this.txtkontejner.Enabled = false;
+            this.txtkontejner.Location = new System.Drawing.Point(22, 45);
+            this.txtkontejner.Name = "txtkontejner";
+            this.txtkontejner.Size = new System.Drawing.Size(200, 20);
+            this.txtkontejner.TabIndex = 260;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 8.25F);
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(23, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 14);
+            this.label1.TabIndex = 261;
+            this.label1.Text = "KONTEJNER";
+            // 
+            // chkUvozniPosao
+            // 
+            this.chkUvozniPosao.AutoSize = true;
+            this.chkUvozniPosao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.chkUvozniPosao.Checked = true;
+            this.chkUvozniPosao.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkUvozniPosao.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkUvozniPosao.ForeColor = System.Drawing.Color.Black;
+            this.chkUvozniPosao.Location = new System.Drawing.Point(231, 45);
+            this.chkUvozniPosao.Name = "chkUvozniPosao";
+            this.chkUvozniPosao.Size = new System.Drawing.Size(102, 20);
+            this.chkUvozniPosao.TabIndex = 262;
+            this.chkUvozniPosao.Text = "Uvozni posao";
+            this.chkUvozniPosao.UseVisualStyleBackColor = false;
             // 
             // frmDodatneUsluge
             // 
@@ -465,5 +536,10 @@
         private System.Windows.Forms.CheckBox chkPotvrdiUradjen;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label lblJM2;
+        private System.Windows.Forms.Label lblJM;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtkontejner;
+        private System.Windows.Forms.CheckBox chkUvozniPosao;
     }
 }

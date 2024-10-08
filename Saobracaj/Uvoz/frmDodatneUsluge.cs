@@ -14,6 +14,7 @@ using GMap.NET.MapProviders;
 using Saobracaj.Izvoz;
 using Syncfusion.Windows.Forms.Tools;
 using Saobracaj.Dokumenta;
+using System.Runtime.ConstrainedExecution;
 
 namespace Saobracaj.Uvoz
 {
@@ -74,10 +75,14 @@ namespace Saobracaj.Uvoz
             }
             else if (chkDodatne.Checked == true)
             {
-                select = " Select DISTINCT 0 as ID, BrojKontejnera, KontejnerID as BrojOsnov, 0 as  IDMAnipulacijaJed, '' as Naziv, 0 as KonkretaIDUsluge from PrijemKontejneraVozStavke   " +
-" inner join PrijemKontejneraVoz on PrijemKontejneraVoz.ID = PrijemKontejneraVozStavke.IDNadredjenog " +
-" where PrijemKontejneraVoz.IdVoza = " + cboBukingPrijema.SelectedValue +
-" ";
+                select = " Select KontejnerTekuce.Kontejner, TipKontenjera.Naziv as TipKontejnera , KontejnerStatus.Naziv as Status,  Skladista.Naziv as Skladiste, " +
+               " Skladista.Kapacitet,  VizuelniNapomena, " +
+               " Ostecenja as Ispravnost, Kvalitet, CIR, STATUSIzvoz , " +
+               " UlazniBroj as KontejnerID_UVoz,  OperacijaUradjena as ZadnjaOperacija, Skladisnina, SkladisninaOd, SkladisninaDo " +
+               " from KontejnerTekuce " +
+               " inner join KontejnerStatus on KontejnerStatus.ID = KontejnerTekuce.StatusKontejnera " +
+               " inner join Skladista on Skladista.Id = KontejnerTekuce.Skladiste " +
+               " inner join TipKontenjera on TipKontenjera.ID = KontejnerTekuce.TipKontejnera ";
             }
             var s_connection = Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -87,6 +92,7 @@ namespace Saobracaj.Uvoz
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
             var ds = new DataSet();
             dataAdapter.Fill(ds);
+            gridGroupingControl1.DataSource = null;
             gridGroupingControl1.DataSource = ds.Tables[0];
             gridGroupingControl1.ShowGroupDropArea = true;
             this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
@@ -145,7 +151,7 @@ namespace Saobracaj.Uvoz
             {
                 try
                 {
-                   // uvK.ZavrsiDodatnuUsluguIzvozZadata(Convert.ToInt32(txtNalogID.Text), Convert.ToInt32(txtKonkretnaMan.Text), Convert.ToDecimal(num1.Value), txtNapomena.Text, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
+                    uvK.ZavrsiDodatnuUsluguIzvozZadata(Convert.ToInt32(txtNalogID.Text), Convert.ToInt32(txtKonkretnaMan.Text), Convert.ToDecimal(num1.Value), txtNapomena.Text, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
 
                 }
                 catch
@@ -173,7 +179,18 @@ namespace Saobracaj.Uvoz
                
 
                     string kor = Sifarnici.frmLogovanje.user;
-                   // uvK.InsUbaciDodatnuUsluguUvoz(Convert.ToInt32(txtBrojOsnov.Text),Convert.ToInt32(cboUsluga.SelectedValue), Convert.ToDouble(num1.Value), txtNapomena.Text, kor, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
+                if (chkUvozniPosao.Checked == true )
+                {
+
+                    uvK.InsUbaciDodatnuUsluguUvoz(Convert.ToInt32(txtBrojOsnov.Text), Convert.ToInt32(cboUsluga.SelectedValue), Convert.ToDouble(num1.Value), txtNapomena.Text, kor, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
+                  
+
+                }
+                else
+                {
+                    uvK.InsUbaciDodatnuUsluguIzvoz(Convert.ToInt32(txtBrojOsnov.Text), Convert.ToInt32(cboUsluga.SelectedValue), Convert.ToDouble(num1.Value), txtNapomena.Text, kor, pomPotvrdiUradjen, Convert.ToDecimal(num2.Value));
+                }
+                   
           
 
             }
@@ -191,13 +208,15 @@ namespace Saobracaj.Uvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT ID,  Dodatna, PotvrdaUradio, Apstrakt1, Apstrakt2 from VrstaManipulacije where ID=" + ID, con);
+            SqlCommand cmd = new SqlCommand("SELECT ID,  Dodatna, PotvrdaUradio, Apstrakt1, Apstrakt2, JM, JM2 from VrstaManipulacije where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
             {
                 lblKolicina1.Text = dr["Apstrakt1"].ToString();
                 lblKolicina2.Text = dr["Apstrakt2"].ToString();
+                lblJM.Text = dr["JM"].ToString();
+                lblJM2.Text = dr["JM2"].ToString();
                 // Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene
                 if (dr["PotvrdaUradio"].ToString() == "1")
                 {
@@ -205,6 +224,8 @@ namespace Saobracaj.Uvoz
 
                     lblKolicina1.Visible = false;
                     lblKolicina2.Visible = false;
+                    lblJM.Visible = false;
+                    lblJM2.Visible = false;
                     num1.Visible = false;
                     num2.Visible = false;
                     num1.Value = 1;
@@ -215,17 +236,19 @@ namespace Saobracaj.Uvoz
                     chkPotvrdiUradjen.Visible = false;
 
                     lblKolicina1.Visible = true;
+                    lblJM.Visible = true;
+                  
                     num1.Visible = true;
                     if (lblKolicina2.Text == "")
                     {
                         lblKolicina2.Visible = false;
-
+                        lblJM2.Visible = false;
                         num2.Visible = false;
                     }
                     else
                     {
                         lblKolicina2.Visible = true;
-                      
+                        lblJM2.Visible = true;
                         num2.Visible = true;
                     }
                   //  lblKolicina2.Visible = true;
@@ -242,20 +265,67 @@ namespace Saobracaj.Uvoz
             con.Close();
         }
 
+        private void VratiBrojOsnovUvoz(string Kontejner)
+        {
+          
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT top 1 ID from UvozKonacna where BrojKontejnera= '" + Kontejner + "' Order By ID Desc", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtBrojOsnov.Text = dr["ID"].ToString();
+            }
+
+            con.Close();
+        }
+
+        private void VratiBrojOsnovIzvoz(string Kontejner)
+        {
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT top 1 ID from IzvozKonacna where BrojKontejnera= '" + Kontejner + "' Order By ID Desc", con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtBrojOsnov.Text = dr["ID"].ToString();
+            }
+
+            con.Close();
+        }
+
         private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
         {
             try
             {
                 if (gridGroupingControl1.Table.CurrentRecord != null)
                 {
-                    txtBrojOsnov.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojOsnov").ToString();
-                  
                     if (chkDodatne.Checked == true )
                     {
+                        txtkontejner.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("Kontejner").ToString();
+                        if ( chkUvozniPosao.Checked == true )
+                        {
+                            VratiBrojOsnovUvoz(txtkontejner.Text);
+                        }
+                        else
+                        {
+                            VratiBrojOsnovIzvoz(txtkontejner.Text);
+                        }
+                       // txtBrojOsnov.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojOsnov").ToString();
                         VratiPodatkeZaUslugu(Convert.ToInt32(cboUsluga.SelectedValue));
                     }
                     else
                     {
+                        txtBrojOsnov.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("BrojOsnov").ToString();
                         txtKonkretnaMan.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("KonkretaIDUsluge").ToString();
                         txtNalogID.Text = gridGroupingControl1.Table.CurrentRecord.GetValue("ID").ToString();
                         cboUsluga.SelectedValue = Convert.ToInt32(gridGroupingControl1.Table.CurrentRecord.GetValue("IDManipulacijaJed").ToString());

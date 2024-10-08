@@ -213,7 +213,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 60;
-            this.label1.Text = "24-09-12";
+            this.label1.Text = "24-09-27";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // pictureBox3

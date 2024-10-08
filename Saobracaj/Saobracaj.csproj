@@ -2006,6 +2006,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Perftech_BeogradDataSet9.xsd</DependentUpon>
     </Compile>
+    <Compile Include="PrijemnicaDataSet.cs">
+      <DependentUpon>PrijemnicaDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="PrijemnicaDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

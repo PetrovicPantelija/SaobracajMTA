@@ -597,7 +597,7 @@ namespace Saobracaj.Uvoz
 
 
             //FillCombo
-            var partner22 = "SELECT ID, Min(Naziv) as Naziv FROM Scenario group by ID order by ID";
+            var partner22 = "SELECT ID, Rtrim(Min(Naziv)) as Naziv FROM Scenario group by ID order by ID";
             var partAD22 = new SqlDataAdapter(partner22, conn);
             var partDS22 = new DataSet();
             partAD22.Fill(partDS22);
@@ -949,7 +949,42 @@ namespace Saobracaj.Uvoz
 
             DataGridViewColumn column3 = dataGridView7.Columns[2];
             dataGridView7.Columns[2].HeaderText = "Kontejner";
-            dataGridView7.Columns[2].Width = 50;
+            dataGridView7.Columns[2].Width = 70;
+
+            DataGridViewColumn column4 = dataGridView7.Columns[3];
+            dataGridView7.Columns[3].HeaderText = "Kolicina";
+            dataGridView7.Columns[3].Width = 40;
+
+            DataGridViewColumn column5 = dataGridView7.Columns[4];
+            dataGridView7.Columns[4].HeaderText = "USLID";
+            dataGridView7.Columns[4].Width = 40;
+
+            DataGridViewColumn column6 = dataGridView7.Columns[5];
+            dataGridView7.Columns[5].HeaderText = "Usluga";
+            dataGridView7.Columns[5].Width = 300;
+
+            DataGridViewColumn column7 = dataGridView7.Columns[6];
+            dataGridView7.Columns[6].HeaderText = "Cena";
+            dataGridView7.Columns[6].Width = 40;
+
+            DataGridViewColumn column8 = dataGridView7.Columns[7];
+            dataGridView7.Columns[7].HeaderText = "OJID";
+            dataGridView7.Columns[7].Width = 40;
+
+            DataGridViewColumn column9 = dataGridView7.Columns[8];
+            dataGridView7.Columns[8].HeaderText = "OJ NAziv";
+            dataGridView7.Columns[8].Width = 140;
+
+
+            DataGridViewColumn column10 = dataGridView7.Columns[9];
+            dataGridView7.Columns[9].HeaderText = "PlID";
+            dataGridView7.Columns[9].Width = 140;
+
+            DataGridViewColumn column11 = dataGridView7.Columns[10];
+            dataGridView7.Columns[10].HeaderText = "Platilac";
+            dataGridView7.Columns[10].Width = 140;
+
+
 
         }
 
@@ -1116,7 +1151,7 @@ namespace Saobracaj.Uvoz
 
             DataGridViewColumn column2 = dataGridView2.Columns[1];
             dataGridView2.Columns[1].HeaderText = "Broj";
-            dataGridView2.Columns[1].Width = 80;
+            dataGridView2.Columns[1].Width = 100;
 
             DataGridViewColumn column3 = dataGridView2.Columns[2];
             dataGridView2.Columns[2].HeaderText = "ID";
@@ -1124,7 +1159,7 @@ namespace Saobracaj.Uvoz
 
             DataGridViewColumn column4 = dataGridView2.Columns[3];
             dataGridView2.Columns[3].HeaderText = "NHM";
-            dataGridView2.Columns[3].Width = 150;
+            dataGridView2.Columns[3].Width = 400;
 
 
 

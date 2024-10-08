@@ -35,6 +35,20 @@ namespace Saobracaj.Dokumenta
             { 
             chkTerminal.Checked = true;
             chkIzvoz.Checked = false;
+                label44.Visible = false;
+    dtpEtaLeget.Visible = false;
+
+                label46.Visible = false;
+                txtADR.Visible = false;
+
+                label43.Visible = false;
+                cboIzvoznik.Visible = false;
+
+                label45.Visible = false;
+                txtDodatneNapomene.Visible = false;
+
+                label42.Visible = false;
+                dataGridView3.Visible = false;
             }
             if (Poreklo == 0)
             {

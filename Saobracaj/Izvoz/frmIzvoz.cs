@@ -18,7 +18,7 @@ namespace Saobracaj.Izvoz
         float firstWidth;
         float firstHeight;
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-        string tKorisnik = "";
+        string tKorisnik = Saobracaj.Sifarnici.frmLogovanje.user;
         int NHMObrni = 0;
         int PlanZaPrebacivanje = 0;
 
@@ -1011,8 +1011,6 @@ namespace Saobracaj.Izvoz
 
         }
 
-      
-
         private void FillDG2()
         {
             var select = " SELECT     IzvozNHM.ID, NHM.Broj, IzvozNHM.IDNHM, NHM.Naziv FROM NHM INNER JOIN " +
@@ -1044,7 +1042,7 @@ namespace Saobracaj.Izvoz
 
             DataGridViewColumn column2 = dataGridView2.Columns[1];
             dataGridView2.Columns[1].HeaderText = "Broj";
-            dataGridView2.Columns[1].Width = 80;
+            dataGridView2.Columns[1].Width = 100;
 
             DataGridViewColumn column3 = dataGridView2.Columns[2];
             dataGridView2.Columns[2].HeaderText = "ID";
@@ -1052,7 +1050,7 @@ namespace Saobracaj.Izvoz
 
             DataGridViewColumn column4 = dataGridView2.Columns[3];
             dataGridView2.Columns[3].HeaderText = "NHM";
-            dataGridView2.Columns[3].Width = 150;
+            dataGridView2.Columns[3].Width = 350;
 
 
 
@@ -1734,7 +1732,39 @@ namespace Saobracaj.Izvoz
 
             DataGridViewColumn column3 = dataGridView7.Columns[2];
             dataGridView7.Columns[2].HeaderText = "Kontejner";
-            dataGridView7.Columns[2].Width = 50;
+            dataGridView7.Columns[2].Width = 100;
+
+            DataGridViewColumn column4= dataGridView7.Columns[3];
+            dataGridView7.Columns[3].HeaderText = "Kolicina";
+            dataGridView7.Columns[3].Width = 70;
+
+            DataGridViewColumn column5 = dataGridView7.Columns[4];
+            dataGridView7.Columns[4].HeaderText = "UslugaID";
+            dataGridView7.Columns[4].Width = 70;
+
+            DataGridViewColumn column6 = dataGridView7.Columns[5];
+            dataGridView7.Columns[5].HeaderText = "Usluga";
+            dataGridView7.Columns[5].Width = 370;
+
+            DataGridViewColumn column7 = dataGridView7.Columns[6];
+            dataGridView7.Columns[6].HeaderText = "Cena";
+            dataGridView7.Columns[6].Width = 100;
+
+            DataGridViewColumn column8 = dataGridView7.Columns[7];
+            dataGridView7.Columns[7].HeaderText = "OJID";
+            dataGridView7.Columns[7].Width = 50;
+
+            DataGridViewColumn column9 = dataGridView7.Columns[8];
+            dataGridView7.Columns[8].HeaderText = "OJ NAziv";
+            dataGridView7.Columns[8].Width = 150;
+
+            DataGridViewColumn column10 = dataGridView7.Columns[9];
+            dataGridView7.Columns[9].HeaderText = "Pa Sifra";
+            dataGridView7.Columns[9].Width = 70;
+
+            DataGridViewColumn column11 = dataGridView7.Columns[10];
+            dataGridView7.Columns[10].HeaderText = "Partner";
+            dataGridView7.Columns[10].Width = 270;
 
         }
 
@@ -2156,7 +2186,7 @@ namespace Saobracaj.Izvoz
         private void toolStripButton7_Click(object sender, EventArgs e)
         {
             InsertIzvoz uvK = new InsertIzvoz();
-            uvK.InsUbaciUsluguKonacna(Convert.ToInt32(txtID.Text), 69, 0, 1, 4, Convert.ToInt32(cboBrodar.SelectedValue), 0, "GATE OUT EMPTY", 12, "GATE OUT KAMION");
+            uvK.InsUbaciUsluguKonacna(Convert.ToInt32(txtID.Text), 69, 0, 1, 4, Convert.ToInt32(cboBrodar.SelectedValue), 0, "GATE OUT EMPTY", 12, "GATE OUT KAMION TERMINAL");
             FillDG8();
 
 

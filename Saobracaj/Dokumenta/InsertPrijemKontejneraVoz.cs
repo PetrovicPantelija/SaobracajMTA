@@ -332,6 +332,8 @@ namespace Saobracaj.Dokumeta
             myCommand.Parameters.Add(parameter29);
 
 
+
+
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();
             myCommand.Transaction = myTransaction;

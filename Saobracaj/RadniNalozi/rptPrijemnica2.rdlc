@@ -95,14 +95,16 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Prijemnica: </Value>
+                    <Value>Prijemnica:</Value>
                     <Style>
                       <FontSize>16pt</FontSize>
                     </Style>
                   </TextRun>
                   <TextRun>
                     <Value>=First(Fields!PrStDokumenta.Value, "PrijemnicaDataSet")</Value>
-                    <Style />
+                    <Style>
+                      <FontSize>16pt</FontSize>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
@@ -135,6 +137,10 @@
                     <Value>Datum isporuke:</Value>
                     <Style />
                   </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!DatumTransakcije.Value, "PrijemnicaDataSet")</Value>
+                    <Style />
+                  </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
@@ -162,7 +168,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Kontejner: </Value>
+                    <Value>Kontejner:</Value>
                     <Style />
                   </TextRun>
                   <TextRun>
@@ -196,7 +202,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Skladište: </Value>
+                    <Value>Skladište:</Value>
                     <Style />
                   </TextRun>
                   <TextRun>
@@ -208,7 +214,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox9</rd:DefaultName>
-            <Top>4.6461cm</Top>
+            <Top>4.67488cm</Top>
             <Left>9.22717cm</Left>
             <Height>0.6cm</Height>
             <Width>7.22017cm</Width>
@@ -231,6 +237,10 @@
                 <TextRuns>
                   <TextRun>
                     <Value>Pozicija:</Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!Oznaka.Value, "PrijemnicaDataSet")</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -261,6 +271,10 @@
                 <TextRuns>
                   <TextRun>
                     <Value>Nalog:</Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!NalogID.Value, "PrijemnicaDataSet")</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -853,7 +867,11 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Korisnik: </Value>
+                    <Value>Korisnik:</Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>=First(Fields!Korisnik.Value, "PrijemnicaDataSet")</Value>
                     <Style />
                   </TextRun>
                 </TextRuns>
@@ -880,7 +898,7 @@
         <Height>3.73542in</Height>
         <Style />
       </Body>
-      <Width>6.78125in</Width>
+      <Width>7.91667in</Width>
       <Page>
         <PageHeight>29.7cm</PageHeight>
         <PageWidth>21cm</PageWidth>
@@ -901,15 +919,8 @@
   </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
-      <NumberOfColumns>1</NumberOfColumns>
-      <NumberOfRows>1</NumberOfRows>
-      <CellDefinitions>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>ID</ParameterName>
-        </CellDefinition>
-      </CellDefinitions>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <EmbeddedImages>

@@ -776,20 +776,20 @@ namespace Saobracaj.Uvoz
             dataGridView8.Columns[3].Width = 70;
 
             DataGridViewColumn column5 = dataGridView8.Columns[4];
-            dataGridView8.Columns[4].HeaderText = "MID";
+            dataGridView8.Columns[4].HeaderText = "USID";
             // dataGridView8.Columns[4].Visible = false;
             dataGridView8.Columns[4].Width = 30;
 
 
             DataGridViewColumn column6 = dataGridView8.Columns[5];
-            dataGridView8.Columns[5].HeaderText = "MAN";
-            dataGridView8.Columns[5].Width = 200;
+            dataGridView8.Columns[5].HeaderText = "Usluga";
+            dataGridView8.Columns[5].Width = 300;
 
 
             DataGridViewColumn column7 = dataGridView8.Columns[6];
             dataGridView8.Columns[6].HeaderText = "Cena";
             dataGridView8.Columns[6].Visible = false;
-            dataGridView8.Columns[6].Width = 30;
+            dataGridView8.Columns[6].Width = 50;
 
 
             DataGridViewColumn column8 = dataGridView8.Columns[7];
@@ -811,7 +811,7 @@ namespace Saobracaj.Uvoz
             DataGridViewColumn column11 = dataGridView8.Columns[10];
             dataGridView8.Columns[10].HeaderText = "PLATILAC";
             // dataGridView8.Columns[9].Visible = false;
-            dataGridView8.Columns[10].Width = 330;
+            dataGridView8.Columns[10].Width = 230;
 
             DataGridViewColumn column12 = dataGridView8.Columns[11];
             dataGridView8.Columns[11].HeaderText = "SAPDV";
@@ -1153,7 +1153,7 @@ namespace Saobracaj.Uvoz
 
             DataGridViewColumn column2 = dataGridView2.Columns[1];
             dataGridView2.Columns[1].HeaderText = "NHM Broj";
-            dataGridView2.Columns[1].Width = 70;
+            dataGridView2.Columns[1].Width = 100;
 
             DataGridViewColumn column3 = dataGridView2.Columns[2];
             dataGridView2.Columns[2].HeaderText = "ID";
@@ -1161,7 +1161,7 @@ namespace Saobracaj.Uvoz
 
             DataGridViewColumn column4 = dataGridView2.Columns[3];
             dataGridView2.Columns[3].HeaderText = "NHM";
-            dataGridView2.Columns[3].Width = 250;
+            dataGridView2.Columns[3].Width = 350;
 
 
         }

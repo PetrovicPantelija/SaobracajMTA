@@ -260,6 +260,14 @@ namespace Testiranje.Sifarnici
                     {
                         txtSifra.Text = row.Cells[0].Value.ToString();
                         VratiPodatke(txtSifra.Text);
+                        if (chkDodatna.Checked == true)
+                        {
+                            panelDodatnaUluga.Visible = true;
+                        }
+                        else
+                        {
+                            panelDodatnaUluga.Visible = false;
+                        }
                         // txtOpis.Text = row.Cells[1].Value.ToString();
                     }
                 }
@@ -332,6 +340,28 @@ namespace Testiranje.Sifarnici
             txtTipKont.DataSource = tkDS.Tables[0];
             txtTipKont.DisplayMember = "SkNaziv";
             txtTipKont.ValueMember = "ID";
+
+
+            var jmr1 = "Select MeSifra, RTrim(MeNaziv) as MeNaziv From MerskeEnote order by MeSifra";
+            var s_connection5 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection5 = new SqlConnection(s_connection5);
+            var tkAD2 = new SqlDataAdapter(jmr1, myConnection5);
+            var tkDS2 = new DataSet();
+            tkAD2.Fill(tkDS2);
+            txtJM.DataSource = tkDS2.Tables[0];
+            txtJM.DisplayMember = "MeNaziv";
+            txtJM.ValueMember = "MeSifra";
+
+
+            var jmr2 = "Select MeSifra, RTRIM(MeNaziv) as MeNaziv From MerskeEnote order by MeSifra";
+            var s_connection6 = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection6 = new SqlConnection(s_connection6);
+            var tkAD3 = new SqlDataAdapter(jmr2, myConnection6);
+            var tkDS3 = new DataSet();
+            tkAD3.Fill(tkDS3);
+            txtJM2.DataSource = tkDS3.Tables[0];
+            txtJM2.DisplayMember = "MeNaziv";
+            txtJM2.ValueMember = "MeSifra";
 
 
 

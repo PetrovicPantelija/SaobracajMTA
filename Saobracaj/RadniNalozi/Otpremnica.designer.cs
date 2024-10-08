@@ -65,6 +65,9 @@ namespace Saobracaj.RadniNalozi
             this.btnDodeli = new System.Windows.Forms.Button();
             this.dataGridView4 = new System.Windows.Forms.DataGridView();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.txtNoviKontejner = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
@@ -219,7 +222,7 @@ namespace Saobracaj.RadniNalozi
             this.btn_Povuci.Location = new System.Drawing.Point(1028, 68);
             this.btn_Povuci.Margin = new System.Windows.Forms.Padding(2);
             this.btn_Povuci.Name = "btn_Povuci";
-            this.btn_Povuci.Size = new System.Drawing.Size(119, 40);
+            this.btn_Povuci.Size = new System.Drawing.Size(70, 40);
             this.btn_Povuci.TabIndex = 8;
             this.btn_Povuci.Text = "Povuci iz porudzbina";
             this.btn_Povuci.UseVisualStyleBackColor = true;
@@ -440,12 +443,43 @@ namespace Saobracaj.RadniNalozi
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(1242, 79);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(84, 40);
+            this.button4.TabIndex = 25;
+            this.button4.Text = "Dodeli kontejner";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // txtNoviKontejner
+            // 
+            this.txtNoviKontejner.Location = new System.Drawing.Point(1103, 99);
+            this.txtNoviKontejner.Name = "txtNoviKontejner";
+            this.txtNoviKontejner.Size = new System.Drawing.Size(134, 20);
+            this.txtNoviKontejner.TabIndex = 26;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(1102, 81);
+            this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(76, 13);
+            this.label12.TabIndex = 27;
+            this.label12.Text = "Novi kontejner";
+            // 
             // Otpremnica
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1335, 637);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.txtNoviKontejner);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView4);
@@ -531,5 +565,8 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.Button btnDodeli;
         private System.Windows.Forms.DataGridView dataGridView4;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TextBox txtNoviKontejner;
+        private System.Windows.Forms.Label label12;
     }
 }
