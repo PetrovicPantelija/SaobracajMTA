@@ -3539,6 +3539,12 @@
     <Compile Include="Uvoz\frmRadniNalogInterniPregled.Designer.cs">
       <DependentUpon>frmRadniNalogInterniPregled.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\frmRadniNalogPregledSluzbenik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmRadniNalogPregledSluzbenik.Designer.cs">
+      <DependentUpon>frmRadniNalogPregledSluzbenik.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\frmRadniNaloziInterni.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -5031,6 +5037,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmRadniNalogInterniPregled.resx">
       <DependentUpon>frmRadniNalogInterniPregled.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmRadniNalogPregledSluzbenik.resx">
+      <DependentUpon>frmRadniNalogPregledSluzbenik.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmRadniNaloziInterni.resx">
       <DependentUpon>frmRadniNaloziInterni.cs</DependentUpon>

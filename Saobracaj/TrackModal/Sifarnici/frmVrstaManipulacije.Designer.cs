@@ -72,6 +72,10 @@
             this.label14 = new System.Windows.Forms.Label();
             this.txtJM = new System.Windows.Forms.ComboBox();
             this.txtJM2 = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.cboRLTerminal3 = new System.Windows.Forms.ComboBox();
+            this.cboRLTerminal2 = new System.Windows.Forms.ComboBox();
+            this.cboRLTerminal = new System.Windows.Forms.ComboBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCena)).BeginInit();
@@ -221,10 +225,10 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.GridColor = System.Drawing.Color.White;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 247);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 301);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1151, 279);
+            this.dataGridView1.Size = new System.Drawing.Size(1149, 225);
             this.dataGridView1.TabIndex = 112;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -347,7 +351,7 @@
             // 
             this.txtCena.DecimalPlaces = 2;
             this.txtCena.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtCena.Location = new System.Drawing.Point(751, 200);
+            this.txtCena.Location = new System.Drawing.Point(699, 236);
             this.txtCena.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -364,7 +368,7 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(630, 205);
+            this.label13.Location = new System.Drawing.Point(618, 236);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(66, 15);
             this.label13.TabIndex = 250;
@@ -375,7 +379,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(862, 202);
+            this.label9.Location = new System.Drawing.Point(813, 238);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(33, 16);
             this.label9.TabIndex = 251;
@@ -554,12 +558,63 @@
             this.txtJM2.Size = new System.Drawing.Size(225, 24);
             this.txtJM2.TabIndex = 263;
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(831, 199);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(121, 15);
+            this.label15.TabIndex = 264;
+            this.label15.Text = "Terminalska relacija:";
+            // 
+            // cboRLTerminal3
+            // 
+            this.cboRLTerminal3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboRLTerminal3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboRLTerminal3.FormattingEnabled = true;
+            this.cboRLTerminal3.ItemHeight = 13;
+            this.cboRLTerminal3.Location = new System.Drawing.Point(961, 248);
+            this.cboRLTerminal3.Margin = new System.Windows.Forms.Padding(2);
+            this.cboRLTerminal3.Name = "cboRLTerminal3";
+            this.cboRLTerminal3.Size = new System.Drawing.Size(188, 21);
+            this.cboRLTerminal3.TabIndex = 462;
+            // 
+            // cboRLTerminal2
+            // 
+            this.cboRLTerminal2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboRLTerminal2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboRLTerminal2.FormattingEnabled = true;
+            this.cboRLTerminal2.ItemHeight = 13;
+            this.cboRLTerminal2.Location = new System.Drawing.Point(961, 223);
+            this.cboRLTerminal2.Margin = new System.Windows.Forms.Padding(2);
+            this.cboRLTerminal2.Name = "cboRLTerminal2";
+            this.cboRLTerminal2.Size = new System.Drawing.Size(186, 21);
+            this.cboRLTerminal2.TabIndex = 461;
+            // 
+            // cboRLTerminal
+            // 
+            this.cboRLTerminal.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboRLTerminal.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboRLTerminal.FormattingEnabled = true;
+            this.cboRLTerminal.ItemHeight = 13;
+            this.cboRLTerminal.Location = new System.Drawing.Point(961, 198);
+            this.cboRLTerminal.Margin = new System.Windows.Forms.Padding(2);
+            this.cboRLTerminal.Name = "cboRLTerminal";
+            this.cboRLTerminal.Size = new System.Drawing.Size(186, 21);
+            this.cboRLTerminal.TabIndex = 460;
+            // 
             // frmVrstaManipulacije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.ClientSize = new System.Drawing.Size(1173, 537);
+            this.Controls.Add(this.cboRLTerminal3);
+            this.Controls.Add(this.cboRLTerminal2);
+            this.Controls.Add(this.cboRLTerminal);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.txtJM2);
             this.Controls.Add(this.txtJM);
             this.Controls.Add(this.txtTipKont);
@@ -653,5 +708,9 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox txtJM;
         private System.Windows.Forms.ComboBox txtJM2;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox cboRLTerminal3;
+        private System.Windows.Forms.ComboBox cboRLTerminal2;
+        private System.Windows.Forms.ComboBox cboRLTerminal;
     }
 }

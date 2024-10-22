@@ -14,6 +14,7 @@ using System.Net;
 using System.Net.Mail;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Security.Cryptography;
+using Saobracaj.Sifarnici;
 
 //Panta
 namespace Saobracaj.Dokumenta
@@ -267,6 +268,8 @@ namespace Saobracaj.Dokumenta
 
             RefreshManipulacije();
             RefreshDataGrid3();
+            cboSkladIz.SelectedValue = Sifarnici.frmLogovanje.Skladiste;
+            cboPozIz.SelectedValue = Sifarnici.frmLogovanje.Lokacija;
 
         }
 
@@ -545,11 +548,12 @@ namespace Saobracaj.Dokumenta
 
                 DataGridViewColumn column3 = dataGridView3.Columns[2];
                 dataGridView3.Columns[2].HeaderText = "Man ID";
+                dataGridView3.Columns[2].Visible = false;
                 dataGridView3.Columns[2].Width = 50;
 
                 DataGridViewColumn column4 = dataGridView3.Columns[3];
                 dataGridView3.Columns[3].HeaderText = "Manipulacija";
-                dataGridView3.Columns[3].Width = 50;
+                dataGridView3.Columns[3].Width = 150;
 
                 DataGridViewColumn column5 = dataGridView3.Columns[4];
                 dataGridView3.Columns[4].HeaderText = "Urađeno";
@@ -1302,11 +1306,51 @@ namespace Saobracaj.Dokumenta
 
             SqlDataReader dr = cmd.ExecuteReader();
 
+           
+
+                while (dr.Read())
+                {
+                if (dr["SkladisteU"] != DBNull.Value)
+                {
+                    cboSkladIz.SelectedValue = Convert.ToInt32(dr["SkladisteU"].ToString());
+                    cboPozIz.SelectedValue = Convert.ToInt32(dr["LokacijaU"].ToString());
+                }
+                else
+                {
+                    cboSkladIz.SelectedValue = Sifarnici.frmLogovanje.Skladiste;
+                    cboPozIz.SelectedValue = Sifarnici.frmLogovanje.Lokacija;
+                }
+                    
+                }
+
+                con.Close();
+       
+         
+
+           
+
+        }
+
+        private void VratiTrenutnuPozicijuNArudzbine(string BrojKont)
+        {
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            //VR SqlCommand cmd = new SqlCommand("select [ID] ,[DatumPrijema],[StatusPrijema],[IdVoza],[VremeDolaska],RegBrKamiona, ImeVozaca, NajavaEmail, PrijemEmail, Napomena, CIRUradjen, PredefinisanaPorukaID from PrijemKontejneraVoz where ID=" + ID, con);
+
+            SqlCommand cmd = new SqlCommand("select top 1 sklad, poz from NaruceneManipulacije  where BrojKontejnera = '" + BrojKont + "' order by ID DESC "
+, con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
             while (dr.Read())
             {
 
-                cboSkladIz.SelectedValue = Convert.ToInt32(dr["SkladisteU"].ToString());
-                cboPozIz.SelectedValue = Convert.ToInt32(dr["LokacijaU"].ToString());
+                cboSkladIz.SelectedValue = Convert.ToInt32(dr["Sklad"].ToString());
+                cboPozIz.SelectedValue = Convert.ToInt32(dr["Poz"].ToString());
             }
 
             con.Close();
@@ -1407,6 +1451,35 @@ namespace Saobracaj.Dokumenta
         {
             PotvrdiUradjenaManipulacija();
             RefreshDataGrid3();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+
+                if (row.Selected == true)
+                {
+
+                    VratiTrenutnuPoziciju(row.Cells[0].Value.ToString());
+                   
+                }
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+
+                if (row.Selected == true)
+                {
+                    VratiTrenutnuPozicijuNArudzbine(row.Cells[0].Value.ToString());
+
+                   // VratiTrenutnuPozicijuNarudzbina
+
+                }
+            }
         }
     }
 }

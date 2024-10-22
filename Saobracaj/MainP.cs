@@ -6668,6 +6668,27 @@ namespace Saobracaj
             frmPregledLokomotivaPrimopredaja plp = new frmPregledLokomotivaPrimopredaja();
             plp.Show();
         }
+
+        private void toolStripButton377_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmRadniNalogPregledSluzbenik")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Uvoz.frmRadniNalogPregledSluzbenik RNIP = new Uvoz.frmRadniNalogPregledSluzbenik(Korisnik);
+                RNIP.Show();
+            }
+        }
     }
     }
 

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 //PANTA
 namespace Testiranje.Sifarnici
 {
-    public partial class frmCene : Form
+    public partial class frmCene : Syncfusion.Windows.Forms.Office2010Form
     {
 
 
@@ -754,6 +754,8 @@ namespace Testiranje.Sifarnici
         {
             txtNazivCenovnika.Text = cboUvoznik.Text + cboKomitent.Text;
         }
+    
+    
     }
 }
 

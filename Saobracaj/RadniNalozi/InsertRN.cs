@@ -2577,7 +2577,7 @@ namespace Saobracaj.RadniNalozi
             }
         }
 
-        public void InsRN12Medjuskladisni(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaSkladiste, int SaPozicijuSklad, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, string BrojKontejnera, int VrstaKontejnera, int Brodar)
+        public void InsRN12Medjuskladisni(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaSkladiste, int SaPozicijuSklad, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, string BrojKontejnera, int VrstaKontejnera, int Brodar, int NalogID)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -2682,6 +2682,14 @@ namespace Saobracaj.RadniNalozi
             brodar.Direction = ParameterDirection.Input;
             brodar.Value = Brodar;
             cmd.Parameters.Add(brodar);
+
+
+            SqlParameter nalogid = new SqlParameter();
+            nalogid.ParameterName = "@NalogID";
+            nalogid.SqlDbType = SqlDbType.Int;
+            nalogid.Direction = ParameterDirection.Input;
+            nalogid.Value = NalogID;
+            cmd.Parameters.Add(nalogid);
 
 
             // @BrojKontejnera nvarchar(50), @VrstaKontejnera int, @Brodar int
@@ -3906,7 +3914,7 @@ namespace Saobracaj.RadniNalozi
             }
         }
         public void InsRnMedjuskladisni(DateTime DatumRasporeda, string BrojKontejnera, int VrstaKontejnera, string NalogIzdao, DateTime DatumRealizacije,
-    int NazivBrodara, int VrstaRobe, int SaSkladista, int SaPozicijeSklad, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena)
+    int NazivBrodara, int VrstaRobe, int SaSkladista, int SaPozicijeSklad, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, int NalogID)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -3918,7 +3926,7 @@ namespace Saobracaj.RadniNalozi
                         using (SqlCommand cmd = conn.CreateCommand())
                         {
                             cmd.Transaction = transaction;
-                            cmd.CommandText = "InsertRNMedjuskladisni";
+                            cmd.CommandText = "InsertRN12Medjuskladisni";
                             cmd.CommandType = CommandType.StoredProcedure;
 
                             cmd.Parameters.Add(new SqlParameter("@DatumRasporeda", SqlDbType.DateTime) { Value = DatumRasporeda });
@@ -3935,6 +3943,7 @@ namespace Saobracaj.RadniNalozi
                             cmd.Parameters.Add(new SqlParameter("@IdUsluge", SqlDbType.Int) { Value = IdUsluge });
                             cmd.Parameters.Add(new SqlParameter(@"NalogRealizovao", SqlDbType.NVarChar, 50) { Value = NalogRealizovao });
                             cmd.Parameters.Add(new SqlParameter("@Napomena", SqlDbType.NVarChar, 500) { Value = Napomena });
+                            cmd.Parameters.Add(new SqlParameter("@NalogID", SqlDbType.Int) { Value = NalogID });
 
                             cmd.ExecuteNonQuery();
                         }

@@ -454,6 +454,22 @@ namespace Saobracaj.Uvoz
             cboRLTerminal.DisplayMember = "Naziv";
             cboRLTerminal.ValueMember = "ID";
 
+            var rl2 = "Select ID, (Oznaka + ' ' + Naziv) as Naziv From KontejnerskiTerminali order by ID";
+            var rlSAD2 = new SqlDataAdapter(rl2, conn);
+            var rlSDS2 = new DataSet();
+            rlSAD2.Fill(rlSDS2);
+            cboRLTerminal2.DataSource = rlSDS2.Tables[0];
+            cboRLTerminal2.DisplayMember = "Naziv";
+            cboRLTerminal2.ValueMember = "ID";
+           
+            var rl3 = "Select ID, (Oznaka + ' ' + Naziv) as Naziv From KontejnerskiTerminali order by ID";
+            var rlSAD3 = new SqlDataAdapter(rl3, conn);
+            var rlSDS3 = new DataSet();
+            rlSAD3.Fill(rlSDS3);
+            cboRLTerminal3.DataSource = rlSDS3.Tables[0];
+            cboRLTerminal3.DisplayMember = "Naziv";
+            cboRLTerminal3.ValueMember = "ID";
+
             var partner7 = "Select PaSifra,PaNaziv From Partnerji  order by PaSifra";
             var partAD7 = new SqlDataAdapter(partner7, conn);
             var partDS7 = new DataSet();
@@ -579,7 +595,7 @@ namespace Saobracaj.Uvoz
      "  ,[Email]  ,[BrojPlombe1]   ,[BrojPlombe2]  ,[NetoRobe] " +
      "  ,[BrutoRobe] ,[TaraKontejnera]   ,[BrutoKontejnera],[NapomenaZaPozicioniranje] " +
      "  ,[AtaOtpreme]  ,[BrojVoza] ,[RelacijaVoza]  ,[AtaDolazak] " +
-     "  ,[TipKontejnera] ,[Koleta], RLTerminali, BrojKola, Napomena1 ,VrstaPregleda ,Nalogodavac1 ,Ref1 ,Nalogodavac2 ,Ref2 ,Nalogodavac3 ,Ref3, Brodar, NaslovStatusaVozila, Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe , TaraKontejneraT, KoletaTer, Scenario" +
+     "  ,[TipKontejnera] ,[Koleta], RLTerminali, BrojKola, Napomena1 ,VrstaPregleda ,Nalogodavac1 ,Ref1 ,Nalogodavac2 ,Ref2 ,Nalogodavac3 ,Ref3, Brodar, NaslovStatusaVozila, Prioritet, DobijenBZ, AdresaMestaUtovara, KontaktOsobe , TaraKontejneraT, KoletaTer, Scenario,RLTerminali2,RLTerminali3" +
  "  FROM [UvozKonacna] where ID=" + ID, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -627,6 +643,8 @@ namespace Saobracaj.Uvoz
                 txtKoleta.Value = Convert.ToDecimal(dr["Koleta"].ToString());
                 txtKoletaTer.Value = Convert.ToDecimal(dr["KoletaTer"].ToString());
                 cboRLTerminal.SelectedValue = Convert.ToInt32(dr["RLTerminali"].ToString());
+                cboRLTerminal2.SelectedValue = Convert.ToInt32(dr["RLTerminali2"].ToString());
+                cboRLTerminal3.SelectedValue = Convert.ToInt32(dr["RLTerminali3"].ToString());
                 txtBrojKola2.Text = dr["BrojKola"].ToString();
                 if (dr["Napomena1"].ToString() == "1")
                 {
@@ -917,7 +935,7 @@ namespace Saobracaj.Uvoz
                 txtNapomena1.Text, Convert.ToInt32(txtVrstaPregleda.SelectedValue),
                 Convert.ToInt32(cboNalogodavac1.SelectedValue), txtRef1.Text,
                 Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
-                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToInt32(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue));
+                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToInt32(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue),Convert.ToInt32(cboRLTerminal3.SelectedValue));
             FillGV();
             RefreshDataGridColor();
         }

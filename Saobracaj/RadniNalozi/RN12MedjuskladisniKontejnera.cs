@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 using static Syncfusion.WinForms.Core.NativeScroll;
+using Saobracaj;
 //
 namespace Saobracaj.RadniNalozi
 {
@@ -19,6 +20,36 @@ namespace Saobracaj.RadniNalozi
             FillGV();
             FillCombo();
         }
+        private void NapuniVrstuUsluge(string IDUsluga)
+        {
+            SqlConnection conn = new SqlConnection(connect);
+            var usluge = "Select VrstaManipulacije.ID,VrstaManipulacije.Naziv from RadniNalogInterni inner join " +
+   " VrstaManipulacije on RadniNalogInterni.IDManipulacijaJed = VrstaManipulacije.ID where RadniNalogInterni.ID = " + IDUsluga;
+            var daUsluge = new SqlDataAdapter(usluge, conn);
+            var dsUsluge = new DataSet();
+            daUsluge.Fill(dsUsluge);
+            cboUsluga.DataSource = dsUsluge.Tables[0];
+            cboUsluga.DisplayMember = "Naziv";
+            cboUsluga.ValueMember = "ID";
+
+            //cboUsluge.SelectedValue = Convert.ToInt32(IDUsluga);
+        }
+
+        public RN12MedjuskladisniKontejnera(int NalogID, string BrojKontejnera, string Napomena)
+        {
+            InitializeComponent();
+            FillGV();
+            FillCombo();
+            txtNapomena.Text = Napomena;
+            txtBrojKontejnera.Text = BrojKontejnera;
+            txtNalogID.Text = NalogID.ToString();
+
+            NapuniVrstuUsluge(NalogID.ToString());
+
+            KorisnikTekuci = Saobracaj.Sifarnici.frmLogovanje.user;
+            txtDatumRasporeda.Value = DateTime.Now;
+        }
+
         private void FillGV()
         {
             var select = "SELECT       RNMedjuskladisni.ID as ID,  RNMedjuskladisni.BrojKontejnera,  RNMedjuskladisni.VrstaKontejnera,TipKontenjera.Naziv, " +
@@ -132,7 +163,7 @@ namespace Saobracaj.RadniNalozi
                 rn.InsRnMedjuskladisni(Convert.ToDateTime(txtDatumRasporeda.Value), txtBrojKontejnera.Text.ToString().TrimEnd(), Convert.ToInt32(cboVrstaKontejnera.SelectedValue),
                     txtNalogIzdao.Text.ToString().TrimEnd(), Convert.ToDateTime(txtDatumRealizacije.Value), Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(cboVrstaRobe.SelectedValue),
                     Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue),
-                    Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text.ToString().TrimEnd());
+                    Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text.ToString().TrimEnd(), Convert.ToInt32(txtNalogID.Text));
             }
             else
             {
@@ -219,9 +250,7 @@ namespace Saobracaj.RadniNalozi
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
 
-            RadniNalozi.InsertRN ir = new InsertRN();
-            ir.InsRN12Medjuskladisni(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, txtBrojKontejnera.Text, Convert.ToInt32(cboVrstaKontejnera.SelectedValue), Convert.ToInt32(cboBrodar.SelectedValue));
-            FillGV();
+          
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
@@ -269,6 +298,13 @@ namespace Saobracaj.RadniNalozi
                 txtBrojKontejnera.Text = detailForm.GetBrojKontejnera();
                 VratiOstaloIzTekuceg(txtBrojKontejnera.Text);
             }
+        }
+
+        private void toolStripButton4_Click(object sender, EventArgs e)
+        {
+            RadniNalozi.InsertRN ir = new InsertRN();
+            ir.InsRN12Medjuskladisni(Convert.ToDateTime(txtDatumRasporeda.Value), txtNalogIzdao.Text, Convert.ToDateTime(txtDatumRealizacije.Text), Convert.ToInt32(cboSaSklad.SelectedValue), Convert.ToInt32(cboSaPoz.SelectedValue), Convert.ToInt32(cboNaSklad.SelectedValue), Convert.ToInt32(cboNaPoz.SelectedValue), Convert.ToInt32(cboUsluga.SelectedValue), "", txtNapomena.Text, txtBrojKontejnera.Text, Convert.ToInt32(cboVrstaKontejnera.SelectedValue), Convert.ToInt32(cboBrodar.SelectedValue), Convert.ToInt32(txtNalogID.Text));
+            FillGV();
         }
     }
 }

@@ -634,7 +634,7 @@ namespace Saobracaj.RadniNalozi
             }
         }
         public void InsertPromet(DateTime DatumTransakcije,string VrstaDokumenta,int PrStDokumenta,string BrojKontejnera,string PrSifVrstePrometa,decimal PrPrimKol,decimal PrIzdKol,int SkladisteU,int LokacijaU,int SkladisteIz,int LokacijaIz,
-            DateTime Datum,string Korisnik,int SredstvoRada,int Zaposleni,DateTime DatumRasporeda,string JM,string Lot,int NalogID,int MpSifra,int Skladisteno)
+            DateTime Datum,string Korisnik,int SredstvoRada,int Zaposleni,DateTime DatumRasporeda,string JM,string Lot,int NalogID,int MpSifra,int Skladisteno, int Tip)
         {
             using (SqlConnection conn = new SqlConnection(connect))
             {
@@ -666,10 +666,11 @@ namespace Saobracaj.RadniNalozi
                             cmd.Parameters.Add(new SqlParameter("@Zaposleni", SqlDbType.Int) { Value = Zaposleni });
                             cmd.Parameters.Add(new SqlParameter("@DatumRAsporeda", SqlDbType.DateTime) { Value = DatumRasporeda });
                             cmd.Parameters.Add(new SqlParameter("@JM", SqlDbType.NVarChar,10) { Value = JM });
-                            cmd.Parameters.Add(new SqlParameter("@Lot", SqlDbType.NVarChar,50) { Value = Lot });
+                            cmd.Parameters.Add(new SqlParameter("@Lot", SqlDbType.NVarChar,500) { Value = Lot });
                             cmd.Parameters.Add(new SqlParameter("@NalogID", SqlDbType.Int) { Value = NalogID });
                             cmd.Parameters.Add(new SqlParameter("@MpSifra", SqlDbType.Int) { Value = MpSifra });
                             cmd.Parameters.Add(new SqlParameter("@Skladisteno", SqlDbType.Int) { Value = Skladisteno });
+                            cmd.Parameters.Add(new SqlParameter("@Tip", SqlDbType.Int) { Value = Tip });
 
 
                             cmd.ExecuteNonQuery();

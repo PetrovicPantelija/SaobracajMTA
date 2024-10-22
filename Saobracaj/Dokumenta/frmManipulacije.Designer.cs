@@ -35,7 +35,9 @@
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -70,12 +72,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.cboPozicija = new System.Windows.Forms.ComboBox();
             this.chkUradjen = new System.Windows.Forms.CheckBox();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.label10 = new System.Windows.Forms.Label();
             this.cboSkladIz = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.cboPozIz = new System.Windows.Forms.ComboBox();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -97,7 +99,7 @@
             this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1420, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1434, 27);
             this.toolStrip1.TabIndex = 7;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -139,6 +141,17 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton2.ForeColor = System.Drawing.Color.Yellow;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(250, 24);
+            this.toolStripButton2.Text = "POTVRDI URADJENA USLUGA SA PROMETOM";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
             // toolStripButton1
             // 
             this.toolStripButton1.ForeColor = System.Drawing.Color.White;
@@ -150,6 +163,17 @@
             this.toolStripButton1.Visible = false;
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton3.ForeColor = System.Drawing.Color.Yellow;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(244, 24);
+            this.toolStripButton3.Text = "POTVRDI URADJENA USLUGA BEZ PROMETA";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
             // dataGridView2
             // 
             this.dataGridView2.AllowUserToAddRows = false;
@@ -160,7 +184,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(281, 158);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(432, 456);
+            this.dataGridView2.Size = new System.Drawing.Size(383, 456);
             this.dataGridView2.TabIndex = 174;
             // 
             // label2
@@ -208,10 +232,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(792, 158);
+            this.dataGridView3.Location = new System.Drawing.Point(743, 158);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.Size = new System.Drawing.Size(628, 456);
+            this.dataGridView3.Size = new System.Drawing.Size(691, 456);
             this.dataGridView3.TabIndex = 178;
             this.dataGridView3.SelectionChanged += new System.EventHandler(this.dataGridView3_SelectionChanged);
             // 
@@ -223,7 +247,7 @@
             this.btnUnesi.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUnesi.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnUnesi.ForeColor = System.Drawing.Color.White;
-            this.btnUnesi.Location = new System.Drawing.Point(719, 158);
+            this.btnUnesi.Location = new System.Drawing.Point(670, 158);
             this.btnUnesi.Name = "btnUnesi";
             this.btnUnesi.Size = new System.Drawing.Size(67, 456);
             this.btnUnesi.TabIndex = 179;
@@ -237,7 +261,7 @@
             this.dtpVremeDo.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpVremeDo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpVremeDo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremeDo.Location = new System.Drawing.Point(889, 125);
+            this.dtpVremeDo.Location = new System.Drawing.Point(859, 120);
             this.dtpVremeDo.Name = "dtpVremeDo";
             this.dtpVremeDo.Size = new System.Drawing.Size(138, 22);
             this.dtpVremeDo.TabIndex = 185;
@@ -250,7 +274,7 @@
             this.label15.Enabled = false;
             this.label15.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(819, 131);
+            this.label15.Location = new System.Drawing.Point(789, 126);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(64, 16);
             this.label15.TabIndex = 187;
@@ -261,7 +285,7 @@
             this.dtpVremeOd.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpVremeOd.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpVremeOd.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpVremeOd.Location = new System.Drawing.Point(648, 125);
+            this.dtpVremeOd.Location = new System.Drawing.Point(618, 120);
             this.dtpVremeOd.Name = "dtpVremeOd";
             this.dtpVremeOd.Size = new System.Drawing.Size(138, 22);
             this.dtpVremeOd.TabIndex = 184;
@@ -274,7 +298,7 @@
             this.label21.Enabled = false;
             this.label21.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label21.ForeColor = System.Drawing.Color.Black;
-            this.label21.Location = new System.Drawing.Point(567, 125);
+            this.label21.Location = new System.Drawing.Point(537, 120);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(64, 16);
             this.label21.TabIndex = 186;
@@ -286,7 +310,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(799, 35);
+            this.label7.Location = new System.Drawing.Point(769, 30);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(101, 16);
             this.label7.TabIndex = 183;
@@ -294,7 +318,7 @@
             // 
             // txtKomentar
             // 
-            this.txtKomentar.Location = new System.Drawing.Point(906, 32);
+            this.txtKomentar.Location = new System.Drawing.Point(876, 27);
             this.txtKomentar.Multiline = true;
             this.txtKomentar.Name = "txtKomentar";
             this.txtKomentar.Size = new System.Drawing.Size(160, 56);
@@ -386,7 +410,7 @@
             this.label8.Enabled = false;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(564, 69);
+            this.label8.Location = new System.Drawing.Point(534, 64);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(50, 16);
             this.label8.TabIndex = 196;
@@ -397,7 +421,7 @@
             // 
             this.cboPlatilac.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboPlatilac.FormattingEnabled = true;
-            this.cboPlatilac.Location = new System.Drawing.Point(638, 66);
+            this.cboPlatilac.Location = new System.Drawing.Point(608, 61);
             this.cboPlatilac.Name = "cboPlatilac";
             this.cboPlatilac.Size = new System.Drawing.Size(218, 24);
             this.cboPlatilac.TabIndex = 195;
@@ -405,7 +429,7 @@
             // txtSifra
             // 
             this.txtSifra.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtSifra.Location = new System.Drawing.Point(638, 37);
+            this.txtSifra.Location = new System.Drawing.Point(608, 32);
             this.txtSifra.Name = "txtSifra";
             this.txtSifra.Size = new System.Drawing.Size(105, 22);
             this.txtSifra.TabIndex = 197;
@@ -416,7 +440,7 @@
             this.label1.Enabled = false;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(564, 37);
+            this.label1.Location = new System.Drawing.Point(534, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 16);
             this.label1.TabIndex = 198;
@@ -424,13 +448,13 @@
             // 
             // button2
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button2.BackColor = System.Drawing.Color.IndianRed;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(1043, 117);
+            this.button2.Location = new System.Drawing.Point(1337, 33);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(151, 35);
+            this.button2.Size = new System.Drawing.Size(83, 46);
             this.button2.TabIndex = 199;
             this.button2.Text = "Izbriši uslugu";
             this.button2.UseVisualStyleBackColor = false;
@@ -442,7 +466,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(749, 33);
+            this.button3.Location = new System.Drawing.Point(719, 28);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(37, 27);
             this.button3.TabIndex = 200;
@@ -486,7 +510,7 @@
             this.chkDirektna.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.chkDirektna.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkDirektna.ForeColor = System.Drawing.Color.Black;
-            this.chkDirektna.Location = new System.Drawing.Point(786, 95);
+            this.chkDirektna.Location = new System.Drawing.Point(537, 92);
             this.chkDirektna.Name = "chkDirektna";
             this.chkDirektna.Size = new System.Drawing.Size(114, 20);
             this.chkDirektna.TabIndex = 203;
@@ -499,7 +523,7 @@
             this.chkPunPrazan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.chkPunPrazan.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkPunPrazan.ForeColor = System.Drawing.Color.Black;
-            this.chkPunPrazan.Location = new System.Drawing.Point(904, 95);
+            this.chkPunPrazan.Location = new System.Drawing.Point(678, 92);
             this.chkPunPrazan.Name = "chkPunPrazan";
             this.chkPunPrazan.Size = new System.Drawing.Size(90, 20);
             this.chkPunPrazan.TabIndex = 204;
@@ -511,7 +535,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(1086, 35);
+            this.label4.Location = new System.Drawing.Point(1056, 30);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 16);
             this.label4.TabIndex = 223;
@@ -522,7 +546,7 @@
             this.cboSkladiste.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboSkladiste.ForeColor = System.Drawing.Color.Black;
             this.cboSkladiste.FormattingEnabled = true;
-            this.cboSkladiste.Location = new System.Drawing.Point(1085, 53);
+            this.cboSkladiste.Location = new System.Drawing.Point(1055, 48);
             this.cboSkladiste.Name = "cboSkladiste";
             this.cboSkladiste.Size = new System.Drawing.Size(156, 24);
             this.cboSkladiste.TabIndex = 224;
@@ -533,7 +557,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label9.ForeColor = System.Drawing.Color.Black;
-            this.label9.Location = new System.Drawing.Point(1254, 35);
+            this.label9.Location = new System.Drawing.Point(1224, 30);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(64, 16);
             this.label9.TabIndex = 225;
@@ -543,7 +567,7 @@
             // 
             this.cboPozicija.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboPozicija.FormattingEnabled = true;
-            this.cboPozicija.Location = new System.Drawing.Point(1253, 54);
+            this.cboPozicija.Location = new System.Drawing.Point(1227, 48);
             this.cboPozicija.Name = "cboPozicija";
             this.cboPozicija.Size = new System.Drawing.Size(104, 24);
             this.cboPozicija.TabIndex = 226;
@@ -553,35 +577,24 @@
             this.chkUradjen.AutoSize = true;
             this.chkUradjen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.chkUradjen.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkUradjen.ForeColor = System.Drawing.Color.Black;
-            this.chkUradjen.Location = new System.Drawing.Point(1087, 83);
+            this.chkUradjen.ForeColor = System.Drawing.Color.IndianRed;
+            this.chkUradjen.Location = new System.Drawing.Point(876, 94);
             this.chkUradjen.Name = "chkUradjen";
             this.chkUradjen.Size = new System.Drawing.Size(69, 20);
             this.chkUradjen.TabIndex = 227;
             this.chkUradjen.Text = "Uradjen";
             this.chkUradjen.UseVisualStyleBackColor = false;
             // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.ForeColor = System.Drawing.Color.Yellow;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(250, 24);
-            this.toolStripButton2.Text = "POTVRDI URADJENA USLUGA SA PROMETOM";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(1200, 106);
+            this.label10.Location = new System.Drawing.Point(1052, 82);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(67, 16);
+            this.label10.Size = new System.Drawing.Size(100, 16);
             this.label10.TabIndex = 228;
-            this.label10.Text = "Skladište t:";
+            this.label10.Text = "Skladište tekuce:";
             // 
             // cboSkladIz
             // 
@@ -589,9 +602,9 @@
             this.cboSkladIz.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboSkladIz.ForeColor = System.Drawing.Color.Black;
             this.cboSkladIz.FormattingEnabled = true;
-            this.cboSkladIz.Location = new System.Drawing.Point(1203, 125);
+            this.cboSkladIz.Location = new System.Drawing.Point(1055, 101);
             this.cboSkladIz.Name = "cboSkladIz";
-            this.cboSkladIz.Size = new System.Drawing.Size(100, 24);
+            this.cboSkladIz.Size = new System.Drawing.Size(156, 24);
             this.cboSkladIz.TabIndex = 229;
             // 
             // label11
@@ -599,39 +612,58 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(1306, 106);
+            this.label11.Location = new System.Drawing.Point(1227, 82);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(61, 16);
+            this.label11.Size = new System.Drawing.Size(94, 16);
             this.label11.TabIndex = 230;
-            this.label11.Text = "Pozicija t:";
+            this.label11.Text = "Pozicija tekuca:";
             // 
             // cboPozIz
             // 
             this.cboPozIz.BackColor = System.Drawing.SystemColors.Info;
             this.cboPozIz.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboPozIz.FormattingEnabled = true;
-            this.cboPozIz.Location = new System.Drawing.Point(1309, 125);
+            this.cboPozIz.Location = new System.Drawing.Point(1230, 101);
             this.cboPozIz.Name = "cboPozIz";
-            this.cboPozIz.Size = new System.Drawing.Size(79, 24);
+            this.cboPozIz.Size = new System.Drawing.Size(101, 24);
             this.cboPozIz.TabIndex = 231;
             // 
-            // toolStripButton3
+            // button4
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton3.ForeColor = System.Drawing.Color.Yellow;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(244, 24);
-            this.toolStripButton3.Text = "POTVRDI URADJENA USLUGA BEZ PROMETA";
-            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            this.button4.BackColor = System.Drawing.Color.IndianRed;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(1055, 131);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(71, 24);
+            this.button4.TabIndex = 232;
+            this.button4.Text = "Promet";
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.IndianRed;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
+            this.button5.ForeColor = System.Drawing.Color.White;
+            this.button5.Location = new System.Drawing.Point(1132, 131);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(79, 24);
+            this.button5.TabIndex = 233;
+            this.button5.Text = "Usluga";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // frmManipulacije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1420, 626);
+            this.ClientSize = new System.Drawing.Size(1434, 626);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.cboSkladIz);
             this.Controls.Add(this.label11);
@@ -735,5 +767,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cboPozIz;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }
