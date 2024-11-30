@@ -98,6 +98,9 @@ namespace Saobracaj.RadniNalozi
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.tabSplitterContainer1 = new Syncfusion.Windows.Forms.Tools.TabSplitterContainer();
+            this.tabSplitterPage1 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
+            this.tabSplitterPage2 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
@@ -108,6 +111,9 @@ namespace Saobracaj.RadniNalozi
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.tabSplitterContainer1.SuspendLayout();
+            this.tabSplitterPage1.SuspendLayout();
+            this.tabSplitterPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // cboUsluga
@@ -135,7 +141,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cboNaSredstvo.FormattingEnabled = true;
             this.cboNaSredstvo.ItemHeight = 13;
-            this.cboNaSredstvo.Location = new System.Drawing.Point(12, 217);
+            this.cboNaSredstvo.Location = new System.Drawing.Point(14, 242);
             this.cboNaSredstvo.Margin = new System.Windows.Forms.Padding(2);
             this.cboNaSredstvo.Name = "cboNaSredstvo";
             this.cboNaSredstvo.Size = new System.Drawing.Size(186, 21);
@@ -165,6 +171,7 @@ namespace Saobracaj.RadniNalozi
             // txtcarinskipostupak
             // 
             this.txtcarinskipostupak.AutoSize = true;
+            this.txtcarinskipostupak.ForeColor = System.Drawing.Color.White;
             this.txtcarinskipostupak.Location = new System.Drawing.Point(13, 101);
             this.txtcarinskipostupak.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtcarinskipostupak.Name = "txtcarinskipostupak";
@@ -175,6 +182,7 @@ namespace Saobracaj.RadniNalozi
             // lbl1
             // 
             this.lbl1.AutoSize = true;
+            this.lbl1.ForeColor = System.Drawing.Color.White;
             this.lbl1.Location = new System.Drawing.Point(9, 138);
             this.lbl1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl1.Name = "lbl1";
@@ -193,6 +201,7 @@ namespace Saobracaj.RadniNalozi
             // txtIDinazivplaniraneusluge
             // 
             this.txtIDinazivplaniraneusluge.AutoSize = true;
+            this.txtIDinazivplaniraneusluge.ForeColor = System.Drawing.Color.White;
             this.txtIDinazivplaniraneusluge.Location = new System.Drawing.Point(11, 58);
             this.txtIDinazivplaniraneusluge.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtIDinazivplaniraneusluge.Name = "txtIDinazivplaniraneusluge";
@@ -204,6 +213,7 @@ namespace Saobracaj.RadniNalozi
             // txtSAPozicijeskladista
             // 
             this.txtSAPozicijeskladista.AutoSize = true;
+            this.txtSAPozicijeskladista.ForeColor = System.Drawing.Color.White;
             this.txtSAPozicijeskladista.Location = new System.Drawing.Point(5, 59);
             this.txtSAPozicijeskladista.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtSAPozicijeskladista.Name = "txtSAPozicijeskladista";
@@ -214,6 +224,7 @@ namespace Saobracaj.RadniNalozi
             // txtSASkladista
             // 
             this.txtSASkladista.AutoSize = true;
+            this.txtSASkladista.ForeColor = System.Drawing.Color.White;
             this.txtSASkladista.Location = new System.Drawing.Point(6, 11);
             this.txtSASkladista.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtSASkladista.Name = "txtSASkladista";
@@ -226,7 +237,7 @@ namespace Saobracaj.RadniNalozi
             // 
             this.cboVrstaRobe.FormattingEnabled = true;
             this.cboVrstaRobe.ItemHeight = 13;
-            this.cboVrstaRobe.Location = new System.Drawing.Point(779, 219);
+            this.cboVrstaRobe.Location = new System.Drawing.Point(32, 168);
             this.cboVrstaRobe.Margin = new System.Windows.Forms.Padding(2);
             this.cboVrstaRobe.Name = "cboVrstaRobe";
             this.cboVrstaRobe.Size = new System.Drawing.Size(112, 21);
@@ -236,7 +247,7 @@ namespace Saobracaj.RadniNalozi
             // txtvrstarobe
             // 
             this.txtvrstarobe.AutoSize = true;
-            this.txtvrstarobe.Location = new System.Drawing.Point(776, 202);
+            this.txtvrstarobe.Location = new System.Drawing.Point(29, 151);
             this.txtvrstarobe.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtvrstarobe.Name = "txtvrstarobe";
             this.txtvrstarobe.Size = new System.Drawing.Size(55, 13);
@@ -247,6 +258,7 @@ namespace Saobracaj.RadniNalozi
             // txtnazivbrodara
             // 
             this.txtnazivbrodara.AutoSize = true;
+            this.txtnazivbrodara.ForeColor = System.Drawing.Color.White;
             this.txtnazivbrodara.Location = new System.Drawing.Point(11, 60);
             this.txtnazivbrodara.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtnazivbrodara.Name = "txtnazivbrodara";
@@ -257,6 +269,7 @@ namespace Saobracaj.RadniNalozi
             // txtuzvoznik
             // 
             this.txtuzvoznik.AutoSize = true;
+            this.txtuzvoznik.ForeColor = System.Drawing.Color.White;
             this.txtuzvoznik.Location = new System.Drawing.Point(13, 52);
             this.txtuzvoznik.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtuzvoznik.Name = "txtuzvoznik";
@@ -277,6 +290,7 @@ namespace Saobracaj.RadniNalozi
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Location = new System.Drawing.Point(10, 87);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
@@ -295,6 +309,7 @@ namespace Saobracaj.RadniNalozi
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Location = new System.Drawing.Point(10, 50);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
@@ -316,6 +331,7 @@ namespace Saobracaj.RadniNalozi
             // label9
             // 
             this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.White;
             this.label9.Location = new System.Drawing.Point(8, 99);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
@@ -326,7 +342,7 @@ namespace Saobracaj.RadniNalozi
             // txtNAvoznosredstvo
             // 
             this.txtNAvoznosredstvo.AutoSize = true;
-            this.txtNAvoznosredstvo.Location = new System.Drawing.Point(9, 202);
+            this.txtNAvoznosredstvo.Location = new System.Drawing.Point(11, 227);
             this.txtNAvoznosredstvo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtNAvoznosredstvo.Name = "txtNAvoznosredstvo";
             this.txtNAvoznosredstvo.Size = new System.Drawing.Size(97, 13);
@@ -337,6 +353,7 @@ namespace Saobracaj.RadniNalozi
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(7, 12);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
@@ -358,6 +375,7 @@ namespace Saobracaj.RadniNalozi
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(7, 51);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
@@ -378,6 +396,7 @@ namespace Saobracaj.RadniNalozi
             // txtSpedicijaRTCLEGET
             // 
             this.txtSpedicijaRTCLEGET.AutoSize = true;
+            this.txtSpedicijaRTCLEGET.ForeColor = System.Drawing.Color.White;
             this.txtSpedicijaRTCLEGET.Location = new System.Drawing.Point(13, 6);
             this.txtSpedicijaRTCLEGET.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtSpedicijaRTCLEGET.Name = "txtSpedicijaRTCLEGET";
@@ -388,7 +407,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // toolStrip1
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.toolStrip1.BackColor = System.Drawing.Color.White;
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
@@ -468,12 +487,12 @@ namespace Saobracaj.RadniNalozi
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(11, 391);
+            this.dataGridView1.Location = new System.Drawing.Point(2, 12);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1254, 190);
+            this.dataGridView1.Size = new System.Drawing.Size(1270, 97);
             this.dataGridView1.TabIndex = 396;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -509,6 +528,7 @@ namespace Saobracaj.RadniNalozi
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(10, 5);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
@@ -536,6 +556,7 @@ namespace Saobracaj.RadniNalozi
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Location = new System.Drawing.Point(12, 129);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
@@ -546,6 +567,7 @@ namespace Saobracaj.RadniNalozi
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Location = new System.Drawing.Point(11, 13);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
@@ -574,6 +596,7 @@ namespace Saobracaj.RadniNalozi
             // label19
             // 
             this.label19.AutoSize = true;
+            this.label19.ForeColor = System.Drawing.Color.White;
             this.label19.Location = new System.Drawing.Point(11, 107);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
@@ -598,6 +621,7 @@ namespace Saobracaj.RadniNalozi
             // chkZavrsen
             // 
             this.chkZavrsen.AutoSize = true;
+            this.chkZavrsen.ForeColor = System.Drawing.Color.White;
             this.chkZavrsen.Location = new System.Drawing.Point(6, 178);
             this.chkZavrsen.Name = "chkZavrsen";
             this.chkZavrsen.Size = new System.Drawing.Size(65, 17);
@@ -608,6 +632,7 @@ namespace Saobracaj.RadniNalozi
             // chkUvoz
             // 
             this.chkUvoz.AutoSize = true;
+            this.chkUvoz.ForeColor = System.Drawing.Color.White;
             this.chkUvoz.Location = new System.Drawing.Point(213, 5);
             this.chkUvoz.Name = "chkUvoz";
             this.chkUvoz.Size = new System.Drawing.Size(51, 17);
@@ -624,7 +649,7 @@ namespace Saobracaj.RadniNalozi
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.cboSaPoz);
             this.panel1.Enabled = false;
-            this.panel1.Location = new System.Drawing.Point(10, 260);
+            this.panel1.Location = new System.Drawing.Point(1, 278);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(279, 116);
             this.panel1.TabIndex = 406;
@@ -635,7 +660,7 @@ namespace Saobracaj.RadniNalozi
             this.label41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
             this.label41.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label41.ForeColor = System.Drawing.Color.Black;
-            this.label41.Location = new System.Drawing.Point(295, 244);
+            this.label41.Location = new System.Drawing.Point(285, 242);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(92, 14);
             this.label41.TabIndex = 408;
@@ -661,7 +686,7 @@ namespace Saobracaj.RadniNalozi
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView3.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView3.Location = new System.Drawing.Point(295, 266);
+            this.dataGridView3.Location = new System.Drawing.Point(288, 265);
             this.dataGridView3.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView3.Name = "dataGridView3";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -674,12 +699,13 @@ namespace Saobracaj.RadniNalozi
             this.dataGridView3.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView3.RowHeadersWidth = 11;
             this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(408, 110);
+            this.dataGridView3.Size = new System.Drawing.Size(399, 129);
             this.dataGridView3.TabIndex = 407;
             // 
             // chkIzvoz
             // 
             this.chkIzvoz.AutoSize = true;
+            this.chkIzvoz.ForeColor = System.Drawing.Color.White;
             this.chkIzvoz.Location = new System.Drawing.Point(213, 29);
             this.chkIzvoz.Name = "chkIzvoz";
             this.chkIzvoz.Size = new System.Drawing.Size(51, 17);
@@ -695,7 +721,7 @@ namespace Saobracaj.RadniNalozi
             this.panel2.Controls.Add(this.cboUvoznik);
             this.panel2.Controls.Add(this.txtcarinskipostupak);
             this.panel2.Controls.Add(this.cboPostupak);
-            this.panel2.Location = new System.Drawing.Point(777, 28);
+            this.panel2.Location = new System.Drawing.Point(702, 20);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(243, 208);
             this.panel2.TabIndex = 410;
@@ -706,14 +732,17 @@ namespace Saobracaj.RadniNalozi
             this.panel3.Controls.Add(this.cboIzvoznik);
             this.panel3.Controls.Add(this.txtnazivbrodara);
             this.panel3.Controls.Add(this.cboBrodar);
-            this.panel3.Location = new System.Drawing.Point(530, 27);
+            this.panel3.Controls.Add(this.txtvrstarobe);
+            this.panel3.Controls.Add(this.cboVrstaRobe);
+            this.panel3.Location = new System.Drawing.Point(502, 8);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(241, 208);
+            this.panel3.Size = new System.Drawing.Size(185, 211);
             this.panel3.TabIndex = 411;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.White;
             this.label8.Location = new System.Drawing.Point(11, 12);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
@@ -737,7 +766,7 @@ namespace Saobracaj.RadniNalozi
             this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
             this.label10.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(788, 244);
+            this.label10.Location = new System.Drawing.Point(688, 245);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(84, 14);
             this.label10.TabIndex = 413;
@@ -763,7 +792,7 @@ namespace Saobracaj.RadniNalozi
             dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView2.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridView2.Location = new System.Drawing.Point(791, 266);
+            this.dataGridView2.Location = new System.Drawing.Point(691, 265);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -776,7 +805,7 @@ namespace Saobracaj.RadniNalozi
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridView2.RowHeadersWidth = 11;
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(408, 110);
+            this.dataGridView2.Size = new System.Drawing.Size(436, 129);
             this.dataGridView2.TabIndex = 412;
             // 
             // panel4
@@ -787,9 +816,9 @@ namespace Saobracaj.RadniNalozi
             this.panel4.Controls.Add(this.cboUsluga);
             this.panel4.Controls.Add(this.label19);
             this.panel4.Controls.Add(this.txtNalogID);
-            this.panel4.Location = new System.Drawing.Point(295, 27);
+            this.panel4.Location = new System.Drawing.Point(288, 8);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(229, 209);
+            this.panel4.Size = new System.Drawing.Size(208, 162);
             this.panel4.TabIndex = 414;
             // 
             // panel5
@@ -803,9 +832,9 @@ namespace Saobracaj.RadniNalozi
             this.panel5.Controls.Add(this.lbl1);
             this.panel5.Controls.Add(this.txtNalogRealizovao);
             this.panel5.Controls.Add(this.chkZavrsen);
-            this.panel5.Location = new System.Drawing.Point(1031, 30);
+            this.panel5.Location = new System.Drawing.Point(951, 13);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(231, 211);
+            this.panel5.Size = new System.Drawing.Size(176, 211);
             this.panel5.TabIndex = 415;
             // 
             // panel6
@@ -820,33 +849,67 @@ namespace Saobracaj.RadniNalozi
             this.panel6.Controls.Add(this.cboVrstaKontejnera);
             this.panel6.Controls.Add(this.txtRegBr);
             this.panel6.Controls.Add(this.label5);
-            this.panel6.Location = new System.Drawing.Point(10, 30);
+            this.panel6.Location = new System.Drawing.Point(3, 8);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(279, 208);
             this.panel6.TabIndex = 416;
+            // 
+            // tabSplitterContainer1
+            // 
+            this.tabSplitterContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabSplitterContainer1.Location = new System.Drawing.Point(0, 27);
+            this.tabSplitterContainer1.Name = "tabSplitterContainer1";
+            this.tabSplitterContainer1.PrimaryPages.AddRange(new Syncfusion.Windows.Forms.Tools.TabSplitterPage[] {
+            this.tabSplitterPage1});
+            this.tabSplitterContainer1.SecondaryPages.AddRange(new Syncfusion.Windows.Forms.Tools.TabSplitterPage[] {
+            this.tabSplitterPage2});
+            this.tabSplitterContainer1.Size = new System.Drawing.Size(1274, 564);
+            this.tabSplitterContainer1.SplitterBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(117)))), ((int)(((byte)(123)))));
+            this.tabSplitterContainer1.SplitterPosition = 420;
+            this.tabSplitterContainer1.TabIndex = 417;
+            this.tabSplitterContainer1.Text = "tabSplitterContainer1";
+            // 
+            // tabSplitterPage1
+            // 
+            this.tabSplitterPage1.AutoScroll = true;
+            this.tabSplitterPage1.Controls.Add(this.panel6);
+            this.tabSplitterPage1.Controls.Add(this.panel5);
+            this.tabSplitterPage1.Controls.Add(this.txtNAvoznosredstvo);
+            this.tabSplitterPage1.Controls.Add(this.panel2);
+            this.tabSplitterPage1.Controls.Add(this.dataGridView2);
+            this.tabSplitterPage1.Controls.Add(this.label10);
+            this.tabSplitterPage1.Controls.Add(this.panel4);
+            this.tabSplitterPage1.Controls.Add(this.cboNaSredstvo);
+            this.tabSplitterPage1.Controls.Add(this.panel3);
+            this.tabSplitterPage1.Controls.Add(this.panel1);
+            this.tabSplitterPage1.Controls.Add(this.label41);
+            this.tabSplitterPage1.Controls.Add(this.dataGridView3);
+            this.tabSplitterPage1.Hide = false;
+            this.tabSplitterPage1.Location = new System.Drawing.Point(0, 0);
+            this.tabSplitterPage1.Name = "tabSplitterPage1";
+            this.tabSplitterPage1.Size = new System.Drawing.Size(1274, 420);
+            this.tabSplitterPage1.TabIndex = 1;
+            this.tabSplitterPage1.Text = "OPSTE";
+            // 
+            // tabSplitterPage2
+            // 
+            this.tabSplitterPage2.AutoScroll = true;
+            this.tabSplitterPage2.Controls.Add(this.dataGridView1);
+            this.tabSplitterPage2.Hide = false;
+            this.tabSplitterPage2.Location = new System.Drawing.Point(0, 440);
+            this.tabSplitterPage2.Name = "tabSplitterPage2";
+            this.tabSplitterPage2.Size = new System.Drawing.Size(1274, 124);
+            this.tabSplitterPage2.TabIndex = 2;
+            this.tabSplitterPage2.Text = "TABELA";
             // 
             // RN6OtpremaPlatforme
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(117)))), ((int)(((byte)(123)))));
             this.ClientSize = new System.Drawing.Size(1274, 591);
-            this.Controls.Add(this.panel6);
-            this.Controls.Add(this.panel5);
-            this.Controls.Add(this.panel4);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.label41);
-            this.Controls.Add(this.dataGridView3);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.tabSplitterContainer1);
             this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.cboNaSredstvo);
-            this.Controls.Add(this.cboVrstaRobe);
-            this.Controls.Add(this.txtvrstarobe);
-            this.Controls.Add(this.txtNAvoznosredstvo);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RN6OtpremaPlatforme";
             this.Text = "RN6 OTPREMA PLATFORME";
@@ -868,6 +931,10 @@ namespace Saobracaj.RadniNalozi
             this.panel5.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
+            this.tabSplitterContainer1.ResumeLayout(false);
+            this.tabSplitterPage1.ResumeLayout(false);
+            this.tabSplitterPage1.PerformLayout();
+            this.tabSplitterPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -937,5 +1004,8 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
+        private Syncfusion.Windows.Forms.Tools.TabSplitterContainer tabSplitterContainer1;
+        private Syncfusion.Windows.Forms.Tools.TabSplitterPage tabSplitterPage1;
+        private Syncfusion.Windows.Forms.Tools.TabSplitterPage tabSplitterPage2;
     }
 }

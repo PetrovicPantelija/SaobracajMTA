@@ -12,9 +12,11 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
 {
-    public partial class VaganjePregled : Form
+    public partial class VaganjePregled : Syncfusion.Windows.Forms.Office2010Form
     {
         string brojKontejnera,vrstaKontejnera;
+        int KontID;
+        string Vozilo, Vozac;
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         public VaganjePregled()
         {
@@ -27,7 +29,7 @@ namespace Saobracaj.Izvoz
         }
         private void FillGV()
         {
-            var select = "select BrojKontejnera, VrstaKontejnera, Cirada, napomenazarobu from IzvozKonacna Where Vaganje=1";
+            var select = "select IzvozKonacna.ID , BrojKontejnera, VrstaKontejnera, Cirada, napomenazarobu, Vozilo, Vozac from IzvozKonacna Where Vaganje = 1 order by IzvozKonacna.ID desc";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new System.Data.DataSet();
@@ -54,9 +56,12 @@ namespace Saobracaj.Izvoz
             {
                 if (row.Selected)
                 {
+                    textBox1.Text = row.Cells[0].Value.ToString();
                     brojKontejnera = row.Cells["BrojKontejnera"].Value.ToString().TrimEnd();
                     vrstaKontejnera = row.Cells["VrstaKontejnera"].Value.ToString();
-                    
+                    KontID =  Convert.ToInt32(row.Cells["ID"].Value.ToString());
+                    Vozilo = row.Cells["Vozilo"].Value.ToString();
+                    Vozac = row.Cells["Vozac"].Value.ToString();
                 }
             }
         }
@@ -68,7 +73,7 @@ namespace Saobracaj.Izvoz
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
-            var select = "select * from Vaganje";
+            var select = "Select VagANJE.ID, IzvozKonacna.ID as KontID, IzvozKonacna.BrojKontejnera , Vaganje.Kamion, Vaganje.VagarskaPotvrdaBroj, Vaganje.Bruto, \r\nVaganje.Neto, Vaganje.Tara, Vaganje.DatumMerenja, Vaganje.Korisnik, IzvozKonacna.IDVaganja from Vaganje\r\ninner join IzvozKonacna on IzvozKonacna.ID = Vaganje.IzvozKonacnaID";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new System.Data.DataSet();
@@ -92,7 +97,7 @@ namespace Saobracaj.Izvoz
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            Vaganje frm = new Vaganje(brojKontejnera,vrstaKontejnera);
+            Vaganje frm = new Vaganje(brojKontejnera, KontID, Vozilo, Vozac);
             frm.Show();
         }
     }

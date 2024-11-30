@@ -2,14 +2,6 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Saobracaj.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="NedraConnectionString" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
-  &lt;ConnectionString&gt;Data Source=192.168.99.10\SQLEXPRESS2019;Initial Catalog=Testiranje;Encrypt=False;User ID=sa;Password=duki7990&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=192.168.99.10\SQLEXPRESS2019;Initial Catalog=Testiranje;Encrypt=False;User ID=sa;Password=duki7990</Value>
-    </Setting>
     <Setting Name="TESTIRANJEConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
@@ -19,6 +11,14 @@
       <Value Profile="(Default)">Data Source=192.168.99.10\SQLEXPRESS2019;Initial Catalog=Testiranje;Encrypt=False;User ID=sa;Password=duki7990</Value>
     </Setting>
     <Setting Name="Perftech_BeogradConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;Data Source=192.168.99.10\SQLEXPRESS2019;Initial Catalog=Testiranje;Encrypt=False;User ID=sa;Password=duki7990&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=192.168.99.10\SQLEXPRESS2019;Initial Catalog=Testiranje;Encrypt=False;User ID=sa;Password=duki7990</Value>
+    </Setting>
+    <Setting Name="NedraConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
   &lt;ConnectionString&gt;Data Source=192.168.99.10\SQLEXPRESS2019;Initial Catalog=Testiranje;Encrypt=False;User ID=sa;Password=duki7990&lt;/ConnectionString&gt;

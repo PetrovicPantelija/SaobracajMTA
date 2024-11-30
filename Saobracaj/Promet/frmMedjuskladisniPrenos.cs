@@ -504,6 +504,8 @@ namespace TrackModal.Promet
         private void tsNew_Click(object sender, EventArgs e)
         {
             VratiPodatkeMaxSledeci();
+            dtpDatumRasporeda.Value = DateTime.Now;
+        
         }
 
         private void tsPrvi_Click(object sender, EventArgs e)
@@ -1055,6 +1057,36 @@ namespace TrackModal.Promet
         {
             Saobracaj.RadniNalozi.RN12MedjuskladisniKontejnera msp = new Saobracaj.RadniNalozi.RN12MedjuskladisniKontejnera();
             msp.Show();
+        }
+
+        private void chkZauzete_CheckedChanged(object sender, EventArgs e)
+        {
+            var select = "";
+            if (chkZauzete.Checked == true)
+            {
+                select = "Select ID, Oznaka From Pozicija where Skladiste = " + Convert.ToInt32(cboSkladiste.SelectedValue) + "  And ID not in  " +
+                    "(Select DISTINCT Lokacija as Pozicija from  (select PrPrimKol as Kol, BrojKontejnera, SkladisteU as SkladisteR, " +
+                    "LokacijaU as Lokacija  from Promet where Zatvoren = 0   union  select  PrIzdKol as Kol, BrojKontejnera, SkladisteIz as SkladisteR, " +
+                    "LokacijaIz as Lokacija  from Promet  where Zatvoren = 0) as X1  inner join Skladista on Skladista.ID = SkladisteR " +
+                    " inner join Pozicija on Pozicija.ID = Lokacija  group by BrojKontejnera, SkladisteR, Skladista.Naziv, Lokacija, Pozicija.Oznaka" +
+                    " having Sum(Kol) > 0 and SkladisteR = " + Convert.ToInt32(cboSkladiste.SelectedValue) + "  order by Oznaka";
+            }
+            else
+            {
+                select = " Select ID, Oznaka From Pozicija where Skladiste = " + Convert.ToInt32(cboSkladiste.SelectedValue);
+            }
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            cboPozicija.DataSource = ds.Tables[0];
+            cboPozicija.DisplayMember = "Oznaka";
+            cboPozicija.ValueMember = "ID";
         }
     }
 }

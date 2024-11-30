@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
+using static Syncfusion.WinForms.Core.NativeScroll;
 
 namespace Saobracaj.Izvoz
 {
@@ -2303,6 +2304,47 @@ namespace Saobracaj.Izvoz
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        int ProveriDaliPostojiIzdatRNI(string Kont)
+        {
+            int pom = 0;
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select count(*) as Broj from RAdniNalogInterni where OjIzdavanja = 2 and BrojOsnov=" + Kont, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                pom = Convert.ToInt32(dr["Broj"].ToString());
+                
+            }
+            con.Close();
+            
+
+            return pom;
+        }
+
+        private void tsDelete_Click(object sender, EventArgs e)
+        {
+            int i = ProveriDaliPostojiIzdatRNI(txtID.Text);
+
+            if (i > 0)
+            {
+                MessageBox.Show("Postoje već izdati radni nalozi za Terminal ne možete obrisati, kontaktirajte terminal");
+                return;
+            
+            }
+            else
+            {
+                InsertIzvozKonacna del = new InsertIzvozKonacna();
+                del.DelIzvozKonacnaSve(Convert.ToInt32(txtID.Text));
+            }
+
+
+            
         }
     }
 }

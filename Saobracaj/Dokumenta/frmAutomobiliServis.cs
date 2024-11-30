@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmAutomobiliServis : Form
+    public partial class frmAutomobiliServis : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         String pomAuto = "";

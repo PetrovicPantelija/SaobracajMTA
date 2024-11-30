@@ -607,6 +607,55 @@ namespace Saobracaj.Uvoz
                 }
             }
         }
+        public void DelRadniNalogInterniSaDokumentima(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DelRadniNalogInterniSaDokumentima";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
         public void UpdRadniNalogInterniZavrsen(int ID, string Korisnik)
         {
             SqlConnection conn = new SqlConnection(connection);
@@ -624,13 +673,10 @@ namespace Saobracaj.Uvoz
 
             SqlParameter korisnik = new SqlParameter();
             korisnik.ParameterName = "@Korisnik";
-            korisnik.SqlDbType = SqlDbType.NVarChar;
-            korisnik.Size = 50;
+            korisnik.SqlDbType = SqlDbType.Int;
             korisnik.Direction = ParameterDirection.Input;
             korisnik.Value = Korisnik;
             cmd.Parameters.Add(korisnik);
-
-
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

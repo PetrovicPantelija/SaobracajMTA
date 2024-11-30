@@ -967,10 +967,24 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
 
             SqlParameter scenario = new SqlParameter();
             scenario.ParameterName = "@Scenario";
-            scenario.SqlDbType = SqlDbType.Decimal;
+            scenario.SqlDbType = SqlDbType.Int;
             scenario.Direction = ParameterDirection.Input;
             scenario.Value = Scenario;
             cmd.Parameters.Add(scenario);
+
+            SqlParameter rlterminali2 = new SqlParameter();
+            rlterminali2.ParameterName = "@RLTerminali2";
+            rlterminali2.SqlDbType = SqlDbType.Int;
+            rlterminali2.Direction = ParameterDirection.Input;
+            rlterminali2.Value = RLTerminali2;
+            cmd.Parameters.Add(rlterminali2);
+
+            SqlParameter rlterminali3 = new SqlParameter();
+            rlterminali3.ParameterName = "@RLTerminali3";
+            rlterminali3.SqlDbType = SqlDbType.Int;
+            rlterminali3.Direction = ParameterDirection.Input;
+            rlterminali3.Value = RLTerminali3;
+            cmd.Parameters.Add(rlterminali3);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();
@@ -1060,6 +1074,55 @@ string Ref2, int Nalogodavac3, string Ref3, int Brodar, string NaslovStatusaVozi
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "DeleteUvozVrstaManipulacije";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+        public void DelUvozUslugaTerminalskih(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DeleteUvozVrstaManTerminalskih";
             cmd.CommandType = CommandType.StoredProcedure;
 
             SqlParameter id = new SqlParameter();

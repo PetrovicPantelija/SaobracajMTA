@@ -51,76 +51,72 @@
         <xs:element name="DobavnicaRpt" msprop:Generator_RowEvHandlerName="DobavnicaRptRowChangeEventHandler" msprop:Generator_RowDeletedName="DobavnicaRptRowDeleted" msprop:Generator_RowDeletingName="DobavnicaRptRowDeleting" msprop:Generator_RowEvArgName="DobavnicaRptRowChangeEvent" msprop:Generator_TablePropName="DobavnicaRpt" msprop:Generator_RowChangedName="DobavnicaRptRowChanged" msprop:Generator_UserTableName="DobavnicaRpt" msprop:Generator_RowChangingName="DobavnicaRptRowChanging" msprop:Generator_RowClassName="DobavnicaRptRow" msprop:Generator_TableClassName="DobavnicaRptDataTable" msprop:Generator_TableVarName="tableDobavnicaRpt">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:int" />
-              <xs:element name="DatumTransakcije" msprop:Generator_UserColumnName="DatumTransakcije" msprop:Generator_ColumnPropNameInTable="DatumTransakcijeColumn" msprop:Generator_ColumnPropNameInRow="DatumTransakcije" msprop:Generator_ColumnVarNameInTable="columnDatumTransakcije" type="xs:dateTime" />
-              <xs:element name="PrStDokumenta" msprop:Generator_UserColumnName="PrStDokumenta" msprop:Generator_ColumnPropNameInTable="PrStDokumentaColumn" msprop:Generator_ColumnPropNameInRow="PrStDokumenta" msprop:Generator_ColumnVarNameInTable="columnPrStDokumenta" type="xs:int" />
-              <xs:element name="Kolicina" msprop:Generator_UserColumnName="Kolicina" msprop:Generator_ColumnPropNameInTable="KolicinaColumn" msprop:Generator_ColumnPropNameInRow="Kolicina" msprop:Generator_ColumnVarNameInTable="columnKolicina" type="xs:decimal" />
-              <xs:element name="Skladiste" msprop:Generator_UserColumnName="Skladiste" msprop:Generator_ColumnPropNameInTable="SkladisteColumn" msprop:Generator_ColumnPropNameInRow="Skladiste" msprop:Generator_ColumnVarNameInTable="columnSkladiste" minOccurs="0">
+              <xs:element name="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:int" />
+              <xs:element name="DatumTransakcije" msprop:Generator_ColumnPropNameInTable="DatumTransakcijeColumn" msprop:Generator_ColumnPropNameInRow="DatumTransakcije" msprop:Generator_UserColumnName="DatumTransakcije" msprop:Generator_ColumnVarNameInTable="columnDatumTransakcije" type="xs:dateTime" />
+              <xs:element name="PrStDokumenta" msprop:Generator_ColumnPropNameInTable="PrStDokumentaColumn" msprop:Generator_ColumnPropNameInRow="PrStDokumenta" msprop:Generator_UserColumnName="PrStDokumenta" msprop:Generator_ColumnVarNameInTable="columnPrStDokumenta" type="xs:int" />
+              <xs:element name="Kolicina" msprop:Generator_ColumnPropNameInTable="KolicinaColumn" msprop:Generator_ColumnPropNameInRow="Kolicina" msprop:Generator_UserColumnName="Kolicina" msprop:Generator_ColumnVarNameInTable="columnKolicina" type="xs:decimal" />
+              <xs:element name="Skladiste" msprop:Generator_ColumnPropNameInTable="SkladisteColumn" msprop:Generator_ColumnPropNameInRow="Skladiste" msprop:Generator_UserColumnName="Skladiste" msprop:Generator_ColumnVarNameInTable="columnSkladiste" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Oznaka" msprop:Generator_UserColumnName="Oznaka" msprop:Generator_ColumnPropNameInTable="OznakaColumn" msprop:Generator_ColumnPropNameInRow="Oznaka" msprop:Generator_ColumnVarNameInTable="columnOznaka" minOccurs="0">
+              <xs:element name="Oznaka" msprop:Generator_ColumnPropNameInTable="OznakaColumn" msprop:Generator_ColumnPropNameInRow="Oznaka" msprop:Generator_UserColumnName="Oznaka" msprop:Generator_ColumnVarNameInTable="columnOznaka" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Korisnik" msprop:Generator_UserColumnName="Korisnik" msprop:Generator_ColumnPropNameInTable="KorisnikColumn" msprop:Generator_ColumnPropNameInRow="Korisnik" msprop:Generator_ColumnVarNameInTable="columnKorisnik" minOccurs="0">
+              <xs:element name="Korisnik" msprop:Generator_ColumnPropNameInTable="KorisnikColumn" msprop:Generator_ColumnPropNameInRow="Korisnik" msprop:Generator_UserColumnName="Korisnik" msprop:Generator_ColumnVarNameInTable="columnKorisnik" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="BrojKontejnera" msprop:Generator_UserColumnName="BrojKontejnera" msprop:Generator_ColumnPropNameInTable="BrojKontejneraColumn" msprop:Generator_ColumnPropNameInRow="BrojKontejnera" msprop:Generator_ColumnVarNameInTable="columnBrojKontejnera" minOccurs="0">
+              <xs:element name="BrojKontejnera" msprop:Generator_ColumnPropNameInTable="BrojKontejneraColumn" msprop:Generator_ColumnPropNameInRow="BrojKontejnera" msprop:Generator_UserColumnName="BrojKontejnera" msprop:Generator_ColumnVarNameInTable="columnBrojKontejnera" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="NalogID" msprop:Generator_UserColumnName="NalogID" msprop:Generator_ColumnPropNameInTable="NalogIDColumn" msprop:Generator_ColumnPropNameInRow="NalogID" msprop:Generator_ColumnVarNameInTable="columnNalogID" type="xs:int" minOccurs="0" />
-              <xs:element name="RB" msprop:Generator_UserColumnName="RB" msprop:Generator_ColumnPropNameInTable="RBColumn" msprop:Generator_ColumnPropNameInRow="RB" msprop:Generator_ColumnVarNameInTable="columnRB" minOccurs="0">
+              <xs:element name="NalogID" msprop:Generator_ColumnPropNameInTable="NalogIDColumn" msprop:Generator_ColumnPropNameInRow="NalogID" msprop:Generator_UserColumnName="NalogID" msprop:Generator_ColumnVarNameInTable="columnNalogID" type="xs:int" minOccurs="0" />
+              <xs:element name="RB" msprop:Generator_ColumnPropNameInTable="RBColumn" msprop:Generator_ColumnPropNameInRow="RB" msprop:Generator_UserColumnName="RB" msprop:Generator_ColumnVarNameInTable="columnRB" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="35" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Stavka" msprop:Generator_UserColumnName="Stavka" msprop:Generator_ColumnPropNameInTable="StavkaColumn" msprop:Generator_ColumnPropNameInRow="Stavka" msprop:Generator_ColumnVarNameInTable="columnStavka" minOccurs="0">
+              <xs:element name="Stavka" msprop:Generator_ColumnPropNameInTable="StavkaColumn" msprop:Generator_ColumnPropNameInRow="Stavka" msprop:Generator_UserColumnName="Stavka" msprop:Generator_ColumnVarNameInTable="columnStavka" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="1000" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="JedinicaMere" msprop:Generator_UserColumnName="JedinicaMere" msprop:Generator_ColumnPropNameInTable="JedinicaMereColumn" msprop:Generator_ColumnPropNameInRow="JedinicaMere" msprop:Generator_ColumnVarNameInTable="columnJedinicaMere" minOccurs="0">
+              <xs:element name="JedinicaMere" msprop:Generator_ColumnPropNameInTable="JedinicaMereColumn" msprop:Generator_ColumnPropNameInRow="JedinicaMere" msprop:Generator_UserColumnName="JedinicaMere" msprop:Generator_ColumnVarNameInTable="columnJedinicaMere" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="10" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Lot" msprop:Generator_UserColumnName="Lot" msprop:Generator_ColumnPropNameInTable="LotColumn" msprop:Generator_ColumnPropNameInRow="Lot" msprop:Generator_ColumnVarNameInTable="columnLot" minOccurs="0">
+              <xs:element name="Lot" msprop:Generator_ColumnPropNameInTable="LotColumn" msprop:Generator_ColumnPropNameInRow="Lot" msprop:Generator_UserColumnName="Lot" msprop:Generator_ColumnVarNameInTable="columnLot" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Skladisteno" msprop:Generator_UserColumnName="Skladisteno" msprop:Generator_ColumnPropNameInTable="SkladistenoColumn" msprop:Generator_ColumnPropNameInRow="Skladisteno" msprop:Generator_ColumnVarNameInTable="columnSkladisteno" type="xs:int" minOccurs="0" />
+              <xs:element name="Skladisteno" msprop:Generator_ColumnPropNameInTable="SkladistenoColumn" msprop:Generator_ColumnPropNameInRow="Skladisteno" msprop:Generator_UserColumnName="Skladisteno" msprop:Generator_ColumnVarNameInTable="columnSkladisteno" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:choice>
     </xs:complexType>
-    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:DobavnicaRpt" />
-      <xs:field xpath="mstns:ID" />
-    </xs:unique>
   </xs:element>
 </xs:schema>

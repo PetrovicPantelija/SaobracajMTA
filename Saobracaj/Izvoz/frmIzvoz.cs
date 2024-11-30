@@ -1162,6 +1162,11 @@ namespace Saobracaj.Izvoz
         private void tsDelete_Click(object sender, EventArgs e)
         {
 
+
+
+            InsertIzvoz del = new InsertIzvoz();
+            del.DelIzvozSve(Convert.ToInt32(txtID.Text));    
+
         }
 
         private void VratiPodatkeSelect(int ID)

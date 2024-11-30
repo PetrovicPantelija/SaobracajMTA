@@ -1,4 +1,5 @@
-﻿using Syncfusion.Grouping;
+﻿using Syncfusion.GridHelperClasses;
+using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
 using System.Configuration;
@@ -82,10 +83,17 @@ namespace Saobracaj.Uvoz
             gridGroupingControl1.DataSource = ds.Tables[0];
             gridGroupingControl1.ShowGroupDropArea = true;
             this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+           // this.gridGroupingControl1.RecordFilterDescriptor.
             foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
             {
                 column.AllowFilter = true;
+              //  column.RecordFilterDescriptor
             }
+            this.gridGroupingControl1.TableDescriptor.Columns["BrojKontejnera"].FilterRowOptions.FilterMode = FilterMode.DisplayText;
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
 
         }
 

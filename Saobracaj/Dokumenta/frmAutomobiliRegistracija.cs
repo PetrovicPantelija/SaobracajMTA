@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmAutomobiliRegistracija : Form
+    public partial class frmAutomobiliRegistracija : Syncfusion.Windows.Forms.Office2010Form
     {
         public string connect = frmLogovanje.connectionString;
         bool status = false;

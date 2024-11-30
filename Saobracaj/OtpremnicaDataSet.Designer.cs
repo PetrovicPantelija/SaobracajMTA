@@ -513,13 +513,6 @@ namespace Saobracaj {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public DobavnicaRptRow FindByID(int ID) {
-                return ((DobavnicaRptRow)(this.Rows.Find(new object[] {
-                            ID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 DobavnicaRptDataTable cln = ((DobavnicaRptDataTable)(base.Clone()));
                 cln.InitVars();
@@ -582,10 +575,7 @@ namespace Saobracaj {
                 base.Columns.Add(this.columnLot);
                 this.columnSkladisteno = new global::System.Data.DataColumn("Skladisteno", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSkladisteno);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnID}, true));
                 this.columnID.AllowDBNull = false;
-                this.columnID.Unique = true;
                 this.columnDatumTransakcije.AllowDBNull = false;
                 this.columnPrStDokumenta.AllowDBNull = false;
                 this.columnKolicina.AllowDBNull = false;

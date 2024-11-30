@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmAutomobiliPregledPrijava : Form
+    public partial class frmAutomobiliPregledPrijava : Syncfusion.Windows.Forms.Office2010Form
     {
         private List<PictureBox> PictureBoxes = new List<PictureBox>();
         List<string> filenames = new List<string>();

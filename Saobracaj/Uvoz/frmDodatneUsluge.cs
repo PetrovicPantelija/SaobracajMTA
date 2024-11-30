@@ -15,15 +15,28 @@ using Saobracaj.Izvoz;
 using Syncfusion.Windows.Forms.Tools;
 using Saobracaj.Dokumenta;
 using System.Runtime.ConstrainedExecution;
+using Microsoft.ReportingServices.Diagnostics.Internal;
 
 namespace Saobracaj.Uvoz
 {
     public partial class frmDodatneUsluge : Syncfusion.Windows.Forms.Office2010Form
     {
         int usao = 1;
+        int IzPomForme = 0;
+        string OsnovPF = "";
+        int OJPF = 0;
         public frmDodatneUsluge()
         {
             InitializeComponent();
+        }
+
+
+        public frmDodatneUsluge(string Osnov, int OJ)
+        {
+            InitializeComponent();
+            IzPomForme = 1;
+            OJPF = OJ;
+            OsnovPF = Osnov;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -90,7 +103,7 @@ namespace Saobracaj.Uvoz
             var dataAdapter = new SqlDataAdapter(select, c);
 
             var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
+            var ds = new System.Data.DataSet();
             dataAdapter.Fill(ds);
             gridGroupingControl1.DataSource = null;
             gridGroupingControl1.DataSource = ds.Tables[0];
@@ -115,7 +128,7 @@ namespace Saobracaj.Uvoz
             var dataAdapter8 = new SqlDataAdapter(select8, c8);
 
             var commandBuilder8 = new SqlCommandBuilder(dataAdapter8);
-            var ds8 = new DataSet();
+            var ds8 = new System.Data.DataSet();
             dataAdapter8.Fill(ds8);
             cboBukingPrijema.DataSource = ds8.Tables[0];
             cboBukingPrijema.DisplayMember = "IdVoza";
@@ -129,13 +142,81 @@ namespace Saobracaj.Uvoz
             var dataAdapter9 = new SqlDataAdapter(select9, c9);
 
             var commandBuilder9 = new SqlCommandBuilder(dataAdapter9);
-            var ds9 = new DataSet();
+            var ds9 = new System.Data.DataSet();
             dataAdapter9.Fill(ds9);
             cboUsluga.DataSource = ds9.Tables[0];
             cboUsluga.DisplayMember = "Naziv";
             cboUsluga.ValueMember = "ID";
 
             usao = 1;
+
+            if (IzPomForme == 1)
+            {
+
+                UcitajPredpodatke();
+            
+            }
+        }
+
+        private void UcitajPredpodatke()
+        {
+            if (OsnovPF == null)
+            {
+                return;
+            }
+            var select = "";
+            if (OJPF == 2)
+            {
+                chkIzvoz.Checked = true;
+                select = " Select RadniNalogInterni.ID as ID,  " +
+     " RadniNalogInterni.IDManipulacijaJed, VrstaManipulacije.Naziv, Uradjen , RadniNalogInterni.KonkretaIDUsluge from RadniNalogInterni " +
+     " inner join IzvozKonacna on IzvozKonacna.ID = RadniNalogInterni.BrojOsnov " +
+     " inner join VrstaManipulacije on VrstaManipulacije.ID = RadniNalogInterni.IDManipulacijaJed " +
+     " where RadniNalogInterni.OJIzdavanja = 2  and VrstaManipulacije.Dodatna = 1 " +
+     " and RadniNalogInterni.BrojOsnov = " + OsnovPF;
+            }
+            else if (OJPF==1)
+            {
+                chkUvoz.Checked = true;
+                select = " Select RadniNalogInterni.ID as ID, RadniNalogInterni.IDManipulacijaJed, VrstaManipulacije.Naziv,  RadniNalogInterni.KonkretaIDUsluge from RadniNalogInterni " +
+                   " inner join UvozKonacna on UvozKOnacna.ID = RadniNalogInterni.BrojOsnov " +
+     "  inner join VrstaManipulacije on VrstaManipulacije.ID = RadniNalogInterni.IDManipulacijaJed " +
+     "  where RadniNalogInterni.OJIzdavanja = 1 and VrstaManipulacije.Dodatna = 1 " +
+     "  and RadniNalogInterni.BrojOSnov =  " + OsnovPF;
+            }
+            else
+            {
+
+                chkDodatne.Checked = true;
+            }
+         
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new System.Data.DataSet();
+            dataAdapter.Fill(ds);
+            gridGroupingControl1.DataSource = null;
+            gridGroupingControl1.DataSource = ds.Tables[0];
+            gridGroupingControl1.ShowGroupDropArea = true;
+            this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
+
+
+
+
+            foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+
+
+
+           
+           
+
+
         }
 
         private void button4_Click(object sender, EventArgs e)

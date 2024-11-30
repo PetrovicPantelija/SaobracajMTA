@@ -1,4 +1,6 @@
-﻿using Saobracaj.Izvoz;
+﻿using Microsoft.Office.Interop.Excel;
+using Saobracaj.Izvoz;
+using Syncfusion.GridHelperClasses;
 using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms.Grid;
 using Syncfusion.Windows.Forms.Grid.Grouping;
@@ -7,6 +9,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
@@ -172,9 +175,20 @@ namespace Saobracaj.Uvoz
             gcfd3.Expression = "[Uradjen] =  '1'";
             this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd3);
 
+
+            GridConditionalFormatDescriptor gcfd31 = new GridConditionalFormatDescriptor();
+            gcfd31.Appearance.AnyRecordFieldCell.BackColor = Color.Blue;
+            gcfd31.Appearance.AnyRecordFieldCell.TextColor = Color.Yellow;
+
+            gcfd31.Expression = "[Uradjen] =  '2'";
+            this.gridGroupingControl1.TableDescriptor.ConditionalFormats.Add(gcfd3);
+
+
+
+
             GridConditionalFormatDescriptor gcfd = new GridConditionalFormatDescriptor();
-            gcfd.Appearance.AnyRecordFieldCell.BackColor = Color.BlueViolet;
-            gcfd.Appearance.AnyRecordFieldCell.TextColor = Color.White;
+            gcfd.Appearance.AnyRecordFieldCell.BackColor = Color.Orange;
+            gcfd.Appearance.AnyRecordFieldCell.TextColor = Color.Black;
 
             gcfd.Expression = "[StatusIzdavanja] =  'DOPUNA'";
 
@@ -235,6 +249,58 @@ namespace Saobracaj.Uvoz
             {
                 column.AllowFilter = true;
             }
+
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+
+
+            RefreshDataGrid2PoScenariju();
+        }
+
+
+        private void RefreshDataGrid2PoScenariju()
+        {
+
+
+            ///START
+            ///
+        
+
+
+            var select = "";
+           
+                select = "  select Distinct RadniNalogInterni.PlanID, UvozKonacna.BrojKontejnera, Scenario.Naziv, 'Uvozni' as OJ from RadniNalogInterni " +
+              "  inner join UvozKonacna on RadniNalogInterni.BrojOsnov = UvozKonacna.ID inner join Scenario on UvozKonacna.Scenario = Scenario.ID " +
+              "  where Uradjen not in (1, 2) " +
+               " union " +
+              "  select Distinct RadniNalogInterni.PlanID, IzvozKonacna.BrojKontejnera, Scenario.Naziv , 'Izvozni' as OJ  from RadniNalogInterni " +
+              "  inner join IzvozKonacna on RadniNalogInterni.BrojOsnov = IzvozKonacna.ID " +
+              "  inner   join Scenario on IzvozKonacna.Scenario = Scenario.ID " +
+              "  where Uradjen not in (1, 2)";
+           
+
+
+
+            var s_connection = Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            gridGroupingControl2.DataSource = ds.Tables[0];
+            gridGroupingControl2.ShowGroupDropArea = true;
+            this.gridGroupingControl2.TopLevelGroupOptions.ShowFilterBar = true;
+
+            foreach (GridColumnDescriptor column in this.gridGroupingControl2.TableDescriptor.Columns)
+            {
+                column.AllowFilter = true;
+            }
+
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            dynamicFilter.WireGrid(this.gridGroupingControl2);
+
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
@@ -617,6 +683,25 @@ namespace Saobracaj.Uvoz
             }
 
 
+        }
+
+        private void toolStripButton9_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Funkcija će obrisati sve selektovane redove i njihove pripadajuće RN i prevoze ukoliko su napravljeni?", "Potvrda", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                if (this.gridGroupingControl1.Table.SelectedRecords.Count > 0)
+                {
+                    foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
+                    {
+                        Saobracaj.Uvoz.InsertRadniNalogInterni ins = new Saobracaj.Uvoz.InsertRadniNalogInterni();
+                        ins.DelRadniNalogInterniSaDokumentima(Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()));
+                        //To get the cell value of particular column of selected records   
+                        //  string cellValue = selectedRecord.Record.GetValue("ID").ToString();
+                        // MessageBox.Show(cellValue);
+                    }
+                }
+            }
         }
     }
 }

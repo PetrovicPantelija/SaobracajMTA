@@ -2577,7 +2577,7 @@ namespace Saobracaj.RadniNalozi
             }
         }
 
-        public void InsRN12Medjuskladisni(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaSkladiste, int SaPozicijuSklad, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, string BrojKontejnera, int VrstaKontejnera, int Brodar, int NalogID)
+        public void InsRN12Medjuskladisni(DateTime DatumRasporeda, string NalogIzdao, DateTime DatumRealizacije, int SaSkladiste, int SaPozicijuSklad, int NaSkladiste, int NaPozicijuSklad, int IdUsluge, string NalogRealizovao, string Napomena, string BrojKontejnera, int VrstaKontejnera, int Brodar, int NalogID, int PotrebanCIR)
         {
             SqlConnection conn = new SqlConnection(connect);
             SqlCommand cmd = conn.CreateCommand();
@@ -2690,6 +2690,14 @@ namespace Saobracaj.RadniNalozi
             nalogid.Direction = ParameterDirection.Input;
             nalogid.Value = NalogID;
             cmd.Parameters.Add(nalogid);
+
+
+            SqlParameter potrebancir = new SqlParameter();
+            potrebancir.ParameterName = "@PotrebanCIR";
+            potrebancir.SqlDbType = SqlDbType.Int;
+            potrebancir.Direction = ParameterDirection.Input;
+            potrebancir.Value = PotrebanCIR;
+            cmd.Parameters.Add(potrebancir);
 
 
             // @BrojKontejnera nvarchar(50), @VrstaKontejnera int, @Brodar int

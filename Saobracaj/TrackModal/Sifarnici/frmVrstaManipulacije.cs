@@ -207,7 +207,7 @@ namespace Testiranje.Sifarnici
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT ID , Naziv, JM, UticeSkladisno, TipManipulacije, OrgJed, Oznaka,Relacija, Cena, GrupaVrsteManipulacijeID, Administrativna, Drumska, Dodatna, PotvrdaUradio, Apstrakt1, Apstrakt2 from VrstaManipulacije where ID=" + txtSifra.Text, con);
+            SqlCommand cmd = new SqlCommand("SELECT ID , Naziv, JM, UticeSkladisno, TipManipulacije, OrgJed, Oznaka,Relacija, Cena, GrupaVrsteManipulacijeID, Administrativna, Drumska, Dodatna, PotvrdaUradio, Apstrakt1, Apstrakt2, TipKontejnera, RlTerminali, RLTerminali2, RLTerminali3 from VrstaManipulacije where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -245,6 +245,12 @@ namespace Testiranje.Sifarnici
 
                 txtApstrakt1.Text = dr["Apstrakt1"].ToString();
                 txtApstrakt2.Text = dr["Apstrakt2"].ToString();
+
+                txtTipKont.SelectedValue = Convert.ToInt32(dr["TipKontejnera"].ToString());
+
+                cboRLTerminal.SelectedValue = Convert.ToInt32(dr["RLTerminali"].ToString());
+                cboRLTerminal2.SelectedValue = Convert.ToInt32(dr["RLTerminali2"].ToString());
+                cboRLTerminal3.SelectedValue = Convert.ToInt32(dr["RLTerminali3"].ToString());
             }
 
             con.Close();

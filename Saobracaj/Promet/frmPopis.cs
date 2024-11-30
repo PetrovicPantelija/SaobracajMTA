@@ -15,6 +15,7 @@ using System.Net.Mail;
 
 using Microsoft.Reporting.WinForms;
 using Saobracaj.Sifarnici;
+using Syncfusion.Windows.Forms;
 
 namespace TrackModal.Promet
 {
@@ -35,7 +36,10 @@ namespace TrackModal.Promet
         bool usao = false;
         public frmPopis()
         {
+          //  Syncfusion.Windows.Forms.ThemeColors = 
             InitializeComponent();
+          //  skinManager1.Controls = this;
+          //  skinManager1.VisualTheme = VisualTheme.Office2016Black;
 
         }
 
@@ -43,6 +47,18 @@ namespace TrackModal.Promet
         {
             KorisnikCene = Korisnik;
             InitializeComponent();
+         //   SkinManager.LoadAssembly(typeof(Office2016Theme).Assembly);
+
+            //Loading HighContrastTheme assembly
+            //  SkinManager.LoadAssembly(typeof(HighContrastTheme).Assembly);
+
+            // Loading Office2016Theme assembly
+            //  SkinManager.LoadAssembly(typeof(Syncfusion.WinForms.Themes.Office2016Theme).Assembly);
+           // skinManager1.VisualTheme = VisualTheme.Office2019Colorful;
+          // skinManager1.Controls = this;
+       
+
+            //  skinManager1.VisualTheme = VisualTheme.Office2010Blue;
 
         }
 
@@ -51,6 +67,8 @@ namespace TrackModal.Promet
             KorisnikCene = Korisnik;
            
             InitializeComponent();
+           // skinManager1.Controls = this;
+          //  skinManager1.VisualTheme = VisualTheme.Office2016Black;
 
             txtSifra.Text = Broj.ToString();
             VratiPodatke(Convert.ToInt32(txtSifra.Text));
@@ -161,13 +179,20 @@ namespace TrackModal.Promet
         { 
             if (status == true)
                 {
+                InsertPopis ins = new InsertPopis();
+                ins.InsPopis(Convert.ToDateTime(dtpDatumPopisa.Text), txtNapomena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene);
+                VratiPodatkeMax();
+                if (chkPoSkladistu.Checked == true)
+                {
+                    ins.InsStavkePopisaPoSkladistu(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumPopisa.Value), KorisnikCene, Convert.ToInt32(cboSkladisteNovo.SelectedValue));
+                }
+                else
+                {
+                    
+                    ins.InsStavkePopisa(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumPopisa.Value), KorisnikCene);
+                }
                     /// ,  string RegBrKamiona,   string ImeVozaca,   int Vozom
-                    InsertPopis ins = new InsertPopis();
-                    ins.InsPopis(Convert.ToDateTime(dtpDatumPopisa.Text), txtNapomena.Text ,Convert.ToDateTime(DateTime.Now), KorisnikCene);
                     status = false;
-                    VratiPodatkeMax();
-                ins.InsStavkePopisa(Convert.ToInt32(txtSifra.Text),Convert.ToDateTime(dtpDatumPopisa.Value), KorisnikCene);
-
                 }
                 else
                 {
@@ -176,7 +201,15 @@ namespace TrackModal.Promet
                     upd.UpdPopis(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumPopisa.Text), txtNapomena.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene);
                     status = false;
                 }
-            RefreshDataGrid();
+            if (chkPoSkladistu.Checked == true)
+            { 
+                RefreshDataGridPoSkladistu();
+            }
+            else
+            {
+                RefreshDataGrid();
+            }
+           
            
         }
 
@@ -194,7 +227,17 @@ namespace TrackModal.Promet
                 //do something else
             }
 
-            
+            if (chkPoSkladistu.Checked == true)
+            {
+                RefreshDataGridPoSkladistu();
+            }
+            else
+            {
+                RefreshDataGrid();
+            }
+
+
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -206,7 +249,22 @@ namespace TrackModal.Promet
             else
             {
                 InsertPopis ins = new InsertPopis();
-                ins.InsPopisStavke(Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, Convert.ToInt32(cboSkladisteNovo.SelectedValue), Convert.ToInt32(cboPozicijaNovo.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene);
+                if (chkPoSkladistu.Checked == true)
+                {
+                    ins.InsStavkePopisaPoSkladistu(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumPopisa.Value), KorisnikCene, Convert.ToInt32(cboSkladisteNovo.SelectedValue));
+                }
+                else
+                {
+
+                    ins.InsStavkePopisa(Convert.ToInt32(txtSifra.Text), Convert.ToDateTime(dtpDatumPopisa.Value), KorisnikCene);
+                }
+            }
+            if (chkPoSkladistu.Checked == true)
+            {
+                RefreshDataGridPoSkladistu();
+            }
+            else
+            {
                 RefreshDataGrid();
             }
         }
@@ -215,7 +273,14 @@ namespace TrackModal.Promet
         {
             InsertPopis ins = new InsertPopis();
             ins.UpdPopisStavke(Convert.ToInt32(txtStavka.Text), Convert.ToInt32(txtSifra.Text), txtBrojKontejnera.Text, Convert.ToInt32(cboSkladisteNovo.SelectedValue), Convert.ToInt32(cboPozicijaNovo.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene);
-            RefreshDataGrid();
+            if (chkPoSkladistu.Checked == true)
+            {
+                RefreshDataGridPoSkladistu();
+            }
+            else
+            {
+                RefreshDataGrid();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -226,7 +291,14 @@ namespace TrackModal.Promet
             {
                 InsertPopis dels = new InsertPopis();
                 dels.DelPopisStavke(Convert.ToInt32(txtStavka.Text));
-                RefreshDataGrid();
+                if (chkPoSkladistu.Checked == true)
+                {
+                    RefreshDataGridPoSkladistu();
+                }
+                else
+                {
+                    RefreshDataGrid();
+                }
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -242,6 +314,74 @@ namespace TrackModal.Promet
                         " Skladista ON PopisStavke.SkladisteU = Skladista.ID INNER JOIN " +
                         " Pozicija ON PopisStavke.LokacijaU = Pozicija.ID " +
                            " where PopisStavke.IdNadredjenog = " + txtSifra.Text ;
+
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            var c = new SqlConnection(s_connection);
+            var dataAdapter = new SqlDataAdapter(select, c);
+
+            var commandBuilder = new SqlCommandBuilder(dataAdapter);
+            var ds = new DataSet();
+            dataAdapter.Fill(ds);
+            dataGridView1.ReadOnly = false;
+            dataGridView1.DataSource = ds.Tables[0];
+            dataGridView1.Columns["StvarnoStanje"].ReadOnly = false;
+
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.BackgroundColor = Color.White;
+
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+            DataGridViewColumn column = dataGridView1.Columns[0];
+            dataGridView1.Columns[0].HeaderText = "Stavka";
+            dataGridView1.Columns[0].Width = 50;
+            dataGridView1.Columns[0].Visible = false;
+
+            DataGridViewColumn column2 = dataGridView1.Columns[1];
+            dataGridView1.Columns[1].HeaderText = "Popis";
+            dataGridView1.Columns[1].Width = 50;
+
+            DataGridViewColumn column3 = dataGridView1.Columns[2];
+            dataGridView1.Columns[2].HeaderText = "Datum popisa";
+            dataGridView1.Columns[2].Width = 70;
+
+            DataGridViewColumn column4 = dataGridView1.Columns[3];
+            dataGridView1.Columns[3].HeaderText = "Napomena";
+            dataGridView1.Columns[3].Width = 110;
+
+            DataGridViewColumn column5 = dataGridView1.Columns[4];
+            dataGridView1.Columns[4].HeaderText = "Broj Kontejnera";
+            dataGridView1.Columns[4].Width = 110;
+
+            DataGridViewColumn column6 = dataGridView1.Columns[5];
+            dataGridView1.Columns[5].HeaderText = "Skladište";
+            dataGridView1.Columns[5].Width = 80;
+
+            DataGridViewColumn column7 = dataGridView1.Columns[6];
+            dataGridView1.Columns[6].HeaderText = "Pozicija";
+            dataGridView1.Columns[6].Width = 80;
+
+            dataGridView1.Columns["skU"].Visible = false;
+            dataGridView1.Columns["lokU"].Visible = false;
+
+        }
+
+        private void RefreshDataGridPoSkladistu()
+        {
+            var select = "  SELECT PopisStavke.ID AS Stavka,Popis.ID, Popis.DatumPopisa, Popis.Napomena, " +
+           "  PopisStavke.BrojKontejnera, Skladista.Naziv, Pozicija.Oznaka,PopisStavke.Stanje,popisStavke.StvarnoStanje as StvarnoStanje,PopisStavke.SkladisteU as skU,popisstavke.LokacijaU as lokU " +
+            "    FROM  Popis INNER JOIN " +
+                         " PopisStavke ON Popis.ID = PopisStavke.IDNadredjenog INNER JOIN " +
+                        " Skladista ON PopisStavke.SkladisteU = Skladista.ID INNER JOIN " +
+                        " Pozicija ON PopisStavke.LokacijaU = Pozicija.ID " +
+                           " where PopisStavke.IdNadredjenog = " + txtSifra.Text + " AND PopisStavke.SkladisteU = " + Convert.ToInt32(cboSkladisteNovo.SelectedValue);
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -395,7 +535,14 @@ namespace TrackModal.Promet
                 }
                 //decimal razlika=Convert.ToDecimal(row)
             }
-            RefreshDataGrid();
+            if (chkPoSkladistu.Checked == true)
+            {
+                RefreshDataGridPoSkladistu();
+            }
+            else
+            {
+                RefreshDataGrid();
+            }
         }
 
         private void dataGridView1_CellLeave(object sender, DataGridViewCellEventArgs e)
@@ -427,6 +574,18 @@ namespace TrackModal.Promet
                         ins.InsStvarnoStanje(Convert.ToInt32(row.Cells[0].Value), Convert.ToDecimal(row.Cells["StvarnoStanje"].Value));
                     }
                 }
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (chkPoSkladistu.Checked == true)
+            {
+                RefreshDataGridPoSkladistu();
+            }
+            else
+            {
+                RefreshDataGrid();
             }
         }
     }

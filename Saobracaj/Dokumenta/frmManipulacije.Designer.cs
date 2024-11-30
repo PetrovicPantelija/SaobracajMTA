@@ -78,6 +78,7 @@
             this.cboPozIz = new System.Windows.Forms.ComboBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.chkZauzete = new System.Windows.Forms.CheckBox();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -99,7 +100,7 @@
             this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1434, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(1466, 27);
             this.toolStrip1.TabIndex = 7;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -235,7 +236,7 @@
             this.dataGridView3.Location = new System.Drawing.Point(743, 158);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.Size = new System.Drawing.Size(691, 456);
+            this.dataGridView3.Size = new System.Drawing.Size(723, 456);
             this.dataGridView3.TabIndex = 178;
             this.dataGridView3.SelectionChanged += new System.EventHandler(this.dataGridView3_SelectionChanged);
             // 
@@ -452,9 +453,9 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(1337, 33);
+            this.button2.Location = new System.Drawing.Point(1372, 101);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(83, 46);
+            this.button2.Size = new System.Drawing.Size(82, 46);
             this.button2.TabIndex = 199;
             this.button2.Text = "Izbriši uslugu";
             this.button2.UseVisualStyleBackColor = false;
@@ -462,7 +463,7 @@
             // 
             // button3
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button3.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button3.ForeColor = System.Drawing.Color.White;
@@ -656,12 +657,27 @@
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // chkZauzete
+            // 
+            this.chkZauzete.AutoSize = true;
+            this.chkZauzete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.chkZauzete.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkZauzete.ForeColor = System.Drawing.Color.IndianRed;
+            this.chkZauzete.Location = new System.Drawing.Point(1337, 48);
+            this.chkZauzete.Name = "chkZauzete";
+            this.chkZauzete.Size = new System.Drawing.Size(95, 20);
+            this.chkZauzete.TabIndex = 234;
+            this.chkZauzete.Text = "Bez zauzetih";
+            this.chkZauzete.UseVisualStyleBackColor = false;
+            this.chkZauzete.CheckedChanged += new System.EventHandler(this.chkZauzete_CheckedChanged);
+            // 
             // frmManipulacije
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1434, 626);
+            this.ClientSize = new System.Drawing.Size(1466, 626);
+            this.Controls.Add(this.chkZauzete);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label10);
@@ -769,5 +785,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.CheckBox chkZauzete;
     }
 }

@@ -8,5 +8,10 @@ namespace Saobracaj.Sifarnici
         {
             InitializeComponent();
         }
+
+        private void tsSave_Click(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }
