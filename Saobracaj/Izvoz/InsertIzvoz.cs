@@ -272,6 +272,57 @@ namespace Saobracaj.Izvoz
             }
         }
 
+        public void DelIzvozSve(int ID)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = "DeleteIzvozSve";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
+            conn.Open();
+            SqlTransaction myTransaction = conn.BeginTransaction();
+            cmd.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                cmd.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = conn.BeginTransaction();
+                cmd.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis ");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Unos uspešno završen", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                conn.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
+
+    
+
         public void IzvozOpredelio(string BrojKontejnera)
         {
             SqlConnection conn = new SqlConnection(connection);
@@ -935,7 +986,7 @@ namespace Saobracaj.Izvoz
             }
         }
 
-        public void InsUbaciUsluguKonacnaPlan(int IDNadredjena)
+        public void InsUbaciUsluguKonacnaPlan(int ID, int IDNAdredjena)
         {
            
 
@@ -944,11 +995,18 @@ namespace Saobracaj.Izvoz
             cmd.CommandText = "InsertIzvozKonacnaVMIzUvoza";
             cmd.CommandType = CommandType.StoredProcedure;
 
+            SqlParameter id = new SqlParameter();
+            id.ParameterName = "@ID";
+            id.SqlDbType = SqlDbType.Int;
+            id.Direction = ParameterDirection.Input;
+            id.Value = ID;
+            cmd.Parameters.Add(id);
+
             SqlParameter idnadredjena = new SqlParameter();
-            idnadredjena.ParameterName = "@PlanID";
+            idnadredjena.ParameterName = "@IDNAdredjena";
             idnadredjena.SqlDbType = SqlDbType.Int;
             idnadredjena.Direction = ParameterDirection.Input;
-            idnadredjena.Value = IDNadredjena;
+            idnadredjena.Value = IDNAdredjena;
             cmd.Parameters.Add(idnadredjena);
 
            
@@ -2398,13 +2456,29 @@ namespace Saobracaj.Izvoz
                 }
             }
         }
-        public void InsVaganje(string BrojKontejnera,int VrstaKontejnera,string VagarskaPotvrdaBroj,decimal Bruto,decimal Tara,decimal Neto,DateTime DatumMerenja)
+        public void InsVaganje(int KontID, string Vozilo, string BrojKontejnera, string VagarskaPotvrdaBroj,decimal Bruto,decimal Tara,decimal Neto,DateTime DatumMerenja, string Korisnik)
         {
             SqlConnection conn = new SqlConnection(connection);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = "InsertVaganje";
             cmd.CommandType = CommandType.StoredProcedure;
 
+            SqlParameter kontid = new SqlParameter();
+            kontid.ParameterName = "@KontID";
+            kontid.SqlDbType = SqlDbType.Int;
+            kontid.Direction = ParameterDirection.Input;
+            kontid.Value = KontID;
+            cmd.Parameters.Add(kontid);
+
+            SqlParameter vozilo = new SqlParameter();
+            vozilo.ParameterName = "@Vozilo";
+            vozilo.SqlDbType = SqlDbType.NVarChar;
+            vozilo.Size = 20;
+            vozilo.Direction = ParameterDirection.Input;
+            vozilo.Value = Vozilo;
+            cmd.Parameters.Add(vozilo);
+
+            /*
             SqlParameter brKont = new SqlParameter();
             brKont.ParameterName = "@BrojKontejnera";
             brKont.SqlDbType = SqlDbType.NVarChar;
@@ -2413,12 +2487,7 @@ namespace Saobracaj.Izvoz
             brKont.Value = BrojKontejnera;
             cmd.Parameters.Add(brKont);
 
-            SqlParameter vrsta = new SqlParameter();
-            vrsta.ParameterName = "@VrstaKontejnera";
-            vrsta.SqlDbType= SqlDbType.Int;
-            vrsta.Direction = ParameterDirection.Input;
-            vrsta.Value = VrstaKontejnera;
-            cmd.Parameters.Add(vrsta);
+     */
 
             SqlParameter potrvrda = new SqlParameter();
             potrvrda.ParameterName = "@VagarskaPotvrdaBroj";
@@ -2454,6 +2523,15 @@ namespace Saobracaj.Izvoz
             datum.Direction= ParameterDirection.Input;
             datum.Value = DatumMerenja;
             cmd.Parameters.Add(datum);
+
+
+            SqlParameter korisnik = new SqlParameter();
+            korisnik.ParameterName = "@Korisnik";
+            korisnik.SqlDbType = SqlDbType.NVarChar;
+            korisnik.Size = 20;
+            korisnik.Direction = ParameterDirection.Input;
+            korisnik.Value = Korisnik;
+            cmd.Parameters.Add(korisnik);
 
             conn.Open();
             SqlTransaction myTransaction = conn.BeginTransaction();

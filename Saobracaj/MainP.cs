@@ -38,7 +38,9 @@ namespace Saobracaj
         public MainP()
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
-            InitializeComponent();
+            InitializeComponent();  
+       
+           
         }
 
         public MainP(string Logovan, int Lozinka)
@@ -2141,7 +2143,8 @@ namespace Saobracaj
 
         private void toolStripButton47_Click(object sender, EventArgs e)
         {
-
+            frmLokomotive lok = new frmLokomotive();
+            lok.Show();
         }
 
         private void toolStripButton98_Click(object sender, EventArgs e)
@@ -6667,6 +6670,92 @@ namespace Saobracaj
         {
             frmPregledLokomotivaPrimopredaja plp = new frmPregledLokomotivaPrimopredaja();
             plp.Show();
+        }
+
+        private void toolStripButton377_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmRadniNalogPregledSluzbenik")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                Uvoz.frmRadniNalogPregledSluzbenik RNIP = new Uvoz.frmRadniNalogPregledSluzbenik(Korisnik);
+                RNIP.Show();
+            }
+        }
+
+        private void toolStripButton375_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmPopisKonterjnera")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                frmPopisKonterjnera frm = new frmPopisKonterjnera();
+                frm.Show();
+            }
+        }
+
+        private void toolStripButton376_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmVozila")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                frmVozila frm = new frmVozila();
+                frm.Show();
+            }
+        }
+
+        private void toolStripButton378_Click(object sender, EventArgs e)
+        {
+            //  frmVozilaPregledPrijava
+
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmVozilaPregledPrijava")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                frmVozilaPregledPrijava frm = new frmVozilaPregledPrijava();
+                frm.Show();
+            }
         }
     }
     }

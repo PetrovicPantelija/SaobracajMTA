@@ -83,14 +83,14 @@ namespace Testiranje.Sifarnici
             if (status == true)
             {
                 InsertVrstaManipulacije ins = new InsertVrstaManipulacije();
-                ins.InsVrstaManipulacije(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue), administrativna, drumska, dodatna, potvrdauradio, txtApstrakt1.Text, txtApstrakt2.Text,Convert.ToInt32(txtTipKont.SelectedValue));
+                ins.InsVrstaManipulacije(txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue), administrativna, drumska, dodatna, potvrdauradio, txtApstrakt1.Text, txtApstrakt2.Text,Convert.ToInt32(txtTipKont.SelectedValue), Convert.ToInt32(cboRLTerminal.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue));
                 status = false;
             }
             else
             {
                 //int TipCenovnika ,int Komitent, double Cena , int VrstaManipulacije ,DateTime  Datum , string Korisnik
                 InsertVrstaManipulacije upd = new InsertVrstaManipulacije();
-                upd.UpdVrstaManipulacije(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue), administrativna, drumska, dodatna,potvrdauradio, txtApstrakt1.Text, txtApstrakt2.Text,Convert.ToInt32(txtTipKont.SelectedValue));
+                upd.UpdVrstaManipulacije(Convert.ToInt32(txtSifra.Text), txtNaziv.Text, Convert.ToDateTime(DateTime.Now), KorisnikCene, txtJM.Text, uticeskladisno, txtJM2.Text, Convert.ToInt32(cboTipManipulacije.SelectedValue), Convert.ToInt32(cboOrgJed.SelectedValue), txtOznaka.Text, txtRelacija.Text, Convert.ToDouble(txtCena.Value), Convert.ToInt32(cboGrupaVrsteManipulacije.SelectedValue), administrativna, drumska, dodatna,potvrdauradio, txtApstrakt1.Text, txtApstrakt2.Text,Convert.ToInt32(txtTipKont.SelectedValue), Convert.ToInt32(cboRLTerminal.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue));
             }
             RefreshDataGrid();
         }
@@ -207,7 +207,7 @@ namespace Testiranje.Sifarnici
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT ID , Naziv, JM, UticeSkladisno, TipManipulacije, OrgJed, Oznaka,Relacija, Cena, GrupaVrsteManipulacijeID, Administrativna, Drumska, Dodatna, PotvrdaUradio, Apstrakt1, Apstrakt2 from VrstaManipulacije where ID=" + txtSifra.Text, con);
+            SqlCommand cmd = new SqlCommand("SELECT ID , Naziv, JM, UticeSkladisno, TipManipulacije, OrgJed, Oznaka,Relacija, Cena, GrupaVrsteManipulacijeID, Administrativna, Drumska, Dodatna, PotvrdaUradio, Apstrakt1, Apstrakt2, TipKontejnera, RlTerminali, RLTerminali2, RLTerminali3 from VrstaManipulacije where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -245,6 +245,12 @@ namespace Testiranje.Sifarnici
 
                 txtApstrakt1.Text = dr["Apstrakt1"].ToString();
                 txtApstrakt2.Text = dr["Apstrakt2"].ToString();
+
+                txtTipKont.SelectedValue = Convert.ToInt32(dr["TipKontejnera"].ToString());
+
+                cboRLTerminal.SelectedValue = Convert.ToInt32(dr["RLTerminali"].ToString());
+                cboRLTerminal2.SelectedValue = Convert.ToInt32(dr["RLTerminali2"].ToString());
+                cboRLTerminal3.SelectedValue = Convert.ToInt32(dr["RLTerminali3"].ToString());
             }
 
             con.Close();
@@ -362,6 +368,32 @@ namespace Testiranje.Sifarnici
             txtJM2.DataSource = tkDS3.Tables[0];
             txtJM2.DisplayMember = "MeNaziv";
             txtJM2.ValueMember = "MeSifra";
+
+            //Kontejnerski terminali
+            var rl = "Select ID, (Naziv + ' - ' + Oznaka) as Naziv From KontejnerskiTerminali order by (Naziv + ' ' + Oznaka)";
+            var rlSAD = new SqlDataAdapter(rl, s_connection6);
+            var rlSDS = new DataSet();
+            rlSAD.Fill(rlSDS);
+            cboRLTerminal.DataSource = rlSDS.Tables[0];
+            cboRLTerminal.DisplayMember = "Naziv";
+            cboRLTerminal.ValueMember = "ID";
+
+            //Kontejnerski terminali 2
+            var rl2 = "Select ID, (Naziv + ' - ' + Oznaka) as Naziv From KontejnerskiTerminali order by (Naziv + ' ' + Oznaka)";
+            var rlSAD2 = new SqlDataAdapter(rl2, s_connection6);
+            var rlSDS2 = new DataSet();
+            rlSAD2.Fill(rlSDS2);
+            cboRLTerminal2.DataSource = rlSDS2.Tables[0];
+            cboRLTerminal2.DisplayMember = "Naziv";
+            cboRLTerminal2.ValueMember = "ID";
+
+            var rl3 = "Select ID, (Naziv + ' - ' + Oznaka) as Naziv From KontejnerskiTerminali order by (Naziv + ' ' + Oznaka)";
+            var rlSAD3 = new SqlDataAdapter(rl3, s_connection6);
+            var rlSDS3 = new DataSet();
+            rlSAD3.Fill(rlSDS3);
+            cboRLTerminal3.DataSource = rlSDS3.Tables[0];
+            cboRLTerminal3.DisplayMember = "Naziv";
+            cboRLTerminal3.ValueMember = "ID";
 
 
 

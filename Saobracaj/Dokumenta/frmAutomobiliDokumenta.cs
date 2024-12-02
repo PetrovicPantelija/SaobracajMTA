@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmAutomobiliDokumenta : Form
+    public partial class frmAutomobiliDokumenta : Syncfusion.Windows.Forms.Office2010Form
     {
         bool status = false;
         public frmAutomobiliDokumenta()

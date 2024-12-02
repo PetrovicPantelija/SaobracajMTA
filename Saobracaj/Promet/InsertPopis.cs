@@ -307,6 +307,79 @@ namespace TrackModal.Promet
                 }
             }
         }
+        public void InsStavkePopisaPoSkladistu(int IDNadredjenog, DateTime Datum, string Korisnik, int Skladiste)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection myConnection = new SqlConnection(s_connection);
+            SqlCommand myCommand = myConnection.CreateCommand();
+            myCommand.CommandText = "InsertStavkePopisaPoSkladistu";
+            myCommand.CommandType = System.Data.CommandType.StoredProcedure;
+
+            SqlParameter parameter0 = new SqlParameter();
+            parameter0.ParameterName = "@IDNadredjenog";
+            parameter0.SqlDbType = SqlDbType.Int;
+            // parameter0.Size = 3;
+            parameter0.Direction = ParameterDirection.Input;
+            parameter0.Value = IDNadredjenog;
+            myCommand.Parameters.Add(parameter0);
+
+            SqlParameter parameter7 = new SqlParameter();
+            parameter7.ParameterName = "@Datum";
+            parameter7.SqlDbType = SqlDbType.DateTime;
+            parameter7.Direction = ParameterDirection.Input;
+            parameter7.Value = Datum;
+            myCommand.Parameters.Add(parameter7);
+
+            SqlParameter parameter8 = new SqlParameter();
+            parameter8.ParameterName = "@Korisnik";
+            parameter8.SqlDbType = SqlDbType.NVarChar;
+            parameter8.Size = 20;
+            parameter8.Direction = ParameterDirection.Input;
+            parameter8.Value = Korisnik;
+            myCommand.Parameters.Add(parameter8);
+
+
+            SqlParameter parameter9 = new SqlParameter();
+            parameter9.ParameterName = "@Skladiste";
+            parameter9.SqlDbType = SqlDbType.Int;
+            parameter9.Direction = ParameterDirection.Input;
+            parameter9.Value = Skladiste;
+            myCommand.Parameters.Add(parameter9);
+
+            myConnection.Open();
+            SqlTransaction myTransaction = myConnection.BeginTransaction();
+            myCommand.Transaction = myTransaction;
+            bool error = true;
+            try
+            {
+                myCommand.ExecuteNonQuery();
+                myTransaction.Commit();
+                myTransaction = myConnection.BeginTransaction();
+                myCommand.Transaction = myTransaction;
+            }
+
+            catch (SqlException)
+            {
+                throw new Exception("Neuspešan upis u bazu");
+            }
+
+            finally
+            {
+                if (!error)
+                {
+                    myTransaction.Commit();
+                    MessageBox.Show("Nije uspeo upis ", "",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                myConnection.Close();
+
+                if (error)
+                {
+                    // Nedra.DataSet1TableAdapters.QueriesTableAdapter adapter = new Nedra.DataSet1TableAdapters.QueriesTableAdapter();
+                }
+            }
+        }
         public void InsStvarnoStanje(int ID,decimal StvarnoStanje)
         {
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;

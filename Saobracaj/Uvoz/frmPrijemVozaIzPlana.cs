@@ -189,6 +189,8 @@ namespace Saobracaj.Uvoz
 
                     }
 
+                    ///
+
                 }
 
                 else
@@ -405,10 +407,12 @@ namespace Saobracaj.Uvoz
             {
                 if (Kamion == 1)
                 {
+                    ///
                     //Ako jer kamion 1 onda prenosim voz
                     InsertUvozKonacna ins = new InsertUvozKonacna();
                     
                     {
+                        //Stavke voza
                         //OVaj poziv vazi samo za Voz
                         ins.PrenesiPlanUtovaraUPrijemVoz(Convert.ToInt32(txtSifra.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
                     }
@@ -463,6 +467,21 @@ namespace Saobracaj.Uvoz
                         }
 
                     }
+                    else if (chkUvoz.Checked == true)
+                    {
+                        Modul = 0; // Da li je ovo Uvoz
+                        DialogResult dialogResult = MessageBox.Show("Da li želite da formirate RN 4 PRIJEM PLATFORME", "Radni nalozi?", MessageBoxButtons.YesNo);
+                        if (dialogResult == DialogResult.Yes)
+                        {
+                            RadniNalozi.RN4PrijemPlatforme ppl = new RadniNalozi.RN4PrijemPlatforme(txtSifra.Text, txtRegBrKamiona.Text, KorisnikCene, Usluga.ToString(), Modul, txtNalogID.Text);
+                            ppl.Show();
+                        }
+                        else if (dialogResult == DialogResult.No)
+                        {
+                            return;
+                        }
+
+                    }
                     else if (chkTErminal.Checked == true)
                     {
                         Modul = 4;
@@ -478,7 +497,7 @@ namespace Saobracaj.Uvoz
                         }
                     }
                     else
-                    { 
+                    {
                         Modul = 0;
                     }
                     // ProglasiObradjenimRNIVOZ(Convert.ToInt32(cboPlanUtovara.SelectedValue));

@@ -26,7 +26,7 @@ namespace Saobracaj.Sifarnici
     public partial class frmLogovanje : Syncfusion.Windows.Forms.Office2010Form
     {
         //
-        public string company = "";
+        public static string company = "";
 
         public static string Firma = "";
         public static string connectionString = "";
@@ -253,6 +253,12 @@ namespace Saobracaj.Sifarnici
         {
             VaganjePregled frm = new VaganjePregled();
             frm.Show();
+        }
+
+        private void button2_Click_2(object sender, EventArgs e)
+        {
+            Administracija.frmSistemskaTabela sis = new Administracija.frmSistemskaTabela();
+            sis.Show();
         }
     }
 }

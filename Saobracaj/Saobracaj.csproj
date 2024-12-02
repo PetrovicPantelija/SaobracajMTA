@@ -317,9 +317,6 @@
     <Reference Include="Syncfusion.SpellChecker.Base, Version=19.4460.0.56, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.SpellChecker.Base.19.4.0.56\lib\net46\Syncfusion.SpellChecker.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Spreadsheet.Windows, Version=19.4460.0.56, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\packages\Syncfusion.Spreadsheet.Windows.19.4.0.56\lib\net46\Syncfusion.Spreadsheet.Windows.dll</HintPath>
-    </Reference>
     <Reference Include="Syncfusion.Tools.Base, Version=19.4460.0.56, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\packages\Syncfusion.Tools.Base.19.4.0.56\lib\net46\Syncfusion.Tools.Base.dll</HintPath>
     </Reference>
@@ -499,6 +496,12 @@
     </Compile>
     <Compile Include="Administracija\frmSistematizacijaPovezivanje.Designer.cs">
       <DependentUpon>frmSistematizacijaPovezivanje.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Administracija\frmSistemskaTabela.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracija\frmSistemskaTabela.Designer.cs">
+      <DependentUpon>frmSistemskaTabela.cs</DependentUpon>
     </Compile>
     <Compile Include="Administracija\frmStavkePrimopredaje.cs">
       <SubType>Form</SubType>
@@ -858,6 +861,18 @@
     </Compile>
     <Compile Include="Dokumenta\frmPodtrase.Designer.cs">
       <DependentUpon>frmPodtrase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumenta\frmPopisKontejneraStampa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmPopisKontejneraStampa.Designer.cs">
+      <DependentUpon>frmPopisKontejneraStampa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dokumenta\frmPopisKonterjnera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmPopisKonterjnera.Designer.cs">
+      <DependentUpon>frmPopisKonterjnera.cs</DependentUpon>
     </Compile>
     <Compile Include="Dokumenta\frmPovezivanjeKontejneraIVagona.cs">
       <SubType>Form</SubType>
@@ -1285,6 +1300,12 @@
     <Compile Include="Dokumenta\frmTraseRadniNalog.Designer.cs">
       <DependentUpon>frmTraseRadniNalog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dokumenta\frmVozilaPregledPrijava.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dokumenta\frmVozilaPregledPrijava.Designer.cs">
+      <DependentUpon>frmVozilaPregledPrijava.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dokumenta\frmVucaPregled.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1344,6 +1365,7 @@
     <Compile Include="Dokumenta\InsertOsobljeLok.cs" />
     <Compile Include="Dokumenta\InsertOtprema.cs" />
     <Compile Include="Dokumenta\InsertOtpremaKontejneraStavke.cs" />
+    <Compile Include="Dokumenta\InsertPopisKontejnera.cs" />
     <Compile Include="Dokumenta\InsertPotNal.cs" />
     <Compile Include="Dokumenta\InsertPravoAktivnosti.cs" />
     <Compile Include="Dokumenta\InsertPrekovremeniRad.cs" />
@@ -2440,6 +2462,12 @@
     <Compile Include="Sifarnici\frmKontejnerStatus.Designer.cs">
       <DependentUpon>frmKontejnerStatus.cs</DependentUpon>
     </Compile>
+    <Compile Include="Sifarnici\frmLogovanjeSecond.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Sifarnici\frmLogovanjeSecond.Designer.cs">
+      <DependentUpon>frmLogovanjeSecond.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sifarnici\frmScenario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -2788,10 +2816,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TestiranjeDataSet17.xsd</DependentUpon>
     </Compile>
+    <Compile Include="TestiranjeDataSet18.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestiranjeDataSet18.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="TestiranjeDataSet19.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestiranjeDataSet19.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TESTIRANJEDataSet1TA.Designer.cs">
       <DependentUpon>TESTIRANJEDataSet1TA.xsd</DependentUpon>
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="TestiranjeDataSet20.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestiranjeDataSet20.xsd</DependentUpon>
     </Compile>
     <Compile Include="TESTIRANJEDataSetTA12.cs">
       <DependentUpon>TESTIRANJEDataSetTA12.xsd</DependentUpon>
@@ -3539,6 +3582,12 @@
     <Compile Include="Uvoz\frmRadniNalogInterniPregled.Designer.cs">
       <DependentUpon>frmRadniNalogInterniPregled.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\frmRadniNalogPregledSluzbenik.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmRadniNalogPregledSluzbenik.Designer.cs">
+      <DependentUpon>frmRadniNalogPregledSluzbenik.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\frmRadniNaloziInterni.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3697,6 +3746,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Administracija\frmSistematizacijaPovezivanje.resx">
       <DependentUpon>frmSistematizacijaPovezivanje.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Administracija\frmSistemskaTabela.resx">
+      <DependentUpon>frmSistemskaTabela.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Administracija\frmStavkePrimopredaje.resx">
       <DependentUpon>frmStavkePrimopredaje.cs</DependentUpon>
@@ -3871,6 +3923,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmPodtrase.resx">
       <DependentUpon>frmPodtrase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmPopisKontejneraStampa.resx">
+      <DependentUpon>frmPopisKontejneraStampa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmPopisKonterjnera.resx">
+      <DependentUpon>frmPopisKonterjnera.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmPovezivanjeKontejneraIVagona.resx">
       <DependentUpon>frmPovezivanjeKontejneraIVagona.cs</DependentUpon>
@@ -4089,6 +4147,9 @@
     <EmbeddedResource Include="Dokumenta\frmTraseRadniNalog.resx">
       <DependentUpon>frmTraseRadniNalog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dokumenta\frmVozilaPregledPrijava.resx">
+      <DependentUpon>frmVozilaPregledPrijava.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dokumenta\frmVucaPregled.resx">
       <DependentUpon>frmVucaPregled.cs</DependentUpon>
     </EmbeddedResource>
@@ -4195,6 +4256,7 @@
     <EmbeddedResource Include="Izvestaji\rptEvidencijaKvarova.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptMUPDozvola.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptNalogZaPrevozTA.rdlc" />
+    <EmbeddedResource Include="Izvestaji\rptPopisnaListaKontejnera.rdlc" />
     <EmbeddedResource Include="Izvestaji\rptUkupnoZaPeriod.rdlc" />
     <EmbeddedResource Include="Izvestaji\Teretnica2.rdlc" />
     <EmbeddedResource Include="Izvestaji\TeretnicaProba.rdlc" />
@@ -4593,6 +4655,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmKontejnerStatus.resx">
       <DependentUpon>frmKontejnerStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Sifarnici\frmLogovanjeSecond.resx">
+      <DependentUpon>frmLogovanjeSecond.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Sifarnici\frmScenario.resx">
       <DependentUpon>frmScenario.cs</DependentUpon>
@@ -5032,6 +5097,9 @@
     <EmbeddedResource Include="Uvoz\frmRadniNalogInterniPregled.resx">
       <DependentUpon>frmRadniNalogInterniPregled.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmRadniNalogPregledSluzbenik.resx">
+      <DependentUpon>frmRadniNalogPregledSluzbenik.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmRadniNaloziInterni.resx">
       <DependentUpon>frmRadniNaloziInterni.cs</DependentUpon>
     </EmbeddedResource>
@@ -5349,6 +5417,28 @@
     <None Include="TestiranjeDataSet17.xss">
       <DependentUpon>TestiranjeDataSet17.xsd</DependentUpon>
     </None>
+    <None Include="TestiranjeDataSet18.xsc">
+      <DependentUpon>TestiranjeDataSet18.xsd</DependentUpon>
+    </None>
+    <None Include="TestiranjeDataSet18.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TestiranjeDataSet18.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TestiranjeDataSet18.xss">
+      <DependentUpon>TestiranjeDataSet18.xsd</DependentUpon>
+    </None>
+    <None Include="TestiranjeDataSet19.xsc">
+      <DependentUpon>TestiranjeDataSet19.xsd</DependentUpon>
+    </None>
+    <None Include="TestiranjeDataSet19.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TestiranjeDataSet19.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TestiranjeDataSet19.xss">
+      <DependentUpon>TestiranjeDataSet19.xsd</DependentUpon>
+    </None>
     <None Include="TESTIRANJEDataSet1TA.xsc">
       <DependentUpon>TESTIRANJEDataSet1TA.xsd</DependentUpon>
     </None>
@@ -5359,6 +5449,17 @@
     </None>
     <None Include="TESTIRANJEDataSet1TA.xss">
       <DependentUpon>TESTIRANJEDataSet1TA.xsd</DependentUpon>
+    </None>
+    <None Include="TestiranjeDataSet20.xsc">
+      <DependentUpon>TestiranjeDataSet20.xsd</DependentUpon>
+    </None>
+    <None Include="TestiranjeDataSet20.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TestiranjeDataSet20.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="TestiranjeDataSet20.xss">
+      <DependentUpon>TestiranjeDataSet20.xsd</DependentUpon>
     </None>
     <None Include="TESTIRANJEDataSetTA12.xsc">
       <DependentUpon>TESTIRANJEDataSetTA12.xsd</DependentUpon>

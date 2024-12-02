@@ -12,30 +12,71 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Izvoz
 {
-    public partial class Vaganje : Form
+    public partial class Vaganje : Syncfusion.Windows.Forms.Office2010Form
     {
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
         string brojKontejnera;
-        string vrsta;
+        string  Vozilo, Vozac;
+        int kontID, vrsta;
         public Vaganje()
         {
             InitializeComponent();
         }
-        public Vaganje(string kontejner,string vrstaKontejnera)
+        public Vaganje(string kontejner,int KontID, string VoziloK, string Vozac)
         {
             InitializeComponent();
             brojKontejnera = kontejner;
-            vrsta= vrstaKontejnera;
+           
+            kontID = KontID;
+            Vozilo = VoziloK;
         }
         
 
         private void Vaganje_Load(object sender, EventArgs e)
         {
             txtKontejner.Text = brojKontejnera;
-            txtVrstaKontejnera.Text= vrsta;
+            cbovrstakontejnera.SelectedValue = vrsta;
+            txtKontID.Text = kontID.ToString();
+
+            SqlConnection conn = new SqlConnection(connection);
+
+            var TipKontenjera = "Select ID,SkNaziv from TipKontenjera order by ID";
+            var daTK = new SqlDataAdapter(TipKontenjera, conn);
+            var daDS = new System.Data.DataSet();
+            daTK.Fill(daDS);
+            cbovrstakontejnera.DataSource = daDS.Tables[0];
+            cbovrstakontejnera.DisplayMember = "SkNaziv";
+            cbovrstakontejnera.ValueMember = "ID";
+
+
+            VratiVrstuKontejnera(txtKontID.Text);
 
             FillGV();
+        }
+
+        private void VratiVrstuKontejnera(string KontID)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand(" select VrstaKontejnera, BrojKontejnera, Vozilo from IzvozKonacna " +
+             " where IzvozKonacna.ID = " + KontID, con);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+             
+                cbovrstakontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
+                txtKontejner.Text = dr["BrojKontejnera"].ToString();
+                txtVozilo.Text = dr["Vozilo"].ToString();
+            }
+
+            con.Close();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -45,7 +86,7 @@ namespace Saobracaj.Izvoz
 
             con.Open();
 
-            SqlCommand cmd = new SqlCommand("Select ID From Vaganje Where BrojKontejnera='"+txtKontejner.Text+"'", con);
+            SqlCommand cmd = new SqlCommand("Select ID From Vaganje Where IzvozKonacnaID='" + txtKontID.Text+"'", con);
 
             SqlDataReader dr = cmd.ExecuteReader();
             if (dr.HasRows)
@@ -56,8 +97,8 @@ namespace Saobracaj.Izvoz
             else
             {
                 InsertIzvoz ins = new InsertIzvoz();
-                ins.InsVaganje(txtKontejner.Text.ToString().TrimEnd(), Convert.ToInt32(txtVrstaKontejnera.Text), txtVagarskaPotvrda.Text.ToString().TrimEnd(), Convert.ToDecimal(txtBruto.Text),
-                    Convert.ToDecimal(txtTara.Text), Convert.ToDecimal(txtNeto.Text), Convert.ToDateTime(dateTimePicker1.Value));
+                ins.InsVaganje(Convert.ToInt32(txtKontID.Text), txtVozilo.Text, txtKontejner.Text.ToString().TrimEnd(),  txtVagarskaPotvrda.Text.ToString().TrimEnd(), Convert.ToDecimal(txtBruto.Text),
+                    Convert.ToDecimal(txtTara.Text), Convert.ToDecimal(txtNeto.Text), Convert.ToDateTime(dtpDatumMerenja.Value), Sifarnici.frmLogovanje.user);
             }
             con.Close();
             FillGV();

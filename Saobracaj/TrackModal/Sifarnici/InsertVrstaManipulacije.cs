@@ -10,7 +10,7 @@ namespace Testiranje.Sifarnici
     class InsertVrstaManipulacije
     {
 
-        public void InsVrstaManipulacije(string Naziv, DateTime Datum, string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna, int drumski, int Dodatna, int PotvrdaUradio, string Apstrakt1, string Apstrakt2,int TipKontejnera)
+        public void InsVrstaManipulacije(string Naziv, DateTime Datum, string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna, int drumski, int Dodatna, int PotvrdaUradio, string Apstrakt1, string Apstrakt2,int TipKontejnera, int RLTerminali, int RLTerminali2, int RLTerminali3)
         {
             // @Oznaka nvarchar(50), 
             // @Relacija nvarchar(100), 
@@ -168,6 +168,29 @@ namespace Testiranje.Sifarnici
             myCommand.Parameters.Add(parameter21);
 
 
+            SqlParameter parameter22 = new SqlParameter();
+            parameter22.ParameterName = "@RLTerminali";
+            parameter22.SqlDbType = SqlDbType.Int;
+            parameter22.Direction = ParameterDirection.Input;
+            parameter22.Value = RLTerminali;
+            myCommand.Parameters.Add(parameter22);
+
+
+            SqlParameter parameter23 = new SqlParameter();
+            parameter23.ParameterName = "@RLTerminali2";
+            parameter23.SqlDbType = SqlDbType.Int;
+            parameter23.Direction = ParameterDirection.Input;
+            parameter23.Value = RLTerminali2;
+            myCommand.Parameters.Add(parameter23);
+
+            SqlParameter parameter24 = new SqlParameter();
+            parameter24.ParameterName = "@RLTerminali3";
+            parameter24.SqlDbType = SqlDbType.Int;
+            parameter24.Direction = ParameterDirection.Input;
+            parameter24.Value = RLTerminali3;
+            myCommand.Parameters.Add(parameter24);
+
+
 
 
 
@@ -212,7 +235,7 @@ namespace Testiranje.Sifarnici
             }
         }
 
-        public void UpdVrstaManipulacije(int ID, string Naziv, DateTime Datum, string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna, int drumski, int Dodatna, int PotvrdaUradio, string Apstrakt1, string Apstrakt2,int TipKontejnera)
+        public void UpdVrstaManipulacije(int ID, string Naziv, DateTime Datum, string Korisnik, string JM, int UticeSkladisno, string JM2, int TipManipulacije, int OrgJed, string Oznaka, string Relacija, double Cena, int GrupaVrsteManipulacijeID, int administrativna, int drumski, int Dodatna, int PotvrdaUradio, string Apstrakt1, string Apstrakt2,int TipKontejnera, int RLTerminali, int RLTerminali2, int RLTerminali3)
         {
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
@@ -372,6 +395,28 @@ namespace Testiranje.Sifarnici
             parameter21.Direction = ParameterDirection.Input;
             parameter21.Value = TipKontejnera;
             myCommand.Parameters.Add(parameter21);
+
+            SqlParameter parameter22 = new SqlParameter();
+            parameter22.ParameterName = "@RLTerminali";
+            parameter22.SqlDbType = SqlDbType.Int;
+            parameter22.Direction = ParameterDirection.Input;
+            parameter22.Value = RLTerminali;
+            myCommand.Parameters.Add(parameter22);
+
+
+            SqlParameter parameter23 = new SqlParameter();
+            parameter23.ParameterName = "@RLTerminali2";
+            parameter23.SqlDbType = SqlDbType.Int;
+            parameter23.Direction = ParameterDirection.Input;
+            parameter23.Value = RLTerminali2;
+            myCommand.Parameters.Add(parameter23);
+
+            SqlParameter parameter24 = new SqlParameter();
+            parameter24.ParameterName = "@RLTerminali3";
+            parameter24.SqlDbType = SqlDbType.Int;
+            parameter24.Direction = ParameterDirection.Input;
+            parameter24.Value = RLTerminali3;
+            myCommand.Parameters.Add(parameter24);
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

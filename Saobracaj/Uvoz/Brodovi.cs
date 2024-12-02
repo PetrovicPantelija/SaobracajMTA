@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
@@ -12,10 +13,13 @@ namespace Saobracaj.Uvoz
         bool status = false;
         string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
+
+
         public Brodovi()
         {
             InitializeComponent();
             FillGV();
+            sfButton1.Paint += sfButton1_Paint;
         }
 
         private void Brodovi_Load(object sender, EventArgs e)
@@ -36,7 +40,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkGreen;
             dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
             dataGridView1.BackgroundColor = Color.White;
 
@@ -104,5 +108,51 @@ namespace Saobracaj.Uvoz
             }
             catch { }
         }
+
+        private void txtNaziv_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sfButton1_Paint(object sender, PaintEventArgs e)
+        {
+            int radius = 5;
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+            Rectangle rect = new Rectangle(this.sfButton1.ClientRectangle.X + 1,
+                                           this.sfButton1.ClientRectangle.Y + 1,
+                                           this.sfButton1.ClientRectangle.Width - 2,
+                                           this.sfButton1.ClientRectangle.Height - 2);
+            sfButton1.Region = new Region(GetRoundedRect(rect, radius));
+            rect = new Rectangle(rect.X + 1, rect.Y + 1, rect.Width - 2, rect.Height - 2);
+            e.Graphics.DrawPath(new Pen(Color.Red), GetRoundedRect(rect, radius));
+        }
+        private GraphicsPath GetRoundedRect(Rectangle bounds, int radius)
+        {
+            int diameter = radius * 2;
+            Size size = new Size(diameter, diameter);
+            Rectangle arc = new Rectangle(bounds.Location, size);
+            GraphicsPath path = new GraphicsPath();
+
+            if (radius == 0)
+            {
+                path.AddRectangle(bounds);
+                return path;
+            }
+
+            // top left arc  
+            path.AddArc(arc, 180, 90);
+            // top right arc  
+            arc.X = bounds.Right - diameter;
+            path.AddArc(arc, 270, 90);
+            // bottom right arc  
+            arc.Y = bounds.Bottom - diameter;
+            path.AddArc(arc, 0, 90);
+            // bottom left arc 
+            arc.X = bounds.Left;
+            path.AddArc(arc, 90, 90);
+            path.CloseFigure();
+            return path;
+        }
     }
 }
+

@@ -25,7 +25,14 @@ namespace Saobracaj.RadniNalozi
             sklad = Sklad;
             poz = Poz;
             txtNalogID.Text = nalog.ToString();
-        }
+            if (frmLogovanje.Firma == "Leget")
+            {
+                cbo_Skladiste.Visible = false;
+                cbo_Lokacija.Visible = false;
+                cbo_MestoTroska.Visible = false;
+                cbo_Partner.Visible = false;
+            }
+            }
 
         private void Prijemnica_Load(object sender, EventArgs e)
         {
@@ -117,12 +124,26 @@ namespace Saobracaj.RadniNalozi
             cbo_MestoTroska.DisplayMember = "SmNaziv";
             cbo_MestoTroska.ValueMember = "SmSifra";
         }
+
+        DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+       
         private void DGVCombo()
         {
-            DataGridViewComboBoxColumn cbo = new DataGridViewComboBoxColumn();
+            DataGridViewComboBoxColumn cb = new DataGridViewComboBoxColumn();
+            cb.HeaderText = "Tip";
+            cb.Name = "Tip";
+            var query21 = "SELECT DISTINCT * FROM ( VALUES ('1-NHM'), ('2-LOT'), ('3-ZBIRNI')) AS X(a)";
+            SqlConnection conn21 = new SqlConnection(connect);
+            SqlDataAdapter da21 = new SqlDataAdapter(query21, conn21);
+            DataSet ds21 = new DataSet();
+            da21.Fill(ds21);
+            cb.DataSource = ds21.Tables[0];
+            cb.DisplayMember = "a";
+            cb.ValueMember = "a";
+
             cbo.HeaderText = "MPNaziv";
             cbo.Name = "MPNaziv";
-            var query = "Select MpSifra,MpNaziv from MaticniPodatki order by MpNaziv";
+            var query = "Select MpSifra,MpNaziv from MaticniPodatki  order by MpNaziv";
             SqlConnection conn = new SqlConnection(connect);
             SqlDataAdapter da = new SqlDataAdapter(query, conn);
             DataSet ds = new DataSet();
@@ -130,25 +151,27 @@ namespace Saobracaj.RadniNalozi
             cbo.DataSource = ds.Tables[0];
             cbo.DisplayMember = "MpNaziv";
             cbo.ValueMember = "MpSifra";
+        
 
             DataGridViewTextBoxColumn cbo2 = new DataGridViewTextBoxColumn();
             cbo2.HeaderText = "Kolicina";
             cbo2.Name = "Kolicina";
-
             cbo.Width = 450;
             cbo2.Width = 150;
+            dataGridView1.Columns.Add(cb);
             dataGridView1.Columns.Add(cbo);
             dataGridView1.Columns.Add(cbo2);
             if (frmLogovanje.Firma == "Leget")
             {
-
-                var queryMP = "Select ID as MpSifra,(RTrim(Broj)+'-'+RTrim(Naziv)) as MpNaziv from NHM order by ID";
+                
+                var queryMP = "Select ID as MpSifra,(RTrim(Broj)+'-'+RTrim(Naziv)) as MpNaziv from NHM where Interni = 1 order by ID";
                 SqlDataAdapter daMP = new SqlDataAdapter(queryMP, conn);
                 DataSet dsMP = new DataSet();
                 daMP.Fill(dsMP);
                 cbo.DataSource = dsMP.Tables[0];
                 cbo.DisplayMember = "MpNaziv";
                 cbo.ValueMember = "MpSifra";
+            
 
                 DataGridViewComboBoxColumn cbo3 = new DataGridViewComboBoxColumn();
                 cbo3.HeaderText = "JedinicaMere";
@@ -162,6 +185,19 @@ namespace Saobracaj.RadniNalozi
                 cbo3.ValueMember = "MeSifra";
                 cbo3.Width = 90;
 
+
+                DataGridViewComboBoxColumn cbo31 = new DataGridViewComboBoxColumn();
+                cbo31.HeaderText = "Skladiste";
+                cbo31.Name = "Skladiste";
+                var query31 = "select ID ,Naziv from Skladista order by ID";
+                SqlDataAdapter da31 = new SqlDataAdapter(query31, conn);
+                DataSet ds31 = new DataSet();
+                da31.Fill(ds31);
+                cbo31.DataSource = ds31.Tables[0];
+                cbo31.DisplayMember = "Naziv";
+                cbo31.ValueMember = "ID";
+                cbo31.Width = 90;
+
                 DataGridViewTextBoxColumn cbo4 = new DataGridViewTextBoxColumn();
                 cbo4.HeaderText = "LOT";
                 cbo4.Name = "Lot";
@@ -170,6 +206,7 @@ namespace Saobracaj.RadniNalozi
                 cbo5.Name = "Skladisteno";
 
                 dataGridView1.Columns.Add(cbo3);
+                dataGridView1.Columns.Add(cbo31);
                 dataGridView1.Columns.Add(cbo4);
                 dataGridView1.Columns.Add(cbo5);
             }
@@ -185,9 +222,16 @@ namespace Saobracaj.RadniNalozi
 
         }
         int prStDokumenta;
+
+        int VratiIDPrometa()
+        {
+
+            return 0;
+        }
         
         private void button1_Click_1(object sender, EventArgs e)
         {
+            string LOt = "";
             if (frmLogovanje.Firma == "Leget")
             {
                 var query = "Select (Max(PrStDokumenta)+1) From Promet";
@@ -210,11 +254,31 @@ namespace Saobracaj.RadniNalozi
                         {
                             skladisteno = 1;
                         }
-                       
-                        ins.InsertPromet(Convert.ToDateTime(dtpVreme.Value), "PRI", prStDokumenta, txtBrojKontejnera.Text.ToString().TrimEnd(), "PRV", Convert.ToDecimal(row.Cells["Kolicina"].Value), 0, Convert.ToInt32(cbo_Skladiste.SelectedValue),
-                            Convert.ToInt32(cbo_Lokacija.SelectedValue), 0, 0, Convert.ToDateTime(DateTime.Now), korisnik, 0, Convert.ToInt32(cbo_Referent.SelectedValue), Convert.ToDateTime(dtpVreme.Value.ToString()), row.Cells["JM"].Value.ToString(),
-                            row.Cells["Lot"].Value.ToString(), nalog, Convert.ToInt32(row.Cells["MpNaziv"].Value),skladisteno);
+                        if (row.Cells["Lot"].Value is null)
+                        {
+                            LOt = " ";
+                        }
+                        else
+                        {
+                            LOt = row.Cells["Lot"].Value.ToString();
+                        }
+                        //       string LOt = row.Cells["Lot"].Value.ToString();
 
+                        int Tip = 1;
+                        if (row.Cells[0].Value.ToString() == "1-NHM")
+                            Tip = 1;
+                        else if (row.Cells[0].Value.ToString() == "2-LOT")
+                            Tip = 2;
+                        else
+                        {
+                            Tip = 3;
+                        }
+                          
+                        ins.InsertPromet(Convert.ToDateTime(dtpVreme.Value), "PRI", prStDokumenta, txtBrojKontejnera.Text.ToString().TrimEnd(), "PRV", Convert.ToDecimal(row.Cells["Kolicina"].Value), 0, Convert.ToInt32(row.Cells["Skladiste"].Value),
+                            Convert.ToInt32(cbo_Lokacija.SelectedValue), 0, 0, Convert.ToDateTime(DateTime.Now), korisnik.Trim(), 0, Convert.ToInt32(cbo_Referent.SelectedValue), Convert.ToDateTime(dtpVreme.Value.ToString()), row.Cells["JM"].Value.ToString(),
+                            LOt, nalog, Convert.ToInt32(row.Cells["MpNaziv"].Value),skladisteno, Tip);
+
+                       // txtPrometID.Text = VratiIDPrometa().ToString();
                     
                         //isporuka.InsertPrijemnicaPostav(Convert.ToInt32(row.Cells[0].Value), Convert.ToDecimal(row.Cells[1].Value), Convert.ToInt32(cbo_Skladiste.SelectedValue), cbo_Lokacija.SelectedValue.ToString(), cbo_MestoTroska.SelectedValue.ToString());
                         // progressBar1.Value = progressBar1.Value + 1;
@@ -362,6 +426,26 @@ namespace Saobracaj.RadniNalozi
         {
             PrijemnicaPregled pp = new PrijemnicaPregled();
             pp.Show();
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+          
+                var cell = dataGridView1[e.ColumnIndex, e.RowIndex];
+                if (cell.OwningColumn.Name == "Tip")
+                {
+                if (cell.OwningRow.Cells["Tip"].Value.ToString() == "3-ZBIRNI")
+
+                {
+                   
+                    int row = cell.RowIndex;
+                    int col = cell.ColumnIndex;
+                   // dataGridView1.Rows[row].Selected = true;
+                 //   dataGridView1.Rows[row].Cells[col].Selected = true;
+                    dataGridView1.Rows[row].Cells[1].Value= 0;
+
+                }
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)

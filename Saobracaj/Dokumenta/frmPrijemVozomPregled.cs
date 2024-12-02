@@ -122,6 +122,7 @@ namespace TrackModal.Dokumeta
 " inner join Partnerji p1 on p1.PaSifra = Voz.OperaterSrbija " +
 " inner join Partnerji p2 on p2.PaSifra = Voz.OperaterHR " +
 " where PrijemKontejneraVoz.Vozom = 1 order by PrijemKontejneraVoz.[ID] desc";
+
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);
@@ -171,6 +172,7 @@ namespace TrackModal.Dokumeta
             " FROM [dbo].[PrijemKontejneraVoz] " +
            " inner join Voz on Voz.ID = PrijemKontejneraVoz.IdVoza " +
            " where PrijemKontejneraVoz.StatusPrijema = 0  and PrijemKontejneraVoz.Vozom = 1 order by PrijemKontejneraVoz.[ID] desc";
+
             var s_connection =Saobracaj.Sifarnici.frmLogovanje.connectionString;
             SqlConnection myConnection = new SqlConnection(s_connection);
             var c = new SqlConnection(s_connection);

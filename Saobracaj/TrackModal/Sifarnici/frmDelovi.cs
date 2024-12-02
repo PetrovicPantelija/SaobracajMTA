@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using Syncfusion.Windows.Forms;
+using Syncfusion.Windows.Forms.Tools;
+using Syncfusion.WinForms.Controls;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,20 +14,102 @@ namespace Testiranje.Sifarnici
     public partial class frmDelovi : Syncfusion.Windows.Forms.Office2010Form
     {
 
-
+        
         string KorisnikCene;
         bool status = false;
+
+        /// <summary>
+        /// KOD ZA POMERANJE FORME
+        /// </summary>
+        /// 
+       
+        protected override void WndProc(ref Message m)
+        {
+            base.WndProc(ref m);
+            if (m.Msg == WM_NCHITTEST)
+                m.Result = (IntPtr)(HT_CAPTION);
+        }
+
+        private const int WM_NCHITTEST = 0x84;
+        private const int HT_CLIENT = 0x1;
+        private const int HT_CAPTION = 0x2;
+        
+
+        /// <summary>
+        /// END CODE ZA MOVE
+        /// </summary>
+        private void ChangeTextBox()
+        {
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                toolStripHeader.Visible = false;
+                panelHeader.Visible = true;
+               // this.FormBorderStyle = FormBorderStyle.None;
+                this.BackColor = Color.White;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+
+                foreach (Control control in this.Controls)
+                {
+                    /*
+                    if (control is TextBoxExt textBox)
+                    {
+
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        textBox.Font = new Font("Helvetica", 9);  // Example: Change font
+                    }
+                    */
+
+                    if (control is Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new Font("Helvetica", 9);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new Font("Helvetica", 9);
+                    }
+                    if (control is CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new Font("Helvetica", 9);
+                    }
+
+                    if (control is ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new Font("Helvetica", 9);
+                    }
+
+
+
+
+                }
+            }
+            else
+            {
+                panelHeader.Visible = false;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+              //  this.BackColor = Color.White;
+                toolStripHeader.Visible = true;
+            }
+        }
+
+      
         public frmDelovi()
         {
             InitializeComponent();
-
+            ChangeTextBox();
         }
 
         public frmDelovi(string Korisnik)
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
-
+            ChangeTextBox();
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -85,14 +171,14 @@ namespace Testiranje.Sifarnici
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
             dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
             dataGridView1.BackgroundColor = Color.White;
 
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(240, 240, 248); ; 
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView1.Columns[0];
@@ -162,6 +248,39 @@ namespace Testiranje.Sifarnici
             {
                 MessageBox.Show("Nije uspela selekcija stavki");
             }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void sfButton4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void textBoxExt1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sfButton1_Click(object sender, EventArgs e)
+        {
+            status = true;
+            txtSifra.Text = "";
+            txtSifra.Enabled = false;
+            txtNaziv.Text = "";
+        }
+
+        private void sfButton3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

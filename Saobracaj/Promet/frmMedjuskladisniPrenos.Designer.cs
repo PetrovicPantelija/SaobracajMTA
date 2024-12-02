@@ -82,6 +82,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.chkZauzete = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -128,7 +129,7 @@
             // 
             this.cboPozicija.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboPozicija.FormattingEnabled = true;
-            this.cboPozicija.Location = new System.Drawing.Point(12, 135);
+            this.cboPozicija.Location = new System.Drawing.Point(12, 131);
             this.cboPozicija.Name = "cboPozicija";
             this.cboPozicija.Size = new System.Drawing.Size(156, 24);
             this.cboPozicija.TabIndex = 222;
@@ -138,7 +139,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(13, 116);
+            this.label3.Location = new System.Drawing.Point(13, 112);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 16);
             this.label3.TabIndex = 221;
@@ -173,10 +174,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 25);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 25);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(217, 474);
+            this.dataGridView1.Size = new System.Drawing.Size(307, 474);
             this.dataGridView1.TabIndex = 218;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -247,7 +248,7 @@
             this.btnUbaci.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnUbaci.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnUbaci.ForeColor = System.Drawing.Color.White;
-            this.btnUbaci.Location = new System.Drawing.Point(17, 165);
+            this.btnUbaci.Location = new System.Drawing.Point(12, 196);
             this.btnUbaci.Name = "btnUbaci";
             this.btnUbaci.Size = new System.Drawing.Size(156, 74);
             this.btnUbaci.TabIndex = 232;
@@ -293,10 +294,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView3.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(3, 25);
+            this.dataGridView3.Location = new System.Drawing.Point(12, 25);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.RowHeadersWidth = 51;
-            this.dataGridView3.Size = new System.Drawing.Size(366, 474);
+            this.dataGridView3.Size = new System.Drawing.Size(259, 474);
             this.dataGridView3.TabIndex = 235;
             // 
             // label9
@@ -460,9 +461,9 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(12, 348);
+            this.button1.Location = new System.Drawing.Point(12, 393);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(156, 140);
+            this.button1.Size = new System.Drawing.Size(156, 95);
             this.button1.TabIndex = 243;
             this.button1.Text = ">>>>";
             this.button1.UseVisualStyleBackColor = false;
@@ -472,7 +473,7 @@
             // 
             this.cboZaposleni.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboZaposleni.FormattingEnabled = true;
-            this.cboZaposleni.Location = new System.Drawing.Point(12, 314);
+            this.cboZaposleni.Location = new System.Drawing.Point(10, 355);
             this.cboZaposleni.Name = "cboZaposleni";
             this.cboZaposleni.Size = new System.Drawing.Size(156, 24);
             this.cboZaposleni.TabIndex = 242;
@@ -482,7 +483,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label11.ForeColor = System.Drawing.Color.Black;
-            this.label11.Location = new System.Drawing.Point(13, 296);
+            this.label11.Location = new System.Drawing.Point(11, 337);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(63, 16);
             this.label11.TabIndex = 241;
@@ -492,7 +493,7 @@
             // 
             this.cboSredstvoRada.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.cboSredstvoRada.FormattingEnabled = true;
-            this.cboSredstvoRada.Location = new System.Drawing.Point(12, 260);
+            this.cboSredstvoRada.Location = new System.Drawing.Point(10, 301);
             this.cboSredstvoRada.Name = "cboSredstvoRada";
             this.cboSredstvoRada.Size = new System.Drawing.Size(156, 24);
             this.cboSredstvoRada.TabIndex = 240;
@@ -502,7 +503,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label10.ForeColor = System.Drawing.Color.Black;
-            this.label10.Location = new System.Drawing.Point(13, 242);
+            this.label10.Location = new System.Drawing.Point(11, 283);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(88, 16);
             this.label10.TabIndex = 239;
@@ -690,7 +691,7 @@
             this.splitContainer2.Panel2.Controls.Add(this.dataGridView3);
             this.splitContainer2.Panel2.Controls.Add(this.label9);
             this.splitContainer2.Size = new System.Drawing.Size(610, 502);
-            this.splitContainer2.SplitterDistance = 234;
+            this.splitContainer2.SplitterDistance = 324;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
@@ -702,6 +703,7 @@
             // 
             // splitContainer3.Panel1
             // 
+            this.splitContainer3.Panel1.Controls.Add(this.chkZauzete);
             this.splitContainer3.Panel1.Controls.Add(this.label4);
             this.splitContainer3.Panel1.Controls.Add(this.label1);
             this.splitContainer3.Panel1.Controls.Add(this.cboSkladiste);
@@ -722,6 +724,20 @@
             this.splitContainer3.Size = new System.Drawing.Size(711, 504);
             this.splitContainer3.SplitterDistance = 202;
             this.splitContainer3.TabIndex = 0;
+            // 
+            // chkZauzete
+            // 
+            this.chkZauzete.AutoSize = true;
+            this.chkZauzete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
+            this.chkZauzete.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkZauzete.ForeColor = System.Drawing.Color.IndianRed;
+            this.chkZauzete.Location = new System.Drawing.Point(14, 165);
+            this.chkZauzete.Name = "chkZauzete";
+            this.chkZauzete.Size = new System.Drawing.Size(95, 20);
+            this.chkZauzete.TabIndex = 244;
+            this.chkZauzete.Text = "Bez zauzetih";
+            this.chkZauzete.UseVisualStyleBackColor = false;
+            this.chkZauzete.CheckedChanged += new System.EventHandler(this.chkZauzete_CheckedChanged);
             // 
             // frmMedjuskladisniPrenos
             // 
@@ -840,5 +856,6 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.CheckBox chkZauzete;
     }
 }

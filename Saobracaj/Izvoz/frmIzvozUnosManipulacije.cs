@@ -2495,7 +2495,7 @@ namespace Saobracaj.Izvoz
             if (txtNadredjeni.Text != "0")
             {
                 InsertIzvoz uvK = new InsertIzvoz();
-                uvK.InsUbaciUsluguKonacnaPlan(Convert.ToInt32(txtNadredjeni.Text));
+                uvK.InsUbaciUsluguKonacnaPlan(Convert.ToInt32(txtID.Text), Convert.ToInt32(txtNadredjeni.Text));
                 FillDG8();
                 using (SqlConnection conn = new SqlConnection(connection))
                 {

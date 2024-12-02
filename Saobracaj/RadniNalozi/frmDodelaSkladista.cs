@@ -37,9 +37,17 @@ namespace Saobracaj.RadniNalozi
             };
             if (TipRN == 2)
             {
-                //Prijem Platforme RN4
+                //Prijem Platforme RN4 IZVOZ
                 label5.Text = "GATE IN KAMION - RN4";
                 chkGAteInKamion.Checked = true;
+
+            }
+
+            if (TipRN == 22)
+            {
+                //Prijem Platforme RN4 UVoz
+                label5.Text = "GATE IN KAMION - RN4";
+                chkGateInKamionUvoz.Checked = true;
 
             }
 
@@ -230,7 +238,7 @@ namespace Saobracaj.RadniNalozi
 " NalogRealizovao, RNPrijemPlatforme.Zavrsen from RNPrijemPlatforme " +
 " inner join TipKontenjera on TipKontenjera.ID = RNPrijemPlatforme.VrstaKontejnera " +
 " inner join Skladista on Skladista.ID = USkladiste " +
-" inner join Partnerji on Partnerji.PaSifra = RNPrijemPlatforme.Izvoznik " +
+" left join Partnerji on Partnerji.PaSifra = RNPrijemPlatforme.Izvoznik " +
 " inner join Partnerji p2 on p2.PaSifra = RNPrijemPlatforme.NazivBrodara " +
 " inner join VrstaManipulacije on VrstaManipulacije.ID = IdUsluge where RNPrijemPlatforme.PrijemID = " + textBox1.Text +
    " order by RNPrijemPlatforme.ID  desc ";
@@ -353,10 +361,14 @@ namespace Saobracaj.RadniNalozi
             FillDGRN1(); // RNPRIJEMVOZA
 
             if (TipRadnogNaloga == 2)
-                FillDGRN2(); // RN PRIJEM PLATFORME
+                FillDGRN2(); // RN PRIJEM PLATFORME IZVOZ
+
+            if (TipRadnogNaloga == 22)
+                FillDGRN4(); // RN PRIJEM PLATFORME IZVOZ
 
             if (TipRadnogNaloga == 21)
                 FillDGRN21(); // RN PRIJEM PLATFORME BRODAR
+           
             if (TipRadnogNaloga == 6)
                 FillDGRN6();
 
@@ -390,7 +402,7 @@ namespace Saobracaj.RadniNalozi
 
             }
             // Dodeljujemo privremeno skladiste na koje Kalmarista spusta
-            if (TipRadnogNaloga == 2)
+            if (TipRadnogNaloga == 2 )
             {
                 //Prijem voza
                 foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -411,6 +423,55 @@ namespace Saobracaj.RadniNalozi
                     // ins.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
                 }
                 FillDGRN2(); //
+
+            }
+
+            if (TipRadnogNaloga == 22)
+            {
+                //Prijem voza
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    InsertRN ins = new InsertRN();
+
+                    if (row.Selected == true)
+                        foreach (DataGridViewRow row2 in dataGridView2.Rows)
+                        {
+                            if (row2.Selected == true)
+                            {
+                                ins.UpdateRN4PrivremenoSkladiste(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row2.Cells[0].Value.ToString()));
+                            }
+
+
+                        }
+
+                    // ins.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
+                }
+                FillDGRN4(); //
+
+            }
+
+
+            if (TipRadnogNaloga == 21)
+            {
+                //Prijem voza
+                foreach (DataGridViewRow row in dataGridView1.Rows)
+                {
+                    InsertRN ins = new InsertRN();
+
+                    if (row.Selected == true)
+                        foreach (DataGridViewRow row2 in dataGridView2.Rows)
+                        {
+                            if (row2.Selected == true)
+                            {
+                                ins.UpdateRN4PrivremenoSkladiste(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row2.Cells[0].Value.ToString()));
+                            }
+
+
+                        }
+
+                    // ins.UpdateOstaleStavke(Convert.ToInt32(row.Cells[0].Value.ToString()), Convert.ToInt32(row.Cells[1].Value.ToString()), row.Cells[5].Value.ToString(), row.Cells[6].Value.ToString(), Convert.ToDouble(row.Cells[7].Value.ToString()), Convert.ToDouble(row.Cells[8].Value.ToString()), Convert.ToDouble(row.Cells[9].Value.ToString()), Convert.ToDouble(row.Cells[10].Value.ToString()), Convert.ToDouble(row.Cells[11].Value.ToString()), Convert.ToDouble(row.Cells[12].Value.ToString()), Convert.ToDouble(row.Cells[13].Value.ToString()), Convert.ToDouble(row.Cells[14].Value.ToString()), row.Cells[15].Value.ToString(), row.Cells[18].Value.ToString(), row.Cells[19].Value.ToString(), Convert.ToDouble(row.Cells[20].Value.ToString()), row.Cells[23].Value.ToString(), row.Cells[24].Value.ToString());
+                }
+                FillDGRN21(); //
 
             }
 
@@ -555,6 +616,12 @@ namespace Saobracaj.RadniNalozi
 
         private void button1_Click(object sender, EventArgs e)
         { 
+            frmPregledSkladistaNovi pr = new frmPregledSkladistaNovi();
+            pr.Show();
+        }
+
+        private void toolStripButton7_Click(object sender, EventArgs e)
+        {
             frmPregledSkladistaNovi pr = new frmPregledSkladistaNovi();
             pr.Show();
         }

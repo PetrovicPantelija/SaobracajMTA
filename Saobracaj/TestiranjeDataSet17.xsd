@@ -2,14 +2,15 @@
 <xs:schema id="TestiranjeDataSet17" targetNamespace="http://tempuri.org/TestiranjeDataSet17.xsd" xmlns:mstns="http://tempuri.org/TestiranjeDataSet17.xsd" xmlns="http://tempuri.org/TestiranjeDataSet17.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="NedraConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="NedraConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.NedraConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="TESTIRANJEConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TESTIRANJEConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Saobracaj.Properties.Settings.GlobalReference.Default.TESTIRANJEConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VaganjeRptTableAdapter" GeneratorDataComponentClassName="VaganjeRptTableAdapter" Name="VaganjeRpt" UserDataComponentName="VaganjeRptTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="NedraConnectionString (Settings)" DbObjectName="Testiranje.dbo.VaganjeRpt" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="TESTIRANJEConnectionString (Settings)" DbObjectName="Testiranje.dbo.VaganjeRpt" DbObjectType="StoredProcedure" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.VaganjeRpt</CommandText>
@@ -29,6 +30,12 @@
               <Mapping SourceColumn="Tara" DataSetColumn="Tara" />
               <Mapping SourceColumn="Neto" DataSetColumn="Neto" />
               <Mapping SourceColumn="DatumMerenja" DataSetColumn="DatumMerenja" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="KontID" DataSetColumn="KontID" />
+              <Mapping SourceColumn="Kamion" DataSetColumn="Kamion" />
+              <Mapping SourceColumn="Korisnik" DataSetColumn="Korisnik" />
+              <Mapping SourceColumn="IDVaganja" DataSetColumn="IDVaganja" />
+              <Mapping SourceColumn="SkNaziv" DataSetColumn="SkNaziv" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -37,31 +44,55 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="TestiranjeDataSet17" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_UserDSName="TestiranjeDataSet17" msprop:Generator_DataSetName="TestiranjeDataSet17">
+  <xs:element name="TestiranjeDataSet17" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="TestiranjeDataSet17" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="TestiranjeDataSet17">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="VaganjeRpt" msprop:Generator_RowEvHandlerName="VaganjeRptRowChangeEventHandler" msprop:Generator_RowDeletedName="VaganjeRptRowDeleted" msprop:Generator_RowDeletingName="VaganjeRptRowDeleting" msprop:Generator_RowEvArgName="VaganjeRptRowChangeEvent" msprop:Generator_TablePropName="VaganjeRpt" msprop:Generator_RowChangedName="VaganjeRptRowChanged" msprop:Generator_RowChangingName="VaganjeRptRowChanging" msprop:Generator_TableClassName="VaganjeRptDataTable" msprop:Generator_RowClassName="VaganjeRptRow" msprop:Generator_TableVarName="tableVaganjeRpt" msprop:Generator_UserTableName="VaganjeRpt">
+        <xs:element name="VaganjeRpt" msprop:Generator_RowClassName="VaganjeRptRow" msprop:Generator_RowEvHandlerName="VaganjeRptRowChangeEventHandler" msprop:Generator_RowDeletedName="VaganjeRptRowDeleted" msprop:Generator_RowDeletingName="VaganjeRptRowDeleting" msprop:Generator_RowEvArgName="VaganjeRptRowChangeEvent" msprop:Generator_TablePropName="VaganjeRpt" msprop:Generator_RowChangedName="VaganjeRptRowChanged" msprop:Generator_UserTableName="VaganjeRpt" msprop:Generator_RowChangingName="VaganjeRptRowChanging" msprop:Generator_TableClassName="VaganjeRptDataTable" msprop:Generator_TableVarName="tableVaganjeRpt">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="BrojKontejnera" msprop:Generator_ColumnPropNameInRow="BrojKontejnera" msprop:Generator_ColumnPropNameInTable="BrojKontejneraColumn" msprop:Generator_ColumnVarNameInTable="columnBrojKontejnera" msprop:Generator_UserColumnName="BrojKontejnera" minOccurs="0">
+              <xs:element name="BrojKontejnera" msprop:Generator_UserColumnName="BrojKontejnera" msprop:Generator_ColumnPropNameInTable="BrojKontejneraColumn" msprop:Generator_ColumnPropNameInRow="BrojKontejnera" msprop:Generator_ColumnVarNameInTable="columnBrojKontejnera" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="100" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="VrstaKontejnera" msprop:Generator_ColumnPropNameInRow="VrstaKontejnera" msprop:Generator_ColumnPropNameInTable="VrstaKontejneraColumn" msprop:Generator_ColumnVarNameInTable="columnVrstaKontejnera" msprop:Generator_UserColumnName="VrstaKontejnera" type="xs:int" minOccurs="0" />
-              <xs:element name="VagarskaPotvrdaBroj" msprop:Generator_ColumnPropNameInRow="VagarskaPotvrdaBroj" msprop:Generator_ColumnPropNameInTable="VagarskaPotvrdaBrojColumn" msprop:Generator_ColumnVarNameInTable="columnVagarskaPotvrdaBroj" msprop:Generator_UserColumnName="VagarskaPotvrdaBroj" minOccurs="0">
+              <xs:element name="VrstaKontejnera" msprop:Generator_UserColumnName="VrstaKontejnera" msprop:Generator_ColumnPropNameInTable="VrstaKontejneraColumn" msprop:Generator_ColumnPropNameInRow="VrstaKontejnera" msprop:Generator_ColumnVarNameInTable="columnVrstaKontejnera" type="xs:int" minOccurs="0" />
+              <xs:element name="VagarskaPotvrdaBroj" msprop:Generator_UserColumnName="VagarskaPotvrdaBroj" msprop:Generator_ColumnPropNameInTable="VagarskaPotvrdaBrojColumn" msprop:Generator_ColumnPropNameInRow="VagarskaPotvrdaBroj" msprop:Generator_ColumnVarNameInTable="columnVagarskaPotvrdaBroj" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Bruto" msprop:Generator_ColumnPropNameInRow="Bruto" msprop:Generator_ColumnPropNameInTable="BrutoColumn" msprop:Generator_ColumnVarNameInTable="columnBruto" msprop:Generator_UserColumnName="Bruto" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Tara" msprop:Generator_ColumnPropNameInRow="Tara" msprop:Generator_ColumnPropNameInTable="TaraColumn" msprop:Generator_ColumnVarNameInTable="columnTara" msprop:Generator_UserColumnName="Tara" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Neto" msprop:Generator_ColumnPropNameInRow="Neto" msprop:Generator_ColumnPropNameInTable="NetoColumn" msprop:Generator_ColumnVarNameInTable="columnNeto" msprop:Generator_UserColumnName="Neto" type="xs:decimal" minOccurs="0" />
-              <xs:element name="DatumMerenja" msprop:Generator_ColumnPropNameInRow="DatumMerenja" msprop:Generator_ColumnPropNameInTable="DatumMerenjaColumn" msprop:Generator_ColumnVarNameInTable="columnDatumMerenja" msprop:Generator_UserColumnName="DatumMerenja" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Bruto" msprop:Generator_UserColumnName="Bruto" msprop:Generator_ColumnPropNameInTable="BrutoColumn" msprop:Generator_ColumnPropNameInRow="Bruto" msprop:Generator_ColumnVarNameInTable="columnBruto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Tara" msprop:Generator_UserColumnName="Tara" msprop:Generator_ColumnPropNameInTable="TaraColumn" msprop:Generator_ColumnPropNameInRow="Tara" msprop:Generator_ColumnVarNameInTable="columnTara" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Neto" msprop:Generator_UserColumnName="Neto" msprop:Generator_ColumnPropNameInTable="NetoColumn" msprop:Generator_ColumnPropNameInRow="Neto" msprop:Generator_ColumnVarNameInTable="columnNeto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DatumMerenja" msprop:Generator_UserColumnName="DatumMerenja" msprop:Generator_ColumnPropNameInTable="DatumMerenjaColumn" msprop:Generator_ColumnPropNameInRow="DatumMerenja" msprop:Generator_ColumnVarNameInTable="columnDatumMerenja" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" minOccurs="0" />
+              <xs:element name="KontID" msprop:Generator_ColumnPropNameInRow="KontID" msprop:Generator_ColumnPropNameInTable="KontIDColumn" msprop:Generator_ColumnVarNameInTable="columnKontID" msprop:Generator_UserColumnName="KontID" type="xs:int" />
+              <xs:element name="Kamion" msprop:Generator_ColumnPropNameInRow="Kamion" msprop:Generator_ColumnPropNameInTable="KamionColumn" msprop:Generator_ColumnVarNameInTable="columnKamion" msprop:Generator_UserColumnName="Kamion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Korisnik" msprop:Generator_ColumnPropNameInRow="Korisnik" msprop:Generator_ColumnPropNameInTable="KorisnikColumn" msprop:Generator_ColumnVarNameInTable="columnKorisnik" msprop:Generator_UserColumnName="Korisnik" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="IDVaganja" msprop:Generator_ColumnPropNameInRow="IDVaganja" msprop:Generator_ColumnPropNameInTable="IDVaganjaColumn" msprop:Generator_ColumnVarNameInTable="columnIDVaganja" msprop:Generator_UserColumnName="IDVaganja" type="xs:int" minOccurs="0" />
+              <xs:element name="SkNaziv" msprop:Generator_ColumnPropNameInRow="SkNaziv" msprop:Generator_ColumnPropNameInTable="SkNazivColumn" msprop:Generator_ColumnVarNameInTable="columnSkNaziv" msprop:Generator_UserColumnName="SkNaziv" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -399,9 +399,18 @@ namespace Saobracaj.RadniNalozi
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //Dodeljuje se skladiste na koje Kalmarista spusta kontejner
-            Saobracaj.RadniNalozi.frmDodelaSkladista ds = new frmDodelaSkladista(txtPrijemID.Text, 2);
-            ds.Show();
+            if (chkUvoz.Checked == true)
+            {
+                Saobracaj.RadniNalozi.frmDodelaSkladista ds = new frmDodelaSkladista(txtPrijemID.Text, 22); // Ako je UVoz
+                ds.Show();
+            }
+            else
+            {
+                //Dodeljuje se skladiste na koje Kalmarista spusta kontejner
+                Saobracaj.RadniNalozi.frmDodelaSkladista ds = new frmDodelaSkladista(txtPrijemID.Text, 2);
+                ds.Show();
+            }
+           
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
