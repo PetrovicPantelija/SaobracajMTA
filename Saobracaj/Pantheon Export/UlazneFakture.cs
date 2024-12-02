@@ -74,8 +74,11 @@ namespace Saobracaj.Pantheon_Export
             cboTip.Items.Add("1000 - Ulazni računi - domaći transport");
             cboTip.Items.Add("1010 - Ulazni računi - medj.transport");
             cboTip.Items.Add("1020 - Ulazni računi - medj.transport INO");
-            cboTip.Items.Add("1X00 - Odobrenje / zaduže inostr.");
-            cboTip.Items.Add("1X20 - Finansijsko odobrenje / zaduženje");
+            cboTip.Items.Add("1X00 - Finansijko zaduženje/odobrenje INO");
+            cboTip.Items.Add("1X10 - Finansijsko zaduženje (dokumant o povećanju) sa PDVom");
+            cboTip.Items.Add("1X20 - Finansijsko odobrenje (dokumant o smanjenju ) sa PDVom");
+            cboTip.Items.Add("1X30 - Finansijsko zaduženje/odobrenje bez PDV");
+
 
             var valuta = "Select VaSifra,VaNaziv From Valute";
             var valutaDa = new SqlDataAdapter(valuta, conn);
