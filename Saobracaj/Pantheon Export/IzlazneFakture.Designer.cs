@@ -401,6 +401,11 @@
             0,
             0,
             0});
+            this.txtCena.Minimum = new decimal(new int[] {
+            10000000,
+            0,
+            0,
+            -2147483648});
             this.txtCena.Name = "txtCena";
             this.txtCena.Size = new System.Drawing.Size(90, 20);
             this.txtCena.TabIndex = 210;
@@ -414,6 +419,11 @@
             0,
             0,
             0});
+            this.txtKolicina.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
             this.txtKolicina.Name = "txtKolicina";
             this.txtKolicina.Size = new System.Drawing.Size(90, 20);
             this.txtKolicina.TabIndex = 210;

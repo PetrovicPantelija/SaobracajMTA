@@ -426,6 +426,11 @@
             0,
             0,
             0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            -2147483648});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(77, 20);
             this.numericUpDown1.TabIndex = 204;
@@ -458,6 +463,11 @@
             0,
             0,
             0});
+            this.txtCena.Minimum = new decimal(new int[] {
+            1000000000,
+            0,
+            0,
+            -2147483648});
             this.txtCena.Name = "txtCena";
             this.txtCena.Size = new System.Drawing.Size(72, 20);
             this.txtCena.TabIndex = 204;
@@ -482,6 +492,11 @@
             0,
             0,
             0});
+            this.txtKolicina.Minimum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            -2147483648});
             this.txtKolicina.Name = "txtKolicina";
             this.txtKolicina.Size = new System.Drawing.Size(72, 20);
             this.txtKolicina.TabIndex = 204;

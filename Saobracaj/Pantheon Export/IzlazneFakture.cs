@@ -1,4 +1,6 @@
-﻿using Saobracaj.Sifarnici;
+﻿using iTextSharp.text;
+using Saobracaj.eDokumenta;
+using Saobracaj.Sifarnici;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -25,27 +27,40 @@ namespace Saobracaj.Pantheon_Export
             txtID.Text = ID.ToString();
             FillCombo();
             FillGV();
-
+          
             if (vrsta.ToString().TrimEnd().Equals("3010"))
             {
                 vrsta = "3010 - Domaci železnicki transport";
             }
             else if (vrsta.ToString().TrimEnd().Equals("3100"))
             {
-                vrsta = "3100 - Domaci rečni transport";
+                vrsta = "3100 - Medj.transport - ŽELEZNIČKI";
             }
             else if (vrsta.ToString().TrimEnd().Equals("3110"))
             {
-                vrsta = "3110 - Medj.transport - ŽELEZNIČKI";
+                vrsta = "3110 - Medj.transport - ŽELEZNIČKI - INO";
             }
             else if (vrsta.ToString().TrimEnd().Equals("3X00"))
             {
                 vrsta = "3X00 - Odobrenje inostranstvo";
             }
+            else if (vrsta.ToString().TrimEnd().Equals("3X10"))
+            {
+                vrsta = "3X10 - Finansijsko odobrenje(dokumant o smanjenju) sa PDVom";
+            }
             else if (vrsta.ToString().TrimEnd().Equals("3X20"))
             {
-                vrsta = "3X20 - Finansijsko odobrenje";
+                vrsta = "3X20 - Finansijsko zaduženje/odobrenje bez PDV";
             }
+            else if (vrsta.ToString().TrimEnd().Equals("3X30"))
+            {
+                vrsta = "3X30 - Finansijko zaduženje INO";
+            }
+            else if (vrsta.ToString().TrimEnd().Equals("3X50"))
+            {
+                vrsta = "3X50 - Finansijsko zaduženje (dokumant o povećanju) sa PDVom";
+            }
+
             dtDatum.Value = Convert.ToDateTime(datumDokumenta.ToShortDateString());
             comboBox1.Text = vrsta;
             cboPrimalac.SelectedValue = primalac;
@@ -103,10 +118,13 @@ namespace Saobracaj.Pantheon_Export
         private void IzlazneFakture_Load(object sender, EventArgs e)
         {
             comboBox1.Items.Add("3010 - Domaci železnicki transport");
-            comboBox1.Items.Add("3100 - Domaci rečni transport");
-            comboBox1.Items.Add("3110 - Medj.transport - ŽELEZNIČKI");
+            comboBox1.Items.Add("3100 - Medj.transport - ŽELEZNIČKI");
+            comboBox1.Items.Add("3110 - Medj.transport - ŽELEZNIČKI - INO");
             comboBox1.Items.Add("3X00 - Odobrenje inostranstvo");
-            comboBox1.Items.Add("3X20 - Finansijsko odobrenje");
+            comboBox1.Items.Add("3X10 - Finansijsko odobrenje(dokumant o smanjenju) sa PDVom");
+            comboBox1.Items.Add("3X20 - Finansijsko zaduženje/odobrenje bez PDV");
+            comboBox1.Items.Add("3X30 - Finansijko zaduženje INO");
+            comboBox1.Items.Add("3X50 - Finansijsko zaduženje (dokumant o povećanju) sa PDVom");
         }
         private void FillCombo()
         {
