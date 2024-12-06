@@ -52,6 +52,8 @@
             this.txtTara = new Syncfusion.Windows.Forms.Tools.DoubleTextBox();
             this.txtNeto = new Syncfusion.Windows.Forms.Tools.DoubleTextBox();
             this.txtBruto = new Syncfusion.Windows.Forms.Tools.DoubleTextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTara)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNeto)).BeginInit();
@@ -166,7 +168,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 192);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(708, 379);
+            this.dataGridView1.Size = new System.Drawing.Size(959, 379);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -290,12 +292,36 @@
             this.txtBruto.TabIndex = 193;
             this.txtBruto.Text = "1,00";
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.ForeColor = System.Drawing.Color.White;
+            this.checkBox1.Location = new System.Drawing.Point(392, 155);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(56, 17);
+            this.checkBox1.TabIndex = 194;
+            this.checkBox1.Text = "Cirada";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.ForeColor = System.Drawing.Color.White;
+            this.checkBox2.Location = new System.Drawing.Point(464, 155);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(70, 17);
+            this.checkBox2.TabIndex = 195;
+            this.checkBox2.Text = "Platforma";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
             // Vaganje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(117)))), ((int)(((byte)(123)))));
-            this.ClientSize = new System.Drawing.Size(732, 583);
+            this.ClientSize = new System.Drawing.Size(983, 583);
+            this.Controls.Add(this.checkBox2);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.txtBruto);
             this.Controls.Add(this.txtNeto);
             this.Controls.Add(this.txtTara);
@@ -358,5 +384,7 @@
         private Syncfusion.Windows.Forms.Tools.DoubleTextBox txtTara;
         private Syncfusion.Windows.Forms.Tools.DoubleTextBox txtNeto;
         private Syncfusion.Windows.Forms.Tools.DoubleTextBox txtBruto;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }

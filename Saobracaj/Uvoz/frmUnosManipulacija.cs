@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Forms;
 
@@ -28,6 +29,7 @@ namespace Saobracaj.Uvoz
         int ZelezninaUneta = 0;
         int UnetihManipulacija = 0;
         int ADRSC = 0;
+        int ScenarioGL = 0;
         
         public frmUnosManipulacija()
         {
@@ -36,7 +38,7 @@ namespace Saobracaj.Uvoz
             Usao = 0;
         }
 
-        public frmUnosManipulacija(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Uvoznik, string Korisnik,int Terminal,string Relacija, int Zeleznina, int ADR)
+        public frmUnosManipulacija(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Uvoznik, string Korisnik,int Terminal,string Relacija, int Zeleznina, int ADR, int ScenarioGLsf)
         {
             InitializeComponent();
             pIDPlana = IDPlana;
@@ -52,6 +54,7 @@ namespace Saobracaj.Uvoz
             Usao = 0;
             terminal = Terminal;
             relacija = Relacija;
+            ScenarioGL = ScenarioGLsf;
             UnetihManipulacija = VratiBrojManipulacija(ID);
             ZelezninaUneta = VratiUnetuZelezninu(ID);
             if (Zeleznina != ZelezninaUneta)
@@ -1728,6 +1731,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.Columns[13].Width = 90;
             */
             RefreshDataGridColor();
+            dataGridView1.SelectAll();
 
         }
 
@@ -1997,6 +2001,8 @@ namespace Saobracaj.Uvoz
             dataGridView1.Columns[13].Width = 90;
             */
             RefreshDataGridColor();
+            dataGridView1.SelectAll();
+
 
 
         }
@@ -2159,7 +2165,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.Columns[13].Width = 90;
             */
             RefreshDataGridColor();
-
+            dataGridView1.SelectAll();
 
         }
 
@@ -2243,6 +2249,13 @@ namespace Saobracaj.Uvoz
             cboUvoznik.DisplayMember = "PaNaziv";
             cboUvoznik.ValueMember = "PaSifra";
             //Provera SCENARIJA UKLJUCITI ADR
+          
+
+          
+          
+
+
+
             if (terminal == 1)
             {
                 var partner22 = "SELECT ID, Min(Naziv) as Naziv FROM Scenario Where OJIzdavanje=4 group by ID order by ID";
@@ -2253,7 +2266,7 @@ namespace Saobracaj.Uvoz
                 cboScenario.DisplayMember = "Naziv";
                 cboScenario.ValueMember = "ID";
             }
-            else if (relacija.Trim()== "AGCT Rijeka" && ADRSC == 0)
+            else if (ScenarioGL == 1  && ADRSC == 0)
             {
                 var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (1,2) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);
@@ -2263,7 +2276,7 @@ namespace Saobracaj.Uvoz
                 cboScenario.DisplayMember = "Naziv";
                 cboScenario.ValueMember = "ID";
             }
-            else if (relacija.Trim() == "AGCT Rijeka" && ADRSC == 1)
+            else if (ScenarioGL == 1  && ADRSC == 1)
             {
                 var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (18,19) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);
@@ -2274,7 +2287,7 @@ namespace Saobracaj.Uvoz
                 cboScenario.ValueMember = "ID";
             }
 
-            else if (relacija.Trim() == "Leget" && ADRSC == 0)
+            else if (ScenarioGL == 2 && ADRSC == 0)
             {
                 var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (3,4,6) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);
@@ -2284,7 +2297,7 @@ namespace Saobracaj.Uvoz
                 cboScenario.DisplayMember = "Naziv";
                 cboScenario.ValueMember = "ID";
             }
-            else if (relacija.Trim() == "Leget" && ADRSC == 1)
+            else if (ScenarioGL == 2 && ADRSC == 1)
             {
                 var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (20,21) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);
@@ -2296,7 +2309,7 @@ namespace Saobracaj.Uvoz
             }
 
         
-            else if (relacija.Trim() != "Leget" && relacija != "AGCT Rijeka" && ADRSC == 0)
+            else if (ScenarioGL == 3  && ADRSC == 0)
             {
                 var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (5) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);
@@ -2306,7 +2319,7 @@ namespace Saobracaj.Uvoz
                 cboScenario.DisplayMember = "Naziv";
                 cboScenario.ValueMember = "ID";
             }
-            else if (relacija.Trim() != "Leget" && relacija != "AGCT Rijeka" && ADRSC == 1)
+            else if (ScenarioGL == 3 && ADRSC == 1)
             {
                 var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (22) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);

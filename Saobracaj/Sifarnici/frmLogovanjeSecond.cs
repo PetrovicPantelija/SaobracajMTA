@@ -135,5 +135,11 @@ namespace Saobracaj.Sifarnici
                 }
             }
         }
+
+        private void label1_MouseClick(object sender, MouseEventArgs e)
+        {
+            Administracija.frmSistemskaTabela sis = new Administracija.frmSistemskaTabela();
+            sis.Show();
+        }
     }
 }

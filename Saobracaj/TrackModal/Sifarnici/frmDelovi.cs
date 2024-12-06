@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace Testiranje.Sifarnici
@@ -23,16 +24,7 @@ namespace Testiranje.Sifarnici
         /// </summary>
         /// 
        
-        protected override void WndProc(ref Message m)
-        {
-            base.WndProc(ref m);
-            if (m.Msg == WM_NCHITTEST)
-                m.Result = (IntPtr)(HT_CAPTION);
-        }
-
-        private const int WM_NCHITTEST = 0x84;
-        private const int HT_CLIENT = 0x1;
-        private const int HT_CAPTION = 0x2;
+      
         
 
         /// <summary>
@@ -40,6 +32,16 @@ namespace Testiranje.Sifarnici
         /// </summary>
         private void ChangeTextBox()
         {
+            this.BackColor = Color.White;
+            this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+            this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+            Office2010Colors.ApplyManagedColors(this, Color.White);
+          //  toolStripHeader.BackColor = Color.FromArgb(240, 240, 248);
+          //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
+            panelHeader.Visible = false;
+            this.ControlBox = true;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
             if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
             {
                 toolStripHeader.Visible = false;
@@ -139,7 +141,7 @@ namespace Testiranje.Sifarnici
 
         private void tsDelete_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Da li ste sigurni da želite da brišete?", "Izbor", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = System.Windows.Forms.MessageBox.Show("Da li ste sigurni da želite da brišete?", "Izbor", MessageBoxButtons.YesNo);
 
             if (dialogResult == DialogResult.Yes)
             {
@@ -168,17 +170,25 @@ namespace Testiranje.Sifarnici
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
 
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView1.BackgroundColor = Color.White;
 
+            dataGridView1.BorderStyle = BorderStyle.None;
+
+            // 
+
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
+            dataGridView1.BackgroundColor = Color.White;
+            dataGridView1.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+            dataGridView1.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+
+
+            //Header
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(240, 240, 248); ; 
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView1.Columns[0];
@@ -246,7 +256,7 @@ namespace Testiranje.Sifarnici
             }
             catch
             {
-                MessageBox.Show("Nije uspela selekcija stavki");
+                System.Windows.Forms.MessageBox.Show("Nije uspela selekcija stavki");
             }
         }
 
@@ -281,6 +291,16 @@ namespace Testiranje.Sifarnici
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

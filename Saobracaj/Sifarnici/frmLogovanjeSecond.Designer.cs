@@ -31,20 +31,19 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogovanjeSecond));
             this.panel1 = new System.Windows.Forms.Panel();
             this.cboKorisnik = new System.Windows.Forms.ComboBox();
-            this.txtPassword = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
             this.button1 = new Syncfusion.WinForms.Controls.SfButton();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPassword)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.cboKorisnik);
             this.panel1.Controls.Add(this.txtPassword);
+            this.panel1.Controls.Add(this.cboKorisnik);
             this.panel1.Controls.Add(this.sfButton1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.panel2);
@@ -56,50 +55,15 @@
             // 
             // cboKorisnik
             // 
-            this.cboKorisnik.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboKorisnik.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboKorisnik.BackColor = System.Drawing.Color.White;
-            this.cboKorisnik.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
             this.cboKorisnik.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.cboKorisnik.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
             this.cboKorisnik.FormattingEnabled = true;
-            this.cboKorisnik.Location = new System.Drawing.Point(71, 272);
+            this.cboKorisnik.Location = new System.Drawing.Point(71, 274);
             this.cboKorisnik.Name = "cboKorisnik";
             this.cboKorisnik.Size = new System.Drawing.Size(282, 29);
             this.cboKorisnik.Sorted = true;
             this.cboKorisnik.TabIndex = 1;
-            this.cboKorisnik.Text = "Korisnik";
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.BackColor = System.Drawing.Color.White;
-            this.txtPassword.BeforeTouchSize = new System.Drawing.Size(552, 23);
-            this.txtPassword.Border3DStyle = System.Windows.Forms.Border3DStyle.Flat;
-            this.txtPassword.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPassword.CanOverrideStyle = true;
-            this.txtPassword.CornerRadius = 3;
-            this.txtPassword.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.txtPassword.FocusBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.txtPassword.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.txtPassword.Location = new System.Drawing.Point(71, 323);
-            this.txtPassword.MinimumSize = new System.Drawing.Size(22, 18);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(282, 29);
-            this.txtPassword.TabIndex = 3;
-            this.txtPassword.Text = "Lozinka";
-            this.txtPassword.ThemeName = "Default";
-            this.txtPassword.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.txtPassword.ThemeStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.txtPassword.ThemeStyle.CornerRadius = 9;
-            this.txtPassword.ThemeStyle.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.txtPassword.ThemeStyle.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.txtPassword.ThemeStyle.Font = new System.Drawing.Font("Helvetica", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.ThemeStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.txtPassword.ThemeStyle.HoverBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.txtPassword.UseBorderColorOnFocus = true;
             // 
             // sfButton1
             // 
@@ -133,15 +97,6 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // panel2
-            // 
-            this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Location = new System.Drawing.Point(94, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(245, 161);
-            this.panel2.TabIndex = 1;
-            // 
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Helvetica", 19.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -152,6 +107,27 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Prijava na Leget plus nalog";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.label1_MouseClick);
+            // 
+            // panel2
+            // 
+            this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Location = new System.Drawing.Point(106, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(233, 176);
+            this.panel2.TabIndex = 1;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.BackColor = System.Drawing.Color.White;
+            this.txtPassword.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.txtPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
+            this.txtPassword.Location = new System.Drawing.Point(71, 329);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(282, 29);
+            this.txtPassword.TabIndex = 2;
             // 
             // frmLogovanjeSecond
             // 
@@ -159,9 +135,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.ClientSize = new System.Drawing.Size(467, 600);
+            this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmLogovanjeSecond";
             this.ShowIcon = false;
@@ -170,7 +147,6 @@
             this.Load += new System.EventHandler(this.frmLogovanjeSecond_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPassword)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -182,7 +158,7 @@
         private System.Windows.Forms.Label label1;
         private Syncfusion.WinForms.Controls.SfButton sfButton1;
         private Syncfusion.WinForms.Controls.SfButton button1;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtPassword;
         private System.Windows.Forms.ComboBox cboKorisnik;
+        private System.Windows.Forms.TextBox txtPassword;
     }
 }

@@ -275,7 +275,7 @@ namespace Testiranje.Dokumeta
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
-            var select = "SELECT [ID] ,[BrVoza],[Relacija] , " +
+            var select = "SELECT [ID] ,[BrVoza],[Relacija] , NazivVoza, " +
              " CONVERT(varchar,VremePolaskaO,104)      + ' '      + SUBSTRING(CONVERT(varchar,VremePolaskaO,108),1,5) as VremePolaska, " +
               " CONVERT(varchar,[VremeDolaskaO],104)      + ' '      + SUBSTRING(CONVERT(varchar,[VremeDolaskaO],108),1,5)  as VremeDolaska, " +
            " [MaksimalnaBruto],[MaksimalnaDuzina] " +

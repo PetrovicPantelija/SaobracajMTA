@@ -1,30 +1,118 @@
 ﻿using Syncfusion.GridHelperClasses;
 using Syncfusion.Grouping;
+using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class UvozTable : Syncfusion.Windows.Forms.Office2010Form
+    public partial class UvozTable : Form
     {
         int Selektovani = 0;
         private Keys keyData;
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         int terminal = 0;
+
+        private void ChangeTextBox()
+        {
+            this.BackColor = Color.White;
+            this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+            this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+            Office2010Colors.ApplyManagedColors(this, Color.White);
+            //  toolStripHeader.BackColor = Color.FromArgb(240, 240, 248);
+            //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
+            panelHeader.Visible = false;
+            this.ControlBox = true;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                // toolStripHeader.Visible = false;
+                panelHeader.Visible = true;
+                // this.FormBorderStyle = FormBorderStyle.None;
+                this.BackColor = Color.White;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+
+                foreach (Control control in groupBox1.Controls)
+                {
+                    if (control is Button buttons)
+                    {
+
+                        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
+                        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
+                        buttons.Font = new Font("Helvetica", 9);  // Example: Change font
+                    }
+                }
+
+
+                    foreach (Control control in this.Controls)
+                {
+
+                    if (control is TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new Font("Helvetica", 9); 
+                        // Example: Change font
+                    }
+
+
+                    if (control is Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new Font("Helvetica", 9);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        dtp.Font = new Font("Helvetica", 9);
+                    }
+                    if (control is CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new Font("Helvetica", 9);
+                    }
+
+                    if (control is ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        lb.Font = new Font("Helvetica", 9);
+                    }
+
+
+
+
+                }
+            }
+            else
+            {
+                panelHeader.Visible = false;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
         public UvozTable()
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             InitializeComponent();
+            ChangeTextBox();
         }
 
         public UvozTable(int Terminalski)
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             InitializeComponent();
+            ChangeTextBox();
             terminal = 1;
         }
 
@@ -67,7 +155,7 @@ namespace Saobracaj.Uvoz
 " inner join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja " +
 " inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija " +
 " inner join Partnerji pv on pv.PaSifra = Uvoz.VlasnikKontejnera " +
-"  order by Uvoz.Prioritet desc, Uvoz.ID  ";
+"  order by Uvoz.Prioritet desc, Uvoz.ID desc ";
 
 
 
@@ -83,11 +171,11 @@ namespace Saobracaj.Uvoz
             gridGroupingControl1.DataSource = ds.Tables[0];
             gridGroupingControl1.ShowGroupDropArea = true;
             this.gridGroupingControl1.TopLevelGroupOptions.ShowFilterBar = true;
-           // this.gridGroupingControl1.RecordFilterDescriptor.
+            // this.gridGroupingControl1.RecordFilterDescriptor.
             foreach (GridColumnDescriptor column in this.gridGroupingControl1.TableDescriptor.Columns)
             {
                 column.AllowFilter = true;
-              //  column.RecordFilterDescriptor
+                //  column.RecordFilterDescriptor
             }
             this.gridGroupingControl1.TableDescriptor.Columns["BrojKontejnera"].FilterRowOptions.FilterMode = FilterMode.DisplayText;
             GridDynamicFilter dynamicFilter = new GridDynamicFilter();
@@ -131,7 +219,7 @@ namespace Saobracaj.Uvoz
 " inner join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja " +
 " inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija " +
 " inner join Partnerji pv on pv.PaSifra = Uvoz.VlasnikKontejnera where Uvoz.Terminal = 1" +
-"  order by Uvoz.Prioritet desc, Uvoz.ID  ";
+"  order by Uvoz.Prioritet desc, Uvoz.ID desc ";
 
 
 
@@ -152,20 +240,23 @@ namespace Saobracaj.Uvoz
                 column.AllowFilter = true;
             }
 
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
+
         }
 
         private void UvozTable_Load(object sender, EventArgs e)
         {
 
             if (terminal == 0)
-            { 
-                RefreshGV(); 
+            {
+                RefreshGV();
             }
-            else 
-            { 
-                RefreshGVT(); 
+            else
+            {
+                RefreshGVT();
             }
-           
+
         }
 
         private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)
@@ -189,10 +280,11 @@ namespace Saobracaj.Uvoz
 
         private void UvozTable_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyValue == 27)
+            if (e.KeyValue == 27 || e.KeyCode == Keys.Enter)
             {
                 Close();
             }
+            // e.KeyCode == Keys.Enter
         }
         private void PunjenjeVrednostiPolja()
         {
@@ -1160,6 +1252,28 @@ Koleta
             }
 
             RefreshGV();
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            frmUvozKopirajKontejner kk = new frmUvozKopirajKontejner(Convert.ToInt16(textBox1.Text));
+            kk.Show();
+           
+           
+
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (terminal == 0)
+            {
+                RefreshGV();
+            }
+            else
+            {
+                RefreshGVT();
+            }
         }
     }
 }

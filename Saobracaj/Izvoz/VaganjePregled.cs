@@ -1,4 +1,5 @@
 ﻿using Microsoft.ReportingServices.Diagnostics.Internal;
+using Syncfusion.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,9 +19,84 @@ namespace Saobracaj.Izvoz
         int KontID;
         string Vozilo, Vozac;
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+
+        private void ChangeTextBox()
+        {
+            this.BackColor = Color.White;
+            this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+            this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+            Office2010Colors.ApplyManagedColors(this, Color.White);
+            //  toolStripHeader.BackColor = Color.FromArgb(240, 240, 248);
+            //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
+            panelHeader.Visible = false;
+            this.ControlBox = true;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.CaptionFont = new Font("Helvetica", 12);
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                toolStrip1.Visible = false;
+                panelHeader.Visible = true;
+                // this.FormBorderStyle = FormBorderStyle.None;
+                this.BackColor = Color.White;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+
+                foreach (Control control in this.Controls)
+                {
+                    
+                    if (control is TextBox textBox)
+                    {
+
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        textBox.Font = new Font("Helvetica", 9);  // Example: Change font
+                    }
+                 
+
+                    if (control is Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new Font("Helvetica", 9);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new Font("Helvetica", 9);
+                    }
+                    if (control is CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new Font("Helvetica", 9);
+                    }
+
+                    if (control is ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new Font("Helvetica", 9);
+                    }
+
+
+
+
+                }
+            }
+            else
+            {
+                panelHeader.Visible = false;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //  this.BackColor = Color.White;
+                toolStrip1.Visible = true;
+            }
+        }
+
+
+
         public VaganjePregled()
         {
             InitializeComponent();
+            ChangeTextBox();
         }
 
         private void VaganjePregled_Load(object sender, EventArgs e)
@@ -38,15 +114,18 @@ namespace Saobracaj.Izvoz
             dataGridView1.DataSource = ds.Tables[0];
 
             dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            // 
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
             dataGridView1.BackgroundColor = Color.White;
-
+            dataGridView1.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+            dataGridView1.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+            //Header
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
         }
 
@@ -71,9 +150,20 @@ namespace Saobracaj.Izvoz
             FillGV();
         }
 
-        private void toolStripButton3_Click(object sender, EventArgs e)
+        private void button23_Click(object sender, EventArgs e)
         {
-            var select = "Select VagANJE.ID, IzvozKonacna.ID as KontID, IzvozKonacna.BrojKontejnera , Vaganje.Kamion, Vaganje.VagarskaPotvrdaBroj, Vaganje.Bruto, \r\nVaganje.Neto, Vaganje.Tara, Vaganje.DatumMerenja, Vaganje.Korisnik, IzvozKonacna.IDVaganja from Vaganje\r\ninner join IzvozKonacna on IzvozKonacna.ID = Vaganje.IzvozKonacnaID";
+            FillGV();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Vaganje frm = new Vaganje(brojKontejnera, KontID, Vozilo, Vozac);
+            frm.Show();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var select = "Select VagANJE.ID, IzvozKonacna.ID as KontID, IzvozKonacna.BrojKontejnera , Vaganje.Kamion, Vaganje.VagarskaPotvrdaBroj, Vaganje.Bruto, Vaganje.Neto, Vaganje.Tara, Vaganje.DatumMerenja, Vaganje.Korisnik, IzvozKonacna.IDVaganja,  IzvozKonacna.Cirada from Vaganje inner join IzvozKonacna on IzvozKonacna.ID = Vaganje.IzvozKonacnaID";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new System.Data.DataSet();
@@ -82,15 +172,52 @@ namespace Saobracaj.Izvoz
             dataGridView1.DataSource = ds.Tables[0];
 
             dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView1.BackgroundColor = Color.White;
 
+            // 
+
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
+            dataGridView1.BackgroundColor = Color.White;
+            dataGridView1.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+            dataGridView1.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+
+
+            //Header
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            var select = "Select VagANJE.ID, IzvozKonacna.ID as KontID, IzvozKonacna.BrojKontejnera , Vaganje.Kamion, Vaganje.VagarskaPotvrdaBroj, Vaganje.Bruto, Vaganje.Neto, Vaganje.Tara, Vaganje.DatumMerenja, Vaganje.Korisnik, IzvozKonacna.IDVaganja,  IzvozKonacna.Cirada from Vaganje inner join IzvozKonacna on IzvozKonacna.ID = Vaganje.IzvozKonacnaID";
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new System.Data.DataSet();
+            da.Fill(ds);
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = ds.Tables[0];
+
+            dataGridView1.BorderStyle = BorderStyle.None;
+
+            // 
+
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
+            dataGridView1.BackgroundColor = Color.White;
+            dataGridView1.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+            dataGridView1.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+
+
+            //Header
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
         }

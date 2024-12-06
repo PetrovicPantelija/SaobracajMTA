@@ -29,20 +29,21 @@ namespace Saobracaj.Uvoz
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUvozKonacna));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle121 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle122 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle123 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle124 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle125 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle126 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle127 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle128 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle129 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle130 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle131 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle132 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.meniHeader = new System.Windows.Forms.ToolStrip();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
@@ -238,7 +239,24 @@ namespace Saobracaj.Uvoz
             this.button20 = new System.Windows.Forms.Button();
             this.cboRLTerminal3 = new System.Windows.Forms.ComboBox();
             this.cboRLTerminal2 = new System.Windows.Forms.ComboBox();
-            this.toolStrip1.SuspendLayout();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.panelHeader = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button30 = new System.Windows.Forms.Button();
+            this.button29 = new System.Windows.Forms.Button();
+            this.button27 = new System.Windows.Forms.Button();
+            this.button26 = new System.Windows.Forms.Button();
+            this.button25 = new System.Windows.Forms.Button();
+            this.button24 = new System.Windows.Forms.Button();
+            this.button23 = new System.Windows.Forms.Button();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button21 = new System.Windows.Forms.Button();
+            this.button22 = new System.Windows.Forms.Button();
+            this.button28 = new System.Windows.Forms.Button();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.meniHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaraK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoR)).BeginInit();
@@ -260,13 +278,18 @@ namespace Saobracaj.Uvoz
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaraTerminal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKoletaTer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
+            this.panelHeader.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // meniHeader
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.DodgerBlue;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.meniHeader.BackColor = System.Drawing.Color.DodgerBlue;
+            this.meniHeader.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.meniHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsNew,
             this.tsSave,
             this.tsDelete,
@@ -278,11 +301,11 @@ namespace Saobracaj.Uvoz
             this.toolStripButton10,
             this.toolStripButton1,
             this.toolStripButton5});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1261, 27);
-            this.toolStrip1.TabIndex = 51;
-            this.toolStrip1.Text = "toolStrip1";
+            this.meniHeader.Location = new System.Drawing.Point(0, 0);
+            this.meniHeader.Name = "meniHeader";
+            this.meniHeader.Size = new System.Drawing.Size(1367, 27);
+            this.meniHeader.TabIndex = 51;
+            this.meniHeader.Text = "toolStrip1";
             // 
             // tsNew
             // 
@@ -334,6 +357,7 @@ namespace Saobracaj.Uvoz
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
             this.toolStripDropDownButton1.Size = new System.Drawing.Size(104, 24);
             this.toolStripDropDownButton1.Text = "Excel export";
+            this.toolStripDropDownButton1.Click += new System.EventHandler(this.toolStripDropDownButton1_Click);
             // 
             // exportToExcelHŽToolStripMenuItem
             // 
@@ -448,11 +472,12 @@ namespace Saobracaj.Uvoz
             this.cbDirigacija.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbDirigacija.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbDirigacija.FormattingEnabled = true;
-            this.cbDirigacija.Location = new System.Drawing.Point(207, 364);
+            this.cbDirigacija.Location = new System.Drawing.Point(1242, 84);
             this.cbDirigacija.Margin = new System.Windows.Forms.Padding(2);
             this.cbDirigacija.Name = "cbDirigacija";
-            this.cbDirigacija.Size = new System.Drawing.Size(187, 21);
+            this.cbDirigacija.Size = new System.Drawing.Size(99, 21);
             this.cbDirigacija.TabIndex = 10;
+            this.cbDirigacija.Visible = false;
             // 
             // clVrstaUsluga
             // 
@@ -468,7 +493,7 @@ namespace Saobracaj.Uvoz
             // 
             this.txtID.BackColor = System.Drawing.Color.PeachPuff;
             this.txtID.Enabled = false;
-            this.txtID.Location = new System.Drawing.Point(8, 205);
+            this.txtID.Location = new System.Drawing.Point(8, 235);
             this.txtID.Margin = new System.Windows.Forms.Padding(2);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(62, 20);
@@ -490,17 +515,18 @@ namespace Saobracaj.Uvoz
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(205, 347);
+            this.label10.Location = new System.Drawing.Point(1239, 69);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(117, 13);
             this.label10.TabIndex = 58;
             this.label10.Text = "Dirigacija kontejnera za";
+            this.label10.Visible = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 188);
+            this.label1.Location = new System.Drawing.Point(11, 218);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(18, 13);
@@ -509,7 +535,7 @@ namespace Saobracaj.Uvoz
             // 
             // txtBrKont
             // 
-            this.txtBrKont.Location = new System.Drawing.Point(6, 517);
+            this.txtBrKont.Location = new System.Drawing.Point(6, 547);
             this.txtBrKont.Margin = new System.Windows.Forms.Padding(2);
             this.txtBrKont.Name = "txtBrKont";
             this.txtBrKont.Size = new System.Drawing.Size(184, 20);
@@ -518,7 +544,7 @@ namespace Saobracaj.Uvoz
             // txtStatus
             // 
             this.txtStatus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.txtStatus.Location = new System.Drawing.Point(80, 204);
+            this.txtStatus.Location = new System.Drawing.Point(80, 234);
             this.txtStatus.Margin = new System.Windows.Forms.Padding(2);
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.Size = new System.Drawing.Size(73, 20);
@@ -529,7 +555,7 @@ namespace Saobracaj.Uvoz
             // 
             this.dtAtaRijeka.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtAtaRijeka.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtAtaRijeka.Location = new System.Drawing.Point(8, 277);
+            this.dtAtaRijeka.Location = new System.Drawing.Point(8, 307);
             this.dtAtaRijeka.Margin = new System.Windows.Forms.Padding(2);
             this.dtAtaRijeka.Name = "dtAtaRijeka";
             this.dtAtaRijeka.Size = new System.Drawing.Size(122, 20);
@@ -539,7 +565,7 @@ namespace Saobracaj.Uvoz
             // 
             this.dtEtaRijeka.CustomFormat = "dd.MM.yyyy hh:mm";
             this.dtEtaRijeka.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtEtaRijeka.Location = new System.Drawing.Point(1045, 118);
+            this.dtEtaRijeka.Location = new System.Drawing.Point(1045, 148);
             this.dtEtaRijeka.Margin = new System.Windows.Forms.Padding(2);
             this.dtEtaRijeka.Name = "dtEtaRijeka";
             this.dtEtaRijeka.Size = new System.Drawing.Size(153, 20);
@@ -550,7 +576,7 @@ namespace Saobracaj.Uvoz
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(4, 501);
+            this.label5.Location = new System.Drawing.Point(4, 531);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 13);
@@ -560,7 +586,7 @@ namespace Saobracaj.Uvoz
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(78, 188);
+            this.label4.Location = new System.Drawing.Point(78, 218);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(73, 13);
@@ -570,26 +596,26 @@ namespace Saobracaj.Uvoz
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(8, 263);
+            this.label3.Location = new System.Drawing.Point(8, 293);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(127, 13);
+            this.label3.Size = new System.Drawing.Size(88, 13);
             this.label3.TabIndex = 65;
-            this.label3.Text = "ATA broda u Luku Rijeka";
+            this.label3.Text = "ATA broda  Luka";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1040, 98);
+            this.label2.Location = new System.Drawing.Point(1040, 128);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(61, 13);
+            this.label2.Size = new System.Drawing.Size(149, 13);
             this.label2.TabIndex = 66;
-            this.label2.Text = "ATA Rijeka";
+            this.label2.Text = "ATA povratak u polaznu Luku";
             // 
             // txtPIN
             // 
-            this.txtPIN.Location = new System.Drawing.Point(7, 477);
+            this.txtPIN.Location = new System.Drawing.Point(7, 507);
             this.txtPIN.Margin = new System.Windows.Forms.Padding(2);
             this.txtPIN.Name = "txtPIN";
             this.txtPIN.Size = new System.Drawing.Size(184, 20);
@@ -599,7 +625,7 @@ namespace Saobracaj.Uvoz
             // 
             this.dtNalogBrodara.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtNalogBrodara.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtNalogBrodara.Location = new System.Drawing.Point(8, 241);
+            this.dtNalogBrodara.Location = new System.Drawing.Point(8, 271);
             this.dtNalogBrodara.Margin = new System.Windows.Forms.Padding(2);
             this.dtNalogBrodara.Name = "dtNalogBrodara";
             this.dtNalogBrodara.Size = new System.Drawing.Size(122, 20);
@@ -608,7 +634,7 @@ namespace Saobracaj.Uvoz
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 461);
+            this.label9.Location = new System.Drawing.Point(7, 491);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(25, 13);
@@ -618,7 +644,7 @@ namespace Saobracaj.Uvoz
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 400);
+            this.label8.Location = new System.Drawing.Point(6, 430);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(55, 13);
@@ -628,7 +654,7 @@ namespace Saobracaj.Uvoz
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 225);
+            this.label7.Location = new System.Drawing.Point(7, 255);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(111, 13);
@@ -638,7 +664,7 @@ namespace Saobracaj.Uvoz
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(208, 499);
+            this.label6.Location = new System.Drawing.Point(208, 529);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(94, 13);
@@ -660,7 +686,7 @@ namespace Saobracaj.Uvoz
             this.cboUvoznik.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboUvoznik.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboUvoznik.FormattingEnabled = true;
-            this.cboUvoznik.Location = new System.Drawing.Point(418, 435);
+            this.cboUvoznik.Location = new System.Drawing.Point(418, 465);
             this.cboUvoznik.Margin = new System.Windows.Forms.Padding(2);
             this.cboUvoznik.Name = "cboUvoznik";
             this.cboUvoznik.Size = new System.Drawing.Size(184, 21);
@@ -672,7 +698,7 @@ namespace Saobracaj.Uvoz
             this.cbVlasnikKont.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbVlasnikKont.BackColor = System.Drawing.Color.White;
             this.cbVlasnikKont.FormattingEnabled = true;
-            this.cbVlasnikKont.Location = new System.Drawing.Point(207, 513);
+            this.cbVlasnikKont.Location = new System.Drawing.Point(207, 543);
             this.cbVlasnikKont.Margin = new System.Windows.Forms.Padding(2);
             this.cbVlasnikKont.Name = "cbVlasnikKont";
             this.cbVlasnikKont.Size = new System.Drawing.Size(184, 21);
@@ -683,7 +709,7 @@ namespace Saobracaj.Uvoz
             this.cbBrod.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbBrod.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbBrod.FormattingEnabled = true;
-            this.cbBrod.Location = new System.Drawing.Point(7, 317);
+            this.cbBrod.Location = new System.Drawing.Point(7, 347);
             this.cbBrod.Margin = new System.Windows.Forms.Padding(2);
             this.cbBrod.Name = "cbBrod";
             this.cbBrod.Size = new System.Drawing.Size(182, 21);
@@ -700,7 +726,7 @@ namespace Saobracaj.Uvoz
             // 
             // txtTeretnica
             // 
-            this.txtTeretnica.Location = new System.Drawing.Point(207, 403);
+            this.txtTeretnica.Location = new System.Drawing.Point(207, 433);
             this.txtTeretnica.Margin = new System.Windows.Forms.Padding(2);
             this.txtTeretnica.Name = "txtTeretnica";
             this.txtTeretnica.Size = new System.Drawing.Size(187, 20);
@@ -709,7 +735,7 @@ namespace Saobracaj.Uvoz
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(415, 420);
+            this.label18.Location = new System.Drawing.Point(415, 450);
             this.label18.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(46, 13);
@@ -730,7 +756,7 @@ namespace Saobracaj.Uvoz
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(205, 424);
+            this.label13.Location = new System.Drawing.Point(205, 454);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(30, 13);
@@ -740,7 +766,7 @@ namespace Saobracaj.Uvoz
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(206, 387);
+            this.label12.Location = new System.Drawing.Point(206, 417);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(20, 13);
@@ -750,7 +776,7 @@ namespace Saobracaj.Uvoz
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(8, 301);
+            this.label11.Location = new System.Drawing.Point(8, 331);
             this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(64, 13);
@@ -762,7 +788,7 @@ namespace Saobracaj.Uvoz
             this.cboCarinskiPostupak.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboCarinskiPostupak.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboCarinskiPostupak.FormattingEnabled = true;
-            this.cboCarinskiPostupak.Location = new System.Drawing.Point(620, 245);
+            this.cboCarinskiPostupak.Location = new System.Drawing.Point(620, 275);
             this.cboCarinskiPostupak.Margin = new System.Windows.Forms.Padding(2);
             this.cboCarinskiPostupak.Name = "cboCarinskiPostupak";
             this.cboCarinskiPostupak.Size = new System.Drawing.Size(182, 21);
@@ -773,7 +799,7 @@ namespace Saobracaj.Uvoz
             this.cboSpedicijaRTC.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboSpedicijaRTC.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboSpedicijaRTC.FormattingEnabled = true;
-            this.cboSpedicijaRTC.Location = new System.Drawing.Point(620, 204);
+            this.cboSpedicijaRTC.Location = new System.Drawing.Point(620, 234);
             this.cboSpedicijaRTC.Margin = new System.Windows.Forms.Padding(2);
             this.cboSpedicijaRTC.Name = "cboSpedicijaRTC";
             this.cboSpedicijaRTC.Size = new System.Drawing.Size(182, 21);
@@ -784,7 +810,7 @@ namespace Saobracaj.Uvoz
             this.cboSpedicijaG.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboSpedicijaG.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboSpedicijaG.FormattingEnabled = true;
-            this.cboSpedicijaG.Location = new System.Drawing.Point(417, 515);
+            this.cboSpedicijaG.Location = new System.Drawing.Point(417, 545);
             this.cboSpedicijaG.Margin = new System.Windows.Forms.Padding(2);
             this.cboSpedicijaG.Name = "cboSpedicijaG";
             this.cboSpedicijaG.Size = new System.Drawing.Size(182, 21);
@@ -805,7 +831,7 @@ namespace Saobracaj.Uvoz
             this.cboNHM.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboNHM.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNHM.FormattingEnabled = true;
-            this.cboNHM.Location = new System.Drawing.Point(417, 54);
+            this.cboNHM.Location = new System.Drawing.Point(417, 84);
             this.cboNHM.Margin = new System.Windows.Forms.Padding(2);
             this.cboNHM.Name = "cboNHM";
             this.cboNHM.Size = new System.Drawing.Size(443, 21);
@@ -814,7 +840,7 @@ namespace Saobracaj.Uvoz
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(619, 230);
+            this.label23.Location = new System.Drawing.Point(619, 260);
             this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(91, 13);
@@ -824,7 +850,7 @@ namespace Saobracaj.Uvoz
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(619, 188);
+            this.label22.Location = new System.Drawing.Point(619, 218);
             this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(83, 13);
@@ -834,7 +860,7 @@ namespace Saobracaj.Uvoz
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(416, 500);
+            this.label21.Location = new System.Drawing.Point(416, 530);
             this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(88, 13);
@@ -844,7 +870,7 @@ namespace Saobracaj.Uvoz
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(685, 248);
+            this.label20.Location = new System.Drawing.Point(685, 278);
             this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(107, 13);
@@ -855,7 +881,7 @@ namespace Saobracaj.Uvoz
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(417, 37);
+            this.label19.Location = new System.Drawing.Point(417, 67);
             this.label19.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(32, 13);
@@ -867,7 +893,7 @@ namespace Saobracaj.Uvoz
             this.cbOspedicija.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbOspedicija.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbOspedicija.FormattingEnabled = true;
-            this.cbOspedicija.Location = new System.Drawing.Point(619, 478);
+            this.cbOspedicija.Location = new System.Drawing.Point(619, 508);
             this.cbOspedicija.Margin = new System.Windows.Forms.Padding(2);
             this.cbOspedicija.Name = "cbOspedicija";
             this.cbOspedicija.Size = new System.Drawing.Size(188, 21);
@@ -878,7 +904,7 @@ namespace Saobracaj.Uvoz
             this.cbOcarina.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbOcarina.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbOcarina.FormattingEnabled = true;
-            this.cbOcarina.Location = new System.Drawing.Point(620, 439);
+            this.cbOcarina.Location = new System.Drawing.Point(620, 469);
             this.cbOcarina.Margin = new System.Windows.Forms.Padding(2);
             this.cbOcarina.Name = "cbOcarina";
             this.cbOcarina.Size = new System.Drawing.Size(190, 21);
@@ -889,7 +915,7 @@ namespace Saobracaj.Uvoz
             this.cbNacinPakovanja.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbNacinPakovanja.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbNacinPakovanja.FormattingEnabled = true;
-            this.cbNacinPakovanja.Location = new System.Drawing.Point(621, 396);
+            this.cbNacinPakovanja.Location = new System.Drawing.Point(621, 426);
             this.cbNacinPakovanja.Margin = new System.Windows.Forms.Padding(2);
             this.cbNacinPakovanja.Name = "cbNacinPakovanja";
             this.cbNacinPakovanja.Size = new System.Drawing.Size(187, 21);
@@ -900,7 +926,7 @@ namespace Saobracaj.Uvoz
             this.cbPostupak.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbPostupak.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbPostupak.FormattingEnabled = true;
-            this.cbPostupak.Location = new System.Drawing.Point(620, 285);
+            this.cbPostupak.Location = new System.Drawing.Point(620, 315);
             this.cbPostupak.Margin = new System.Windows.Forms.Padding(2);
             this.cbPostupak.Name = "cbPostupak";
             this.cbPostupak.Size = new System.Drawing.Size(188, 21);
@@ -910,7 +936,7 @@ namespace Saobracaj.Uvoz
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(619, 269);
+            this.label25.Location = new System.Drawing.Point(619, 299);
             this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(164, 13);
@@ -920,7 +946,7 @@ namespace Saobracaj.Uvoz
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(620, 463);
+            this.label27.Location = new System.Drawing.Point(620, 493);
             this.label27.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(163, 13);
@@ -930,7 +956,7 @@ namespace Saobracaj.Uvoz
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(620, 424);
+            this.label26.Location = new System.Drawing.Point(620, 454);
             this.label26.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(110, 13);
@@ -941,7 +967,7 @@ namespace Saobracaj.Uvoz
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(618, 380);
+            this.label24.Location = new System.Drawing.Point(618, 410);
             this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(88, 13);
@@ -951,7 +977,7 @@ namespace Saobracaj.Uvoz
             // txtBrutoK
             // 
             this.txtBrutoK.DecimalPlaces = 3;
-            this.txtBrutoK.Location = new System.Drawing.Point(1144, 247);
+            this.txtBrutoK.Location = new System.Drawing.Point(1144, 277);
             this.txtBrutoK.Margin = new System.Windows.Forms.Padding(2);
             this.txtBrutoK.Maximum = new decimal(new int[] {
             100000,
@@ -967,7 +993,7 @@ namespace Saobracaj.Uvoz
             // txtTaraK
             // 
             this.txtTaraK.DecimalPlaces = 3;
-            this.txtTaraK.Location = new System.Drawing.Point(1047, 324);
+            this.txtTaraK.Location = new System.Drawing.Point(1047, 354);
             this.txtTaraK.Margin = new System.Windows.Forms.Padding(2);
             this.txtTaraK.Maximum = new decimal(new int[] {
             100000,
@@ -983,7 +1009,7 @@ namespace Saobracaj.Uvoz
             // txtBrutoR
             // 
             this.txtBrutoR.DecimalPlaces = 3;
-            this.txtBrutoR.Location = new System.Drawing.Point(1047, 285);
+            this.txtBrutoR.Location = new System.Drawing.Point(1047, 315);
             this.txtBrutoR.Margin = new System.Windows.Forms.Padding(2);
             this.txtBrutoR.Maximum = new decimal(new int[] {
             100000,
@@ -998,7 +1024,7 @@ namespace Saobracaj.Uvoz
             // txtNetoR
             // 
             this.txtNetoR.DecimalPlaces = 3;
-            this.txtNetoR.Location = new System.Drawing.Point(1047, 247);
+            this.txtNetoR.Location = new System.Drawing.Point(1047, 277);
             this.txtNetoR.Margin = new System.Windows.Forms.Padding(2);
             this.txtNetoR.Maximum = new decimal(new int[] {
             100000,
@@ -1012,7 +1038,7 @@ namespace Saobracaj.Uvoz
             // 
             // txtMail
             // 
-            this.txtMail.Location = new System.Drawing.Point(819, 343);
+            this.txtMail.Location = new System.Drawing.Point(819, 373);
             this.txtMail.Margin = new System.Windows.Forms.Padding(2);
             this.txtMail.Multiline = true;
             this.txtMail.Name = "txtMail";
@@ -1021,7 +1047,7 @@ namespace Saobracaj.Uvoz
             // 
             // txtPlomba2
             // 
-            this.txtPlomba2.Location = new System.Drawing.Point(1145, 419);
+            this.txtPlomba2.Location = new System.Drawing.Point(1145, 449);
             this.txtPlomba2.Margin = new System.Windows.Forms.Padding(2);
             this.txtPlomba2.Name = "txtPlomba2";
             this.txtPlomba2.Size = new System.Drawing.Size(92, 20);
@@ -1029,7 +1055,7 @@ namespace Saobracaj.Uvoz
             // 
             // txtPlomba1
             // 
-            this.txtPlomba1.Location = new System.Drawing.Point(1045, 419);
+            this.txtPlomba1.Location = new System.Drawing.Point(1045, 449);
             this.txtPlomba1.Margin = new System.Windows.Forms.Padding(2);
             this.txtPlomba1.Name = "txtPlomba1";
             this.txtPlomba1.Size = new System.Drawing.Size(92, 20);
@@ -1038,7 +1064,7 @@ namespace Saobracaj.Uvoz
             // label36
             // 
             this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(1142, 231);
+            this.label36.Location = new System.Drawing.Point(1142, 261);
             this.label36.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(89, 13);
@@ -1050,7 +1076,7 @@ namespace Saobracaj.Uvoz
             this.label35.AutoSize = true;
             this.label35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
             this.label35.ForeColor = System.Drawing.Color.White;
-            this.label35.Location = new System.Drawing.Point(1044, 309);
+            this.label35.Location = new System.Drawing.Point(1044, 339);
             this.label35.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(82, 13);
@@ -1060,7 +1086,7 @@ namespace Saobracaj.Uvoz
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(1047, 270);
+            this.label34.Location = new System.Drawing.Point(1047, 300);
             this.label34.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(60, 13);
@@ -1070,7 +1096,7 @@ namespace Saobracaj.Uvoz
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(1047, 232);
+            this.label33.Location = new System.Drawing.Point(1047, 262);
             this.label33.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(61, 13);
@@ -1082,7 +1108,7 @@ namespace Saobracaj.Uvoz
             this.label32.AutoSize = true;
             this.label32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
             this.label32.ForeColor = System.Drawing.Color.White;
-            this.label32.Location = new System.Drawing.Point(1142, 404);
+            this.label32.Location = new System.Drawing.Point(1142, 434);
             this.label32.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(71, 13);
@@ -1094,7 +1120,7 @@ namespace Saobracaj.Uvoz
             this.label31.AutoSize = true;
             this.label31.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
             this.label31.ForeColor = System.Drawing.Color.White;
-            this.label31.Location = new System.Drawing.Point(1045, 404);
+            this.label31.Location = new System.Drawing.Point(1045, 434);
             this.label31.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(71, 13);
@@ -1105,7 +1131,7 @@ namespace Saobracaj.Uvoz
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(815, 328);
+            this.label30.Location = new System.Drawing.Point(815, 358);
             this.label30.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(116, 13);
@@ -1128,7 +1154,7 @@ namespace Saobracaj.Uvoz
             this.cbNapomenaPoz.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cbNapomenaPoz.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbNapomenaPoz.FormattingEnabled = true;
-            this.cbNapomenaPoz.Location = new System.Drawing.Point(621, 324);
+            this.cbNapomenaPoz.Location = new System.Drawing.Point(621, 354);
             this.cbNapomenaPoz.Margin = new System.Windows.Forms.Padding(2);
             this.cbNapomenaPoz.Name = "cbNapomenaPoz";
             this.cbNapomenaPoz.Size = new System.Drawing.Size(187, 21);
@@ -1136,7 +1162,7 @@ namespace Saobracaj.Uvoz
             // 
             // txtNapomena
             // 
-            this.txtNapomena.Location = new System.Drawing.Point(1043, 205);
+            this.txtNapomena.Location = new System.Drawing.Point(1043, 235);
             this.txtNapomena.Margin = new System.Windows.Forms.Padding(2);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
@@ -1168,7 +1194,7 @@ namespace Saobracaj.Uvoz
             // 
             this.dtAtaDolazak.CustomFormat = "dd.MM.yyyy hh:mm";
             this.dtAtaDolazak.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtAtaDolazak.Location = new System.Drawing.Point(1043, 59);
+            this.dtAtaDolazak.Location = new System.Drawing.Point(1043, 89);
             this.dtAtaDolazak.Margin = new System.Windows.Forms.Padding(2);
             this.dtAtaDolazak.Name = "dtAtaDolazak";
             this.dtAtaDolazak.Size = new System.Drawing.Size(129, 20);
@@ -1179,7 +1205,7 @@ namespace Saobracaj.Uvoz
             // 
             this.dtAtaOtprema.CustomFormat = "dd.MM.yyyy hh:mm";
             this.dtAtaOtprema.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtAtaOtprema.Location = new System.Drawing.Point(1045, 161);
+            this.dtAtaOtprema.Location = new System.Drawing.Point(1045, 191);
             this.dtAtaOtprema.Margin = new System.Windows.Forms.Padding(2);
             this.dtAtaOtprema.Name = "dtAtaOtprema";
             this.dtAtaOtprema.Size = new System.Drawing.Size(156, 20);
@@ -1188,7 +1214,7 @@ namespace Saobracaj.Uvoz
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Location = new System.Drawing.Point(618, 308);
+            this.label42.Location = new System.Drawing.Point(618, 338);
             this.label42.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(193, 13);
@@ -1198,7 +1224,7 @@ namespace Saobracaj.Uvoz
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(1040, 189);
+            this.label41.Location = new System.Drawing.Point(1040, 219);
             this.label41.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(68, 13);
@@ -1208,7 +1234,7 @@ namespace Saobracaj.Uvoz
             // label40
             // 
             this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(1040, 39);
+            this.label40.Location = new System.Drawing.Point(1040, 69);
             this.label40.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(133, 13);
@@ -1241,7 +1267,7 @@ namespace Saobracaj.Uvoz
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(1042, 146);
+            this.label37.Location = new System.Drawing.Point(1042, 176);
             this.label37.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(129, 13);
@@ -1268,7 +1294,7 @@ namespace Saobracaj.Uvoz
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.groupBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.groupBox1.Controls.Add(this.chkTerminalski);
             this.groupBox1.Controls.Add(this.dataGridView5);
             this.groupBox1.Controls.Add(this.button3);
@@ -1283,7 +1309,7 @@ namespace Saobracaj.Uvoz
             this.groupBox1.Controls.Add(this.label46);
             this.groupBox1.Controls.Add(this.clNalogodavac);
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.groupBox1.Location = new System.Drawing.Point(10, 32);
+            this.groupBox1.Location = new System.Drawing.Point(10, 62);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
@@ -1447,7 +1473,7 @@ namespace Saobracaj.Uvoz
             this.txtTipKont.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtTipKont.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txtTipKont.FormattingEnabled = true;
-            this.txtTipKont.Location = new System.Drawing.Point(208, 208);
+            this.txtTipKont.Location = new System.Drawing.Point(208, 238);
             this.txtTipKont.Margin = new System.Windows.Forms.Padding(2);
             this.txtTipKont.Name = "txtTipKont";
             this.txtTipKont.Size = new System.Drawing.Size(186, 21);
@@ -1456,7 +1482,7 @@ namespace Saobracaj.Uvoz
             // txtKoleta
             // 
             this.txtKoleta.DecimalPlaces = 3;
-            this.txtKoleta.Location = new System.Drawing.Point(1145, 322);
+            this.txtKoleta.Location = new System.Drawing.Point(1145, 352);
             this.txtKoleta.Margin = new System.Windows.Forms.Padding(2);
             this.txtKoleta.Maximum = new decimal(new int[] {
             100000,
@@ -1471,7 +1497,7 @@ namespace Saobracaj.Uvoz
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(1144, 306);
+            this.label45.Location = new System.Drawing.Point(1144, 336);
             this.label45.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(37, 13);
@@ -1491,7 +1517,7 @@ namespace Saobracaj.Uvoz
             // txtIDNHM
             // 
             this.txtIDNHM.BackColor = System.Drawing.SystemColors.Highlight;
-            this.txtIDNHM.Location = new System.Drawing.Point(581, 33);
+            this.txtIDNHM.Location = new System.Drawing.Point(581, 63);
             this.txtIDNHM.Margin = new System.Windows.Forms.Padding(2);
             this.txtIDNHM.Name = "txtIDNHM";
             this.txtIDNHM.Size = new System.Drawing.Size(57, 20);
@@ -1529,7 +1555,7 @@ namespace Saobracaj.Uvoz
             // 
             this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button6.Location = new System.Drawing.Point(949, 46);
+            this.button6.Location = new System.Drawing.Point(949, 76);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(46, 33);
             this.button6.TabIndex = 30;
@@ -1540,8 +1566,9 @@ namespace Saobracaj.Uvoz
             // button7
             // 
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button7.Location = new System.Drawing.Point(891, 46);
+            this.button7.Location = new System.Drawing.Point(891, 76);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(49, 31);
             this.button7.TabIndex = 29;
@@ -1567,7 +1594,7 @@ namespace Saobracaj.Uvoz
             // 
             this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(417, 84);
+            this.dataGridView2.Location = new System.Drawing.Point(417, 114);
             this.dataGridView2.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 11;
@@ -1582,7 +1609,7 @@ namespace Saobracaj.Uvoz
             this.txtADR.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txtADR.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txtADR.FormattingEnabled = true;
-            this.txtADR.Location = new System.Drawing.Point(207, 439);
+            this.txtADR.Location = new System.Drawing.Point(207, 469);
             this.txtADR.Margin = new System.Windows.Forms.Padding(2);
             this.txtADR.Name = "txtADR";
             this.txtADR.Size = new System.Drawing.Size(180, 21);
@@ -1593,7 +1620,7 @@ namespace Saobracaj.Uvoz
             this.cboRLTerminal.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboRLTerminal.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboRLTerminal.FormattingEnabled = true;
-            this.cboRLTerminal.Location = new System.Drawing.Point(208, 245);
+            this.cboRLTerminal.Location = new System.Drawing.Point(208, 275);
             this.cboRLTerminal.Margin = new System.Windows.Forms.Padding(2);
             this.cboRLTerminal.Name = "cboRLTerminal";
             this.cboRLTerminal.Size = new System.Drawing.Size(184, 21);
@@ -1602,7 +1629,7 @@ namespace Saobracaj.Uvoz
             // label47
             // 
             this.label47.AutoSize = true;
-            this.label47.Location = new System.Drawing.Point(207, 231);
+            this.label47.Location = new System.Drawing.Point(207, 261);
             this.label47.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(94, 13);
@@ -1612,7 +1639,7 @@ namespace Saobracaj.Uvoz
             // txtNapomenaPoz
             // 
             this.txtNapomenaPoz.BackColor = System.Drawing.SystemColors.Highlight;
-            this.txtNapomenaPoz.Location = new System.Drawing.Point(739, 353);
+            this.txtNapomenaPoz.Location = new System.Drawing.Point(739, 383);
             this.txtNapomenaPoz.Margin = new System.Windows.Forms.Padding(2);
             this.txtNapomenaPoz.Name = "txtNapomenaPoz";
             this.txtNapomenaPoz.Size = new System.Drawing.Size(57, 20);
@@ -1623,7 +1650,7 @@ namespace Saobracaj.Uvoz
             // 
             this.button8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button8.Location = new System.Drawing.Point(679, 350);
+            this.button8.Location = new System.Drawing.Point(679, 380);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(53, 26);
             this.button8.TabIndex = 47;
@@ -1635,7 +1662,7 @@ namespace Saobracaj.Uvoz
             // 
             this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button9.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button9.Location = new System.Drawing.Point(620, 350);
+            this.button9.Location = new System.Drawing.Point(620, 380);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(53, 25);
             this.button9.TabIndex = 46;
@@ -1647,7 +1674,7 @@ namespace Saobracaj.Uvoz
             // 
             this.txtBrojKola2.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.txtBrojKola2.ForeColor = System.Drawing.Color.White;
-            this.txtBrojKola2.Location = new System.Drawing.Point(1043, 464);
+            this.txtBrojKola2.Location = new System.Drawing.Point(1043, 494);
             this.txtBrojKola2.Margin = new System.Windows.Forms.Padding(2);
             this.txtBrojKola2.Name = "txtBrojKola2";
             this.txtBrojKola2.Size = new System.Drawing.Size(203, 20);
@@ -1658,7 +1685,7 @@ namespace Saobracaj.Uvoz
             this.label48.AutoSize = true;
             this.label48.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
             this.label48.ForeColor = System.Drawing.Color.White;
-            this.label48.Location = new System.Drawing.Point(1045, 449);
+            this.label48.Location = new System.Drawing.Point(1045, 479);
             this.label48.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label48.Name = "label48";
             this.label48.Size = new System.Drawing.Size(48, 13);
@@ -1668,7 +1695,7 @@ namespace Saobracaj.Uvoz
             // txtNapomena1
             // 
             this.txtNapomena1.BackColor = System.Drawing.Color.White;
-            this.txtNapomena1.Location = new System.Drawing.Point(80, 340);
+            this.txtNapomena1.Location = new System.Drawing.Point(80, 370);
             this.txtNapomena1.Margin = new System.Windows.Forms.Padding(2);
             this.txtNapomena1.Name = "txtNapomena1";
             this.txtNapomena1.Size = new System.Drawing.Size(40, 20);
@@ -1678,7 +1705,7 @@ namespace Saobracaj.Uvoz
             // label49
             // 
             this.label49.AutoSize = true;
-            this.label49.Location = new System.Drawing.Point(6, 339);
+            this.label49.Location = new System.Drawing.Point(6, 369);
             this.label49.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label49.Name = "label49";
             this.label49.Size = new System.Drawing.Size(68, 13);
@@ -1798,7 +1825,7 @@ namespace Saobracaj.Uvoz
             this.cboBrodar.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboBrodar.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBrodar.FormattingEnabled = true;
-            this.cboBrodar.Location = new System.Drawing.Point(209, 477);
+            this.cboBrodar.Location = new System.Drawing.Point(209, 507);
             this.cboBrodar.Margin = new System.Windows.Forms.Padding(2);
             this.cboBrodar.Name = "cboBrodar";
             this.cboBrodar.Size = new System.Drawing.Size(181, 21);
@@ -1808,7 +1835,7 @@ namespace Saobracaj.Uvoz
             // 
             this.label51.AutoSize = true;
             this.label51.ForeColor = System.Drawing.Color.DarkRed;
-            this.label51.Location = new System.Drawing.Point(208, 461);
+            this.label51.Location = new System.Drawing.Point(208, 491);
             this.label51.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label51.Name = "label51";
             this.label51.Size = new System.Drawing.Size(41, 13);
@@ -1818,7 +1845,7 @@ namespace Saobracaj.Uvoz
             // label50
             // 
             this.label50.AutoSize = true;
-            this.label50.Location = new System.Drawing.Point(417, 307);
+            this.label50.Location = new System.Drawing.Point(417, 337);
             this.label50.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label50.Name = "label50";
             this.label50.Size = new System.Drawing.Size(104, 13);
@@ -1828,7 +1855,7 @@ namespace Saobracaj.Uvoz
             // 
             // txtRef2
             // 
-            this.txtRef2.Location = new System.Drawing.Point(420, 323);
+            this.txtRef2.Location = new System.Drawing.Point(420, 353);
             this.txtRef2.Margin = new System.Windows.Forms.Padding(2);
             this.txtRef2.Name = "txtRef2";
             this.txtRef2.Size = new System.Drawing.Size(146, 20);
@@ -1837,7 +1864,7 @@ namespace Saobracaj.Uvoz
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(416, 230);
+            this.label52.Location = new System.Drawing.Point(416, 260);
             this.label52.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(104, 13);
@@ -1846,7 +1873,7 @@ namespace Saobracaj.Uvoz
             // 
             // txtRef1
             // 
-            this.txtRef1.Location = new System.Drawing.Point(417, 246);
+            this.txtRef1.Location = new System.Drawing.Point(417, 276);
             this.txtRef1.Margin = new System.Windows.Forms.Padding(2);
             this.txtRef1.Name = "txtRef1";
             this.txtRef1.Size = new System.Drawing.Size(146, 20);
@@ -1858,7 +1885,7 @@ namespace Saobracaj.Uvoz
             this.cboNalogodavac2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNalogodavac2.FormattingEnabled = true;
             this.cboNalogodavac2.ItemHeight = 13;
-            this.cboNalogodavac2.Location = new System.Drawing.Point(417, 285);
+            this.cboNalogodavac2.Location = new System.Drawing.Point(417, 315);
             this.cboNalogodavac2.Margin = new System.Windows.Forms.Padding(2);
             this.cboNalogodavac2.Name = "cboNalogodavac2";
             this.cboNalogodavac2.Size = new System.Drawing.Size(185, 21);
@@ -1867,7 +1894,7 @@ namespace Saobracaj.Uvoz
             // label53
             // 
             this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(417, 269);
+            this.label53.Location = new System.Drawing.Point(417, 299);
             this.label53.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(113, 13);
@@ -1879,7 +1906,7 @@ namespace Saobracaj.Uvoz
             this.cboNalogodavac1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboNalogodavac1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNalogodavac1.FormattingEnabled = true;
-            this.cboNalogodavac1.Location = new System.Drawing.Point(416, 204);
+            this.cboNalogodavac1.Location = new System.Drawing.Point(416, 234);
             this.cboNalogodavac1.Margin = new System.Windows.Forms.Padding(2);
             this.cboNalogodavac1.Name = "cboNalogodavac1";
             this.cboNalogodavac1.Size = new System.Drawing.Size(180, 21);
@@ -1888,7 +1915,7 @@ namespace Saobracaj.Uvoz
             // label55
             // 
             this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(414, 189);
+            this.label55.Location = new System.Drawing.Point(414, 219);
             this.label55.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label55.Name = "label55";
             this.label55.Size = new System.Drawing.Size(105, 13);
@@ -1898,7 +1925,7 @@ namespace Saobracaj.Uvoz
             // label56
             // 
             this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(420, 384);
+            this.label56.Location = new System.Drawing.Point(420, 414);
             this.label56.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label56.Name = "label56";
             this.label56.Size = new System.Drawing.Size(104, 13);
@@ -1907,7 +1934,7 @@ namespace Saobracaj.Uvoz
             // 
             // txtRef3
             // 
-            this.txtRef3.Location = new System.Drawing.Point(417, 399);
+            this.txtRef3.Location = new System.Drawing.Point(417, 429);
             this.txtRef3.Margin = new System.Windows.Forms.Padding(2);
             this.txtRef3.Name = "txtRef3";
             this.txtRef3.Size = new System.Drawing.Size(146, 20);
@@ -1919,7 +1946,7 @@ namespace Saobracaj.Uvoz
             this.cboNalogodavac3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNalogodavac3.FormattingEnabled = true;
             this.cboNalogodavac3.ItemHeight = 13;
-            this.cboNalogodavac3.Location = new System.Drawing.Point(417, 360);
+            this.cboNalogodavac3.Location = new System.Drawing.Point(417, 390);
             this.cboNalogodavac3.Margin = new System.Windows.Forms.Padding(2);
             this.cboNalogodavac3.Name = "cboNalogodavac3";
             this.cboNalogodavac3.Size = new System.Drawing.Size(185, 21);
@@ -1928,7 +1955,7 @@ namespace Saobracaj.Uvoz
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(416, 345);
+            this.label57.Location = new System.Drawing.Point(416, 375);
             this.label57.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(159, 13);
@@ -1959,7 +1986,7 @@ namespace Saobracaj.Uvoz
             this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.txtBrojVoza);
             this.panel1.Controls.Add(this.txtRelacija);
-            this.panel1.Location = new System.Drawing.Point(1171, 611);
+            this.panel1.Location = new System.Drawing.Point(1171, 641);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(16, 77);
@@ -2014,34 +2041,34 @@ namespace Saobracaj.Uvoz
             // 
             // dataGridView6
             // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView6.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle121.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle121.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle121.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle121.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle121.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle121.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle121.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView6.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle121;
             this.dataGridView6.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView6.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle122.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle122.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle122.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle122.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle122.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle122.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle122.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView6.DefaultCellStyle = dataGridViewCellStyle122;
             this.dataGridView6.Location = new System.Drawing.Point(4, 27);
             this.dataGridView6.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView6.Name = "dataGridView6";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView6.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle123.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle123.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle123.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle123.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle123.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle123.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle123.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView6.RowHeadersDefaultCellStyle = dataGridViewCellStyle123;
             this.dataGridView6.RowHeadersWidth = 11;
             this.dataGridView6.RowTemplate.Height = 24;
             this.dataGridView6.Size = new System.Drawing.Size(212, 25);
@@ -2049,34 +2076,34 @@ namespace Saobracaj.Uvoz
             // 
             // dataGridView7
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView7.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle124.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle124.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle124.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle124.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle124.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle124.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle124.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView7.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle124;
             this.dataGridView7.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView7.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle125.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle125.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle125.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle125.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle125.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle125.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle125.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView7.DefaultCellStyle = dataGridViewCellStyle125;
             this.dataGridView7.Location = new System.Drawing.Point(7, 78);
             this.dataGridView7.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView7.Name = "dataGridView7";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView7.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle126.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle126.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle126.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle126.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle126.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle126.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle126.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView7.RowHeadersDefaultCellStyle = dataGridViewCellStyle126;
             this.dataGridView7.RowHeadersWidth = 11;
             this.dataGridView7.RowTemplate.Height = 24;
             this.dataGridView7.Size = new System.Drawing.Size(212, 25);
@@ -2097,7 +2124,7 @@ namespace Saobracaj.Uvoz
             // 
             this.label60.AutoSize = true;
             this.label60.ForeColor = System.Drawing.Color.DarkRed;
-            this.label60.Location = new System.Drawing.Point(417, 461);
+            this.label60.Location = new System.Drawing.Point(417, 491);
             this.label60.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label60.Name = "label60";
             this.label60.Size = new System.Drawing.Size(100, 13);
@@ -2109,7 +2136,7 @@ namespace Saobracaj.Uvoz
             this.label61.AutoSize = true;
             this.label61.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
             this.label61.ForeColor = System.Drawing.Color.White;
-            this.label61.Location = new System.Drawing.Point(206, 192);
+            this.label61.Location = new System.Drawing.Point(206, 222);
             this.label61.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label61.Name = "label61";
             this.label61.Size = new System.Drawing.Size(84, 13);
@@ -2119,7 +2146,7 @@ namespace Saobracaj.Uvoz
             // label62
             // 
             this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(816, 189);
+            this.label62.Location = new System.Drawing.Point(816, 219);
             this.label62.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label62.Name = "label62";
             this.label62.Size = new System.Drawing.Size(76, 13);
@@ -2130,7 +2157,7 @@ namespace Saobracaj.Uvoz
             // 
             this.button15.BackColor = System.Drawing.Color.Maroon;
             this.button15.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button15.Location = new System.Drawing.Point(555, 30);
+            this.button15.Location = new System.Drawing.Point(555, 60);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(21, 22);
             this.button15.TabIndex = 413;
@@ -2144,7 +2171,7 @@ namespace Saobracaj.Uvoz
             this.txtVrstaPregleda.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txtVrstaPregleda.FormattingEnabled = true;
             this.txtVrstaPregleda.ItemHeight = 13;
-            this.txtVrstaPregleda.Location = new System.Drawing.Point(418, 476);
+            this.txtVrstaPregleda.Location = new System.Drawing.Point(418, 506);
             this.txtVrstaPregleda.Margin = new System.Windows.Forms.Padding(2);
             this.txtVrstaPregleda.Name = "txtVrstaPregleda";
             this.txtVrstaPregleda.Size = new System.Drawing.Size(184, 21);
@@ -2156,7 +2183,7 @@ namespace Saobracaj.Uvoz
             this.txtMesto.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txtMesto.FormattingEnabled = true;
             this.txtMesto.ItemHeight = 13;
-            this.txtMesto.Location = new System.Drawing.Point(816, 204);
+            this.txtMesto.Location = new System.Drawing.Point(816, 234);
             this.txtMesto.Margin = new System.Windows.Forms.Padding(2);
             this.txtMesto.Name = "txtMesto";
             this.txtMesto.Size = new System.Drawing.Size(185, 21);
@@ -2166,7 +2193,7 @@ namespace Saobracaj.Uvoz
             // 
             this.button17.BackColor = System.Drawing.Color.Maroon;
             this.button17.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button17.Location = new System.Drawing.Point(1022, 244);
+            this.button17.Location = new System.Drawing.Point(1022, 274);
             this.button17.Name = "button17";
             this.button17.Size = new System.Drawing.Size(20, 25);
             this.button17.TabIndex = 418;
@@ -2178,7 +2205,7 @@ namespace Saobracaj.Uvoz
             // 
             this.button18.BackColor = System.Drawing.Color.Maroon;
             this.button18.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button18.Location = new System.Drawing.Point(393, 361);
+            this.button18.Location = new System.Drawing.Point(391, 434);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(21, 22);
             this.button18.TabIndex = 420;
@@ -2190,7 +2217,7 @@ namespace Saobracaj.Uvoz
             // 
             this.button19.BackColor = System.Drawing.Color.Maroon;
             this.button19.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button19.Location = new System.Drawing.Point(1004, 202);
+            this.button19.Location = new System.Drawing.Point(1004, 232);
             this.button19.Name = "button19";
             this.button19.Size = new System.Drawing.Size(21, 23);
             this.button19.TabIndex = 421;
@@ -2202,7 +2229,7 @@ namespace Saobracaj.Uvoz
             // 
             this.txtBZ.CustomFormat = "dd.MM.yyyy";
             this.txtBZ.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.txtBZ.Location = new System.Drawing.Point(6, 417);
+            this.txtBZ.Location = new System.Drawing.Point(6, 447);
             this.txtBZ.Name = "txtBZ";
             this.txtBZ.Size = new System.Drawing.Size(185, 20);
             this.txtBZ.TabIndex = 422;
@@ -2211,7 +2238,7 @@ namespace Saobracaj.Uvoz
             // 
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Location = new System.Drawing.Point(6, 546);
+            this.tabControl1.Location = new System.Drawing.Point(6, 576);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1249, 276);
@@ -2234,34 +2261,34 @@ namespace Saobracaj.Uvoz
             this.dataGridView8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView8.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle127.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle127.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle127.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle127.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle127.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle127.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle127.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView8.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle127;
             this.dataGridView8.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView8.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle128.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle128.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle128.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle128.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle128.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle128.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle128.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView8.DefaultCellStyle = dataGridViewCellStyle128;
             this.dataGridView8.Location = new System.Drawing.Point(5, 5);
             this.dataGridView8.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView8.Name = "dataGridView8";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView8.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle129.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle129.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle129.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle129.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle129.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle129.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle129.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView8.RowHeadersDefaultCellStyle = dataGridViewCellStyle129;
             this.dataGridView8.RowHeadersWidth = 11;
             this.dataGridView8.RowTemplate.Height = 24;
             this.dataGridView8.Size = new System.Drawing.Size(1231, 240);
@@ -2284,34 +2311,34 @@ namespace Saobracaj.Uvoz
             this.dataGridView4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView4.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle130.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle130.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle130.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle130.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle130.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle130.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle130.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView4.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle130;
             this.dataGridView4.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView4.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle131.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle131.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle131.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle131.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle131.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle131.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle131.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView4.DefaultCellStyle = dataGridViewCellStyle131;
             this.dataGridView4.Location = new System.Drawing.Point(5, 5);
             this.dataGridView4.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView4.Name = "dataGridView4";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView4.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle132.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle132.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle132.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            dataGridViewCellStyle132.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle132.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle132.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle132.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView4.RowHeadersDefaultCellStyle = dataGridViewCellStyle132;
             this.dataGridView4.RowHeadersWidth = 11;
             this.dataGridView4.RowTemplate.Height = 24;
             this.dataGridView4.Size = new System.Drawing.Size(541, 147);
@@ -2320,7 +2347,7 @@ namespace Saobracaj.Uvoz
             // 
             // cboNaslovStatusaVozila
             // 
-            this.cboNaslovStatusaVozila.Location = new System.Drawing.Point(833, 480);
+            this.cboNaslovStatusaVozila.Location = new System.Drawing.Point(833, 510);
             this.cboNaslovStatusaVozila.Margin = new System.Windows.Forms.Padding(2);
             this.cboNaslovStatusaVozila.Multiline = true;
             this.cboNaslovStatusaVozila.Name = "cboNaslovStatusaVozila";
@@ -2335,7 +2362,7 @@ namespace Saobracaj.Uvoz
             "BL",
             "Uvoznik",
             "Nalogodavac za drumski prevoz"});
-            this.checkedListBox2.Location = new System.Drawing.Point(821, 397);
+            this.checkedListBox2.Location = new System.Drawing.Point(821, 427);
             this.checkedListBox2.Name = "checkedListBox2";
             this.checkedListBox2.Size = new System.Drawing.Size(182, 79);
             this.checkedListBox2.TabIndex = 426;
@@ -2343,7 +2370,7 @@ namespace Saobracaj.Uvoz
             // label63
             // 
             this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(818, 382);
+            this.label63.Location = new System.Drawing.Point(818, 412);
             this.label63.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label63.Name = "label63";
             this.label63.Size = new System.Drawing.Size(151, 13);
@@ -2354,7 +2381,7 @@ namespace Saobracaj.Uvoz
             // 
             this.button16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(185)))), ((int)(((byte)(87)))));
             this.button16.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button16.Location = new System.Drawing.Point(1004, 396);
+            this.button16.Location = new System.Drawing.Point(1004, 426);
             this.button16.Name = "button16";
             this.button16.Size = new System.Drawing.Size(16, 78);
             this.button16.TabIndex = 428;
@@ -2366,7 +2393,7 @@ namespace Saobracaj.Uvoz
             // 
             this.chkDobijenBZ.Checked = true;
             this.chkDobijenBZ.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDobijenBZ.Location = new System.Drawing.Point(6, 379);
+            this.chkDobijenBZ.Location = new System.Drawing.Point(6, 409);
             this.chkDobijenBZ.Margin = new System.Windows.Forms.Padding(2);
             this.chkDobijenBZ.Name = "chkDobijenBZ";
             this.chkDobijenBZ.Size = new System.Drawing.Size(96, 20);
@@ -2379,7 +2406,7 @@ namespace Saobracaj.Uvoz
             // 
             this.chkPrioritet.Checked = true;
             this.chkPrioritet.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkPrioritet.Location = new System.Drawing.Point(6, 442);
+            this.chkPrioritet.Location = new System.Drawing.Point(6, 472);
             this.chkPrioritet.Margin = new System.Windows.Forms.Padding(2);
             this.chkPrioritet.Name = "chkPrioritet";
             this.chkPrioritet.Size = new System.Drawing.Size(96, 20);
@@ -2392,7 +2419,7 @@ namespace Saobracaj.Uvoz
             this.chkInterni.AutoSize = true;
             this.chkInterni.Checked = true;
             this.chkInterni.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkInterni.Location = new System.Drawing.Point(492, 34);
+            this.chkInterni.Location = new System.Drawing.Point(492, 64);
             this.chkInterni.Margin = new System.Windows.Forms.Padding(2);
             this.chkInterni.Name = "chkInterni";
             this.chkInterni.Size = new System.Drawing.Size(55, 17);
@@ -2403,17 +2430,17 @@ namespace Saobracaj.Uvoz
             // label64
             // 
             this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(818, 271);
+            this.label64.Location = new System.Drawing.Point(818, 301);
             this.label64.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(76, 13);
+            this.label64.Size = new System.Drawing.Size(131, 13);
             this.label64.TabIndex = 450;
-            this.label64.Text = "Kontakt osobe";
+            this.label64.Text = "Kontakt osoba na istovaru";
             // 
             // txtKontaktOsobe
             // 
             this.txtKontaktOsobe.BackColor = System.Drawing.SystemColors.Info;
-            this.txtKontaktOsobe.Location = new System.Drawing.Point(818, 285);
+            this.txtKontaktOsobe.Location = new System.Drawing.Point(818, 315);
             this.txtKontaktOsobe.Margin = new System.Windows.Forms.Padding(2);
             this.txtKontaktOsobe.Multiline = true;
             this.txtKontaktOsobe.Name = "txtKontaktOsobe";
@@ -2424,7 +2451,7 @@ namespace Saobracaj.Uvoz
             // 
             this.button14.BackColor = System.Drawing.Color.Yellow;
             this.button14.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button14.Location = new System.Drawing.Point(1003, 245);
+            this.button14.Location = new System.Drawing.Point(1003, 275);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(21, 25);
             this.button14.TabIndex = 447;
@@ -2439,7 +2466,7 @@ namespace Saobracaj.Uvoz
             this.txtAdresaMestaUtovara.CausesValidation = false;
             this.txtAdresaMestaUtovara.FormattingEnabled = true;
             this.txtAdresaMestaUtovara.ItemHeight = 13;
-            this.txtAdresaMestaUtovara.Location = new System.Drawing.Point(816, 248);
+            this.txtAdresaMestaUtovara.Location = new System.Drawing.Point(816, 278);
             this.txtAdresaMestaUtovara.Margin = new System.Windows.Forms.Padding(2);
             this.txtAdresaMestaUtovara.Name = "txtAdresaMestaUtovara";
             this.txtAdresaMestaUtovara.Size = new System.Drawing.Size(182, 21);
@@ -2448,12 +2475,12 @@ namespace Saobracaj.Uvoz
             // label65
             // 
             this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(818, 230);
+            this.label65.Location = new System.Drawing.Point(818, 260);
             this.label65.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(79, 13);
+            this.label65.Size = new System.Drawing.Size(80, 13);
             this.label65.TabIndex = 449;
-            this.label65.Text = "Adresa utovara";
+            this.label65.Text = "Adresa istovara";
             // 
             // chkSlobodan
             // 
@@ -2461,7 +2488,7 @@ namespace Saobracaj.Uvoz
             this.chkSlobodan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(238)))), ((int)(((byte)(50)))));
             this.chkSlobodan.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.chkSlobodan.ForeColor = System.Drawing.Color.Black;
-            this.chkSlobodan.Location = new System.Drawing.Point(5, 361);
+            this.chkSlobodan.Location = new System.Drawing.Point(5, 391);
             this.chkSlobodan.Name = "chkSlobodan";
             this.chkSlobodan.Size = new System.Drawing.Size(187, 17);
             this.chkSlobodan.TabIndex = 451;
@@ -2474,7 +2501,7 @@ namespace Saobracaj.Uvoz
             this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
             this.label14.Font = new System.Drawing.Font("Times New Roman", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(1043, 354);
+            this.label14.Location = new System.Drawing.Point(1043, 384);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(84, 14);
             this.label14.TabIndex = 453;
@@ -2484,7 +2511,7 @@ namespace Saobracaj.Uvoz
             // 
             this.txtTaraTerminal.DecimalPlaces = 3;
             this.txtTaraTerminal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.txtTaraTerminal.Location = new System.Drawing.Point(1043, 371);
+            this.txtTaraTerminal.Location = new System.Drawing.Point(1043, 401);
             this.txtTaraTerminal.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -2498,7 +2525,7 @@ namespace Saobracaj.Uvoz
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(617, 501);
+            this.label28.Location = new System.Drawing.Point(617, 531);
             this.label28.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(125, 13);
@@ -2508,7 +2535,7 @@ namespace Saobracaj.Uvoz
             // txtKontaktOsobeSpeditera
             // 
             this.txtKontaktOsobeSpeditera.BackColor = System.Drawing.SystemColors.Info;
-            this.txtKontaktOsobeSpeditera.Location = new System.Drawing.Point(619, 517);
+            this.txtKontaktOsobeSpeditera.Location = new System.Drawing.Point(619, 547);
             this.txtKontaktOsobeSpeditera.Margin = new System.Windows.Forms.Padding(2);
             this.txtKontaktOsobeSpeditera.Multiline = true;
             this.txtKontaktOsobeSpeditera.Name = "txtKontaktOsobeSpeditera";
@@ -2518,7 +2545,7 @@ namespace Saobracaj.Uvoz
             // txtKoletaTer
             // 
             this.txtKoletaTer.DecimalPlaces = 3;
-            this.txtKoletaTer.Location = new System.Drawing.Point(1144, 369);
+            this.txtKoletaTer.Location = new System.Drawing.Point(1144, 399);
             this.txtKoletaTer.Margin = new System.Windows.Forms.Padding(2);
             this.txtKoletaTer.Maximum = new decimal(new int[] {
             100000,
@@ -2535,7 +2562,7 @@ namespace Saobracaj.Uvoz
             this.label66.AutoSize = true;
             this.label66.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
             this.label66.ForeColor = System.Drawing.Color.White;
-            this.label66.Location = new System.Drawing.Point(1144, 354);
+            this.label66.Location = new System.Drawing.Point(1144, 384);
             this.label66.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(76, 13);
@@ -2550,7 +2577,7 @@ namespace Saobracaj.Uvoz
             this.cboScenario.ForeColor = System.Drawing.SystemColors.Window;
             this.cboScenario.FormattingEnabled = true;
             this.cboScenario.ItemHeight = 13;
-            this.cboScenario.Location = new System.Drawing.Point(1043, 510);
+            this.cboScenario.Location = new System.Drawing.Point(1043, 540);
             this.cboScenario.Margin = new System.Windows.Forms.Padding(2);
             this.cboScenario.Name = "cboScenario";
             this.cboScenario.Size = new System.Drawing.Size(202, 21);
@@ -2559,7 +2586,7 @@ namespace Saobracaj.Uvoz
             // label67
             // 
             this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(1044, 495);
+            this.label67.Location = new System.Drawing.Point(1044, 525);
             this.label67.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(87, 13);
@@ -2570,7 +2597,7 @@ namespace Saobracaj.Uvoz
             // 
             this.button20.BackColor = System.Drawing.Color.Maroon;
             this.button20.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button20.Location = new System.Drawing.Point(807, 478);
+            this.button20.Location = new System.Drawing.Point(807, 508);
             this.button20.Name = "button20";
             this.button20.Size = new System.Drawing.Size(21, 21);
             this.button20.TabIndex = 460;
@@ -2584,7 +2611,7 @@ namespace Saobracaj.Uvoz
             this.cboRLTerminal3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboRLTerminal3.FormattingEnabled = true;
             this.cboRLTerminal3.ItemHeight = 13;
-            this.cboRLTerminal3.Location = new System.Drawing.Point(206, 296);
+            this.cboRLTerminal3.Location = new System.Drawing.Point(206, 326);
             this.cboRLTerminal3.Margin = new System.Windows.Forms.Padding(2);
             this.cboRLTerminal3.Name = "cboRLTerminal3";
             this.cboRLTerminal3.Size = new System.Drawing.Size(188, 21);
@@ -2596,18 +2623,293 @@ namespace Saobracaj.Uvoz
             this.cboRLTerminal2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboRLTerminal2.FormattingEnabled = true;
             this.cboRLTerminal2.ItemHeight = 13;
-            this.cboRLTerminal2.Location = new System.Drawing.Point(207, 271);
+            this.cboRLTerminal2.Location = new System.Drawing.Point(207, 301);
             this.cboRLTerminal2.Margin = new System.Windows.Forms.Padding(2);
             this.cboRLTerminal2.Name = "cboRLTerminal2";
             this.cboRLTerminal2.Size = new System.Drawing.Size(186, 21);
             this.cboRLTerminal2.TabIndex = 461;
+            // 
+            // commandBarController1
+            // 
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
+            // 
+            // panelHeader
+            // 
+            this.panelHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelHeader.Controls.Add(this.panel4);
+            this.panelHeader.Controls.Add(this.panel2);
+            this.panelHeader.Controls.Add(this.panel3);
+            this.panelHeader.Controls.Add(this.panel5);
+            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHeader.Location = new System.Drawing.Point(0, 27);
+            this.panelHeader.Name = "panelHeader";
+            this.panelHeader.Size = new System.Drawing.Size(1367, 33);
+            this.panelHeader.TabIndex = 467;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Transparent;
+            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(1281, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(84, 31);
+            this.panel4.TabIndex = 7;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.button30);
+            this.panel2.Controls.Add(this.button29);
+            this.panel2.Controls.Add(this.button27);
+            this.panel2.Controls.Add(this.button26);
+            this.panel2.Controls.Add(this.button25);
+            this.panel2.Controls.Add(this.button24);
+            this.panel2.Controls.Add(this.button23);
+            this.panel2.Location = new System.Drawing.Point(215, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1022, 31);
+            this.panel2.TabIndex = 6;
+            // 
+            // button30
+            // 
+            this.button30.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button30.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button30.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button30.FlatAppearance.BorderSize = 0;
+            this.button30.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button30.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button30.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button30.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button30.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button30.Location = new System.Drawing.Point(868, 0);
+            this.button30.Name = "button30";
+            this.button30.Size = new System.Drawing.Size(117, 31);
+            this.button30.TabIndex = 23;
+            this.button30.Text = "Excel export";
+            this.button30.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button30.UseVisualStyleBackColor = true;
+            this.button30.Click += new System.EventHandler(this.button30_Click);
+            // 
+            // button29
+            // 
+            this.button29.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button29.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button29.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button29.FlatAppearance.BorderSize = 0;
+            this.button29.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button29.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button29.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button29.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button29.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button29.Location = new System.Drawing.Point(653, 0);
+            this.button29.Name = "button29";
+            this.button29.Size = new System.Drawing.Size(215, 31);
+            this.button29.TabIndex = 21;
+            this.button29.Text = "Dodaj nerasporedjene u plan";
+            this.button29.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button29.UseVisualStyleBackColor = true;
+            this.button29.Click += new System.EventHandler(this.button29_Click);
+            // 
+            // button27
+            // 
+            this.button27.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button27.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button27.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button27.FlatAppearance.BorderSize = 0;
+            this.button27.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button27.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button27.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button27.Location = new System.Drawing.Point(487, 0);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(166, 31);
+            this.button27.TabIndex = 20;
+            this.button27.Text = "Izdavanje naloga";
+            this.button27.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.button27_Click);
+            // 
+            // button26
+            // 
+            this.button26.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button26.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button26.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button26.FlatAppearance.BorderSize = 0;
+            this.button26.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button26.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button26.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button26.Location = new System.Drawing.Point(351, 0);
+            this.button26.Name = "button26";
+            this.button26.Size = new System.Drawing.Size(136, 31);
+            this.button26.TabIndex = 19;
+            this.button26.Text = "Ažuriraj šifarnike";
+            this.button26.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button26.UseVisualStyleBackColor = true;
+            this.button26.Click += new System.EventHandler(this.button26_Click);
+            // 
+            // button25
+            // 
+            this.button25.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button25.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button25.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button25.FlatAppearance.BorderSize = 0;
+            this.button25.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button25.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button25.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button25.Location = new System.Drawing.Point(234, 0);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(117, 31);
+            this.button25.TabIndex = 18;
+            this.button25.Text = "Tabela";
+            this.button25.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.button25_Click);
+            // 
+            // button24
+            // 
+            this.button24.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button24.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button24.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button24.FlatAppearance.BorderSize = 0;
+            this.button24.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button24.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button24.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button24.Location = new System.Drawing.Point(117, 0);
+            this.button24.Name = "button24";
+            this.button24.Size = new System.Drawing.Size(117, 31);
+            this.button24.TabIndex = 17;
+            this.button24.Text = "Usluge";
+            this.button24.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button24.UseVisualStyleBackColor = true;
+            this.button24.Click += new System.EventHandler(this.button24_Click);
+            // 
+            // button23
+            // 
+            this.button23.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button23.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button23.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button23.FlatAppearance.BorderSize = 0;
+            this.button23.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button23.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button23.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button23.Location = new System.Drawing.Point(0, 0);
+            this.button23.Name = "button23";
+            this.button23.Size = new System.Drawing.Size(117, 31);
+            this.button23.TabIndex = 16;
+            this.button23.Text = "Dokumentacija";
+            this.button23.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button23.UseVisualStyleBackColor = true;
+            this.button23.Click += new System.EventHandler(this.button23_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel3.Controls.Add(this.button21);
+            this.panel3.Controls.Add(this.button22);
+            this.panel3.Controls.Add(this.button28);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(71, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(87, 31);
+            this.panel3.TabIndex = 2;
+            // 
+            // button21
+            // 
+            this.button21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button21.BackgroundImage")));
+            this.button21.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button21.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button21.FlatAppearance.BorderSize = 0;
+            this.button21.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button21.Location = new System.Drawing.Point(52, 4);
+            this.button21.Name = "button21";
+            this.button21.Size = new System.Drawing.Size(23, 23);
+            this.button21.TabIndex = 15;
+            this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button21.UseVisualStyleBackColor = true;
+            // 
+            // button22
+            // 
+            this.button22.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button22.BackgroundImage")));
+            this.button22.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button22.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button22.FlatAppearance.BorderSize = 0;
+            this.button22.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button22.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button22.Location = new System.Drawing.Point(27, 2);
+            this.button22.Name = "button22";
+            this.button22.Size = new System.Drawing.Size(23, 27);
+            this.button22.TabIndex = 14;
+            this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button22.UseVisualStyleBackColor = true;
+            // 
+            // button28
+            // 
+            this.button28.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button28.BackgroundImage")));
+            this.button28.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button28.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button28.FlatAppearance.BorderSize = 0;
+            this.button28.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button28.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button28.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button28.Location = new System.Drawing.Point(2, 4);
+            this.button28.Margin = new System.Windows.Forms.Padding(9, 6, 6, 6);
+            this.button28.Name = "button28";
+            this.button28.Padding = new System.Windows.Forms.Padding(9);
+            this.button28.Size = new System.Drawing.Size(23, 23);
+            this.button28.TabIndex = 13;
+            this.button28.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button28.UseVisualStyleBackColor = true;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.Transparent;
+            this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel5.Controls.Add(this.panel6);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(71, 31);
+            this.panel5.TabIndex = 1;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.panel6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel6.BackgroundImage")));
+            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel6.Location = new System.Drawing.Point(3, 3);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(68, 27);
+            this.panel6.TabIndex = 0;
+            this.panel6.Visible = false;
             // 
             // frmUvozKonacna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1261, 830);
+            this.ClientSize = new System.Drawing.Size(1367, 830);
+            this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.cboRLTerminal3);
             this.Controls.Add(this.cboRLTerminal2);
             this.Controls.Add(this.button20);
@@ -2741,7 +3043,7 @@ namespace Saobracaj.Uvoz
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.meniHeader);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -2752,8 +3054,8 @@ namespace Saobracaj.Uvoz
             this.Load += new System.EventHandler(this.UvozKonacna_Load);
             this.SizeChanged += new System.EventHandler(this.frmUvozKonacna_SizeChanged);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmUvozKonacna_KeyDown);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.meniHeader.ResumeLayout(false);
+            this.meniHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaraK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtBrutoR)).EndInit();
@@ -2778,6 +3080,11 @@ namespace Saobracaj.Uvoz
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTaraTerminal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKoletaTer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
+            this.panelHeader.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2785,7 +3092,7 @@ namespace Saobracaj.Uvoz
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip meniHeader;
         private System.Windows.Forms.ToolStripButton tsNew;
         private System.Windows.Forms.ToolStripButton tsSave;
         private System.Windows.Forms.ToolStripButton tsDelete;
@@ -2981,5 +3288,22 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.ComboBox cboRLTerminal3;
         private System.Windows.Forms.ComboBox cboRLTerminal2;
+        private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private System.Windows.Forms.Panel panelHeader;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button30;
+        private System.Windows.Forms.Button button29;
+        private System.Windows.Forms.Button button27;
+        private System.Windows.Forms.Button button26;
+        private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.Button button24;
+        private System.Windows.Forms.Button button23;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button button21;
+        private System.Windows.Forms.Button button22;
+        private System.Windows.Forms.Button button28;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
     }
 }

@@ -22,7 +22,7 @@ namespace Saobracaj.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Saobracaj.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Saobracaj.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace Saobracaj.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace Saobracaj.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap BAcground {
+        public static System.Drawing.Bitmap BAcground {
             get {
                 object obj = ResourceManager.GetObject("BAcground", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -73,7 +73,7 @@ namespace Saobracaj.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Bacground2 {
+        public static System.Drawing.Bitmap Bacground2 {
             get {
                 object obj = ResourceManager.GetObject("Bacground2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -83,7 +83,7 @@ namespace Saobracaj.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Background5 {
+        public static System.Drawing.Bitmap Background5 {
             get {
                 object obj = ResourceManager.GetObject("Background5", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -93,7 +93,17 @@ namespace Saobracaj.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap dpt {
+        public static System.Drawing.Bitmap chat {
+            get {
+                object obj = ResourceManager.GetObject("chat", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap dpt {
             get {
                 object obj = ResourceManager.GetObject("dpt", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -103,7 +113,17 @@ namespace Saobracaj.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap excel_icon_transparent_10 {
+        public static System.Drawing.Bitmap error {
+            get {
+                object obj = ResourceManager.GetObject("error", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap excel_icon_transparent_10 {
             get {
                 object obj = ResourceManager.GetObject("excel-icon-transparent-10", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -113,7 +133,27 @@ namespace Saobracaj.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap kontejners {
+        public static System.Drawing.Bitmap exclamation {
+            get {
+                object obj = ResourceManager.GetObject("exclamation", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap information {
+            get {
+                object obj = ResourceManager.GetObject("information", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap kontejners {
             get {
                 object obj = ResourceManager.GetObject("kontejners", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -123,7 +163,7 @@ namespace Saobracaj.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap LEGET_colorP {
+        public static System.Drawing.Bitmap LEGET_colorP {
             get {
                 object obj = ResourceManager.GetObject("LEGET-colorP", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -131,9 +171,29 @@ namespace Saobracaj.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon LegetIcon {
+            get {
+                object obj = ResourceManager.GetObject("LegetIcon", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        public static System.Drawing.Icon LegetIconPNG {
+            get {
+                object obj = ResourceManager.GetObject("LegetIconPNG", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap mtaLogo {
+        public static System.Drawing.Bitmap mtaLogo {
             get {
                 object obj = ResourceManager.GetObject("mtaLogo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
@@ -143,7 +203,17 @@ namespace Saobracaj.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap ta {
+        public static System.Drawing.Bitmap question {
+            get {
+                object obj = ResourceManager.GetObject("question", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap ta {
             get {
                 object obj = ResourceManager.GetObject("ta", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));

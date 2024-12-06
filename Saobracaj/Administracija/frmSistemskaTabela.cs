@@ -134,7 +134,7 @@ namespace Saobracaj.Administracija
             {
                 OpenFileDialog fop = new OpenFileDialog(); //create object of open file dialog
                 fop.InitialDirectory = @"C:\"; //set Initial directory
-                fop.Filter = "[JPG,JPEG]|*.jpg"; //set filter for select only .jpg files
+             //   fop.Filter = "[JPG,JPEG]|*.jpg"; //set filter for select only .jpg files
                 if (fop.ShowDialog() == DialogResult.OK) //display open file dialog to user and only user select a image enter to if block
                 {
                     FileStream FS = new FileStream(@fop.FileName, FileMode.Open, FileAccess.Read); //create a file stream object associate to user selected file 
@@ -200,8 +200,17 @@ namespace Saobracaj.Administracija
             #endregion
         }
 
+        public static Icon ConvertMemoryStreamToIcon(MemoryStream memoryStream)
+        {
+            using (Bitmap bitmap = new Bitmap(memoryStream))
+            {
+                IntPtr hIcon = bitmap.GetHicon();
+                return Icon.FromHandle(hIcon);
+            }
+        }
         private void sfButton5_Click(object sender, EventArgs e)
         {
+           // this.Icon = ((System.Drawing.Icon)(Saobracaj.Properties.Resources.GetObject("$this.Icon")));
             #region Retrieve Image from DB
             if (cboImage1.SelectedValue != null)//check whether user select image ID or not 
             {
@@ -222,7 +231,11 @@ namespace Saobracaj.Administracija
                     if (dt.Rows.Count > 0)//check whether data table contain any row or not
                     {
                         MemoryStream ms = new MemoryStream((byte[])dt.Rows[0]["ImageData"]);//create memory stream by passing byte array of the image
-                        picImage.Image = Image.FromStream(ms);//set image property of the picture box by creating a image from stream 
+                      
+                        picImage.Image = System.Drawing.Image.FromStream(ms);
+                        Icon icon1 = ConvertMemoryStreamToIcon(ms);
+                        this.Icon = icon1;
+                        //   this.Icon.ToBitmap()   = System.Drawing.Image.FromStream(ms);//set image property of the picture box by creating a image from stream 
                         picImage.SizeMode = PictureBoxSizeMode.StretchImage;//set size mode property of the picture box to stretch 
                         picImage.Refresh();//refresh picture box
                     }

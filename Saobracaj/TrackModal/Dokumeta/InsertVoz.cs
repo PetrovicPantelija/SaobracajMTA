@@ -15,7 +15,7 @@ namespace Testiranje.Dokumeta
 
         public void InsVoz(int BrVoza, string Relacija, string KalendarSaobracaja, DateTime VremePolaska, DateTime VremeDolaska, double MaksimalnaBruto, double MaksimalnaDuzina, double MaksimalanBrojKola,
             DateTime VremeZavrsetkaUtovara, DateTime VremeZavrsetkaKP, DateTime VremePrimopredaje, string Napomena, DateTime Datum, string Korisnik, int Dolazeci, int PostNaTerminalD, int KontrolniPregledD, int VremeIstovaraD, int VremePrimopredajeD, int Ponedeljak, int Utorak, int Sreda, int Cetvrtak, int Petak, int Subota, int Nedelja, int PostNaTerminalO, int VremeUtovaraO, int VremeKontrolnogO, int VremeIzvlacenjaO, DateTime VremePolaskaO, DateTime VremeDolaskaO, int StanicaOd, int StanicaDo, int Operater, int Vlasnik, int OperaterSrbija, int OperaterHR,
-            DateTime PlOtpreme, DateTime PLFormiranja, DateTime IzvlacenjeSaTerminala, DateTime PreuzimanjeSM, DateTime PolazakSid, DateTime PredajaHR, DateTime PrispeceRijeka, DateTime IskrcajRijeka, DateTime PristizanjaUSid, DateTime Sazeta)
+            DateTime PlOtpreme, DateTime PLFormiranja, DateTime IzvlacenjeSaTerminala, DateTime PreuzimanjeSM, DateTime PolazakSid, DateTime PredajaHR, DateTime PrispeceRijeka, DateTime IskrcajRijeka, DateTime PristizanjaUSid, DateTime Sazeta, string NazivVoza)
         {
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -393,7 +393,15 @@ namespace Testiranje.Dokumeta
             parameter46.Value = Sazeta;
             myCommand.Parameters.Add(parameter46);
 
-           // DateTime PristizanjaUSid, DateTime Sazeta
+            SqlParameter parameter47 = new SqlParameter();
+            parameter47.ParameterName = "@NazivVoza";
+            parameter47.SqlDbType = SqlDbType.NVarChar;
+            parameter47.Size = 50;
+            parameter47.Direction = ParameterDirection.Input;
+            parameter47.Value = NazivVoza;
+            myCommand.Parameters.Add(parameter47);
+
+            // DateTime PristizanjaUSid, DateTime Sazeta
 
 
 
@@ -449,7 +457,7 @@ namespace Testiranje.Dokumeta
             int VremeUtovaraO,int VremeKontrolnogO, int VremeIzvlacenjaO,DateTime VremePolaskaO, DateTime VremeDolaskaO, 
             int StanicaOd, int StanicaDo, int Operater, int Vlasnik, int OperaterSrbija, int OperaterHR, DateTime PlOtpreme, 
             DateTime PLFormiranja, DateTime IzvlacenjeSaTerminala, DateTime PreuzimanjeSM, DateTime PolazakSid, DateTime PredajaHR, 
-            DateTime PrispeceRijeka, DateTime IskrcajRijeka, DateTime PristizanjaUSid, DateTime Sazeta)
+            DateTime PrispeceRijeka, DateTime IskrcajRijeka, DateTime PristizanjaUSid, DateTime Sazeta, string NazivVoza)
         {
 
             var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
@@ -812,6 +820,16 @@ namespace Testiranje.Dokumeta
             parameter46.Direction = ParameterDirection.Input;
             parameter46.Value = Sazeta;
             myCommand.Parameters.Add(parameter46);
+
+
+            SqlParameter parameter47 = new SqlParameter();
+            parameter47.ParameterName = "@NazivVoza";
+            parameter47.SqlDbType = SqlDbType.NVarChar;
+            parameter47.Size = 50;
+            parameter47.Direction = ParameterDirection.Input;
+            parameter47.Value = NazivVoza;
+            myCommand.Parameters.Add(parameter47);
+
 
             myConnection.Open();
             SqlTransaction myTransaction = myConnection.BeginTransaction();

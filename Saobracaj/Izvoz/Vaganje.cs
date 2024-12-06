@@ -105,7 +105,7 @@ namespace Saobracaj.Izvoz
         }
         private void FillGV()
         {
-            var select = "select * from Vaganje";
+            var select = "select Vaganje.ID, Kamion, VagarskaPotvrdaBroj, Bruto, Vaganje.Tara, Neto, DatumMerenja, IzvozKonacnaID, Korisnik,\r\nIZvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera, IzvozKonacna.Cirada from Vaganje\r\ninner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaID";
             SqlConnection conn = new SqlConnection(connection);
             var da = new SqlDataAdapter(select, conn);
             var ds = new System.Data.DataSet();
@@ -116,14 +116,14 @@ namespace Saobracaj.Izvoz
             dataGridView1.BorderStyle = BorderStyle.None;
             dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
             dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
             dataGridView1.BackgroundColor = Color.White;
 
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(240, 240, 248); ;
         }
 
         private void txtNeto_MouseEnter(object sender, EventArgs e)
@@ -143,8 +143,35 @@ namespace Saobracaj.Izvoz
                 if (row.Selected)
                 {
                     ID = Convert.ToInt32(row.Cells["ID"].Value.ToString());
+                    txtID.Text = row.Cells["ID"].Value.ToString();
+
                 }
             }
+        }
+
+        private void VratiPodatke(string ID)
+        {
+         
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                SqlConnection con = new SqlConnection(s_connection);
+
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand(" select Vaganje.ID, Kamion, VagarskaPotvrdaBroj, Bruto, Vaganje.Tara, Neto, DatumMerenja, IzvozKonacnaID, Korisnik,\r\nIZvozKonacna.BrojKontejnera, IzvozKonacna.VrstaKontejnera, IzvozKonacna.Cirada from Vaganje\r\ninner join IzvozKonacna on IzvozKonacna.ID = IzvozKonacnaID " +
+                 " where Vaganje.ID = " + ID, con);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+
+                    cbovrstakontejnera.SelectedValue = Convert.ToInt32(dr["VrstaKontejnera"].ToString());
+                    txtKontejner.Text = dr["BrojKontejnera"].ToString();
+                    txtVozilo.Text = dr["Vozilo"].ToString();
+                }
+
+                con.Close();
+
         }
 
         private void button2_Click(object sender, EventArgs e)

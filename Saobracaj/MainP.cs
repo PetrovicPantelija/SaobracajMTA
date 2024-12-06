@@ -6757,6 +6757,11 @@ namespace Saobracaj
                 frm.Show();
             }
         }
+
+        private void MainP_Load(object sender, EventArgs e)
+        {
+
+        }
     }
     }
 

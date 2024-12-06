@@ -1,21 +1,102 @@
-﻿using Syncfusion.Windows.Forms.Grid.Grouping;
+﻿using Syncfusion.GridHelperClasses;
+using Syncfusion.Windows.Forms;
+using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmPregledNerasporedjeni : Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmPregledNerasporedjeni : Form
     {
         int Selektovani = 0;
         private Keys keyData;
         string KorisnikTekuci = "";
+
+        private void ChangeTextBox()
+        {
+            this.BackColor = Color.White;
+            this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+            this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+            Office2010Colors.ApplyManagedColors(this, Color.White);
+            //  toolStripHeader.BackColor = Color.FromArgb(240, 240, 248);
+            //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
+            panelHeader.Visible = false;
+            this.ControlBox = true;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                // toolStripHeader.Visible = false;
+                panelHeader.Visible = true;
+                pomMenu.Visible = false;
+                // this.FormBorderStyle = FormBorderStyle.None;
+                this.BackColor = Color.White;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+
+               
+
+
+                foreach (Control control in this.Controls)
+                {
+
+                    if (control is TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new Font("Helvetica", 9);
+                        // Example: Change font
+                    }
+
+
+                    if (control is Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new Font("Helvetica", 9);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        dtp.Font = new Font("Helvetica", 9);
+                    }
+                    if (control is CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new Font("Helvetica", 9);
+                    }
+
+                    if (control is ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        lb.Font = new Font("Helvetica", 9);
+                    }
+
+
+
+
+                }
+            }
+            else
+            {
+                panelHeader.Visible = false;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                pomMenu.Visible = true;
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
         public frmPregledNerasporedjeni(string Kor)
         {
             InitializeComponent();
             KorisnikTekuci = Kor;
+            ChangeTextBox();
         }
         public string GetID()
         {
@@ -57,7 +138,7 @@ namespace Saobracaj.Uvoz
 " inner join uvNacinPakovanja on uvNacinPakovanja.ID = NacinPakovanja " +
 " inner join Partnerji p4 on p4.PaSifra = OdredisnaSpedicija " +
 " inner join Partnerji pv on pv.PaSifra = Uvoz.VlasnikKontejnera " +
-"  order by Uvoz.Prioritet desc, Uvoz.ID  ";
+"  order by Uvoz.Prioritet desc, Uvoz.ID desc ";
 
 
 
@@ -77,6 +158,11 @@ namespace Saobracaj.Uvoz
             {
                 column.AllowFilter = true;
             }
+
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
 
         }
 
@@ -153,6 +239,29 @@ namespace Saobracaj.Uvoz
             {
                 Close();
             }
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            Uvoz fUvoz = new Uvoz();
+            fUvoz.Show();
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            Uvoz pUvoz = new Uvoz(Convert.ToInt32(txtSifra.Text), KorisnikTekuci);
+            pUvoz.Show();
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            RefreshDataGrid();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmUvozKopirajKontejner kk = new frmUvozKopirajKontejner(Convert.ToInt16(txtSifra.Text));
+            kk.Show();
         }
     }
 }

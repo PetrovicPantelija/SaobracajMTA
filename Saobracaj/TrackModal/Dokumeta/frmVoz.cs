@@ -13,12 +13,14 @@ using System.Configuration;
 using System.Net;
 using System.Net.Mail;
 using Saobracaj.Izvoz;
+using Syncfusion.Windows.Forms;
+using System.IO;
 
 
 
 namespace Testiranje.Dokumeta
 {
-    public partial class frmVoz : Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmVoz : Form
     {
         public static string code = "frmVoz";
         public bool Pravo;
@@ -35,7 +37,231 @@ namespace Testiranje.Dokumeta
         string KorisnikCene = Saobracaj.Sifarnici.frmLogovanje.user;
         bool status = false;
         int IzPregleda = 0;
-      //  int VozID = 1;
+        //  int VozID = 1;
+        private void ChangeTextBox()
+        {
+            this.BackColor = Color.White;
+            this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+            this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+            Office2010Colors.ApplyManagedColors(this, Color.White);
+            //  toolStripHeader.BackColor = Color.FromArgb(240, 240, 248);
+            //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
+            panelHeader.Visible = false;
+            this.ControlBox = true;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                meniHeader.Visible = false;
+                panelHeader.Visible = true;
+                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+                // this.FormBorderStyle = FormBorderStyle.None;
+                this.BackColor = Color.White;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+
+
+
+
+                foreach (Control control in this.Controls)
+                {
+                    if (control is System.Windows.Forms.Button buttons)
+                    {
+
+                        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
+                        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
+                        buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
+                        buttons.FlatStyle = FlatStyle.Flat;
+                    }
+
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        // Example: Change font
+                    }
+
+
+                    if (control is System.Windows.Forms.Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+                    if (control is System.Windows.Forms.CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                }
+            }
+            else
+            {
+                meniHeader.Visible = true;
+                panelHeader.Visible = false;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
+
+        private void ChangeTextBoxPanelLeget()
+        {
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                foreach (Control control in panelLeget.Controls)
+                {
+
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        // Example: Change font
+                    }
+
+
+                    if (control is System.Windows.Forms.Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+                    if (control is System.Windows.Forms.CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                }
+            }
+         
+        }
+
+        private void ChangeTextBoxPanelLegetOperater()
+        {
+         
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                foreach (Control control in panelLegetOperater.Controls)
+                {
+
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        // Example: Change font
+                    }
+
+
+                    if (control is System.Windows.Forms.Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+                    if (control is System.Windows.Forms.CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+
+
+
+                }
+            }
+           
+        }
+
         public frmVoz()
         {
             InitializeComponent();
@@ -45,7 +271,12 @@ namespace Testiranje.Dokumeta
             //KorisnikCene = "Panta";
 
             ProveriFirmu();
+            ChangeTextBox();
+            ChangeTextBoxPanelLeget();
+            ChangeTextBoxPanelLegetOperater();
+           
         }
+      
 
         public frmVoz(string Korisnik)
         {
@@ -54,9 +285,13 @@ namespace Testiranje.Dokumeta
 
             KorisnikCene = Korisnik;
             KorisnikCene = "Panta";
+            ChangeTextBox();
+            ChangeTextBoxPanelLeget();
+            ChangeTextBoxPanelLegetOperater();
             RefreshDataGrid();
 
             ProveriFirmu();
+   
         }
 
         public void ProveriFirmu()
@@ -95,10 +330,14 @@ namespace Testiranje.Dokumeta
             KorisnikCene = Kor;
           //  KorisnikCene = "Panta";
             txtSifra.Text = Voz.ToString();
+            ChangeTextBox();
+            ChangeTextBoxPanelLeget();
+            ChangeTextBoxPanelLegetOperater();
             RefreshDataGrid2();
             VratiUkupanBrojKontejnera();
             IzPregleda = 1;
-            
+         
+
         }
         private void tsSave_Click(object sender, EventArgs e)
         {
@@ -157,7 +396,7 @@ namespace Testiranje.Dokumeta
             Convert.ToDateTime(dtpPrispeceRijeka.Value),
             Convert.ToDateTime(dtpIskrcajRijeka.Value),
              Convert.ToDateTime(dtpPristizanjaUSid.Value),
-              Convert.ToDateTime(dtpSazeta.Value));
+              Convert.ToDateTime(dtpSazeta.Value), txtNazivVoza.Text);
              status = false;
              VratiPodatkeMax();
             }
@@ -178,7 +417,7 @@ namespace Testiranje.Dokumeta
             Convert.ToDateTime(dtpPrispeceRijeka.Value),
             Convert.ToDateTime(dtpIskrcajRijeka.Value),
               Convert.ToDateTime(dtpPristizanjaUSid.Value),
-              Convert.ToDateTime(dtpSazeta.Value));
+              Convert.ToDateTime(dtpSazeta.Value), txtNazivVoza.Text);
                 status = false;
             }
             RefreshDataGrid();
@@ -218,16 +457,19 @@ namespace Testiranje.Dokumeta
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
 
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
+            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
             dataGridView1.BackgroundColor = Color.White;
+            dataGridView1.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
+            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+            dataGridView1.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
 
+
+            //Header
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
@@ -284,7 +526,7 @@ namespace Testiranje.Dokumeta
            
             SqlCommand cmd = new SqlCommand("SELECT [ID],[BrVoza],[Relacija],[KalendarSaobracaja],[VremePolaska],[VremeDolaska],[MaksimalnaBruto],[MaksimalnaDuzina],[MaksimalanBrojKola],[VremeZavrsetkaUtovara],[VremeZavrsetkaKP],[VremePrimopredaje],[Napomena],[Datum],[Korisnik] ,Dolazeci,PostNaTerminalD ,KontrolniPregledD,VremeIstovaraD ,VremePrimopredajeD,Ponedeljak ,Utorak	,Sreda,Cetvrtak,Petak	,Subota ,Nedelja,PostNaTerminalO,VremeUtovaraO ,VremeKontrolnogO ,VremeIzvlacenjaO	,VremePolaskaO ,VremeDolaskaO, StanicaOd, StanicaDo, Napomena, Operater " +
                 " ,[Vlasnik]      ,[OperaterSrbija]      ,[OperaterHR]      ,[PlOtpreme]      ,[PLFormiranja]      ,[IzvlacenjeSaTerminala] " +
-      " ,[PreuzimanjeSM]      ,[PolazakSid]      ,[PredajaHR]      ,[PrispeceRijeka]      ,[IskrcajRijeka]  FROM [dbo].[Voz] where ID=" + txtSifra.Text, con);
+      " ,[PreuzimanjeSM]      ,[PolazakSid]      ,[PredajaHR]      ,[PrispeceRijeka]      ,[IskrcajRijeka], NazivVoza  FROM [dbo].[Voz] where ID=" + txtSifra.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -292,6 +534,7 @@ namespace Testiranje.Dokumeta
                 
                 // Convert.ToInt32(cboTipCenovnika.SelectedValue), Convert.ToInt32(cboKomitent.SelectedValue), Convert.ToDouble(txtCena.Text), Convert.ToInt32(cboVrstaManipulacije.SelectedValue), Convert.ToDateTime(DateTime.Now), KorisnikCene
                 txtBrVoza.Text = dr["BrVoza"].ToString();
+                txtNazivVoza.Text = dr["NazivVoza"].ToString();
                 txtRelacija.Text = dr["Relacija"].ToString();
                 txtKalendarSaobracaja.Text = dr["KalendarSaobracaja"].ToString();
                 txtNapomena.Text = dr["Napomena"].ToString();
@@ -304,7 +547,8 @@ namespace Testiranje.Dokumeta
                 txtDuzina.Value = Convert.ToDecimal(dr["MaksimalnaDuzina"].ToString());
                 txtMaksBrojKola.Value = Convert.ToDecimal(dr["MaksimalanBrojKola"].ToString());
                 if (dr["Dolazeci"].ToString() == "1")
-                { chkDolazeci.Checked = true;
+                { 
+                    chkDolazeci.Checked = true;
                 }
                 else
                 {

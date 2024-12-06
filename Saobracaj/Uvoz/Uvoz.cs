@@ -1,6 +1,9 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿
+using Microsoft.Office.Interop.Excel;
 using Syncfusion.Grouping;
+using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Diagram;
+using Syncfusion.Windows.Forms.Tools;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,8 +15,9 @@ using static Syncfusion.WinForms.Core.NativeScroll;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class Uvoz : Form
+    public partial class Uvoz  : Form
     {
+        //Syncfusion.Windows.Forms.Office2010Form
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         string nalogodavci = "";
         string usluge = "";
@@ -24,10 +28,124 @@ namespace Saobracaj.Uvoz
         float firstWidth;
         float firstHeight;
         string KorisnikTekuci = "";
+        private void ChangeTextBox()
+        {
+            this.BackColor = Color.White;
+            this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+            this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+            Office2010Colors.ApplyManagedColors(this, Color.White);
+            //  toolStripHeader.BackColor = Color.FromArgb(240, 240, 248);
+            //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
+            panelHeader.Visible = false;
+            this.ControlBox = true;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                // toolStripHeader.Visible = false;
+                panelHeader.Visible = true;
+                meniHeader.Visible = false;
+                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+                // this.FormBorderStyle = FormBorderStyle.None;
+                this.BackColor = Color.White;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+
+                foreach (Control control in groupBox1.Controls)
+                {
+                    if (control is System.Windows.Forms.Button buttons)
+                    {
+
+                        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
+                        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
+                        buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
+                        buttons.FlatStyle = FlatStyle.Flat;
+                    }
+                }
+
+
+                foreach (Control control in this.Controls)
+                {
+
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                        // Example: Change font
+                    }
+
+
+                    if (control is System.Windows.Forms.Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+                   
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+                   
+                    if (control is System.Windows.Forms.CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+                }
+            }
+            else
+            {
+                panelHeader.Visible = false;
+                meniHeader.Visible = true;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
+
         public Uvoz()
         {
+
+
+
             InitializeComponent();
-            this.AutoScroll = true;
+            this.BackColor = Color.White;
+            this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+            this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+          //  Office2010Colors.ApplyManagedColors(this, Color.White);
+            // Syncfusion.Windows.Forms.Office2010C Office2010Form.Style.TitleBar.BackColor = Color.Black;
+            //  this.Font = new System.Drawing.Font("Helvetica", 14, System.Drawing.FontStyle.Regular);
+            Office2010Colors.ApplyManagedColors(this, Color.White);
+            
+            meniHeader.Visible = false;
+
+            ChangeTextBox();
+            //   this.AutoScroll = true;
             //  FillGV();
             //  FillCheck();
             //  UcitajNHMoveCombo();
@@ -39,7 +157,11 @@ namespace Saobracaj.Uvoz
         public Uvoz(int sifra, string Korisnik)
         {
             InitializeComponent();
-            this.AutoScroll = true;
+            this.BackColor = Color.White;
+            Office2010Colors.ApplyManagedColors(this, Color.White);
+          //  this.Font = new System.Drawing.Font("Helvetica", 14, System.Drawing.FontStyle.Regular);
+            meniHeader.Visible = false;
+            //   this.AutoScroll = true;
             //  FillGV();
             //  FillCheck();
             //  UcitajNHMoveCombo();
@@ -55,8 +177,12 @@ namespace Saobracaj.Uvoz
 
         public Uvoz(int Terminalski, int Plan)
         {
-            this.AutoScroll = true;
+          //  this.AutoScroll = true;
             InitializeComponent();
+            this.BackColor = Color.White;
+            Office2010Colors.ApplyManagedColors(this, Color.White);
+        //   this.Font = new System.Drawing.Font("Helvetica", 14, System.Drawing.FontStyle.Regular);
+            meniHeader.Visible = false;
             FillCombo();
             cboPlanUtovara.SelectedValue = Plan;
             chkTerminalski.Checked = true;
@@ -1245,15 +1371,22 @@ namespace Saobracaj.Uvoz
 
 
             dataGridView7.BorderStyle = BorderStyle.None;
-            dataGridView7.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
+            
+            // 
+            
             dataGridView7.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView7.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView7.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
+            dataGridView7.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
+            dataGridView7.DefaultCellStyle.SelectionForeColor = Color.White;
             dataGridView7.BackgroundColor = Color.White;
+            dataGridView7.DefaultCellStyle.ForeColor  = Color.FromArgb(51, 51, 54);
+            dataGridView7.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+            dataGridView7.RowHeadersDefaultCellStyle.BackColor  = Color.FromArgb(240, 240, 248);
 
+
+            //Header
             dataGridView7.EnableHeadersVisualStyles = false;
             dataGridView7.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView7.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
+            dataGridView7.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
             dataGridView7.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
@@ -1453,14 +1586,14 @@ namespace Saobracaj.Uvoz
             dataGridView2.BorderStyle = BorderStyle.None;
             dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
             dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
             dataGridView2.BackgroundColor = Color.White;
 
             dataGridView2.EnableHeadersVisualStyles = false;
             dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(240, 240, 248); ;
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView2.Columns[0];
@@ -1497,14 +1630,14 @@ namespace Saobracaj.Uvoz
             dataGridView3.BorderStyle = BorderStyle.None;
             dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
             dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
             dataGridView3.BackgroundColor = Color.White;
 
             dataGridView3.EnableHeadersVisualStyles = false;
             dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(240, 240, 248); ;
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView3.Columns[0];
@@ -1533,21 +1666,21 @@ namespace Saobracaj.Uvoz
             var da = new SqlDataAdapter(select, conn);
             var ds = new DataSet();
             da.Fill(ds);
+           
+            
             dataGridView4.ReadOnly = true;
             dataGridView4.DataSource = ds.Tables[0];
-
             dataGridView4.BorderStyle = BorderStyle.None;
             dataGridView4.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView4.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView4.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView4.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
             dataGridView4.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
             dataGridView4.BackgroundColor = Color.White;
 
             dataGridView4.EnableHeadersVisualStyles = false;
             dataGridView4.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView4.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView4.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-
+            dataGridView4.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dataGridView4.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(240, 240, 248); ;
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView4.Columns[0];
             dataGridView4.Columns[0].HeaderText = "ID";
@@ -1908,14 +2041,14 @@ namespace Saobracaj.Uvoz
             dataGridView6.BorderStyle = BorderStyle.None;
             dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
             dataGridView6.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
             dataGridView6.BackgroundColor = Color.White;
 
             dataGridView6.EnableHeadersVisualStyles = false;
             dataGridView6.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(240, 240, 248); ;
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
@@ -1959,17 +2092,18 @@ namespace Saobracaj.Uvoz
             dataGridView6.DataSource = ds.Tables[0];
 
 
+
             dataGridView6.BorderStyle = BorderStyle.None;
             dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
             dataGridView6.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
             dataGridView6.BackgroundColor = Color.White;
 
             dataGridView6.EnableHeadersVisualStyles = false;
             dataGridView6.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(240, 240, 248); ;
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
@@ -2010,17 +2144,18 @@ namespace Saobracaj.Uvoz
             dataGridView5.DataSource = ds.Tables[0];
 
 
+
             dataGridView5.BorderStyle = BorderStyle.None;
             dataGridView5.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
             dataGridView5.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView5.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
+            dataGridView5.DefaultCellStyle.SelectionBackColor = Color.DarkGray;
             dataGridView5.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
             dataGridView5.BackgroundColor = Color.White;
 
             dataGridView5.EnableHeadersVisualStyles = false;
             dataGridView5.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView5.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView5.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dataGridView5.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dataGridView5.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(240, 240, 248); ;
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView5.Columns[0];
@@ -2388,32 +2523,66 @@ namespace Saobracaj.Uvoz
             }
         }
         string relacija;
+        string relacija2;
+        string relacija3;
         int Zeleznina = 0;
         int ADR = 0;
+        int ScenarioGl = 0;
 
+        
 
         private void MoguciScenario()
         {
             string Moguce = "";
+            if (relacija == relacija3)
+            {
+                ScenarioGl = 1; ///Vraca se
+
+            }
+            else if (relacija2 == relacija3)
+            {
+                ScenarioGl = 2; //Ostaje
+            }
+            else if (relacija != relacija2 && relacija2 != relacija3 && relacija != relacija3)
+            { 
+            ScenarioGl = 3;  //Odlazi
+            
+            }
+            else
+            {
+                MessageBox.Show("Relacije ne pripadaju ni jednom scenariju");
+                return;
+            }
+
+
+
             //Provera SCENARIJA UKLJUCITI ADR
             if (chkTerminalski.Checked == true)
             {
                 Moguce = "15";
             }
-            else if (cboRLTerminal.Text.Trim() == "AGCT Rijeka" && Convert.ToInt32(txtADR.SelectedValue) == 0)
+            else if (ScenarioGl == 1 && Convert.ToInt32(txtADR.SelectedValue) == 0)
             {
-                Moguce = "1,2";
+                Moguce = "1,2"; // npr Rijeka - leget - Rijeka
             }
-            else if (cboRLTerminal.Text.Trim() == "AGCT Rijeka" && Convert.ToInt32(txtADR.SelectedValue) > 1)
+            else if (ScenarioGl == 1 && Convert.ToInt32(txtADR.SelectedValue) > 1)
             {
-                Moguce = "18,19";
+                Moguce = "18,19"; 
             }
 
-            else if (cboRLTerminal.Text.Trim() == "Leget" && Convert.ToInt32(txtADR.SelectedValue) == 0)
+            else if (ScenarioGl == 2 && Convert.ToInt32(txtADR.SelectedValue) == 0)
             {
-                Moguce = "3,4,6";
+                Moguce = "3,4,6"; // Ostaje na terminalu
             }
-            else if (cboRLTerminal.Text.Trim() == "Leget" && Convert.ToInt32(txtADR.SelectedValue) > 1)
+            else if (ScenarioGl == 3 && Convert.ToInt32(txtADR.SelectedValue) == 0)
+            {
+                Moguce = "5"; // Ostaje na terminalu
+            }
+            else if (ScenarioGl == 3 && Convert.ToInt32(txtADR.SelectedValue) > 1)
+            {
+                Moguce = "22"; // Ostaje na terminalu
+            }
+            else if (ScenarioGl == 2 && Convert.ToInt32(txtADR.SelectedValue) > 1)
             {
                 Moguce = "20,21";
 
@@ -2500,7 +2669,7 @@ namespace Saobracaj.Uvoz
             //Proveri da li ima usluga za 
 
             // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-            frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci,terminal,relacija,Zeleznina, ADR);
+            frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci,terminal,relacija,Zeleznina, ADR, ScenarioGl);
            // um.FormClosing += new FormClosingEventHandler(this.frmUnosManipulacija_FormClosing);
             um.Show();
 
@@ -2711,7 +2880,7 @@ namespace Saobracaj.Uvoz
                 //Terminali
                 relacija = cboRLTerminal.Text.ToString().TrimEnd();
                 // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-                frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci,terminal, relacija, Zeleznina,ADR);
+                frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci,terminal, relacija, Zeleznina,ADR, ScenarioGl);
                 um.Show();
 
             }
@@ -2886,6 +3055,374 @@ namespace Saobracaj.Uvoz
             FillDGUsluge();
 
             RefreshScenario();
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void textBoxExt1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(connection);
+                SqlCommand cmd = new SqlCommand("Insert into Uvoz Default Values", conn);
+                conn.Open();
+                var q = cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+            GetID();
+            tsNew.Enabled = false;
+            txtBrKont.Text = "";
+        }
+        string labelDialogResult = "";
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            if (txtID.Text == "")
+            {
+                labelDialogResult = "Dialog Box Result";
+                //It is optional to save the Dialog Result,
+                //use it when you need to know which button or action the user selected,
+                //and do a specific function/task according to the dialogue result.
+                //-| For Example:
+                DialogResult result = Saobracaj.Pomocni.RJMessageBox.Show("Niste uneli ID");
+                if (result == DialogResult.OK)
+                    labelDialogResult = "You have selected the OK BUTTON";
+                else labelDialogResult= "You have selected CANCEL";
+               // MessageBox.Show("Kliknite na ikonicu NOVI ili izaberite postojeći kontejner");
+            }
+            int tDobijenBZ = 0;
+            int tPrioritet = 0;
+            int Terminalska = 0;
+
+            if (chkDobijenBZ.Checked == true)
+            { tDobijenBZ = 1; };
+            if (chkPrioritet.Checked == true)
+            { tPrioritet = 1; };
+            if (chkDobijenBZ.Checked == true)
+            { tDobijenBZ = 1; };
+            if (chkTerminalski.Checked == true)
+            { Terminalska = 1; };
+
+
+            try
+            {
+                int temp = Convert.ToInt32(txtBrojVoza.Text);
+            }
+            catch (Exception)
+            {
+                labelDialogResult = "Dialog Box Result";
+                //It is optional to save the Dialog Result,
+                //use it when you need to know which button or action the user selected,
+                //and do a specific function/task according to the dialogue result.
+                //-| For Example:
+                DialogResult result = Saobracaj.Pomocni.RJMessageBox.Show("Niste uneli numericku vrednost voza");
+                if (result == DialogResult.OK)
+                    labelDialogResult = "You have selected the OK BUTTON";
+                else labelDialogResult = "You have selected CANCEL";
+                return;
+            }
+
+
+            if (txtBuking.Text == "")
+            { txtBuking.Text = "0"; }
+            else
+            {
+                try
+                {
+                    int temp = Convert.ToInt32(txtBuking.Text);
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Unesite numeričku vrednost Bukinga");
+                    return;
+                }
+            }
+
+
+            /*
+
+            for (int i = 0; i < clNalogodavac.Items.Count; i++)
+            {
+                if (clNalogodavac.GetItemCheckState(i) == CheckState.Checked)
+                {
+                    if (i == 0)
+                    {
+                        clNalogodavac.SetSelected(i, true);
+                        nalogodavci = clNalogodavac.SelectedValue.ToString();
+                    }
+                    else
+                    {
+                        clNalogodavac.SetSelected(i, true);
+                        nalogodavci = nalogodavci + "," + clNalogodavac.SelectedValue.ToString();
+                    }
+                }
+            }
+            for(int i = 0; i < clVrstaUsluga.Items.Count; i++)
+            {
+                if (clVrstaUsluga.GetItemCheckState(i) == CheckState.Checked)
+                {
+                    if (i == 0)
+                    {
+                        clVrstaUsluga.SetSelected(i, true);
+                        usluge = clVrstaUsluga.SelectedValue.ToString();
+                    }
+                    else
+                    {
+                        clVrstaUsluga.SetSelected(i, true);
+                        usluge = usluge + "," + clVrstaUsluga.SelectedValue.ToString();
+                    }
+                }
+            }
+            */
+            InsertUvoz ins = new InsertUvoz();
+            if (chkSlobodan.Checked == true)
+            {
+                txtNapomena1.Text = "1";
+            }
+            else
+            {
+                txtNapomena1.Text = "0";
+            }
+
+
+
+            int i = ProveriBiloIzmena(txtID.Text);
+
+            if (i != 0)
+            {
+                DialogResult result = MessageBox.Show("Da li želite da sačuvate promene?", "Confirmation", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    ins.UpdUvoz(Convert.ToInt32(txtID.Text), Convert.ToDateTime(dtEtaRijeka.Value.ToString()),
+                Convert.ToDateTime(dtAtaRijeka.Value.ToString()), txtStatus.Text.ToString().TrimEnd(), txtBrKont.Text,
+                Convert.ToInt32(txtTipKont.SelectedValue), Convert.ToDateTime(dtNalogBrodara.Value.ToString()), txtBZ.Text.ToString().TrimEnd(),
+                txtNapomena.Text.ToString().TrimEnd(), txtPIN.Text.ToString().TrimEnd(), Convert.ToInt32(cbDirigacija.SelectedValue), Convert.ToInt32(cbBrod.SelectedValue),
+                txtTeretnica.Text, Convert.ToInt32(txtADR.SelectedValue), Convert.ToInt32(cbVlasnikKont.SelectedValue), Convert.ToInt32(txtBuking.Text), nalogodavci,
+                usluge, Convert.ToInt32(cboUvoznik.SelectedValue), Convert.ToInt32(cboNHM.SelectedValue), "", Convert.ToInt32(cboSpedicijaG.SelectedValue),
+                Convert.ToInt32(cboSpedicijaRTC.SelectedValue), Convert.ToInt32(cboCarinskiPostupak.SelectedValue), Convert.ToInt32(cbPostupak.SelectedValue),
+                Convert.ToInt32(cbNacinPakovanja.SelectedValue), Convert.ToInt32(cbOcarina.SelectedValue), Convert.ToInt32(cbOspedicija.SelectedValue),
+                Convert.ToInt32(txtMesto.SelectedValue), Convert.ToInt32(txtKontaktOsoba.SelectedValue), txtMail.Text.ToString(), txtPlomba1.Text,
+                txtPlomba2.Text, Convert.ToDecimal(txtNetoR.Value), Convert.ToDecimal(txtBrutoR.Value), Convert.ToDecimal(txtTaraK.Value),
+                Convert.ToDecimal(txtBrutoK.Value), Convert.ToInt32(cbNapomenaPoz.SelectedValue), Convert.ToDateTime(dtAtaOtprema.Value.ToString()),
+                Convert.ToInt32(txtBrojVoza.Text), txtRelacija.Text.ToString().TrimEnd(), Convert.ToDateTime(dtAtaDolazak.Value.ToString()), Convert.ToDecimal(txtKoleta.Value), Convert.ToInt32(cboRLTerminal.SelectedValue), txtNapomena1.Text, Convert.ToInt32(txtVrstaPregleda.SelectedValue),
+                Convert.ToInt32(cboNalogodavac1.SelectedValue), txtRef1.Text,
+                Convert.ToInt32(cboNalogodavac2.SelectedValue), txtRef2.Text,
+                Convert.ToInt32(cboNalogodavac3.SelectedValue), txtRef3.Text, Convert.ToInt32(cboBrodar.SelectedValue), cboNaslovStatusaVozila.Text, tDobijenBZ, tPrioritet, Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue), txtKontaktOsobe.Text, Terminalska, Convert.ToDecimal(txtTaraTerminal.Value), Convert.ToDecimal(txtKoletaTer.Value), Convert.ToInt32(cboScenario.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue));
+                    //  FillGV();
+                    //  RefreshDataGridColor();
+                    tsNew.Enabled = true;
+                }
+
+                else
+                {
+                    return;
+                }
+
+            }
+
+
+        }
+
+        private void button20_Click(object sender, EventArgs e)
+        {
+            InsertUvoz uv = new InsertUvoz();
+            uv.DelUvoz(Convert.ToInt32(txtID.Text));
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+
+            VratiZelezninu(Convert.ToInt32(cboRLTerminal.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), txtTipKont.Text.Substring(0, 3));
+            ADR = Convert.ToInt32(txtADR.SelectedValue);
+            int terminal = 0;
+            if (txtID.Text == "")
+            { txtID.Text = "0"; }
+            if (chkTerminalski.Checked)
+            {
+                terminal = 1;
+            }
+            //Terminali
+            //  Zeleznina = 
+            relacija = cboRLTerminal.Text.ToString().TrimEnd();
+            relacija2 = cboRLTerminal2.Text.ToString().TrimEnd();
+            relacija3 = cboRLTerminal3.Text.ToString().TrimEnd();
+
+            MoguciScenario();
+            //Proveri da li ima usluga za 
+
+            // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
+            frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(0), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci, terminal, relacija, Zeleznina, ADR, ScenarioGl);
+            // um.FormClosing += new FormClosingEventHandler(this.frmUnosManipulacija_FormClosing);
+            um.Show();
+
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            if (chkTerminalski.Checked == false)
+            {
+                using (var detailForm = new UvozTable())
+                {
+                    detailForm.ShowDialog();
+                    txtID.Text = detailForm.GetID();
+                    if (txtID.Text == "")
+                    {
+                        MessageBox.Show("Morate izabrati barem jednu stavku");
+                        return;
+
+                    }
+                    VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+                }
+            }
+            else
+            {
+                using (var detailForm = new UvozTable(1))
+                {
+                    detailForm.ShowDialog();
+                    txtID.Text = detailForm.GetID();
+                    if (txtID.Text == "")
+                    {
+                        MessageBox.Show("Morate izabrati barem jednu stavku");
+                        return;
+
+                    }
+                    VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
+                }
+            }
+            FillDGUsluge();
+        }
+
+        private void button26_Click(object sender, EventArgs e)
+        {
+            int TcbBrod = Convert.ToInt32(cbBrod.SelectedValue);
+            int TtxtTipKont = Convert.ToInt32(txtTipKont.SelectedValue);
+            int TcboRLTerminal = Convert.ToInt32(cboRLTerminal.SelectedValue);
+            int TcboRLTerminal2 = Convert.ToInt32(cboRLTerminal2.SelectedValue);
+            int TcboRLTerminal3 = Convert.ToInt32(cboRLTerminal3.SelectedValue);
+            int TcbDirigacija = Convert.ToInt32(cbDirigacija.SelectedValue);
+            int TtxtADR = Convert.ToInt32(txtADR.SelectedValue);
+            int TcboBrodar = Convert.ToInt32(cboBrodar.SelectedValue);
+            int TcbVlasnikKont = Convert.ToInt32(cbVlasnikKont.SelectedValue);
+            int TcboNalogodavac1 = Convert.ToInt32(cboNalogodavac1.SelectedValue);
+            int TcboNalogodavac2 = Convert.ToInt32(cboNalogodavac2.SelectedValue);
+            int TcboNalogodavac3 = Convert.ToInt32(cboNalogodavac3.SelectedValue);
+            int TcboUvoznik = Convert.ToInt32(cboUvoznik.SelectedValue);
+            int TtxtVrstaPregleda = Convert.ToInt32(txtVrstaPregleda.SelectedValue);
+            int TcboSpedicijaG = Convert.ToInt32(cboSpedicijaG.SelectedValue);
+            int TcboSpedicijaRTC = Convert.ToInt32(cboSpedicijaRTC.SelectedValue);
+            int TcboCarinskiPostupak = Convert.ToInt32(cboCarinskiPostupak.SelectedValue);
+            int TcbPostupak = Convert.ToInt32(cbPostupak.SelectedValue);
+            int TcbNacinPakovanja = Convert.ToInt32(cbNacinPakovanja.SelectedValue);
+            int TcbOspedicija = Convert.ToInt32(cbOspedicija.SelectedValue);
+            int TcbOcarina = Convert.ToInt32(cbOcarina.SelectedValue);
+            int TtxtMesto = Convert.ToInt32(txtMesto.SelectedValue);
+            int TtxtAdresaMestaUtovara = Convert.ToInt32(txtAdresaMestaUtovara.SelectedValue);
+            FillCombo();
+            cbBrod.SelectedValue = TcbBrod;
+            txtTipKont.SelectedValue = TtxtTipKont;
+            cboRLTerminal.SelectedValue = TcboRLTerminal;
+            cboRLTerminal2.SelectedValue = TcboRLTerminal2;
+            cboRLTerminal3.SelectedValue = TcboRLTerminal3;
+            cbDirigacija.SelectedValue = TcbDirigacija;
+            txtADR.SelectedValue = TtxtADR;
+            cboBrodar.SelectedValue = TcboBrodar;
+            cbVlasnikKont.SelectedValue = TcbVlasnikKont;
+            cboNalogodavac1.SelectedValue = TcboNalogodavac1;
+            cboNalogodavac2.SelectedValue = TcboNalogodavac2;
+            cboNalogodavac3.SelectedValue = TcboNalogodavac3;
+            cboUvoznik.SelectedValue = TcboUvoznik;
+            txtVrstaPregleda.SelectedValue = TtxtVrstaPregleda;
+            cboSpedicijaG.SelectedValue = TcboSpedicijaG;
+            cboSpedicijaRTC.SelectedValue = TcboSpedicijaRTC;
+            cboCarinskiPostupak.SelectedValue = TcboCarinskiPostupak;
+            cbPostupak.SelectedValue = TcbPostupak;
+            cbNacinPakovanja.SelectedValue = TcbNacinPakovanja;
+            cbOspedicija.SelectedValue = TcbOspedicija;
+            cbOcarina.SelectedValue = TcbOcarina;
+            txtMesto.SelectedValue = TtxtMesto;
+            txtAdresaMestaUtovara.SelectedValue = TtxtAdresaMestaUtovara;
+        }
+
+        private void button27_Click(object sender, EventArgs e)
+        {
+            InsertUvozKonacna uvK = new InsertUvozKonacna();
+            uvK.InsUbaciUslugu(Convert.ToInt32(txtID.Text), 69, 0, 1, 4, Convert.ToInt32(cboBrodar.SelectedValue), 0, "GATE IN EMPTY", 13, KorisnikTekuci, "GATE IN KAMION");
+            FillDGUsluge();
+
+            InsertUvozKonacna ins = new InsertUvozKonacna();
+            ins.PrenesiUPlanUtovara(Convert.ToInt32(txtID.Text), Convert.ToInt32(cboPlanUtovara.SelectedValue));
+
+
+            if (chkTerminalski.Checked == true)
+            {
+                DialogResult dialogResult = MessageBox.Show("Pokrenuli ste proceduru pravljenja Terminalskog naloga ", "Radni nalog", MessageBoxButtons.YesNo);
+                int PostojeRn = 0;
+                PostojeRn = VratiPostojeceRN();
+                if (dialogResult == DialogResult.Yes)
+                {
+
+                    InsertRadniNalogInterni insRNI = new InsertRadniNalogInterni();
+                    insRNI.InsRadniNalogInterni(Convert.ToInt32(4), Convert.ToInt32(4), Convert.ToDateTime(DateTime.Now), Convert.ToDateTime("1.1.1900. 00:00:00"), "", Convert.ToInt32(0), "PlanUtovara", Convert.ToInt32(cboPlanUtovara.SelectedValue), KorisnikTekuci, "");
+
+                }
+                else
+                {
+                    // FormirajOpstiExcel();
+                }
+            }
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void VratiTaraKontejnera()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select Tara from TipKontenjera where ID = " + Convert.ToInt32(txtTipKont.SelectedValue), con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                txtTaraK.Value = Convert.ToDecimal(dr["Tara"].ToString());
+
+            }
+            con.Close();
+
+
+        }
+
+
+        private void txtTipKont_Leave(object sender, EventArgs e)
+        {
+            VratiTaraKontejnera();
+        }
+
+        private void tabSplitterPage1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

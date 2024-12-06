@@ -28,43 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDelovi));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.toolStripHeader = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.panelHeader = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.txtSifra = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            this.txtNaziv = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.tsNew = new System.Windows.Forms.ToolStripButton();
             this.tsSave = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsPrvi = new System.Windows.Forms.ToolStripButton();
             this.tsNazad = new System.Windows.Forms.ToolStripButton();
             this.tsNapred = new System.Windows.Forms.ToolStripButton();
             this.tsPoslednja = new System.Windows.Forms.ToolStripButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panelHeader = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
+            this.txtSifra = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.txtNaziv = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.toolStripHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelHeader.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSifra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNaziv)).BeginInit();
-            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripHeader
@@ -83,14 +82,80 @@
             this.tsPoslednja});
             this.toolStripHeader.Location = new System.Drawing.Point(0, 0);
             this.toolStripHeader.Name = "toolStripHeader";
-            this.toolStripHeader.Size = new System.Drawing.Size(640, 24);
+            this.toolStripHeader.Size = new System.Drawing.Size(640, 40);
             this.toolStripHeader.TabIndex = 109;
             this.toolStripHeader.Text = "Štampaj izveštaj";
+            // 
+            // tsNew
+            // 
+            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
+            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNew.Name = "tsNew";
+            this.tsNew.Size = new System.Drawing.Size(24, 37);
+            this.tsNew.Text = "Novi";
+            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
+            // 
+            // tsSave
+            // 
+            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
+            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsSave.Name = "tsSave";
+            this.tsSave.Size = new System.Drawing.Size(24, 37);
+            this.tsSave.Text = "tsSave";
+            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
+            // 
+            // tsDelete
+            // 
+            this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
+            this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsDelete.Name = "tsDelete";
+            this.tsDelete.Size = new System.Drawing.Size(24, 37);
+            this.tsDelete.Text = "toolStripButton1";
+            this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 24);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 40);
+            // 
+            // tsPrvi
+            // 
+            this.tsPrvi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
+            this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsPrvi.Name = "tsPrvi";
+            this.tsPrvi.Size = new System.Drawing.Size(24, 37);
+            this.tsPrvi.Text = "toolStripButton1";
+            // 
+            // tsNazad
+            // 
+            this.tsNazad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
+            this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNazad.Name = "tsNazad";
+            this.tsNazad.Size = new System.Drawing.Size(24, 37);
+            this.tsNazad.Text = "toolStripButton1";
+            // 
+            // tsNapred
+            // 
+            this.tsNapred.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
+            this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNapred.Name = "tsNapred";
+            this.tsNapred.Size = new System.Drawing.Size(24, 37);
+            this.tsNapred.Text = "toolStripButton1";
+            // 
+            // tsPoslednja
+            // 
+            this.tsPoslednja.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
+            this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsPoslednja.Name = "tsPoslednja";
+            this.tsPoslednja.Size = new System.Drawing.Size(24, 37);
+            this.tsPoslednja.Text = "toolStripButton1";
             // 
             // label2
             // 
@@ -124,26 +189,26 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Helvetica", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Helvetica", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.dataGridView1.Location = new System.Drawing.Point(14, 146);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.dataGridView1.Name = "dataGridView1";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Helvetica", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Helvetica", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
             this.dataGridView1.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
@@ -159,24 +224,29 @@
             this.panelHeader.Controls.Add(this.panel3);
             this.panelHeader.Controls.Add(this.panel1);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelHeader.Location = new System.Drawing.Point(0, 24);
+            this.panelHeader.Location = new System.Drawing.Point(0, 40);
             this.panelHeader.Name = "panelHeader";
             this.panelHeader.Size = new System.Drawing.Size(640, 33);
             this.panelHeader.TabIndex = 134;
             // 
-            // label3
+            // panel4
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.label3.Location = new System.Drawing.Point(6, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(124, 16);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Šifarnici - Delovi";
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(556, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(84, 33);
+            this.panel4.TabIndex = 7;
+            // 
+            // panel2
+            // 
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(215, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(335, 33);
+            this.panel2.TabIndex = 6;
             // 
             // panel3
             // 
@@ -189,80 +259,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(124, 33);
             this.panel3.TabIndex = 2;
-            // 
-            // panel2
-            // 
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(215, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(288, 33);
-            this.panel2.TabIndex = 6;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.Transparent;
-            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel4.Controls.Add(this.button4);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(595, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(45, 33);
-            this.panel4.TabIndex = 7;
-            // 
-            // txtSifra
-            // 
-            this.txtSifra.BackColor = System.Drawing.Color.White;
-            this.txtSifra.BeforeTouchSize = new System.Drawing.Size(552, 23);
-            this.txtSifra.Border3DStyle = System.Windows.Forms.Border3DStyle.Flat;
-            this.txtSifra.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.txtSifra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSifra.CanOverrideStyle = true;
-            this.txtSifra.CornerRadius = 3;
-            this.txtSifra.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.txtSifra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.txtSifra.Location = new System.Drawing.Point(60, 66);
-            this.txtSifra.MinimumSize = new System.Drawing.Size(22, 18);
-            this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(105, 23);
-            this.txtSifra.TabIndex = 135;
-            this.txtSifra.Text = "123456789101";
-            this.txtSifra.ThemeName = "Default";
-            this.txtSifra.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.txtSifra.ThemeStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.txtSifra.ThemeStyle.CornerRadius = 9;
-            this.txtSifra.ThemeStyle.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.txtSifra.ThemeStyle.Font = new System.Drawing.Font("Helvetica", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSifra.ThemeStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.txtSifra.UseBorderColorOnFocus = true;
-            this.txtSifra.TextChanged += new System.EventHandler(this.textBoxExt1_TextChanged);
-            // 
-            // txtNaziv
-            // 
-            this.txtNaziv.BackColor = System.Drawing.Color.White;
-            this.txtNaziv.BeforeTouchSize = new System.Drawing.Size(552, 23);
-            this.txtNaziv.Border3DStyle = System.Windows.Forms.Border3DStyle.Flat;
-            this.txtNaziv.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.txtNaziv.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtNaziv.CanOverrideStyle = true;
-            this.txtNaziv.CornerRadius = 3;
-            this.txtNaziv.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.txtNaziv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.txtNaziv.Location = new System.Drawing.Point(60, 102);
-            this.txtNaziv.MinimumSize = new System.Drawing.Size(22, 18);
-            this.txtNaziv.Name = "txtNaziv";
-            this.txtNaziv.Size = new System.Drawing.Size(552, 23);
-            this.txtNaziv.TabIndex = 136;
-            this.txtNaziv.Text = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
-            this.txtNaziv.ThemeName = "Default";
-            this.txtNaziv.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.txtNaziv.ThemeStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.txtNaziv.ThemeStyle.CornerRadius = 9;
-            this.txtNaziv.ThemeStyle.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.txtNaziv.ThemeStyle.Font = new System.Drawing.Font("Helvetica", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNaziv.ThemeStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
-            this.txtNaziv.UseBorderColorOnFocus = true;
             // 
             // button3
             // 
@@ -330,72 +326,6 @@
             this.panel1.Size = new System.Drawing.Size(91, 33);
             this.panel1.TabIndex = 1;
             // 
-            // tsNew
-            // 
-            this.tsNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNew.Image = ((System.Drawing.Image)(resources.GetObject("tsNew.Image")));
-            this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(24, 21);
-            this.tsNew.Text = "Novi";
-            this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
-            // 
-            // tsSave
-            // 
-            this.tsSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsSave.Image = ((System.Drawing.Image)(resources.GetObject("tsSave.Image")));
-            this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(24, 21);
-            this.tsSave.Text = "tsSave";
-            this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
-            // 
-            // tsDelete
-            // 
-            this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
-            this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(24, 21);
-            this.tsDelete.Text = "toolStripButton1";
-            this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
-            // 
-            // tsPrvi
-            // 
-            this.tsPrvi.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPrvi.Image = ((System.Drawing.Image)(resources.GetObject("tsPrvi.Image")));
-            this.tsPrvi.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPrvi.Name = "tsPrvi";
-            this.tsPrvi.Size = new System.Drawing.Size(24, 21);
-            this.tsPrvi.Text = "toolStripButton1";
-            // 
-            // tsNazad
-            // 
-            this.tsNazad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNazad.Image = ((System.Drawing.Image)(resources.GetObject("tsNazad.Image")));
-            this.tsNazad.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNazad.Name = "tsNazad";
-            this.tsNazad.Size = new System.Drawing.Size(24, 21);
-            this.tsNazad.Text = "toolStripButton1";
-            // 
-            // tsNapred
-            // 
-            this.tsNapred.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNapred.Image = ((System.Drawing.Image)(resources.GetObject("tsNapred.Image")));
-            this.tsNapred.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNapred.Name = "tsNapred";
-            this.tsNapred.Size = new System.Drawing.Size(24, 21);
-            this.tsNapred.Text = "toolStripButton1";
-            // 
-            // tsPoslednja
-            // 
-            this.tsPoslednja.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsPoslednja.Image = ((System.Drawing.Image)(resources.GetObject("tsPoslednja.Image")));
-            this.tsPoslednja.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPoslednja.Name = "tsPoslednja";
-            this.tsPoslednja.Size = new System.Drawing.Size(24, 21);
-            this.tsPoslednja.Text = "toolStripButton1";
-            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
@@ -403,35 +333,73 @@
             this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel5.Location = new System.Drawing.Point(3, 3);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(79, 23);
+            this.panel5.Size = new System.Drawing.Size(76, 27);
             this.panel5.TabIndex = 0;
             // 
-            // button4
+            // txtSifra
             // 
-            this.button4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
-            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button4.Location = new System.Drawing.Point(7, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(28, 27);
-            this.button4.TabIndex = 16;
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.button4.UseVisualStyleBackColor = false;
+            this.txtSifra.BackColor = System.Drawing.Color.White;
+            this.txtSifra.BeforeTouchSize = new System.Drawing.Size(105, 23);
+            this.txtSifra.Border3DStyle = System.Windows.Forms.Border3DStyle.Flat;
+            this.txtSifra.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
+            this.txtSifra.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSifra.CanOverrideStyle = true;
+            this.txtSifra.CornerRadius = 3;
+            this.txtSifra.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.txtSifra.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
+            this.txtSifra.Location = new System.Drawing.Point(60, 66);
+            this.txtSifra.MinimumSize = new System.Drawing.Size(22, 18);
+            this.txtSifra.Name = "txtSifra";
+            this.txtSifra.Size = new System.Drawing.Size(105, 23);
+            this.txtSifra.TabIndex = 135;
+            this.txtSifra.ThemeName = "Default";
+            this.txtSifra.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.txtSifra.ThemeStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
+            this.txtSifra.ThemeStyle.CornerRadius = 9;
+            this.txtSifra.ThemeStyle.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.txtSifra.ThemeStyle.Font = new System.Drawing.Font("Helvetica", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSifra.ThemeStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
+            this.txtSifra.UseBorderColorOnFocus = true;
+            this.txtSifra.TextChanged += new System.EventHandler(this.textBoxExt1_TextChanged);
+            // 
+            // txtNaziv
+            // 
+            this.txtNaziv.BackColor = System.Drawing.Color.White;
+            this.txtNaziv.BeforeTouchSize = new System.Drawing.Size(105, 23);
+            this.txtNaziv.Border3DStyle = System.Windows.Forms.Border3DStyle.Flat;
+            this.txtNaziv.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
+            this.txtNaziv.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtNaziv.CanOverrideStyle = true;
+            this.txtNaziv.CornerRadius = 3;
+            this.txtNaziv.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.txtNaziv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
+            this.txtNaziv.Location = new System.Drawing.Point(60, 102);
+            this.txtNaziv.MinimumSize = new System.Drawing.Size(22, 18);
+            this.txtNaziv.Name = "txtNaziv";
+            this.txtNaziv.Size = new System.Drawing.Size(552, 23);
+            this.txtNaziv.TabIndex = 136;
+            this.txtNaziv.ThemeName = "Default";
+            this.txtNaziv.ThemeStyle.BackColor = System.Drawing.Color.White;
+            this.txtNaziv.ThemeStyle.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
+            this.txtNaziv.ThemeStyle.CornerRadius = 9;
+            this.txtNaziv.ThemeStyle.DisabledForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.txtNaziv.ThemeStyle.Font = new System.Drawing.Font("Helvetica", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNaziv.ThemeStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(110)))), ((int)(((byte)(115)))));
+            this.txtNaziv.UseBorderColorOnFocus = true;
+            // 
+            // commandBarController1
+            // 
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
             // 
             // frmDelovi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.CaptionAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.CaptionFont = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
+            this.CaptionFont = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.CaptionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.ClientSize = new System.Drawing.Size(640, 548);
             this.Controls.Add(this.txtNaziv);
@@ -449,19 +417,17 @@
             this.Name = "frmDelovi";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Delovi";
+            this.Text = "ŠIFARNICI - DELOVI";
             this.Load += new System.EventHandler(this.frmDelovi_Load);
             this.toolStripHeader.ResumeLayout(false);
             this.toolStripHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panelHeader.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.panel4.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtSifra)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNaziv)).EndInit();
-            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -483,7 +449,6 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panelHeader;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel4;
@@ -493,6 +458,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Button button4;
+        private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
     }
 }
