@@ -29,13 +29,16 @@ namespace Saobracaj.RadniNalozi
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PrijemnicaPregled));
             this.label1 = new System.Windows.Forms.Label();
             this.txtSifra = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -51,18 +54,18 @@ namespace Saobracaj.RadniNalozi
             // txtSifra
             // 
             this.txtSifra.Enabled = false;
-            this.txtSifra.Location = new System.Drawing.Point(9, 27);
+            this.txtSifra.Location = new System.Drawing.Point(9, 26);
             this.txtSifra.Margin = new System.Windows.Forms.Padding(2);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(76, 20);
+            this.txtSifra.Size = new System.Drawing.Size(80, 20);
             this.txtSifra.TabIndex = 1;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(99, 20);
+            this.button1.Location = new System.Drawing.Point(113, 11);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 24);
+            this.button1.Size = new System.Drawing.Size(147, 35);
             this.button1.TabIndex = 2;
             this.button1.Text = "Izvezi";
             this.button1.UseVisualStyleBackColor = true;
@@ -70,8 +73,7 @@ namespace Saobracaj.RadniNalozi
             // 
             // dataGridView1
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(9, 50);
@@ -91,8 +93,16 @@ namespace Saobracaj.RadniNalozi
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "Saobracaj.RadniNalozi.rptPrijemnica.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(9, 236);
             this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(1110, 533);
             this.reportViewer1.TabIndex = 4;
+            // 
+            // commandBarController1
+            // 
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
             // 
             // PrijemnicaPregled
             // 
@@ -111,6 +121,7 @@ namespace Saobracaj.RadniNalozi
             this.Text = "PrijemnicaPregled";
             this.Load += new System.EventHandler(this.PrijemnicaPregled_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,5 +134,6 @@ namespace Saobracaj.RadniNalozi
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
     }
 }

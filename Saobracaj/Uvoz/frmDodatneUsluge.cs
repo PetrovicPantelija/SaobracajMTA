@@ -16,18 +16,124 @@ using Syncfusion.Windows.Forms.Tools;
 using Saobracaj.Dokumenta;
 using System.Runtime.ConstrainedExecution;
 using Microsoft.ReportingServices.Diagnostics.Internal;
+using Syncfusion.Windows.Forms;
+using System.Drawing.Imaging;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmDodatneUsluge : Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmDodatneUsluge : Form
     {
         int usao = 1;
         int IzPomForme = 0;
         string OsnovPF = "";
         int OJPF = 0;
+
+        private void ChangeTextBox()
+        {
+           
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+             
+            {
+                this.BackColor = Color.White;
+                this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+                this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+                //  toolStripHeader.BackColor = Color.FromArgb(240, 240, 248);
+                //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
+
+                this.ControlBox = true;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                // toolStripHeader.Visible = false;
+
+                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+                // this.FormBorderStyle = FormBorderStyle.None;
+                splitContainer1.Panel1.BackColor = Color.White;
+                splitContainer1.Panel2.BackColor = Color.White;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+
+                foreach (Control control in splitContainer1.Panel1.Controls)
+                {
+                    if (control is System.Windows.Forms.Button buttons)
+                    {
+
+                        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
+                        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
+                        buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
+                        buttons.FlatStyle = FlatStyle.Flat;
+                    }
+                }
+
+
+                foreach (Control control in splitContainer1.Panel1.Controls)
+                {
+
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                        // Example: Change font
+                    }
+
+
+                    if (control is System.Windows.Forms.Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+                }
+            }
+            else
+            {
+             
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
+
+
         public frmDodatneUsluge()
         {
             InitializeComponent();
+            ChangeTextBox();
         }
 
 
@@ -37,6 +143,7 @@ namespace Saobracaj.Uvoz
             IzPomForme = 1;
             OJPF = OJ;
             OsnovPF = Osnov;
+            ChangeTextBox();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -465,6 +572,11 @@ namespace Saobracaj.Uvoz
         private void button2_Click_1(object sender, EventArgs e)
         {
             VratiPodatkeZaUslugu(Convert.ToInt32(cboUsluga.SelectedValue));
+        }
+
+        private void button1_Click_2(object sender, EventArgs e)
+        {
+
         }
     }
 }

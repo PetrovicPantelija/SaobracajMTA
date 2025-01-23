@@ -66,6 +66,7 @@ namespace Saobracaj
                 toolStripButton139.Text = "GATE IN KAMION";
                 toolStripButton142.Text = "GATE OUT VOZ";
                 toolStripButton143.Text = "GATE OUT KAMION";
+                toolStripButton134.Text = "Polja";
 
             }
 
@@ -4013,7 +4014,7 @@ namespace Saobracaj
 
         private void toolStripButton190_Click(object sender, EventArgs e)
         {
-            frmVoz voz = new frmVoz();
+            frmVoz voz = new frmVoz(1);
             voz.Show();
 
         }
@@ -4289,7 +4290,7 @@ namespace Saobracaj
             }
             if (bFormNameOpen == false)
             {
-                frmVoz voz = new frmVoz();
+                frmVoz voz = new frmVoz(0);
                 voz.Show();
             }
 
@@ -5276,7 +5277,7 @@ namespace Saobracaj
 
         private void toolStripButton222_Click_1(object sender, EventArgs e)
         {
-            frmVoz voz = new frmVoz();
+            frmVoz voz = new frmVoz(1);
             voz.Show();
         }
 
@@ -6761,6 +6762,27 @@ namespace Saobracaj
         private void MainP_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void toolStripButton294_Click(object sender, EventArgs e)
+        {
+            FormCollection fc = Application.OpenForms;
+            bool bFormNameOpen = false;
+            foreach (Form frm in fc)
+            {
+                //iterate through
+                if (frm.Name == "frmStatusUsluge")
+                {
+                    bFormNameOpen = true;
+                    frm.Activate();
+                    frm.WindowState = FormWindowState.Normal;
+                }
+            }
+            if (bFormNameOpen == false)
+            {
+                frmStatusUsluge frm = new frmStatusUsluge();
+                frm.Show();
+            }
         }
     }
     }

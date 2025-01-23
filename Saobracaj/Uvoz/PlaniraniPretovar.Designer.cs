@@ -28,32 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlaniraniPretovar));
-            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtNapomena = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtVozac = new System.Windows.Forms.TextBox();
-            this.txtKontejner = new System.Windows.Forms.TextBox();
-            this.txtReg = new System.Windows.Forms.TextBox();
-            this.txtOsnov = new System.Windows.Forms.TextBox();
-            this.txtPlanUtovara = new System.Windows.Forms.TextBox();
-            this.txtID = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.chkCirada = new System.Windows.Forms.CheckBox();
-            this.chkUvoz = new System.Windows.Forms.CheckBox();
-            this.chkPlatforma = new System.Windows.Forms.CheckBox();
-            this.chkIzvoz = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.cboSaPoz = new System.Windows.Forms.ComboBox();
             this.cboSaSklad = new System.Windows.Forms.ComboBox();
@@ -89,12 +68,32 @@
             this.dataGridView7 = new System.Windows.Forms.DataGridView();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtNapomena = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtVozac = new System.Windows.Forms.TextBox();
+            this.txtKontejner = new System.Windows.Forms.TextBox();
+            this.txtReg = new System.Windows.Forms.TextBox();
+            this.txtOsnov = new System.Windows.Forms.TextBox();
+            this.txtPlanUtovara = new System.Windows.Forms.TextBox();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.chkCirada = new System.Windows.Forms.CheckBox();
+            this.chkUvoz = new System.Windows.Forms.CheckBox();
+            this.chkPlatforma = new System.Windows.Forms.CheckBox();
+            this.chkIzvoz = new System.Windows.Forms.CheckBox();
+            this.panelHeader = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
-            this.panel1.SuspendLayout();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).BeginInit();
@@ -102,267 +101,10 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.panelHeader.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // gridGroupingControl1
-            // 
-            this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.gridGroupingControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gridGroupingControl1.BackColor = System.Drawing.SystemColors.Window;
-            this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
-            this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2010Blue;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(9, 270);
-            this.gridGroupingControl1.Name = "gridGroupingControl1";
-            this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
-            this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1423, 346);
-            this.gridGroupingControl1.TabIndex = 10;
-            this.gridGroupingControl1.TableDescriptor.AllowNew = false;
-            this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
-            this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
-            this.gridGroupingControl1.TableDescriptor.TableOptions.RecordRowHeight = 28;
-            this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
-            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.SystemColors.Desktop;
-            this.gridGroupingControl1.Text = "gridGroupingControl1";
-            this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
-            this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
-            this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.txtNapomena);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.dateTimePicker1);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.txtVozac);
-            this.panel1.Controls.Add(this.txtKontejner);
-            this.panel1.Controls.Add(this.txtReg);
-            this.panel1.Controls.Add(this.txtOsnov);
-            this.panel1.Controls.Add(this.txtPlanUtovara);
-            this.panel1.Controls.Add(this.txtID);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.chkCirada);
-            this.panel1.Controls.Add(this.chkUvoz);
-            this.panel1.Controls.Add(this.chkPlatforma);
-            this.panel1.Controls.Add(this.chkIzvoz);
-            this.panel1.Location = new System.Drawing.Point(9, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(413, 164);
-            this.panel1.TabIndex = 11;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(3, 42);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 16);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Plan utovara";
-            // 
-            // txtNapomena
-            // 
-            this.txtNapomena.Location = new System.Drawing.Point(91, 123);
-            this.txtNapomena.Multiline = true;
-            this.txtNapomena.Name = "txtNapomena";
-            this.txtNapomena.Size = new System.Drawing.Size(141, 27);
-            this.txtNapomena.TabIndex = 1;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(7, 129);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(78, 16);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Napomena:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(181, 68);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(37, 16);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "ETA:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(172, 10);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 16);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Reg. Broj:";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.CustomFormat = "dd.MM.yyyy hh:mm";
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(273, 62);
-            this.dateTimePicker1.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(132, 20);
-            this.dateTimePicker1.TabIndex = 12;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(3, 98);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 16);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Kont:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(176, 38);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 16);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "Vozač:";
-            // 
-            // txtVozac
-            // 
-            this.txtVozac.Location = new System.Drawing.Point(240, 36);
-            this.txtVozac.Name = "txtVozac";
-            this.txtVozac.Size = new System.Drawing.Size(165, 20);
-            this.txtVozac.TabIndex = 1;
-            // 
-            // txtKontejner
-            // 
-            this.txtKontejner.Location = new System.Drawing.Point(58, 95);
-            this.txtKontejner.Name = "txtKontejner";
-            this.txtKontejner.Size = new System.Drawing.Size(174, 20);
-            this.txtKontejner.TabIndex = 1;
-            // 
-            // txtReg
-            // 
-            this.txtReg.Location = new System.Drawing.Point(256, 10);
-            this.txtReg.Name = "txtReg";
-            this.txtReg.Size = new System.Drawing.Size(149, 20);
-            this.txtReg.TabIndex = 1;
-            // 
-            // txtOsnov
-            // 
-            this.txtOsnov.Location = new System.Drawing.Point(98, 69);
-            this.txtOsnov.Name = "txtOsnov";
-            this.txtOsnov.Size = new System.Drawing.Size(45, 20);
-            this.txtOsnov.TabIndex = 1;
-            // 
-            // txtPlanUtovara
-            // 
-            this.txtPlanUtovara.Location = new System.Drawing.Point(98, 41);
-            this.txtPlanUtovara.Name = "txtPlanUtovara";
-            this.txtPlanUtovara.Size = new System.Drawing.Size(45, 20);
-            this.txtPlanUtovara.TabIndex = 1;
-            // 
-            // txtID
-            // 
-            this.txtID.Location = new System.Drawing.Point(98, 10);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(45, 20);
-            this.txtID.TabIndex = 1;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(3, 69);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 16);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Osnov:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(3, 10);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "ID:";
-            // 
-            // chkCirada
-            // 
-            this.chkCirada.AutoSize = true;
-            this.chkCirada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(204)))), ((int)(((byte)(244)))));
-            this.chkCirada.Checked = true;
-            this.chkCirada.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkCirada.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkCirada.ForeColor = System.Drawing.Color.Black;
-            this.chkCirada.Location = new System.Drawing.Point(247, 109);
-            this.chkCirada.Name = "chkCirada";
-            this.chkCirada.Size = new System.Drawing.Size(56, 17);
-            this.chkCirada.TabIndex = 465;
-            this.chkCirada.Text = "Cirada";
-            this.chkCirada.UseVisualStyleBackColor = false;
-            // 
-            // chkUvoz
-            // 
-            this.chkUvoz.AutoSize = true;
-            this.chkUvoz.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(204)))), ((int)(((byte)(244)))));
-            this.chkUvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkUvoz.ForeColor = System.Drawing.Color.Black;
-            this.chkUvoz.Location = new System.Drawing.Point(332, 109);
-            this.chkUvoz.Name = "chkUvoz";
-            this.chkUvoz.Size = new System.Drawing.Size(51, 17);
-            this.chkUvoz.TabIndex = 464;
-            this.chkUvoz.Text = "Uvoz";
-            this.chkUvoz.UseVisualStyleBackColor = false;
-            // 
-            // chkPlatforma
-            // 
-            this.chkPlatforma.AutoSize = true;
-            this.chkPlatforma.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(204)))), ((int)(((byte)(244)))));
-            this.chkPlatforma.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkPlatforma.ForeColor = System.Drawing.Color.Black;
-            this.chkPlatforma.Location = new System.Drawing.Point(247, 132);
-            this.chkPlatforma.Name = "chkPlatforma";
-            this.chkPlatforma.Size = new System.Drawing.Size(70, 17);
-            this.chkPlatforma.TabIndex = 466;
-            this.chkPlatforma.Text = "Platforma";
-            this.chkPlatforma.UseVisualStyleBackColor = false;
-            // 
-            // chkIzvoz
-            // 
-            this.chkIzvoz.AutoSize = true;
-            this.chkIzvoz.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(144)))), ((int)(((byte)(204)))), ((int)(((byte)(244)))));
-            this.chkIzvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkIzvoz.ForeColor = System.Drawing.Color.Black;
-            this.chkIzvoz.Location = new System.Drawing.Point(332, 132);
-            this.chkIzvoz.Name = "chkIzvoz";
-            this.chkIzvoz.Size = new System.Drawing.Size(51, 17);
-            this.chkIzvoz.TabIndex = 470;
-            this.chkIzvoz.Text = "Izvoz";
-            this.chkIzvoz.UseVisualStyleBackColor = false;
             // 
             // button1
             // 
@@ -382,7 +124,7 @@
             // 
             this.cboSaPoz.FormattingEnabled = true;
             this.cboSaPoz.ItemHeight = 13;
-            this.cboSaPoz.Location = new System.Drawing.Point(300, 177);
+            this.cboSaPoz.Location = new System.Drawing.Point(265, 200);
             this.cboSaPoz.Margin = new System.Windows.Forms.Padding(2);
             this.cboSaPoz.Name = "cboSaPoz";
             this.cboSaPoz.Size = new System.Drawing.Size(53, 21);
@@ -393,10 +135,10 @@
             // 
             this.cboSaSklad.FormattingEnabled = true;
             this.cboSaSklad.ItemHeight = 13;
-            this.cboSaSklad.Location = new System.Drawing.Point(76, 177);
+            this.cboSaSklad.Location = new System.Drawing.Point(16, 200);
             this.cboSaSklad.Margin = new System.Windows.Forms.Padding(2);
             this.cboSaSklad.Name = "cboSaSklad";
-            this.cboSaSklad.Size = new System.Drawing.Size(85, 21);
+            this.cboSaSklad.Size = new System.Drawing.Size(231, 21);
             this.cboSaSklad.TabIndex = 460;
             this.cboSaSklad.Visible = false;
             // 
@@ -404,7 +146,7 @@
             // 
             this.txtSAPozicijeskladista.AutoSize = true;
             this.txtSAPozicijeskladista.ForeColor = System.Drawing.Color.White;
-            this.txtSAPozicijeskladista.Location = new System.Drawing.Point(182, 177);
+            this.txtSAPozicijeskladista.Location = new System.Drawing.Point(262, 185);
             this.txtSAPozicijeskladista.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtSAPozicijeskladista.Name = "txtSAPozicijeskladista";
             this.txtSAPozicijeskladista.Size = new System.Drawing.Size(104, 13);
@@ -416,12 +158,12 @@
             // 
             this.txtSASkladista.AutoSize = true;
             this.txtSASkladista.ForeColor = System.Drawing.Color.White;
-            this.txtSASkladista.Location = new System.Drawing.Point(13, 177);
+            this.txtSASkladista.Location = new System.Drawing.Point(14, 182);
             this.txtSASkladista.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.txtSASkladista.Name = "txtSASkladista";
-            this.txtSASkladista.Size = new System.Drawing.Size(59, 13);
+            this.txtSASkladista.Size = new System.Drawing.Size(30, 13);
             this.txtSASkladista.TabIndex = 458;
-            this.txtSASkladista.Text = "U Skadiste";
+            this.txtSASkladista.Text = "Polje";
             this.txtSASkladista.Visible = false;
             // 
             // button2
@@ -784,7 +526,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView7.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView7.Location = new System.Drawing.Point(629, 13);
+            this.dataGridView7.Location = new System.Drawing.Point(632, 11);
             this.dataGridView7.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView7.Name = "dataGridView7";
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -797,7 +539,7 @@
             this.dataGridView7.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView7.RowHeadersWidth = 26;
             this.dataGridView7.RowTemplate.Height = 24;
-            this.dataGridView7.Size = new System.Drawing.Size(343, 208);
+            this.dataGridView7.Size = new System.Drawing.Size(299, 208);
             this.dataGridView7.TabIndex = 479;
             // 
             // splitter1
@@ -815,7 +557,26 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.panel1);
+            this.splitContainer1.Panel1.Controls.Add(this.label3);
+            this.splitContainer1.Panel1.Controls.Add(this.txtNapomena);
+            this.splitContainer1.Panel1.Controls.Add(this.label7);
+            this.splitContainer1.Panel1.Controls.Add(this.label6);
+            this.splitContainer1.Panel1.Controls.Add(this.label4);
+            this.splitContainer1.Panel1.Controls.Add(this.dateTimePicker1);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.label5);
+            this.splitContainer1.Panel1.Controls.Add(this.txtVozac);
+            this.splitContainer1.Panel1.Controls.Add(this.txtKontejner);
+            this.splitContainer1.Panel1.Controls.Add(this.txtReg);
+            this.splitContainer1.Panel1.Controls.Add(this.txtOsnov);
+            this.splitContainer1.Panel1.Controls.Add(this.txtPlanUtovara);
+            this.splitContainer1.Panel1.Controls.Add(this.txtID);
+            this.splitContainer1.Panel1.Controls.Add(this.label8);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel1.Controls.Add(this.chkCirada);
+            this.splitContainer1.Panel1.Controls.Add(this.chkUvoz);
+            this.splitContainer1.Panel1.Controls.Add(this.chkPlatforma);
+            this.splitContainer1.Panel1.Controls.Add(this.chkIzvoz);
             this.splitContainer1.Panel1.Controls.Add(this.txtSASkladista);
             this.splitContainer1.Panel1.Controls.Add(this.txtSAPozicijeskladista);
             this.splitContainer1.Panel1.Controls.Add(this.cboSaSklad);
@@ -826,57 +587,300 @@
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView7);
-            this.splitContainer1.Size = new System.Drawing.Size(1423, 234);
-            this.splitContainer1.SplitterDistance = 430;
+            this.splitContainer1.Size = new System.Drawing.Size(1510, 234);
+            this.splitContainer1.SplitterDistance = 561;
             this.splitContainer1.TabIndex = 481;
             // 
-            // toolStrip1
+            // label3
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.White;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(113, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 16);
+            this.label3.TabIndex = 485;
+            this.label3.Text = "Plan utovara";
+            // 
+            // txtNapomena
+            // 
+            this.txtNapomena.Location = new System.Drawing.Point(16, 131);
+            this.txtNapomena.Multiline = true;
+            this.txtNapomena.Name = "txtNapomena";
+            this.txtNapomena.Size = new System.Drawing.Size(231, 39);
+            this.txtNapomena.TabIndex = 478;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(14, 112);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(78, 16);
+            this.label7.TabIndex = 471;
+            this.label7.Text = "Napomena:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(310, 112);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(37, 16);
+            this.label6.TabIndex = 472;
+            this.label6.Text = "ETA:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(310, 8);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 16);
+            this.label4.TabIndex = 473;
+            this.label4.Text = "Reg. Broj:";
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "dd.MM.yyyy hh:mm";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(313, 134);
+            this.dateTimePicker1.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(132, 20);
+            this.dateTimePicker1.TabIndex = 486;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(14, 59);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(36, 16);
+            this.label2.TabIndex = 484;
+            this.label2.Text = "Kont:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(310, 59);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(48, 16);
+            this.label5.TabIndex = 475;
+            this.label5.Text = "Vozač:";
+            // 
+            // txtVozac
+            // 
+            this.txtVozac.Location = new System.Drawing.Point(313, 79);
+            this.txtVozac.Name = "txtVozac";
+            this.txtVozac.Size = new System.Drawing.Size(231, 20);
+            this.txtVozac.TabIndex = 479;
+            // 
+            // txtKontejner
+            // 
+            this.txtKontejner.Location = new System.Drawing.Point(16, 79);
+            this.txtKontejner.Name = "txtKontejner";
+            this.txtKontejner.Size = new System.Drawing.Size(231, 20);
+            this.txtKontejner.TabIndex = 477;
+            // 
+            // txtReg
+            // 
+            this.txtReg.Location = new System.Drawing.Point(313, 28);
+            this.txtReg.Name = "txtReg";
+            this.txtReg.Size = new System.Drawing.Size(231, 20);
+            this.txtReg.TabIndex = 480;
+            // 
+            // txtOsnov
+            // 
+            this.txtOsnov.Location = new System.Drawing.Point(208, 28);
+            this.txtOsnov.Name = "txtOsnov";
+            this.txtOsnov.Size = new System.Drawing.Size(86, 20);
+            this.txtOsnov.TabIndex = 481;
+            // 
+            // txtPlanUtovara
+            // 
+            this.txtPlanUtovara.Location = new System.Drawing.Point(116, 27);
+            this.txtPlanUtovara.Name = "txtPlanUtovara";
+            this.txtPlanUtovara.Size = new System.Drawing.Size(86, 20);
+            this.txtPlanUtovara.TabIndex = 482;
+            // 
+            // txtID
+            // 
+            this.txtID.Location = new System.Drawing.Point(16, 27);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(86, 20);
+            this.txtID.TabIndex = 483;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(208, 8);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 16);
+            this.label8.TabIndex = 476;
+            this.label8.Text = "Osnov:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(13, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(23, 16);
+            this.label1.TabIndex = 474;
+            this.label1.Text = "ID:";
+            // 
+            // chkCirada
+            // 
+            this.chkCirada.AutoSize = true;
+            this.chkCirada.BackColor = System.Drawing.Color.Transparent;
+            this.chkCirada.Checked = true;
+            this.chkCirada.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkCirada.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkCirada.ForeColor = System.Drawing.Color.Black;
+            this.chkCirada.Location = new System.Drawing.Point(381, 177);
+            this.chkCirada.Name = "chkCirada";
+            this.chkCirada.Size = new System.Drawing.Size(56, 17);
+            this.chkCirada.TabIndex = 488;
+            this.chkCirada.Text = "Cirada";
+            this.chkCirada.UseVisualStyleBackColor = false;
+            // 
+            // chkUvoz
+            // 
+            this.chkUvoz.AutoSize = true;
+            this.chkUvoz.BackColor = System.Drawing.Color.Transparent;
+            this.chkUvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkUvoz.ForeColor = System.Drawing.Color.Black;
+            this.chkUvoz.Location = new System.Drawing.Point(466, 177);
+            this.chkUvoz.Name = "chkUvoz";
+            this.chkUvoz.Size = new System.Drawing.Size(51, 17);
+            this.chkUvoz.TabIndex = 487;
+            this.chkUvoz.Text = "Uvoz";
+            this.chkUvoz.UseVisualStyleBackColor = false;
+            // 
+            // chkPlatforma
+            // 
+            this.chkPlatforma.AutoSize = true;
+            this.chkPlatforma.BackColor = System.Drawing.Color.Transparent;
+            this.chkPlatforma.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkPlatforma.ForeColor = System.Drawing.Color.Black;
+            this.chkPlatforma.Location = new System.Drawing.Point(381, 200);
+            this.chkPlatforma.Name = "chkPlatforma";
+            this.chkPlatforma.Size = new System.Drawing.Size(70, 17);
+            this.chkPlatforma.TabIndex = 489;
+            this.chkPlatforma.Text = "Platforma";
+            this.chkPlatforma.UseVisualStyleBackColor = false;
+            // 
+            // chkIzvoz
+            // 
+            this.chkIzvoz.AutoSize = true;
+            this.chkIzvoz.BackColor = System.Drawing.Color.Transparent;
+            this.chkIzvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkIzvoz.ForeColor = System.Drawing.Color.Black;
+            this.chkIzvoz.Location = new System.Drawing.Point(466, 200);
+            this.chkIzvoz.Name = "chkIzvoz";
+            this.chkIzvoz.Size = new System.Drawing.Size(51, 17);
+            this.chkIzvoz.TabIndex = 490;
+            this.chkIzvoz.Text = "Izvoz";
+            this.chkIzvoz.UseVisualStyleBackColor = false;
+            // 
+            // panelHeader
+            // 
+            this.panelHeader.BackColor = System.Drawing.Color.White;
+            this.panelHeader.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.panelHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator1,
             this.toolStripButton6,
             this.toolStripButton1});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1444, 27);
-            this.toolStrip1.TabIndex = 482;
-            this.toolStrip1.Text = "Tabela";
+            this.panelHeader.Location = new System.Drawing.Point(3, 0);
+            this.panelHeader.Name = "panelHeader";
+            this.panelHeader.Size = new System.Drawing.Size(1519, 25);
+            this.panelHeader.TabIndex = 482;
+            this.panelHeader.Text = "Tabela";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripButton6
             // 
             this.toolStripButton6.ForeColor = System.Drawing.Color.Black;
-            this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
             this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton6.Name = "toolStripButton6";
-            this.toolStripButton6.Size = new System.Drawing.Size(70, 24);
+            this.toolStripButton6.Size = new System.Drawing.Size(50, 22);
             this.toolStripButton6.Text = "Refresh";
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
             // toolStripButton1
             // 
             this.toolStripButton1.ForeColor = System.Drawing.Color.Black;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(173, 24);
+            this.toolStripButton1.Size = new System.Drawing.Size(153, 22);
             this.toolStripButton1.Text = "Evidencija dodatnih usluga";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // commandBarController1
+            // 
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
+            // 
+            // gridGroupingControl1
+            // 
+            this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridGroupingControl1.ApplyVisualStyles = false;
+            this.gridGroupingControl1.BackColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.Font = new System.Drawing.Font("Helvetica", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridGroupingControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
+            this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
+            this.gridGroupingControl1.Location = new System.Drawing.Point(12, 270);
+            this.gridGroupingControl1.Name = "gridGroupingControl1";
+            this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
+            this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
+            this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
+            this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1498, 346);
+            this.gridGroupingControl1.TabIndex = 487;
+            this.gridGroupingControl1.TableDescriptor.AllowNew = false;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.RecordRowHeight = 28;
+            this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
+            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.Text = "gridGroupingControl1";
+            this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
+            this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
+            this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
             // 
             // PlaniraniPretovar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(117)))), ((int)(((byte)(123)))));
-            this.ClientSize = new System.Drawing.Size(1447, 628);
-            this.Controls.Add(this.toolStrip1);
+            this.ClientSize = new System.Drawing.Size(1522, 628);
+            this.Controls.Add(this.gridGroupingControl1);
+            this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.button9);
@@ -891,14 +895,10 @@
             this.Controls.Add(this.btnOtpremnicaRoba);
             this.Controls.Add(this.btnOtpremnica);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.gridGroupingControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PlaniraniPretovar";
             this.Text = "PRETOVAR KONTEJNERA";
             this.Load += new System.EventHandler(this.PlaniraniPretovar_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView7)).EndInit();
@@ -907,32 +907,17 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.panelHeader.ResumeLayout(false);
+            this.panelHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtID;
-        private System.Windows.Forms.TextBox txtKontejner;
-        private System.Windows.Forms.TextBox txtPlanUtovara;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtReg;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtVozac;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtNapomena;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox txtOsnov;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cboSaPoz;
         private System.Windows.Forms.ComboBox cboSaSklad;
         private System.Windows.Forms.Label txtSAPozicijeskladista;
@@ -940,12 +925,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnOtpremnica;
         private System.Windows.Forms.Button btnOtpremnicaRoba;
-        private System.Windows.Forms.CheckBox chkPlatforma;
-        private System.Windows.Forms.CheckBox chkCirada;
-        private System.Windows.Forms.CheckBox chkUvoz;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.CheckBox chkIzvoz;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button8;
@@ -971,11 +952,31 @@
         private System.Windows.Forms.DataGridView dataGridView7;
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip panelHeader;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton toolStripButton6;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtNapomena;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtVozac;
+        private System.Windows.Forms.TextBox txtKontejner;
+        private System.Windows.Forms.TextBox txtReg;
+        private System.Windows.Forms.TextBox txtOsnov;
+        private System.Windows.Forms.TextBox txtPlanUtovara;
+        private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox chkCirada;
+        private System.Windows.Forms.CheckBox chkUvoz;
+        private System.Windows.Forms.CheckBox chkPlatforma;
+        private System.Windows.Forms.CheckBox chkIzvoz;
     }
 }

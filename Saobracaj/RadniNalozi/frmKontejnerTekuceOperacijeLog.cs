@@ -15,14 +15,43 @@ using Syncfusion.Windows.Forms.Grid;
 using Syncfusion.Grouping;
 using Saobracaj.Uvoz;
 using System.Windows.Controls;
+using Syncfusion.Windows.Forms;
 
 namespace Saobracaj.RadniNalozi
 {
-    public partial class frmKontejnerTekuceOperacijeLog : Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmKontejnerTekuceOperacijeLog : Form
     {
+        private void ChangeTextBox()
+        {
+
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                // toolStripHeader.Visible = false;
+
+                this.BackColor = Color.White;
+                this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+                this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+                this.ControlBox = true;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+
+            
+            }
+            else
+            {
+                panelHeader.Visible = false;
+
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
         public frmKontejnerTekuceOperacijeLog()
         {
             InitializeComponent();
+            ChangeTextBox();
         }
 
         private void button2_Click(object sender, EventArgs e)

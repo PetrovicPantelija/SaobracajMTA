@@ -144,7 +144,6 @@
             this.panelLeget = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
             this.label45 = new System.Windows.Forms.Label();
-            this.label46 = new System.Windows.Forms.Label();
             this.dtpSazeta = new System.Windows.Forms.DateTimePicker();
             this.label44 = new System.Windows.Forms.Label();
             this.dtpPristizanjaUSid = new System.Windows.Forms.DateTimePicker();
@@ -164,8 +163,6 @@
             this.button20 = new System.Windows.Forms.Button();
             this.button21 = new System.Windows.Forms.Button();
             this.button22 = new System.Windows.Forms.Button();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.meniHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaksBrojKola)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDuzina)).BeginInit();
@@ -192,7 +189,6 @@
             this.panelHeader.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // meniHeader
@@ -275,7 +271,7 @@
             this.txtBrVoza.Location = new System.Drawing.Point(105, 108);
             this.txtBrVoza.Margin = new System.Windows.Forms.Padding(4);
             this.txtBrVoza.Name = "txtBrVoza";
-            this.txtBrVoza.Size = new System.Drawing.Size(120, 22);
+            this.txtBrVoza.Size = new System.Drawing.Size(133, 22);
             this.txtBrVoza.TabIndex = 8;
             // 
             // lblBrVoza
@@ -296,7 +292,7 @@
             this.txtSifra.Location = new System.Drawing.Point(105, 78);
             this.txtSifra.Margin = new System.Windows.Forms.Padding(4);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(95, 22);
+            this.txtSifra.Size = new System.Drawing.Size(133, 22);
             this.txtSifra.TabIndex = 7;
             // 
             // label1
@@ -330,7 +326,7 @@
             this.txtRelacija.Margin = new System.Windows.Forms.Padding(4);
             this.txtRelacija.Multiline = true;
             this.txtRelacija.Name = "txtRelacija";
-            this.txtRelacija.Size = new System.Drawing.Size(256, 38);
+            this.txtRelacija.Size = new System.Drawing.Size(231, 38);
             this.txtRelacija.TabIndex = 39;
             // 
             // label2
@@ -408,7 +404,7 @@
             // txtMaksBrojKola
             // 
             this.txtMaksBrojKola.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtMaksBrojKola.Location = new System.Drawing.Point(134, 343);
+            this.txtMaksBrojKola.Location = new System.Drawing.Point(127, 341);
             this.txtMaksBrojKola.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaksBrojKola.Maximum = new decimal(new int[] {
             1000000,
@@ -416,14 +412,14 @@
             0,
             0});
             this.txtMaksBrojKola.Name = "txtMaksBrojKola";
-            this.txtMaksBrojKola.Size = new System.Drawing.Size(91, 22);
+            this.txtMaksBrojKola.Size = new System.Drawing.Size(130, 22);
             this.txtMaksBrojKola.TabIndex = 76;
             this.txtMaksBrojKola.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // txtDuzina
             // 
             this.txtDuzina.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtDuzina.Location = new System.Drawing.Point(134, 311);
+            this.txtDuzina.Location = new System.Drawing.Point(127, 311);
             this.txtDuzina.Margin = new System.Windows.Forms.Padding(4);
             this.txtDuzina.Maximum = new decimal(new int[] {
             1000000,
@@ -431,7 +427,7 @@
             0,
             0});
             this.txtDuzina.Name = "txtDuzina";
-            this.txtDuzina.Size = new System.Drawing.Size(91, 22);
+            this.txtDuzina.Size = new System.Drawing.Size(130, 22);
             this.txtDuzina.TabIndex = 75;
             this.txtDuzina.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -439,7 +435,7 @@
             // 
             this.txtMaksBruto.DecimalPlaces = 2;
             this.txtMaksBruto.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtMaksBruto.Location = new System.Drawing.Point(134, 280);
+            this.txtMaksBruto.Location = new System.Drawing.Point(127, 280);
             this.txtMaksBruto.Margin = new System.Windows.Forms.Padding(4);
             this.txtMaksBruto.Maximum = new decimal(new int[] {
             1000000,
@@ -447,7 +443,7 @@
             0,
             0});
             this.txtMaksBruto.Name = "txtMaksBruto";
-            this.txtMaksBruto.Size = new System.Drawing.Size(91, 22);
+            this.txtMaksBruto.Size = new System.Drawing.Size(133, 22);
             this.txtMaksBruto.TabIndex = 74;
             this.txtMaksBruto.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -577,11 +573,11 @@
             // txtNapomena
             // 
             this.txtNapomena.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtNapomena.Location = new System.Drawing.Point(268, 377);
+            this.txtNapomena.Location = new System.Drawing.Point(265, 377);
             this.txtNapomena.Margin = new System.Windows.Forms.Padding(4);
             this.txtNapomena.Multiline = true;
             this.txtNapomena.Name = "txtNapomena";
-            this.txtNapomena.Size = new System.Drawing.Size(244, 136);
+            this.txtNapomena.Size = new System.Drawing.Size(231, 44);
             this.txtNapomena.TabIndex = 110;
             // 
             // label28
@@ -632,7 +628,7 @@
             this.cboStanicaOd.Location = new System.Drawing.Point(106, 168);
             this.cboStanicaOd.Margin = new System.Windows.Forms.Padding(4);
             this.cboStanicaOd.Name = "cboStanicaOd";
-            this.cboStanicaOd.Size = new System.Drawing.Size(193, 24);
+            this.cboStanicaOd.Size = new System.Drawing.Size(229, 24);
             this.cboStanicaOd.TabIndex = 186;
             // 
             // label5
@@ -654,7 +650,7 @@
             this.cboStanicaDo.Location = new System.Drawing.Point(105, 200);
             this.cboStanicaDo.Margin = new System.Windows.Forms.Padding(4);
             this.cboStanicaDo.Name = "cboStanicaDo";
-            this.cboStanicaDo.Size = new System.Drawing.Size(194, 24);
+            this.cboStanicaDo.Size = new System.Drawing.Size(233, 24);
             this.cboStanicaDo.TabIndex = 188;
             // 
             // btnUbaciRelaciju
@@ -664,10 +660,10 @@
             this.btnUbaciRelaciju.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUbaciRelaciju.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.btnUbaciRelaciju.ForeColor = System.Drawing.Color.White;
-            this.btnUbaciRelaciju.Location = new System.Drawing.Point(307, 164);
+            this.btnUbaciRelaciju.Location = new System.Drawing.Point(346, 168);
             this.btnUbaciRelaciju.Margin = new System.Windows.Forms.Padding(4);
             this.btnUbaciRelaciju.Name = "btnUbaciRelaciju";
-            this.btnUbaciRelaciju.Size = new System.Drawing.Size(56, 62);
+            this.btnUbaciRelaciju.Size = new System.Drawing.Size(61, 62);
             this.btnUbaciRelaciju.TabIndex = 213;
             this.btnUbaciRelaciju.Text = "Relacija";
             this.btnUbaciRelaciju.UseVisualStyleBackColor = false;
@@ -1330,7 +1326,7 @@
             this.cboOperater.Location = new System.Drawing.Point(265, 323);
             this.cboOperater.Margin = new System.Windows.Forms.Padding(4);
             this.cboOperater.Name = "cboOperater";
-            this.cboOperater.Size = new System.Drawing.Size(247, 24);
+            this.cboOperater.Size = new System.Drawing.Size(231, 24);
             this.cboOperater.TabIndex = 249;
             this.cboOperater.Visible = false;
             // 
@@ -1353,7 +1349,7 @@
             this.cboVlasnik.Location = new System.Drawing.Point(4, 117);
             this.cboVlasnik.Margin = new System.Windows.Forms.Padding(4);
             this.cboVlasnik.Name = "cboVlasnik";
-            this.cboVlasnik.Size = new System.Drawing.Size(223, 24);
+            this.cboVlasnik.Size = new System.Drawing.Size(234, 24);
             this.cboVlasnik.TabIndex = 251;
             // 
             // label33
@@ -1375,7 +1371,7 @@
             this.cboOperaterSrbija.Location = new System.Drawing.Point(7, 26);
             this.cboOperaterSrbija.Margin = new System.Windows.Forms.Padding(4);
             this.cboOperaterSrbija.Name = "cboOperaterSrbija";
-            this.cboOperaterSrbija.Size = new System.Drawing.Size(223, 24);
+            this.cboOperaterSrbija.Size = new System.Drawing.Size(231, 24);
             this.cboOperaterSrbija.TabIndex = 253;
             // 
             // label34
@@ -1397,7 +1393,7 @@
             this.cboOperaterHR.Location = new System.Drawing.Point(4, 72);
             this.cboOperaterHR.Margin = new System.Windows.Forms.Padding(4);
             this.cboOperaterHR.Name = "cboOperaterHR";
-            this.cboOperaterHR.Size = new System.Drawing.Size(223, 24);
+            this.cboOperaterHR.Size = new System.Drawing.Size(234, 24);
             this.cboOperaterHR.TabIndex = 255;
             // 
             // label35
@@ -1454,10 +1450,10 @@
             // 
             this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label37.ForeColor = System.Drawing.Color.Black;
-            this.label37.Location = new System.Drawing.Point(207, 94);
+            this.label37.Location = new System.Drawing.Point(207, 108);
             this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(144, 33);
+            this.label37.Size = new System.Drawing.Size(205, 19);
             this.label37.TabIndex = 262;
             this.label37.Text = "IZVLAČENJE VOZA SA TERMINALA";
             // 
@@ -1482,9 +1478,9 @@
             this.label38.Location = new System.Drawing.Point(207, 177);
             this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(159, 15);
+            this.label38.Size = new System.Drawing.Size(185, 15);
             this.label38.TabIndex = 264;
-            this.label38.Text = "PREUZIMANJE VOZA U SM";
+            this.label38.Text = "PREUZIMANJE VOZA U STANICI";
             // 
             // dtpPreuzimanjeSM
             // 
@@ -1528,7 +1524,7 @@
             // 
             this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label40.ForeColor = System.Drawing.Color.Black;
-            this.label40.Location = new System.Drawing.Point(420, 48);
+            this.label40.Location = new System.Drawing.Point(420, 53);
             this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(255, 20);
@@ -1540,7 +1536,7 @@
             this.dtpPredajaHR.CustomFormat = "dd.MM.yyyy HH:mm";
             this.dtpPredajaHR.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
             this.dtpPredajaHR.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpPredajaHR.Location = new System.Drawing.Point(424, 73);
+            this.dtpPredajaHR.Location = new System.Drawing.Point(424, 77);
             this.dtpPredajaHR.Margin = new System.Windows.Forms.Padding(4);
             this.dtpPredajaHR.Name = "dtpPredajaHR";
             this.dtpPredajaHR.ShowUpDown = true;
@@ -1553,7 +1549,7 @@
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.label41.ForeColor = System.Drawing.Color.Black;
-            this.label41.Location = new System.Drawing.Point(420, 112);
+            this.label41.Location = new System.Drawing.Point(420, 108);
             this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(159, 15);
@@ -1602,7 +1598,6 @@
             // 
             this.panelLeget.Controls.Add(this.button7);
             this.panelLeget.Controls.Add(this.label45);
-            this.panelLeget.Controls.Add(this.label46);
             this.panelLeget.Controls.Add(this.dtpSazeta);
             this.panelLeget.Controls.Add(this.label44);
             this.panelLeget.Controls.Add(this.label42);
@@ -1654,18 +1649,6 @@
             this.label45.Size = new System.Drawing.Size(78, 15);
             this.label45.TabIndex = 274;
             this.label45.Text = "Uvozna polja";
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label46.ForeColor = System.Drawing.Color.Black;
-            this.label46.Location = new System.Drawing.Point(9, 5);
-            this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(64, 15);
-            this.label46.TabIndex = 273;
-            this.label46.Text = "Izvoz/Uvoz";
             // 
             // dtpSazeta
             // 
@@ -1727,7 +1710,7 @@
             this.panelLegetOperater.Controls.Add(this.cboOperaterHR);
             this.panelLegetOperater.Location = new System.Drawing.Point(9, 370);
             this.panelLegetOperater.Name = "panelLegetOperater";
-            this.panelLegetOperater.Size = new System.Drawing.Size(237, 155);
+            this.panelLegetOperater.Size = new System.Drawing.Size(249, 155);
             this.panelLegetOperater.TabIndex = 274;
             // 
             // panel1
@@ -1777,7 +1760,7 @@
             this.panel1.Controls.Add(this.txtKontrolniPregledD);
             this.panel1.Controls.Add(this.txtVremeIstovaraD);
             this.panel1.Controls.Add(this.label10);
-            this.panel1.Location = new System.Drawing.Point(414, 63);
+            this.panel1.Location = new System.Drawing.Point(424, 65);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(838, 250);
             this.panel1.TabIndex = 276;
@@ -1787,7 +1770,7 @@
             this.chkTerminal.AutoSize = true;
             this.chkTerminal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.chkTerminal.ForeColor = System.Drawing.Color.Black;
-            this.chkTerminal.Location = new System.Drawing.Point(235, 77);
+            this.chkTerminal.Location = new System.Drawing.Point(314, 76);
             this.chkTerminal.Margin = new System.Windows.Forms.Padding(4);
             this.chkTerminal.Name = "chkTerminal";
             this.chkTerminal.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -1802,7 +1785,7 @@
             this.txtNazivVoza.Location = new System.Drawing.Point(105, 138);
             this.txtNazivVoza.Margin = new System.Windows.Forms.Padding(4);
             this.txtNazivVoza.Name = "txtNazivVoza";
-            this.txtNazivVoza.Size = new System.Drawing.Size(122, 22);
+            this.txtNazivVoza.Size = new System.Drawing.Size(133, 22);
             this.txtNazivVoza.TabIndex = 278;
             // 
             // label47
@@ -1813,9 +1796,9 @@
             this.label47.Location = new System.Drawing.Point(17, 138);
             this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(40, 15);
+            this.label47.Size = new System.Drawing.Size(80, 15);
             this.label47.TabIndex = 279;
-            this.label47.Text = "Naziv:";
+            this.label47.Text = "Oznaka voza:";
             // 
             // commandBarController1
             // 
@@ -1832,11 +1815,10 @@
             this.panelHeader.Controls.Add(this.panel4);
             this.panelHeader.Controls.Add(this.panel2);
             this.panelHeader.Controls.Add(this.panel3);
-            this.panelHeader.Controls.Add(this.panel5);
             this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelHeader.Location = new System.Drawing.Point(0, 27);
             this.panelHeader.Name = "panelHeader";
-            this.panelHeader.Size = new System.Drawing.Size(1308, 33);
+            this.panelHeader.Size = new System.Drawing.Size(1308, 34);
             this.panelHeader.TabIndex = 461;
             // 
             // panel4
@@ -1846,7 +1828,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel4.Location = new System.Drawing.Point(1222, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(84, 31);
+            this.panel4.Size = new System.Drawing.Size(84, 32);
             this.panel4.TabIndex = 7;
             // 
             // panel2
@@ -1856,9 +1838,9 @@
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panel2.Controls.Add(this.button24);
             this.panel2.Controls.Add(this.button23);
-            this.panel2.Location = new System.Drawing.Point(215, 0);
+            this.panel2.Location = new System.Drawing.Point(106, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(963, 31);
+            this.panel2.Size = new System.Drawing.Size(598, 31);
             this.panel2.TabIndex = 6;
             // 
             // button24
@@ -1872,9 +1854,9 @@
             this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button24.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
             this.button24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button24.Location = new System.Drawing.Point(220, 0);
+            this.button24.Location = new System.Drawing.Point(208, 0);
             this.button24.Name = "button24";
-            this.button24.Size = new System.Drawing.Size(263, 31);
+            this.button24.Size = new System.Drawing.Size(220, 31);
             this.button24.TabIndex = 17;
             this.button24.Text = "IZVOZ - FORMIRANJE PLANA ";
             this.button24.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -1894,7 +1876,7 @@
             this.button23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.button23.Location = new System.Drawing.Point(0, 0);
             this.button23.Name = "button23";
-            this.button23.Size = new System.Drawing.Size(220, 31);
+            this.button23.Size = new System.Drawing.Size(208, 31);
             this.button23.TabIndex = 16;
             this.button23.Text = "UVOZ - FORMIRANJE PLANA";
             this.button23.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -1908,9 +1890,9 @@
             this.panel3.Controls.Add(this.button21);
             this.panel3.Controls.Add(this.button22);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel3.Location = new System.Drawing.Point(71, 0);
+            this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(87, 31);
+            this.panel3.Size = new System.Drawing.Size(104, 32);
             this.panel3.TabIndex = 2;
             // 
             // button20
@@ -1923,9 +1905,9 @@
             this.button20.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button20.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button20.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
-            this.button20.Location = new System.Drawing.Point(52, 4);
+            this.button20.Location = new System.Drawing.Point(68, 2);
             this.button20.Name = "button20";
-            this.button20.Size = new System.Drawing.Size(23, 23);
+            this.button20.Size = new System.Drawing.Size(27, 27);
             this.button20.TabIndex = 15;
             this.button20.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button20.UseVisualStyleBackColor = true;
@@ -1940,9 +1922,9 @@
             this.button21.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.button21.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button21.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button21.Location = new System.Drawing.Point(27, 2);
+            this.button21.Location = new System.Drawing.Point(38, 2);
             this.button21.Name = "button21";
-            this.button21.Size = new System.Drawing.Size(23, 27);
+            this.button21.Size = new System.Drawing.Size(27, 27);
             this.button21.TabIndex = 14;
             this.button21.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button21.UseVisualStyleBackColor = true;
@@ -1957,37 +1939,15 @@
             this.button22.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.button22.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.button22.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button22.Location = new System.Drawing.Point(2, 4);
+            this.button22.Location = new System.Drawing.Point(9, 2);
             this.button22.Margin = new System.Windows.Forms.Padding(9, 6, 6, 6);
             this.button22.Name = "button22";
             this.button22.Padding = new System.Windows.Forms.Padding(9);
-            this.button22.Size = new System.Drawing.Size(23, 23);
+            this.button22.Size = new System.Drawing.Size(27, 27);
             this.button22.TabIndex = 13;
             this.button22.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.button22.UseVisualStyleBackColor = true;
             this.button22.Click += new System.EventHandler(this.tsNew_Click);
-            // 
-            // panel5
-            // 
-            this.panel5.BackColor = System.Drawing.Color.Transparent;
-            this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel5.Controls.Add(this.panel6);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(71, 31);
-            this.panel5.TabIndex = 1;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
-            this.panel6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel6.BackgroundImage")));
-            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel6.Location = new System.Drawing.Point(3, 3);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(58, 24);
-            this.panel6.TabIndex = 0;
-            this.panel6.Visible = false;
             // 
             // frmVoz
             // 
@@ -2065,7 +2025,6 @@
             this.panelHeader.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2185,7 +2144,6 @@
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.DateTimePicker dtpIskrcajRijeka;
         private System.Windows.Forms.Panel panelLeget;
-        private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Panel panelLegetOperater;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.DateTimePicker dtpSazeta;
@@ -2207,7 +2165,5 @@
         private System.Windows.Forms.Button button20;
         private System.Windows.Forms.Button button21;
         private System.Windows.Forms.Button button22;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel6;
     }
 }

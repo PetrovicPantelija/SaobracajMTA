@@ -29,6 +29,7 @@ namespace Saobracaj.Uvoz
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPlanUtovaraOdgovorExcel));
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -42,12 +43,14 @@ namespace Saobracaj.Uvoz
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -56,7 +59,7 @@ namespace Saobracaj.Uvoz
             this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button1.Location = new System.Drawing.Point(14, 13);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(78, 26);
+            this.button1.Size = new System.Drawing.Size(141, 26);
             this.button1.TabIndex = 159;
             this.button1.Text = "Upload";
             this.button1.UseVisualStyleBackColor = false;
@@ -72,7 +75,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView1.Location = new System.Drawing.Point(14, 46);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(796, 343);
+            this.dataGridView1.Size = new System.Drawing.Size(1055, 559);
             this.dataGridView1.TabIndex = 161;
             // 
             // openFileDialog1
@@ -103,8 +106,8 @@ namespace Saobracaj.Uvoz
             this.splitContainer1.Panel2.Controls.Add(this.label44);
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
-            this.splitContainer1.Size = new System.Drawing.Size(1012, 392);
-            this.splitContainer1.SplitterDistance = 189;
+            this.splitContainer1.Size = new System.Drawing.Size(1329, 608);
+            this.splitContainer1.SplitterDistance = 248;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 162;
             // 
@@ -118,7 +121,7 @@ namespace Saobracaj.Uvoz
             this.dataGridView2.Location = new System.Drawing.Point(15, 132);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.Size = new System.Drawing.Size(164, 254);
+            this.dataGridView2.Size = new System.Drawing.Size(223, 470);
             this.dataGridView2.TabIndex = 164;
             // 
             // label2
@@ -137,7 +140,7 @@ namespace Saobracaj.Uvoz
             this.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button2.Location = new System.Drawing.Point(15, 63);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(166, 26);
+            this.button2.Size = new System.Drawing.Size(223, 26);
             this.button2.TabIndex = 161;
             this.button2.Text = "Poveži";
             this.button2.UseVisualStyleBackColor = false;
@@ -160,7 +163,7 @@ namespace Saobracaj.Uvoz
             this.cboPlanUtovara.Location = new System.Drawing.Point(15, 29);
             this.cboPlanUtovara.Margin = new System.Windows.Forms.Padding(2);
             this.cboPlanUtovara.Name = "cboPlanUtovara";
-            this.cboPlanUtovara.Size = new System.Drawing.Size(167, 21);
+            this.cboPlanUtovara.Size = new System.Drawing.Size(223, 21);
             this.cboPlanUtovara.TabIndex = 159;
             // 
             // label4
@@ -195,12 +198,19 @@ namespace Saobracaj.Uvoz
             this.label44.TabIndex = 158;
             this.label44.Text = "Plan utovara";
             // 
+            // commandBarController1
+            // 
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
+            // 
             // frmPlanUtovaraOdgovorExcel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1030, 404);
+            this.ClientSize = new System.Drawing.Size(1349, 621);
             this.Controls.Add(this.splitContainer1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -215,6 +225,7 @@ namespace Saobracaj.Uvoz
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -233,5 +244,6 @@ namespace Saobracaj.Uvoz
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
     }
 }

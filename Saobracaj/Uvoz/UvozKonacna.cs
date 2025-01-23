@@ -43,24 +43,12 @@ namespace Saobracaj.Uvoz
                 // toolStripHeader.Visible = false;
                 panelHeader.Visible = true;
                 meniHeader.Visible = false;
+                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
                 this.BackColor = Color.White;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
 
-               foreach (Control control in groupBox1.Controls)
-                {
-                    if (control is System.Windows.Forms.Button buttons)
-                    {
-
-                        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
-                        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
-                        buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
-                        buttons.FlatStyle = FlatStyle.Flat;
-                    }
-               }
-
-
-                foreach (Control control in this.Controls)
+                foreach (Control control in tabSplitterPage1.Controls)
                 {
                     if (control is System.Windows.Forms.Button buttons)
                     {
@@ -76,7 +64,7 @@ namespace Saobracaj.Uvoz
 
                         textBox.BackColor = Color.White;// Example: Change background color
                         textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
-                        textBox.Font = new System.Drawing.Font("Helvetica", 9);
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
                         // Example: Change font
                     }
 
@@ -85,47 +73,160 @@ namespace Saobracaj.Uvoz
                     {
                         // Change properties here
                         label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
-                        label.BackColor = Color.Transparent; // Nema pozadinsku boju
-                        label.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
+                        label.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);  // Example: Change font
 
                         // textBox.ReadOnly = true;              // Example: Make text boxes read-only
                     }
                     if (control is DateTimePicker dtp)
                     {
-                        dtp.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
-                        dtp.Font = new System.Drawing.Font("Helvetica", 9);
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
                     }
                     if (control is System.Windows.Forms.CheckBox chk)
                     {
                         chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
-                        chk.Font = new System.Drawing.Font("Helvetica", 9);
-                        chk.BackColor = Color.Transparent;
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
                     }
 
                     if (control is System.Windows.Forms.ListBox lb)
                     {
-                        lb.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
-                        lb.Font = new System.Drawing.Font("Helvetica", 9);
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
                     }
 
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
 
-
-
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
                 }
             }
             else
             {
                 panelHeader.Visible = false;
+                meniHeader.Visible = true;
                 this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 //  this.BackColor = Color.White;
                 // toolStripHeader.Visible = true;
             }
+        }
+
+        private void ChangeTextBoxGroupBox()
+        {
+           
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                // toolStripHeader.Visible = false;
+              
+
+                foreach (Control control in groupBox1.Controls)
+                {
+                    if (control is System.Windows.Forms.Button buttons)
+                    {
+
+                        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
+                        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
+                        buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
+                        buttons.FlatStyle = FlatStyle.Flat;
+                    }
+                }
+
+
+                foreach (Control control in groupBox1.Controls)
+                {
+
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                        // Example: Change font
+                    }
+
+
+                    if (control is System.Windows.Forms.Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+                }
+            }
+          
+        }
+
+        private void PodesiDatagridView(DataGridView dgv)
+        {
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.BackgroundColor = Color.White;
+
+            dgv.DefaultCellStyle.Font = new System.Drawing.Font("Helvetica", 12F, GraphicsUnit.Pixel);
+            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+
+
+            //Header
+            dgv.EnableHeadersVisualStyles = false;
+            //   header.Style.Font = new Font("Arial", 12F, FontStyle.Bold);
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgv.ColumnHeadersHeight = 30;
         }
         public frmUvozKonacna()
         {
             InitializeComponent();
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             ChangeTextBox();
+            ChangeTextBoxGroupBox();
 
 
             FillCheck();
@@ -140,6 +241,7 @@ namespace Saobracaj.Uvoz
             //UcitajNHMoveCombo();
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
             ChangeTextBox();
+            ChangeTextBoxGroupBox();
             FillCombo();
 
             FillZaglavlje(Sifra);
@@ -222,17 +324,8 @@ namespace Saobracaj.Uvoz
             dataGridView5.ReadOnly = true;
             dataGridView5.DataSource = ds.Tables[0];
 
-           // dataGridView5.BorderStyle = BorderStyle.None;
-            dataGridView5.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView5.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView5.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView5.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView5.BackgroundColor = Color.White;
-
-            dataGridView5.EnableHeadersVisualStyles = false;
-            dataGridView5.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView5.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView5.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            // dataGridView5.BorderStyle = BorderStyle.None;
+            PodesiDatagridView(dataGridView5);
 
 
 
@@ -323,17 +416,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
 
-          //  dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView1.BackgroundColor = Color.White;
-
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView1);
 
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
@@ -866,17 +949,8 @@ namespace Saobracaj.Uvoz
             dataGridView8.DataSource = ds.Tables[0];
 
 
-          //  dataGridView8.BorderStyle = BorderStyle.None;
-            dataGridView8.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView8.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView8.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView8.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView8.BackgroundColor = Color.White;
-
-            dataGridView8.EnableHeadersVisualStyles = false;
-            dataGridView8.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView8.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView8.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            //  dataGridView8.BorderStyle = BorderStyle.None;
+            PodesiDatagridView(dataGridView8);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView8.Columns[0];
@@ -1339,17 +1413,8 @@ namespace Saobracaj.Uvoz
             dataGridView2.ReadOnly = true;
             dataGridView2.DataSource = ds.Tables[0];
 
-          //  dataGridView2.BorderStyle = BorderStyle.None;
-            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView2.BackgroundColor = Color.White;
-
-            dataGridView2.EnableHeadersVisualStyles = false;
-            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            //  dataGridView2.BorderStyle = BorderStyle.None;
+            PodesiDatagridView(dataGridView2);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView2.Columns[0];
@@ -1383,17 +1448,8 @@ namespace Saobracaj.Uvoz
             dataGridView3.DataSource = ds.Tables[0];
 
 
-           // dataGridView3.BorderStyle = BorderStyle.None;
-            dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView3.BackgroundColor = Color.White;
-
-            dataGridView3.EnableHeadersVisualStyles = false;
-            dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            // dataGridView3.BorderStyle = BorderStyle.None;
+            PodesiDatagridView(dataGridView3);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView3.Columns[0];
@@ -1884,17 +1940,8 @@ namespace Saobracaj.Uvoz
             dataGridView4.ReadOnly = true;
             dataGridView4.DataSource = ds.Tables[0];
 
-          //  dataGridView4.BorderStyle = BorderStyle.None;
-            dataGridView4.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView4.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView4.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView4.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView4.BackgroundColor = Color.White;
-
-            dataGridView4.EnableHeadersVisualStyles = false;
-            dataGridView4.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView4.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView4.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            //  dataGridView4.BorderStyle = BorderStyle.None;
+            PodesiDatagridView(dataGridView4);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView4.Columns[0];
@@ -1975,17 +2022,8 @@ namespace Saobracaj.Uvoz
             dataGridView6.DataSource = ds.Tables[0];
 
 
-          //  dataGridView6.BorderStyle = BorderStyle.None;
-            dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView6.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView6.BackgroundColor = Color.White;
-
-            dataGridView6.EnableHeadersVisualStyles = false;
-            dataGridView6.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            //  dataGridView6.BorderStyle = BorderStyle.None;
+            PodesiDatagridView(dataGridView6);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
@@ -2025,17 +2063,8 @@ namespace Saobracaj.Uvoz
             dataGridView6.DataSource = ds.Tables[0];
 
 
-           // dataGridView6.BorderStyle = BorderStyle.None;
-            dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView6.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView6.BackgroundColor = Color.White;
-
-            dataGridView6.EnableHeadersVisualStyles = false;
-            dataGridView6.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            // dataGridView6.BorderStyle = BorderStyle.None;
+            PodesiDatagridView(dataGridView6);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
@@ -2081,17 +2110,8 @@ namespace Saobracaj.Uvoz
             dataGridView5.DataSource = ds.Tables[0];
 
 
-           // dataGridView5.BorderStyle = BorderStyle.None;
-            dataGridView5.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView5.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView5.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView5.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView5.BackgroundColor = Color.White;
-
-            dataGridView5.EnableHeadersVisualStyles = false;
-            dataGridView5.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView5.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView5.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            // dataGridView5.BorderStyle = BorderStyle.None;
+            PodesiDatagridView(dataGridView5);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView5.Columns[0];
@@ -3033,31 +3053,35 @@ namespace Saobracaj.Uvoz
             {
                 Moguce = "15";
             }
-            else if (ScenarioGl == 1 && Convert.ToInt32(txtADR.SelectedValue) == 0)
+            else if (ScenarioGl == 1 && Convert.ToInt32(txtADR.SelectedValue) == 0 && pp == 1)
             {
-                Moguce = "1,2"; // npr Rijeka - leget - Rijeka
+                Moguce = "1,2,27"; // npr Rijeka - leget - Rijeka   ,2,27
             }
-            else if (ScenarioGl == 1 && Convert.ToInt32(txtADR.SelectedValue) > 1)
+            else if (ScenarioGl == 1 && Convert.ToInt32(txtADR.SelectedValue) > 1 && pp == 1)
             {
-                Moguce = "18,19";
+                Moguce = "18,19,30";
             }
 
-            else if (ScenarioGl == 2 && Convert.ToInt32(txtADR.SelectedValue) == 0)
+            else if (ScenarioGl == 2 && Convert.ToInt32(txtADR.SelectedValue) == 0 && pp == 1)
             {
-                Moguce = "3,4,6"; // Ostaje na terminalu
+                Moguce = "3,4,28"; // Ostaje na terminalu
             }
-            else if (ScenarioGl == 3 && Convert.ToInt32(txtADR.SelectedValue) == 0)
+            else if (ScenarioGl == 2 && Convert.ToInt32(txtADR.SelectedValue) == 0 && pp == 0)
+            {
+                Moguce = "6"; // Prazan
+            }
+            else if (ScenarioGl == 2 && Convert.ToInt32(txtADR.SelectedValue) > 1 && pp == 1)
+            {
+                Moguce = "20,21,31";
+
+            }
+            else if (ScenarioGl == 3 && Convert.ToInt32(txtADR.SelectedValue) == 0 && pp == 1)
             {
                 Moguce = "5"; // Ostaje na terminalu
             }
-            else if (ScenarioGl == 3 && Convert.ToInt32(txtADR.SelectedValue) > 1)
+            else if (ScenarioGl == 3 && Convert.ToInt32(txtADR.SelectedValue) > 1 && pp == 1)
             {
                 Moguce = "22"; // Ostaje na terminalu
-            }
-            else if (ScenarioGl == 2 && Convert.ToInt32(txtADR.SelectedValue) > 1)
-            {
-                Moguce = "20,21";
-
             }
 
             int poklapase = 0;
@@ -3086,9 +3110,24 @@ namespace Saobracaj.Uvoz
 
             }
         }
+        int pp = 0;
         private void toolStripButton4_Click_1(object sender, EventArgs e)
         {
-            VratiZelezninu(Convert.ToInt32(cboRLTerminal.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), Convert.ToInt32(txtTipKont.SelectedValue));
+           
+            pp = ProveriPrazanPun();
+            if (pp == 0)
+            {
+                VratiRepoziciju(Convert.ToInt32(cboRLTerminal.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), txtTipKont.Text.Substring(0, 3));
+            }
+            else
+            {
+                VratiZelezninu(Convert.ToInt32(cboRLTerminal.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), Convert.ToInt32(txtTipKont.SelectedValue));
+
+            }
+
+
+
+
             ADR = Convert.ToInt32(txtADR.SelectedValue);
             if (txtID.Text == "")
             { txtID.Text = "0"; }
@@ -3100,7 +3139,7 @@ namespace Saobracaj.Uvoz
             relacija2 = cboRLTerminal2.Text.ToString().TrimEnd();
             relacija3 = cboRLTerminal3.Text.ToString().TrimEnd();
             MoguciScenario();
-            frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci, terminal, relacija,Zeleznina,ADR, ScenarioGl) ;
+            frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci, terminal, relacija,Zeleznina,ADR, ScenarioGl,pp) ;
             um.Show();
         }
 
@@ -3150,7 +3189,7 @@ namespace Saobracaj.Uvoz
                 relacija2 = cboRLTerminal2.Text.ToString().TrimEnd();
                 relacija3 = cboRLTerminal3.Text.ToString().TrimEnd();
                 // int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3
-                frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci,terminal, relacija, Zeleznina, ADR, ScenarioGl);
+                frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci,terminal, relacija, Zeleznina, ADR, ScenarioGl,pp);
                 um.Show();
 
             }
@@ -3314,10 +3353,72 @@ namespace Saobracaj.Uvoz
             UvozDokumenta uvdok = new UvozDokumenta(txtID.Text);
             uvdok.Show();
         }
+        int Repozicija = 0;
+
+
+        private void VratiRepoziciju(int RLTerminal1, int RLTerminal2, int RLTerminal3, string TipKOntejnera)
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select VrstaManipulacije.ID, Relacija from VrstaManipulacije  " +
+                " inner join TipKontenjera on VrstaManipulacije.TipKontejnera = TipKontenjera.ID " +
+                " where GrupaVrsteManipulacijeID = 2 and Substring(TipKontenjera.SkNaziv,1,3) = '" + TipKOntejnera + "'' AND RLTerminali = " +
+                RLTerminal1 + " and RLTerminali2 = " + RLTerminal2 + " AND RLTerminali3 = " + RLTerminal3, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+
+
+
+            while (dr.Read())
+            {
+
+                Repozicija = Convert.ToInt32(dr["ID"].ToString());
+                //  relacija = dr["Relacija"].ToString();
+            }
+            con.Close();
+
+
+        }
+
+        int ProveriPrazanPun()
+        {
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+            int idnhm = 0;
+            con.Open();
+
+            SqlCommand cmd = new SqlCommand("select top 1 IDNHM from UvozKonacnaNHM where IDNadredjena where ID = " + Convert.ToInt32(txtID.Text), con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                idnhm = Convert.ToInt32(dr["IDNHM"].ToString());
+
+            }
+
+            con.Close();
+
+            return idnhm;
+        }
 
         private void button24_Click(object sender, EventArgs e)
         {
-            VratiZelezninu(Convert.ToInt32(cboRLTerminal.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), Convert.ToInt32(txtTipKont.SelectedValue));
+            int pp = ProveriPrazanPun();
+            if (pp == 0)
+            {
+                VratiRepoziciju(Convert.ToInt32(cboRLTerminal.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), txtTipKont.Text.Substring(0, 3));
+            }
+            else
+            {
+                VratiZelezninu(Convert.ToInt32(cboRLTerminal.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), Convert.ToInt32(txtTipKont.SelectedValue));
+
+            }
+
+
+          //  VratiZelezninu(Convert.ToInt32(cboRLTerminal.SelectedValue), Convert.ToInt32(cboRLTerminal2.SelectedValue), Convert.ToInt32(cboRLTerminal3.SelectedValue), Convert.ToInt32(txtTipKont.SelectedValue));
             ADR = Convert.ToInt32(txtADR.SelectedValue);
             if (txtID.Text == "")
             { txtID.Text = "0"; }
@@ -3329,7 +3430,7 @@ namespace Saobracaj.Uvoz
             relacija2 = cboRLTerminal2.Text.ToString().TrimEnd();
             relacija3 = cboRLTerminal3.Text.ToString().TrimEnd();
             MoguciScenario();
-            frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci, terminal, relacija, Zeleznina, ADR, ScenarioGl);
+            frmUnosManipulacija um = new frmUnosManipulacija(Convert.ToInt32(txtNadredjeni.Text), Convert.ToInt32(txtID.Text), Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboNalogodavac2.SelectedValue), Convert.ToInt32(cboNalogodavac3.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue), KorisnikTekuci, terminal, relacija, Zeleznina, ADR, ScenarioGl,pp);
             um.Show();
         }
 
@@ -3451,6 +3552,162 @@ namespace Saobracaj.Uvoz
         private void button30_Click(object sender, EventArgs e)
         {
             ExportToHZ();
+        }
+
+        private void OpstiInterni(int Interni)
+        {
+            SqlConnection conn = new SqlConnection(connection);
+            /*
+          
+            */
+            if (Interni == 1)
+            {
+                switch (NHMObrni)
+                {
+                    case 0:
+                        {
+                            var nhm = "Select ID,Rtrim(Broj) + '-' + (Rtrim(Naziv)) as Naziv from NHM where Interni = 1 order by NHM.Broj";
+                            var nhmSAD = new SqlDataAdapter(nhm, conn);
+                            var nhmSDS = new DataSet();
+                            nhmSAD.Fill(nhmSDS);
+                            cboNHM.DataSource = nhmSDS.Tables[0];
+                            cboNHM.DisplayMember = "Naziv";
+                            cboNHM.ValueMember = "ID";
+                            NHMObrni = 0;
+                            break;
+
+                        }
+                    case 1:
+                        {
+                            var nhm = "Select ID,Rtrim(Naziv) + '-' + (Rtrim(Broj)) as Naziv from NHM where Interni = 1 order by NHM.Naziv";
+                            var nhmSAD = new SqlDataAdapter(nhm, conn);
+                            var nhmSDS = new DataSet();
+                            nhmSAD.Fill(nhmSDS);
+                            cboNHM.DataSource = nhmSDS.Tables[0];
+                            cboNHM.DisplayMember = "Naziv";
+                            cboNHM.ValueMember = "ID";
+                            NHMObrni = 1;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                switch (NHMObrni)
+                {
+                    case 0:
+                        {
+                            var nhm = "Select ID,Rtrim(Broj) + '-' + (Rtrim(Naziv)) as Naziv from NHM order by NHM.Broj";
+                            var nhmSAD = new SqlDataAdapter(nhm, conn);
+                            var nhmSDS = new DataSet();
+                            nhmSAD.Fill(nhmSDS);
+                            cboNHM.DataSource = nhmSDS.Tables[0];
+                            cboNHM.DisplayMember = "Naziv";
+                            cboNHM.ValueMember = "ID";
+                            NHMObrni = 0;
+                            break;
+
+                        }
+                    case 1:
+                        {
+                            var nhm = "Select ID,Rtrim(Naziv) + '-' + (Rtrim(Broj)) as Naziv from NHM order by NHM.Naziv";
+                            var nhmSAD = new SqlDataAdapter(nhm, conn);
+                            var nhmSDS = new DataSet();
+                            nhmSAD.Fill(nhmSDS);
+                            cboNHM.DataSource = nhmSDS.Tables[0];
+                            cboNHM.DisplayMember = "Naziv";
+                            cboNHM.ValueMember = "ID";
+                            NHMObrni = 1;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
+
+
+
+
+        }
+
+        int OpstiProm = 0;
+        int InterniProm = 0;
+        int PrviPut = 0;
+        int NeRadiOpsti = 0;
+        int NeRadiInterni = 0;
+
+        private void chkInterni_CheckedChanged(object sender, EventArgs e)
+        {
+            if (InterniProm == 0 || NeRadiInterni == 1)
+            {
+                if (chkInterni.Checked == true)
+                {
+                    OpstiInterni(1);
+                }
+                else
+                {
+                    OpstiInterni(0);
+
+                }
+
+
+            }
+            if (PrviPut == 0)
+            {
+                PrviPut = 1;
+                NeRadiOpsti = 1;
+            }
+
+            if (chkInterni.Checked == true)
+            {
+                chkOpsti.Checked = false;
+            }
+            else
+            {
+                chkOpsti.Checked = true;
+
+            }
+
+
+            InterniProm = 0;
+            OpstiProm = 1;
+        }
+
+        private void chkOpsti_CheckedChanged(object sender, EventArgs e)
+        {
+            if (OpstiProm == 0 || NeRadiOpsti == 1)
+            {
+                if (chkOpsti.Checked == true)
+                {
+                    OpstiInterni(0);
+                }
+                else
+                {
+                    OpstiInterni(1);
+
+                }
+
+            }
+            if (PrviPut == 0)
+            {
+                PrviPut = 1;
+                NeRadiInterni = 1;
+            }
+
+            if (chkOpsti.Checked == true)
+            {
+                chkInterni.Checked = false;
+            }
+            else
+            {
+                chkInterni.Checked = true;
+
+            }
+
+            InterniProm = 1;
+            OpstiProm = 0;
         }
     }
 }

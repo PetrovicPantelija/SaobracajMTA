@@ -14,14 +14,16 @@ namespace Saobracaj.Izvoz
     public partial class IzvestajVaganja : Form
     {
         int id;
+        int CIRADA;
         public IzvestajVaganja()
         {
             InitializeComponent();
         }
-        public IzvestajVaganja(int ID)
+        public IzvestajVaganja(int ID, int Cirada)
         {
             InitializeComponent();
             id= ID;
+            CIRADA= Cirada;
         }
 
         private void IzvestajVaganja_Load(object sender, EventArgs e)
@@ -35,7 +37,15 @@ namespace Saobracaj.Izvoz
             ReportParameter[] par = new ReportParameter[1];
             par[0] = new ReportParameter("ID", id.ToString());
             reportViewer1.LocalReport.DataSources.Clear();
-            reportViewer1.LocalReport.ReportPath = "VaganjeRpt.rdlc";
+            if (CIRADA == 1)
+            {
+                reportViewer1.LocalReport.ReportPath = "VaganjeRptCirada.rdlc";
+            }
+            else
+            {
+                reportViewer1.LocalReport.ReportPath = "VaganjeRpt.rdlc";
+            }
+
             reportViewer1.LocalReport.SetParameters(par);
             reportViewer1.LocalReport.DataSources.Add(rds);
             reportViewer1.RefreshReport();

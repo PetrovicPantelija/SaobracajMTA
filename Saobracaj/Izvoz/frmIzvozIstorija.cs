@@ -1,4 +1,5 @@
-﻿using Syncfusion.Windows.Forms.Grid.Grouping;
+﻿using Syncfusion.GridHelperClasses;
+using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
 using System.Configuration;
 using System.Data;
@@ -69,6 +70,9 @@ namespace Saobracaj.Izvoz
             {
                 column.AllowFilter = true;
             }
+            GridDynamicFilter dynamicFilter = new GridDynamicFilter();
+            //Wiring the Dynamic Filter to GridGroupingControl
+            dynamicFilter.WireGrid(this.gridGroupingControl1);
         }
 
         private void gridGroupingControl1_TableControlCellClick(object sender, GridTableControlCellClickEventArgs e)

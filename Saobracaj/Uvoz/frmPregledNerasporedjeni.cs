@@ -1,4 +1,5 @@
 ﻿using Syncfusion.GridHelperClasses;
+using Syncfusion.Grouping;
 using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Grid.Grouping;
 using System;
@@ -14,7 +15,7 @@ namespace Saobracaj.Uvoz
     {
         int Selektovani = 0;
         private Keys keyData;
-        string KorisnikTekuci = "";
+        string KorisnikTekuci = Saobracaj.Sifarnici.frmLogovanje.user;
 
         private void ChangeTextBox()
         {
@@ -33,6 +34,7 @@ namespace Saobracaj.Uvoz
                 // toolStripHeader.Visible = false;
                 panelHeader.Visible = true;
                 pomMenu.Visible = false;
+                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
                 // this.FormBorderStyle = FormBorderStyle.None;
                 this.BackColor = Color.White;
                 Office2010Colors.ApplyManagedColors(this, Color.White);
@@ -78,9 +80,6 @@ namespace Saobracaj.Uvoz
                         lb.Font = new Font("Helvetica", 9);
                     }
 
-
-
-
                 }
             }
             else
@@ -92,6 +91,31 @@ namespace Saobracaj.Uvoz
                 // toolStripHeader.Visible = true;
             }
         }
+
+        private void PodesiDatagridView(DataGridView dgv)
+        {
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.BackgroundColor = Color.White;
+
+            dgv.DefaultCellStyle.Font = new Font("Helvetica", 12F, GraphicsUnit.Pixel);
+            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+
+
+            //Header
+            dgv.EnableHeadersVisualStyles = false;
+            //   header.Style.Font = new Font("Arial", 12F, FontStyle.Bold);
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+
+        }
+      
+        
         public frmPregledNerasporedjeni(string Kor)
         {
             InitializeComponent();
@@ -262,6 +286,23 @@ namespace Saobracaj.Uvoz
         {
             frmUvozKopirajKontejner kk = new frmUvozKopirajKontejner(Convert.ToInt16(txtSifra.Text));
             kk.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (this.gridGroupingControl1.Table.SelectedRecords.Count > 0)
+            {
+                InsertUvoz uv = new InsertUvoz();
+                foreach (SelectedRecord selectedRecord in this.gridGroupingControl1.Table.SelectedRecords)
+                {
+                    
+                    uv.DelUvoz(Convert.ToInt32(selectedRecord.Record.GetValue("ID").ToString()));
+
+                }
+            }
+
+            RefreshDataGrid();
+
         }
     }
 }

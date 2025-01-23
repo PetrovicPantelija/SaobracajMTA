@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrijemKontejneraKamionPregled));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.meniHeader = new System.Windows.Forms.ToolStrip();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
@@ -49,22 +50,33 @@
             this.txtBrojKontejnera = new System.Windows.Forms.TextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.chkPlatforma = new System.Windows.Forms.CheckBox();
-            this.chkCirada = new System.Windows.Forms.CheckBox();
+            this.panelHeader = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.button9 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button24 = new System.Windows.Forms.Button();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.chkUvoz = new System.Windows.Forms.CheckBox();
             this.chkIzvoz = new System.Windows.Forms.CheckBox();
+            this.chkPlatforma = new System.Windows.Forms.CheckBox();
             this.chkTerminal = new System.Windows.Forms.CheckBox();
-            this.panelLeget = new System.Windows.Forms.Panel();
-            this.toolStrip1.SuspendLayout();
+            this.chkCirada = new System.Windows.Forms.CheckBox();
+            this.meniHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panelLeget.SuspendLayout();
+            this.panelHeader.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // meniHeader
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.RoyalBlue;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.meniHeader.BackColor = System.Drawing.Color.RoyalBlue;
+            this.meniHeader.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.meniHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton5,
             this.toolStripButton1,
             this.toolStripButton2,
@@ -72,11 +84,11 @@
             this.toolStripButton3,
             this.toolStripButton6,
             this.toolStripButton7});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1075, 27);
-            this.toolStrip1.TabIndex = 125;
-            this.toolStrip1.Text = "Pošalji mail infrastrukturi";
+            this.meniHeader.Location = new System.Drawing.Point(0, 0);
+            this.meniHeader.Name = "meniHeader";
+            this.meniHeader.Size = new System.Drawing.Size(1157, 27);
+            this.meniHeader.TabIndex = 125;
+            this.meniHeader.Text = "Pošalji mail infrastrukturi";
             // 
             // toolStripButton5
             // 
@@ -160,9 +172,9 @@
             // txtSifra
             // 
             this.txtSifra.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.txtSifra.Location = new System.Drawing.Point(12, 59);
+            this.txtSifra.Location = new System.Drawing.Point(12, 89);
             this.txtSifra.Name = "txtSifra";
-            this.txtSifra.Size = new System.Drawing.Size(63, 20);
+            this.txtSifra.Size = new System.Drawing.Size(79, 20);
             this.txtSifra.TabIndex = 129;
             // 
             // label1
@@ -170,7 +182,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(9, 40);
+            this.label1.Location = new System.Drawing.Point(12, 69);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 130;
@@ -184,19 +196,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 106);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 156);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(1051, 414);
+            this.dataGridView1.Size = new System.Drawing.Size(1133, 364);
             this.dataGridView1.TabIndex = 128;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // txtRegBrKamiona
             // 
             this.txtRegBrKamiona.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.txtRegBrKamiona.Location = new System.Drawing.Point(82, 59);
+            this.txtRegBrKamiona.Location = new System.Drawing.Point(249, 88);
             this.txtRegBrKamiona.Name = "txtRegBrKamiona";
-            this.txtRegBrKamiona.Size = new System.Drawing.Size(148, 20);
+            this.txtRegBrKamiona.Size = new System.Drawing.Size(235, 20);
             this.txtRegBrKamiona.TabIndex = 214;
             // 
             // label30
@@ -204,7 +216,7 @@
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.label30.ForeColor = System.Drawing.Color.Black;
-            this.label30.Location = new System.Drawing.Point(79, 40);
+            this.label30.Location = new System.Drawing.Point(246, 69);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(72, 13);
             this.label30.TabIndex = 215;
@@ -212,11 +224,10 @@
             // 
             // button1
             // 
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(236, 57);
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Location = new System.Drawing.Point(507, 86);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(26, 22);
             this.button1.TabIndex = 216;
@@ -227,9 +238,9 @@
             // txtBukingBrodar
             // 
             this.txtBukingBrodar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.txtBukingBrodar.Location = new System.Drawing.Point(268, 57);
+            this.txtBukingBrodar.Location = new System.Drawing.Point(568, 89);
             this.txtBukingBrodar.Name = "txtBukingBrodar";
-            this.txtBukingBrodar.Size = new System.Drawing.Size(187, 20);
+            this.txtBukingBrodar.Size = new System.Drawing.Size(235, 20);
             this.txtBukingBrodar.TabIndex = 223;
             // 
             // label27
@@ -237,7 +248,7 @@
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.label27.ForeColor = System.Drawing.Color.Black;
-            this.label27.Location = new System.Drawing.Point(265, 40);
+            this.label27.Location = new System.Drawing.Point(565, 66);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(76, 13);
             this.label27.TabIndex = 224;
@@ -248,7 +259,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(490, 40);
+            this.label5.Location = new System.Drawing.Point(565, 112);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 13);
             this.label5.TabIndex = 225;
@@ -257,18 +268,17 @@
             // txtBrojKontejnera
             // 
             this.txtBrojKontejnera.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.txtBrojKontejnera.Location = new System.Drawing.Point(493, 57);
+            this.txtBrojKontejnera.Location = new System.Drawing.Point(568, 130);
             this.txtBrojKontejnera.Name = "txtBrojKontejnera";
-            this.txtBrojKontejnera.Size = new System.Drawing.Size(151, 20);
+            this.txtBrojKontejnera.Size = new System.Drawing.Size(235, 20);
             this.txtBrojKontejnera.TabIndex = 226;
             // 
             // button2
             // 
-            this.button2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button2.BackgroundImage")));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(461, 55);
+            this.button2.ForeColor = System.Drawing.Color.Black;
+            this.button2.Location = new System.Drawing.Point(822, 86);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(26, 23);
             this.button2.TabIndex = 227;
@@ -278,11 +288,10 @@
             // 
             // button3
             // 
-            this.button3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button3.BackgroundImage")));
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(650, 52);
+            this.button3.ForeColor = System.Drawing.Color.Black;
+            this.button3.Location = new System.Drawing.Point(822, 128);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(26, 22);
             this.button3.TabIndex = 228;
@@ -290,91 +299,267 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // chkPlatforma
+            // panelHeader
             // 
-            this.chkPlatforma.AutoSize = true;
-            this.chkPlatforma.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
-            this.chkPlatforma.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkPlatforma.ForeColor = System.Drawing.Color.Transparent;
-            this.chkPlatforma.Location = new System.Drawing.Point(199, 35);
-            this.chkPlatforma.Name = "chkPlatforma";
-            this.chkPlatforma.Size = new System.Drawing.Size(70, 17);
-            this.chkPlatforma.TabIndex = 469;
-            this.chkPlatforma.Text = "Platforma";
-            this.chkPlatforma.UseVisualStyleBackColor = false;
+            this.panelHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelHeader.Controls.Add(this.panel7);
+            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHeader.Location = new System.Drawing.Point(0, 27);
+            this.panelHeader.Name = "panelHeader";
+            this.panelHeader.Size = new System.Drawing.Size(1157, 33);
+            this.panelHeader.TabIndex = 474;
             // 
-            // chkCirada
+            // panel7
             // 
-            this.chkCirada.AutoSize = true;
-            this.chkCirada.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
-            this.chkCirada.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkCirada.ForeColor = System.Drawing.Color.Transparent;
-            this.chkCirada.Location = new System.Drawing.Point(199, 11);
-            this.chkCirada.Name = "chkCirada";
-            this.chkCirada.Size = new System.Drawing.Size(56, 17);
-            this.chkCirada.TabIndex = 468;
-            this.chkCirada.Text = "Cirada";
-            this.chkCirada.UseVisualStyleBackColor = false;
+            this.panel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel7.Controls.Add(this.button9);
+            this.panel7.Controls.Add(this.button8);
+            this.panel7.Controls.Add(this.button7);
+            this.panel7.Controls.Add(this.button6);
+            this.panel7.Controls.Add(this.button5);
+            this.panel7.Controls.Add(this.button4);
+            this.panel7.Controls.Add(this.button24);
+            this.panel7.Location = new System.Drawing.Point(3, 1);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(981, 31);
+            this.panel7.TabIndex = 6;
+            // 
+            // button9
+            // 
+            this.button9.AutoSize = true;
+            this.button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button9.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button9.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button9.FlatAppearance.BorderSize = 0;
+            this.button9.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button9.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button9.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button9.Location = new System.Drawing.Point(709, 0);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(168, 31);
+            this.button9.TabIndex = 23;
+            this.button9.Text = "Otvori prijem kamionom";
+            this.button9.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.toolStripButton7_Click);
+            // 
+            // button8
+            // 
+            this.button8.AutoSize = true;
+            this.button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button8.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button8.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button8.FlatAppearance.BorderSize = 0;
+            this.button8.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button8.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button8.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button8.Location = new System.Drawing.Point(652, 0);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(57, 31);
+            this.button8.TabIndex = 22;
+            this.button8.Text = "Prijem";
+            this.button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.toolStripButton6_Click);
+            // 
+            // button7
+            // 
+            this.button7.AutoSize = true;
+            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button7.FlatAppearance.BorderSize = 0;
+            this.button7.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button7.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button7.Location = new System.Drawing.Point(591, 0);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(61, 31);
+            this.button7.TabIndex = 21;
+            this.button7.Text = "Najava";
+            this.button7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // button6
+            // 
+            this.button6.AutoSize = true;
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button6.FlatAppearance.BorderSize = 0;
+            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button6.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button6.Location = new System.Drawing.Point(503, 0);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(88, 31);
+            this.button6.TabIndex = 20;
+            this.button6.Text = "Novi prijem";
+            this.button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
+            // button5
+            // 
+            this.button5.AutoSize = true;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button5.Location = new System.Drawing.Point(443, 0);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(60, 31);
+            this.button5.TabIndex = 19;
+            this.button5.Text = "Osveži";
+            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // button4
+            // 
+            this.button4.AutoSize = true;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button4.Location = new System.Drawing.Point(220, 0);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(223, 31);
+            this.button4.TabIndex = 18;
+            this.button4.Text = "Otvori prijem kamionom - IZVOZ";
+            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // button24
+            // 
+            this.button24.AutoSize = true;
+            this.button24.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button24.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button24.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button24.FlatAppearance.BorderSize = 0;
+            this.button24.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button24.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button24.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button24.Location = new System.Drawing.Point(0, 0);
+            this.button24.Name = "button24";
+            this.button24.Size = new System.Drawing.Size(220, 31);
+            this.button24.TabIndex = 17;
+            this.button24.Text = "Otvori prijem kamionom - UVOZ";
+            this.button24.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button24.UseVisualStyleBackColor = true;
+            this.button24.Click += new System.EventHandler(this.toolStripButton5_Click);
+            // 
+            // commandBarController1
+            // 
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
             // 
             // chkUvoz
             // 
             this.chkUvoz.AutoSize = true;
-            this.chkUvoz.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.chkUvoz.BackColor = System.Drawing.Color.Transparent;
             this.chkUvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkUvoz.ForeColor = System.Drawing.Color.Transparent;
-            this.chkUvoz.Location = new System.Drawing.Point(25, 11);
+            this.chkUvoz.ForeColor = System.Drawing.Color.Black;
+            this.chkUvoz.Location = new System.Drawing.Point(886, 94);
             this.chkUvoz.Name = "chkUvoz";
             this.chkUvoz.Size = new System.Drawing.Size(51, 17);
-            this.chkUvoz.TabIndex = 467;
+            this.chkUvoz.TabIndex = 479;
             this.chkUvoz.Text = "Uvoz";
             this.chkUvoz.UseVisualStyleBackColor = false;
             // 
             // chkIzvoz
             // 
             this.chkIzvoz.AutoSize = true;
-            this.chkIzvoz.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.chkIzvoz.BackColor = System.Drawing.Color.Transparent;
             this.chkIzvoz.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkIzvoz.ForeColor = System.Drawing.Color.Transparent;
-            this.chkIzvoz.Location = new System.Drawing.Point(25, 35);
+            this.chkIzvoz.ForeColor = System.Drawing.Color.Black;
+            this.chkIzvoz.Location = new System.Drawing.Point(886, 118);
             this.chkIzvoz.Name = "chkIzvoz";
             this.chkIzvoz.Size = new System.Drawing.Size(51, 17);
-            this.chkIzvoz.TabIndex = 470;
+            this.chkIzvoz.TabIndex = 482;
             this.chkIzvoz.Text = "Izvoz";
             this.chkIzvoz.UseVisualStyleBackColor = false;
+            // 
+            // chkPlatforma
+            // 
+            this.chkPlatforma.AutoSize = true;
+            this.chkPlatforma.BackColor = System.Drawing.Color.Transparent;
+            this.chkPlatforma.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkPlatforma.ForeColor = System.Drawing.Color.Black;
+            this.chkPlatforma.Location = new System.Drawing.Point(1060, 118);
+            this.chkPlatforma.Name = "chkPlatforma";
+            this.chkPlatforma.Size = new System.Drawing.Size(70, 17);
+            this.chkPlatforma.TabIndex = 481;
+            this.chkPlatforma.Text = "Platforma";
+            this.chkPlatforma.UseVisualStyleBackColor = false;
             // 
             // chkTerminal
             // 
             this.chkTerminal.AutoSize = true;
-            this.chkTerminal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(180)))), ((int)(((byte)(137)))));
+            this.chkTerminal.BackColor = System.Drawing.Color.Transparent;
             this.chkTerminal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.chkTerminal.ForeColor = System.Drawing.Color.Transparent;
-            this.chkTerminal.Location = new System.Drawing.Point(103, 35);
+            this.chkTerminal.ForeColor = System.Drawing.Color.Black;
+            this.chkTerminal.Location = new System.Drawing.Point(964, 118);
             this.chkTerminal.Name = "chkTerminal";
             this.chkTerminal.Size = new System.Drawing.Size(66, 17);
-            this.chkTerminal.TabIndex = 471;
+            this.chkTerminal.TabIndex = 483;
             this.chkTerminal.Text = "Terminal";
             this.chkTerminal.UseVisualStyleBackColor = false;
             // 
-            // panelLeget
+            // chkCirada
             // 
-            this.panelLeget.Controls.Add(this.chkUvoz);
-            this.panelLeget.Controls.Add(this.chkIzvoz);
-            this.panelLeget.Controls.Add(this.chkPlatforma);
-            this.panelLeget.Controls.Add(this.chkTerminal);
-            this.panelLeget.Controls.Add(this.chkCirada);
-            this.panelLeget.Location = new System.Drawing.Point(707, 40);
-            this.panelLeget.Name = "panelLeget";
-            this.panelLeget.Size = new System.Drawing.Size(356, 60);
-            this.panelLeget.TabIndex = 473;
-            this.panelLeget.Visible = false;
+            this.chkCirada.AutoSize = true;
+            this.chkCirada.BackColor = System.Drawing.Color.Transparent;
+            this.chkCirada.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.chkCirada.ForeColor = System.Drawing.Color.Black;
+            this.chkCirada.Location = new System.Drawing.Point(1060, 94);
+            this.chkCirada.Name = "chkCirada";
+            this.chkCirada.Size = new System.Drawing.Size(56, 17);
+            this.chkCirada.TabIndex = 480;
+            this.chkCirada.Text = "Cirada";
+            this.chkCirada.UseVisualStyleBackColor = false;
             // 
             // frmPrijemKontejneraKamionPregled
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1075, 532);
-            this.Controls.Add(this.panelLeget);
+            this.ClientSize = new System.Drawing.Size(1157, 532);
+            this.Controls.Add(this.chkUvoz);
+            this.Controls.Add(this.chkIzvoz);
+            this.Controls.Add(this.chkPlatforma);
+            this.Controls.Add(this.chkTerminal);
+            this.Controls.Add(this.chkCirada);
+            this.Controls.Add(this.panelHeader);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label5);
@@ -387,17 +572,18 @@
             this.Controls.Add(this.txtSifra);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.meniHeader);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPrijemKontejneraKamionPregled";
             this.Text = "Prijem kontejnera kamion";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.PrijemVozomPregled_Load);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.meniHeader.ResumeLayout(false);
+            this.meniHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panelLeget.ResumeLayout(false);
-            this.panelLeget.PerformLayout();
+            this.panelHeader.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -405,7 +591,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip meniHeader;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.TextBox txtSifra;
@@ -425,11 +611,20 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripButton toolStripButton7;
-        private System.Windows.Forms.CheckBox chkPlatforma;
-        private System.Windows.Forms.CheckBox chkCirada;
+        private System.Windows.Forms.Panel panelHeader;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button24;
+        private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
         private System.Windows.Forms.CheckBox chkUvoz;
         private System.Windows.Forms.CheckBox chkIzvoz;
+        private System.Windows.Forms.CheckBox chkPlatforma;
         private System.Windows.Forms.CheckBox chkTerminal;
-        private System.Windows.Forms.Panel panelLeget;
+        private System.Windows.Forms.CheckBox chkCirada;
     }
 }

@@ -55,7 +55,7 @@ namespace Saobracaj.Administracija
             this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(596, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(484, 27);
             this.toolStrip1.TabIndex = 146;
             this.toolStrip1.Text = "Osveži";
             // 
@@ -110,7 +110,7 @@ namespace Saobracaj.Administracija
             this.combo_Korisnik.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combo_Korisnik.FormattingEnabled = true;
             this.combo_Korisnik.Location = new System.Drawing.Point(15, 51);
-            this.combo_Korisnik.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.combo_Korisnik.Margin = new System.Windows.Forms.Padding(2);
             this.combo_Korisnik.Name = "combo_Korisnik";
             this.combo_Korisnik.Size = new System.Drawing.Size(229, 23);
             this.combo_Korisnik.TabIndex = 148;
@@ -131,7 +131,7 @@ namespace Saobracaj.Administracija
             this.combo_Grupa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combo_Grupa.FormattingEnabled = true;
             this.combo_Grupa.Location = new System.Drawing.Point(270, 51);
-            this.combo_Grupa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.combo_Grupa.Margin = new System.Windows.Forms.Padding(2);
             this.combo_Grupa.Name = "combo_Grupa";
             this.combo_Grupa.Size = new System.Drawing.Size(198, 23);
             this.combo_Grupa.TabIndex = 148;
@@ -141,11 +141,11 @@ namespace Saobracaj.Administracija
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(15, 89);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(572, 337);
+            this.dataGridView1.Size = new System.Drawing.Size(453, 261);
             this.dataGridView1.TabIndex = 149;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -154,7 +154,7 @@ namespace Saobracaj.Administracija
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(596, 436);
+            this.ClientSize = new System.Drawing.Size(484, 361);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.combo_Grupa);
             this.Controls.Add(this.combo_Korisnik);
@@ -162,7 +162,7 @@ namespace Saobracaj.Administracija
             this.Controls.Add(this.label1);
             this.Controls.Add(this.toolStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmDodeliGrupu";
             this.Text = "Administracija - Dodela grupa korisniku";
             this.Load += new System.EventHandler(this.frmDodeliGrupu_Load);

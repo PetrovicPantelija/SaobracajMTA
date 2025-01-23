@@ -117,14 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="btnManipulacija.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="meniHeader.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="toolStripLabel1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EwAACxMBAJqcGAAAAtdJREFUaEPtmstrFEEQh8uNwSg+TqJIwPUdCeI/ECQoBgJGMA+NQYiHrDGK8bEz
+        EQAACxEBf2RfkQAAAtdJREFUaEPtmstrFEEQh8uNwSg+TqJIwPUdCeI/ECQoBgJGMA+NQYiHrDGK8bEz
         Ceoh/hXeEkEiiBGE6EnQgx5UEAQDQkBBUFQEFZHoRg9l9UyvO7vTY8bdrp5B+oMfYbqru+o7ZA6ZgMVi
         sVgslpTj4iUKJpIoxnAxODgBx7BermgkjcIOXpQ1F+SKRgZmL5cNYTIqXNxGwj9kTQFGsFnuaCJNwmOY
         IdmHFXWPoQfrZIUG0iTs4BllnYunZYUG0iI8ilkS/qasc3COsklW1kiU8KF7N2n3MHMkuIiE7irnKMbB
@@ -142,7 +142,7 @@
   <data name="toolStripLabel2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADwAAAA8CAYAAAA6/NlyAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EwAACxMBAJqcGAAAAtdJREFUaEPtmstrFEEQh8uNwSg+TqJIwPUdCeI/ECQoBgJGMA+NQYiHrDGK8bEz
+        EQAACxEBf2RfkQAAAtdJREFUaEPtmstrFEEQh8uNwSg+TqJIwPUdCeI/ECQoBgJGMA+NQYiHrDGK8bEz
         Ceoh/hXeEkEiiBGE6EnQgx5UEAQDQkBBUFQEFZHoRg9l9UyvO7vTY8bdrp5B+oMfYbqru+o7ZA6ZgMVi
         sVgslpTj4iUKJpIoxnAxODgBx7BermgkjcIOXpQ1F+SKRgZmL5cNYTIqXNxGwj9kTQFGsFnuaCJNwmOY
         IdmHFXWPoQfrZIUG0iTs4BllnYunZYUG0iI8ilkS/qasc3COsklW1kiU8KF7N2n3MHMkuIiE7irnKMbB
@@ -157,6 +157,9 @@
         7KCwIKT/RvCjtMmspVgsFsv/BMBv+vsAq3hIYLoAAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="commandBarController1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>157, 17</value>
+  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAYAAAAAAAEAIABOQAAAZgAAAICAAAABACAAKAgBALRAAABAQAAAAQAgAChCAADcSAEAMDAAAAEA

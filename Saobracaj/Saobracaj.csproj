@@ -1620,6 +1620,18 @@
     <Compile Include="Izvoz\frmIzvozKonacnaZaglavlje.Designer.cs">
       <DependentUpon>frmIzvozKonacnaZaglavlje.cs</DependentUpon>
     </Compile>
+    <Compile Include="Izvoz\frmIzvozKopiranjeKontejnera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmIzvozKopiranjeKontejnera.Designer.cs">
+      <DependentUpon>frmIzvozKopiranjeKontejnera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvoz\frmIzvozKopoirajKontejner.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvoz\frmIzvozKopoirajKontejner.Designer.cs">
+      <DependentUpon>frmIzvozKopoirajKontejner.cs</DependentUpon>
+    </Compile>
     <Compile Include="Izvoz\frmIzvozTable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -3637,6 +3649,12 @@
     <Compile Include="Uvoz\frmUvozKopirajKontejner.Designer.cs">
       <DependentUpon>frmUvozKopirajKontejner.cs</DependentUpon>
     </Compile>
+    <Compile Include="Uvoz\frmUvozKopirajUslugeKontejnera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Uvoz\frmUvozKopirajUslugeKontejnera.Designer.cs">
+      <DependentUpon>frmUvozKopirajUslugeKontejnera.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uvoz\frmVoziloUsluga.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -4307,6 +4325,12 @@
     <EmbeddedResource Include="Izvoz\frmIzvozKonacnaZaglavlje.resx">
       <DependentUpon>frmIzvozKonacnaZaglavlje.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmIzvozKopiranjeKontejnera.resx">
+      <DependentUpon>frmIzvozKopiranjeKontejnera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvoz\frmIzvozKopoirajKontejner.resx">
+      <DependentUpon>frmIzvozKopoirajKontejner.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\frmIzvozTable.resx">
       <DependentUpon>frmIzvozTable.cs</DependentUpon>
     </EmbeddedResource>
@@ -4368,6 +4392,7 @@
       <DependentUpon>VaganjePregled.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvoz\VaganjeRpt.rdlc" />
+    <EmbeddedResource Include="Izvoz\VaganjeRptCirada.rdlc" />
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -5136,6 +5161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmUvozKopirajKontejner.resx">
       <DependentUpon>frmUvozKopirajKontejner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Uvoz\frmUvozKopirajUslugeKontejnera.resx">
+      <DependentUpon>frmUvozKopirajUslugeKontejnera.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uvoz\frmVoziloUsluga.resx">
       <DependentUpon>frmVoziloUsluga.cs</DependentUpon>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Syncfusion.Windows.Forms;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace Saobracaj.Dokumenta
 {
-    public partial class frmOtpremaKontejneraUvozKamion : Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmOtpremaKontejneraUvozKamion : Form
     {
         string KorisnikCene;
         bool status = false;
@@ -18,13 +19,379 @@ namespace Saobracaj.Dokumenta
         int usao = 0;
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
 
+        private void ChangeTextBox()
+        {
+
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                // toolStripHeader.Visible = false;
+                panelHeader.Visible = true;
+                meniHeader.Visible = false;
+                this.BackColor = Color.White;
+                this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+                this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+                this.ControlBox = true;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+
+
+
+                foreach (Control control in this.Controls)
+                {
+
+                }
+
+
+                foreach (Control control in this.Controls)
+                {
+                    if (control is System.Windows.Forms.Button buttons)
+                    {
+                        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
+                        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
+                        buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
+                        buttons.FlatStyle = FlatStyle.Flat;
+                    }
+
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                        // Example: Change font
+                    }
+
+
+                    if (control is System.Windows.Forms.Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+                }
+            }
+            else
+            {
+                panelHeader.Visible = false;
+                meniHeader.Visible = true;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
+
+
+        private void ChangeTextBoxPanel1()
+        {
+
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                // toolStripHeader.Visible = false;
+
+
+                foreach (Control control in panel1.Controls)
+                {
+                    if (control is System.Windows.Forms.Button buttons)
+                    {
+                        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
+                        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
+                        buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
+                        buttons.FlatStyle = FlatStyle.Flat;
+                    }
+
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                        // Example: Change font
+                    }
+
+
+                    if (control is System.Windows.Forms.Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+                }
+            }
+            else
+            {
+
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
+
+        private void ChangeTextBoxPanel5()
+        {
+
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                // toolStripHeader.Visible = false;
+
+
+                foreach (Control control in panel5.Controls)
+                {
+                    if (control is System.Windows.Forms.Button buttons)
+                    {
+                        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
+                        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
+                        buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
+                        buttons.FlatStyle = FlatStyle.Flat;
+                    }
+
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                        // Example: Change font
+                    }
+
+
+                    if (control is System.Windows.Forms.Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+                }
+            }
+            else
+            {
+
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
+
+        private void ChangeTextBoxPanel6()
+        {
+
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                // toolStripHeader.Visible = false;
+
+
+                foreach (Control control in panel6.Controls)
+                {
+                    if (control is System.Windows.Forms.Button buttons)
+                    {
+                        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
+                        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
+                        buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
+                        buttons.FlatStyle = FlatStyle.Flat;
+                    }
+
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                        // Example: Change font
+                    }
+
+
+                    if (control is System.Windows.Forms.Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, System.Drawing.FontStyle.Regular);
+                    }
+                }
+            }
+            else
+            {
+
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
+
+        private void PodesiDatagridView(DataGridView dgv)
+        {
+
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.BackgroundColor = Color.White;
+
+            dgv.DefaultCellStyle.Font = new Font("Helvetica", 12F, GraphicsUnit.Pixel);
+            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+
+
+            //Header
+            dgv.EnableHeadersVisualStyles = false;
+            //   header.Style.Font = new Font("Arial", 12F, FontStyle.Bold);
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgv.ColumnHeadersHeight = 30;
+        }
         public frmOtpremaKontejneraUvozKamion()
         {
             InitializeComponent();
+            ChangeTextBoxPanel1();
+            ChangeTextBoxPanel5();
+            ChangeTextBoxPanel6();
+            ChangeTextBox();
         }
         public frmOtpremaKontejneraUvozKamion(string Korisnik)
         {
             InitializeComponent();
+            ChangeTextBoxPanel1();
+            ChangeTextBoxPanel5();
+            ChangeTextBoxPanel6();
+            ChangeTextBox();
             KorisnikCene = Korisnik;
         }
 
@@ -32,6 +399,10 @@ namespace Saobracaj.Dokumenta
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
+            ChangeTextBoxPanel1();
+            ChangeTextBoxPanel5();
+            ChangeTextBoxPanel6();
+            ChangeTextBox();
             if (Vozom == 1)
             {
                 chkVoz.Checked = true;
@@ -61,6 +432,10 @@ namespace Saobracaj.Dokumenta
         {
             InitializeComponent();
             KorisnikCene = Korisnik;
+            ChangeTextBoxPanel1();
+            ChangeTextBoxPanel5();
+            ChangeTextBoxPanel6();
+            ChangeTextBox();
             txtSifra.Text = sifra.ToString();
             VratiPodatke(sifra);
             RefreshDataGrid2();
@@ -127,31 +502,7 @@ namespace Saobracaj.Dokumenta
                 RefreshDataGrid2();
             }
 
-            /*
-            var select = "  SELECT  OtpremaKontejneraVozStavke.BrojKontejnera, Promet.ID from " +
-              " OtpremaKontejneraVozStavke inner join Promet On OtpremaKontejneraVozStavke.BrojKontejnera = Promet.BrojKontejnera " +
-              " where Promet.Zatvoren = 0 and IdNadredjenog = " + txtSifra.Text + " order by RB";
-
-            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
-            SqlConnection myConnection = new SqlConnection(s_connection);
-            var c = new SqlConnection(s_connection);
-            var dataAdapter = new SqlDataAdapter(select, c);
-
-            var commandBuilder = new SqlCommandBuilder(dataAdapter);
-            var ds = new DataSet();
-            dataAdapter.Fill(ds);
-            dataGridView2.ReadOnly = false;
-            dataGridView2.DataSource = ds.Tables[0];
-
-            DataGridViewColumn column = dataGridView2.Columns[0];
-            dataGridView2.Columns[0].HeaderText = "Broj kontejnera";
-            dataGridView2.Columns[0].Width = 90;
-            // dataGridView2.Columns[0].Visible = false;
-
-            DataGridViewColumn column2 = dataGridView2.Columns[1];
-            dataGridView2.Columns[1].HeaderText = "ID";
-            dataGridView2.Columns[1].Width = 90;
-            */
+          
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -235,7 +586,7 @@ namespace Saobracaj.Dokumenta
             dataGridView1.ReadOnly = false;
             dataGridView1.DataSource = ds.Tables[0];
 
-
+            PodesiDatagridView(dataGridView1);
 
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
@@ -253,88 +604,7 @@ namespace Saobracaj.Dokumenta
             DataGridViewColumn column4 = dataGridView1.Columns[3];
             dataGridView1.Columns[3].HeaderText = "Broj kontejnera";
             dataGridView1.Columns[3].Width = 90;
-            /*
-            DataGridViewColumn column5 = dataGridView1.Columns[4];
-            dataGridView1.Columns[4].HeaderText = "Granica";
-            dataGridView1.Columns[4].Width = 40;
-
-            DataGridViewColumn column6 = dataGridView1.Columns[5];
-            dataGridView1.Columns[5].HeaderText = "Broj osovina";
-            dataGridView1.Columns[5].Width = 20;
-
-            DataGridViewColumn column7 = dataGridView1.Columns[6];
-            dataGridView1.Columns[6].HeaderText = "Sopstvena masa";
-            dataGridView1.Columns[6].Width = 30;
-
-            DataGridViewColumn column8 = dataGridView1.Columns[7];
-            dataGridView1.Columns[7].HeaderText = "Tara";
-            dataGridView1.Columns[7].Width = 50;
-
-            DataGridViewColumn column9 = dataGridView1.Columns[8];
-            dataGridView1.Columns[8].HeaderText = "Neto";
-            dataGridView1.Columns[8].Width = 50;
-
-            DataGridViewColumn column10 = dataGridView1.Columns[9];
-            dataGridView1.Columns[9].HeaderText = "Posiljalac";
-            dataGridView1.Columns[9].Width = 50;
-
-            DataGridViewColumn column11 = dataGridView1.Columns[10];
-            dataGridView1.Columns[10].HeaderText = "Primalac";
-            dataGridView1.Columns[10].Width = 50;
-
-            DataGridViewColumn column12 = dataGridView1.Columns[11];
-            dataGridView1.Columns[11].HeaderText = "Vlasnik kontejnera";
-            dataGridView1.Columns[11].Width = 40;
-
-            DataGridViewColumn column13 = dataGridView1.Columns[12];
-            dataGridView1.Columns[12].HeaderText = "Organizator";
-            dataGridView1.Columns[12].Width = 40;
-
-            DataGridViewColumn column14 = dataGridView1.Columns[13];
-            dataGridView1.Columns[13].HeaderText = "Tip kontejnera";
-            dataGridView1.Columns[13].Width = 30;
-
-            DataGridViewColumn column15 = dataGridView1.Columns[14];
-            dataGridView1.Columns[14].HeaderText = "Vrsta robe";
-            dataGridView1.Columns[14].Width = 30;
-
-            DataGridViewColumn column16 = dataGridView1.Columns[15];
-            dataGridView1.Columns[15].HeaderText = "Buking";
-            dataGridView1.Columns[15].Width = 30;
-
-            DataGridViewColumn column17 = dataGridView1.Columns[16];
-            dataGridView1.Columns[16].HeaderText = " Status Kontejnera";
-            dataGridView1.Columns[16].Width = 90;
-
-            DataGridViewColumn column18 = dataGridView1.Columns[17];
-            dataGridView1.Columns[17].HeaderText = "Broj plombe";
-            dataGridView1.Columns[17].Width = 90;
-
-            DataGridViewColumn column19 = dataGridView1.Columns[18];
-            dataGridView1.Columns[18].HeaderText = "Br plombe 2";
-            dataGridView1.Columns[18].Width = 70;
-
-            DataGridViewColumn column20 = dataGridView1.Columns[19];
-            dataGridView1.Columns[19].HeaderText = "Pl lager";
-            dataGridView1.Columns[19].Width = 70;
-
-            DataGridViewColumn column21 = dataGridView1.Columns[20];
-            dataGridView1.Columns[20].HeaderText = "Vagon";
-            dataGridView1.Columns[20].Width = 70;
-
-
-            DataGridViewColumn column22 = dataGridView1.Columns[21];
-            dataGridView1.Columns[21].HeaderText = "Datum";
-            dataGridView1.Columns[21].Width = 70;
-
-            DataGridViewColumn column23 = dataGridView1.Columns[22];
-            dataGridView1.Columns[22].HeaderText = "Korisnik";
-            dataGridView1.Columns[22].Width = 70;
-
-            DataGridViewColumn column24 = dataGridView1.Columns[23];
-            dataGridView1.Columns[23].HeaderText = "Napomena";
-            dataGridView1.Columns[23].Width = 70;
-            */
+          
 
 
         }
@@ -377,6 +647,7 @@ namespace Saobracaj.Dokumenta
             dataGridView1.ReadOnly = false;
             dataGridView1.DataSource = ds.Tables[0];
 
+            PodesiDatagridView(dataGridView1);
 
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
@@ -1356,17 +1627,7 @@ namespace Saobracaj.Dokumenta
             dataGridView2.ReadOnly = false;
             dataGridView2.DataSource = ds.Tables[0];
 
-            dataGridView2.BorderStyle = BorderStyle.None;
-            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView2.BackgroundColor = Color.White;
-
-            dataGridView2.EnableHeadersVisualStyles = false;
-            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView2);
 
             //Panta refresh
 
@@ -1417,17 +1678,7 @@ namespace Saobracaj.Dokumenta
             dataGridView2.ReadOnly = false;
             dataGridView2.DataSource = ds.Tables[0];
 
-            dataGridView2.BorderStyle = BorderStyle.None;
-            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView2.BackgroundColor = Color.White;
-
-            dataGridView2.EnableHeadersVisualStyles = false;
-            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView2);
 
             //Panta refresh
 
@@ -3305,17 +3556,7 @@ namespace Saobracaj.Dokumenta
             dataGridView8.DataSource = ds.Tables[0];
 
 
-            dataGridView8.BorderStyle = BorderStyle.None;
-            dataGridView8.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView8.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView8.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView8.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView8.BackgroundColor = Color.White;
-
-            dataGridView8.EnableHeadersVisualStyles = false;
-            dataGridView8.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView8.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView8.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView8);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView8.Columns[0];
@@ -3443,17 +3684,7 @@ namespace Saobracaj.Dokumenta
             dataGridView4.ReadOnly = true;
             dataGridView4.DataSource = ds.Tables[0];
 
-            dataGridView4.BorderStyle = BorderStyle.None;
-            dataGridView4.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView4.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView4.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView4.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView4.BackgroundColor = Color.White;
-
-            dataGridView4.EnableHeadersVisualStyles = false;
-            dataGridView4.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView4.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView4.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView4);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView4.Columns[0];
@@ -3482,17 +3713,7 @@ namespace Saobracaj.Dokumenta
             dataGridView3.ReadOnly = true;
             dataGridView3.DataSource = ds.Tables[0];
 
-            dataGridView3.BorderStyle = BorderStyle.None;
-            dataGridView3.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView3.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView3.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView3.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView3.BackgroundColor = Color.White;
-
-            dataGridView3.EnableHeadersVisualStyles = false;
-            dataGridView3.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView3.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView3.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView3);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView3.Columns[0];

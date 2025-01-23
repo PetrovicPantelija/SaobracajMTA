@@ -29,8 +29,9 @@ namespace Saobracaj.Uvoz
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRadniNalogInterniPregled));
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.meniHeader = new System.Windows.Forms.ToolStrip();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -40,10 +41,10 @@ namespace Saobracaj.Uvoz
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton8 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
-            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.gradientPanel4 = new Syncfusion.Windows.Forms.Tools.GradientPanel();
             this.label5 = new System.Windows.Forms.Label();
@@ -71,11 +72,19 @@ namespace Saobracaj.Uvoz
             this.label43 = new System.Windows.Forms.Label();
             this.tabSplitterContainer1 = new Syncfusion.Windows.Forms.Tools.TabSplitterContainer();
             this.tabSplitterPage1 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
+            this.gridGroupingControl1 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
             this.tabSplitterPage2 = new Syncfusion.Windows.Forms.Tools.TabSplitterPage();
             this.gridGroupingControl2 = new Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl();
-            this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
+            this.panelHeader = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button27 = new System.Windows.Forms.Button();
+            this.button26 = new System.Windows.Forms.Button();
+            this.button25 = new System.Windows.Forms.Button();
+            this.button24 = new System.Windows.Forms.Button();
+            this.button23 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.meniHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -90,15 +99,19 @@ namespace Saobracaj.Uvoz
             this.gradientPanel1.SuspendLayout();
             this.tabSplitterContainer1.SuspendLayout();
             this.tabSplitterPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).BeginInit();
             this.tabSplitterPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
+            this.panelHeader.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // toolStrip1
+            // meniHeader
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.White;
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.meniHeader.BackColor = System.Drawing.Color.White;
+            this.meniHeader.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.meniHeader.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator1,
             this.toolStripButton1,
             this.toolStripSeparator2,
@@ -112,11 +125,11 @@ namespace Saobracaj.Uvoz
             this.toolStripButton5,
             this.toolStripButton7,
             this.toolStripButton6});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1374, 27);
-            this.toolStrip1.TabIndex = 8;
-            this.toolStrip1.Text = "Štampaj izveštaj";
+            this.meniHeader.Location = new System.Drawing.Point(0, 33);
+            this.meniHeader.Name = "meniHeader";
+            this.meniHeader.Size = new System.Drawing.Size(1390, 27);
+            this.meniHeader.TabIndex = 8;
+            this.meniHeader.Text = "Štampaj izveštaj";
             // 
             // toolStripSeparator1
             // 
@@ -179,8 +192,8 @@ namespace Saobracaj.Uvoz
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(116, 24);
-            this.toolStripButton4.Text = "POSTAVI ZAVRSENO";
+            this.toolStripButton4.Size = new System.Drawing.Size(51, 24);
+            this.toolStripButton4.Text = "ZAVRŠE";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // toolStripButton8
@@ -193,6 +206,18 @@ namespace Saobracaj.Uvoz
             this.toolStripButton8.Size = new System.Drawing.Size(134, 24);
             this.toolStripButton8.Text = "FORMIRAJ DOKUMENT";
             this.toolStripButton8.Click += new System.EventHandler(this.toolStripButton8_Click);
+            // 
+            // toolStripButton9
+            // 
+            this.toolStripButton9.BackColor = System.Drawing.Color.White;
+            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton9.ForeColor = System.Drawing.Color.Red;
+            this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
+            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton9.Name = "toolStripButton9";
+            this.toolStripButton9.Size = new System.Drawing.Size(138, 24);
+            this.toolStripButton9.Text = "BRISI NALOG I RN I DOK";
+            this.toolStripButton9.Click += new System.EventHandler(this.toolStripButton9_Click);
             // 
             // toolStripButton5
             // 
@@ -231,44 +256,18 @@ namespace Saobracaj.Uvoz
             this.toolStripButton6.Visible = false;
             this.toolStripButton6.Click += new System.EventHandler(this.toolStripButton6_Click);
             // 
-            // gridGroupingControl1
-            // 
-            this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.gridGroupingControl1.BackColor = System.Drawing.SystemColors.Window;
-            this.gridGroupingControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
-            this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2010Blue;
-            this.gridGroupingControl1.Location = new System.Drawing.Point(0, 0);
-            this.gridGroupingControl1.Name = "gridGroupingControl1";
-            this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
-            this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl1.Size = new System.Drawing.Size(1182, 238);
-            this.gridGroupingControl1.TabIndex = 9;
-            this.gridGroupingControl1.TableDescriptor.AllowNew = false;
-            this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
-            this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
-            this.gridGroupingControl1.TableDescriptor.TableOptions.RecordRowHeight = 28;
-            this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
-            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.SystemColors.Desktop;
-            this.gridGroupingControl1.Text = "gridGroupingControl1";
-            this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
-            this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
-            this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
-            // 
             // splitContainer1
             // 
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 62);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(104)))), ((int)(((byte)(117)))), ((int)(((byte)(123)))));
+            this.splitContainer1.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
             this.splitContainer1.Panel1.Controls.Add(this.gradientPanel4);
             this.splitContainer1.Panel1.Controls.Add(this.gradientPanel3);
             this.splitContainer1.Panel1.Controls.Add(this.gradientPanel2);
@@ -283,8 +282,8 @@ namespace Saobracaj.Uvoz
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tabSplitterContainer1);
-            this.splitContainer1.Size = new System.Drawing.Size(1373, 652);
-            this.splitContainer1.SplitterDistance = 188;
+            this.splitContainer1.Size = new System.Drawing.Size(1390, 709);
+            this.splitContainer1.SplitterDistance = 243;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 10;
             // 
@@ -296,15 +295,15 @@ namespace Saobracaj.Uvoz
             this.gradientPanel4.Controls.Add(this.txtTipBroj);
             this.gradientPanel4.Controls.Add(this.txtTip);
             this.gradientPanel4.Controls.Add(this.label4);
-            this.gradientPanel4.Location = new System.Drawing.Point(9, 386);
+            this.gradientPanel4.Location = new System.Drawing.Point(9, 408);
             this.gradientPanel4.Name = "gradientPanel4";
-            this.gradientPanel4.Size = new System.Drawing.Size(162, 129);
+            this.gradientPanel4.Size = new System.Drawing.Size(228, 129);
             this.gradientPanel4.TabIndex = 230;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.ForeColor = System.Drawing.Color.Black;
             this.label5.Location = new System.Drawing.Point(9, 69);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
@@ -315,9 +314,9 @@ namespace Saobracaj.Uvoz
             // txtRNBroj
             // 
             this.txtRNBroj.Enabled = false;
-            this.txtRNBroj.Location = new System.Drawing.Point(69, 90);
+            this.txtRNBroj.Location = new System.Drawing.Point(102, 90);
             this.txtRNBroj.Name = "txtRNBroj";
-            this.txtRNBroj.Size = new System.Drawing.Size(69, 20);
+            this.txtRNBroj.Size = new System.Drawing.Size(85, 20);
             this.txtRNBroj.TabIndex = 230;
             // 
             // txtRNTip
@@ -325,15 +324,15 @@ namespace Saobracaj.Uvoz
             this.txtRNTip.Enabled = false;
             this.txtRNTip.Location = new System.Drawing.Point(12, 90);
             this.txtRNTip.Name = "txtRNTip";
-            this.txtRNTip.Size = new System.Drawing.Size(47, 20);
+            this.txtRNTip.Size = new System.Drawing.Size(83, 20);
             this.txtRNTip.TabIndex = 227;
             // 
             // txtTipBroj
             // 
             this.txtTipBroj.Enabled = false;
-            this.txtTipBroj.Location = new System.Drawing.Point(69, 38);
+            this.txtTipBroj.Location = new System.Drawing.Point(102, 38);
             this.txtTipBroj.Name = "txtTipBroj";
-            this.txtTipBroj.Size = new System.Drawing.Size(69, 20);
+            this.txtTipBroj.Size = new System.Drawing.Size(85, 20);
             this.txtTipBroj.TabIndex = 229;
             // 
             // txtTip
@@ -341,13 +340,13 @@ namespace Saobracaj.Uvoz
             this.txtTip.Enabled = false;
             this.txtTip.Location = new System.Drawing.Point(11, 38);
             this.txtTip.Name = "txtTip";
-            this.txtTip.Size = new System.Drawing.Size(48, 20);
+            this.txtTip.Size = new System.Drawing.Size(86, 20);
             this.txtTip.TabIndex = 228;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.ForeColor = System.Drawing.Color.Black;
             this.label4.Location = new System.Drawing.Point(9, 11);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
@@ -358,15 +357,15 @@ namespace Saobracaj.Uvoz
             // gradientPanel3
             // 
             this.gradientPanel3.Controls.Add(this.chkFormiranTerminal);
-            this.gradientPanel3.Location = new System.Drawing.Point(6, 319);
+            this.gradientPanel3.Location = new System.Drawing.Point(6, 341);
             this.gradientPanel3.Name = "gradientPanel3";
-            this.gradientPanel3.Size = new System.Drawing.Size(165, 50);
+            this.gradientPanel3.Size = new System.Drawing.Size(231, 50);
             this.gradientPanel3.TabIndex = 229;
             // 
             // chkFormiranTerminal
             // 
             this.chkFormiranTerminal.AutoSize = true;
-            this.chkFormiranTerminal.ForeColor = System.Drawing.Color.White;
+            this.chkFormiranTerminal.ForeColor = System.Drawing.Color.Black;
             this.chkFormiranTerminal.Location = new System.Drawing.Point(11, 21);
             this.chkFormiranTerminal.Name = "chkFormiranTerminal";
             this.chkFormiranTerminal.Size = new System.Drawing.Size(141, 17);
@@ -379,15 +378,15 @@ namespace Saobracaj.Uvoz
             this.gradientPanel2.Controls.Add(this.chkAdministrativna);
             this.gradientPanel2.Controls.Add(this.chkKamion);
             this.gradientPanel2.Controls.Add(this.chkVOZ);
-            this.gradientPanel2.Location = new System.Drawing.Point(9, 179);
+            this.gradientPanel2.Location = new System.Drawing.Point(9, 186);
             this.gradientPanel2.Name = "gradientPanel2";
-            this.gradientPanel2.Size = new System.Drawing.Size(161, 127);
+            this.gradientPanel2.Size = new System.Drawing.Size(228, 142);
             this.gradientPanel2.TabIndex = 228;
             // 
             // chkAdministrativna
             // 
             this.chkAdministrativna.AutoSize = true;
-            this.chkAdministrativna.ForeColor = System.Drawing.Color.White;
+            this.chkAdministrativna.ForeColor = System.Drawing.Color.Black;
             this.chkAdministrativna.Location = new System.Drawing.Point(11, 90);
             this.chkAdministrativna.Name = "chkAdministrativna";
             this.chkAdministrativna.Size = new System.Drawing.Size(125, 17);
@@ -398,7 +397,7 @@ namespace Saobracaj.Uvoz
             // chkKamion
             // 
             this.chkKamion.AutoSize = true;
-            this.chkKamion.ForeColor = System.Drawing.Color.White;
+            this.chkKamion.ForeColor = System.Drawing.Color.Black;
             this.chkKamion.Location = new System.Drawing.Point(11, 57);
             this.chkKamion.Name = "chkKamion";
             this.chkKamion.Size = new System.Drawing.Size(71, 17);
@@ -409,7 +408,7 @@ namespace Saobracaj.Uvoz
             // chkVOZ
             // 
             this.chkVOZ.AutoSize = true;
-            this.chkVOZ.ForeColor = System.Drawing.Color.White;
+            this.chkVOZ.ForeColor = System.Drawing.Color.Black;
             this.chkVOZ.Location = new System.Drawing.Point(11, 21);
             this.chkVOZ.Name = "chkVOZ";
             this.chkVOZ.Size = new System.Drawing.Size(48, 17);
@@ -423,15 +422,15 @@ namespace Saobracaj.Uvoz
             this.gradientPanel1.Controls.Add(this.txtNALOGID);
             this.gradientPanel1.Controls.Add(this.label3);
             this.gradientPanel1.Controls.Add(this.textBox1);
-            this.gradientPanel1.Location = new System.Drawing.Point(9, 64);
+            this.gradientPanel1.Location = new System.Drawing.Point(9, 59);
             this.gradientPanel1.Name = "gradientPanel1";
-            this.gradientPanel1.Size = new System.Drawing.Size(161, 109);
+            this.gradientPanel1.Size = new System.Drawing.Size(228, 109);
             this.gradientPanel1.TabIndex = 227;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(9, 10);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
@@ -444,13 +443,13 @@ namespace Saobracaj.Uvoz
             this.txtNALOGID.Enabled = false;
             this.txtNALOGID.Location = new System.Drawing.Point(12, 76);
             this.txtNALOGID.Name = "txtNALOGID";
-            this.txtNALOGID.Size = new System.Drawing.Size(69, 20);
+            this.txtNALOGID.Size = new System.Drawing.Size(85, 20);
             this.txtNALOGID.TabIndex = 225;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(9, 60);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
@@ -463,13 +462,13 @@ namespace Saobracaj.Uvoz
             this.textBox1.Enabled = false;
             this.textBox1.Location = new System.Drawing.Point(12, 26);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(69, 20);
+            this.textBox1.Size = new System.Drawing.Size(85, 20);
             this.textBox1.TabIndex = 222;
             // 
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button2.Location = new System.Drawing.Point(21, 610);
+            this.button2.Location = new System.Drawing.Point(21, 632);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(158, 35);
             this.button2.TabIndex = 221;
@@ -481,7 +480,7 @@ namespace Saobracaj.Uvoz
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.button1.Location = new System.Drawing.Point(22, 569);
+            this.button1.Location = new System.Drawing.Point(22, 591);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(160, 35);
             this.button1.TabIndex = 220;
@@ -493,7 +492,7 @@ namespace Saobracaj.Uvoz
             // cboIzdatZa
             // 
             this.cboIzdatZa.FormattingEnabled = true;
-            this.cboIzdatZa.Location = new System.Drawing.Point(13, 609);
+            this.cboIzdatZa.Location = new System.Drawing.Point(13, 631);
             this.cboIzdatZa.Margin = new System.Windows.Forms.Padding(2);
             this.cboIzdatZa.Name = "cboIzdatZa";
             this.cboIzdatZa.Size = new System.Drawing.Size(161, 21);
@@ -502,7 +501,7 @@ namespace Saobracaj.Uvoz
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 594);
+            this.label1.Location = new System.Drawing.Point(16, 616);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 13);
@@ -512,17 +511,17 @@ namespace Saobracaj.Uvoz
             // cboIzdatOd
             // 
             this.cboIzdatOd.FormattingEnabled = true;
-            this.cboIzdatOd.Location = new System.Drawing.Point(9, 35);
+            this.cboIzdatOd.Location = new System.Drawing.Point(6, 30);
             this.cboIzdatOd.Margin = new System.Windows.Forms.Padding(2);
             this.cboIzdatOd.Name = "cboIzdatOd";
-            this.cboIzdatOd.Size = new System.Drawing.Size(161, 21);
+            this.cboIzdatOd.Size = new System.Drawing.Size(231, 21);
             this.cboIzdatOd.TabIndex = 217;
             // 
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.ForeColor = System.Drawing.Color.White;
-            this.label43.Location = new System.Drawing.Point(11, 6);
+            this.label43.ForeColor = System.Drawing.Color.Black;
+            this.label43.Location = new System.Drawing.Point(10, 15);
             this.label43.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(95, 13);
@@ -531,95 +530,289 @@ namespace Saobracaj.Uvoz
             // 
             // tabSplitterContainer1
             // 
-            this.tabSplitterContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabSplitterContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabSplitterContainer1.Location = new System.Drawing.Point(0, 0);
             this.tabSplitterContainer1.Name = "tabSplitterContainer1";
             this.tabSplitterContainer1.PrimaryPages.AddRange(new Syncfusion.Windows.Forms.Tools.TabSplitterPage[] {
             this.tabSplitterPage1});
             this.tabSplitterContainer1.SecondaryPages.AddRange(new Syncfusion.Windows.Forms.Tools.TabSplitterPage[] {
             this.tabSplitterPage2});
-            this.tabSplitterContainer1.Size = new System.Drawing.Size(1182, 652);
+            this.tabSplitterContainer1.Size = new System.Drawing.Size(1129, 693);
             this.tabSplitterContainer1.SplitterBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.tabSplitterContainer1.SplitterPosition = 238;
+            this.tabSplitterContainer1.SplitterPosition = 631;
             this.tabSplitterContainer1.TabIndex = 10;
             this.tabSplitterContainer1.Text = "tabSplitterContainer1";
             // 
             // tabSplitterPage1
             // 
+            this.tabSplitterPage1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tabSplitterPage1.AutoScroll = true;
             this.tabSplitterPage1.Controls.Add(this.gridGroupingControl1);
             this.tabSplitterPage1.Hide = false;
             this.tabSplitterPage1.Location = new System.Drawing.Point(0, 0);
             this.tabSplitterPage1.Name = "tabSplitterPage1";
-            this.tabSplitterPage1.Size = new System.Drawing.Size(1182, 238);
+            this.tabSplitterPage1.Size = new System.Drawing.Size(1129, 631);
             this.tabSplitterPage1.TabIndex = 1;
             this.tabSplitterPage1.Text = "PO USLUGAMA";
+            // 
+            // gridGroupingControl1
+            // 
+            this.gridGroupingControl1.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridGroupingControl1.ApplyVisualStyles = false;
+            this.gridGroupingControl1.BackColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.Font = new System.Drawing.Font("Helvetica", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridGroupingControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl1.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
+            this.gridGroupingControl1.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
+            this.gridGroupingControl1.Location = new System.Drawing.Point(3, 3);
+            this.gridGroupingControl1.Name = "gridGroupingControl1";
+            this.gridGroupingControl1.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
+            this.gridGroupingControl1.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
+            this.gridGroupingControl1.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
+            this.gridGroupingControl1.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
+            this.gridGroupingControl1.Size = new System.Drawing.Size(1123, 625);
+            this.gridGroupingControl1.TabIndex = 236;
+            this.gridGroupingControl1.TableDescriptor.AllowNew = false;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.CaptionRowHeight = 22;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
+            this.gridGroupingControl1.TableDescriptor.TableOptions.RecordRowHeight = 28;
+            this.gridGroupingControl1.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
+            this.gridGroupingControl1.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.gridGroupingControl1.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            this.gridGroupingControl1.TableOptions.SelectionTextColor = System.Drawing.Color.White;
+            this.gridGroupingControl1.Text = "gridGroupingControl1";
+            this.gridGroupingControl1.UseRightToLeftCompatibleTextBox = true;
+            this.gridGroupingControl1.VersionInfo = "18.4460.0.34";
+            this.gridGroupingControl1.TableControlCellClick += new Syncfusion.Windows.Forms.Grid.Grouping.GridTableControlCellClickEventHandler(this.gridGroupingControl1_TableControlCellClick);
             // 
             // tabSplitterPage2
             // 
             this.tabSplitterPage2.AutoScroll = true;
             this.tabSplitterPage2.Controls.Add(this.gridGroupingControl2);
             this.tabSplitterPage2.Hide = false;
-            this.tabSplitterPage2.Location = new System.Drawing.Point(0, 258);
+            this.tabSplitterPage2.Location = new System.Drawing.Point(0, 651);
             this.tabSplitterPage2.Name = "tabSplitterPage2";
-            this.tabSplitterPage2.Size = new System.Drawing.Size(1182, 394);
+            this.tabSplitterPage2.Size = new System.Drawing.Size(1129, 42);
             this.tabSplitterPage2.TabIndex = 2;
             this.tabSplitterPage2.Text = "KONTEJNERI";
             // 
             // gridGroupingControl2
             // 
-            this.gridGroupingControl2.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.gridGroupingControl2.BackColor = System.Drawing.SystemColors.Window;
-            this.gridGroupingControl2.ColorStyles = Syncfusion.Windows.Forms.ColorStyles.Office2010Blue;
-            this.gridGroupingControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridGroupingControl2.AlphaBlendSelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridGroupingControl2.ApplyVisualStyles = false;
+            this.gridGroupingControl2.BackColor = System.Drawing.Color.White;
+            this.gridGroupingControl2.Font = new System.Drawing.Font("Helvetica", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridGroupingControl2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.gridGroupingControl2.GridLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
             this.gridGroupingControl2.GridOfficeScrollBars = Syncfusion.Windows.Forms.OfficeScrollBars.Office2016;
-            this.gridGroupingControl2.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Office2010Blue;
-            this.gridGroupingControl2.Location = new System.Drawing.Point(0, 0);
+            this.gridGroupingControl2.GridVisualStyles = Syncfusion.Windows.Forms.GridVisualStyles.Custom;
+            this.gridGroupingControl2.Location = new System.Drawing.Point(3, 2);
             this.gridGroupingControl2.Name = "gridGroupingControl2";
-            this.gridGroupingControl2.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.White;
+            this.gridGroupingControl2.Office2007ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2007ColorScheme.Black;
+            this.gridGroupingControl2.Office2010ScrollBarsColorScheme = Syncfusion.Windows.Forms.Office2010ColorScheme.Black;
+            this.gridGroupingControl2.Office2016ScrollBarsColorScheme = Syncfusion.Windows.Forms.ScrollBarOffice2016ColorScheme.Black;
             this.gridGroupingControl2.ShowCurrentCellBorderBehavior = Syncfusion.Windows.Forms.Grid.GridShowCurrentCellBorder.GrayWhenLostFocus;
-            this.gridGroupingControl2.Size = new System.Drawing.Size(1182, 394);
-            this.gridGroupingControl2.TabIndex = 236;
+            this.gridGroupingControl2.Size = new System.Drawing.Size(1123, 37);
+            this.gridGroupingControl2.TabIndex = 237;
             this.gridGroupingControl2.TableDescriptor.AllowNew = false;
             this.gridGroupingControl2.TableDescriptor.TableOptions.CaptionRowHeight = 22;
             this.gridGroupingControl2.TableDescriptor.TableOptions.ColumnHeaderRowHeight = 28;
             this.gridGroupingControl2.TableDescriptor.TableOptions.RecordRowHeight = 28;
             this.gridGroupingControl2.TableOptions.AllowSelection = Syncfusion.Windows.Forms.Grid.GridSelectionFlags.None;
             this.gridGroupingControl2.TableOptions.ListBoxSelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-            this.gridGroupingControl2.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.gridGroupingControl2.TableOptions.SelectionTextColor = System.Drawing.SystemColors.HighlightText;
+            this.gridGroupingControl2.TableOptions.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(199)))), ((int)(((byte)(249)))));
+            this.gridGroupingControl2.TableOptions.SelectionTextColor = System.Drawing.Color.White;
             this.gridGroupingControl2.Text = "gridGroupingControl2";
             this.gridGroupingControl2.UseRightToLeftCompatibleTextBox = true;
             this.gridGroupingControl2.VersionInfo = "18.4460.0.34";
             // 
-            // toolStripButton9
+            // commandBarController1
             // 
-            this.toolStripButton9.BackColor = System.Drawing.Color.White;
-            this.toolStripButton9.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton9.ForeColor = System.Drawing.Color.Red;
-            this.toolStripButton9.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton9.Image")));
-            this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton9.Name = "toolStripButton9";
-            this.toolStripButton9.Size = new System.Drawing.Size(138, 24);
-            this.toolStripButton9.Text = "BRISI NALOG I RN I DOK";
-            this.toolStripButton9.Click += new System.EventHandler(this.toolStripButton9_Click);
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
+            // 
+            // panelHeader
+            // 
+            this.panelHeader.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.panelHeader.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelHeader.Controls.Add(this.panel2);
+            this.panelHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHeader.Location = new System.Drawing.Point(0, 0);
+            this.panelHeader.Name = "panelHeader";
+            this.panelHeader.Size = new System.Drawing.Size(1390, 33);
+            this.panelHeader.TabIndex = 461;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.button3);
+            this.panel2.Controls.Add(this.button27);
+            this.panel2.Controls.Add(this.button26);
+            this.panel2.Controls.Add(this.button25);
+            this.panel2.Controls.Add(this.button24);
+            this.panel2.Controls.Add(this.button23);
+            this.panel2.Location = new System.Drawing.Point(3, 1);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1327, 31);
+            this.panel2.TabIndex = 6;
+            // 
+            // button27
+            // 
+            this.button27.AutoSize = true;
+            this.button27.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button27.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button27.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button27.FlatAppearance.BorderSize = 0;
+            this.button27.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button27.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button27.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button27.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button27.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button27.Location = new System.Drawing.Point(289, 0);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(132, 31);
+            this.button27.TabIndex = 20;
+            this.button27.Text = "Formiraj operacije";
+            this.button27.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.toolStripButton8_Click);
+            // 
+            // button26
+            // 
+            this.button26.AutoSize = true;
+            this.button26.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button26.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button26.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button26.FlatAppearance.BorderSize = 0;
+            this.button26.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button26.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button26.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button26.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button26.Location = new System.Drawing.Point(233, 0);
+            this.button26.Name = "button26";
+            this.button26.Size = new System.Drawing.Size(56, 31);
+            this.button26.TabIndex = 19;
+            this.button26.Text = "Završi";
+            this.button26.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button26.UseVisualStyleBackColor = true;
+            this.button26.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
+            // button25
+            // 
+            this.button25.AutoSize = true;
+            this.button25.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button25.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button25.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button25.FlatAppearance.BorderSize = 0;
+            this.button25.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button25.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button25.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button25.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button25.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button25.Location = new System.Drawing.Point(163, 0);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(70, 31);
+            this.button25.TabIndex = 18;
+            this.button25.Text = "Storniraj";
+            this.button25.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // button24
+            // 
+            this.button24.AutoSize = true;
+            this.button24.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button24.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button24.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button24.FlatAppearance.BorderSize = 0;
+            this.button24.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button24.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button24.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button24.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button24.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button24.Location = new System.Drawing.Point(74, 0);
+            this.button24.Name = "button24";
+            this.button24.Size = new System.Drawing.Size(89, 31);
+            this.button24.TabIndex = 17;
+            this.button24.Text = "Izdat za OJ";
+            this.button24.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button24.UseVisualStyleBackColor = true;
+            this.button24.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // button23
+            // 
+            this.button23.AutoSize = true;
+            this.button23.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button23.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button23.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button23.FlatAppearance.BorderSize = 0;
+            this.button23.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button23.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button23.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button23.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button23.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button23.Location = new System.Drawing.Point(0, 0);
+            this.button23.Name = "button23";
+            this.button23.Size = new System.Drawing.Size(74, 31);
+            this.button23.TabIndex = 16;
+            this.button23.Text = "Izdao OJ";
+            this.button23.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button23.UseVisualStyleBackColor = true;
+            this.button23.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // button3
+            // 
+            this.button3.AutoSize = true;
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(248)))));
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Helvetica", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(54)))));
+            this.button3.Location = new System.Drawing.Point(421, 0);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(91, 31);
+            this.button3.TabIndex = 21;
+            this.button3.Text = "Brisi naloge";
+            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.toolStripButton9_Click);
             // 
             // frmRadniNalogInterniPregled
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1374, 672);
+            this.ClientSize = new System.Drawing.Size(1390, 774);
+            this.Controls.Add(this.meniHeader);
             this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.toolStrip1);
+            this.Controls.Add(this.panelHeader);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmRadniNalogInterniPregled";
             this.Text = "Pregled internih radnih naloga";
             this.Load += new System.EventHandler(this.frmRadniNalogInterniPregled_Load);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
+            this.meniHeader.ResumeLayout(false);
+            this.meniHeader.PerformLayout();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -639,8 +832,13 @@ namespace Saobracaj.Uvoz
             this.gradientPanel1.PerformLayout();
             this.tabSplitterContainer1.ResumeLayout(false);
             this.tabSplitterPage1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl1)).EndInit();
             this.tabSplitterPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridGroupingControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
+            this.panelHeader.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -648,11 +846,10 @@ namespace Saobracaj.Uvoz
 
         #endregion
 
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip meniHeader;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
-        private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ComboBox cboIzdatZa;
         private System.Windows.Forms.Label label1;
@@ -690,7 +887,17 @@ namespace Saobracaj.Uvoz
         private Syncfusion.Windows.Forms.Tools.TabSplitterContainer tabSplitterContainer1;
         private Syncfusion.Windows.Forms.Tools.TabSplitterPage tabSplitterPage1;
         private Syncfusion.Windows.Forms.Tools.TabSplitterPage tabSplitterPage2;
-        private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl2;
         private System.Windows.Forms.ToolStripButton toolStripButton9;
+        private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
+        private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl1;
+        private Syncfusion.Windows.Forms.Grid.Grouping.GridGroupingControl gridGroupingControl2;
+        private System.Windows.Forms.Panel panelHeader;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button27;
+        private System.Windows.Forms.Button button26;
+        private System.Windows.Forms.Button button25;
+        private System.Windows.Forms.Button button24;
+        private System.Windows.Forms.Button button23;
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPregledSkladistaNovi));
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -226,6 +227,10 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.button208 = new System.Windows.Forms.Button();
+            this.button207 = new System.Windows.Forms.Button();
+            this.button206 = new System.Windows.Forms.Button();
+            this.button205 = new System.Windows.Forms.Button();
             this.panel10 = new System.Windows.Forms.Panel();
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
@@ -256,10 +261,7 @@
             this.button202 = new System.Windows.Forms.Button();
             this.button203 = new System.Windows.Forms.Button();
             this.button204 = new System.Windows.Forms.Button();
-            this.button205 = new System.Windows.Forms.Button();
-            this.button206 = new System.Windows.Forms.Button();
-            this.button207 = new System.Windows.Forms.Button();
-            this.button208 = new System.Windows.Forms.Button();
+            this.commandBarController1 = new Syncfusion.Windows.Forms.Tools.CommandBarController(this.components);
             this.panel5.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -268,6 +270,7 @@
             this.panel16.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -2623,6 +2626,54 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "label4";
             // 
+            // button208
+            // 
+            this.button208.BackColor = System.Drawing.SystemColors.Control;
+            this.button208.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button208.Location = new System.Drawing.Point(169, 165);
+            this.button208.Margin = new System.Windows.Forms.Padding(2);
+            this.button208.Name = "button208";
+            this.button208.Size = new System.Drawing.Size(49, 37);
+            this.button208.TabIndex = 1;
+            this.button208.Text = "HOT1";
+            this.button208.UseVisualStyleBackColor = false;
+            // 
+            // button207
+            // 
+            this.button207.BackColor = System.Drawing.SystemColors.Control;
+            this.button207.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button207.Location = new System.Drawing.Point(116, 165);
+            this.button207.Margin = new System.Windows.Forms.Padding(2);
+            this.button207.Name = "button207";
+            this.button207.Size = new System.Drawing.Size(49, 37);
+            this.button207.TabIndex = 1;
+            this.button207.Text = "HOT2";
+            this.button207.UseVisualStyleBackColor = false;
+            // 
+            // button206
+            // 
+            this.button206.BackColor = System.Drawing.SystemColors.Control;
+            this.button206.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button206.Location = new System.Drawing.Point(63, 165);
+            this.button206.Margin = new System.Windows.Forms.Padding(2);
+            this.button206.Name = "button206";
+            this.button206.Size = new System.Drawing.Size(49, 37);
+            this.button206.TabIndex = 1;
+            this.button206.Text = "HOT3";
+            this.button206.UseVisualStyleBackColor = false;
+            // 
+            // button205
+            // 
+            this.button205.BackColor = System.Drawing.SystemColors.Control;
+            this.button205.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button205.Location = new System.Drawing.Point(10, 165);
+            this.button205.Margin = new System.Windows.Forms.Padding(2);
+            this.button205.Name = "button205";
+            this.button205.Size = new System.Drawing.Size(49, 37);
+            this.button205.TabIndex = 1;
+            this.button205.Text = "HOT4";
+            this.button205.UseVisualStyleBackColor = false;
+            // 
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -2965,53 +3016,12 @@
             this.button204.Text = "F";
             this.button204.UseVisualStyleBackColor = false;
             // 
-            // button205
+            // commandBarController1
             // 
-            this.button205.BackColor = System.Drawing.SystemColors.Control;
-            this.button205.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button205.Location = new System.Drawing.Point(10, 165);
-            this.button205.Margin = new System.Windows.Forms.Padding(2);
-            this.button205.Name = "button205";
-            this.button205.Size = new System.Drawing.Size(49, 37);
-            this.button205.TabIndex = 1;
-            this.button205.Text = "HOT4";
-            this.button205.UseVisualStyleBackColor = false;
-            // 
-            // button206
-            // 
-            this.button206.BackColor = System.Drawing.SystemColors.Control;
-            this.button206.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button206.Location = new System.Drawing.Point(63, 165);
-            this.button206.Margin = new System.Windows.Forms.Padding(2);
-            this.button206.Name = "button206";
-            this.button206.Size = new System.Drawing.Size(49, 37);
-            this.button206.TabIndex = 1;
-            this.button206.Text = "HOT3";
-            this.button206.UseVisualStyleBackColor = false;
-            // 
-            // button207
-            // 
-            this.button207.BackColor = System.Drawing.SystemColors.Control;
-            this.button207.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button207.Location = new System.Drawing.Point(116, 165);
-            this.button207.Margin = new System.Windows.Forms.Padding(2);
-            this.button207.Name = "button207";
-            this.button207.Size = new System.Drawing.Size(49, 37);
-            this.button207.TabIndex = 1;
-            this.button207.Text = "HOT2";
-            this.button207.UseVisualStyleBackColor = false;
-            // 
-            // button208
-            // 
-            this.button208.BackColor = System.Drawing.SystemColors.Control;
-            this.button208.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button208.Location = new System.Drawing.Point(169, 165);
-            this.button208.Margin = new System.Windows.Forms.Padding(2);
-            this.button208.Name = "button208";
-            this.button208.Size = new System.Drawing.Size(49, 37);
-            this.button208.TabIndex = 1;
-            this.button208.Text = "HOT1";
-            this.button208.UseVisualStyleBackColor = false;
+            this.commandBarController1.HostForm = this;
+            this.commandBarController1.MetroBackColor = System.Drawing.Color.White;
+            this.commandBarController1.MetroColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(165)))), ((int)(((byte)(220)))));
+            this.commandBarController1.UseBackwardCompatiblity = false;
             // 
             // frmPregledSkladistaNovi
             // 
@@ -3233,6 +3243,7 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.commandBarController1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3471,5 +3482,6 @@
         private System.Windows.Forms.Button button208;
         private System.Windows.Forms.Button button207;
         private System.Windows.Forms.Button button206;
+        private Syncfusion.Windows.Forms.Tools.CommandBarController commandBarController1;
     }
 }

@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Syncfusion.Windows.Forms.Tools;
+using Syncfusion.Windows.Forms;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 namespace Saobracaj.RadniNalozi
@@ -12,9 +15,35 @@ namespace Saobracaj.RadniNalozi
     {
         private string connect = Sifarnici.frmLogovanje.connectionString;
 
+        private void ChangeTextBox()
+        {
+         
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                // toolStripHeader.Visible = false;
+              
+                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+                // this.FormBorderStyle = FormBorderStyle.None;
+            
+
+               
+            }
+            else
+            {
+             
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
+
+
         public frmPregledSkladistaNovi()
         {
             InitializeComponent();
+            ChangeTextBox();
             groupBox1.Visible = false;
             BtnHandler(this.Controls);
         }

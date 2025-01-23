@@ -38,6 +38,28 @@ namespace Testiranje.Dokumeta
         bool status = false;
         int IzPregleda = 0;
         //  int VozID = 1;
+        private void PodesiDatagridView(DataGridView dgv)
+        {
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.BackgroundColor = Color.White;
+
+            dgv.DefaultCellStyle.Font = new Font("Helvetica", 12F, GraphicsUnit.Pixel);
+            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+
+
+            //Header
+            dgv.EnableHeadersVisualStyles = false;
+            //   header.Style.Font = new Font("Arial", 12F, FontStyle.Bold);
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+
+
+        }
         private void ChangeTextBox()
         {
             this.BackColor = Color.White;
@@ -262,19 +284,120 @@ namespace Testiranje.Dokumeta
            
         }
 
-        public frmVoz()
+
+        private void ChangeTextBoxTabControl()
+        {
+            this.BackColor = Color.White;
+            this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+            this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+            Office2010Colors.ApplyManagedColors(this, Color.White);
+            //  toolStripHeader.BackColor = Color.FromArgb(240, 240, 248);
+            //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
+            panelHeader.Visible = false;
+            this.ControlBox = true;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                meniHeader.Visible = false;
+                panelHeader.Visible = true;
+                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+                // this.FormBorderStyle = FormBorderStyle.None;
+                this.BackColor = Color.White;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+
+
+
+
+                foreach (Control control in tabPage2.Controls)
+                {
+                    if (control is System.Windows.Forms.Button buttons)
+                    {
+
+                        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
+                        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
+                        buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
+                        buttons.FlatStyle = FlatStyle.Flat;
+                    }
+
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        // Example: Change font
+                    }
+
+
+                    if (control is System.Windows.Forms.Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+                    if (control is System.Windows.Forms.CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                }
+            }
+            else
+            {
+                meniHeader.Visible = true;
+                panelHeader.Visible = false;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
+
+        public frmVoz(int Uvozni)
         {
             InitializeComponent();
 
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NjgxNjY5QDMxMzkyZTM0MmUzMFVQcWRYSEJHSzU3b3kxb0xiYXhKbTR2WUQyZmhWTitWdFhjUEsvUXBPQ1E9");
 
+            if (Uvozni == 1)
+                chkDolazeci.Checked = true;
             //KorisnikCene = "Panta";
 
             ProveriFirmu();
             ChangeTextBox();
             ChangeTextBoxPanelLeget();
             ChangeTextBoxPanelLegetOperater();
-           
+            ChangeTextBoxTabControl();
+
+
         }
       
 
@@ -289,7 +412,7 @@ namespace Testiranje.Dokumeta
             ChangeTextBoxPanelLeget();
             ChangeTextBoxPanelLegetOperater();
             RefreshDataGrid();
-
+            ChangeTextBoxTabControl();
             ProveriFirmu();
    
         }
@@ -312,6 +435,7 @@ namespace Testiranje.Dokumeta
                 default:
                     {
                         toolStripButton1.Visible = false;
+                        button23.Visible = false;
                         toolStripButton2.Visible = false;
                         panelLeget.Visible = false;
                         panelLegetOperater.Visible = false;
@@ -334,6 +458,7 @@ namespace Testiranje.Dokumeta
             ChangeTextBoxPanelLeget();
             ChangeTextBoxPanelLegetOperater();
             RefreshDataGrid2();
+            ChangeTextBoxTabControl();
             VratiUkupanBrojKontejnera();
             IzPregleda = 1;
          
@@ -457,20 +582,7 @@ namespace Testiranje.Dokumeta
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
 
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.White;
-            dataGridView1.BackgroundColor = Color.White;
-            dataGridView1.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
-            dataGridView1.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
-
-
-            //Header
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView1);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView1.Columns[0];
@@ -627,22 +739,24 @@ namespace Testiranje.Dokumeta
                 dtpVremeDolaskaO.Enabled = false;
                 toolStripButton1.Visible = true;
                 toolStripButton2.Visible = false;
+                button23.Visible = true;
+                button24.Visible = false;
 
-
-                label36.Visible = false;
-                dtpPLFormiranja.Visible = false;
+                label36.Visible = true;
+                label36.Text = "ATA OTPREMA VOZA";
+                dtpPLFormiranja.Visible = true;
                 label37.Visible = false;
                 dtpIzvlacenjeSaTerminala.Visible = false;
                 label38.Visible = false;
                 dtpPreuzimanjeSM.Visible = false;
                 label39.Visible = false;
                 dtpPolazakSid.Visible = false;
-                label40.Visible = false;
-                dtpPredajaHR.Visible = false;
-                label41.Visible = false;
-                dtpPrispeceRijeka.Visible = false;
-                label42.Visible = false;
-                dtpIskrcajRijeka.Visible = false;
+                label40.Visible = true;
+                dtpPredajaHR.Visible = true;
+                label41.Visible = true;
+                dtpPrispeceRijeka.Visible = true;
+                label42.Visible = true;
+                dtpIskrcajRijeka.Visible = true;
                 button7.Visible = false;
             }
             else
@@ -662,9 +776,11 @@ namespace Testiranje.Dokumeta
                 dtpVremeDolaskaO.Enabled = true;
                 toolStripButton1.Visible = false;
                 toolStripButton2.Visible = true;
-
+                button23.Visible = false;
+                button24.Visible = true;
 
                 label36.Visible = true;
+                label36.Text = "FORMIRANJE VOZA";
                 dtpPLFormiranja.Visible = true;
                 label37.Visible = true;
                 dtpIzvlacenjeSaTerminala.Visible = true;
@@ -679,6 +795,12 @@ namespace Testiranje.Dokumeta
                 label42.Visible = true;
                 dtpIskrcajRijeka.Visible = true;
                 button7.Visible = true;
+
+
+                label43.Visible = false;
+                dtpPristizanjaUSid.Visible = false;
+                label44.Visible = false;
+                dtpSazeta.Visible = false;
             } 
             con.Close();
         }
@@ -833,25 +955,30 @@ namespace Testiranje.Dokumeta
                 txtVremeIzvlacenjaO.Enabled = false;
                 dtpVremePolaskaO.Enabled = false;
                 dtpVremeDolaskaO.Enabled = false;
+                toolStripButton1.Visible = true;
+                toolStripButton2.Visible = false;
+                button23.Visible = true;
+                button24.Visible = false;
 
-                label36.Visible = false;
-                dtpPLFormiranja.Visible = false;
+                label36.Visible = true;
+                label36.Text = "ATA OTPREMA VOZA";
+                dtpPLFormiranja.Visible = true;
                 label37.Visible = false;
                 dtpIzvlacenjeSaTerminala.Visible = false;
                 label38.Visible = false;
                 dtpPreuzimanjeSM.Visible = false;
                 label39.Visible = false;
                 dtpPolazakSid.Visible = false;
-                label40.Visible = false;
-                dtpPredajaHR.Visible = false;
-                label41.Visible = false;
-                dtpPrispeceRijeka.Visible = false;
-                label42.Visible = false;
-                dtpIskrcajRijeka.Visible = false;
+                label40.Visible = true;
+                dtpPredajaHR.Visible = true;
+                label41.Visible = true;
+                dtpPrispeceRijeka.Visible = true;
+                label42.Visible = true;
+                dtpIskrcajRijeka.Visible = true;
                 button7.Visible = false;
             }
-                else
-	            {
+            else
+            {
                 dtpVremePolaska.Enabled = false;
                 dtpVremeDolaska.Enabled = false;
                 txtPostNaTerminalD.Enabled = false;
@@ -865,8 +992,13 @@ namespace Testiranje.Dokumeta
                 txtVremeIzvlacenjaO.Enabled = true;
                 dtpVremePolaskaO.Enabled = true;
                 dtpVremeDolaskaO.Enabled = true;
+                toolStripButton1.Visible = false;
+                toolStripButton2.Visible = true;
+                button23.Visible = false;
+                button24.Visible = true;
 
                 label36.Visible = true;
+                label36.Text = "FORMIRANJE VOZA";
                 dtpPLFormiranja.Visible = true;
                 label37.Visible = true;
                 dtpIzvlacenjeSaTerminala.Visible = true;
@@ -881,7 +1013,12 @@ namespace Testiranje.Dokumeta
                 label42.Visible = true;
                 dtpIskrcajRijeka.Visible = true;
                 button7.Visible = true;
-            } 
+
+                label43.Visible = false;
+                dtpPristizanjaUSid.Visible = false;
+                label44.Visible = false;
+                dtpSazeta.Visible = false;
+            }
         }
 
         private void tsNew_Click(object sender, EventArgs e)
@@ -950,19 +1087,9 @@ namespace Testiranje.Dokumeta
             dataGridView2.ReadOnly = true;
             dataGridView2.DataSource = ds.Tables[0];
 
-            dataGridView2.BorderStyle = BorderStyle.None;
-            dataGridView2.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView2.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView2.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView2.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView2.BackgroundColor = Color.White;
+            PodesiDatagridView(dataGridView2);
 
-            dataGridView2.EnableHeadersVisualStyles = false;
-            dataGridView2.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView2.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView2.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
 
-         
             DataGridViewColumn column = dataGridView2.Columns[0];
             dataGridView2.Columns[0].HeaderText = "ID";
             dataGridView2.Columns[0].Width = 50;

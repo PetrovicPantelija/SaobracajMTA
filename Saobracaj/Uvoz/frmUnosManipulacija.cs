@@ -1,18 +1,20 @@
 ﻿using Microsoft.Ajax.Utilities;
 using Saobracaj.Sifarnici;
+using Syncfusion.Windows.Forms;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Forms;
 
 namespace Saobracaj.Uvoz
 {
-    public partial class frmUnosManipulacija : Syncfusion.Windows.Forms.Office2010Form
+    public partial class frmUnosManipulacija : Form
     {
         public string connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
         int pIDPlana = 0;
@@ -30,17 +32,140 @@ namespace Saobracaj.Uvoz
         int UnetihManipulacija = 0;
         int ADRSC = 0;
         int ScenarioGL = 0;
-        
+        int PunPrazan = 0;
+
+        private void ChangeTextBox()
+        {
+            this.BackColor = Color.White;
+            this.commandBarController1.Style = Syncfusion.Windows.Forms.VisualStyle.Office2010;
+            this.commandBarController1.Office2010Theme = Office2010Theme.Managed;
+            Office2010Colors.ApplyManagedColors(this, Color.White);
+            //  toolStripHeader.BackColor = Color.FromArgb(240, 240, 248);
+            //  toolStripHeader.ForeColor = Color.FromArgb(51, 51, 54);
+            panelHeader.Visible = false;
+            this.ControlBox = true;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            if (Saobracaj.Sifarnici.frmLogovanje.Firma == "Leget")
+            {
+                meniHeader.Visible = false;
+                panelHeader.Visible = true;
+                this.Icon = Saobracaj.Properties.Resources.LegetIconPNG;
+                // this.FormBorderStyle = FormBorderStyle.None;
+                this.BackColor = Color.White;
+                Office2010Colors.ApplyManagedColors(this, Color.White);
+
+
+
+
+                foreach (Control control in this.Controls)
+                {
+                    if (control is System.Windows.Forms.Button buttons)
+                    {
+
+                        buttons.BackColor = Color.FromArgb(90, 199, 249); // Example: Change background color  -- Svetlo plava
+                        buttons.ForeColor = Color.White;  //51; 51; 54  - Pozadina Bela
+                        buttons.Font = new System.Drawing.Font("Helvetica", 9);  // Example: Change font
+                        buttons.FlatStyle = FlatStyle.Flat;
+                    }
+
+                    if (control is System.Windows.Forms.TextBox textBox)
+                    {
+
+                        textBox.BackColor = Color.White;// Example: Change background color
+                        textBox.ForeColor = Color.FromArgb(51, 51, 54); //Boja slova u kvadratu
+                        textBox.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                        // Example: Change font
+                    }
+
+
+                    if (control is System.Windows.Forms.Label label)
+                    {
+                        // Change properties here
+                        label.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        label.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);  // Example: Change font
+
+                        // textBox.ReadOnly = true;              // Example: Make text boxes read-only
+                    }
+                    if (control is DateTimePicker dtp)
+                    {
+                        dtp.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        dtp.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+                    if (control is System.Windows.Forms.CheckBox chk)
+                    {
+                        chk.ForeColor = Color.FromArgb(110, 110, 115); // Example: Change background color
+                        chk.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ListBox lb)
+                    {
+                        lb.ForeColor = Color.FromArgb(51, 51, 54); // Example: Change background color
+                        lb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.ComboBox cb)
+                    {
+                        cb.ForeColor = Color.FromArgb(51, 51, 54);
+                        cb.BackColor = Color.White;// Example: Change background color
+                        cb.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                    if (control is System.Windows.Forms.NumericUpDown nu)
+                    {
+                        nu.ForeColor = Color.FromArgb(51, 51, 54);
+                        nu.BackColor = Color.White;// Example: Change background color
+                        nu.Font = new System.Drawing.Font("Helvetica", 9, FontStyle.Regular);
+                    }
+
+                }
+            }
+            else
+            {
+                meniHeader.Visible = true;
+                panelHeader.Visible = false;
+                this.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //  this.BackColor = Color.White;
+                // toolStripHeader.Visible = true;
+            }
+        }
+
+        private void PodesiDatagridView(DataGridView dgv)
+        {
+            dgv.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dgv.DefaultCellStyle.SelectionBackColor = Color.FromArgb(90, 199, 249); // Selektovana boja
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.BackgroundColor = Color.White;
+
+            dgv.DefaultCellStyle.Font = new Font("Helvetica", 12F, GraphicsUnit.Pixel);
+            dgv.DefaultCellStyle.ForeColor = Color.FromArgb(51, 51, 54);
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+            dgv.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(240, 240, 248);
+
+
+            //Header
+            dgv.EnableHeadersVisualStyles = false;
+            //   header.Style.Font = new Font("Arial", 12F, FontStyle.Bold);
+            dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(51, 51, 54);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            dgv.ColumnHeadersHeight = 30;
+        }
+
+
         public frmUnosManipulacija()
         {
             InitializeComponent();
+            ChangeTextBox();
             FillDG6(1);
             Usao = 0;
         }
 
-        public frmUnosManipulacija(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Uvoznik, string Korisnik,int Terminal,string Relacija, int Zeleznina, int ADR, int ScenarioGLsf)
+        public frmUnosManipulacija(int IDPlana, int ID, int Nalogodavac1, int Nalogodavac2, int Nalogodavac3, int Uvoznik, string Korisnik,int Terminal,string Relacija, int Zeleznina, int ADR, int ScenarioGLsf, int pp)
         {
             InitializeComponent();
+            ChangeTextBox();
             pIDPlana = IDPlana;
             pID = ID;
             txtID.Text = pID.ToString();
@@ -70,8 +195,11 @@ namespace Saobracaj.Uvoz
             {
                 ADRSC = 1;
             }
+            PunPrazan = pp;
             FillDG6(1);
             FillDG8();
+            FillDG8Dodatne();
+            FillDG8Administracija();
 
         }
 
@@ -155,20 +283,10 @@ namespace Saobracaj.Uvoz
                 dataGridView6.DataSource = ds.Tables[0];
 
 
-                dataGridView6.BorderStyle = BorderStyle.None;
-                dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-                dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-                dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-                dataGridView6.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-                dataGridView6.BackgroundColor = Color.White;
+                PodesiDatagridView(dataGridView6);
 
-                dataGridView6.EnableHeadersVisualStyles = false;
-                dataGridView6.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-                dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-                dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-
-                //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
-                DataGridViewColumn column = dataGridView6.Columns[0];
+                  //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+                  DataGridViewColumn column = dataGridView6.Columns[0];
                 dataGridView6.Columns[0].HeaderText = "ID";
                 dataGridView6.Columns[0].Width = 20;
 
@@ -226,17 +344,7 @@ namespace Saobracaj.Uvoz
                 dataGridView6.DataSource = ds.Tables[0];
 
 
-                dataGridView6.BorderStyle = BorderStyle.None;
-                dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-                dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-                dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-                dataGridView6.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-                dataGridView6.BackgroundColor = Color.White;
-
-                dataGridView6.EnableHeadersVisualStyles = false;
-                dataGridView6.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-                dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-                dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                PodesiDatagridView(dataGridView6);
 
                 //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
                 DataGridViewColumn column = dataGridView6.Columns[0];
@@ -298,17 +406,7 @@ namespace Saobracaj.Uvoz
                 dataGridView6.DataSource = ds.Tables[0];
 
 
-                dataGridView6.BorderStyle = BorderStyle.None;
-                dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-                dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-                dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-                dataGridView6.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-                dataGridView6.BackgroundColor = Color.White;
-
-                dataGridView6.EnableHeadersVisualStyles = false;
-                dataGridView6.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-                dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-                dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                PodesiDatagridView(dataGridView6);
 
                 //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
                 DataGridViewColumn column = dataGridView6.Columns[0];
@@ -368,17 +466,7 @@ namespace Saobracaj.Uvoz
                 dataGridView6.DataSource = ds.Tables[0];
 
 
-                dataGridView6.BorderStyle = BorderStyle.None;
-                dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-                dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-                dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-                dataGridView6.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-                dataGridView6.BackgroundColor = Color.White;
-
-                dataGridView6.EnableHeadersVisualStyles = false;
-                dataGridView6.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-                dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-                dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                PodesiDatagridView(dataGridView6);
 
                 DataGridViewColumn column = dataGridView6.Columns[0];
                 dataGridView6.Columns[0].HeaderText = "ID";
@@ -443,17 +531,7 @@ namespace Saobracaj.Uvoz
             dataGridView6.DataSource = ds.Tables[0];
 
 
-            dataGridView6.BorderStyle = BorderStyle.None;
-            dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView6.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView6.BackgroundColor = Color.White;
-
-            dataGridView6.EnableHeadersVisualStyles = false;
-            dataGridView6.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView6);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
@@ -518,17 +596,7 @@ namespace Saobracaj.Uvoz
             dataGridView6.DataSource = ds.Tables[0];
 
 
-            dataGridView6.BorderStyle = BorderStyle.None;
-            dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView6.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView6.BackgroundColor = Color.White;
-
-            dataGridView6.EnableHeadersVisualStyles = false;
-            dataGridView6.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView6);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
@@ -571,17 +639,7 @@ namespace Saobracaj.Uvoz
             dataGridView6.DataSource = ds.Tables[0];
 
 
-            dataGridView6.BorderStyle = BorderStyle.None;
-            dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView6.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView6.BackgroundColor = Color.White;
-
-            dataGridView6.EnableHeadersVisualStyles = false;
-            dataGridView6.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView6);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
@@ -625,17 +683,7 @@ namespace Saobracaj.Uvoz
             dataGridView6.DataSource = ds.Tables[0];
 
 
-            dataGridView6.BorderStyle = BorderStyle.None;
-            dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView6.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView6.BackgroundColor = Color.White;
-
-            dataGridView6.EnableHeadersVisualStyles = false;
-            dataGridView6.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView6);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
@@ -680,17 +728,7 @@ namespace Saobracaj.Uvoz
             dataGridView6.DataSource = ds.Tables[0];
 
 
-            dataGridView6.BorderStyle = BorderStyle.None;
-            dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView6.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView6.BackgroundColor = Color.White;
-
-            dataGridView6.EnableHeadersVisualStyles = false;
-            dataGridView6.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView6);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
@@ -733,18 +771,7 @@ namespace Saobracaj.Uvoz
             dataGridView6.DataSource = ds.Tables[0];
 
 
-            dataGridView6.BorderStyle = BorderStyle.None;
-            dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView6.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView6.BackgroundColor = Color.White;
-
-            dataGridView6.EnableHeadersVisualStyles = false;
-            dataGridView6.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-
+            PodesiDatagridView(dataGridView6);
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
             dataGridView6.Columns[0].HeaderText = "ID";
@@ -787,17 +814,7 @@ namespace Saobracaj.Uvoz
             dataGridView6.DataSource = ds.Tables[0];
 
 
-            dataGridView6.BorderStyle = BorderStyle.None;
-            dataGridView6.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView6.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView6.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView6.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView6.BackgroundColor = Color.White;
-
-            dataGridView6.EnableHeadersVisualStyles = false;
-            dataGridView6.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView6.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView6.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView6);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView6.Columns[0];
@@ -845,17 +862,54 @@ namespace Saobracaj.Uvoz
                 InsertUvozKonacna uvK = new InsertUvozKonacna();
                 uvK.InsUbaciUsluguKonacna(ID, Manipulacija, Cena, Kolicina, OrgJed, pomPlatilac, 0, pomPokret, pomStatusKontejnera, KorisnikTekuci, pomForma);
                 FillDG8();
+                FillDG8Dodatne();
+                FillDG8Administracija();
             }
             else
             {
                 InsertUvozKonacna uvK = new InsertUvozKonacna();
                 uvK.InsUbaciUslugu(ID, Manipulacija, Cena, Kolicina, OrgJed, pomPlatilac, 0, pomPokret, pomStatusKontejnera, KorisnikTekuci, pomForma);
                 FillDG8();
+                FillDG8Dodatne();
+                FillDG8Administracija();
 
             }
            
 
         }
+        int VratiManipulaciju(int ID)
+        {
+            int pomBZ = 0;
+            string Komanda = "";
+            var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+            SqlConnection con = new SqlConnection(s_connection);
+
+            con.Open();
+            if (txtNadredjeni.Text != "0")
+            {
+                Komanda = "select IDVrstaManipulacije from UvozKonacnaVrstaManipulacije  where ID =  " + ID;
+            }
+            else
+            {
+                Komanda = "select IDVrstaManipulacije from UvozVrstaManipulacije  where ID =  " + ID;
+            }
+
+            SqlCommand cmd = new SqlCommand(Komanda + ID, con);
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                //Izmenjeno
+                // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                pomBZ = Convert.ToInt32(dr["IDVrstaManipulacije"].ToString());
+            }
+            con.Close();
+            return pomBZ;
+
+        }
+
+
+
         //Panta
         int VratiBrojManipulacija(int ID)
         {
@@ -867,14 +921,14 @@ namespace Saobracaj.Uvoz
             con.Open();
             if (txtNadredjeni.Text != "0")
             {
-                Komanda = "select Count(*) as Broj from UvozKonacnaVrstaManipulacije  inner join vrstamanipulacije on VrstaManipulacije.ID = IDVrstaManipulacije where Administrativna = 0 and IDNadredjena= ";
+                Komanda = "select Count(*) as Broj from UvozKonacnaVrstaManipulacije  inner join vrstamanipulacije on VrstaManipulacije.ID = IDVrstaManipulacije where Dodatna = 0 and Administrativna = 0 and IDNadredjena= ";
             }
             else
             {
-                Komanda = "select Count(*) as Broj from UvozVrstaManipulacije  inner join vrstamanipulacije on VrstaManipulacije.ID = IDVrstaManipulacije where Administrativna = 0 and IDNadredjena= ";
+                Komanda = "select Count(*) as Broj from UvozVrstaManipulacije  inner join vrstamanipulacije on VrstaManipulacije.ID = IDVrstaManipulacije where Dodatna = 0 and Administrativna = 0and IDNadredjena= ";
             }
 
-                SqlCommand cmd = new SqlCommand(Komanda + ID, con);
+                SqlCommand cmd = new SqlCommand(Komanda + txtID.Text, con);
             SqlDataReader dr = cmd.ExecuteReader();
 
             while (dr.Read())
@@ -958,7 +1012,7 @@ namespace Saobracaj.Uvoz
 
                 //Izmenjeno
                 // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
-                postoji = VratiPostojiUsluga(Convert.ToInt32(dr["usluga"].ToString()),ID);
+                postoji = VratiPostojiUsluga(Convert.ToInt32(dr["usluga"].ToString()),Convert.ToInt32(txtID.Text));
                 if (postoji == 0)
                 {
                     konacan = 0;
@@ -1023,7 +1077,11 @@ namespace Saobracaj.Uvoz
             int BSC20 = VratiBrojScenario(20);
             int BSC21 = VratiBrojScenario(21);
             int BSC22 = VratiBrojScenario(22);
-          //  int BSC6 = VratiBrojScenario(6);
+            int BSC27 = VratiBrojScenario(27);
+            int BSC28 = VratiBrojScenario(28);
+            int BSC30 = VratiBrojScenario(30);
+            int BSC31 = VratiBrojScenario(31);
+            //  int BSC6 = VratiBrojScenario(6);
 
             int rasporedjen = 0;
             if (txtNadredjeni.Text != "0")
@@ -1034,17 +1092,17 @@ namespace Saobracaj.Uvoz
             {
                 rasporedjen = 0;
             }
-            if (BrojZapisaKontejnera == BSC1)
+            if (BrojZapisaKontejnera == BSC1 && ADRSC == 0 && PunPrazan > 0)
             {
                 IzabraniScenario =  ProveriDaLiSuIsteManipulacije(ID,1);
-                if (IzabraniScenario == 1)
+                if (IzabraniScenario == 1 && ADRSC == 0 && PunPrazan>0)
                 {
                     InsertScenario isc = new InsertScenario();
                     isc.UpdScenarioKontejnera(1, ID, 1, rasporedjen);
                     System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 1");
                 }
             }
-            if (BrojZapisaKontejnera == BSC2)
+            if (BrojZapisaKontejnera == BSC2 && ADRSC == 0 && PunPrazan > 0)
             {
                 IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 2);
                 if (IzabraniScenario == 1)
@@ -1055,7 +1113,7 @@ namespace Saobracaj.Uvoz
                 }
             }
 
-            if (BrojZapisaKontejnera == BSC3)   
+            if (BrojZapisaKontejnera == BSC3 && ADRSC == 0 && PunPrazan > 0)   
             {
                 IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 3);
                 if (IzabraniScenario == 1)
@@ -1066,7 +1124,7 @@ namespace Saobracaj.Uvoz
                 }
             }
 
-            if (BrojZapisaKontejnera == BSC4)
+            if (BrojZapisaKontejnera == BSC4 && ADRSC == 0 && PunPrazan > 0)
             {
                 IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 4);
                 if (IzabraniScenario == 1)
@@ -1077,7 +1135,7 @@ namespace Saobracaj.Uvoz
                 }
             }
 
-            if (BrojZapisaKontejnera == BSC5)
+            if (BrojZapisaKontejnera == BSC5 && ADRSC == 0 && PunPrazan > 0)
             {
                 IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 5);
                 if (IzabraniScenario == 1)
@@ -1088,7 +1146,7 @@ namespace Saobracaj.Uvoz
                 }
             }
 
-            if (BrojZapisaKontejnera == BSC6)
+            if (BrojZapisaKontejnera == BSC6 && ADRSC == 0 && PunPrazan == 0)
             {
                 IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 6);
                 if (IzabraniScenario == 1)
@@ -1100,7 +1158,7 @@ namespace Saobracaj.Uvoz
             }
 
 
-            if (BrojZapisaKontejnera == BSC18)
+            if (BrojZapisaKontejnera == BSC18 && ADRSC > 0 && PunPrazan > 0)
             {
                 IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 18);
                 if (IzabraniScenario == 1)
@@ -1111,7 +1169,7 @@ namespace Saobracaj.Uvoz
                 }
             }
 
-            if (BrojZapisaKontejnera == BSC19)
+            if (BrojZapisaKontejnera == BSC19 && ADRSC > 0 && PunPrazan > 0)
             {
                 IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 19);
                 if (IzabraniScenario == 1)
@@ -1122,7 +1180,7 @@ namespace Saobracaj.Uvoz
                 }
             }
 
-            if (BrojZapisaKontejnera == BSC20)
+            if (BrojZapisaKontejnera == BSC20 && ADRSC > 0 && PunPrazan > 0)
             {
                 IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 20);
                 if (IzabraniScenario == 1)
@@ -1133,7 +1191,7 @@ namespace Saobracaj.Uvoz
                 }
             }
 
-            if (BrojZapisaKontejnera == BSC21)
+            if (BrojZapisaKontejnera == BSC21 && ADRSC > 0 && PunPrazan > 0)
             {
                 IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 21);
                 if (IzabraniScenario == 1)
@@ -1144,7 +1202,7 @@ namespace Saobracaj.Uvoz
                 }
             }
 
-            if (BrojZapisaKontejnera == BSC22)
+            if (BrojZapisaKontejnera == BSC22 && ADRSC > 0 && PunPrazan > 0)
             {
                 IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 22);
                 if (IzabraniScenario == 1)
@@ -1153,6 +1211,57 @@ namespace Saobracaj.Uvoz
                     isc.UpdScenarioKontejnera(22, ID, 1, rasporedjen);
                     System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 22");
                 }
+            }
+
+            if (BrojZapisaKontejnera == BSC27 && ADRSC == 0 && PunPrazan > 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 27);
+                if (IzabraniScenario == 1)
+                {
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(27, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 27");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC28 && ADRSC == 0 && PunPrazan > 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 28);
+                if (IzabraniScenario == 1)
+                {
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(28, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 28");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC30 && ADRSC > 0 && PunPrazan > 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 29);
+                if (IzabraniScenario == 1)
+                {
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(30, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 30");
+                }
+            }
+
+            if (BrojZapisaKontejnera == BSC31 && ADRSC > 0 && PunPrazan > 0)
+            {
+                IzabraniScenario = ProveriDaLiSuIsteManipulacije(ID, 31);
+                if (IzabraniScenario == 1)
+                {
+                    InsertScenario isc = new InsertScenario();
+                    isc.UpdScenarioKontejnera(31, ID, 1, rasporedjen);
+                    System.Windows.Forms.MessageBox.Show("Izabrali ste scenario 31");
+                }
+            }
+            if (IzabraniScenario == 0)
+            {
+                InsertScenario isc = new InsertScenario();
+                isc.UpdScenarioKontejnera(0, ID, 1, rasporedjen);
+                System.Windows.Forms.MessageBox.Show("Ne postoji scenario koji odgovara preostalim uslugama");
+            
             }
 
             // Proveri da li je isti broj 
@@ -1180,7 +1289,7 @@ namespace Saobracaj.Uvoz
 " inner " +
 " join Uvoz on UvozVrstaManipulacije.IDNadredjena = Uvoz.ID" +
 " left join KontejnerStatus on  UvozVrstaManipulacije.StatusKontejnera = KontejnerStatus.ID " +
-" where Uvoz.ID = " + Convert.ToInt32(txtID.Text) + " order by UvozVrstaManipulacije.ID";
+" where Uvoz.ID = " + Convert.ToInt32(txtID.Text) + "  and Dodatna = 0 and Administrativna = 0 order by UvozVrstaManipulacije.ID";
 
 
             }
@@ -1200,7 +1309,7 @@ namespace Saobracaj.Uvoz
 " join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID  " +
 " inner " +
 " join KontejnerStatus on UvozKonacnaVrstaManipulacije.StatusKOntejnera = KontejnerStatus.ID  " +
-"where UvozKonacna.IDNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text) + " order by UvozKonacnaVrstaManipulacije.ID";
+"where UvozKonacna.IDNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text) + " and Dodatna = 0 and Administrativna = 0 order by UvozKonacnaVrstaManipulacije.ID";
             }
 
             SqlConnection conn = new SqlConnection(connection);
@@ -1211,17 +1320,7 @@ namespace Saobracaj.Uvoz
             dataGridView7.DataSource = ds.Tables[0];
 
 
-            dataGridView7.BorderStyle = BorderStyle.None;
-            dataGridView7.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView7.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView7.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView7.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView7.BackgroundColor = Color.White;
-
-            dataGridView7.EnableHeadersVisualStyles = false;
-            dataGridView7.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView7.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView7.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView7);
 
             //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
             DataGridViewColumn column = dataGridView7.Columns[0];
@@ -1268,6 +1367,222 @@ namespace Saobracaj.Uvoz
             DataGridViewColumn column11 = dataGridView7.Columns[10];
             dataGridView7.Columns[10].HeaderText = "Platilac";
             dataGridView7.Columns[10].Width = 140;
+
+            //dataGridView7.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //dataGridView7.SelectAll();
+            /*
+                        DataGridViewColumn column12 = dataGridView7.Columns[11];
+                        dataGridView7.Columns[11].HeaderText = "SaPDV";
+                        dataGridView7.Columns[11].Width = 140;
+            */
+        }
+
+        private void FillDG8Dodatne()
+        {
+            var select = "";
+
+
+            if (txtNadredjeni.Text == "0")
+            {
+                select = "select  UvozVrstaManipulacije.ID as ID, UvozVrstaManipulacije.IDNadredjena as KontejnerID, Uvoz.BrojKontejnera, " +
+" UvozVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
+" UvozVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
+" Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, SaPDV, Pokret, KontejnerStatus.Naziv, Forma " +
+" from UvozVrstaManipulacije " +
+" Inner    join VrstaManipulacije on VrstaManipulacije.ID = UvozVrstaManipulacije.IDVrstaManipulacije " +
+" inner " +
+" join PArtnerji on UvozVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
+" inner " +
+" join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozVrstaManipulacije.OrgJed " +
+" inner " +
+" join Uvoz on UvozVrstaManipulacije.IDNadredjena = Uvoz.ID" +
+" left join KontejnerStatus on  UvozVrstaManipulacije.StatusKontejnera = KontejnerStatus.ID " +
+" where Uvoz.ID = " + Convert.ToInt32(txtID.Text) + "  and Dodatna = 1 and Administrativna = 0 order by UvozVrstaManipulacije.ID";
+
+
+            }
+            else
+            {
+                select = "select  UvozKonacnaVrstaManipulacije.ID as ID, UvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, UvozKonacna.BrojKontejnera, " +
+" UvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
+" UvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
+" Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, SaPDV, UvozKonacnaVrstaManipulacije.Pokret, KontejnerStatus.Naziv, Forma " +
+" from UvozKonacnaVrstaManipulacije " +
+" Inner    join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije" +
+" inner " +
+" join PArtnerji on UvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
+" inner " +
+" join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozKonacnaVrstaManipulacije.OrgJed " +
+" inner " +
+" join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID  " +
+" inner " +
+" join KontejnerStatus on UvozKonacnaVrstaManipulacije.StatusKOntejnera = KontejnerStatus.ID  " +
+"where UvozKonacna.IDNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text) + " and Dodatna = 1 and Administrativna = 0 order by UvozKonacnaVrstaManipulacije.ID";
+            }
+
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView2.ReadOnly = false;
+            dataGridView2.DataSource = ds.Tables[0];
+
+
+            PodesiDatagridView(dataGridView2);
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView2.Columns[0];
+            dataGridView2.Columns[0].HeaderText = "ID";
+            dataGridView2.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView2.Columns[1];
+            dataGridView2.Columns[1].HeaderText = "USL ID";
+            dataGridView2.Columns[1].Width = 30;
+
+            DataGridViewColumn column3 = dataGridView2.Columns[2];
+            dataGridView2.Columns[2].HeaderText = "Kontejner";
+            dataGridView2.Columns[2].Width = 50;
+
+            DataGridViewColumn column4 = dataGridView2.Columns[3];
+            dataGridView2.Columns[3].HeaderText = "Kol";
+            dataGridView2.Columns[3].Width = 50;
+
+            DataGridViewColumn column5 = dataGridView2.Columns[4];
+            dataGridView2.Columns[4].HeaderText = "VRU";
+            dataGridView2.Columns[4].Width = 30;
+
+            DataGridViewColumn column6 = dataGridView2.Columns[5];
+            dataGridView2.Columns[5].HeaderText = "Usluga";
+            dataGridView2.Columns[5].Width = 250;
+
+            DataGridViewColumn column7 = dataGridView2.Columns[6];
+            dataGridView2.Columns[6].HeaderText = "Cena";
+            dataGridView2.Columns[6].Width = 80;
+
+
+            DataGridViewColumn column8 = dataGridView2.Columns[7];
+            dataGridView2.Columns[7].HeaderText = "OJID";
+            dataGridView2.Columns[7].Width = 20;
+
+            DataGridViewColumn column9 = dataGridView2.Columns[8];
+            dataGridView2.Columns[8].HeaderText = "Org Jed";
+            dataGridView2.Columns[8].Width = 120;
+
+            DataGridViewColumn column10 = dataGridView2.Columns[9];
+            dataGridView2.Columns[9].HeaderText = "PLID";
+            dataGridView2.Columns[9].Width = 40;
+
+            DataGridViewColumn column11 = dataGridView2.Columns[10];
+            dataGridView2.Columns[10].HeaderText = "Platilac";
+            dataGridView2.Columns[10].Width = 140;
+
+            //dataGridView7.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //dataGridView7.SelectAll();
+            /*
+                        DataGridViewColumn column12 = dataGridView7.Columns[11];
+                        dataGridView7.Columns[11].HeaderText = "SaPDV";
+                        dataGridView7.Columns[11].Width = 140;
+            */
+        }
+
+        private void FillDG8Administracija()
+        {
+            var select = "";
+
+
+            if (txtNadredjeni.Text == "0")
+            {
+                select = "select  UvozVrstaManipulacije.ID as ID, UvozVrstaManipulacije.IDNadredjena as KontejnerID, Uvoz.BrojKontejnera, " +
+" UvozVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
+" UvozVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
+" Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, SaPDV, Pokret, KontejnerStatus.Naziv, Forma " +
+" from UvozVrstaManipulacije " +
+" Inner    join VrstaManipulacije on VrstaManipulacije.ID = UvozVrstaManipulacije.IDVrstaManipulacije " +
+" inner " +
+" join PArtnerji on UvozVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
+" inner " +
+" join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozVrstaManipulacije.OrgJed " +
+" inner " +
+" join Uvoz on UvozVrstaManipulacije.IDNadredjena = Uvoz.ID" +
+" left join KontejnerStatus on  UvozVrstaManipulacije.StatusKontejnera = KontejnerStatus.ID " +
+" where Uvoz.ID = " + Convert.ToInt32(txtID.Text) + "  and Dodatna = 0 and Administrativna = 1 order by UvozVrstaManipulacije.ID";
+
+
+            }
+            else
+            {
+                select = "select  UvozKonacnaVrstaManipulacije.ID as ID, UvozKonacnaVrstaManipulacije.IDNadredjena as KontejnerID, UvozKonacna.BrojKontejnera, " +
+" UvozKonacnaVrstaManipulacije.Kolicina,  VrstaManipulacije.ID as ManipulacijaID,VrstaManipulacije.Naziv as ManipulacijaNaziv, " +
+" UvozKonacnaVrstaManipulacije.Cena,OrganizacioneJedinice.ID,   OrganizacioneJedinice.Naziv as OrganizacionaJedinica,  " +
+" Partnerji.PaSifra as NalogodavacID,PArtnerji.PaNaziv as Platilac, SaPDV, UvozKonacnaVrstaManipulacije.Pokret, KontejnerStatus.Naziv, Forma " +
+" from UvozKonacnaVrstaManipulacije " +
+" Inner    join VrstaManipulacije on VrstaManipulacije.ID = UvozKonacnaVrstaManipulacije.IDVrstaManipulacije" +
+" inner " +
+" join PArtnerji on UvozKonacnaVrstaManipulacije.Platilac = PArtnerji.PaSifra " +
+" inner " +
+" join OrganizacioneJedinice on OrganizacioneJedinice.ID = UvozKonacnaVrstaManipulacije.OrgJed " +
+" inner " +
+" join UvozKonacna on UvozKonacnaVrstaManipulacije.IDNadredjena = UvozKonacna.ID  " +
+" inner " +
+" join KontejnerStatus on UvozKonacnaVrstaManipulacije.StatusKOntejnera = KontejnerStatus.ID  " +
+"where UvozKonacna.IDNadredjeni = " + Convert.ToInt32(txtNadredjeni.Text) + " and Dodatna = 0 and Administrativna = 1 order by UvozKonacnaVrstaManipulacije.ID";
+            }
+
+            SqlConnection conn = new SqlConnection(connection);
+            var da = new SqlDataAdapter(select, conn);
+            var ds = new DataSet();
+            da.Fill(ds);
+            dataGridView3.ReadOnly = false;
+            dataGridView3.DataSource = ds.Tables[0];
+
+
+            PodesiDatagridView(dataGridView3);
+
+            //string value = dataGridView3.Rows[0].Cells[0].Value.ToString();
+            DataGridViewColumn column = dataGridView3.Columns[0];
+            dataGridView3.Columns[0].HeaderText = "ID";
+            dataGridView3.Columns[0].Width = 50;
+
+            DataGridViewColumn column2 = dataGridView3.Columns[1];
+            dataGridView3.Columns[1].HeaderText = "USL ID";
+            dataGridView3.Columns[1].Width = 30;
+
+            DataGridViewColumn column3 = dataGridView3.Columns[2];
+            dataGridView3.Columns[2].HeaderText = "Kontejner";
+            dataGridView3.Columns[2].Width = 50;
+
+            DataGridViewColumn column4 = dataGridView3.Columns[3];
+            dataGridView3.Columns[3].HeaderText = "Kol";
+            dataGridView3.Columns[3].Width = 50;
+
+            DataGridViewColumn column5 = dataGridView3.Columns[4];
+            dataGridView3.Columns[4].HeaderText = "VRU";
+            dataGridView3.Columns[4].Width = 30;
+
+            DataGridViewColumn column6 = dataGridView3.Columns[5];
+            dataGridView3.Columns[5].HeaderText = "Usluga";
+            dataGridView3.Columns[5].Width = 250;
+
+            DataGridViewColumn column7 = dataGridView3.Columns[6];
+            dataGridView3.Columns[6].HeaderText = "Cena";
+            dataGridView3.Columns[6].Width = 80;
+
+
+            DataGridViewColumn column8 = dataGridView3.Columns[7];
+            dataGridView3.Columns[7].HeaderText = "OJID";
+            dataGridView3.Columns[7].Width = 20;
+
+            DataGridViewColumn column9 = dataGridView3.Columns[8];
+            dataGridView3.Columns[8].HeaderText = "Org Jed";
+            dataGridView3.Columns[8].Width = 120;
+
+            DataGridViewColumn column10 = dataGridView3.Columns[9];
+            dataGridView3.Columns[9].HeaderText = "PLID";
+            dataGridView3.Columns[9].Width = 40;
+
+            DataGridViewColumn column11 = dataGridView3.Columns[10];
+            dataGridView3.Columns[10].HeaderText = "Platilac";
+            dataGridView3.Columns[10].Width = 140;
 
             //dataGridView7.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             //dataGridView7.SelectAll();
@@ -1510,8 +1825,10 @@ namespace Saobracaj.Uvoz
                 }
 
                 FillDG8();
-                ProveriScenario();
-                //ProveriScenario(pomID);
+                FillDG8Dodatne();
+                FillDG8Administracija();
+                ProveriScenario(Convert.ToInt32(txtID.Text));
+               
             }
             catch
             {
@@ -1519,6 +1836,7 @@ namespace Saobracaj.Uvoz
             }
         }
         int brojKontejnera;
+        int rasporedjen = 0;
         private void ProveriScenario()
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -1565,7 +1883,7 @@ namespace Saobracaj.Uvoz
                 if (ProveriListe(usluge, uslugeScenario))
                 {
                     nasao = true;
-                    int rasporedjen = 0;
+                  
                     if (txtNadredjeni.Text != "0")
                     {
                         rasporedjen = 1;
@@ -1656,17 +1974,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
 
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView1.BackgroundColor = Color.White;
-
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView1);
 
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
@@ -1926,17 +2234,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
 
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView1.BackgroundColor = Color.White;
-
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView1);
 
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
@@ -2090,17 +2388,7 @@ namespace Saobracaj.Uvoz
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = ds.Tables[0];
 
-            dataGridView1.BorderStyle = BorderStyle.None;
-            dataGridView1.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
-            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-            dataGridView1.DefaultCellStyle.SelectionBackColor = Color.DarkTurquoise;
-            dataGridView1.DefaultCellStyle.SelectionForeColor = Color.WhiteSmoke;
-            dataGridView1.BackgroundColor = Color.White;
-
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(20, 25, 72);
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            PodesiDatagridView(dataGridView1);
 
             DataGridViewColumn column = dataGridView1.Columns[0];
             dataGridView1.Columns[0].HeaderText = "ID";
@@ -2249,10 +2537,25 @@ namespace Saobracaj.Uvoz
             cboUvoznik.DisplayMember = "PaNaziv";
             cboUvoznik.ValueMember = "PaSifra";
             //Provera SCENARIJA UKLJUCITI ADR
+            /*
           
+         
+         
+            else if (ScenarioGl == 2 && Convert.ToInt32(txtADR.SelectedValue) > 1 && pp == 1)
+            {
+                Moguce = "20,21,31";
 
-          
-          
+            }
+            else if (ScenarioGl == 3 && Convert.ToInt32(txtADR.SelectedValue) == 0 && pp == 1)
+            {
+                Moguce = "5"; // Ostaje na terminalu
+            }
+            else if (ScenarioGl == 3 && Convert.ToInt32(txtADR.SelectedValue) > 1 && pp == 1)
+            {
+                Moguce = "22"; // Ostaje na terminalu
+            }
+
+            */
 
 
 
@@ -2266,9 +2569,9 @@ namespace Saobracaj.Uvoz
                 cboScenario.DisplayMember = "Naziv";
                 cboScenario.ValueMember = "ID";
             }
-            else if (ScenarioGL == 1  && ADRSC == 0)
+            else if (ScenarioGL == 1  && ADRSC == 0 && PunPrazan > 0 )
             {
-                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (1,2) group by ID order by ID";
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (1,2,27) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);
                 var partDS22 = new DataSet();
                 partAD22.Fill(partDS22);
@@ -2276,9 +2579,9 @@ namespace Saobracaj.Uvoz
                 cboScenario.DisplayMember = "Naziv";
                 cboScenario.ValueMember = "ID";
             }
-            else if (ScenarioGL == 1  && ADRSC == 1)
+            else if (ScenarioGL == 1  && ADRSC == 1 && PunPrazan > 0)
             {
-                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (18,19) group by ID order by ID";
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (18,19,30) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);
                 var partDS22 = new DataSet();
                 partAD22.Fill(partDS22);
@@ -2287,9 +2590,21 @@ namespace Saobracaj.Uvoz
                 cboScenario.ValueMember = "ID";
             }
 
-            else if (ScenarioGL == 2 && ADRSC == 0)
+            else if (ScenarioGL == 2 && ADRSC == 0 && PunPrazan > 0)
             {
-                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (3,4,6) group by ID order by ID";
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (3,4,28) group by ID order by ID";
+                var partAD22 = new SqlDataAdapter(partner22, conn);
+                var partDS22 = new DataSet();
+                partAD22.Fill(partDS22);
+                cboScenario.DataSource = partDS22.Tables[0];
+                cboScenario.DisplayMember = "Naziv";
+                cboScenario.ValueMember = "ID";
+
+
+            }
+            else if (ScenarioGL == 2 && ADRSC == 0 && PunPrazan == 0)
+            {
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (6) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);
                 var partDS22 = new DataSet();
                 partAD22.Fill(partDS22);
@@ -2297,9 +2612,9 @@ namespace Saobracaj.Uvoz
                 cboScenario.DisplayMember = "Naziv";
                 cboScenario.ValueMember = "ID";
             }
-            else if (ScenarioGL == 2 && ADRSC == 1)
+            else if (ScenarioGL == 2 && ADRSC == 1 && PunPrazan > 0)
             {
-                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (20,21) group by ID order by ID";
+                var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (20,21,31) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);
                 var partDS22 = new DataSet();
                 partAD22.Fill(partDS22);
@@ -2309,7 +2624,7 @@ namespace Saobracaj.Uvoz
             }
 
         
-            else if (ScenarioGL == 3  && ADRSC == 0)
+            else if (ScenarioGL == 3  && ADRSC == 0 && PunPrazan > 0)
             {
                 var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (5) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);
@@ -2319,7 +2634,7 @@ namespace Saobracaj.Uvoz
                 cboScenario.DisplayMember = "Naziv";
                 cboScenario.ValueMember = "ID";
             }
-            else if (ScenarioGL == 3 && ADRSC == 1)
+            else if (ScenarioGL == 3 && ADRSC == 1 && PunPrazan > 0)
             {
                 var partner22 = " SELECT ID, Min(Naziv) as Naziv FROM Scenario Where ID in (22) group by ID order by ID";
                 var partAD22 = new SqlDataAdapter(partner22, conn);
@@ -2363,6 +2678,8 @@ namespace Saobracaj.Uvoz
                 {
                     txtID.Text = row.Cells[0].Value.ToString();
                     FillDG8();
+                    FillDG8Dodatne();
+                    FillDG8Administracija();
                     //  VratiPodatkeSelect(Convert.ToInt32(txtID.Text));
 
                 }
@@ -2511,7 +2828,9 @@ namespace Saobracaj.Uvoz
                     }
                 }
                 FillDG8();
-                ProveriScenario(pomID);
+                FillDG8Dodatne();
+                FillDG8Administracija();
+                ProveriScenario(Convert.ToInt32(txtID.Text));
 
             }
             catch
@@ -2646,7 +2965,9 @@ namespace Saobracaj.Uvoz
                     }
                 }
                 FillDG8();
-                ProveriScenario(pomID);
+                FillDG8Dodatne();
+                FillDG8Administracija();
+                ProveriScenario(Convert.ToInt32(txtID.Text));
 
             }
             catch
@@ -2752,6 +3073,8 @@ namespace Saobracaj.Uvoz
                             if (i == 0)
                             {
                                 uvK.DelUvozKonacnaUsluga(pom);
+                                ProveriScenario(Convert.ToInt32(txtID.Text));
+
 
                             }
                             else if (i == 1)
@@ -2771,10 +3094,90 @@ namespace Saobracaj.Uvoz
                         {
                             pom = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
                             uvK.DelUvozUsluga(pom);
+                            ProveriScenario(Convert.ToInt32(txtID.Text));
                         }
                     }
                 }
+                foreach (DataGridViewRow row2 in dataGridView2.Rows)
+                {
+                    if (row2.Selected)
+                    {
+                        if (txtNadredjeni.Text != "0")
+                        {
+                            pom = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                                                                                  //Ovde treba proveriti da li za manipulacije postoji izdat interni radni nalog
+                                                                                  // Da li je za radni nalog izdata Prijemnica i RN
+                            int i = ProveriDaliPostojiIzdatRNI(pom);
+
+                            if (i == 0)
+                            {
+                                uvK.DelUvozKonacnaUsluga(pom);
+
+                            }
+                            else if (i == 1)
+                            {
+                                System.Windows.Forms.MessageBox.Show("Za ovu uslugu generisali ste nalog Terminalu ali nije dat u dalju izradu. Kontektiraje terminal");
+                            }
+                            else if (i == 2)
+                            {
+                                System.Windows.Forms.MessageBox.Show("Za ovu uslugu generisali ste nalog Terminalu dat je u dalju izradu. Kontektirajte terminal");
+
+                            }
+
+
+
+                        }
+                        else
+                        {
+                            pom = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                            uvK.DelUvozUsluga(pom);
+                        }
+                    }
+                }
+
+                foreach (DataGridViewRow row3 in dataGridView3.Rows)
+                {
+                    if (row3.Selected)
+                    {
+                        if (txtNadredjeni.Text != "0")
+                        {
+                            pom = Convert.ToInt32(row3.Cells[0].Value.ToString());//Panta
+                                                                                  //Ovde treba proveriti da li za manipulacije postoji izdat interni radni nalog
+                                                                                  // Da li je za radni nalog izdata Prijemnica i RN
+                            int i = ProveriDaliPostojiIzdatRNI(pom);
+
+                            if (i == 0)
+                            {
+                                uvK.DelUvozKonacnaUsluga(pom);
+
+                            }
+                            else if (i == 1)
+                            {
+                                System.Windows.Forms.MessageBox.Show("Za ovu uslugu generisali ste nalog Terminalu ali nije dat u dalju izradu. Kontektiraje terminal");
+                            }
+                            else if (i == 2)
+                            {
+                                System.Windows.Forms.MessageBox.Show("Za ovu uslugu generisali ste nalog Terminalu dat je u dalju izradu. Kontektirajte terminal");
+
+                            }
+
+
+
+                        }
+                        else
+                        {
+                            pom = Convert.ToInt32(row3.Cells[0].Value.ToString());//Panta
+                            uvK.DelUvozUsluga(pom);
+                        }
+                    }
+                }
+
+
                 FillDG8();
+              
+                FillDG8Dodatne();
+                 
+                FillDG8Administracija();
             }
             catch
             {
@@ -2806,7 +3209,45 @@ namespace Saobracaj.Uvoz
                         }
                     }
                 }
+
+
+                foreach (DataGridViewRow row3 in dataGridView2.Rows)
+                {
+                    if (row3.Selected)
+                    {
+                        if (txtNadredjeni.Text != "0")
+                        {
+                            pom = Convert.ToInt32(row3.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozKonacnaUsluga(pom, Convert.ToInt32(cboUvoznik.SelectedValue));
+                        }
+                        else
+                        {
+                            pom = Convert.ToInt32(row3.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozUsluga(pom, Convert.ToInt32(cboUvoznik.SelectedValue));
+                        }
+                    }
+                }
+
+                foreach (DataGridViewRow row4 in dataGridView3.Rows)
+                {
+                    if (row4.Selected)
+                    {
+                        if (txtNadredjeni.Text != "0")
+                        {
+                            pom = Convert.ToInt32(row4.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozKonacnaUsluga(pom, Convert.ToInt32(cboUvoznik.SelectedValue));
+                        }
+                        else
+                        {
+                            pom = Convert.ToInt32(row4.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozUsluga(pom, Convert.ToInt32(cboUvoznik.SelectedValue));
+                        }
+                    }
+                }
+
                 FillDG8();
+                FillDG8Dodatne();
+                FillDG8Administracija();
             }
             catch
             {
@@ -2916,7 +3357,9 @@ namespace Saobracaj.Uvoz
                     
                 }
                 FillDG8();
-                ProveriScenario(pomID);
+                FillDG8Dodatne();
+                FillDG8Administracija();
+                ProveriScenario(Convert.ToInt32(txtID.Text));
 
 
             }
@@ -3112,6 +3555,428 @@ namespace Saobracaj.Uvoz
         private void frmUnosManipulacija_FormClosing(object sender, FormClosingEventArgs e)
         {
             
+        }
+
+        decimal VratiCenu(int IDVM, int TipoPlatioc)
+        {
+            int CenaNadjenaTip1 = 0;
+            int CenaNadjenaTip2 = 0;
+            decimal pomCena = 0;
+            int pomPlatioc = 0;
+            int pomManipulacija = 0;
+
+            pomManipulacija = VratiManipulaciju(IDVM);
+    
+
+            if (TipoPlatioc == 1)
+            {
+                pomPlatioc = Convert.ToInt32(cboNalogodavac1.SelectedValue);
+
+
+            }
+            else if (TipoPlatioc == 2)
+            {
+                pomPlatioc = Convert.ToInt32(cboNalogodavac2.SelectedValue);
+            }
+
+            else if (TipoPlatioc == 3)
+            {
+                pomPlatioc = Convert.ToInt32(cboNalogodavac3.SelectedValue);
+            }
+            else if (TipoPlatioc == 4)
+            {
+                pomPlatioc = Convert.ToInt32(cboUvoznik.SelectedValue);
+            }
+
+            CenaNadjenaTip1 = PretraziPoNalogodavciIIzvozniku(pomManipulacija, pomPlatioc, Convert.ToInt32(cboUvoznik.SelectedValue));
+            CenaNadjenaTip2 = PretraziPoNalogodavci(pomManipulacija, pomPlatioc, Convert.ToInt32(cboUvoznik.SelectedValue));
+            if (CenaNadjenaTip1 == 1)
+            {
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                SqlConnection con = new SqlConnection(s_connection);
+
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("select ID, Cena, OrgJed from Cene where VrstaManipulacije = " + pomManipulacija + "  and  Komitent = " + pomPlatioc+ "", con);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+
+                    pomCena = Convert.ToDecimal(dr["Cena"].ToString());
+
+
+
+                }
+
+                con.Close();
+
+            }
+
+            if (CenaNadjenaTip2 == 1 && CenaNadjenaTip2 == 0)
+            {
+                var s_connection = Saobracaj.Sifarnici.frmLogovanje.connectionString;
+                SqlConnection con = new SqlConnection(s_connection);
+
+                con.Open();
+
+                SqlCommand cmd = new SqlCommand("select ID, Cena, OrgJed from Cene where Uvoznik = 0 and VrstaManipulacije = " + pomManipulacija + " and  Komitent = " + pomPlatioc + "", con);
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    //Izmenjeno
+                    // txtSopstvenaMasa2.Value = Convert.ToDecimal(dr["SopM"].ToString());
+                    pomCena = Convert.ToDecimal(dr["Cena"].ToString());
+
+
+
+                }
+
+                con.Close();
+               
+
+            }
+            return pomCena;
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            int pom = 0;
+            InsertUvozKonacna uvK = new InsertUvozKonacna();
+            decimal cena = 0;
+            try
+            {
+
+                foreach (DataGridViewRow row2 in dataGridView7.Rows)
+                {
+                    if (row2.Selected)
+                    {
+                        if (txtNadredjeni.Text != "0")
+                        {
+                            pom = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozKonacnaUsluga(pom, Convert.ToInt32(cboNalogodavac3.SelectedValue));
+                            cena = VratiCenu(pom, 3);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+                        }
+                        else
+                        {
+                            pom = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozUsluga(pom, Convert.ToInt32(cboNalogodavac3.SelectedValue));
+                            cena = VratiCenu(pom, 3);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+                        }
+                    }
+                }
+
+
+                foreach (DataGridViewRow row3 in dataGridView2.Rows)
+                {
+                    if (row3.Selected)
+                    {
+                        if (txtNadredjeni.Text != "0")
+                        {
+                            pom = Convert.ToInt32(row3.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozKonacnaUsluga(pom, Convert.ToInt32(cboNalogodavac3.SelectedValue));
+                            cena = VratiCenu(pom, 3);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+                        }
+                        else
+                        {
+                            pom = Convert.ToInt32(row3.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozUsluga(pom, Convert.ToInt32(cboNalogodavac3.SelectedValue));
+                            cena = VratiCenu(pom, 3);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+                        }
+                    }
+                }
+
+                foreach (DataGridViewRow row4 in dataGridView2.Rows)
+                {
+                    if (row4.Selected)
+                    {
+                        if (txtNadredjeni.Text != "0")
+                        {
+                            pom = Convert.ToInt32(row4.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozKonacnaUsluga(pom, Convert.ToInt32(cboNalogodavac3.SelectedValue));
+                            cena = VratiCenu(pom, 3);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+                        }
+                        else
+                        {
+                            pom = Convert.ToInt32(row4.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozUsluga(pom, Convert.ToInt32(cboNalogodavac3.SelectedValue));
+                            cena = VratiCenu(pom, 3);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+
+                        }
+                    }
+                }
+
+                FillDG8();
+                FillDG8Dodatne();
+                FillDG8Administracija();
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("Nije uspelo brisanje");
+            }
+        }
+
+        private void button21_Click(object sender, EventArgs e)
+        {
+            int pom = 0;
+            InsertUvozKonacna uvK = new InsertUvozKonacna();
+            decimal cena = 0;
+            try
+            {
+
+                foreach (DataGridViewRow row2 in dataGridView7.Rows)
+                {
+                    if (row2.Selected)
+                    {
+                        if (txtNadredjeni.Text != "0")
+                        {
+                            pom = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozKonacnaUsluga(pom, Convert.ToInt32(cboNalogodavac2.SelectedValue));
+                            cena = VratiCenu(pom, 2);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+                        }
+                        else
+                        {
+                            pom = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozUsluga(pom, Convert.ToInt32(cboNalogodavac2.SelectedValue));
+                            cena = VratiCenu(pom, 2);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+                        }
+                    }
+                }
+
+
+                foreach (DataGridViewRow row3 in dataGridView2.Rows)
+                {
+                    if (row3.Selected)
+                    {
+                        if (txtNadredjeni.Text != "0")
+                        {
+                            pom = Convert.ToInt32(row3.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozKonacnaUsluga(pom, Convert.ToInt32(cboNalogodavac2.SelectedValue));
+                            cena = VratiCenu(pom, 2);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+                        }
+                        else
+                        {
+                            pom = Convert.ToInt32(row3.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozUsluga(pom, Convert.ToInt32(cboNalogodavac2.SelectedValue));
+                            cena = VratiCenu(pom, 2);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+                        }
+                    }
+                }
+
+                foreach (DataGridViewRow row4 in dataGridView3.Rows)
+                {
+                    if (row4.Selected)
+                    {
+                        if (txtNadredjeni.Text != "0")
+                        {
+                            pom = Convert.ToInt32(row4.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozKonacnaUsluga(pom, Convert.ToInt32(cboNalogodavac2.SelectedValue));
+                            cena = VratiCenu(pom, 3);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+                        }
+                        else
+                        {
+                            pom = Convert.ToInt32(row4.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozUsluga(pom, Convert.ToInt32(cboNalogodavac2.SelectedValue));
+                            cena = VratiCenu(pom, 3);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+                        }
+                    }
+                }
+
+                FillDG8();
+                FillDG8Dodatne();
+                FillDG8Administracija();
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("Nije uspelo brisanje");
+            }
+        }
+
+        private void button22_Click(object sender, EventArgs e)
+        {
+            int pom = 0;
+            InsertUvozKonacna uvK = new InsertUvozKonacna();
+            decimal cena = 0;
+            try
+            {
+
+                foreach (DataGridViewRow row2 in dataGridView7.Rows)
+                {
+                    if (row2.Selected)
+                    {
+                        if (txtNadredjeni.Text != "0")
+                        {
+                            pom = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozKonacnaUsluga(pom, Convert.ToInt32(cboNalogodavac1.SelectedValue));
+                            cena = VratiCenu(pom, 1);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+                        }
+                        else
+                        {
+                            pom = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozUsluga(pom, Convert.ToInt32(cboNalogodavac1.SelectedValue));
+                            cena = VratiCenu(pom, 1);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+                        }
+                    }
+                }
+
+
+                foreach (DataGridViewRow row3 in dataGridView2.Rows)
+                {
+                    if (row3.Selected)
+                    {
+                        if (txtNadredjeni.Text != "0")
+                        {
+                            pom = Convert.ToInt32(row3.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozKonacnaUsluga(pom, Convert.ToInt32(cboNalogodavac1.SelectedValue));
+                            cena = VratiCenu(pom, 1);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+                        }
+                        else
+                        {
+                            pom = Convert.ToInt32(row3.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozUsluga(pom, Convert.ToInt32(cboNalogodavac1.SelectedValue));
+                            cena = VratiCenu(pom, 1);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+                        }
+                    }
+                }
+
+                foreach (DataGridViewRow row4 in dataGridView2.Rows)
+                {
+                    if (row4.Selected)
+                    {
+                        if (txtNadredjeni.Text != "0")
+                        {
+                            pom = Convert.ToInt32(row4.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozKonacnaUsluga(pom, Convert.ToInt32(cboNalogodavac1.SelectedValue));
+                            cena = VratiCenu(pom, 1);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+                        }
+                        else
+                        {
+                            pom = Convert.ToInt32(row4.Cells[0].Value.ToString());//Panta
+                            uvK.UpdPlatiocaUvozUsluga(pom, Convert.ToInt32(cboNalogodavac1.SelectedValue));
+                            cena = VratiCenu(pom, 1);
+                            uvK.UpdCenaUvozKonacnaUsluga(pom, Convert.ToDecimal(cena));
+                        }
+                    }
+                }
+
+                FillDG8();
+                FillDG8Dodatne();
+                FillDG8Administracija();
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("Nije uspelo brisanje");
+            }
+        }
+
+        private void button26_Click(object sender, EventArgs e)
+        {
+     
+            int pomID = 0;
+            int pomManupulacija = 0;
+            double pomkolicina = 1;
+            string pomPokret = "";
+            int pomStatusKontejnera = 0;
+            string pomForma = "";
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView6.Rows)
+                {
+                    if (row.Selected)
+                    {
+                        int idMP = Convert.ToInt32(row.Cells[0].Value.ToString());
+                        List<int> gv7 = new List<int>();
+                        foreach (DataGridViewRow r in dataGridView7.Rows)
+                        {
+                            if (int.TryParse(r.Cells[4].Value.ToString(), out int value))
+                            {
+                                gv7.Add(value);
+                            }
+                        }
+                        bool uneto = gv7.Contains(idMP);
+                        if (uneto)
+                        {
+                            System.Windows.Forms.MessageBox.Show("Manipulacija ID:" + idMP + " je već dodata!");
+                            return;
+                        }
+                        else
+                        {
+                            pomManupulacija = Convert.ToInt32(row.Cells[0].Value.ToString());
+                           // CenaNadjenaTip1 = PretraziPoNalogodavciIIzvozniku(pomManupulacija, Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
+                           // CenaNadjenaTip2 = PretraziPoNalogodavci(pomManupulacija, Convert.ToInt32(cboNalogodavac1.SelectedValue), Convert.ToInt32(cboUvoznik.SelectedValue));
+                            int Adm = ProveriAdministrativna(pomManupulacija);
+                            int Dod = ProveriDodatna(pomManupulacija);
+                            if (Adm == 1 || Dod == 1)
+                            {
+                                pomPokret = "/";
+                                pomStatusKontejnera = Convert.ToInt32(0);
+                                pomForma = "/";
+                            }
+                            else
+                            {
+                                pomPokret = row.Cells[7].Value.ToString();
+                                pomStatusKontejnera = Convert.ToInt32(row.Cells[8].Value.ToString());
+                                pomForma = row.Cells[10].Value.ToString();
+                            }
+                                pomOrgJed = VratiOrgJed(pomManupulacija);
+                                foreach (DataGridViewRow row2 in dataGridView1.Rows)
+                                {
+                                    if (row2.Selected)
+                                    {
+                                        pomID = Convert.ToInt32(row2.Cells[0].Value.ToString());//Panta
+                                        UbaciStavkuUsluge(pomID, pomManupulacija, 0, pomkolicina, pomOrgJed, 0, pomPokret, pomStatusKontejnera, pomForma);
+                                    }
+                                }
+
+                           
+                        }
+                    }
+                }
+
+                FillDG8();
+                FillDG8Dodatne();
+                FillDG8Administracija();
+                ProveriScenario(Convert.ToInt32(txtID.Text));
+                //ProveriScenario(pomID);
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("Unos nije uspeo.Proverite da li imate definisanu cenu u Cenovniku!!!");
+            }
+        }
+
+        private void button27_Click(object sender, EventArgs e)
+        {
+            if (txtNadredjeni.Text == "0")
+            {
+                frmUvozKopirajUslugeKontejnera kuk = new frmUvozKopirajUslugeKontejnera(txtID.Text, 1);
+                kuk.Show();
+            }
+            else
+            {
+                frmUvozKopirajUslugeKontejnera kuk = new frmUvozKopirajUslugeKontejnera(txtID.Text, 2);
+                kuk.Show();
+
+            }
+           
         }
     }
 }
