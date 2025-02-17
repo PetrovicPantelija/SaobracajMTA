@@ -886,12 +886,12 @@ namespace Saobracaj.Dokumenta
                     else
                     {
                         ins.InsNaj("", /*Convert.ToInt32(cmbVoz.SelectedValue)*/ 0, Convert.ToInt32(cboPosiljalac.SelectedValue), Convert.ToInt32(cboPrevoznik.SelectedValue), Convert.ToInt32(cboOtpravna.SelectedValue),
-                            Convert.ToInt32(cboUputna.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboNHM.SelectedValue), txtRelacija.Text, Convert.ToDouble(txtNetoTezina.Text),
+                            Convert.ToInt32(cboUputna.SelectedValue), Convert.ToInt32(cboPrimalac.SelectedValue), Convert.ToInt32(cboNHM.SelectedValue), txtRelacija.Text, Convert.ToDouble(txtNetoTezina.Text)*1000,
                             Convert.ToDouble(txtDuzinaM.Text), Convert.ToInt32(txtBrojKola.Text), chkRID.Checked, Convert.ToDateTime(dtpPredvidjenoPrimanje.Value), Convert.ToDateTime(dtpStvarnoPrimanje.Value),
                             Convert.ToDateTime(dtpPredvidjenaPredaja.Value), Convert.ToDateTime(dtpStvarnaPredaja.Value), Convert.ToInt32(cboStatusPredaje.SelectedValue), txtRID.Text.TrimEnd(), txtRIDBroj.Text.Trim(),
                             txtKomentar.Text, /*Convert.ToInt32(cboVozP.SelectedValue)*/ 0, Convert.ToInt32(cboGranicna.SelectedValue), Convert.ToInt32(cboPlatilac.SelectedValue), chkAdHoc.Checked,
                             Convert.ToInt32(cboPrevoznikZa.SelectedValue), txtUgovor.Text, txtZadatak.Text, chkCIM.Checked, KorisnikNajava, txtDispecerRID.Text, Convert.ToInt32(cboTipPrevoza.SelectedValue),
-                            Convert.ToDouble(txtNetoTezinaM.Value), Convert.ToInt32(multiColumnComboBox1.SelectedValue), /*PomImaPovrat*/ 0, Convert.ToInt32(cboTehnologijaID.SelectedValue),
+                            Convert.ToDouble(txtNetoTezinaM.Value)*1000, Convert.ToInt32(multiColumnComboBox1.SelectedValue), /*PomImaPovrat*/ 0, Convert.ToInt32(cboTehnologijaID.SelectedValue),
                             Convert.ToInt32(cboNHM2.SelectedValue), txtPorDodatno.Text, txtOznaka.Text.ToString().TrimEnd(), cboSerija.SelectedValue.ToString(), txtOznakaPrefix.Text, txtOznakaBroj.Text, Convert.ToInt32(txtBrojKontejnera.Value), Convert.ToInt32(cboOpportunity.SelectedValue));
 
                         LogInsert();
@@ -976,7 +976,7 @@ namespace Saobracaj.Dokumenta
                             Convert.ToDateTime(dtpPredvidjenaPredaja.Value), Convert.ToDateTime(dtpStvarnaPredaja.Value), Convert.ToInt32(cboStatusPredaje.SelectedValue), txtRID.Text.TrimEnd(), txtRIDBroj.Text.Trim(),
                             txtKomentar.Text, /*Convert.ToInt32(cboVozP.SelectedValue)*/ 0, Convert.ToInt32(cboGranicna.SelectedValue), Convert.ToInt32(cboPlatilac.SelectedValue), chkAdHoc.Checked,
                             Convert.ToInt32(cboPrevoznikZa.SelectedValue), txtUgovor.Text, txtZadatak.Text, chkCIM.Checked, KorisnikNajava, txtDispecerRID.Text, Convert.ToInt32(cboTipPrevoza.SelectedValue),
-                            Convert.ToDouble(txtNetoTezinaM.Value), Convert.ToInt32(multiColumnComboBox1.SelectedValue), /*PomImaPovrat*/ 0, Convert.ToInt32(cboTehnologijaID.SelectedValue),
+                            Convert.ToDouble(txtNetoTezinaM.Value)*1000, Convert.ToInt32(multiColumnComboBox1.SelectedValue), /*PomImaPovrat*/ 0, Convert.ToInt32(cboTehnologijaID.SelectedValue),
                             Convert.ToInt32(cboNHM2.SelectedValue), txtPorDodatno.Text, txtOznaka.Text.ToString().TrimEnd(), cboSerija.SelectedValue.ToString(), txtOznakaPrefix.Text, txtOznakaBroj.Text, Convert.ToInt32(txtBrojKontejnera.Value), Convert.ToInt32(cboOpportunity.SelectedValue));
 
                     status = false;

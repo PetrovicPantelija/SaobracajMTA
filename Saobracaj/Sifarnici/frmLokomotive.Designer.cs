@@ -49,6 +49,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.txtNaziv = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMasa)).BeginInit();
             this.toolStrip1.SuspendLayout();
@@ -58,10 +59,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 49);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(10, 40);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 20);
+            this.label1.Size = new System.Drawing.Size(105, 16);
             this.label1.TabIndex = 13;
             this.label1.Text = "Lokomotiva šifra";
             // 
@@ -72,11 +72,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(219)))), ((int)(((byte)(226)))), ((int)(((byte)(230)))));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(16, 238);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 193);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.Size = new System.Drawing.Size(976, 294);
+            this.dataGridView1.Size = new System.Drawing.Size(732, 239);
             this.dataGridView1.TabIndex = 18;
             this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
@@ -84,11 +83,10 @@
             // 
             this.chkAktivna.AutoSize = true;
             this.chkAktivna.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkAktivna.Location = new System.Drawing.Point(11, 182);
-            this.chkAktivna.Margin = new System.Windows.Forms.Padding(4);
+            this.chkAktivna.Location = new System.Drawing.Point(8, 148);
             this.chkAktivna.Name = "chkAktivna";
             this.chkAktivna.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkAktivna.Size = new System.Drawing.Size(85, 24);
+            this.chkAktivna.Size = new System.Drawing.Size(70, 20);
             this.chkAktivna.TabIndex = 188;
             this.chkAktivna.Text = "Aktivna";
             this.chkAktivna.UseVisualStyleBackColor = true;
@@ -97,11 +95,10 @@
             // 
             this.chkDizel.AutoSize = true;
             this.chkDizel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkDizel.Location = new System.Drawing.Point(142, 182);
-            this.chkDizel.Margin = new System.Windows.Forms.Padding(4);
+            this.chkDizel.Location = new System.Drawing.Point(106, 148);
             this.chkDizel.Name = "chkDizel";
             this.chkDizel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chkDizel.Size = new System.Drawing.Size(70, 24);
+            this.chkDizel.Size = new System.Drawing.Size(56, 20);
             this.chkDizel.TabIndex = 199;
             this.chkDizel.Text = "Dizel";
             this.chkDizel.UseVisualStyleBackColor = true;
@@ -110,10 +107,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(11, 128);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(8, 104);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(72, 20);
+            this.label5.Size = new System.Drawing.Size(56, 16);
             this.label5.TabIndex = 201;
             this.label5.Text = "Lozinka:";
             // 
@@ -121,10 +117,9 @@
             // 
             this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.txtPassword.ForeColor = System.Drawing.Color.White;
-            this.txtPassword.Location = new System.Drawing.Point(11, 152);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPassword.Location = new System.Drawing.Point(8, 124);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(170, 22);
+            this.txtPassword.Size = new System.Drawing.Size(128, 20);
             this.txtPassword.TabIndex = 200;
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -132,10 +127,9 @@
             // 
             this.txtLokomotiva.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.txtLokomotiva.ForeColor = System.Drawing.Color.White;
-            this.txtLokomotiva.Location = new System.Drawing.Point(17, 73);
-            this.txtLokomotiva.Margin = new System.Windows.Forms.Padding(4);
+            this.txtLokomotiva.Location = new System.Drawing.Point(13, 59);
             this.txtLokomotiva.Name = "txtLokomotiva";
-            this.txtLokomotiva.Size = new System.Drawing.Size(164, 22);
+            this.txtLokomotiva.Size = new System.Drawing.Size(124, 20);
             this.txtLokomotiva.TabIndex = 202;
             this.txtLokomotiva.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -145,10 +139,9 @@
             this.btnRacun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRacun.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRacun.ForeColor = System.Drawing.Color.White;
-            this.btnRacun.Location = new System.Drawing.Point(789, 170);
-            this.btnRacun.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRacun.Location = new System.Drawing.Point(592, 138);
             this.btnRacun.Name = "btnRacun";
-            this.btnRacun.Size = new System.Drawing.Size(203, 33);
+            this.btnRacun.Size = new System.Drawing.Size(152, 27);
             this.btnRacun.TabIndex = 203;
             this.btnRacun.Text = "Promeni podatke";
             this.btnRacun.UseVisualStyleBackColor = false;
@@ -158,44 +151,40 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(483, 128);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(362, 104);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(169, 20);
+            this.label4.Size = new System.Drawing.Size(134, 16);
             this.label4.TabIndex = 205;
             this.label4.Text = "Masa teretnog vozila:";
             // 
             // txtMasa
             // 
             this.txtMasa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.txtMasa.Location = new System.Drawing.Point(487, 152);
-            this.txtMasa.Margin = new System.Windows.Forms.Padding(4);
+            this.txtMasa.Location = new System.Drawing.Point(365, 124);
             this.txtMasa.Maximum = new decimal(new int[] {
             1000000,
             0,
             0,
             0});
             this.txtMasa.Name = "txtMasa";
-            this.txtMasa.Size = new System.Drawing.Size(120, 24);
+            this.txtMasa.Size = new System.Drawing.Size(90, 21);
             this.txtMasa.TabIndex = 204;
             // 
             // cboSerija
             // 
             this.cboSerija.FormattingEnabled = true;
-            this.cboSerija.Location = new System.Drawing.Point(487, 73);
-            this.cboSerija.Margin = new System.Windows.Forms.Padding(4);
+            this.cboSerija.Location = new System.Drawing.Point(365, 59);
             this.cboSerija.Name = "cboSerija";
-            this.cboSerija.Size = new System.Drawing.Size(201, 24);
+            this.cboSerija.Size = new System.Drawing.Size(152, 21);
             this.cboSerija.TabIndex = 207;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(492, 49);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(369, 40);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(52, 20);
+            this.label7.Size = new System.Drawing.Size(42, 16);
             this.label7.TabIndex = 208;
             this.label7.Text = "Serija";
             // 
@@ -204,10 +193,9 @@
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(560, 156);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Location = new System.Drawing.Point(420, 127);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(25, 17);
+            this.label9.Size = new System.Drawing.Size(21, 13);
             this.label9.TabIndex = 209;
             this.label9.Text = "kg";
             // 
@@ -219,11 +207,12 @@
             this.tsNew,
             this.tsSave,
             this.tsDelete,
-            this.toolStripSeparator1});
+            this.toolStripSeparator1,
+            this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(1006, 27);
+            this.toolStrip1.Size = new System.Drawing.Size(756, 27);
             this.toolStrip1.TabIndex = 210;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -234,7 +223,7 @@
             this.tsNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNew.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.tsNew.Name = "tsNew";
-            this.tsNew.Size = new System.Drawing.Size(29, 24);
+            this.tsNew.Size = new System.Drawing.Size(24, 24);
             this.tsNew.Text = "Novi";
             this.tsNew.Click += new System.EventHandler(this.tsNew_Click);
             // 
@@ -245,7 +234,7 @@
             this.tsSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsSave.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.tsSave.Name = "tsSave";
-            this.tsSave.Size = new System.Drawing.Size(29, 24);
+            this.tsSave.Size = new System.Drawing.Size(24, 24);
             this.tsSave.Text = "tsSave";
             this.tsSave.Click += new System.EventHandler(this.tsSave_Click);
             // 
@@ -256,7 +245,7 @@
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Margin = new System.Windows.Forms.Padding(5, 1, 0, 2);
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(29, 24);
+            this.tsDelete.Size = new System.Drawing.Size(24, 24);
             this.tsDelete.Text = "toolStripButton1";
             this.tsDelete.Click += new System.EventHandler(this.tsDelete_Click);
             // 
@@ -268,29 +257,38 @@
             // 
             // txtNaziv
             // 
-            this.txtNaziv.Location = new System.Drawing.Point(214, 73);
-            this.txtNaziv.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNaziv.Location = new System.Drawing.Point(160, 59);
             this.txtNaziv.Name = "txtNaziv";
-            this.txtNaziv.Size = new System.Drawing.Size(251, 22);
+            this.txtNaziv.Size = new System.Drawing.Size(189, 20);
             this.txtNaziv.TabIndex = 211;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(210, 49);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(158, 40);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(51, 20);
+            this.label2.Size = new System.Drawing.Size(41, 16);
             this.label2.TabIndex = 212;
             this.label2.Text = "Naziv";
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(109, 24);
+            this.toolStripButton1.Text = "Aktivne/Neaktivne";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // frmLokomotive
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(216)))), ((int)(((byte)(220)))));
-            this.ClientSize = new System.Drawing.Size(1006, 545);
+            this.ClientSize = new System.Drawing.Size(756, 443);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtNaziv);
             this.Controls.Add(this.toolStrip1);
@@ -308,7 +306,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmLokomotive";
             this.Text = "Lokomotive";
             this.Load += new System.EventHandler(this.frmLokomotive_Load);
@@ -342,5 +339,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.TextBox txtNaziv;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
