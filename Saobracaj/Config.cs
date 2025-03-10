@@ -19,7 +19,7 @@ namespace Saobracaj
         public string OsnovnoSkladiste { get; set; }
         public string OsnovnaLokacija { get; set; }
     }
-
+    //komentar 1
     public static class ConfigManager
     {
         public static CompanyConfiguration GetCompanyConfiguration(string naziv)
